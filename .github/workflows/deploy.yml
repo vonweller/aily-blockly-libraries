@@ -124,19 +124,25 @@ jobs:
       - name: Generate JSON
         run: node genjson.js
       
-      - name: Echo current directory
-        run: echo $PWD
+      - name: Check if JSON file exists
+        run: |
+          if [ -f "./libraries.json" ]; then
+            echo "File exists"
+            cat ./libraries.json | head -n 10
+          else
+            echo "File does not exist"
+            ls -la
+            exit 1
+          fi
       
-      - name: list current directory
-        run: ls -al
-      
-      # - name: Upload JSON
-      #   uses: Dylan700/sftp-upload-action@latest
-      #   with:
-      #     server: ${{secrets.SERVER}}
-      #     username: ${{secrets.USERNAME}}
-      #     password: ${{secrets.PASSWORD}}
-      #     port: ${{secrets.PORT}}
-      #     uploads: |
-      #       ./libraries.json => ${{secrets.TARGET}}/libraries.json
+      - name: Upload JSON
+        uses: Dylan700/sftp-upload-action@latest
+        with:
+          server: ${{secrets.SERVER}}
+          username: ${{secrets.USERNAME}}
+          password: ${{secrets.PASSWORD}}
+          port: 22
+          uploads: |
+            ./libraries.json => ${{secrets.TARGET}}/libraries.json
+          verbose: true
 
