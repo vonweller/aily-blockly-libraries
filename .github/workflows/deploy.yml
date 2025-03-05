@@ -135,14 +135,13 @@ jobs:
             exit 1
           fi
       
-      - name: Upload JSON
-        uses: Dylan700/sftp-upload-action@latest
+      - name: Upload via SFTP (Alternative)
+        uses: wangyucode/sftp-upload-action@v1.4.8
         with:
-          server: ${{secrets.SERVER}}
+          host: ${{secrets.SERVER}}
           username: ${{secrets.USERNAME}}
           password: ${{secrets.PASSWORD}}
-          port: 22
-          uploads: |
-            ./libraries.json => ${{secrets.TARGET}}/libraries.json
-          verbose: true
+          port: ${{secrets.PORT}}
+          localDir: './libraries.json'
+          remoteDir: '${{secrets.TARGET}}'
 
