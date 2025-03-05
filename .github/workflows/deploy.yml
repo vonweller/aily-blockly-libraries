@@ -136,16 +136,16 @@ jobs:
           fi
       
       - name: 上传单个文件
-          uses: SamKirkland/FTP-Deploy-Action@v4.3.4
-          with:
-            server: ${{secrets.SERVER}}
-            username: ${{secrets.USERNAME}}
-            password: ${{secrets.PASSWORD}}
-            protocol: sftp
-            local-dir: ./
-            include: |
-              libraries.json
-            server-dir: ${{secrets.TARGET}}
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ${{secrets.SERVER}}
+          username: ${{secrets.USERNAME}}
+          password: ${{secrets.PASSWORD}}
+          protocol: sftp
+          local-dir: ./
+          include: |
+            libraries.json
+          server-dir: ${{secrets.TARGET}}
       
       # - name: Upload via SFTP (Alternative)
       #   uses: wangyucode/sftp-upload-action@v1.4.8
