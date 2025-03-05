@@ -124,13 +124,16 @@ jobs:
       - name: Generate JSON
         run: node genjson.js
       
-      - name: Upload JSON
-        uses: Dylan700/sftp-upload-action@latest
-        with:
-          server: ${{secrets.SERVER}}
-          username: ${{secrets.USERNAME}}
-          password: ${{secrets.PASSWORD}}
-          port: ${{secrets.PORT}}
-          uploads: |
-            ./libraries.json => ${{secrets.TARGET}}/libraries.json
+      - name: Echo current directory
+        run: echo $PWD
+      
+      # - name: Upload JSON
+      #   uses: Dylan700/sftp-upload-action@latest
+      #   with:
+      #     server: ${{secrets.SERVER}}
+      #     username: ${{secrets.USERNAME}}
+      #     password: ${{secrets.PASSWORD}}
+      #     port: ${{secrets.PORT}}
+      #     uploads: |
+      #       ./libraries.json => ${{secrets.TARGET}}/libraries.json
 
