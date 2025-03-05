@@ -135,14 +135,15 @@ jobs:
             exit 1
           fi
       
-      - name: 上传单个文件
-        uses: wangyucode/sftp-upload-action@v2
+      - name: 使用 SCP 上传文件
+        uses: appleboy/scp-action@v0.1.4
         with:
           host: ${{ secrets.SERVER }}
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
-          localDir: ./libraries.json  # 指定单个文件
-          remoteDir: ${{ secrets.TARGET }}
+          port: ${{ secrets.PORT }}
+          source: "libraries.json"
+          target: "${{ secrets.TARGET }}"
       
       # - name: Upload via SFTP (Alternative)
       #   uses: wangyucode/sftp-upload-action@v1.4.8
