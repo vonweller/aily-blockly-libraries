@@ -144,14 +144,3 @@ jobs:
           port: ${{ secrets.PORT }}
           source: "libraries.json"
           target: "${{ secrets.TARGET }}"
-      
-      # - name: Upload via SFTP (Alternative)
-      #   uses: wangyucode/sftp-upload-action@v1.4.8
-      #   with:
-      #     host: ${{secrets.SERVER}}
-      #     username: ${{secrets.USERNAME}}
-      #     password: ${{secrets.PASSWORD}}
-      #     port: ${{secrets.PORT}}
-      #     localDir: '.'
-      #     remoteDir: '${{secrets.TARGET}}'
-
