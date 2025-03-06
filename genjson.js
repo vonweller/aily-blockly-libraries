@@ -4,6 +4,7 @@ const path = require('path');
 // 默认要提取的package.json中的键
 const defaultKeysToExtract = [
   'name',
+  'nickname',
   'version',
   'description',
   'author',
