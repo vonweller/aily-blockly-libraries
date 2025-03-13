@@ -67,11 +67,5 @@ Arduino.forBlock["io_analogread"] = function (block, generator) {
 Arduino.forBlock["io_analogwrite"] = function (block, generator) {
   const pin = generator.valueToCode(block, "PIN", Arduino.ORDER_ATOMIC);
   const value = generator.valueToCode(block, "PWM", Arduino.ORDER_ATOMIC);
-  
-  // 如果引脚没有被设置过模式，则自动添加pinMode
-  if (!generator.pinModeSet || !generator.pinModeSet.has(pin)) {
-    generator.addSetup(`pinMode_${pin}`, `pinMode(${pin}, OUTPUT);`);
-  }
-  
   return `analogWrite(${pin}, ${value});`;
 };

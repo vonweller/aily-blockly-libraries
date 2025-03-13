@@ -8,7 +8,7 @@ Arduino.forBlock["arduino_setup"] = function (block) {
 
 Arduino.forBlock["arduino_loop"] = function (block) {
   const code = Arduino.statementToCode(block, "ARDUINO_LOOP");
-  Arduino.addLoop("loop", code);
+  Arduino.addUserLoop("loop", code);
   return `loop() {\n${code}}\n`;
 };
 
