@@ -1,31 +1,161 @@
 [
   {
-    "inputsInline": true,
-    "message0": "开启流水灯 速度%1",
-    "type": "custom_mled_on",
-    "colour": "#48c2c4",
+    "type": "custom_function_def",
+    "message0": "定义函数 %1",
+    "message1": "名称：%1",
+    "message2": "返回类型：%1",
+    "message3": "参数：%1",
+    "message4": "函数体：%1",
     "args0": [
       {
-        "type": "field_number",
-        "name": "SPEED",
-        "value": 1000
+        "type": "input_dummy"
       }
     ],
-    "generator": {
-      "code": "${SERIAL}.begin(${SPEED});"
-    },
+    "args1": [
+      {
+        "type": "field_input",
+        "name": "FUNC_NAME",
+        "text": "myFunction"
+      }
+    ],
+    "args2": [
+      {
+        "type": "field_dropdown",
+        "name": "RETURN_TYPE",
+        "options": [
+          [
+            "void",
+            "void"
+          ],
+          [
+            "int",
+            "int"
+          ],
+          [
+            "float",
+            "float"
+          ],
+          [
+            "boolean",
+            "boolean"
+          ],
+          [
+            "String",
+            "String"
+          ]
+        ]
+      }
+    ],
+    "args3": [
+      {
+        "type": "input_statement",
+        "name": "PARAMS",
+        "check": "parameter"
+      }
+    ],
+    "args4": [
+      {
+        "type": "field_multilinetext",
+        "name": "FUNC_BODY",
+        "text": "// 在此处编写函数代码\n"
+      }
+    ],
+    "colour": 290,
+    "tooltip": "定义一个自定义函数",
+    "helpUrl": "",
+    "nextStatement": null,
     "previousStatement": null,
-    "nextStatement": null
+    "extensions": [
+      "function_def_extension"
+    ]
   },
   {
-    "inputsInline": true,
-    "message0": "关闭流水灯",
-    "type": "custom_mled_off",
-    "colour": "#48c2c4",
-    "generator": {
-      "code": "${SERIAL}.begin(${SPEED});"
-    },
+    "type": "custom_function_param",
+    "message0": "参数 类型：%1 名称：%2",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "PARAM_TYPE",
+        "options": [
+          [
+            "int",
+            "int"
+          ],
+          [
+            "float",
+            "float"
+          ],
+          [
+            "boolean",
+            "boolean"
+          ],
+          [
+            "String",
+            "String"
+          ],
+          [
+            "char",
+            "char"
+          ]
+        ]
+      },
+      {
+        "type": "field_input",
+        "name": "PARAM_NAME",
+        "text": "x"
+      }
+    ],
+    "previousStatement": "parameter",
+    "nextStatement": "parameter",
+    "colour": 290,
+    "tooltip": "添加函数参数"
+  },
+  {
+    "type": "custom_function_call",
+    "message0": "调用函数 %1 %2",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "FUNC_NAME",
+        "text": "myFunction"
+      },
+      {
+        "type": "input_statement",
+        "name": "ARGS",
+        "check": "argument"
+      }
+    ],
     "previousStatement": null,
-    "nextStatement": null
+    "nextStatement": null,
+    "colour": 290,
+    "tooltip": "调用自定义函数",
+    "inputsInline": true
+  },
+  {
+    "type": "custom_function_arg",
+    "message0": "参数值 %1",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "ARG"
+      }
+    ],
+    "previousStatement": "argument",
+    "nextStatement": "argument",
+    "colour": 290,
+    "tooltip": "函数调用参数"
+  },
+  {
+    "type": "custom_function_return",
+    "message0": "返回 %1",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "RETURN_VALUE"
+      }
+    ],
+    "previousStatement": null,
+    "colour": 290,
+    "tooltip": "从函数返回值"
   }
 ]
