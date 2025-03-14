@@ -151,6 +151,7 @@ addObject(tag, code);
 addFunction(tag, code);
 addSetup(tag, code);
 addUserSetup(tag, code);
+addUserLoop(tag, code);
 addLoop(tag, code);
 ```
 使用以上函数，可以将对应的代码分别加入到程序的以下位置：
