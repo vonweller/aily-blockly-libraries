@@ -217,6 +217,7 @@ Toolbox是呈现在blockly界面左侧的block菜单，示例如下：
 ```
 
 ## 优化/简化方案
+在没有歧义的前提下，尽可能简化库的调用，让用户通过尽量少的block使用相关功能，如：
 1. 一些引脚功能需要初始化，如调用`digitalWrite(5,HIGH)`时，对应的初始化则为`pinMode(5,OUTPUT)`。推荐block库在调用digitalWrite、digitalRead相关块时，可以自动向程序setup部分添加对应的pinMode代码。
 2. 一些库需要初始化，如servo库，需要使用`myservo.attach(9)`，指定舵机连接的引脚，然后再使用`myservo.write(val)`控制舵机转动角度。这个库建议在保留原本的attach、write块的同时，再提供一个简化的block，允许用户直接指定某引脚上的舵机转动到多少角度。
 
