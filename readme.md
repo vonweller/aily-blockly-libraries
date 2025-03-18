@@ -223,7 +223,7 @@ Toolbox是呈现在blockly界面左侧的block菜单，示例如下：
 版本控制文件，采用npm包管理,示例如下：
 ```json
 {
-    "name": "@aily-blockly/lib-servo",  // 库的包名以 @aily-blockly/lib- 开头
+    "name": "@aily-project/lib-servo",  // 库的包名以 @aily-project/lib- 开头
     "nickname":"舵机驱动库",             // 用于在库管理器中显示的名称
     "author": "奈何col",
     "description": "舵机控制支持库，支持Arduino UNO、MEGA、ESP8266、ESP32等开发板", // 简短的介绍，不超过50字
