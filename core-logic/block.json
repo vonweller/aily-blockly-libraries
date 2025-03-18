@@ -13,10 +13,7 @@
     "nextStatement": null,
     "colour": 230,
     "tooltip": "time_delay",
-    "helpUrl": "",
-    "generator": {
-      "code": "delay(${TIME});"
-    }
+    "helpUrl": ""
   },
   {
     "type": "controls_if",
@@ -38,9 +35,6 @@
     "nextStatement": null,
     "style": "logic_blocks",
     "helpUrl": "%{BKY_CONTROLS_IF_HELPURL}",
-    "generator": {
-      "code": "if(${IF0}) {\n  ${DO0}}\n"
-    },
     "extensions": ["controls_if_tooltip"]
   },
   {
@@ -72,9 +66,6 @@
     "tooltip": "%{BKYCONTROLS_IF_TOOLTIP_2}",
     "helpUrl": "%{BKY_CONTROLS_IF_HELPURL}",
     "suppressPrefixSuffix": true,
-    "generator": {
-      "code": "if(${IF0}) {\n  ${DO0}} else {\n  ${ELSE}}\n"
-    },
     "extensions": ["controls_if_tooltip"]
   },
   {
@@ -105,10 +96,7 @@
     "inputsInline": true,
     "output": "Boolean",
     "style": "logic_blocks",
-    "helpUrl": "%{BKY_LOGIC_COMPARE_HELPURL}",
-    "generator": {
-      "code": "${A} ${OP} ${B}"
-    }
+    "helpUrl": "%{BKY_LOGIC_COMPARE_HELPURL}"
   },
   {
     "type": "logic_operation",
@@ -137,10 +125,7 @@
     "output": "Boolean",
     "style": "logic_blocks",
     "helpUrl": "%{BKY_LOGIC_OPERATION_HELPURL}",
-    "extensions": ["logic_op_tooltip"],
-    "generator": {
-      "code": "${A} ${OP} ${B}"
-    }
+    "extensions": ["logic_op_tooltip"]
   },
   {
     "type": "logic_negate",
@@ -155,10 +140,7 @@
     "output": "Boolean",
     "style": "logic_blocks",
     "tooltip": "%{BKY_LOGIC_NEGATE_TOOLTIP}",
-    "helpUrl": "%{BKY_LOGIC_NEGATE_HELPURL}",
-    "generator": {
-      "code": "!${BOOL}"
-    }
+    "helpUrl": "%{BKY_LOGIC_NEGATE_HELPURL}"
   },
   {
     "type": "logic_boolean",
@@ -176,10 +158,7 @@
     "output": "Boolean",
     "style": "logic_blocks",
     "tooltip": "%{BKY_LOGIC_BOOLEAN_TOOLTIP}",
-    "helpUrl": "%{BKY_LOGIC_BOOLEAN_HELPURL}",
-    "generator": {
-      "code": "${BOOL}"
-    }
+    "helpUrl": "%{BKY_LOGIC_BOOLEAN_HELPURL}"
   },
   {
     "type": "logic_ternary",
@@ -209,9 +188,6 @@
     "style": "logic_blocks",
     "tooltip": "%{BKY_LOGIC_TERNARY_TOOLTIP}",
     "helpUrl": "%{BKY_LOGIC_TERNARY_HELPURL}",
-    "extensions": ["logic_ternary"],
-    "generator": {
-      "code": "${IF}?${THEN}:${ELSE}"
-    }
+    "extensions": ["logic_ternary"]
   }
 ]
