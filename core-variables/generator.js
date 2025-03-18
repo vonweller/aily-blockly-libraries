@@ -1,5 +1,5 @@
 Blockly.getMainWorkspace().registerButtonCallback(
-  "CREATE_STRING_VARIABLE",
+  "CREATE_VARIABLE",
   (button) => {
     Blockly.Variables.createVariableButtonHandler(
       this.workspace,
