@@ -40,10 +40,7 @@ aily blockly json在原始的blockly json上进行了扩展。这里以servo lib
         ],
         "previousStatement": null,
         "nextStatement": null,
-        "colour": "#03a9f4",
-        "generator": {
-            "code": "${OBJECT}.write(${ANGLE});"
-        }
+        "colour": "#03a9f4"
     },
     {
         "inputsInline": true,
@@ -67,12 +64,7 @@ aily blockly json在原始的blockly json上进行了扩展。这里以servo lib
         ],
         "previousStatement": null,
         "nextStatement": null,
-        "colour": "#03a9f4",
-        "generator": {
-            "code": "${OBJECT}.attach(${PIN1});",
-            "library": "#include <Servo.h>",
-            "object": "Servo ${OBJECT};"
-        }
+        "colour": "#03a9f4"
     }
 ]
 ```
