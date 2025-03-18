@@ -9,6 +9,7 @@ library-name
  |- toolbox.json           // aily blockly toolbox文件
  |- package.json           // npm包管理文件
  |- src.7z                 // Arduino库源文件，请使用7z极限压缩后放在库中
+ |- readme.md              // 说明文件，如果使用了开源库，请进行说明
  |- examples               // 库示例程序
      |- ex1.json
      |- ex2.json
@@ -219,7 +220,6 @@ Toolbox是呈现在blockly界面左侧的block菜单，示例如下：
 当Arduino库函数的参数为回调函数时，如onebutton库中`button.attachDoubleClick(doubleClick)`,doubleClick为回调函数，则应该创建一个主体为doubleClick函数block，并在generator.js中向程序的setup部分中添加代码`button.attachDoubleClick(doubleClick)`，向程序loop部分添加`button.tick()`.
 
 ## package.json
-
 版本控制文件，采用npm包管理,示例如下：
 ```json
 {

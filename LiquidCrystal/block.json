@@ -1,0 +1,83 @@
+{
+    "blocks": [
+        {
+            "type": "lcd_init",
+            "message0": "初始化LCD显示屏，RS引脚 %1，E引脚 %2，D4引脚 %3，D5引脚 %4，D6引脚 %5，D7引脚 %6",
+            "args0": [
+                {
+                    "type": "field_number",
+                    "name": "RS_PIN",
+                    "value": 12
+                },
+                {
+                    "type": "field_number",
+                    "name": "E_PIN",
+                    "value": 11
+                },
+                {
+                    "type": "field_number",
+                    "name": "D4_PIN",
+                    "value": 5
+                },
+                {
+                    "type": "field_number",
+                    "name": "D5_PIN",
+                    "value": 4
+                },
+                {
+                    "type": "field_number",
+                    "name": "D6_PIN",
+                    "value": 3
+                },
+                {
+                    "type": "field_number",
+                    "name": "D7_PIN",
+                    "value": 2
+                }
+            ],
+            "previousStatement": null,
+            "nextStatement": null,
+            "colour": "#4CAF50"
+        },
+        {
+            "type": "lcd_print",
+            "message0": "在LCD上显示文本 %1",
+            "args0": [
+                {
+                    "type": "field_input",
+                    "name": "TEXT",
+                    "text": "Hello, World!"
+                }
+            ],
+            "previousStatement": null,
+            "nextStatement": null,
+            "colour": "#4CAF50"
+        },
+        {
+            "type": "lcd_clear",
+            "message0": "清空LCD显示",
+            "previousStatement": null,
+            "nextStatement": null,
+            "colour": "#4CAF50"
+        },
+        {
+            "type": "lcd_set_cursor",
+            "message0": "设置光标到行 %1 列 %2",
+            "args0": [
+                {
+                    "type": "field_number",
+                    "name": "ROW",
+                    "value": 0
+                },
+                {
+                    "type": "field_number",
+                    "name": "COL",
+                    "value": 0
+                }
+            ],
+            "previousStatement": null,
+            "nextStatement": null,
+            "colour": "#4CAF50"
+        }
+    ]
+}
