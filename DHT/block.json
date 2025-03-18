@@ -1,0 +1,43 @@
+[
+    {
+        "type": "dht_init",
+        "message0": "初始化 DHT %1 传感器 连接到引脚 %2",
+        "args0": [
+            {
+                "type": "field_dropdown",
+                "name": "TYPE",
+                "options": [
+                    ["DHT11", "DHT11"],
+                    ["DHT22", "DHT22"]
+                ]
+            },
+            {
+                "type": "field_dropdown",
+                "name": "PIN",
+                "options": "${board.digitalPins}"
+            }
+        ],
+        "inputsInline": true,
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#4CAF50"
+    },
+    {
+        "type": "dht_read_temperature",
+        "message0": "从 DHT 传感器读取温度 (℃)",
+        "output": "Number",
+        "colour": "#4CAF50"
+    },
+    {
+        "type": "dht_read_humidity",
+        "message0": "从 DHT 传感器读取湿度 (%)",
+        "output": "Number",
+        "colour": "#4CAF50"
+    },
+    {
+        "type": "dht_read_success",
+        "message0": "DHT 传感器读取成功",
+        "output": "Boolean",
+        "colour": "#4CAF50"
+    }
+]

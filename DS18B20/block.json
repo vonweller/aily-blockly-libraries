@@ -1,0 +1,62 @@
+[
+    {
+      "type": "ds18b20_init",
+      "message0": "初始化DS18B20温度传感器 连接到引脚 %1",
+      "args0": [
+        {
+          "type": "field_dropdown",
+          "name": "PIN",
+          "options": "${board.digitalPins}"
+        }
+      ],
+      "previousStatement": null,
+      "nextStatement": null,
+      "colour": "#ff8000",
+      "inputsInline": true
+    },
+    {
+      "type": "ds18b20_get_temp_c",
+      "message0": "DS18B20读取摄氏温度 设备索引 %1",
+      "args0": [
+        {
+          "type": "field_number",
+          "name": "INDEX",
+          "value": 0,
+          "min": 0
+        }
+      ],
+      "output": "Number",
+      "colour": "#ff8000",
+      "inputsInline": true
+    },
+    {
+      "type": "ds18b20_get_temp_f",
+      "message0": "DS18B20读取华氏温度 设备索引 %1",
+      "args0": [
+        {
+          "type": "field_number",
+          "name": "INDEX",
+          "value": 0,
+          "min": 0
+        }
+      ],
+      "output": "Number",
+      "colour": "#ff8000",
+      "inputsInline": true
+    },
+    {
+      "type": "ds18b20_request_temps",
+      "message0": "DS18B20请求所有设备进行温度转换",
+      "previousStatement": null,
+      "nextStatement": null,
+      "colour": "#ff8000",
+      "inputsInline": true
+    },
+    {
+      "type": "ds18b20_get_device_count",
+      "message0": "DS18B20获取设备数量",
+      "output": "Number",
+      "colour": "#ff8000",
+      "inputsInline": true
+    }
+  ]

@@ -1,0 +1,33 @@
+[
+  {
+      "inputsInline": true,
+      "message0": "读取LM35温度传感器引脚%1",
+      "type": "lm35_read",
+      "args0": [
+          {
+              "type": "field_dropdown",
+              "name": "PIN",
+              "options": "${board.analogPins}"
+          }
+      ],
+      "output": "Number",
+      "colour": "#ffcc00",
+      "tooltip": "读取指定引脚的LM35温度传感器的温度值",
+      "helpUrl": ""
+  },
+  {
+      "inputsInline": true,
+      "message0": "将温度值%1 转换为摄氏度",
+      "type": "lm35_to_celsius",
+      "args0": [
+          {
+              "type": "input_value",
+              "name": "VALUE"
+          }
+      ],
+      "output": "Number",
+      "colour": "#ffcc00",
+      "tooltip": "将LM35传感器读取的值转换为摄氏度",
+      "helpUrl": ""
+  }
+]
