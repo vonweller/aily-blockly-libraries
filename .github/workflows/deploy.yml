@@ -34,7 +34,7 @@ jobs:
           CHANGED_PACKAGES=()
           
           for dir in $PACKAGE_DIRS; do
-            if git diff --quiet $BASE_SHA $HEAD_SHA -- "$dir"; then
+            if git diff --quiet --diff-filter=ACMRT $BASE_SHA $HEAD_SHA -- "$dir"; then
               echo "No changes in $dir"
             else
               echo "Detected changes in $dir"
@@ -70,7 +70,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '16'
+          node-version: '18'
           registry-url: 'https://registry.openjumper.cn'
       
       # - name: Install dependencies
@@ -106,6 +106,46 @@ jobs:
           # 发布
           npm publish --access public
   
+  build-and-publish-all:
+    if: ${{ secrets.UPDATE_ALL == 'true' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GHB_TOKEN }}
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          registry-url: 'https://registry.openjumper.cn'
+      
+      - name: find packages
+        run: |
+          PACKAGE_DIRS=$(find . -name "package.json" -not -path "*/node_modules/*" -not -path "./package.json" -exec dirname {} \; | sed 's/^\.\///')
+          echo "Found packages: $PACKAGE_DIRS"
+      
+      - name: Publish to NPM
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          for dir in $PACKAGE_DIRS; do
+            cd $dir
+            CURRENT_VERSION=$(node -p "require('./package.json').version")
+            PACKAGE_NAME=$(node -p "require('./package.json').name")
+            echo "Current version: $CURRENT_VERSION"
+            
+            if npm view $PACKAGE_NAME@$CURRENT_VERSION version &> /dev/null; then
+              echo "版本 $CURRENT_VERSION 已存在，尝试取消发布..."
+              npm unpublish $PACKAGE_NAME@$CURRENT_VERSION --force
+            fi
+
+            sleep 5
+            npm publish --access public
+            cd ..
+          done
+
   genJson-and-upload:
     runs-on: ubuntu-latest
 
