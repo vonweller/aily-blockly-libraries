@@ -106,45 +106,46 @@ jobs:
           # 发布
           npm publish --access public
   
-  build-and-publish-all:
-    if: ${{ secrets.UPDATE_ALL == 'true' }}
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-        with:
-          token: ${{ secrets.GHB_TOKEN }}
+  # build-and-publish-all:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v3
+  #       with:
+  #         token: ${{ secrets.GHB_TOKEN }}
       
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '18'
-          registry-url: 'https://registry.openjumper.cn'
+  #     - name: Setup Node.js
+  #       uses: actions/setup-node@v3
+  #       with:
+  #         node-version: '18'
+  #         registry-url: 'https://registry.openjumper.cn'
       
-      - name: find packages
-        run: |
-          PACKAGE_DIRS=$(find . -name "package.json" -not -path "*/node_modules/*" -not -path "./package.json" -exec dirname {} \; | sed 's/^\.\///')
-          echo "Found packages: $PACKAGE_DIRS"
-      
-      - name: Publish to NPM
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: |
-          for dir in $PACKAGE_DIRS; do
-            cd $dir
-            CURRENT_VERSION=$(node -p "require('./package.json').version")
-            PACKAGE_NAME=$(node -p "require('./package.json').name")
-            echo "Current version: $CURRENT_VERSION"
+  #     - name: Publish to NPM
+  #       env:
+  #         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+  #       run: |
+  #         PACKAGE_DIRS=$(find . -name "package.json" -not -path "*/node_modules/*" -not -path "./package.json" -exec dirname {} \; | sed 's/^\.\///')
+  #         echo "Found packages: $PACKAGE_DIRS"
+  #         for dir in $PACKAGE_DIRS; do
+  #           if [ ! -d "$dir" ]; then
+  #             echo "Directory $dir does not exist, skipping..."
+  #             continue
+  #           fi
+  #           cd $dir
+  #           echo "Publishing $dir"
+  #           CURRENT_VERSION=$(node -p "require('./package.json').version")
+  #           PACKAGE_NAME=$(node -p "require('./package.json').name")
+  #           echo "Current version: $CURRENT_VERSION"
             
-            if npm view $PACKAGE_NAME@$CURRENT_VERSION version &> /dev/null; then
-              echo "版本 $CURRENT_VERSION 已存在，尝试取消发布..."
-              npm unpublish $PACKAGE_NAME@$CURRENT_VERSION --force
-            fi
+  #           if npm view $PACKAGE_NAME@$CURRENT_VERSION version &> /dev/null; then
+  #             echo "版本 $CURRENT_VERSION 已存在，尝试取消发布..."
+  #             npm unpublish $PACKAGE_NAME@$CURRENT_VERSION --force
+  #           fi
 
-            sleep 5
-            npm publish --access public
-            cd ..
-          done
+  #           sleep 5
+  #           npm publish --access public
+  #           cd ..
+  #         done
 
   genJson-and-upload:
     runs-on: ubuntu-latest
@@ -175,12 +176,24 @@ jobs:
             exit 1
           fi
       
-      - name: 使用 SCP 上传文件
-        uses: appleboy/scp-action@v0.1.4
+      - name: SFTP upload
+        uses: Dylan700/sftp-upload-action@latest
         with:
-          host: ${{ secrets.SERVER }}
+          server: ${{ secrets.SERVER }}
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
-          port: ${{ secrets.PORT }}
-          source: "libraries.json"
-          target: "${{ secrets.TARGET }}"
+          port: 22
+          uploads: |
+            ./ => ${{ secrets.TARGET }}
+          ignore: |
+            !libraries.json
+      
+      # - name: 使用 SCP 上传文件
+      #   uses: appleboy/scp-action@v0.1.4
+      #   with:
+      #     host: ${{ secrets.SERVER }}
+      #     username: ${{ secrets.USERNAME }}
+      #     password: ${{ secrets.PASSWORD }}
+      #     port: ${{ secrets.PORT }}
+      #     source: "libraries.json"
+      #     target: "${{ secrets.TARGET }}"
