@@ -40,7 +40,7 @@ Arduino.forBlock['blinker_debug_init'] = function (block, generator) {
     return code;
 };
 
-Arduino.forBlock['blinker_button_create'] = function (block, generator) {
+Arduino.forBlock['blinker_create_button'] = function (block, generator) {
     var button_name = block.getFieldValue('NAME');
     var button_key = generator.valueToCode(block, 'KEY', Arduino.ORDER_ATOMIC) || "\"btn-abc\"";
 
@@ -49,7 +49,7 @@ Arduino.forBlock['blinker_button_create'] = function (block, generator) {
     return '';
 };
 
-Arduino.forBlock['blinker_number_create'] = function (block, generator) {
+Arduino.forBlock['blinker_create_number'] = function (block, generator) {
     var number_name = block.getFieldValue('NAME');
     var number_key = generator.valueToCode(block, 'KEY', Arduino.ORDER_ATOMIC) || "\"num-abc\"";
 
