@@ -107,7 +107,6 @@ jobs:
           npm publish --access public
   
   build-and-publish-all:
-    if: ${{ secrets.UPDATE_ALL == 'true' }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
