@@ -32,7 +32,6 @@
 - [arduino_r4_WDT](./arduino_r4_WDT)
 - [arduino_wifi](./arduino_wifi)
 - [ble_serial](./ble_serial)
-- [blinker](./blinker)
 - [encoder](./encoder)
 - [fastled](./fastled)
 - [iic](./iic)
