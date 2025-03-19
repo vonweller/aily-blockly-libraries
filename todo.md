@@ -21,6 +21,7 @@
 - [Stepper](./Stepper)
 - [TFT](./TFT)
 - [TFT_eSPI](./TFT_eSPI)
+- [VL53L0X](./VL53L0X)
 - [arduino_CAN](./arduino_CAN)
 - [arduino_FreeRTOS](./arduino_FreeRTOS)
 - [arduino_LED_Matrix](./arduino_LED_Matrix)
