@@ -127,6 +127,10 @@ jobs:
           PACKAGE_DIRS=$(find . -name "package.json" -not -path "*/node_modules/*" -not -path "./package.json" -exec dirname {} \; | sed 's/^\.\///')
           echo "Found packages: $PACKAGE_DIRS"
           for dir in $PACKAGE_DIRS; do
+            if [ ! -d "$dir" ]; then
+              echo "Directory $dir does not exist, skipping..."
+              continue
+            fi
             cd $dir
             echo "Publishing $dir"
             CURRENT_VERSION=$(node -p "require('./package.json').version")
@@ -172,12 +176,24 @@ jobs:
             exit 1
           fi
       
-      - name: 使用 SCP 上传文件
-        uses: appleboy/scp-action@v0.1.4
+      - name: SFTP upload
+        uses: Dylan700/sftp-upload-action@latest
         with:
-          host: ${{ secrets.SERVER }}
+          server: ${{ secrets.SERVER }}
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
-          port: ${{ secrets.PORT }}
-          source: "libraries.json"
-          target: "${{ secrets.TARGET }}"
+          port: 22
+          uploads: |
+            ./ => ${{ secrets.TARGET }}
+          ignore: |
+            !libraries.json
+      
+      # - name: 使用 SCP 上传文件
+      #   uses: appleboy/scp-action@v0.1.4
+      #   with:
+      #     host: ${{ secrets.SERVER }}
+      #     username: ${{ secrets.USERNAME }}
+      #     password: ${{ secrets.PASSWORD }}
+      #     port: ${{ secrets.PORT }}
+      #     source: "libraries.json"
+      #     target: "${{ secrets.TARGET }}"
