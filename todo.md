@@ -1,5 +1,4 @@
 # Todo List
-
 - [74HC595](./74HC595)
 - [BMP280](./BMP280)
 - [EC11](./EC11)
@@ -12,7 +11,6 @@
 - [MLX90614](./MLX90614)
 - [Motor](./Motor)
 - [NeoPixel](./NeoPixel)
-- [Nixie_Tube](./Nixie_Tube)
 - [PS2X](./PS2X)
 - [RFID](./RFID)
 - [RTC](./RTC)
@@ -20,6 +18,10 @@
 - [TFT](./TFT)
 - [ble-serial](./ble-serial)
 - [blinker](./blinker)
+- [fastled](./fastled)
+- [keyboard](./keyboard)
+- [mouse](./mouse)
 - [mpu](./mpu)
 - [pt100](./pt100)
 - [sd](./sd)
+- [softwareSerial](./softwareSerial)
