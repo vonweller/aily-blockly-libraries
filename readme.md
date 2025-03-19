@@ -104,7 +104,6 @@ json文件中`blocks数组`即是具体的block配置，可以参照[blockly官�
 
 
 ## generator.js 
-
 generator.js负责将block转换成代码，每一个block都有一个对应的generator函数。对于Arduino库，generator函数编写形式可参考：
 ```javascript
 Arduino.forBlock['servo_attach'] = function(block, generator) {
@@ -182,10 +181,7 @@ void loop() {
     }
 }
 ```
-
-
 ##### 变量
-
 aily blockly配置支持变量，变量形式为`${VAR_NAME}`，其中`VAR_NAME`即是`args0`中输入项`name`。
 aily blockly会自动将代码中的变量，替换为变量对应的值。  
 
@@ -209,16 +205,6 @@ Toolbox是呈现在blockly界面左侧的block菜单，示例如下：
 }
 ```
 
-## 优化/简化方案
-在没有歧义的前提下，尽可能简化库的调用，让用户通过尽量少的block使用相关功能，如：
-1. 一些引脚功能需要初始化，如调用`digitalWrite(5,HIGH)`时，对应的初始化则为`pinMode(5,OUTPUT)`。推荐block库在调用digitalWrite、digitalRead相关块时，可以自动向程序setup部分添加对应的pinMode代码。
-2. 一些库需要初始化，如servo库，需要使用`myservo.attach(9)`，指定舵机连接的引脚，然后再使用`myservo.write(val)`控制舵机转动角度。这个库建议在保留原本的attach、write块的同时，再提供一个简化的block，允许用户直接指定某引脚上的舵机转动到多少角度。
-
-
-## 特殊情况
-
-当Arduino库函数的参数为回调函数时，如onebutton库中`button.attachDoubleClick(doubleClick)`,doubleClick为回调函数，则应该创建一个主体为doubleClick函数block，并在generator.js中向程序的setup部分中添加代码`button.attachDoubleClick(doubleClick)`，向程序loop部分添加`button.tick()`.
-
 ## package.json
 版本控制文件，采用npm包管理,示例如下：
 ```json
@@ -239,9 +225,7 @@ Toolbox是呈现在blockly界面左侧的block菜单，示例如下：
     "keywords": [                       // keywords可以辅助搜索库，建议其中添加分类名、函数名等
         "aily",
         "blockly",
-        "core",
         "servo",
-        "电机驱动",
         "servo_attach",
         "servo_write",
     ],
@@ -251,5 +235,10 @@ Toolbox是呈现在blockly界面左侧的block菜单，示例如下：
 }
 ```
 
+## 优化/简化方案
+在没有歧义的前提下，尽可能简化库的调用，让用户通过尽量少的block使用相关功能，如：
+1. 一些引脚功能需要初始化，如调用`digitalWrite(5,HIGH)`时，对应的初始化则为`pinMode(5,OUTPUT)`。推荐block库在调用digitalWrite、digitalRead相关块时，可以自动向程序setup部分添加对应的pinMode代码。
+2. 一些库需要初始化，如servo库，需要使用`myservo.attach(9)`，指定舵机连接的引脚，然后再使用`myservo.write(val)`控制舵机转动角度。这个库建议在保留原本的attach、write块的同时，再提供一个简化的block，允许用户直接指定某引脚上的舵机转动到多少角度。
+3. 当Arduino库函数的参数为回调函数时，如onebutton库中`button.attachDoubleClick(doubleClick)`,doubleClick为回调函数，则应该创建一个主体为doubleClick函数block，并在generator.js中向程序的setup部分中添加代码`button.attachDoubleClick(doubleClick)`，向程序loop部分添加`button.tick()`.
 
 
