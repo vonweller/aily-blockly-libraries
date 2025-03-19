@@ -20,7 +20,6 @@
 - [TFT](./TFT)
 - [ble-serial](./ble-serial)
 - [blinker](./blinker)
-- [mpu_sensor](./mpu_sensor)
+- [mpu](./mpu)
 - [pt100](./pt100)
 - [sd](./sd)
-- [ssd1306](./ssd1306)
