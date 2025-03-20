@@ -1,0 +1,125 @@
+[
+  {
+    "type": "shift_register_create",
+    "message0": "创建移位寄存器 %1 串行数据引脚 %2 时钟引脚 %3 锁存引脚 %4",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "OBJECT",
+        "variable": "shiftReg",
+        "variableTypes": [
+          "ShiftRegister74HC595"
+        ],
+        "defaultType": "ShiftRegister74HC595"
+      },
+      {
+        "type": "field_dropdown",
+        "name": "SERIAL_PIN",
+        "options": "${board.digitalPins}"
+      },
+      {
+        "type": "field_dropdown",
+        "name": "CLOCK_PIN",
+        "options": "${board.digitalPins}"
+      },
+      {
+        "type": "field_dropdown",
+        "name": "LATCH_PIN",
+        "options": "${board.digitalPins}"
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF8800"
+  },
+  {
+    "type": "shift_register_set",
+    "message0": "移位寄存器 %1 设置引脚 %2 为 %3",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "OBJECT",
+        "variable": "shiftReg",
+        "variableTypes": [
+          "ShiftRegister74HC595"
+        ],
+        "defaultType": "ShiftRegister74HC595"
+      },
+      {
+        "type": "field_number",
+        "name": "PIN",
+        "value": 0
+      },
+      {
+        "type": "field_dropdown",
+        "name": "VALUE",
+        "options": [
+          [ "低", "0" ],
+          [ "高", "1" ]
+        ]
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF8800"
+  },
+  {
+    "type": "shift_register_update",
+    "message0": "移位寄存器 %1 更新输出",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "OBJECT",
+        "variable": "shiftReg",
+        "variableTypes": [
+          "ShiftRegister74HC595"
+        ],
+        "defaultType": "ShiftRegister74HC595"
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF8800"
+  },
+  {
+    "type": "shift_register_setAllLow",
+    "message0": "移位寄存器 %1 全部设为低",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "OBJECT",
+        "variable": "shiftReg",
+        "variableTypes": [
+          "ShiftRegister74HC595"
+        ],
+        "defaultType": "ShiftRegister74HC595"
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF8800"
+  },
+  {
+    "type": "shift_register_setAllHigh",
+    "message0": "移位寄存器 %1 全部设为高",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "OBJECT",
+        "variable": "shiftReg",
+        "variableTypes": [
+          "ShiftRegister74HC595"
+        ],
+        "defaultType": "ShiftRegister74HC595"
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF8800"
+  }
+]

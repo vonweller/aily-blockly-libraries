@@ -1,13 +1,5 @@
 [
   {
-    "name": "blinker",
-    "nickname": "blinker物联网库",
-    "version": "1.0.0",
-    "description": "",
-    "author": "",
-    "compatibility": ""
-  },
-  {
     "name": "@aily-project/lib-buzz",
     "nickname": "蜂鸣器",
     "version": "0.0.1",
@@ -26,11 +18,11 @@
     }
   },
   {
-    "name": "@aily-project/lib-onebutton",
-    "nickname": "",
+    "name": "@aily-project/lib-dht",
+    "nickname": "DHT温湿度传感器库",
     "version": "0.0.1",
-    "description": "OneButton library for handling button presses, supporting single, double, and long presses.",
-    "author": "Generated",
+    "description": "DHT11/DHT22温湿度传感器库，支持读取温度和湿度数据",
+    "author": "Aily Blockly",
     "compatibility": {
       "core": [
         "arduino:avr",
@@ -44,7 +36,132 @@
     }
   },
   {
-    "name": "@aily-project/core-procedures",
+    "name": "@aily-project/lib-blinker",
+    "nickname": "Blinker物联网库",
+    "version": "0.0.1",
+    "description": "Blinker物联网控制库，支持手机APP控制、智能音箱控制，兼容多种开发板",
+    "author": "奈何col",
+    "compatibility": {
+      "core": [
+        "arduino:avr",
+        "esp32:esp32"
+      ],
+      "voltage": [
+        3.3,
+        5
+      ]
+    }
+  },
+  {
+    "name": "@aily-project/lib-ds18b20",
+    "nickname": "DS18B20温度传感器",
+    "version": "0.0.1",
+    "description": "DS18B20数字温度传感器支持库，精度±0.5°C，支持多设备连接",
+    "author": "aily开发者",
+    "compatibility": {
+      "core": [
+        "arduino:avr",
+        "esp32:esp32",
+        "esp8266:esp8266"
+      ],
+      "voltage": [
+        3.3,
+        5
+      ]
+    }
+  },
+  {
+    "name": "@aily-project/lib-liquidcrystal",
+    "nickname": "LCD1602显示屏库",
+    "version": "0.0.1",
+    "description": "LCD1602显示屏控制支持库，支持Arduino UNO、MEGA、ESP8266、ESP32等开发板",
+    "author": "奈何col",
+    "compatibility": {
+      "core": [
+        "arduino:avr",
+        "esp32:esp32",
+        "esp8266:esp8266"
+      ],
+      "voltage": [
+        3.3,
+        5
+      ]
+    }
+  },
+  {
+    "name": "@aily-project/lib-liquidcrystal_i2c",
+    "nickname": "LCD1602 I2C驱动库",
+    "version": "0.0.1",
+    "description": "LCD1602 I2C显示屏控制支持库，支持Arduino UNO、MEGA、ESP8266、ESP32等开发板",
+    "author": "奈何col",
+    "compatibility": {
+      "core": [
+        "arduino:avr",
+        "esp32:esp32",
+        "esp8266:esp8266"
+      ],
+      "voltage": [
+        3.3,
+        5
+      ]
+    }
+  },
+  {
+    "name": "@aily-project/lib-lis3dhtr",
+    "nickname": "LIS3DHTR驱动库",
+    "version": "0.0.1",
+    "description": "LIS3DHTR加速度传感器支持库，支持Arduino UNO、MEGA、ESP8266、ESP32等开发板",
+    "author": "奈何col",
+    "compatibility": {
+      "core": [
+        "arduino:avr",
+        "esp32:esp32",
+        "esp8266:esp8266"
+      ],
+      "voltage": [
+        3.3,
+        5
+      ]
+    }
+  },
+  {
+    "name": "@aily-project/lib-lm35",
+    "nickname": "LM35温度传感器库",
+    "version": "0.0.1",
+    "description": "LM35温度传感器库，提供简单易用的温度读取功能",
+    "author": "奈何col",
+    "compatibility": {
+      "core": [
+        "arduino:avr",
+        "esp32:esp32",
+        "esp8266:esp8266"
+      ],
+      "voltage": [
+        3.3,
+        5
+      ]
+    }
+  },
+  {
+    "name": "@aily-project/lib-onebutton",
+    "nickname": "OneButton",
+    "version": "0.0.1",
+    "description": "OneButton library for handling button presses, supporting single, double, and long presses.",
+    "author": "",
+    "compatibility": {
+      "core": [
+        "arduino:avr",
+        "esp32:esp32",
+        "esp8266:esp8266"
+      ],
+      "voltage": [
+        3.3,
+        5
+      ]
+    }
+  },
+  {
+    "name": "@aily-project/lib-core-procedures",
     "nickname": "",
     "version": "0.0.1",
     "description": "函数方法",
@@ -56,6 +173,24 @@
     "nickname": "舵机控制",
     "version": "0.0.1",
     "description": "舵机控制支持库，支持Arduino UNO、MEGA、ESP8266、ESP32等开发板",
+    "author": "奈何col",
+    "compatibility": {
+      "core": [
+        "arduino:avr",
+        "esp32:esp32",
+        "esp8266:esp8266"
+      ],
+      "voltage": [
+        3.3,
+        5
+      ]
+    }
+  },
+  {
+    "name": "@aily-project/lib-sht3x",
+    "nickname": "SHT3x温湿度传感器库",
+    "version": "0.0.1",
+    "description": "支持Arduino SHT30、SHT31和SHT35温湿度传感器的控制库",
     "author": "奈何col",
     "compatibility": {
       "core": [
@@ -88,12 +223,50 @@
     }
   },
   {
+    "name": "@aily-project/lib-u8g2",
+    "nickname": "U8G2显示屏库",
+    "version": "0.0.1",
+    "description": "支持多种OLED、LCD单色显示屏的图形库，包括SSD1306、SH1106、ST7920等控制器",
+    "author": "奈何col",
+    "compatibility": {
+      "core": [
+        "arduino:avr",
+        "esp32:esp32",
+        "esp8266:esp8266",
+        "arduino:sam",
+        "arduino:samd"
+      ],
+      "voltage": [
+        3.3,
+        5
+      ]
+    }
+  },
+  {
     "name": "@aily-project/lib-ultrasonic",
     "nickname": "超声波传感器",
     "version": "0.0.1",
     "description": "超声波传感器，驱动库支持SR04",
     "author": "奈何col",
     "compatibility": ""
+  },
+  {
+    "name": "@aily-project/lib-ws2812fx",
+    "nickname": "WS2812 LED灯带库",
+    "version": "0.0.1",
+    "description": "支持WS2812 LED灯带控制的库，集成WS2812FX库，适用于Arduino开发板",
+    "author": "奈何col",
+    "compatibility": {
+      "core": [
+        "arduino:avr",
+        "esp32:esp32",
+        "esp8266:esp8266"
+      ],
+      "voltage": [
+        3.3,
+        5
+      ]
+    }
   },
   {
     "name": "@aily-project/lib-custom",
@@ -114,7 +287,7 @@
     }
   },
   {
-    "name": "@aily-project/core-eeprom",
+    "name": "@aily-project/lib-core-eeprom",
     "nickname": "EEPROM存储库",
     "version": "0.0.1",
     "description": "eeprom",
@@ -122,7 +295,7 @@
     "compatibility": ""
   },
   {
-    "name": "@aily-project/core-functions",
+    "name": "@aily-project/lib-core-functions",
     "nickname": "自定义函数",
     "version": "0.0.1",
     "description": "核心库，通常已经集成到初始模板中",
@@ -148,7 +321,7 @@
     }
   },
   {
-    "name": "@aily-project/core-lists",
+    "name": "@aily-project/lib-core-lists",
     "nickname": "",
     "version": "0.0.1",
     "description": "数组",
@@ -228,6 +401,14 @@
     }
   },
   {
+    "name": "@aily-project/lib-core-string",
+    "nickname": "字符串操作",
+    "version": "0.0.1",
+    "description": "核心库，通常已经集成到初始模板中",
+    "author": "奈何col",
+    "compatibility": ""
+  },
+  {
     "name": "@aily-project/lib-core-text",
     "nickname": "",
     "version": "0.0.1",
@@ -237,9 +418,9 @@
   },
   {
     "name": "@aily-project/lib-core-time",
-    "nickname": "时间控制库，包含delay、millis、micros等函数",
+    "nickname": "时间控制库",
     "version": "0.0.1",
-    "description": "时间相关函数",
+    "description": "时间控制库，包含delay、millis、micros等函数",
     "author": "奈何col",
     "compatibility": {
       "core": [
@@ -258,7 +439,7 @@
     "nickname": "自定义变量",
     "version": "0.0.1",
     "description": "核心库，通常已经集成到初始模板中",
-    "author": "奈何col",
-    "compatibility": {}
+    "author": "",
+    "compatibility": ""
   }
 ]

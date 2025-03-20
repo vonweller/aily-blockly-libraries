@@ -1,0 +1,106 @@
+[
+  {
+    "type": "lis3dhtr_begin",
+    "message0": "初始化LIS3DHTR 地址 %1",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "ADDRESS",
+        "text": "0x18"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF5722",
+    "inputsInline": true
+  },
+  {
+    "type": "lis3dhtr_set_range",
+    "message0": "设置加速度量程为 %1",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "RANGE",
+        "options": [
+          ["2G", "LIS3DHTR_RANGE_2G"],
+          ["4G", "LIS3DHTR_RANGE_4G"],
+          ["8G", "LIS3DHTR_RANGE_8G"],
+          ["16G", "LIS3DHTR_RANGE_16G"]
+        ]
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF5722",
+    "inputsInline": true
+  },
+  {
+    "type": "lis3dhtr_set_datarate",
+    "message0": "设置数据率为 %1",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "DATARATE",
+        "options": [
+          ["PowerDown", "LIS3DHTR_DATARATE_POWERDOWN"],
+          ["1Hz", "LIS3DHTR_DATARATE_1HZ"],
+          ["10Hz", "LIS3DHTR_DATARATE_10HZ"],
+          ["25Hz", "LIS3DHTR_DATARATE_25HZ"],
+          ["50Hz", "LIS3DHTR_DATARATE_50HZ"],
+          ["100Hz", "LIS3DHTR_DATARATE_100HZ"],
+          ["200Hz", "LIS3DHTR_DATARATE_200HZ"],
+          ["400Hz", "LIS3DHTR_DATARATE_400HZ"],
+          ["1.6KHz", "LIS3DHTR_DATARATE_1_6KH"],
+          ["5KHz", "LIS3DHTR_DATARATE_5KHZ"]
+        ]
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF5722",
+    "inputsInline": true
+  },
+  {
+    "type": "lis3dhtr_get_x",
+    "message0": "读取X轴加速度",
+    "output": "Number",
+    "colour": "#3F51B5",
+    "inputsInline": true
+  },
+  {
+    "type": "lis3dhtr_get_y",
+    "message0": "读取Y轴加速度",
+    "output": "Number",
+    "colour": "#3F51B5",
+    "inputsInline": true
+  },
+  {
+    "type": "lis3dhtr_get_z",
+    "message0": "读取Z轴加速度",
+    "output": "Number",
+    "colour": "#3F51B5",
+    "inputsInline": true
+  },
+  {
+    "type": "lis3dhtr_get_temperature",
+    "message0": "读取温度",
+    "output": "Number",
+    "colour": "#009688",
+    "inputsInline": true
+  },
+  {
+    "type": "lis3dhtr_isConnected",
+    "message0": "传感器连接状态",
+    "output": "Boolean",
+    "colour": "#607D8B",
+    "inputsInline": true
+  },
+  {
+    "type": "lis3dhtr_reset",
+    "message0": "复位传感器",
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#795548",
+    "inputsInline": true
+  }
+]
