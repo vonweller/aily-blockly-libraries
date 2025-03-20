@@ -1,5 +1,3 @@
-const stringUtils = Blockly.utils.string;
-
 Arduino.forBlock["arduino_setup"] = function (block) {
   const code = Arduino.statementToCode(block, "ARDUINO_SETUP");
   Arduino.addUserSetup("setup", code);
@@ -28,7 +26,7 @@ Arduino.forBlock["controls_repeat_ext"] = function (block) {
   let code = "";
   const loopVar = Arduino.nameDB_.getDistinctName("count", "VARIABLE");
   let endVar = repeats;
-  if (!repeats.match(/^\w+$/) && !stringUtils.isNumber(repeats)) {
+  if (!repeats.match(/^\w+$/) && !Blockly.utils.string.isNumber(repeats)) {
     endVar = Arduino.nameDB_.getDistinctName("repeat_end", "VARIABLE");
     code += "int " + endVar + " = " + repeats + ";\n";
   }

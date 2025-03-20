@@ -1,30 +1,12 @@
-/**
- * Regular expression to detect a single-quoted string literal.
- */
-const strRegExp = /^\s*'([^']|\\')*'\s*$/;
-
-/**
- * Enclose the provided value in 'String(...)' function.
- * Leave string literals alone.
- * @param value Code evaluating to a value.
- * @returns Array containing code evaluating to a string
- *     and the order of the returned code.[string, number]
- */
-const forceString = function (value) {
+Arduino.forceString = function (value) {
+  const strRegExp = /^\s*'([^']|\\')*'\s*$/;
   if (strRegExp.test(value)) {
     return [value, Arduino.ORDER_ATOMIC];
   }
   return ["String(" + value + ")", Arduino.ORDER_FUNCTION_CALL];
 };
 
-/**
- * Returns an expression calculating the index into a string.
- * @param stringName Name of the string, used to calculate length.
- * @param where The method of indexing, selected by dropdown in Blockly
- * @param opt_at The optional offset when indexing from start/end.
- * @returns Index expression.
- */
-const getSubstringIndex = function (stringName, where, opt_at) {
+Arduino.getSubstringIndex = function (stringName, where, opt_at) {
   if (where === "FIRST") {
     return "0";
   } else if (where === "FROM_END") {
@@ -40,22 +22,22 @@ Arduino.forBlock["string_add_string"] = function (block) {
   const string1 = block.getFieldValue("STRING1") || "";
   const string2 = block.getFieldValue("STRING2") || "";
   const code =
-    forceString(`"${string1}"`)[0] + " + " + forceString(`"${string2}"`)[0];
+    Arduino.forceString(`"${string1}"`)[0] + " + " + Arduino.forceString(`"${string2}"`)[0];
   return [code, Arduino.ORDER_ADDITION];
 };
 
 Arduino.forBlock["string_charAt"] = function (block) {
   const string = block.getFieldValue("STRING") || "";
   const num = block.getFieldValue("NUM") || 0;
-  const code = forceString(
-    forceString(`"${string}"`)[0] + `.charAt(${num}-1)`,
+  const code = Arduino.forceString(
+    Arduino.forceString(`"${string}"`)[0] + `.charAt(${num}-1)`,
   )[0];
   return [code, Arduino.ORDER_ADDITION];
 };
 
 Arduino.forBlock["string_length"] = function (block) {
   const string = block.getFieldValue("STRING") || "";
-  const code = forceString(`"${string}"`)[0] + ".length()";
+  const code = Arduino.forceString(`"${string}"`)[0] + ".length()";
   return [code, Arduino.ORDER_ADDITION];
 };
 
@@ -63,9 +45,9 @@ Arduino.forBlock["string_indexOf"] = function (block) {
   const string1 = block.getFieldValue("STRING1") || "";
   const string2 = block.getFieldValue("STRING2") || "";
   const code =
-    forceString(`"${string1}"`)[0] +
+    Arduino.forceString(`"${string1}"`)[0] +
     ".indexOf(" +
-    forceString(`"${string2}"`)[0] +
+    Arduino.forceString(`"${string2}"`)[0] +
     ") != -1";
   return [code, Arduino.ORDER_ADDITION];
 };
@@ -156,7 +138,7 @@ Arduino.forBlock["text_join"] = function (block) {
     case 1: {
       const element =
         Arduino.valueToCode(joinBlock, "ADD0", Arduino.ORDER_NONE) || "''";
-      const codeAndOrder = forceString(element);
+      const codeAndOrder = Arduino.forceString(element);
       return codeAndOrder;
     }
     case 2: {
@@ -164,7 +146,7 @@ Arduino.forBlock["text_join"] = function (block) {
         Arduino.valueToCode(joinBlock, "ADD0", Arduino.ORDER_NONE) || "''";
       const element1 =
         Arduino.valueToCode(joinBlock, "ADD1", Arduino.ORDER_NONE) || "''";
-      const code = forceString(element0)[0] + " + " + forceString(element1)[0];
+      const code = Arduino.forceString(element0)[0] + " + " + Arduino.forceString(element1)[0];
       return [code, Arduino.ORDER_ADDITION];
     }
     default: {
@@ -183,7 +165,7 @@ Arduino.forBlock["text_append"] = function (block) {
   // Append to a variable in place.
   const varName = Arduino.getVariableName(block.getFieldValue("VAR"));
   const value = Arduino.valueToCode(block, "TEXT", Arduino.ORDER_NONE) || "''";
-  const code = varName + " += " + forceString(value)[0] + ";\n";
+  const code = varName + " += " + Arduino.forceString(value)[0] + ";\n";
   return code;
 };
 
@@ -344,8 +326,8 @@ Arduino.forBlock["text_getSubstring"] = function (block) {
       "subsequence" + wherePascalCase[where1] + wherePascalCase[where2],
       `
 function ${Arduino.FUNCTION_NAME_PLACEHOLDER_}(sequence${at1Param}${at2Param}) {
-  var start = ${getSubstringIndex("sequence", where1, "at1")};
-  var end = ${getSubstringIndex("sequence", where2, "at2")} + 1;
+  var start = ${Arduino.getSubstringIndex("sequence", where1, "at1")};
+  var end = ${Arduino.getSubstringIndex("sequence", where2, "at2")} + 1;
   return sequence.slice(start, end);
 }
 `,
