@@ -181,10 +181,14 @@ void loop() {
     }
 }
 ```
-##### 变量
-aily blockly配置支持变量，变量形式为`${VAR_NAME}`，其中`VAR_NAME`即是`args0`中输入项`name`。
-aily blockly会自动将代码中的变量，替换为变量对应的值。  
 
+### 注意事项
+如果在generator.js需要创建函数，请不要创建全局函数，使用如下方式将函数定义到Arduino中，如：
+```js
+Arduino.newFunction = function(value) {
+  return 'ok';
+};
+```
 
 ## toolbox.json 
 Toolbox是呈现在blockly界面左侧的block菜单，示例如下：
