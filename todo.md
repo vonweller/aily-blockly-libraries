@@ -1,6 +1,5 @@
 # Todo List
 
-- [74HC595](./74HC595)
 - [ADXL345](./ADXL345)
 - [BMP280](./BMP280)
 - [Fingerprint](./Fingerprint)
