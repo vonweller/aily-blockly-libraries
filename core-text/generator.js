@@ -134,29 +134,29 @@ Arduino.forBlock["text_join"] = function (block) {
   const joinBlock = block;
   switch (joinBlock.itemCount_) {
     case 0:
-      return ["''", Arduino.ORDER_ATOMIC];
+      return ["\"\"", Arduino.ORDER_ATOMIC];
     case 1: {
       const element =
-        Arduino.valueToCode(joinBlock, "ADD0", Arduino.ORDER_NONE) || "''";
+        Arduino.valueToCode(joinBlock, "ADD0", Arduino.ORDER_NONE) || "\"\"";
       const codeAndOrder = Arduino.forceString(element);
       return codeAndOrder;
     }
     case 2: {
       const element0 =
-        Arduino.valueToCode(joinBlock, "ADD0", Arduino.ORDER_NONE) || "''";
+        Arduino.valueToCode(joinBlock, "ADD0", Arduino.ORDER_NONE) || "\"\"";
       const element1 =
-        Arduino.valueToCode(joinBlock, "ADD1", Arduino.ORDER_NONE) || "''";
+        Arduino.valueToCode(joinBlock, "ADD1", Arduino.ORDER_NONE) || "\"\"";
       const code = Arduino.forceString(element0)[0] + " + " + Arduino.forceString(element1)[0];
       return [code, Arduino.ORDER_ADDITION];
     }
     default: {
-      const elements = new Array(joinBlock.itemCount_);
+      // Arduino不支持数组join方法，使用String连接替代
+      let code = "String(\"\")";
       for (let i = 0; i < joinBlock.itemCount_; i++) {
-        elements[i] =
-          Arduino.valueToCode(joinBlock, "ADD" + i, Arduino.ORDER_NONE) || "''";
+        const element = Arduino.valueToCode(joinBlock, "ADD" + i, Arduino.ORDER_NONE) || "\"\"";
+        code += " + " + Arduino.forceString(element)[0];
       }
-      const code = "[" + elements.join(",") + "].join('')";
-      return [code, Arduino.ORDER_FUNCTION_CALL];
+      return [code, Arduino.ORDER_ADDITION];
     }
   }
 };
@@ -164,33 +164,29 @@ Arduino.forBlock["text_join"] = function (block) {
 Arduino.forBlock["text_append"] = function (block) {
   // Append to a variable in place.
   const varName = Arduino.getVariableName(block.getFieldValue("VAR"));
-  const value = Arduino.valueToCode(block, "TEXT", Arduino.ORDER_NONE) || "''";
+  const value = Arduino.valueToCode(block, "TEXT", Arduino.ORDER_NONE) || "\"\"";
   const code = varName + " += " + Arduino.forceString(value)[0] + ";\n";
   return code;
 };
 
 Arduino.forBlock["text_length"] = function (block) {
-  // String or array length.
-  const text =
-    Arduino.valueToCode(block, "VALUE", Arduino.ORDER_MEMBER) || "''";
-  return [text + ".length", Arduino.ORDER_MEMBER];
+  // String length - Arduino使用length()方法而不是length属性
+  const text = Arduino.valueToCode(block, "VALUE", Arduino.ORDER_MEMBER) || "\"\"";
+  return [text + ".length()", Arduino.ORDER_FUNCTION_CALL];
 };
 
 Arduino.forBlock["text_isEmpty"] = function (block) {
-  // Is the string null or array empty?
-  const text =
-    Arduino.valueToCode(block, "VALUE", Arduino.ORDER_MEMBER) || "''";
-  return ["!" + text + ".length", Arduino.ORDER_LOGICAL_NOT];
+  // Is the string empty?
+  const text = Arduino.valueToCode(block, "VALUE", Arduino.ORDER_MEMBER) || "\"\"";
+  return [text + ".length() == 0", Arduino.ORDER_EQUALITY];
 };
 
 Arduino.forBlock["text_indexOf"] = function (block) {
   // Search the text for a substring.
-  const operator =
-    block.getFieldValue("END") === "FIRST" ? "indexOf" : "lastIndexOf";
-  const substring =
-    Arduino.valueToCode(block, "FIND", Arduino.ORDER_NONE) || "''";
-  const text =
-    Arduino.valueToCode(block, "VALUE", Arduino.ORDER_MEMBER) || "''";
+  const operator = block.getFieldValue("END") === "FIRST" ? "indexOf" : "lastIndexOf";
+  const substring = Arduino.valueToCode(block, "FIND", Arduino.ORDER_NONE) || "\"\"";
+  const text = Arduino.valueToCode(block, "VALUE", Arduino.ORDER_MEMBER) || "\"\"";
+  // Arduino String类使用相同的方法名，但返回值与JS略有不同
   const code = text + "." + operator + "(" + substring + ")";
   // Adjust index if using one-based indices.
   if (block.workspace.options.oneBasedIndex) {
@@ -201,42 +197,39 @@ Arduino.forBlock["text_indexOf"] = function (block) {
 
 Arduino.forBlock["text_charAt"] = function (block) {
   // Get letter at index.
-  // Note: Until January 2013 this block did not have the WHERE input.
   const where = block.getFieldValue("WHERE") || "FROM_START";
-  const textOrder =
-    where === "RANDOM" ? Arduino.ORDER_NONE : Arduino.ORDER_MEMBER;
-  const text = Arduino.valueToCode(block, "VALUE", textOrder) || "''";
+  const textOrder = where === "RANDOM" ? Arduino.ORDER_NONE : Arduino.ORDER_MEMBER;
+  const text = Arduino.valueToCode(block, "VALUE", textOrder) || "\"\"";
   switch (where) {
     case "FIRST": {
       const code = text + ".charAt(0)";
       return [code, Arduino.ORDER_FUNCTION_CALL];
     }
     case "LAST": {
-      const code = text + ".slice(-1)";
+      // Arduino不支持slice，使用charAt(length-1)替代
+      const code = text + ".charAt(" + text + ".length()-1)";
       return [code, Arduino.ORDER_FUNCTION_CALL];
     }
     case "FROM_START": {
       const at = Arduino.getAdjusted(block, "AT");
-      // Adjust index if using one-based indices.
       const code = text + ".charAt(" + at + ")";
       return [code, Arduino.ORDER_FUNCTION_CALL];
     }
     case "FROM_END": {
       const at = Arduino.getAdjusted(block, "AT", 1, true);
-      const code = text + ".slice(" + at + ").charAt(0)";
+      // 从末尾计算位置
+      const code = text + ".charAt(" + text + ".length()-1-" + at + ")";
       return [code, Arduino.ORDER_FUNCTION_CALL];
     }
     case "RANDOM": {
-      const functionName = Arduino.provideFunction_(
-        "textRandomLetter",
-        `
-function ${Arduino.FUNCTION_NAME_PLACEHOLDER_}(text) {
-  var x = Math.floor(Math.random() * text.length);
-  return text[x];
-}
-`,
-      );
-      const code = functionName + "(" + text + ")";
+      // Arduino需要自定义随机字符选择函数
+      Arduino.addDefinition('text_random_letter',
+        'char textRandomLetter(String text) {\n' +
+        '  if (text.length() == 0) return 0;\n' +
+        '  int index = random(text.length());\n' +
+        '  return text.charAt(index);\n' +
+        '}\n');
+      const code = "textRandomLetter(" + text + ")";
       return [code, Arduino.ORDER_FUNCTION_CALL];
     }
   }
@@ -244,147 +237,134 @@ function ${Arduino.FUNCTION_NAME_PLACEHOLDER_}(text) {
 };
 
 Arduino.forBlock["text_getSubstring"] = function (block) {
-  // Dictionary of WHEREn field choices and their CamelCase equivalents. */
-  const wherePascalCase = {
-    FIRST: "First",
-    LAST: "Last",
-    FROM_START: "FromStart",
-    FROM_END: "FromEnd",
-  };
   // Get substring.
+  const text = Arduino.valueToCode(block, "STRING", Arduino.ORDER_NONE) || "\"\"";
   const where1 = block.getFieldValue("WHERE1");
   const where2 = block.getFieldValue("WHERE2");
-  const requiresLengthCall =
-    where1 !== "FROM_END" &&
-    where1 !== "LAST" &&
-    where2 !== "FROM_END" &&
-    where2 !== "LAST";
-  const textOrder = requiresLengthCall
-    ? Arduino.ORDER_MEMBER
-    : Arduino.ORDER_NONE;
-  const text = Arduino.valueToCode(block, "STRING", textOrder) || "''";
-  let code;
-  if (where1 === "FIRST" && where2 === "LAST") {
-    code = text;
-    return [code, Arduino.ORDER_NONE];
-  } else if (text.match(/^'?\w+'?$/) || requiresLengthCall) {
-    // If the text is a variable or literal or doesn't require a call for
-    // length, don't generate a helper function.
-    let at1;
-    switch (where1) {
-      case "FROM_START":
-        at1 = Arduino.getAdjusted(block, "AT1");
-        break;
-      case "FROM_END":
-        at1 = Arduino.getAdjusted(
-          block,
-          "AT1",
-          1,
-          false,
-          Arduino.ORDER_SUBTRACTION,
-        );
-        at1 = text + ".length - " + at1;
-        break;
-      case "FIRST":
-        at1 = "0";
-        break;
-      default:
-        throw Error("Unhandled option (text_getSubstring).");
-    }
-    let at2;
-    switch (where2) {
-      case "FROM_START":
-        at2 = Arduino.getAdjusted(block, "AT2", 1);
-        break;
-      case "FROM_END":
-        at2 = Arduino.getAdjusted(
-          block,
-          "AT2",
-          0,
-          false,
-          Arduino.ORDER_SUBTRACTION,
-        );
-        at2 = text + ".length - " + at2;
-        break;
-      case "LAST":
-        at2 = text + ".length";
-        break;
-      default:
-        throw Error("Unhandled option (text_getSubstring).");
-    }
-    code = text + ".slice(" + at1 + ", " + at2 + ")";
-  } else {
-    const at1 = Arduino.getAdjusted(block, "AT1");
-    const at2 = Arduino.getAdjusted(block, "AT2");
-    // The value for 'FROM_END' and'FROM_START' depends on `at` so
-    // we add it as a parameter.
-    const at1Param =
-      where1 === "FROM_END" || where1 === "FROM_START" ? ", at1" : "";
-    const at2Param =
-      where2 === "FROM_END" || where2 === "FROM_START" ? ", at2" : "";
-    const functionName = Arduino.provideFunction_(
-      "subsequence" + wherePascalCase[where1] + wherePascalCase[where2],
-      `
-function ${Arduino.FUNCTION_NAME_PLACEHOLDER_}(sequence${at1Param}${at2Param}) {
-  var start = ${Arduino.getSubstringIndex("sequence", where1, "at1")};
-  var end = ${Arduino.getSubstringIndex("sequence", where2, "at2")} + 1;
-  return sequence.slice(start, end);
-}
-`,
-    );
-    code =
-      functionName +
-      "(" +
-      text +
-      // The value for 'FROM_END' and 'FROM_START' depends on `at` so we
-      // pass it.
-      (where1 === "FROM_END" || where1 === "FROM_START" ? ", " + at1 : "") +
-      (where2 === "FROM_END" || where2 === "FROM_START" ? ", " + at2 : "") +
-      ")";
+  
+  let at1;
+  switch (where1) {
+    case "FROM_START":
+      at1 = Arduino.getAdjusted(block, "AT1");
+      break;
+    case "FROM_END":
+      at1 = text + ".length() - 1 - " + Arduino.getAdjusted(block, "AT1", 1, false);
+      break;
+    case "FIRST":
+      at1 = "0";
+      break;
+    default:
+      throw Error("Unhandled option (text_getSubstring).");
   }
+  
+  let at2;
+  switch (where2) {
+    case "FROM_START":
+      at2 = Arduino.getAdjusted(block, "AT2", 1);
+      break;
+    case "FROM_END":
+      at2 = text + ".length() - " + Arduino.getAdjusted(block, "AT2", 0, false);
+      break;
+    case "LAST":
+      at2 = text + ".length()";
+      break;
+    default:
+      throw Error("Unhandled option (text_getSubstring).");
+  }
+  
+  // Arduino String的substring方法语法
+  const code = text + ".substring(" + at1 + ", " + at2 + ")";
   return [code, Arduino.ORDER_FUNCTION_CALL];
 };
 
 Arduino.forBlock["text_changeCase"] = function (block) {
   // Change capitalization.
-  const OPERATORS = {
-    UPPERCASE: ".toUpperCase()",
-    LOWERCASE: ".toLowerCase()",
-    TITLECASE: null,
-  };
-  const operator = OPERATORS[block.getFieldValue("CASE")];
-  const textOrder = operator ? Arduino.ORDER_MEMBER : Arduino.ORDER_NONE;
-  const text = Arduino.valueToCode(block, "TEXT", textOrder) || "''";
+  const operator = block.getFieldValue("CASE");
+  const text = Arduino.valueToCode(block, "TEXT", Arduino.ORDER_MEMBER) || "\"\"";
   let code;
-  if (operator) {
-    // Upper and lower case are functions built into Arduino.
-    code = text + operator;
-  } else {
-    // Title case is not a native JavaScript function.  Define one.
-    const functionName = Arduino.provideFunction_(
-      "textToTitleCase",
-      `
-function ${Arduino.FUNCTION_NAME_PLACEHOLDER_}(str) {
-  return str.replace(/\\S+/g,
-      function(txt) {return txt[0].toUpperCase() + txt.substring(1).toLowerCase();});
-}
-`,
-    );
-    code = functionName + "(" + text + ")";
+  
+  // 为Arduino添加自定义函数
+  if (operator === "UPPERCASE") {
+    Arduino.addDefinition('text_to_upper',
+      'String textToUpper(String text) {\n' +
+      '  String result = text;\n' +
+      '  result.toUpperCase();\n' +
+      '  return result;\n' +
+      '}\n');
+    code = "textToUpper(" + text + ")";
+  } else if (operator === "LOWERCASE") {
+    Arduino.addDefinition('text_to_lower',
+      'String textToLower(String text) {\n' +
+      '  String result = text;\n' +
+      '  result.toLowerCase();\n' +
+      '  return result;\n' +
+      '}\n');
+    code = "textToLower(" + text + ")";
+  } else if (operator === "TITLECASE") {
+    // Arduino不内置标题大小写函数，需要自定义实现
+    Arduino.addDefinition('text_to_title',
+      'String textToTitleCase(String text) {\n' +
+      '  String result = "";\n' +
+      '  bool capitalizeNext = true;\n' +
+      '  for (unsigned int i = 0; i < text.length(); i++) {\n' +
+      '    char c = text.charAt(i);\n' +
+      '    if (isSpace(c) || c == \'\\t\' || c == \'\\n\') {\n' +
+      '      capitalizeNext = true;\n' +
+      '      result += c;\n' +
+      '    } else if (capitalizeNext) {\n' +
+      '      result += (char)toupper(c);\n' +
+      '      capitalizeNext = false;\n' +
+      '    } else {\n' +
+      '      result += (char)tolower(c);\n' +
+      '    }\n' +
+      '  }\n' +
+      '  return result;\n' +
+      '}\n');
+    code = "textToTitleCase(" + text + ")";
   }
+  
   return [code, Arduino.ORDER_FUNCTION_CALL];
 };
 
 Arduino.forBlock["text_trim"] = function (block) {
   // Trim spaces.
-  const OPERATORS = {
-    LEFT: ".replace(/^[\\s\\xa0]+/, '')",
-    RIGHT: ".replace(/[\\s\\xa0]+$/, '')",
-    BOTH: ".trim()",
-  };
-  const operator = OPERATORS[block.getFieldValue("MODE")];
-  const text = Arduino.valueToCode(block, "TEXT", Arduino.ORDER_MEMBER) || "''";
-  return [text + operator, Arduino.ORDER_FUNCTION_CALL];
+  const mode = block.getFieldValue("MODE");
+  const text = Arduino.valueToCode(block, "TEXT", Arduino.ORDER_MEMBER) || "\"\"";
+  
+  // Arduino需要自定义修剪函数
+  let functionName;
+  if (mode === "BOTH") {
+    Arduino.addDefinition('text_trim',
+      'String textTrim(String text) {\n' +
+      '  String result = text;\n' +
+      '  result.trim();\n' +
+      '  return result;\n' +
+      '}\n');
+    functionName = "textTrim";
+  } else if (mode === "LEFT") {
+    Arduino.addDefinition('text_trim_left',
+      'String textTrimLeft(String text) {\n' +
+      '  int i = 0;\n' +
+      '  while (i < text.length() && isSpace(text.charAt(i))) {\n' +
+      '    i++;\n' +
+      '  }\n' +
+      '  return text.substring(i);\n' +
+      '}\n');
+    functionName = "textTrimLeft";
+  } else if (mode === "RIGHT") {
+    Arduino.addDefinition('text_trim_right',
+      'String textTrimRight(String text) {\n' +
+      '  int i = text.length() - 1;\n' +
+      '  while (i >= 0 && isSpace(text.charAt(i))) {\n' +
+      '    i--;\n' +
+      '  }\n' +
+      '  return text.substring(0, i + 1);\n' +
+      '}\n');
+    functionName = "textTrimRight";
+  }
+  
+  const code = functionName + "(" + text + ")";
+  return [code, Arduino.ORDER_FUNCTION_CALL];
 };
 
 Arduino.forBlock["text_print"] = function (block) {
@@ -415,46 +395,60 @@ Arduino.forBlock["text_prompt_ext"] = function (block) {
 Arduino.forBlock["text_prompt"] = Arduino.forBlock["text_prompt_ext"];
 
 Arduino.forBlock["text_count"] = function (block) {
-  const text = Arduino.valueToCode(block, "TEXT", Arduino.ORDER_NONE) || "''";
-  const sub = Arduino.valueToCode(block, "SUB", Arduino.ORDER_NONE) || "''";
-  const functionName = Arduino.provideFunction_(
-    "textCount",
-    `
-function ${Arduino.FUNCTION_NAME_PLACEHOLDER_}(haystack, needle) {
-  if (needle.length === 0) {
-    return haystack.length + 1;
-  } else {
-    return haystack.split(needle).length - 1;
-  }
-}
-`,
-  );
-  const code = functionName + "(" + text + ", " + sub + ")";
+  const text = Arduino.valueToCode(block, "TEXT", Arduino.ORDER_NONE) || "\"\"";
+  const sub = Arduino.valueToCode(block, "SUB", Arduino.ORDER_NONE) || "\"\"";
+  
+  // Arduino需要自定义函数计数子字符串出现次数
+  Arduino.addDefinition('text_count',
+    'int textCount(String text, String sub) {\n' +
+    '  if (sub.length() == 0) return text.length() + 1;\n' +
+    '  int count = 0;\n' +
+    '  int index = text.indexOf(sub);\n' +
+    '  while (index != -1) {\n' +
+    '    count++;\n' +
+    '    index = text.indexOf(sub, index + 1);\n' +
+    '  }\n' +
+    '  return count;\n' +
+    '}\n');
+  
+  const code = "textCount(" + text + ", " + sub + ")";
   return [code, Arduino.ORDER_FUNCTION_CALL];
 };
 
 Arduino.forBlock["text_replace"] = function (block) {
-  const text = Arduino.valueToCode(block, "TEXT", Arduino.ORDER_NONE) || "''";
-  const from = Arduino.valueToCode(block, "FROM", Arduino.ORDER_NONE) || "''";
-  const to = Arduino.valueToCode(block, "TO", Arduino.ORDER_NONE) || "''";
-  // The regex escaping code below is taken from the implementation of
-  // goog.string.regExpEscape.
-  const functionName = Arduino.provideFunction_(
-    "textReplace",
-    `
-function ${Arduino.FUNCTION_NAME_PLACEHOLDER_}(haystack, needle, replacement) {
-  needle = needle.replace(/([-()\\[\\]{}+?*.$\\^|,:#<!\\\\])/g, '\\\\$1')
-                 .replace(/\\x08/g, '\\\\x08');
-  return haystack.replace(new RegExp(needle, 'g'), replacement);
-}
-`,
-  );
-  const code = functionName + "(" + text + ", " + from + ", " + to + ")";
+  const text = Arduino.valueToCode(block, "TEXT", Arduino.ORDER_NONE) || "\"\"";
+  const from = Arduino.valueToCode(block, "FROM", Arduino.ORDER_NONE) || "\"\"";
+  const to = Arduino.valueToCode(block, "TO", Arduino.ORDER_NONE) || "\"\"";
+  
+  // Arduino需要自定义替换函数，String.replace()只替换第一个匹配项
+  Arduino.addDefinition('text_replace_all',
+    'String textReplaceAll(String text, String from, String to) {\n' +
+    '  String result = text;\n' +
+    '  int index = result.indexOf(from);\n' +
+    '  while (index != -1) {\n' +
+    '    result = result.substring(0, index) + to + result.substring(index + from.length());\n' +
+    '    index = result.indexOf(from, index + to.length());\n' +
+    '  }\n' +
+    '  return result;\n' +
+    '}\n');
+  
+  const code = "textReplaceAll(" + text + ", " + from + ", " + to + ")";
   return [code, Arduino.ORDER_FUNCTION_CALL];
 };
 
 Arduino.forBlock["text_reverse"] = function (block) {
-  const text = Arduino.valueToCode(block, "TEXT", Arduino.ORDER_MEMBER) || "''";
-  const code = text + ".split('').reverse().join('')";
+  const text = Arduino.valueToCode(block, "TEXT", Arduino.ORDER_MEMBER) || "\"\"";
+  
+  // Arduino需要自定义反转函数
+  Arduino.addDefinition('text_reverse',
+    'String textReverse(String text) {\n' +
+    '  String result = "";\n' +
+    '  for (int i = text.length() - 1; i >= 0; i--) {\n' +
+    '    result += text.charAt(i);\n' +
+    '  }\n' +
+    '  return result;\n' +
+    '}\n');
+  
+  const code = "textReverse(" + text + ")";
   return [code, Arduino.ORDER_FUNCTION_CALL];
 };
