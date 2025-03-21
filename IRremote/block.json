@@ -1,0 +1,99 @@
+[
+  {
+    "inputsInline": true,
+    "message0": "\u7ea2\u5916\u63a5\u6536\u5668 %1 \u521d\u59cb\u5316\u4e8e\u5f15\u811a %2",
+    "type": "irrecv_attach",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "OBJECT",
+        "variable": "irrecv1",
+        "variableTypes": [
+          "IRrecv"
+        ],
+        "defaultType": "IRrecv"
+      },
+      {
+        "type": "field_dropdown",
+        "name": "PIN",
+        "options": "${board.digitalPins}"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#ff5722"
+  },
+  {
+    "inputsInline": true,
+    "message0": "\u7ea2\u5916\u63a5\u6536\u5668 %1 \u89e3\u7801",
+    "type": "irrecv_decode",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "OBJECT",
+        "variable": "irrecv1",
+        "variableTypes": [
+          "IRrecv"
+        ],
+        "defaultType": "IRrecv"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#ff9800"
+  },
+  {
+    "type": "ir_send_nec",
+    "message0": "\u4f7f\u7528\u5f15\u811a %1 \u53d1\u9001 NEC\u4fe1\u53f7 \u5730\u5740 %2 \u547d\u4ee4 %3 \u91cd\u590d %4 \u6b21",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "SEND_PIN",
+        "options": "${board.digitalPins}"
+      },
+      {
+        "type": "field_number",
+        "name": "ADDRESS",
+        "value": 0
+      },
+      {
+        "type": "field_number",
+        "name": "COMMAND",
+        "value": 0
+      },
+      {
+        "type": "field_number",
+        "name": "REPEATS",
+        "value": 0,
+        "min": 0
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF5722"
+  },
+  {
+    "type": "ir_recv_begin",
+    "message0": "\u521d\u59cb\u5316IR\u63a5\u6536\u5f15\u811a %1",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "RECV_PIN",
+        "options": "${board.digitalPins}"
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#4CAF50"
+  },
+  {
+    "type": "ir_receive",
+    "message0": "\u68c0\u6d4bIR\u4fe1\u53f7",
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#009688"
+  }
+]
