@@ -1,7 +1,5 @@
 # Todo List
 
-- [ADXL345](./ADXL345)
-- [BMP280](./BMP280)
 - [Fingerprint](./Fingerprint)
 - [HX711](./HX711)
 - [IICMotorDriver](./IICMotorDriver)
