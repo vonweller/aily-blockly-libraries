@@ -117,3 +117,40 @@ Arduino.forBlock['u8g2_simple_text'] = function(block, generator) {
   // 简化版的显示文本（自带清屏和刷新）
   return `${instance}.clearBuffer();\n${instance}.drawStr(${x}, ${y}, ${text});\n${instance}.sendBuffer();\n`;
 };
+
+Arduino.forBlock['u8g2_draw_image'] = function(block, generator) {
+  const u8g2 = generator.getVariableName(block, 'U8G2_INSTANCE');
+  const x = generator.valueToCode(block, 'X', generator.ORDER_ATOMIC) || '0';
+  const y = generator.valueToCode(block, 'Y', generator.ORDER_ATOMIC) || '0';
+  const width = generator.valueToCode(block, 'WIDTH', generator.ORDER_ATOMIC) || '32';
+  const height = generator.valueToCode(block, 'HEIGHT', generator.ORDER_ATOMIC) || '32';
+  
+  // 获取图片数据，这应该是一个base64编码的字符串或系统特定的图片标识符
+  const imageData = block.getFieldValue('IMAGE_DATA');
+  
+  // 生成一个唯一的变量名
+  const imageVarName = 'xbm_image_' + generator.getUid();
+  
+  // 将图片数据转换为XBM格式的C数组，这里假设系统有一个imageDataToXBM函数
+  // 实际情况下，AILY平台应提供此类转换工具
+  // 或在生成代码时执行此转换
+  
+  // 添加图片数据到程序的变量部分
+  generator.addVariable(
+    imageVarName,
+    `static const unsigned char ${imageVarName}[] PROGMEM = {
+  // 图片数据将在代码生成时由系统替换
+  // IMAGE_DATA:${imageData}
+};`
+  );
+  
+  // 返回显示图片的代码
+  return `${u8g2}.drawXBM(${x}, ${y}, ${width}, ${height}, ${imageVarName});\n`;
+};
+
+Arduino.forBlock['image_block'] = function(block, generator) {
+  const imageData = block.getFieldValue('IMAGE');
+  // 如果需要，可以在这里对 imageData 进行额外处理
+  const code = `"${imageData}"`;
+  return code;
+};
