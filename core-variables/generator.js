@@ -19,28 +19,41 @@ Blockly.getMainWorkspace().registerButtonCallback(
         // 检查是否是第一次创建变量
         if (variableCategory.getContents().length === 1) {
           // 只有"新建变量"按钮时，添加变量块
-          const newContents = [
-            {
-              "kind": "button",
-              "text": "新建变量",
-              "callbackKey": "CREATE_VARIABLE"
-            },
-            {
-              "kind": "block",
-              "type": "variable_define"
-            },
-            {
-              "kind": "block",
-              "type": "variables_get"
-            },
-            {
-              "kind": "block",
-              "type": "variables_set"
-            }
-          ];
+          // 获取当前工具箱的配置
+          const toolboxDef = workspace.options.languageTree;
 
-          console.log('更新toolbox');
-          variableCategory.updateToolboxContents(newContents);
+          // 找到变量类别并更新其内容
+          for (let category of toolboxDef.contents) {
+            if ((category.name === "Variables" ||
+              (category.contents && category.contents[0]?.callbackKey === "CREATE_VARIABLE"))) {
+
+              // 更新该类别的内容
+              category.contents = [
+                {
+                  "kind": "button",
+                  "text": "新建变量",
+                  "callbackKey": "CREATE_VARIABLE"
+                },
+                {
+                  "kind": "block",
+                  "type": "variable_define"
+                },
+                {
+                  "kind": "block",
+                  "type": "variables_get"
+                },
+                {
+                  "kind": "block",
+                  "type": "variables_set"
+                }
+              ];
+
+              console.log('更新toolbox');
+              // 使用工作区的方法更新整个工具箱
+              workspace.updateToolbox(toolboxDef);
+              break;
+            }
+          }
         }
       },
       null
