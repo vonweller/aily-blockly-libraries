@@ -55,7 +55,7 @@ Blockly.getMainWorkspace().registerButtonCallback(
                 if (toolboxDef.contents[i].name === "Variables" ||
                   (toolboxDef.contents[i].contents &&
                     toolboxDef.contents[i].contents[0]?.callbackKey === "CREATE_VARIABLE")) {
-                  toolboxDef.contents[i].contents = newContents;
+                  toolboxDef.contents[i].contents = category.contents;
                   break;
                 }
               }
