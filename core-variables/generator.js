@@ -5,16 +5,16 @@ Blockly.getMainWorkspace().registerButtonCallback(
     Blockly.Variables.createVariableButtonHandler(
       workspace,
       (varName) => {
-        console.log("变量创建成功:", varName);
+        // console.log("变量创建成功:", varName);
         // 获取变量分类
         const toolbox = workspace.getToolbox();
-        console.log('toolbox', toolbox);
+        // console.log('toolbox', toolbox);
         const allCategories = toolbox.getToolboxItems();
-        console.log('allCategories', allCategories);
+        // console.log('allCategories', allCategories);
         const variableCategory = allCategories.find(item =>
           item.name_ === "Variables" || (item.getContents && item.getContents()[0]?.callbackKey === "CREATE_VARIABLE")
         );
-        console.log(variableCategory);
+        // console.log(variableCategory);
 
         // 检查是否是第一次创建变量
         if (variableCategory.getContents().length === 1) {
@@ -48,10 +48,19 @@ Blockly.getMainWorkspace().registerButtonCallback(
                 }
               ];
 
-              console.log('更新toolbox');
-              // 使用工作区的方法更新整个工具箱
+              const toolboxDef = workspace.getToolbox().toolboxDef_;
+              // console.log('toolboxDef', toolboxDef);
+              // 找到变量类别并更新其内容
+              for (let i = 0; i < toolboxDef.contents.length; i++) {
+                if (toolboxDef.contents[i].name === "Variables" ||
+                  (toolboxDef.contents[i].contents &&
+                    toolboxDef.contents[i].contents[0]?.callbackKey === "CREATE_VARIABLE")) {
+                  toolboxDef.contents[i].contents = newContents;
+                  break;
+                }
+              }
+              // 更新整个工具箱
               workspace.updateToolbox(toolboxDef);
-              break;
             }
           }
         }
