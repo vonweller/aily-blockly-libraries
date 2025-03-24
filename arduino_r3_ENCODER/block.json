@@ -1,0 +1,69 @@
+[
+  {
+    "type": "encoder_init",
+    "message0": "初始化编码器 %1 连接到引脚A %2 引脚B %3",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "ENCODER",
+        "variable": "encoder1",
+        "variableTypes": ["Encoder"],
+        "defaultType": "Encoder"
+      },
+      {
+        "type": "field_dropdown",
+        "name": "PIN_A",
+        "options": "${board.digitalPins}"
+      },
+      {
+        "type": "field_dropdown",
+        "name": "PIN_B",
+        "options": "${board.digitalPins}"
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#2E8B57",
+    "tooltip": "初始化一个旋转编码器对象，连接到指定的两个引脚"
+  },
+  {
+    "type": "encoder_read",
+    "message0": "获取编码器 %1 的值",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "ENCODER",
+        "variable": "encoder1",
+        "variableTypes": ["Encoder"],
+        "defaultType": "Encoder"
+      }
+    ],
+    "output": "Number",
+    "colour": "#2E8B57",
+    "tooltip": "读取编码器的当前位置值"
+  },
+  {
+    "type": "encoder_write",
+    "message0": "设置编码器 %1 的值为 %2",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "ENCODER",
+        "variable": "encoder1",
+        "variableTypes": ["Encoder"],
+        "defaultType": "Encoder"
+      },
+      {
+        "type": "input_value",
+        "name": "VALUE",
+        "check": "Number"
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#2E8B57",
+    "tooltip": "设置或重置编码器的当前位置值"
+  }
+]
