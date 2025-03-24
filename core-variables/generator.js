@@ -5,16 +5,12 @@ Blockly.getMainWorkspace().registerButtonCallback(
     Blockly.Variables.createVariableButtonHandler(
       workspace,
       (varName) => {
-        // console.log("变量创建成功:", varName);
         // 获取变量分类
         const toolbox = workspace.getToolbox();
-        // console.log('toolbox', toolbox);
         const allCategories = toolbox.getToolboxItems();
-        // console.log('allCategories', allCategories);
         const variableCategory = allCategories.find(item =>
           item.name_ === "Variables" || (item.getContents && item.getContents()[0]?.callbackKey === "CREATE_VARIABLE")
         );
-        // console.log(variableCategory);
 
         // 检查是否是第一次创建变量
         if (variableCategory.getContents().length === 1) {
@@ -49,7 +45,6 @@ Blockly.getMainWorkspace().registerButtonCallback(
               ];
 
               const toolboxDef = workspace.getToolbox().toolboxDef_;
-              // console.log('toolboxDef', toolboxDef);
               // 找到变量类别并更新其内容
               for (let i = 0; i < toolboxDef.contents.length; i++) {
                 if (toolboxDef.contents[i].name === "Variables" ||
@@ -70,7 +65,7 @@ Blockly.getMainWorkspace().registerButtonCallback(
   },
 );
 
-Arduino.forBlock["variable_define"] = function (block) {
+Arduino.forBlock["variable_define"] = function (block, generator) {
   const gorp = block.getFieldValue("GORP");
   let type = block.getFieldValue("TYPE");
   const name = block.getFieldValue("VAR");
@@ -95,17 +90,16 @@ if (typeof setLibraryVariable === 'undefined') {
   };
 }
 
-Arduino.forBlock["variables_get"] = function (block) {
+Arduino.forBlock["variables_get"] = function (block, generator) {
   // Variable getter.
   const { name: code, type } = block.workspace.getVariableById(
     block.getFieldValue("VAR"),
   );
-  console.log(code, type);
   setLibraryVariable(type, code);
   return [code, Arduino.ORDER_ATOMIC];
 };
 
-Arduino.forBlock["variables_set"] = function (block) {
+Arduino.forBlock["variables_set"] = function (block, generator) {
   // Variable setter.
   const value =
     Arduino.valueToCode(block, "VALUE", Arduino.ORDER_ASSIGNMENT) || "0";
