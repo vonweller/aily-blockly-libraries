@@ -1,0 +1,129 @@
+[
+    {
+        "type": "softwareserial_create",
+        "message0": "创建软件串口 %1 RX引脚 %2 TX引脚 %3",
+        "args0": [
+            {
+                "type": "field_variable",
+                "name": "SERIAL_VAR",
+                "variable": "mySerial",
+                "variableTypes": ["SoftwareSerial"],
+                "defaultType": "SoftwareSerial"
+            },
+            {
+                "type": "field_dropdown",
+                "name": "RX_PIN",
+                "options": "${board.digitalPins}"
+            },
+            {
+                "type": "field_dropdown",
+                "name": "TX_PIN",
+                "options": "${board.digitalPins}"
+            }
+        ],
+        "inputsInline": true,
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#2196F3"
+    },
+    {
+        "type": "softwareserial_begin",
+        "message0": "软件串口 %1 设置波特率 %2",
+        "args0": [
+            {
+                "type": "field_variable",
+                "name": "SERIAL_VAR",
+                "variable": "mySerial",
+                "variableTypes": ["SoftwareSerial"],
+                "defaultType": "SoftwareSerial"
+            },
+            {
+                "type": "field_dropdown",
+                "name": "BAUD_RATE",
+                "options": [
+                    ["9600", "9600"],
+                    ["4800", "4800"],
+                    ["19200", "19200"],
+                    ["38400", "38400"],
+                    ["57600", "57600"],
+                    ["115200", "115200"]
+                ]
+            }
+        ],
+        "inputsInline": true,
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#2196F3"
+    },
+    {
+        "type": "softwareserial_listen",
+        "message0": "软件串口 %1 开始监听",
+        "args0": [
+            {
+                "type": "field_variable",
+                "name": "SERIAL_VAR",
+                "variable": "mySerial",
+                "variableTypes": ["SoftwareSerial"],
+                "defaultType": "SoftwareSerial"
+            }
+        ],
+        "inputsInline": true,
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#2196F3"
+    },
+    {
+        "type": "softwareserial_available",
+        "message0": "软件串口 %1 有可用数据",
+        "args0": [
+            {
+                "type": "field_variable",
+                "name": "SERIAL_VAR",
+                "variable": "mySerial",
+                "variableTypes": ["SoftwareSerial"],
+                "defaultType": "SoftwareSerial"
+            }
+        ],
+        "inputsInline": true,
+        "output": "Boolean",
+        "colour": "#2196F3"
+    },
+    {
+        "type": "softwareserial_read",
+        "message0": "软件串口 %1 读取一个字节",
+        "args0": [
+            {
+                "type": "field_variable",
+                "name": "SERIAL_VAR",
+                "variable": "mySerial",
+                "variableTypes": ["SoftwareSerial"],
+                "defaultType": "SoftwareSerial"
+            }
+        ],
+        "inputsInline": true,
+        "output": "Number",
+        "colour": "#2196F3"
+    },
+    {
+        "type": "softwareserial_write",
+        "message0": "软件串口 %1 写入数据 %2",
+        "args0": [
+            {
+                "type": "field_variable",
+                "name": "SERIAL_VAR",
+                "variable": "mySerial",
+                "variableTypes": ["SoftwareSerial"],
+                "defaultType": "SoftwareSerial"
+            },
+            {
+                "type": "input_value",
+                "name": "DATA",
+                "check": ["String", "Number"]
+            }
+        ],
+        "inputsInline": true,
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#2196F3"
+    }
+]
