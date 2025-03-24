@@ -1,0 +1,87 @@
+[
+    {
+        "type": "ps2x_init",
+        "message0": "初始化PS2控制器 时钟引脚%1 命令引脚%2 注意引脚%3 数据引脚%4",
+        "args0": [
+            {
+                "type": "field_dropdown",
+                "name": "CLK",
+                "options": "${board.digitalPins}"
+            },
+            {
+                "type": "field_dropdown",
+                "name": "CMD",
+                "options": "${board.digitalPins}"
+            },
+            {
+                "type": "field_dropdown",
+                "name": "ATT",
+                "options": "${board.digitalPins}"
+            },
+            {
+                "type": "field_dropdown",
+                "name": "DAT",
+                "options": "${board.digitalPins}"
+            }
+        ],
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#0066CC",
+        "inputsInline": true
+    },
+    {
+        "type": "ps2x_read",
+        "message0": "读取PS2控制器状态",
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#0066CC"
+    },
+    {
+        "type": "ps2x_button",
+        "message0": "PS2按钮%1被按下",
+        "args0": [
+            {
+                "type": "field_dropdown",
+                "name": "BUTTON",
+                "options": [
+                    ["上", "PSB_PAD_UP"],
+                    ["下", "PSB_PAD_DOWN"],
+                    ["左", "PSB_PAD_LEFT"],
+                    ["右", "PSB_PAD_RIGHT"],
+                    ["三角形", "PSB_TRIANGLE"],
+                    ["圆形", "PSB_CIRCLE"],
+                    ["叉号", "PSB_CROSS"],
+                    ["方块", "PSB_SQUARE"],
+                    ["L1", "PSB_L1"],
+                    ["L2", "PSB_L2"],
+                    ["L3", "PSB_L3"],
+                    ["R1", "PSB_R1"],
+                    ["R2", "PSB_R2"],
+                    ["R3", "PSB_R3"],
+                    ["SELECT", "PSB_SELECT"],
+                    ["START", "PSB_START"]
+                ]
+            }
+        ],
+        "output": "Boolean",
+        "colour": "#0066CC"
+    },
+    {
+        "type": "ps2x_analog",
+        "message0": "PS2模拟量%1",
+        "args0": [
+            {
+                "type": "field_dropdown",
+                "name": "ANALOG",
+                "options": [
+                    ["右摇杆X", "PSS_RX"],
+                    ["右摇杆Y", "PSS_RY"],
+                    ["左摇杆X", "PSS_LX"],
+                    ["左摇杆Y", "PSS_LY"]
+                ]
+            }
+        ],
+        "output": "Number",
+        "colour": "#0066CC"
+    }
+]
