@@ -1,0 +1,44 @@
+{
+  "kind": "category",
+  "name": "LED矩阵",
+  "contents": [
+    {
+      "kind": "block",
+      "type": "led_matrix_init"
+    },
+    {
+      "kind": "block",
+      "type": "led_matrix_clear"
+    },
+    {
+      "kind": "block",
+      "type": "led_matrix_display_text",
+      "inputs": {
+        "TEXT": {
+          "shadow": {
+            "type": "text",
+            "fields": {
+              "TEXT": "Hello!"
+            }
+          }
+        },
+        "SPEED": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 100
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "led_matrix_display_frame"
+    },
+    {
+      "kind": "block",
+      "type": "led_matrix_play_animation"
+    }
+  ]
+}
