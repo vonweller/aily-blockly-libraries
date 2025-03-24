@@ -1,0 +1,109 @@
+[
+  {
+    "type": "wifi_connect",
+    "message0": "\u8fde\u63a5WiFi SSID: %1 \u5bc6\u7801: %2",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "SSID",
+        "text": "yourSSID"
+      },
+      {
+        "type": "field_input",
+        "name": "PASS",
+        "text": "yourPASS"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#5C81A6"
+  },
+  {
+    "type": "wifi_ssid",
+    "message0": "\u5f53\u524dWiFi\u7f51\u7edc",
+    "output": "String",
+    "colour": "#5C81A6"
+  },
+  {
+    "type": "wifi_localip",
+    "message0": "\u672c\u5730IP\u5730\u5740",
+    "output": "String",
+    "colour": "#5C81A6"
+  },
+  {
+    "type": "http_get",
+    "message0": "HTTP GET \u8bf7\u6c42\u5230 %1",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "URL",
+        "text": "http://example.com"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF8C00"
+  },
+  {
+    "type": "http_post",
+    "message0": "HTTP POST \u8bf7\u6c42\u5230 %1, \u7c7b\u578b: %2, \u6570\u636e: %3",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "URL",
+        "text": "http://example.com"
+      },
+      {
+        "type": "field_input",
+        "name": "TYPE",
+        "text": "application/json"
+      },
+      {
+        "type": "field_input",
+        "name": "DATA",
+        "text": "{}"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF8C00"
+  },
+  {
+    "type": "analog_read",
+    "message0": "\u8bfb\u53d6\u6a21\u62df\u7aef\u53e3 %1",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "PIN",
+        "options": [
+          [
+            "A0",
+            "A0"
+          ],
+          [
+            "A1",
+            "A1"
+          ],
+          [
+            "A2",
+            "A2"
+          ],
+          [
+            "A3",
+            "A3"
+          ],
+          [
+            "A4",
+            "A4"
+          ],
+          [
+            "A5",
+            "A5"
+          ]
+        ]
+      }
+    ],
+    "output": "Number",
+    "colour": "#6A5ACD"
+  }
+]
