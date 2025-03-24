@@ -1,0 +1,119 @@
+[
+    {
+        "type": "vl53l0x_begin",
+        "message0": "初始化VL53L0X传感器 %1",
+        "args0": [
+            {
+                "type": "field_variable",
+                "name": "SENSOR",
+                "variable": "lox",
+                "variableTypes": ["Adafruit_VL53L0X"],
+                "defaultType": "Adafruit_VL53L0X"
+            }
+        ],
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#2D7DB3",
+        "tooltip": "初始化VL53L0X激光测距传感器"
+    },
+    {
+        "type": "vl53l0x_read_distance",
+        "message0": "从传感器 %1 读取距离(mm)",
+        "args0": [
+            {
+                "type": "field_variable",
+                "name": "SENSOR",
+                "variable": "lox",
+                "variableTypes": ["Adafruit_VL53L0X"],
+                "defaultType": "Adafruit_VL53L0X"
+            }
+        ],
+        "output": "Number",
+        "colour": "#2D7DB3",
+        "tooltip": "获取VL53L0X传感器测得的距离，单位是毫米"
+    },
+    {
+        "type": "vl53l0x_start_continuous",
+        "message0": "启动传感器 %1 连续测量 周期 %2 毫秒",
+        "args0": [
+            {
+                "type": "field_variable",
+                "name": "SENSOR",
+                "variable": "lox",
+                "variableTypes": ["Adafruit_VL53L0X"],
+                "defaultType": "Adafruit_VL53L0X"
+            },
+            {
+                "type": "field_number",
+                "name": "PERIOD",
+                "value": 50,
+                "min": 0,
+                "max": 1000
+            }
+        ],
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#2D7DB3",
+        "tooltip": "启动VL53L0X传感器连续测量模式"
+    },
+    {
+        "type": "vl53l0x_stop_continuous",
+        "message0": "停止传感器 %1 连续测量",
+        "args0": [
+            {
+                "type": "field_variable",
+                "name": "SENSOR",
+                "variable": "lox",
+                "variableTypes": ["Adafruit_VL53L0X"],
+                "defaultType": "Adafruit_VL53L0X"
+            }
+        ],
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#2D7DB3",
+        "tooltip": "停止VL53L0X传感器连续测量模式"
+    },
+    {
+        "type": "vl53l0x_is_range_complete",
+        "message0": "传感器 %1 测量完成?",
+        "args0": [
+            {
+                "type": "field_variable",
+                "name": "SENSOR",
+                "variable": "lox",
+                "variableTypes": ["Adafruit_VL53L0X"],
+                "defaultType": "Adafruit_VL53L0X"
+            }
+        ],
+        "output": "Boolean",
+        "colour": "#2D7DB3",
+        "tooltip": "检查VL53L0X传感器测量是否完成"
+    },
+    {
+        "type": "vl53l0x_set_mode",
+        "message0": "设置传感器 %1 模式 %2",
+        "args0": [
+            {
+                "type": "field_variable",
+                "name": "SENSOR",
+                "variable": "lox",
+                "variableTypes": ["Adafruit_VL53L0X"],
+                "defaultType": "Adafruit_VL53L0X"
+            },
+            {
+                "type": "field_dropdown",
+                "name": "MODE",
+                "options": [
+                    ["默认", "VL53L0X_SENSE_DEFAULT"],
+                    ["远距离", "VL53L0X_SENSE_LONG_RANGE"],
+                    ["高速", "VL53L0X_SENSE_HIGH_SPEED"],
+                    ["高精度", "VL53L0X_SENSE_HIGH_ACCURACY"]
+                ]
+            }
+        ],
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#2D7DB3",
+        "tooltip": "设置VL53L0X传感器的工作模式"
+    }
+]
