@@ -44,7 +44,7 @@ Arduino.forBlock["io_digitalread"] = function (block, generator) {
     generator.addSetup(`pinMode_${pin}`, `pinMode(${pin}, INPUT);`);
   }
   
-  return [`digitalRead(${pin})\n`, Arduino.ORDER_FUNCTION_CALL];
+  return [`digitalRead(${pin})`, Arduino.ORDER_FUNCTION_CALL];
 };
 
 Arduino.forBlock["io_digitalwrite"] = function (block, generator) {
@@ -61,7 +61,7 @@ Arduino.forBlock["io_digitalwrite"] = function (block, generator) {
 
 Arduino.forBlock["io_analogread"] = function (block, generator) {
   const pin = generator.valueToCode(block, "PIN", Arduino.ORDER_ATOMIC);
-  return [`analogRead(${pin});\n`, Arduino.ORDER_FUNCTION_CALL];
+  return [`analogRead(${pin})`, Arduino.ORDER_FUNCTION_CALL];
 };
 
 Arduino.forBlock["io_analogwrite"] = function (block, generator) {
