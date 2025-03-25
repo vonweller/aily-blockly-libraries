@@ -5,28 +5,6 @@
   "contents": [
     {
       "kind": "block",
-      "type": "io_pinmode",
-      "inputs": {
-        "PIN": {
-          "block": {
-            "type": "io_pin_digi",
-            "fields": {
-              "PIN": "0"
-            }
-          }
-        },
-        "MODE": {
-          "block": {
-            "type": "io_mode",
-            "fields": {
-              "MODE": "INPUT"
-            }
-          }
-        }
-      }
-    },
-    {
-      "kind": "block",
       "type": "io_digitalwrite",
       "inputs": {
         "PIN": {
@@ -96,6 +74,44 @@
           }
         }
       }
+    },
+    {
+      "kind": "block",
+      "type": "io_pinmode",
+      "inputs": {
+        "PIN": {
+          "block": {
+            "type": "io_pin_digi",
+            "fields": {
+              "PIN": "0"
+            }
+          }
+        },
+        "MODE": {
+          "block": {
+            "type": "io_mode",
+            "fields": {
+              "MODE": "INPUT"
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "io_pin_digi"
+    },
+    {
+      "kind": "block",
+      "type": "io_pin_adc"
+    },
+    {
+      "kind": "block",
+      "type": "io_pin_pwm"
+    },
+    {
+      "kind": "block",
+      "type": "io_mode"
     }
   ]
 }
