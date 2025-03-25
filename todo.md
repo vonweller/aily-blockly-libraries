@@ -1,16 +1,8 @@
 # Todo List
 
-- [GFX](./GFX)
-- [MadgwickAHRS](./MadgwickAHRS)
 - [RFID](./RFID)
-- [TFT](./TFT)
 - [TFT_eSPI](./TFT_eSPI)
-- [arduino_FreeRTOS](./arduino_FreeRTOS)
 - [arduino_iic](./arduino_iic)
-- [arduino_modbus](./arduino_modbus)
-- [arduino_spi](./arduino_spi)
 - [ble_serial](./ble_serial)
-- [fastled](./fastled)
 - [mpu](./mpu)
 - [pt100](./pt100)
-- [sd](./sd)
