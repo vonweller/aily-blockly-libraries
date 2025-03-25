@@ -2,7 +2,7 @@
 
 ## 库结构
 aily blockly库基本遵循google blockly库结构，使用npm包管理形式管理库的版本及相关必要信息。一个aily blockly库的结构如下：
-```json
+```
 library-name  
  |- block.json             // aily blockly block文件
  |- generator.js           // aily blockly generator文件
