@@ -1,5 +1,353 @@
 [
   {
+    "name": "@aily-project/lib-shiftregister",
+    "nickname": "移位寄存器驱动库",
+    "version": "0.0.1",
+    "description": "移位寄存器74HC595控制库，支持Arduino UNO、MEGA、ESP8266、ESP32等开发板",
+    "author": "奈何col",
+    "compatibility": {
+      "core": [
+        "arduino:avr",
+        "esp32:esp32",
+        "esp8266:esp8266"
+      ],
+      "voltage": [
+        3.3,
+        5
+      ]
+    },
+    "keywords": [
+      "aily",
+      "blockly",
+      "shiftregister",
+      "74HC595",
+      "shift_register"
+    ]
+  },
+  {
+    "name": "@aily-project/lib-adxl345",
+    "nickname": "ADXL345传感器库",
+    "version": "0.0.1",
+    "description": "支持ADXL345加速度传感器的Arduino库，支持Arduino UNO、MEGA、ESP8266、ESP32等开发板",
+    "author": "奈何col",
+    "compatibility": {
+      "core": [
+        "arduino:avr",
+        "esp32:esp32",
+        "esp8266:esp8266"
+      ],
+      "voltage": [
+        3.3,
+        5
+      ]
+    },
+    "keywords": [
+      "aily",
+      "blockly",
+      "ADXL345",
+      "accelerometer",
+      "adxl345_start",
+      "adxl345_getX"
+    ]
+  },
+  {
+    "name": "@aily-project/lib-arduino-http",
+    "nickname": "ArduinoHTTP",
+    "version": "1.0.0",
+    "description": "Arduino HTTP and WebSocket库，支持WiFi连接和HTTP请求操作",
+    "author": "Developer",
+    "compatibility": {
+      "core": [
+        "arduino:avr",
+        "esp32:esp32",
+        "esp8266:esp8266"
+      ],
+      "voltage": [
+        3.3,
+        5
+      ]
+    },
+    "keywords": [
+      "aily",
+      "blockly",
+      "http",
+      "WiFi101",
+      "ArduinoHttpClient"
+    ]
+  },
+  {
+    "name": "@aily-project/lib-mqtt",
+    "nickname": "MQTT通信库",
+    "version": "0.1.0",
+    "description": "允许Arduino UNO R3通过WiFi模块与MQTT服务器进行通信，实现物联网数据收发",
+    "author": "Arduino",
+    "compatibility": {
+      "core": [
+        "arduino:avr"
+      ],
+      "voltage": [
+        5
+      ]
+    },
+    "keywords": [
+      "aily",
+      "blockly",
+      "mqtt",
+      "communication",
+      "iot",
+      "arduino",
+      "uno",
+      "r3"
+    ]
+  },
+  {
+    "name": "@aily-project/lib-r3_BLE",
+    "nickname": "BLE",
+    "version": "0.0.1",
+    "description": "ArduinoBLE支持库，支持Arduino及ESP系列",
+    "author": "YourName",
+    "compatibility": {
+      "core": [
+        "arduino:avr"
+      ],
+      "voltage": [
+        3.3,
+        5
+      ]
+    },
+    "keywords": [
+      "aily",
+      "blockly",
+      "BLE",
+      "ble_begin",
+      "ble_scan",
+      "ble_connect",
+      "ble_disconnect",
+      "ble_read_characteristic",
+      "ble_write_characteristic"
+    ]
+  },
+  {
+    "name": "@aily-project/lib-r3_max31865",
+    "nickname": "MAX31865温度传感器库",
+    "version": "1.0.0",
+    "description": "MAX31865温度传感器库，支持PT100/PT1000温度传感器，可配置2/3/4线连接方式",
+    "author": "RAKWireless",
+    "compatibility": {
+      "core": [
+        "arduino:avr",
+        "esp32:esp32",
+        "esp8266:esp8266"
+      ],
+      "voltage": [
+        3.3,
+        5
+      ]
+    },
+    "keywords": [
+      "aily",
+      "blockly",
+      "max31865",
+      "temperature",
+      "PT100",
+      "PT1000",
+      "RTD",
+      "sensor"
+    ]
+  },
+  {
+    "name": "@aily-project/lib-r3_mpu6050",
+    "nickname": "MPU6050",
+    "version": "1.0.0",
+    "description": "MPU6050六轴(加速度计+陀螺仪)传感器库，适用于Arduino UNO R3",
+    "author": "Adafruit (Blockly适配)",
+    "compatibility": {
+      "core": [
+        "arduino:avr"
+      ],
+      "voltage": [
+        5
+      ]
+    },
+    "keywords": [
+      "aily",
+      "blockly",
+      "mpu6050",
+      "accelerometer",
+      "gyroscope",
+      "temperature",
+      "sensor",
+      "motion",
+      "imu"
+    ]
+  },
+  {
+    "name": "@aily-project/lib-r4-can",
+    "nickname": "CAN总线通信库",
+    "version": "1.0.0",
+    "description": "用于Arduino控制器的CAN总线通信库，支持CAN消息的发送和接收",
+    "author": "Arduino",
+    "compatibility": {
+      "core": [
+        "arduino:renesas"
+      ],
+      "voltage": [
+        3.3,
+        5
+      ]
+    },
+    "keywords": [
+      "aily",
+      "blockly",
+      "can",
+      "communication",
+      "bus",
+      "can_begin",
+      "can_read",
+      "can_write",
+      "can_filter"
+    ]
+  },
+  {
+    "name": "@aily-project/lib-r4-led-matrix",
+    "nickname": "LED矩阵库",
+    "version": "0.0.1",
+    "description": "用于控制Arduino LED矩阵的库，支持显示文本、图案和动画",
+    "author": "Arduino",
+    "compatibility": {
+      "core": [
+        "arduino:renesas_uno"
+      ],
+      "voltage": [
+        3.3,
+        5
+      ]
+    },
+    "keywords": [
+      "aily",
+      "blockly",
+      "led",
+      "matrix",
+      "display",
+      "animation",
+      "text"
+    ]
+  },
+  {
+    "name": "@aily-project/lib-r4-rtc",
+    "nickname": "实时时钟",
+    "version": "1.0.0",
+    "description": "Arduino RTC库，提供精确的时间跟踪、定时回调和时间格式化功能",
+    "author": "Arduino",
+    "compatibility": {
+      "core": [
+        "arduino:mbed",
+        "arduino:renesas"
+      ],
+      "voltage": [
+        3.3,
+        5
+      ]
+    },
+    "keywords": [
+      "aily",
+      "blockly",
+      "rtc",
+      "clock",
+      "time",
+      "calendar",
+      "realtime"
+    ]
+  },
+  {
+    "name": "@aily-project/lib-r4-wdt",
+    "nickname": "看门狗定时器库",
+    "version": "1.0.0",
+    "description": "提供看门狗定时器功能，防止系统死锁，支持系统自动重启",
+    "author": "Arduino",
+    "compatibility": {
+      "core": [
+        "arduino:avr",
+        "arduino:samd",
+        "arduino:sam",
+        "arduino:mbed",
+        "esp32:esp32",
+        "esp8266:esp8266"
+      ],
+      "voltage": [
+        3.3,
+        5
+      ]
+    },
+    "keywords": [
+      "aily",
+      "blockly",
+      "watchdog",
+      "wdt",
+      "wdt_begin",
+      "wdt_refresh",
+      "wdt_gettimeout",
+      "system",
+      "reset"
+    ]
+  },
+  {
+    "name": "@aily-project/lib-wifi",
+    "nickname": "Uno WiFi Dev 库",
+    "version": "0.0.1",
+    "description": "专供 Arduino UNO R3 使用的 WiFi 与 Ciao 数据传输支持库",
+    "author": "奈何col",
+    "compatibility": {
+      "core": [
+        "arduino:avr"
+      ],
+      "voltage": [
+        5
+      ]
+    },
+    "keywords": [
+      "aily",
+      "blockly",
+      "WiFi",
+      "Ciao",
+      "Uno",
+      "UnoWiFiDevEd",
+      "mqtt",
+      "rest"
+    ]
+  },
+  {
+    "name": "@aily-project/lib-bmp280",
+    "nickname": "BMP280气压传感器",
+    "version": "0.0.1",
+    "description": "用于BMP280温度、气压与海拔高度测量的传感器库，支持多种Arduino开发板",
+    "author": "奈何col",
+    "compatibility": {
+      "core": [
+        "arduino:avr",
+        "esp32:esp32",
+        "esp8266:esp8266"
+      ],
+      "voltage": [
+        3.3,
+        5
+      ]
+    },
+    "keywords": [
+      "aily",
+      "blockly",
+      "传感器",
+      "气压",
+      "温度",
+      "高度",
+      "BMP280",
+      "bmp280_init",
+      "bmp280_read_temperature",
+      "bmp280_read_pressure",
+      "bmp280_read_altitude"
+    ]
+  },
+  {
     "name": "@aily-project/lib-buzz",
     "nickname": "蜂鸣器",
     "version": "0.0.1",
@@ -15,7 +363,13 @@
         3.3,
         5
       ]
-    }
+    },
+    "keywords": [
+      "aily",
+      "blockly",
+      "core",
+      "io"
+    ]
   },
   {
     "name": "@aily-project/lib-dht",
@@ -33,7 +387,22 @@
         3.3,
         5
       ]
-    }
+    },
+    "keywords": [
+      "aily",
+      "blockly",
+      "sensor",
+      "temperature",
+      "humidity",
+      "DHT11",
+      "DHT22",
+      "温度",
+      "湿度",
+      "传感器",
+      "dht_init",
+      "dht_read_temperature",
+      "dht_read_humidity"
+    ]
   },
   {
     "name": "@aily-project/lib-blinker",
@@ -50,7 +419,21 @@
         3.3,
         5
       ]
-    }
+    },
+    "keywords": [
+      "aily",
+      "blockly",
+      "blinker",
+      "iot",
+      "物联网",
+      "smart home",
+      "wifi",
+      "bluetooth",
+      "小爱同学",
+      "天猫精灵",
+      "小度",
+      "widget"
+    ]
   },
   {
     "name": "@aily-project/lib-ds18b20",
@@ -68,7 +451,174 @@
         3.3,
         5
       ]
-    }
+    },
+    "keywords": [
+      "aily",
+      "blockly",
+      "sensor",
+      "temperature",
+      "ds18b20",
+      "onewire",
+      "温度传感器",
+      "数字传感器",
+      "ds18b20_init",
+      "ds18b20_get_temp_c",
+      "ds18b20_get_temp_f"
+    ]
+  },
+  {
+    "name": "@aily-project/lib-encoder",
+    "nickname": "Encoder",
+    "version": "1.4.0",
+    "description": "读取旋转编码器信号的库，可用于制作旋钮控制、计数器等项目",
+    "author": "Paul Stoffregen",
+    "compatibility": {
+      "core": [
+        "arduino:avr"
+      ],
+      "voltage": [
+        5
+      ]
+    },
+    "keywords": [
+      "aily",
+      "blockly",
+      "encoder",
+      "rotary",
+      "sensor",
+      "input",
+      "knob",
+      "counter"
+    ]
+  },
+  {
+    "name": "@aily-project/lib-fingerprint",
+    "nickname": "指纹识别库",
+    "version": "0.0.1",
+    "description": "基于Adafruit_Fingerprint库的指纹识别支持库，支持Arduino UNO、MEGA、ESP8266、ESP32等开发板",
+    "author": "YourName",
+    "compatibility": {
+      "core": [
+        "arduino:avr",
+        "esp32:esp32",
+        "esp8266:esp8266"
+      ],
+      "voltage": [
+        3.3,
+        5
+      ]
+    },
+    "keywords": [
+      "aily",
+      "blockly",
+      "fingerprint",
+      "Adafruit_Fingerprint",
+      "指纹识别"
+    ]
+  },
+  {
+    "name": "@aily-project/lib-hx711",
+    "nickname": "HX711称重传感器库",
+    "version": "0.5.2",
+    "description": "用于控制HX711称重传感器模块，支持校准、去皮和读取重量功能",
+    "author": "Rob Tillaart (Blockly版本由AILY团队转换)",
+    "compatibility": {
+      "core": [
+        "arduino:avr",
+        "esp32:esp32",
+        "esp8266:esp8266"
+      ],
+      "voltage": [
+        3.3,
+        5
+      ]
+    },
+    "keywords": [
+      "aily",
+      "blockly",
+      "hx711",
+      "weight",
+      "scale",
+      "load cell",
+      "weight sensor",
+      "电子秤",
+      "称重"
+    ]
+  },
+  {
+    "name": "@aily-project/lib-ir",
+    "nickname": "红外遥控库",
+    "version": "0.0.1",
+    "description": "红外遥控控制支持库，支持Arduino UNO、MEGA、ESP8266、ESP32等开发板",
+    "author": "奈何col",
+    "compatibility": {
+      "core": [
+        "arduino:avr",
+        "esp32:esp32",
+        "esp8266:esp8266"
+      ],
+      "voltage": [
+        3.3,
+        5
+      ]
+    },
+    "keywords": [
+      "aily",
+      "blockly",
+      "ir",
+      "红外",
+      "ir_send_nec",
+      "ir_receive"
+    ]
+  },
+  {
+    "name": "@aily-project/lib-keyboard",
+    "nickname": "键盘模拟库",
+    "version": "0.0.1",
+    "description": "用于Arduino Leonardo等支持HID功能的主控，可模拟键盘输入",
+    "author": "Arduino",
+    "compatibility": {
+      "core": [
+        "arduino:avr"
+      ],
+      "voltage": [
+        5
+      ]
+    },
+    "keywords": [
+      "aily",
+      "blockly",
+      "keyboard",
+      "hid",
+      "input"
+    ]
+  },
+  {
+    "name": "@aily-project/lib-keypad",
+    "nickname": "键盘矩阵库",
+    "version": "0.0.1",
+    "description": "4x4矩阵键盘控制库，支持ESP32开发板",
+    "author": "Aily",
+    "compatibility": {
+      "core": [
+        "esp32:esp32"
+      ],
+      "voltage": [
+        3.3,
+        5
+      ]
+    },
+    "keywords": [
+      "aily",
+      "blockly",
+      "keypad",
+      "matrix",
+      "keyboard",
+      "esp32",
+      "keypad_initialize",
+      "keypad_getkey",
+      "keypad_delete"
+    ]
   },
   {
     "name": "@aily-project/lib-liquidcrystal",
@@ -86,7 +636,15 @@
         3.3,
         5
       ]
-    }
+    },
+    "keywords": [
+      "aily",
+      "blockly",
+      "lcd",
+      "液晶显示",
+      "lcd1602",
+      "LiquidCrystal"
+    ]
   },
   {
     "name": "@aily-project/lib-liquidcrystal_i2c",
@@ -104,7 +662,16 @@
         3.3,
         5
       ]
-    }
+    },
+    "keywords": [
+      "aily",
+      "blockly",
+      "lcd",
+      "lcd1602",
+      "I2C",
+      "显示屏",
+      "液晶显示"
+    ]
   },
   {
     "name": "@aily-project/lib-lis3dhtr",
@@ -122,7 +689,14 @@
         3.3,
         5
       ]
-    }
+    },
+    "keywords": [
+      "aily",
+      "blockly",
+      "LIS3DHTR",
+      "加速度",
+      "传感器"
+    ]
   },
   {
     "name": "@aily-project/lib-lm35",
@@ -140,7 +714,156 @@
         3.3,
         5
       ]
-    }
+    },
+    "keywords": [
+      "aily",
+      "blockly",
+      "temperature",
+      "lm35",
+      "sensor",
+      "analog",
+      "lm35_setup",
+      "lm35_read"
+    ]
+  },
+  {
+    "name": "@aily-project/lib-max7219",
+    "nickname": "MAX7219显示驱动库",
+    "version": "0.0.1",
+    "description": "MAX7219显示驱动支持库，支持Arduino UNO、MEGA、ESP8266、ESP32等开发板",
+    "author": "奈何col",
+    "compatibility": {
+      "core": [
+        "arduino:avr",
+        "esp32:esp32",
+        "esp8266:esp8266"
+      ],
+      "voltage": [
+        3.3,
+        5
+      ]
+    },
+    "keywords": [
+      "aily",
+      "blockly",
+      "max7219",
+      "display",
+      "led"
+    ]
+  },
+  {
+    "name": "@aily-project/lib-mlx90614",
+    "nickname": "MLX90614红外测温库",
+    "version": "1.0.0",
+    "description": "MLX90614红外非接触式温度传感器驱动库，可测量物体和环境温度",
+    "author": "Adafruit",
+    "compatibility": {
+      "core": [
+        "arduino:avr",
+        "esp32:esp32",
+        "esp8266:esp8266"
+      ],
+      "voltage": [
+        3.3,
+        5
+      ]
+    },
+    "keywords": [
+      "aily",
+      "blockly",
+      "MLX90614",
+      "temperature",
+      "infrared",
+      "sensor",
+      "read_object_temp",
+      "read_ambient_temp",
+      "read_emissivity",
+      "write_emissivity"
+    ]
+  },
+  {
+    "name": "@aily-project/lib-afmotor",
+    "nickname": "Adafruit电机驱动库",
+    "version": "1.0.0",
+    "description": "Adafruit电机驱动板库，支持控制直流电机和步进电机，适用于Arduino控制板",
+    "author": "Adafruit",
+    "compatibility": {
+      "core": [
+        "arduino:avr"
+      ],
+      "voltage": [
+        5
+      ]
+    },
+    "keywords": [
+      "aily",
+      "blockly",
+      "motor",
+      "dc motor",
+      "stepper motor",
+      "afmotor",
+      "adafruit",
+      "shield"
+    ]
+  },
+  {
+    "name": "@aily-project/lib-mouse",
+    "nickname": "鼠标控制库",
+    "version": "1.0.0",
+    "description": "Arduino UNO R3鼠标模拟控制库，可以实现鼠标移动、点击等功能",
+    "author": "Arduino",
+    "compatibility": {
+      "core": [
+        "arduino:avr"
+      ],
+      "voltage": [
+        5
+      ]
+    },
+    "keywords": [
+      "aily",
+      "blockly",
+      "mouse",
+      "HID",
+      "click",
+      "move",
+      "press",
+      "release"
+    ]
+  },
+  {
+    "name": "@aily-project/lib-neopixel",
+    "nickname": "NeoPixel LED灯带",
+    "version": "0.1.0",
+    "description": "控制可编程RGB LED灯带，支持各种颜色和动画效果",
+    "author": "Adafruit (封装:AI助手)",
+    "compatibility": {
+      "core": [
+        "arduino:avr",
+        "esp32:esp32",
+        "esp8266:esp8266",
+        "arduino:samd",
+        "arduino:sam",
+        "arduino:megaavr"
+      ],
+      "voltage": [
+        3.3,
+        5
+      ]
+    },
+    "keywords": [
+      "aily",
+      "blockly",
+      "neopixel",
+      "led",
+      "ws2812",
+      "rgb",
+      "rgbw",
+      "light",
+      "animation",
+      "rainbow",
+      "color"
+    ]
   },
   {
     "name": "@aily-project/lib-onebutton",
@@ -158,7 +881,13 @@
         3.3,
         5
       ]
-    }
+    },
+    "keywords": [
+      "aily",
+      "blockly",
+      "onebutton",
+      "control"
+    ]
   },
   {
     "name": "@aily-project/lib-core-procedures",
@@ -166,7 +895,71 @@
     "version": "0.0.1",
     "description": "函数方法",
     "author": "奈何col",
-    "compatibility": {}
+    "compatibility": {},
+    "keywords": [
+      "aily",
+      "blockly",
+      "core",
+      "procedures"
+    ]
+  },
+  {
+    "name": "@aily-project/lib-ps2x",
+    "nickname": "PS2控制器库",
+    "version": "1.0.0",
+    "description": "用于读取PlayStation 2控制器输入的库，支持模拟摇杆和按钮检测",
+    "author": "Bill Porter",
+    "compatibility": {
+      "core": [
+        "arduino:avr",
+        "esp32:esp32",
+        "esp8266:esp8266"
+      ],
+      "voltage": [
+        3.3,
+        5
+      ]
+    },
+    "keywords": [
+      "aily",
+      "blockly",
+      "PS2",
+      "controller",
+      "playstation",
+      "joystick",
+      "button"
+    ]
+  },
+  {
+    "name": "@aily-project/lib-rtc",
+    "nickname": "RTC时钟",
+    "version": "1.0.0",
+    "description": "RTC库支持DS1307、DS3231、PCF8523、PCF8563等多种实时时钟模块，用于精确计时和日期管理",
+    "author": "Adafruit",
+    "compatibility": {
+      "core": [
+        "arduino:avr",
+        "esp32:esp32",
+        "esp8266:esp8266"
+      ],
+      "voltage": [
+        3.3,
+        5
+      ]
+    },
+    "keywords": [
+      "aily",
+      "blockly",
+      "rtc",
+      "datetime",
+      "time",
+      "date",
+      "clock",
+      "DS3231",
+      "DS1307",
+      "PCF8523",
+      "PCF8563"
+    ]
   },
   {
     "name": "@aily-project/lib-servo",
@@ -184,7 +977,14 @@
         3.3,
         5
       ]
-    }
+    },
+    "keywords": [
+      "aily",
+      "blockly",
+      "servo",
+      "servo_attach",
+      "servo_write"
+    ]
   },
   {
     "name": "@aily-project/lib-sht3x",
@@ -202,7 +1002,63 @@
         3.3,
         5
       ]
-    }
+    },
+    "keywords": [
+      "aily",
+      "blockly",
+      "sht3x",
+      "温湿度传感器",
+      "sensor",
+      "humidity",
+      "temperature"
+    ]
+  },
+  {
+    "name": "@aily-project/lib-softwareserial",
+    "nickname": "软件串口",
+    "version": "1.0.0",
+    "description": "允许使用Arduino数字引脚进行串行通信，支持多个软件串口",
+    "author": "Arduino",
+    "compatibility": {
+      "core": [
+        "arduino:avr"
+      ],
+      "voltage": [
+        3.3,
+        5
+      ]
+    },
+    "keywords": [
+      "aily",
+      "blockly",
+      "softwareserial",
+      "serial",
+      "communication"
+    ]
+  },
+  {
+    "name": "@aily-project/lib-stepper",
+    "nickname": "步进电机驱动库",
+    "version": "0.0.1",
+    "description": "步进电机控制库，支持Arduino UNO、MEGA等开发板",
+    "author": "Arduino贡献者",
+    "compatibility": {
+      "core": [
+        "arduino:avr",
+        "esp32:esp32",
+        "esp8266:esp8266"
+      ],
+      "voltage": [
+        5
+      ]
+    },
+    "keywords": [
+      "aily",
+      "blockly",
+      "stepper",
+      "motor",
+      "步进电机"
+    ]
   },
   {
     "name": "@aily-project/lib-tone",
@@ -220,7 +1076,41 @@
         3.3,
         5
       ]
-    }
+    },
+    "keywords": [
+      "aily",
+      "blockly",
+      "core",
+      "time"
+    ]
+  },
+  {
+    "name": "@aily-project/lib-openjumpertts",
+    "nickname": "语音合成模块库",
+    "version": "1.0.0",
+    "description": "控制OpenJumper语音合成模块，实现文本转语音、声音播放等功能",
+    "author": "Aily Project",
+    "compatibility": {
+      "core": [
+        "arduino:avr",
+        "esp32:esp32",
+        "esp8266:esp8266"
+      ],
+      "voltage": [
+        3.3,
+        5
+      ]
+    },
+    "keywords": [
+      "aily",
+      "blockly",
+      "tts",
+      "text-to-speech",
+      "openjumper",
+      "voice",
+      "audio",
+      "sound"
+    ]
   },
   {
     "name": "@aily-project/lib-u8g2",
@@ -240,7 +1130,26 @@
         3.3,
         5
       ]
-    }
+    },
+    "keywords": [
+      "aily",
+      "blockly",
+      "display",
+      "u8g2",
+      "oled",
+      "lcd",
+      "12864",
+      "ssd1306",
+      "sh1106",
+      "st7920",
+      "显示屏",
+      "图形",
+      "drawStr",
+      "drawLine",
+      "drawBox",
+      "drawCircle",
+      "sendBuffer"
+    ]
   },
   {
     "name": "@aily-project/lib-ultrasonic",
@@ -248,7 +1157,41 @@
     "version": "0.0.1",
     "description": "超声波传感器，驱动库支持SR04",
     "author": "奈何col",
-    "compatibility": ""
+    "compatibility": "",
+    "keywords": [
+      "aily",
+      "blockly",
+      "core",
+      "sensor"
+    ]
+  },
+  {
+    "name": "@aily-project/lib-vl53l0x",
+    "nickname": "VL53L0X激光测距传感器",
+    "version": "1.0.0",
+    "description": "用于VL53L0X激光测距传感器的驱动库，可测量30mm-2000mm的距离",
+    "author": "Adafruit, 转换为Blockly库",
+    "compatibility": {
+      "core": [
+        "arduino:avr",
+        "esp32:esp32",
+        "esp8266:esp8266"
+      ],
+      "voltage": [
+        3.3,
+        5
+      ]
+    },
+    "keywords": [
+      "aily",
+      "blockly",
+      "sensors",
+      "distance",
+      "vl53l0x",
+      "laser",
+      "time-of-flight",
+      "tof"
+    ]
   },
   {
     "name": "@aily-project/lib-ws2812fx",
@@ -266,7 +1209,15 @@
         3.3,
         5
       ]
-    }
+    },
+    "keywords": [
+      "aily",
+      "blockly",
+      "ws2812",
+      "LED",
+      "灯带",
+      "ws2812fx"
+    ]
   },
   {
     "name": "@aily-project/lib-custom",
@@ -284,7 +1235,13 @@
         3.3,
         5
       ]
-    }
+    },
+    "keywords": [
+      "aily",
+      "blockly",
+      "lib",
+      "custom"
+    ]
   },
   {
     "name": "@aily-project/lib-core-eeprom",
@@ -292,7 +1249,13 @@
     "version": "0.0.1",
     "description": "eeprom",
     "author": "奈何col",
-    "compatibility": ""
+    "compatibility": "",
+    "keywords": [
+      "aily",
+      "blockly",
+      "core",
+      "eeprom"
+    ]
   },
   {
     "name": "@aily-project/lib-core-functions",
@@ -300,7 +1263,13 @@
     "version": "0.0.1",
     "description": "核心库，通常已经集成到初始模板中",
     "author": "奈何col",
-    "compatibility": {}
+    "compatibility": {},
+    "keywords": [
+      "aily",
+      "blockly",
+      "core",
+      "functions"
+    ]
   },
   {
     "name": "@aily-project/lib-core-io",
@@ -318,7 +1287,16 @@
         3.3,
         5
       ]
-    }
+    },
+    "keywords": [
+      "core",
+      "io",
+      "pinmode",
+      "digitalwrite",
+      "digitalread",
+      "analogwrite",
+      "analogread"
+    ]
   },
   {
     "name": "@aily-project/lib-core-lists",
@@ -326,7 +1304,13 @@
     "version": "0.0.1",
     "description": "数组",
     "author": "奈何col",
-    "compatibility": ""
+    "compatibility": "",
+    "keywords": [
+      "aily",
+      "blockly",
+      "core",
+      "lists"
+    ]
   },
   {
     "name": "@aily-project/lib-core-logic",
@@ -344,7 +1328,13 @@
         3.3,
         5
       ]
-    }
+    },
+    "keywords": [
+      "aily",
+      "blockly",
+      "core",
+      "io"
+    ]
   },
   {
     "name": "@aily-project/lib-core-loop",
@@ -362,7 +1352,13 @@
         3.3,
         5
       ]
-    }
+    },
+    "keywords": [
+      "aily",
+      "blockly",
+      "core",
+      "loops"
+    ]
   },
   {
     "name": "@aily-project/lib-core-math",
@@ -380,7 +1376,13 @@
         3.3,
         5
       ]
-    }
+    },
+    "keywords": [
+      "aily",
+      "blockly",
+      "core",
+      "loops"
+    ]
   },
   {
     "name": "@aily-project/lib-core-serial",
@@ -398,7 +1400,17 @@
         3.3,
         5
       ]
-    }
+    },
+    "keywords": [
+      "core",
+      "serial",
+      "serialbegin",
+      "serialprint",
+      "serialprintln",
+      "serialavailable",
+      "serialread",
+      "serialwrite"
+    ]
   },
   {
     "name": "@aily-project/lib-core-string",
@@ -406,7 +1418,17 @@
     "version": "0.0.1",
     "description": "核心库，通常已经集成到初始模板中",
     "author": "奈何col",
-    "compatibility": ""
+    "compatibility": "",
+    "keywords": [
+      "aily",
+      "blockly",
+      "string",
+      "char",
+      "字符串操作",
+      "字符串连接",
+      "字符提取",
+      "字符串长度"
+    ]
   },
   {
     "name": "@aily-project/lib-core-text",
@@ -414,7 +1436,14 @@
     "version": "0.0.1",
     "description": "文本相关函数",
     "author": "奈何col",
-    "compatibility": {}
+    "compatibility": {},
+    "keywords": [
+      "aily",
+      "blockly",
+      "core",
+      "text",
+      "string"
+    ]
   },
   {
     "name": "@aily-project/lib-core-time",
@@ -422,17 +1451,13 @@
     "version": "0.0.1",
     "description": "时间控制库，包含delay、millis、micros等函数",
     "author": "奈何col",
-    "compatibility": {
-      "core": [
-        "arduino:avr",
-        "esp32:esp32",
-        "esp8266:esp8266"
-      ],
-      "voltage": [
-        3.3,
-        5
-      ]
-    }
+    "compatibility": {},
+    "keywords": [
+      "aily",
+      "blockly",
+      "core",
+      "time"
+    ]
   },
   {
     "name": "@aily-project/lib-core-variables",
@@ -440,6 +1465,12 @@
     "version": "0.0.1",
     "description": "核心库，通常已经集成到初始模板中",
     "author": "",
-    "compatibility": ""
+    "compatibility": "",
+    "keywords": [
+      "aily",
+      "blockly",
+      "core",
+      "variables"
+    ]
   }
 ]
