@@ -1,9 +1,9 @@
 # Todo List
 
+- [BME280](./BME280)
 - [GFX](./GFX)
 - [MadgwickAHRS](./MadgwickAHRS)
 - [RFID](./RFID)
-- [TFT](./TFT)
 - [TFT_eSPI](./TFT_eSPI)
 - [arduino_FreeRTOS](./arduino_FreeRTOS)
 - [arduino_iic](./arduino_iic)
@@ -11,6 +11,7 @@
 - [arduino_spi](./arduino_spi)
 - [ble_serial](./ble_serial)
 - [fastled](./fastled)
+- [max30102](./max30102)
 - [mpu](./mpu)
 - [pt100](./pt100)
 - [sd](./sd)
