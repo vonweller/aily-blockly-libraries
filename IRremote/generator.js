@@ -1,4 +1,4 @@
-Arduino.forBlock['irrecv_attach'] = function(block, generator) {
+Arduino.forBlock['irrecv_attach'] = function (block, generator) {
   var object = block.getFieldValue('OBJECT');
   var pin = block.getFieldValue('PIN');
   generator.addLibrary('#include <IRremote.h>', '#include <IRremote.h>');
@@ -8,34 +8,36 @@ Arduino.forBlock['irrecv_attach'] = function(block, generator) {
   return '';
 };
 
-Arduino.forBlock['irrecv_decode'] = function(block, generator) {
+Arduino.forBlock['irrecv_decode'] = function (block, generator) {
   var object = block.getFieldValue('OBJECT');
-  var code = 'decode_results results;
-';
-  code += 'if (' + object + '.decode(&results)) {
-';
-  code += '  printIRResultShort(&Serial, (IRData *)&results, true);
-';
-  code += '  ' + object + '.resume();
-';
-  code += '}
-';
+  var code = 'decode_results results;';
+  code += 'if (' + object + '.decode(&results)) {';
+  code += '  printIRResultShort(&Serial, (IRData *)&results, true);';
+  code += '  ' + object + '.resume();';
+  code += '}';
   return code;
 };
 
 // 合并的附加代码
-Arduino.forBlock['ir_send_nec'] = function(block, generator) {
+Arduino.forBlock['ir_send_nec'] = function (block, generator) {
+  console.log("send nec");
   var sendPin = block.getFieldValue('SEND_PIN');
+  console.log(sendPin);
   var address = block.getFieldValue('ADDRESS');
+  console.log(address);
   var command = block.getFieldValue('COMMAND');
   var repeats = block.getFieldValue('REPEATS');
+
+  console.log('ir_send_nec', sendPin, address, command, repeats);
+
+
   generator.addLibrary('#include <IRremoteInt.h>', '#include <IRremoteInt.h>');
   generator.addLibrary('#include <TinyIR.h>', '#include <TinyIR.h>');
   var code = 'sendNEC(' + sendPin + ', ' + address + ', ' + command + ', ' + repeats + ', false);';
   return code;
 };
 
-Arduino.forBlock['ir_recv_begin'] = function(block, generator) {
+Arduino.forBlock['ir_recv_begin'] = function (block, generator) {
   var recvPin = block.getFieldValue('RECV_PIN');
   generator.addLibrary('#include <IRremoteInt.h>', '#include <IRremoteInt.h>');
   generator.addLibrary('#include <TinyIR.h>', '#include <TinyIR.h>');
@@ -43,7 +45,7 @@ Arduino.forBlock['ir_recv_begin'] = function(block, generator) {
   return code;
 };
 
-Arduino.forBlock['ir_receive'] = function(block, generator) {
+Arduino.forBlock['ir_receive'] = function (block, generator) {
   generator.addLibrary('#include <IRremoteInt.h>', '#include <IRremoteInt.h>');
   generator.addLibrary('#include <TinyIR.h>', '#include <TinyIR.h>');
   var code = 'if (IrReceiver.decode()) { IrReceiver.printIRResultMinimal(&Serial); IrReceiver.resume(); }';
