@@ -18,6 +18,8 @@ Arduino.forBlock["ultrasonic_ranging"] = function (block, generator) {
     `  pinMode(${pin1}, OUTPUT);
   pinMode(${pin2}, INPUT);\n`,
   );
-  Arduino.addLoop("ultrasonic_ranging", `  ${functionName}();\n`);
-  return null;
+  // Arduino.addLoop("ultrasonic_ranging", `  ${functionName}();\n`);
+  // return null;
+
+  return [`${functionName}()`, Arduino.ORDER_ATOMIC];
 };
