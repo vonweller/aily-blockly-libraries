@@ -1,3 +1,79 @@
+// 添加新函数，用于将循环变量添加到工具箱
+function addLoopVariableToToolbox(block, varName) {
+  try {
+    const workspace = block.workspace;
+    if (!workspace || !varName) return;
+
+    // 获取工具箱
+    const toolbox = workspace.getToolbox();
+    if (!toolbox) return;
+
+    const allCategories = toolbox.getToolboxItems();
+    const variableCategory = allCategories.find(item =>
+      item.name_ === "Variables" || (item.getContents && item.getContents()[0]?.callbackKey === "CREATE_VARIABLE")
+    );
+
+    // 获取原始工具箱定义
+    const originalToolboxDef = workspace.options.languageTree;
+    if (!originalToolboxDef) return;
+
+    // 找到变量类别并更新其内容
+    for (let category of originalToolboxDef.contents) {
+      if ((category.name === "Variables" ||
+        (category.contents && category.contents[0]?.callbackKey === "CREATE_VARIABLE"))) {
+
+        // 检查变量是否已存在
+        const varExists = category.contents.some(item =>
+          item.fields && item.fields.VAR && item.fields.VAR.name === varName
+        );
+
+        if (!varExists) {
+          // 获取当前时间戳作为ID
+          const timestamp = new Date().getTime();
+          category.contents.push({
+            "kind": "block",
+            "type": "variables_get",
+            "fields": {
+              "VAR": {
+                "id": "loopVar" + timestamp,
+                "name": varName,
+                "type": "int"
+              }
+            }
+          });
+
+          // 更新工具箱
+          if (toolbox && variableCategory) {
+            toolbox.refreshSelection();
+            workspace.updateToolbox(originalToolboxDef);
+
+            // 强制刷新工具箱显示
+            variableCategory.refreshTheme();
+
+            // 如果工具箱处于打开状态，使用更可靠的方式重新打开类别
+            if (toolbox.isOpen_) {
+              // 保存当前打开的类别ID
+              toolbox.setSelectedItem(null);
+
+              // 延迟更新确保DOM有足够时间更新
+              setTimeout(() => {
+                variableCategory.updateFlyoutContents(originalToolboxDef);
+                toolbox.setSelectedItem(variableCategory);
+                workspace.refreshToolboxSelection();
+              }, 50);
+            } else {
+              variableCategory.updateFlyoutContents(originalToolboxDef);
+            }
+          }
+        }
+        break;
+      }
+    }
+  } catch (e) {
+    console.log("添加循环变量到工具箱时出错:", e);
+  }
+}
+
 Arduino.forBlock["arduino_setup"] = function (block) {
   const code = Arduino.statementToCode(block, "ARDUINO_SETUP");
   Arduino.addUserSetup("setup", code);
@@ -70,7 +146,14 @@ Arduino.forBlock["controls_for"] = function (block) {
     block.getFieldValue("VAR"),
     "VARIABLE",
   );
-  // getValue(block,'VAR')
+
+  // 添加循环变量到工具箱
+  addLoopVariableToToolbox(block, variable0);
+
+  // 移除或注释掉调试代码
+  // console.log("Arduino.nameDB_", Arduino.nameDB_);
+  // console.log("variable0", variable0);
+  // console.log("variables: ", block.Blockly.allUsedVarModels());
 
   const argument0 =
     Arduino.valueToCode(block, "FROM", Arduino.ORDER_ASSIGNMENT) || "0";
@@ -80,34 +163,33 @@ Arduino.forBlock["controls_for"] = function (block) {
     Arduino.valueToCode(block, "BY", Arduino.ORDER_ASSIGNMENT) || "1";
   let branch = Arduino.statementToCode(block, "DO");
   branch = Arduino.addLoopTrap(branch, block);
+
   let code;
   let up = true;
+
   if (
-    stringUtils.isNumber(argument0) &&
-    stringUtils.isNumber(argument1) &&
-    stringUtils.isNumber(increment)
-  )
+    !isNaN(parseFloat(argument0)) && isFinite(argument0) &&
+    !isNaN(parseFloat(argument1)) && isFinite(argument1) &&
+    !isNaN(parseFloat(increment)) && isFinite(increment)
+  ) {
     up = Number(argument0) <= Number(argument1);
-  else if (Number(increment) < 0) up = false;
-  code =
-    "for (" +
-    variable0 +
-    " = " +
-    argument0 +
-    "; " +
-    variable0 +
-    (up ? " <= " : " >= ") +
-    argument1 +
-    "; " +
-    variable0;
+  } else if (Number(increment) < 0) {
+    up = false;
+  }
+
+  // 使用模板字符串改善代码可读性
+  code = `for (${variable0} = ${argument0}; ${variable0}${up ? " <= " : " >= "}${argument1}; ${variable0}`;
+
+  console.log("code: ", code);
   const step = Math.abs(Number(increment));
   if (step === 1) {
     code += up ? "++" : "--";
   } else {
     code += (up ? " += " : " -= ") + step;
   }
-  code += ") {\n" + branch + "}\n";
-  Arduino.addVariable(variable0, "int " + variable0 + ";");
+
+  code += `) {\n${branch}}\n`;
+  Arduino.addVariable(variable0, `int ${variable0};`);
   return code;
 };
 
