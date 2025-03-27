@@ -115,9 +115,10 @@ Arduino.forBlock["map_to"] = function (block) {
 };
 
 Arduino.forBlock["constrain"] = function (block) {
-  const num = block.getFieldValue("NUM") || 0;
-  const min = block.getFieldValue("MIN") || 0;
-  const max = block.getFieldValue("MAX") || 100;
+  const num = Arduino.valueToCode(block, "NUM", Arduino.ORDER_ASSIGNMENT) || 0;
+  const min = Arduino.valueToCode(block, "MIN", Arduino.ORDER_ASSIGNMENT) || 1;
+  const max = Arduino.valueToCode(block, "MAX", Arduino.ORDER_ASSIGNMENT) || 100;
+
   const code = `constrain(${num}, ${min}, ${max})`;
 
   return [code, Arduino.ORDER_ADDITION];
@@ -241,7 +242,7 @@ Arduino.forBlock["text_getSubstring"] = function (block) {
   const text = Arduino.valueToCode(block, "STRING", Arduino.ORDER_NONE) || "\"\"";
   const where1 = block.getFieldValue("WHERE1");
   const where2 = block.getFieldValue("WHERE2");
-  
+
   let at1;
   switch (where1) {
     case "FROM_START":
@@ -256,7 +257,7 @@ Arduino.forBlock["text_getSubstring"] = function (block) {
     default:
       throw Error("Unhandled option (text_getSubstring).");
   }
-  
+
   let at2;
   switch (where2) {
     case "FROM_START":
@@ -271,7 +272,7 @@ Arduino.forBlock["text_getSubstring"] = function (block) {
     default:
       throw Error("Unhandled option (text_getSubstring).");
   }
-  
+
   // Arduino String的substring方法语法
   const code = text + ".substring(" + at1 + ", " + at2 + ")";
   return [code, Arduino.ORDER_FUNCTION_CALL];
@@ -282,7 +283,7 @@ Arduino.forBlock["text_changeCase"] = function (block) {
   const operator = block.getFieldValue("CASE");
   const text = Arduino.valueToCode(block, "TEXT", Arduino.ORDER_MEMBER) || "\"\"";
   let code;
-  
+
   // 为Arduino添加自定义函数
   if (operator === "UPPERCASE") {
     Arduino.addDefinition('text_to_upper',
@@ -322,7 +323,7 @@ Arduino.forBlock["text_changeCase"] = function (block) {
       '}\n');
     code = "textToTitleCase(" + text + ")";
   }
-  
+
   return [code, Arduino.ORDER_FUNCTION_CALL];
 };
 
@@ -330,7 +331,7 @@ Arduino.forBlock["text_trim"] = function (block) {
   // Trim spaces.
   const mode = block.getFieldValue("MODE");
   const text = Arduino.valueToCode(block, "TEXT", Arduino.ORDER_MEMBER) || "\"\"";
-  
+
   // Arduino需要自定义修剪函数
   let functionName;
   if (mode === "BOTH") {
@@ -362,7 +363,7 @@ Arduino.forBlock["text_trim"] = function (block) {
       '}\n');
     functionName = "textTrimRight";
   }
-  
+
   const code = functionName + "(" + text + ")";
   return [code, Arduino.ORDER_FUNCTION_CALL];
 };
@@ -397,7 +398,7 @@ Arduino.forBlock["text_prompt"] = Arduino.forBlock["text_prompt_ext"];
 Arduino.forBlock["text_count"] = function (block) {
   const text = Arduino.valueToCode(block, "TEXT", Arduino.ORDER_NONE) || "\"\"";
   const sub = Arduino.valueToCode(block, "SUB", Arduino.ORDER_NONE) || "\"\"";
-  
+
   // Arduino需要自定义函数计数子字符串出现次数
   Arduino.addDefinition('text_count',
     'int textCount(String text, String sub) {\n' +
@@ -410,7 +411,7 @@ Arduino.forBlock["text_count"] = function (block) {
     '  }\n' +
     '  return count;\n' +
     '}\n');
-  
+
   const code = "textCount(" + text + ", " + sub + ")";
   return [code, Arduino.ORDER_FUNCTION_CALL];
 };
@@ -419,7 +420,7 @@ Arduino.forBlock["text_replace"] = function (block) {
   const text = Arduino.valueToCode(block, "TEXT", Arduino.ORDER_NONE) || "\"\"";
   const from = Arduino.valueToCode(block, "FROM", Arduino.ORDER_NONE) || "\"\"";
   const to = Arduino.valueToCode(block, "TO", Arduino.ORDER_NONE) || "\"\"";
-  
+
   // Arduino需要自定义替换函数，String.replace()只替换第一个匹配项
   Arduino.addDefinition('text_replace_all',
     'String textReplaceAll(String text, String from, String to) {\n' +
@@ -431,14 +432,14 @@ Arduino.forBlock["text_replace"] = function (block) {
     '  }\n' +
     '  return result;\n' +
     '}\n');
-  
+
   const code = "textReplaceAll(" + text + ", " + from + ", " + to + ")";
   return [code, Arduino.ORDER_FUNCTION_CALL];
 };
 
 Arduino.forBlock["text_reverse"] = function (block) {
   const text = Arduino.valueToCode(block, "TEXT", Arduino.ORDER_MEMBER) || "\"\"";
-  
+
   // Arduino需要自定义反转函数
   Arduino.addDefinition('text_reverse',
     'String textReverse(String text) {\n' +
@@ -448,7 +449,7 @@ Arduino.forBlock["text_reverse"] = function (block) {
     '  }\n' +
     '  return result;\n' +
     '}\n');
-  
+
   const code = "textReverse(" + text + ")";
   return [code, Arduino.ORDER_FUNCTION_CALL];
 };
