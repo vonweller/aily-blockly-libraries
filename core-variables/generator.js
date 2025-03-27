@@ -5,6 +5,8 @@ Blockly.getMainWorkspace().registerButtonCallback(
     Blockly.Variables.createVariableButtonHandler(
       workspace,
       (varName) => {
+
+        // console.log("varName: ", varName);
         // 获取变量分类
         const toolbox = workspace.getToolbox();
         const allCategories = toolbox.getToolboxItems();
@@ -12,18 +14,19 @@ Blockly.getMainWorkspace().registerButtonCallback(
           item.name_ === "Variables" || (item.getContents && item.getContents()[0]?.callbackKey === "CREATE_VARIABLE")
         );
 
-        // 检查是否是第一次创建变量
-        if (variableCategory.getContents().length === 1) {
-          // 只有"新建变量"按钮时，添加变量块
-          // 获取当前工具箱的配置
-          const toolboxDef = workspace.options.languageTree;
+        // 获取原始工具箱定义
+        const originalToolboxDef = workspace.options.languageTree;
 
-          // 找到变量类别并更新其内容
-          for (let category of toolboxDef.contents) {
-            if ((category.name === "Variables" ||
-              (category.contents && category.contents[0]?.callbackKey === "CREATE_VARIABLE"))) {
+        // 找到变量类别并更新其内容
+        for (let category of originalToolboxDef.contents) {
+          if ((category.name === "Variables" ||
+            (category.contents && category.contents[0]?.callbackKey === "CREATE_VARIABLE"))) {
 
-              // 更新该类别的内容
+            let contents = category.contents;
+            // console.log("contents1: ", contents);
+
+            // 更新该类别的内容
+            if (category.contents.length === 1) {
               category.contents = [
                 {
                   "kind": "button",
@@ -36,27 +39,60 @@ Blockly.getMainWorkspace().registerButtonCallback(
                 },
                 {
                   "kind": "block",
-                  "type": "variables_get"
-                },
-                {
-                  "kind": "block",
                   "type": "variables_set"
                 }
               ];
+            }
 
-              const toolboxDef = workspace.getToolbox().toolboxDef_;
-              // 找到变量类别并更新其内容
-              for (let i = 0; i < toolboxDef.contents.length; i++) {
-                if (toolboxDef.contents[i].name === "Variables" ||
-                  (toolboxDef.contents[i].contents &&
-                    toolboxDef.contents[i].contents[0]?.callbackKey === "CREATE_VARIABLE")) {
-                  toolboxDef.contents[i].contents = category.contents;
-                  break;
+            // 获取当前时间戳
+            const timestamp = new Date().getTime();
+            category.contents.push({
+              "kind": "block",
+              "type": "variables_get",
+              "fields": {
+                "VAR": {
+                  "id": "varName" + timestamp,
+                  "name": varName,
+                  "type": "string"
                 }
               }
-              // 更新整个工具箱
-              workspace.updateToolbox(toolboxDef);
+            })
+
+            Blockly.Msg.VARIABLES_CURRENT_NAME = varName;
+
+            toolbox.refreshSelection();
+
+            // 更新整个工具箱
+            workspace.updateToolbox(originalToolboxDef);
+
+            // 强制刷新工具箱显示
+            if (variableCategory) {
+              variableCategory.refreshTheme();
+
+              // 如果工具箱处于打开状态，使用更可靠的方式重新打开类别
+              if (toolbox.isOpen_) {
+                const categoryId = variableCategory.id_;
+                // 保存当前打开的类别ID
+                toolbox.setSelectedItem(null);
+
+                // 增加延迟时间，确保DOM有足够时间更新
+                setTimeout(() => {
+                  // 强制重新构建类别内容
+                  variableCategory.updateFlyoutContents(originalToolboxDef);
+
+                  // 重新打开同一个类别
+                  toolbox.setSelectedItem(variableCategory);
+
+                  // 额外的刷新以确保UI更新
+                  workspace.refreshToolboxSelection();
+                }, 50); // 增加延迟时间
+              } else {
+                // 确保即使工具箱关闭也能更新内容
+                variableCategory.updateFlyoutContents(originalToolboxDef);
+              }
             }
+
+            break;
           }
         }
       },
@@ -65,37 +101,63 @@ Blockly.getMainWorkspace().registerButtonCallback(
   },
 );
 
+function isBlockConnected(block) {
+  // 检查上方连接
+  if (block.previousConnection && block.previousConnection.isConnected()) {
+    return true;
+  }
+
+  // 检查下方连接
+  if (block.nextConnection && block.nextConnection.isConnected()) {
+    return true;
+  }
+
+  // 检查输出连接（作为值被其他块使用）
+  if (block.outputConnection && block.outputConnection.isConnected()) {
+    return true;
+  }
+
+  // 如果都没有连接，则是独立的
+  return false;
+}
+
 Arduino.forBlock["variable_define"] = function (block, generator) {
   const gorp = block.getFieldValue("GORP");
   let type = block.getFieldValue("TYPE");
   const name = block.getFieldValue("VAR");
   let value = Arduino.valueToCode(block, "VALUE", Arduino.ORDER_ATOMIC);
-  if (!value) {
-    value = ["volatile String*"].includes(type) ? `""` : 0;
-  }
-  if (gorp === "part") {
-    type = type.replace(/volatile\s/, "");
-    return `${type} ${name} = ${value};\n`;
-  }
-  Arduino.addVariable(`${type}_${name}`, `${type} ${name};`);
-  return `${name} = ${value};\n`;
-};
 
-if (typeof setLibraryVariable === 'undefined') {
-  const setLibraryVariable = (type, code) => {
-    Arduino.addVariable(
-      `${type}_${code}`,
-      `${type} ${code} = ${["string"].includes(type) ? `""` : 0};`,
-    );
-  };
-}
+  if (!value) {
+    console.log("value: ", value);
+    switch (type) {
+      case "string":
+        value = `""`;
+        break;
+      case "char":
+        value = `''`;
+        break;
+      default:
+        value = 0;
+    }
+  }
+
+  type = type.replace(/volatile\s/, "");
+  if (isBlockConnected(block)) {
+    return `${type} ${name} = ${value};\n`;
+  } else {
+    Arduino.addVariable(`${type}_${name}`, `${type} ${name};`);
+    return "";
+  }
+};
 
 Arduino.forBlock["variables_get"] = function (block, generator) {
   // Variable getter.
   const { name: code, type } = block.workspace.getVariableById(
     block.getFieldValue("VAR"),
   );
-  setLibraryVariable(type, code);
+
+  console.log("name: ", code);
+  // setLibraryVariable(type, code);
   return [code, Arduino.ORDER_ATOMIC];
 };
 
@@ -109,7 +171,7 @@ Arduino.forBlock["variables_set"] = function (block, generator) {
   );
 
   // Arduino.addVariable("variable_float", `volatile float ${varName};`);
-  setLibraryVariable(type, code);
+  // setLibraryVariable(type, code);
   return `${code} = ${value};\n`;
 };
 

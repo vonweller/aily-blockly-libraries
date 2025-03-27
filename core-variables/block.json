@@ -2,26 +2,12 @@
   {
     "inputsInline": true,
     "type": "variable_define",
-    "message0": "声明 %1 %2 为 %3 并赋值 %4",
+    "message0": "声明 %1 为 %2 并赋值 %3",
     "args0": [
-      {
-        "type": "field_dropdown",
-        "name": "GORP",
-        "options": [
-          [
-            "全局变量",
-            "global"
-          ],
-          [
-            "局部变量",
-            "part"
-          ]
-        ]
-      },
       {
         "type": "field_input",
         "name": "VAR",
-        "text": "item"
+        "text": "%{BKY_VARIABLES_CURRENT_NAME}"
       },
       {
         "type": "field_dropdown",
@@ -94,7 +80,7 @@
       {
         "type": "field_variable",
         "name": "VAR",
-        "variable": "value"
+        "variable": "defaultVarName"
       }
     ],
     "output": null,
@@ -112,7 +98,7 @@
       {
         "type": "field_variable",
         "name": "VAR",
-        "variable": "value"
+        "variable": "%{BKY_VARIABLES_CURRENT_NAME}"
       },
       {
         "type": "input_value",
