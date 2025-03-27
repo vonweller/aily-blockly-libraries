@@ -1,28 +1,5 @@
+
 [
-    {
-        "inputsInline": true,
-        "message0": "舵机%1连接到引脚%2",
-        "type": "servo_attach",
-        "args0": [
-            {
-                "type": "field_variable",
-                "name": "OBJECT",
-                "variable": "servo1",
-                "variableTypes": [
-                    "Servo"
-                ],
-                "defaultType": "Servo"
-            },
-            {
-                "type": "field_dropdown",
-                "name": "PIN1",
-                "options": "${board.digitalPins}"
-            }
-        ],
-        "previousStatement": null,
-        "nextStatement": null,
-        "colour": "#03a9f4"
-    },
     {
         "inputsInline": true,
         "message0": "舵机%1移动到%2",
@@ -40,7 +17,7 @@
             {
                 "type": "field_number",
                 "name": "ANGLE",
-                "value": 0
+                "value": 90
             }
         ],
         "previousStatement": null,
@@ -49,9 +26,60 @@
     },
     {
         "inputsInline": true,
-        "message0": "引脚%1上的舵机移动到%2度",
-        "type": "servo_pin_write",
+        "message0": "舵机%1连接到引脚%2",
+        "type": "servo_attach",
         "args0": [
+            {
+                "type": "field_variable",
+                "name": "OBJECT",
+                "variable": "servo1",
+                "variableTypes": [
+                    "Servo"
+                ],
+                "defaultType": "Servo"
+            },
+            {
+                "type": "field_dropdown",
+                "name": "PIN",
+                "options": "${board.digitalPins}"
+            }
+        ],
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#03a9f4"
+    },
+    {
+        "inputsInline": true,
+        "message0": "读取舵机%1的角度",
+        "type": "servo_read",
+        "args0": [
+            {
+                "type": "field_variable",
+                "name": "OBJECT",
+                "variable": "servo1",
+                "variableTypes": [
+                    "Servo"
+                ],
+                "defaultType": "Servo"
+            }
+        ],
+        "output": "Number",
+        "colour": "#03a9f4"
+    },
+    {
+        "inputsInline": true,
+        "message0": "舵机%1连接到引脚%2并移动到%3",
+        "type": "servo_write_pin",
+        "args0": [
+            {
+                "type": "field_variable",
+                "name": "OBJECT",
+                "variable": "servo1",
+                "variableTypes": [
+                    "Servo"
+                ],
+                "defaultType": "Servo"
+            },
             {
                 "type": "field_dropdown",
                 "name": "PIN",
@@ -60,14 +88,177 @@
             {
                 "type": "field_number",
                 "name": "ANGLE",
-                "value": 90,
-                "min": 0,
-                "max": 180
+                "value": 90
             }
         ],
         "previousStatement": null,
         "nextStatement": null,
-        "colour": "#03a9f4",
-        "tooltip": "直接控制指定引脚上的舵机角度，自动处理连接"
+        "colour": "#03a9f4"
+    },
+    {
+        "inputsInline": true,
+        "message0": "从电位器%1读取并控制舵机%2",
+        "type": "servo_potentiometer",
+        "args0": [
+            {
+                "type": "field_dropdown",
+                "name": "SERVO_PIN",
+                "options": "${board.digitalPins}"
+            },
+            {
+                "type": "field_dropdown",
+                "name": "POT_PIN",
+                "options": "${board.analogPins}"
+            }
+        ],
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#03a9f4"
+    },
+    {
+        "inputsInline": true,
+        "message0": "断开舵机%1",
+        "type": "servo_detach",
+        "args0": [
+            {
+                "type": "field_variable",
+                "name": "OBJECT",
+                "variable": "servo1",
+                "variableTypes": [
+                    "Servo"
+                ],
+                "defaultType": "Servo"
+            }
+        ],
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#03a9f4"
+    },
+    {
+        "inputsInline": true,
+        "message0": "以微秒%1控制舵机%2",
+        "type": "servo_write_microseconds",
+        "args0": [
+            {
+                "type": "field_number",
+                "name": "MICROSECONDS",
+                "value": 1500
+            },
+            {
+                "type": "field_variable",
+                "name": "OBJECT",
+                "variable": "servo1",
+                "variableTypes": [
+                    "Servo"
+                ],
+                "defaultType": "Servo"
+            }
+        ],
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#03a9f4"
+    },
+    {
+        "inputsInline": true,
+        "message0": "读取舵机%1的微秒值",
+        "type": "servo_read_microseconds",
+        "args0": [
+            {
+                "type": "field_variable",
+                "name": "OBJECT",
+                "variable": "servo1",
+                "variableTypes": [
+                    "Servo"
+                ],
+                "defaultType": "Servo"
+            }
+        ],
+        "output": "Number",
+        "colour": "#03a9f4"
+    },
+    {
+        "inputsInline": true,
+        "message0": "检查舵机%1是否已连接",
+        "type": "servo_attached",
+        "args0": [
+            {
+                "type": "field_variable",
+                "name": "OBJECT",
+                "variable": "servo1",
+                "variableTypes": [
+                    "Servo"
+                ],
+                "defaultType": "Servo"
+            }
+        ],
+        "output": "Boolean",
+        "colour": "#03a9f4"
+    },
+    {
+        "inputsInline": true,
+        "message0": "创建舵机%1",
+        "type": "servo_create",
+        "args0": [
+            {
+                "type": "field_variable",
+                "name": "OBJECT",
+                "variable": "servo1",
+                "variableTypes": [
+                    "Servo"
+                ],
+                "defaultType": "Servo"
+            }
+        ],
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#03a9f4"
+    },
+    {
+        "inputsInline": true,
+        "message0": "连接舵机%1到引脚%2",
+        "type": "servo_named_attach",
+        "args0": [
+            {
+                "type": "field_variable",
+                "name": "OBJECT",
+                "variable": "servo1",
+                "variableTypes": [
+                    "Servo"
+                ],
+                "defaultType": "Servo"
+            },
+            {
+                "type": "field_dropdown",
+                "name": "PIN",
+                "options": "${board.digitalPins}"
+            }
+        ],
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#03a9f4"
+    },
+    {
+        "inputsInline": true,
+        "message0": "控制舵机%1到%2",
+        "type": "servo_named_write",
+        "args0": [
+            {
+                "type": "field_variable",
+                "name": "OBJECT",
+                "variable": "servo1",
+                "variableTypes": [
+                    "Servo"
+                ],
+                "defaultType": "Servo"
+            },
+            {
+                "type": "field_number",
+                "name": "ANGLE",
+                "value": 90
+            }
+        ],
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#03a9f4"
     }
 ]
