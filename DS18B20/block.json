@@ -1,62 +1,370 @@
+
 [
     {
-      "type": "ds18b20_init",
-      "message0": "初始化DS18B20温度传感器 连接到引脚 %1",
-      "args0": [
-        {
-          "type": "field_dropdown",
-          "name": "PIN",
-          "options": "${board.digitalPins}"
-        }
-      ],
-      "previousStatement": null,
-      "nextStatement": null,
-      "colour": "#ff8000",
-      "inputsInline": true
+        "inputsInline": true,
+        "message0": "初始化DS18B20传感器%1连接到引脚%2",
+        "type": "ds18b20_init",
+        "args0": [
+            {
+                "type": "field_variable",
+                "name": "VAR",
+                "variable": "ds18b20",
+                "variableTypes": [
+                    "DS18B20"
+                ],
+                "defaultType": "DS18B20"
+            },
+            {
+                "type": "field_dropdown",
+                "name": "PIN",
+                "options": "${board.digitalPins}"
+            }
+        ],
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#4CAF50"
     },
     {
-      "type": "ds18b20_get_temp_c",
-      "message0": "DS18B20读取摄氏温度 设备索引 %1",
-      "args0": [
-        {
-          "type": "field_number",
-          "name": "INDEX",
-          "value": 0,
-          "min": 0
-        }
-      ],
-      "output": "Number",
-      "colour": "#ff8000",
-      "inputsInline": true
+        "inputsInline": true,
+        "message0": "读取温度（摄氏度）%1",
+        "type": "ds18b20_read_temp_c",
+        "args0": [
+            {
+                "type": "field_variable",
+                "name": "VAR",
+                "variable": "ds18b20",
+                "variableTypes": [
+                    "DS18B20"
+                ],
+                "defaultType": "DS18B20"
+            }
+        ],
+        "output": null,
+        "colour": "#4CAF50"
     },
     {
-      "type": "ds18b20_get_temp_f",
-      "message0": "DS18B20读取华氏温度 设备索引 %1",
-      "args0": [
-        {
-          "type": "field_number",
-          "name": "INDEX",
-          "value": 0,
-          "min": 0
-        }
-      ],
-      "output": "Number",
-      "colour": "#ff8000",
-      "inputsInline": true
+        "inputsInline": true,
+        "message0": "读取温度（华氏度）%1",
+        "type": "ds18b20_read_temp_f",
+        "args0": [
+            {
+                "type": "field_variable",
+                "name": "VAR",
+                "variable": "ds18b20",
+                "variableTypes": [
+                    "DS18B20"
+                ],
+                "defaultType": "DS18B20"
+            }
+        ],
+        "output": null,
+        "colour": "#4CAF50"
     },
     {
-      "type": "ds18b20_request_temps",
-      "message0": "DS18B20请求所有设备进行温度转换",
-      "previousStatement": null,
-      "nextStatement": null,
-      "colour": "#ff8000",
-      "inputsInline": true
+        "inputsInline": true,
+        "message0": "设置温度报警阈值%1为低温%2 高温%3",
+        "type": "ds18b20_set_alarms",
+        "args0": [
+            {
+                "type": "field_variable",
+                "name": "VAR",
+                "variable": "ds18b20",
+                "variableTypes": [
+                    "DS18B20"
+                ],
+                "defaultType": "DS18B20"
+            },
+            {
+                "type": "field_number",
+                "name": "LOW_ALARM",
+                "value": 0
+            },
+            {
+                "type": "field_number",
+                "name": "HIGH_ALARM",
+                "value": 100
+            }
+        ],
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#4CAF50"
     },
     {
-      "type": "ds18b20_get_device_count",
-      "message0": "DS18B20获取设备数量",
-      "output": "Number",
-      "colour": "#ff8000",
-      "inputsInline": true
+        "inputsInline": true,
+        "message0": "获取低温报警阈值%1",
+        "type": "ds18b20_get_alarm_low",
+        "args0": [
+            {
+                "type": "field_variable",
+                "name": "VAR",
+                "variable": "ds18b20",
+                "variableTypes": [
+                    "DS18B20"
+                ],
+                "defaultType": "DS18B20"
+            }
+        ],
+        "output": null,
+        "colour": "#4CAF50"
+    },
+    {
+        "inputsInline": true,
+        "message0": "获取高温报警阈值%1",
+        "type": "ds18b20_get_alarm_high",
+        "args0": [
+            {
+                "type": "field_variable",
+                "name": "VAR",
+                "variable": "ds18b20",
+                "variableTypes": [
+                    "DS18B20"
+                ],
+                "defaultType": "DS18B20"
+            }
+        ],
+        "output": null,
+        "colour": "#4CAF50"
+    },
+    {
+        "inputsInline": true,
+        "message0": "检查是否有温度报警%1",
+        "type": "ds18b20_has_alarm",
+        "args0": [
+            {
+                "type": "field_variable",
+                "name": "VAR",
+                "variable": "ds18b20",
+                "variableTypes": [
+                    "DS18B20"
+                ],
+                "defaultType": "DS18B20"
+            }
+        ],
+        "output": null,
+        "colour": "#4CAF50"
+    },
+    {
+        "inputsInline": true,
+        "message0": "获取传感器分辨率%1",
+        "type": "ds18b20_get_resolution",
+        "args0": [
+            {
+                "type": "field_variable",
+                "name": "VAR",
+                "variable": "ds18b20",
+                "variableTypes": [
+                    "DS18B20"
+                ],
+                "defaultType": "DS18B20"
+            }
+        ],
+        "output": null,
+        "colour": "#4CAF50"
+    },
+    {
+        "inputsInline": true,
+        "message0": "设置传感器分辨率%1为%2",
+        "type": "ds18b20_set_resolution",
+        "args0": [
+            {
+                "type": "field_variable",
+                "name": "VAR",
+                "variable": "ds18b20",
+                "variableTypes": [
+                    "DS18B20"
+                ],
+                "defaultType": "DS18B20"
+            },
+            {
+                "type": "field_dropdown",
+                "name": "RESOLUTION",
+                "options": [
+                    ["9 bit", "9"],
+                    ["10 bit", "10"],
+                    ["11 bit", "11"],
+                    ["12 bit", "12"]
+                ]
+            }
+        ],
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#4CAF50"
+    },
+    {
+        "inputsInline": true,
+        "message0": "获取传感器电源模式%1",
+        "type": "ds18b20_get_power_mode",
+        "args0": [
+            {
+                "type": "field_variable",
+                "name": "VAR",
+                "variable": "ds18b20",
+                "variableTypes": [
+                    "DS18B20"
+                ],
+                "defaultType": "DS18B20"
+            }
+        ],
+        "output": null,
+        "colour": "#4CAF50"
+    },
+    {
+        "inputsInline": true,
+        "message0": "进行温度转换%1",
+        "type": "ds18b20_do_conversion",
+        "args0": [
+            {
+                "type": "field_variable",
+                "name": "VAR",
+                "variable": "ds18b20",
+                "variableTypes": [
+                    "DS18B20"
+                ],
+                "defaultType": "DS18B20"
+            }
+        ],
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#4CAF50"
+    },
+    {
+        "inputsInline": true,
+        "message0": "获取连接的设备数量%1",
+        "type": "ds18b20_get_number_of_devices",
+        "args0": [
+            {
+                "type": "field_variable",
+                "name": "VAR",
+                "variable": "ds18b20",
+                "variableTypes": [
+                    "DS18B20"
+                ],
+                "defaultType": "DS18B20"
+            }
+        ],
+        "output": null,
+        "colour": "#4CAF50"
+    },
+    {
+        "inputsInline": true,
+        "message0": "选择下一个传感器%1",
+        "type": "ds18b20_select_next",
+        "args0": [
+            {
+                "type": "field_variable",
+                "name": "VAR",
+                "variable": "ds18b20",
+                "variableTypes": [
+                    "DS18B20"
+                ],
+                "defaultType": "DS18B20"
+            }
+        ],
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#4CAF50"
+    },
+    {
+        "inputsInline": true,
+        "message0": "选择下一个触发报警的传感器%1",
+        "type": "ds18b20_select_next_alarm",
+        "args0": [
+            {
+                "type": "field_variable",
+                "name": "VAR",
+                "variable": "ds18b20",
+                "variableTypes": [
+                    "DS18B20"
+                ],
+                "defaultType": "DS18B20"
+            }
+        ],
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#4CAF50"
+    },
+    {
+        "inputsInline": true,
+        "message0": "重置传感器搜索%1",
+        "type": "ds18b20_reset_search",
+        "args0": [
+            {
+                "type": "field_variable",
+                "name": "VAR",
+                "variable": "ds18b20",
+                "variableTypes": [
+                    "DS18B20"
+                ],
+                "defaultType": "DS18B20"
+            }
+        ],
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#4CAF50"
+    },
+    {
+        "inputsInline": true,
+        "message0": "获取设备型号代码%1",
+        "type": "ds18b20_get_family_code",
+        "args0": [
+            {
+                "type": "field_variable",
+                "name": "VAR",
+                "variable": "ds18b20",
+                "variableTypes": [
+                    "DS18B20"
+                ],
+                "defaultType": "DS18B20"
+            }
+        ],
+        "output": null,
+        "colour": "#4CAF50"
+    },
+    {
+        "inputsInline": true,
+        "message0": "获取设备地址%1",
+        "type": "ds18b20_get_address",
+        "args0": [
+            {
+                "type": "field_variable",
+                "name": "VAR",
+                "variable": "ds18b20",
+                "variableTypes": [
+                    "DS18B20"
+                ],
+                "defaultType": "DS18B20"
+            }
+        ],
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#4CAF50"
+    },
+    {
+        "inputsInline": true,
+        "message0": "简化版读取温度（摄氏度）%1连接到引脚%2",
+        "type": "ds18b20_simple_read_temp_c",
+        "args0": [
+            {
+                "type": "field_number",
+                "name": "PIN",
+                "value": 0
+            }
+        ],
+        "output": null,
+        "colour": "#4CAF50"
+    },
+    {
+        "inputsInline": true,
+        "message0": "简化版读取温度（华氏度）%1连接到引脚%2",
+        "type": "ds18b20_simple_read_temp_f",
+        "args0": [
+            {
+                "type": "field_number",
+                "name": "PIN",
+                "value": 0
+            }
+        ],
+        "output": null,
+        "colour": "#4CAF50"
     }
-  ]
+]
