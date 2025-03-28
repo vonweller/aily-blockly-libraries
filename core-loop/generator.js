@@ -178,7 +178,7 @@ Arduino.forBlock["controls_for"] = function (block) {
   }
 
   // 使用模板字符串改善代码可读性
-  code = `for (${variable0} = ${argument0}; ${variable0}${up ? " <= " : " >= "}${argument1}; ${variable0}`;
+  code = `for (int ${variable0} = ${argument0}; ${variable0}${up ? " <= " : " >= "}${argument1}; ${variable0}`;
 
   console.log("code: ", code);
   const step = Math.abs(Number(increment));
@@ -189,7 +189,7 @@ Arduino.forBlock["controls_for"] = function (block) {
   }
 
   code += `) {\n${branch}}\n`;
-  Arduino.addVariable(variable0, `int ${variable0};`);
+  // Arduino.addVariable(variable0, `int ${variable0};`);
   return code;
 };
 
