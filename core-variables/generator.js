@@ -5,7 +5,6 @@ Blockly.getMainWorkspace().registerButtonCallback(
     Blockly.Variables.createVariableButtonHandler(
       workspace,
       (varName) => {
-
         // console.log("varName: ", varName);
         // 获取变量分类
         const toolbox = workspace.getToolbox();
@@ -21,10 +20,6 @@ Blockly.getMainWorkspace().registerButtonCallback(
         for (let category of originalToolboxDef.contents) {
           if ((category.name === "Variables" ||
             (category.contents && category.contents[0]?.callbackKey === "CREATE_VARIABLE"))) {
-
-            let contents = category.contents;
-            // console.log("contents1: ", contents);
-
             // 更新该类别的内容
             if (category.contents.length === 1) {
               category.contents = [
@@ -95,11 +90,202 @@ Blockly.getMainWorkspace().registerButtonCallback(
             break;
           }
         }
+
+        // 触发所有监听器
+        // variableCreationListeners.forEach(listener => listener(varName));
       },
       null
     );
   },
 );
+
+// 重名名变量
+// 重命名变量
+function renameVariable(block, oldName, newName) {
+  try {
+    const workspace = block.workspace;
+    if (!workspace || !oldName || !newName) return;
+
+    // 获取工具箱
+    const toolbox = workspace.getToolbox();
+    if (!toolbox) return;
+
+    const allCategories = toolbox.getToolboxItems();
+    const variableCategory = allCategories.find(item =>
+      item.name_ === "Variables" || (item.getContents && item.getContents()[0]?.callbackKey === "CREATE_VARIABLE")
+    );
+
+    // 获取原始工具箱定义
+    const originalToolboxDef = workspace.options.languageTree;
+    if (!originalToolboxDef) return;
+
+    Blockly.Msg.VARIABLES_CURRENT_NAME = newName;
+
+    // 检查旧变量是否仍被其他块引用
+    const blocks = workspace.getAllBlocks(false);
+    let isOldVarStillReferenced = false;
+
+    // 排除当前正在编辑的块，检查其他块是否引用了旧变量
+    for (const otherBlock of blocks) {
+      if (otherBlock.id !== block.id) {
+        // 检查变量获取块
+        if (otherBlock.type === 'variables_get' || otherBlock.type === 'variables_get_dynamic') {
+          const varField = otherBlock.getField('VAR');
+          if (varField && varField.getText() === oldName) {
+            isOldVarStillReferenced = true;
+            break;
+          }
+        }
+        // 检查变量设置块
+        if (otherBlock.type === 'variables_set' || otherBlock.type === 'variables_set_dynamic') {
+          const varField = otherBlock.getField('VAR');
+          if (varField && varField.getText() === oldName) {
+            isOldVarStillReferenced = true;
+            break;
+          }
+        }
+      }
+    }
+
+    // 找到变量类别并更新其内容
+    for (let category of originalToolboxDef.contents) {
+      if ((category.name === "Variables" ||
+        (category.contents && category.contents[0]?.callbackKey === "CREATE_VARIABLE"))) {
+
+        if (isOldVarStillReferenced) {
+          // 如果旧变量仍在使用，添加新变量而不是替换
+          const timestamp = new Date().getTime();
+          category.contents.push({
+            "kind": "block",
+            "type": "variables_get",
+            "fields": {
+              "VAR": {
+                "id": "varName" + timestamp,
+                "name": newName,
+                "type": "string"
+              }
+            }
+          });
+          console.log(`旧变量 ${oldName} 仍在使用，已添加新变量 ${newName}`);
+        } else {
+          // 如果旧变量未被引用，直接替换名称
+          category.contents.forEach(item => {
+            if (item.fields && item.fields.VAR && item.fields.VAR.name === oldName) {
+              item.fields.VAR.name = newName;
+            }
+          });
+        }
+
+        // 更新工具箱
+        if (toolbox && variableCategory) {
+          toolbox.refreshSelection();
+          workspace.updateToolbox(originalToolboxDef);
+
+          // 强制刷新工具箱显示
+          variableCategory.refreshTheme();
+
+          // 如果工具箱处于打开状态，使用更可靠的方式重新打开类别
+          if (toolbox.isOpen_) {
+            // 保存当前打开的类别ID
+            toolbox.setSelectedItem(null);
+
+            // 延迟更新确保DOM有足够时间更新
+            setTimeout(() => {
+              variableCategory.updateFlyoutContents(originalToolboxDef);
+              toolbox.setSelectedItem(variableCategory);
+              workspace.refreshToolboxSelection();
+            }, 50);
+          } else {
+            variableCategory.updateFlyoutContents(originalToolboxDef);
+          }
+        }
+        break;
+      }
+    }
+  } catch (e) {
+    console.log("重命名变量时出错:", e);
+  }
+}
+
+// 添加新函数，用于将循环变量添加到工具箱
+function addVariableToToolbox(block, varName) {
+  try {
+    const workspace = block.workspace;
+    if (!workspace || !varName) return;
+
+    // 获取工具箱
+    const toolbox = workspace.getToolbox();
+    if (!toolbox) return;
+
+    const allCategories = toolbox.getToolboxItems();
+    const variableCategory = allCategories.find(item =>
+      item.name_ === "Variables" || (item.getContents && item.getContents()[0]?.callbackKey === "CREATE_VARIABLE")
+    );
+
+    // 获取原始工具箱定义
+    const originalToolboxDef = workspace.options.languageTree;
+    if (!originalToolboxDef) return;
+
+    // 找到变量类别并更新其内容
+    for (let category of originalToolboxDef.contents) {
+      if ((category.name === "Variables" ||
+        (category.contents && category.contents[0]?.callbackKey === "CREATE_VARIABLE"))) {
+
+        // 检查变量是否已存在
+        const varExists = category.contents.some(item =>
+          item.fields && item.fields.VAR && item.fields.VAR.name === varName
+        );
+
+        if (!varExists) {
+          // 获取当前时间戳作为ID
+          const timestamp = new Date().getTime();
+          category.contents.push({
+            "kind": "block",
+            "type": "variables_get",
+            "fields": {
+              "VAR": {
+                "id": "loopVar" + timestamp,
+                "name": varName,
+                "type": "int"
+              }
+            }
+          });
+
+          console.log("categoryContents: ", category.contents);
+
+          Blockly.Msg.VARIABLES_CURRENT_NAME = varName;
+
+          // 更新工具箱
+          if (toolbox && variableCategory) {
+            toolbox.refreshSelection();
+            workspace.updateToolbox(originalToolboxDef);
+
+            // 强制刷新工具箱显示
+            variableCategory.refreshTheme();
+
+            // 如果工具箱处于打开状态，使用更可靠的方式重新打开类别
+            if (toolbox.isOpen_) {
+              // 保存当前打开的类别ID
+              toolbox.setSelectedItem(null);
+
+              // 延迟更新确保DOM有足够时间更新
+              setTimeout(() => {
+                variableCategory.updateFlyoutContents(originalToolboxDef);
+                toolbox.setSelectedItem(variableCategory);
+                workspace.refreshToolboxSelection();
+              }, 50);
+            } else {
+              variableCategory.updateFlyoutContents(originalToolboxDef);
+            }
+          }
+        }
+        break;
+      }
+    }
+  } catch (e) {
+    console.log("添加循环变量到工具箱时出错:", e);
+  }
+}
 
 function isBlockConnected(block) {
   // 检查上方连接
@@ -127,11 +313,29 @@ Arduino.forBlock["variable_define"] = function (block, generator) {
   const name = block.getFieldValue("VAR");
   let value = Arduino.valueToCode(block, "VALUE", Arduino.ORDER_ATOMIC);
 
+  // Create a storage object for previously defined variables
+  if (!Arduino.previousVariables) {
+    console.log("create new previousVariables");
+    Arduino.previousVariables = {};
+  }
+
+  // Compare current name with previously stored name
+  const previousName = Arduino.previousVariables["lastedDefineName"];
+
+  // Store current name for future comparisons
+  Arduino.previousVariables["lastedDefineName"] = name;
+
+  if (previousName && previousName !== name) {
+    // If the name has changed, add the new variable to the toolbox
+    renameVariable(block, previousName, name);
+  }
+
   if (!value) {
-    console.log("value: ", value);
     switch (type) {
       case "string":
+        // Arduino中字符串使用String或char数组
         value = `""`;
+        type = "String"; // 确保Arduino使用String类型
         break;
       case "char":
         value = `''`;
