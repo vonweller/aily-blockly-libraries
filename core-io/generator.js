@@ -35,7 +35,6 @@ Arduino.forBlock["io_pinmode"] = function (block, generator) {
   
   return `pinMode(${pin}, ${mode});\n`;
 };
-
 Arduino.forBlock["io_digitalread"] = function (block, generator) {
   const pin = generator.valueToCode(block, "PIN", Arduino.ORDER_ATOMIC);
   
