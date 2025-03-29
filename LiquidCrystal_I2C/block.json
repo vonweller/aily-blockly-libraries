@@ -27,6 +27,35 @@
     },
     {
         "inputsInline": true,
+        "type": "lcd_sysp",
+        "message0": "%1 LCD %2",
+        "args0": [
+          {
+            "type": "field_dropdown",
+            "name": "STATE",
+            "options": [
+              ["开启", "."],
+              ["关闭", ".no"]
+            ]
+          },
+          {
+            "type": "field_dropdown",
+            "name": "TYPE",
+            "options": [
+              ["显示", "display"],
+              ["背光", "backlight"],
+              ["光标", "cursor"],
+              ["闪烁", "blink"],
+              ["自动滚动", "autoscroll"]
+            ]
+          }
+        ],
+        "colour": "#4CAF50",
+        "previousStatement": null,
+        "nextStatement": null
+    },
+    {
+        "inputsInline": true,
         "message0": "清空LCD显示",
         "type": "lcd_clear",
         "args0": [],
@@ -38,78 +67,6 @@
         "inputsInline": true,
         "message0": "设置LCD光标到0,0",
         "type": "lcd_home",
-        "args0": [],
-        "previousStatement": null,
-        "nextStatement": null,
-        "colour": "#4CAF50"
-    },
-    {
-        "inputsInline": true,
-        "message0": "开启LCD显示",
-        "type": "lcd_display",
-        "args0": [],
-        "previousStatement": null,
-        "nextStatement": null,
-        "colour": "#4CAF50"
-    },
-    {
-        "inputsInline": true,
-        "message0": "关闭LCD显示",
-        "type": "lcd_no_display",
-        "args0": [],
-        "previousStatement": null,
-        "nextStatement": null,
-        "colour": "#4CAF50"
-    },
-    {
-        "inputsInline": true,
-        "message0": "开启LCD背光",
-        "type": "lcd_backlight",
-        "args0": [],
-        "previousStatement": null,
-        "nextStatement": null,
-        "colour": "#4CAF50"
-    },
-    {
-        "inputsInline": true,
-        "message0": "关闭LCD背光",
-        "type": "lcd_no_backlight",
-        "args0": [],
-        "previousStatement": null,
-        "nextStatement": null,
-        "colour": "#4CAF50"
-    },
-    {
-        "inputsInline": true,
-        "message0": "开启LCD光标",
-        "type": "lcd_cursor",
-        "args0": [],
-        "previousStatement": null,
-        "nextStatement": null,
-        "colour": "#4CAF50"
-    },
-    {
-        "inputsInline": true,
-        "message0": "关闭LCD光标",
-        "type": "lcd_no_cursor",
-        "args0": [],
-        "previousStatement": null,
-        "nextStatement": null,
-        "colour": "#4CAF50"
-    },
-    {
-        "inputsInline": true,
-        "message0": "开启LCD闪烁",
-        "type": "lcd_blink",
-        "args0": [],
-        "previousStatement": null,
-        "nextStatement": null,
-        "colour": "#4CAF50"
-    },
-    {
-        "inputsInline": true,
-        "message0": "关闭LCD闪烁",
-        "type": "lcd_no_blink",
         "args0": [],
         "previousStatement": null,
         "nextStatement": null,
@@ -206,24 +163,6 @@
         "inputsInline": true,
         "message0": "LCD右移显示",
         "type": "lcd_scroll_display_right",
-        "args0": [],
-        "previousStatement": null,
-        "nextStatement": null,
-        "colour": "#4CAF50"
-    },
-    {
-        "inputsInline": true,
-        "message0": "启用LCD自动滚动",
-        "type": "lcd_autoscroll",
-        "args0": [],
-        "previousStatement": null,
-        "nextStatement": null,
-        "colour": "#4CAF50"
-    },
-    {
-        "inputsInline": true,
-        "message0": "禁用LCD自动滚动",
-        "type": "lcd_no_autoscroll",
         "args0": [],
         "previousStatement": null,
         "nextStatement": null,

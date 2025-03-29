@@ -6,7 +6,7 @@ Arduino.forBlock['dht_init'] = function (block, generator) {
     generator.addLibrary('DHT_include', '#include <DHT.h>');
 
     // 创建DHT对象
-    var dhtDef = 'DHT dht(' + pin + ', ' + dht_type + ')';
+    var dhtDef = 'DHT dht(' + pin + ', ' + dht_type + ');';
     generator.addVariable('dht_def', dhtDef);
 
     // 在setup中初始化DHT

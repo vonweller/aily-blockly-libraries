@@ -16,6 +16,15 @@ Arduino.forBlock['lcd_i2c_init'] = function(block, generator) {
   return code;
 };
 
+Arduino.forBlock['lcd_sysp'] = function(block, generator) {
+  var sta = block.getFieldValue("STATE") || '开启';
+  var type = block.getFieldValue("TYPE") || '显示';
+
+  var code = `lcd${sta}${type}();\n`;
+
+  return code;
+};
+
 // LCD clear display
 Arduino.forBlock['lcd_clear'] = function(block, generator) {
   return 'lcd.clear();\n';
@@ -26,45 +35,7 @@ Arduino.forBlock['lcd_home'] = function(block, generator) {
   return 'lcd.home();\n';
 };
 
-// LCD display - turn on
-Arduino.forBlock['lcd_display'] = function(block, generator) {
-  return 'lcd.display();\n';
-};
 
-// LCD display - turn off
-Arduino.forBlock['lcd_no_display'] = function(block, generator) {
-  return 'lcd.noDisplay();\n';
-};
-
-// LCD backlight - turn on
-Arduino.forBlock['lcd_backlight'] = function(block, generator) {
-  return 'lcd.backlight();\n';
-};
-
-// LCD backlight - turn off
-Arduino.forBlock['lcd_no_backlight'] = function(block, generator) {
-  return 'lcd.noBacklight();\n';
-};
-
-// LCD cursor - turn on
-Arduino.forBlock['lcd_cursor'] = function(block, generator) {
-  return 'lcd.cursor();\n';
-};
-
-// LCD cursor - turn off
-Arduino.forBlock['lcd_no_cursor'] = function(block, generator) {
-  return 'lcd.noCursor();\n';
-};
-
-// LCD blink - turn on
-Arduino.forBlock['lcd_blink'] = function(block, generator) {
-  return 'lcd.blink();\n';
-};
-
-// LCD blink - turn off
-Arduino.forBlock['lcd_no_blink'] = function(block, generator) {
-  return 'lcd.noBlink();\n';
-};
 
 // LCD set cursor position
 Arduino.forBlock['lcd_set_cursor'] = function(block, generator) {
@@ -111,16 +82,6 @@ Arduino.forBlock['lcd_scroll_display_left'] = function(block, generator) {
 // LCD scroll display - right
 Arduino.forBlock['lcd_scroll_display_right'] = function(block, generator) {
   return 'lcd.scrollDisplayRight();\n';
-};
-
-// LCD autoscroll - enable
-Arduino.forBlock['lcd_autoscroll'] = function(block, generator) {
-  return 'lcd.autoscroll();\n';
-};
-
-// LCD autoscroll - disable
-Arduino.forBlock['lcd_no_autoscroll'] = function(block, generator) {
-  return 'lcd.noAutoscroll();\n';
 };
 
 // LCD create custom character
