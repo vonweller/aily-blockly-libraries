@@ -330,26 +330,35 @@ Arduino.forBlock["variable_define"] = function (block, generator) {
     renameVariable(block, previousName, name);
   }
 
+  let defaultValue = "";
+
   if (!value) {
     switch (type) {
       case "string":
         // Arduino中字符串使用String或char数组
-        value = `""`;
+        defaultValue = `""`;
         type = "String"; // 确保Arduino使用String类型
         break;
       case "char":
-        value = `''`;
+        defaultValue = `''`;
         break;
       default:
-        value = 0;
+        defaultValue = 0;
     }
+  } else {
+    // 如果有值，使用默认值
+    defaultValue = value;
   }
 
   type = type.replace(/volatile\s/, "");
   if (isBlockConnected(block)) {
-    return `${type} ${name} = ${value};\n`;
+    return `${type} ${name} = ${defaultValue};\n`;
   } else {
-    Arduino.addVariable(`${type}_${name}`, `${type} ${name};`);
+    if (value) {
+      Arduino.addVariable(`${type}_${name}`, `${type} ${name} = ${value};`);
+    } else {
+      Arduino.addVariable(`${type}_${name}`, `${type} ${name};`);
+    }
     return "";
   }
 };
