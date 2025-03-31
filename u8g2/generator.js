@@ -12,6 +12,15 @@ Arduino.forBlock['u8g2_init'] = function(block, generator) {
   return '';
 };
 
+Arduino.forBlock['u8g2_setFlipMode'] = function(block, generator) {
+  const instance = generator.nameDB_.getName(block.getFieldValue('U8G2_INSTANCE'), 'VARIABLE');
+  const flipmode = block.getFieldValue('FLIPMODE');
+    
+  generator.addSetup('setFlipmode' + instance,`${instance}.setFlipMode(${flipmode});`);
+  
+  return '';
+};
+
 Arduino.forBlock['u8g2_setup'] = function(block, generator) {
   const instance = generator.nameDB_.getName(block.getFieldValue('U8G2_INSTANCE'), 'VARIABLE');
   const pins = generator.valueToCode(block, 'PINS', Arduino.ORDER_ATOMIC);
