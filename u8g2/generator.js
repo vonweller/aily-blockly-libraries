@@ -7,7 +7,16 @@ Arduino.forBlock['u8g2_init'] = function(block, generator) {
   generator.addLibrary('WIRE_LIBRARY', '#include <Wire.h>');
   
   const constructorName = displayType + protocol;
-  generator.addObject('U8G2_' + instance, `U8G2_${constructorName} ${instance};`);
+  generator.addObject('U8G2_' + instance, `${constructorName} ${instance};`);
+  
+  return '';
+};
+
+Arduino.forBlock['u8g2_setFlipMode'] = function(block, generator) {
+  const instance = generator.nameDB_.getName(block.getFieldValue('U8G2_INSTANCE'), 'VARIABLE');
+  const flipmode = block.getFieldValue('FLIPMODE');
+    
+  generator.addSetup('setFlipmode' + instance,`${instance}.setFlipMode(${flipmode});`);
   
   return '';
 };

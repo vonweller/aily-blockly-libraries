@@ -103,6 +103,34 @@
     "inputsInline": true
   },
   {
+    "type": "u8g2_setFlipMode",
+    "message0": "初始化显示方向 %1 %2",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "U8G2_INSTANCE",
+        "variable": "u8g2",
+        "variableTypes": [
+          "U8G2"
+        ],
+        "defaultType": "U8G2"
+      },
+      {
+        "type": "field_dropdown",
+        "name": "FLIPMODE",
+        "options": [
+          ["正向显示","0"],
+          ["反向显示","1"]
+        ]
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#4DB6AC",
+    "tooltip": "初始化屏幕显示方向",
+    "inputsInline": true
+  },
+  {
     "type": "u8g2_pins_i2c",
     "message0": "I2C 地址 0x%1",
     "args0": [

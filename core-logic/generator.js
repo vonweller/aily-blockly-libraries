@@ -100,7 +100,8 @@ Arduino.forBlock["logic_negate"] = function (block) {
 
 Arduino.forBlock["logic_boolean"] = function (block) {
   // Boolean values true and false.
-  const code = block.getFieldValue("BOOL") === "TRUE" ? "true" : "false";
+  const code = block.getFieldValue("BOOL");
+  code === "TRUE" ? "true" : "false";
   return [code, Arduino.ORDER_ATOMIC];
 };
 

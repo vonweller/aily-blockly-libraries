@@ -2,7 +2,7 @@ Arduino.forBlock['hx711_create'] = function(block, generator) {
   var varName = Arduino.nameDB_.getName(block.getFieldValue('VAR'), Blockly.VARIABLE_CATEGORY_NAME);
   
   generator.addLibrary('#include <HX711.h>', '#include <HX711.h>');
-  generator.addVariable('HX711 ' + varName, 'HX711 ' + varName);
+  generator.addVariable('HX711 ' + varName, 'HX711 ' + varName + ';');
   
   return '';
 };
