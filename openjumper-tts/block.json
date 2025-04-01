@@ -1,0 +1,137 @@
+
+[
+  {
+    "type": "openjumper_tts_init",
+    "message0": "TTS初始化 RX引脚：%1 TX引脚：%2",
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#03a9f4",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "RX_PIN",
+        "options": "${board.digitalPins}"
+      },
+      {
+        "type": "field_dropdown",
+        "name": "TX_PIN",
+        "options": "${board.digitalPins}"
+      }
+    ]
+  },
+  {
+    "type": "openjumper_tts_play_invoice",
+    "message0": "播放 %1 第%2首",
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#03a9f4",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "VOICE_TYPE",
+        "options": [
+          ["V_RT", "VOICE_Ringtones"],
+          ["V_PT", "VOICE_PromptSound"],
+          ["V_WG", "VOICE_WarningSound"]
+        ]
+      },
+      {
+        "type": "input_value",
+        "name": "VOICE_NUM",
+        "check": "Number"
+      }
+    ]
+  },
+  {
+    "type": "openjumper_tts_play_control",
+    "message0": "控制播放 %1",
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#03a9f4",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "CONTROL_ACTION",
+        "options": [
+          [
+            "停止",
+            "PLAY_STOP"
+          ],
+          [
+            "暂停",
+            "PLAY_PAUSE"
+          ],
+          [
+            "继续",
+            "PLAY_CONTINUE"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "type": "openjumper_tts_play_number",
+    "message0": "播放数字 %1",
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#03a9f4",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "NUMBER",
+        "check": "Number"
+      }
+    ]
+  },
+  {
+    "type": "openjumper_tts_play_text",
+    "message0": "播放文本 %1",
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#03a9f4",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "TEXT",
+        "check": "String"
+      }
+    ]
+  },
+  {
+    "type": "openjumper_tts_setcfg",
+    "message0": "设置%1 为%2",
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#03a9f4",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "SP_TYPE",
+        "options": [
+          ["V_SH", "setspeechSpeed"],
+          ["V_IT", "setIntonation"],
+          ["V_VL", "setVolume"]
+        ]
+      },
+      {
+        "type": "input_value",
+        "name": "CFGV",
+        "check": "Number"
+      }
+    ]
+  },
+  {
+    "type": "openjumper_tts_restore_defaults",
+    "message0": "恢复默认设置",
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#03a9f4"
+  }
+]
