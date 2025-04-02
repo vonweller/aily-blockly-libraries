@@ -1,0 +1,1 @@
+https://github.com/adafruit/Adafruit_AHTX0
