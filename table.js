@@ -30,7 +30,7 @@ directories.forEach(dir => {
                 name: packageData.name || '-',
                 version: packageData.version || '-',
                 status: packageData.tested || false,
-                tester: packageData.tested || '-',
+                tester: packageData.tester || '-',
                 dir
             });
 

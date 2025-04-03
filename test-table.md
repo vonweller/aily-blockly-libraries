@@ -4,7 +4,7 @@
 | 2 | AHT温湿度 | [@aily-project/lib-aht-sensor](adafruit_AHTX0) | 0.0.1 | ✗ | - |
 | 3 | 指纹识别库 | [@aily-project/lib-fingerprint](adafruit_Fingerprint) | 0.0.1 | ✗ | - |
 | 4 | ADXL345传感器库 | [@aily-project/lib-adxl345](ADXL345) | 0.0.1 | ✗ | - |
-| 5 | BLE | [@aily-project/lib-arduino_ble](arduino_BLE) | 0.0.1 | ✗ | - |
+| 5 | BLE | [@aily-project/lib-arduino_ble](arduino_BLE) | 0.0.1 | ✓ | coloz |
 | 6 | ArduinoHTTP | [@aily-project/lib-arduino_http](arduino_http) | 1.0.0 | ✗ | - |
 | 7 | I2C扫描工具 | [@aily-project/lib-i2c-scanner](arduino_iic) | 0.0.1 | ✗ | - |
 | 8 | 键盘模拟库 | [@aily-project/lib-keyboard](arduino_keyboard) | 0.0.1 | ✗ | - |
