@@ -2,6 +2,7 @@
 
 - [GFX](./GFX)
 - [GP2Y1010AU0F](./GP2Y1010AU0F)
+- [IICMotorDriver](./IICMotorDriver)
 - [INA219](./INA219)
 - [MadgwickAHRS](./MadgwickAHRS)
 - [PAJ7620](./PAJ7620)
