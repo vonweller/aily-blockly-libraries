@@ -21,7 +21,11 @@ function filterPackageJson(packageJson, keysToExtract) {
     if (packageJson.hasOwnProperty(key)) {
       filteredJson[key] = packageJson[key];
     } else {
-      filteredJson[key] = "";
+      if (key === 'tested') {
+        filteredJson[key] = false;
+      } else {
+        filteredJson[key] = "";
+      }
     }
   });
 
