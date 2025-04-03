@@ -13,6 +13,10 @@ library-name
  |- examples               // 库示例程序
      |- ex1.json
      |- ex2.json
+ |- i18n                   // 多语言支持
+     |- en.json            // 英文
+     |- zh-cn.json         // 简体中文
+     |- zh-tw.json         // 繁体中文
 ```
 
 ## block.json
