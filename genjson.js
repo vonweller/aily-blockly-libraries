@@ -9,7 +9,8 @@ const defaultKeysToExtract = [
   'description',
   'author',
   'compatibility',
-  'keywords'
+  'keywords',
+  'tested'
 ];
 
 // 根据配置过滤package.json对象
