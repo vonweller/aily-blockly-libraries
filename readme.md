@@ -10,13 +10,11 @@ library-name
  |- package.json           // npm包管理文件
  |- src.7z                 // Arduino库源文件，请使用7z极限压缩后放在库中
  |- readme.md              // 说明文件，如果使用了开源库，请进行说明
- |- examples               // 库示例程序
-     |- ex1.json
-     |- ex2.json
+ |- examples               // 库示例程序文件夹
  |- i18n                   // 多语言支持
      |- en.json            // 英文
-     |- zh-cn.json         // 简体中文
-     |- zh-tw.json         // 繁体中文
+     |- zh_cn.json         // 简体中文
+     |- zh_tw.json         // 繁体中文
 ```
 
 ## block.json
