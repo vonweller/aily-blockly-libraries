@@ -53,38 +53,7 @@ Blockly.getMainWorkspace().registerButtonCallback(
               }
             })
 
-            toolbox.refreshSelection();
-
-            // 更新整个工具箱
-            workspace.updateToolbox(originalToolboxDef);
-
-            // 强制刷新工具箱显示
-            if (variableCategory) {
-              variableCategory.refreshTheme();
-
-              // 如果工具箱处于打开状态，使用更可靠的方式重新打开类别
-              if (toolbox.isOpen_) {
-                const categoryId = variableCategory.id_;
-                // 保存当前打开的类别ID
-                toolbox.setSelectedItem(null);
-
-                // 增加延迟时间，确保DOM有足够时间更新
-                setTimeout(() => {
-                  // 强制重新构建类别内容
-                  variableCategory.updateFlyoutContents(originalToolboxDef);
-
-                  // 重新打开同一个类别
-                  toolbox.setSelectedItem(variableCategory);
-
-                  // 额外的刷新以确保UI更新
-                  workspace.refreshToolboxSelection();
-                }, 50); // 增加延迟时间
-              } else {
-                // 确保即使工具箱关闭也能更新内容
-                variableCategory.updateFlyoutContents(originalToolboxDef);
-              }
-            }
-
+            refreshToolbox(workspace);
             break;
           }
         }
@@ -96,6 +65,22 @@ Blockly.getMainWorkspace().registerButtonCallback(
     );
   },
 );
+
+// 更新toolbox
+function refreshToolbox(oldWorkspace) {
+  const originalToolboxDef = oldWorkspace.options.languageTree;
+  oldWorkspace.updateToolbox(originalToolboxDef);
+
+  const workspace = Blockly.getMainWorkspace();
+  const toolbox = workspace.getToolbox();
+  const allCategories = toolbox.getToolboxItems();
+  const variableCategory = allCategories.find(item =>
+      item.name_ === "Variables" || (item.getContents && item.getContents()[0]?.callbackKey === "CREATE_VARIABLE")
+  );
+  if (toolbox.isVisible_) {
+    toolbox.setSelectedItem(variableCategory);
+  }
+}
 
 // 重命名变量
 function renameVariable(block, oldName, newName, vtype) {
@@ -196,29 +181,7 @@ function renameVariable(block, oldName, newName, vtype) {
           }
         }
 
-        // 更新工具箱
-        if (toolbox && variableCategory) {
-          toolbox.refreshSelection();
-          workspace.updateToolbox(originalToolboxDef);
-
-          // 强制刷新工具箱显示
-          variableCategory.refreshTheme();
-
-          // 如果工具箱处于打开状态，使用更可靠的方式重新打开类别
-          if (toolbox.isOpen_) {
-            // 保存当前打开的类别ID
-            toolbox.setSelectedItem(null);
-
-            // 延迟更新确保DOM有足够时间更新
-            setTimeout(() => {
-              variableCategory.updateFlyoutContents(originalToolboxDef);
-              toolbox.setSelectedItem(variableCategory);
-              workspace.refreshToolboxSelection();
-            }, 50);
-          } else {
-            variableCategory.updateFlyoutContents(originalToolboxDef);
-          }
-        }
+        // refreshToolbox(workspace);
         break;
       }
     }
@@ -275,29 +238,7 @@ function addVariableToToolbox(block, varName) {
 
           Blockly.Msg.VARIABLES_CURRENT_NAME = varName;
 
-          // 更新工具箱
-          if (toolbox && variableCategory) {
-            toolbox.refreshSelection();
-            workspace.updateToolbox(originalToolboxDef);
-
-            // 强制刷新工具箱显示
-            variableCategory.refreshTheme();
-
-            // 如果工具箱处于打开状态，使用更可靠的方式重新打开类别
-            if (toolbox.isOpen_) {
-              // 保存当前打开的类别ID
-              toolbox.setSelectedItem(null);
-
-              // 延迟更新确保DOM有足够时间更新
-              setTimeout(() => {
-                variableCategory.updateFlyoutContents(originalToolboxDef);
-                toolbox.setSelectedItem(variableCategory);
-                workspace.refreshToolboxSelection();
-              }, 50);
-            } else {
-              variableCategory.updateFlyoutContents(originalToolboxDef);
-            }
-          }
+          refreshToolbox(workspace);
         }
         break;
       }
