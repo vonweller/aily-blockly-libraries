@@ -12,7 +12,6 @@
 - [TM1650](./TM1650)
 - [arduino_SD](./arduino_SD)
 - [ble_serial](./ble_serial)
-- [dfrobot_dfplayer](./dfrobot_dfplayer)
 - [max30102](./max30102)
 - [mpu](./mpu)
 - [openjumper_mp3player](./openjumper_mp3player)
