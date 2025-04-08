@@ -51,16 +51,19 @@
 | 49 | MPU6050 | [@aily-project/lib-mpu6050](MPU6050) | 1.0.0 | ✗ | - |
 | 50 | NeoPixel LED灯带 | [@aily-project/lib-neopixel](NeoPixel) | 0.1.0 | ✓ | ISK2L |
 | 51 | OneButton | [@aily-project/lib-onebutton](onebutton) | 0.0.1 | ✗ | - |
-| 52 | 文本转语音库 | [@aily-project/lib-tts](openjumper_tts) | 0.0.1 | ✓ | ISK2L |
-| 53 | 函数方法 | [@aily-project/lib-core-procedures](procedures) | 0.0.1 | ✗ | - |
-| 54 | PS2控制器库 | [@aily-project/lib-ps2x](PS2X) | 1.0.0 | ✗ | - |
-| 55 | RTC时钟 | [@aily-project/lib-rtc](RTC) | 1.0.0 | ✗ | - |
-| 56 | LIS3DHTR驱动库 | [@aily-project/lib-lis3dhtr](seeed_LIS3DHTR) | 0.0.1 | ✗ | - |
-| 57 | 舵机驱动库 | [@aily-project/lib-servo](servo) | 0.0.1 | ✓ | ISK2L |
-| 58 | SHT3x温湿度传感器库 | [@aily-project/lib-sht3x](SHT) | 0.0.1 | ✗ | - |
-| 59 | 步进电机驱动库 | [@aily-project/lib-stepper](Stepper) | 0.0.1 | ✗ | - |
-| 60 | TFT显示屏驱动库 | [@aily-project/lib-tft](TFT) | 0.0.1 | ✗ | - |
-| 61 | U8G2显示屏库 | [@aily-project/lib-u8g2](u8g2) | 0.0.1 | ✓ | ISK2L |
-| 62 | 超声波传感器 | [@aily-project/lib-ultrasonic](Ultrasonic) | 0.0.1 | ✓ | ISK2L |
-| 63 | VL53L0X激光测距传感器 | [@aily-project/lib-vl53l0x](VL53L0X) | 1.0.0 | ✗ | - |
-| 64 | WS2812 LED灯带库 | [@aily-project/lib-ws2812fx](ws2812fx) | 0.0.1 | ✗ | - |
+| 52 | 语音识别库 | [@aily-project/lib-asr](openjumper-asr) | 0.0.1 | ✗ | - |
+| 53 | IIC电机驱动库 | [@aily-project/lib-iicmotordriver](openjumper-IICMotorDriver) | 0.0.1 | ✓ | K2L |
+| 54 | 串口mp3播放器 | [@aily-project/lib-mp3player-gd3800](openjumper_mp3player) | 0.0.1 | ✓ | K2L |
+| 55 | 文本转语音库 | [@aily-project/lib-tts](openjumper_tts) | 0.0.1 | ✓ | ISK2L |
+| 56 | 函数方法 | [@aily-project/lib-core-procedures](procedures) | 0.0.1 | ✗ | - |
+| 57 | PS2控制器库 | [@aily-project/lib-ps2x](PS2X) | 1.0.0 | ✗ | - |
+| 58 | RTC时钟 | [@aily-project/lib-rtc](RTC) | 1.0.0 | ✗ | - |
+| 59 | LIS3DHTR驱动库 | [@aily-project/lib-lis3dhtr](seeed_LIS3DHTR) | 0.0.1 | ✗ | - |
+| 60 | 舵机驱动库 | [@aily-project/lib-servo](servo) | 0.0.1 | ✓ | ISK2L |
+| 61 | SHT3x温湿度传感器库 | [@aily-project/lib-sht3x](SHT) | 0.0.1 | ✗ | - |
+| 62 | 步进电机驱动库 | [@aily-project/lib-stepper](Stepper) | 0.0.1 | ✗ | - |
+| 63 | TFT显示屏驱动库 | [@aily-project/lib-tft](TFT) | 0.0.1 | ✗ | - |
+| 64 | U8G2显示屏库 | [@aily-project/lib-u8g2](u8g2) | 0.0.1 | ✓ | ISK2L |
+| 65 | 超声波传感器 | [@aily-project/lib-ultrasonic](Ultrasonic) | 0.0.1 | ✓ | ISK2L |
+| 66 | VL53L0X激光测距传感器 | [@aily-project/lib-vl53l0x](VL53L0X) | 1.0.0 | ✗ | - |
+| 67 | WS2812 LED灯带库 | [@aily-project/lib-ws2812fx](ws2812fx) | 0.0.1 | ✗ | - |
