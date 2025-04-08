@@ -49,7 +49,9 @@ async function main() {
       .filter(dirent => dirent.isDirectory())
       .map(dirent => dirent.name);
 
-    // 存储普通库的内容
+    // 存储tested为true的库的内容
+    const testedLibraries = [];
+    // 存储普通库的内容（tested不为true的）
     const normalLibraries = [];
     // 存储以"core-"开头的库的内容
     const coreLibraries = [];
@@ -67,11 +69,19 @@ async function main() {
         // 根据配置过滤package.json
         const filteredJson = keysToExtract ? filterPackageJson(packageJson, keysToExtract) : packageJson;
 
-        // 判断是否是"core-"开头的目录，分别放入不同数组
+        // 判断项目分类:
+        // 1. 首先判断是否是"core-"开头的目录
         if (subdir.startsWith('core-')) {
           coreLibraries.push(filteredJson);
           console.log(`成功读取 ${subdir}/package.json (core)`);
-        } else {
+        } 
+        // 2. 然后判断是否tested为true
+        else if (filteredJson.tested === true) {
+          testedLibraries.push(filteredJson);
+          console.log(`成功读取 ${subdir}/package.json (tested)`);
+        } 
+        // 3. 其他普通项目
+        else {
           normalLibraries.push(filteredJson);
           console.log(`成功读取 ${subdir}/package.json`);
         }
@@ -84,15 +94,15 @@ async function main() {
       }
     }
 
-    // 合并两个数组，普通库在前，"core-"开头的库在后
-    const libraries = [...normalLibraries, ...coreLibraries];
+    // 合并三个数组，按照 tested为true -> 普通库 -> "core-"开头的库 的顺序排列
+    const libraries = [...testedLibraries, ...normalLibraries, ...coreLibraries];
 
     // 写入结果到libraries.json
     const librariesJson = JSON.stringify(libraries, null, 2);
     const outputPath = path.join(currentDir, 'libraries.json');
     await fs.writeFile(outputPath, librariesJson, 'utf8');
 
-    console.log(`成功将${libraries.length}个库的信息写入到${outputPath}（其中普通库${normalLibraries.length}个，核心库${coreLibraries.length}个）`);
+    console.log(`成功将${libraries.length}个库的信息写入到${outputPath}（其中tested库${testedLibraries.length}个，普通库${normalLibraries.length}个，核心库${coreLibraries.length}个）`);
   } catch (error) {
     console.error('发生错误:', error);
   }
