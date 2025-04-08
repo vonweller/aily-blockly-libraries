@@ -9,7 +9,8 @@ const defaultKeysToExtract = [
   'description',
   'author',
   'compatibility',
-  'keywords'
+  'keywords',
+  'tested'
 ];
 
 // 根据配置过滤package.json对象
@@ -20,7 +21,11 @@ function filterPackageJson(packageJson, keysToExtract) {
     if (packageJson.hasOwnProperty(key)) {
       filteredJson[key] = packageJson[key];
     } else {
-      filteredJson[key] = "";
+      if (key === 'tested') {
+        filteredJson[key] = false;
+      } else {
+        filteredJson[key] = "";
+      }
     }
   });
 
