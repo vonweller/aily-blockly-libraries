@@ -1,0 +1,69 @@
+
+{
+  "kind": "category",
+  "name": "MP3音乐播放器",
+  "contents": [
+    {
+      "kind": "block",
+      "type": "gd3800_init",
+      "inputs": {
+        "PIN_TX": {
+          "block": {
+            "type": "io_pin_digi",
+            "fields": {
+              "PIN": "12"
+            }
+          }
+        },
+        "PIN_RX": {
+          "block": {
+            "type": "io_pin_digi",
+            "fields": {
+              "PIN": "11"
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "gd3800_set"
+    },
+    {
+      "kind": "block",
+      "type": "gd3800_play",
+      "inputs": {
+        "MUSICNUM": {
+          "block": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 1
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "gd3800_cyclemode"
+    },
+    {
+      "kind": "block",
+      "type": "gd3800_equalizer"
+    },
+    {
+      "kind": "block",
+      "type": "gd3800_setvolume",
+      "inputs": {
+        "SETVOLUME": {
+          "block": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 20
+            }
+          }
+        }
+      }
+    }
+  ]
+}
