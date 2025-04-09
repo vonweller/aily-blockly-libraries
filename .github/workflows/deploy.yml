@@ -74,14 +74,17 @@ jobs:
           fi
   
       - name: echo matrix
+        if: steps.check-update-all.outputs.should_skip != 'true'
         run: echo "${{ toJson(matrix) }}"
 
       - name: Checkout code
+        if: steps.check-update-all.outputs.should_skip != 'true'
         uses: actions/checkout@v3
         with:
           token: ${{ secrets.GHB_TOKEN }}
       
       - name: Setup Node.js
+        if: steps.check-update-all.outputs.should_skip != 'true'
         uses: actions/setup-node@v3
         with:
           node-version: '18'
@@ -93,11 +96,13 @@ jobs:
       #     npm ci || npm install
       
       - name: Build package
+        if: steps.check-update-all.outputs.should_skip != 'true'
         run: |
           cd ${{ matrix.package }}
           npm run build --if-present
       
       - name: Publish to NPM
+        if: steps.check-update-all.outputs.should_skip != 'true'
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
@@ -134,17 +139,20 @@ jobs:
           fi
   
       - name: Checkout code
+        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/deploy' && steps.check-update-all.outputs.should_run == 'true' }}
         uses: actions/checkout@v3
         with:
           token: ${{ secrets.GHB_TOKEN }}
       
       - name: Setup Node.js
+        if: steps.check-update-all.outputs.should_run == 'true'
         uses: actions/setup-node@v3
         with:
           node-version: '18'
           registry-url: ${{ secrets.REGISTRY_URL }}
       
       - name: Publish to NPM
+        if: steps.check-update-all.outputs.should_run == 'true'
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
