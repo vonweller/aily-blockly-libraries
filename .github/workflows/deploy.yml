@@ -112,7 +112,7 @@ jobs:
           npm publish --access public
   
   build-and-publish-all:
-  if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/deploy' && secrets.UPDATE_ALL == 'true' }}
+    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/deploy' && secrets.UPDATE_ALL == 'true' }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
