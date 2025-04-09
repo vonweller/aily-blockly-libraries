@@ -58,12 +58,21 @@ jobs:
 
   build-and-publish:
     needs: detect-changes
-    if: ${{ github.event_name == 'push' && needs.detect-changes.outputs.matrix != '{"package":[]}' && github.ref == 'refs/heads/deploy' && secrets.UPDATE_ALL != 'true' }}
+    if: ${{ github.event_name == 'push' && needs.detect-changes.outputs.matrix != '{"package":[]}' && github.ref == 'refs/heads/deploy' }}
     runs-on: ubuntu-latest
     strategy:
       matrix: ${{ fromJson(needs.detect-changes.outputs.matrix) }}
       fail-fast: false
     steps:
+      - name: Check UPDATE_ALL flag
+        id: check-update-all
+        run: |
+          if [[ "${{ secrets.UPDATE_ALL }}" == "true" ]]; then
+            echo "should_skip=true" >> $GITHUB_OUTPUT
+          else
+            echo "should_skip=false" >> $GITHUB_OUTPUT
+          fi
+  
       - name: echo matrix
         run: echo "${{ toJson(matrix) }}"
 
@@ -112,9 +121,18 @@ jobs:
           npm publish --access public
   
   build-and-publish-all:
-    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/deploy' && secrets.UPDATE_ALL == 'true' }}
+    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/deploy' }}
     runs-on: ubuntu-latest
     steps:
+      - name: Check UPDATE_ALL flag
+        id: check-update-all
+        run: |
+          if [[ "${{ secrets.UPDATE_ALL }}" == "true" ]]; then
+            echo "should_run=true" >> $GITHUB_OUTPUT
+          else
+            echo "should_run=false" >> $GITHUB_OUTPUT
+          fi
+  
       - name: Checkout code
         uses: actions/checkout@v3
         with:
