@@ -6,60 +6,48 @@ Blockly.getMainWorkspace().registerButtonCallback(
       workspace,
       (varName) => {
         Blockly.Msg.VARIABLES_CURRENT_NAME = varName;
-        // 获取变量分类
-        const toolbox = workspace.getToolbox();
-        const allCategories = toolbox.getToolboxItems();
-        const variableCategory = allCategories.find(item =>
-          item.name_ === "Variables" || (item.getContents && item.getContents()[0]?.callbackKey === "CREATE_VARIABLE")
-        );
 
         // 获取原始工具箱定义
         const originalToolboxDef = workspace.options.languageTree;
 
-        // 找到变量类别并更新其内容
-        for (let category of originalToolboxDef.contents) {
-          if ((category.name === "Variables" ||
-            (category.contents && category.contents[0]?.callbackKey === "CREATE_VARIABLE"))) {
-            // 更新该类别的内容
-            if (category.contents.length === 1) {
-              category.contents = [
-                {
-                  "kind": "button",
-                  "text": "新建变量",
-                  "callbackKey": "CREATE_VARIABLE"
-                },
-                {
-                  "kind": "block",
-                  "type": "variable_define"
-                },
-                {
-                  "kind": "block",
-                  "type": "variables_set"
-                }
-              ];
-            }
-
-            // 获取当前时间戳
-            const timestamp = new Date().getTime();
-            category.contents.push({
-              "kind": "block",
-              "type": "variables_get",
-              "fields": {
-                "VAR": {
-                  "id": "varName" + timestamp,
-                  "name": varName,
-                  "type": "string"
-                }
+        // 找到变量类别
+        const variableCategory = findVariableCategoryInToolboxDef(originalToolboxDef);
+        if (variableCategory) {
+          // 更新该类别的内容
+          if (variableCategory.contents.length === 1) {
+            variableCategory.contents = [
+              {
+                "kind": "button",
+                "text": "新建变量",
+                "callbackKey": "CREATE_VARIABLE"
+              },
+              {
+                "kind": "block",
+                "type": "variable_define"
+              },
+              {
+                "kind": "block",
+                "type": "variables_set"
               }
-            })
-
-            refreshToolbox(workspace);
-            break;
+            ];
           }
-        }
 
-        // 触发所有监听器
-        // variableCreationListeners.forEach(listener => listener(varName));
+          // 获取当前时间戳
+          const timestamp = new Date().getTime();
+          variableCategory.contents.push({
+            "kind": "block",
+            "type": "variables_get",
+            "fields": {
+              "VAR": {
+                "id": "varName" + timestamp,
+                "name": varName,
+                "type": "string"
+              }
+            }
+          });
+
+          refreshToolbox(workspace);
+        }
       },
       null
     );
@@ -67,17 +55,17 @@ Blockly.getMainWorkspace().registerButtonCallback(
 );
 
 // 更新toolbox
-function refreshToolbox(oldWorkspace) {
+function refreshToolbox(oldWorkspace, showCategory = true) {
   const originalToolboxDef = oldWorkspace.options.languageTree;
   oldWorkspace.updateToolbox(originalToolboxDef);
 
+  if (!showCategory) return;
+
   const workspace = Blockly.getMainWorkspace();
+  const variableCategory = getVariableCategory(workspace);
+
   const toolbox = workspace.getToolbox();
-  const allCategories = toolbox.getToolboxItems();
-  const variableCategory = allCategories.find(item =>
-      item.name_ === "Variables" || (item.getContents && item.getContents()[0]?.callbackKey === "CREATE_VARIABLE")
-  );
-  if (toolbox.isVisible_) {
+  if (toolbox && toolbox.isVisible_ && variableCategory) {
     toolbox.setSelectedItem(variableCategory);
   }
 }
@@ -88,22 +76,14 @@ function renameVariable(block, oldName, newName, vtype) {
     console.log("rename variable: ", oldName, newName);
     const workspace = block.workspace;
     if (!workspace || !oldName || !newName) return;
+    // TODO 提示 命令规范 C语言变量规范 @downey
 
-    Blockly.Msg.VARIABLES_CURRENT_NAME = newName;
-    newNameExisting = Blockly.Variables.nameUsedWithAnyType(newName, workspace);
+    const newNameExisting = Blockly.Variables.nameUsedWithAnyType(newName, workspace);
     if (newNameExisting) {
       console.log(`变量 ${newName} 已存在，无法重命名`);
       return;
     }
-
-    // 获取工具箱
-    const toolbox = workspace.getToolbox();
-    if (!toolbox) return;
-
-    const allCategories = toolbox.getToolboxItems();
-    const variableCategory = allCategories.find(item =>
-      item.name_ === "Variables" || (item.getContents && item.getContents()[0]?.callbackKey === "CREATE_VARIABLE")
-    );
+    Blockly.Msg.VARIABLES_CURRENT_NAME = newName;
 
     // 获取原始工具箱定义
     const originalToolboxDef = workspace.options.languageTree;
@@ -151,7 +131,7 @@ function renameVariable(block, oldName, newName, vtype) {
         (category.contents && category.contents[0]?.callbackKey === "CREATE_VARIABLE"))) {
 
         console.log("isOldVarStillReferenced: ", isOldVarStillReferenced);
-        if (isOldVarStillReferenced) {
+        if (!isOldVarStillReferenced) {
           workspace.createVariable(newName, vtype)
           const timestamp = new Date().getTime();
           category.contents.push({
@@ -181,70 +161,12 @@ function renameVariable(block, oldName, newName, vtype) {
           }
         }
 
-        // refreshToolbox(workspace);
+        refreshToolbox(workspace, false);
         break;
       }
     }
   } catch (e) {
     console.log("重命名变量时出错:", e);
-  }
-}
-
-// 添加新函数，用于将循环变量添加到工具箱
-function addVariableToToolbox(block, varName) {
-  try {
-    const workspace = block.workspace;
-    if (!workspace || !varName) return;
-
-    // 获取工具箱
-    const toolbox = workspace.getToolbox();
-    if (!toolbox) return;
-
-    const allCategories = toolbox.getToolboxItems();
-    const variableCategory = allCategories.find(item =>
-      item.name_ === "Variables" || (item.getContents && item.getContents()[0]?.callbackKey === "CREATE_VARIABLE")
-    );
-
-    // 获取原始工具箱定义
-    const originalToolboxDef = workspace.options.languageTree;
-    if (!originalToolboxDef) return;
-
-    // 找到变量类别并更新其内容
-    for (let category of originalToolboxDef.contents) {
-      if ((category.name === "Variables" ||
-        (category.contents && category.contents[0]?.callbackKey === "CREATE_VARIABLE"))) {
-
-        // 检查变量是否已存在
-        const varExists = category.contents.some(item =>
-          item.fields && item.fields.VAR && item.fields.VAR.name === varName
-        );
-
-        if (!varExists) {
-          // 获取当前时间戳作为ID
-          const timestamp = new Date().getTime();
-          category.contents.push({
-            "kind": "block",
-            "type": "variables_get",
-            "fields": {
-              "VAR": {
-                "id": "loopVar" + timestamp,
-                "name": varName,
-                "type": "int"
-              }
-            }
-          });
-
-          console.log("categoryContents: ", category.contents);
-
-          Blockly.Msg.VARIABLES_CURRENT_NAME = varName;
-
-          refreshToolbox(workspace);
-        }
-        break;
-      }
-    }
-  } catch (e) {
-    console.log("添加循环变量到工具箱时出错:", e);
   }
 }
 
@@ -369,3 +291,110 @@ Arduino.forBlock["variables_set"] = function (block, generator) {
 
 Arduino.forBlock["variables_get_dynamic"] = Arduino.forBlock["variables_get"];
 Arduino.forBlock["variables_set_dynamic"] = Arduino.forBlock["variables_set"];
+
+// 获取toolbox分类变量类型
+function getVariableCategory(workspace) {
+  const toolbox = workspace.getToolbox();
+  if (!toolbox) return null;
+
+  const allCategories = toolbox.getToolboxItems();
+  return allCategories.find(item =>
+    item.name_ === "Variables" || (item.getContents && item.getContents()[0]?.callbackKey === "CREATE_VARIABLE")
+  );
+}
+
+// 分类变量类型引用
+function findVariableCategoryInToolboxDef(toolboxDef) {
+  if (!toolboxDef || !toolboxDef.contents) return null;
+
+  return toolboxDef.contents.find(category =>
+    category.name === "Variables" ||
+    (category.contents && category.contents[0]?.callbackKey === "CREATE_VARIABLE")
+  );
+}
+
+// 初始化时加载变量并显示到变量类别中
+function initializeVariables(workspace) {
+  if (!workspace) return;
+
+  try {
+    const variableArr = Blockly.getMainWorkspace().getAllVariables();
+
+    if (variableArr.length === 0) {
+      console.log("未找到任何变量");
+      return;
+    }
+
+    console.log("从块中提取到 " + variableArr.length + " 个变量");
+
+    const originalToolboxDef = workspace.options.languageTree;
+    if (!originalToolboxDef) return;
+
+    const variableCategory = findVariableCategoryInToolboxDef(originalToolboxDef);
+    if (!variableCategory) return;
+
+    if (variableCategory.contents.length === 1) {
+      variableCategory.contents = [
+        {
+          "kind": "button",
+          "text": "新建变量",
+          "callbackKey": "CREATE_VARIABLE"
+        },
+        {
+          "kind": "block",
+          "type": "variable_define"
+        },
+        {
+          "kind": "block",
+          "type": "variables_set"
+        }
+      ];
+    }
+
+    Blockly.Msg.VARIABLES_CURRENT_NAME = variableArr[variableArr.length - 1].name;
+
+    variableArr.forEach(variable => {
+      variableCategory.contents.push({
+        "kind": "block",
+        "type": "variables_get",
+        "fields": {
+          "VAR": {
+            "id": variable.id,
+            "name": variable.name,
+            "type": variable.type || "string"
+          }
+        }
+      });
+
+      if (!workspace.getVariable(variable.name)) {
+        workspace.createVariable(variable.name, variable.type, variable.id);
+      }
+    });
+
+    // 刷新工具箱显示
+    refreshToolbox(workspace);
+
+    console.log("已加载 " + variableArr.length + " 个变量到工具箱");
+  } catch (e) {
+    console.error("初始化变量时出错:", e);
+    console.error(e.stack);
+  }
+}
+
+
+(function setupVariableInitialization() {
+  try {
+    const workspace = Blockly.getMainWorkspace();
+
+    workspace.addChangeListener(function (event) {
+      if (event.type === Blockly.Events.FINISHED_LOADING) {
+        console.log("工作区加载完成，初始化变量");
+        setTimeout(() => initializeVariables(workspace), 200);
+      }
+    });
+  } catch (e) {
+    console.error("设置变量初始化时出错:", e);
+  }
+})()
+
+
