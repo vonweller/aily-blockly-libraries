@@ -1,28 +1,60 @@
 {
-    "toolbox_name": "Logic",
+    "toolbox_name": "Logik",
     "controls_if": {
-        "message0": "🔀wenn %1",
-        "message1": "dann mache %1"
+        "message0": "🔀Wenn %1",
+        "message1": "Dann %1"
     },
     "controls_ifelse": {
-        "message0": "🔀wenn %1",
-        "message1": "%1 ausführen",
-        "message2": "sonst %1"
+        "message0": "🔀Wenn %1",
+        "message1": "Mach %1",
+        "message2": "Sonst %1"
     },
     "logic_compare": {
-        "message0": "%1 %2 %3"
+        "message0": "%1 %2 %3",
+        "args0": [
+            null,
+            {
+                "options": [
+                    ["==", "EQ"],
+                    ["!=", "NEQ"],
+                    ["<", "LT"],
+                    [">", "GT"],
+                    [">=", "GTE"],
+                    ["<=", "LTE"]
+                ]
+            },
+            null
+        ]
     },
     "logic_operation": {
-        "message0": "%1 %2 %3"
+        "message0": "%1 %2 %3",
+        "args0": [
+            null,
+            {
+                "options": [
+                    ["UND", "AND"],
+                    ["ODER", "OR"]
+                ]
+            },
+            null
+        ]
     },
     "logic_negate": {
-        "message0": "nicht %1"
+        "message0": "Nicht %1"
     },
     "logic_boolean": {
-        "message0": "%1"
+        "message0": "%1",
+        "args0": [
+            {
+                "options": [
+                    ["Wahr", "true"],
+                    ["Falsch", "false"]
+                ]
+            }
+        ]
     },
     "logic_ternary": {
-        "message0": "Bedingung %1",
+        "message0": "Behaupten %1",
         "message1": "Wenn wahr %1",
         "message2": "Wenn falsch %1"
     }

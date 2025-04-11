@@ -1,29 +1,61 @@
 {
-    "toolbox_name": "Logic",
+    "toolbox_name": "Lógica",
     "controls_if": {
-        "message0": "🔀si %1",
-        "message1": "entonces hacer %1"
+        "message0": "🔀Si %1",
+        "message1": "Entonces hacer %1"
     },
     "controls_ifelse": {
-        "message0": "🔀si %1",
-        "message1": "hacer %1",
-        "message2": "sino %1"
+        "message0": "🔀Si %1",
+        "message1": "Hacer %1",
+        "message2": "De lo contrario %1"
     },
     "logic_compare": {
-        "message0": "%1 %2 %3"
+        "message0": "%1 %2 %3",
+        "args0": [
+            null,
+            {
+                "options": [
+                    ["==", "EQ"],
+                    ["!=", "NEQ"],
+                    ["<", "LT"],
+                    [">", "GT"],
+                    [">=", "GTE"],
+                    ["<=", "LTE"]
+                ]
+            },
+            null
+        ]
     },
     "logic_operation": {
-        "message0": "%1 %2 %3"
+        "message0": "%1 %2 %3",
+        "args0": [
+            null,
+            {
+                "options": [
+                    ["Y", "AND"],
+                    ["O", "OR"]
+                ]
+            },
+            null
+        ]
     },
     "logic_negate": {
-        "message0": "no %1"
+        "message0": "NO %1"
     },
     "logic_boolean": {
-        "message0": "%1"
+        "message0": "%1",
+        "args0": [
+            {
+                "options": [
+                    ["Verdadero", "true"],
+                    ["Falso", "false"]
+                ]
+            }
+        ]
     },
     "logic_ternary": {
-        "message0": "Condición %1",
-        "message1": "Si es verdad %1",
-        "message2": "Si es falso %1"
+        "message0": "Afirmar %1",
+        "message1": "Si verdadero %1",
+        "message2": "Si falso %1"
     }
 }
