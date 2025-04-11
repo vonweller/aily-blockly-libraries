@@ -1,10 +1,10 @@
 | 序号 | 库名 | 包名 | 最新版本 | 状态 | 测试人 |
 | :---: | :--- | :--- | :------- | :--- | :----- |
-| 1 | 移位寄存器驱动库 | [@aily-project/lib-shiftregister](74HC595) | 0.0.1 | ✗ | - |
-| 2 | AHT温湿度 | [@aily-project/lib-aht-sensor](adafruit_AHTX0) | 0.0.1 | ✗ | - |
-| 3 | DHT温湿度传感器库 | [@aily-project/lib-dht](adafruit_DHT) | 0.0.1 | ✓ | ISK2L |
-| 4 | 指纹识别库 | [@aily-project/lib-fingerprint](adafruit_Fingerprint) | 0.0.1 | ✗ | - |
-| 5 | MLX90614红外测温库 | [@aily-project/lib-mlx90614](adafruit_MLX90614) | 1.0.0 | ✗ | - |
+| 1 | AHT温湿度 | [@aily-project/lib-aht-sensor](adafruit_AHTX0) | 0.0.1 | ✗ | - |
+| 2 | DHT温湿度传感器库 | [@aily-project/lib-dht](adafruit_DHT) | 0.0.1 | ✓ | ISK2L |
+| 3 | 指纹识别库 | [@aily-project/lib-fingerprint](adafruit_Fingerprint) | 0.0.1 | ✗ | - |
+| 4 | MLX90614红外测温库 | [@aily-project/lib-mlx90614](adafruit_MLX90614) | 1.0.0 | ✗ | - |
+| 5 | NeoPixel LED灯带 | [@aily-project/lib-neopixel](adafruit_NeoPixel) | 0.1.0 | ✓ | ISK2L |
 | 6 | ADXL345传感器库 | [@aily-project/lib-adxl345](ADXL345) | 0.0.1 | ✗ | - |
 | 7 | ArduinoBLE | [@aily-project/lib-arduino_ble](arduino_BLE) | 0.0.1 | ✗ | - |
 | 8 | ArduinoHTTP | [@aily-project/lib-arduino_http](arduino_http) | 1.0.0 | ✗ | - |
@@ -13,7 +13,7 @@
 | 11 | ArduinoMouse | [@aily-project/lib-mouse](arduino_mouse) | 1.0.0 | ✗ | - |
 | 12 | MQTT通信库 | [@aily-project/lib-mqtt](arduino_mqtt) | 0.1.0 | ✗ | - |
 | 13 | CAN总线通信库 | [@aily-project/lib-r4-can](arduino_r4_CAN) | 1.0.0 | ✗ | - |
-| 14 | LED矩阵库 | [@aily-project/lib-r4-led-matrix](arduino_r4_LED_Matrix) | 0.0.1 | ✗ | - |
+| 14 | R4 WiFi LED矩阵库 | [@aily-project/lib-r4-led-matrix](arduino_r4_LED_Matrix) | 0.0.1 | ✗ | - |
 | 15 | 实时时钟 | [@aily-project/lib-r4-rtc](arduino_r4_RTC) | 1.0.0 | ✗ | - |
 | 16 | 看门狗定时器库 | [@aily-project/lib-r4-wdt](arduino_r4_WDT) | 1.0.0 | ✗ | - |
 | 17 | ArduinoSoftwareSerial | [@aily-project/lib-core-software_serial](arduino_softwareSerial) | 1.0.0 | ✗ | - |
@@ -40,30 +40,30 @@
 | 38 | DS18B20温度传感器库 | [@aily-project/lib-ds18b20](DS18B20) | 0.0.1 | ✗ | - |
 | 39 | Encoder | [@aily-project/lib-encoder](encoder) | 1.4.0 | ✗ | - |
 | 40 | HX711称重传感器库 | [@aily-project/lib-hx711](HX711) | 0.5.2 | ✓ | ISK2L |
-| 41 | 红外遥控库 | [@aily-project/lib-ir](IRremote) | 0.0.1 | ✗ | - |
-| 42 | 键盘矩阵库 | [@aily-project/lib-keypad](KEYPAD4X4) | 0.0.1 | ✗ | - |
-| 43 | LCD1602显示屏库 | [@aily-project/lib-liquidcrystal](LiquidCrystal) | 0.0.1 | ✗ | - |
-| 44 | LCD1602 I2C驱动库 | [@aily-project/lib-liquidcrystal_i2c](LiquidCrystal_I2C) | 0.0.1 | ✓ | ISK2L |
-| 45 | LM35温度传感器库 | [@aily-project/lib-lm35](LM35) | 0.0.1 | ✓ | ISK2L |
-| 46 | MAX31865温度传感器库 | [@aily-project/lib-max31865](MAX31865) | 1.0.0 | ✗ | - |
-| 47 | MAX7219显示驱动库 | [@aily-project/lib-max7219](MAX7219) | 0.0.1 | ✗ | - |
-| 48 | Adafruit电机驱动库 | [@aily-project/lib-afmotor](Motor) | 1.0.0 | ✗ | - |
-| 49 | MPU6050 | [@aily-project/lib-mpu6050](MPU6050) | 1.0.0 | ✗ | - |
-| 50 | NeoPixel LED灯带 | [@aily-project/lib-neopixel](NeoPixel) | 0.1.0 | ✓ | ISK2L |
-| 51 | OneButton | [@aily-project/lib-onebutton](onebutton) | 0.0.1 | ✗ | - |
-| 52 | 语音识别库 | [@aily-project/lib-asr](openjumper-asr) | 0.0.1 | ✗ | - |
-| 53 | IIC电机驱动库 | [@aily-project/lib-iicmotordriver](openjumper-IICMotorDriver) | 0.0.1 | ✓ | K2L |
-| 54 | 串口mp3播放器 | [@aily-project/lib-mp3player-gd3800](openjumper_mp3player) | 0.0.1 | ✓ | K2L |
-| 55 | 文本转语音库 | [@aily-project/lib-tts](openjumper_tts) | 0.0.1 | ✓ | ISK2L |
-| 56 | 函数方法 | [@aily-project/lib-core-procedures](procedures) | 0.0.1 | ✗ | - |
-| 57 | PS2控制器库 | [@aily-project/lib-ps2x](PS2X) | 1.0.0 | ✗ | - |
-| 58 | RTC时钟 | [@aily-project/lib-rtc](RTC) | 1.0.0 | ✗ | - |
-| 59 | LIS3DHTR驱动库 | [@aily-project/lib-lis3dhtr](seeed_LIS3DHTR) | 0.0.1 | ✗ | - |
-| 60 | 舵机驱动库 | [@aily-project/lib-servo](servo) | 0.0.1 | ✓ | ISK2L |
-| 61 | SHT3x温湿度传感器库 | [@aily-project/lib-sht3x](SHT) | 0.0.1 | ✗ | - |
-| 62 | 步进电机驱动库 | [@aily-project/lib-stepper](Stepper) | 0.0.1 | ✗ | - |
-| 63 | TFT显示屏驱动库 | [@aily-project/lib-tft](TFT) | 0.0.1 | ✗ | - |
-| 64 | U8G2显示屏库 | [@aily-project/lib-u8g2](u8g2) | 0.0.1 | ✓ | ISK2L |
+| 41 | IIC电机驱动库 | [@aily-project/lib-iicmotordriver](IICMotorDriver) | 0.0.1 | ✓ | K2L |
+| 42 | 红外遥控库 | [@aily-project/lib-IRremote](IRremote) | 0.0.1 | ✗ | - |
+| 43 | 键盘矩阵库 | [@aily-project/lib-keypad](KEYPAD4X4) | 0.0.1 | ✗ | - |
+| 44 | LCD1602显示屏库 | [@aily-project/lib-liquidcrystal](LiquidCrystal) | 0.0.1 | ✗ | - |
+| 45 | LCD1602 I2C驱动库 | [@aily-project/lib-liquidcrystal_i2c](LiquidCrystal_I2C) | 0.0.1 | ✓ | ISK2L |
+| 46 | LM35温度传感器库 | [@aily-project/lib-lm35](LM35) | 0.0.1 | ✓ | ISK2L |
+| 47 | MAX31865温度传感器库 | [@aily-project/lib-max31865](MAX31865) | 1.0.0 | ✗ | - |
+| 48 | MAX7219显示驱动库 | [@aily-project/lib-max7219](MAX7219) | 0.0.1 | ✗ | - |
+| 49 | Adafruit电机驱动库 | [@aily-project/lib-afmotor](Motor) | 1.0.0 | ✗ | - |
+| 50 | 串口mp3播放器 | [@aily-project/lib-mp3player-gd3800](mp3player) | 0.0.1 | ✓ | K2L |
+| 51 | MPU6050 | [@aily-project/lib-mpu6050](MPU6050) | 1.0.0 | ✗ | - |
+| 52 | OneButton | [@aily-project/lib-onebutton](onebutton) | 0.0.1 | ✗ | - |
+| 53 | 语音识别库 | [@aily-project/lib-asr](openjumper-asr) | 0.0.1 | ✗ | - |
+| 54 | 文本转语音库 | [@aily-project/lib-tts](openjumper_tts) | 0.0.1 | ✓ | ISK2L |
+| 55 | 函数方法 | [@aily-project/lib-core-procedures](procedures) | 0.0.1 | ✗ | - |
+| 56 | PS2控制器库 | [@aily-project/lib-ps2x](PS2X) | 1.0.0 | ✗ | - |
+| 57 | RTC时钟 | [@aily-project/lib-rtc](RTC) | 1.0.0 | ✗ | - |
+| 58 | LIS3DHTR驱动库 | [@aily-project/lib-lis3dhtr](seeed_LIS3DHTR) | 0.0.1 | ✗ | - |
+| 59 | 舵机驱动库 | [@aily-project/lib-servo](servo) | 0.0.1 | ✓ | ISK2L |
+| 60 | SHT3x温湿度传感器库 | [@aily-project/lib-sht3x](SHT) | 0.0.1 | ✗ | - |
+| 61 | 步进电机驱动库 | [@aily-project/lib-stepper](Stepper) | 0.0.1 | ✗ | - |
+| 62 | TFT显示屏驱动库 | [@aily-project/lib-tft](TFT) | 0.0.1 | ✗ | - |
+| 63 | TM1650四位数码管驱动库 | [@aily-project/lib-tm1650](TM1650) | 0.0.1 | ✓ | K2L |
+| 64 | U8G2显示屏库 | [@aily-project/lib-u8g2](u8g2) | 0.0.1 | ✗ | - |
 | 65 | 超声波传感器 | [@aily-project/lib-ultrasonic](Ultrasonic) | 0.0.1 | ✓ | ISK2L |
 | 66 | VL53L0X激光测距传感器 | [@aily-project/lib-vl53l0x](VL53L0X) | 1.0.0 | ✗ | - |
 | 67 | WS2812 LED灯带库 | [@aily-project/lib-ws2812fx](ws2812fx) | 0.0.1 | ✗ | - |
