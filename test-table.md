@@ -41,7 +41,7 @@
 | 39 | Encoder | [@aily-project/lib-encoder](encoder) | 1.4.0 | ✗ | - |
 | 40 | HX711称重传感器库 | [@aily-project/lib-hx711](HX711) | 0.5.2 | ✓ | ISK2L |
 | 41 | IIC电机驱动库 | [@aily-project/lib-iicmotordriver](IICMotorDriver) | 0.0.1 | ✓ | K2L |
-| 42 | 红外遥控库 | [@aily-project/lib-ir](IRremote) | 0.0.1 | ✗ | - |
+| 42 | 红外遥控库 | [@aily-project/lib-IRremote](IRremote) | 0.0.1 | ✗ | - |
 | 43 | 键盘矩阵库 | [@aily-project/lib-keypad](KEYPAD4X4) | 0.0.1 | ✗ | - |
 | 44 | LCD1602显示屏库 | [@aily-project/lib-liquidcrystal](LiquidCrystal) | 0.0.1 | ✗ | - |
 | 45 | LCD1602 I2C驱动库 | [@aily-project/lib-liquidcrystal_i2c](LiquidCrystal_I2C) | 0.0.1 | ✓ | ISK2L |
