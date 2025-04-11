@@ -10,7 +10,8 @@ const defaultKeysToExtract = [
   'author',
   'compatibility',
   'keywords',
-  'tested'
+  'tested',
+  'icon'
 ];
 
 // 根据配置过滤package.json对象
@@ -59,6 +60,7 @@ async function main() {
     // 处理每个子目录
     for (const subdir of subdirs) {
       const packageJsonPath = path.join(currentDir, subdir, 'package.json');
+      const toolboxJsonPath = path.join(currentDir, subdir, 'toolbox.json');
 
       try {
         // 检查并读取package.json
@@ -68,6 +70,25 @@ async function main() {
 
         // 根据配置过滤package.json
         const filteredJson = keysToExtract ? filterPackageJson(packageJson, keysToExtract) : packageJson;
+
+        // 如果package.json中没有icon，尝试从toolbox.json读取
+        if (!filteredJson.icon || filteredJson.icon === "") {
+          try {
+            await fs.access(toolboxJsonPath, fs.constants.F_OK);
+            const toolboxData = await fs.readFile(toolboxJsonPath, 'utf8');
+            const toolboxJson = JSON.parse(toolboxData);
+            
+            if (toolboxJson.icon) {
+              filteredJson.icon = toolboxJson.icon;
+              console.log(`已从toolbox.json获取${subdir}的icon信息`);
+            }
+          } catch (toolboxError) {
+            // toolbox.json不存在或无法读取时不打印错误
+            if (toolboxError.code !== 'ENOENT') {
+              console.error(`处理${toolboxJsonPath}时出错:`, toolboxError);
+            }
+          }
+        }
 
         // 判断项目分类:
         // 1. 首先判断是否是"core-"开头的目录
