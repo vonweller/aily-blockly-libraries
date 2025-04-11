@@ -1,0 +1,69 @@
+[
+  {
+    "type": "tm1650_init",
+    "message0": "四位数码TM1650管初始化",
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF8800"
+  },
+  {
+    "type": "tm1650_set",
+    "message0": "四位数码TM1650%1",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "TM1650CMD",
+        "options": [
+          [ "开", "displayOn" ],
+          [ "关", "displayOff" ],
+          [ "清屏", "clear" ]
+        ]
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF8800"
+  },
+  {
+    "type": "tm1650_displaystring",
+    "message0": "四位数码TM1650 显示字符串%1",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "TMSTR",
+        "check": "String"
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF8800"
+  },
+  {
+    "type": "tm1650_point",
+    "message0": "四位数码TM1650 第%1个小数点%2",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "POINT_NUM",
+        "check": "Number",
+        "MIN": 1,
+        "MAX": 4
+      },
+      {
+        "type": "field_dropdown",
+        "name": "TM1650POINTSET",
+        "options": [
+          [ "亮", "true" ],
+          [ "灭", "false" ]
+        ]
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF8800"
+  }
+]

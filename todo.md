@@ -2,7 +2,6 @@
 
 - [GFX](./GFX)
 - [GP2Y1010AU0F](./GP2Y1010AU0F)
-- [IICMotorDriver](./IICMotorDriver)
 - [INA219](./INA219)
 - [MadgwickAHRS](./MadgwickAHRS)
 - [PAJ7620](./PAJ7620)
@@ -10,7 +9,6 @@
 - [TCS320](./TCS320)
 - [TCS34725](./TCS34725)
 - [TFT_eSPI](./TFT_eSPI)
-- [TM1650](./TM1650)
 - [arduino_FreeRTOS](./arduino_FreeRTOS)
 - [arduino_SD](./arduino_SD)
 - [arduino_modbus](./arduino_modbus)
