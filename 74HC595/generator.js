@@ -1,31 +1,49 @@
-Arduino.forBlock['shift_register_create'] = function(block, generator) {
-  var obj = block.getFieldValue("OBJECT");
-  var serialPin = block.getFieldValue("SERIAL_PIN");
-  var clockPin = block.getFieldValue("CLOCK_PIN");
-  var latchPin = block.getFieldValue("LATCH_PIN");
+function getVariableName(block) {
+  const variableField = block.getField('HCNAME');
+  const variableModel = variableField.getVariable();
+  console.log("name: ", variableModel.name);
+  return variableModel.name;
+}
+
+Arduino.forBlock['74hc595_create'] = function(block, generator) {
+  const hcnm = getVariableName(block);
+  var hcnum = generator.valueToCode(block, 'HCNUMBER', Arduino.ORDER_ATOMIC) || '1';
+  var hcdtPin = block.getFieldValue("HCDATA_PIN");
+  var hclkPin = block.getFieldValue("HCCLOCK_PIN");
+  var hclhPin = block.getFieldValue("HCLATCH_PIN");
   generator.addLibrary('#include <ShiftRegister74HC595.h>', '#include <ShiftRegister74HC595.h>');
-  generator.addVariable('ShiftRegister74HC595<8> ' + obj, 'ShiftRegister74HC595<8> ' + obj + '(' + serialPin + ', ' + clockPin + ', ' + latchPin + ')');
+  generator.addVariable('ShiftRegister74HC595', 'ShiftRegister74HC595<'+hcnum+'> ' + hcnm + '(' + hcdtPin + ', ' + hclkPin + ', ' + hclhPin + ');\n');
   return '';
 };
 
-Arduino.forBlock['shift_register_set'] = function(block, generator) {
-  var obj = block.getFieldValue("OBJECT");
-  var pin = block.getFieldValue("PIN");
-  var value = block.getFieldValue("VALUE");
-  return obj + '.set(' + pin + ', ' + value + ');';
+Arduino.forBlock['74hc595_set'] = function(block, generator) {
+  const hcnm = getVariableName(block);
+  const pin = block.getFieldValue("HCPIN");
+  const value = block.getFieldValue("VALUE");
+  
+  const code = hcnm + '.set(' + pin + ', ' + value + ');\n';
+  return code;
 };
 
-Arduino.forBlock['shift_register_update'] = function(block, generator) {
-  var obj = block.getFieldValue("OBJECT");
-  return obj + '.updateRegisters();';
+Arduino.forBlock['74hc595_setAll'] = function(block, generator) {
+  const hcnm = getVariableName(block);
+  const allst = block.getFieldValue("ALLSTATE");
+
+  const code = hcnm + '.setAll' + allst + '();\n';
+  return code;
 };
 
-Arduino.forBlock['shift_register_setAllLow'] = function(block, generator) {
-  var obj = block.getFieldValue("OBJECT");
-  return obj + '.setAllLow();';
+Arduino.forBlock['74hc595_setAllBin'] = function(block, generator) {
+  const hcnm = getVariableName(block);
+  const hcarray = block.getFieldValue("HCARRAY") || "";
+
+  const code = hcnm + '.setAll(' + hcarray + ');\n';
+  return code;
 };
 
-Arduino.forBlock['shift_register_setAllHigh'] = function(block, generator) {
-  var obj = block.getFieldValue("OBJECT");
-  return obj + '.setAllHigh();';
+Arduino.forBlock['74hc595_getstate'] = function(block, generator) {
+  const hcnm = getVariableName(block);
+  var hcopstate = generator.valueToCode(block, 'HCOUTPSTATE', Arduino.ORDER_ATOMIC) || '0';
+
+  return hcnm + '.get('+hcopstate+');';
 };
