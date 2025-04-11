@@ -4,23 +4,43 @@
   "contents": [
     {
       "kind": "block",
-      "type": "shift_register_create"
+      "type": "74hc595_create",
+      "inputs": {
+        "HCNUMBER": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 1
+            }
+          }
+        }
+      }
     },
     {
       "kind": "block",
-      "type": "shift_register_set"
+      "type": "74hc595_set"
     },
     {
       "kind": "block",
-      "type": "shift_register_update"
+      "type": "74hc595_setAll"
     },
     {
       "kind": "block",
-      "type": "shift_register_setAllLow"
+      "type": "74hc595_setAllBin"
     },
     {
       "kind": "block",
-      "type": "shift_register_setAllHigh"
+      "type": "74hc595_getstate",
+      "inputs": {
+        "HCOUTPSTATE": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 0
+            }
+          }
+        }
+      }
     }
   ]
 }

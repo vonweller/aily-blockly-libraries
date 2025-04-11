@@ -1,30 +1,35 @@
 [
   {
-    "type": "shift_register_create",
-    "message0": "创建移位寄存器 %1 串行数据引脚 %2 时钟引脚 %3 锁存引脚 %4",
+    "type": "74hc595_create",
+    "message0": "初始化74HC595 %1 数量%2 数据引脚 %3 时钟引脚 %4 锁存引脚 %5",
     "args0": [
       {
         "type": "field_variable",
-        "name": "OBJECT",
-        "variable": "shiftReg",
+        "name": "HCNAME",
+        "variable": "hc1",
         "variableTypes": [
-          "ShiftRegister74HC595"
+            "hc"
         ],
-        "defaultType": "ShiftRegister74HC595"
+        "defaultType": "hc"
+      },
+      {
+        "type": "input_value",
+        "name": "HCNUMBER",
+        "check": "Number"
       },
       {
         "type": "field_dropdown",
-        "name": "SERIAL_PIN",
+        "name": "HCDATA_PIN",
         "options": "${board.digitalPins}"
       },
       {
         "type": "field_dropdown",
-        "name": "CLOCK_PIN",
+        "name": "HCCLOCK_PIN",
         "options": "${board.digitalPins}"
       },
       {
         "type": "field_dropdown",
-        "name": "LATCH_PIN",
+        "name": "HCLATCH_PIN",
         "options": "${board.digitalPins}"
       }
     ],
@@ -34,29 +39,29 @@
     "colour": "#FF8800"
   },
   {
-    "type": "shift_register_set",
-    "message0": "移位寄存器 %1 设置引脚 %2 为 %3",
+    "type": "74hc595_set",
+    "message0": "74HC595 %1 设置引脚 %2 为 %3",
     "args0": [
       {
         "type": "field_variable",
-        "name": "OBJECT",
-        "variable": "shiftReg",
+        "name": "HCNAME",
+        "variable": "hc1",
         "variableTypes": [
-          "ShiftRegister74HC595"
+            "hc"
         ],
-        "defaultType": "ShiftRegister74HC595"
+        "defaultType": "hc"
       },
       {
-        "type": "field_number",
-        "name": "PIN",
-        "value": 0
+        "type": "field_dropdown",
+        "name": "HCPIN",
+        "options": "${board.digitalPins}"
       },
       {
         "type": "field_dropdown",
         "name": "VALUE",
         "options": [
-          [ "低", "0" ],
-          [ "高", "1" ]
+          [ "HIGH", "HIGH" ],
+          [ "LOW", "LOW" ]
         ]
       }
     ],
@@ -66,17 +71,25 @@
     "colour": "#FF8800"
   },
   {
-    "type": "shift_register_update",
-    "message0": "移位寄存器 %1 更新输出",
+    "type": "74hc595_setAll",
+    "message0": "74HC595 %1 全部引脚设为%2",
     "args0": [
       {
         "type": "field_variable",
-        "name": "OBJECT",
-        "variable": "shiftReg",
+        "name": "HCNAME",
+        "variable": "hc1",
         "variableTypes": [
-          "ShiftRegister74HC595"
+            "hc"
         ],
-        "defaultType": "ShiftRegister74HC595"
+        "defaultType": "hc"
+      },
+      {
+        "type": "field_dropdown",
+        "name": "ALLSTATE",
+        "options": [
+          [ "HIGH", "High" ],
+          [ "LOW", "Low" ]
+        ]
       }
     ],
     "inputsInline": true,
@@ -85,17 +98,22 @@
     "colour": "#FF8800"
   },
   {
-    "type": "shift_register_setAllLow",
-    "message0": "移位寄存器 %1 全部设为低",
+    "type": "74hc595_setAllBin",
+    "message0": "74HC595%1 设置输出电平 使用数组%2[]",
     "args0": [
       {
         "type": "field_variable",
-        "name": "OBJECT",
-        "variable": "shiftReg",
+        "name": "HCNAME",
+        "variable": "hc1",
         "variableTypes": [
-          "ShiftRegister74HC595"
+            "hc"
         ],
-        "defaultType": "ShiftRegister74HC595"
+        "defaultType": "hc"
+      },
+      {
+        "type": "field_input",
+        "name": "HCARRAY",
+        "text": "arrayname"
       }
     ],
     "inputsInline": true,
@@ -104,17 +122,22 @@
     "colour": "#FF8800"
   },
   {
-    "type": "shift_register_setAllHigh",
-    "message0": "移位寄存器 %1 全部设为高",
+    "type": "74hc595_getstate",
+    "message0": "74HC595%1 获取输出%2号引脚状态",
     "args0": [
       {
         "type": "field_variable",
-        "name": "OBJECT",
-        "variable": "shiftReg",
+        "name": "HCNAME",
+        "variable": "hc1",
         "variableTypes": [
-          "ShiftRegister74HC595"
+            "hc"
         ],
-        "defaultType": "ShiftRegister74HC595"
+        "defaultType": "hc"
+      },
+      {
+        "type": "input_value",
+        "name": "HCOUTPSTATE",
+        "check": "Number"
       }
     ],
     "inputsInline": true,
