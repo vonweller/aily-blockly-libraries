@@ -1,6 +1,11 @@
 
 // LCD I2C display library generator
-
+Blockly.Blocks['lcd_i2c_init'] = {
+  init: function() {
+    // 设置默认地址为0x27
+    this.getField('ADDRESS').setValue('0x27');
+  }
+};
 // LCD initialize
 Arduino.forBlock['lcd_i2c_init'] = function(block, generator) {
   var address = block.getFieldValue("ADDRESS") || '0x27';
