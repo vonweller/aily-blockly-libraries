@@ -86,11 +86,24 @@ Arduino.forBlock['lcd_i2c_print_position'] = function (block, generator) {
   Arduino.ensureLcdInitialized(generator);
   var col = generator.valueToCode(block, 'COL', generator.ORDER_ATOMIC) || '0';
   var row = generator.valueToCode(block, 'ROW', generator.ORDER_ATOMIC) || '0';
-  var text = generator.valueToCode(block, 'TEXT', generator.ORDER_ATOMIC) || '""';
-
+  
+  // 首先设置光标位置
   var code = 'lcd.setCursor(' + col + ', ' + row + ');\n';
-  code += 'lcd.print(' + text + ');\n';
-
+  
+  // 获取连接到TEXT输入的块
+  var textBlock = block.getInputTargetBlock('TEXT');
+  
+  // 判断连接的块是否为自定义字符块
+  if (textBlock && textBlock.type === 'lcd_i2c_custom_char') {
+    // 这是一个自定义字符，需要使用write而不是print
+    var charIndex = generator.valueToCode(block, 'TEXT', generator.ORDER_ATOMIC);
+    code += `lcd.write(${charIndex});\n`;
+  } else {
+    // 正常的文本打印
+    var text = generator.valueToCode(block, 'TEXT', generator.ORDER_ATOMIC) || '""';
+    code += 'lcd.print(' + text + ');\n';
+  }
+  
   return code;
 };
 
@@ -136,6 +149,7 @@ Arduino.forBlock['lcd_i2c_custom_char'] = function (block, generator) {
           binaryString += bit;
         }
       }
+
       customCharData.push(binaryString);
     }
 
