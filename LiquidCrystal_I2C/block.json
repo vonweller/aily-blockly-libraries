@@ -35,46 +35,8 @@
     },
     {
         "inputsInline": true,
-        "type": "lcd_sysp",
-        "message0": "%1 LCD %2",
-        "args0": [
-          {
-            "type": "field_dropdown",
-            "name": "STATE",
-            "options": [
-              ["开启", "."],
-              ["关闭", ".no"]
-            ]
-          },
-          {
-            "type": "field_dropdown",
-            "name": "TYPE",
-            "options": [
-              ["显示", "display"],
-              ["背光", "backlight"],
-              ["光标", "cursor"],
-              ["闪烁", "blink"],
-              ["自动滚动", "autoscroll"]
-            ]
-          }
-        ],
-        "colour": "#4CAF50",
-        "previousStatement": null,
-        "nextStatement": null
-    },
-    {
-        "inputsInline": true,
         "message0": "清空LCD显示",
-        "type": "lcd_clear",
-        "args0": [],
-        "previousStatement": null,
-        "nextStatement": null,
-        "colour": "#4CAF50"
-    },
-    {
-        "inputsInline": true,
-        "message0": "设置LCD光标到0,0",
-        "type": "lcd_home",
+        "type": "lcd_i2c_clear",
         "args0": [],
         "previousStatement": null,
         "nextStatement": null,
@@ -83,15 +45,15 @@
     {
         "inputsInline": true,
         "message0": "设置LCD光标到列%1 行%2",
-        "type": "lcd_set_cursor",
+        "type": "lcd_i2c_set_cursor",
         "args0": [
             {
-                "type": "field_number",
+                "type": "input_value",
                 "name": "COL",
                 "value": 0
             },
             {
-                "type": "field_number",
+                "type": "input_value",
                 "name": "ROW",
                 "value": 0
             }
@@ -103,10 +65,10 @@
     {
         "inputsInline": true,
         "message0": "LCD显示文本%1",
-        "type": "lcd_print",
+        "type": "lcd_i2c_print",
         "args0": [
             {
-                "type": "field_input",
+                "type": "input_value",
                 "name": "TEXT",
                 "value": "\"\""
             }
@@ -118,20 +80,20 @@
     {
         "inputsInline": true,
         "message0": "LCD在列%1 行%2 显示文本%3",
-        "type": "lcd_print_position",
+        "type": "lcd_i2c_print_position",
         "args0": [
             {
-                "type": "field_number",
+                "type": "input_value",
                 "name": "COL",
                 "value": 0
             },
             {
-                "type": "field_number",
+                "type": "input_value",
                 "name": "ROW",
                 "value": 0
             },
             {
-                "type": "field_input",
+                "type": "input_value",
                 "name": "TEXT",
                 "value": "\"\""
             }
@@ -142,8 +104,8 @@
     },
     {
         "inputsInline": true,
-        "message0": "LCD文本方向从左到右",
-        "type": "lcd_left_to_right",
+        "message0": "打开LCD背光",
+        "type": "lcd_i2c_backlight_on",
         "args0": [],
         "previousStatement": null,
         "nextStatement": null,
@@ -151,132 +113,9 @@
     },
     {
         "inputsInline": true,
-        "message0": "LCD文本方向从右到左",
-        "type": "lcd_right_to_left",
+        "message0": "关闭LCD背光",
+        "type": "lcd_i2c_backlight_off",
         "args0": [],
-        "previousStatement": null,
-        "nextStatement": null,
-        "colour": "#4CAF50"
-    },
-    {
-        "inputsInline": true,
-        "message0": "LCD左移显示",
-        "type": "lcd_scroll_display_left",
-        "args0": [],
-        "previousStatement": null,
-        "nextStatement": null,
-        "colour": "#4CAF50"
-    },
-    {
-        "inputsInline": true,
-        "message0": "LCD右移显示",
-        "type": "lcd_scroll_display_right",
-        "args0": [],
-        "previousStatement": null,
-        "nextStatement": null,
-        "colour": "#4CAF50"
-    },
-    {
-        "inputsInline": true,
-        "message0": "创建LCD自定义字符%1 行0%2 行1%3 行2%4 行3%5 行4%6 行5%7 行6%8 行7%9",
-        "type": "lcd_create_char",
-        "args0": [
-            {
-                "type": "field_number",
-                "name": "CHAR_INDEX",
-                "value": 0
-            },
-            {
-                "type": "field_number",
-                "name": "ROW0",
-                "value": 0
-            },
-            {
-                "type": "field_number",
-                "name": "ROW1",
-                "value": 0
-            },
-            {
-                "type": "field_number",
-                "name": "ROW2",
-                "value": 0
-            },
-            {
-                "type": "field_number",
-                "name": "ROW3",
-                "value": 0
-            },
-            {
-                "type": "field_number",
-                "name": "ROW4",
-                "value": 0
-            },
-            {
-                "type": "field_number",
-                "name": "ROW5",
-                "value": 0
-            },
-            {
-                "type": "field_number",
-                "name": "ROW6",
-                "value": 0
-            },
-            {
-                "type": "field_number",
-                "name": "ROW7",
-                "value": 0
-            }
-        ],
-        "previousStatement": null,
-        "nextStatement": null,
-        "colour": "#4CAF50"
-    },
-    {
-        "inputsInline": true,
-        "message0": "LCD显示自定义字符%1",
-        "type": "lcd_print_custom_char",
-        "args0": [
-            {
-                "type": "field_number",
-                "name": "CHAR_INDEX",
-                "value": 0
-            }
-        ],
-        "previousStatement": null,
-        "nextStatement": null,
-        "colour": "#4CAF50"
-    },
-    {
-        "inputsInline": true,
-        "message0": "简化LCD初始化并显示文本%1",
-        "type": "lcd_simple_message",
-        "args0": [
-            {
-                "type": "field_input",
-                "name": "TEXT",
-                "value": "\"\""
-            }
-        ],
-        "previousStatement": null,
-        "nextStatement": null,
-        "colour": "#4CAF50"
-    },
-    {
-        "inputsInline": true,
-        "message0": "在LCD第%1行显示文本%2",
-        "type": "lcd_print_line",
-        "args0": [
-            {
-                "type": "field_number",
-                "name": "LINE",
-                "value": 0
-            },
-            {
-                "type": "field_input",
-                "name": "TEXT",
-                "value": "\"\""
-            }
-        ],
         "previousStatement": null,
         "nextStatement": null,
         "colour": "#4CAF50"
