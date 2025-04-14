@@ -134,7 +134,7 @@ Arduino.forBlock['lcd_i2c_custom_char'] = function (block, generator) {
     var customCharData = [];
 
     for (var row = 0; row < 8; row++) {
-      var binaryString = '0b';
+      var binaryString = '0b000';
 
       // 对于二维数组格式
       if (Array.isArray(bitmapData) && Array.isArray(bitmapData[0])) {
