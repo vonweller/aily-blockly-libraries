@@ -159,7 +159,7 @@ Arduino.forBlock['lcd_i2c_custom_char'] = function (block, generator) {
 
     generator.addVariable(charArrayName, 'byte ' + charArrayName + '[8] = {\n  ' +
       customCharData.join(',\n  ') + '\n};');
-    generator.addSetup(charName, 'lcd.createChar(' + charIndex + ', ' + charArrayName + ');');
+    generator.addUserSetup(charName, 'lcd.createChar(' + charIndex + ', ' + charArrayName + ');');
 
     return [charIndex, generator.ORDER_ATOMIC];
   } catch (e) {
