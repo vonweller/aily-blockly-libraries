@@ -1,6 +1,5 @@
 # Todo List
 
-- [GFX](./GFX)
 - [GP2Y1010AU0F](./GP2Y1010AU0F)
 - [INA219](./INA219)
 - [MadgwickAHRS](./MadgwickAHRS)
@@ -9,13 +8,9 @@
 - [TCS320](./TCS320)
 - [TCS34725](./TCS34725)
 - [TFT_eSPI](./TFT_eSPI)
-- [arduino_FreeRTOS](./arduino_FreeRTOS)
 - [arduino_SD](./arduino_SD)
 - [arduino_modbus](./arduino_modbus)
 - [ble_serial](./ble_serial)
 - [dfrobot_dfplayer](./dfrobot_dfplayer)
-- [fastled](./fastled)
 - [max30102](./max30102)
-- [mpu](./mpu)
-- [pt100](./pt100)
 - [sentry](./sentry)
