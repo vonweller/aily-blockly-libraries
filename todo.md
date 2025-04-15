@@ -9,8 +9,6 @@
 - [TCS34725](./TCS34725)
 - [TFT_eSPI](./TFT_eSPI)
 - [arduino_SD](./arduino_SD)
-- [arduino_modbus](./arduino_modbus)
 - [ble_serial](./ble_serial)
-- [dfrobot_dfplayer](./dfrobot_dfplayer)
 - [max30102](./max30102)
 - [sentry](./sentry)

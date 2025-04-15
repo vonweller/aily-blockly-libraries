@@ -1,0 +1,739 @@
+
+[
+  {
+    "type": "dfplayer_begin",
+    "message0": "初始化DFPlayer模块 %1 RX引脚 %2 TX引脚 %3",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "NAME",
+        "variable": "dfplayer1",
+        "variableTypes": [
+          "DFPlayer"
+        ],
+        "defaultType": "DFPlayer"
+      },
+      {
+        "type": "input_value",
+        "name": "RX"
+      },
+      {
+        "type": "input_value",
+        "name": "TX"
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF5722"
+  },
+  {
+    "type": "dfplayer_play",
+    "message0": "DFPlayer %1 播放文件编号 %2",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "NAME",
+        "variable": "dfplayer1",
+        "variableTypes": [
+          "DFPlayer"
+        ],
+        "defaultType": "DFPlayer"
+      },
+      {
+        "type": "input_value",
+        "name": "FILE"
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF5722"
+  },
+  {
+    "type": "dfplayer_pause",
+    "message0": "DFPlayer %1 暂停播放",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "NAME",
+        "variable": "dfplayer1",
+        "variableTypes": [
+          "DFPlayer"
+        ],
+        "defaultType": "DFPlayer"
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF5722"
+  },
+  {
+    "type": "dfplayer_start",
+    "message0": "DFPlayer %1 继续播放",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "NAME",
+        "variable": "dfplayer1",
+        "variableTypes": [
+          "DFPlayer"
+        ],
+        "defaultType": "DFPlayer"
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF5722"
+  },
+  {
+    "type": "dfplayer_stop",
+    "message0": "DFPlayer %1 停止播放",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "NAME",
+        "variable": "dfplayer1",
+        "variableTypes": [
+          "DFPlayer"
+        ],
+        "defaultType": "DFPlayer"
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF5722"
+  },
+  {
+    "type": "dfplayer_next",
+    "message0": "DFPlayer %1 播放下一首",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "NAME",
+        "variable": "dfplayer1",
+        "variableTypes": [
+          "DFPlayer"
+        ],
+        "defaultType": "DFPlayer"
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF5722"
+  },
+  {
+    "type": "dfplayer_previous",
+    "message0": "DFPlayer %1 播放上一首",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "NAME",
+        "variable": "dfplayer1",
+        "variableTypes": [
+          "DFPlayer"
+        ],
+        "defaultType": "DFPlayer"
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF5722"
+  },
+  {
+    "type": "dfplayer_volume",
+    "message0": "DFPlayer %1 设置音量为 %2",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "NAME",
+        "variable": "dfplayer1",
+        "variableTypes": [
+          "DFPlayer"
+        ],
+        "defaultType": "DFPlayer"
+      },
+      {
+        "type": "input_value",
+        "name": "VOLUME"
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF5722"
+  },
+  {
+    "type": "dfplayer_volume_up",
+    "message0": "DFPlayer %1 增大音量",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "NAME",
+        "variable": "dfplayer1",
+        "variableTypes": [
+          "DFPlayer"
+        ],
+        "defaultType": "DFPlayer"
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF5722"
+  },
+  {
+    "type": "dfplayer_volume_down",
+    "message0": "DFPlayer %1 减小音量",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "NAME",
+        "variable": "dfplayer1",
+        "variableTypes": [
+          "DFPlayer"
+        ],
+        "defaultType": "DFPlayer"
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF5722"
+  },
+  {
+    "type": "dfplayer_eq",
+    "message0": "DFPlayer %1 设置均衡器 %2",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "NAME",
+        "variable": "dfplayer1",
+        "variableTypes": [
+          "DFPlayer"
+        ],
+        "defaultType": "DFPlayer"
+      },
+      {
+        "type": "field_dropdown",
+        "name": "EQ",
+        "options": [
+          [
+            "Normal",
+            "0"
+          ],
+          [
+            "Pop",
+            "1"
+          ],
+          [
+            "Rock",
+            "2"
+          ],
+          [
+            "Jazz",
+            "3"
+          ],
+          [
+            "Classic",
+            "4"
+          ],
+          [
+            "Bass",
+            "5"
+          ]
+        ]
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF5722"
+  },
+  {
+    "type": "dfplayer_output_device",
+    "message0": "DFPlayer %1 设置输出设备为 %2",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "NAME",
+        "variable": "dfplayer1",
+        "variableTypes": [
+          "DFPlayer"
+        ],
+        "defaultType": "DFPlayer"
+      },
+      {
+        "type": "field_dropdown",
+        "name": "DEVICE",
+        "options": [
+          [
+            "DEVICE1",
+            "1"
+          ],
+          [
+            "DEVICE2",
+            "2"
+          ]
+        ]
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF5722"
+  },
+  {
+    "type": "dfplayer_loop",
+    "message0": "DFPlayer %1 循环播放文件编号 %2",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "NAME",
+        "variable": "dfplayer1",
+        "variableTypes": [
+          "DFPlayer"
+        ],
+        "defaultType": "DFPlayer"
+      },
+      {
+        "type": "input_value",
+        "name": "FILE"
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF5722"
+  },
+  {
+    "type": "dfplayer_play_folder",
+    "message0": "DFPlayer %1 播放文件夹 %2 中的文件 %3",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "NAME",
+        "variable": "dfplayer1",
+        "variableTypes": [
+          "DFPlayer"
+        ],
+        "defaultType": "DFPlayer"
+      },
+      {
+        "type": "input_value",
+        "name": "FOLDER"
+      },
+      {
+        "type": "input_value",
+        "name": "FILE"
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF5722"
+  },
+  {
+    "type": "dfplayer_enable_loop_all",
+    "message0": "DFPlayer %1 开启全部循环",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "NAME",
+        "variable": "dfplayer1",
+        "variableTypes": [
+          "DFPlayer"
+        ],
+        "defaultType": "DFPlayer"
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF5722"
+  },
+  {
+    "type": "dfplayer_disable_loop_all",
+    "message0": "DFPlayer %1 关闭全部循环",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "NAME",
+        "variable": "dfplayer1",
+        "variableTypes": [
+          "DFPlayer"
+        ],
+        "defaultType": "DFPlayer"
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF5722"
+  },
+  {
+    "type": "dfplayer_play_mp3_folder",
+    "message0": "DFPlayer %1 播放MP3文件夹中的文件 %2",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "NAME",
+        "variable": "dfplayer1",
+        "variableTypes": [
+          "DFPlayer"
+        ],
+        "defaultType": "DFPlayer"
+      },
+      {
+        "type": "input_value",
+        "name": "FILE"
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF5722"
+  },
+  {
+    "type": "dfplayer_advertise",
+    "message0": "DFPlayer %1 播放广告 %2",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "NAME",
+        "variable": "dfplayer1",
+        "variableTypes": [
+          "DFPlayer"
+        ],
+        "defaultType": "DFPlayer"
+      },
+      {
+        "type": "input_value",
+        "name": "FILE"
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF5722"
+  },
+  {
+    "type": "dfplayer_stop_advertise",
+    "message0": "DFPlayer %1 停止广告",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "NAME",
+        "variable": "dfplayer1",
+        "variableTypes": [
+          "DFPlayer"
+        ],
+        "defaultType": "DFPlayer"
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF5722"
+  },
+  {
+    "type": "dfplayer_play_large_folder",
+    "message0": "DFPlayer %1 播放大文件夹 %2 中的文件 %3",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "NAME",
+        "variable": "dfplayer1",
+        "variableTypes": [
+          "DFPlayer"
+        ],
+        "defaultType": "DFPlayer"
+      },
+      {
+        "type": "input_value",
+        "name": "FOLDER"
+      },
+      {
+        "type": "input_value",
+        "name": "FILE"
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF5722"
+  },
+  {
+    "type": "dfplayer_loop_folder",
+    "message0": "DFPlayer %1 循环播放文件夹 %2",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "NAME",
+        "variable": "dfplayer1",
+        "variableTypes": [
+          "DFPlayer"
+        ],
+        "defaultType": "DFPlayer"
+      },
+      {
+        "type": "input_value",
+        "name": "FOLDER"
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF5722"
+  },
+  {
+    "type": "dfplayer_random_all",
+    "message0": "DFPlayer %1 随机播放全部文件",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "NAME",
+        "variable": "dfplayer1",
+        "variableTypes": [
+          "DFPlayer"
+        ],
+        "defaultType": "DFPlayer"
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF5722"
+  },
+  {
+    "type": "dfplayer_enable_loop",
+    "message0": "DFPlayer %1 开启循环",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "NAME",
+        "variable": "dfplayer1",
+        "variableTypes": [
+          "DFPlayer"
+        ],
+        "defaultType": "DFPlayer"
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF5722"
+  },
+  {
+    "type": "dfplayer_disable_loop",
+    "message0": "DFPlayer %1 关闭循环",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "NAME",
+        "variable": "dfplayer1",
+        "variableTypes": [
+          "DFPlayer"
+        ],
+        "defaultType": "DFPlayer"
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF5722"
+  },
+  {
+    "type": "dfplayer_read_state",
+    "message0": "DFPlayer %1 读取状态",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "NAME",
+        "variable": "dfplayer1",
+        "variableTypes": [
+          "DFPlayer"
+        ],
+        "defaultType": "DFPlayer"
+      }
+    ],
+    "inputsInline": true,
+    "output": "Number",
+    "colour": "#FF5722"
+  },
+  {
+    "type": "dfplayer_read_volume",
+    "message0": "DFPlayer %1 读取音量",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "NAME",
+        "variable": "dfplayer1",
+        "variableTypes": [
+          "DFPlayer"
+        ],
+        "defaultType": "DFPlayer"
+      }
+    ],
+    "inputsInline": true,
+    "output": "Number",
+    "colour": "#FF5722"
+  },
+  {
+    "type": "dfplayer_read_eq",
+    "message0": "DFPlayer %1 读取均衡器",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "NAME",
+        "variable": "dfplayer1",
+        "variableTypes": [
+          "DFPlayer"
+        ],
+        "defaultType": "DFPlayer"
+      }
+    ],
+    "inputsInline": true,
+    "output": "Number",
+    "colour": "#FF5722"
+  },
+  {
+    "type": "dfplayer_read_file_counts",
+    "message0": "DFPlayer %1 读取文件数量",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "NAME",
+        "variable": "dfplayer1",
+        "variableTypes": [
+          "DFPlayer"
+        ],
+        "defaultType": "DFPlayer"
+      }
+    ],
+    "inputsInline": true,
+    "output": "Number",
+    "colour": "#FF5722"
+  },
+  {
+    "type": "dfplayer_read_current_file_number",
+    "message0": "DFPlayer %1 读取当前文件编号",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "NAME",
+        "variable": "dfplayer1",
+        "variableTypes": [
+          "DFPlayer"
+        ],
+        "defaultType": "DFPlayer"
+      }
+    ],
+    "inputsInline": true,
+    "output": "Number",
+    "colour": "#FF5722"
+  },
+  {
+    "type": "dfplayer_read_file_counts_in_folder",
+    "message0": "DFPlayer %1 读取文件夹 %2 中的文件数量",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "NAME",
+        "variable": "dfplayer1",
+        "variableTypes": [
+          "DFPlayer"
+        ],
+        "defaultType": "DFPlayer"
+      },
+      {
+        "type": "input_value",
+        "name": "FOLDER"
+      }
+    ],
+    "inputsInline": true,
+    "output": "Number",
+    "colour": "#FF5722"
+  },
+  {
+    "type": "dfplayer_available",
+    "message0": "DFPlayer %1 检查是否有可用消息",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "NAME",
+        "variable": "dfplayer1",
+        "variableTypes": [
+          "DFPlayer"
+        ],
+        "defaultType": "DFPlayer"
+      }
+    ],
+    "inputsInline": true,
+    "output": "Boolean",
+    "colour": "#FF5722"
+  },
+  {
+    "type": "dfplayer_read_type",
+    "message0": "DFPlayer %1 读取消息类型",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "NAME",
+        "variable": "dfplayer1",
+        "variableTypes": [
+          "DFPlayer"
+        ],
+        "defaultType": "DFPlayer"
+      }
+    ],
+    "inputsInline": true,
+    "output": "Number",
+    "colour": "#FF5722"
+  },
+  {
+    "type": "dfplayer_read",
+    "message0": "DFPlayer %1 读取消息参数",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "NAME",
+        "variable": "dfplayer1",
+        "variableTypes": [
+          "DFPlayer"
+        ],
+        "defaultType": "DFPlayer"
+      }
+    ],
+    "inputsInline": true,
+    "output": "Number",
+    "colour": "#FF5722"
+  },
+  {
+    "type": "dfplayer_simple_play",
+    "message0": "简单播放：初始化DFPlayer (RX: %1, TX: %2) 并播放文件 %3",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "RX"
+      },
+      {
+        "type": "input_value",
+        "name": "TX"
+      },
+      {
+        "type": "input_value",
+        "name": "FILE"
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF5722"
+  }
+]
