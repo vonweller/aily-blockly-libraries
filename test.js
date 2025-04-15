@@ -55,7 +55,7 @@ libraryInfo.forEach((info, index) => {
 });
 
 // 保存表格到文件
-const outputPath = path.join(rootDir, 'test-table.md');
+const outputPath = path.join(rootDir, 'test.md');
 fs.writeFileSync(outputPath, markdownTable, 'utf8');
 
 console.log('\n表格生成完成!');

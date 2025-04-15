@@ -1,141 +1,169 @@
-
 // LCD I2C display library generator
 
+// 添加一个标志变量，用于跟踪LCD是否已初始化
+Arduino.lcdI2CInitialized = false;
+
+// 自动初始化LCD的辅助函数
+Arduino.ensureLcdInitialized = function (generator) {
+  // console.log('ensureLcdInitialized', Arduino.lcdI2CInitialized);
+
+  if (!Arduino.lcdI2CInitialized) {
+    // 设置默认值
+    var defaultAddress = '0x27';
+    var defaultCols = '16';
+    var defaultRows = '2';
+
+    generator.addLibrary('LCD_I2C', '#include <LiquidCrystal_I2C.h>');
+    generator.addVariable('lcd_i2c', 'LiquidCrystal_I2C lcd(' + defaultAddress + ', ' + defaultCols + ', ' + defaultRows + ');');
+
+    // 添加初始化代码到setup部分
+    generator.addSetup('lcd_init', 'lcd.init();\n  lcd.backlight();');
+
+    // 标记为已初始化
+    // Arduino.lcdI2CInitialized = true;
+    return true;
+  }
+  return false;
+};
+
 // LCD initialize
-Arduino.forBlock['lcd_i2c_init'] = function(block, generator) {
+Arduino.forBlock['lcd_i2c_init'] = function (block, generator) {
   var address = block.getFieldValue("ADDRESS") || '0x27';
   var cols = block.getFieldValue("COLS") || '16';
   var rows = block.getFieldValue("ROWS") || '2';
-  
+
   generator.addLibrary('LCD_I2C', '#include <LiquidCrystal_I2C.h>');
   generator.addVariable('lcd_i2c', 'LiquidCrystal_I2C lcd(' + address + ', ' + cols + ', ' + rows + ');');
-  
+
   var code = 'lcd.init();\n';
   code += 'lcd.backlight();\n';
-  
-  return code;
-};
 
-Arduino.forBlock['lcd_sysp'] = function(block, generator) {
-  var sta = block.getFieldValue("STATE") || '开启';
-  var type = block.getFieldValue("TYPE") || '显示';
-
-  var code = `lcd${sta}${type}();\n`;
+  // 标记为已初始化
+  Arduino.lcdI2CInitialized = true;
 
   return code;
 };
 
 // LCD clear display
-Arduino.forBlock['lcd_clear'] = function(block, generator) {
+Arduino.forBlock['lcd_i2c_clear'] = function (block, generator) {
+  // 确保LCD已初始化
+  Arduino.ensureLcdInitialized(generator);
   return 'lcd.clear();\n';
 };
 
-// LCD home (set cursor to 0,0)
-Arduino.forBlock['lcd_home'] = function(block, generator) {
-  return 'lcd.home();\n';
-};
-
-
-
 // LCD set cursor position
-Arduino.forBlock['lcd_set_cursor'] = function(block, generator) {
-  var col = block.getFieldValue("COL") || '0';
-  var row = block.getFieldValue("ROW") || '0';
-  
+Arduino.forBlock['lcd_i2c_set_cursor'] = function (block, generator) {
+  // 确保LCD已初始化
+  Arduino.ensureLcdInitialized(generator);
+  var col = generator.valueToCode(block, 'COL', generator.ORDER_ATOMIC) || '0';
+  var row = generator.valueToCode(block, 'ROW', generator.ORDER_ATOMIC) || '0';
+
   return 'lcd.setCursor(' + col + ', ' + row + ');\n';
 };
 
 // LCD print text at current cursor position
-Arduino.forBlock['lcd_print'] = function(block, generator) {
-  var text = block.getFieldValue("TEXT") || '""';
-  
-  return 'lcd.print(' + text + ');\n';
+Arduino.forBlock['lcd_i2c_print'] = function (block, generator) {
+  // 确保LCD已初始化
+  Arduino.ensureLcdInitialized(generator);
+  // 获取连接到TEXT输入的块
+  var textBlock = block.getInputTargetBlock('TEXT');
+
+  // 判断连接的块是否为自定义字符块
+  if (textBlock && textBlock.type === 'lcd_i2c_custom_char') {
+    // 这是一个自定义字符，需要使用write而不是print
+    var charIndex = generator.valueToCode(block, 'TEXT', generator.ORDER_ATOMIC);
+    return `lcd.write(${charIndex});\n`;
+  } else {
+    // 正常的文本打印
+    var text = generator.valueToCode(block, 'TEXT', generator.ORDER_ATOMIC) || '""';
+    return 'lcd.print(' + text + ');\n';
+  }
 };
 
 // LCD print text at specified position (combined set cursor and print)
-Arduino.forBlock['lcd_print_position'] = function(block, generator) {
-  var col = block.getFieldValue("COL") || '0';
-  var row = block.getFieldValue("ROW") || '0';
-  var text = block.getFieldValue("TEXT") || '""';
+Arduino.forBlock['lcd_i2c_print_position'] = function (block, generator) {
+  // 确保LCD已初始化
+  Arduino.ensureLcdInitialized(generator);
+  var col = generator.valueToCode(block, 'COL', generator.ORDER_ATOMIC) || '0';
+  var row = generator.valueToCode(block, 'ROW', generator.ORDER_ATOMIC) || '0';
   
+  // 首先设置光标位置
   var code = 'lcd.setCursor(' + col + ', ' + row + ');\n';
-  code += 'lcd.print(' + text + ');\n';
+  
+  // 获取连接到TEXT输入的块
+  var textBlock = block.getInputTargetBlock('TEXT');
+  
+  // 判断连接的块是否为自定义字符块
+  if (textBlock && textBlock.type === 'lcd_i2c_custom_char') {
+    // 这是一个自定义字符，需要使用write而不是print
+    var charIndex = generator.valueToCode(block, 'TEXT', generator.ORDER_ATOMIC);
+    code += `lcd.write(${charIndex});\n`;
+  } else {
+    // 正常的文本打印
+    var text = generator.valueToCode(block, 'TEXT', generator.ORDER_ATOMIC) || '""';
+    code += 'lcd.print(' + text + ');\n';
+  }
   
   return code;
 };
 
-// LCD text direction - left to right
-Arduino.forBlock['lcd_left_to_right'] = function(block, generator) {
-  return 'lcd.leftToRight();\n';
+// LCD turn backlight on
+Arduino.forBlock['lcd_i2c_backlight_on'] = function (block, generator) {
+  // 确保LCD已初始化
+  Arduino.ensureLcdInitialized(generator);
+  return 'lcd.backlight();\n';
 };
 
-// LCD text direction - right to left
-Arduino.forBlock['lcd_right_to_left'] = function(block, generator) {
-  return 'lcd.rightToLeft();\n';
+// LCD turn backlight off
+Arduino.forBlock['lcd_i2c_backlight_off'] = function (block, generator) {
+  // 确保LCD已初始化
+  Arduino.ensureLcdInitialized(generator);
+  return 'lcd.noBacklight();\n';
 };
 
-// LCD scroll display - left
-Arduino.forBlock['lcd_scroll_display_left'] = function(block, generator) {
-  return 'lcd.scrollDisplayLeft();\n';
-};
+Arduino.forBlock['lcd_i2c_custom_char'] = function (block, generator) {
+  // 确保LCD已初始化
+  Arduino.ensureLcdInitialized(generator);
 
-// LCD scroll display - right
-Arduino.forBlock['lcd_scroll_display_right'] = function(block, generator) {
-  return 'lcd.scrollDisplayRight();\n';
-};
+  // 获取字符位图数据和存储位置
+  var bitmapData = block.getFieldValue('CUSTOM_CHAR');
+  var charIndex = block.getFieldValue('CHAR_INDEX');
 
-// LCD create custom character
-Arduino.forBlock['lcd_create_char'] = function(block, generator) {
-  var charIndex = block.getFieldValue("CHAR_INDEX") || '0';
-  var row0 = block.getFieldValue("ROW0") || '0';
-  var row1 = block.getFieldValue("ROW1") || '0';
-  var row2 = block.getFieldValue("ROW2") || '0';
-  var row3 = block.getFieldValue("ROW3") || '0';
-  var row4 = block.getFieldValue("ROW4") || '0';
-  var row5 = block.getFieldValue("ROW5") || '0';
-  var row6 = block.getFieldValue("ROW6") || '0';
-  var row7 = block.getFieldValue("ROW7") || '0';
-  
-  var charArrayName = 'customChar' + charIndex;
-  generator.addVariable(charArrayName, 'byte ' + charArrayName + '[8] = {\n' +
-    '  ' + row0 + ',\n' +
-    '  ' + row1 + ',\n' +
-    '  ' + row2 + ',\n' +
-    '  ' + row3 + ',\n' +
-    '  ' + row4 + ',\n' +
-    '  ' + row5 + ',\n' +
-    '  ' + row6 + ',\n' +
-    '  ' + row7 + '\n' +
-    '};');
-  
-  return 'lcd.createChar(' + charIndex + ', ' + charArrayName + ');\n';
-};
+  try {
+    // 将字符位图数据转换为二进制格式的LCD字符数组
+    var customCharData = [];
 
-// LCD print custom character
-Arduino.forBlock['lcd_print_custom_char'] = function(block, generator) {
-  var charIndex = block.getFieldValue("CHAR_INDEX") || '0';
-  
-  return 'lcd.write(' + charIndex + ');\n';
-};
+    for (var row = 0; row < 8; row++) {
+      var binaryString = '0b000';
 
-// Simplified LCD - initialize and print text at once
-Arduino.forBlock['lcd_simple_message'] = function(block, generator) {
-  var address = block.getFieldValue("ADDRESS") || '0x27';
-  var cols = block.getFieldValue("COLS") || '16';
-  var rows = block.getFieldValue("ROWS") || '2';
-  var text = block.getFieldValue("TEXT") || '""';
-  
-  generator.addLibrary('LCD_I2C', '#include <LiquidCrystal_I2C.h>');
-  generator.addVariable('lcd_i2c', 'LiquidCrystal_I2C lcd(' + address + ', ' + cols + ', ' + rows + ');');
-  generator.addSetup('lcd_init', 'lcd.init();\n  lcd.backlight();');
-  
-  return 'lcd.clear();\nlcd.home();\nlcd.print(' + text + ');\n';
-};
+      // 对于二维数组格式
+      if (Array.isArray(bitmapData) && Array.isArray(bitmapData[0])) {
+        for (var col = 0; col < 5; col++) {
+          binaryString += bitmapData[row][col];
+        }
+      }
+      // 对于一维数组格式（保留兼容性）
+      else if (typeof bitmapData === 'string') {
+        for (var col = 0; col < 5; col++) {
+          var bit = bitmapData[row * 5 + col] === '1' ? 1 : 0;
+          binaryString += bit;
+        }
+      }
 
-// Simplified LCD - print text on specific line 
-Arduino.forBlock['lcd_print_line'] = function(block, generator) {
-  var line = block.getFieldValue("LINE") || '0';
-  var text = block.getFieldValue("TEXT") || '""';
-  
-  return 'lcd.setCursor(0, ' + line + ');\nlcd.print(' + text + ');\n';
+      customCharData.push(binaryString);
+    }
+
+    // 生成创建和显示自定义字符的代码
+    var charName = 'custom_char_' + charIndex;
+    var charArrayName = charName + '_data';
+
+    generator.addVariable(charArrayName, 'byte ' + charArrayName + '[8] = {\n  ' +
+      customCharData.join(',\n  ') + '\n};');
+    generator.addUserSetup(charName, 'lcd.createChar(' + charIndex + ', ' + charArrayName + ');');
+
+    return [charIndex, generator.ORDER_ATOMIC];
+  } catch (e) {
+    console.error('Error processing bitmap data:', e);
+    return ['0', generator.ORDER_ATOMIC]; // 返回默认值
+  }
 };
