@@ -40,13 +40,13 @@ Blockly.getMainWorkspace().registerButtonCallback(
             }
 
             // 获取当前时间戳
-            const timestamp = new Date().getTime();
+            const varId = workspace.getVariable(varName).getId();
             category.contents.push({
               "kind": "block",
               "type": "variables_get",
               "fields": {
                 "VAR": {
-                  "id": "varName" + timestamp,
+                  "id": varId,
                   "name": varName,
                   "type": "string"
                 }
@@ -65,6 +65,52 @@ Blockly.getMainWorkspace().registerButtonCallback(
     );
   },
 );
+
+Blockly.getMainWorkspace().addChangeListener((event) => {
+  if (event.type === Blockly.Events.VAR_DELETE) {
+    console.log("删除的变量ID: ", event.varId);
+    // 获取当前工作区
+    const workspace = Blockly.getMainWorkspace();
+
+    // 从工具箱中删除变量
+    // 获取原始工具箱定义
+    const originalToolboxDef = workspace.options.languageTree;
+
+    // 找到变量类别并更新其内容
+    for (let category of originalToolboxDef.contents) {
+      if ((category.name === "Variables" ||
+        (category.contents && category.contents[0]?.callbackKey === "CREATE_VARIABLE"))) {
+        
+        if (category.contents.length === 4) {
+          category.contents = [
+            {
+              "kind": "button",
+              "text": "新建变量",
+              "callbackKey": "CREATE_VARIABLE"
+            }
+          ];
+        } else {
+          // Filter out the deleted variable from category.contents
+          category.contents = category.contents.filter(item => {
+            // Check if this is a variables_get block with the deleted variable's ID
+            if (item.type === "variables_get" &&
+              item.fields &&
+              item.fields.VAR &&
+              item.fields.VAR.id === event.varId) {
+              return false; // Remove this item
+            }
+            return true; // Keep all other items
+          });
+
+          const allVariables = workspace.getAllVariables();
+          Blockly.Msg.VARIABLES_CURRENT_NAME = allVariables.at(-1)?.name;;
+        }
+
+        refreshToolbox(workspace);
+        break;
+      }
+    }
+  }})
 
 // 更新toolbox
 function refreshToolbox(oldWorkspace) {
