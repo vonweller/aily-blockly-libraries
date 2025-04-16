@@ -1,3 +1,243 @@
+/**
+ * 定义txt_getSubstring_mutator扩展
+ */
+try {
+  Blockly.Extensions.registerMutator('text_getSubstring_mutator',
+    {
+      // XML序列化钩子
+      mutationToDom: function () {
+        const container = Blockly.utils.xml.createElement('mutation');
+        const input1 = this.getInput('AT1');
+        const input2 = this.getInput('AT2');
+
+        if (input1) {
+          const isAt1 = input1.type == Blockly.INPUT_VALUE;
+          container.setAttribute('at1', isAt1.toString());
+        }
+
+        if (input2) {
+          const isAt2 = input2.type == Blockly.INPUT_VALUE;
+          container.setAttribute('at2', isAt2.toString());
+        }
+
+        return container;
+      },
+
+      // XML反序列化钩子
+      domToMutation: function (xmlElement) {
+        if (xmlElement) {
+          const isAt1 = xmlElement.getAttribute('at1') === 'true';
+          const isAt2 = xmlElement.getAttribute('at2') === 'true';
+          this.updateAt_(1, isAt1);
+          this.updateAt_(2, isAt2);
+        }
+      },
+
+      // JSON序列化钩子
+      saveExtraState: function () {
+        const input1 = this.getInput('AT1');
+        const input2 = this.getInput('AT2');
+
+        if (!input1 || !input2) return null;
+
+        return {
+          'at1': input1.type == Blockly.INPUT_VALUE,
+          'at2': input2.type == Blockly.INPUT_VALUE
+        };
+      },
+
+      // JSON反序列化钩子
+      loadExtraState: function (state) {
+        if (state) {
+          this.updateAt_(1, Boolean(state['at1']));
+          this.updateAt_(2, Boolean(state['at2']));
+        }
+      },
+
+      // 更新输入字段
+      updateAt_: function (n, isAt) {
+        // 确定哪个下拉菜单需要保留
+        const whereFieldName = (n === 1) ? 'WHERE1' : 'WHERE2';
+
+        // 在移除输入前记住现有的下拉菜单值
+        const whereField = this.getField(whereFieldName);
+        const whereValue = whereField ? whereField.getValue() : null;
+
+        // 移除现有输入
+        this.removeInput('AT' + n);
+        this.removeInput('ORDINAL' + n, true);
+
+        // 创建新的输入
+        if (isAt) {
+          this.appendValueInput('AT' + n).setCheck('Number');
+          if (Blockly.Msg['ORDINAL_NUMBER_SUFFIX']) {
+            this.appendDummyInput('ORDINAL' + n)
+              .appendField(Blockly.Msg['ORDINAL_NUMBER_SUFFIX']);
+          }
+        } else {
+          this.appendDummyInput('AT' + n);
+        }
+
+        if (n === 1) {
+          // 检查WHERE1字段是否存在，不存在则重新添加
+          if (!this.getField('WHERE1') && whereValue) {
+            const input = this.getInput('AT1');
+            if (input) {
+              // 获取原始块定义或使用Blockly的多语言机制
+              // 从json定义获取选项，而不是硬编码
+              const options = this.type && Blockly.Blocks[this.type] &&
+                Blockly.Blocks[this.type].jsonInit_ ?
+                this.getOptionsForDropdown('WHERE1') :
+                [
+                  ["%{BKY_TEXT_GET_SUBSTRING_START_FROM_START}", "FROM_START"],
+                  ["%{BKY_TEXT_GET_SUBSTRING_START_FROM_END}", "FROM_END"],
+                  ["%{BKY_TEXT_GET_SUBSTRING_START_FIRST}", "FIRST"]
+                ];
+
+              input.insertFieldAt(0, new Blockly.FieldDropdown(options), 'WHERE1');
+
+              // 恢复原来的值
+              const newField = this.getField('WHERE1');
+              if (newField && whereValue) {
+                newField.setValue(whereValue);
+              }
+            }
+          }
+        } else if (n === 2) {
+          // 检查WHERE2字段是否存在，不存在则重新添加
+          if (!this.getField('WHERE2') && whereValue) {
+            const input = this.getInput('AT2');
+            if (input) {
+              // 获取原始块定义或使用Blockly的多语言机制
+              // 从json定义获取选项，而不是硬编码
+              const options = this.type && Blockly.Blocks[this.type] &&
+                Blockly.Blocks[this.type].jsonInit_ ?
+                this.getOptionsForDropdown('WHERE2') :
+                [
+                  ["%{BKY_TEXT_GET_SUBSTRING_END_FROM_START}", "FROM_START"],
+                  ["%{BKY_TEXT_GET_SUBSTRING_END_FROM_END}", "FROM_END"],
+                  ["%{BKY_TEXT_GET_SUBSTRING_END_LAST}", "LAST"]
+                ];
+
+              input.insertFieldAt(0, new Blockly.FieldDropdown(options), 'WHERE2');
+
+              // 恢复原来的值
+              const newField = this.getField('WHERE2');
+              if (newField && whereValue) {
+                newField.setValue(whereValue);
+              }
+            }
+          }
+        }
+
+        // 对于尾部处理
+        if (n === 2 && Blockly.Msg['TEXT_GET_SUBSTRING_TAIL']) {
+          this.removeInput('TAIL', true);
+          this.appendDummyInput('TAIL')
+            .appendField(Blockly.Msg['TEXT_GET_SUBSTRING_TAIL']);
+        }
+
+        // 确保AT1在WHERE2_INPUT之前
+        if (n === 1) {
+          const where2Input = this.getInput('WHERE2_INPUT');
+          if (where2Input) {
+            this.moveInputBefore('AT1', 'WHERE2_INPUT');
+            if (this.getInput('ORDINAL1')) {
+              this.moveInputBefore('ORDINAL1', 'WHERE2_INPUT');
+            }
+          }
+        }
+      },
+
+      // 在 text_getSubstring_mutator 对象中添加这个方法
+      getOptionsForDropdown: function (fieldName) {
+        // 尝试从块定义中获取选项
+        if (this.type) {
+          try {
+            // 从block.json中找到对应的定义
+            const jsonDef = Blockly.Blocks[this.type].jsonInit_;
+            if (jsonDef && jsonDef.args0) {
+              for (let i = 0; i < jsonDef.args0.length; i++) {
+                const arg = jsonDef.args0[i];
+                if (arg.name === fieldName && arg.type === 'field_dropdown' && arg.options) {
+                  return arg.options;
+                }
+              }
+            }
+
+            // 如果找不到定义，从当前块获取
+            const blockJson = this.jsonInit_;
+            if (blockJson && blockJson.args0) {
+              for (let i = 0; i < blockJson.args0.length; i++) {
+                const arg = blockJson.args0[i];
+                if (arg.name === fieldName && arg.type === 'field_dropdown' && arg.options) {
+                  return arg.options;
+                }
+              }
+            }
+          } catch (e) {
+            console.error('获取下拉菜单选项出错:', e);
+          }
+        }
+
+        // 如果无法获取，返回默认选项
+        if (fieldName === 'WHERE1') {
+          return [
+            ["获取子串, 从第#个字符", "FROM_START"],
+            ["获取子串, 从倒数第#个字符", "FROM_END"],
+            ["获取子串, 从第一个字符", "FIRST"]
+          ];
+        } else if (fieldName === 'WHERE2') {
+          return [
+            ["到第#个字符", "FROM_START"],
+            ["到倒数第#个字符", "FROM_END"],
+            ["获取最后一个字符", "LAST"]
+          ];
+        }
+
+        return [];
+      }
+    },
+
+    // 初始化函数
+    function () {
+      // 为下拉菜单添加验证器
+      const where1 = this.getField('WHERE1');
+      if (where1) {
+        where1.setValidator(function (value) {
+          const newAt = value === 'FROM_START' || value === 'FROM_END';
+          const at1 = this.getSourceBlock().getInput('AT1');
+          if (at1 && newAt !== (at1.type == Blockly.INPUT_VALUE)) {
+            this.getSourceBlock().updateAt_(1, newAt);
+          }
+          return undefined;  // 保留选中的选项
+        });
+      }
+
+      const where2 = this.getField('WHERE2');
+      if (where2) {
+        where2.setValidator(function (value) {
+          const newAt = value === 'FROM_START' || value === 'FROM_END';
+          const at2 = this.getSourceBlock().getInput('AT2');
+          if (at2 && newAt !== (at2.type == Blockly.INPUT_VALUE)) {
+            this.getSourceBlock().updateAt_(2, newAt);
+          }
+          return undefined;  // 保留选中的选项
+        });
+      }
+
+      // 初始化
+      const where1Value = this.getFieldValue('WHERE1');
+      this.updateAt_(1, where1Value === 'FROM_START' || where1Value === 'FROM_END');
+
+      const where2Value = this.getFieldValue('WHERE2');
+      this.updateAt_(2, where2Value === 'FROM_START' || where2Value === 'FROM_END');
+    }
+  );
+} catch (e) {
+  //
+}
+
 Arduino.forceString = function (value) {
   const strRegExp = /^\s*'([^']|\\')*'\s*$/;
   if (strRegExp.test(value)) {
@@ -166,6 +406,13 @@ Arduino.forBlock["text_append"] = function (block) {
   // Append to a variable in place.
   const varName = Arduino.getVariableName(block.getFieldValue("VAR"));
   const value = Arduino.valueToCode(block, "TEXT", Arduino.ORDER_NONE) || "\"\"";
+
+  try {
+    addVariableToToolbox(block, varName);
+  } catch (e) {
+    console.error("添加变量到工具箱失败:", e);
+  }
+
   const code = varName + " += " + Arduino.forceString(value)[0] + ";\n";
   return code;
 };
@@ -187,6 +434,13 @@ Arduino.forBlock["text_indexOf"] = function (block) {
   const operator = block.getFieldValue("END") === "FIRST" ? "indexOf" : "lastIndexOf";
   const substring = Arduino.valueToCode(block, "FIND", Arduino.ORDER_NONE) || "\"\"";
   const text = Arduino.valueToCode(block, "VALUE", Arduino.ORDER_MEMBER) || "\"\"";
+
+  try {
+    addVariableToToolbox(block, text);
+  } catch (e) {
+    console.error("添加变量到工具箱失败:", e);
+  }
+
   // Arduino String类使用相同的方法名，但返回值与JS略有不同
   const code = text + "." + operator + "(" + substring + ")";
   // Adjust index if using one-based indices.
@@ -201,6 +455,13 @@ Arduino.forBlock["text_charAt"] = function (block) {
   const where = block.getFieldValue("WHERE") || "FROM_START";
   const textOrder = where === "RANDOM" ? Arduino.ORDER_NONE : Arduino.ORDER_MEMBER;
   const text = Arduino.valueToCode(block, "VALUE", textOrder) || "\"\"";
+
+  try {
+    addVariableToToolbox(block, text);
+  } catch (e) {
+    console.error("添加变量到工具箱失败:", e);
+  }
+
   switch (where) {
     case "FIRST": {
       const code = text + ".charAt(0)";
@@ -242,6 +503,12 @@ Arduino.forBlock["text_getSubstring"] = function (block) {
   const text = Arduino.valueToCode(block, "STRING", Arduino.ORDER_NONE) || "\"\"";
   const where1 = block.getFieldValue("WHERE1");
   const where2 = block.getFieldValue("WHERE2");
+
+  try {
+    addVariableToToolbox(block, text);
+  } catch (e) {
+    console.error("添加变量到工具箱失败:", e);
+  }
 
   let at1;
   switch (where1) {
@@ -286,7 +553,7 @@ Arduino.forBlock["text_changeCase"] = function (block) {
 
   // 为Arduino添加自定义函数
   if (operator === "UPPERCASE") {
-    Arduino.addDefinition('text_to_upper',
+    Arduino.addFunction('text_to_upper',
       'String textToUpper(String text) {\n' +
       '  String result = text;\n' +
       '  result.toUpperCase();\n' +
@@ -294,7 +561,7 @@ Arduino.forBlock["text_changeCase"] = function (block) {
       '}\n');
     code = "textToUpper(" + text + ")";
   } else if (operator === "LOWERCASE") {
-    Arduino.addDefinition('text_to_lower',
+    Arduino.addFunction('text_to_lower',
       'String textToLower(String text) {\n' +
       '  String result = text;\n' +
       '  result.toLowerCase();\n' +
@@ -303,7 +570,7 @@ Arduino.forBlock["text_changeCase"] = function (block) {
     code = "textToLower(" + text + ")";
   } else if (operator === "TITLECASE") {
     // Arduino不内置标题大小写函数，需要自定义实现
-    Arduino.addDefinition('text_to_title',
+    Arduino.addFunction('text_to_title',
       'String textToTitleCase(String text) {\n' +
       '  String result = "";\n' +
       '  bool capitalizeNext = true;\n' +
@@ -335,7 +602,7 @@ Arduino.forBlock["text_trim"] = function (block) {
   // Arduino需要自定义修剪函数
   let functionName;
   if (mode === "BOTH") {
-    Arduino.addDefinition('text_trim',
+    Arduino.addFunction('text_trim',
       'String textTrim(String text) {\n' +
       '  String result = text;\n' +
       '  result.trim();\n' +
@@ -343,7 +610,7 @@ Arduino.forBlock["text_trim"] = function (block) {
       '}\n');
     functionName = "textTrim";
   } else if (mode === "LEFT") {
-    Arduino.addDefinition('text_trim_left',
+    Arduino.addFunction('text_trim_left',
       'String textTrimLeft(String text) {\n' +
       '  int i = 0;\n' +
       '  while (i < text.length() && isSpace(text.charAt(i))) {\n' +
@@ -353,7 +620,7 @@ Arduino.forBlock["text_trim"] = function (block) {
       '}\n');
     functionName = "textTrimLeft";
   } else if (mode === "RIGHT") {
-    Arduino.addDefinition('text_trim_right',
+    Arduino.addFunction('text_trim_right',
       'String textTrimRight(String text) {\n' +
       '  int i = text.length() - 1;\n' +
       '  while (i >= 0 && isSpace(text.charAt(i))) {\n' +
@@ -400,7 +667,7 @@ Arduino.forBlock["text_count"] = function (block) {
   const sub = Arduino.valueToCode(block, "SUB", Arduino.ORDER_NONE) || "\"\"";
 
   // Arduino需要自定义函数计数子字符串出现次数
-  Arduino.addDefinition('text_count',
+  Arduino.addFunction('text_count',
     'int textCount(String text, String sub) {\n' +
     '  if (sub.length() == 0) return text.length() + 1;\n' +
     '  int count = 0;\n' +
@@ -422,7 +689,7 @@ Arduino.forBlock["text_replace"] = function (block) {
   const to = Arduino.valueToCode(block, "TO", Arduino.ORDER_NONE) || "\"\"";
 
   // Arduino需要自定义替换函数，String.replace()只替换第一个匹配项
-  Arduino.addDefinition('text_replace_all',
+  Arduino.addFunction('text_replace_all',
     'String textReplaceAll(String text, String from, String to) {\n' +
     '  String result = text;\n' +
     '  int index = result.indexOf(from);\n' +
@@ -438,10 +705,13 @@ Arduino.forBlock["text_replace"] = function (block) {
 };
 
 Arduino.forBlock["text_reverse"] = function (block) {
+  console.log("使用到了text_reverse");
   const text = Arduino.valueToCode(block, "TEXT", Arduino.ORDER_MEMBER) || "\"\"";
 
+  console.log("text_reverse: ", text);
+
   // Arduino需要自定义反转函数
-  Arduino.addDefinition('text_reverse',
+  Arduino.addFunction('text_reverse',
     'String textReverse(String text) {\n' +
     '  String result = "";\n' +
     '  for (int i = text.length() - 1; i >= 0; i--) {\n' +
