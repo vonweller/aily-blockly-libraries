@@ -122,9 +122,6 @@ Arduino.forBlock['lcd_i2c_backlight_off'] = function (block, generator) {
 };
 
 Arduino.forBlock['lcd_i2c_custom_char'] = function (block, generator) {
-  // 确保LCD已初始化
-  Arduino.ensureLcdInitialized(generator);
-
   // 获取字符位图数据和存储位置
   var bitmapData = block.getFieldValue('CUSTOM_CHAR');
   var charIndex = block.getFieldValue('CHAR_INDEX');
