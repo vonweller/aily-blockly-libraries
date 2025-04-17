@@ -8,7 +8,7 @@ Arduino.servoInitialized = {};
 Arduino.forBlock['servo_write'] = function (block, generator) {
     // 获取舵机引脚和角度值
     var pin = block.getFieldValue('PIN');
-    var angle = block.getFieldValue('ANGLE');
+    var angle = generator.valueToCode(block, 'ANGLE', generator.ORDER_ATOMIC) || '90';
 
     // 添加Servo库引用
     generator.addLibrary('Servo', '#include <Servo.h>');
@@ -41,4 +41,10 @@ Arduino.forBlock['servo_read'] = function (block, generator) {
     // 生成读取舵机角度的代码
     var code = servoName + '.read()';
     return [code, generator.ORDER_ATOMIC];
+};
+
+Arduino.forBlock['servo_angle'] = function (block, generator) {
+    // 获取角度值
+    var angle = block.getFieldValue('ANGLE');
+    return [angle, generator.ORDER_ATOMIC];
 };

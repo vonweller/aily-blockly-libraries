@@ -10,9 +10,9 @@
                 "options": "${board.digitalPins}"
             },
             {
-                "type": "field_angle",
+                "type": "input_value",
                 "name": "ANGLE",
-                "value": 90
+                "check": "Number"
             }
         ],
         "previousStatement": null,
@@ -28,6 +28,19 @@
                 "type": "field_dropdown",
                 "name": "PIN",
                 "options": "${board.digitalPins}"
+            }
+        ],
+        "output": "Number",
+        "colour": "#03a9f4"
+    },
+    {
+        "type": "servo_angle",
+        "message0": "%1",
+        "args0": [
+            {
+                "type": "field_angle",
+                "name": "ANGLE",
+                "value": 90
             }
         ],
         "output": "Number",
