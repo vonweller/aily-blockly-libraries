@@ -1,0 +1,231 @@
+[
+    {
+        "type": "fastled_init",
+        "message0": "初始化 LED 灯带 %1 类型 %2 数据引脚 %3 LED 数量 %4",
+        "args0": [
+            {
+                "type": "field_variable",
+                "name": "STRIP",
+                "variable": "leds",
+                "variableTypes": ["CRGB[]"],
+                "defaultType": "CRGB[]"
+            },
+            {
+                "type": "field_dropdown",
+                "name": "TYPE",
+                "options": [
+                    ["WS2812B", "WS2812B"],
+                    ["WS2812", "WS2812"],
+                    ["WS2811", "WS2811"],
+                    ["NEOPIXEL", "NEOPIXEL"],
+                    ["WS2801", "WS2801"],
+                    ["LPD8806", "LPD8806"],
+                    ["APA102", "APA102"]
+                ]
+            },
+            {
+                "type": "field_dropdown",
+                "name": "DATA_PIN",
+                "options": "${board.digitalPins}"
+            },
+            {
+                "type": "field_number",
+                "name": "NUM_LEDS",
+                "value": 30,
+                "min": 1,
+                "max": 1000
+            }
+        ],
+        "inputsInline": true,
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#2A82DA"
+    },
+    {
+        "type": "fastled_set_pixel",
+        "message0": "设置 LED %1 序号 %2 颜色 %3",
+        "args0": [
+            {
+                "type": "field_variable",
+                "name": "STRIP",
+                "variable": "leds",
+                "variableTypes": ["CRGB[]"],
+                "defaultType": "CRGB[]"
+            },
+            {
+                "type": "input_value",
+                "name": "PIXEL",
+                "check": "Number"
+            },
+            {
+                "type": "input_value",
+                "name": "COLOR",
+                "check": "Colour"
+            }
+        ],
+        "inputsInline": true,
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#2A82DA"
+    },
+    {
+        "type": "fastled_show",
+        "message0": "显示 LED 灯带",
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#2A82DA"
+    },
+    {
+        "type": "fastled_clear",
+        "message0": "清除 LED 灯带 %1",
+        "args0": [
+            {
+                "type": "field_variable",
+                "name": "STRIP",
+                "variable": "leds",
+                "variableTypes": ["CRGB[]"],
+                "defaultType": "CRGB[]"
+            }
+        ],
+        "inputsInline": true,
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#2A82DA"
+    },
+    {
+        "type": "fastled_brightness",
+        "message0": "设置亮度 %1",
+        "args0": [
+            {
+                "type": "input_value",
+                "name": "BRIGHTNESS",
+                "check": "Number"
+            }
+        ],
+        "inputsInline": true,
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#2A82DA"
+    },
+    {
+        "type": "fastled_rgb",
+        "message0": "RGB颜色 R %1 G %2 B %3",
+        "args0": [
+            {
+                "type": "input_value",
+                "name": "RED",
+                "check": "Number"
+            },
+            {
+                "type": "input_value",
+                "name": "GREEN",
+                "check": "Number"
+            },
+            {
+                "type": "input_value",
+                "name": "BLUE",
+                "check": "Number"
+            }
+        ],
+        "inputsInline": true,
+        "output": "Colour",
+        "colour": "#2A82DA"
+    },
+    {
+        "type": "fastled_preset_color",
+        "message0": "颜色 %1",
+        "args0": [
+            {
+                "type": "field_dropdown",
+                "name": "COLOR",
+                "options": [
+                    ["红色", "CRGB::Red"],
+                    ["绿色", "CRGB::Green"],
+                    ["蓝色", "CRGB::Blue"],
+                    ["白色", "CRGB::White"],
+                    ["黑色", "CRGB::Black"],
+                    ["黄色", "CRGB::Yellow"],
+                    ["紫色", "CRGB::Purple"],
+                    ["青色", "CRGB::Cyan"],
+                    ["橙色", "CRGB::Orange"],
+                    ["粉色", "CRGB::Pink"]
+                ]
+            }
+        ],
+        "output": "Colour",
+        "colour": "#2A82DA"
+    },
+    {
+        "type": "fastled_fill_solid",
+        "message0": "填充所有 LED %1 颜色 %2",
+        "args0": [
+            {
+                "type": "field_variable",
+                "name": "STRIP",
+                "variable": "leds",
+                "variableTypes": ["CRGB[]"],
+                "defaultType": "CRGB[]"
+            },
+            {
+                "type": "input_value",
+                "name": "COLOR",
+                "check": "Colour"
+            }
+        ],
+        "inputsInline": true,
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#2A82DA"
+    },
+    {
+        "type": "fastled_hsv",
+        "message0": "HSV颜色 H %1 S %2 V %3",
+        "args0": [
+            {
+                "type": "input_value",
+                "name": "HUE",
+                "check": "Number"
+            },
+            {
+                "type": "input_value",
+                "name": "SATURATION",
+                "check": "Number"
+            },
+            {
+                "type": "input_value",
+                "name": "VALUE",
+                "check": "Number"
+            }
+        ],
+        "inputsInline": true,
+        "output": "Colour",
+        "colour": "#2A82DA"
+    },
+    {
+        "type": "fastled_rainbow",
+        "message0": "彩虹效果 %1 起始色调 %2 增量 %3",
+        "args0": [
+            {
+                "type": "field_variable",
+                "name": "STRIP",
+                "variable": "leds",
+                "variableTypes": ["CRGB[]"],
+                "defaultType": "CRGB[]"
+            },
+            {
+                "type": "input_value",
+                "name": "INITIAL_HUE",
+                "check": "Number"
+            },
+            {
+                "type": "input_value",
+                "name": "DELTA_HUE",
+                "check": "Number"
+            }
+        ],
+        "inputsInline": true,
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#2A82DA"
+    }
+]
