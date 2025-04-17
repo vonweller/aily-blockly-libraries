@@ -8,7 +8,7 @@ Arduino.forBlock['fastled_init'] = function (block, generator) {
     generator.addVariable(`#define NUM_LEDS ${numLeds}`, `#define NUM_LEDS ${numLeds}`);
     generator.addVariable(`#define DATA_PIN ${dataPin}`, `#define DATA_PIN ${dataPin}`);
 
-    generator.addVariable(`CRGB ${strip}[NUM_LEDS]`, `CRGB ${strip}[NUM_LEDS]`);
+    generator.addVariable(`CRGB ${strip}[NUM_LEDS]`, `CRGB ${strip}[NUM_LEDS];`);
 
     let code = '';
 
