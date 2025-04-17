@@ -5,11 +5,25 @@
     "contents": [
         {
             "kind": "block",
-            "type": "servo_write"
+            "type": "servo_write",
+            "inputs": {
+                "ANGLE": {
+                    "shadow": {
+                        "type": "servo_angle",
+                        "fields": {
+                            "ANGLE": 90
+                        }
+                    }
+                }
+            }
         },
         {
             "kind": "block",
             "type": "servo_read"
+        },
+        {
+            "kind": "block",
+            "type": "servo_angle"
         }
     ]
 }
