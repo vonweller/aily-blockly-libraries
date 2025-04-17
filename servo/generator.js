@@ -14,7 +14,7 @@ Arduino.forBlock['servo_write'] = function (block, generator) {
     generator.addLibrary('Servo', '#include <Servo.h>');
 
     // 为每个引脚创建一个舵机对象
-    var servoName = 'servo_pin_' + pin;
+    var servoName = 'servo_' + pin;
     generator.addObject(servoName, 'Servo ' + servoName + ';');
 
     // 确保舵机在setup中初始化（只初始化一次）

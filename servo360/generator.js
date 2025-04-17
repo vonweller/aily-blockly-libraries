@@ -10,7 +10,7 @@ Arduino.forBlock['servo360_write'] = function(block, generator) {
     var servoName = 'servo_' + pin;
     
     // 添加必要的库
-    generator.addLibrary('servo360', '#include <Servo.h>');
+    generator.addLibrary('Servo', '#include <Servo.h>');
     
     // 添加servo对象
     generator.addObject(servoName, 'Servo ' + servoName + ';');
