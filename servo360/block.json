@@ -2,22 +2,26 @@
 [
     {
         "inputsInline": true,
-        "message0": "舵机%1移动到%2",
+        "message0": "控制引脚%1 360舵机 转速 %2 方向%3",
         "type": "servo360_write",
         "args0": [
             {
-                "type": "field_variable",
-                "name": "OBJECT",
-                "variable": "servo1",
-                "variableTypes": [
-                    "Servo"
-                ],
-                "defaultType": "Servo"
+                "type": "field_dropdown",
+                "name": "PIN",
+                "options": "${board.digitalPins}"
             },
             {
-                "type": "field_number",
+                "type": "field_slider",
                 "name": "ANGLE",
                 "value": 90
+            },
+            {
+                "type": "field_dropdown",
+                "name": "DIRECTION",
+                "options": [
+                    ["正传", "true"],
+                    ["反转", "false"]
+                ]
             }
         ],
         "previousStatement": null,
