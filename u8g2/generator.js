@@ -272,9 +272,9 @@ Arduino.forBlock['u8g2_draw_image'] = function (block, generator) {
   return `${u8g2}.drawXBM(${x}, ${y}, ${width}, ${height}, ${imageVarName});\n`;
 };
 
-Arduino.forBlock['image_block'] = function (block, generator) {
-  const imageData = block.getFieldValue('IMAGE');
-  // 如果需要，可以在这里对 imageData 进行额外处理
-  const code = `"${imageData}"`;
-  return code;
-};
+// Arduino.forBlock['image_block'] = function (block, generator) {
+//   const imageData = block.getFieldValue('IMAGE');
+//   // 如果需要，可以在这里对 imageData 进行额外处理
+//   const code = `"${imageData}"`;
+//   return code;
+// };
