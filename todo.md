@@ -13,6 +13,5 @@
 - [arduino_modbus](./arduino_modbus)
 - [ble_serial](./ble_serial)
 - [esp_twai](./esp_twai)
-- [fastled](./fastled)
 - [max30102](./max30102)
 - [sentry](./sentry)

@@ -5,7 +5,7 @@
 | 3 | DHT温湿度传感器库 | [@aily-project/lib-dht](adafruit_DHT) | 0.0.1 | ✓ | K2L |
 | 4 | 指纹识别库 | [@aily-project/lib-fingerprint](adafruit_Fingerprint) | 0.0.1 | ✗ | - |
 | 5 | MLX90614红外测温库 | [@aily-project/lib-mlx90614](adafruit_MLX90614) | 1.0.0 | ✗ | - |
-| 6 | NeoPixel LED灯带 | [@aily-project/lib-neopixel](adafruit_NeoPixel) | 0.1.0 | ✓ | K2L |
+| 6 | NeoPixel LED灯带 | [@aily-project/lib-neopixel](adafruit_NeoPixel) | 0.1.0 | ✗ | - |
 | 7 | ADXL345传感器库 | [@aily-project/lib-adxl345](ADXL345) | 0.0.1 | ✗ | - |
 | 8 | ArduinoBLE | [@aily-project/lib-arduino_ble](arduino_BLE) | 0.0.1 | ✗ | - |
 | 9 | ArduinoHTTP | [@aily-project/lib-arduino_http](arduino_http) | 1.0.0 | ✗ | - |
@@ -41,7 +41,7 @@
 | 39 | Blinker物联网库 | [@aily-project/lib-blinker](diandeng_blinker) | 0.0.1 | ✗ | - |
 | 40 | DS18B20温度传感器库 | [@aily-project/lib-ds18b20](DS18B20) | 0.0.1 | ✗ | - |
 | 41 | Encoder | [@aily-project/lib-encoder](encoder) | 1.4.0 | ✗ | - |
-| 42 | FastLED灯带驱动库 | [@aily-project/lib-fastled](FastLED) | 0.0.2 | ✗ | - |
+| 42 | FastLED灯带驱动库 | [@aily-project/lib-fastled](FastLED) | 0.0.4 | ✗ | - |
 | 43 | 粉尘传感器驱动库 | [@aily-project/lib-gp2y1010au0f](GP2Y1010AU0F) | 0.0.1 | ✗ | - |
 | 44 | HX711称重传感器库 | [@aily-project/lib-hx711](HX711) | 0.5.2 | ✓ | K2L |
 | 45 | IIC电机驱动库 | [@aily-project/lib-iicmotordriver](IICMotorDriver) | 0.0.1 | ✓ | K2L |
@@ -57,9 +57,9 @@
 | 55 | MPU6050 | [@aily-project/lib-mpu6050](MPU6050) | 1.0.0 | ✗ | - |
 | 56 | 常用语音播报模块 | [@aily-project/lib-nv170d](NV170D) | 0.0.1 | ✓ | K2L |
 | 57 | OneButton | [@aily-project/lib-onebutton](onebutton) | 0.0.1 | ✗ | - |
-| 58 | 语音识别库 | [@aily-project/lib-asr](openjumper-asr) | 0.0.1 | ✗ | - |
+| 58 | 语音识别 | [@aily-project/lib-asr](openjumper_asr) | 0.0.1 | ✗ | - |
 | 59 | IICPS3数据解析专用库 | [@aily-project/lib-openjumper-iicps3](openjumper_iicps3) | 0.0.1 | ✓ | K2L |
-| 60 | 文本转语音库 | [@aily-project/lib-tts](openjumper_tts) | 0.0.1 | ✓ | K2L |
+| 60 | 文本转语音 | [@aily-project/lib-tts](openjumper_tts) | 0.0.1 | ✓ | K2L |
 | 61 | PS2控制器库 | [@aily-project/lib-ps2x](PS2X) | 1.0.0 | ✗ | - |
 | 62 | RTC时钟 | [@aily-project/lib-rtc](RTC) | 1.0.0 | ✗ | - |
 | 63 | LIS3DHTR驱动库 | [@aily-project/lib-lis3dhtr](seeed_LIS3DHTR) | 0.0.1 | ✗ | - |
