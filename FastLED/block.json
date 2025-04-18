@@ -164,7 +164,7 @@
         "args0": [
             {
                 "type": "field_colour_hsv_sliders",
-                "name": "COLOUR",
+                "name": "COLOR",
                 "colour": "#ffffff"
             }
         ],
@@ -241,6 +241,195 @@
                 "type": "input_value",
                 "name": "DELTA_HUE",
                 "check": "Number"
+            }
+        ],
+        "inputsInline": true,
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#2A82DA"
+    },
+    {
+        "type": "fastled_fire_effect",
+        "message0": "火焰效果 %1 热度 %2 冷却速度 %3",
+        "args0": [
+            {
+                "type": "field_variable",
+                "name": "STRIP",
+                "variable": "leds",
+                "variableTypes": [
+                    "CRGB[]"
+                ],
+                "defaultType": "CRGB[]"
+            },
+            {
+                "type": "input_value",
+                "name": "HEAT",
+                "check": "Number"
+            },
+            {
+                "type": "input_value",
+                "name": "COOLING",
+                "check": "Number"
+            }
+        ],
+        "inputsInline": true,
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#2A82DA"
+    },
+    {
+        "type": "fastled_meteor",
+        "message0": "流星效果 %1 颜色 %2 流星大小 %3 尾部淡出 %4 速度 %5",
+        "args0": [
+            {
+                "type": "field_variable",
+                "name": "STRIP",
+                "variable": "leds",
+                "variableTypes": [
+                    "CRGB[]"
+                ],
+                "defaultType": "CRGB[]"
+            },
+            {
+                "type": "input_value",
+                "name": "COLOR",
+                "check": "Colour"
+            },
+            {
+                "type": "input_value",
+                "name": "SIZE",
+                "check": "Number"
+            },
+            {
+                "type": "input_value",
+                "name": "DECAY",
+                "check": "Number"
+            },
+            {
+                "type": "input_value",
+                "name": "SPEED",
+                "check": "Number"
+            }
+        ],
+        "inputsInline": true,
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#2A82DA"
+    },
+    {
+        "type": "fastled_palette_cycle",
+        "message0": "调色板循环效果 %1 调色板 %2 速度 %3",
+        "args0": [
+            {
+                "type": "field_variable",
+                "name": "STRIP",
+                "variable": "leds",
+                "variableTypes": [
+                    "CRGB[]"
+                ],
+                "defaultType": "CRGB[]"
+            },
+            {
+                "type": "field_dropdown",
+                "name": "PALETTE",
+                "options": [
+                    [
+                        "彩虹",
+                        "RainbowColors_p"
+                    ],
+                    [
+                        "熔岩",
+                        "LavaColors_p"
+                    ],
+                    [
+                        "云彩",
+                        "CloudColors_p"
+                    ],
+                    [
+                        "海洋",
+                        "OceanColors_p"
+                    ],
+                    [
+                        "森林",
+                        "ForestColors_p"
+                    ],
+                    [
+                        "派对",
+                        "PartyColors_p"
+                    ],
+                    [
+                        "热量",
+                        "HeatColors_p"
+                    ]
+                ]
+            },
+            {
+                "type": "input_value",
+                "name": "SPEED",
+                "check": "Number"
+            }
+        ],
+        "inputsInline": true,
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#2A82DA"
+    },
+    {
+        "type": "fastled_breathing",
+        "message0": "呼吸灯效果 %1 颜色 %2 速度 %3",
+        "args0": [
+            {
+                "type": "field_variable",
+                "name": "STRIP",
+                "variable": "leds",
+                "variableTypes": [
+                    "CRGB[]"
+                ],
+                "defaultType": "CRGB[]"
+            },
+            {
+                "type": "input_value",
+                "name": "COLOR",
+                "check": "Colour"
+            },
+            {
+                "type": "input_value",
+                "name": "SPEED",
+                "check": "Number"
+            }
+        ],
+        "inputsInline": true,
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#2A82DA"
+    },
+    {
+        "type": "fastled_twinkle",
+        "message0": "闪烁效果 %1 闪烁数量 %2 背景 %3 闪烁颜色 %4",
+        "args0": [
+            {
+                "type": "field_variable",
+                "name": "STRIP",
+                "variable": "leds",
+                "variableTypes": [
+                    "CRGB[]"
+                ],
+                "defaultType": "CRGB[]"
+            },
+            {
+                "type": "input_value",
+                "name": "COUNT",
+                "check": "Number"
+            },
+            {
+                "type": "input_value",
+                "name": "BACKGROUND",
+                "check": "Colour"
+            },
+            {
+                "type": "input_value",
+                "name": "COLOR",
+                "check": "Colour"
             }
         ],
         "inputsInline": true,
