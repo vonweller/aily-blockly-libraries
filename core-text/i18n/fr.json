@@ -13,10 +13,55 @@
         "message0": "%1 contient-il %2?"
     },
     "string_substring": {
-        "message0": "Obtenir caractères de %2 %3 à %4 %5 dans %1"
+        "message0": "%1 obtenir les caractères de %2 %3 à %4 %5",
+        "args0": [
+            null,
+            {
+                "options": [
+                    [
+                        "le",
+                        "0"
+                    ],
+                    [
+                        "l'avant-dernier",
+                        "1"
+                    ]
+                ]
+            },
+            null,
+            {
+                "options": [
+                    [
+                        "le",
+                        "0"
+                    ],
+                    [
+                        "l'avant-dernier",
+                        "1"
+                    ]
+                ]
+            },
+            null
+        ]
     },
     "string_find_str": {
-        "message0": "Trouver %1 dans %2 à la position %3"
+        "message0": "Trouver %1 dans %2 à la position %3",
+        "args0": [
+            null,
+            null,
+            {
+                "options": [
+                    [
+                        "Première",
+                        "indexOf"
+                    ],
+                    [
+                        "Dernière",
+                        "lastIndexOf"
+                    ]
+                ]
+            }
+        ]
     },
     "string_to": {
         "message0": "Convertir chaîne %1 en %2",
@@ -82,16 +127,45 @@
             }
         ]
     },
-    "text_getSubstring": {
-        "message0": "Dans le texte %1 %2 %3 %4 %5",
-        "args0": [
-            null,
+    "tt_getSubstring": {
+        "message0": "obtenir la sous-chaîne dans le texte %1",
+        "message1": "%1 %2",
+        "args1": [
             {
-                "options": [["Obtenir sous-chaîne, à partir du caractère #", "FROM_START"],["Obtenir sous-chaîne, jusqu'au dernier caractère #", "FROM_END"],["Obtenir sous-chaîne, à partir du premier caractère", "FIRST"]]
+                "options": [
+                    [
+                        "à partir du caractère #",
+                        "FROM_START"
+                    ],
+                    [
+                        "à partir du # depuis la fin",
+                        "FROM_END"
+                    ],
+                    [
+                        "à partir du premier caractère",
+                        "FIRST"
+                    ]
+                ]
             },
-            null,
+            null
+        ],
+        "message2": "%1 %2",
+        "args2": [
             {
-                "options": [["au caractère #", "FROM_START"],["au dernier caractère #", "FROM_END"],["au dernier caractère", "LAST"]]
+                "options": [
+                    [
+                        "jusqu'au caractère #",
+                        "FROM_START"
+                    ],
+                    [
+                        "jusqu'au # depuis la fin",
+                        "FROM_END"
+                    ],
+                    [
+                        "jusqu'au dernier caractère",
+                        "LAST"
+                    ]
+                ]
             },
             null
         ]

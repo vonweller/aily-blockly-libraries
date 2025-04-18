@@ -1,242 +1,99 @@
-/**
- * 定义txt_getSubstring_mutator扩展
- */
-try {
-  Blockly.Extensions.registerMutator('text_getSubstring_mutator',
-    {
-      // XML序列化钩子
-      mutationToDom: function () {
-        const container = Blockly.utils.xml.createElement('mutation');
-        const input1 = this.getInput('AT1');
-        const input2 = this.getInput('AT2');
+const TEXT_GET_SUBSTRING_MUTATOR_MIXIN = {
+  mutationToDom: function () {
+    const container = document.createElement('mutation');
+    container.setAttribute('at1', this.isAt1_ ? 'true' : 'false');
+    container.setAttribute('at2', this.isAt2_ ? 'true' : 'false');
+    return container;
+  },
+  domToMutation: function (xmlElement) {
+    this.isAt1_ = xmlElement.getAttribute('at1') !== 'false';
+    this.isAt2_ = xmlElement.getAttribute('at2') !== 'false';
+    this.updateAt_(1, this.isAt1_);
+    this.updateAt_(2, this.isAt2_);
+  },
+  updateAt_: function (n, isAt) {
+    // 使用dummy输入而非创建新输入
+    const dummyInputName = 'AT' + n + '_DUMMY';
+    const dummyInput = this.getInput(dummyInputName);
 
-        if (input1) {
-          const isAt1 = input1.type == Blockly.INPUT_VALUE;
-          container.setAttribute('at1', isAt1.toString());
-        }
-
-        if (input2) {
-          const isAt2 = input2.type == Blockly.INPUT_VALUE;
-          container.setAttribute('at2', isAt2.toString());
-        }
-
-        return container;
-      },
-
-      // XML反序列化钩子
-      domToMutation: function (xmlElement) {
-        if (xmlElement) {
-          const isAt1 = xmlElement.getAttribute('at1') === 'true';
-          const isAt2 = xmlElement.getAttribute('at2') === 'true';
-          this.updateAt_(1, isAt1);
-          this.updateAt_(2, isAt2);
-        }
-      },
-
-      // JSON序列化钩子
-      saveExtraState: function () {
-        const input1 = this.getInput('AT1');
-        const input2 = this.getInput('AT2');
-
-        if (!input1 || !input2) return null;
-
-        return {
-          'at1': input1.type == Blockly.INPUT_VALUE,
-          'at2': input2.type == Blockly.INPUT_VALUE
-        };
-      },
-
-      // JSON反序列化钩子
-      loadExtraState: function (state) {
-        if (state) {
-          this.updateAt_(1, Boolean(state['at1']));
-          this.updateAt_(2, Boolean(state['at2']));
-        }
-      },
-
-      // 更新输入字段
-      updateAt_: function (n, isAt) {
-        // 确定哪个下拉菜单需要保留
-        const whereFieldName = (n === 1) ? 'WHERE1' : 'WHERE2';
-
-        // 在移除输入前记住现有的下拉菜单值
-        const whereField = this.getField(whereFieldName);
-        const whereValue = whereField ? whereField.getValue() : null;
-
-        // 移除现有输入
-        this.removeInput('AT' + n);
-        this.removeInput('ORDINAL' + n, true);
-
-        // 创建新的输入
-        if (isAt) {
-          this.appendValueInput('AT' + n).setCheck('Number');
-          if (Blockly.Msg['ORDINAL_NUMBER_SUFFIX']) {
-            this.appendDummyInput('ORDINAL' + n)
-              .appendField(Blockly.Msg['ORDINAL_NUMBER_SUFFIX']);
-          }
-        } else {
-          this.appendDummyInput('AT' + n);
-        }
-
-        if (n === 1) {
-          // 检查WHERE1字段是否存在，不存在则重新添加
-          if (!this.getField('WHERE1') && whereValue) {
-            const input = this.getInput('AT1');
-            if (input) {
-              // 获取原始块定义或使用Blockly的多语言机制
-              // 从json定义获取选项，而不是硬编码
-              const options = this.type && Blockly.Blocks[this.type] &&
-                Blockly.Blocks[this.type].jsonInit_ ?
-                this.getOptionsForDropdown('WHERE1') :
-                [
-                  ["%{BKY_TEXT_GET_SUBSTRING_START_FROM_START}", "FROM_START"],
-                  ["%{BKY_TEXT_GET_SUBSTRING_START_FROM_END}", "FROM_END"],
-                  ["%{BKY_TEXT_GET_SUBSTRING_START_FIRST}", "FIRST"]
-                ];
-
-              input.insertFieldAt(0, new Blockly.FieldDropdown(options), 'WHERE1');
-
-              // 恢复原来的值
-              const newField = this.getField('WHERE1');
-              if (newField && whereValue) {
-                newField.setValue(whereValue);
-              }
-            }
-          }
-        } else if (n === 2) {
-          // 检查WHERE2字段是否存在，不存在则重新添加
-          if (!this.getField('WHERE2') && whereValue) {
-            const input = this.getInput('AT2');
-            if (input) {
-              // 获取原始块定义或使用Blockly的多语言机制
-              // 从json定义获取选项，而不是硬编码
-              const options = this.type && Blockly.Blocks[this.type] &&
-                Blockly.Blocks[this.type].jsonInit_ ?
-                this.getOptionsForDropdown('WHERE2') :
-                [
-                  ["%{BKY_TEXT_GET_SUBSTRING_END_FROM_START}", "FROM_START"],
-                  ["%{BKY_TEXT_GET_SUBSTRING_END_FROM_END}", "FROM_END"],
-                  ["%{BKY_TEXT_GET_SUBSTRING_END_LAST}", "LAST"]
-                ];
-
-              input.insertFieldAt(0, new Blockly.FieldDropdown(options), 'WHERE2');
-
-              // 恢复原来的值
-              const newField = this.getField('WHERE2');
-              if (newField && whereValue) {
-                newField.setValue(whereValue);
-              }
-            }
-          }
-        }
-
-        // 对于尾部处理
-        if (n === 2 && Blockly.Msg['TEXT_GET_SUBSTRING_TAIL']) {
-          this.removeInput('TAIL', true);
-          this.appendDummyInput('TAIL')
-            .appendField(Blockly.Msg['TEXT_GET_SUBSTRING_TAIL']);
-        }
-
-        // 确保AT1在WHERE2_INPUT之前
-        if (n === 1) {
-          const where2Input = this.getInput('WHERE2_INPUT');
-          if (where2Input) {
-            this.moveInputBefore('AT1', 'WHERE2_INPUT');
-            if (this.getInput('ORDINAL1')) {
-              this.moveInputBefore('ORDINAL1', 'WHERE2_INPUT');
-            }
-          }
-        }
-      },
-
-      // 在 text_getSubstring_mutator 对象中添加这个方法
-      getOptionsForDropdown: function (fieldName) {
-        // 尝试从块定义中获取选项
-        if (this.type) {
-          try {
-            // 从block.json中找到对应的定义
-            const jsonDef = Blockly.Blocks[this.type].jsonInit_;
-            if (jsonDef && jsonDef.args0) {
-              for (let i = 0; i < jsonDef.args0.length; i++) {
-                const arg = jsonDef.args0[i];
-                if (arg.name === fieldName && arg.type === 'field_dropdown' && arg.options) {
-                  return arg.options;
-                }
-              }
-            }
-
-            // 如果找不到定义，从当前块获取
-            const blockJson = this.jsonInit_;
-            if (blockJson && blockJson.args0) {
-              for (let i = 0; i < blockJson.args0.length; i++) {
-                const arg = blockJson.args0[i];
-                if (arg.name === fieldName && arg.type === 'field_dropdown' && arg.options) {
-                  return arg.options;
-                }
-              }
-            }
-          } catch (e) {
-            console.error('获取下拉菜单选项出错:', e);
-          }
-        }
-
-        // 如果无法获取，返回默认选项
-        if (fieldName === 'WHERE1') {
-          return [
-            ["获取子串, 从第#个字符", "FROM_START"],
-            ["获取子串, 从倒数第#个字符", "FROM_END"],
-            ["获取子串, 从第一个字符", "FIRST"]
-          ];
-        } else if (fieldName === 'WHERE2') {
-          return [
-            ["到第#个字符", "FROM_START"],
-            ["到倒数第#个字符", "FROM_END"],
-            ["获取最后一个字符", "LAST"]
-          ];
-        }
-
-        return [];
-      }
-    },
-
-    // 初始化函数
-    function () {
-      // 为下拉菜单添加验证器
-      const where1 = this.getField('WHERE1');
-      if (where1) {
-        where1.setValidator(function (value) {
-          const newAt = value === 'FROM_START' || value === 'FROM_END';
-          const at1 = this.getSourceBlock().getInput('AT1');
-          if (at1 && newAt !== (at1.type == Blockly.INPUT_VALUE)) {
-            this.getSourceBlock().updateAt_(1, newAt);
-          }
-          return undefined;  // 保留选中的选项
-        });
-      }
-
-      const where2 = this.getField('WHERE2');
-      if (where2) {
-        where2.setValidator(function (value) {
-          const newAt = value === 'FROM_START' || value === 'FROM_END';
-          const at2 = this.getSourceBlock().getInput('AT2');
-          if (at2 && newAt !== (at2.type == Blockly.INPUT_VALUE)) {
-            this.getSourceBlock().updateAt_(2, newAt);
-          }
-          return undefined;  // 保留选中的选项
-        });
-      }
-
-      // 初始化
-      const where1Value = this.getFieldValue('WHERE1');
-      this.updateAt_(1, where1Value === 'FROM_START' || where1Value === 'FROM_END');
-
-      const where2Value = this.getFieldValue('WHERE2');
-      this.updateAt_(2, where2Value === 'FROM_START' || where2Value === 'FROM_END');
+    if (!dummyInput) {
+      console.error('找不到输入：', dummyInputName);
+      return;
     }
-  );
-} catch (e) {
-  //
+
+    // 字段名称
+    const fieldName = 'AT' + n;
+    // 值输入名称（添加_VALUE后缀）
+    const valueInputName = 'AT' + n + '_VALUE';
+
+    // 删除之前可能添加的值输入块
+    const existingInput = this.getInput(valueInputName);
+    if (existingInput) {
+      this.removeInput(valueInputName);
+    }
+
+    // 如果需要数值输入，添加一个值输入块
+    if (isAt) {
+      // 创建值输入块
+      const valueInput = this.appendValueInput(valueInputName)
+        .setCheck('Number');
+
+      // 找出dummy输入后的下一个输入名称
+      const inputList = this.inputList;
+      const dummyIndex = inputList.findIndex(input => input.name === dummyInputName);
+
+      // 如果dummy输入不是最后一个输入，将值输入移动到dummy输入之后
+      if (dummyIndex < inputList.length - 1) {
+        const nextInputName = inputList[dummyIndex + 1].name;
+        this.moveInputBefore(valueInputName, nextInputName);
+      }
+    }
+
+    // 更新状态标记
+    if (n === 1) this.isAt1_ = isAt;
+    if (n === 2) this.isAt2_ = isAt;
+  }
+};
+
+const TEXT_GET_SUBSTRING_EXTENSION = function () {
+  // 初始化
+  this.isAt1_ = true; // 默认显示AT1输入
+  this.isAt2_ = true; // 默认显示AT2输入
+
+  // WHERE1
+  const dropdown1 = this.getField('WHERE1');
+  if (dropdown1) {
+    dropdown1.setValidator((value) => {
+      const isAt = value === 'FROM_START' || value === 'FROM_END';
+      this.updateAt_(1, isAt);
+      return undefined;
+    });
+  }
+
+  // WHERE2
+  const dropdown2 = this.getField('WHERE2');
+  if (dropdown2) {
+    dropdown2.setValidator((value) => {
+      const isAt = value === 'FROM_START' || value === 'FROM_END';
+      this.updateAt_(2, isAt);
+      return undefined;
+    });
+  }
+
+  // 应用初始状态
+  this.updateAt_(1, this.isAt1_);
+  this.updateAt_(2, this.isAt2_);
+};
+
+if (Blockly.Extensions.isRegistered('text_getSubstring_mutator')) {
+  Blockly.Extensions.unregister('text_getSubstring_mutator');
 }
+
+Blockly.Extensions.registerMutator(
+  'text_getSubstring_mutator',
+  TEXT_GET_SUBSTRING_MUTATOR_MIXIN,
+  TEXT_GET_SUBSTRING_EXTENSION
+);
 
 Arduino.forceString = function (value) {
   const strRegExp = /^\s*'([^']|\\')*'\s*$/;
@@ -498,7 +355,7 @@ Arduino.forBlock["text_charAt"] = function (block) {
   throw Error("Unhandled option (text_charAt).");
 };
 
-Arduino.forBlock["text_getSubstring"] = function (block) {
+Arduino.forBlock["tt_getSubstring"] = function (block) {
   // Get substring.
   const text = Arduino.valueToCode(block, "STRING", Arduino.ORDER_NONE) || "\"\"";
   const where1 = block.getFieldValue("WHERE1");
@@ -510,13 +367,19 @@ Arduino.forBlock["text_getSubstring"] = function (block) {
     console.error("添加变量到工具箱失败:", e);
   }
 
+  console.log("where1: ", where1)
+  console.log("where2: ", where2)
+
   let at1;
   switch (where1) {
     case "FROM_START":
-      at1 = Arduino.getAdjusted(block, "AT1");
+      // 从AT1_VALUE输入获取值
+      at1 = Arduino.valueToCode(block, "AT1_VALUE", Arduino.ORDER_NONE) || "0";
       break;
     case "FROM_END":
-      at1 = text + ".length() - 1 - " + Arduino.getAdjusted(block, "AT1", 1, false);
+      // 从AT1_VALUE输入获取值
+      const at1Value = Arduino.valueToCode(block, "AT1_VALUE", Arduino.ORDER_NONE) || "0";
+      at1 = text + ".length() - 1 - " + at1Value;
       break;
     case "FIRST":
       at1 = "0";
@@ -528,10 +391,13 @@ Arduino.forBlock["text_getSubstring"] = function (block) {
   let at2;
   switch (where2) {
     case "FROM_START":
-      at2 = Arduino.getAdjusted(block, "AT2", 1);
+      // 从AT2_VALUE输入获取值
+      at2 = Arduino.valueToCode(block, "AT2_VALUE", Arduino.ORDER_NONE) || "0";
       break;
     case "FROM_END":
-      at2 = text + ".length() - " + Arduino.getAdjusted(block, "AT2", 0, false);
+      // 从AT2_VALUE输入获取值
+      const at2Value = Arduino.valueToCode(block, "AT2_VALUE", Arduino.ORDER_NONE) || "0";
+      at2 = text + ".length() - " + at2Value;
       break;
     case "LAST":
       at2 = text + ".length()";

@@ -13,10 +13,55 @@
         "message0": "%1 에 %2 포함되어 있습니까?"
     },
     "string_substring": {
-        "message0": "%1 에서 %2 %3 문자부터 %4 %5 문자까지 얻기"
+        "message0": "%1에서 %2 %3번째 문자부터 %4 %5번째 문자까지 가져오기",
+        "args0": [
+            null,
+            {
+                "options": [
+                    [
+                        "번째",
+                        "0"
+                    ],
+                    [
+                        "뒤에서부터 번째",
+                        "1"
+                    ]
+                ]
+            },
+            null,
+            {
+                "options": [
+                    [
+                        "번째",
+                        "0"
+                    ],
+                    [
+                        "뒤에서부터 번째",
+                        "1"
+                    ]
+                ]
+            },
+            null
+        ]
     },
     "string_find_str": {
-        "message0": "%2 에서 %1 이 %3 위치에 나타나는지 찾기"
+        "message0": "%2 에서 %1 을 %3 위치에서 찾기",
+        "args0": [
+            null,
+            null,
+            {
+                "options": [
+                    [
+                        "처음",
+                        "indexOf"
+                    ],
+                    [
+                        "마지막",
+                        "lastIndexOf"
+                    ]
+                ]
+            }
+        ]
     },
     "string_to": {
         "message0": "문자열 %1 를 %2 로 변환",
@@ -82,16 +127,45 @@
             }
         ]
     },
-    "text_getSubstring": {
-        "message0": "텍스트 %1 에서 %2 %3 %4 %5",
-        "args0": [
-            null,
+    "tt_getSubstring": {
+        "message0": "텍스트 %1에서 부분 문자열 가져오기",
+        "message1": "%1 %2",
+        "args1": [
             {
-                "options": [["부분 문자열 가져 오기, 처음 문자부터", "FROM_START"],["부분 문자열 가져 오기, 끝 문자까지", "FROM_END"],["부분 문자열 가져 오기, 첫 번째 문자부터", "FIRST"]]
+                "options": [
+                    [
+                        "#번째 문자부터",
+                        "FROM_START"
+                    ],
+                    [
+                        "뒤에서 #번째 문자부터",
+                        "FROM_END"
+                    ],
+                    [
+                        "첫 번째 문자부터",
+                        "FIRST"
+                    ]
+                ]
             },
-            null,
+            null
+        ],
+        "message2": "%1 %2",
+        "args2": [
             {
-                "options": [["# 문자까지", "FROM_START"],["끝 # 문자까지", "FROM_END"],["마지막 문자까지", "LAST"]]
+                "options": [
+                    [
+                        "#번째 문자까지",
+                        "FROM_START"
+                    ],
+                    [
+                        "뒤에서 #번째 문자까지",
+                        "FROM_END"
+                    ],
+                    [
+                        "마지막 문자까지",
+                        "LAST"
+                    ]
+                ]
             },
             null
         ]

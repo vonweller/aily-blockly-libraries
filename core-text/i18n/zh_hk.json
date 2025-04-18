@@ -13,10 +13,55 @@
         "message0": "%1 包含 %2 ?"
     },
     "string_substring": {
-        "message0": "%1 获取 %2 %3 個字符到 %4 %5 個字符"
+        "message0": "%1 取得 %2 %3 個字元到 %4 %5 個字元",
+        "args0": [
+            null,
+            {
+                "options": [
+                    [
+                        "第",
+                        "0"
+                    ],
+                    [
+                        "倒數第",
+                        "1"
+                    ]
+                ]
+            },
+            null,
+            {
+                "options": [
+                    [
+                        "第",
+                        "0"
+                    ],
+                    [
+                        "倒數第",
+                        "1"
+                    ]
+                ]
+            },
+            null
+        ]
     },
     "string_find_str": {
-        "message0": "查找 %1 在 %2 中 %3 出現位置"
+        "message0": "查找 %1 在 %2 中 %3 出現位置",
+        "args0": [
+            null,
+            null,
+            {
+                "options": [
+                    [
+                        "首次",
+                        "indexOf"
+                    ],
+                    [
+                        "最後一次",
+                        "lastIndexOf"
+                    ]
+                ]
+            }
+        ]
     },
     "string_to": {
         "message0": "將字符串 %1 轉換為 %2",
@@ -82,16 +127,45 @@
             }
         ]
     },
-    "text_getSubstring": {
-        "message0": "在文本 %1 %2 %3 %4 %5",
-        "args0": [
-            null,
+    "tt_getSubstring": {
+        "message0": "在文本 %1中獲取子串",
+        "message1": "%1 %2",
+        "args1": [
             {
-                "options": [["獲取子串, 從第#個字符", "FROM_START"],["獲取子串, 從倒數第#個字符", "FROM_END"],["獲取子串, 從第一個字符", "FIRST"]]
+                "options": [
+                    [
+                        "從第#個字符",
+                        "FROM_START"
+                    ],
+                    [
+                        "從倒數第#個字符",
+                        "FROM_END"
+                    ],
+                    [
+                        "從第一個字符",
+                        "FIRST"
+                    ]
+                ]
             },
-            null,
+            null
+        ],
+        "message2": "%1 %2",
+        "args2": [
             {
-                "options": [["到第#個字符", "FROM_START"],["到倒數第#個字符", "FROM_END"],["獲取最後一個字符", "LAST"]]
+                "options": [
+                    [
+                        "到第#個字符",
+                        "FROM_START"
+                    ],
+                    [
+                        "到倒數第#個字符",
+                        "FROM_END"
+                    ],
+                    [
+                        "到最後一個字符",
+                        "LAST"
+                    ]
+                ]
             },
             null
         ]

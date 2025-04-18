@@ -13,10 +13,55 @@
         "message0": "Enthält %1 %2?"
     },
     "string_substring": {
-        "message0": "Von %2 %3 bis %4 %5 Zeichen in %1 erhalten"
+        "message0": "%1 Zeichen von %2 %3 bis %4 %5 erhalten",
+        "args0": [
+            null,
+            {
+                "options": [
+                    [
+                        "dem",
+                        "0"
+                    ],
+                    [
+                        "dem letzten",
+                        "1"
+                    ]
+                ]
+            },
+            null,
+            {
+                "options": [
+                    [
+                        "dem",
+                        "0"
+                    ],
+                    [
+                        "dem letzten",
+                        "1"
+                    ]
+                ]
+            },
+            null
+        ]
     },
     "string_find_str": {
-        "message0": "%1 in %2 an Position %3 finden"
+        "message0": "Finde %1 in %2 an der %3 Position",
+        "args0": [
+            null,
+            null,
+            {
+                "options": [
+                    [
+                        "Erste",
+                        "indexOf"
+                    ],
+                    [
+                        "Letzte",
+                        "lastIndexOf"
+                    ]
+                ]
+            }
+        ]
     },
     "string_to": {
         "message0": "Zeichenkette %1 nach %2 konvertieren",
@@ -82,16 +127,45 @@
             }
         ]
     },
-    "text_getSubstring": {
-        "message0": "Im Text %1 %2 %3 %4 %5",
-        "args0": [
-            null,
+    "tt_getSubstring": {
+        "message0": "Teilstring aus Text %1 erhalten",
+        "message1": "%1 %2",
+        "args1": [
             {
-                "options": [["Teilzeichenfolge abrufen, ab Zeichen #", "FROM_START"],["Teilzeichenfolge abrufen, bis Zeichen # vom Ende", "FROM_END"],["Teilzeichenfolge abrufen, ab dem ersten Zeichen", "FIRST"]]
+                "options": [
+                    [
+                        "ab Zeichen #",
+                        "FROM_START"
+                    ],
+                    [
+                        "ab # von hinten",
+                        "FROM_END"
+                    ],
+                    [
+                        "ab erstem Zeichen",
+                        "FIRST"
+                    ]
+                ]
             },
-            null,
+            null
+        ],
+        "message2": "%1 %2",
+        "args2": [
             {
-                "options": [["bis Zeichen #", "FROM_START"],["bis Zeichen # vom Ende", "FROM_END"],["bis zum letzten Zeichen", "LAST"]]
+                "options": [
+                    [
+                        "bis Zeichen #",
+                        "FROM_START"
+                    ],
+                    [
+                        "bis # von hinten",
+                        "FROM_END"
+                    ],
+                    [
+                        "bis letztem Zeichen",
+                        "LAST"
+                    ]
+                ]
             },
             null
         ]

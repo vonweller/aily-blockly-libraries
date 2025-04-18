@@ -474,65 +474,70 @@
     "mutator": "text_charAt_mutator"
   },
   {
-    "type": "text_getSubstring",
-    "message0": "在文本 %1 %2 %3 %4 %5",
+    "type": "tt_getSubstring",
+    "message0": "在文本 %1中获取子串",
     "args0": [
-        {
-          "type": "input_value",
-          "name": "STRING",
-          "check": "String"
-        },
-        {
-          "type": "field_dropdown",
-          "name": "WHERE1",
-          "options": [
-            [
-              "获取子串, 从第#个字符",
-              "FROM_START"
-            ],
-            [
-              "获取子串, 从倒数第#个字符",
-              "FROM_END"
-            ],
-            [
-              "获取子串, 从第一个字符",
-              "FIRST"
-            ]
+      {
+        "type": "input_value",
+        "name": "STRING",
+        "check": "String"
+      }
+    ],
+    "message1": "%1 %2",
+    "args1": [
+      {
+        "type": "field_dropdown",
+        "name": "WHERE1",
+        "options": [
+          [
+            "从第#个字符",
+            "FROM_START"
+          ],
+          [
+            "从倒数第#个字符",
+            "FROM_END"
+          ],
+          [
+            "从第一个字符",
+            "FIRST"
           ]
-        },
-        {
-          "type": "input_dummy",
-          "name": "AT1"
-        },
-        {
-          "type": "field_dropdown",
-          "name": "WHERE2",
-          "options": [
-            [
-              "到第#个字符",
-              "FROM_START"
-            ],
-            [
-              "到倒数第#个字符",
-              "FROM_END"
-            ],
-            [
-              "获取最后一个字符",
-              "LAST"
-            ]
-          ]
-        },
-        {
+        ]
+      },
+      {
         "type": "input_dummy",
-        "name": "AT2"
-        }
-      ],
+        "name": "AT1_DUMMY"
+      }
+    ],
+    "message2": "%1 %2",
+    "args2": [
+      {
+        "type": "field_dropdown",
+        "name": "WHERE2",
+        "options": [
+          [
+            "到第#个字符",
+            "FROM_START"
+          ],
+          [
+            "到倒数第#个字符",
+            "FROM_END"
+          ],
+          [
+            "到最后一个字符",
+            "LAST"
+          ]
+        ]
+      },
+      {
+        "type": "input_dummy",
+        "name": "AT2_DUMMY"
+      }
+    ],
     "output": "String",
     "style": "text_blocks",
+    "helpUrl": "",
     "inputsInline": true,
-    "mutator": "text_getSubstring_mutator",
-    "tooltip": "%{BKY_TEXT_GET_SUBSTRING_TOOLTIP}",
-    "helpUrl": "%{BKY_TEXT_GET_SUBSTRING_HELPURL}"
+    "mutator": "text_getSubstring_mutator"
   },
   {
     "type": "text_changeCase",

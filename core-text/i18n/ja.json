@@ -13,10 +13,55 @@
         "message0": "%1 は %2 を含むか?"
     },
     "string_substring": {
-        "message0": "%1 の文字を %2 %3 から %4 %5 まで取得"
+        "message0": "%1 の %2 %3 文字目から %4 %5 文字目まで取得",
+        "args0": [
+            null,
+            {
+                "options": [
+                    [
+                        "第",
+                        "0"
+                    ],
+                    [
+                        "後ろから第",
+                        "1"
+                    ]
+                ]
+            },
+            null,
+            {
+                "options": [
+                    [
+                        "第",
+                        "0"
+                    ],
+                    [
+                        "後ろから第",
+                        "1"
+                    ]
+                ]
+            },
+            null
+        ]
     },
     "string_find_str": {
-        "message0": "%2 の中で %1 が %3 に現れる位置を探す"
+        "message0": "%2 の中で %1 を %3 の位置で探す",
+        "args0": [
+            null,
+            null,
+            {
+                "options": [
+                    [
+                        "最初",
+                        "indexOf"
+                    ],
+                    [
+                        "最後",
+                        "lastIndexOf"
+                    ]
+                ]
+            }
+        ]
     },
     "string_to": {
         "message0": "文字列 %1 を %2 に変換",
@@ -82,16 +127,45 @@
             }
         ]
     },
-    "text_getSubstring": {
-        "message0": "テキスト %1 の中で %2 %3 %4 %5",
-        "args0": [
-            null,
+    "tt_getSubstring": {
+        "message0": "テキスト %1 から部分文字列を取得",
+        "message1": "%1 %2",
+        "args1": [
             {
-                "options": [["部分文字列を取得, #番目の文字から", "FROM_START"],["部分文字列を取得, 末尾の#番目の文字から", "FROM_END"],["部分文字列を取得, 最初の文字から", "FIRST"]]
+                "options": [
+                    [
+                        "#文字目から",
+                        "FROM_START"
+                    ],
+                    [
+                        "後ろから#文字目から",
+                        "FROM_END"
+                    ],
+                    [
+                        "最初の文字から",
+                        "FIRST"
+                    ]
+                ]
             },
-            null,
+            null
+        ],
+        "message2": "%1 %2",
+        "args2": [
             {
-                "options": [["#番目の文字まで", "FROM_START"],["末尾の#番目の文字まで", "FROM_END"],["最後の文字まで", "LAST"]]
+                "options": [
+                    [
+                        "#文字目まで",
+                        "FROM_START"
+                    ],
+                    [
+                        "後ろから#文字目まで",
+                        "FROM_END"
+                    ],
+                    [
+                        "最後の文字まで",
+                        "LAST"
+                    ]
+                ]
             },
             null
         ]
