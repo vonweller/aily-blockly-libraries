@@ -2,10 +2,10 @@
 | :---: | :--- | :--- | :------- | :--- | :----- |
 | 1 | 移位寄存器驱动库 | [@aily-project/lib-shiftregister](74HC595) | 0.0.1 | ✓ | K2L |
 | 2 | AHT温湿度 | [@aily-project/lib-aht-sensor](adafruit_AHTX0) | 0.0.1 | ✗ | - |
-| 3 | DHT温湿度传感器库 | [@aily-project/lib-dht](adafruit_DHT) | 0.0.1 | ✓ | ISK2L |
+| 3 | DHT温湿度传感器库 | [@aily-project/lib-dht](adafruit_DHT) | 0.0.1 | ✓ | K2L |
 | 4 | 指纹识别库 | [@aily-project/lib-fingerprint](adafruit_Fingerprint) | 0.0.1 | ✗ | - |
 | 5 | MLX90614红外测温库 | [@aily-project/lib-mlx90614](adafruit_MLX90614) | 1.0.0 | ✗ | - |
-| 6 | NeoPixel LED灯带 | [@aily-project/lib-neopixel](adafruit_NeoPixel) | 0.1.0 | ✓ | ISK2L |
+| 6 | NeoPixel LED灯带 | [@aily-project/lib-neopixel](adafruit_NeoPixel) | 0.1.0 | ✓ | K2L |
 | 7 | ADXL345传感器库 | [@aily-project/lib-adxl345](ADXL345) | 0.0.1 | ✗ | - |
 | 8 | ArduinoBLE | [@aily-project/lib-arduino_ble](arduino_BLE) | 0.0.1 | ✗ | - |
 | 9 | ArduinoHTTP | [@aily-project/lib-arduino_http](arduino_http) | 1.0.0 | ✗ | - |
@@ -13,17 +13,17 @@
 | 11 | ArduinoKeyboard | [@aily-project/lib-keyboard](arduino_keyboard) | 0.0.1 | ✗ | - |
 | 12 | ArduinoMouse | [@aily-project/lib-mouse](arduino_mouse) | 1.0.0 | ✗ | - |
 | 13 | MQTT通信库 | [@aily-project/lib-mqtt](arduino_mqtt) | 0.1.0 | ✗ | - |
-| 14 | CAN总线通信库 | [@aily-project/lib-r4-can](arduino_r4_CAN) | 1.0.0 | ✗ | - |
+| 14 | R4 CAN总线通信库 | [@aily-project/lib-r4-can](arduino_r4_CAN) | 1.0.0 | ✗ | - |
 | 15 | R4 WiFi LED矩阵库 | [@aily-project/lib-r4-led-matrix](arduino_r4_LED_Matrix) | 0.0.1 | ✗ | - |
 | 16 | 实时时钟 | [@aily-project/lib-r4-rtc](arduino_r4_RTC) | 1.0.0 | ✗ | - |
 | 17 | 看门狗定时器库 | [@aily-project/lib-r4-wdt](arduino_r4_WDT) | 1.0.0 | ✗ | - |
 | 18 | ArduinoSoftwareSerial | [@aily-project/lib-core-software_serial](arduino_softwareSerial) | 1.0.0 | ✗ | - |
 | 19 | ArduinoSPI | [@aily-project/lib-core-spi](arduino_spi) | 0.0.1 | ✗ | - |
-| 20 | ArduinoTone | [@aily-project/lib-core-tone](arduino_tone) | 0.0.1 | ✓ | ISK2L |
+| 20 | ArduinoTone | [@aily-project/lib-core-tone](arduino_tone) | 0.0.1 | ✓ | K2L |
 | 21 | ArduinoWiFi | [@aily-project/lib-arduino_wifi](arduino_wifi) | 0.0.1 | ✗ | - |
 | 22 | BME280传感器库 | [@aily-project/lib-bme280](BME280) | 0.0.1 | ✗ | - |
 | 23 | BMP280气压传感器 | [@aily-project/lib-bmp280](BMP280) | 0.0.1 | ✗ | - |
-| 24 | 自定义代码 | [@aily-project/core-lib-custom](core-custom) | 0.0.1 | ✓ | 奈何col |
+| 24 | 自定义代码 | [@aily-project/lib-core-custom](core-custom) | 1.0.0 | ✓ | 奈何col |
 | 25 | EEPROM存储库 | [@aily-project/lib-core-eeprom](core-EEPROM) | 0.0.1 | ✗ | - |
 | 26 | 自定义函数 | [@aily-project/lib-core-functions](core-functions) | 0.0.1 | ✗ | - |
 | 27 | 外部中断 | [@aily-project/lib-core-interrupt](core-interrupt) | 0.0.1 | ✓ | 奈何col |
@@ -37,33 +37,39 @@
 | 35 | 文本操作 | [@aily-project/lib-core-text](core-text) | 0.0.1 | ✗ | - |
 | 36 | 时间控制库 | [@aily-project/lib-core-time](core-time) | 0.0.1 | ✓ | 奈何col |
 | 37 | 自定义变量 | [@aily-project/lib-core-variables](core-variables) | 0.0.1 | ✓ | stao |
-| 38 | Blinker物联网库 | [@aily-project/lib-blinker](diandeng_blinker) | 0.0.1 | ✗ | - |
-| 39 | DS18B20温度传感器库 | [@aily-project/lib-ds18b20](DS18B20) | 0.0.1 | ✗ | - |
-| 40 | Encoder | [@aily-project/lib-encoder](encoder) | 1.4.0 | ✗ | - |
-| 41 | HX711称重传感器库 | [@aily-project/lib-hx711](HX711) | 0.5.2 | ✓ | ISK2L |
-| 42 | IIC电机驱动库 | [@aily-project/lib-iicmotordriver](IICMotorDriver) | 0.0.1 | ✓ | K2L |
-| 43 | 红外遥控库 | [@aily-project/lib-irremote](IRremote) | 0.0.1 | ✗ | - |
-| 44 | 键盘矩阵库 | [@aily-project/lib-keypad](KEYPAD4X4) | 0.0.1 | ✗ | - |
-| 45 | LCD1602显示屏库 | [@aily-project/lib-liquidcrystal](LiquidCrystal) | 0.0.1 | ✗ | - |
-| 46 | LCD1602 I2C驱动库 | [@aily-project/lib-liquidcrystal_i2c](LiquidCrystal_I2C) | 1.0.0 | ✓ | mango-0616 |
-| 47 | LM35温度传感器库 | [@aily-project/lib-lm35](LM35) | 0.0.1 | ✓ | ISK2L |
-| 48 | MAX31865温度传感器库 | [@aily-project/lib-max31865](MAX31865) | 1.0.0 | ✗ | - |
-| 49 | MAX7219显示驱动库 | [@aily-project/lib-max7219](MAX7219) | 0.0.1 | ✗ | - |
-| 50 | Adafruit电机驱动库 | [@aily-project/lib-afmotor](Motor) | 1.0.0 | ✗ | - |
-| 51 | 串口mp3播放器 | [@aily-project/lib-mp3player-gd3800](mp3player) | 0.0.1 | ✓ | K2L |
-| 52 | MPU6050 | [@aily-project/lib-mpu6050](MPU6050) | 1.0.0 | ✗ | - |
-| 53 | OneButton | [@aily-project/lib-onebutton](onebutton) | 0.0.1 | ✗ | - |
-| 54 | 语音识别库 | [@aily-project/lib-asr](openjumper-asr) | 0.0.1 | ✗ | - |
-| 55 | 文本转语音库 | [@aily-project/lib-tts](openjumper_tts) | 0.0.1 | ✓ | ISK2L |
-| 56 | PS2控制器库 | [@aily-project/lib-ps2x](PS2X) | 1.0.0 | ✗ | - |
-| 57 | RTC时钟 | [@aily-project/lib-rtc](RTC) | 1.0.0 | ✗ | - |
-| 58 | LIS3DHTR驱动库 | [@aily-project/lib-lis3dhtr](seeed_LIS3DHTR) | 0.0.1 | ✗ | - |
-| 59 | 舵机驱动库 | [@aily-project/lib-servo](servo) | 0.0.1 | ✓ | ISK2L |
-| 60 | SHT3x温湿度传感器库 | [@aily-project/lib-sht3x](SHT) | 0.0.1 | ✗ | - |
-| 61 | 步进电机驱动库 | [@aily-project/lib-stepper](Stepper) | 0.0.1 | ✗ | - |
-| 62 | TFT显示屏驱动库 | [@aily-project/lib-tft](TFT) | 0.0.1 | ✗ | - |
-| 63 | TM1650四位数码管驱动库 | [@aily-project/lib-tm1650](TM1650) | 0.0.1 | ✓ | K2L |
-| 64 | U8G2显示屏库 | [@aily-project/lib-u8g2](u8g2) | 0.0.1 | ✗ | - |
-| 65 | 超声波传感器 | [@aily-project/lib-ultrasonic](Ultrasonic) | 0.0.1 | ✓ | ISK2L |
-| 66 | VL53L0X激光测距传感器 | [@aily-project/lib-vl53l0x](VL53L0X) | 1.0.0 | ✗ | - |
-| 67 | WS2812 LED灯带库 | [@aily-project/lib-ws2812fx](ws2812fx) | 0.0.1 | ✗ | - |
+| 38 | DFPlayer | [@aily-project/lib-dfplayer](dfrobot_dfplayer) | 0.0.1 | ✗ | - |
+| 39 | Blinker物联网库 | [@aily-project/lib-blinker](diandeng_blinker) | 0.0.1 | ✗ | - |
+| 40 | DS18B20温度传感器库 | [@aily-project/lib-ds18b20](DS18B20) | 0.0.1 | ✗ | - |
+| 41 | Encoder | [@aily-project/lib-encoder](encoder) | 1.4.0 | ✗ | - |
+| 42 | FastLED灯带驱动库 | [@aily-project/lib-fastled](FastLED) | 0.0.2 | ✗ | - |
+| 43 | 粉尘传感器驱动库 | [@aily-project/lib-gp2y1010au0f](GP2Y1010AU0F) | 0.0.1 | ✗ | - |
+| 44 | HX711称重传感器库 | [@aily-project/lib-hx711](HX711) | 0.5.2 | ✓ | K2L |
+| 45 | IIC电机驱动库 | [@aily-project/lib-iicmotordriver](IICMotorDriver) | 0.0.1 | ✓ | K2L |
+| 46 | 红外遥控库 | [@aily-project/lib-irremote](IRremote) | 0.0.1 | ✗ | - |
+| 47 | 键盘矩阵库 | [@aily-project/lib-keypad](KEYPAD4X4) | 0.0.1 | ✗ | - |
+| 48 | LCD1602显示屏 | [@aily-project/lib-liquidcrystal](LiquidCrystal) | 1.0.0 | ✓ | mango-0616 |
+| 49 | LCD1602 I2C驱动库 | [@aily-project/lib-liquidcrystal_i2c](LiquidCrystal_I2C) | 1.0.0 | ✓ | mango-0616 |
+| 50 | LM35温度传感器库 | [@aily-project/lib-lm35](LM35) | 0.0.1 | ✓ | K2L |
+| 51 | MAX31865温度传感器库 | [@aily-project/lib-max31865](MAX31865) | 1.0.0 | ✗ | - |
+| 52 | MAX7219显示驱动库 | [@aily-project/lib-max7219](MAX7219) | 0.0.1 | ✗ | - |
+| 53 | Adafruit电机驱动库 | [@aily-project/lib-afmotor](Motor) | 1.0.0 | ✗ | - |
+| 54 | 串口mp3播放器 | [@aily-project/lib-mp3player-gd3800](mp3player) | 0.0.1 | ✓ | K2L |
+| 55 | MPU6050 | [@aily-project/lib-mpu6050](MPU6050) | 1.0.0 | ✗ | - |
+| 56 | 常用语音播报模块 | [@aily-project/lib-nv170d](NV170D) | 0.0.1 | ✓ | K2L |
+| 57 | OneButton | [@aily-project/lib-onebutton](onebutton) | 0.0.1 | ✗ | - |
+| 58 | 语音识别库 | [@aily-project/lib-asr](openjumper-asr) | 0.0.1 | ✗ | - |
+| 59 | IICPS3数据解析专用库 | [@aily-project/lib-openjumper-iicps3](openjumper_iicps3) | 0.0.1 | ✓ | K2L |
+| 60 | 文本转语音库 | [@aily-project/lib-tts](openjumper_tts) | 0.0.1 | ✓ | K2L |
+| 61 | PS2控制器库 | [@aily-project/lib-ps2x](PS2X) | 1.0.0 | ✗ | - |
+| 62 | RTC时钟 | [@aily-project/lib-rtc](RTC) | 1.0.0 | ✗ | - |
+| 63 | LIS3DHTR驱动库 | [@aily-project/lib-lis3dhtr](seeed_LIS3DHTR) | 0.0.1 | ✗ | - |
+| 64 | 舵机驱动 | [@aily-project/lib-servo](servo) | 1.0.0 | ✓ | mango-0616 |
+| 65 | 360舵机驱动 | [@aily-project/lib-servo360](servo360) | 1.0.0 | ✓ | mango-0616 |
+| 66 | SHT3x温湿度传感器库 | [@aily-project/lib-sht3x](SHT) | 0.0.1 | ✗ | - |
+| 67 | 步进电机驱动库 | [@aily-project/lib-stepper](Stepper) | 0.0.1 | ✗ | - |
+| 68 | TFT显示屏驱动库 | [@aily-project/lib-tft](TFT) | 0.0.1 | ✗ | - |
+| 69 | TM1650四位数码管驱动库 | [@aily-project/lib-tm1650](TM1650) | 0.0.1 | ✓ | K2L |
+| 70 | U8G2显示屏库 | [@aily-project/lib-u8g2](u8g2) | 0.0.4 | ✗ | - |
+| 71 | 超声波传感器 | [@aily-project/lib-ultrasonic](Ultrasonic) | 0.0.1 | ✓ | K2L |
+| 72 | VL53L0X激光测距传感器 | [@aily-project/lib-vl53l0x](VL53L0X) | 1.0.0 | ✗ | - |
+| 73 | WS2812 LED灯带库 | [@aily-project/lib-ws2812fx](ws2812fx) | 0.0.1 | ✗ | - |
