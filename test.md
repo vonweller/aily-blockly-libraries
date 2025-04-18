@@ -41,7 +41,7 @@
 | 39 | Blinker物联网库 | [@aily-project/lib-blinker](diandeng_blinker) | 0.0.1 | ✗ | - |
 | 40 | DS18B20温度传感器库 | [@aily-project/lib-ds18b20](DS18B20) | 0.0.1 | ✗ | - |
 | 41 | Encoder | [@aily-project/lib-encoder](encoder) | 1.4.0 | ✗ | - |
-| 42 | RGB LED灯带驱动库 | [@aily-project/lib-fastled](FastLED) | 0.0.1 | ✗ | - |
+| 42 | FastLED灯带驱动库 | [@aily-project/lib-fastled](FastLED) | 0.0.2 | ✗ | - |
 | 43 | 粉尘传感器驱动库 | [@aily-project/lib-gp2y1010au0f](GP2Y1010AU0F) | 0.0.1 | ✗ | - |
 | 44 | HX711称重传感器库 | [@aily-project/lib-hx711](HX711) | 0.5.2 | ✓ | K2L |
 | 45 | IIC电机驱动库 | [@aily-project/lib-iicmotordriver](IICMotorDriver) | 0.0.1 | ✓ | K2L |
@@ -58,17 +58,18 @@
 | 56 | 常用语音播报模块 | [@aily-project/lib-nv170d](NV170D) | 0.0.1 | ✓ | K2L |
 | 57 | OneButton | [@aily-project/lib-onebutton](onebutton) | 0.0.1 | ✗ | - |
 | 58 | 语音识别库 | [@aily-project/lib-asr](openjumper-asr) | 0.0.1 | ✗ | - |
-| 59 | 文本转语音库 | [@aily-project/lib-tts](openjumper_tts) | 0.0.1 | ✓ | K2L |
-| 60 | PS2控制器库 | [@aily-project/lib-ps2x](PS2X) | 1.0.0 | ✗ | - |
-| 61 | RTC时钟 | [@aily-project/lib-rtc](RTC) | 1.0.0 | ✗ | - |
-| 62 | LIS3DHTR驱动库 | [@aily-project/lib-lis3dhtr](seeed_LIS3DHTR) | 0.0.1 | ✗ | - |
-| 63 | 舵机驱动 | [@aily-project/lib-servo](servo) | 0.0.1 | ✗ | - |
-| 64 | 360舵机驱动 | [@aily-project/lib-servo360](servo360) | 0.0.1 | ✗ | - |
-| 65 | SHT3x温湿度传感器库 | [@aily-project/lib-sht3x](SHT) | 0.0.1 | ✗ | - |
-| 66 | 步进电机驱动库 | [@aily-project/lib-stepper](Stepper) | 0.0.1 | ✗ | - |
-| 67 | TFT显示屏驱动库 | [@aily-project/lib-tft](TFT) | 0.0.1 | ✗ | - |
-| 68 | TM1650四位数码管驱动库 | [@aily-project/lib-tm1650](TM1650) | 0.0.1 | ✓ | K2L |
-| 69 | U8G2显示屏库 | [@aily-project/lib-u8g2](u8g2) | 0.0.4 | ✗ | - |
-| 70 | 超声波传感器 | [@aily-project/lib-ultrasonic](Ultrasonic) | 0.0.1 | ✓ | K2L |
-| 71 | VL53L0X激光测距传感器 | [@aily-project/lib-vl53l0x](VL53L0X) | 1.0.0 | ✗ | - |
-| 72 | WS2812 LED灯带库 | [@aily-project/lib-ws2812fx](ws2812fx) | 0.0.1 | ✗ | - |
+| 59 | IICPS3数据解析专用库 | [@aily-project/lib-openjumper-iicps3](openjumper_iicps3) | 0.0.1 | ✓ | K2L |
+| 60 | 文本转语音库 | [@aily-project/lib-tts](openjumper_tts) | 0.0.1 | ✓ | K2L |
+| 61 | PS2控制器库 | [@aily-project/lib-ps2x](PS2X) | 1.0.0 | ✗ | - |
+| 62 | RTC时钟 | [@aily-project/lib-rtc](RTC) | 1.0.0 | ✗ | - |
+| 63 | LIS3DHTR驱动库 | [@aily-project/lib-lis3dhtr](seeed_LIS3DHTR) | 0.0.1 | ✗ | - |
+| 64 | 舵机驱动 | [@aily-project/lib-servo](servo) | 1.0.0 | ✓ | mango-0616 |
+| 65 | 360舵机驱动 | [@aily-project/lib-servo360](servo360) | 1.0.0 | ✓ | mango-0616 |
+| 66 | SHT3x温湿度传感器库 | [@aily-project/lib-sht3x](SHT) | 0.0.1 | ✗ | - |
+| 67 | 步进电机驱动库 | [@aily-project/lib-stepper](Stepper) | 0.0.1 | ✗ | - |
+| 68 | TFT显示屏驱动库 | [@aily-project/lib-tft](TFT) | 0.0.1 | ✗ | - |
+| 69 | TM1650四位数码管驱动库 | [@aily-project/lib-tm1650](TM1650) | 0.0.1 | ✓ | K2L |
+| 70 | U8G2显示屏库 | [@aily-project/lib-u8g2](u8g2) | 0.0.4 | ✗ | - |
+| 71 | 超声波传感器 | [@aily-project/lib-ultrasonic](Ultrasonic) | 0.0.1 | ✓ | K2L |
+| 72 | VL53L0X激光测距传感器 | [@aily-project/lib-vl53l0x](VL53L0X) | 1.0.0 | ✗ | - |
+| 73 | WS2812 LED灯带库 | [@aily-project/lib-ws2812fx](ws2812fx) | 0.0.1 | ✗ | - |
