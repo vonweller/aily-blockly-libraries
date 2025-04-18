@@ -12,7 +12,7 @@ Arduino.forBlock['openjumper_tts_init'] = function(block, generator) {
   generator.addLibrary('OpenJumperTTS', '#include <OpenJumperTTS.h>');
   
   // 创建TTS对象
-  generator.addVariable('TTS', 'OpenJumperTTS TTS(' + rxPin + ', ' + txPin + ');');
+  generator.addVariable('TTS', '/*在文本前添加标识符可按相应方式播报特定字符串，\n比如在文本前\n添加[n1]:表示按数字播报\n添加[n2]：按数值播报；\n添加[n3]:按电话号码播报\n添加[w0]：表示停顿符\n播放数字*/\nOpenJumperTTS TTS(' + rxPin + ', ' + txPin + ');');
   
   // 添加begin函数到setup
   generator.addSetup('TTS_begin', 'TTS.begin(115200);\n');
@@ -58,10 +58,9 @@ Arduino.forBlock['openjumper_tts_play_number'] = function(block, generator) {
 
 // 播放文本块
 Arduino.forBlock['openjumper_tts_play_text'] = function(block, generator) {
-  var text = generator.valueToCode(block, 'TEXT', Arduino.ORDER_ATOMIC) || '""';
+  const text = generator.valueToCode(block, 'TEXT', Arduino.ORDER_ATOMIC) || '""';
   
-  var code = 'TTS.PlayText(' + text + ');\n';
-  return code;
+  return `TTS.PlayText(${text});\n`;
 };
 
 // 设置语音参数
