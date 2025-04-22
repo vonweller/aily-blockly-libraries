@@ -33,12 +33,13 @@ async function writeFile(filePath, content) {
 
 // 初始化聊天模型
 function initChatModel(key, model, baseUrl) {
-    console.log("baseUrl: ", baseUrl);
     return new ChatOpenAI({
-        baseURL: baseUrl,
-        openAIApiKey: key,
+        apiKey: key,
         modelName: model,
         temperature: 0.1,
+        clientConfig: {
+            baseURL: baseUrl
+        }
     });
 }
 
