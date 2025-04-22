@@ -2,10 +2,10 @@ const core = require('@actions/core');
 const fs = require('fs').promises;
 const path = require('path');
 
-import { ChatOpenAI } from "@langchain/openai";
-import { ChatPromptTemplate } from "@langchain/prompts";
-import { StructuredOutputParser } from "@langchain/output_parsers";
-import { z } from "zod";
+const { ChatPromptTemplate } = require('@langchain/core/prompts');
+const { ChatOpenAI } = require('@langchain/openai');
+const { StructuredOutputParser } = require('@langchain/core/output_parsers');
+const { z } = require('zod'); // 使用 zod 替代 Python 中的 Pydantic
 
 
 // 文件读取
