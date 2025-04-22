@@ -84,7 +84,7 @@ const I18nModelListSchema = z.object({
 
 // 生成i18n模板
 async function genI18nTemplate(content, readmeContent, toolboxName, model, key, baseUrl) {
-    const text = "根据readme的规范，提取出相应的信息生成模板文件的内容，注意在提取模板时要注意，每个message*下对应的args*中的options列表中每一项的第一个元素也是需要提取并转换为对应的语言的";
+    const text = "根据readme的规范，提取出相应的信息生成模板文件的内容，注意在提取模板时要注意，每个message*下对应的args*中的options列表中每一项的第一个元素也是需要提取并转换为对应的语言的，至于第二个元素原样提取即可";
 
     const prompt = await i18nTemplatePrompt.invoke({
         content,
@@ -162,6 +162,16 @@ async function generateI18nCode(blockContent, toolboxName, readmeContent, prjPat
 
         console.log("i18n模板内容为: ", i18nTemplateContent.content);
 
+        // 生成i18n文件
+        const i18nPath = path.join(prjPath, "i18n");
+        try {
+            await fs.mkdir(i18nPath, { recursive: true });
+        } catch (err) {
+            if (err.code !== 'EEXIST') {
+                throw err;
+            }
+        }
+
         const lgList = [
             "简体中文(zh_cn)",
             "繁体中文(zh_hk)",
@@ -176,25 +186,51 @@ async function generateI18nCode(blockContent, toolboxName, readmeContent, prjPat
             "葡萄牙文(pt)",
         ];
 
-        const genResult = await genI18nBatch(i18nTemplateContent.content, lgList, llmModel, llmKey, llmBaseUrl);
+        // const genResult = await genI18nBatch(i18nTemplateContent.content, lgList, llmModel, llmKey, llmBaseUrl);
 
-        if (!genResult) {
-            console.error("生成i18n失败");
-            return false;
+        // if (!genResult) {
+        //     console.error("生成i18n失败");
+        //     return false;
+        // }
+        // console.log("i18n生成成功")
+
+        // for (const item of genResult.i18n_list) {
+        //     const itemPath = path.join(i18nPath, `${item.lg}.json`);
+        //     await writeFile(itemPath, item.content);
+        // }
+
+        // return true;
+
+        // 将语言列表分成每组3个
+        const batchSize = 3;
+        const lgBatches = [];
+        for (let i = 0; i < lgList.length; i += batchSize) {
+            lgBatches.push(lgList.slice(i, i + batchSize));
         }
-        console.log("i18n生成成功")
 
-        // 生成i18n文件
-        const i18nPath = path.join(prjPath, "i18n");
-        try {
-            await fs.mkdir(i18nPath, { recursive: true });
-        } catch (err) {
-            if (err.code !== 'EEXIST') {
-                throw err;
+        console.log(`将语言列表拆分为${lgBatches.length}组进行处理`);
+
+        // 存储所有语言的处理结果
+        const allResults = [];
+
+        // 逐组处理语言
+        for (let i = 0; i < lgBatches.length; i++) {
+            console.log(`处理第${i + 1}组语言: ${lgBatches[i].join(', ')}`);
+            const batchResult = await genI18nBatch(i18nTemplateContent.content, lgBatches[i], llmModel, llmKey, llmBaseUrl);
+
+            if (!batchResult) {
+                console.error(`生成第${i + 1}组i18n失败`);
+                continue
             }
+
+            // 将当前批次的结果添加到总结果中
+            allResults.push(...batchResult.i18n_list);
         }
 
-        for (const item of genResult.i18n_list) {
+        console.log("所有i18n生成成功");
+
+        // 写入所有语言文件
+        for (const item of allResults) {
             const itemPath = path.join(i18nPath, `${item.lg}.json`);
             await writeFile(itemPath, item.content);
         }
