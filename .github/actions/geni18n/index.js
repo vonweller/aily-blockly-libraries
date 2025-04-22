@@ -226,7 +226,7 @@ async function main() {
 
         const directories = JSON.parse(directoriesStr);
 
-        for (const dir of directories.split(',')) {
+        for (const dir of directories) {
             try {
                 const prjPath = path.join(process.cwd(), dir.trim());
                 console.log("项目路径为: ", prjPath);
