@@ -289,9 +289,8 @@ async function main() {
                 await generateI18nCode(blockContent, '', readmeContent, prjPath, llmModel, llmKey, llmBaseUrl);
             } catch (error) {
                 console.error(`处理目录 ${dir} 时发生错误:`, error);
-                process.exit(1);
+                continue;
             }
-            break;
         }
     } catch (error) {
         console.error("执行失败:", error);
