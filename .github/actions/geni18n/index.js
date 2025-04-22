@@ -84,7 +84,7 @@ const I18nModelListSchema = z.object({
 
 // 生成i18n模板
 async function genI18nTemplate(content, readmeContent, toolboxName, model, key, baseUrl) {
-    const text = "根据readme的规范，提取出相应的信息生成模板文件的内容";
+    const text = "根据readme的规范，提取出相应的信息生成模板文件的内容，注意在提取模板时要注意，每个message*下对应的args*中的options列表中每一项的第一个元素也是需要提取并转换为对应的语言的";
 
     const prompt = await i18nTemplatePrompt.invoke({
         content,
