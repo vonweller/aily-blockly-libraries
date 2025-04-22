@@ -37,8 +37,7 @@
     "compatibility": {
       "core": [
         "arduino:avr",
-        "esp32:esp32",
-        "esp8266:esp8266"
+        "esp32:esp32"
       ],
       "voltage": [
         3.3,
@@ -64,42 +63,6 @@
     "icon": "iconfont icon-dht22"
   },
   {
-    "name": "@aily-project/lib-neopixel",
-    "nickname": "NeoPixel LED灯带",
-    "version": "0.1.0",
-    "description": "控制可编程RGB LED灯带，支持各种颜色和动画效果",
-    "author": "Adafruit",
-    "compatibility": {
-      "core": [
-        "arduino:avr",
-        "esp32:esp32",
-        "esp8266:esp8266",
-        "arduino:samd",
-        "arduino:sam",
-        "arduino:megaavr"
-      ],
-      "voltage": [
-        3.3,
-        5
-      ]
-    },
-    "keywords": [
-      "aily",
-      "blockly",
-      "neopixel",
-      "led",
-      "ws2812",
-      "rgb",
-      "rgbw",
-      "light",
-      "animation",
-      "rainbow",
-      "color"
-    ],
-    "tested": true,
-    "icon": "iconfont icon-ws2812"
-  },
-  {
     "name": "@aily-project/lib-core-tone",
     "nickname": "ArduinoTone",
     "version": "0.0.1",
@@ -108,8 +71,7 @@
     "compatibility": {
       "core": [
         "arduino:avr",
-        "esp32:esp32",
-        "esp8266:esp8266"
+        "esp32:esp32"
       ],
       "voltage": [
         3.3,
@@ -165,8 +127,7 @@
     "compatibility": {
       "core": [
         "arduino:avr",
-        "esp32:esp32",
-        "esp8266:esp8266"
+        "esp32:esp32"
       ],
       "voltage": [
         3.3,
@@ -183,6 +144,33 @@
     ],
     "tested": true,
     "icon": "iconfont icon-motor"
+  },
+  {
+    "name": "@aily-project/lib-liquidcrystal",
+    "nickname": "LCD1602显示屏",
+    "version": "1.0.0",
+    "description": "LCD1602显示屏控制支持库，使用4线并行通信，支持Arduino UNO、MEGA、ESP8266、ESP32等开发板",
+    "author": "aily Project",
+    "compatibility": {
+      "core": [
+        "arduino:avr",
+        "esp32:esp32"
+      ],
+      "voltage": [
+        3.3,
+        5
+      ]
+    },
+    "keywords": [
+      "aily",
+      "blockly",
+      "lcd",
+      "液晶显示",
+      "lcd1602",
+      "LiquidCrystal"
+    ],
+    "tested": true,
+    "icon": "iconfont icon-lcd1602"
   },
   {
     "name": "@aily-project/lib-liquidcrystal_i2c",
@@ -253,8 +241,7 @@
     "compatibility": {
       "core": [
         "arduino:avr",
-        "esp32:esp32",
-        "esp8266:esp8266"
+        "esp32:esp32"
       ],
       "voltage": [
         3.3,
@@ -274,16 +261,68 @@
     "icon": "fa-light fa-music"
   },
   {
-    "name": "@aily-project/lib-tts",
-    "nickname": "文本转语音库",
+    "name": "@aily-project/lib-nv170d",
+    "nickname": "常用语音播报模块",
     "version": "0.0.1",
-    "description": "通过OpenJumperTTS库控制文本转语音模块，支持播放铃声、提示音、警告音、数字和文本。",
-    "author": "aily Project",
+    "description": "通过该库控制语音播报模块，内置69种常用语",
+    "author": "K2L",
+    "compatibility": {
+      "core": [
+        "arduino:avr",
+        "esp32:esp32"
+      ],
+      "voltage": [
+        3.3,
+        5
+      ]
+    },
+    "keywords": [
+      "aily",
+      "blockly",
+      "mp3",
+      "voiceplayer",
+      "语音播报"
+    ],
+    "tested": true,
+    "icon": ""
+  },
+  {
+    "name": "@aily-project/lib-openjumper-iicps3",
+    "nickname": "IICPS3数据解析专用库",
+    "version": "0.0.1",
+    "description": "通过该库解析IICPS3手柄接收模块的数据，支持获取手柄的按键状态、摇杆位置。",
+    "author": "K2L",
     "compatibility": {
       "core": [
         "arduino:avr",
         "esp32:esp32",
         "esp8266:esp8266"
+      ],
+      "voltage": [
+        3.3,
+        5
+      ]
+    },
+    "keywords": [
+      "aily",
+      "blockly",
+      "iic",
+      "ps3",
+      "openjumper"
+    ],
+    "tested": true,
+    "icon": ""
+  },
+  {
+    "name": "@aily-project/lib-tts",
+    "nickname": "文本转语音",
+    "version": "0.0.1",
+    "description": "通过OpenJumper TTS库控制文本转语音模块，支持播放铃声、提示音、警告音、数字和文本。",
+    "author": "aily Project",
+    "compatibility": {
+      "core": [
+        "arduino:avr",
+        "esp32:esp32"
       ],
       "voltage": [
         3.3,
@@ -302,15 +341,41 @@
   },
   {
     "name": "@aily-project/lib-servo",
-    "nickname": "舵机驱动库",
-    "version": "0.0.1",
-    "description": "舵机控制支持库，支持Arduino UNO、MEGA、ESP8266、ESP32等开发板",
+    "nickname": "舵机驱动",
+    "version": "1.0.0",
+    "description": "舵机控制支持库，支持Arduino UNO、MEGA、ESP32等开发板",
     "author": "aily Project",
     "compatibility": {
       "core": [
         "arduino:avr",
-        "esp32:esp32",
-        "esp8266:esp8266"
+        "esp32:esp32"
+      ],
+      "voltage": [
+        3.3,
+        5
+      ]
+    },
+    "keywords": [
+      "aily",
+      "blockly",
+      "servo",
+      "servo_attach",
+      "servo_write",
+      "执行器"
+    ],
+    "tested": true,
+    "icon": "iconfont icon-servo"
+  },
+  {
+    "name": "@aily-project/lib-servo360",
+    "nickname": "360舵机驱动",
+    "version": "1.0.0",
+    "description": "360舵机控制支持库，支持Arduino UNO、MEGA、ESP32等开发板",
+    "author": "aily Project",
+    "compatibility": {
+      "core": [
+        "arduino:avr",
+        "esp32:esp32"
       ],
       "voltage": [
         3.3,
@@ -348,10 +413,10 @@
       "blockly",
       "TM1650",
       "数码管驱动器",
-      "io扩展"
+      "显示"
     ],
     "tested": true,
-    "icon": ""
+    "icon": "iconfont icon-digital-tube"
   },
   {
     "name": "@aily-project/lib-ultrasonic",
@@ -378,8 +443,7 @@
     "compatibility": {
       "core": [
         "arduino:avr",
-        "esp32:esp32",
-        "esp8266:esp8266"
+        "esp32:esp32"
       ],
       "voltage": [
         3.3,
@@ -457,6 +521,42 @@
     ],
     "tested": false,
     "icon": ""
+  },
+  {
+    "name": "@aily-project/lib-neopixel",
+    "nickname": "NeoPixel LED灯带",
+    "version": "0.1.0",
+    "description": "控制可编程RGB LED灯带，支持各种颜色和动画效果",
+    "author": "Adafruit",
+    "compatibility": {
+      "core": [
+        "arduino:avr",
+        "esp32:esp32",
+        "esp8266:esp8266",
+        "arduino:samd",
+        "arduino:sam",
+        "arduino:megaavr"
+      ],
+      "voltage": [
+        3.3,
+        5
+      ]
+    },
+    "keywords": [
+      "aily",
+      "blockly",
+      "neopixel",
+      "led",
+      "ws2812",
+      "rgb",
+      "rgbw",
+      "light",
+      "animation",
+      "rainbow",
+      "color"
+    ],
+    "tested": false,
+    "icon": "iconfont icon-ws2812"
   },
   {
     "name": "@aily-project/lib-adxl345",
@@ -551,8 +651,7 @@
     "compatibility": {
       "core": [
         "arduino:avr",
-        "esp32:esp32",
-        "esp8266:esp8266"
+        "esp32:esp32"
       ],
       "voltage": [
         3.3,
@@ -649,9 +748,9 @@
   },
   {
     "name": "@aily-project/lib-r4-can",
-    "nickname": "CAN总线通信库",
+    "nickname": "R4 CAN总线通信库",
     "version": "1.0.0",
-    "description": "用于Arduino控制器的CAN总线通信库，支持CAN消息的发送和接收",
+    "description": "用于Arduino UNO R4的CAN总线通信库，支持CAN消息的发送和接收",
     "author": "Arduino",
     "compatibility": {
       "core": [
@@ -707,7 +806,7 @@
     "name": "@aily-project/lib-r4-rtc",
     "nickname": "实时时钟",
     "version": "1.0.0",
-    "description": "Arduino R4 RTC库，提供精确的时间跟踪、定时回调和时间格式化功能",
+    "description": "适用于Arduino UNO R4的RTC库，提供精确的时间跟踪、定时回调和时间格式化功能",
     "author": "Arduino",
     "compatibility": {
       "core": [
@@ -735,7 +834,7 @@
     "name": "@aily-project/lib-r4-wdt",
     "nickname": "看门狗定时器库",
     "version": "1.0.0",
-    "description": "提供看门狗定时器功能，防止系统死锁，支持系统自动重启",
+    "description": "适用于Arduino UNO R4的看门狗库",
     "author": "Arduino",
     "compatibility": {
       "core": [
@@ -743,8 +842,7 @@
         "arduino:samd",
         "arduino:sam",
         "arduino:mbed",
-        "esp32:esp32",
-        "esp8266:esp8266"
+        "esp32:esp32"
       ],
       "voltage": [
         3.3,
@@ -799,8 +897,7 @@
     "compatibility": {
       "core": [
         "arduino:avr",
-        "esp32:esp32",
-        "esp8266:esp8266"
+        "esp32:esp32"
       ],
       "voltage": [
         3.3,
@@ -851,8 +948,7 @@
     "compatibility": {
       "core": [
         "arduino:avr",
-        "esp32:esp32",
-        "esp8266:esp8266"
+        "esp32:esp32"
       ],
       "voltage": [
         3.3,
@@ -880,8 +976,7 @@
     "compatibility": {
       "core": [
         "arduino:avr",
-        "esp32:esp32",
-        "esp8266:esp8266"
+        "esp32:esp32"
       ],
       "voltage": [
         3.3,
@@ -900,6 +995,34 @@
       "bmp280_read_temperature",
       "bmp280_read_pressure",
       "bmp280_read_altitude"
+    ],
+    "tested": false,
+    "icon": ""
+  },
+  {
+    "name": "@aily-project/lib-dfplayer",
+    "nickname": "DFPlayer",
+    "version": "0.0.1",
+    "description": "DFPlayer控制库，用于控制DFPlayer Mini模块，实现音频播放、暂停、音量调节及其它功能",
+    "author": "奈何col",
+    "compatibility": {
+      "core": [
+        "arduino:avr",
+        "esp32:esp32",
+        "esp8266:esp8266"
+      ],
+      "voltage": [
+        3.3,
+        5
+      ]
+    },
+    "keywords": [
+      "dfplayer",
+      "DFRobotDFPlayerMini",
+      "arduino",
+      "audio",
+      "playback",
+      "volume"
     ],
     "tested": false,
     "icon": ""
@@ -946,8 +1069,7 @@
     "compatibility": {
       "core": [
         "arduino:avr",
-        "esp32:esp32",
-        "esp8266:esp8266"
+        "esp32:esp32"
       ],
       "voltage": [
         3.3,
@@ -991,6 +1113,100 @@
       "input",
       "knob",
       "counter"
+    ],
+    "tested": false,
+    "icon": ""
+  },
+  {
+    "name": "@aily-project/lib-esp32-twai",
+    "nickname": "ESP32 CAN总线",
+    "version": "0.0.1",
+    "description": "ESP32 CAN(TWAI)通信库，支持发送和接收CAN消息，适用于ESP32系列开发板",
+    "author": "aily Project",
+    "compatibility": {
+      "core": [
+        "esp32:esp32"
+      ],
+      "voltage": [
+        3.3
+      ]
+    },
+    "keywords": [
+      "aily",
+      "blockly",
+      "esp32",
+      "can",
+      "twai",
+      "esp32_can_init",
+      "esp32_can_send_message",
+      "esp32_can_receive_message",
+      "esp32_can_configure_alerts",
+      "esp32_can_check_alerts"
+    ],
+    "tested": false,
+    "icon": ""
+  },
+  {
+    "name": "@aily-project/lib-fastled",
+    "nickname": "FastLED灯带驱动库",
+    "version": "0.0.4",
+    "description": "支持WS2812B/WS2811/NEOPIXEL等多种RGB LED灯带的控制库，提供颜色、亮度、彩虹效果等多种功能",
+    "author": "aily Project",
+    "compatibility": {
+      "core": [
+        "arduino:avr",
+        "esp32:esp32"
+      ],
+      "voltage": [
+        3.3,
+        5
+      ]
+    },
+    "keywords": [
+      "aily",
+      "blockly",
+      "fastled",
+      "led",
+      "neopixel",
+      "ws2812b",
+      "ws2812",
+      "ws2811",
+      "apa102",
+      "ws2801",
+      "lpd8806",
+      "rgb",
+      "rainbow",
+      "light",
+      "display",
+      "显示"
+    ],
+    "tested": false,
+    "icon": ""
+  },
+  {
+    "name": "@aily-project/lib-gp2y1010au0f",
+    "nickname": "粉尘传感器驱动库",
+    "version": "0.0.1",
+    "description": "读取GP2Y1010AU0F粉尘传感器的值，并计算和打印粉尘浓度",
+    "author": "奈何col",
+    "compatibility": {
+      "core": [
+        "arduino:avr",
+        "esp32:esp32"
+      ],
+      "voltage": [
+        3.3,
+        5
+      ]
+    },
+    "keywords": [
+      "aily",
+      "GP2Y1010AU0F",
+      "dust sensor",
+      "粉尘",
+      "Arduino",
+      "ESP32",
+      "ESP8266"
     ],
     "tested": false,
     "icon": ""
@@ -1053,34 +1269,6 @@
     "icon": "iconfont icon-keyboard4x4"
   },
   {
-    "name": "@aily-project/lib-liquidcrystal",
-    "nickname": "LCD1602显示屏库",
-    "version": "0.0.1",
-    "description": "LCD1602显示屏控制支持库，支持Arduino UNO、MEGA、ESP8266、ESP32等开发板",
-    "author": "aily Project",
-    "compatibility": {
-      "core": [
-        "arduino:avr",
-        "esp32:esp32",
-        "esp8266:esp8266"
-      ],
-      "voltage": [
-        3.3,
-        5
-      ]
-    },
-    "keywords": [
-      "aily",
-      "blockly",
-      "lcd",
-      "液晶显示",
-      "lcd1602",
-      "LiquidCrystal"
-    ],
-    "tested": false,
-    "icon": "iconfont icon-lcd1602"
-  },
-  {
     "name": "@aily-project/lib-max31865",
     "nickname": "MAX31865温度传感器库",
     "version": "1.0.0",
@@ -1089,8 +1277,7 @@
     "compatibility": {
       "core": [
         "arduino:avr",
-        "esp32:esp32",
-        "esp8266:esp8266"
+        "esp32:esp32"
       ],
       "voltage": [
         3.3,
@@ -1132,7 +1319,7 @@
       "blockly",
       "max7219",
       "display",
-      "led"
+      "显示"
     ],
     "tested": false,
     "icon": "iconfont icon-digital-tube"
@@ -1201,8 +1388,7 @@
     "compatibility": {
       "core": [
         "arduino:avr",
-        "esp32:esp32",
-        "esp8266:esp8266"
+        "esp32:esp32"
       ],
       "voltage": [
         3.3,
@@ -1220,15 +1406,14 @@
   },
   {
     "name": "@aily-project/lib-asr",
-    "nickname": "语音识别库",
+    "nickname": "语音识别",
     "version": "0.0.1",
-    "description": "通过OpenJumperASR库用于识别特定的语音识别词",
+    "description": "通过OpenJumper ASR库用于识别特定的语音识别词",
     "author": "K2L",
     "compatibility": {
       "core": [
         "arduino:avr",
-        "esp32:esp32",
-        "esp8266:esp8266"
+        "esp32:esp32"
       ],
       "voltage": [
         3.3,
@@ -1254,8 +1439,7 @@
     "compatibility": {
       "core": [
         "arduino:avr",
-        "esp32:esp32",
-        "esp8266:esp8266"
+        "esp32:esp32"
       ],
       "voltage": [
         3.3,
@@ -1283,8 +1467,7 @@
     "compatibility": {
       "core": [
         "arduino:avr",
-        "esp32:esp32",
-        "esp8266:esp8266"
+        "esp32:esp32"
       ],
       "voltage": [
         3.3,
@@ -1343,8 +1526,7 @@
     "compatibility": {
       "core": [
         "arduino:avr",
-        "esp32:esp32",
-        "esp8266:esp8266"
+        "esp32:esp32"
       ],
       "voltage": [
         3.3,
@@ -1372,8 +1554,7 @@
     "compatibility": {
       "core": [
         "arduino:avr",
-        "esp32:esp32",
-        "esp8266:esp8266"
+        "esp32:esp32"
       ],
       "voltage": [
         5
@@ -1398,8 +1579,7 @@
     "compatibility": {
       "core": [
         "arduino:avr",
-        "esp32:esp32",
-        "esp8266:esp8266"
+        "esp32:esp32"
       ],
       "voltage": [
         3.3,
@@ -1422,8 +1602,8 @@
   {
     "name": "@aily-project/lib-u8g2",
     "nickname": "U8G2显示屏库",
-    "version": "0.0.1",
-    "description": "支持多种OLED、LCD单色显示屏的图形库，包括SSD1306、SH1106、ST7920等控制器",
+    "version": "0.0.4",
+    "description": "支持多种OLED、LCD单色显示屏的图形库，包括SSD1306、SSD1309、SH1106、SH1107、ST7920等控制器",
     "author": "aily Project",
     "compatibility": {
       "core": [
@@ -1469,8 +1649,7 @@
     "compatibility": {
       "core": [
         "arduino:avr",
-        "esp32:esp32",
-        "esp8266:esp8266"
+        "esp32:esp32"
       ],
       "voltage": [
         3.3,
@@ -1499,8 +1678,7 @@
     "compatibility": {
       "core": [
         "arduino:avr",
-        "esp32:esp32",
-        "esp8266:esp8266"
+        "esp32:esp32"
       ],
       "voltage": [
         3.3,
@@ -1519,21 +1697,14 @@
     "icon": "iconfont icon-ws2812"
   },
   {
-    "name": "@aily-project/core-lib-custom",
+    "name": "@aily-project/lib-core-custom",
     "nickname": "自定义代码",
-    "version": "0.0.1",
+    "version": "1.0.0",
     "description": "允许在Blockly中插入自定义Arduino代码、宏定义、函数等的库",
     "author": "aily Project",
     "compatibility": {
-      "core": [
-        "arduino:avr",
-        "esp32:esp32",
-        "esp8266:esp8266"
-      ],
-      "voltage": [
-        3.3,
-        5
-      ]
+      "core": [],
+      "voltage": []
     },
     "keywords": [
       "aily",
@@ -1725,8 +1896,7 @@
     "compatibility": {
       "core": [
         "arduino:avr",
-        "esp32:esp32",
-        "esp8266:esp8266"
+        "esp32:esp32"
       ],
       "voltage": [
         3.3,
