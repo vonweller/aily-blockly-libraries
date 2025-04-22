@@ -94,15 +94,11 @@ async function genI18nTemplate(content, readmeContent, toolboxName, model, key, 
     });
 
     const llm = initChatModel(key, model, baseUrl);
-    const parser = StructuredOutputParser.fromZodSchema(I18nTemplateSchema);
+    // const parser = StructuredOutputParser.fromZodSchema(I18nTemplateSchema);
+    const structuredLlm = llm.withStructuredOutput(I18nTemplateSchema);
+    const res = await structuredLlm.invoke(prompt);
 
-    const response = await llm.invoke(prompt, {
-        responseFormat: { type: "json_object" }
-    });
-
-    console.log("gen_i18n_template response:", response.content);
-
-    return await parser.parse(response.content);
+    return res
 }
 
 // 批量生成i18n
