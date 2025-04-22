@@ -215,7 +215,7 @@ async function main() {
         const llmKey = core.getInput('llmKey') || '';
         const llmBaseUrl = core.getInput('llmBaseUrl') || '';
 
-        console.log("directories: ", directories);
+        console.log("directories: ", directoriesStr);
         console.log("README路径为: ", readmePath);
 
         const readmeContent = await readFile(readmePath);
