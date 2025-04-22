@@ -26,22 +26,23 @@ jobs:
         run: |
           echo "Scanning directories for package.json files..."
           
-          # Create an array to store directories that need i18n generation
+          # 创建数组存储需要i18n生成的目录
           DIRS_TO_PROCESS=()
           
-          find . -name "package.json" | while read -r pkg_path; do
+          # 使用进程替换而非管道
+          while read -r pkg_path; do
             dir_path=$(dirname "$pkg_path")
             
-            # Skip the root package.json
+            # 跳过根目录的package.json
             if [ "$dir_path" == "." ]; then
               continue
             fi
             
             echo "Checking directory: $dir_path"
             
-            # Check if i18n folder exists
+            # 检查i18n文件夹是否存在
             if [ ! -d "${dir_path}/i18n" ]; then
-              # Check if "tested": true in package.json
+              # 检查package.json中"tested": true
               if jq -e '.tested == true' "$pkg_path" > /dev/null; then
                 echo "Directory needs i18n files: ${dir_path}"
                 DIRS_TO_PROCESS+=("$dir_path")
@@ -51,9 +52,9 @@ jobs:
             else
               echo "i18n folder already exists in $dir_path, skipping"
             fi
-          done
+          done < <(find . -name "package.json")
           
-          # Create a JSON array of directories
+          # 创建目录的JSON数组
           JSON_DIRS=$(printf '%s\n' "${DIRS_TO_PROCESS[@]}" | jq -R . | jq -s .)
           echo "dirs=$JSON_DIRS" >> $GITHUB_OUTPUT
           echo "Directories to process: $JSON_DIRS"
