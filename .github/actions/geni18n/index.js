@@ -3,7 +3,7 @@ const fs = require('fs').promises;
 const path = require('path');
 
 const { ChatPromptTemplate } = require('@langchain/core/prompts');
-const { OpenAI } = require('@langchain/openai');
+const { ChatOpenAI } = require('@langchain/openai');
 const { StructuredOutputParser } = require('@langchain/core/output_parsers');
 const { z } = require('zod'); // 使用 zod 替代 Python 中的 Pydantic
 
