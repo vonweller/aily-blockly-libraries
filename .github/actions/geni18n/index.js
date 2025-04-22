@@ -94,10 +94,11 @@ async function genI18nTemplate(content, readmeContent, toolboxName, model, key, 
     const llm = initChatModel(key, model, baseUrl);
     const parser = StructuredOutputParser.fromZodSchema(I18nTemplateSchema);
 
-    const response = await llm.invoke([
-        prompt,
-        { responseFormat: { type: "json_object" } }
-    ]);
+    const response = await llm.invoke(prompt, {
+        responseFormat: { type: "json_object" }
+    });
+
+    console.log("gen_i18n_template response:", response.content);
 
     return await parser.parse(response.content);
 }
@@ -114,10 +115,9 @@ async function genI18nBatch(template, lgList, model, key, baseUrl) {
     const llm = initChatModel(key, model, baseUrl);
     const parser = StructuredOutputParser.fromZodSchema(I18nModelListSchema);
 
-    const response = await llm.invoke([
-        prompt,
-        { responseFormat: { type: "json_object" } }
-    ]);
+    const response = await llm.invoke(prompt, {
+        responseFormat: { type: "json_object" }
+    });
 
     const result = await parser.parse(response.content);
     console.log("gen_i18n_batch result:", result);
@@ -165,6 +165,7 @@ async function generateI18nCode(blockContent, toolboxName, readmeContent, prjPat
             console.error("生成i18n模板失败");
             return false;
         }
+        console.log("i18n模板生成成功")
 
         const lgList = [
             "简体中文(zh_cn)",
@@ -186,6 +187,7 @@ async function generateI18nCode(blockContent, toolboxName, readmeContent, prjPat
             console.error("生成i18n失败");
             return false;
         }
+        console.log("i18n生成成功")
 
         // 生成i18n文件
         const i18nPath = path.join(prjPath, "i18n");
