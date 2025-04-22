@@ -209,7 +209,7 @@ async function generateI18nCode(blockContent, toolboxName, readmeContent, prjPat
 // 主函数
 async function main() {
     try {
-        const directories = core.getInput('directories');
+        const directoriesStr = core.getInput('directories');
         const readmePath = core.getInput('readme');
         const llmModel = core.getInput('llmModel') || 'gpt-4o';
         const llmKey = core.getInput('llmKey') || '';
@@ -223,6 +223,8 @@ async function main() {
             console.error("读取README.md失败");
             process.exit(1);
         }
+
+        const directories = JSON.parse(directoriesStr);
 
         for (const dir of directories.split(',')) {
             try {
