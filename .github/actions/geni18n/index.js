@@ -225,11 +225,6 @@ async function main() {
         }
 
         const directories = JSON.parse(directoriesStr);
-        // For testing, only process the first directory
-        if (directories.length > 0) {
-            console.log("For testing, only processing directory:", directories[0]);
-            directories = [directories[0]];
-        }
 
         for (const dir of directories) {
             try {
@@ -260,6 +255,9 @@ async function main() {
                 console.error(`处理目录 ${dir} 时发生错误:`, error);
                 process.exit(1);
             }
+
+            // TODO 测试
+            break;
         }
     } catch (error) {
         console.error("执行失败:", error);
