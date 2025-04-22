@@ -55,7 +55,7 @@ jobs:
           done < <(find . -name "package.json")
           
           # 创建目录的JSON数组
-          JSON_DIRS=$(printf '%s\n' "${DIRS_TO_PROCESS[@]}" | jq -R . | jq -s .)
+          JSON_DIRS=$(printf '%s\n' "${DIRS_TO_PROCESS[@]}" | jq -R . | jq -cs .)
           echo "dirs=$JSON_DIRS" >> $GITHUB_OUTPUT
           echo "Directories to process: $JSON_DIRS"
 
