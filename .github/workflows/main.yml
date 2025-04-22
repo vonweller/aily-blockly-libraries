@@ -60,7 +60,7 @@ jobs:
           echo "Directories to process: $JSON_DIRS"
 
       - name: Generate i18n files
-        uses: ./.github/actions/i18n-generator
+        uses: ./.github/actions/geni18n
         with:
           directories: ${{ steps.identify_dirs.outputs.dirs }}
           readme: i18n.md
