@@ -34,7 +34,7 @@ async function writeFile(filePath, content) {
 // 初始化聊天模型
 function initChatModel(key, model, baseUrl) {
     return new ChatOpenAI({
-        openAIApiBaseUrl: baseUrl,
+        baseURL: baseUrl,
         openAIApiKey: key,
         modelName: model,
         temperature: 0.1,
