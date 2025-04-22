@@ -111,16 +111,11 @@ async function genI18nBatch(template, lgList, model, key, baseUrl) {
     });
 
     const llm = initChatModel(key, model, baseUrl);
-    const parser = StructuredOutputParser.fromZodSchema(I18nModelListSchema);
 
-    const response = await llm.invoke(prompt, {
-        responseFormat: { type: "json_object" }
-    });
+    const structuredLlm = llm.withStructuredOutput(I18nModelListSchema);
+    const res = await structuredLlm.invoke(prompt);
 
-    const result = await parser.parse(response.content);
-    console.log("gen_i18n_batch result:", result);
-
-    return result;
+    return res;
 }
 
 // 重试机制
@@ -164,6 +159,8 @@ async function generateI18nCode(blockContent, toolboxName, readmeContent, prjPat
             return false;
         }
         console.log("i18n模板生成成功")
+
+        console.log("i18n模板内容为: ", i18nTemplateContent.content);
 
         const lgList = [
             "简体中文(zh_cn)",
