@@ -33,6 +33,7 @@ async function writeFile(filePath, content) {
 
 // 初始化聊天模型
 function initChatModel(key, model, baseUrl) {
+    console.log("baseUrl: ", baseUrl);
     return new ChatOpenAI({
         baseURL: baseUrl,
         openAIApiKey: key,
@@ -219,6 +220,9 @@ async function main() {
 
         console.log("directories: ", directoriesStr);
         console.log("README路径为: ", readmePath);
+        console.log("llmModel: ", llmModel);
+        // console.log("llmKey: ", llmKey);
+        console.log("llmBaseUrl: ", llmBaseUrl);
 
         const readmeContent = await readFile(readmePath);
         if (!readmeContent) {
