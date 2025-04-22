@@ -1,0 +1,68 @@
+name: Generate i18n Files
+
+on:
+  push:
+    branches:
+      - stao
+
+jobs:
+  generate-i18n:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install jq
+        run: sudo apt-get install jq
+
+      - name: Identify directories needing i18n files
+        id: identify_dirs
+        run: |
+          echo "Scanning directories for package.json files..."
+          
+          # Create an array to store directories that need i18n generation
+          DIRS_TO_PROCESS=()
+          
+          find . -name "package.json" | while read -r pkg_path; do
+            dir_path=$(dirname "$pkg_path")
+            
+            # Skip the root package.json
+            if [ "$dir_path" == "." ]; then
+              continue
+            fi
+            
+            echo "Checking directory: $dir_path"
+            
+            # Check if i18n folder exists
+            if [ ! -d "${dir_path}/i18n" ]; then
+              # Check if "tested": true in package.json
+              if jq -e '.tested == true' "$pkg_path" > /dev/null; then
+                echo "Directory needs i18n files: ${dir_path}"
+                DIRS_TO_PROCESS+=("$dir_path")
+              else
+                echo "Skipping $dir_path: 'tested' is not true in package.json"
+              fi
+            else
+              echo "i18n folder already exists in $dir_path, skipping"
+            fi
+          done
+          
+          # Create a JSON array of directories
+          JSON_DIRS=$(printf '%s\n' "${DIRS_TO_PROCESS[@]}" | jq -R . | jq -s .)
+          echo "dirs=$JSON_DIRS" >> $GITHUB_OUTPUT
+          echo "Directories to process: $JSON_DIRS"
+
+      - name: Generate i18n files
+        uses: ./.github/actions/i18n-generator
+        with:
+          directories: ${{ steps.identify_dirs.outputs.dirs }}
+          readme: i18n.md
+          llmModel: ${{ secrets.LLM_MODEL }}
+          llmKey: ${{ secrets.LLM_KEY }}
+          llmBaseUrl: ${{ secrets.LLM_BASE_URL }}
