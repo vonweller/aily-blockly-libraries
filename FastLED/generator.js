@@ -140,39 +140,57 @@ Arduino.forBlock['fastled_fire_effect'] = function (block, generator) {
   const dataPin = block.getFieldValue('DATA_PIN');
   const heat = generator.valueToCode(block, 'HEAT', generator.ORDER_ATOMIC);
   const cooling = generator.valueToCode(block, 'COOLING', generator.ORDER_ATOMIC);
+  // 添加反向参数
+  const reverseDirection = false;
 
   // 添加火焰效果所需变量，为每个引脚创建独立的热量数组
   generator.addVariable(`byte heat_${dataPin}[NUM_LEDS_${dataPin}]`, `byte heat_${dataPin}[NUM_LEDS_${dataPin}];`);
+  // 添加方向控制变量
+  generator.addVariable(`bool reverseDirection_${dataPin}`, `bool reverseDirection_${dataPin} = ${reverseDirection};`);
 
   // 添加Fire2012函数，修改为支持不同引脚的火焰效果
   const fireFunc = `
+// 基于FastLED Fire2012示例的一维火焰动画
+// 模拟火焰效果的工作原理:
+// 1) 所有单元冷却一点，失去热量到空气中
+// 2) 每个单元的热量向上漂移并稍微扩散
+// 3) 有时在底部随机添加新的"火花"
+// 4) 每个单元的热量渲染为LED颜色，使用黑体辐射近似
 void Fire2012_${dataPin}(CRGB* leds, byte heat_value, byte cooling_value) {
-  // 冷却系数
+  // 冷却系数 - 空气冷却的程度
   int cooling = cooling_value;
   
-  // 火焰上升速度
+  // 火花系数 - 火焰上升速度/强度
   int sparking = heat_value;
   
-  // 每个LED的热量值冷却
+  // 步骤 1: 每个LED的热量值冷却
   for(int i = 0; i < NUM_LEDS_${dataPin}; i++) {
     heat_${dataPin}[i] = qsub8(heat_${dataPin}[i], random8(0, ((cooling * 10) / NUM_LEDS_${dataPin}) + 2));
   }
   
-  // 热量从下向上扩散
+  // 步骤 2: 热量从下向上扩散
   for(int k = NUM_LEDS_${dataPin} - 1; k >= 2; k--) {
     heat_${dataPin}[k] = (heat_${dataPin}[k - 1] + heat_${dataPin}[k - 2] + heat_${dataPin}[k - 2]) / 3;
   }
   
-  // 底部随机产生新的热量
+  // 步骤 3: 底部随机产生新的热量
   if(random8() < sparking) {
     int y = random8(7);
     heat_${dataPin}[y] = qadd8(heat_${dataPin}[y], random8(160, 255));
   }
 
-  // 将热量映射到LED颜色
+  // 步骤 4: 将热量映射到LED颜色
   for(int j = 0; j < NUM_LEDS_${dataPin}; j++) {
     CRGB color = HeatColor(heat_${dataPin}[j]);
-    leds[j] = color;
+    
+    // 根据方向设置像素
+    int pixelNumber;
+    if(reverseDirection_${dataPin}) {
+      pixelNumber = (NUM_LEDS_${dataPin} - 1) - j;
+    } else {
+      pixelNumber = j;
+    }
+    leds[pixelNumber] = color;
   }
 }`;
 
