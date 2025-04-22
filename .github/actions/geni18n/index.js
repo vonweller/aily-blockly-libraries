@@ -255,8 +255,6 @@ async function main() {
                 console.error(`处理目录 ${dir} 时发生错误:`, error);
                 process.exit(1);
             }
-
-            // TODO 测试
             break;
         }
     } catch (error) {
