@@ -1,10 +1,9 @@
 const core = require('@actions/core');
 const fs = require('fs').promises;
 const path = require('path');
-const { ChatPromptTemplate } = require('langchain/prompts');
-const { ChatOpenAI } = require('langchain/chat_models/openai');
-const { StructuredOutputParser } = require('langchain/output_parsers');
+const { ChatPromptTemplate, ChatOpenAI, StructuredOutputParser } = require('langchain');
 const { z } = require('zod'); // 使用 zod 替代 Python 中的 Pydantic
+
 
 // 文件读取
 async function readFile(filePath) {
