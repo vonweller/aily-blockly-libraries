@@ -11,12 +11,15 @@ jobs:
     
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          python-version: '3.x'
+          node-version: '20'
+        
+      - name: Install dependencies for custom action
+        run: cd .github/actions/geni18n && npm install
 
       - name: Install jq
         run: sudo apt-get install jq
