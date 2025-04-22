@@ -13,21 +13,35 @@
     },
     {
       "kind": "block",
-      "type": "tm1650_displaystring"
-    },
-    {
-      "kind": "block",
-      "type": "tm1650_point",
+      "type": "tm1650_displaystring",
       "inputs": {
-        "POINT_NUM": {
-          "block": {
-            "type": "math_number",
+        "TMSTR": {
+          "shadow": {
+            "type": "text",
             "fields": {
-              "NUM": 1
+                "TEXT": "abcd"
             }
           }
         }
       }
+    },
+    {
+      "kind": "block",
+      "type": "tm1650_displayNumber",
+      "inputs": {
+        "TMNUM": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+                "NUM": 1
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "tm1650_clearDisplay"
     }
   ]
 }
