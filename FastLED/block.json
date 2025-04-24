@@ -1,16 +1,12 @@
 [
     {
         "type": "fastled_init",
-        "message0": "初始化 LED 灯带 %1 类型 %2 数据引脚 %3 LED 数量 %4",
+        "message0": "初始化RGB灯带 引脚%1 类型%2 LED数量%3",
         "args0": [
             {
-                "type": "field_variable",
-                "name": "STRIP",
-                "variable": "leds",
-                "variableTypes": [
-                    "CRGB[]"
-                ],
-                "defaultType": "CRGB[]"
+                "type": "field_dropdown",
+                "name": "DATA_PIN",
+                "options": "${board.digitalPins}"
             },
             {
                 "type": "field_dropdown",
@@ -47,11 +43,6 @@
                 ]
             },
             {
-                "type": "field_dropdown",
-                "name": "DATA_PIN",
-                "options": "${board.digitalPins}"
-            },
-            {
                 "type": "field_number",
                 "name": "NUM_LEDS",
                 "value": 30,
@@ -66,16 +57,12 @@
     },
     {
         "type": "fastled_set_pixel",
-        "message0": "设置 LED %1 序号 %2 颜色 %3",
+        "message0": "设置RGB灯带 引脚%1 序号 %2 颜色 %3",
         "args0": [
             {
-                "type": "field_variable",
-                "name": "STRIP",
-                "variable": "leds",
-                "variableTypes": [
-                    "CRGB[]"
-                ],
-                "defaultType": "CRGB[]"
+                "type": "field_dropdown",
+                "name": "DATA_PIN",
+                "options": "${board.digitalPins}"
             },
             {
                 "type": "input_value",
@@ -95,23 +82,19 @@
     },
     {
         "type": "fastled_show",
-        "message0": "显示 LED 灯带",
+        "message0": "更新RGB灯带",
         "previousStatement": null,
         "nextStatement": null,
         "colour": "#2A82DA"
     },
     {
         "type": "fastled_clear",
-        "message0": "清除 LED 灯带 %1",
+        "message0": "清除RGB灯带 引脚%1",
         "args0": [
             {
-                "type": "field_variable",
-                "name": "STRIP",
-                "variable": "leds",
-                "variableTypes": [
-                    "CRGB[]"
-                ],
-                "defaultType": "CRGB[]"
+                "type": "field_dropdown",
+                "name": "DATA_PIN",
+                "options": "${board.digitalPins}"
             }
         ],
         "inputsInline": true,
@@ -164,7 +147,7 @@
         "args0": [
             {
                 "type": "field_colour_hsv_sliders",
-                "name": "COLOUR",
+                "name": "COLOR",
                 "colour": "#ffffff"
             }
         ],
@@ -173,16 +156,12 @@
     },
     {
         "type": "fastled_fill_solid",
-        "message0": "填充所有 LED %1 颜色 %2",
+        "message0": "填充所有 LED 引脚%1 颜色 %2",
         "args0": [
             {
-                "type": "field_variable",
-                "name": "STRIP",
-                "variable": "leds",
-                "variableTypes": [
-                    "CRGB[]"
-                ],
-                "defaultType": "CRGB[]"
+                "type": "field_dropdown",
+                "name": "DATA_PIN",
+                "options": "${board.digitalPins}"
             },
             {
                 "type": "input_value",
@@ -221,16 +200,12 @@
     },
     {
         "type": "fastled_rainbow",
-        "message0": "彩虹效果 %1 起始色调 %2 增量 %3",
+        "message0": "彩虹效果 引脚%1 起始色调 %2 增量 %3",
         "args0": [
             {
-                "type": "field_variable",
-                "name": "STRIP",
-                "variable": "leds",
-                "variableTypes": [
-                    "CRGB[]"
-                ],
-                "defaultType": "CRGB[]"
+                "type": "field_dropdown",
+                "name": "DATA_PIN",
+                "options": "${board.digitalPins}"
             },
             {
                 "type": "input_value",
@@ -241,6 +216,175 @@
                 "type": "input_value",
                 "name": "DELTA_HUE",
                 "check": "Number"
+            }
+        ],
+        "inputsInline": true,
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#2A82DA"
+    },
+    {
+        "type": "fastled_fire_effect",
+        "message0": "火焰效果 引脚%1 热度 %2 冷却速度 %3",
+        "args0": [
+            {
+                "type": "field_dropdown",
+                "name": "DATA_PIN",
+                "options": "${board.digitalPins}"
+            },
+            {
+                "type": "input_value",
+                "name": "HEAT",
+                "check": "Number"
+            },
+            {
+                "type": "input_value",
+                "name": "COOLING",
+                "check": "Number"
+            }
+        ],
+        "inputsInline": true,
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#2A82DA"
+    },
+    {
+        "type": "fastled_meteor",
+        "message0": "流星效果 引脚%1 颜色 %2 流星大小 %3 尾部淡出 %4 速度 %5",
+        "args0": [
+            {
+                "type": "field_dropdown",
+                "name": "DATA_PIN",
+                "options": "${board.digitalPins}"
+            },
+            {
+                "type": "input_value",
+                "name": "COLOR",
+                "check": "Colour"
+            },
+            {
+                "type": "input_value",
+                "name": "SIZE",
+                "check": "Number"
+            },
+            {
+                "type": "input_value",
+                "name": "DECAY",
+                "check": "Number"
+            },
+            {
+                "type": "input_value",
+                "name": "SPEED",
+                "check": "Number"
+            }
+        ],
+        "inputsInline": true,
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#2A82DA"
+    },
+    {
+        "type": "fastled_palette_cycle",
+        "message0": "调色板循环效果 引脚%1 调色板 %2 速度 %3",
+        "args0": [
+            {
+                "type": "field_dropdown",
+                "name": "DATA_PIN",
+                "options": "${board.digitalPins}"
+            },
+            {
+                "type": "field_dropdown",
+                "name": "PALETTE",
+                "options": [
+                    [
+                        "彩虹",
+                        "RainbowColors_p"
+                    ],
+                    [
+                        "熔岩",
+                        "LavaColors_p"
+                    ],
+                    [
+                        "云彩",
+                        "CloudColors_p"
+                    ],
+                    [
+                        "海洋",
+                        "OceanColors_p"
+                    ],
+                    [
+                        "森林",
+                        "ForestColors_p"
+                    ],
+                    [
+                        "派对",
+                        "PartyColors_p"
+                    ],
+                    [
+                        "热量",
+                        "HeatColors_p"
+                    ]
+                ]
+            },
+            {
+                "type": "input_value",
+                "name": "SPEED",
+                "check": "Number"
+            }
+        ],
+        "inputsInline": true,
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#2A82DA"
+    },
+    {
+        "type": "fastled_breathing",
+        "message0": "呼吸灯效果 引脚%1 颜色 %2 速度 %3",
+        "args0": [
+            {
+                "type": "field_dropdown",
+                "name": "DATA_PIN",
+                "options": "${board.digitalPins}"
+            },
+            {
+                "type": "input_value",
+                "name": "COLOR",
+                "check": "Colour"
+            },
+            {
+                "type": "input_value",
+                "name": "SPEED",
+                "check": "Number"
+            }
+        ],
+        "inputsInline": true,
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#2A82DA"
+    },
+    {
+        "type": "fastled_twinkle",
+        "message0": "闪烁效果 引脚%1 闪烁数量 %2 背景 %3 闪烁颜色 %4",
+        "args0": [
+            {
+                "type": "field_dropdown",
+                "name": "DATA_PIN",
+                "options": "${board.digitalPins}"
+            },
+            {
+                "type": "input_value",
+                "name": "COUNT",
+                "check": "Number"
+            },
+            {
+                "type": "input_value",
+                "name": "BACKGROUND",
+                "check": "Colour"
+            },
+            {
+                "type": "input_value",
+                "name": "COLOR",
+                "check": "Colour"
             }
         ],
         "inputsInline": true,
