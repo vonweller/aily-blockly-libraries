@@ -9,15 +9,28 @@
   },
   {
     "type": "tm1650_set",
-    "message0": "四位数码TM1650%1",
+    "message0": "四位数码TM1650 显示%1,亮度设置为%2",
     "args0": [
       {
         "type": "field_dropdown",
-        "name": "TM1650CMD",
+        "name": "TM1650PWRSWITCH",
         "options": [
-          [ "开", "displayOn" ],
-          [ "关", "displayOff" ],
-          [ "清屏", "clear" ]
+          [ "开", "1" ],
+          [ "关", "0" ]
+        ]
+      },
+      {
+        "type": "field_dropdown",
+        "name": "TM1650BRIGHTNESS",
+        "options": [
+          [ "0", "0" ],
+          [ "1", "1" ],
+          [ "2", "2" ],
+          [ "3", "3" ],
+          [ "4", "4" ],
+          [ "5", "5" ],
+          [ "6", "6" ],
+          [ "7", "7" ]
         ]
       }
     ],
@@ -42,25 +55,23 @@
     "colour": "#FF8800"
   },
   {
-    "type": "tm1650_point",
-    "message0": "四位数码TM1650 第%1个小数点%2",
+    "type": "tm1650_displayNumber",
+    "message0": "四位数码TM1650 显示数字%1",
     "args0": [
       {
         "type": "input_value",
-        "name": "POINT_NUM",
-        "check": "Number",
-        "MIN": 1,
-        "MAX": 4
-      },
-      {
-        "type": "field_dropdown",
-        "name": "TM1650POINTSET",
-        "options": [
-          [ "亮", "true" ],
-          [ "灭", "false" ]
-        ]
+        "name": "TMNUM",
+        "check": "Number"
       }
     ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF8800"
+  },
+  {
+    "type": "tm1650_clearDisplay",
+    "message0": "四位数码TM1650 清屏",
     "inputsInline": true,
     "previousStatement": null,
     "nextStatement": null,
