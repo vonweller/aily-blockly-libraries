@@ -1,0 +1,185 @@
+[
+    {
+        "type": "aivox_init_std",
+        "message0": "初始化 AI Vox (标准I2S) %1 Mic BCLK %2 WS %3 DIN %4 %5 Speaker BCLK %6 WS %7 DOUT %8 %9 触发引脚 %10",
+        "args0": [
+            { "type": "input_dummy" },
+            { "type": "field_dropdown", "name": "MIC_BCLK", "options": "${board.digitalPins}" },
+            { "type": "field_dropdown", "name": "MIC_WS", "options": "${board.digitalPins}" },
+            { "type": "field_dropdown", "name": "MIC_DIN", "options": "${board.digitalPins}" },
+            { "type": "input_dummy" },
+            { "type": "field_dropdown", "name": "SPK_BCLK", "options": "${board.digitalPins}" },
+            { "type": "field_dropdown", "name": "SPK_WS", "options": "${board.digitalPins}" },
+            { "type": "field_dropdown", "name": "SPK_DOUT", "options": "${board.digitalPins}" },
+            { "type": "input_dummy" },
+            { "type": "field_dropdown", "name": "TRIGGER_PIN", "options": "${board.digitalPins}" }
+        ],
+        "inputsInline": false,
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#4CAF50",
+        "tooltip": "初始化AI Vox引擎，使用标准I2S麦克风和扬声器。",
+        "helpUrl": ""
+    },
+    {
+        "type": "aivox_loop",
+        "message0": "当 AI Vox 事件发生时 %1 %2",
+        "args0": [
+            { "type": "input_dummy" },
+            { "type": "input_statement", "name": "DO" }
+        ],
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#FF9800",
+        "tooltip": "处理AI Vox引擎产生的事件。",
+        "helpUrl": ""
+    },
+    {
+        "type": "aivox_event_is_activation",
+        "message0": "如果事件是 激活",
+        "message1": "执行 %1",
+        "args1": [
+            { "type": "input_statement", "name": "DO" }
+        ],
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#FFC107",
+        "tooltip": "检查当前事件是否为设备激活事件。",
+        "helpUrl": ""
+    },
+    {
+        "type": "aivox_get_activation_message",
+        "message0": "获取激活消息",
+        "output": "String",
+        "colour": "#FFC107",
+        "tooltip": "获取设备激活事件中的消息内容。",
+        "helpUrl": ""
+    },
+    {
+        "type": "aivox_get_activation_code",
+        "message0": "获取激活代码",
+        "output": "String",
+        "colour": "#FFC107",
+        "tooltip": "获取设备激活事件中的代码。",
+        "helpUrl": ""
+    },
+    {
+        "type": "aivox_event_is_state_change",
+        "message0": "如果事件是 状态改变",
+        "message1": "执行 %1",
+        "args1": [
+            { "type": "input_statement", "name": "DO" }
+        ],
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#FFC107",
+        "tooltip": "检查当前事件是否为状态改变事件。",
+        "helpUrl": ""
+    },
+    {
+        "type": "aivox_get_new_state",
+        "message0": "获取新状态",
+        "output": "Number",
+        "colour": "#FFC107",
+        "tooltip": "获取状态改变事件中的新状态。",
+        "helpUrl": ""
+    },
+    {
+        "type": "aivox_get_old_state",
+        "message0": "获取旧状态",
+        "output": "Number",
+        "colour": "#FFC107",
+        "tooltip": "获取状态改变事件中的旧状态。",
+        "helpUrl": ""
+    },
+    {
+        "type": "aivox_state_enum",
+        "message0": "%1",
+        "args0": [
+            {
+                "type": "field_dropdown",
+                "name": "STATE",
+                "options": [
+                    ["空闲 (Idle)", "ai_vox::ChatState::kIdle"],
+                    ["初始化中 (Initing)", "ai_vox::ChatState::kIniting"],
+                    ["待命 (Standby)", "ai_vox::ChatState::kStandby"],
+                    ["连接中 (Connecting)", "ai_vox::ChatState::kConnecting"],
+                    ["聆听中 (Listening)", "ai_vox::ChatState::kListening"],
+                    ["说话中 (Speaking)", "ai_vox::ChatState::kSpeaking"]
+                ]
+            }
+        ],
+        "output": "Number",
+        "colour": "#FFEB3B",
+        "tooltip": "AI Vox 聊天状态。",
+        "helpUrl": ""
+    },
+    {
+        "type": "aivox_event_is_emotion",
+        "message0": "如果事件是 表情",
+        "message1": "执行 %1",
+        "args1": [
+            { "type": "input_statement", "name": "DO" }
+        ],
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#FFC107",
+        "tooltip": "检查当前事件是否为表情事件。",
+        "helpUrl": ""
+    },
+    {
+        "type": "aivox_get_emotion",
+        "message0": "获取表情",
+        "output": "String",
+        "colour": "#FFC107",
+        "tooltip": "获取表情事件中的表情名称。",
+        "helpUrl": ""
+    },
+    {
+        "type": "aivox_event_is_chat_message",
+        "message0": "如果事件是 聊天消息",
+        "message1": "执行 %1",
+        "args1": [
+            { "type": "input_statement", "name": "DO" }
+        ],
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#FFC107",
+        "tooltip": "检查当前事件是否为聊天消息事件。",
+        "helpUrl": ""
+    },
+    {
+        "type": "aivox_get_chat_role",
+        "message0": "获取聊天角色",
+        "output": "Number",
+        "colour": "#FFC107",
+        "tooltip": "获取聊天消息事件中的角色。",
+        "helpUrl": ""
+    },
+    {
+        "type": "aivox_role_enum",
+        "message0": "%1",
+        "args0": [
+            {
+                "type": "field_dropdown",
+                "name": "ROLE",
+                "options": [
+                    ["助手 (Assistant)", "ai_vox::ChatRole::kAssistant"],
+                    ["用户 (User)", "ai_vox::ChatRole::kUser"]
+                ]
+            }
+        ],
+        "output": "Number",
+        "colour": "#FFEB3B",
+        "tooltip": "AI Vox 聊天角色。",
+        "helpUrl": ""
+    },
+    {
+        "type": "aivox_get_chat_content",
+        "message0": "获取聊天内容",
+        "output": "String",
+        "colour": "#FFC107",
+        "tooltip": "获取聊天消息事件中的内容。",
+        "helpUrl": ""
+    }
+]
