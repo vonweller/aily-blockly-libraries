@@ -1,21 +1,12 @@
 [
   {
     "inputsInline": true,
-    "message0": "红外接收器 %1 初始化于引脚 %2",
-    "type": "irrecv_attach",
+    "message0": "红外接收 快速测试  引脚 %1",
+    "type": "QuickTesting",
     "args0": [
       {
-        "type": "field_variable",
-        "name": "OBJECT",
-        "variable": "irrecv1",
-        "variableTypes": [
-          "IRrecv"
-        ],
-        "defaultType": "IRrecv"
-      },
-      {
         "type": "field_dropdown",
-        "name": "PIN",
+        "name": "IRPIN",
         "options": "${board.digitalPins}"
       }
     ],
@@ -25,75 +16,70 @@
   },
   {
     "inputsInline": true,
-    "message0": "红外接收器 %1 解码",
-    "type": "irrecv_decode",
-    "args0": [
-      {
-        "type": "field_variable",
-        "name": "OBJECT",
-        "variable": "irrecv1",
-        "variableTypes": [
-          "IRrecv"
-        ],
-        "defaultType": "IRrecv"
-      }
-    ],
-    "previousStatement": null,
-    "nextStatement": null,
-    "colour": "#ff9800"
-  },
-  {
-    "type": "ir_send_nec",
-    "message0": "使用引脚 %1 发送 NEC信号 地址 %2 命令 %3 重复 %4 次",
+    "message0": "红外接收初始化 引脚 %1",
+    "type": "irrecv_begin_in",
     "args0": [
       {
         "type": "field_dropdown",
-        "name": "SEND_PIN",
+        "name": "IRPININ",
         "options": "${board.digitalPins}"
-      },
-      {
-        "type": "field_number",
-        "name": "ADDRESS",
-        "value": 0
-      },
-      {
-        "type": "field_number",
-        "name": "COMMAND",
-        "value": 0
-      },
-      {
-        "type": "field_number",
-        "name": "REPEATS",
-        "value": 0,
-        "min": 0
       }
     ],
-    "inputsInline": true,
     "previousStatement": null,
     "nextStatement": null,
-    "colour": "#FF5722"
+    "colour": "#ff5722"
   },
   {
-    "type": "ir_recv_begin",
-    "message0": "初始化IR接收引脚 %1",
+    "inputsInline": true,
+    "message0": "红外发射初始化 引脚 %1",
+    "type": "irrecv_begin_out",
     "args0": [
       {
         "type": "field_dropdown",
-        "name": "RECV_PIN",
+        "name": "IRPINOUT",
         "options": "${board.digitalPins}"
       }
     ],
-    "inputsInline": true,
     "previousStatement": null,
     "nextStatement": null,
-    "colour": "#4CAF50"
+    "colour": "#ff5722"
   },
   {
-    "type": "ir_receive",
-    "message0": "检测IR信号",
+    "type": "irrecv_datain",
+    "message0": "接收到红外数据%1",
+    "args0": [
+      {
+        "type": "input_statement",
+        "name": "IRDATA"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,    
+    "colour": "#ff5722"
+  },
+  {
     "inputsInline": true,
+    "message0": "接收到的红外数据",
+    "type": "irrecv_irdata",
+    "output": "Number",
+    "colour": "#ff5722"
+  },
+  {
+    "inputsInline": true,
+    "message0": "红外发射 地址0x%1 数据0x%2",
+    "type": "irrecv_irsend",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "IRADDRESS"
+      },
+      {
+        "type": "input_value",
+        "name": "IROUTDATA"
+      }
+    ],
     "previousStatement": null,
     "nextStatement": null,
-    "colour": "#009688"
+    "colour": "#ff5722"
   }
 ]

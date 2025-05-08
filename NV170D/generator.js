@@ -33,9 +33,14 @@ Arduino.forBlock['nv170d_set'] = function(block, generator) {
 // 语音连码播报
 Arduino.forBlock['nv170d_playcon'] = function(block, generator) {
   const nvname = block.getFieldValue("NV_NAME") || "";
-  const nvtextcon = block.getFieldValue("NV_PLAYCONNUM");
-  
-  const code = `${nvname}.sendData(${nvtextcon});\n`;
-    
+  const nvtextcon = parseInt(block.getFieldValue("NV_PLAYCONNUM"), 16); // 将值转换为十六进制数
+
+  let code = ``;
+  if (nvtextcon === 0xF1) { // 判断是否为 0xF1
+    code = `${nvname}.sendDWS(0x${nvtextcon.toString(16).toUpperCase()});\n`; // 格式化为十六进制
+  } else {
+    code = `${nvname}.sendData(0x${nvtextcon.toString(16).toUpperCase()});\n`; // 格式化为十六进制
+  }
+      
   return code;
 };

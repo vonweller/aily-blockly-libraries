@@ -4,15 +4,45 @@
   "contents": [
     {
       "kind": "block",
-      "type": "ir_send_nec"
+      "type": "QuickTesting"
     },
     {
       "kind": "block",
-      "type": "ir_recv_begin"
+      "type": "irrecv_begin_in"
     },
     {
       "kind": "block",
-      "type": "ir_receive"
+      "type": "irrecv_begin_out"
+    },
+    {
+      "kind": "block",
+      "type": "irrecv_datain"
+    },
+    {
+      "kind": "block",
+      "type": "irrecv_irdata"
+    },
+    {
+      "kind": "block",
+      "type": "irrecv_irsend",
+      "inputs": {
+        "IRADDRESS": {
+          "block": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 102
+            }
+          }
+        },
+        "IROUTDATA": {
+          "block": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 45
+            }
+          }
+        }
+      }
     }
   ]
 }
