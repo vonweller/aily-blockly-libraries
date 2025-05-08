@@ -88,6 +88,43 @@
     "icon": ""
   },
   {
+    "name": "@aily-project/lib-fastled",
+    "nickname": "FastLED灯带驱动库",
+    "version": "0.0.4",
+    "description": "支持WS2812B/WS2811/NEOPIXEL等多种RGB LED灯带的控制库，提供颜色、亮度、彩虹效果等多种功能",
+    "author": "aily Project",
+    "compatibility": {
+      "core": [
+        "arduino:avr",
+        "esp32:esp32"
+      ],
+      "voltage": [
+        3.3,
+        5
+      ]
+    },
+    "keywords": [
+      "aily",
+      "blockly",
+      "fastled",
+      "led",
+      "neopixel",
+      "ws2812b",
+      "ws2812",
+      "ws2811",
+      "apa102",
+      "ws2801",
+      "lpd8806",
+      "rgb",
+      "rainbow",
+      "light",
+      "display",
+      "显示"
+    ],
+    "tested": true,
+    "icon": ""
+  },
+  {
     "name": "@aily-project/lib-hx711",
     "nickname": "HX711称重传感器库",
     "version": "0.5.2",
@@ -179,11 +216,7 @@
     "description": "LCD1602 I2C显示屏控制支持库，支持Arduino UNO、MEGA、ESP8266、ESP32等开发板",
     "author": "johnrickman",
     "compatibility": {
-      "core": [
-        "arduino:avr",
-        "esp32:esp32",
-        "esp8266:esp8266"
-      ],
+      "core": [],
       "voltage": [
         3.3,
         5
@@ -293,11 +326,7 @@
     "description": "通过该库解析IICPS3手柄接收模块的数据，支持获取手柄的按键状态、摇杆位置。",
     "author": "K2L",
     "compatibility": {
-      "core": [
-        "arduino:avr",
-        "esp32:esp32",
-        "esp8266:esp8266"
-      ],
+      "core": [],
       "voltage": [
         3.3,
         5
@@ -318,12 +347,9 @@
     "nickname": "文本转语音",
     "version": "0.0.1",
     "description": "通过OpenJumper TTS库控制文本转语音模块，支持播放铃声、提示音、警告音、数字和文本。",
-    "author": "aily Project",
+    "author": "K2L",
     "compatibility": {
-      "core": [
-        "arduino:avr",
-        "esp32:esp32"
-      ],
+      "core": [],
       "voltage": [
         3.3,
         5
@@ -523,42 +549,6 @@
     "icon": ""
   },
   {
-    "name": "@aily-project/lib-neopixel",
-    "nickname": "NeoPixel LED灯带",
-    "version": "0.1.0",
-    "description": "控制可编程RGB LED灯带，支持各种颜色和动画效果",
-    "author": "Adafruit",
-    "compatibility": {
-      "core": [
-        "arduino:avr",
-        "esp32:esp32",
-        "esp8266:esp8266",
-        "arduino:samd",
-        "arduino:sam",
-        "arduino:megaavr"
-      ],
-      "voltage": [
-        3.3,
-        5
-      ]
-    },
-    "keywords": [
-      "aily",
-      "blockly",
-      "neopixel",
-      "led",
-      "ws2812",
-      "rgb",
-      "rgbw",
-      "light",
-      "animation",
-      "rainbow",
-      "color"
-    ],
-    "tested": false,
-    "icon": "iconfont icon-ws2812"
-  },
-  {
     "name": "@aily-project/lib-adxl345",
     "nickname": "ADXL345传感器库",
     "version": "0.0.1",
@@ -585,6 +575,36 @@
     ],
     "tested": false,
     "icon": ""
+  },
+  {
+    "name": "@aily-project/lib-aivox",
+    "nickname": "AI语音交互",
+    "version": "0.0.1",
+    "description": "Arduino版小智AI，AI Vox语音交互引擎支持库，用于ESP32系列开发板。",
+    "author": "nulllab",
+    "compatibility": {
+      "core": [
+        "esp32:esp32",
+        "esp32:esp32s3"
+      ],
+      "voltage": [
+        3.3
+      ]
+    },
+    "keywords": [
+      "aily",
+      "blockly",
+      "aivox",
+      "ai",
+      "voice",
+      "speech",
+      "esp32",
+      "i2s",
+      "aivox_init_std",
+      "aivox_loop"
+    ],
+    "tested": false,
+    "icon": "fa-light fa-message-bot"
   },
   {
     "name": "@aily-project/lib-arduino_ble",
@@ -754,7 +774,8 @@
     "author": "Arduino",
     "compatibility": {
       "core": [
-        "arduino:renesas"
+        "renesas_uno:minima",
+        "renesas_uno:unor4wifi"
       ],
       "voltage": [
         3.3,
@@ -778,12 +799,13 @@
   {
     "name": "@aily-project/lib-r4-led-matrix",
     "nickname": "R4 WiFi LED矩阵库",
-    "version": "0.0.1",
-    "description": "用于控制Arduino UNO R4 Wifi LED矩阵，支持显示文本、图案和动画",
+    "version": "1.0.0",
+    "description": "用于Arduino UNO R4 Wifi LED矩阵，支持显示文本、图案和动画",
     "author": "Arduino",
     "compatibility": {
       "core": [
-        "arduino:renesas_uno"
+        "renesas_uno:minima",
+        "renesas_uno:unor4wifi"
       ],
       "voltage": [
         3.3,
@@ -804,14 +826,14 @@
   },
   {
     "name": "@aily-project/lib-r4-rtc",
-    "nickname": "实时时钟",
+    "nickname": "R4实时时钟",
     "version": "1.0.0",
     "description": "适用于Arduino UNO R4的RTC库，提供精确的时间跟踪、定时回调和时间格式化功能",
     "author": "Arduino",
     "compatibility": {
       "core": [
-        "arduino:mbed",
-        "arduino:renesas"
+        "renesas_uno:minima",
+        "renesas_uno:unor4wifi"
       ],
       "voltage": [
         3.3,
@@ -832,17 +854,14 @@
   },
   {
     "name": "@aily-project/lib-r4-wdt",
-    "nickname": "看门狗定时器库",
+    "nickname": "R4看门狗",
     "version": "1.0.0",
     "description": "适用于Arduino UNO R4的看门狗库",
     "author": "Arduino",
     "compatibility": {
       "core": [
-        "arduino:avr",
-        "arduino:samd",
-        "arduino:sam",
-        "arduino:mbed",
-        "esp32:esp32"
+        "renesas_uno:minima",
+        "renesas_uno:unor4wifi"
       ],
       "voltage": [
         3.3,
@@ -1095,7 +1114,9 @@
     "nickname": "Encoder",
     "version": "1.4.0",
     "description": "读取旋转编码器信号的库，可用于制作旋钮控制、计数器等项目",
-    "author": "Paul Stoffregen",
+    "author": {
+      "name": "Paul Stoffregen"
+    },
     "compatibility": {
       "core": [
         "arduino:avr"
@@ -1125,7 +1146,7 @@
     "author": "aily Project",
     "compatibility": {
       "core": [
-        "esp32:esp32"
+        "esp32"
       ],
       "voltage": [
         3.3
@@ -1142,43 +1163,6 @@
       "esp32_can_receive_message",
       "esp32_can_configure_alerts",
       "esp32_can_check_alerts"
-    ],
-    "tested": false,
-    "icon": ""
-  },
-  {
-    "name": "@aily-project/lib-fastled",
-    "nickname": "FastLED灯带驱动库",
-    "version": "0.0.4",
-    "description": "支持WS2812B/WS2811/NEOPIXEL等多种RGB LED灯带的控制库，提供颜色、亮度、彩虹效果等多种功能",
-    "author": "aily Project",
-    "compatibility": {
-      "core": [
-        "arduino:avr",
-        "esp32:esp32"
-      ],
-      "voltage": [
-        3.3,
-        5
-      ]
-    },
-    "keywords": [
-      "aily",
-      "blockly",
-      "fastled",
-      "led",
-      "neopixel",
-      "ws2812b",
-      "ws2812",
-      "ws2811",
-      "apa102",
-      "ws2801",
-      "lpd8806",
-      "rgb",
-      "rainbow",
-      "light",
-      "display",
-      "显示"
     ],
     "tested": false,
     "icon": ""
@@ -1411,10 +1395,7 @@
     "description": "通过OpenJumper ASR库用于识别特定的语音识别词",
     "author": "K2L",
     "compatibility": {
-      "core": [
-        "arduino:avr",
-        "esp32:esp32"
-      ],
+      "core": [],
       "voltage": [
         3.3,
         5
@@ -1670,41 +1651,13 @@
     "icon": ""
   },
   {
-    "name": "@aily-project/lib-ws2812fx",
-    "nickname": "WS2812 LED灯带库",
-    "version": "0.0.1",
-    "description": "支持WS2812 LED灯带控制的库，集成WS2812FX库，适用于Arduino开发板",
-    "author": "aily Project",
-    "compatibility": {
-      "core": [
-        "arduino:avr",
-        "esp32:esp32"
-      ],
-      "voltage": [
-        3.3,
-        5
-      ]
-    },
-    "keywords": [
-      "aily",
-      "blockly",
-      "ws2812",
-      "LED",
-      "灯带",
-      "ws2812fx"
-    ],
-    "tested": false,
-    "icon": "iconfont icon-ws2812"
-  },
-  {
     "name": "@aily-project/lib-core-custom",
     "nickname": "自定义代码",
     "version": "1.0.0",
     "description": "允许在Blockly中插入自定义Arduino代码、宏定义、函数等的库",
     "author": "aily Project",
     "compatibility": {
-      "core": [],
-      "voltage": []
+      "core": []
     },
     "keywords": [
       "aily",
@@ -1722,7 +1675,9 @@
     "version": "0.0.1",
     "description": "eeprom",
     "author": "aily Project",
-    "compatibility": "",
+    "compatibility": {
+      "core": []
+    },
     "keywords": [
       "aily",
       "blockly",
@@ -1738,7 +1693,9 @@
     "version": "0.0.1",
     "description": "核心库，通常已经集成到初始模板中",
     "author": "aily Project",
-    "compatibility": {},
+    "compatibility": {
+      "core": []
+    },
     "keywords": [
       "aily",
       "blockly",
@@ -1754,7 +1711,9 @@
     "version": "0.0.1",
     "description": "Arduino外部中断支持库",
     "author": "Arduino",
-    "compatibility": {},
+    "compatibility": {
+      "core": []
+    },
     "keywords": [
       "aily",
       "blockly",
@@ -1771,11 +1730,7 @@
     "description": "基础I/O控制库，支持使用Arduino框架的开发板",
     "author": "aily Project",
     "compatibility": {
-      "core": [
-        "arduino:avr",
-        "esp32:esp32",
-        "esp8266:esp8266"
-      ],
+      "core": [],
       "voltage": [
         3.3,
         5
@@ -1816,11 +1771,7 @@
     "description": "核心库，通常已经集成到初始模板中",
     "author": "aily Project",
     "compatibility": {
-      "core": [
-        "arduino:avr",
-        "esp32:esp32",
-        "esp8266:esp8266"
-      ],
+      "core": [],
       "voltage": [
         3.3,
         5
@@ -1842,11 +1793,7 @@
     "description": "核心库，通常已经集成到初始模板中",
     "author": "aily Project",
     "compatibility": {
-      "core": [
-        "arduino:avr",
-        "esp32:esp32",
-        "esp8266:esp8266"
-      ],
+      "core": [],
       "voltage": [
         3.3,
         5
@@ -1894,10 +1841,7 @@
     "description": "串口通信库,支持串口发送和接收",
     "author": "aily Project",
     "compatibility": {
-      "core": [
-        "arduino:avr",
-        "esp32:esp32"
-      ],
+      "core": [],
       "voltage": [
         3.3,
         5
@@ -1959,7 +1903,9 @@
     "version": "0.0.1",
     "description": "时间控制库，包含delay、millis、micros等函数",
     "author": "aily Project",
-    "compatibility": {},
+    "compatibility": {
+      "core": []
+    },
     "keywords": [
       "aily",
       "blockly",
