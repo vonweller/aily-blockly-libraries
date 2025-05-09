@@ -339,12 +339,12 @@
   },
   {
     "type": "text_append",
-    "message0": "%{BKY_TEXT_APPEND_TITLE}",
+    "message0": "在 %1 之后加上文本 %2",
     "args0": [
       {
         "type": "field_variable",
         "name": "VAR",
-        "variable": "%{BKY_TEXT_APPEND_VARIABLE}"
+        "variable": "i"
       },
       {
         "type": "input_value",
@@ -360,7 +360,7 @@
   },
   {
     "type": "text_length",
-    "message0": "%{BKY_TEXT_LENGTH_TITLE}",
+    "message0": "%1 的长度",
     "args0": [
       {
         "type": "input_value",
@@ -378,7 +378,7 @@
   },
   {
     "type": "text_isEmpty",
-    "message0": "%{BKY_TEXT_ISEMPTY_TITLE}",
+    "message0": "%1 是空的",
     "args0": [
       {
         "type": "input_value",
@@ -396,7 +396,7 @@
   },
   {
     "type": "text_indexOf",
-    "message0": "%{BKY_TEXT_INDEXOF_TITLE}",
+    "message0": "在文本 %1 里 %2 %3",
     "args0": [
       {
         "type": "input_value",
@@ -408,11 +408,11 @@
         "name": "END",
         "options": [
           [
-            "%{BKY_TEXT_INDEXOF_OPERATOR_FIRST}",
+            "寻找第一次出现的文本",
             "FIRST"
           ],
           [
-            "%{BKY_TEXT_INDEXOF_OPERATOR_LAST}",
+            "寻找最后一次出现的文本",
             "LAST"
           ]
         ]
@@ -433,7 +433,7 @@
   },
   {
     "type": "text_charAt",
-    "message0": "%{BKY_TEXT_CHARAT_TITLE}",
+    "message0": "在文本 %1 里 %2",
     "args0": [
       {
         "type": "input_value",
@@ -445,23 +445,23 @@
         "name": "WHERE",
         "options": [
           [
-            "%{BKY_TEXT_CHARAT_FROM_START}",
+            "获取第#个字符",
             "FROM_START"
           ],
           [
-            "%{BKY_TEXT_CHARAT_FROM_END}",
+            "获取倒数第#个字符",
             "FROM_END"
           ],
           [
-            "%{BKY_TEXT_CHARAT_FIRST}",
+            "获取第一个字符",
             "FIRST"
           ],
           [
-            "%{BKY_TEXT_CHARAT_LAST}",
+            "获取最后一个字符",
             "LAST"
           ],
           [
-            "%{BKY_TEXT_CHARAT_RANDOM}",
+            "获取随机一个字符",
             "RANDOM"
           ]
         ]
@@ -472,5 +472,187 @@
     "helpUrl": "%{BKY_TEXT_CHARAT_HELPURL}",
     "inputsInline": true,
     "mutator": "text_charAt_mutator"
+  },
+  {
+    "type": "tt_getSubstring",
+    "message0": "在文本 %1中获取子串",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "STRING",
+        "check": "String"
+      }
+    ],
+    "message1": "%1 %2",
+    "args1": [
+      {
+        "type": "field_dropdown",
+        "name": "WHERE1",
+        "options": [
+          [
+            "从第#个字符",
+            "FROM_START"
+          ],
+          [
+            "从倒数第#个字符",
+            "FROM_END"
+          ],
+          [
+            "从第一个字符",
+            "FIRST"
+          ]
+        ]
+      },
+      {
+        "type": "input_dummy",
+        "name": "AT1_DUMMY"
+      }
+    ],
+    "message2": "%1 %2",
+    "args2": [
+      {
+        "type": "field_dropdown",
+        "name": "WHERE2",
+        "options": [
+          [
+            "到第#个字符",
+            "FROM_START"
+          ],
+          [
+            "到倒数第#个字符",
+            "FROM_END"
+          ],
+          [
+            "到最后一个字符",
+            "LAST"
+          ]
+        ]
+      },
+      {
+        "type": "input_dummy",
+        "name": "AT2_DUMMY"
+      }
+    ],
+    "output": "String",
+    "style": "text_blocks",
+    "helpUrl": "",
+    "inputsInline": true,
+    "mutator": "text_getSubstring_mutator"
+  },
+  {
+    "type": "text_changeCase",
+    "message0": "%1 %2",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "CASE",
+        "options": [
+          [
+            "转为大写",
+            "UPPERCASE"
+          ],
+          [
+            "转为小写",
+            "LOWERCASE"
+          ],
+          [
+            "转为首字母大写",
+            "TITLECASE"
+          ]
+        ]
+      },
+      {
+        "type": "input_value",
+        "name": "TEXT",
+        "check": "String"
+      }
+    ],
+    "output": "String",
+    "style": "text_blocks",
+    "inputsInline": true
+  },
+  {
+    "type": "text_trim",
+    "message0": "%1 的 %2",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "MODE",
+        "options": [
+          [
+            "消除其两侧的空格",
+            "BOTH"
+          ],
+          [
+            "消除其左侧的空格",
+            "LEFT"
+          ],
+          [
+            "消除其右侧的空格",
+            "RIGHT"
+          ]
+        ]
+      },
+      {
+        "type": "input_value",
+        "name": "TEXT",
+        "check": "String"
+      }
+    ],
+    "output": "String",
+    "style": "text_blocks",
+    "inputsInline": true
+  },
+  {
+    "type": "text_count",
+    "message0": "计算 %1 在 %2 中出现的次数",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "SUB",
+        "check": "String"
+      },
+      {
+        "type": "input_value",
+        "name": "TEXT",
+        "check": "String"
+      }
+    ],
+    "output": "Number",
+    "style": "text_blocks",
+    "inputsInline": true
+  },
+  {
+    "type": "text_replace",
+    "message0": "把 %1 中的 %2 替换为 %3",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "TEXT"
+      },{
+        "type": "input_value",
+        "name": "FROM"
+      },
+      {
+        "type": "input_value",
+        "name": "TO"
+      }
+    ],
+    "output": "String",
+    "style": "text_blocks",
+    "inputsInline": true
+  },
+  {
+    "type": "text_reverse",
+    "message0": "倒转文本 %1",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "TEXT"
+      }
+    ],
+    "output": "String",
+    "style": "text_blocks",
+    "inputsInline": true
   }
 ]
