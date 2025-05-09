@@ -1,7 +1,7 @@
 [
   {
     "type": "encoder_init",
-    "message0": "初始化编码器 %1 连接到引脚A %2 引脚B %3",
+    "message0": "初始化编码器 %1 连接到引脚A %2 引脚B %3 开关 %4",
     "args0": [
       {
         "type": "field_variable",
@@ -20,6 +20,11 @@
       {
         "type": "field_dropdown",
         "name": "PIN_B",
+        "options": "${board.digitalPins}"
+      },
+      {
+        "type": "field_dropdown",
+        "name": "PIN_SWITCH",
         "options": "${board.digitalPins}"
       }
     ],
@@ -44,6 +49,12 @@
     "output": "Number",
     "colour": "#2E8B57",
     "tooltip": "读取编码器的当前位置值"
+  },
+  {
+    "type": "encoder_readsw",
+    "message0": "编码器开关状态",
+    "output": "Any",
+    "colour": "#2E8B57"
   },
   {
     "type": "encoder_write",
