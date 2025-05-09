@@ -326,24 +326,27 @@ function renameVariable(block, oldName, newName, vtype) {
 }
 
 function isBlockConnected(block) {
-  // 检查上方连接
-  if (block.previousConnection && block.previousConnection.isConnected()) {
-    return true;
+  // 定义主入口块类型（可根据实际情况调整）
+  const ENTRY_BLOCK_TYPES = ['arduino_setup', 'arduino_loop'];
+
+  // 递归向上查找
+  function findRootBlock(b) {
+    if (!b) return null;
+    if (!b.previousConnection || !b.previousConnection.isConnected()) {
+      return b;
+    }
+    return findRootBlock(b.previousConnection.targetBlock());
   }
 
-  // 检查下方连接
-  if (block.nextConnection && block.nextConnection.isConnected()) {
+  const rootBlock = findRootBlock(block);
+
+  // 如果根块是入口块，则认为已连接，否则为独立
+  if (rootBlock && ENTRY_BLOCK_TYPES.includes(rootBlock.type)) {
     return true;
   }
-
-  // 检查输出连接（作为值被其他块使用）
-  if (block.outputConnection && block.outputConnection.isConnected()) {
-    return true;
-  }
-
-  // 如果都没有连接，则是独立的
   return false;
 }
+
 
 // 添加一个防抖函数
 function debounce(func, wait) {
