@@ -257,6 +257,79 @@
         }
       },
       "output": "Number"
+    },
+    {
+      "kind": "block",
+      "type": "map_to",
+      "inputs": {
+        "NUM": {
+          "block": {
+            "kind": "block",
+            "type": "math_number",
+            "fields": {
+              "NUM": 0
+            }
+          }
+        },
+        "FIRST_START": {
+          "block": {
+            "kind": "block",
+            "type": "math_number",
+            "fields": {
+              "NUM": 0
+            }
+          }
+        },
+        "FIRST_END": {
+          "block": {
+            "kind": "block",
+            "type": "math_number",
+            "fields": {
+              "NUM": 1023
+            }
+          }
+        },
+        "LAST_START": {
+          "block": {
+            "kind": "block",
+            "type": "math_number",
+            "fields": {
+              "NUM": 0
+            }
+          }
+        },
+        "LAST_END": {
+          "block": {
+            "kind": "block",
+            "type": "math_number",
+            "fields": {
+              "NUM": 255
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "constrain",
+      "inputs": {
+        "MIN": {
+          "block": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 1
+            }
+          }
+        },
+        "MAX": {
+          "block": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 100
+            }
+          }
+        }
+      }
     }
   ]
 }

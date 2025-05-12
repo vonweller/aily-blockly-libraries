@@ -317,3 +317,41 @@ Arduino.forBlock["math_bitwise_not"] = function (block) {
   const code = `~${number}`;
   return [code, Arduino.ORDER_BITWISE_NOT];
 };
+
+Arduino.forBlock["map_to"] = function (block) {
+  const num = Arduino.valueToCode(block, "NUM", Arduino.ORDER_NONE) || "0";
+  const firstStart = Arduino.valueToCode(
+    block,
+    "FIRST_START",
+    Arduino.ORDER_NONE,
+  ) || "0";
+  const firstEnd = Arduino.valueToCode(
+    block,
+    "FIRST_END",
+    Arduino.ORDER_NONE,
+  ) || "1023";
+  const lastStart = Arduino.valueToCode(
+    block,
+    "LAST_START",
+    Arduino.ORDER_NONE,
+  ) || "0";
+  const lastEnd = Arduino.valueToCode(
+    block,
+    "LAST_END",
+    Arduino.ORDER_NONE,
+  ) || "255";
+
+  const code = `map(${num}, ${firstStart}, ${firstEnd}, ${lastStart}, ${lastEnd})`;
+
+  return [code, Arduino.ORDER_ADDITION];
+};
+
+Arduino.forBlock["constrain"] = function (block) {
+  const num = Arduino.valueToCode(block, "NUM", Arduino.ORDER_ASSIGNMENT) || 0;
+  const min = Arduino.valueToCode(block, "MIN", Arduino.ORDER_ASSIGNMENT) || 1;
+  const max = Arduino.valueToCode(block, "MAX", Arduino.ORDER_ASSIGNMENT) || 100;
+
+  const code = `constrain(${num}, ${min}, ${max})`;
+
+  return [code, Arduino.ORDER_ADDITION];
+};

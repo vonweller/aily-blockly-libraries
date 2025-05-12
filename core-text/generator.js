@@ -200,27 +200,6 @@ Arduino.forBlock["number_to_string"] = function (block) {
   return [code, Arduino.ORDER_ADDITION];
 };
 
-Arduino.forBlock["map_to"] = function (block) {
-  const num = block.getFieldValue("NUM") || 0;
-  const firstStart = block.getFieldValue("FIRST_START") || 0;
-  const firstEnd = block.getFieldValue("FIRST_END") || 1023;
-  const lastStart = block.getFieldValue("LAST_START") || 0;
-  const lastEnd = block.getFieldValue("LAST_END") || 255;
-  const code = `map(${num}, ${firstStart}, ${firstEnd}, ${lastStart}, ${lastEnd})`;
-
-  return [code, Arduino.ORDER_ADDITION];
-};
-
-Arduino.forBlock["constrain"] = function (block) {
-  const num = Arduino.valueToCode(block, "NUM", Arduino.ORDER_ASSIGNMENT) || 0;
-  const min = Arduino.valueToCode(block, "MIN", Arduino.ORDER_ASSIGNMENT) || 1;
-  const max = Arduino.valueToCode(block, "MAX", Arduino.ORDER_ASSIGNMENT) || 100;
-
-  const code = `constrain(${num}, ${min}, ${max})`;
-
-  return [code, Arduino.ORDER_ADDITION];
-};
-
 Arduino.forBlock["text"] = function (block) {
   // Text value.
   const code = Arduino.quote_(block.getFieldValue("TEXT"));
