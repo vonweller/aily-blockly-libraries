@@ -1,0 +1,674 @@
+[
+  {
+    "type": "tft_init",
+    "message0": "初始化TFT屏幕 模型 %1 CS: %2 DC: %3 RST: %4 宽: %5 高: %6",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "MODEL",
+        "options": [
+          [ "ST7735", "ST7735" ],
+          [ "ST7789", "ST7789" ],
+          [ "ST7796S", "ST7796S" ]
+        ]
+      },
+      {
+        "type": "input_value",
+        "name": "CS_PIN"
+      },
+      {
+        "type": "input_value",
+        "name": "DC_PIN"
+      },
+      {
+        "type": "input_value",
+        "name": "RST_PIN"
+      },
+      {
+        "type": "input_value",
+        "name": "WIDTH"
+      },
+      {
+        "type": "input_value",
+        "name": "HEIGHT"
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FFA500"
+  },
+  {
+    "type": "tft_set_rotation",
+    "message0": "设置TFT旋转 %1",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "ROTATION"
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FFA500"
+  },
+  {
+    "type": "tft_fill_screen",
+    "message0": "填充屏幕颜色 %1",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "COLOR"
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FFA500"
+  },
+  {
+    "type": "tft_enable_display",
+    "message0": "设置显示使能 %1",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "ENABLED"
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FFA500"
+  },
+  {
+    "type": "tft_set_backlight",
+    "message0": "设置背光亮度 %1",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "LEVEL"
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FFA500"
+  },
+  {
+    "type": "tft_set_addr_window",
+    "message0": "设置地址窗口 X: %1 Y: %2 宽: %3 高: %4",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "X"
+      },
+      {
+        "type": "input_value",
+        "name": "Y"
+      },
+      {
+        "type": "input_value",
+        "name": "W"
+      },
+      {
+        "type": "input_value",
+        "name": "H"
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FFA500"
+  },
+  {
+    "type": "tft_start_write",
+    "message0": "开始写入TFT",
+    "args0": [],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FFA500"
+  },
+  {
+    "type": "tft_end_write",
+    "message0": "结束写入TFT",
+    "args0": [],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FFA500"
+  },
+  {
+    "type": "tft_push_color",
+    "message0": "推送颜色 %1",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "COLOR"
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FFA500"
+  },
+  {
+    "type": "tft_set_cursor",
+    "message0": "设置光标位置 X: %1 Y: %2",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "X"
+      },
+      {
+        "type": "input_value",
+        "name": "Y"
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FFA500"
+  },
+  {
+    "type": "tft_set_text_color",
+    "message0": "设置文字颜色 %1 背景颜色 %2",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "COLOR"
+      },
+      {
+        "type": "input_value",
+        "name": "BG"
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FFA500"
+  },
+  {
+    "type": "tft_set_text_color_bg",
+    "message0": "设置文字颜色 前景: %1 背景: %2",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "FG_COLOR"
+      },
+      {
+        "type": "input_value",
+        "name": "BG_COLOR"
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FFA500"
+  },
+  {
+    "type": "tft_set_text_size",
+    "message0": "设置文字大小 %1",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "SIZE"
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FFA500"
+  },
+  {
+    "type": "tft_set_text_wrap",
+    "message0": "设置文字换行 %1",
+    "args0": [
+      {
+        "type": "field_checkbox",
+        "name": "WRAP",
+        "checked": true
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FFA500"
+  },
+  {
+    "type": "tft_set_font",
+    "message0": "设置字体 %1",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "FONT",
+        "text": "FontName"
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FFA500"
+  },
+  {
+    "type": "tft_cp437",
+    "message0": "切换437字符集 %1",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "ENABLE"
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FFA500"
+  },
+  {
+    "type": "tft_print",
+    "message0": "打印文本 %1 换行 %2",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "TEXT"
+      },
+      {
+        "type": "field_dropdown",
+        "name": "NEWLINE",
+        "options": [
+          [ "换行", "TRUE" ],
+          [ "不换行", "FALSE" ]
+        ]
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FFA500"
+  },
+  {
+    "type": "tft_draw_pixel",
+    "message0": "画点 X: %1 Y: %2 颜色 %3",
+    "args0": [
+      { "type": "input_value", "name": "X" },
+      { "type": "input_value", "name": "Y" },
+      { "type": "input_value", "name": "COLOR" }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#5C68A6"
+  },
+  {
+    "type": "tft_draw_line",
+    "message0": "画线 起点 X: %1 Y: %2 终点 X: %3 Y: %4 颜色 %5",
+    "args0": [
+      { "type": "input_value", "name": "X0" },
+      { "type": "input_value", "name": "Y0" },
+      { "type": "input_value", "name": "X1" },
+      { "type": "input_value", "name": "Y1" },
+      { "type": "input_value", "name": "COLOR" }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#5C68A6"
+  },
+  {
+    "type": "tft_draw_fast_h_line",
+    "message0": "画水平快线 起点 X: %1 Y: %2 长度: %3 颜色 %4",
+    "args0": [
+      { "type": "input_value", "name": "X" },
+      { "type": "input_value", "name": "Y" },
+      { "type": "input_value", "name": "W" },
+      { "type": "input_value", "name": "COLOR" }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#5C68A6"
+  },
+  {
+    "type": "tft_draw_fast_v_line",
+    "message0": "画垂直快线 起点 X: %1 Y: %2 长度: %3 颜色 %4",
+    "args0": [
+      { "type": "input_value", "name": "X" },
+      { "type": "input_value", "name": "Y" },
+      { "type": "input_value", "name": "H" },
+      { "type": "input_value", "name": "COLOR" }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#5C68A6"
+  },
+  {
+    "type": "tft_draw_rect",
+    "message0": "画矩形 左上角 X: %1 Y: %2 宽: %3 高: %4 颜色 %5",
+    "args0": [
+      { "type": "input_value", "name": "X" },
+      { "type": "input_value", "name": "Y" },
+      { "type": "input_value", "name": "W" },
+      { "type": "input_value", "name": "H" },
+      { "type": "input_value", "name": "COLOR" }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#5C68A6"
+  },
+  {
+    "type": "tft_fill_rect",
+    "message0": "填充矩形 左上角 X: %1 Y: %2 宽: %3 高: %4 颜色 %5",
+    "args0": [
+      { "type": "input_value", "name": "X" },
+      { "type": "input_value", "name": "Y" },
+      { "type": "input_value", "name": "W" },
+      { "type": "input_value", "name": "H" },
+      { "type": "input_value", "name": "COLOR" }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#5C68A6"
+  },
+  {
+    "type": "tft_draw_round_rect",
+    "message0": "画圆角矩形 X: %1 Y: %2 宽: %3 高: %4 圆角: %5 颜色 %6",
+    "args0": [
+      { "type": "input_value", "name": "X" },
+      { "type": "input_value", "name": "Y" },
+      { "type": "input_value", "name": "W" },
+      { "type": "input_value", "name": "H" },
+      { "type": "input_value", "name": "R" },
+      { "type": "input_value", "name": "COLOR" }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#5C68A6"
+  },
+  {
+    "type": "tft_fill_round_rect",
+    "message0": "填充圆角矩形 X: %1 Y: %2 宽: %3 高: %4 圆角: %5 颜色 %6",
+    "args0": [
+      { "type": "input_value", "name": "X" },
+      { "type": "input_value", "name": "Y" },
+      { "type": "input_value", "name": "W" },
+      { "type": "input_value", "name": "H" },
+      { "type": "input_value", "name": "R" },
+      { "type": "input_value", "name": "COLOR" }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#5C68A6"
+  },
+  {
+    "type": "tft_draw_circle",
+    "message0": "画圆 圆心 X: %1 Y: %2 半径: %3 颜色 %4",
+    "args0": [
+      { "type": "input_value", "name": "X" },
+      { "type": "input_value", "name": "Y" },
+      { "type": "input_value", "name": "R" },
+      { "type": "input_value", "name": "COLOR" }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#5C68A6"
+  },
+  {
+    "type": "tft_fill_circle",
+    "message0": "填充圆 圆心 X: %1 Y: %2 半径: %3 颜色 %4",
+    "args0": [
+      { "type": "input_value", "name": "X" },
+      { "type": "input_value", "name": "Y" },
+      { "type": "input_value", "name": "R" },
+      { "type": "input_value", "name": "COLOR" }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#5C68A6"
+  },
+  {
+    "type": "tft_draw_triangle",
+    "message0": "画三角形 点1 X: %1 Y: %2 点2 X: %3 Y: %4 点3 X: %5 Y: %6 颜色 %7",
+    "args0": [
+      { "type": "input_value", "name": "X0" },
+      { "type": "input_value", "name": "Y0" },
+      { "type": "input_value", "name": "X1" },
+      { "type": "input_value", "name": "Y1" },
+      { "type": "input_value", "name": "X2" },
+      { "type": "input_value", "name": "Y2" },
+      { "type": "input_value", "name": "COLOR" }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#5C68A6"
+  },
+  {
+    "type": "tft_fill_triangle",
+    "message0": "填充三角形 点1 X: %1 Y: %2 点2 X: %3 Y: %4 点3 X: %5 Y: %6 颜色 %7",
+    "args0": [
+      { "type": "input_value", "name": "X0" },
+      { "type": "input_value", "name": "Y0" },
+      { "type": "input_value", "name": "X1" },
+      { "type": "input_value", "name": "Y1" },
+      { "type": "input_value", "name": "X2" },
+      { "type": "input_value", "name": "Y2" },
+      { "type": "input_value", "name": "COLOR" }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#5C68A6"
+  },
+  {
+    "type": "tft_draw_bitmap",
+    "message0": "画位图 X: %1 Y: %2 位图 %3 宽: %4 高: %5 颜色 %6",
+    "args0": [
+      { "type": "input_value", "name": "X" },
+      { "type": "input_value", "name": "Y" },
+      { "type": "input_value", "name": "BITMAP" },
+      { "type": "input_value", "name": "W" },
+      { "type": "input_value", "name": "H" },
+      { "type": "input_value", "name": "COLOR" }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#5C68A6"
+  },
+  {
+    "type": "tft_draw_rgb_bitmap",
+    "message0": "画RGB位图 X: %1 Y: %2 位图 %3 宽: %4 高: %5",
+    "args0": [
+      { "type": "input_value", "name": "X" },
+      { "type": "input_value", "name": "Y" },
+      { "type": "input_value", "name": "BITMAP" },
+      { "type": "input_value", "name": "W" },
+      { "type": "input_value", "name": "H" }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#5C68A6"
+  },
+  {
+    "type": "tft_draw_char",
+    "message0": "绘制字符 X: %1 Y: %2 字符 %3 颜色 %4 背景 %5 字号 %6",
+    "args0": [
+      { "type": "input_value", "name": "X" },
+      { "type": "input_value", "name": "Y" },
+      { "type": "input_value", "name": "CHAR" },
+      { "type": "input_value", "name": "COLOR" },
+      { "type": "input_value", "name": "BG" },
+      { "type": "input_value", "name": "SIZE" }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#5C68A6"
+  },
+  {
+    "type": "tft_invert_display",
+    "message0": "反转显示 %1",
+    "args0": [
+      { "type": "input_value", "name": "INVERT" }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FFA500"
+  },
+  {
+    "type": "tft_color565",
+    "message0": "颜色转换 R: %1 G: %2 B: %3",
+    "args0": [
+      { "type": "input_value", "name": "R" },
+      { "type": "input_value", "name": "G" },
+      { "type": "input_value", "name": "B" }
+    ],
+    "output": "Number",
+    "inputsInline": true,
+    "colour": "#FFA500"
+  },
+  {
+    "type": "tft_create_canvas16",
+    "message0": "创建16位画布 名称 %1 宽: %2 高: %3",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "NAME",
+        "variable": "canvas16"
+      },
+      { "type": "input_value", "name": "WIDTH" },
+      { "type": "input_value", "name": "HEIGHT" }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#8A2BE2"
+  },
+  {
+    "type": "tft_create_canvas1",
+    "message0": "创建1位画布 名称 %1 宽: %2 高: %3",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "NAME",
+        "variable": "canvas1"
+      },
+      { "type": "input_value", "name": "WIDTH" },
+      { "type": "input_value", "name": "HEIGHT" }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#8A2BE2"
+  },
+  {
+    "type": "tft_get_buffer",
+    "message0": "获取画布缓存 画布 %1",
+    "args0": [
+      { "type": "input_value", "name": "CANVAS" }
+    ],
+    "output": null,
+    "inputsInline": true,
+    "colour": "#8A2BE2"
+  },
+  {
+    "type": "sd_begin",
+    "message0": "初始化SD卡 引脚 %1",
+    "args0": [
+      { "type": "input_value", "name": "PIN" }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#00BCD4"
+  },
+  {
+    "type": "sd_open",
+    "message0": "打开SD文件 名称 %1 模式 %2 存储为 %3",
+    "args0": [
+      { "type": "input_value", "name": "FILENAME" },
+      {
+        "type": "field_dropdown",
+        "name": "MODE",
+        "options": [
+          [ "读", "FILE_READ" ],
+          [ "写", "FILE_WRITE" ]
+        ]
+      },
+      {
+        "type": "field_variable",
+        "name": "FILE",
+        "variable": "file"
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#00BCD4"
+  },
+  {
+    "type": "tft_begin",
+    "message0": "启动TFT",
+    "args0": [],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FFA500"
+  },
+  {
+    "type": "tft_get_version",
+    "message0": "获取TFT版本",
+    "output": "String",
+    "inputsInline": true,
+    "colour": "#FFA500"
+  },
+  {
+    "type": "tft_reset",
+    "message0": "重置TFT",
+    "args0": [],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FFA500"
+  },
+  {
+    "type": "tft_read_buttons",
+    "message0": "读取TFT按钮状态",
+    "output": "Number",
+    "inputsInline": true,
+    "colour": "#FFA500"
+  },
+  {
+    "type": "tft_width",
+    "message0": "屏幕宽度",
+    "output": "Number",
+    "inputsInline": true,
+    "colour": "#FFA500"
+  },
+  {
+    "type": "tft_height",
+    "message0": "屏幕高度",
+    "output": "Number",
+    "inputsInline": true,
+    "colour": "#FFA500"
+  },
+  {
+    "type": "tft_get_cursor_x",
+    "message0": "获取光标X坐标",
+    "output": "Number",
+    "inputsInline": true,
+    "colour": "#FFA500"
+  },
+  {
+    "type": "tft_get_cursor_y",
+    "message0": "获取光标Y坐标",
+    "output": "Number",
+    "inputsInline": true,
+    "colour": "#FFA500"
+  }
+]
