@@ -19,7 +19,9 @@
     "nextStatement": null,
     "style": "logic_blocks",
     "helpUrl": "%{BKY_CONTROLS_IF_HELPURL}",
-    "extensions": ["controls_if_tooltip"]
+    "extensions": [
+      "controls_if_tooltip"
+    ]
   },
   {
     "type": "controls_ifelse",
@@ -51,7 +53,9 @@
     "helpUrl": "%{BKY_CONTROLS_IF_HELPURL}",
     "suppressPrefixSuffix": true,
     "mutator": "controls_if_mutator",
-    "extensions": ["controls_if_tooltip"]
+    "extensions": [
+      "controls_if_tooltip"
+    ]
   },
   {
     "type": "logic_compare",
@@ -65,12 +69,30 @@
         "type": "field_dropdown",
         "name": "OP",
         "options": [
-          ["==", "EQ"],
-          ["!=", "NEQ"],
-          ["<", "LT"],
-          [">", "GT"],
-          [">=", "GTE"],
-          ["<=", "LTE"]
+          [
+            "==",
+            "EQ"
+          ],
+          [
+            "!=",
+            "NEQ"
+          ],
+          [
+            "<",
+            "LT"
+          ],
+          [
+            ">",
+            "GT"
+          ],
+          [
+            ">=",
+            "GTE"
+          ],
+          [
+            "<=",
+            "LTE"
+          ]
         ]
       },
       {
@@ -89,28 +111,34 @@
     "args0": [
       {
         "type": "input_value",
-        "name": "A",
-        "check": "Any"
+        "name": "A"
       },
       {
         "type": "field_dropdown",
         "name": "OP",
         "options": [
-          ["与", "AND"],
-          ["或", "OR"]
+          [
+            "与",
+            "AND"
+          ],
+          [
+            "或",
+            "OR"
+          ]
         ]
       },
       {
         "type": "input_value",
-        "name": "B",
-        "check": "Any"
+        "name": "B"
       }
     ],
     "inputsInline": true,
     "output": "Boolean",
     "style": "logic_blocks",
     "helpUrl": "%{BKY_LOGIC_OPERATION_HELPURL}",
-    "extensions": ["logic_op_tooltip"]
+    "extensions": [
+      "logic_op_tooltip"
+    ]
   },
   {
     "type": "logic_negate",
@@ -135,8 +163,14 @@
         "type": "field_dropdown",
         "name": "BOOL",
         "options": [
-          ["真", "true"],
-          ["假", "false"]
+          [
+            "真",
+            "true"
+          ],
+          [
+            "假",
+            "false"
+          ]
         ]
       }
     ],
@@ -173,6 +207,8 @@
     "style": "logic_blocks",
     "tooltip": "%{BKY_LOGIC_TERNARY_TOOLTIP}",
     "helpUrl": "%{BKY_LOGIC_TERNARY_HELPURL}",
-    "extensions": ["logic_ternary"]
+    "extensions": [
+      "logic_ternary"
+    ]
   }
 ]
