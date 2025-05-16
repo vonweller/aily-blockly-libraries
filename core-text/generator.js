@@ -198,10 +198,22 @@ Arduino.forBlock["toascii"] = function (block) {
 };
 
 Arduino.forBlock["number_to_string"] = function (block) {
-  const num = block.getFieldValue("NUM") || 0;
-  const code = `String(${num})`;
+  // 获取连接到NUM输入的块
+  const inputBlock = block.getInputTargetBlock("NUM");
+  let code;
 
-  return [code, Arduino.ORDER_ADDITION];
+  // 检查是否为变量块
+  if (inputBlock && inputBlock.type === "variables_get") {
+    // 这是一个变量块
+    const varName = Arduino.getVariableName(inputBlock.getFieldValue("VAR"));
+    code = `String(${varName})`;
+  } else {
+    // 非变量块，使用标准处理方式
+    const num = Arduino.valueToCode(block, "NUM", Arduino.ORDER_ATOMIC) || "0";
+    code = `String(${num})`;
+  }
+
+  return [code, Arduino.ORDER_FUNCTION_CALL];
 };
 
 Arduino.forBlock["text"] = function (block) {
