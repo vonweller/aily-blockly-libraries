@@ -1,99 +1,103 @@
-const TEXT_GET_SUBSTRING_MUTATOR_MIXIN = {
-  mutationToDom: function () {
-    const container = document.createElement('mutation');
-    container.setAttribute('at1', this.isAt1_ ? 'true' : 'false');
-    container.setAttribute('at2', this.isAt2_ ? 'true' : 'false');
-    return container;
-  },
-  domToMutation: function (xmlElement) {
-    this.isAt1_ = xmlElement.getAttribute('at1') !== 'false';
-    this.isAt2_ = xmlElement.getAttribute('at2') !== 'false';
+try {
+  const TEXT_GET_SUBSTRING_MUTATOR_MIXIN = {
+    mutationToDom: function () {
+      const container = document.createElement('mutation');
+      container.setAttribute('at1', this.isAt1_ ? 'true' : 'false');
+      container.setAttribute('at2', this.isAt2_ ? 'true' : 'false');
+      return container;
+    },
+    domToMutation: function (xmlElement) {
+      this.isAt1_ = xmlElement.getAttribute('at1') !== 'false';
+      this.isAt2_ = xmlElement.getAttribute('at2') !== 'false';
+      this.updateAt_(1, this.isAt1_);
+      this.updateAt_(2, this.isAt2_);
+    },
+    updateAt_: function (n, isAt) {
+      // 使用dummy输入而非创建新输入
+      const dummyInputName = 'AT' + n + '_DUMMY';
+      const dummyInput = this.getInput(dummyInputName);
+
+      if (!dummyInput) {
+        console.error('找不到输入：', dummyInputName);
+        return;
+      }
+
+      // 字段名称
+      const fieldName = 'AT' + n;
+      // 值输入名称（添加_VALUE后缀）
+      const valueInputName = 'AT' + n + '_VALUE';
+
+      // 删除之前可能添加的值输入块
+      const existingInput = this.getInput(valueInputName);
+      if (existingInput) {
+        this.removeInput(valueInputName);
+      }
+
+      // 如果需要数值输入，添加一个值输入块
+      if (isAt) {
+        // 创建值输入块
+        const valueInput = this.appendValueInput(valueInputName)
+          .setCheck('Number');
+
+        // 找出dummy输入后的下一个输入名称
+        const inputList = this.inputList;
+        const dummyIndex = inputList.findIndex(input => input.name === dummyInputName);
+
+        // 如果dummy输入不是最后一个输入，将值输入移动到dummy输入之后
+        if (dummyIndex < inputList.length - 1) {
+          const nextInputName = inputList[dummyIndex + 1].name;
+          this.moveInputBefore(valueInputName, nextInputName);
+        }
+      }
+
+      // 更新状态标记
+      if (n === 1) this.isAt1_ = isAt;
+      if (n === 2) this.isAt2_ = isAt;
+    }
+  };
+
+  const TEXT_GET_SUBSTRING_EXTENSION = function () {
+    // 初始化
+    this.isAt1_ = true; // 默认显示AT1输入
+    this.isAt2_ = true; // 默认显示AT2输入
+
+    // WHERE1
+    const dropdown1 = this.getField('WHERE1');
+    if (dropdown1) {
+      dropdown1.setValidator((value) => {
+        const isAt = value === 'FROM_START' || value === 'FROM_END';
+        this.updateAt_(1, isAt);
+        return undefined;
+      });
+    }
+
+    // WHERE2
+    const dropdown2 = this.getField('WHERE2');
+    if (dropdown2) {
+      dropdown2.setValidator((value) => {
+        const isAt = value === 'FROM_START' || value === 'FROM_END';
+        this.updateAt_(2, isAt);
+        return undefined;
+      });
+    }
+
+    // 应用初始状态
     this.updateAt_(1, this.isAt1_);
     this.updateAt_(2, this.isAt2_);
-  },
-  updateAt_: function (n, isAt) {
-    // 使用dummy输入而非创建新输入
-    const dummyInputName = 'AT' + n + '_DUMMY';
-    const dummyInput = this.getInput(dummyInputName);
+  };
 
-    if (!dummyInput) {
-      console.error('找不到输入：', dummyInputName);
-      return;
-    }
-
-    // 字段名称
-    const fieldName = 'AT' + n;
-    // 值输入名称（添加_VALUE后缀）
-    const valueInputName = 'AT' + n + '_VALUE';
-
-    // 删除之前可能添加的值输入块
-    const existingInput = this.getInput(valueInputName);
-    if (existingInput) {
-      this.removeInput(valueInputName);
-    }
-
-    // 如果需要数值输入，添加一个值输入块
-    if (isAt) {
-      // 创建值输入块
-      const valueInput = this.appendValueInput(valueInputName)
-        .setCheck('Number');
-
-      // 找出dummy输入后的下一个输入名称
-      const inputList = this.inputList;
-      const dummyIndex = inputList.findIndex(input => input.name === dummyInputName);
-
-      // 如果dummy输入不是最后一个输入，将值输入移动到dummy输入之后
-      if (dummyIndex < inputList.length - 1) {
-        const nextInputName = inputList[dummyIndex + 1].name;
-        this.moveInputBefore(valueInputName, nextInputName);
-      }
-    }
-
-    // 更新状态标记
-    if (n === 1) this.isAt1_ = isAt;
-    if (n === 2) this.isAt2_ = isAt;
-  }
-};
-
-const TEXT_GET_SUBSTRING_EXTENSION = function () {
-  // 初始化
-  this.isAt1_ = true; // 默认显示AT1输入
-  this.isAt2_ = true; // 默认显示AT2输入
-
-  // WHERE1
-  const dropdown1 = this.getField('WHERE1');
-  if (dropdown1) {
-    dropdown1.setValidator((value) => {
-      const isAt = value === 'FROM_START' || value === 'FROM_END';
-      this.updateAt_(1, isAt);
-      return undefined;
-    });
+  if (Blockly.Extensions.isRegistered('text_getSubstring_mutator')) {
+    Blockly.Extensions.unregister('text_getSubstring_mutator');
   }
 
-  // WHERE2
-  const dropdown2 = this.getField('WHERE2');
-  if (dropdown2) {
-    dropdown2.setValidator((value) => {
-      const isAt = value === 'FROM_START' || value === 'FROM_END';
-      this.updateAt_(2, isAt);
-      return undefined;
-    });
-  }
-
-  // 应用初始状态
-  this.updateAt_(1, this.isAt1_);
-  this.updateAt_(2, this.isAt2_);
-};
-
-if (Blockly.Extensions.isRegistered('text_getSubstring_mutator')) {
-  Blockly.Extensions.unregister('text_getSubstring_mutator');
+  Blockly.Extensions.registerMutator(
+    'text_getSubstring_mutator',
+    TEXT_GET_SUBSTRING_MUTATOR_MIXIN,
+    TEXT_GET_SUBSTRING_EXTENSION
+  );
+} catch (e) {
+  console.error("注册text_getSubstring_mutator扩展失败:", e);
 }
-
-Blockly.Extensions.registerMutator(
-  'text_getSubstring_mutator',
-  TEXT_GET_SUBSTRING_MUTATOR_MIXIN,
-  TEXT_GET_SUBSTRING_EXTENSION
-);
 
 Arduino.forceString = function (value) {
   const strRegExp = /^\s*'([^']|\\')*'\s*$/;
