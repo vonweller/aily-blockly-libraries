@@ -1,0 +1,518 @@
+
+[
+  {
+    "type": "bmi270_init_i2c",
+    "message0": "BMI270 I2C初始化 地址 %1",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "ADDRESS",
+        "text": "BMI2_I2C_PRIM_ADDR"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF5722"
+  },
+  {
+    "type": "bmi270_init_spi",
+    "message0": "BMI270 SPI初始化, CS引脚 %1, 时钟频率 %2",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "CS_PIN",
+        "text": ""
+      },
+      {
+        "type": "field_input",
+        "name": "CLOCK_FREQ",
+        "text": "100000"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF5722"
+  },
+  {
+    "type": "bmi270_get_sensor_data",
+    "message0": "获取BMI270传感器数据",
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF5722"
+  },
+  {
+    "type": "bmi270_get_accel_data",
+    "message0": "获取加速度数据 %1",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "AXIS",
+        "options": [
+          [
+            "X",
+            "X"
+          ],
+          [
+            "Y",
+            "Y"
+          ],
+          [
+            "Z",
+            "Z"
+          ]
+        ]
+      }
+    ],
+    "output": "Number",
+    "colour": "#FF5722"
+  },
+  {
+    "type": "bmi270_get_gyro_data",
+    "message0": "获取陀螺仪数据 %1",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "AXIS",
+        "options": [
+          [
+            "X",
+            "X"
+          ],
+          [
+            "Y",
+            "Y"
+          ],
+          [
+            "Z",
+            "Z"
+          ]
+        ]
+      }
+    ],
+    "output": "Number",
+    "colour": "#FF5722"
+  },
+  {
+    "type": "bmi270_set_accel_odr",
+    "message0": "设置加速度采样率 %1",
+    "args0": [
+      {
+        "type": "field_number",
+        "name": "RATE",
+        "value": 0
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF5722"
+  },
+  {
+    "type": "bmi270_set_gyro_odr",
+    "message0": "设置陀螺仪采样率 %1",
+    "args0": [
+      {
+        "type": "field_number",
+        "name": "RATE",
+        "value": 0
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF5722"
+  },
+  {
+    "type": "bmi270_set_accel_power_mode",
+    "message0": "设置加速度功耗模式 %1",
+    "args0": [
+      {
+        "type": "field_number",
+        "name": "MODE",
+        "value": 0
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF5722"
+  },
+  {
+    "type": "bmi270_set_gyro_power_mode",
+    "message0": "设置陀螺仪功耗模式 %1 和 %2",
+    "args0": [
+      {
+        "type": "field_number",
+        "name": "MODE1",
+        "value": 0
+      },
+      {
+        "type": "field_number",
+        "name": "MODE2",
+        "value": 0
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF5722"
+  },
+  {
+    "type": "bmi270_enable_advanced_power_save",
+    "message0": "启用高级省电模式",
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF5722"
+  },
+  {
+    "type": "bmi270_disable_advanced_power_save",
+    "message0": "禁用高级省电模式",
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF5722"
+  },
+  {
+    "type": "bmi270_set_config",
+    "message0": "设置BMI270配置 %1",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "CONFIG",
+        "text": ""
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF5722"
+  },
+  {
+    "type": "bmi270_enable_feature",
+    "message0": "启用BMI270功能 %1",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "FEATURE",
+        "text": ""
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF5722"
+  },
+  {
+    "type": "bmi270_disable_feature",
+    "message0": "禁用BMI270功能 %1",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "FEATURE",
+        "text": ""
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF5722"
+  },
+  {
+    "type": "bmi270_map_interrupt_to_pin",
+    "message0": "映射中断 %1 到引脚 %2",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "INTERRUPT_TYPE",
+        "text": ""
+      },
+      {
+        "type": "field_input",
+        "name": "PIN",
+        "text": ""
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF5722"
+  },
+  {
+    "type": "bmi270_set_interrupt_pin_config",
+    "message0": "设置中断引脚配置 %1",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "PIN_CONFIG",
+        "text": ""
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF5722"
+  },
+  {
+    "type": "bmi270_get_interrupt_status",
+    "message0": "获取中断状态到变量 %1",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "STATUS",
+        "variable": "status"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF5722"
+  },
+  {
+    "type": "bmi270_set_fifo_config",
+    "message0": "设置FIFO配置 %1",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "FIFO_CONFIG",
+        "text": ""
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF5722"
+  },
+  {
+    "type": "bmi270_get_fifo_length",
+    "message0": "获取FIFO长度到变量 %1",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "LENGTH",
+        "variable": "length"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF5722"
+  },
+  {
+    "type": "bmi270_get_fifo_data",
+    "message0": "获取FIFO数据到缓冲区 %1, 样本数到变量 %2",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "BUFFER",
+        "variable": "buffer"
+      },
+      {
+        "type": "field_variable",
+        "name": "SAMPLES",
+        "variable": "samples"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF5722"
+  },
+  {
+    "type": "bmi270_flush_fifo",
+    "message0": "清空FIFO",
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF5722"
+  },
+  {
+    "type": "bmi270_set_step_count_watermark",
+    "message0": "设置步数计水位线 %1",
+    "args0": [
+      {
+        "type": "field_number",
+        "name": "WATERMARK",
+        "value": 0
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF5722"
+  },
+  {
+    "type": "bmi270_get_step_count",
+    "message0": "获取步数计数到变量 %1",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "COUNT",
+        "variable": "count"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF5722"
+  },
+  {
+    "type": "bmi270_get_step_activity",
+    "message0": "获取步态活动到变量 %1",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "ACTIVITY",
+        "variable": "activity"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF5722"
+  },
+  {
+    "type": "bmi270_reset_step_count",
+    "message0": "重置步数计数",
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF5722"
+  },
+  {
+    "type": "bmi270_get_wrist_gesture",
+    "message0": "获取手腕手势到变量 %1",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "GESTURE",
+        "variable": "gesture"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF5722"
+  },
+  {
+    "type": "bmi270_remap_axes",
+    "message0": "重新映射轴 %1",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "REMAP",
+        "text": ""
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF5722"
+  },
+  {
+    "type": "bmi270_perform_component_retrim",
+    "message0": "执行组件重校准",
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF5722"
+  },
+  {
+    "type": "bmi270_perform_accel_offset_calibration",
+    "message0": "执行加速度偏差校准（轴 %1）",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "AXIS",
+        "options": [
+          [
+            "X",
+            "X"
+          ],
+          [
+            "Y",
+            "Y"
+          ],
+          [
+            "Z",
+            "Z"
+          ]
+        ]
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF5722"
+  },
+  {
+    "type": "bmi270_perform_gyro_offset_calibration",
+    "message0": "执行陀螺仪偏差校准",
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF5722"
+  },
+  {
+    "type": "bmi270_save_nvm",
+    "message0": "保存非易失性内存",
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF5722"
+  },
+  {
+    "type": "bmi270_self_test",
+    "message0": "自检BMI270传感器",
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF5722"
+  },
+  {
+    "type": "bmi270_enable_aux",
+    "message0": "启用辅助功能",
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF5722"
+  },
+  {
+    "type": "bmi270_set_aux_pullups",
+    "message0": "设置辅助上拉电阻 %1",
+    "args0": [
+      {
+        "type": "field_number",
+        "name": "PULLUP",
+        "value": 0
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF5722"
+  },
+  {
+    "type": "bmi270_read_aux",
+    "message0": "读取辅助寄存器 %1, 长度 %2",
+    "args0": [
+      {
+        "type": "field_number",
+        "name": "REG",
+        "value": 0
+      },
+      {
+        "type": "field_number",
+        "name": "LEN",
+        "value": 0
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF5722"
+  },
+  {
+    "type": "bmi270_write_aux",
+    "message0": "写入辅助寄存器 %1, 值 %2",
+    "args0": [
+      {
+        "type": "field_number",
+        "name": "REG",
+        "value": 0
+      },
+      {
+        "type": "field_number",
+        "name": "VALUE",
+        "value": 0
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF5722"
+  },
+  {
+    "type": "bmi270_get_status",
+    "message0": "获取BMI270状态到变量 %1",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "STATUS",
+        "variable": "status"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF5722"
+  }
+]
