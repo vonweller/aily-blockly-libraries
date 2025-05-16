@@ -67,6 +67,10 @@ Blockly.getMainWorkspace().registerButtonCallback(
 );
 
 Blockly.getMainWorkspace().addChangeListener((event) => {
+  // 当工作区完成加载时调用
+  if (event.type === Blockly.Events.FINISHED_LOADING) {
+    loadExistingVariablesToToolbox(Blockly.getMainWorkspace());
+  }
   if (event.type === Blockly.Events.VAR_DELETE) {
     console.log("删除的变量ID: ", event.varId);
     // 获取当前工作区
@@ -200,6 +204,76 @@ addVariableToToolbox = function (block, varName) {
     console.log("添加循环变量到工具箱时出错:", e);
   }
 };
+
+// 添加这个函数来加载已有的变量到工具箱中
+function loadExistingVariablesToToolbox(workspace) {
+  if (!workspace) return;
+
+  // 获取所有现有变量
+  const allVariables = workspace.getAllVariables();
+  if (allVariables.length === 0) return;
+
+  // 获取原始工具箱定义
+  const originalToolboxDef = workspace.options.languageTree;
+  if (!originalToolboxDef) return;
+
+  // 找到变量类别
+  for (let category of originalToolboxDef.contents) {
+    if ((category.name === "Variables" ||
+      (category.contents && category.contents[0]?.callbackKey === "CREATE_VARIABLE"))) {
+
+      // 确保类别内容包含基本的变量块
+      if (category.contents.length === 1) {
+        category.contents = [
+          {
+            "kind": "button",
+            "text": "新建变量",
+            "callbackKey": "CREATE_VARIABLE"
+          },
+          {
+            "kind": "block",
+            "type": "variable_define"
+          },
+          {
+            "kind": "block",
+            "type": "variables_set"
+          }
+        ];
+      }
+
+      // 为每个变量添加一个获取块
+      allVariables.forEach(variable => {
+        // 检查变量是否已存在于工具箱中
+        const varExists = category.contents.some(item =>
+          item.fields && item.fields.VAR && item.fields.VAR.id === variable.getId()
+        );
+
+        if (!varExists) {
+          category.contents.push({
+            "kind": "block",
+            "type": "variables_get",
+            "fields": {
+              "VAR": {
+                "id": variable.getId(),
+                "name": variable.name,
+                "type": variable.type || "string"
+              }
+            }
+          });
+        }
+      });
+
+      // 更新最后使用的变量名
+      if (allVariables.length > 0) {
+        Blockly.Msg.VARIABLES_CURRENT_NAME = allVariables[allVariables.length - 1].name;
+      }
+
+      // 刷新工具箱
+      refreshToolbox(workspace, false);
+      break;
+    }
+  }
+}
 
 // 更新toolbox
 function refreshToolbox(oldWorkspace, openVariableItem = true) {
