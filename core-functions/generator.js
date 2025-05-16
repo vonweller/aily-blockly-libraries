@@ -1,3 +1,6 @@
+Blockly.Msg.PROCEDURES_DEFNORETURN_PROCEDURE = "procedures";
+Blockly.Msg.PROCEDURES_DEFRETURN_PROCEDURE = "procedures";
+
 Arduino.forBlock["procedures_defreturn"] = function (block) {
   // Define a procedure with a return value.
   const funcName = Arduino.getProcedureName(block.getFieldValue("NAME"));
@@ -23,12 +26,36 @@ Arduino.forBlock["procedures_defreturn"] = function (block) {
     // The 'procedures_defreturn' block might not have a STACK input.
     branch = Arduino.statementToCode(block, "STACK");
   }
+  let returnType = "void"; // Default
   let returnValue = "";
   if (block.getInput("RETURN")) {
     // The 'procedures_defnoreturn' block (which shares this code)
     // does not have a RETURN input.
     returnValue =
       Arduino.valueToCode(block, "RETURN", Arduino.ORDER_NONE) || "";
+    
+    // Determine return type based on returnValue
+    if (returnValue) {
+      // Try to guess the type based on content
+      if (returnValue.includes("\"") || returnValue.includes("'") || 
+          returnValue.includes("String(")) {
+        returnType = "String";
+      } else if (returnValue === "true" || returnValue === "false" || 
+                 returnValue.includes(" == ") || returnValue.includes(" != ") || 
+                 returnValue.includes(" < ") || returnValue.includes(" > ")) {
+        returnType = "boolean";
+      } else if (returnValue.includes(".") || /\d+\.\d+/.test(returnValue)) {
+        returnType = "float";
+      } else if (/^-?\d+$/.test(returnValue) || returnValue.includes("int(")) {
+        returnType = "int";
+      } else if (returnValue.includes("char(") || (returnValue.length === 3 && 
+                 returnValue.startsWith("'") && returnValue.endsWith("'"))) {
+        returnType = "char";
+      } else {
+        // For complex expressions, default to int
+        returnType = "int";
+      }
+    }
   }
   let xfix2 = "";
   if (branch && returnValue) {
@@ -44,7 +71,7 @@ Arduino.forBlock["procedures_defreturn"] = function (block) {
     args[i] = Arduino.getVariableName(variables[i]);
   }
   let code =
-    "function " +
+    returnType + " " +
     funcName +
     "(" +
     args.join(", ") +
@@ -77,7 +104,7 @@ Arduino.forBlock["procedures_callreturn"] = function (block) {
   const variables = block.getVars();
   for (let i = 0; i < variables.length; i++) {
     args[i] =
-      Arduino.valueToCode(block, "ARG" + i, Arduino.ORDER_NONE) || "null";
+      Arduino.valueToCode(block, "ARG" + i, Arduino.ORDER_NONE) || "NULL";
   }
   const code = funcName + "(" + args.join(", ") + ")";
   return [code, Arduino.ORDER_FUNCTION_CALL];
