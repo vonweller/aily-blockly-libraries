@@ -52,7 +52,7 @@ Arduino.forBlock["io_digitalwrite"] = function (block, generator) {
 
   // 如果引脚没有被设置过模式，则自动添加pinMode
   if (!generator.pinModeSet || !generator.pinModeSet.has(pin)) {
-    generator.addSetup(`pinMode_${pin}`, `pinMode(${pin}, OUTPUT);`);
+    generator.addUserSetup(`pinMode_${pin}`, `pinMode(${pin}, OUTPUT);`);
   }
 
   return `digitalWrite(${pin}, ${value});\n`;

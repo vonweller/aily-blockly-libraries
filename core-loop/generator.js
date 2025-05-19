@@ -76,13 +76,13 @@ function addLoopVariableToToolbox(block, varName) {
 
 Arduino.forBlock["arduino_setup"] = function (block) {
   const code = Arduino.statementToCode(block, "ARDUINO_SETUP");
-  Arduino.addUserSetup("setup", code);
+  Arduino.addSetup("setup", code);
   return `steup() {\n${code}}\n`;
 };
 
 Arduino.forBlock["arduino_loop"] = function (block) {
   const code = Arduino.statementToCode(block, "ARDUINO_LOOP");
-  Arduino.addUserLoop("loop", code);
+  Arduino.addLoop("loop", code);
   return `loop() {\n${code}}\n`;
 };
 
@@ -149,11 +149,6 @@ Arduino.forBlock["controls_for"] = function (block) {
 
   // 添加循环变量到工具箱
   addLoopVariableToToolbox(block, variable0);
-
-  // 移除或注释掉调试代码
-  // console.log("Arduino.nameDB_", Arduino.nameDB_);
-  // console.log("variable0", variable0);
-  // console.log("variables: ", block.Blockly.allUsedVarModels());
 
   const argument0 =
     Arduino.valueToCode(block, "FROM", Arduino.ORDER_ASSIGNMENT) || "0";

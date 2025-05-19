@@ -1,15 +1,15 @@
 Arduino.forBlock['blinker_init_wifi'] = function (block, generator) {
-    var auth = generator.valueToCode(block, 'AUTH', Arduino.ORDER_ATOMIC) || "\"Your Device Secret Key\"";
-    var ssid = generator.valueToCode(block, 'SSID', Arduino.ORDER_ATOMIC) || "\"Your WiFi SSID\"";
-    var pswd = generator.valueToCode(block, 'PSWD', Arduino.ORDER_ATOMIC) || "\"Your WiFi Password\"";
+    let ssid = block.getFieldValue('SSID') || "Your WiFi SSID";
+    let pswd = block.getFieldValue('PSWD') || "Your WiFi Password";
+    let auth = block.getFieldValue('AUTH') || "Your Device Secret Key";
 
     generator.addMacro('#define BLINKER_WIFI', '#define BLINKER_WIFI');
     generator.addLibrary('#include <Blinker.h>', '#include <Blinker.h>');
-    generator.addVariable('char auth[]', 'char auth[] = ' + auth + ';');
-    generator.addVariable('char ssid[]', 'char ssid[] = ' + ssid + ';');
-    generator.addVariable('char pswd[]', 'char pswd[] = ' + pswd + ';');
-
-    var code = 'Blinker.begin(auth, ssid, pswd);\n';
+    generator.addVariable('char ssid[]', 'char ssid[] = "' + ssid + '";');
+    generator.addVariable('char pswd[]', 'char pswd[] = "' + pswd + '";');
+    generator.addVariable('char auth[]', 'char auth[] = "' + auth + '";');
+    generator.addUserLoop1('Blinker.run()', 'Blinker.run();');
+    let code = 'Blinker.begin(auth, ssid, pswd);\n';
     return code;
 };
 
@@ -18,11 +18,6 @@ Arduino.forBlock['blinker_init_ble'] = function (block, generator) {
     generator.addLibrary('#include <Blinker.h>', '#include <Blinker.h>');
 
     var code = 'Blinker.begin();\n';
-    return code;
-};
-
-Arduino.forBlock['blinker_run'] = function (block, generator) {
-    var code = 'Blinker.run();\n';
     return code;
 };
 
