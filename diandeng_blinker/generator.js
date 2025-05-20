@@ -8,7 +8,7 @@ Arduino.forBlock['blinker_init_wifi'] = function (block, generator) {
     generator.addVariable('char ssid[]', 'char ssid[] = "' + ssid + '";');
     generator.addVariable('char pswd[]', 'char pswd[] = "' + pswd + '";');
     generator.addVariable('char auth[]', 'char auth[] = "' + auth + '";');
-    generator.addUserLoop1('Blinker.run()', 'Blinker.run();');
+    generator.addLoopEnd('Blinker.run()', 'Blinker.run();');
     let code = 'Blinker.begin(auth, ssid, pswd);\n';
     return code;
 };

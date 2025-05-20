@@ -13,7 +13,7 @@ Arduino.forBlock['rtc_begin'] = function(block, generator) {
     generator.addVariable('rtc', 'RTC_PCF8563 rtc;');
   }
   
-  generator.addSetup('rtc.begin', 'rtc.begin();');
+  generator.addSetupBegin('rtc.begin', 'rtc.begin();');
   
   var code = '// RTC initialized\n';
   if (rtcType === 'DS3231' || rtcType === 'PCF8523') {

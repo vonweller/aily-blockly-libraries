@@ -51,11 +51,11 @@ Arduino.forBlock['tft_lcd_init'] = function (block, generator) {
     // 在setup部分初始化显示屏
     var screenId = block.getFieldValue('SCREEN_ID') || '0x9341';
 
-    generator.addSetup('TFT_LCD_INIT', 'Serial.begin(9600);');
-    generator.addSetup('TFT_LCD_INIT', 'tft.reset();');
-    generator.addSetup('TFT_LCD_INIT', 'tft.begin(' + screenId + ');');
-    generator.addSetup('TFT_LCD_INIT', 'tft.setRotation(2);');
-    generator.addSetup('TFT_LCD_INIT', 'tft.fillScreen(BLACK);');
+    generator.addSetupBegin('TFT_LCD_INIT', 'Serial.begin(9600);');
+    generator.addSetupBegin('TFT_LCD_INIT', 'tft.reset();');
+    generator.addSetupBegin('TFT_LCD_INIT', 'tft.begin(' + screenId + ');');
+    generator.addSetupBegin('TFT_LCD_INIT', 'tft.setRotation(2);');
+    generator.addSetupBegin('TFT_LCD_INIT', 'tft.fillScreen(BLACK);');
 
     return '';
 };
@@ -229,11 +229,11 @@ Arduino.forBlock['tft_fill_round_rect'] = function (block, generator) {
 Arduino.forBlock['tft_sd_init'] = function (block, generator) {
     var cs_pin = generator.valueToCode(block, 'CS_PIN', generator.ORDER_ATOMIC) || '10';
 
-    generator.addSetup('SD_INIT', 'if (!SD.begin(' + cs_pin + ')) {');
-    generator.addSetup('SD_INIT', '  Serial.println("SD card initialization failed!");');
-    generator.addSetup('SD_INIT', '  return;');
-    generator.addSetup('SD_INIT', '}');
-    generator.addSetup('SD_INIT', 'Serial.println("SD card initialized.");');
+    generator.addSetupBegin('SD_INIT', 'if (!SD.begin(' + cs_pin + ')) {');
+    generator.addSetupBegin('SD_INIT', '  Serial.println("SD card initialization failed!");');
+    generator.addSetupBegin('SD_INIT', '  return;');
+    generator.addSetupBegin('SD_INIT', '}');
+    generator.addSetupBegin('SD_INIT', 'Serial.println("SD card initialized.");');
 
     return '';
 };

@@ -1,7 +1,7 @@
 Arduino.forBlock["serial_begin"] = function (block, generator) {
   const obj = block.getFieldValue("SERIAL");
   const speed = block.getFieldValue("SPEED");
-  generator.addSetup(`serial_${obj}_begin`, `${obj}.begin(${speed});`);
+  generator.addSetupBegin(`serial_${obj}_begin`, `${obj}.begin(${speed});`);
   return ``;
 };
 
@@ -62,6 +62,6 @@ Arduino.forBlock["serial_read_string"] = function (block, generator) {
 // 辅助函数，确保串口已被初始化
 function ensureSerialBegin(serialPort, generator) {
   // 使用条件方式添加串口初始化代码，如果同名tag的代码已存在则不会重复添加
-  generator.addSetup(`serial_${serialPort}_begin`, `${serialPort}.begin(9600);`);
+  generator.addSetupBegin(`serial_${serialPort}_begin`, `${serialPort}.begin(9600);`);
 }
 

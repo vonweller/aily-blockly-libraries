@@ -5,7 +5,7 @@ Arduino.forBlock['openjumper_iicps3_init'] = function(block, generator) {
 
   generator.addLibrary('OpenJumperPS3', '#include <OpenJumperPS3.h>');
   generator.addVariable(`PS3`, `OpenJumperPS3 ${ps3name};\n`); 
-  generator.addSetup('Wire.begin', 'Wire.begin();\n');
+  generator.addSetupBegin('Wire.begin', 'Wire.begin();\n');
 
   return '';
 };

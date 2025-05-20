@@ -6,7 +6,7 @@ Arduino.forBlock['ps2x_init'] = function(block, generator) {
   
   generator.addLibrary('PS2X', '#include <PS2X.h>');
   generator.addVariable('ps2x', 'PS2X ps2x;');
-  generator.addSetup('ps2x_setup', 'ps2x.config_gamepad(' + clk + ', ' + cmd + ', ' + att + ', ' + dat + ');\n  delay(300);');
+  generator.addSetupBegin('ps2x_setup', 'ps2x.config_gamepad(' + clk + ', ' + cmd + ', ' + att + ', ' + dat + ');\n  delay(300);');
   
   return '';
 };

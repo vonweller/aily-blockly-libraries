@@ -1,5 +1,5 @@
 // 添加新函数，用于将循环变量添加到工具箱
-function addLoopVariableToToolbox(block, varName) {
+function addLoopEndVariableToToolbox(block, varName) {
   try {
     const workspace = block.workspace;
     if (!workspace || !varName) return;
@@ -82,7 +82,7 @@ Arduino.forBlock["arduino_setup"] = function (block) {
 
 Arduino.forBlock["arduino_loop"] = function (block) {
   const code = Arduino.statementToCode(block, "ARDUINO_LOOP");
-  Arduino.addLoop("loop", code);
+  Arduino.addLoopEnd("loop", code);
   return `loop() {\n${code}}\n`;
 };
 
@@ -98,7 +98,7 @@ Arduino.forBlock["controls_repeat_ext"] = function (block) {
       Arduino.valueToCode(block, "TIMES", Arduino.ORDER_ASSIGNMENT) || "0";
   }
   let branch = Arduino.statementToCode(block, "DO");
-  branch = Arduino.addLoopTrap(branch, block);
+  branch = Arduino.addLoopEndTrap(branch, block);
   let code = "";
   const loopVar = Arduino.nameDB_.getDistinctName("count", "VARIABLE");
   let endVar = repeats;
@@ -133,7 +133,7 @@ Arduino.forBlock["controls_whileUntil"] = function (block) {
       until ? Arduino.ORDER_LOGICAL_NOT : Arduino.ORDER_NONE,
     ) || "false";
   let branch = Arduino.statementToCode(block, "DO");
-  branch = Arduino.addLoopTrap(branch, block);
+  branch = Arduino.addLoopEndTrap(branch, block);
   if (until) {
     argument0 = "!" + argument0;
   }
@@ -148,7 +148,7 @@ Arduino.forBlock["controls_for"] = function (block) {
   );
 
   // 添加循环变量到工具箱
-  addLoopVariableToToolbox(block, variable0);
+  addLoopEndVariableToToolbox(block, variable0);
 
   const argument0 =
     Arduino.valueToCode(block, "FROM", Arduino.ORDER_ASSIGNMENT) || "0";
@@ -157,7 +157,7 @@ Arduino.forBlock["controls_for"] = function (block) {
   const increment =
     Arduino.valueToCode(block, "BY", Arduino.ORDER_ASSIGNMENT) || "1";
   let branch = Arduino.statementToCode(block, "DO");
-  branch = Arduino.addLoopTrap(branch, block);
+  branch = Arduino.addLoopEndTrap(branch, block);
 
   let code;
   let up = true;

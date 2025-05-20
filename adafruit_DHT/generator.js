@@ -10,7 +10,7 @@ Arduino.forBlock['dht_init'] = function (block, generator) {
     generator.addVariable('dht_def', dhtDef);
 
     // 在setup中初始化DHT
-    generator.addSetup('dht_begin', 'dht.begin();');
+    generator.addSetupBegin('dht_begin', 'dht.begin();');
 
     return '';
 };

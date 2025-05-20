@@ -14,7 +14,7 @@ Arduino.forBlock['encoder_init'] = function(block, generator) {
   generator.addLibrary('Encoder', '#include <Encoder.h>');
   
   generator.addObject(`${variable_encoder}`, `Encoder  ${variable_encoder}(` + dropdown_pin_a + ', ' + dropdown_pin_b + ');\n#define SW_PIN ' + dropdown_pin_sw + '\n');
-  generator.addSetup('swpininit', `pinMode(SW_PIN,INPUT);`);
+  generator.addSetupBegin('swpininit', `pinMode(SW_PIN,INPUT);`);
   return '';
 };
 

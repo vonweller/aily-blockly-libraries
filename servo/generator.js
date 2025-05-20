@@ -18,7 +18,7 @@ Arduino.forBlock['servo_write'] = function (block, generator) {
     generator.addObject(servoName, 'Servo ' + servoName + ';');
 
     // 确保舵机在setup中初始化（只初始化一次）
-    generator.addSetup('servo_' + pin, servoName + '.attach(' + pin + ');');
+    generator.addSetupBegin('servo_' + pin, servoName + '.attach(' + pin + ');');
 
     // 生成控制舵机角度的代码
     var code = servoName + '.write(' + angle + ');\n';
@@ -36,7 +36,7 @@ Arduino.forBlock['servo_read'] = function (block, generator) {
     var servoName = 'servo_pin_' + pin;
     generator.addObject(servoName, 'Servo ' + servoName + ';');
 
-    generator.addSetup('servo_' + pin, servoName + '.attach(' + pin + ');');
+    generator.addSetupBegin('servo_' + pin, servoName + '.attach(' + pin + ');');
 
     // 生成读取舵机角度的代码
     var code = servoName + '.read()';

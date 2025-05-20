@@ -16,7 +16,7 @@ Arduino.forBlock['servo360_write'] = function(block, generator) {
     generator.addObject(servoName, 'Servo ' + servoName + ';');
     
     // 在setup中添加引脚初始化代码
-    generator.addSetup(servoName + '_attach', servoName + '.attach(' + pin + ');');
+    generator.addSetupBegin(servoName + '_attach', servoName + '.attach(' + pin + ');');
     
     // 计算微秒值
     var code = '';

@@ -9,7 +9,7 @@ Arduino.forBlock['mpu6050_begin'] = function(block, generator) {
   generator.addVariable('mpu6050_events', 'sensors_event_t a, g, temp;');
   
   // 添加初始化代码到setup
-  generator.addSetup('mpu6050_begin', 'if (!mpu.begin()) {\n  Serial.println("Failed to find MPU6050 chip");\n  while (1) {\n    delay(10);\n  }\n}\n\n  // 设置默认参数\n  mpu.setAccelerometerRange(MPU6050_RANGE_8_G);\n  mpu.setGyroRange(MPU6050_RANGE_500_DEG);\n  mpu.setFilterBandwidth(MPU6050_BAND_21_HZ);');
+  generator.addSetupBegin('mpu6050_begin', 'if (!mpu.begin()) {\n  Serial.println("Failed to find MPU6050 chip");\n  while (1) {\n    delay(10);\n  }\n}\n\n  // 设置默认参数\n  mpu.setAccelerometerRange(MPU6050_RANGE_8_G);\n  mpu.setGyroRange(MPU6050_RANGE_500_DEG);\n  mpu.setFilterBandwidth(MPU6050_BAND_21_HZ);');
   
   return '';
 };

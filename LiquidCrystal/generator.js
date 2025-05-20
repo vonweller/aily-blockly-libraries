@@ -28,9 +28,9 @@ Arduino.ensureLcdInitialized = function (generator) {
     generator.addObject('lcd', `LiquidCrystal lcd(${defaultRsPin}, ${defaultEPin}, ${defaultD4Pin}, ${defaultD5Pin}, ${defaultD6Pin}, ${defaultD7Pin});`);
 
     // 在setup中初始化LCD和背光引脚
-    generator.addSetup('lcd_begin', `lcd.begin(LCD_COLS, LCD_ROWS);`);
-    generator.addSetup('lcd_backlight_pin', `pinMode(LCD_BACKLIGHT_PIN, OUTPUT);`);
-    generator.addSetup('lcd_backlight_on', `digitalWrite(LCD_BACKLIGHT_PIN, HIGH);`);
+    generator.addSetupBegin('lcd_begin', `lcd.begin(LCD_COLS, LCD_ROWS);`);
+    generator.addSetupBegin('lcd_backlight_pin', `pinMode(LCD_BACKLIGHT_PIN, OUTPUT);`);
+    generator.addSetupBegin('lcd_backlight_on', `digitalWrite(LCD_BACKLIGHT_PIN, HIGH);`);
 
     return true;
   }
@@ -59,9 +59,9 @@ Arduino.forBlock['lcd_init'] = function (block, generator) {
   generator.addObject('lcd', `LiquidCrystal lcd(${rs_pin}, ${e_pin}, ${d4_pin}, ${d5_pin}, ${d6_pin}, ${d7_pin});`);
 
   // 在setup中初始化LCD和背光引脚
-  generator.addSetup('lcd_begin', `lcd.begin(LCD_COLS, LCD_ROWS);`);
-  generator.addSetup('lcd_backlight_pin', `pinMode(LCD_BACKLIGHT_PIN, OUTPUT);`);
-  generator.addSetup('lcd_backlight_on', `digitalWrite(LCD_BACKLIGHT_PIN, HIGH);`);
+  generator.addSetupBegin('lcd_begin', `lcd.begin(LCD_COLS, LCD_ROWS);`);
+  generator.addSetupBegin('lcd_backlight_pin', `pinMode(LCD_BACKLIGHT_PIN, OUTPUT);`);
+  generator.addSetupBegin('lcd_backlight_on', `digitalWrite(LCD_BACKLIGHT_PIN, HIGH);`);
 
   // 标记为已初始化
   Arduino.lcdInitialized = true;
@@ -183,7 +183,7 @@ Arduino.forBlock['lcd_custom_char'] = function (block, generator) {
 
     generator.addVariable(charArrayName, 'byte ' + charArrayName + '[8] = {\n  ' +
       customCharData.join(',\n  ') + '\n};');
-    generator.addUserSetup(charName, 'lcd.createChar(' + charIndex + ', ' + charArrayName + ');');
+    generator.addSetupBegin(charName, 'lcd.createChar(' + charIndex + ', ' + charArrayName + ');');
 
     return [charIndex, generator.ORDER_ATOMIC];
   } catch (e) {

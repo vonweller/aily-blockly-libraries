@@ -40,12 +40,12 @@ Arduino.forBlock['custom_function'] = function (block, generator) {
 
 Arduino.forBlock['custom_setup'] = function (block, generator) {
     const setupCode = block.getFieldValue('SETUP_CODE');
-    generator.addUserSetup('custom_setup_' + block.id, setupCode);
+    generator.addSetupBegin('custom_setup_' + block.id, setupCode);
     return '';
 };
 
 Arduino.forBlock['custom_loop'] = function (block, generator) {
     const loopCode = block.getFieldValue('LOOP_CODE');
-    generator.addUserLoop('custom_loop_' + block.id, loopCode);
+    generator.addLoopEnd('custom_loop_' + block.id, loopCode);
     return '';
 };

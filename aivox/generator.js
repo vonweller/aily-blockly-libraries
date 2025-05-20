@@ -26,7 +26,7 @@ Arduino.forBlock['aivox_init_std'] = function(block, generator) {
   ai_vox_engine.SetTrigger(GPIO_NUM_${triggerPin});
   ai_vox_engine.Start(audio_input_device, audio_output_device);
 `;
-    generator.addSetup('aivox_start', setupCode, false);
+    generator.addSetupBegin('aivox_start', setupCode, false);
 
     return ''; // This block generates setup code, not loop code.
 };
@@ -43,9 +43,9 @@ ${statements_do}
   }
   taskYIELD();
 `;
-    // Use addLoop to ensure it's added correctly, tag prevents duplicates if block used multiple times (though unlikely for this type)
-    generator.addLoop('aivox_event_loop', loopCode, true);
-    return ''; // The main loop logic is added via addLoop
+    // Use addLoopEnd to ensure it's added correctly, tag prevents duplicates if block used multiple times (though unlikely for this type)
+    generator.addLoopEnd('aivox_event_loop', loopCode, true);
+    return ''; // The main loop logic is added via addLoopEnd
 };
 
 // --- Event Checks and Data Getters ---

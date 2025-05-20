@@ -23,7 +23,7 @@ Arduino.forBlock['dfplayer_begin'] = function(block, generator) {
   code += '}\n';
   code += variable_name + '.volume(10);\n';
   
-  generator.addSetup('dfplayer_begin_' + variable_name, code);
+  generator.addSetupBegin('dfplayer_begin_' + variable_name, code);
   
   return '';
 };
@@ -410,7 +410,7 @@ Arduino.forBlock['dfplayer_simple_play'] = function(block, generator) {
   setup_code += '}\n';
   setup_code += 'myDFPlayer.volume(15);\n';
   
-  generator.addSetup('dfplayer_simple_setup', setup_code);
+  generator.addSetupBegin('dfplayer_simple_setup', setup_code);
   
   var code = 'myDFPlayer.play(' + file_number + ');\n';
   return code;
