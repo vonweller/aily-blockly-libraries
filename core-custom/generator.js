@@ -37,15 +37,3 @@ Arduino.forBlock['custom_function'] = function (block, generator) {
     generator.addFunction(name, code);
     return '';
 };
-
-Arduino.forBlock['custom_setup'] = function (block, generator) {
-    const setupCode = block.getFieldValue('SETUP_CODE');
-    generator.addSetupBegin('custom_setup_' + block.id, setupCode);
-    return '';
-};
-
-Arduino.forBlock['custom_loop'] = function (block, generator) {
-    const loopCode = block.getFieldValue('LOOP_CODE');
-    generator.addLoopEnd('custom_loop_' + block.id, loopCode);
-    return '';
-};
