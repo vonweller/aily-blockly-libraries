@@ -1,0 +1,327 @@
+[
+    {
+        "inputsInline": true,
+        "message0": "初始化 AI-VOX 网络 SSID %1 PASSWORD %2 ",
+        "type": "aivox_init_wifi",
+        "args0": [
+            {"type": "input_value","name": "wifi_ssid","text": "areararear"},
+            {"type": "input_value","name": "wifi_pwd","text": "String"}
+
+        ],
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#4CAF50"
+    },
+
+    {
+        "type": "aivox_init_std",
+        "message0": "初始化 AI-VOX (标准I2S) %1 Mic BCLK %2 WS %3 DIN %4 %5 Speaker BCLK %6 WS %7 DOUT %8 %9 触发引脚 %10",
+        "args0": [
+            { "type": "input_dummy" },
+            { "type": "field_dropdown", "name": "MIC_BCLK", "options": [["GPIO5", "5"]] },
+            { "type": "field_dropdown", "name": "MIC_WS", "options": [["GPIO2", "2"]] },
+            { "type": "field_dropdown", "name": "MIC_DIN", "options": [["GPIO2", "4"]] },
+            { "type": "input_dummy" },
+            { "type": "field_dropdown", "name": "SPK_BCLK", "options": [["GPIO13", "13"]] },
+            { "type": "field_dropdown", "name": "SPK_WS", "options": [["GPIO14", "14"]] },
+            { "type": "field_dropdown", "name": "SPK_DOUT", "options": [["GPIO1", "1"]] },
+            { "type": "input_dummy" },
+            { "type": "field_dropdown", "name": "TRIGGER_PIN", "options": [["GPIO0", "0"]] }
+        ],
+        "inputsInline": false,
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#4CAF50",
+        "tooltip": "初始化AI-VOX引擎，使用标准I2S麦克风和扬声器。",
+        "helpUrl": ""
+    },
+    {
+        "type": "aivox_init_lcd",
+        "message0": "初始化 AI-VOX 显示屏(7789驱动) %1 背光引脚 backLight %2 MOSI %3 CLK %4 DC %5 RST %6 CS %7",
+        "args0": [
+            { "type": "input_dummy" },
+            { "type": "field_dropdown", "name": "backLight", "options": [["GPIO11", "11"]] },
+            { "type": "field_dropdown", "name": "MOSI", "options": [["GPIO17", "17"]] },
+            { "type": "field_dropdown", "name": "CLK", "options": [["GPIO16", "16"]] },
+            { "type": "field_dropdown", "name": "DC", "options": [["GPIO12", "12"]] },
+            { "type": "field_dropdown", "name": "RST", "options": [["GPIO21", "21"]] },
+            { "type": "field_dropdown", "name": "CS", "options": [["GPIO15", "15"]] }
+        ],
+        "inputsInline": false,
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#4CAF50",
+        "tooltip": "初始化AI-VOX屏幕，使用7789驱动。",
+        "helpUrl": ""
+    },
+    {
+        "inputsInline": true,
+        "message0": "显示屏 显示状态 %1 ",
+        "type": "aivox_lcd_show_status",
+        "args0": [
+            {"type": "input_value","name": "ai_vox_status","text": "test"}
+        ],
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#4CAF50"
+    },
+    {
+        "inputsInline": true,
+        "message0": "显示屏 %1 显示聊天信息 %2",
+        "type": "aivox_lcd_show_chat_message",
+        "args0": [
+            {"type": "field_dropdown","name": "ai_vox_display_role","options": [
+                ["系统 (System)", "Display::Role::kSystem"],
+                ["助手 (Assistant)", "Display::Role::kAssistant"],
+                ["用户 (User)", "Display::Role::kUser"]
+            ]},
+            {"type": "input_value","name": "ai_vox_chat_message","text": "test"}
+        ],
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#4CAF50"
+    },
+    {
+        "inputsInline": true,
+        "message0": "显示屏 显示表情 %1 ",
+        "type": "aivox_lcd_show_emotion",
+        "args0": [
+            {"type": "input_value","name": "ai_vox_emotion","text": "test"}
+        ],
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#4CAF50"
+    },
+
+    {
+        "inputsInline": true,
+        "message0": "注册控制设备 %1 属性：%2 控制功能： 打开 %3 关闭 %4 ",
+        "type": "aivox_register_driver_status",
+        "args0": [
+            {"type": "input_value","name": "driver_name","text": "test"},
+            {"type": "input_value","name": "driver_properties","text": "test"},
+            {"type": "input_value","name": "driver_open","text": "test"},
+            {"type": "input_value","name": "driver_close","text": "test"}
+        ],
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#4CAF50"
+    },
+
+    {
+        "type": "aivox_loop",
+        "message0": "当 AI-VOX 事件发生时 %1 %2",
+        "args0": [
+            { "type": "input_dummy" },
+            { "type": "input_statement", "name": "DO" }
+        ],
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#FF9800",
+        "tooltip": "处理AI Vox引擎产生的事件。",
+        "helpUrl": ""
+    },
+    {
+        "type": "aivox_event_is_activation",
+        "message0": "如果事件是 激活",
+        "message1": "执行 %1",
+        "args1": [
+            { "type": "input_statement", "name": "DO" }
+        ],
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#FFC107",
+        "tooltip": "检查当前事件是否为设备激活事件。",
+        "helpUrl": ""
+    },
+    {
+        "type": "aivox_get_activation_message",
+        "message0": "获取激活消息",
+        "output": "String",
+        "colour": "#FFC107",
+        "tooltip": "获取设备激活事件中的消息内容。",
+        "helpUrl": ""
+    },
+    {
+        "type": "aivox_get_activation_code",
+        "message0": "获取激活代码",
+        "output": "String",
+        "colour": "#FFC107",
+        "tooltip": "获取设备激活事件中的代码。",
+        "helpUrl": ""
+    },
+    {
+        "type": "aivox_event_is_state_change",
+        "message0": "如果事件是 状态改变",
+        "message1": "执行 %1",
+        "args1": [
+            { "type": "input_statement", "name": "DO" }
+        ],
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#FFC107",
+        "tooltip": "检查当前事件是否为状态改变事件。",
+        "helpUrl": ""
+    },
+    {
+        "type": "aivox_get_new_state",
+        "message0": "获取新状态",
+        "output": "Number",
+        "colour": "#FFC107",
+        "tooltip": "获取状态改变事件中的新状态。",
+        "helpUrl": ""
+    },
+    {
+        "type": "aivox_get_old_state",
+        "message0": "获取旧状态",
+        "output": "Number",
+        "colour": "#FFC107",
+        "tooltip": "获取状态改变事件中的旧状态。",
+        "helpUrl": ""
+    },
+    {
+        "type": "aivox_state_enum",
+        "message0": "%1",
+        "args0": [
+            {
+                "type": "field_dropdown",
+                "name": "STATE",
+                "options": [
+                    ["空闲 (Idle)", "ai_vox::ChatState::kIdle"],
+                    ["初始化中 (Initing)", "ai_vox::ChatState::kIniting"],
+                    ["待命 (Standby)", "ai_vox::ChatState::kStandby"],
+                    ["连接中 (Connecting)", "ai_vox::ChatState::kConnecting"],
+                    ["聆听中 (Listening)", "ai_vox::ChatState::kListening"],
+                    ["说话中 (Speaking)", "ai_vox::ChatState::kSpeaking"]
+                ]
+            }
+        ],
+        "output": "Number",
+        "colour": "#FFEB3B",
+        "tooltip": "AI-VOX 聊天状态。",
+        "helpUrl": ""
+    },
+    {
+        "type": "aivox_event_is_emotion",
+        "message0": "如果事件是 表情",
+        "message1": "执行 %1",
+        "args1": [
+            { "type": "input_statement", "name": "DO" }
+        ],
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#FFC107",
+        "tooltip": "检查当前事件是否为表情事件。",
+        "helpUrl": ""
+    },
+    {
+        "type": "aivox_get_emotion",
+        "message0": "获取表情",
+        "output": "String",
+        "colour": "#FFC107",
+        "tooltip": "获取表情事件中的表情名称。",
+        "helpUrl": ""
+    },
+    {
+        "type": "aivox_event_is_chat_message",
+        "message0": "如果事件是 聊天消息",
+        "message1": "执行 %1",
+        "args1": [
+            { "type": "input_statement", "name": "DO" }
+        ],
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#FFC107",
+        "tooltip": "检查当前事件是否为聊天消息事件。",
+        "helpUrl": ""
+    },
+    {
+        "type": "aivox_get_chat_role",
+        "message0": "获取聊天角色",
+        "output": "Number",
+        "colour": "#FFC107",
+        "tooltip": "获取聊天消息事件中的角色。",
+        "helpUrl": ""
+    },
+    {
+        "type": "aivox_chat_role_enum",
+        "message0": "聊天系统角色 %1",
+        "args0": [
+            {
+                "type": "field_dropdown",
+                "name": "chat_role",
+                "options": [
+                    ["助手 (Assistant)", "ai_vox::ChatRole::kAssistant"],
+                    ["用户 (User)", "ai_vox::ChatRole::kUser"]
+                ]
+            }
+        ],
+        "output": "Number",
+        "colour": "#FFEB3B",
+        "tooltip": "AI-VOX 聊天角色。",
+        "helpUrl": ""
+    },
+    {
+        "type": "aivox_get_chat_content",
+        "message0": "获取聊天内容",
+        "output": "String",
+        "colour": "#FFC107",
+        "tooltip": "获取聊天消息事件中的内容。",
+        "helpUrl": ""
+    },
+    {
+        "type": "aivox_event_is_iot_message",
+        "message0": "如果是IOT控制事件",
+        "message1": "执行 %1",
+        "args1": [
+            { "type": "input_statement", "name": "DO" }
+        ],
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#FFC107",
+        "tooltip": "检查当前事件是否为IOT事件。",
+        "helpUrl": ""
+    },
+    {
+        "type": "aivox_get_iot_message_event_name",
+        "message0": "获取IOT事件名称",
+        "output": "String",
+        "colour": "#FFC107",
+        "tooltip": "",
+        "helpUrl": ""
+    },
+    {
+        "type": "aivox_get_iot_message_event_fuction",
+        "message0": "IOT事件功能为 %1",
+        "args0": [
+            {
+                "type": "field_dropdown",
+                "name": "event_fuction",
+                "options": [
+                    ["打开", "TurnOn"],
+                    ["关闭", "TurnOff"]
+                ]
+            }
+        ],
+        "output": "String",
+        "colour": "#FFC107",
+        "tooltip": "",
+        "helpUrl": ""
+    },
+    {
+        "inputsInline": true,
+        "message0": "更新设备 %1 状态值 %2 ",
+        "type": "aivox_update_iot_state",
+        "args0": [
+            {"type": "input_value","name": "aivox_drive","text": "led"},
+            {"type": "input_value","name": "aivox_drive_state","text": "str"}
+
+        ],
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#4CAF50"
+    }
+
+
+
+]
