@@ -11,7 +11,7 @@ Arduino.forBlock['gp2y1010au0f_init'] = function(block, generator) {
   generator.addVariable('gp2y1010au0f', 'GP2Y1010AU0F dustSensor(' + ledPin + ', ' + measurePin + ');');
   
   // 在setup中初始化传感器
-  generator.addSetup('gp2y1010au0f_begin', 'dustSensor.begin();');
+  generator.addSetupBegin('gp2y1010au0f_begin', 'dustSensor.begin();');
   
   return '';
 };

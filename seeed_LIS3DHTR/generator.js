@@ -122,7 +122,7 @@ Arduino.forBlock['lis3dhtr_get_temperature'] = function(block, generator) {
  * 简化版：获取温度数据（自动开启温度传感器）
  */
 Arduino.forBlock['lis3dhtr_get_temperature_simple'] = function(block, generator) {
-  generator.addSetup('lis3dhtr_open_temp', 'accel_sensor.openTemp();\n');
+  generator.addSetupBegin('lis3dhtr_open_temp', 'accel_sensor.openTemp();\n');
   var code = 'accel_sensor.getTemperature()';
   return [code, Arduino.ORDER_FUNCTION_CALL];
 };

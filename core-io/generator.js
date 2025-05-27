@@ -40,7 +40,7 @@ Arduino.forBlock["io_digitalread"] = function (block, generator) {
 
   // 如果引脚没有被设置过模式，则自动添加pinMode
   if (!generator.pinModeSet || !generator.pinModeSet.has(pin)) {
-    generator.addSetup(`pinMode_${pin}`, `pinMode(${pin}, INPUT);`);
+    generator.addSetupBegin(`pinMode_${pin}`, `pinMode(${pin}, INPUT);`);
   }
 
   return [`digitalRead(${pin})`, Arduino.ORDER_FUNCTION_CALL];
@@ -52,7 +52,7 @@ Arduino.forBlock["io_digitalwrite"] = function (block, generator) {
 
   // 如果引脚没有被设置过模式，则自动添加pinMode
   if (!generator.pinModeSet || !generator.pinModeSet.has(pin)) {
-    generator.addUserSetup(`pinMode_${pin}`, `pinMode(${pin}, OUTPUT);`);
+    generator.addSetupBegin(`pinMode_${pin}`, `pinMode(${pin}, OUTPUT);`);
   }
 
   return `digitalWrite(${pin}, ${value});\n`;

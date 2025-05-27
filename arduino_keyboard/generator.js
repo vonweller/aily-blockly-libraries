@@ -38,7 +38,7 @@ Arduino.forBlock['keyboard_release_all'] = function(block, generator) {
 
 Arduino.forBlock['keyboard_serial_to_key'] = function(block, generator) {
   generator.addLibrary('#include <Keyboard.h>', '#include <Keyboard.h>');
-  generator.addSetup('serial_begin', 'Serial.begin(9600);');
+  generator.addSetupBegin('serial_begin', 'Serial.begin(9600);');
   
   var code = 'if (Serial.available() > 0) {\n' +
              '  char c = Serial.read();\n' +

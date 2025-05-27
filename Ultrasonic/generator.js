@@ -13,12 +13,12 @@ Arduino.forBlock["ultrasonic_ranging"] = function (block, generator) {
   return distance;
 }`;
   Arduino.addFunction("ultrasonic_ranging", code);
-  Arduino.addSetup(
+  Arduino.addSetupBegin(
     "ultrasonic_ranging",
     `  pinMode(${pin1}, OUTPUT);
   pinMode(${pin2}, INPUT);\n`,
   );
-  // Arduino.addLoop("ultrasonic_ranging", `  ${functionName}();\n`);
+  // Arduino.addLoopEnd("ultrasonic_ranging", `  ${functionName}();\n`);
   // return null;
 
   return [`${functionName}()`, Arduino.ORDER_ATOMIC];

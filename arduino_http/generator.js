@@ -57,7 +57,7 @@ Arduino.forBlock['wifi_connect'] = function(block, generator) {
                   '  delay(500);\n' +
                   '}\n' +
                   'Serial.println("WiFi Connected");';
-  generator.addSetup('wifi_connect_setup', setupCode);
+  generator.addSetupBegin('wifi_connect_setup', setupCode);
   return '';
 };
 

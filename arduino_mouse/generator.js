@@ -1,6 +1,6 @@
 Arduino.forBlock['mouse_begin'] = function(block, generator) {
   generator.addLibrary('#include <Mouse.h>', '#include <Mouse.h>');
-  generator.addSetup('mouse_begin', 'Mouse.begin();');
+  generator.addSetupBegin('mouse_begin', 'Mouse.begin();');
   return '';
 };
 

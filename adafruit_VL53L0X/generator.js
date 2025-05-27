@@ -14,7 +14,7 @@ Arduino.forBlock['vl53l0x_begin'] = function(block, generator) {
   const address = generator.valueToCode ?
     generator.valueToCode(block, 'ADDRESS', Arduino.ORDER_ATOMIC) : null;
   let beginCall = 'lox.begin(' + (address ? address : '') + ')';
-  generator.addSetup('vl53l0x_begin', `if (!${beginCall}) {\n  Serial.println("Failed to boot VL53L0X");\n  while(1);\n}`);
+  generator.addSetupBegin('vl53l0x_begin', `if (!${beginCall}) {\n  Serial.println("Failed to boot VL53L0X");\n  while(1);\n}`);
   return '';
 };
 
@@ -87,7 +87,7 @@ Arduino.forBlock['ssd1306_create'] = function(block, generator) {
 
 Arduino.forBlock['ssd1306_begin'] = function(block, generator) {
   const address = block.getFieldValue('ADDRESS') || '0x3C';
-  generator.addSetup('ssd1306_begin', `if(!display.begin(SSD1306_SWITCHCAPVCC, ${address})) {\n  Serial.println(F("SSD1306 allocation failed"));\n  for(;;);\n}`);
+  generator.addSetupBegin('ssd1306_begin', `if(!display.begin(SSD1306_SWITCHCAPVCC, ${address})) {\n  Serial.println(F("SSD1306 allocation failed"));\n  for(;;);\n}`);
   return '';
 };
 

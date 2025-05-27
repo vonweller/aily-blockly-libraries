@@ -4,7 +4,7 @@
 // 初始化I2C通信
 Arduino.forBlock['wire_begin'] = function(block, generator) {
   generator.addLibrary('wire', '#include <Wire.h>');
-  generator.addSetup('wire_begin', 'Wire.begin();');
+  generator.addSetupBegin('wire_begin', 'Wire.begin();');
   return '';
 };
 
@@ -12,7 +12,7 @@ Arduino.forBlock['wire_begin'] = function(block, generator) {
 Arduino.forBlock['wire_begin_address'] = function(block, generator) {
   const address = generator.valueToCode(block, 'ADDRESS', Arduino.ORDER_ATOMIC) || '0';
   generator.addLibrary('wire', '#include <Wire.h>');
-  generator.addSetup('wire_begin', `Wire.begin(${address});`);
+  generator.addSetupBegin('wire_begin', `Wire.begin(${address});`);
   return '';
 };
 
@@ -20,7 +20,7 @@ Arduino.forBlock['wire_begin_address'] = function(block, generator) {
 Arduino.forBlock['wire_set_clock'] = function(block, generator) {
   const clock = generator.valueToCode(block, 'CLOCK', Arduino.ORDER_ATOMIC) || '100000';
   generator.addLibrary('wire', '#include <Wire.h>');
-  generator.addSetup('wire_set_clock', `Wire.setClock(${clock});`);
+  generator.addSetupBegin('wire_set_clock', `Wire.setClock(${clock});`);
   return '';
 };
 
@@ -92,7 +92,7 @@ Arduino.forBlock['wire_on_receive'] = function(block, generator) {
   
   generator.addLibrary('wire', '#include <Wire.h>');
   generator.addFunction(`void ${functionName}(int numBytes)`, `void ${functionName}(int numBytes) {\n${callback}}\n`);
-  generator.addSetup('wire_on_receive', `Wire.onReceive(${functionName});`);
+  generator.addSetupBegin('wire_on_receive', `Wire.onReceive(${functionName});`);
   
   return '';
 };
@@ -105,7 +105,7 @@ Arduino.forBlock['wire_on_request'] = function(block, generator) {
   
   generator.addLibrary('wire', '#include <Wire.h>');
   generator.addFunction(`void ${functionName}()`, `void ${functionName}() {\n${callback}}\n`);
-  generator.addSetup('wire_on_request', `Wire.onRequest(${functionName});`);
+  generator.addSetupBegin('wire_on_request', `Wire.onRequest(${functionName});`);
   
   return '';
 };
@@ -115,8 +115,8 @@ Arduino.forBlock['wire_scan_devices'] = function(block, generator) {
   const delay = generator.valueToCode(block, 'DELAY', Arduino.ORDER_ATOMIC) || '5000';
   
   generator.addLibrary('wire', '#include <Wire.h>');
-  generator.addSetup('wire_begin', 'Wire.begin();');
-  generator.addSetup('serial_begin', 'Serial.begin(9600);');
+  generator.addSetupBegin('wire_begin', 'Wire.begin();');
+  generator.addSetupBegin('serial_begin', 'Serial.begin(9600);');
   
   let code = '';
   code += 'Serial.println("I2C Scanner");\n';

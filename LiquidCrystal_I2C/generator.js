@@ -17,7 +17,7 @@ Arduino.ensureLcdInitialized = function (generator) {
     generator.addVariable('lcd_i2c', 'LiquidCrystal_I2C lcd(' + defaultAddress + ', ' + defaultCols + ', ' + defaultRows + ');');
 
     // 添加初始化代码到setup部分
-    generator.addSetup('lcd_init', 'lcd.init();\n  lcd.backlight();');
+    generator.addSetupBegin('lcd_init', 'lcd.init();\n  lcd.backlight();');
 
     // 标记为已初始化
     // Arduino.lcdI2CInitialized = true;
@@ -156,7 +156,7 @@ Arduino.forBlock['lcd_i2c_custom_char'] = function (block, generator) {
 
     generator.addVariable(charArrayName, 'byte ' + charArrayName + '[8] = {\n  ' +
       customCharData.join(',\n  ') + '\n};');
-    generator.addUserSetup(charName, 'lcd.createChar(' + charIndex + ', ' + charArrayName + ');');
+    generator.addSetupBegin(charName, 'lcd.createChar(' + charIndex + ', ' + charArrayName + ');');
 
     return [charIndex, generator.ORDER_ATOMIC];
   } catch (e) {

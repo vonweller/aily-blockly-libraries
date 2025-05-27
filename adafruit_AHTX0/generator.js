@@ -8,7 +8,7 @@ Arduino.forBlock['ahtx0_begin'] = function(block, generator) {
   generator.addVariable('aht_sensor', 'Adafruit_AHTX0 aht;');
   
   // 在setup部分初始化传感器
-  generator.addSetup('aht_begin', 'if (!aht.begin()) {\n  Serial.println("Could not find AHT sensor!");\n  while (1) delay(10);\n}\n');
+  generator.addSetupBegin('aht_begin', 'if (!aht.begin()) {\n  Serial.println("Could not find AHT sensor!");\n  while (1) delay(10);\n}\n');
   
   return '';
 };

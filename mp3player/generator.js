@@ -3,7 +3,7 @@
 Arduino.forBlock['gd3800_init'] = function(block, generator) {
   generator.addLibrary('GD3800_Serial', '#include <GD3800_Serial.h>');  
   generator.addVariable('MP3INIT', 'GD3800_Serial mp3(12, 11);'); 
-  generator.addSetup('mp3being', 'mp3.begin(9600);');
+  generator.addSetupBegin('mp3being', 'mp3.begin(9600);');
   
   return '';
 };

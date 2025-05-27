@@ -1,7 +1,7 @@
 
 Arduino.forBlock['spi_begin'] = function(block, generator) {
   generator.addLibrary('#include <SPI.h>', '#include <SPI.h>');
-  generator.addSetup('spi_begin', 'SPI.begin();');
+  generator.addSetupBegin('spi_begin', 'SPI.begin();');
   return '';
 };
 
@@ -57,8 +57,8 @@ Arduino.forBlock['spi_read_temperature'] = function(block, generator) {
   var csPin = generator.valueToCode(block, 'CS_PIN', Arduino.ORDER_ATOMIC);
   
   // 添加CS引脚初始化代码到setup
-  generator.addSetup('pinMode_' + csPin, 'pinMode(' + csPin + ', OUTPUT);');
-  generator.addSetup('digitalWrite_' + csPin, 'digitalWrite(' + csPin + ', HIGH);');
+  generator.addSetupBegin('pinMode_' + csPin, 'pinMode(' + csPin + ', OUTPUT);');
+  generator.addSetupBegin('digitalWrite_' + csPin, 'digitalWrite(' + csPin + ', HIGH);');
   
   var functionName = 'readTemperature';
   var functionCode = 'float ' + functionName + '(int csPin) {\n' +
@@ -82,8 +82,8 @@ Arduino.forBlock['spi_read_pressure'] = function(block, generator) {
   var csPin = generator.valueToCode(block, 'CS_PIN', Arduino.ORDER_ATOMIC);
   
   // 添加CS引脚初始化代码到setup
-  generator.addSetup('pinMode_' + csPin, 'pinMode(' + csPin + ', OUTPUT);');
-  generator.addSetup('digitalWrite_' + csPin, 'digitalWrite(' + csPin + ', HIGH);');
+  generator.addSetupBegin('pinMode_' + csPin, 'pinMode(' + csPin + ', OUTPUT);');
+  generator.addSetupBegin('digitalWrite_' + csPin, 'digitalWrite(' + csPin + ', HIGH);');
   
   var functionName = 'readPressure';
   var functionCode = 'float ' + functionName + '(int csPin) {\n' +
@@ -109,8 +109,8 @@ Arduino.forBlock['spi_digital_potentiometer_write'] = function(block, generator)
   var value = generator.valueToCode(block, 'VALUE', Arduino.ORDER_ATOMIC);
   
   // 添加CS引脚初始化代码到setup
-  generator.addSetup('pinMode_' + csPin, 'pinMode(' + csPin + ', OUTPUT);');
-  generator.addSetup('digitalWrite_' + csPin, 'digitalWrite(' + csPin + ', HIGH);');
+  generator.addSetupBegin('pinMode_' + csPin, 'pinMode(' + csPin + ', OUTPUT);');
+  generator.addSetupBegin('digitalWrite_' + csPin, 'digitalWrite(' + csPin + ', HIGH);');
   
   var functionName = 'digitalPotWrite';
   var functionCode = 'void ' + functionName + '(int csPin, int channel, int value) {\n' +
@@ -133,8 +133,8 @@ Arduino.forBlock['spi_write_register'] = function(block, generator) {
   var value = generator.valueToCode(block, 'VALUE', Arduino.ORDER_ATOMIC);
   
   // 添加CS引脚初始化代码到setup
-  generator.addSetup('pinMode_' + csPin, 'pinMode(' + csPin + ', OUTPUT);');
-  generator.addSetup('digitalWrite_' + csPin, 'digitalWrite(' + csPin + ', HIGH);');
+  generator.addSetupBegin('pinMode_' + csPin, 'pinMode(' + csPin + ', OUTPUT);');
+  generator.addSetupBegin('digitalWrite_' + csPin, 'digitalWrite(' + csPin + ', HIGH);');
   
   var functionName = 'writeRegister';
   var functionCode = 'void ' + functionName + '(int csPin, byte reg, byte value) {\n' +
@@ -156,8 +156,8 @@ Arduino.forBlock['spi_read_register'] = function(block, generator) {
   var register = generator.valueToCode(block, 'REGISTER', Arduino.ORDER_ATOMIC);
   
   // 添加CS引脚初始化代码到setup
-  generator.addSetup('pinMode_' + csPin, 'pinMode(' + csPin + ', OUTPUT);');
-  generator.addSetup('digitalWrite_' + csPin, 'digitalWrite(' + csPin + ', HIGH);');
+  generator.addSetupBegin('pinMode_' + csPin, 'pinMode(' + csPin + ', OUTPUT);');
+  generator.addSetupBegin('digitalWrite_' + csPin, 'digitalWrite(' + csPin + ', HIGH);');
   
   var functionName = 'readRegister';
   var functionCode = 'byte ' + functionName + '(int csPin, byte reg) {\n' +
@@ -183,8 +183,8 @@ Arduino.forBlock['spi_read_registers'] = function(block, generator) {
   var arrayName = block.getFieldValue('ARRAY_NAME');
   
   // 添加CS引脚初始化代码到setup
-  generator.addSetup('pinMode_' + csPin, 'pinMode(' + csPin + ', OUTPUT);');
-  generator.addSetup('digitalWrite_' + csPin, 'digitalWrite(' + csPin + ', HIGH);');
+  generator.addSetupBegin('pinMode_' + csPin, 'pinMode(' + csPin + ', OUTPUT);');
+  generator.addSetupBegin('digitalWrite_' + csPin, 'digitalWrite(' + csPin + ', HIGH);');
   
   // 添加数组变量声明
   generator.addVariable('byte ' + arrayName + '[' + count + ']', 'byte ' + arrayName + '[' + count + '];');
@@ -211,9 +211,9 @@ Arduino.forBlock['spi_sensor_read'] = function(block, generator) {
   var sensorType = block.getFieldValue('SENSOR_TYPE');
   
   // 添加SPI初始化和CS引脚初始化代码到setup
-  generator.addSetup('spi_begin', 'SPI.begin();');
-  generator.addSetup('pinMode_' + csPin, 'pinMode(' + csPin + ', OUTPUT);');
-  generator.addSetup('digitalWrite_' + csPin, 'digitalWrite(' + csPin + ', HIGH);');
+  generator.addSetupBegin('spi_begin', 'SPI.begin();');
+  generator.addSetupBegin('pinMode_' + csPin, 'pinMode(' + csPin + ', OUTPUT);');
+  generator.addSetupBegin('digitalWrite_' + csPin, 'digitalWrite(' + csPin + ', HIGH);');
   
   var functionName;
   var functionCode;
@@ -253,9 +253,9 @@ Arduino.forBlock['spi_digital_pot_simple'] = function(block, generator) {
   var value = generator.valueToCode(block, 'VALUE', Arduino.ORDER_ATOMIC);
   
   // 添加SPI初始化和CS引脚初始化代码到setup
-  generator.addSetup('spi_begin', 'SPI.begin();');
-  generator.addSetup('pinMode_' + csPin, 'pinMode(' + csPin + ', OUTPUT);');
-  generator.addSetup('digitalWrite_' + csPin, 'digitalWrite(' + csPin + ', HIGH);');
+  generator.addSetupBegin('spi_begin', 'SPI.begin();');
+  generator.addSetupBegin('pinMode_' + csPin, 'pinMode(' + csPin + ', OUTPUT);');
+  generator.addSetupBegin('digitalWrite_' + csPin, 'digitalWrite(' + csPin + ', HIGH);');
   
   var functionName = 'setDigitalPotValue';
   var functionCode = 'void ' + functionName + '(int csPin, int value) {\n' +

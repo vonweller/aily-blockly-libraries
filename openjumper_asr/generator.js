@@ -7,7 +7,7 @@ Arduino.forBlock['openjumper_asr_init'] = function(block, generator) {
   
   generator.addVariable('ASR', 'OJASR asr(' + rxPin + ', ' + txPin + ');');
   
-  generator.addSetup('ASR_begin', 'asr.begin(115200);\n');
+  generator.addSetupBegin('ASR_begin', 'asr.begin(115200);\n');
   
   return '';
 };

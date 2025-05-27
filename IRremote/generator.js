@@ -4,7 +4,7 @@ Arduino.forBlock['QuickTesting'] = function (block, generator) {
 
   generator.addLibrary('MARK_EXCESS_MICROS', '#define MARK_EXCESS_MICROS    20');
   generator.addLibrary('#include <IRremote.hpp>', '#include <IRremote.hpp>');
-  generator.addSetup(irpin +'irqkbegin','Serial.begin(115200);\n  while(!Serial)\n   ;\n  IrReceiver.begin('+ irpin +', ENABLE_LED_FEEDBACK);');
+  generator.addSetupBegin(irpin +'irqkbegin','Serial.begin(115200);\n  while(!Serial)\n   ;\n  IrReceiver.begin('+ irpin +', ENABLE_LED_FEEDBACK);');
   var code = 'if(IrReceiver.decode()) {\n  IrReceiver.printIRResultShort(&Serial);\n  IrReceiver.resume();\n}'
   return code;
 };
@@ -14,7 +14,7 @@ Arduino.forBlock['irrecv_begin_in'] = function (block, generator) {
   
   generator.addLibrary('MARK_EXCESS_MICROS', '#define MARK_EXCESS_MICROS    20');
   generator.addLibrary('#include <IRremote.hpp>', '#include <IRremote.hpp>');
-  generator.addSetup(irpinin + 'irqkbegin','IrReceiver.begin('+ irpinin +', ENABLE_LED_FEEDBACK);');
+  generator.addSetupBegin(irpinin + 'irqkbegin','IrReceiver.begin('+ irpinin +', ENABLE_LED_FEEDBACK);');
   return '';
 };
 
@@ -22,7 +22,7 @@ Arduino.forBlock['irrecv_begin_out'] = function (block, generator) {
   var irpinout = block.getFieldValue('IRPINOUT');
   
   generator.addLibrary('#include <IRremote.hpp>', '#include <IRremote.hpp>');
-  generator.addSetup(irpinout + 'irbeginout','IrReceiver.begin('+ irpinout +');');
+  generator.addSetupBegin(irpinout + 'irbeginout','IrReceiver.begin('+ irpinout +');');
   return '';
 };
 

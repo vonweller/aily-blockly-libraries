@@ -42,7 +42,7 @@ Arduino.forBlock["io_attach_interrupt"] = function (block, generator) {
         }
     }
 
-    generator.addSetup(`attachInterrupt_${pin}`,
+    generator.addSetupBegin(`attachInterrupt_${pin}`,
         `attachInterrupt(digitalPinToInterrupt(${pin}), ${funcName}, ${mode});`);
 
     return ""; // No code generated in the main loop
@@ -50,7 +50,7 @@ Arduino.forBlock["io_attach_interrupt"] = function (block, generator) {
 
 Arduino.forBlock["io_detach_interrupt"] = function (block, generator) {
     const pin = block.getFieldValue("PIN");
-    generator.addLoop(`detachInterrupt_${pin}`,
+    generator.addLoopEnd(`detachInterrupt_${pin}`,
         `detachInterrupt(digitalPinToInterrupt(${pin}));`);
     return ""; // No code generated in the main loop
 }

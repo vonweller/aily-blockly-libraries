@@ -19,10 +19,10 @@ Arduino.forBlock['bme280_init'] = function(block, generator) {
   var address = block.getFieldValue('ADDRESS') || 'BME280_ADDRESS';
   
   // 自动添加Serial初始化以打印错误信息
-  generator.addSetup('serial_begin', 'Serial.begin(9600);');
+  generator.addSetupBegin('serial_begin', 'Serial.begin(9600);');
   
   // 在setup中添加初始化代码
-  generator.addSetup('bme280_begin', 'if (!bme.begin(' + address + ')) {\n  Serial.println("Could not find a valid BME280 sensor, check wiring!");\n  while (1);\n}\n');
+  generator.addSetupBegin('bme280_begin', 'if (!bme.begin(' + address + ')) {\n  Serial.println("Could not find a valid BME280 sensor, check wiring!");\n  while (1);\n}\n');
   
   return '';
 };
@@ -77,7 +77,7 @@ Arduino.forBlock['bme280_set_sampling'] = function(block, generator) {
 // 简化块：读取并打印所有BME280传感器数据
 Arduino.forBlock['bme280_read_and_print_all'] = function(block, generator) {
   // 确保已经初始化了Serial
-  generator.addSetup('serial_begin', 'Serial.begin(9600);');
+  generator.addSetupBegin('serial_begin', 'Serial.begin(9600);');
   
   // 读取并打印所有传感器数据的代码
   var code = 'Serial.print("Temperature: ");\n';

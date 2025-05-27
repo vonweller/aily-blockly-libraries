@@ -6,7 +6,7 @@
 Arduino.forBlock['iicmd_init'] = function(block, generator) {
   generator.addLibrary('OpenJumperIICMotorDriver', '#include <Openjumper_IICMotorDriver.h>');  
   generator.addVariable('IICMD', 'Openjumper_IICMotorDriver pwm = Openjumper_IICMotorDriver();'); 
-  generator.addSetup('I2CMDbeing', 'pwm.begin();');
+  generator.addSetupBegin('I2CMDbeing', 'pwm.begin();');
   
   return '';
 };

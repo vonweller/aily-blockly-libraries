@@ -2,7 +2,7 @@ Arduino.forBlock['mlx90614_begin'] = function(block, generator) {
   generator.addLibrary('MLX90614', '#include <Adafruit_MLX90614.h>');
   generator.addVariable('mlx90614', 'Adafruit_MLX90614 mlx;');
   
-  generator.addSetup('mlx_begin', 'mlx.begin();');
+  generator.addSetupBegin('mlx_begin', 'mlx.begin();');
   return '';
 };
 

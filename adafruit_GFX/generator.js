@@ -13,17 +13,17 @@ Arduino.forBlock['tft_init'] = function(block, generator) {
     generator.addLibrary('Adafruit_ST7796S', '#include <Adafruit_ST7796S.h>');
     generator.addLibrary('Adafruit_GFX', '#include <Adafruit_GFX.h>');
     generator.addObject('tft', 'Adafruit_ST7796S tft = Adafruit_ST7796S('+cs+', '+dc+', '+rst+');');
-    generator.addSetup('tft_init', 'tft.init('+ (width || 'ST7796S_TFTWIDTH') +', '+ (height || 'ST7796S_TFTHEIGHT') +');');
+    generator.addSetupBegin('tft_init', 'tft.init('+ (width || 'ST7796S_TFTWIDTH') +', '+ (height || 'ST7796S_TFTHEIGHT') +');');
   } else if(model === 'ST7789') {
     generator.addLibrary('Adafruit_ST7789', '#include <Adafruit_ST7789.h>');
     generator.addLibrary('Adafruit_GFX', '#include <Adafruit_GFX.h>');
     generator.addObject('tft', 'Adafruit_ST7789 tft = Adafruit_ST7789('+cs+', '+dc+', '+rst+');');
-    generator.addSetup('tft_init', 'tft.init('+ (width || 240) +', '+ (height || 320) +');');
+    generator.addSetupBegin('tft_init', 'tft.init('+ (width || 240) +', '+ (height || 320) +');');
   } else {
     generator.addLibrary('Adafruit_ST7735', '#include <Adafruit_ST7735.h>');
     generator.addLibrary('Adafruit_GFX', '#include <Adafruit_GFX.h>');
     generator.addObject('tft', 'Adafruit_ST7735 tft = Adafruit_ST7735('+cs+', '+dc+', '+rst+');');
-    generator.addSetup('tft_init', 'tft.initR(INITR_BLACKTAB);');
+    generator.addSetupBegin('tft_init', 'tft.initR(INITR_BLACKTAB);');
   }
   return '';
 };
@@ -179,7 +179,7 @@ Arduino.forBlock['tft_get_buffer'] = function(block, generator) {
 Arduino.forBlock['sd_begin'] = function(block, generator) {
   var pin = generator.valueToCode(block, 'PIN', Arduino.ORDER_ATOMIC) || block.getFieldValue('CS_PIN') || '10';
   generator.addLibrary('SD', '#include <SD.h>');
-  generator.addSetup('sd_begin', 'SD.begin(' + pin + ');');
+  generator.addSetupBegin('sd_begin', 'SD.begin(' + pin + ');');
   return '';
 };
 Arduino.forBlock['sd_open'] = function(block, generator) {
@@ -191,7 +191,7 @@ Arduino.forBlock['sd_open'] = function(block, generator) {
 
 // 其他硬件和按钮
 Arduino.forBlock['tft_begin'] = function(block, generator) {
-  generator.addSetup('tft_begin', 'tft.begin();');
+  generator.addSetupBegin('tft_begin', 'tft.begin();');
   return '';
 };
 Arduino.forBlock['tft_get_version'] = function(block) {

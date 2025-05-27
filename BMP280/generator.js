@@ -3,10 +3,10 @@ Arduino.forBlock['bmp280_init'] = function(block, generator) {
     
     generator.addLibrary('BMP280_INCLUDE', '#include <Adafruit_BMP280.h>');
     generator.addObject('BMP280_OBJECT', 'Adafruit_BMP280 bmp;');
-    generator.addSetup('BMP280_SETUP', 'if (!bmp.begin(' + address + ')) {\n  Serial.println("Could not find a valid BMP280 sensor, check wiring!");\n  while (1);\n}\n');
+    generator.addSetupBegin('BMP280_SETUP', 'if (!bmp.begin(' + address + ')) {\n  Serial.println("Could not find a valid BMP280 sensor, check wiring!");\n  while (1);\n}\n');
     
     // 添加I2C初始化
-    generator.addSetup('WIRE_BEGIN', 'Wire.begin();');
+    generator.addSetupBegin('WIRE_BEGIN', 'Wire.begin();');
     generator.addLibrary('WIRE_INCLUDE', '#include <Wire.h>');
     
     return '';

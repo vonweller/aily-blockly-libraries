@@ -1,23 +1,25 @@
 [
     {
         "type": "blinker_init_wifi",
-        "message0": "初始化Blinker WiFi 密钥%1 WiFi名称%2 WiFi密码%3",
+        "message0": "初始化Blinker WiFi模式 %1",
         "args0": [
             {
-                "type": "field_input",
-                "name": "AUTH",
-                "text": ""
-            },
-            {
-                "type": "field_input",
-                "name": "SSID",
-                "text": ""
-            },
-            {
-                "type": "field_input",
-                "name": "PSWD",
-                "text": ""
+                "type": "field_dropdown",
+                "name": "MODE",
+                "options": [
+                    [
+                        "手动配网",
+                        "手动配网"
+                    ],
+                    [
+                        "EspTouch V2",
+                        "EspTouchV2"
+                    ]
+                ]
             }
+        ],
+        "extensions": [
+            "blinker_init_wifi_extension"
         ],
         "previousStatement": null,
         "nextStatement": null,
@@ -26,240 +28,203 @@
     },
     {
         "type": "blinker_init_ble",
-        "message0": "初始化Blinker BLE",
+        "message0": "初始化Blinker BLE模式",
         "previousStatement": null,
         "nextStatement": null,
         "colour": "#03A9F4"
     },
     {
         "type": "blinker_debug_init",
-        "message0": "初始化Blinker调试 速率 %1 级别 %2",
+        "message0": "初始化Blinker调试 串口 %1 速率 %2",
         "args0": [
+            {
+                "type": "field_dropdown",
+                "name": "SERIAL",
+                "options": "${board.serialPort}"
+            },
             {
                 "type": "field_dropdown",
                 "name": "SPEED",
-                "options": [
-                    [
-                        "9600",
-                        "9600"
-                    ],
-                    [
-                        "19200",
-                        "19200"
-                    ],
-                    [
-                        "38400",
-                        "38400"
-                    ],
-                    [
-                        "57600",
-                        "57600"
-                    ],
-                    [
-                        "115200",
-                        "115200"
-                    ]
-                ]
-            },
+                "options": "${board.serialSpeed}"
+            }
+        ],
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#03A9F4",
+        "inputsInline": true
+    },
+    {
+        "type": "blinker_button",
+        "message0": "按键 键名 %1 按下执行",
+        "args0": [
+            {
+                "type": "field_input",
+                "name": "KEY",
+                "text": "btn-"
+            }
+        ],
+        "message1": "%1",
+        "args1": [
+            {
+                "type": "input_statement",
+                "name": "NAME"
+            }
+        ],
+        "colour": "#03A9F4",
+        "inputsInline": false
+    },
+    {
+        "type": "blinker_button_state",
+        "message0": "当前按键动作为%1",
+        "args0": [
             {
                 "type": "field_dropdown",
-                "name": "LEVEL",
+                "name": "STATE",
                 "options": [
                     [
-                        "默认",
-                        ""
+                        "tap",
+                        "tap"
                     ],
                     [
-                        "全部",
-                        "ALL"
+                        "on",
+                        "on"
+                    ],
+                    [
+                        "off",
+                        "off"
+                    ],
+                    [
+                        "press",
+                        "press"
+                    ],
+                    [
+                        "pressup",
+                        "pressup"
                     ]
                 ]
             }
         ],
-        "previousStatement": null,
-        "nextStatement": null,
         "colour": "#03A9F4",
-        "inputsInline": true
+        "inputsInline": false,
+        "output": "Boolean"
     },
     {
-        "type": "blinker_create_button",
-        "message0": "创建按钮组件 %1 名称 %2",
+        "type": "blinker_slider",
+        "message0": "滑块 键名 %1 滑动改变执行",
         "args0": [
             {
-                "type": "field_variable",
-                "name": "BUTTON",
-                "variable": "Button1",
-                "variableTypes": [
-                    "BlinkerButton"
-                ],
-                "defaultType": "BlinkerButton"
-            },
-            {
-                "type": "input_value",
-                "name": "NAME",
-                "check": "String"
+                "type": "field_input",
+                "name": "KEY",
+                "text": "ran-"
             }
         ],
-        "previousStatement": null,
-        "nextStatement": null,
-        "colour": "#03A9F4",
-        "inputsInline": true
-    },
-    {
-        "type": "blinker_create_number",
-        "message0": "创建数字组件 %1 名称 %2",
-        "args0": [
-            {
-                "type": "field_variable",
-                "name": "NUMBER",
-                "variable": "Number1",
-                "variableTypes": [
-                    "BlinkerNumber"
-                ],
-                "defaultType": "BlinkerNumber"
-            },
-            {
-                "type": "input_value",
-                "name": "NAME",
-                "check": "String"
-            }
-        ],
-        "previousStatement": null,
-        "nextStatement": null,
-        "colour": "#03A9F4",
-        "inputsInline": true
-    },
-    {
-        "type": "blinker_button_callback",
-        "message0": "按钮 %1 回调函数 %2 状态 %3 %4",
-        "args0": [
-            {
-                "type": "field_variable",
-                "name": "BUTTON",
-                "variable": "Button1",
-                "variableTypes": [
-                    "BlinkerButton"
-                ],
-                "defaultType": "BlinkerButton"
-            },
-            {
-                "type": "input_dummy"
-            },
-            {
-                "type": "field_variable",
-                "name": "STATE",
-                "variable": "state"
-            },
+        "message1": "%1",
+        "args1": [
             {
                 "type": "input_statement",
-                "name": "CALLBACK"
+                "name": "NAME"
             }
         ],
         "colour": "#03A9F4",
-        "previousStatement": null,
-        "nextStatement": null
+        "inputsInline": false
     },
     {
-        "type": "blinker_data_read",
-        "message0": "数据读取回调函数 %1 数据 %2 %3",
+        "type": "blinker_slider_value",
+        "message0": "当前滑块值",
+        "args0": [],
+        "colour": "#03A9F4",
+        "inputsInline": false,
+        "output": "Number"
+    },
+    {
+        "type": "blinker_colorpicker",
+        "message0": "调色 键名 %1 滑动改变执行",
         "args0": [
             {
-                "type": "input_dummy"
-            },
-            {
-                "type": "field_variable",
-                "name": "DATA",
-                "variable": "data"
-            },
+                "type": "field_input",
+                "name": "KEY",
+                "text": "col-"
+            }
+        ],
+        "message1": "%1",
+        "args1": [
             {
                 "type": "input_statement",
-                "name": "CALLBACK"
+                "name": "NAME"
             }
         ],
         "colour": "#03A9F4",
-        "previousStatement": null,
-        "nextStatement": null
+        "inputsInline": false
     },
     {
-        "type": "blinker_button_print",
-        "message0": "发送按钮 %1 图标 %2 颜色 %3 文字 %4 状态 %5",
+        "type": "blinker_colorpicker_value",
+        "message0": "当前设定的颜色 %1",
         "args0": [
             {
-                "type": "field_variable",
-                "name": "BUTTON",
-                "variable": "Button1",
-                "variableTypes": [
-                    "BlinkerButton"
-                ],
-                "defaultType": "BlinkerButton"
-            },
-            {
-                "type": "input_value",
-                "name": "ICON",
-                "check": "String"
-            },
-            {
-                "type": "input_value",
-                "name": "COLOR",
-                "check": "String"
-            },
-            {
-                "type": "input_value",
-                "name": "TEXT",
-                "check": "String"
-            },
-            {
-                "type": "input_value",
-                "name": "STATE",
-                "check": [
-                    "String",
-                    "Boolean"
+                "type": "field_dropdown",
+                "name": "KEY",
+                "options": [
+                    [
+                        "R",
+                        "R"
+                    ],
+                    [
+                        "G",
+                        "G"
+                    ],
+                    [
+                        "B",
+                        "B"
+                    ]
                 ]
             }
         ],
-        "previousStatement": null,
-        "nextStatement": null,
+        "colour": "#03A9F4",
+        "inputsInline": false,
+        "output": "Number"
+    },
+    {
+        "type": "blinker_joystick",
+        "message0": "摇杆 键名 %1 摇杆改变执行",
+        "args0": [
+            {
+                "type": "field_input",
+                "name": "KEY",
+                "text": "joy-"
+            }
+        ],
+        "message1": "%1",
+        "args1": [
+            {
+                "type": "input_statement",
+                "name": "NAME"
+            }
+        ],
         "colour": "#03A9F4",
         "inputsInline": false
     },
     {
-        "type": "blinker_number_print",
-        "message0": "发送数字 %1 图标 %2 颜色 %3 单位 %4 数值 %5",
+        "type": "blinker_joystick_value",
+        "message0": "当前摇杆坐标 %1",
         "args0": [
             {
-                "type": "field_variable",
-                "name": "NUMBER",
-                "variable": "Number1",
-                "variableTypes": [
-                    "BlinkerNumber"
-                ],
-                "defaultType": "BlinkerNumber"
-            },
-            {
-                "type": "input_value",
-                "name": "ICON",
-                "check": "String"
-            },
-            {
-                "type": "input_value",
-                "name": "COLOR",
-                "check": "String"
-            },
-            {
-                "type": "input_value",
-                "name": "UNIT",
-                "check": "String"
-            },
-            {
-                "type": "input_value",
-                "name": "VALUE",
-                "check": "Number"
+                "type": "field_dropdown",
+                "name": "KEY",
+                "options": [
+                    [
+                        "X",
+                        "X"
+                    ],
+                    [
+                        "Y",
+                        "Y"
+                    ]
+                ]
             }
         ],
-        "previousStatement": null,
-        "nextStatement": null,
         "colour": "#03A9F4",
-        "inputsInline": false
+        "inputsInline": false,
+        "output": "Number"
     },
     {
         "type": "blinker_print",
@@ -302,125 +267,130 @@
         "colour": "#03A9F4"
     },
     {
-        "type": "blinker_button_state",
-        "message0": "%1",
+        "type": "blinker_print",
+        "message0": "Blinker发送 %1",
         "args0": [
             {
-                "type": "field_dropdown",
-                "name": "STATE",
-                "options": [
-                    [
-                        "按下",
-                        "BLINKER_CMD_BUTTON_TAP"
-                    ],
-                    [
-                        "长按",
-                        "BLINKER_CMD_BUTTON_PRESSED"
-                    ],
-                    [
-                        "释放",
-                        "BLINKER_CMD_BUTTON_RELEASED"
-                    ],
-                    [
-                        "打开",
-                        "BLINKER_CMD_ON"
-                    ],
-                    [
-                        "关闭",
-                        "BLINKER_CMD_OFF"
-                    ]
-                ]
-            }
-        ],
-        "output": "String",
-        "colour": "#03A9F4"
-    },
-    {
-        "type": "blinker_attach_data_callback",
-        "message0": "设置数据接收回调 %1",
-        "args0": [
-            {
-                "type": "field_variable",
-                "name": "CALLBACK",
-                "variable": "dataRead",
-                "variableTypes": [
-                    ""
-                ]
+                "type": "input_value",
+                "name": "TEXT",
+                "check": "String"
             }
         ],
         "previousStatement": null,
         "nextStatement": null,
+        "colour": "#03A9F4"
+    },
+    {
+        "type": "blinker_object_print",
+        "message0": "组件反馈 名称 %1 %2",
+        "args0": [
+            {
+                "type": "field_input",
+                "name": "WIDGET"
+            },
+            {
+                "type": "input_value",
+                "name": "MORE"
+            }
+        ],
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#03A9F4"
+    },
+    {
+        "type": "blinker_state",
+        "message0": "状态 %1 %2",
+        "args0": [
+            {
+                "type": "field_input",
+                "name": "STATE"
+            },
+            {
+                "type": "input_value",
+                "name": "MORE"
+            }
+        ],
         "colour": "#03A9F4",
+        "output": null,
+        "inputsInline": false
+    },
+    {
+        "type": "blinker_icon",
+        "message0": "图标 %1 %2",
+        "args0": [
+            {
+                "type": "field_input",
+                "name": "ICON",
+                "check": "String"
+            },
+            {
+                "type": "input_value",
+                "name": "MORE"
+            }
+        ],
+        "colour": "#03A9F4",
+        "output": null,
+        "inputsInline": false
+    },
+    {
+        "type": "blinker_color",
+        "message0": "颜色 %1 %2",
+        "args0": [
+            {
+                "type": "field_input",
+                "name": "COLOR",
+                "check": "String"
+            },
+            {
+                "type": "input_value",
+                "name": "MORE"
+            }
+        ],
+        "colour": "#03A9F4",
+        "output": null,
+        "inputsInline": false
+    },
+    {
+        "type": "blinker_text",
+        "message0": "文本 %1 链接 %2",
+        "args0": [
+            {
+                "type": "input_value",
+                "name": "TEXT"
+            },
+            {
+                "type": "input_value",
+                "name": "MORE",
+                "check": null
+            }
+        ],
+        "colour": "#03A9F4",
+        "output": null,
         "inputsInline": true
     },
     {
-        "type": "blinker_data_callback_function",
-        "message0": "数据接收回调函数 %1 %2",
+        "type": "blinker_value",
+        "message0": "数值 %1 %2",
         "args0": [
             {
-                "type": "field_variable",
-                "name": "CALLBACK",
-                "variable": "dataRead"
+                "type": "field_input",
+                "name": "TEXT",
+                "check": "String"
             },
             {
-                "type": "input_statement",
-                "name": "STATEMENTS"
+                "type": "input_value",
+                "name": "MORE"
             }
         ],
         "colour": "#03A9F4",
-        "previousStatement": null,
-        "nextStatement": null
+        "output": null,
+        "inputsInline": false
     },
     {
-        "type": "blinker_button_callback_function",
-        "message0": "按钮回调函数 %1 %2",
-        "args0": [
-            {
-                "type": "field_variable",
-                "name": "CALLBACK",
-                "variable": "button1_callback"
-            },
-            {
-                "type": "input_statement",
-                "name": "STATEMENTS"
-            }
-        ],
-        "colour": "#03A9F4",
+        "type": "blinker_reset",
+        "message0": "Blinker重置设备",
         "previousStatement": null,
-        "nextStatement": null
-    },
-    {
-        "type": "blinker_get_button_state",
-        "message0": "按钮状态 %1",
-        "args0": [
-            {
-                "type": "field_dropdown",
-                "name": "STATE",
-                "options": [
-                    [
-                        "按下",
-                        "BLINKER_CMD_BUTTON_TAP"
-                    ],
-                    [
-                        "长按",
-                        "BLINKER_CMD_BUTTON_PRESSED"
-                    ],
-                    [
-                        "释放",
-                        "BLINKER_CMD_BUTTON_RELEASED"
-                    ],
-                    [
-                        "打开",
-                        "BLINKER_CMD_ON"
-                    ],
-                    [
-                        "关闭",
-                        "BLINKER_CMD_OFF"
-                    ]
-                ]
-            }
-        ],
-        "output": "Boolean",
+        "nextStatement": null,
         "colour": "#03A9F4"
     }
 ]

@@ -12,7 +12,7 @@ Arduino.forBlock['tcs34725_init'] = function (block, generator) {
 
   generator.addVariable('Adafruit_TCS34725 ' + variable_tcs, 'Adafruit_TCS34725 ' + variable_tcs + '= Adafruit_TCS34725(TCS34725_INTEGRATIONTIME_50MS, TCS34725_GAIN_4X);\n');
   generator.addObject('TCS34725', 'float red, green, blue;');
-  generator.addSetup('TCS34725', variable_tcs + '.begin();', true);
+  generator.addSetupBegin('TCS34725', variable_tcs + '.begin();', true);
   return '';
 };
 

@@ -31,7 +31,7 @@ Arduino.forBlock['fastled_init'] = function (block, generator) {
     code = `FastLED.addLeds<${type}, DATA_PIN_${dataPin}, RGB>(${strip}, NUM_LEDS_${dataPin});`;
   }
 
-  // generator.addSetup(`FastLED.init_${strip}`, code + '\n');
+  // generator.addSetupBegin(`FastLED.init_${strip}`, code + '\n');
   return code + '\n';
 };
 
