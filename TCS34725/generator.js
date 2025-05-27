@@ -1,7 +1,7 @@
 function getVariableName(block) {
   const variableField = block.getField('TCS34725NAME');
   const variableModel = variableField.getVariable();
-  console.log("name: ", variableModel.name);
+  // console.log("name: ", variableModel.name);
   return variableModel.name;
 }
 

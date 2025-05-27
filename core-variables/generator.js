@@ -501,8 +501,7 @@ Arduino.forBlock["variables_get"] = function (block, generator) {
   const { name: code, type } = block.workspace.getVariableById(
     block.getFieldValue("VAR"),
   );
-
-  console.log("name: ", code);
+  // console.log("name: ", code);
   // setLibraryVariable(type, code);
   return [code, Arduino.ORDER_ATOMIC];
 };

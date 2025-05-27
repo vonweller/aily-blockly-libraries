@@ -1,7 +1,7 @@
 function getVariableName(block) {
   const variableField = block.getField('ENCODER');
   const variableModel = variableField.getVariable();
-  console.log("name: ", variableModel.name);
+  // console.log("name: ", variableModel.name);
   return variableModel.name;
 }
 

@@ -227,25 +227,6 @@
         "output": "Number"
     },
     {
-        "type": "blinker_print",
-        "message0": "Blinker发送 %1 值 %2",
-        "args0": [
-            {
-                "type": "input_value",
-                "name": "KEY",
-                "check": "String"
-            },
-            {
-                "type": "input_value",
-                "name": "VALUE"
-            }
-        ],
-        "previousStatement": null,
-        "nextStatement": null,
-        "colour": "#03A9F4",
-        "inputsInline": true
-    },
-    {
         "type": "blinker_log",
         "message0": "Blinker日志 %1",
         "args0": [
@@ -281,6 +262,78 @@
         "colour": "#03A9F4"
     },
     {
+        "type": "blinker_state",
+        "message0": "状态 %1",
+        "args0": [
+            {
+                "type": "input_value",
+                "name": "STATE"
+            }
+        ],
+        "colour": "#03A9F4",
+        "output": "Object",
+        "inputsInline": true
+    },
+    {
+        "type": "blinker_icon",
+        "message0": "图标 %1",
+        "args0": [
+            {
+                "type": "input_value",
+                "name": "ICON"
+            }
+        ],
+        "colour": "#03A9F4",
+        "output": "Object",
+        "inputsInline": true
+    },
+    {
+        "type": "blinker_color",
+        "message0": "颜色 %1",
+        "args0": [
+            {
+                "type": "input_value",
+                "name": "COLOR"
+            }
+        ],
+        "colour": "#03A9F4",
+        "output": "Object",
+        "inputsInline": true
+    },
+    {
+        "type": "blinker_text",
+        "message0": "文本 %1",
+        "args0": [
+            {
+                "type": "input_value",
+                "name": "TEXT"
+            }
+        ],
+        "colour": "#03A9F4",
+        "output": "Object",
+        "inputsInline": true
+    },
+    {
+        "type": "blinker_value",
+        "message0": "数值 %1",
+        "args0": [
+            {
+                "type": "input_value",
+                "name": "VALUE"
+            }
+        ],
+        "colour": "#03A9F4",
+        "output": "Object",
+        "inputsInline": true
+    },
+    {
+        "type": "blinker_reset",
+        "message0": "Blinker重置设备",
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#03A9F4"
+    },
+    {
         "type": "blinker_object_print",
         "message0": "组件反馈 名称 %1 %2",
         "args0": [
@@ -290,110 +343,27 @@
             },
             {
                 "type": "input_value",
-                "name": "MORE"
+                "name": "INPUT0",
+                "check": "Object"
             }
         ],
+        "message1": "%1",
+        "args1": [
+            {
+                "type": "input_value",
+                "name": "INPUT1",
+                "check": "Object"
+            }
+        ],
+        "inputsInline": false,
         "previousStatement": null,
         "nextStatement": null,
-        "colour": "#03A9F4",
+        "tooltip": "blinker组件反馈",
+        "helpUrl": "",
+        "colour": "#0069b7",
+        "mutator": "custom_dynamic_mutator",
         "extensions": [
-            "dynamic_connections"
+            "custom_dynamic_extension"
         ]
-    },
-    {
-        "type": "blinker_state",
-        "message0": "状态 %1 %2",
-        "args0": [
-            {
-                "type": "field_input",
-                "name": "STATE"
-            },
-            {
-                "type": "input_value",
-                "name": "MORE"
-            }
-        ],
-        "colour": "#03A9F4",
-        "output": null,
-        "inputsInline": false
-    },
-    {
-        "type": "blinker_icon",
-        "message0": "图标 %1 %2",
-        "args0": [
-            {
-                "type": "field_input",
-                "name": "ICON",
-                "check": "String"
-            },
-            {
-                "type": "input_value",
-                "name": "MORE"
-            }
-        ],
-        "colour": "#03A9F4",
-        "output": null,
-        "inputsInline": false
-    },
-    {
-        "type": "blinker_color",
-        "message0": "颜色 %1 %2",
-        "args0": [
-            {
-                "type": "field_input",
-                "name": "COLOR",
-                "check": "String"
-            },
-            {
-                "type": "input_value",
-                "name": "MORE"
-            }
-        ],
-        "colour": "#03A9F4",
-        "output": null,
-        "inputsInline": false
-    },
-    {
-        "type": "blinker_text",
-        "message0": "文本 %1 链接 %2",
-        "args0": [
-            {
-                "type": "input_value",
-                "name": "TEXT"
-            },
-            {
-                "type": "input_value",
-                "name": "MORE",
-                "check": null
-            }
-        ],
-        "colour": "#03A9F4",
-        "output": null,
-        "inputsInline": true
-    },
-    {
-        "type": "blinker_value",
-        "message0": "数值 %1 %2",
-        "args0": [
-            {
-                "type": "field_input",
-                "name": "TEXT",
-                "check": "String"
-            },
-            {
-                "type": "input_value",
-                "name": "MORE"
-            }
-        ],
-        "colour": "#03A9F4",
-        "output": null,
-        "inputsInline": false
-    },
-    {
-        "type": "blinker_reset",
-        "message0": "Blinker重置设备",
-        "previousStatement": null,
-        "nextStatement": null,
-        "colour": "#03A9F4"
     }
 ]

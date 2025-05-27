@@ -1,445 +1,531 @@
 // 检查并移除已存在的扩展注册
 if (Blockly.Extensions.isRegistered('blinker_init_wifi_extension')) {
-    Blockly.Extensions.unregister('blinker_init_wifi_extension');
+  Blockly.Extensions.unregister('blinker_init_wifi_extension');
 }
 
 Blockly.Extensions.register('blinker_init_wifi_extension', function () {
-    // 直接在扩展中添加updateShape_函数
-    this.updateShape_ = function (configType) {
-        // 先移除消息1和消息2
-        if (this.getInput('MESSAGE1')) {
-            this.removeInput('MESSAGE1');
-        }
-        if (this.getInput('MESSAGE2')) {
-            this.removeInput('MESSAGE2');
-        }
+  // 直接在扩展中添加updateShape_函数
+  this.updateShape_ = function (configType) {
+    // 先移除消息1和消息2
+    if (this.getInput('MESSAGE1')) {
+      this.removeInput('MESSAGE1');
+    }
+    if (this.getInput('MESSAGE2')) {
+      this.removeInput('MESSAGE2');
+    }
 
-        // 如果是手动配网，添加密钥和WiFi配置字段
-        if (configType !== 'EspTouchV2') {
-            this.appendDummyInput('MESSAGE1')
-                .appendField("密钥")
-                .appendField(new Blockly.FieldTextInput(""), "AUTH");
+    // 如果是手动配网，添加密钥和WiFi配置字段
+    if (configType !== 'EspTouchV2') {
+      this.appendDummyInput('MESSAGE1')
+        .appendField("密钥")
+        .appendField(new Blockly.FieldTextInput(""), "AUTH");
 
-            this.appendDummyInput('MESSAGE2')
-                .appendField("WiFi名称")
-                .appendField(new Blockly.FieldTextInput(""), "SSID")
-                .appendField("WiFi密码")
-                .appendField(new Blockly.FieldTextInput(""), "PSWD");
-        }
-    };
-
-    // 监听MODE字段的变化
-    this.getField('MODE').setValidator(function (option) {
-        this.getSourceBlock().updateShape_(option);
-        return option;
-    });
-
-    this.updateShape_(this.getFieldValue('MODE'));
-});
-
-
-if (Blockly.Extensions.isRegistered('dynamic_connections')) {
-    Blockly.Extensions.unregister('dynamic_connections');
-}
-
-Blockly.Extensions.register('dynamic_connections', function () {
-    const originalInit = this.init;
-  
-  /**
-   * Override the init function to add dynamic connection handling.
-   * @this {Blockly.Block}
-   */
-  this.init = function() {
-    // Call the original init
-    originalInit.call(this);
-    
-    // Initialize connection points array if not already done
-    this.dynamicConnections = this.dynamicConnections || [];
-    
-    // Set up mutation observer
-    this.setOnChange(function(changeEvent) {
-      if (changeEvent.type === Blockly.Events.BLOCK_CHANGE || 
-          changeEvent.type === Blockly.Events.BLOCK_MOVE) {
-        this.updateDynamicConnections();
-      }
-    });
-    
-    // Initial update of connections
-    this.updateDynamicConnections();
-  };
-  
-  /**
-   * Updates the dynamic connections based on the block's current state.
-   * @this {Blockly.Block}
-   */
-  this.updateDynamicConnections = function() {
-    // Clear existing dynamic connections
-    this.removeExistingDynamicConnections();
-    
-    // Create new connections based on current state
-    this.createDynamicConnections();
-    
-    // Update the block's shape if necessary
-    if (this.rendered) {
-      this.render();
-      this.bumpNeighbours();
+      this.appendDummyInput('MESSAGE2')
+        .appendField("WiFi名称")
+        .appendField(new Blockly.FieldTextInput(""), "SSID")
+        .appendField("WiFi密码")
+        .appendField(new Blockly.FieldTextInput(""), "PSWD");
     }
   };
-  
-  /**
-   * Removes existing dynamic connections.
-   * @this {Blockly.Block}
-   */
-  this.removeExistingDynamicConnections = function() {
-    // Loop through dynamic connections and remove them
-    for (let i = this.dynamicConnections.length - 1; i >= 0; i--) {
-      const connection = this.dynamicConnections[i];
-      if (connection.targetConnection) {
-        connection.disconnect();
-      }
-      this.dynamicConnections.splice(i, 1);
-    }
-  };
-  
-  /**
-   * Creates dynamic connections based on the block's current state.
-   * This method should be overridden by blocks using this extension.
-   * @this {Blockly.Block}
-   */
-  this.createDynamicConnections = function() {
-    // This is a placeholder that should be overridden by the implementing block
-    console.warn('createDynamicConnections method not implemented for this block');
-  };
-  
-  /**
-   * Adds a new dynamic input with a connection.
-   * @param {string} name Name of the input.
-   * @param {number} type Connection type.
-   * @param {string} align Alignment of the input.
-   * @return {!Blockly.Input} The added input.
-   * @this {Blockly.Block}
-   */
-  this.appendDynamicInput = function(name, type, align) {
-    let input;
-    switch (type) {
-      case Blockly.INPUT_VALUE:
-        input = this.appendValueInput(name);
-        break;
-      case Blockly.NEXT_STATEMENT:
-        input = this.appendStatementInput(name);
-        break;
-      default:
-        input = this.appendDummyInput(name);
-        break;
-    }
-    
-    if (align !== undefined) {
-      input.setAlign(align);
-    }
-    
-    if (input.connection) {
-      this.dynamicConnections.push(input.connection);
-    }
-    
-    return input;
-  };
-  
-  /**
-   * Helper method to add a value input as a dynamic connection.
-   * @param {string} name Name of the input.
-   * @param {string} align Alignment of the input.
-   * @return {!Blockly.Input} The added input.
-   * @this {Blockly.Block}
-   */
-  this.appendDynamicValueInput = function(name, align) {
-    return this.appendDynamicInput(name, Blockly.INPUT_VALUE, align);
-  };
-  
-  /**
-   * Helper method to add a statement input as a dynamic connection.
-   * @param {string} name Name of the input.
-   * @return {!Blockly.Input} The added input.
-   * @this {Blockly.Block}
-   */
-  this.appendDynamicStatementInput = function(name) {
-    return this.appendDynamicInput(name, Blockly.NEXT_STATEMENT);
-  };
-  
-  /**
-   * Gets the JSON mutation state of the block.
-   * @return {Object} The mutation state.
-   * @this {Blockly.Block}
-   */
-  this.mutationToDom = function() {
-    const container = document.createElement('mutation');
-    // Add your mutation state information here
-    return container;
-  };
-  
-  /**
-   * Sets the block state from JSON mutation.
-   * @param {Element} xmlElement XML storage element.
-   * @this {Blockly.Block}
-   */
-  this.domToMutation = function(xmlElement) {
-    // Parse your mutation state information here
-    this.updateDynamicConnections();
-  };
+
+  // 监听MODE字段的变化
+  this.getField('MODE').setValidator(function (option) {
+    this.getSourceBlock().updateShape_(option);
+    return option;
+  });
+
+  this.updateShape_(this.getFieldValue('MODE'));
 });
 
 Arduino.forBlock['blinker_init_wifi'] = function (block, generator) {
-    // 获取用户选择的配网选项
-    let configOption = block.getFieldValue('MODE');
+  // 获取用户选择的配网选项
+  let configOption = block.getFieldValue('MODE');
 
-    // 添加共通的库和宏定义
-    generator.addMacro('#define BLINKER_WIFI', '#define BLINKER_WIFI');
-    generator.addLibrary('#include <Blinker.h>', '#include <Blinker.h>');
-    generator.addLoopEnd('Blinker.run()', 'Blinker.run();');
+  // 添加共通的库和宏定义
+  generator.addMacro('#define BLINKER_WIFI', '#define BLINKER_WIFI');
+  generator.addLibrary('#include <Blinker.h>', '#include <Blinker.h>');
+  generator.addLoopEnd('Blinker.run()', 'Blinker.run();');
 
-    let code = '';
+  let code = '';
 
-    if (configOption === "EspTouchV2") {
-        // EspTouchV2配网方式
-        generator.addMacro('#define BLINKER_ESPTOUCH_V2', '#define BLINKER_ESPTOUCH_V2');
-        code = 'Blinker.begin();\n';
-    } else {
-        // 手动配网方式
-        let ssid = block.getFieldValue('SSID') || "Your WiFi SSID";
-        let pswd = block.getFieldValue('PSWD') || "Your WiFi Password";
-        let auth = block.getFieldValue('AUTH') || "Your Device Secret Key";
+  if (configOption === "EspTouchV2") {
+    // EspTouchV2配网方式
+    generator.addMacro('#define BLINKER_ESPTOUCH_V2', '#define BLINKER_ESPTOUCH_V2');
+    code = 'Blinker.begin();\n';
+  } else {
+    // 手动配网方式
+    let ssid = block.getFieldValue('SSID') || "Your WiFi SSID";
+    let pswd = block.getFieldValue('PSWD') || "Your WiFi Password";
+    let auth = block.getFieldValue('AUTH') || "Your Device Secret Key";
 
-        generator.addVariable('char ssid[]', 'char ssid[] = "' + ssid + '";');
-        generator.addVariable('char pswd[]', 'char pswd[] = "' + pswd + '";');
-        generator.addVariable('char auth[]', 'char auth[] = "' + auth + '";');
-        code = 'Blinker.begin(auth, ssid, pswd);\n';
-    }
+    generator.addVariable('char ssid[]', 'char ssid[] = "' + ssid + '";');
+    generator.addVariable('char pswd[]', 'char pswd[] = "' + pswd + '";');
+    generator.addVariable('char auth[]', 'char auth[] = "' + auth + '";');
+    code = 'Blinker.begin(auth, ssid, pswd);\n';
+  }
 
-    return code;
+  return code;
 };
 
 Arduino.forBlock['blinker_init_ble'] = function (block, generator) {
-    generator.addMacro('#define BLINKER_BLE', '#define BLINKER_BLE');
-    generator.addLibrary('#include <Blinker.h>', '#include <Blinker.h>');
+  generator.addMacro('#define BLINKER_BLE', '#define BLINKER_BLE');
+  generator.addLibrary('#include <Blinker.h>', '#include <Blinker.h>');
 
-    var code = 'Blinker.begin();\n';
-    return code;
+  var code = 'Blinker.begin();\n';
+  return code;
 };
 
 Arduino.forBlock['blinker_reset'] = function (block, generator) {
-    return 'Blinker.reset();\n';
+  return 'Blinker.reset();\n';
 };
 
 Arduino.forBlock['blinker_debug_init'] = function (block, generator) {
-    // 获取用户选择的串口和速率
-    let serial = block.getFieldValue('SERIAL');
-    let speed = block.getFieldValue('SPEED');
+  // 获取用户选择的串口和速率
+  let serial = block.getFieldValue('SERIAL');
+  let speed = block.getFieldValue('SPEED');
 
-    let code = serial + '.begin(' + speed + ');\n';
-    return code;
+  let code = serial + '.begin(' + speed + ');\n';
+  return code;
 };
 
 Arduino.forBlock['blinker_button'] = function (block, generator) {
-    // 获取按键名称
-    let key = block.getFieldValue('KEY');
-    // 获取内部语句块
-    let statements = generator.statementToCode(block, 'NAME');
+  // 获取按键名称
+  let key = block.getFieldValue('KEY');
+  // 获取内部语句块
+  let statements = generator.statementToCode(block, 'NAME');
 
-    // 创建按钮对象变量名
-    let varName = 'Button_' + key.replace(/-/g, '_');
+  // 创建按钮对象变量名
+  let varName = 'Button_' + key.replace(/-/g, '_');
 
-    // 添加按钮组件对象
-    generator.addVariable(varName, 'BlinkerButton ' + varName + '("' + key + '");');
+  // 添加按钮组件对象
+  generator.addVariable(varName, 'BlinkerButton ' + varName + '("' + key + '");');
 
-    // 添加按钮回调函数
-    let functionName = 'button_' + key.replace(/-/g, '_') + '_callback';
-    let functionCode = 'void ' + functionName + '(const String & state) {\n' +
-        statements +
-        '}\n';
+  // 添加按钮回调函数
+  let functionName = 'button_' + key.replace(/-/g, '_') + '_callback';
+  let functionCode = 'void ' + functionName + '(const String & state) {\n' +
+    statements +
+    '}\n';
 
-    generator.addFunction(functionName, functionCode);
+  generator.addFunction(functionName, functionCode);
 
-    // 在setup中添加callback绑定
-    generator.addSetup('button_' + key, varName + '.attach(' + functionName + ');');
+  // 在setup中添加callback绑定
+  generator.addSetup('button_' + key, varName + '.attach(' + functionName + ');');
 
-    return '';
+  return '';
 };
 
 Arduino.forBlock['blinker_button_state'] = function (block, generator) {
-    // 获取要检查的状态
-    let state = block.getFieldValue('STATE');
+  // 获取要检查的状态
+  let state = block.getFieldValue('STATE');
 
-    let code = 'state == "' + state + '"';
-    return [code, Arduino.ORDER_EQUALITY];
+  let code = 'state == "' + state + '"';
+  return [code, Arduino.ORDER_EQUALITY];
 };
 
 Arduino.forBlock['blinker_slider'] = function (block, generator) {
-    // 获取滑块名称
-    let key = block.getFieldValue('KEY');
-    // 获取内部语句块
-    let statements = generator.statementToCode(block, 'NAME');
+  // 获取滑块名称
+  let key = block.getFieldValue('KEY');
+  // 获取内部语句块
+  let statements = generator.statementToCode(block, 'NAME');
 
-    // 创建滑块对象变量名
-    let varName = 'Slider_' + key.replace(/-/g, '_');
+  // 创建滑块对象变量名
+  let varName = 'Slider_' + key.replace(/-/g, '_');
 
-    // 添加滑块组件对象
-    generator.addVariable(varName, 'BlinkerSlider ' + varName + '("' + key + '");');
+  // 添加滑块组件对象
+  generator.addVariable(varName, 'BlinkerSlider ' + varName + '("' + key + '");');
 
-    // 添加滑块回调函数
-    let functionName = 'slider_' + key.replace(/-/g, '_') + '_callback';
-    let functionCode = 'void ' + functionName + '(int32_t value) {\n' +
-        statements +
-        '}\n';
+  // 添加滑块回调函数
+  let functionName = 'slider_' + key.replace(/-/g, '_') + '_callback';
+  let functionCode = 'void ' + functionName + '(int32_t value) {\n' +
+    statements +
+    '}\n';
 
-    generator.addFunction(functionName, functionCode);
+  generator.addFunction(functionName, functionCode);
 
-    // 在setup中添加callback绑定
-    generator.addSetup('slider_' + key, varName + '.attach(' + functionName + ');');
+  // 在setup中添加callback绑定
+  generator.addSetup('slider_' + key, varName + '.attach(' + functionName + ');');
 
-    return '';
+  return '';
 };
 
 Arduino.forBlock['blinker_slider_value'] = function (block, generator) {
-    let code = 'value';
-    return [code, Arduino.ORDER_ATOMIC];
+  let code = 'value';
+  return [code, Arduino.ORDER_ATOMIC];
 };
 
 Arduino.forBlock['blinker_colorpicker'] = function (block, generator) {
-    // 获取调色器名称
-    let key = block.getFieldValue('KEY');
-    // 获取内部语句块
-    let statements = generator.statementToCode(block, 'NAME');
+  // 获取调色器名称
+  let key = block.getFieldValue('KEY');
+  // 获取内部语句块
+  let statements = generator.statementToCode(block, 'NAME');
 
-    // 创建RGB对象变量名
-    let varName = 'RGB_' + key.replace(/-/g, '_');
+  // 创建RGB对象变量名
+  let varName = 'RGB_' + key.replace(/-/g, '_');
 
-    // 添加RGB组件对象
-    generator.addVariable(varName, 'BlinkerRGB ' + varName + '("' + key + '");');
+  // 添加RGB组件对象
+  generator.addVariable(varName, 'BlinkerRGB ' + varName + '("' + key + '");');
 
-    // 添加RGB回调函数
-    let functionName = 'rgb_' + key.replace(/-/g, '_') + '_callback';
-    let functionCode = 'void ' + functionName + '(uint8_t r_value, uint8_t g_value, uint8_t b_value, uint8_t bright_value) {\n' +
-        statements +
-        '}\n';
+  // 添加RGB回调函数
+  let functionName = 'rgb_' + key.replace(/-/g, '_') + '_callback';
+  let functionCode = 'void ' + functionName + '(uint8_t r_value, uint8_t g_value, uint8_t b_value, uint8_t bright_value) {\n' +
+    statements +
+    '}\n';
 
-    generator.addFunction(functionName, functionCode);
+  generator.addFunction(functionName, functionCode);
 
-    // 在setup中添加callback绑定
-    generator.addSetup('rgb_' + key, varName + '.attach(' + functionName + ');');
+  // 在setup中添加callback绑定
+  generator.addSetup('rgb_' + key, varName + '.attach(' + functionName + ');');
 
-    return '';
+  return '';
 };
 
 Arduino.forBlock['blinker_colorpicker_value'] = function (block, generator) {
-    // 获取要获取的颜色分量
-    let colorComponent = block.getFieldValue('KEY');
+  // 获取要获取的颜色分量
+  let colorComponent = block.getFieldValue('KEY');
 
-    let code = colorComponent.toLowerCase();
-    return [code, Arduino.ORDER_ATOMIC];
+  let code = colorComponent.toLowerCase();
+  return [code, Arduino.ORDER_ATOMIC];
 };
 
 Arduino.forBlock['blinker_joystick'] = function (block, generator) {
-    // 获取摇杆名称
-    let key = block.getFieldValue('KEY');
-    // 获取内部语句块
-    let statements = generator.statementToCode(block, 'NAME');
+  // 获取摇杆名称
+  let key = block.getFieldValue('KEY');
+  // 获取内部语句块
+  let statements = generator.statementToCode(block, 'NAME');
 
-    // 添加摇杆回调函数
-    let functionName = 'joystick_' + key.replace(/-/g, '_') + '_callback';
-    let functionCode = 'void ' + functionName + '(uint8_t xAxis, uint8_t yAxis) {\n' +
-        statements +
-        '}\n';
+  // 添加摇杆回调函数
+  let functionName = 'joystick_' + key.replace(/-/g, '_') + '_callback';
+  let functionCode = 'void ' + functionName + '(uint8_t xAxis, uint8_t yAxis) {\n' +
+    statements +
+    '}\n';
 
-    generator.addFunction(functionName, functionCode);
-    generator.addSetup('joystick_' + key, 'Blinker.attachJoystick("' + key + '", ' + functionName + ');');
+  generator.addFunction(functionName, functionCode);
+  generator.addSetup('joystick_' + key, 'Blinker.attachJoystick("' + key + '", ' + functionName + ');');
 
-    return '';
+  return '';
 };
 
 Arduino.forBlock['blinker_joystick_value'] = function (block, generator) {
-    // 获取要获取的坐标轴
-    let axis = block.getFieldValue('KEY');
+  // 获取要获取的坐标轴
+  let axis = block.getFieldValue('KEY');
 
-    let code = axis.toLowerCase() + 'Axis';
-    return [code, Arduino.ORDER_ATOMIC];
+  let code = axis.toLowerCase() + 'Axis';
+  return [code, Arduino.ORDER_ATOMIC];
 };
 
 Arduino.forBlock['blinker_print'] = function (block, generator) {
-    // 检查block是否有KEY输入，以区分两种不同的blinker_print块
-    if (block.inputList.some(input => input.name === 'KEY')) {
-        // KEY-VALUE版本
-        let key = generator.valueToCode(block, 'KEY', Arduino.ORDER_ATOMIC) || '""';
-        let value = generator.valueToCode(block, 'VALUE', Arduino.ORDER_ATOMIC) || '0';
-        return 'Blinker.print(' + key + ', ' + value + ');\n';
-    } else {
-        // 纯TEXT版本
-        let text = generator.valueToCode(block, 'TEXT', Arduino.ORDER_ATOMIC) || '""';
-        return 'Blinker.print(' + text + ');\n';
-    }
+  // 检查block是否有KEY输入，以区分两种不同的blinker_print块
+  if (block.inputList.some(input => input.name === 'KEY')) {
+    // KEY-VALUE版本
+    let key = generator.valueToCode(block, 'KEY', Arduino.ORDER_ATOMIC) || '""';
+    let value = generator.valueToCode(block, 'VALUE', Arduino.ORDER_ATOMIC) || '0';
+    return 'Blinker.print(' + key + ', ' + value + ');\n';
+  } else {
+    // 纯TEXT版本
+    let text = generator.valueToCode(block, 'TEXT', Arduino.ORDER_ATOMIC) || '""';
+    return 'Blinker.print(' + text + ');\n';
+  }
 };
 
 Arduino.forBlock['blinker_log'] = function (block, generator) {
-    // 获取日志内容
-    let text = generator.valueToCode(block, 'TEXT', Arduino.ORDER_ATOMIC) || '""';
+  // 获取日志内容
+  let text = generator.valueToCode(block, 'TEXT', Arduino.ORDER_ATOMIC) || '""';
 
-    let code = 'Blinker.log(' + text + ');\n';
-    return code;
+  let code = 'Blinker.log(' + text + ');\n';
+  return code;
 };
 
 Arduino.forBlock['blinker_vibrate'] = function (block, generator) {
-    return 'Blinker.vibrate();\n';
+  return 'Blinker.vibrate();\n';
 };
 
 Arduino.forBlock['blinker_object_print'] = function (block, generator) {
-    // 获取组件名称和更多参数
-    let widget = block.getFieldValue('WIDGET');
-    let more = generator.valueToCode(block, 'MORE', Arduino.ORDER_ATOMIC) || '{}';
-
-    let code = 'Blinker.printObject(' + `"${widget}",` + more + ');\n';
-    return code;
+  // 获取组件名称
+  let widget = block.getFieldValue('WIDGET');
+  
+  // 收集所有输入的JSON对象
+  let jsonParts = [];
+  
+  // 遍历所有输入
+  for (let i = 0; i < block.inputList.length; i++) {
+    const input = block.inputList[i];
+    if (input.type === Blockly.INPUT_VALUE && input.name.startsWith('INPUT')) {
+      const value = generator.valueToCode(block, input.name, Arduino.ORDER_ATOMIC);
+      if (value && value !== '""') {
+        jsonParts.push(value);
+      }
+    }
+  }
+  
+  // 构造完整的JSON字符串
+  let jsonString = '"{"';
+  if (jsonParts.length > 0) {
+    jsonString += ' + ' + jsonParts.join(' + "," + ') + ' + "}"';
+  } else {
+    jsonString += ' + "}"';
+  }
+  
+  let code = 'Blinker.printObject("' + widget + '", ' + jsonString + ');\n';
+  return code;
 };
 
 Arduino.forBlock['blinker_state'] = function (block, generator) {
-    // 获取状态名称和更多参数
-    let state = block.getFieldValue('STATE');
-    let more = generator.valueToCode(block, 'MORE', Arduino.ORDER_ATOMIC) || '{}';
-
-    let code = '{\"state\": \"' + state + '\", ' + more.substr(1);
-    return [code, Arduino.ORDER_ATOMIC];
+  // 获取状态名称和更多参数
+  let state = block.getFieldValue('STATE'); 
+  let code = '\\"state\\": \\"' + state + '\\"';
+  
+  // 如果有更多参数，添加逗号和内容
+  if (more && more !== '""') {
+    code = '"' + code + '," + ' + more;
+  } else {
+    code = '"' + code + '"';
+  }
+  
+  return [code, Arduino.ORDER_ATOMIC];
 };
 
 Arduino.forBlock['blinker_icon'] = function (block, generator) {
-    // 获取图标和更多参数
-    let icon = block.getFieldValue('ICON');
-    let more = generator.valueToCode(block, 'MORE', Arduino.ORDER_ATOMIC) || '{}';
-
-    let code = '{\"icon\": \"' + icon + '\", ' + more.substr(1);
-    return [code, Arduino.ORDER_ATOMIC];
+  // 获取图标和更多参数
+  let icon = block.getFieldValue('ICON');
+  let more = generator.valueToCode(block, 'MORE', Arduino.ORDER_ATOMIC) || '';
+  
+  let code = '\\"icon\\": \\"' + icon + '\\"';
+  
+  // 如果有更多参数，添加逗号和内容
+  if (more && more !== '""') {
+    code = '"' + code + '," + ' + more;
+  } else {
+    code = '"' + code + '"';
+  }
+  
+  return [code, Arduino.ORDER_ATOMIC];
 };
 
 Arduino.forBlock['blinker_color'] = function (block, generator) {
-    // 获取颜色和更多参数
-    let color = block.getFieldValue('COLOR');
-    let more = generator.valueToCode(block, 'MORE', Arduino.ORDER_ATOMIC) || '{}';
-
-    let code = '{\"color\": \"' + color + '\", ' + more.substr(1);
-    return [code, Arduino.ORDER_ATOMIC];
+  // 获取颜色和更多参数
+  let color = block.getFieldValue('COLOR');
+  let more = generator.valueToCode(block, 'MORE', Arduino.ORDER_ATOMIC) || '';
+  
+  let code = '\\"color\\": \\"' + color + '\\"';
+  
+  // 如果有更多参数，添加逗号和内容
+  if (more && more !== '""') {
+    code = '"' + code + '," + ' + more;
+  } else {
+    code = '"' + code + '"';
+  }
+  
+  return [code, Arduino.ORDER_ATOMIC];
 };
 
 Arduino.forBlock['blinker_text'] = function (block, generator) {
-    // 获取文本和更多参数
-    let text = block.getFieldValue('TEXT');
-    let more = generator.valueToCode(block, 'MORE', Arduino.ORDER_ATOMIC) || '{}';
-
-    let code = '{\"text\": \"' + text + '\", ' + more.substr(1);
-    return [code, Arduino.ORDER_ATOMIC];
+  // 获取文本输入值
+  let text = generator.valueToCode(block, 'TEXT', Arduino.ORDER_ATOMIC) || '""';
+  
+  let code = '\\"text\\": " + ' + text;
+  return ['"' + code, Arduino.ORDER_ATOMIC];
 };
 
 Arduino.forBlock['blinker_value'] = function (block, generator) {
-    // 获取数值名称和更多参数
-    let text = block.getFieldValue('TEXT');
-    let more = generator.valueToCode(block, 'MORE', Arduino.ORDER_ATOMIC) || '{}';
-
-    let code = '{\"value\": ' + text + ', ' + more.substr(1);
-    return [code, Arduino.ORDER_ATOMIC];
+  // 获取数值
+  let value = block.getFieldValue('TEXT');
+  let more = generator.valueToCode(block, 'MORE', Arduino.ORDER_ATOMIC) || '';
+  
+  let code = '\\"value\\": ' + value;
+  
+  // 如果有更多参数，添加逗号和内容
+  if (more && more !== '""') {
+    code = '"' + code + '," + ' + more;
+  } else {
+    code = '"' + code + '"';
+  }
+  
+  return [code, Arduino.ORDER_ATOMIC];
 };
 
+
+// 检查并移除已存在的扩展注册
+if (Blockly.Extensions.isRegistered('custom_dynamic_extension')) {
+  Blockly.Extensions.unregister('custom_dynamic_extension');
+}
+Blockly.Extensions.register('custom_dynamic_extension', function () {
+  // 最小输入数量
+  this.minInputs = 2;
+  // 输入项计数
+  this.itemCount = this.minInputs;
+
+  // 添加所有动态块需要的方法
+  this.findInputIndexForConnection = function (connection) {
+    if (!connection.targetConnection || connection.targetBlock()?.isInsertionMarker()) {
+      return null;
+    }
+
+    let connectionIndex = -1;
+    for (let i = 0; i < this.inputList.length; i++) {
+      if (this.inputList[i].connection == connection) {
+        connectionIndex = i;
+      }
+    }
+
+    if (connectionIndex == this.inputList.length - 1) {
+      return this.inputList.length + 1;
+    }
+
+    const nextInput = this.inputList[connectionIndex + 1];
+    const nextConnection = nextInput?.connection?.targetConnection;
+    if (nextConnection && !nextConnection.getSourceBlock().isInsertionMarker()) {
+      return connectionIndex + 1;
+    }
+
+    return null;
+  };
+
+  this.onPendingConnection = function (connection) {
+    const insertIndex = this.findInputIndexForConnection(connection);
+    if (insertIndex == null) {
+      return;
+    }
+
+    this.appendValueInput(`INPUT${Blockly.utils.idGenerator.genUid()}`);
+    this.moveNumberedInputBefore(this.inputList.length - 1, insertIndex);
+  };
+
+  this.finalizeConnections = function () {
+    const targetConns = this.removeUnnecessaryEmptyConns(
+      this.inputList.map((i) => i.connection?.targetConnection),
+    );
+
+    this.tearDownBlock();
+    this.addItemInputs(targetConns);
+    this.itemCount = targetConns.length;
+  };
+
+  this.tearDownBlock = function () {
+    // 只删除动态添加的输入（INPUT2及以后）
+    for (let i = this.inputList.length - 1; i >= 0; i--) {
+      const inputName = this.inputList[i].name;
+      // 保留原始的INPUT0和INPUT1，只删除动态添加的
+      if (inputName.startsWith('INPUT') && inputName !== 'INPUT0' && inputName !== 'INPUT1') {
+        this.removeInput(inputName);
+      }
+    }
+  };
+
+  this.removeUnnecessaryEmptyConns = function (targetConns) {
+    const filteredConns = [...targetConns];
+    for (let i = filteredConns.length - 1; i >= 0; i--) {
+      if (!filteredConns[i] && filteredConns.length > this.minInputs) {
+        filteredConns.splice(i, 1);
+      }
+    }
+    return filteredConns;
+  };
+
+  this.addItemInputs = function (targetConns) {
+    // 从INPUT2开始添加动态输入
+    for (let i = this.minInputs; i < targetConns.length; i++) {
+      const inputName = `INPUT${i}`;
+      const input = this.appendValueInput(inputName);
+      const targetConn = targetConns[i];
+      if (targetConn) input.connection?.connect(targetConn);
+    }
+  };
+
+  this.isCorrectlyFormatted = function () {
+    // 检查动态输入是否正确格式化
+    let dynamicInputIndex = this.minInputs;
+    for (let i = 0; i < this.inputList.length; i++) {
+      const inputName = this.inputList[i].name;
+      if (inputName.startsWith('INPUT') && inputName !== 'INPUT0' && inputName !== 'INPUT1') {
+        if (inputName !== `INPUT${dynamicInputIndex}`) return false;
+        dynamicInputIndex++;
+      }
+    }
+    return true;
+  };
+});
+
+
+// 检查并移除已存在的扩展注册
+if (Blockly.Extensions.isRegistered('custom_dynamic_mutator')) {
+  Blockly.Extensions.unregister('custom_dynamic_mutator');
+}
+// 定义 Mutator 来处理序列化
+Blockly.Extensions.registerMutator('custom_dynamic_mutator', {
+  /**
+   * 将变异状态转换为 DOM 元素
+   * 用于序列化块的动态输入配置到 XML
+   * @returns {Element} 包含变异信息的 XML 元素
+   */
+  mutationToDom: function () {
+    // 如果块没有死亡或正在死亡，先完成连接并重新初始化
+    if (!this.isDeadOrDying()) {
+      Blockly.Events.disable();
+      this.finalizeConnections();
+      if (this instanceof Blockly.BlockSvg) this.initSvg();
+      Blockly.Events.enable();
+    }
+
+    // 创建包含变异信息的 XML 元素
+    const container = Blockly.utils.xml.createElement('mutation');
+    container.setAttribute('items', `${this.itemCount}`);
+    return container;
+  },
+
+  /**
+   * 从 DOM 元素恢复变异状态
+   * 用于从 XML 反序列化块的动态输入配置
+   * @param {Element} xmlElement 包含变异信息的 XML 元素
+   */
+  domToMutation: function (xmlElement) {
+    // 从 XML 属性中读取项目数量，确保不小于最小输入数
+    this.itemCount = Math.max(
+      parseInt(xmlElement.getAttribute('items') || '0', 10),
+      this.minInputs,
+    );
+
+    // 根据项目数量添加额外的输入
+    for (let i = this.minInputs; i < this.itemCount; i++) {
+      this.appendValueInput(`INPUT${i}`);
+    }
+  },
+
+  /**
+   * 保存额外的状态信息
+   * 用于新版本的 Blockly 序列化系统
+   * @returns {Object} 包含状态信息的对象
+   */
+  saveExtraState: function () {
+    // 如果块格式不正确且没有死亡，先完成连接并重新初始化
+    if (!this.isDeadOrDying() && !this.isCorrectlyFormatted()) {
+      Blockly.Events.disable();
+      this.finalizeConnections();
+      if (this instanceof Blockly.BlockSvg) this.initSvg();
+      Blockly.Events.enable();
+    }
+
+    // 返回包含项目数量的状态对象
+    return {
+      itemCount: this.itemCount,
+    };
+  },
+
+  /**
+   * 加载额外的状态信息
+   * 用于新版本的 Blockly 反序列化系统
+   * @param {Object|string} state 状态对象或字符串
+   */
+  loadExtraState: function (state) {
+    // 如果状态是字符串格式，转换为 DOM 并使用旧版本方法处理
+    if (typeof state === 'string') {
+      this.domToMutation(Blockly.utils.xml.textToDom(state));
+      return;
+    }
+
+    // 从状态对象中恢复项目数量并创建相应的输入
+    this.itemCount = state['itemCount'] || 0;
+    for (let i = this.minInputs; i < this.itemCount; i++) {
+      this.appendValueInput(`INPUT${i}`);
+    }
+  }
+});
