@@ -1,0 +1,311 @@
+
+[
+  {
+    "type": "tb6612_motor_init",
+    "message0": "初始化TB6612电机 %1 PIN1: %2 PIN2: %3 PWM引脚: %4 偏移: %5 STBY引脚: %6",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "MOTOR_NAME",
+        "variable": "motor1",
+        "variableTypes": [
+          "Motor"
+        ],
+        "defaultType": "Motor"
+      },
+      {
+        "type": "input_value",
+        "name": "PIN1"
+      },
+      {
+        "type": "input_value",
+        "name": "PIN2"
+      },
+      {
+        "type": "input_value",
+        "name": "PWM_PIN"
+      },
+      {
+        "type": "input_value",
+        "name": "OFFSET"
+      },
+      {
+        "type": "input_value",
+        "name": "STBY_PIN"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FFA500"
+  },
+  {
+    "type": "tb6612_drive",
+    "message0": "电机 %1 驱动 速度: %2 持续: %3 秒",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "MOTOR_NAME",
+        "variable": "motor1",
+        "variableTypes": [
+          "Motor"
+        ],
+        "defaultType": "Motor"
+      },
+      {
+        "type": "input_value",
+        "name": "SPEED"
+      },
+      {
+        "type": "input_value",
+        "name": "DURATION"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FFA500"
+  },
+  {
+    "type": "tb6612_brake",
+    "message0": "电机 %1 刹车",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "MOTOR_NAME",
+        "variable": "motor1",
+        "variableTypes": [
+          "Motor"
+        ],
+        "defaultType": "Motor"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FFA500"
+  },
+  {
+    "type": "tb6612_dual_action",
+    "message0": "双电机动作 模式: %1 速度: %2\n前后: M1 %3, M2 %4\n左右: 左 %5, 右 %6",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "MODE",
+        "options": [
+          [
+            "前进",
+            "forward"
+          ],
+          [
+            "后退",
+            "back"
+          ],
+          [
+            "左转",
+            "left"
+          ],
+          [
+            "右转",
+            "right"
+          ],
+          [
+            "刹车",
+            "brake"
+          ]
+        ]
+      },
+      {
+        "type": "input_value",
+        "name": "SPEED"
+      },
+      {
+        "type": "field_variable",
+        "name": "MOTOR1",
+        "variable": "motor1",
+        "variableTypes": [
+          "Motor"
+        ],
+        "defaultType": "Motor"
+      },
+      {
+        "type": "field_variable",
+        "name": "MOTOR2",
+        "variable": "motor2",
+        "variableTypes": [
+          "Motor"
+        ],
+        "defaultType": "Motor"
+      },
+      {
+        "type": "field_variable",
+        "name": "LEFT_MOTOR",
+        "variable": "leftMotor",
+        "variableTypes": [
+          "Motor"
+        ],
+        "defaultType": "Motor"
+      },
+      {
+        "type": "field_variable",
+        "name": "RIGHT_MOTOR",
+        "variable": "rightMotor",
+        "variableTypes": [
+          "Motor"
+        ],
+        "defaultType": "Motor"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF6600"
+  },
+  {
+    "type": "tb6612_forward",
+    "message0": "双电机前进 M1: %1, M2: %2, 速度: %3",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "MOTOR1",
+        "variable": "motor1",
+        "variableTypes": [
+          "Motor"
+        ],
+        "defaultType": "Motor"
+      },
+      {
+        "type": "field_variable",
+        "name": "MOTOR2",
+        "variable": "motor2",
+        "variableTypes": [
+          "Motor"
+        ],
+        "defaultType": "Motor"
+      },
+      {
+        "type": "input_value",
+        "name": "SPEED"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF6600"
+  },
+  {
+    "type": "tb6612_back",
+    "message0": "双电机后退 M1: %1, M2: %2, 速度: %3",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "MOTOR1",
+        "variable": "motor1",
+        "variableTypes": [
+          "Motor"
+        ],
+        "defaultType": "Motor"
+      },
+      {
+        "type": "field_variable",
+        "name": "MOTOR2",
+        "variable": "motor2",
+        "variableTypes": [
+          "Motor"
+        ],
+        "defaultType": "Motor"
+      },
+      {
+        "type": "input_value",
+        "name": "SPEED"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF6600"
+  },
+  {
+    "type": "tb6612_left",
+    "message0": "双电机左转 左: %1, 右: %2, 速度: %3",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "LEFT_MOTOR",
+        "variable": "leftMotor",
+        "variableTypes": [
+          "Motor"
+        ],
+        "defaultType": "Motor"
+      },
+      {
+        "type": "field_variable",
+        "name": "RIGHT_MOTOR",
+        "variable": "rightMotor",
+        "variableTypes": [
+          "Motor"
+        ],
+        "defaultType": "Motor"
+      },
+      {
+        "type": "input_value",
+        "name": "SPEED"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF6600"
+  },
+  {
+    "type": "tb6612_right",
+    "message0": "双电机右转 左: %1, 右: %2, 速度: %3",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "LEFT_MOTOR",
+        "variable": "leftMotor",
+        "variableTypes": [
+          "Motor"
+        ],
+        "defaultType": "Motor"
+      },
+      {
+        "type": "field_variable",
+        "name": "RIGHT_MOTOR",
+        "variable": "rightMotor",
+        "variableTypes": [
+          "Motor"
+        ],
+        "defaultType": "Motor"
+      },
+      {
+        "type": "input_value",
+        "name": "SPEED"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF6600"
+  },
+  {
+    "type": "tb6612_brake_both",
+    "message0": "双电机刹车 M1: %1, M2: %2",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "MOTOR1",
+        "variable": "motor1",
+        "variableTypes": [
+          "Motor"
+        ],
+        "defaultType": "Motor"
+      },
+      {
+        "type": "field_variable",
+        "name": "MOTOR2",
+        "variable": "motor2",
+        "variableTypes": [
+          "Motor"
+        ],
+        "defaultType": "Motor"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF6600"
+  }
+]
