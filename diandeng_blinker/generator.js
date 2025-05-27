@@ -37,6 +37,156 @@ Blockly.Extensions.register('blinker_init_wifi_extension', function () {
     this.updateShape_(this.getFieldValue('MODE'));
 });
 
+
+if (Blockly.Extensions.isRegistered('dynamic_connections')) {
+    Blockly.Extensions.unregister('dynamic_connections');
+}
+
+Blockly.Extensions.register('dynamic_connections', function () {
+    const originalInit = this.init;
+  
+  /**
+   * Override the init function to add dynamic connection handling.
+   * @this {Blockly.Block}
+   */
+  this.init = function() {
+    // Call the original init
+    originalInit.call(this);
+    
+    // Initialize connection points array if not already done
+    this.dynamicConnections = this.dynamicConnections || [];
+    
+    // Set up mutation observer
+    this.setOnChange(function(changeEvent) {
+      if (changeEvent.type === Blockly.Events.BLOCK_CHANGE || 
+          changeEvent.type === Blockly.Events.BLOCK_MOVE) {
+        this.updateDynamicConnections();
+      }
+    });
+    
+    // Initial update of connections
+    this.updateDynamicConnections();
+  };
+  
+  /**
+   * Updates the dynamic connections based on the block's current state.
+   * @this {Blockly.Block}
+   */
+  this.updateDynamicConnections = function() {
+    // Clear existing dynamic connections
+    this.removeExistingDynamicConnections();
+    
+    // Create new connections based on current state
+    this.createDynamicConnections();
+    
+    // Update the block's shape if necessary
+    if (this.rendered) {
+      this.render();
+      this.bumpNeighbours();
+    }
+  };
+  
+  /**
+   * Removes existing dynamic connections.
+   * @this {Blockly.Block}
+   */
+  this.removeExistingDynamicConnections = function() {
+    // Loop through dynamic connections and remove them
+    for (let i = this.dynamicConnections.length - 1; i >= 0; i--) {
+      const connection = this.dynamicConnections[i];
+      if (connection.targetConnection) {
+        connection.disconnect();
+      }
+      this.dynamicConnections.splice(i, 1);
+    }
+  };
+  
+  /**
+   * Creates dynamic connections based on the block's current state.
+   * This method should be overridden by blocks using this extension.
+   * @this {Blockly.Block}
+   */
+  this.createDynamicConnections = function() {
+    // This is a placeholder that should be overridden by the implementing block
+    console.warn('createDynamicConnections method not implemented for this block');
+  };
+  
+  /**
+   * Adds a new dynamic input with a connection.
+   * @param {string} name Name of the input.
+   * @param {number} type Connection type.
+   * @param {string} align Alignment of the input.
+   * @return {!Blockly.Input} The added input.
+   * @this {Blockly.Block}
+   */
+  this.appendDynamicInput = function(name, type, align) {
+    let input;
+    switch (type) {
+      case Blockly.INPUT_VALUE:
+        input = this.appendValueInput(name);
+        break;
+      case Blockly.NEXT_STATEMENT:
+        input = this.appendStatementInput(name);
+        break;
+      default:
+        input = this.appendDummyInput(name);
+        break;
+    }
+    
+    if (align !== undefined) {
+      input.setAlign(align);
+    }
+    
+    if (input.connection) {
+      this.dynamicConnections.push(input.connection);
+    }
+    
+    return input;
+  };
+  
+  /**
+   * Helper method to add a value input as a dynamic connection.
+   * @param {string} name Name of the input.
+   * @param {string} align Alignment of the input.
+   * @return {!Blockly.Input} The added input.
+   * @this {Blockly.Block}
+   */
+  this.appendDynamicValueInput = function(name, align) {
+    return this.appendDynamicInput(name, Blockly.INPUT_VALUE, align);
+  };
+  
+  /**
+   * Helper method to add a statement input as a dynamic connection.
+   * @param {string} name Name of the input.
+   * @return {!Blockly.Input} The added input.
+   * @this {Blockly.Block}
+   */
+  this.appendDynamicStatementInput = function(name) {
+    return this.appendDynamicInput(name, Blockly.NEXT_STATEMENT);
+  };
+  
+  /**
+   * Gets the JSON mutation state of the block.
+   * @return {Object} The mutation state.
+   * @this {Blockly.Block}
+   */
+  this.mutationToDom = function() {
+    const container = document.createElement('mutation');
+    // Add your mutation state information here
+    return container;
+  };
+  
+  /**
+   * Sets the block state from JSON mutation.
+   * @param {Element} xmlElement XML storage element.
+   * @this {Blockly.Block}
+   */
+  this.domToMutation = function(xmlElement) {
+    // Parse your mutation state information here
+    this.updateDynamicConnections();
+  };
+});
+
 Arduino.forBlock['blinker_init_wifi'] = function (block, generator) {
     // 获取用户选择的配网选项
     let configOption = block.getFieldValue('MODE');
