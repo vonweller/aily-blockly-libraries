@@ -106,7 +106,7 @@ Blockly.getMainWorkspace().addChangeListener((event) => {
             return true; // Keep all other items
           });
 
-          const allVariables = workspace.getAllVariables();
+          const allVariables = workspace.getVariableMap().getAllVariables;
           Blockly.Msg.VARIABLES_CURRENT_NAME = allVariables.at(-1)?.name;;
         }
 
@@ -210,7 +210,7 @@ function loadExistingVariablesToToolbox(workspace) {
   if (!workspace) return;
 
   // 获取所有现有变量
-  const allVariables = workspace.getAllVariables();
+  const allVariables = workspace.getVariableMap().getAllVariables;
   if (allVariables.length === 0) return;
 
   // 获取原始工具箱定义
