@@ -1,0 +1,202 @@
+
+[
+  {
+    "type": "esp32encoder_create",
+    "message0": "创建编码器 %1 使用中断 %2",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "ENCODER_VAR",
+        "variable": "encoder",
+        "variableTypes": [
+          "ESP32Encoder"
+        ],
+        "defaultType": "ESP32Encoder"
+      },
+      {
+        "type": "field_dropdown",
+        "name": "INTERRUPT",
+        "options": [
+          [
+            "TRUE",
+            "TRUE"
+          ],
+          [
+            "FALSE",
+            "FALSE"
+          ]
+        ]
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#009688"
+  },
+  {
+    "type": "esp32encoder_use_internal_resistors",
+    "message0": "设置编码器使用内部弱上拉 %1",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "PULLUP_TYPE",
+        "options": [
+          [
+            "INPUT_PULLUP",
+            "INPUT_PULLUP"
+          ],
+          [
+            "INPUT_PULLDOWN",
+            "INPUT_PULLDOWN"
+          ]
+        ]
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#009688"
+  },
+  {
+    "type": "esp32encoder_attach_half_quad",
+    "message0": "编码器 %1 附加半四倍编码, PIN A %2, PIN B %3",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "ENCODER"
+      },
+      {
+        "type": "input_value",
+        "name": "PIN_A"
+      },
+      {
+        "type": "input_value",
+        "name": "PIN_B"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#009688"
+  },
+  {
+    "type": "esp32encoder_attach_single_edge",
+    "message0": "编码器 %1 附加单边沿编码, PIN A %2, PIN B %3",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "ENCODER"
+      },
+      {
+        "type": "input_value",
+        "name": "PIN_A"
+      },
+      {
+        "type": "input_value",
+        "name": "PIN_B"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#009688"
+  },
+  {
+    "type": "esp32encoder_set_count",
+    "message0": "编码器 %1 设置计数为 %2",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "ENCODER"
+      },
+      {
+        "type": "input_value",
+        "name": "VALUE"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#009688"
+  },
+  {
+    "type": "esp32encoder_clear_count",
+    "message0": "编码器 %1 清零计数",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "ENCODER"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#009688"
+  },
+  {
+    "type": "esp32encoder_pause_count",
+    "message0": "编码器 %1 暂停计数",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "ENCODER"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#009688"
+  },
+  {
+    "type": "esp32encoder_resume_count",
+    "message0": "编码器 %1 恢复计数",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "ENCODER"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#009688"
+  },
+  {
+    "type": "esp32encoder_set_filter",
+    "message0": "编码器 %1 设置滤波值为 %2",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "ENCODER"
+      },
+      {
+        "type": "input_value",
+        "name": "FILTER_VALUE"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#009688"
+  },
+  {
+    "type": "esp32encoder_get_count",
+    "message0": "编码器 %1 计数值",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "ENCODER"
+      }
+    ],
+    "output": "Number",
+    "colour": "#009688"
+  },
+  {
+    "type": "esp32encoder_callback",
+    "message0": "编码器 %1 设置回调函数 %2",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "ENCODER"
+      },
+      {
+        "type": "input_statement",
+        "name": "CALLBACK"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#009688"
+  }
+]
