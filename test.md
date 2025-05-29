@@ -1,7 +1,7 @@
 | 序号 | 库名 | 包名 | 最新版本 | 状态 | 测试人 |
 | :---: | :--- | :--- | :------- | :--- | :----- |
 | 1 | 移位寄存器驱动库 | [@aily-project/lib-shiftregister](74HC595) | 0.0.1 | ✓ | K2L |
-| 2 | AHT温湿度 | [@aily-project/lib-aht-sensor](adafruit_AHTX0) | 0.0.1 | ✗ | - |
+| 2 | AHT温湿度传感器 | [@aily-project/lib-aht-sensor](adafruit_AHTX0) | 0.0.1 | ✗ | - |
 | 3 | DHT温湿度传感器库 | [@aily-project/lib-dht](adafruit_DHT) | 0.0.1 | ✓ | K2L |
 | 4 | 指纹识别库 | [@aily-project/lib-fingerprint](adafruit_Fingerprint) | 0.0.1 | ✗ | - |
 | 5 | GFX | [@aily-project/lib-tft](adafruit_GFX) | 0.0.1 | ✗ | - |
@@ -10,7 +10,7 @@
 | 8 | NeoPixel LED灯带 | [@aily-project/lib-neopixel](adafruit_NeoPixel) | 0.1.0 | ✗ | - |
 | 9 | 激光测距 | [@aily-project/lib-vl53l0x_ssd1306](adafruit_VL53L0X) | 0.0.1 | ✗ | - |
 | 10 | ADXL345传感器库 | [@aily-project/lib-adxl345](ADXL345) | 0.0.1 | ✗ | - |
-| 11 | AI语音交互 | [@aily-project/lib-ai-vox](ai-vox) | 0.0.1 | ✗ | - |
+| 11 | AI语音交互 | [@aily-project/lib-ai-vox](ai-vox) | 0.0.1 | ✓ | nulllab |
 | 12 | ArduinoBLE | [@aily-project/lib-arduino_ble](arduino_BLE) | 0.0.1 | ✗ | - |
 | 13 | ArduinoHTTP | [@aily-project/lib-arduino_http](arduino_http) | 1.0.0 | ✗ | - |
 | 14 | ArduinoI2C | [@aily-project/lib-core-i2c](arduino_iic) | 0.0.1 | ✗ | - |
@@ -72,11 +72,12 @@
 | 70 | 360舵机驱动 | [@aily-project/lib-servo360](servo360) | 1.0.0 | ✓ | mango-0616 |
 | 71 | SHT3x温湿度传感器库 | [@aily-project/lib-sht3x](SHT) | 0.0.1 | ✗ | - |
 | 72 | 六轴传感器BMI270 | [@aily-project/lib-bmi270](sparkfun_BMI270) | 0.0.1 | ✗ | - |
-| 73 | 步进电机驱动库 | [@aily-project/lib-stepper](Stepper) | 0.0.1 | ✗ | - |
-| 74 | 颜色识别库 | [@aily-project/lib-tcs34725](TCS34725) | 0.0.1 | ✗ | - |
-| 75 | TFT显示屏驱动库 | [@aily-project/lib-tft](TFT) | 0.0.1 | ✗ | - |
-| 76 | TM1650四位数码管驱动库 | [@aily-project/lib-tm1650](TM1650) | 0.0.1 | ✓ | K2L |
-| 77 | U8G2显示屏库 | [@aily-project/lib-u8g2](u8g2) | 0.0.4 | ✗ | - |
-| 78 | 超声波传感器 | [@aily-project/lib-ultrasonic](Ultrasonic) | 0.0.1 | ✓ | K2L |
-| 79 | VL53L0X激光测距传感器 | [@aily-project/lib-vl53l0x](VL53L0X) | 1.0.0 | ✗ | - |
-| 80 | WS2812 LED灯带库 | [@aily-project/lib-ws2812fx](ws2812fx) | 0.0.1 | ✗ | - |
+| 73 | SparkFun-TB6612 | [@aily-project/lib-tb6612-motor](sparkfun_TB6612) | 0.0.1 | ✗ | - |
+| 74 | 步进电机驱动库 | [@aily-project/lib-stepper](Stepper) | 0.0.1 | ✗ | - |
+| 75 | 颜色识别库 | [@aily-project/lib-tcs34725](TCS34725) | 0.0.1 | ✗ | - |
+| 76 | TFT显示屏驱动库 | [@aily-project/lib-tft](TFT) | 0.0.1 | ✗ | - |
+| 77 | TM1650四位数码管驱动库 | [@aily-project/lib-tm1650](TM1650) | 0.0.1 | ✓ | K2L |
+| 78 | U8G2显示屏库 | [@aily-project/lib-u8g2](u8g2) | 0.0.4 | ✗ | - |
+| 79 | 超声波传感器 | [@aily-project/lib-ultrasonic](Ultrasonic) | 0.0.1 | ✓ | K2L |
+| 80 | VL53L0X激光测距传感器 | [@aily-project/lib-vl53l0x](VL53L0X) | 1.0.0 | ✗ | - |
+| 81 | WS2812 LED灯带库 | [@aily-project/lib-ws2812fx](ws2812fx) | 0.0.1 | ✗ | - |
