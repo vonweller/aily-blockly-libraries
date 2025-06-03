@@ -1,9 +1,8 @@
 Arduino.forBlock["io_attach_interrupt"] = function (block, generator) {
-    console.log("io_attach_interrupt");
+    // console.log("io_attach_interrupt");
     const pin = block.getFieldValue("PIN");
     const mode = block.getFieldValue("MODE");
-
-    console.log("toogle: ", block.getFieldValue("TOGGLE"));
+    // console.log("toogle: ", block.getFieldValue("TOGGLE"));
     // const enabled = block.getFieldValue("TOGGLE") === "TRUE";
     let callback = generator.statementToCode(block, "HANDLER") || "";
 
