@@ -1,5 +1,13 @@
-Blockly.Msg.PROCEDURES_DEFNORETURN_PROCEDURE = "procedures";
-Blockly.Msg.PROCEDURES_DEFRETURN_PROCEDURE = "procedures";
+Blockly.Msg.PROCEDURES_DEFNORETURN_PROCEDURE = "function_name";
+Blockly.Msg.PROCEDURES_DEFRETURN_PROCEDURE = "function_name";
+Blockly.Msg.PROCEDURES_DEFNORETURN_TITLE = "定义函数";
+Blockly.Msg.PROCEDURES_DEFRETURN_TITLE = "定义带返回函数";
+Blockly.Msg.PROCEDURES_DEFNORETURN_DO = "执行";
+Blockly.Msg.PROCEDURES_DEFRETURN_RETURN = "返回";
+Blockly.Msg.PROCEDURES_CALLNORETURN_HELPURL = "";
+Blockly.Msg.PROCEDURES_CALLRETURN_HELPURL = "";
+Blockly.Msg.PROCEDURES_IFRETURN_CONDITION = "如果";
+Blockly.Msg.PROCEDURES_IFRETURN_VALUE = "返回值";
 
 Arduino.forBlock["procedures_defreturn"] = function (block) {
   // Define a procedure with a return value.
