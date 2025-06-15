@@ -18,7 +18,7 @@ Blockly.Extensions.register('u8g2_begin_dynamic_inputs', function () {
     if (thisBlock.getInput('4W_SPI_PINS')) thisBlock.removeInput('4W_SPI_PINS');
     if (thisBlock.getInput('4W_SW_SPI_PINS')) thisBlock.removeInput('4W_SW_SPI_PINS');
 
-    // 根据选择添加配置项目
+    // 根据选择添加配置项
     switch (protocolValue) {
       case '_HW_I2C':
         // 添加I2C配置
@@ -175,26 +175,39 @@ Arduino.forBlock['u8g2_begin'] = function (block, generator) {
   return 'u8g2.begin();\n';
 };
 
-
+// 清屏操作（立即生效）
 Arduino.forBlock['u8g2_clear'] = function (block, generator) {
   return `u8g2.clear();\n`;
 };
 
+// 清空缓冲区（需要配合sendBuffer使用）
+Arduino.forBlock['u8g2_clear_buffer'] = function (block, generator) {
+  return `u8g2.clearBuffer();\n`;
+};
+
+// 发送缓冲区到显示器
+Arduino.forBlock['u8g2_send_buffer'] = function (block, generator) {
+  return `u8g2.sendBuffer();\n`;
+};
+
+// 绘制像素点（简化版 - 自动刷新）
 Arduino.forBlock['u8g2_draw_pixel'] = function (block, generator) {
   const x = generator.valueToCode(block, 'X', Arduino.ORDER_ATOMIC);
   const y = generator.valueToCode(block, 'Y', Arduino.ORDER_ATOMIC);
-  return `u8g2.drawPixel(${x}, ${y});\n`;
+  return `u8g2.drawPixel(${x}, ${y});\nu8g2.sendBuffer();\n`;
 };
 
+// 绘制直线（简化版 - 自动刷新）
 Arduino.forBlock['u8g2_draw_line'] = function (block, generator) {
   const x1 = generator.valueToCode(block, 'X1', Arduino.ORDER_ATOMIC);
   const y1 = generator.valueToCode(block, 'Y1', Arduino.ORDER_ATOMIC);
   const x2 = generator.valueToCode(block, 'X2', Arduino.ORDER_ATOMIC);
   const y2 = generator.valueToCode(block, 'Y2', Arduino.ORDER_ATOMIC);
 
-  return `u8g2.drawLine(${x1}, ${y1}, ${x2}, ${y2});\n`;
+  return `u8g2.drawLine(${x1}, ${y1}, ${x2}, ${y2});\nu8g2.sendBuffer();\n`;
 };
 
+// 绘制矩形（简化版 - 自动刷新）
 Arduino.forBlock['u8g2_draw_rectangle'] = function (block, generator) {
   const x = generator.valueToCode(block, 'X', Arduino.ORDER_ATOMIC);
   const y = generator.valueToCode(block, 'Y', Arduino.ORDER_ATOMIC);
@@ -203,12 +216,13 @@ Arduino.forBlock['u8g2_draw_rectangle'] = function (block, generator) {
   const fill = block.getFieldValue('FILL') === 'TRUE';
 
   if (fill) {
-    return `u8g2.drawBox(${x}, ${y}, ${width}, ${height});\n`;
+    return `u8g2.drawBox(${x}, ${y}, ${width}, ${height});\nu8g2.sendBuffer();\n`;
   } else {
-    return `u8g2.drawFrame(${x}, ${y}, ${width}, ${height});\n`;
+    return `u8g2.drawFrame(${x}, ${y}, ${width}, ${height});\nu8g2.sendBuffer();\n`;
   }
 };
 
+// 绘制圆形（简化版 - 自动刷新）
 Arduino.forBlock['u8g2_draw_circle'] = function (block, generator) {
   const x = generator.valueToCode(block, 'X', Arduino.ORDER_ATOMIC);
   const y = generator.valueToCode(block, 'Y', Arduino.ORDER_ATOMIC);
@@ -216,30 +230,37 @@ Arduino.forBlock['u8g2_draw_circle'] = function (block, generator) {
   const fill = block.getFieldValue('FILL') === 'TRUE';
 
   if (fill) {
-    return `u8g2.drawDisc(${x}, ${y}, ${radius});\n`;
+    return `u8g2.drawDisc(${x}, ${y}, ${radius});\nu8g2.sendBuffer();\n`;
   } else {
-    return `u8g2.drawCircle(${x}, ${y}, ${radius});\n`;
+    return `u8g2.drawCircle(${x}, ${y}, ${radius});\nu8g2.sendBuffer();\n`;
   }
 };
 
+// 绘制文本（简化版 - 自动刷新）
 Arduino.forBlock['u8g2_draw_str'] = function (block, generator) {
   const x = generator.valueToCode(block, 'X', Arduino.ORDER_ATOMIC);
   const y = generator.valueToCode(block, 'Y', Arduino.ORDER_ATOMIC);
   const text = generator.valueToCode(block, 'TEXT', Arduino.ORDER_ATOMIC);
-  // 简化版的显示文本（自带清屏和刷新）
   return `u8g2.drawStr(${x}, ${y}, ${text});\nu8g2.sendBuffer();\n`;
 };
 
+// 设置字体
+Arduino.forBlock['u8g2_set_font'] = function (block, generator) {
+  const font = block.getFieldValue('FONT');
+  return `u8g2.setFont(${font});\n`;
+};
+
+// 绘制位图（简化版 - 自动刷新）
 Arduino.forBlock['u8g2_draw_bitmap'] = function (block, generator) {
   const x = generator.valueToCode(block, 'X', Arduino.ORDER_ATOMIC);
   const y = generator.valueToCode(block, 'Y', Arduino.ORDER_ATOMIC);
   const bitmap = generator.valueToCode(block, 'BITMAP', Arduino.ORDER_ATOMIC);
   
-  // 从bitmap值中提取图像信息
-  // 假设bitmap返回的是图像变量名
-  return `u8g2.drawXBM(${x}, ${y}, bitmap_width, bitmap_height, ${bitmap});\n`;
+  // 修正函数名为 drawXBM
+  return `u8g2.drawXBM(${x}, ${y}, bitmap_width, bitmap_height, ${bitmap});\nu8g2.sendBuffer();\n`;
 };
 
+// 位图数据块
 Arduino.forBlock['u8g2_bitmap'] = function (block, generator) {
   const bitmapData = block.getFieldValue('CUSTOM_CHAR');
   
@@ -247,15 +268,15 @@ Arduino.forBlock['u8g2_bitmap'] = function (block, generator) {
   const bitmapVarName = 'bitmap_' + generator.getUid();
   
   // 将bitmap数据转换为XBM格式的C数组
-  // 这里需要根据实际的bitmap数据格式进行解析
-  const width = 128; // 从字段配置中获取
-  const height = 64; // 从字段配置中获取
+  const width = 128; // 可以从字段配置中获取
+  const height = 64; // 可以从字段配置中获取
   
   // 添加bitmap数据到程序的变量部分
   generator.addVariable(
     bitmapVarName,
     `static const unsigned char ${bitmapVarName}[] PROGMEM = {
-  // Bitmap data: ${bitmapData}
+  // XBM Bitmap data
+  ${bitmapData}
 };
 const int bitmap_width = ${width};
 const int bitmap_height = ${height};`
