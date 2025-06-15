@@ -180,16 +180,10 @@ Arduino.forBlock['u8g2_clear'] = function (block, generator) {
   return `u8g2.clear();\n`;
 };
 
-// Arduino.forBlock['u8g2_set_font'] = function (block, generator) {
-//   const font = block.getFieldValue('FONT');
-//   return `u8g2.setFont(${font});\n`;
-// };
-
-Arduino.forBlock['u8g2_drawStr'] = function (block, generator) {
+Arduino.forBlock['u8g2_draw_pixel'] = function (block, generator) {
   const x = generator.valueToCode(block, 'X', Arduino.ORDER_ATOMIC);
   const y = generator.valueToCode(block, 'Y', Arduino.ORDER_ATOMIC);
-  const text = generator.valueToCode(block, 'TEXT', Arduino.ORDER_ATOMIC);
-  return `u8g2.drawStr(${x}, ${y}, ${text});\n`;
+  return `u8g2.drawPixel(${x}, ${y});\n`;
 };
 
 Arduino.forBlock['u8g2_draw_line'] = function (block, generator) {
@@ -228,53 +222,44 @@ Arduino.forBlock['u8g2_draw_circle'] = function (block, generator) {
   }
 };
 
-Arduino.forBlock['u8g2_send_buffer'] = function (block, generator) {
-
-  return `u8g2.sendBuffer();\n`;
-};
-
-Arduino.forBlock['u8g2_simple_text'] = function (block, generator) {
+Arduino.forBlock['u8g2_draw_str'] = function (block, generator) {
   const x = generator.valueToCode(block, 'X', Arduino.ORDER_ATOMIC);
   const y = generator.valueToCode(block, 'Y', Arduino.ORDER_ATOMIC);
   const text = generator.valueToCode(block, 'TEXT', Arduino.ORDER_ATOMIC);
-
   // 简化版的显示文本（自带清屏和刷新）
-  return `u8g2.clearBuffer();\nu8g2.drawStr(${x}, ${y}, ${text});\nu8g2.sendBuffer();\n`;
+  return `u8g2.drawStr(${x}, ${y}, ${text});\nu8g2.sendBuffer();\n`;
 };
 
-Arduino.forBlock['u8g2_draw_image'] = function (block, generator) {
-  const u8g2 = generator.getVariableName(block, 'U8G2_INSTANCE');
-  const x = generator.valueToCode(block, 'X', generator.ORDER_ATOMIC) || '0';
-  const y = generator.valueToCode(block, 'Y', generator.ORDER_ATOMIC) || '0';
-  const width = generator.valueToCode(block, 'WIDTH', generator.ORDER_ATOMIC) || '32';
-  const height = generator.valueToCode(block, 'HEIGHT', generator.ORDER_ATOMIC) || '32';
+Arduino.forBlock['u8g2_draw_bitmap'] = function (block, generator) {
+  const x = generator.valueToCode(block, 'X', Arduino.ORDER_ATOMIC);
+  const y = generator.valueToCode(block, 'Y', Arduino.ORDER_ATOMIC);
+  const bitmap = generator.valueToCode(block, 'BITMAP', Arduino.ORDER_ATOMIC);
+  
+  // 从bitmap值中提取图像信息
+  // 假设bitmap返回的是图像变量名
+  return `u8g2.drawXBM(${x}, ${y}, bitmap_width, bitmap_height, ${bitmap});\n`;
+};
 
-  // 获取图片数据，这应该是一个base64编码的字符串或系统特定的图片标识符
-  const imageData = block.getFieldValue('IMAGE_DATA');
-
+Arduino.forBlock['u8g2_bitmap'] = function (block, generator) {
+  const bitmapData = block.getFieldValue('CUSTOM_CHAR');
+  
   // 生成一个唯一的变量名
-  const imageVarName = 'xbm_image_' + generator.getUid();
-
-  // 将图片数据转换为XBM格式的C数组，这里假设系统有一个imageDataToXBM函数
-  // 实际情况下，AILY平台应提供此类转换工具
-  // 或在生成代码时执行此转换
-
-  // 添加图片数据到程序的变量部分
+  const bitmapVarName = 'bitmap_' + generator.getUid();
+  
+  // 将bitmap数据转换为XBM格式的C数组
+  // 这里需要根据实际的bitmap数据格式进行解析
+  const width = 128; // 从字段配置中获取
+  const height = 64; // 从字段配置中获取
+  
+  // 添加bitmap数据到程序的变量部分
   generator.addVariable(
-    imageVarName,
-    `static const unsigned char ${imageVarName}[] PROGMEM = {
-  // 图片数据将在代码生成时由系统替换
-  // IMAGE_DATA:${imageData}
-};`
-  );
-
-  // 返回显示图片的代码
-  return `${u8g2}.drawXBM(${x}, ${y}, ${width}, ${height}, ${imageVarName});\n`;
+    bitmapVarName,
+    `static const unsigned char ${bitmapVarName}[] PROGMEM = {
+  // Bitmap data: ${bitmapData}
 };
-
-// Arduino.forBlock['image_block'] = function (block, generator) {
-//   const imageData = block.getFieldValue('IMAGE');
-//   // 如果需要，可以在这里对 imageData 进行额外处理
-//   const code = `"${imageData}"`;
-//   return code;
-// };
+const int bitmap_width = ${width};
+const int bitmap_height = ${height};`
+  );
+  
+  return [bitmapVarName, Arduino.ORDER_ATOMIC];
+};

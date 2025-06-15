@@ -13,13 +13,13 @@
         },
         {
             "kind": "block",
-            "type": "u8g2_drawStr",
+            "type": "u8g2_draw_pixel",
             "inputs": {
                 "X": {
                     "shadow": {
                         "type": "math_number",
                         "fields": {
-                            "NUM": 0
+                            "NUM": 32
                         }
                     }
                 },
@@ -27,45 +27,7 @@
                     "shadow": {
                         "type": "math_number",
                         "fields": {
-                            "NUM": 20
-                        }
-                    }
-                },
-                "TEXT": {
-                    "shadow": {
-                        "type": "text",
-                        "fields": {
-                            "TEXT": "Hello World"
-                        }
-                    }
-                }
-            }
-        },
-        {
-            "kind": "block",
-            "type": "u8g2_simple_text",
-            "inputs": {
-                "X": {
-                    "shadow": {
-                        "type": "math_number",
-                        "fields": {
-                            "NUM": 0
-                        }
-                    }
-                },
-                "Y": {
-                    "shadow": {
-                        "type": "math_number",
-                        "fields": {
-                            "NUM": 20
-                        }
-                    }
-                },
-                "TEXT": {
-                    "shadow": {
-                        "type": "text",
-                        "fields": {
-                            "TEXT": "Hello World"
+                            "NUM": 16
                         }
                     }
                 }
@@ -179,11 +141,64 @@
         },
         {
             "kind": "block",
-            "type": "u8g2_send_buffer"
+            "type": "u8g2_draw_str",
+            "inputs": {
+                "X": {
+                    "shadow": {
+                        "type": "math_number",
+                        "fields": {
+                            "NUM": 0
+                        }
+                    }
+                },
+                "Y": {
+                    "shadow": {
+                        "type": "math_number",
+                        "fields": {
+                            "NUM": 20
+                        }
+                    }
+                },
+                "TEXT": {
+                    "shadow": {
+                        "type": "text",
+                        "fields": {
+                            "TEXT": "Hello World"
+                        }
+                    }
+                }
+            }
         },
         {
             "kind": "block",
-            "type": "u8g2_custom_image"
+            "type": "u8g2_draw_bitmap",
+            "inputs": {
+                "X": {
+                    "shadow": {
+                        "type": "math_number",
+                        "fields": {
+                            "NUM": 0
+                        }
+                    }
+                },
+                "Y": {
+                    "shadow": {
+                        "type": "math_number",
+                        "fields": {
+                            "NUM": 0
+                        }
+                    }
+                },
+                "BITMAP": {
+                    "shadow": {
+                        "type": "u8g2_bitmap"
+                    }
+                }
+            }
+        },
+        {
+            "kind": "block",
+            "type": "u8g2_bitmap"
         }
     ]
 }
