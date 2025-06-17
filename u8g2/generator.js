@@ -190,14 +190,14 @@ Arduino.forBlock['u8g2_send_buffer'] = function (block, generator) {
   return `u8g2.sendBuffer();\n`;
 };
 
-// 绘制像素点（简化版 - 自动刷新）
+// 绘制像素点
 Arduino.forBlock['u8g2_draw_pixel'] = function (block, generator) {
   const x = generator.valueToCode(block, 'X', Arduino.ORDER_ATOMIC);
   const y = generator.valueToCode(block, 'Y', Arduino.ORDER_ATOMIC);
   return `u8g2.drawPixel(${x}, ${y});\nu8g2.sendBuffer();\n`;
 };
 
-// 绘制直线（简化版 - 自动刷新）
+// 绘制直线
 Arduino.forBlock['u8g2_draw_line'] = function (block, generator) {
   const x1 = generator.valueToCode(block, 'X1', Arduino.ORDER_ATOMIC);
   const y1 = generator.valueToCode(block, 'Y1', Arduino.ORDER_ATOMIC);
@@ -207,7 +207,7 @@ Arduino.forBlock['u8g2_draw_line'] = function (block, generator) {
   return `u8g2.drawLine(${x1}, ${y1}, ${x2}, ${y2});\nu8g2.sendBuffer();\n`;
 };
 
-// 绘制矩形（简化版 - 自动刷新）
+// 绘制矩形
 Arduino.forBlock['u8g2_draw_rectangle'] = function (block, generator) {
   const x = generator.valueToCode(block, 'X', Arduino.ORDER_ATOMIC);
   const y = generator.valueToCode(block, 'Y', Arduino.ORDER_ATOMIC);
@@ -222,7 +222,7 @@ Arduino.forBlock['u8g2_draw_rectangle'] = function (block, generator) {
   }
 };
 
-// 绘制圆形（简化版 - 自动刷新）
+// 绘制圆形
 Arduino.forBlock['u8g2_draw_circle'] = function (block, generator) {
   const x = generator.valueToCode(block, 'X', Arduino.ORDER_ATOMIC);
   const y = generator.valueToCode(block, 'Y', Arduino.ORDER_ATOMIC);
@@ -236,7 +236,7 @@ Arduino.forBlock['u8g2_draw_circle'] = function (block, generator) {
   }
 };
 
-// 绘制文本（简化版 - 自动刷新）
+// 绘制文本
 Arduino.forBlock['u8g2_draw_str'] = function (block, generator) {
   const x = generator.valueToCode(block, 'X', Arduino.ORDER_ATOMIC);
   const y = generator.valueToCode(block, 'Y', Arduino.ORDER_ATOMIC);
@@ -250,37 +250,115 @@ Arduino.forBlock['u8g2_set_font'] = function (block, generator) {
   return `u8g2.setFont(${font});\n`;
 };
 
-// 绘制位图（简化版 - 自动刷新）
+// 辅助函数：将二维数组位图数据转换为XBM格式
+function convertBitmapToXBM(bitmapArray) {
+  if (!Array.isArray(bitmapArray) || bitmapArray.length === 0) {
+    return null;
+  }
+
+  const height = bitmapArray.length;
+  const width = bitmapArray[0].length;
+  
+  // 确保所有行的长度一致
+  for (let i = 0; i < height; i++) {
+    if (!Array.isArray(bitmapArray[i]) || bitmapArray[i].length !== width) {
+      console.error(`Row ${i} has inconsistent width`);
+      return null;
+    }
+  }
+
+  // XBM格式按字节存储，每字节8位，按行从左到右，LSB在前（最低位在最左边）
+  const bytesPerRow = Math.ceil(width / 8);
+  const xbmBytes = [];
+
+  for (let y = 0; y < height; y++) {
+    for (let byteIndex = 0; byteIndex < bytesPerRow; byteIndex++) {
+      let byteValue = 0;
+      
+      // 处理当前字节的8个位
+      for (let bit = 0; bit < 8; bit++) {
+        const x = byteIndex * 8 + bit;
+        if (x < width && bitmapArray[y][x] === 1) {
+          // XBM格式中，最低位对应最左边的像素
+          // bit 0 对应字节中最左边的像素，bit 7 对应最右边的像素
+          byteValue |= (1 << (7 - bit));
+        }
+      }
+      
+      xbmBytes.push(`0x${byteValue.toString(16).padStart(2, '0').toUpperCase()}`);
+    }
+  }
+
+  // 格式化为XBM数组字符串
+  const xbmData = xbmBytes.join(', ');
+  
+  return {
+    xbmData,
+    width,
+    height,
+    formattedXbmData: formatXBMData(xbmBytes, bytesPerRow)
+  };
+}
+
+// 格式化XBM数据为多行显示
+function formatXBMData(xbmBytes, bytesPerRow) {
+  const lines = [];
+  for (let i = 0; i < xbmBytes.length; i += bytesPerRow) {
+    const rowBytes = xbmBytes.slice(i, i + bytesPerRow);
+    lines.push('  ' + rowBytes.join(', '));
+  }
+  return lines.join(',\n');
+}
+
+// 位图数据块 - 修复版本
+Arduino.forBlock['u8g2_bitmap'] = function (block, generator) {
+  // 获取bitmap字段
+  const bitmapData = block.getFieldValue('CUSTOM_BITMAP');
+  console.log('Original bitmap data:', bitmapData);
+
+  // 转换为XBM格式
+  const xbmResult = convertBitmapToXBM(bitmapData);
+  console.log('Converted XBM result:', xbmResult);
+  
+  if (!xbmResult) {
+    console.error('Failed to convert bitmap to XBM format');
+    return ['', Arduino.ORDER_ATOMIC];
+  }
+
+  const { formattedXbmData, width, height } = xbmResult;
+
+  // 生成一个唯一的变量名
+  const bitmapVarName = 'bitmap_test';
+
+  console.log('Generated bitmap variable name:', bitmapVarName);
+  
+
+  // 添加bitmap数据到程序的全局变量部分
+  const bitmapDeclaration = `// XBM format bitmap data (${width}x${height})
+static const unsigned char ${bitmapVarName}_data[] PROGMEM = {
+${formattedXbmData}
+};
+const int ${bitmapVarName}_width = ${width};
+const int ${bitmapVarName}_height = ${height};`;
+
+  generator.addVariable(bitmapVarName, bitmapDeclaration);
+
+  // 返回变量名，用于在drawXBM中引用
+  return [`${bitmapVarName}_data`, Arduino.ORDER_ATOMIC];
+};
+
+// 绘制位图 - 更新以使用正确的变量名
 Arduino.forBlock['u8g2_draw_bitmap'] = function (block, generator) {
   const x = generator.valueToCode(block, 'X', Arduino.ORDER_ATOMIC);
   const y = generator.valueToCode(block, 'Y', Arduino.ORDER_ATOMIC);
-  const bitmap = generator.valueToCode(block, 'BITMAP', Arduino.ORDER_ATOMIC);
-  
-  // 修正函数名为 drawXBM
-  return `u8g2.drawXBM(${x}, ${y}, bitmap_width, bitmap_height, ${bitmap});\nu8g2.sendBuffer();\n`;
-};
+  const bitmapCode = generator.valueToCode(block, 'BITMAP', Arduino.ORDER_ATOMIC);
 
-// 位图数据块
-Arduino.forBlock['u8g2_bitmap'] = function (block, generator) {
-  const bitmapData = block.getFieldValue('CUSTOM_CHAR');
-  
-  // 生成一个唯一的变量名
-  const bitmapVarName = 'bitmap_' + generator.getUid();
-  
-  // 将bitmap数据转换为XBM格式的C数组
-  const width = 128; // 可以从字段配置中获取
-  const height = 64; // 可以从字段配置中获取
-  
-  // 添加bitmap数据到程序的变量部分
-  generator.addVariable(
-    bitmapVarName,
-    `static const unsigned char ${bitmapVarName}[] PROGMEM = {
-  // XBM Bitmap data
-  ${bitmapData}
-};
-const int bitmap_width = ${width};
-const int bitmap_height = ${height};`
-  );
-  
-  return [bitmapVarName, Arduino.ORDER_ATOMIC];
+  if (!bitmapCode) {
+    return '// No bitmap data\n';
+  }
+
+  // 从bitmap代码中提取变量名前缀
+  const bitmapVarPrefix = bitmapCode.replace('_data', '');
+
+  return `u8g2.drawXBM(${x}, ${y}, ${bitmapVarPrefix}_width, ${bitmapVarPrefix}_height, ${bitmapCode});\nu8g2.sendBuffer();\n`;
 };
