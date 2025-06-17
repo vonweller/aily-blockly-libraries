@@ -250,7 +250,7 @@ Arduino.forBlock['u8g2_set_font'] = function (block, generator) {
   return `u8g2.setFont(${font});\n`;
 };
 
-// 辅助函数：将二维数组位图数据转换为XBM格式
+// 将二维数组位图数据转换为XBM格式
 function convertBitmapToXBM(bitmapArray) {
   if (!Array.isArray(bitmapArray) || bitmapArray.length === 0) {
     return null;
@@ -281,7 +281,8 @@ function convertBitmapToXBM(bitmapArray) {
         if (x < width && bitmapArray[y][x] === 1) {
           // XBM格式中，最低位对应最左边的像素
           // bit 0 对应字节中最左边的像素，bit 7 对应最右边的像素
-          byteValue |= (1 << (7 - bit));
+          // 使用LSB格式：最低位(bit 0)对应最左边的像素
+          byteValue |= (1 << bit);
         }
       }
       
@@ -310,7 +311,7 @@ function formatXBMData(xbmBytes, bytesPerRow) {
   return lines.join(',\n');
 }
 
-// 位图数据块 - 修复版本
+// 位图数据块
 Arduino.forBlock['u8g2_bitmap'] = function (block, generator) {
   // 获取bitmap字段
   const bitmapData = block.getFieldValue('CUSTOM_BITMAP');
@@ -328,7 +329,7 @@ Arduino.forBlock['u8g2_bitmap'] = function (block, generator) {
   const { formattedXbmData, width, height } = xbmResult;
 
   // 生成一个唯一的变量名
-  const bitmapVarName = 'bitmap_test';
+  const bitmapVarName = `bitmap_${block.id.replace(/[^a-zA-Z0-9]/g, '')}`;
 
   console.log('Generated bitmap variable name:', bitmapVarName);
   
@@ -360,5 +361,5 @@ Arduino.forBlock['u8g2_draw_bitmap'] = function (block, generator) {
   // 从bitmap代码中提取变量名前缀
   const bitmapVarPrefix = bitmapCode.replace('_data', '');
 
-  return `u8g2.drawXBM(${x}, ${y}, ${bitmapVarPrefix}_width, ${bitmapVarPrefix}_height, ${bitmapCode});\nu8g2.sendBuffer();\n`;
+  return `u8g2.drawXBMP(${x}, ${y}, ${bitmapVarPrefix}_width, ${bitmapVarPrefix}_height, ${bitmapCode});\nu8g2.sendBuffer();\n`;
 };
