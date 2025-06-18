@@ -241,7 +241,13 @@ Arduino.forBlock['u8g2_draw_str'] = function (block, generator) {
   const x = generator.valueToCode(block, 'X', Arduino.ORDER_ATOMIC);
   const y = generator.valueToCode(block, 'Y', Arduino.ORDER_ATOMIC);
   const text = generator.valueToCode(block, 'TEXT', Arduino.ORDER_ATOMIC);
-  return `u8g2.drawStr(${x}, ${y}, ${text});\nu8g2.sendBuffer();\n`;
+  let fontSetting= 'u8g2_font_ncenB08_tr'; // 默认字体设置
+  const isChinese = /[\u4e00-\u9fa5]/.test(text); // 检测是否为中文
+  if (isChinese) {
+    // 如果是中文，使用特定的字体
+    fontSetting = 'u8g2_font_wqy12_t_chinese3';
+  }
+  return `u8g2.setFont(${fontSetting});\nu8g2.drawStr(${x}, ${y}, ${text});\nu8g2.sendBuffer();\n`;
 };
 
 // 设置字体
