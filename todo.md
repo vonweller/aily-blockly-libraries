@@ -7,6 +7,7 @@
 - [TFT_eSPI](./TFT_eSPI)
 - [adafruit_PN532](./adafruit_PN532)
 - [adafruit_SHT](./adafruit_SHT)
+- [arduino_FreeRTOS](./arduino_FreeRTOS)
 - [arduino_SD](./arduino_SD)
 - [arduino_modbus](./arduino_modbus)
 - [ble_serial](./ble_serial)
