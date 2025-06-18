@@ -1,38 +1,43 @@
-Arduino.forBlock['keyboard_begin'] = function(block, generator) {
+Arduino.forBlock['keyboard_begin'] = function (block, generator) {
   generator.addLibrary('#include <Keyboard.h>', '#include <Keyboard.h>');
   return 'Keyboard.begin();\n';
 };
 
-Arduino.forBlock['keyboard_end'] = function(block, generator) {
+Arduino.forBlock['keyboard_end'] = function (block, generator) {
   return 'Keyboard.end();\n';
 };
 
-Arduino.forBlock['keyboard_print'] = function(block, generator) {
+Arduino.forBlock['keyboard_print'] = function (block, generator) {
   generator.addLibrary('#include <Keyboard.h>', '#include <Keyboard.h>');
+  generator.addSetupBegin('keyboard_begin', 'Keyboard.begin();');
   var text = generator.valueToCode(block, 'TEXT', Arduino.ORDER_ATOMIC) || '\'\\0\'';
   return 'Keyboard.print(' + text + ');\n';
 };
 
-Arduino.forBlock['keyboard_press'] = function(block, generator) {
+Arduino.forBlock['keyboard_press'] = function (block, generator) {
   generator.addLibrary('#include <Keyboard.h>', '#include <Keyboard.h>');
+  generator.addSetupBegin('keyboard_begin', 'Keyboard.begin();');
   var key = generator.valueToCode(block, 'KEY', Arduino.ORDER_ATOMIC) || '\'\\0\'';
   return 'Keyboard.press(' + processKey(key) + ');\n';
 };
 
-Arduino.forBlock['keyboard_special_key'] = function(block, generator) {
+Arduino.forBlock['keyboard_special_key'] = function (block, generator) {
   generator.addLibrary('#include <Keyboard.h>', '#include <Keyboard.h>');
+  generator.addSetupBegin('keyboard_begin', 'Keyboard.begin();');
   var key = block.getFieldValue('KEY');
   return [key, Arduino.ORDER_ATOMIC];
 };
 
-Arduino.forBlock['keyboard_release'] = function(block, generator) {
+Arduino.forBlock['keyboard_release'] = function (block, generator) {
   generator.addLibrary('#include <Keyboard.h>', '#include <Keyboard.h>');
+  generator.addSetupBegin('keyboard_begin', 'Keyboard.begin();');
   var key = generator.valueToCode(block, 'KEY', Arduino.ORDER_ATOMIC) || '\'\\0\'';
   return 'Keyboard.release(' + processKey(key) + ');\n';
 };
 
-Arduino.forBlock['keyboard_release_all'] = function(block, generator) {
+Arduino.forBlock['keyboard_release_all'] = function (block, generator) {
   generator.addLibrary('#include <Keyboard.h>', '#include <Keyboard.h>');
+  generator.addSetupBegin('keyboard_begin', 'Keyboard.begin();');
   return 'Keyboard.releaseAll();\n';
 };
 
