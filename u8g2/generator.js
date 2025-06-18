@@ -241,13 +241,16 @@ Arduino.forBlock['u8g2_draw_str'] = function (block, generator) {
   const x = generator.valueToCode(block, 'X', Arduino.ORDER_ATOMIC);
   const y = generator.valueToCode(block, 'Y', Arduino.ORDER_ATOMIC);
   const text = generator.valueToCode(block, 'TEXT', Arduino.ORDER_ATOMIC);
-  let fontSetting= 'u8g2_font_ncenB08_tr'; // 默认字体设置
+  let fontSetting = 'u8g2_font_ncenB08_tr'; // 默认字体设置
+  let drawCode= 'drawStr';
   const isChinese = /[\u4e00-\u9fa5]/.test(text); // 检测是否为中文
   if (isChinese) {
     // 如果是中文，使用特定的字体
-    fontSetting = 'u8g2_font_wqy12_t_chinese3';
+    fontSetting = 'u8g2_font_wqy12_t_chinese2';
+    drawCode = 'drawUTF8';
   }
-  return `u8g2.setFont(${fontSetting});\nu8g2.drawStr(${x}, ${y}, ${text});\nu8g2.sendBuffer();\n`;
+  generator.addSetupEnd('u8g2_enableUTF8Print', 'u8g2.enableUTF8Print();');
+  return `u8g2.setFont(${fontSetting});\nu8g2.${drawCode}(${x}, ${y}, ${text});\nu8g2.sendBuffer();\n`;
 };
 
 // 设置字体
@@ -264,7 +267,7 @@ function convertBitmapToXBM(bitmapArray) {
 
   const height = bitmapArray.length;
   const width = bitmapArray[0].length;
-  
+
   // 确保所有行的长度一致
   for (let i = 0; i < height; i++) {
     if (!Array.isArray(bitmapArray[i]) || bitmapArray[i].length !== width) {
@@ -280,7 +283,7 @@ function convertBitmapToXBM(bitmapArray) {
   for (let y = 0; y < height; y++) {
     for (let byteIndex = 0; byteIndex < bytesPerRow; byteIndex++) {
       let byteValue = 0;
-      
+
       // 处理当前字节的8个位
       for (let bit = 0; bit < 8; bit++) {
         const x = byteIndex * 8 + bit;
@@ -291,14 +294,14 @@ function convertBitmapToXBM(bitmapArray) {
           byteValue |= (1 << bit);
         }
       }
-      
+
       xbmBytes.push(`0x${byteValue.toString(16).padStart(2, '0').toUpperCase()}`);
     }
   }
 
   // 格式化为XBM数组字符串
   const xbmData = xbmBytes.join(', ');
-  
+
   return {
     xbmData,
     width,
@@ -326,7 +329,7 @@ Arduino.forBlock['u8g2_bitmap'] = function (block, generator) {
   // 转换为XBM格式
   const xbmResult = convertBitmapToXBM(bitmapData);
   console.log('Converted XBM result:', xbmResult);
-  
+
   if (!xbmResult) {
     console.error('Failed to convert bitmap to XBM format');
     return ['', Arduino.ORDER_ATOMIC];
@@ -338,7 +341,7 @@ Arduino.forBlock['u8g2_bitmap'] = function (block, generator) {
   const bitmapVarName = `bitmap_${block.id.replace(/[^a-zA-Z0-9]/g, '')}`;
 
   console.log('Generated bitmap variable name:', bitmapVarName);
-  
+
 
   // 添加bitmap数据到程序的全局变量部分
   const bitmapDeclaration = `// XBM format bitmap data (${width}x${height})
