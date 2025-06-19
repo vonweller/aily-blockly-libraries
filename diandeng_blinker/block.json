@@ -35,7 +35,7 @@
     },
     {
         "type": "blinker_debug_init",
-        "message0": "初始化Blinker调试 串口 %1 速率 %2",
+        "message0": "初始化Blinker调试 串口 %1 速率 %2 完整调试 %3",
         "args0": [
             {
                 "type": "field_dropdown",
@@ -46,6 +46,20 @@
                 "type": "field_dropdown",
                 "name": "SPEED",
                 "options": "${board.serialSpeed}"
+            },
+            {
+                "type": "field_dropdown",
+                "name": "DEBUG_ALL",
+                "options": [
+                    [
+                        "开启",
+                        "true"
+                    ],
+                    [
+                        "关闭",
+                        "false"
+                    ]
+                ]
             }
         ],
         "previousStatement": null,
@@ -227,12 +241,42 @@
         "output": "Number"
     },
     {
+        "type" : "blinker_data_handler",
+        "message0": "Blinker数据处理 %1",
+        "args0": [
+            {
+                "type": "input_statement",
+                "name": "NAME"
+            }
+        ],
+        "colour": "#03A9F4",
+        "inputsInline": false
+    },
+    {
         "type": "blinker_log",
         "message0": "Blinker日志 %1",
         "args0": [
             {
                 "type": "input_value",
                 "name": "TEXT"
+            }
+        ],
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#03A9F4",
+        "inputsInline": true
+    },
+    {
+        "type": "blinker_log_args",
+        "message0": "Blinker日志 %1, %2",
+        "args0": [
+            {
+                "type": "input_value",
+                "name": "TEXT"
+            },
+            {
+                "type": "input_value",
+                "name": "ARGS"
             }
         ],
         "previousStatement": null,
@@ -334,12 +378,13 @@
         "colour": "#03A9F4"
     },
     {
-        "type": "blinker_object_print",
+        "type": "blinker_widget_print",
         "message0": "组件反馈 名称 %1 %2",
         "args0": [
             {
                 "type": "field_input",
-                "name": "WIDGET"
+                "name": "WIDGET",
+                "check": "String"
             },
             {
                 "type": "input_value",

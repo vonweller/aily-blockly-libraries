@@ -42,6 +42,7 @@ Arduino.forBlock['blinker_init_wifi'] = function (block, generator) {
   let configOption = block.getFieldValue('MODE');
 
   // 添加共通的库和宏定义
+  generator.addMacro('#define BLINKER_WIDGET', '#define BLINKER_WIDGET');
   generator.addMacro('#define BLINKER_WIFI', '#define BLINKER_WIFI');
   generator.addLibrary('#include <Blinker.h>', '#include <Blinker.h>');
   generator.addLoopEnd('Blinker.run()', 'Blinker.run();');
@@ -68,6 +69,7 @@ Arduino.forBlock['blinker_init_wifi'] = function (block, generator) {
 };
 
 Arduino.forBlock['blinker_init_ble'] = function (block, generator) {
+  generator.addMacro('#define BLINKER_WIDGET', '#define BLINKER_WIDGET');
   generator.addMacro('#define BLINKER_BLE', '#define BLINKER_BLE');
   generator.addLibrary('#include <Blinker.h>', '#include <Blinker.h>');
 
@@ -83,8 +85,15 @@ Arduino.forBlock['blinker_debug_init'] = function (block, generator) {
   // 获取用户选择的串口和速率
   let serial = block.getFieldValue('SERIAL');
   let speed = block.getFieldValue('SPEED');
+  let debugAll = block.getFieldValue('DEBUG_ALL');
 
   let code = serial + '.begin(' + speed + ');\n';
+  code += 'BLINKER_DEBUG.stream(' + serial + ');\n';
+
+  if (debugAll === 'true') {
+    code += 'BLINKER_DEBUG.debugAll();\n';
+  }
+
   return code;
 };
 
@@ -95,7 +104,7 @@ Arduino.forBlock['blinker_button'] = function (block, generator) {
   let statements = generator.statementToCode(block, 'NAME');
 
   // 创建按钮对象变量名
-  let varName = 'Button_' + key.replace(/-/g, '_');
+  let varName = 'Blinker_' + key.replace(/-/g, '_');
 
   // 添加按钮组件对象
   generator.addVariable(varName, 'BlinkerButton ' + varName + '("' + key + '");');
@@ -109,7 +118,7 @@ Arduino.forBlock['blinker_button'] = function (block, generator) {
   generator.addFunction(functionName, functionCode);
 
   // 在setup中添加callback绑定
-  generator.addSetup('button_' + key, varName + '.attach(' + functionName + ');');
+  generator.addSetupEnd('button_' + key, varName + '.attach(' + functionName + ');');
 
   return '';
 };
@@ -143,7 +152,7 @@ Arduino.forBlock['blinker_slider'] = function (block, generator) {
   generator.addFunction(functionName, functionCode);
 
   // 在setup中添加callback绑定
-  generator.addSetup('slider_' + key, varName + '.attach(' + functionName + ');');
+  generator.addSetupEnd('slider_' + key, varName + '.attach(' + functionName + ');');
 
   return '';
 };
@@ -174,7 +183,7 @@ Arduino.forBlock['blinker_colorpicker'] = function (block, generator) {
   generator.addFunction(functionName, functionCode);
 
   // 在setup中添加callback绑定
-  generator.addSetup('rgb_' + key, varName + '.attach(' + functionName + ');');
+  generator.addSetupEnd('rgb_' + key, varName + '.attach(' + functionName + ');');
 
   return '';
 };
@@ -200,7 +209,7 @@ Arduino.forBlock['blinker_joystick'] = function (block, generator) {
     '}\n';
 
   generator.addFunction(functionName, functionCode);
-  generator.addSetup('joystick_' + key, 'Blinker.attachJoystick("' + key + '", ' + functionName + ');');
+  generator.addSetupEnd('joystick_' + key, 'Blinker.attachJoystick("' + key + '", ' + functionName + ');');
 
   return '';
 };
@@ -211,6 +220,16 @@ Arduino.forBlock['blinker_joystick_value'] = function (block, generator) {
 
   let code = axis.toLowerCase() + 'Axis';
   return [code, Arduino.ORDER_ATOMIC];
+};
+
+Arduino.forBlock['blinker_data_handler'] = function (block, generator) {
+  let functionName = 'data_callback';
+  let functionCode = 'void ' + functionName + '(const String & data) {\n' +
+    '}\n';
+
+  generator.addFunction(functionName, functionCode);
+  generator.addSetupEnd('data_handler', 'Blinker.attachData(' + functionName + ');');
+  return '';
 };
 
 Arduino.forBlock['blinker_print'] = function (block, generator) {
@@ -231,115 +250,125 @@ Arduino.forBlock['blinker_log'] = function (block, generator) {
   // 获取日志内容
   let text = generator.valueToCode(block, 'TEXT', Arduino.ORDER_ATOMIC) || '""';
 
-  let code = 'Blinker.log(' + text + ');\n';
+  let code = 'BLINKER_LOG(' + text + ');\n';
   return code;
 };
+
+Arduino.forBlock['blinker_log_args'] = function (block, generator) {
+  // 获取日志内容和参数
+  let text = generator.valueToCode(block, 'TEXT', Arduino.ORDER_ATOMIC) || '""';
+  let args = generator.valueToCode(block, 'ARGS', Arduino.ORDER_ATOMIC) || '""';
+
+  let code = 'BLINKER_LOG(' + text + ', ' + args + ');\n';
+  return code;
+};  
 
 Arduino.forBlock['blinker_vibrate'] = function (block, generator) {
   return 'Blinker.vibrate();\n';
 };
 
-Arduino.forBlock['blinker_object_print'] = function (block, generator) {
+Arduino.forBlock['blinker_widget_print'] = function (block, generator) {
   // 获取组件名称
   let widget = block.getFieldValue('WIDGET');
+  // 创建组件变量名
+  let varName = 'Blinker_' + widget.replace(/-/g, '_');
   
-  // 收集所有输入的JSON对象
-  let jsonParts = [];
+  // 收集所有连接的对象块返回的代码
+  let objectValues = [];
   
-  // 遍历所有输入
+  // 遍历所有输入连接
   for (let i = 0; i < block.inputList.length; i++) {
     const input = block.inputList[i];
     if (input.type === Blockly.INPUT_VALUE && input.name.startsWith('INPUT')) {
       const value = generator.valueToCode(block, input.name, Arduino.ORDER_ATOMIC);
       if (value && value !== '""') {
-        jsonParts.push(value);
+        objectValues.push(value);
       }
     }
   }
   
-  // 构造完整的JSON字符串
-  let jsonString = '"{"';
-  if (jsonParts.length > 0) {
-    jsonString += ' + ' + jsonParts.join(' + "," + ') + ' + "}"';
+  // 生成链式调用代码
+  let code = '';
+  if (objectValues.length > 0) {
+    // 创建对齐的缩进
+    let indent = ' '.repeat(varName.length);
+    // 生成链式调用格式：组件名.方法1().方法2().print();
+    code = varName + objectValues.join('\n' + indent + '.') + '\n' + indent + '.print();\n';
   } else {
-    jsonString += ' + "}"';
+    // 如果没有连接对象，使用默认的 print() 方法
+    code = varName + '.print();\n';
   }
   
-  let code = 'Blinker.printObject("' + widget + '", ' + jsonString + ');\n';
   return code;
 };
 
+// Arduino.forBlock['blinker_object_print'] = function (block, generator) {
+//   // 获取组件名称
+//   let widget = block.getFieldValue('WIDGET');
+  
+//   // 收集所有输入的JSON对象
+//   let jsonParts = [];
+  
+//   // 遍历所有输入
+//   for (let i = 0; i < block.inputList.length; i++) {
+//     const input = block.inputList[i];
+//     if (input.type === Blockly.INPUT_VALUE && input.name.startsWith('INPUT')) {
+//       const value = generator.valueToCode(block, input.name, Arduino.ORDER_ATOMIC);
+//       if (value && value !== '""') {
+//         jsonParts.push(value);
+//       }
+//     }
+//   }
+  
+//   // 构造完整的JSON字符串
+//   let jsonString = '"{"';
+//   if (jsonParts.length > 0) {
+//     jsonString += ' + ' + jsonParts.join(' + "," + ') + ' + "}"';
+//   } else {
+//     jsonString += ' + "}"';
+//   }
+  
+//   let code = 'Blinker.printObject("' + widget + '", ' + jsonString + ');\n';
+//   return code;
+// };
+
 Arduino.forBlock['blinker_state'] = function (block, generator) {
-  // 获取状态名称和更多参数
-  let state = block.getFieldValue('STATE'); 
-  let code = '\\"state\\": \\"' + state + '\\"';
+  // 获取状态值
+  let state = generator.valueToCode(block, 'STATE', Arduino.ORDER_ATOMIC) || '""';
   
-  // 如果有更多参数，添加逗号和内容
-  if (more && more !== '""') {
-    code = '"' + code + '," + ' + more;
-  } else {
-    code = '"' + code + '"';
-  }
-  
+  let code = '.state(' + state + ')';
   return [code, Arduino.ORDER_ATOMIC];
 };
 
 Arduino.forBlock['blinker_icon'] = function (block, generator) {
-  // 获取图标和更多参数
-  let icon = block.getFieldValue('ICON');
-  let more = generator.valueToCode(block, 'MORE', Arduino.ORDER_ATOMIC) || '';
+  // 获取图标值
+  let icon = generator.valueToCode(block, 'ICON', Arduino.ORDER_ATOMIC) || '""';
   
-  let code = '\\"icon\\": \\"' + icon + '\\"';
-  
-  // 如果有更多参数，添加逗号和内容
-  if (more && more !== '""') {
-    code = '"' + code + '," + ' + more;
-  } else {
-    code = '"' + code + '"';
-  }
-  
+  let code = '.icon(' + icon + ')';
   return [code, Arduino.ORDER_ATOMIC];
 };
 
 Arduino.forBlock['blinker_color'] = function (block, generator) {
-  // 获取颜色和更多参数
-  let color = block.getFieldValue('COLOR');
-  let more = generator.valueToCode(block, 'MORE', Arduino.ORDER_ATOMIC) || '';
+  // 获取颜色值
+  let color = generator.valueToCode(block, 'COLOR', Arduino.ORDER_ATOMIC) || '""';
   
-  let code = '\\"color\\": \\"' + color + '\\"';
-  
-  // 如果有更多参数，添加逗号和内容
-  if (more && more !== '""') {
-    code = '"' + code + '," + ' + more;
-  } else {
-    code = '"' + code + '"';
-  }
-  
+  let code = '.color(' + color + ')';
   return [code, Arduino.ORDER_ATOMIC];
 };
 
 Arduino.forBlock['blinker_text'] = function (block, generator) {
-  // 获取文本输入值
+  // 获取文本值
   let text = generator.valueToCode(block, 'TEXT', Arduino.ORDER_ATOMIC) || '""';
   
-  let code = '\\"text\\": " + ' + text;
-  return ['"' + code, Arduino.ORDER_ATOMIC];
+  let code = '.text(' + text + ')';
+  return [code, Arduino.ORDER_ATOMIC];
 };
 
 Arduino.forBlock['blinker_value'] = function (block, generator) {
   // 获取数值
-  let value = block.getFieldValue('TEXT');
-  let more = generator.valueToCode(block, 'MORE', Arduino.ORDER_ATOMIC) || '';
+  let value = generator.valueToCode(block, 'VALUE', Arduino.ORDER_ATOMIC) || '""';
   
-  let code = '\\"value\\": ' + value;
-  
-  // 如果有更多参数，添加逗号和内容
-  if (more && more !== '""') {
-    code = '"' + code + '," + ' + more;
-  } else {
-    code = '"' + code + '"';
-  }
-  
+  let code = '.value(' + value + ')';
   return [code, Arduino.ORDER_ATOMIC];
 };
 
