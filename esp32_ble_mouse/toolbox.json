@@ -1,13 +1,12 @@
 {
     "kind": "category",
-    "name": "BLE鼠标",
+    "name": "BLE蓝牙鼠标",
     "colour": "#2196F3",
     "contents": [
         {
             "kind": "label",
             "text": "初始化设置"
-        },
-        {
+        },        {
             "kind": "block",
             "type": "ble_mouse_init",
             "inputs": {
@@ -36,10 +35,6 @@
                     }
                 }
             }
-        },
-        {
-            "kind": "block",
-            "type": "ble_mouse_begin"
         },
         {
             "kind": "label",
@@ -81,8 +76,7 @@
         },
         {
             "kind": "block",
-            "type": "ble_mouse_scroll",
-            "inputs": {
+            "type": "ble_mouse_scroll",            "inputs": {
                 "SCROLL": {
                     "shadow": {
                         "type": "math_number",
@@ -92,6 +86,10 @@
                     }
                 }
             }
+        },
+        {
+            "kind": "block",
+            "type": "ble_mouse_send_report"
         }
     ]
 }

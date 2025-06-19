@@ -1,6 +1,5 @@
 // BLE键盘库初始化函数
 function initBLEKeyboardLibrary(generator) {
-  generator.addLibrary('include_Arduino', '#include <Arduino.h>');
   generator.addLibrary('include_KeyboardDevice', '#include <KeyboardDevice.h>');
   generator.addLibrary('include_BleCompositeHID', '#include <BleCompositeHID.h>');
   generator.addLibrary('include_KeyboardConfiguration', '#include <KeyboardConfiguration.h>');
@@ -10,7 +9,6 @@ function initBLEKeyboardLibrary(generator) {
 
 // BLE键盘库初始化函数（带设备名称）
 function initBLEKeyboardLibraryWithName(generator, deviceName) {
-  generator.addLibrary('include_Arduino', '#include <Arduino.h>');
   generator.addLibrary('include_KeyboardDevice', '#include <KeyboardDevice.h>');
   generator.addLibrary('include_BleCompositeHID', '#include <BleCompositeHID.h>');
   generator.addLibrary('include_KeyboardConfiguration', '#include <KeyboardConfiguration.h>');
