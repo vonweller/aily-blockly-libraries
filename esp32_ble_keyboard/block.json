@@ -1,0 +1,218 @@
+[
+    {
+        "type": "ble_keyboard_begin",
+        "message0": "初始化BLE键盘 %1",
+        "args0": [
+            {
+                "type": "field_input",
+                "name": "DEVICE_NAME",
+                "text": "ESP32 Keyboard"
+            }
+        ],
+        "inputsInline": true,
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#00BCD4"
+    },
+    {
+        "type": "ble_keyboard_end",
+        "message0": "断开BLE键盘连接",
+        "inputsInline": true,
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#00BCD4"
+    },
+    {
+        "type": "ble_keyboard_is_connected",
+        "message0": "BLE键盘是否已连接",
+        "inputsInline": true,
+        "output": "Boolean",
+        "colour": "#00BCD4"
+    },
+    {
+        "type": "ble_keyboard_print",
+        "message0": "BLE键盘输出字符串 %1",
+        "args0": [
+            {
+                "type": "input_value",
+                "name": "TEXT",
+                "check": "String"
+            }
+        ],
+        "inputsInline": true,
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#00BCD4"
+    },
+    {
+        "type": "ble_keyboard_press",
+        "message0": "BLE键盘按下键 %1",
+        "args0": [
+            {
+                "type": "input_value",
+                "name": "KEY",
+                "check": ["String", "Number"]
+            }
+        ],
+        "inputsInline": true,
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#00BCD4"
+    },
+    {
+        "type": "ble_keyboard_release",
+        "message0": "BLE键盘释放键 %1",
+        "args0": [
+            {
+                "type": "input_value",
+                "name": "KEY",
+                "check": ["String", "Number"]
+            }
+        ],
+        "inputsInline": true,
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#00BCD4"
+    },
+    {
+        "type": "ble_keyboard_release_all",
+        "message0": "BLE键盘释放所有按键",
+        "inputsInline": true,
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#00BCD4"
+    },
+    {
+        "type": "ble_keyboard_special_key",
+        "message0": "BLE键盘特殊键 %1",
+        "args0": [
+            {
+                "type": "field_dropdown",
+                "name": "KEY",
+                "options": [
+                    ["Enter", "KEY_RETURN"],
+                    ["Esc", "KEY_ESC"],
+                    ["Backspace", "KEY_BACKSPACE"],
+                    ["Tab", "KEY_TAB"],
+                    ["空格", "' '"],
+                    ["左Ctrl", "KEY_LEFT_CTRL"],
+                    ["左Shift", "KEY_LEFT_SHIFT"],
+                    ["左Alt", "KEY_LEFT_ALT"],
+                    ["左GUI/Windows", "KEY_LEFT_GUI"],
+                    ["右Ctrl", "KEY_RIGHT_CTRL"],
+                    ["右Shift", "KEY_RIGHT_SHIFT"],
+                    ["右Alt", "KEY_RIGHT_ALT"],
+                    ["右GUI/Windows", "KEY_RIGHT_GUI"],
+                    ["向上箭头", "KEY_UP_ARROW"],
+                    ["向下箭头", "KEY_DOWN_ARROW"],
+                    ["向左箭头", "KEY_LEFT_ARROW"],
+                    ["向右箭头", "KEY_RIGHT_ARROW"],
+                    ["Insert", "KEY_INSERT"],
+                    ["Delete", "KEY_DELETE"],
+                    ["Home", "KEY_HOME"],
+                    ["End", "KEY_END"],
+                    ["Page Up", "KEY_PAGE_UP"],
+                    ["Page Down", "KEY_PAGE_DOWN"],
+                    ["F1", "KEY_F1"],
+                    ["F2", "KEY_F2"],
+                    ["F3", "KEY_F3"],
+                    ["F4", "KEY_F4"],
+                    ["F5", "KEY_F5"],
+                    ["F6", "KEY_F6"],
+                    ["F7", "KEY_F7"],
+                    ["F8", "KEY_F8"],
+                    ["F9", "KEY_F9"],
+                    ["F10", "KEY_F10"],
+                    ["F11", "KEY_F11"],
+                    ["F12", "KEY_F12"]
+                ]
+            }
+        ],
+        "output": "Number",
+        "colour": "#00BCD4"
+    },
+    {
+        "type": "ble_keyboard_write",
+        "message0": "BLE键盘快速输入 %1",
+        "args0": [
+            {
+                "type": "input_value",
+                "name": "KEY",
+                "check": ["String", "Number"]
+            }
+        ],
+        "inputsInline": true,
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#00BCD4"
+    },
+    {
+        "type": "ble_keyboard_media_key",
+        "message0": "BLE键盘媒体键 %1",
+        "args0": [
+            {
+                "type": "field_dropdown",
+                "name": "MEDIA_KEY",
+                "options": [
+                    ["播放/暂停", "KEY_MEDIA_PLAY_PAUSE"],
+                    ["停止", "KEY_MEDIA_STOP"],
+                    ["下一曲", "KEY_MEDIA_NEXT_TRACK"],
+                    ["上一曲", "KEY_MEDIA_PREVIOUS_TRACK"],
+                    ["静音", "KEY_MEDIA_MUTE"],
+                    ["音量加", "KEY_MEDIA_VOLUME_UP"],
+                    ["音量减", "KEY_MEDIA_VOLUME_DOWN"],
+                    ["快进", "KEY_MEDIA_FAST_FORWARD"],
+                    ["快退", "KEY_MEDIA_REWIND"],
+                    ["弹出", "KEY_MEDIA_EJECT"]
+                ]
+            }
+        ],
+        "inputsInline": true,
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#00BCD4"
+    },
+    {
+        "type": "ble_keyboard_consumer_key",
+        "message0": "BLE键盘消费者键 %1",
+        "args0": [
+            {
+                "type": "field_dropdown",
+                "name": "CONSUMER_KEY",
+                "options": [
+                    ["计算器", "KEY_CONSUMER_CALCULATOR"],
+                    ["浏览器", "KEY_CONSUMER_BROWSER"],
+                    ["邮件", "KEY_CONSUMER_EMAIL"],
+                    ["我的电脑", "KEY_CONSUMER_MY_COMPUTER"],
+                    ["搜索", "KEY_CONSUMER_SEARCH"],
+                    ["主页", "KEY_CONSUMER_HOME"],
+                    ["返回", "KEY_CONSUMER_BACK"],
+                    ["前进", "KEY_CONSUMER_FORWARD"],
+                    ["刷新", "KEY_CONSUMER_REFRESH"],
+                    ["书签", "KEY_CONSUMER_BOOKMARKS"]
+                ]
+            }
+        ],
+        "inputsInline": true,
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#00BCD4"
+    },
+    {
+        "type": "ble_keyboard_set_battery_level",
+        "message0": "BLE键盘设置电池电量 %1 %",
+        "args0": [
+            {
+                "type": "field_number",
+                "name": "LEVEL",
+                "value": 100,
+                "min": 0,
+                "max": 100
+            }
+        ],
+        "inputsInline": true,
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#00BCD4"
+    }
+]
