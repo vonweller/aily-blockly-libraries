@@ -84,7 +84,7 @@ Blockly.getMainWorkspace().addChangeListener((event) => {
     for (let category of originalToolboxDef.contents) {
       if ((category.name === "Variables" ||
         (category.contents && category.contents[0]?.callbackKey === "CREATE_VARIABLE"))) {
-        
+
         if (category.contents.length === 4) {
           category.contents = [
             {
@@ -105,8 +105,8 @@ Blockly.getMainWorkspace().addChangeListener((event) => {
             }
             return true; // Keep all other items
           });
-
-          const allVariables = workspace.getVariableMap().getAllVariables;
+          const allVariables = workspace.getAllVariables();
+          // const allVariables = workspace.getVariableMap().getAllVariables;
           Blockly.Msg.VARIABLES_CURRENT_NAME = allVariables.at(-1)?.name;;
         }
 
@@ -157,47 +157,47 @@ addVariableToToolbox = function (block, varName) {
     for (let category of originalToolboxDef.contents) {
       if ((category.name === "Variables" ||
         (category.contents && category.contents[0]?.callbackKey === "CREATE_VARIABLE"))) {
-          if (category.contents.length === 1) {
-            category.contents = [
-              {
-                "kind": "button",
-                "text": "新建变量",
-                "callbackKey": "CREATE_VARIABLE"
-              },
-              {
-                "kind": "block",
-                "type": "variable_define"
-              },
-              {
-                "kind": "block",
-                "type": "variables_set"
-              }
-            ];
-          }
-
-          // 检查变量是否已存在
-          const varExists = category.contents.some(item =>
-            item.fields && item.fields.VAR && item.fields.VAR.name === varName
-          );
-
-          if (!varExists) {
-            category.contents.push({
+        if (category.contents.length === 1) {
+          category.contents = [
+            {
+              "kind": "button",
+              "text": "新建变量",
+              "callbackKey": "CREATE_VARIABLE"
+            },
+            {
               "kind": "block",
-              "type": "variables_get",
-              "fields": {
-                "VAR": {
-                  "id": variable.getId(),
-                  "name": varName,
-                  "type": "int"
-                }
+              "type": "variable_define"
+            },
+            {
+              "kind": "block",
+              "type": "variables_set"
+            }
+          ];
+        }
+
+        // 检查变量是否已存在
+        const varExists = category.contents.some(item =>
+          item.fields && item.fields.VAR && item.fields.VAR.name === varName
+        );
+
+        if (!varExists) {
+          category.contents.push({
+            "kind": "block",
+            "type": "variables_get",
+            "fields": {
+              "VAR": {
+                "id": variable.getId(),
+                "name": varName,
+                "type": "int"
               }
-            });
+            }
+          });
 
-            Blockly.Msg.VARIABLES_CURRENT_NAME = varName;
+          Blockly.Msg.VARIABLES_CURRENT_NAME = varName;
 
-            refreshToolbox(workspace, openVariableItem = false);
-          }
-          break;
+          refreshToolbox(workspace, openVariableItem = false);
+        }
+        break;
       }
     }
   } catch (e) {
@@ -210,7 +210,8 @@ function loadExistingVariablesToToolbox(workspace) {
   if (!workspace) return;
 
   // 获取所有现有变量
-  const allVariables = workspace.getVariableMap().getAllVariables;
+  const allVariables = workspace.getAllVariables();
+  // const allVariables = workspace.getVariableMap().getAllVariables;
   if (allVariables.length === 0) return;
 
   // 获取原始工具箱定义
@@ -284,7 +285,7 @@ function refreshToolbox(oldWorkspace, openVariableItem = true) {
   const toolbox = workspace.getToolbox();
   const allCategories = toolbox.getToolboxItems();
   const variableCategory = allCategories.find(item =>
-      item.name_ === "Variables" || (item.getContents && item.getContents()[0]?.callbackKey === "CREATE_VARIABLE")
+    item.name_ === "Variables" || (item.getContents && item.getContents()[0]?.callbackKey === "CREATE_VARIABLE")
   );
   if (toolbox.isVisible_ && openVariableItem) {
     toolbox.setSelectedItem(variableCategory);
