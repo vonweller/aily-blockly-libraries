@@ -74,6 +74,8 @@ Arduino.forBlock['blinker_init_ble'] = function (block, generator) {
   generator.addLibrary('#include <Blinker.h>', '#include <Blinker.h>');
 
   var code = 'Blinker.begin();\n';
+
+  generator.addLoopBegin('Blinker.run()', 'Blinker.run();');
   return code;
 };
 
@@ -223,8 +225,12 @@ Arduino.forBlock['blinker_joystick_value'] = function (block, generator) {
 };
 
 Arduino.forBlock['blinker_data_handler'] = function (block, generator) {
+  // 获取内部语句块
+  let statements = generator.statementToCode(block, 'NAME');
+  
   let functionName = 'data_callback';
   let functionCode = 'void ' + functionName + '(const String & data) {\n' +
+    statements +  // 将用户的代码插入到函数中
     '}\n';
 
   generator.addFunction(functionName, functionCode);
@@ -272,7 +278,37 @@ Arduino.forBlock['blinker_widget_print'] = function (block, generator) {
   let widget = block.getFieldValue('WIDGET');
   // 创建组件变量名
   let varName = 'Blinker_' + widget.replace(/-/g, '_');
+
+//   generator.addVariable(varName, 'BlinkerButton ' + varName + '("' + widget + '");');
   
+  // 检查变量名是否已经存在
+  if (!generator.variableDB_) {
+    generator.variableDB_ = {};
+  }
+
+  // 判断varName是否有相同的
+  if (!generator.variableDB_[varName]) {
+    let componentType = 'BlinkerNumber'; // 默认组件类型
+    if (widget.startsWith('btn')) {
+        componentType = 'BlinkerButton';
+    }
+    else if (widget.startsWith('sld')) {
+      componentType = 'BlinkerSlider';
+    }
+    else if (widget.startsWith('rgb')) {
+      componentType = 'BlinkerRGB';
+    }
+    else if (widget.startsWith('joy')) {
+      componentType = 'BlinkerJoystick';
+    }
+    else if (widget.startsWith('num')) {
+      componentType = 'BlinkerNumber';
+    }
+
+    generator.addVariable(varName, componentType + ' ' + varName + '("' + widget + '");');
+    // 设置block的颜色为红色
+    // block.setColour('#FF0000');
+  }
   // 收集所有连接的对象块返回的代码
   let objectValues = [];
   
@@ -293,7 +329,7 @@ Arduino.forBlock['blinker_widget_print'] = function (block, generator) {
     // 创建对齐的缩进
     let indent = ' '.repeat(varName.length);
     // 生成链式调用格式：组件名.方法1().方法2().print();
-    code = varName + objectValues.join('\n' + indent + '.') + '\n' + indent + '.print();\n';
+    code = varName + objectValues.join('\n' + indent) + '\n' + indent + '.print();\n';
   } else {
     // 如果没有连接对象，使用默认的 print() 方法
     code = varName + '.print();\n';
