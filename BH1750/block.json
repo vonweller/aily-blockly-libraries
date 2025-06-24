@@ -1,0 +1,134 @@
+
+[
+  {
+    "type": "bh1750_create",
+    "message0": "创建BH1750传感器 %1 地址 %2",
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF5722",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "VAR",
+        "variable": "bh1750"
+      },
+      {
+        "type": "field_input",
+        "name": "ADDRESS",
+        "text": "0x23"
+      }
+    ]
+  },
+  {
+    "type": "bh1750_begin",
+    "message0": "初始化BH1750 %1 地址 %2 模式 %3 总线 %4",
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF5722",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "VAR",
+        "variable": "bh1750"
+      },
+      {
+        "type": "field_input",
+        "name": "ADDRESS",
+        "text": "0x23"
+      },
+      {
+        "type": "field_input",
+        "name": "MODE",
+        "text": "BH1750::CONTINUOUS_HIGH_RES_MODE"
+      },
+      {
+        "type": "field_input",
+        "name": "WIRE",
+        "text": "Wire"
+      }
+    ]
+  },
+  {
+    "type": "bh1750_configure",
+    "message0": "配置BH1750 %1 模式为 %2",
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF5722",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "VAR",
+        "variable": "bh1750"
+      },
+      {
+        "type": "field_input",
+        "name": "MODE",
+        "text": "BH1750::CONTINUOUS_HIGH_RES_MODE"
+      }
+    ]
+  },
+  {
+    "type": "bh1750_set_mtreg",
+    "message0": "设置BH1750 %1 测量时间寄存器为 %2",
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF5722",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "VAR",
+        "variable": "bh1750"
+      },
+      {
+        "type": "input_value",
+        "name": "VALUE"
+      }
+    ]
+  },
+  {
+    "type": "bh1750_measurement_ready",
+    "message0": "BH1750 %1 测量就绪？ 最大等待 %2",
+    "inputsInline": true,
+    "output": "Boolean",
+    "colour": "#FF5722",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "VAR",
+        "variable": "bh1750"
+      },
+      {
+        "type": "field_dropdown",
+        "name": "MAX_WAIT",
+        "options": [
+          [
+            "是",
+            "TRUE"
+          ],
+          [
+            "否",
+            "FALSE"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "type": "bh1750_read_light_level",
+    "message0": "读取BH1750 %1 光照强度",
+    "inputsInline": true,
+    "output": "Number",
+    "colour": "#FF5722",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "VAR",
+        "variable": "bh1750"
+      }
+    ]
+  }
+]
