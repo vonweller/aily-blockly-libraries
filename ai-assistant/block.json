@@ -1,0 +1,112 @@
+
+[
+  {
+    "type": "smartcar_ai_assistant_config",
+    "message0": "配置AI-assistant引脚 RX引脚 %1 TX引脚 %2",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "RX_PIN",
+        "options": [
+          ["0(RX)", "0"],
+          ["1(TX)", "1"],
+          ["2", "2"],
+          ["3", "3"],
+          ["4", "4"],
+          ["5", "5"],
+          ["6", "6"],
+          ["7", "7"],
+          ["8", "8"],
+          ["9", "9"],
+          ["10", "10"],
+          ["11", "11"],
+          ["12", "12"],
+          ["13", "13"],
+          ["A0", "A0"],
+          ["A1", "A1"],
+          ["A2", "A2"],
+          ["A3", "A3"],
+          ["A4", "A4"],
+          ["A5", "A5"]
+        ]
+      },
+      {
+        "type": "field_dropdown",
+        "name": "TX_PIN",
+        "options": [
+          ["0(RX)", "0"],
+          ["1(TX)", "1"],
+          ["2", "2"],
+          ["3", "3"],
+          ["4", "4"],
+          ["5", "5"],
+          ["6", "6"],
+          ["7", "7"],
+          ["8", "8"],
+          ["9", "9"],
+          ["10", "10"],
+          ["11", "11"],
+          ["12", "12"],
+          ["13", "13"],
+          ["A0", "A0"],
+          ["A1", "A1"],
+          ["A2", "A2"],
+          ["A3", "A3"],
+          ["A4", "A4"],
+          ["A5", "A5"]
+        ]
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#3CB371",
+    "tooltip": "配置用于AI-assistant通信的软串口引脚",
+    "helpUrl": ""
+  },
+  {
+    "type": "smartcar_ai_assistant_receive",
+    "message0": "AI-assistant接收指令",
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#3CB371",
+    "tooltip": "接收AI-assistant通过软串口发送的命令",
+    "helpUrl": ""
+  },
+  {
+    "type": "smartcar_serial_command_handler",
+    "message0": "接收到 %1 命令",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "ACTION",
+        "options": [
+          ["小车前进", "MOVE_FORWARD"],
+          ["小车后退", "MOVE_BACKWARD"],
+          ["小车左转", "TURN_LEFT"],
+          ["小车右转", "TURN_RIGHT"],
+          ["小车急停", "STOP"],
+          ["打开LED", "LED_ON"],
+          ["关闭LED", "LED_OFF"],
+          ["LED闪烁", "LED_BLINK"],
+          ["舵机旋转", "SERVO_ROTATE"],
+          ["修改风扇速度", "FAN_SPEED"],
+          ["打开风扇", "FAN_ON"],
+          ["关闭风扇", "FAN_OFF"],
+          ["打开彩灯", "RGB_ON"],
+          ["关闭彩灯", "RGB_OFF"],
+          ["设置彩灯亮度", "RGB_BRIGHTNESS"],
+          ["设置彩灯渐变色差", "RGB_GRADIENT"],
+          ["机械臂抓取", "ARM_GRAB"],
+          ["机械臂松开", "ARM_RELEASE"],
+          ["机械臂回归初始位置", "ARM_DOWN"],
+          ["打开继电器", "RELAY_ON"],
+          ["关闭继电器", "RELAY_OFF"]
+        ]
+      }
+    ],
+    "output": "Boolean",
+    "colour": "#3CB371",
+    "tooltip": "判断是否接收到指定类型的命令",
+    "helpUrl": ""
+  }
+]
