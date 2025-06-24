@@ -296,27 +296,27 @@ void breathingEffect_${dataPin}(CRGB* leds, CRGB color, uint8_t speed, uint8_t& 
 };
 
 Arduino.forBlock['fastled_twinkle'] = function (block, generator) {
-  const strip = generator.getVariableName(block.getFieldValue('STRIP'));
+  const dataPin = block.getFieldValue('DATA_PIN');
   const count = generator.valueToCode(block, 'COUNT', generator.ORDER_ATOMIC);
   const background = generator.valueToCode(block, 'BACKGROUND', generator.ORDER_ATOMIC);
   const color = generator.valueToCode(block, 'COLOR', generator.ORDER_ATOMIC);
 
-  // 添加闪烁效果函数
+  // 添加闪烁效果函数，使用引脚特定的变量
   const twinkleFunc = `
-void twinkleEffect(CRGB* leds, uint8_t count, CRGB bgColor, CRGB twinkleColor) {
+void twinkleEffect_${dataPin}(CRGB* leds, uint8_t count, CRGB bgColor, CRGB twinkleColor) {
   // 设置背景颜色
-  for(int i = 0; i < NUM_LEDS; i++) {
+  for(int i = 0; i < NUM_LEDS_${dataPin}; i++) {
     leds[i] = bgColor;
   }
   
   // 随机点亮一些LED
   for(int i = 0; i < count; i++) {
-    int pos = random16(NUM_LEDS);
+    int pos = random16(NUM_LEDS_${dataPin});
     leds[pos] = twinkleColor;
   }
 }`;
 
-  generator.addFunction('twinkleEffect', twinkleFunc);
+  generator.addFunction(`twinkleEffect_${dataPin}`, twinkleFunc);
 
-  return `twinkleEffect(${strip}, ${count}, ${background}, ${color});\n`;
+  return `twinkleEffect_${dataPin}(leds_${dataPin}, ${count}, ${background}, ${color});\n`;
 };
