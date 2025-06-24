@@ -41,7 +41,7 @@ Arduino.forBlock['fastled_set_pixel'] = function (block, generator) {
   const pixel = generator.valueToCode(block, 'PIXEL', generator.ORDER_ATOMIC);
   const color = generator.valueToCode(block, 'COLOR', generator.ORDER_ATOMIC);
 
-  return `leds_${dataPin}[${pixel}] = ${color};\n`;
+  return `leds_${dataPin}[${pixel}] = ${color};\nFastLED.show();\n`;
 };
 
 Arduino.forBlock['fastled_show'] = function (block, generator) {
@@ -51,7 +51,7 @@ Arduino.forBlock['fastled_show'] = function (block, generator) {
 Arduino.forBlock['fastled_clear'] = function (block, generator) {
   // 使用引脚特定的变量名
   const dataPin = block.getFieldValue('DATA_PIN');
-  return `fill_solid(leds_${dataPin}, NUM_LEDS_${dataPin}, CRGB::Black);\n`;
+  return `fill_solid(leds_${dataPin}, NUM_LEDS_${dataPin}, CRGB::Black);\nFastLED.show();\n`;
 };
 
 Arduino.forBlock['fastled_brightness'] = function (block, generator) {
@@ -115,7 +115,7 @@ Arduino.forBlock['fastled_fill_solid'] = function (block, generator) {
   const dataPin = block.getFieldValue('DATA_PIN');
   const color = generator.valueToCode(block, 'COLOR', generator.ORDER_ATOMIC);
 
-  return `fill_solid(leds_${dataPin}, NUM_LEDS_${dataPin}, ${color});\n`;
+  return `fill_solid(leds_${dataPin}, NUM_LEDS_${dataPin}, ${color});\nFastLED.show();\n`;
 };
 
 Arduino.forBlock['fastled_hsv'] = function (block, generator) {
@@ -132,7 +132,7 @@ Arduino.forBlock['fastled_rainbow'] = function (block, generator) {
   const initialHue = generator.valueToCode(block, 'INITIAL_HUE', generator.ORDER_ATOMIC);
   const deltaHue = generator.valueToCode(block, 'DELTA_HUE', generator.ORDER_ATOMIC);
 
-  return `fill_rainbow(leds_${dataPin}, NUM_LEDS_${dataPin}, ${initialHue}, ${deltaHue});\n`;
+  return `fill_rainbow(leds_${dataPin}, NUM_LEDS_${dataPin}, ${initialHue}, ${deltaHue});\nFastLED.show();\n`;
 };
 
 Arduino.forBlock['fastled_fire_effect'] = function (block, generator) {
@@ -196,7 +196,7 @@ void Fire2012_${dataPin}(CRGB* leds, byte heat_value, byte cooling_value) {
 
   generator.addFunction(`Fire2012_${dataPin}`, fireFunc);
 
-  return `Fire2012_${dataPin}(leds_${dataPin}, ${heat}, ${cooling});\n`;
+  return `Fire2012_${dataPin}(leds_${dataPin}, ${heat}, ${cooling});\nFastLED.show();\n`;
 };
 
 Arduino.forBlock['fastled_meteor'] = function (block, generator) {
@@ -234,7 +234,7 @@ void meteorEffect_${dataPin}(CRGB* leds, CRGB color, int meteorSize, byte decay,
 
   generator.addFunction(`meteorEffect_${dataPin}`, meteorFunc);
 
-  return `meteorEffect_${dataPin}(leds_${dataPin}, ${color}, ${size}, ${decay}, ${speed});\n`;
+  return `meteorEffect_${dataPin}(leds_${dataPin}, ${color}, ${size}, ${decay}, ${speed});\nFastLED.show();\n`;
 };
 
 Arduino.forBlock['fastled_palette_cycle'] = function (block, generator) {
@@ -257,7 +257,7 @@ void cyclePalette_${dataPin}(CRGB* leds, CRGBPalette16 palette, uint8_t speed, u
 
   generator.addFunction(`cyclePalette_${dataPin}`, paletteFunc);
 
-  return `cyclePalette_${dataPin}(leds_${dataPin}, ${palette}, ${speed}, paletteIndex_${dataPin});\n`;
+  return `cyclePalette_${dataPin}(leds_${dataPin}, ${palette}, ${speed}, paletteIndex_${dataPin});\nFastLED.show();\n`;
 };
 
 Arduino.forBlock['fastled_breathing'] = function (block, generator) {
@@ -292,7 +292,7 @@ void breathingEffect_${dataPin}(CRGB* leds, CRGB color, uint8_t speed, uint8_t& 
 
   generator.addFunction(`breathingEffect_${dataPin}`, breathFunc);
 
-  return `breathingEffect_${dataPin}(leds_${dataPin}, ${color}, ${speed}, breathBrightness_${dataPin}, breathDirection_${dataPin});\n`;
+  return `breathingEffect_${dataPin}(leds_${dataPin}, ${color}, ${speed}, breathBrightness_${dataPin}, breathDirection_${dataPin});\nFastLED.show();\n`;
 };
 
 Arduino.forBlock['fastled_twinkle'] = function (block, generator) {
@@ -318,5 +318,5 @@ void twinkleEffect_${dataPin}(CRGB* leds, uint8_t count, CRGB bgColor, CRGB twin
 
   generator.addFunction(`twinkleEffect_${dataPin}`, twinkleFunc);
 
-  return `twinkleEffect_${dataPin}(leds_${dataPin}, ${count}, ${background}, ${color});\n`;
+  return `twinkleEffect_${dataPin}(leds_${dataPin}, ${count}, ${background}, ${color});\nFastLED.show();\n`;
 };
