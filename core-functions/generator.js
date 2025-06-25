@@ -9,9 +9,30 @@ Blockly.Msg.PROCEDURES_CALLRETURN_HELPURL = "";
 Blockly.Msg.PROCEDURES_IFRETURN_CONDITION = "如果";
 Blockly.Msg.PROCEDURES_IFRETURN_VALUE = "返回值";
 
+// Helper function to convert Chinese to pinyin
+function convertToPinyin(text) {
+  try {
+    if (typeof window !== 'undefined' && window['pinyinPro']) {
+      var { pinyin } = window['pinyinPro'];
+      return pinyin(text, { toneType: 'none' }).replace(/\s+/g, '_');
+    }
+  } catch (e) {
+    console.warn('PinyinPro not available, using original name');
+  }
+  return text;
+}
+
 Arduino.forBlock["procedures_defreturn"] = function (block) {
   // Define a procedure with a return value.
-  const funcName = Arduino.getProcedureName(block.getFieldValue("NAME"));
+  const originalName = block.getFieldValue("NAME");
+
+  // Convert Chinese characters to pinyin if present
+  let processedName = originalName;
+  if (/[\u4e00-\u9fa5]/.test(originalName)) {
+    processedName = convertToPinyin(originalName);
+  }
+
+  const funcName = Arduino.getProcedureName(processedName);
   let xfix1 = "";
   if (Arduino.STATEMENT_PREFIX) {
     xfix1 += Arduino.injectId(Arduino.STATEMENT_PREFIX, block);
@@ -41,23 +62,23 @@ Arduino.forBlock["procedures_defreturn"] = function (block) {
     // does not have a RETURN input.
     returnValue =
       Arduino.valueToCode(block, "RETURN", Arduino.ORDER_NONE) || "";
-    
+
     // Determine return type based on returnValue
     if (returnValue) {
       // Try to guess the type based on content
-      if (returnValue.includes("\"") || returnValue.includes("'") || 
-          returnValue.includes("String(")) {
+      if (returnValue.includes("\"") || returnValue.includes("'") ||
+        returnValue.includes("String(")) {
         returnType = "String";
-      } else if (returnValue === "true" || returnValue === "false" || 
-                 returnValue.includes(" == ") || returnValue.includes(" != ") || 
-                 returnValue.includes(" < ") || returnValue.includes(" > ")) {
+      } else if (returnValue === "true" || returnValue === "false" ||
+        returnValue.includes(" == ") || returnValue.includes(" != ") ||
+        returnValue.includes(" < ") || returnValue.includes(" > ")) {
         returnType = "boolean";
       } else if (returnValue.includes(".") || /\d+\.\d+/.test(returnValue)) {
         returnType = "float";
       } else if (/^-?\d+$/.test(returnValue) || returnValue.includes("int(")) {
         returnType = "int";
-      } else if (returnValue.includes("char(") || (returnValue.length === 3 && 
-                 returnValue.startsWith("'") && returnValue.endsWith("'"))) {
+      } else if (returnValue.includes("char(") || (returnValue.length === 3 &&
+        returnValue.startsWith("'") && returnValue.endsWith("'"))) {
         returnType = "char";
       } else {
         // For complex expressions, default to int
@@ -78,7 +99,12 @@ Arduino.forBlock["procedures_defreturn"] = function (block) {
   for (let i = 0; i < variables.length; i++) {
     args[i] = Arduino.getVariableName(variables[i]);
   }
+
+  // Add Chinese function name comment if the original name contains Chinese characters
+  let functionComment = "// Custom Function: " + originalName + "\n";
+
   let code =
+    functionComment +
     returnType + " " +
     funcName +
     "(" +
@@ -107,7 +133,15 @@ Arduino.forBlock["procedures_defnoreturn"] =
 
 Arduino.forBlock["procedures_callreturn"] = function (block) {
   // Call a procedure with a return value.
-  const funcName = Arduino.getProcedureName(block.getFieldValue("NAME"));
+  const originalName = block.getFieldValue("NAME");
+
+  // Convert Chinese characters to pinyin if present
+  let processedName = originalName;
+  if (/[\u4e00-\u9fa5]/.test(originalName)) {
+    processedName = convertToPinyin(originalName);
+  }
+
+  const funcName = Arduino.getProcedureName(processedName);
   const args = [];
   const variables = block.getVars();
   for (let i = 0; i < variables.length; i++) {
