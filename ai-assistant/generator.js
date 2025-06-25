@@ -2,7 +2,7 @@
  * 智能小车AI-assistant通信模块代码生成器
  */
 
-Arduino.forBlock['smartcar_ai_assistant_config'] = function (block, generator) {
+Arduino.forBlock['ai_assistant_config'] = function (block, generator) {
   // 获取RX和TX引脚参数
   let rxPin = block.getFieldValue('RX_PIN') || '2';
   let txPin = block.getFieldValue('TX_PIN') || '3';
@@ -21,7 +21,7 @@ Arduino.forBlock['smartcar_ai_assistant_config'] = function (block, generator) {
   return '';
 };
 
-Arduino.forBlock['smartcar_ai_assistant_receive'] = function (block, generator) {
+Arduino.forBlock['ai_assistant_receive'] = function (block, generator) {
   // 生成从软串口获取命令的代码
   generator.addLoop('receive_command', `// 从软串口获取命令并保存到receivedCommand变量
 if (mySerial.available()) {
@@ -49,11 +49,11 @@ if (mySerial.available()) {
   return '';
 };
 
-Arduino.forBlock['smartcar_serial_command_handler'] = function (block, generator) {
+Arduino.forBlock['serial_command_handler'] = function (block, generator) {
   let actionType = block.getFieldValue('ACTION') || "MOVE_FORWARD";
   
-  generator.addLibrary('SmartCar', '#include <SmartCar.h>');
-  generator.addObject('smartCar', 'SmartCar smartCar;');
+  // generator.addLibrary('SmartCar', '#include <SmartCar.h>');
+  // generator.addObject('smartCar', 'SmartCar smartCar;');
   
   let code = "false";
   
@@ -107,39 +107,39 @@ Arduino.forBlock['smartcar_serial_command_handler'] = function (block, generator
       break;
       
     case "RGB_ON":
-      code = "(receivedCommand.indexOf(\"RGB\") == 0 && receivedCommand.indexOf(\"ON\") > 0)";
+      code = "(receivedCommand.indexOf(\"RGB\") == 0 && receivedCommand.indexOf(\"ON\") >= 0)";
       break;
       
     case "RGB_OFF":
-      code = "(receivedCommand.indexOf(\"RGB\") == 0 && receivedCommand.indexOf(\"OFF\") > 0)";
+      code = "(receivedCommand.indexOf(\"RGB\") == 0 && receivedCommand.indexOf(\"OFF\") >= 0)";
       break;
       
     case "RGB_BRIGHTNESS":
-      code = "(receivedCommand.indexOf(\"RGB\") == 0 && receivedCommand.indexOf(\"LIGHT\") > 0)";
+      code = "(receivedCommand.indexOf(\"RGB\") == 0 && receivedCommand.indexOf(\"LIGHT\") >= 0)";
       break;
       
     case "RGB_GRADIENT":
-      code = "(receivedCommand.indexOf(\"RGB\") == 0 && receivedCommand.indexOf(\"GRADIENT\") > 0)";
+      code = "(receivedCommand.indexOf(\"RGB\") == 0 && receivedCommand.indexOf(\"GRADIENT\") >= 0)";
       break;
       
     case "ARM_GRAB":
-      code = "(receivedCommand.indexOf(\"ARM\") == 0 && receivedCommand.indexOf(\"GRAB\") > 0)";
+      code = "(receivedCommand.indexOf(\"ARM\") == 0 && receivedCommand.indexOf(\"GRAB\") >= 0)";
       break;
       
     case "ARM_RELEASE":
-      code = "(receivedCommand.indexOf(\"ARM\") == 0 && receivedCommand.indexOf(\"RELEASE\") > 0)";
+      code = "(receivedCommand.indexOf(\"ARM\") == 0 && receivedCommand.indexOf(\"RELEASE\") >= 0)";
       break;
       
     case "ARM_DOWN":
-      code = "(receivedCommand.indexOf(\"ARM\") == 0 && receivedCommand.indexOf(\"DOWN\") > 0)";
+      code = "(receivedCommand.indexOf(\"ARM\") == 0 && receivedCommand.indexOf(\"DOWN\") >= 0)";
       break;
       
     case "RELAY_ON":
-      code = "(receivedCommand.indexOf(\"RELAY\") == 0 && receivedCommand.indexOf(\"ON\") > 0)";
+      code = "(receivedCommand.indexOf(\"RELAY\") == 0 && receivedCommand.indexOf(\"ON\") >= 0)";
       break;
       
     case "RELAY_OFF":
-      code = "(receivedCommand.indexOf(\"RELAY\") == 0 && receivedCommand.indexOf(\"OFF\") > 0)";
+      code = "(receivedCommand.indexOf(\"RELAY\") == 0 && receivedCommand.indexOf(\"OFF\") >= 0)";
       break;
       
     default:
