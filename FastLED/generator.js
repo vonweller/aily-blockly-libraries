@@ -56,7 +56,7 @@ Arduino.forBlock['fastled_clear'] = function (block, generator) {
 
 Arduino.forBlock['fastled_brightness'] = function (block, generator) {
   const brightness = generator.valueToCode(block, 'BRIGHTNESS', generator.ORDER_ATOMIC);
-  return `FastLED.setBrightness(${brightness});\n`;
+  return `FastLED.setBrightness(${brightness});\nFastLED.show();\n`;
 };
 
 Arduino.forBlock['fastled_rgb'] = function (block, generator) {
