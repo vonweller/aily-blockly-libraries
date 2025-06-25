@@ -16,13 +16,12 @@
     "colour": "#4C97FF"
   },
   {
-    "type": "keyboard_write",
-    "message0": "键盘输出字符 %1",
+    "type": "keyboard_print",
+    "message0": "键盘输出字符串 %1",
     "args0": [
       {
         "type": "input_value",
-        "name": "CHAR",
-        "check": ["String", "Number"]
+        "name": "TEXT"
       }
     ],
     "inputsInline": true,
@@ -88,8 +87,7 @@
     "args0": [
       {
         "type": "input_value",
-        "name": "KEY",
-        "check": ["String", "Number"]
+        "name": "KEY"
       }
     ],
     "inputsInline": true,
@@ -100,14 +98,6 @@
   {
     "type": "keyboard_release_all",
     "message0": "键盘释放所有按键",
-    "inputsInline": true,
-    "previousStatement": null,
-    "nextStatement": null,
-    "colour": "#4C97FF"
-  },
-  {
-    "type": "keyboard_serial_to_key",
-    "message0": "从串口读取并键盘输出(ASCII值+1)",
     "inputsInline": true,
     "previousStatement": null,
     "nextStatement": null,

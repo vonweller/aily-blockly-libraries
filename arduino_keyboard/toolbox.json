@@ -1,23 +1,35 @@
 {
   "kind": "category",
   "icon": "fa-light fa-keyboard",
-  "name": "键盘",
+  "name": "USB模拟键盘",
   "contents": [
     {
       "kind": "block",
-      "type": "keyboard_begin"
+      "type": "keyboard_print",
+      "inputs": {
+        "TEXT": {
+          "shadow": {
+            "type": "text",
+            "fields": {
+              "TEXT": "Hello"
+            }
+          }
+        }
+      }
     },
     {
       "kind": "block",
-      "type": "keyboard_end"
-    },
-    {
-      "kind": "block",
-      "type": "keyboard_write"
-    },
-    {
-      "kind": "block",
-      "type": "keyboard_press"
+      "type": "keyboard_press",
+      "inputs": {
+        "KEY": {
+          "shadow": {
+            "type": "text",
+            "fields": {
+              "TEXT": "a"
+            }
+          }
+        }
+      }
     },
     {
       "kind": "block",
@@ -25,15 +37,21 @@
     },
     {
       "kind": "block",
-      "type": "keyboard_release"
+      "type": "keyboard_release",
+      "inputs": {
+        "KEY": {
+          "shadow": {
+            "type": "text",
+            "fields": {
+              "TEXT": "a"
+            }
+          }
+        }
+      }
     },
     {
       "kind": "block",
       "type": "keyboard_release_all"
-    },
-    {
-      "kind": "block",
-      "type": "keyboard_serial_to_key"
     }
   ]
 }

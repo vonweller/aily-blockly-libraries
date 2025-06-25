@@ -1,22 +1,30 @@
 {
   "name": "@aily-project/lib-keyboard",
-  "nickname": "ArduinoKeyboard",
+  "nickname": "USB模拟键盘",
   "author": "Arduino",
-  "description": "用于Arduino Leonardo等支持HID功能的主控，可模拟键盘输入",
-  "version": "0.0.1",
+  "description": "将Arduino模拟成USB键盘，可以实现键盘输入、按键模拟等功能",
+  "version": "1.0.0",
   "compatibility": {
     "core": [
-      "arduino:avr"
+      "esp32:esp32s3",
+      "esp32:esp32c3",
+      "renesas_uno:minima",
+      "renesas_uno:unor4wifi"
     ],
-    "voltage": [5]
+    "voltage": [
+      5
+    ]
   },
   "keywords": [
     "aily",
     "blockly",
     "keyboard",
+    "usb",
     "hid"
   ],
   "scripts": {},
   "dependencies": {},
-  "devDependencies": {}
+  "devDependencies": {},
+  "tested": true,
+  "tester": "mango-0616"
 }

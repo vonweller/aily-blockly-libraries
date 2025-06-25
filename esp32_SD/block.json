@@ -1,0 +1,282 @@
+
+[
+  {
+    "type": "sd_begin",
+    "message0": "初始化SD卡(引脚 %1)",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "CS_PIN"
+      }
+    ],
+    "output": null,
+    "colour": "#FF8800",
+    "tooltip": "初始化SD卡，传入芯片选择引脚（CS）",
+    "helpUrl": ""
+  },
+  {
+    "type": "sd_card_type",
+    "message0": "SD卡类型",
+    "output": null,
+    "colour": "#FF8800",
+    "tooltip": "获取SD卡类型",
+    "helpUrl": ""
+  },
+  {
+    "type": "sd_card_size",
+    "message0": "SD卡容量",
+    "output": null,
+    "colour": "#FF8800",
+    "tooltip": "获取SD卡容量",
+    "helpUrl": ""
+  },
+  {
+    "type": "sd_total_bytes",
+    "message0": "SD卡总字节数",
+    "output": null,
+    "colour": "#FF8800",
+    "tooltip": "获取SD卡总空间（字节数）",
+    "helpUrl": ""
+  },
+  {
+    "type": "sd_used_bytes",
+    "message0": "SD卡已用字节数",
+    "output": null,
+    "colour": "#FF8800",
+    "tooltip": "获取SD卡已使用空间（字节数）",
+    "helpUrl": ""
+  },
+  {
+    "type": "sd_open",
+    "message0": "打开SD文件 路径 %1 模式 %2",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "PATH"
+      },
+      {
+        "type": "input_value",
+        "name": "MODE"
+      }
+    ],
+    "output": null,
+    "colour": "#FF8800",
+    "tooltip": "打开SD卡文件/目录，可指定读取或写入模式",
+    "helpUrl": ""
+  },
+  {
+    "type": "sd_mkdir",
+    "message0": "在SD卡创建目录 %1",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "PATH"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF8800",
+    "tooltip": "创建SD卡目录",
+    "helpUrl": ""
+  },
+  {
+    "type": "sd_rmdir",
+    "message0": "删除SD卡目录 %1",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "PATH"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF8800",
+    "tooltip": "删除SD卡目录",
+    "helpUrl": ""
+  },
+  {
+    "type": "sd_remove",
+    "message0": "删除SD卡文件 %1",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "PATH"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF8800",
+    "tooltip": "删除SD卡文件",
+    "helpUrl": ""
+  },
+  {
+    "type": "sd_rename",
+    "message0": "重命名SD卡文件/目录 从 %1 到 %2",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "PATH_FROM"
+      },
+      {
+        "type": "input_value",
+        "name": "PATH_TO"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF8800",
+    "tooltip": "重命名SD卡中的文件或目录",
+    "helpUrl": ""
+  },
+  {
+    "type": "file_is_directory",
+    "message0": "文件 %1 是否为目录",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "FILE_VAR"
+      }
+    ],
+    "output": null,
+    "colour": "#33AAFF",
+    "tooltip": "判断文件是否为目录",
+    "helpUrl": ""
+  },
+  {
+    "type": "file_open_next_file",
+    "message0": "文件 %1 打开下一个文件",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "FILE_VAR"
+      }
+    ],
+    "output": null,
+    "colour": "#33AAFF",
+    "tooltip": "遍历目录时，获取下一个文件或目录",
+    "helpUrl": ""
+  },
+  {
+    "type": "file_name",
+    "message0": "获取文件 %1 名称",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "FILE_VAR"
+      }
+    ],
+    "output": null,
+    "colour": "#33AAFF",
+    "tooltip": "获取文件或目录的名称",
+    "helpUrl": ""
+  },
+  {
+    "type": "file_size",
+    "message0": "获取文件 %1 大小",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "FILE_VAR"
+      }
+    ],
+    "output": null,
+    "colour": "#33AAFF",
+    "tooltip": "获取文件大小（字节）",
+    "helpUrl": ""
+  },
+  {
+    "type": "file_get_last_write",
+    "message0": "获取文件 %1 最后修改时间",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "FILE_VAR"
+      }
+    ],
+    "output": null,
+    "colour": "#33AAFF",
+    "tooltip": "获取文件或目录的最后修改时间",
+    "helpUrl": ""
+  },
+  {
+    "type": "file_available",
+    "message0": "文件 %1 可读取字节数",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "FILE_VAR"
+      }
+    ],
+    "output": null,
+    "colour": "#33AAFF",
+    "tooltip": "返回文件可读取的字节数",
+    "helpUrl": ""
+  },
+  {
+    "type": "file_read",
+    "message0": "读取文件 %1 数据",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "FILE_VAR"
+      }
+    ],
+    "output": null,
+    "colour": "#33AAFF",
+    "tooltip": "从文件中读取一个字节数据",
+    "helpUrl": ""
+  },
+  {
+    "type": "file_write",
+    "message0": "写入到文件 %1 数据 %2",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "FILE_VAR"
+      },
+      {
+        "type": "input_value",
+        "name": "DATA"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#33AAFF",
+    "tooltip": "写入数据到文件",
+    "helpUrl": ""
+  },
+  {
+    "type": "file_print",
+    "message0": "打印到文件 %1 数据 %2",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "FILE_VAR"
+      },
+      {
+        "type": "input_value",
+        "name": "DATA"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#33AAFF",
+    "tooltip": "将数据打印输出到文件",
+    "helpUrl": ""
+  },
+  {
+    "type": "file_close",
+    "message0": "关闭文件 %1",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "FILE_VAR"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#33AAFF",
+    "tooltip": "关闭文件",
+    "helpUrl": ""
+  }
+]
