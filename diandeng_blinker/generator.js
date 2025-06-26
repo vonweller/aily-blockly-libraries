@@ -204,6 +204,12 @@ Arduino.forBlock['blinker_joystick'] = function (block, generator) {
   // 获取内部语句块
   let statements = generator.statementToCode(block, 'NAME');
 
+  // 创建摇杆对象变量名
+  let varName = 'Joystick_' + key.replace(/-/g, '_');
+
+  // 添加摇杆组件对象
+  generator.addVariable(varName, 'BlinkerJoystick ' + varName + '("' + key + '");');
+
   // 添加摇杆回调函数
   let functionName = 'joystick_' + key.replace(/-/g, '_') + '_callback';
   let functionCode = 'void ' + functionName + '(uint8_t xAxis, uint8_t yAxis) {\n' +
@@ -211,6 +217,8 @@ Arduino.forBlock['blinker_joystick'] = function (block, generator) {
     '}\n';
 
   generator.addFunction(functionName, functionCode);
+
+  // 在setup中添加callback绑定
   generator.addSetupEnd('joystick_' + key, varName + '.attach(' + functionName + ');');
 
   return '';
