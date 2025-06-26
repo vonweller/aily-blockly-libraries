@@ -8,8 +8,7 @@
     "compatibility": {
       "core": [
         "arduino:avr",
-        "esp32:esp32",
-        "esp8266:esp8266"
+        "esp32:esp32"
       ],
       "voltage": [
         3.3,
@@ -30,15 +29,12 @@
   },
   {
     "name": "@aily-project/lib-dht",
-    "nickname": "DHT温湿度传感器库",
-    "version": "0.0.1",
-    "description": "DHT11/DHT22温湿度传感器库，支持读取温度和湿度数据",
+    "nickname": "DHT温湿度传感器",
+    "version": "1.0.0",
+    "description": "DHT11/DHT22(AM2302)/DHT21(AM2301)温湿度传感器库，支持读取温度和湿度数据",
     "author": "adafruit",
     "compatibility": {
-      "core": [
-        "arduino:avr",
-        "esp32:esp32"
-      ],
+      "core": [],
       "voltage": [
         3.3,
         5
@@ -52,6 +48,9 @@
       "humidity",
       "DHT11",
       "DHT22",
+      "DHT21",
+      "AM2302",
+      "AM2301",
       "温度",
       "湿度",
       "传感器",
@@ -61,6 +60,140 @@
     ],
     "tested": true,
     "icon": "iconfont icon-dht22"
+  },
+  {
+    "name": "@aily-projects/lib-adafruit_ina219",
+    "nickname": "INA219传感器驱动库",
+    "version": "0.0.1",
+    "description": "INA219传感器驱动库，支持I2C通信，提供电流、总线电压、分线电压、功率数据获取功能。",
+    "author": "openjumper",
+    "compatibility": {
+      "core": [
+        "esp32:esp32",
+        "esp32:esp32s3",
+        "arduino:avr"
+      ],
+      "voltage": [
+        3.3,
+        5
+      ]
+    },
+    "keywords": [
+      "aily",
+      "blockly",
+      "INA219",
+      "电流",
+      "总线电压",
+      "分线电压",
+      "功率",
+      "I2C",
+      "传感器"
+    ],
+    "tested": true,
+    "icon": ""
+  },
+  {
+    "name": "@aily-project/lib-ai-assistant",
+    "nickname": "ai-assistant",
+    "version": "0.0.1",
+    "description": "用于小智语音识别后向各种设备通过串口发送控制命令，供主设备识别和执行相应操作。",
+    "author": "openjumper",
+    "compatibility": {
+      "core": [],
+      "voltage": [
+        3.3,
+        5
+      ]
+    },
+    "keywords": [
+      "小智",
+      "AI控制",
+      "AI—Assistant"
+    ],
+    "tested": true,
+    "icon": ""
+  },
+  {
+    "name": "@aily-project/lib-ai-vox",
+    "nickname": "AI语音交互",
+    "version": "0.0.1",
+    "description": "Arduino版小智AI，AI Vox语音交互引擎支持库，用于ESP32系列开发板。",
+    "author": "nulllab",
+    "compatibility": {
+      "core": [
+        "esp32:esp32",
+        "esp32:esp32s3"
+      ],
+      "voltage": [
+        3.3
+      ]
+    },
+    "keywords": [
+      "aily",
+      "blockly",
+      "aivox",
+      "ai",
+      "voice",
+      "speech",
+      "esp32",
+      "i2s",
+      "aivox_init_std",
+      "aivox_loop"
+    ],
+    "tested": true,
+    "icon": "fa-light fa-message-bot"
+  },
+  {
+    "name": "@aily-project/lib-keyboard",
+    "nickname": "USB模拟键盘",
+    "version": "1.0.0",
+    "description": "将Arduino模拟成USB键盘，可以实现键盘输入、按键模拟等功能",
+    "author": "Arduino",
+    "compatibility": {
+      "core": [
+        "esp32:esp32s3",
+        "esp32:esp32c3",
+        "renesas_uno:minima",
+        "renesas_uno:unor4wifi"
+      ],
+      "voltage": [
+        5
+      ]
+    },
+    "keywords": [
+      "aily",
+      "blockly",
+      "keyboard",
+      "usb",
+      "hid"
+    ],
+    "tested": true,
+    "icon": "fa-light fa-keyboard"
+  },
+  {
+    "name": "@aily-project/lib-mouse",
+    "nickname": "USB模拟鼠标",
+    "version": "1.0.0",
+    "description": "将Arduino模拟成USB鼠标，可以实现鼠标点击、移动等功能",
+    "author": "Arduino",
+    "compatibility": {
+      "core": [
+        "esp32:esp32s3",
+        "esp32:esp32c3",
+        "renesas_uno:minima",
+        "renesas_uno:unor4wifi"
+      ],
+      "voltage": []
+    },
+    "keywords": [
+      "aily",
+      "blockly",
+      "mouse",
+      "usb",
+      "hid"
+    ],
+    "tested": true,
+    "icon": "fa-light fa-computer-mouse-scrollwheel"
   },
   {
     "name": "@aily-project/lib-core-tone",
@@ -88,9 +221,43 @@
     "icon": ""
   },
   {
+    "name": "@aily-project/lib-blinker",
+    "nickname": "点灯物联网",
+    "version": "1.0.0",
+    "description": "Blinker物联网控制库，支持手机APP控制、智能音箱控制，使用蓝牙BLE、MQTT等通信方式，兼容多种开发板",
+    "author": "Diandeng Tech",
+    "compatibility": {
+      "core": [
+        "esp32:esp32",
+        "renesas_uno:unor4wifi"
+      ],
+      "voltage": [
+        3.3,
+        5
+      ]
+    },
+    "keywords": [
+      "aily",
+      "blockly",
+      "blinker",
+      "点灯科技",
+      "iot",
+      "物联网",
+      "smart home",
+      "wifi",
+      "mqtt",
+      "bluetooth",
+      "小爱同学",
+      "天猫精灵",
+      "小度"
+    ],
+    "tested": true,
+    "icon": "iconfont icon-blinker"
+  },
+  {
     "name": "@aily-project/lib-fastled",
     "nickname": "FastLED灯带驱动库",
-    "version": "0.0.4",
+    "version": "1.0.1",
     "description": "支持WS2812B/WS2811/NEOPIXEL等多种RGB LED灯带的控制库，提供颜色、亮度、彩虹效果等多种功能",
     "author": "aily Project",
     "compatibility": {
@@ -133,8 +300,7 @@
     "compatibility": {
       "core": [
         "arduino:avr",
-        "esp32:esp32",
-        "esp8266:esp8266"
+        "esp32:esp32"
       ],
       "voltage": [
         3.3,
@@ -214,7 +380,7 @@
     "nickname": "LCD1602 I2C驱动库",
     "version": "1.0.0",
     "description": "LCD1602 I2C显示屏控制支持库，支持Arduino UNO、MEGA、ESP8266、ESP32等开发板",
-    "author": "johnrickman",
+    "author": "aily Project",
     "compatibility": {
       "core": [],
       "voltage": [
@@ -244,8 +410,7 @@
     "compatibility": {
       "core": [
         "arduino:avr",
-        "esp32:esp32",
-        "esp8266:esp8266"
+        "esp32:esp32"
       ],
       "voltage": [
         3.3,
@@ -324,7 +489,7 @@
     "nickname": "IICPS3数据解析专用库",
     "version": "0.0.1",
     "description": "通过该库解析IICPS3手柄接收模块的数据，支持获取手柄的按键状态、摇杆位置。",
-    "author": "K2L",
+    "author": "OpenJumper",
     "compatibility": {
       "core": [],
       "voltage": [
@@ -347,7 +512,7 @@
     "nickname": "文本转语音",
     "version": "0.0.1",
     "description": "通过OpenJumper TTS库控制文本转语音模块，支持播放铃声、提示音、警告音、数字和文本。",
-    "author": "K2L",
+    "author": "OpenJumper",
     "compatibility": {
       "core": [],
       "voltage": [
@@ -420,6 +585,34 @@
     "icon": "iconfont icon-servo"
   },
   {
+    "name": "@aily-project/lib-bmi270",
+    "nickname": "BMI270传感器驱动库",
+    "version": "0.0.1",
+    "description": "BMI270传感器驱动库，支持I2C通信，提供加速度、陀螺仪数据获取功能。",
+    "author": "openjumper",
+    "compatibility": {
+      "core": [
+        "esp32:esp32",
+        "esp32:esp32s3"
+      ],
+      "voltage": [
+        3.3,
+        5
+      ]
+    },
+    "keywords": [
+      "aily",
+      "blockly",
+      "BMI270",
+      "加速度",
+      "陀螺仪",
+      "校准",
+      "传感器"
+    ],
+    "tested": true,
+    "icon": ""
+  },
+  {
     "name": "@aily-project/lib-tm1650",
     "nickname": "TM1650四位数码管驱动库",
     "version": "0.0.1",
@@ -445,6 +638,37 @@
     "icon": "iconfont icon-digital-tube"
   },
   {
+    "name": "@aily-project/lib-u8g2",
+    "nickname": "U8G2显示屏库",
+    "version": "1.0.0",
+    "description": "支持多种OLED、LCD单色显示屏的图形库，包括SSD1306、SSD1309、SH1106、SH1107、ST7920等控制器",
+    "author": "aily Project",
+    "compatibility": {
+      "core": [],
+      "voltage": [
+        3.3,
+        5
+      ]
+    },
+    "keywords": [
+      "aily",
+      "blockly",
+      "display",
+      "u8g2",
+      "oled",
+      "lcd",
+      "12864",
+      "ssd1306",
+      "sh1106",
+      "st7920",
+      "显示屏",
+      "图形",
+      "点阵显示屏"
+    ],
+    "tested": true,
+    "icon": "iconfont icon-oled12864"
+  },
+  {
     "name": "@aily-project/lib-ultrasonic",
     "nickname": "超声波传感器",
     "version": "0.0.1",
@@ -461,15 +685,16 @@
     "icon": "iconfont icon-sr04"
   },
   {
-    "name": "@aily-project/lib-aht-sensor",
-    "nickname": "AHT温湿度",
+    "name": "@aily-project/lib-vl53l0x",
+    "nickname": "VL53L0X激光测距传感器驱动库",
     "version": "0.0.1",
-    "description": "适用于AHT10、AHT20温湿度传感器",
-    "author": "Adafruit",
+    "description": "VL53L0X激光测距传感器驱动库，支持I2C通信，提供距离数据获取功能。",
+    "author": "openjumper",
     "compatibility": {
       "core": [
-        "arduino:avr",
-        "esp32:esp32"
+        "esp32:esp32",
+        "esp32:esp32s3",
+        "arduino:avr"
       ],
       "voltage": [
         3.3,
@@ -478,8 +703,59 @@
     },
     "keywords": [
       "aily",
+      "blockly",
+      "VL53L0X",
+      "激光测距",
+      "传感器"
+    ],
+    "tested": true,
+    "icon": ""
+  },
+  {
+    "name": "@aily-project/lib-ags02ma",
+    "nickname": "AGS02MA",
+    "version": "0.0.1",
+    "description": "基于Adafruit_AGS02MA.h库的气体传感器支持库，可用于Arduino UNO、MEGA、ESP8266、ESP32等开发板",
+    "author": "adafruit",
+    "compatibility": {
+      "core": [
+        "arduino:avr",
+        "esp32:esp32",
+        "esp8266:esp8266"
+      ],
+      "voltage": [
+        3.3,
+        5
+      ]
+    },
+    "keywords": [
+      "ags02ma",
+      "gas-sensor",
+      "Adafruit",
+      "TVOC",
+      "gas resistance"
+    ],
+    "tested": false,
+    "icon": ""
+  },
+  {
+    "name": "@aily-project/lib-aht-sensor",
+    "nickname": "AHT温湿度传感器",
+    "version": "0.0.1",
+    "description": "适用于AHT10、AHT20温湿度传感器",
+    "author": "Adafruit",
+    "compatibility": {
+      "core": [],
+      "voltage": [
+        3.3,
+        5
+      ]
+    },
+    "keywords": [
+      "aily",
       "aht",
-      "温湿度",
+      "温度",
+      "湿度",
       "传感器",
       "oled",
       "Adafruit_AHTX0",
@@ -498,8 +774,7 @@
     "compatibility": {
       "core": [
         "arduino:avr",
-        "esp32:esp32",
-        "esp8266:esp8266"
+        "esp32:esp32"
       ],
       "voltage": [
         3.3,
@@ -517,6 +792,35 @@
     "icon": "fa-light fa-fingerprint"
   },
   {
+    "name": "@aily-project/lib-adafruit-gfx",
+    "nickname": "Adafruit GFX",
+    "version": "0.0.1",
+    "description": "基于Adafruit_GFX及各驱动库的彩色TFT屏显示与绘图支持库",
+    "author": "Adafruit",
+    "compatibility": {
+      "core": [
+        "arduino:avr",
+        "esp32:esp32"
+      ],
+      "voltage": [
+        3.3,
+        5
+      ]
+    },
+    "keywords": [
+      "tft",
+      "Adafruit_GFX",
+      "ST7735",
+      "ST7789",
+      "ST7796S",
+      "blockly",
+      "显示",
+      "绘图"
+    ],
+    "tested": false,
+    "icon": ""
+  },
+  {
     "name": "@aily-project/lib-mlx90614",
     "nickname": "MLX90614红外测温库",
     "version": "1.0.0",
@@ -525,8 +829,7 @@
     "compatibility": {
       "core": [
         "arduino:avr",
-        "esp32:esp32",
-        "esp8266:esp8266"
+        "esp32:esp32"
       ],
       "voltage": [
         3.3,
@@ -549,6 +852,28 @@
     "icon": ""
   },
   {
+    "name": "@aily-project/lib-adafruit-vl53l0x",
+    "nickname": "激光测距",
+    "version": "0.0.1",
+    "description": "支持VL53L0X激光测距传感器",
+    "author": "adafruit",
+    "compatibility": {
+      "core": [],
+      "voltage": [
+        3.3,
+        5
+      ]
+    },
+    "keywords": [
+      "aily",
+      "blockly",
+      "VL53L0X",
+      "激光测距"
+    ],
+    "tested": false,
+    "icon": ""
+  },
+  {
     "name": "@aily-project/lib-adxl345",
     "nickname": "ADXL345传感器库",
     "version": "0.0.1",
@@ -557,8 +882,7 @@
     "compatibility": {
       "core": [
         "arduino:avr",
-        "esp32:esp32",
-        "esp8266:esp8266"
+        "esp32:esp32"
       ],
       "voltage": [
         3.3,
@@ -575,36 +899,6 @@
     ],
     "tested": false,
     "icon": ""
-  },
-  {
-    "name": "@aily-project/lib-aivox",
-    "nickname": "AI语音交互",
-    "version": "0.0.1",
-    "description": "Arduino版小智AI，AI Vox语音交互引擎支持库，用于ESP32系列开发板。",
-    "author": "nulllab",
-    "compatibility": {
-      "core": [
-        "esp32:esp32",
-        "esp32:esp32s3"
-      ],
-      "voltage": [
-        3.3
-      ]
-    },
-    "keywords": [
-      "aily",
-      "blockly",
-      "aivox",
-      "ai",
-      "voice",
-      "speech",
-      "esp32",
-      "i2s",
-      "aivox_init_std",
-      "aivox_loop"
-    ],
-    "tested": false,
-    "icon": "fa-light fa-message-bot"
   },
   {
     "name": "@aily-project/lib-arduino_ble",
@@ -644,8 +938,7 @@
     "compatibility": {
       "core": [
         "arduino:avr",
-        "esp32:esp32",
-        "esp8266:esp8266"
+        "esp32:esp32"
       ],
       "voltage": [
         3.3,
@@ -688,56 +981,6 @@
     ],
     "tested": false,
     "icon": "fa-light fa-network-wired"
-  },
-  {
-    "name": "@aily-project/lib-keyboard",
-    "nickname": "ArduinoKeyboard",
-    "version": "0.0.1",
-    "description": "用于Arduino Leonardo等支持HID功能的主控，可模拟键盘输入",
-    "author": "Arduino",
-    "compatibility": {
-      "core": [
-        "arduino:avr"
-      ],
-      "voltage": [
-        5
-      ]
-    },
-    "keywords": [
-      "aily",
-      "blockly",
-      "keyboard",
-      "hid"
-    ],
-    "tested": false,
-    "icon": "fa-light fa-keyboard"
-  },
-  {
-    "name": "@aily-project/lib-mouse",
-    "nickname": "ArduinoMouse",
-    "version": "1.0.0",
-    "description": "Arduino UNO R3鼠标模拟控制库，可以实现鼠标移动、点击等功能",
-    "author": "Arduino",
-    "compatibility": {
-      "core": [
-        "arduino:avr"
-      ],
-      "voltage": [
-        5
-      ]
-    },
-    "keywords": [
-      "aily",
-      "blockly",
-      "mouse",
-      "HID",
-      "click",
-      "move",
-      "press",
-      "release"
-    ],
-    "tested": false,
-    "icon": "fa-light fa-computer-mouse-scrollwheel"
   },
   {
     "name": "@aily-project/lib-mqtt",
@@ -959,6 +1202,35 @@
     "icon": "fa-light fa-wifi"
   },
   {
+    "name": "@aily-project/lib-bh1750",
+    "nickname": "BH1750光照传感库",
+    "version": "0.0.1",
+    "description": "BH1750光照传感库，支持I2C光照测量，可应用于多种开发板",
+    "author": "claws",
+    "compatibility": {
+      "core": [
+        "arduino:avr",
+        "esp32:esp32",
+        "esp8266:esp8266"
+      ],
+      "voltage": [
+        3.3,
+        5
+      ]
+    },
+    "keywords": [
+      "aily",
+      "blockly",
+      "BH1750",
+      "light sensor",
+      "I2C",
+      "光照",
+      "传感"
+    ],
+    "tested": false,
+    "icon": ""
+  },
+  {
     "name": "@aily-project/lib-bme280",
     "nickname": "BME280传感器库",
     "version": "0.0.1",
@@ -1023,12 +1295,11 @@
     "nickname": "DFPlayer",
     "version": "0.0.1",
     "description": "DFPlayer控制库，用于控制DFPlayer Mini模块，实现音频播放、暂停、音量调节及其它功能",
-    "author": "奈何col",
+    "author": "dfrobot",
     "compatibility": {
       "core": [
         "arduino:avr",
-        "esp32:esp32",
-        "esp8266:esp8266"
+        "esp32:esp32"
       ],
       "voltage": [
         3.3,
@@ -1044,40 +1315,7 @@
       "volume"
     ],
     "tested": false,
-    "icon": ""
-  },
-  {
-    "name": "@aily-project/lib-blinker",
-    "nickname": "Blinker物联网库",
-    "version": "0.0.1",
-    "description": "Blinker物联网控制库，支持手机APP控制、智能音箱控制，兼容多种开发板",
-    "author": "aily Project",
-    "compatibility": {
-      "core": [
-        "arduino:avr",
-        "esp32:esp32"
-      ],
-      "voltage": [
-        3.3,
-        5
-      ]
-    },
-    "keywords": [
-      "aily",
-      "blockly",
-      "blinker",
-      "iot",
-      "物联网",
-      "smart home",
-      "wifi",
-      "bluetooth",
-      "小爱同学",
-      "天猫精灵",
-      "小度",
-      "widget"
-    ],
-    "tested": false,
-    "icon": "iconfont icon-blinker"
+    "icon": "fa-light fa-list-music"
   },
   {
     "name": "@aily-project/lib-ds18b20",
@@ -1111,12 +1349,10 @@
   },
   {
     "name": "@aily-project/lib-encoder",
-    "nickname": "Encoder",
+    "nickname": "编码器",
     "version": "1.4.0",
     "description": "读取旋转编码器信号的库，可用于制作旋钮控制、计数器等项目",
-    "author": {
-      "name": "Paul Stoffregen"
-    },
+    "author": "aily Project",
     "compatibility": {
       "core": [
         "arduino:avr"
@@ -1139,6 +1375,100 @@
     "icon": ""
   },
   {
+    "name": "@aily-project/lib-esp32-ble-gamepad",
+    "nickname": "ESP32蓝牙手柄",
+    "version": "1.0.0",
+    "description": "ESP32蓝牙游戏手柄库，支持按键、摇杆、特殊按键等功能",
+    "author": "aily Project",
+    "compatibility": {
+      "core": [
+        "esp32:esp32c3",
+        "esp32:esp32s3"
+      ],
+      "voltage": [
+        3.3
+      ]
+    },
+    "keywords": [
+      "aily",
+      "blockly",
+      "esp32",
+      "ble",
+      "gamepad",
+      "bluetooth",
+      "controller",
+      "按键",
+      "游戏手柄",
+      "蓝牙"
+    ],
+    "tested": false,
+    "icon": "fa-light fa-gamepad-modern"
+  },
+  {
+    "name": "@aily-project/lib-esp32-ble-keyboard",
+    "nickname": "BLE蓝牙键盘",
+    "version": "1.0.0",
+    "description": "将ESP32模拟成蓝牙键盘，支持键盘输入、按键模拟、媒体控制等功能",
+    "author": "aily Project",
+    "compatibility": {
+      "core": [
+        "esp32:esp32s3",
+        "esp32:esp32c3"
+      ],
+      "voltage": [
+        3.3
+      ]
+    },
+    "keywords": [
+      "aily",
+      "blockly",
+      "ble",
+      "bluetooth",
+      "keyboard",
+      "hid",
+      "esp32"
+    ],
+    "tested": false,
+    "icon": "fa-light fa-keyboard"
+  },
+  {
+    "name": "@aily-project/lib-esp32-ble-mouse",
+    "nickname": "BLE蓝牙鼠标",
+    "version": "1.0.0",
+    "description": "适用于ESP32的BLE鼠标库，支持鼠标移动、点击、滚轮等操作",
+    "author": "aily Project",
+    "compatibility": {
+      "core": [
+        "esp32:esp32c3",
+        "esp32:esp32s3"
+      ],
+      "voltage": [
+        3.3
+      ]
+    },
+    "keywords": [
+      "aily",
+      "blockly",
+      "esp32",
+      "ble",
+      "bluetooth",
+      "mouse",
+      "hid",
+      "ble_mouse_init",
+      "ble_mouse_move",
+      "ble_mouse_click",
+      "ble_mouse_scroll",
+      "ble_keyboard_press",
+      "ble_keyboard_release",
+      "ble_keyboard_write",
+      "ble_gamepad_press",
+      "ble_gamepad_release",
+      "ble_gamepad_joystick"
+    ],
+    "tested": false,
+    "icon": "fa-light fa-computer-mouse-scrollwheel"
+  },
+  {
     "name": "@aily-project/lib-esp32-twai",
     "nickname": "ESP32 CAN总线",
     "version": "0.0.1",
@@ -1146,7 +1476,9 @@
     "author": "aily Project",
     "compatibility": {
       "core": [
-        "esp32"
+        "esp32:esp32",
+        "esp32:esp32c3",
+        "esp32:esp32s3"
       ],
       "voltage": [
         3.3
@@ -1166,6 +1498,117 @@
     ],
     "tested": false,
     "icon": ""
+  },
+  {
+    "name": "@aily-project/lib-esp32_encoder",
+    "nickname": "ESP32编码器",
+    "version": "0.0.1",
+    "description": "ESP32专用编码器库",
+    "author": "aily Project",
+    "compatibility": {
+      "core": [
+        "esp32:esp32"
+      ],
+      "voltage": [
+        3.3,
+        5
+      ]
+    },
+    "keywords": [
+      "aily",
+      "encoder",
+      "ESP32Encoder",
+      "OLED",
+      "Adafruit_GFX",
+      "Adafruit_SSD1306"
+    ],
+    "tested": false,
+    "icon": ""
+  },
+  {
+    "name": "@aily-project/lib-esp32-sd",
+    "nickname": "ESP32 SD",
+    "version": "0.0.1",
+    "description": "SD卡及文件系统操作库，适用于Arduino、ESP8266、ESP32等开发板",
+    "author": "esp32",
+    "compatibility": {
+      "core": [
+        "arduino:avr",
+        "esp32:esp32",
+        "esp8266:esp8266"
+      ],
+      "voltage": [
+        3.3,
+        5
+      ]
+    },
+    "keywords": [
+      "sd",
+      "filesystem",
+      "fs",
+      "SD.begin",
+      "SD.open",
+      "SD.mkdir",
+      "file",
+      "directory"
+    ],
+    "tested": false,
+    "icon": ""
+  },
+  {
+    "name": "@aily-project/lib-esp32-spi",
+    "nickname": "ESP32 SPI",
+    "version": "0.0.1",
+    "description": "基于SPI.h的SPI通信支持库，适用于Arduino UNO、MEGA、ESP8266、ESP32等开发板",
+    "author": "esp32",
+    "compatibility": {
+      "core": [
+        "arduino:avr",
+        "esp32:esp32",
+        "esp8266:esp8266"
+      ],
+      "voltage": [
+        3.3,
+        5
+      ]
+    },
+    "keywords": [
+      "aily",
+      "blockly",
+      "spi",
+      "SPIClass",
+      "begin",
+      "beginTransaction",
+      "transfer",
+      "pinSS"
+    ],
+    "tested": false,
+    "icon": ""
+  },
+  {
+    "name": "@aily-project/lib-esp32-usb-gamepad",
+    "nickname": "USB模拟手柄",
+    "version": "1.0.0",
+    "description": "将ESP32模拟成USB游戏手柄，支持按键、摇杆、扳机和方向键控制",
+    "author": "espressif",
+    "compatibility": {
+      "core": [
+        "esp32:esp32s3",
+        "esp32:esp32c3"
+      ],
+      "voltage": []
+    },
+    "keywords": [
+      "aily",
+      "blockly",
+      "gamepad",
+      "usb",
+      "hid",
+      "joystick",
+      "controller"
+    ],
+    "tested": false,
+    "icon": "fa-light fa-gamepad-modern"
   },
   {
     "name": "@aily-project/lib-gp2y1010au0f",
@@ -1200,12 +1643,11 @@
     "nickname": "红外遥控库",
     "version": "0.0.1",
     "description": "红外遥控控制支持库，支持Arduino UNO、MEGA、ESP8266、ESP32等开发板",
-    "author": "IRremote",
+    "author": "K2L",
     "compatibility": {
       "core": [
         "arduino:avr",
-        "esp32:esp32",
-        "esp8266:esp8266"
+        "esp32:esp32"
       ],
       "voltage": [
         3.3,
@@ -1290,8 +1732,7 @@
     "compatibility": {
       "core": [
         "arduino:avr",
-        "esp32:esp32",
-        "esp8266:esp8266"
+        "esp32:esp32"
       ],
       "voltage": [
         3.3,
@@ -1365,9 +1806,9 @@
   },
   {
     "name": "@aily-project/lib-onebutton",
-    "nickname": "OneButton",
+    "nickname": "OneButton按键",
     "version": "0.0.1",
-    "description": "OneButton library for handling button presses, supporting single, double, and long presses.",
+    "description": "OneButton按键支持库, 支持单击、双击、长按等多种按键操作",
     "author": "",
     "compatibility": {
       "core": [
@@ -1382,8 +1823,7 @@
     "keywords": [
       "aily",
       "blockly",
-      "onebutton",
-      "control"
+      "onebutton"
     ],
     "tested": false,
     "icon": "fa-light fa-circle-dot"
@@ -1393,7 +1833,7 @@
     "nickname": "语音识别",
     "version": "0.0.1",
     "description": "通过OpenJumper ASR库用于识别特定的语音识别词",
-    "author": "K2L",
+    "author": "OpenJumper",
     "compatibility": {
       "core": [],
       "voltage": [
@@ -1480,8 +1920,7 @@
     "compatibility": {
       "core": [
         "arduino:avr",
-        "esp32:esp32",
-        "esp8266:esp8266"
+        "esp32:esp32"
       ],
       "voltage": [
         3.3,
@@ -1500,15 +1939,12 @@
   },
   {
     "name": "@aily-project/lib-sht3x",
-    "nickname": "SHT3x温湿度传感器库",
+    "nickname": "SHT3x温湿度传感器",
     "version": "0.0.1",
-    "description": "支持Arduino SHT30、SHT31和SHT35温湿度传感器的控制库",
+    "description": "支持SHT30、SHT31和SHT35温湿度传感器的控制库",
     "author": "Danil",
     "compatibility": {
-      "core": [
-        "arduino:avr",
-        "esp32:esp32"
-      ],
+      "core": [],
       "voltage": [
         3.3,
         5
@@ -1527,11 +1963,39 @@
     "icon": "iconfont icon-dht22"
   },
   {
+    "name": "@aily-project/lib-tb6612-motor",
+    "nickname": "TB6612直流电机驱动",
+    "version": "0.0.1",
+    "description": "直流电机控制支持库，简化TB6612模块的操作",
+    "author": "SparkFun",
+    "compatibility": {
+      "core": [
+        "arduino:avr",
+        "esp32:esp32",
+        "esp8266:esp8266"
+      ],
+      "voltage": [
+        3.3,
+        5
+      ]
+    },
+    "keywords": [
+      "aily",
+      "blockly",
+      "motor",
+      "dc_motor",
+      "TB6612",
+      "drive"
+    ],
+    "tested": false,
+    "icon": ""
+  },
+  {
     "name": "@aily-project/lib-stepper",
     "nickname": "步进电机驱动库",
     "version": "0.0.1",
     "description": "步进电机控制库，支持Arduino UNO、MEGA等开发板",
-    "author": "Arduino",
+    "author": "K2L",
     "compatibility": {
       "core": [
         "arduino:avr",
@@ -1552,15 +2016,14 @@
     "icon": ""
   },
   {
-    "name": "@aily-project/lib-tft",
-    "nickname": "TFT显示屏驱动库",
+    "name": "@aily-project/lib-tcs34725",
+    "nickname": "颜色识别库",
     "version": "0.0.1",
-    "description": "TFT液晶显示与图像处理支持库，兼容Arduino UNO、MEGA、ESP8266、ESP32等开发板",
-    "author": "aily Project",
+    "description": "颜色识别传感器库,支持Arduino UNO、MEGA等开发板",
+    "author": "K2L",
     "compatibility": {
       "core": [
-        "arduino:avr",
-        "esp32:esp32"
+        "arduino:avr"
       ],
       "voltage": [
         3.3,
@@ -1570,82 +2033,9 @@
     "keywords": [
       "aily",
       "blockly",
-      "tft",
-      "display",
-      "touchscreen",
-      "bmp",
-      "Adafruit_GFX",
-      "Adafruit_TFTLCD"
-    ],
-    "tested": false,
-    "icon": "iconfont icon-tft"
-  },
-  {
-    "name": "@aily-project/lib-u8g2",
-    "nickname": "U8G2显示屏库",
-    "version": "0.0.4",
-    "description": "支持多种OLED、LCD单色显示屏的图形库，包括SSD1306、SSD1309、SH1106、SH1107、ST7920等控制器",
-    "author": "aily Project",
-    "compatibility": {
-      "core": [
-        "arduino:avr",
-        "esp32:esp32",
-        "esp8266:esp8266",
-        "arduino:sam",
-        "arduino:samd"
-      ],
-      "voltage": [
-        3.3,
-        5
-      ]
-    },
-    "keywords": [
-      "aily",
-      "blockly",
-      "display",
-      "u8g2",
-      "oled",
-      "lcd",
-      "12864",
-      "ssd1306",
-      "sh1106",
-      "st7920",
-      "显示屏",
-      "图形",
-      "drawStr",
-      "drawLine",
-      "drawBox",
-      "drawCircle",
-      "sendBuffer"
-    ],
-    "tested": false,
-    "icon": "iconfont icon-oled12864"
-  },
-  {
-    "name": "@aily-project/lib-vl53l0x",
-    "nickname": "VL53L0X激光测距传感器",
-    "version": "1.0.0",
-    "description": "用于VL53L0X激光测距传感器的驱动库，可测量30mm-2000mm的距离",
-    "author": "Adafruit",
-    "compatibility": {
-      "core": [
-        "arduino:avr",
-        "esp32:esp32"
-      ],
-      "voltage": [
-        3.3,
-        5
-      ]
-    },
-    "keywords": [
-      "aily",
-      "blockly",
-      "sensors",
-      "distance",
-      "vl53l0x",
-      "laser",
-      "time-of-flight",
-      "tof"
+      "tcs34725",
+      "传感器",
+      "颜色识别"
     ],
     "tested": false,
     "icon": ""
@@ -1654,7 +2044,7 @@
     "name": "@aily-project/lib-core-custom",
     "nickname": "自定义代码",
     "version": "1.0.0",
-    "description": "允许在Blockly中插入自定义Arduino代码、宏定义、函数等的库",
+    "description": "允许插入自定义代码、宏定义、函数",
     "author": "aily Project",
     "compatibility": {
       "core": []
@@ -1702,8 +2092,8 @@
       "core",
       "functions"
     ],
-    "tested": false,
-    "icon": "fa-light fa-books"
+    "tested": true,
+    "icon": "fa-light fa-function"
   },
   {
     "name": "@aily-project/lib-core-interrupt",
@@ -1721,13 +2111,13 @@
       "interrupt"
     ],
     "tested": true,
-    "icon": ""
+    "icon": "fa-light fa-flag-pennant"
   },
   {
     "name": "@aily-project/lib-core-io",
     "nickname": "I/O控制",
-    "version": "0.0.1",
-    "description": "基础I/O控制库，支持使用Arduino框架的开发板",
+    "version": "1.0.0",
+    "description": "基础I/O控制，支持使用Arduino框架的开发板",
     "author": "aily Project",
     "compatibility": {
       "core": [],
@@ -1766,7 +2156,7 @@
   },
   {
     "name": "@aily-project/lib-core-logic",
-    "nickname": "逻辑控制库",
+    "nickname": "逻辑控制",
     "version": "0.0.1",
     "description": "核心库，通常已经集成到初始模板中",
     "author": "aily Project",
@@ -1788,7 +2178,7 @@
   },
   {
     "name": "@aily-project/lib-core-loop",
-    "nickname": "循环控制库",
+    "nickname": "循环控制",
     "version": "0.0.1",
     "description": "核心库，通常已经集成到初始模板中",
     "author": "aily Project",
@@ -1817,8 +2207,7 @@
     "compatibility": {
       "core": [
         "arduino:avr",
-        "esp32:esp32",
-        "esp8266:esp8266"
+        "esp32:esp32"
       ],
       "voltage": [
         3.3,
@@ -1899,9 +2288,9 @@
   },
   {
     "name": "@aily-project/lib-core-time",
-    "nickname": "时间控制库",
-    "version": "0.0.1",
-    "description": "时间控制库，包含delay、millis、micros等函数",
+    "nickname": "时间控制",
+    "version": "1.0.0",
+    "description": "核心库，通常已经集成到初始模板中。包含delay、millis、micros等函数",
     "author": "aily Project",
     "compatibility": {
       "core": []
@@ -1917,8 +2306,8 @@
   },
   {
     "name": "@aily-project/lib-core-variables",
-    "nickname": "自定义变量",
-    "version": "0.0.1",
+    "nickname": "变量",
+    "version": "1.0.0",
     "description": "核心库，通常已经集成到初始模板中",
     "author": "",
     "compatibility": "",
