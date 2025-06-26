@@ -2,8 +2,16 @@
 [
   {
     "type": "bmi270_init_i2c",
-    "message0": "BMI270 I2C初始化 地址 %1",
+    "message0": "BMI270 I2C初始化 使用 %1 地址 %2",
     "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "WIRE_OPTION",
+        "options": [
+          ["Wire1 (SDA:8, SCL:9)", "WIRE1"],
+          ["Wire2 (SDA:4, SCL:5)", "WIRE2"]
+        ]
+      },
       {
         "type": "field_input",
         "name": "ADDRESS",
