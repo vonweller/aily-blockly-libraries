@@ -13,6 +13,7 @@ Arduino.forBlock["math_arithmetic"] = function (block) {
     MINUS: [" - ", Arduino.ORDER_SUBTRACTION],
     MULTIPLY: [" * ", Arduino.ORDER_MULTIPLICATION],
     DIVIDE: [" / ", Arduino.ORDER_DIVISION],
+    MODULO: [" % ", Arduino.ORDER_MODULUS],
     POWER: [null, Arduino.ORDER_NONE], // Handle power separately.
   };
   const tuple = OPERATORS[block.getFieldValue("OP")];

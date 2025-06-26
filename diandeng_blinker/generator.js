@@ -211,7 +211,7 @@ Arduino.forBlock['blinker_joystick'] = function (block, generator) {
     '}\n';
 
   generator.addFunction(functionName, functionCode);
-  generator.addSetupEnd('joystick_' + key, 'Blinker.attachJoystick("' + key + '", ' + functionName + ');');
+  generator.addSetupEnd('joystick_' + key, varName + '.attach(' + functionName + ');');
 
   return '';
 };
