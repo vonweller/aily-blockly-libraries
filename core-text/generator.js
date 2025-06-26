@@ -216,9 +216,77 @@ Arduino.forBlock["number_to_string"] = function (block) {
   return [code, Arduino.ORDER_FUNCTION_CALL];
 };
 
+Arduino.forBlock["char"] = function (block) {
+  // 获取字符值
+  let charValue = block.getFieldValue("CHAR") || "";
+  
+  // 处理转义字符序列（两个字符的输入）
+  if (charValue.length === 2 && charValue.charAt(0) === '\\') {
+    switch (charValue.charAt(1)) {
+      case 'n':
+        return ["'\\n'", Arduino.ORDER_ATOMIC];
+      case 't':
+        return ["'\\t'", Arduino.ORDER_ATOMIC];
+      case 'r':
+        return ["'\\r'", Arduino.ORDER_ATOMIC];
+      case '\\':
+        return ["'\\\\'", Arduino.ORDER_ATOMIC];
+      case '\'':
+        return ["'\\''", Arduino.ORDER_ATOMIC];
+      case '"':
+        return ["'\"'", Arduino.ORDER_ATOMIC];
+      case '0':
+        return ["'\\0'", Arduino.ORDER_ATOMIC];
+      default:
+        // 未知转义序列，保留第一个字符
+        charValue = charValue.charAt(0);
+        break;
+    }
+  }
+  
+  // 确保只保留第一个字符（对于非转义序列）
+  if (charValue.length > 1) {
+    charValue = charValue.charAt(0);
+  }
+  
+  // 处理单个特殊字符（实际的控制字符）
+  let code;
+  switch (charValue) {
+    case '\n':
+      code = "'\\n'";
+      break;
+    case '\t':
+      code = "'\\t'";
+      break;
+    case '\r':
+      code = "'\\r'";
+      break;
+    case '\\':
+      code = "'\\\\'";
+      break;
+    case '\'':
+      code = "'\\''";
+      break;
+    case '"':
+      code = "'\"'";
+      break;
+    case '\0':
+      code = "'\\0'";
+      break;
+    default:
+      // 普通字符用单引号包围
+      code = "'" + charValue + "'";
+      break;
+  }
+  
+  return [code, Arduino.ORDER_ATOMIC];
+};
+
 Arduino.forBlock["text"] = function (block) {
-  // Text value.
-  const code = Arduino.quote_(block.getFieldValue("TEXT"));
+  // Text value - 直接获取文本内容，不添加转义符
+  const textValue = block.getFieldValue("TEXT") || "";
+  // 用双引号包围，但不进行转义处理
+  const code = '"' + textValue + '"';
   return [code, Arduino.ORDER_ATOMIC];
 };
 
@@ -582,5 +650,72 @@ Arduino.forBlock["text_reverse"] = function (block) {
     '}\n');
 
   const code = "textReverse(" + text + ")";
+  return [code, Arduino.ORDER_FUNCTION_CALL];
+};
+
+// 字符块字段验证器
+try {
+  const CHAR_FIELD_VALIDATOR = function(text) {
+    // 如果输入为空，返回空字符串
+    if (!text) {
+      return '';
+    }
+    
+    // 检查是否是转义字符序列（两个字符：\n, \t, \r, \\, \', \", \0）
+    if (text.length === 2 && text.charAt(0) === '\\') {
+      const escapeChar = text.charAt(1);
+      if (['n', 't', 'r', '\\', '\'', '"', '0'].includes(escapeChar)) {
+        return text; // 保留完整的转义序列
+      }
+    }
+    
+    // 只保留第一个字符
+    const singleChar = text.charAt(0);
+    
+    // 如果输入了多个字符（且不是有效的转义序列），只保留第一个
+    if (text.length > 1) {
+      // 延迟更新字段值，避免在验证过程中修改
+      setTimeout(() => {
+        if (this.sourceBlock_ && this.sourceBlock_.getField('CHAR')) {
+          this.sourceBlock_.getField('CHAR').setValue(singleChar);
+        }
+      }, 0);
+    }
+    
+    return singleChar;
+  };
+
+  // 注册字符块扩展
+  if (Blockly.Extensions.isRegistered('char_field_validator')) {
+    Blockly.Extensions.unregister('char_field_validator');
+  }
+  
+  Blockly.Extensions.register('char_field_validator', function() {
+    const charField = this.getField('CHAR');
+    if (charField) {
+      charField.setValidator(CHAR_FIELD_VALIDATOR);
+    }
+  });
+} catch (e) {
+  console.error("注册字符字段验证器失败:", e);
+}
+
+Arduino.forBlock["string_endsWith"] = function (block) {
+  // 检查文本是否以指定后缀结尾
+  const text = Arduino.valueToCode(block, "TEXT", Arduino.ORDER_MEMBER) || "\"\"";
+  const suffix = Arduino.valueToCode(block, "SUFFIX", Arduino.ORDER_NONE) || "\"\"";
+
+  // Arduino String类有endsWith方法
+  const code = text + ".endsWith(" + suffix + ")";
+  return [code, Arduino.ORDER_FUNCTION_CALL];
+};
+
+Arduino.forBlock["string_startsWith"] = function (block) {
+  // 检查文本是否以指定前缀开头
+  const text = Arduino.valueToCode(block, "TEXT", Arduino.ORDER_MEMBER) || "\"\"";
+  const prefix = Arduino.valueToCode(block, "PREFIX", Arduino.ORDER_NONE) || "\"\"";
+
+  // Arduino String类有startsWith方法
+  const code = text + ".startsWith(" + prefix + ")";
   return [code, Arduino.ORDER_FUNCTION_CALL];
 };
