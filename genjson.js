@@ -11,7 +11,8 @@ const defaultKeysToExtract = [
   'compatibility',
   'keywords',
   'tested',
-  'icon'
+  'icon',
+  'example'
 ];
 
 // 根据配置过滤package.json对象
@@ -24,6 +25,9 @@ function filterPackageJson(packageJson, keysToExtract) {
     } else {
       if (key === 'tested') {
         filteredJson[key] = false;
+      } else if (key === 'example') {
+        // example字段不存在时不添加到结果中
+        return;
       } else {
         filteredJson[key] = "";
       }
