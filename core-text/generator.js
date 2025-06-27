@@ -719,3 +719,60 @@ Arduino.forBlock["string_startsWith"] = function (block) {
   const code = text + ".startsWith(" + prefix + ")";
   return [code, Arduino.ORDER_FUNCTION_CALL];
 };
+
+Arduino.forBlock["string_to_something"] = function (block) {
+  // 字符串类型转换
+  const string = Arduino.valueToCode(block, "TEXT", Arduino.ORDER_MEMBER) || "\"\"";
+  const type = block.getFieldValue("TYPE");
+  
+  let code;
+  let order = Arduino.ORDER_FUNCTION_CALL;
+  
+  switch (type) {
+    case "toInt":
+      code = string + ".toInt()";
+      break;
+    case "toLong":  
+      // Arduino String 没有直接的 toLong，使用 atol
+      code = "atol(" + string + ".c_str())";
+      break;
+    case "toFloat":
+      code = string + ".toFloat()";
+      break;
+    case "toDouble":
+      // Arduino String 没有直接的 toDouble，使用 atof
+      code = "atof(" + string + ".c_str())";
+      break;
+    case "c_str":
+      code = string + ".c_str()";
+      break;
+    case "charAt0":
+      code = string + ".charAt(0)";
+      break;
+    case "toUpper":
+      // Arduino String的toUpperCase()会修改原字符串，需要复制
+      Arduino.addFunction('string_to_upper',
+        'String stringToUpper(String text) {\n' +
+        '  String result = text;\n' +
+        '  result.toUpperCase();\n' +
+        '  return result;\n' +
+        '}\n');
+      code = "stringToUpper(" + string + ")";
+      break;
+    case "toLower":
+      // Arduino String的toLowerCase()会修改原字符串，需要复制
+      Arduino.addFunction('string_to_lower',
+        'String stringToLower(String text) {\n' +
+        '  String result = text;\n' +
+        '  result.toLowerCase();\n' +
+        '  return result;\n' +
+        '}\n');
+      code = "stringToLower(" + string + ")";
+      break;
+    default:
+      code = string + ".toInt()";
+      break;
+  }
+  
+  return [code, order];
+};

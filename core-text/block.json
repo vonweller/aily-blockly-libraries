@@ -654,5 +654,35 @@
     "output": "String",
     "style": "text_blocks",
     "inputsInline": true
+  },
+  {
+    "type": "string_to_something",
+    "message0": "将字符串 %1 转换为 %2",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "TEXT",
+        "check": "String"
+      },
+      {
+        "type": "field_dropdown",
+        "name": "TYPE",
+        "options": [
+          ["整数 (int)", "toInt"],
+          ["长整数 (long)", "toLong"],
+          ["浮点数 (float)", "toFloat"],
+          ["双精度 (double)", "toDouble"],
+          ["C字符串 (char*)", "c_str"],
+          ["首字符 (char)", "charAt0"],
+          ["大写字符串", "toUpper"],
+          ["小写字符串", "toLower"]
+        ]
+      }
+    ],
+    "output": null,
+    "style": "text_blocks",
+    "tooltip": "将字符串转换为指定的数据类型。toInt/toLong转为整数，toFloat/toDouble转为浮点数，c_str转为C字符串指针，charAt0获取首字符，toUpper/toLower转换大小写。",
+    "helpUrl": "https://www.arduino.cc/reference/en/language/variables/data-types/string/",
+    "inputsInline": true
   }
 ]

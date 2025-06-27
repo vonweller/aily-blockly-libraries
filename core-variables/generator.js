@@ -466,12 +466,16 @@ Arduino.forBlock["variable_define"] = function (block, generator) {
 
   let defaultValue = "";
 
+  // 首先统一处理类型转换
+  if (type === "string") {
+    type = "String"; // Arduino 使用 String 类型
+  }
+
   if (!value) {
     switch (type) {
-      case "string":
+      case "String":
         // Arduino中字符串使用String或char数组
         defaultValue = `""`;
-        type = "String"; // 确保Arduino使用String类型
         break;
       case "char":
         defaultValue = `''`;
