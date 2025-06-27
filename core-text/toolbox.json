@@ -5,6 +5,10 @@
   "contents": [
     {
       "kind": "block",
+      "type": "char"
+    },
+    {
+      "kind": "block",
       "type": "text"
     },
     {
@@ -30,6 +34,50 @@
     {
       "kind": "block",
       "type": "string_find_str"
+    },
+    {
+      "kind": "block",
+      "type": "string_startsWith",
+      "inputs": {
+        "TEXT": {
+          "shadow": {
+            "type": "text",
+            "fields": {
+              "TEXT": "abc"
+            }
+          }
+        },
+        "PREFIX": {
+          "shadow": {
+            "type": "text",
+            "fields": {
+              "TEXT": ""
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "string_endsWith",
+      "inputs": {
+        "TEXT": {
+          "shadow": {
+            "type": "text",
+            "fields": {
+              "TEXT": "abc"
+            }
+          }
+        },
+        "SUFFIX": {
+          "shadow": {
+            "type": "text",
+            "fields": {
+              "TEXT": ""
+            }
+          }
+        }
+      }
     },
     {
       "kind": "block",
