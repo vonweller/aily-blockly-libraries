@@ -1,9 +1,47 @@
 
 // MP3初始化块
 Arduino.forBlock['gd3800_init'] = function(block, generator) {
-  generator.addLibrary('GD3800_Serial', '#include <GD3800_Serial.h>');  
-  generator.addVariable('MP3INIT', 'GD3800_Serial mp3(12, 11);'); 
-  generator.addSetupBegin('mp3being', 'mp3.begin(9600);');
+  // 添加库文件，并添加预处理指令来区分ESP32和Arduino平台
+  generator.addMacro('PLATFORM_CHECK', '#if defined(ESP32)\n  // ESP32平台\n  #define USE_ESP32_HARDWARE_SERIAL\n#else\n  // Arduino平台\n  #define USE_SOFTWARE_SERIAL\n#endif');
+  generator.addLibrary('GD3800_Serial', '#include <GD3800_Serial.h>');
+  
+  // 获取用户指定的TX和RX引脚
+  const pinTx = generator.valueToCode(block, 'PIN_TX', Arduino.ORDER_ATOMIC);
+  const pinRx = generator.valueToCode(block, 'PIN_RX', Arduino.ORDER_ATOMIC);
+  
+  // 获取开发板配置信息
+  var boardConfig = window['boardConfig'] || {};
+  var boardCore = (boardConfig.core || '').toLowerCase();
+  var boardName = (boardConfig.name || '').toLowerCase();
+  
+  // 判断开发板类型
+  var isArduinoCore = boardCore.indexOf('arduino') > -1 || 
+                     boardName.indexOf('arduino') > -1 || 
+                     boardName.indexOf('uno') > -1 || 
+                     boardName.indexOf('nano') > -1 || 
+                     boardName.indexOf('mega') > -1;
+                     
+  var isESP32Core = boardCore.indexOf('esp32') > -1 || 
+                   boardName.indexOf('esp32') > -1 || 
+                   boardName.indexOf('esp') > -1;
+  
+  // 调试信息
+  console.log('MP3Player Config: 开发板信息:', boardConfig);
+  console.log('MP3Player Config: 核心类型:', boardCore);
+  console.log('MP3Player Config: 板名:', boardName);
+  console.log('MP3Player Config: isArduinoCore:', isArduinoCore);
+  console.log('MP3Player Config: isESP32Core:', isESP32Core);
+  
+  // 根据开发板类型选择不同的串口实现
+  if (isESP32Core) {
+    // ESP32平台使用HardwareSerial，默认使用UART2
+    generator.addVariable('MP3INIT', `GD3800_Serial mp3(${pinTx}, ${pinRx}, 2);  // ESP32: RX, TX, UART2`);
+    generator.addSetupBegin('mp3being', 'mp3.begin(9600, SERIAL_8N1, ' + pinRx + ', ' + pinTx + ');  // ESP32串口初始化与引脚指定');
+  } else {
+    // Arduino平台使用SoftwareSerial
+    generator.addVariable('MP3INIT', `GD3800_Serial mp3(${pinTx}, ${pinRx});  // Arduino: TX, RX`);
+    generator.addSetupBegin('mp3being', 'mp3.begin(9600);  // Arduino串口初始化');
+  }
   
   return '';
 };

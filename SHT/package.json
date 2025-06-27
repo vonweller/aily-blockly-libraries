@@ -1,17 +1,19 @@
 {
-    "name": "@aily-project/lib-sht3x",
-    "nickname": "SHT3x温湿度传感器",
+    "name": "@aily-project/lib-sht3x",  
+    "nickname": "SHT3x温湿度传感器", 
     "author": "Danil",
-    "description": "支持SHT30、SHT31和SHT35温湿度传感器的控制库",
+    "description": "支持SHT30、SHT31和SHT35温湿度传感器的控制库,支持Arduino UNO、ESP32开发板",
     "version": "0.0.1",
-    "compatibility": {
-        "core": [
+    "compatibility": {              
+        "core": [                     
+            "arduino:uno",
+            "esp32:esp32",
+            "esp32:esp32c3",
+            "esp32:esp32s3"
         ],
-        "voltage": [3.3, 5]
+        "voltage": [3.3, 5]      
     },
-    "keywords": [
-        "aily",
-        "blockly",
+    "keywords": [                   
         "sht3x",
         "温湿度传感器",
         "sensor",
@@ -19,6 +21,8 @@
         "temperature"
     ],
     "scripts": {},
-    "dependencies": {},
-    "devDependencies": {}
+    "dependencies": {},              
+    "devDependencies": {},
+    "tested": true,                 
+    "tester": "openjumper"        
 }
