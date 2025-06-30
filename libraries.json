@@ -62,10 +62,10 @@
     "icon": "iconfont icon-dht22"
   },
   {
-    "name": "@aily-projects/lib-adafruit_ina219",
+    "name": "@aily-project/lib-adafruit_ina219",
     "nickname": "INA219传感器驱动库",
     "version": "0.0.1",
-    "description": "INA219传感器驱动库，支持I2C通信，提供电流、总线电压、分线电压、功率数据获取功能。",
+    "description": "INA219传感器驱动库，适用于esp32、arduino，支持I2C通信，提供电流、总线电压、分线电压、功率数据获取功能。",
     "author": "openjumper",
     "compatibility": {
       "core": [
@@ -88,6 +88,33 @@
       "功率",
       "I2C",
       "传感器"
+    ],
+    "tested": true,
+    "icon": ""
+  },
+  {
+    "name": "@aily-project/lib-sht3x",
+    "nickname": "SHT3x温湿度传感器",
+    "version": "0.0.1",
+    "description": "支持SHT30、SHT31和SHT35温湿度传感器的控制库，适用于Arduino、ESP32等开发板",
+    "author": "aily Project",
+    "compatibility": {
+      "core": [
+        "arduino:nuo",
+        "esp32:esp32",
+        "esp32:esp32s3"
+      ],
+      "voltage": [
+        3.3,
+        5
+      ]
+    },
+    "keywords": [
+      "sht3x",
+      "温湿度传感器",
+      "SHT30",
+      "humidity",
+      "temperature"
     ],
     "tested": true,
     "icon": ""
@@ -197,6 +224,55 @@
     "icon": "fa-light fa-computer-mouse-scrollwheel"
   },
   {
+    "name": "@aily-project/lib-esp32-sd",
+    "nickname": "ESP32 SD卡库",
+    "version": "0.0.1",
+    "description": "SD卡及文件系统操作库,适用于Arduino、ESP32S3等开发板",
+    "author": "esp32",
+    "compatibility": {
+      "core": [
+        "arduino:nuo",
+        "esp32:esp32",
+        "esp32:esp32s3"
+      ],
+      "voltage": [
+        3.3,
+        5
+      ]
+    },
+    "keywords": [
+      "sd",
+      "SD卡",
+      "存储"
+    ],
+    "tested": true,
+    "icon": ""
+  },
+  {
+    "name": "@aily-project/lib-esp32-spi",
+    "nickname": "ESP32 SPI通信库",
+    "version": "0.0.1",
+    "description": "基于SPI.h的SPI通信支持库,适用于Arduino UNO、ESP32等开发板",
+    "author": "esp32",
+    "compatibility": {
+      "core": [
+        "arduino:nuo",
+        "esp32:esp32",
+        "esp32:esp32s3"
+      ],
+      "voltage": [
+        3.3,
+        5
+      ]
+    },
+    "keywords": [
+      "spi",
+      "SPI通信"
+    ],
+    "tested": true,
+    "icon": ""
+  },
+  {
     "name": "@aily-project/lib-core-tone",
     "nickname": "ArduinoTone",
     "version": "0.0.1",
@@ -217,6 +293,32 @@
       "blockly",
       "core",
       "time"
+    ],
+    "tested": true,
+    "icon": ""
+  },
+  {
+    "name": "@aily-project/lib-bh1750",
+    "nickname": "BH1750光照传感器",
+    "version": "0.0.1",
+    "description": "BH1750数字光照强度传感器控制库，适用于Arduino、ESP32等开发板",
+    "author": "aily Project",
+    "compatibility": {
+      "core": [
+        "arduino:nuo",
+        "esp32:esp32",
+        "esp32:esp32s3"
+      ],
+      "voltage": [
+        3.3,
+        5
+      ]
+    },
+    "keywords": [
+      "bh1750",
+      "光照传感器",
+      "BH1750",
+      "light"
     ],
     "tested": true,
     "icon": ""
@@ -253,7 +355,61 @@
       "小度"
     ],
     "tested": true,
-    "icon": "iconfont icon-blinker"
+    "icon": "iconfont icon-blinker",
+    "example": "@aily-project/example-blinker-iot"
+  },
+  {
+    "name": "@aily-project/lib-encoder",
+    "nickname": "Arduino旋转编码器库",
+    "version": "0.0.1",
+    "description": "Arduino旋转编码器驱动库，支持I2C通信，提供旋转编码器数据获取功能。",
+    "author": "openjumper",
+    "compatibility": {
+      "core": [
+        "arduino:avr"
+      ],
+      "voltage": [
+        3.3,
+        5
+      ]
+    },
+    "keywords": [
+      "aily",
+      "blockly",
+      "ArduinoEncoder",
+      "旋转编码器",
+      "编码器",
+      "传感器"
+    ],
+    "tested": true,
+    "icon": ""
+  },
+  {
+    "name": "@aily-project/lib-esp32_encoder",
+    "nickname": "ESP32旋转编码器库",
+    "version": "0.0.1",
+    "description": "ESP32旋转编码器驱动库适用于esp32，支持I2C通信，提供旋转编码器数据获取功能。",
+    "author": "openjumper",
+    "compatibility": {
+      "core": [
+        "esp32:esp",
+        "esp32:esp32"
+      ],
+      "voltage": [
+        3.3,
+        5
+      ]
+    },
+    "keywords": [
+      "aily",
+      "blockly",
+      "ESP32Encoder",
+      "旋转编码器",
+      "编码器",
+      "传感器"
+    ],
+    "tested": true,
+    "icon": ""
   },
   {
     "name": "@aily-project/lib-fastled",
@@ -432,15 +588,16 @@
     "icon": "fa-light fa-temperature-half"
   },
   {
-    "name": "@aily-project/lib-mp3player-gd3800",
-    "nickname": "串口mp3播放器",
+    "name": "@aily-project/lib-mp3player",
+    "nickname": "GD3800音乐播放模块驱动库",
     "version": "0.0.1",
-    "description": "通过该库控制GD3800音乐播放模块",
-    "author": "K2L",
+    "description": "GD3800音乐播放模块驱动库适用于esp32、rduino，支持串口通信，提供音乐播放功能。",
+    "author": "openjumper",
     "compatibility": {
       "core": [
-        "arduino:avr",
-        "esp32:esp32"
+        "esp32:esp32",
+        "esp32:esp32s3",
+        "arduino:avr"
       ],
       "voltage": [
         3.3,
@@ -450,11 +607,13 @@
     "keywords": [
       "aily",
       "blockly",
-      "uart",
+      "GD3800",
+      "音乐播放",
+      "传感器",
+      "声音",
+      "音乐",
       "mp3",
-      "mp3player",
-      "音乐播放器",
-      "音乐"
+      "模块"
     ],
     "tested": true,
     "icon": "fa-light fa-music"
@@ -586,10 +745,38 @@
     "icon": "iconfont icon-servo"
   },
   {
-    "name": "@aily-project/lib-bmi270",
+    "name": "@aily-project/lib-sht3x",
+    "nickname": "SHT3x温湿度传感器",
+    "version": "0.0.1",
+    "description": "支持SHT30、SHT31和SHT35温湿度传感器的控制库,支持Arduino UNO、ESP32开发板",
+    "author": "Danil",
+    "compatibility": {
+      "core": [
+        "arduino:uno",
+        "esp32:esp32",
+        "esp32:esp32c3",
+        "esp32:esp32s3"
+      ],
+      "voltage": [
+        3.3,
+        5
+      ]
+    },
+    "keywords": [
+      "sht3x",
+      "温湿度传感器",
+      "sensor",
+      "humidity",
+      "temperature"
+    ],
+    "tested": true,
+    "icon": "iconfont icon-thermometer"
+  },
+  {
+    "name": "@aily-project/lib-sparkfun_BMI270",
     "nickname": "BMI270传感器驱动库",
     "version": "0.0.1",
-    "description": "BMI270传感器驱动库，支持I2C通信，提供加速度、陀螺仪数据获取功能。",
+    "description": "BMI270传感器驱动库适用于esp32，支持I2C通信，提供加速度、陀螺仪数据获取功能。",
     "author": "openjumper",
     "compatibility": {
       "core": [
@@ -609,6 +796,33 @@
       "陀螺仪",
       "校准",
       "传感器"
+    ],
+    "tested": true,
+    "icon": ""
+  },
+  {
+    "name": "@aily-project/lib-stepper",
+    "nickname": "步进电机驱动库",
+    "version": "0.0.1",
+    "description": "28BYJ-48步进电机控制库,支持Arduino UNO,ESP32等开发板",
+    "author": "aily-project",
+    "compatibility": {
+      "core": [
+        "arduino:avr",
+        "esp32:esp32",
+        "esp32:esp32s3"
+      ],
+      "voltage": [
+        5
+      ]
+    },
+    "keywords": [
+      "stepper",
+      "motor",
+      "步进电机",
+      "电机",
+      "28BYJ-48",
+      "执行器"
     ],
     "tested": true,
     "icon": ""
@@ -686,10 +900,10 @@
     "icon": "iconfont icon-sr04"
   },
   {
-    "name": "@aily-project/lib-vl53l0x",
+    "name": "@aily-project/lib-VL53L0X",
     "nickname": "VL53L0X激光测距传感器驱动库",
     "version": "0.0.1",
-    "description": "VL53L0X激光测距传感器驱动库，支持I2C通信，提供距离数据获取功能。",
+    "description": "VL53L0X激光测距传感器驱动库适用于esp32、arduino，支持I2C通信，提供距离数据获取功能。",
     "author": "openjumper",
     "compatibility": {
       "core": [
@@ -794,14 +1008,15 @@
   },
   {
     "name": "@aily-project/lib-adafruit-gfx",
-    "nickname": "Adafruit GFX",
+    "nickname": "Adafruit GFX显示库",
     "version": "0.0.1",
-    "description": "基于Adafruit_GFX及各驱动库的彩色TFT屏显示与绘图支持库",
+    "description": "基于Adafruit_GFX及各驱动库的彩色TFT屏显示与绘图支持库,适用于Arduino uno、ESP32等开发板",
     "author": "Adafruit",
     "compatibility": {
       "core": [
-        "arduino:avr",
-        "esp32:esp32"
+        "arduino:nuo",
+        "esp32:esp32",
+        "esp32:esp32s3"
       ],
       "voltage": [
         3.3,
@@ -811,12 +1026,11 @@
     "keywords": [
       "tft",
       "Adafruit_GFX",
-      "ST7735",
-      "ST7789",
-      "ST7796S",
-      "blockly",
       "显示",
-      "绘图"
+      "绘图",
+      "屏幕",
+      "LCD",
+      "模块"
     ],
     "tested": false,
     "icon": ""
@@ -1152,30 +1366,6 @@
     "icon": ""
   },
   {
-    "name": "@aily-project/lib-core-spi",
-    "nickname": "ArduinoSPI",
-    "version": "0.0.1",
-    "description": "通过SPI通信接口读取传感器数据并控制多通道数字电位器，适用于Arduino UNO、MEGA、ESP8266、ESP32等开发板",
-    "author": "aily Project",
-    "compatibility": {
-      "core": [
-        "arduino:avr",
-        "esp32:esp32"
-      ],
-      "voltage": [
-        3.3,
-        5
-      ]
-    },
-    "keywords": [
-      "aily",
-      "blockly",
-      "spi"
-    ],
-    "tested": false,
-    "icon": ""
-  },
-  {
     "name": "@aily-project/lib-arduino_wifi",
     "nickname": "ArduinoWiFi",
     "version": "0.0.1",
@@ -1201,35 +1391,6 @@
     ],
     "tested": false,
     "icon": "fa-light fa-wifi"
-  },
-  {
-    "name": "@aily-project/lib-bh1750",
-    "nickname": "BH1750光照传感库",
-    "version": "0.0.1",
-    "description": "BH1750光照传感库，支持I2C光照测量，可应用于多种开发板",
-    "author": "claws",
-    "compatibility": {
-      "core": [
-        "arduino:avr",
-        "esp32:esp32",
-        "esp8266:esp8266"
-      ],
-      "voltage": [
-        3.3,
-        5
-      ]
-    },
-    "keywords": [
-      "aily",
-      "blockly",
-      "BH1750",
-      "light sensor",
-      "I2C",
-      "光照",
-      "传感"
-    ],
-    "tested": false,
-    "icon": ""
   },
   {
     "name": "@aily-project/lib-bme280",
@@ -1344,33 +1505,6 @@
       "fahrenheit",
       "sensor",
       "arduino"
-    ],
-    "tested": false,
-    "icon": ""
-  },
-  {
-    "name": "@aily-project/lib-encoder",
-    "nickname": "编码器",
-    "version": "1.4.0",
-    "description": "读取旋转编码器信号的库，可用于制作旋钮控制、计数器等项目",
-    "author": "aily Project",
-    "compatibility": {
-      "core": [
-        "arduino:avr"
-      ],
-      "voltage": [
-        5
-      ]
-    },
-    "keywords": [
-      "aily",
-      "blockly",
-      "encoder",
-      "rotary",
-      "sensor",
-      "input",
-      "knob",
-      "counter"
     ],
     "tested": false,
     "icon": ""
@@ -1501,32 +1635,6 @@
     "icon": ""
   },
   {
-    "name": "@aily-project/lib-esp32_encoder",
-    "nickname": "ESP32编码器",
-    "version": "0.0.1",
-    "description": "ESP32专用编码器库",
-    "author": "aily Project",
-    "compatibility": {
-      "core": [
-        "esp32:esp32"
-      ],
-      "voltage": [
-        3.3,
-        5
-      ]
-    },
-    "keywords": [
-      "aily",
-      "encoder",
-      "ESP32Encoder",
-      "OLED",
-      "Adafruit_GFX",
-      "Adafruit_SSD1306"
-    ],
-    "tested": false,
-    "icon": ""
-  },
-  {
     "name": "@aily-project/lib-esp32-sd",
     "nickname": "ESP32 SD",
     "version": "0.0.1",
@@ -1610,6 +1718,42 @@
     ],
     "tested": false,
     "icon": "fa-light fa-gamepad-modern"
+  },
+  {
+    "name": "@aily-project/lib-esp32-wdt",
+    "nickname": "ESP32看门狗",
+    "version": "0.0.1",
+    "description": "适用于ESP32的任务看门狗定时器库，支持任务和用户级别的看门狗监控",
+    "author": "aily Project",
+    "compatibility": {
+      "core": [
+        "esp32:esp32"
+      ],
+      "voltage": [
+        3.3
+      ]
+    },
+    "keywords": [
+      "aily",
+      "blockly",
+      "watchdog",
+      "wdt",
+      "task_wdt",
+      "esp32",
+      "wdt_init",
+      "wdt_add_task",
+      "wdt_reset",
+      "wdt_add_user",
+      "wdt_reset_user",
+      "wdt_delete_task",
+      "wdt_delete_user",
+      "wdt_deinit",
+      "system",
+      "monitor",
+      "timeout"
+    ],
+    "tested": false,
+    "icon": "fa-light fa-shield-dog"
   },
   {
     "name": "@aily-project/lib-gp2y1010au0f",
@@ -1939,31 +2083,6 @@
     "icon": ""
   },
   {
-    "name": "@aily-project/lib-sht3x",
-    "nickname": "SHT3x温湿度传感器",
-    "version": "0.0.1",
-    "description": "支持SHT30、SHT31和SHT35温湿度传感器的控制库",
-    "author": "Danil",
-    "compatibility": {
-      "core": [],
-      "voltage": [
-        3.3,
-        5
-      ]
-    },
-    "keywords": [
-      "aily",
-      "blockly",
-      "sht3x",
-      "温湿度传感器",
-      "sensor",
-      "humidity",
-      "temperature"
-    ],
-    "tested": false,
-    "icon": "iconfont icon-dht22"
-  },
-  {
     "name": "@aily-project/lib-tb6612-motor",
     "nickname": "TB6612直流电机驱动",
     "version": "0.0.1",
@@ -1987,31 +2106,6 @@
       "dc_motor",
       "TB6612",
       "drive"
-    ],
-    "tested": false,
-    "icon": ""
-  },
-  {
-    "name": "@aily-project/lib-stepper",
-    "nickname": "步进电机驱动库",
-    "version": "0.0.1",
-    "description": "步进电机控制库，支持Arduino UNO、MEGA等开发板",
-    "author": "K2L",
-    "compatibility": {
-      "core": [
-        "arduino:avr",
-        "esp32:esp32"
-      ],
-      "voltage": [
-        5
-      ]
-    },
-    "keywords": [
-      "aily",
-      "blockly",
-      "stepper",
-      "motor",
-      "步进电机"
     ],
     "tested": false,
     "icon": ""
