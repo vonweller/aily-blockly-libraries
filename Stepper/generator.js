@@ -38,3 +38,42 @@ Arduino.forBlock['stepper_step'] = function (block, generator) {
   var code = variable_stepper + '.step(' + steps + ');\n';
   return code;
 };
+
+// 步进电机旋转指定角度
+Arduino.forBlock['stepper_rotate_degrees'] = function (block, generator) {
+  // 确保获取正确的变量名，与初始化时创建的相同
+  var variable_stepper = getVariableName(block);
+  var degrees = generator.valueToCode(block, 'DEGREES', Arduino.ORDER_ATOMIC);
+  
+  // 从工作区中查找步进电机的初始化块，获取设置的步数
+  var stepsPerRev = 2048; // 默认值，如果找不到初始化块
+  
+  // 获取所有块
+  var workspace = block.workspace;
+  var allBlocks = workspace.getAllBlocks();
+  
+  // 查找与当前变量名相匹配的初始化块
+  for (var i = 0; i < allBlocks.length; i++) {
+    var currentBlock = allBlocks[i];
+    if (currentBlock.type === 'stepper_init') {
+      // 检查变量名是否匹配
+      var initStepperName = getVariableName(currentBlock);
+      if (initStepperName === variable_stepper) {
+        // 找到匹配的初始化块，获取步数
+        stepsPerRev = currentBlock.getFieldValue('STEPS');
+        break;
+      }
+    }
+  }
+  
+  // 计算角度对应的步数并旋转，确保使用完全相同的变量名
+  var code = `// 旋转指定角度\n`;
+  code += `{\n`;
+  code += `  // 将角度转换为步数 (度数 / 360) * 每圈步数\n`;
+  code += `  int steps = (int)((${degrees} / 360.0) * ${stepsPerRev});\n`;
+  code += `  ${variable_stepper}.step(steps);\n`;
+  code += `}\n`;
+  
+  return code;
+};
+
