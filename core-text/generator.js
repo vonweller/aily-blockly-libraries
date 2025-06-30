@@ -750,24 +750,12 @@ Arduino.forBlock["string_to_something"] = function (block) {
       code = string + ".charAt(0)";
       break;
     case "toUpper":
-      // Arduino String的toUpperCase()会修改原字符串，需要复制
-      Arduino.addFunction('string_to_upper',
-        'String stringToUpper(String text) {\n' +
-        '  String result = text;\n' +
-        '  result.toUpperCase();\n' +
-        '  return result;\n' +
-        '}\n');
-      code = "stringToUpper(" + string + ")";
+      // 直接使用 Arduino String 的 toUpperCase() 方法
+      code = "(" + string + ".toUpperCase(), " + string + ")";
       break;
     case "toLower":
-      // Arduino String的toLowerCase()会修改原字符串，需要复制
-      Arduino.addFunction('string_to_lower',
-        'String stringToLower(String text) {\n' +
-        '  String result = text;\n' +
-        '  result.toLowerCase();\n' +
-        '  return result;\n' +
-        '}\n');
-      code = "stringToLower(" + string + ")";
+      // 直接使用 Arduino String 的 toLowerCase() 方法
+      code = "(" + string + ".toLowerCase(), " + string + ")";
       break;
     default:
       code = string + ".toInt()";
@@ -775,4 +763,12 @@ Arduino.forBlock["string_to_something"] = function (block) {
   }
   
   return [code, order];
+};
+
+Arduino.forBlock["array_get_dataAt"] = function (block) {
+  const array = Arduino.valueToCode(block, "ARRAY", Arduino.ORDER_MEMBER) || "\"\"";
+  const index = Arduino.valueToCode(block, "INDEX", Arduino.ORDER_NONE) || "0";
+  
+  const code = array + "[" + index + "]";
+  return [code, Arduino.ORDER_MEMBER];
 };
