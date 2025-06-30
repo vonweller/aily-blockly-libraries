@@ -1,49 +1,93 @@
 
 [
   {
-    "type": "spi_begin",
-    "message0": "SPI 初始化",
+    "type": "esp32_spi_create",
+    "message0": "创建 SPI对象 %1 使用芯片 %2",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "VAR",
+        "variable": "spi",
+        "variableTypes": [
+          "SPI"
+        ],
+        "defaultType": "SPI"
+      },
+      {
+        "type": "field_dropdown",
+        "name": "SPI_TYPE",
+        "options": [
+          [
+            "HSPI",
+            "HSPI"
+          ],
+          [
+            "VSPI",
+            "VSPI"
+          ]
+        ]
+      }
+    ],
     "previousStatement": null,
     "nextStatement": null,
     "colour": "#009688",
-    "tooltip": "初始化SPI总线",
-    "helpUrl": ""
+    "inputsInline": true
   },
   {
-    "type": "spi_transfer",
-    "message0": "SPI 传输 %1",
+    "type": "esp32_spi_begin",
+    "message0": "初始化 SPI对象 %1 (默认引脚)",
     "args0": [
       {
         "type": "input_value",
-        "name": "VALUE"
+        "name": "SPI_INST"
       }
     ],
-    "output": "Number",
+    "previousStatement": null,
+    "nextStatement": null,
     "colour": "#009688",
-    "tooltip": "通过SPI传输一个字节，并返回接收到的字节",
-    "helpUrl": ""
+    "inputsInline": true
   },
   {
-    "type": "spi_transfer16",
-    "message0": "SPI 传输16 %1",
+    "type": "esp32_spi_begin_pins",
+    "message0": "初始化 SPI对象 %1, SCK: %2, MISO: %3, MOSI: %4, CS: %5",
     "args0": [
       {
         "type": "input_value",
-        "name": "VALUE"
+        "name": "SPI_INST"
+      },
+      {
+        "type": "input_value",
+        "name": "SCK_PIN"
+      },
+      {
+        "type": "input_value",
+        "name": "MISO_PIN"
+      },
+      {
+        "type": "input_value",
+        "name": "MOSI_PIN"
+      },
+      {
+        "type": "input_value",
+        "name": "CS_PIN"
       }
     ],
-    "output": "Number",
+    "previousStatement": null,
+    "nextStatement": null,
     "colour": "#009688",
-    "tooltip": "通过SPI传输16位数据，并返回接收到的16位数据",
-    "helpUrl": ""
+    "inputsInline": true
   },
   {
-    "type": "spi_begin_transaction",
-    "message0": "SPI 开始事务，时钟 %1，位序 %2，模式 %3",
+    "type": "esp32_spi_begin_transaction",
+    "message0": "SPI对象 %1 开始事务 (时钟: %2, 位序: %3, 数据模式: %4)",
     "args0": [
       {
         "type": "input_value",
-        "name": "CLOCK"
+        "name": "SPI_INST"
+      },
+      {
+        "type": "input_value",
+        "name": "CLOCK_SPEED"
       },
       {
         "type": "field_dropdown",
@@ -64,19 +108,19 @@
         "name": "DATA_MODE",
         "options": [
           [
-            "SPI_MODE0",
+            "模式0",
             "SPI_MODE0"
           ],
           [
-            "SPI_MODE1",
+            "模式1",
             "SPI_MODE1"
           ],
           [
-            "SPI_MODE2",
+            "模式2",
             "SPI_MODE2"
           ],
           [
-            "SPI_MODE3",
+            "模式3",
             "SPI_MODE3"
           ]
         ]
@@ -85,286 +129,50 @@
     "previousStatement": null,
     "nextStatement": null,
     "colour": "#009688",
-    "tooltip": "开启SPI传输事务",
-    "helpUrl": ""
+    "inputsInline": true
   },
   {
-    "type": "spi_end_transaction",
-    "message0": "SPI 结束事务",
-    "previousStatement": null,
-    "nextStatement": null,
-    "colour": "#009688",
-    "tooltip": "结束当前的SPI事务",
-    "helpUrl": ""
-  },
-  {
-    "type": "spi_set_bit_order",
-    "message0": "SPI 设置位序 %1",
-    "args0": [
-      {
-        "type": "field_dropdown",
-        "name": "BIT_ORDER",
-        "options": [
-          [
-            "MSBFIRST",
-            "MSBFIRST"
-          ],
-          [
-            "LSBFIRST",
-            "LSBFIRST"
-          ]
-        ]
-      }
-    ],
-    "previousStatement": null,
-    "nextStatement": null,
-    "colour": "#009688",
-    "tooltip": "设置SPI传输的位序",
-    "helpUrl": ""
-  },
-  {
-    "type": "spi_set_data_mode",
-    "message0": "SPI 设置数据模式 %1",
-    "args0": [
-      {
-        "type": "field_dropdown",
-        "name": "DATA_MODE",
-        "options": [
-          [
-            "SPI_MODE0",
-            "SPI_MODE0"
-          ],
-          [
-            "SPI_MODE1",
-            "SPI_MODE1"
-          ],
-          [
-            "SPI_MODE2",
-            "SPI_MODE2"
-          ],
-          [
-            "SPI_MODE3",
-            "SPI_MODE3"
-          ]
-        ]
-      }
-    ],
-    "previousStatement": null,
-    "nextStatement": null,
-    "colour": "#009688",
-    "tooltip": "设置SPI数据模式",
-    "helpUrl": ""
-  },
-  {
-    "type": "spi_set_clock_divider",
-    "message0": "SPI 设置时钟分频 %1",
-    "args0": [
-      {
-        "type": "field_dropdown",
-        "name": "CLOCK_DIV",
-        "options": [
-          [
-            "SPI_CLOCK_DIV2",
-            "SPI_CLOCK_DIV2"
-          ],
-          [
-            "SPI_CLOCK_DIV4",
-            "SPI_CLOCK_DIV4"
-          ],
-          [
-            "SPI_CLOCK_DIV8",
-            "SPI_CLOCK_DIV8"
-          ],
-          [
-            "SPI_CLOCK_DIV16",
-            "SPI_CLOCK_DIV16"
-          ],
-          [
-            "SPI_CLOCK_DIV32",
-            "SPI_CLOCK_DIV32"
-          ],
-          [
-            "SPI_CLOCK_DIV64",
-            "SPI_CLOCK_DIV64"
-          ],
-          [
-            "SPI_CLOCK_DIV128",
-            "SPI_CLOCK_DIV128"
-          ]
-        ]
-      }
-    ],
-    "previousStatement": null,
-    "nextStatement": null,
-    "colour": "#009688",
-    "tooltip": "设置SPI时钟分频因子",
-    "helpUrl": ""
-  },
-  {
-    "type": "spi_read_temperature",
-    "message0": "通过SPI读取温度 (CS引脚 %1)",
+    "type": "esp32_spi_end_transaction",
+    "message0": "SPI对象 %1 结束事务",
     "args0": [
       {
         "type": "input_value",
-        "name": "CS_PIN"
+        "name": "SPI_INST"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#009688",
+    "inputsInline": true
+  },
+  {
+    "type": "esp32_spi_transfer",
+    "message0": "SPI对象 %1 传输数据 %2",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "SPI_INST"
+      },
+      {
+        "type": "input_value",
+        "name": "DATA"
       }
     ],
     "output": "Number",
     "colour": "#009688",
-    "tooltip": "从温度传感器读取温度值（摄氏度）",
-    "helpUrl": ""
+    "inputsInline": true
   },
   {
-    "type": "spi_read_pressure",
-    "message0": "通过SPI读取压力 (CS引脚 %1)",
+    "type": "esp32_spi_pin_ss",
+    "message0": "获取 SPI对象 %1 的SS引脚",
     "args0": [
       {
         "type": "input_value",
-        "name": "CS_PIN"
+        "name": "SPI_INST"
       }
     ],
     "output": "Number",
     "colour": "#009688",
-    "tooltip": "从压力传感器读取压力值（kPa）",
-    "helpUrl": ""
-  },
-  {
-    "type": "spi_digital_potentiometer_write",
-    "message0": "通过SPI设置数字电位器 (CS引脚 %1, 通道 %2, 值 %3)",
-    "args0": [
-      {
-        "type": "input_value",
-        "name": "CS_PIN"
-      },
-      {
-        "type": "input_value",
-        "name": "CHANNEL"
-      },
-      {
-        "type": "input_value",
-        "name": "VALUE"
-      }
-    ],
-    "previousStatement": null,
-    "nextStatement": null,
-    "colour": "#009688",
-    "tooltip": "发送数据给数字电位器以设置其阻值",
-    "helpUrl": ""
-  },
-  {
-    "type": "spi_write_register",
-    "message0": "通过SPI写寄存器 (CS引脚 %1, 寄存器 %2, 值 %3)",
-    "args0": [
-      {
-        "type": "input_value",
-        "name": "CS_PIN"
-      },
-      {
-        "type": "input_value",
-        "name": "REGISTER"
-      },
-      {
-        "type": "input_value",
-        "name": "VALUE"
-      }
-    ],
-    "previousStatement": null,
-    "nextStatement": null,
-    "colour": "#009688",
-    "tooltip": "向指定寄存器写入数据",
-    "helpUrl": ""
-  },
-  {
-    "type": "spi_read_register",
-    "message0": "通过SPI读寄存器 (CS引脚 %1, 寄存器 %2)",
-    "args0": [
-      {
-        "type": "input_value",
-        "name": "CS_PIN"
-      },
-      {
-        "type": "input_value",
-        "name": "REGISTER"
-      }
-    ],
-    "output": "Number",
-    "colour": "#009688",
-    "tooltip": "从指定寄存器读取数据",
-    "helpUrl": ""
-  },
-  {
-    "type": "spi_read_registers",
-    "message0": "通过SPI读多个寄存器 (CS引脚 %1, 寄存器 %2, 数量 %3, 数组名称 %4)",
-    "args0": [
-      {
-        "type": "input_value",
-        "name": "CS_PIN"
-      },
-      {
-        "type": "input_value",
-        "name": "REGISTER"
-      },
-      {
-        "type": "input_value",
-        "name": "COUNT"
-      },
-      {
-        "type": "field_input",
-        "name": "ARRAY_NAME",
-        "text": "array"
-      }
-    ],
-    "previousStatement": null,
-    "nextStatement": null,
-    "colour": "#009688",
-    "tooltip": "读取多个连续寄存器的值，并存储到指定数组中",
-    "helpUrl": ""
-  },
-  {
-    "type": "spi_sensor_read",
-    "message0": "通过SPI读取传感器 %1 (CS引脚 %2)",
-    "args0": [
-      {
-        "type": "field_dropdown",
-        "name": "SENSOR_TYPE",
-        "options": [
-          [
-            "温度",
-            "TEMPERATURE"
-          ],
-          [
-            "压力",
-            "PRESSURE"
-          ]
-        ]
-      },
-      {
-        "type": "input_value",
-        "name": "CS_PIN"
-      }
-    ],
-    "output": "Number",
-    "colour": "#009688",
-    "tooltip": "根据选择的传感器类型读取传感器数据",
-    "helpUrl": ""
-  },
-  {
-    "type": "spi_digital_pot_simple",
-    "message0": "简化版数字电位器 (CS引脚 %1, 值 %2)",
-    "args0": [
-      {
-        "type": "input_value",
-        "name": "CS_PIN"
-      },
-      {
-        "type": "input_value",
-        "name": "VALUE"
-      }
-    ],
-    "previousStatement": null,
-    "nextStatement": null,
-    "colour": "#009688",
-    "tooltip": "通过SPI简单设置数字电位器的值",
-    "helpUrl": ""
+    "inputsInline": true
   }
 ]

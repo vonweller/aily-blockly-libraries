@@ -20,39 +20,20 @@
   "helpUrl": ""
 },
   {
-  "type": "bh1750_simple",
-  "message0": "初始化BH1750光照传感器",
+  "type": "bh1750_init",
+  "message0": "初始化BH1750光照传感器 %1",
+  "args0": [
+    {
+      "type": "input_dummy",
+      "name": "I2C_PINS"
+    }
+  ],
   "previousStatement": null,
   "nextStatement": null,
   "colour": 120,
-  "tooltip": "初始化名为lightMeter的BH1750传感器"
+  "tooltip": "初始化BH1750光照传感器，自动根据板卡类型配置I2C引脚",
+  "extensions": ["bh1750_init_extension"]
 },
-  {
-    "type": "bh1750_setup",
-    "message0": "初始化BH1750传感器 %1 SDA引脚 %2 SCL引脚 %3",
-    "args0": [
-      {
-        "type": "field_variable",
-        "name": "VAR",
-        "variable": "lightMeter"
-      },
-      {
-        "type": "input_value",
-        "name": "SDA_PIN",
-        "check": "Number"
-      },
-      {
-        "type": "input_value",
-        "name": "SCL_PIN",
-        "check": "Number"
-      }
-    ],
-    "inputsInline": true,
-    "previousStatement": null,
-    "nextStatement": null,
-    "colour": 120,
-    "tooltip": "初始化I2C总线和BH1750传感器"
-  },
   {
     "type": "bh1750_read_light_level",
     "message0": "读取 %1 的光照值",

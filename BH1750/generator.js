@@ -14,97 +14,143 @@ function ensureBH1750Setup(varName, address, generator) {
   return fixedVarName; // 返回使用的变量名，供后续引用
 }
 
-// 创建/初始化对象
-Arduino.forBlock['bh1750_create'] = function(block, generator) {
-  const address = block.getFieldValue('ADDRESS') || '0x23';
-  
-  // 不再使用块中的变量名，而是使用固定的变量名
-  const sensorVarName = ensureBH1750Setup("", address, generator);
-  
-  // 保存变量名，方便后续块使用
-  generator.sensorVarName = sensorVarName;
-  
-  return '';
-};
+// 注册 BH1750 扩展 - 根据板子类型决定是否显示 I2C 引脚选择
+// 避免重复加载
+if (Blockly.Extensions.isRegistered('bh1750_init_extension')) {
+  Blockly.Extensions.unregister('bh1750_init_extension');
+}
 
-// 初始化I2C总线和BH1750 - 自动适配不同板卡
-Arduino.forBlock['bh1750_setup'] = function(block, generator) {
+Blockly.Extensions.register('bh1750_init_extension', function() {
+  // 获取开发板配置信息
+  var boardConfig = window['boardConfig'] || {};
+  var boardCore = (boardConfig.core || '').toLowerCase();
+  var boardName = (boardConfig.name || '').toLowerCase();
+  
+  // 判断是否为 Arduino 核心
+  var isArduino = boardCore.indexOf('arduino') > -1 || 
+                  boardName.indexOf('arduino') > -1 || 
+                  boardName.indexOf('uno') > -1 || 
+                  boardName.indexOf('nano') > -1 || 
+                  boardName.indexOf('mega') > -1;
+  
+  // 获取 input_dummy 的引用
+  var dummyInput = this.getInput('I2C_PINS');
+  
+  if (!isArduino) {
+    // 对于非Arduino板卡，添加 I2C 引脚选择下拉菜单
+    dummyInput.appendField('使用');
+    dummyInput.appendField(new Blockly.FieldDropdown([
+      ['Wire1 (SDA:8, SCL:9)', 'WIRE1'],
+      ['Wire2 (SDA:4, SCL:5)', 'WIRE2']
+    ]), 'WIRE_OPTION');
+  } else {
+    // 对于 Arduino，使用默认引脚 SDA:A4, SCL:A5，不可选择
+    dummyInput.appendField('使用默认引脚 (SDA:A4, SCL:A5)');
+    
+    // 添加一个不可见的字段，以便在生成器中使用
+    this.appendDummyInput().appendField(
+      new Blockly.FieldLabelSerializable('WIRE_A4_A5'), 'WIRE_OPTION')
+      .setVisible(false);
+  }
+});
+
+// BH1750统一初始化函数 - 根据板卡类型自动适配
+Arduino.forBlock['bh1750_init'] = function(block, generator) {
+  var wireOption = block.getFieldValue('WIRE_OPTION') || 'WIRE1'; // 默认值
   const address = block.getFieldValue('ADDRESS') || '0x23';
-  const sda = generator.valueToCode(block, 'SDA_PIN', Arduino.ORDER_ATOMIC);
-  const scl = generator.valueToCode(block, 'SCL_PIN', Arduino.ORDER_ATOMIC);
+  
+  // 添加必要的库
+  generator.addLibrary('Wire', '#include <Wire.h>');
+  generator.addLibrary('BH1750', '#include <BH1750.h>');
   
   // 使用固定的变量名
   const varName = generator.sensorVarName || "lightMeter";
   
-  let wireCode = '// 初始化I2C通信\n';
+  // 添加BH1750对象变量
+  generator.addVariable('bh1750_sensor', `BH1750 ${varName}(${address});`);
   
-  // 使用boardConfig判断板卡类型
-  if (window['boardConfig'] && window['boardConfig'].core) {
-    if (window['boardConfig'].core.indexOf('esp32') > -1) {
-      // ESP32板卡
-      if (sda && scl) {
-        wireCode += `Wire.begin(${sda}, ${scl}); // ESP32 SDA=${sda}, SCL=${scl}
-Serial.println("使用ESP32自定义引脚: SDA=" + String(${sda}) + ", SCL=" + String(${scl}));\n`;
-      } else {
-        wireCode += `Wire.begin(21, 22); // ESP32默认引脚 SDA=4, SCL=4
-Serial.println("使用ESP32默认引脚: SDA=21, SCL=22");\n`;
-      }
-    } else if (window['boardConfig'].core.indexOf('esp8266') > -1) {
-      // ESP8266板卡
-      if (sda && scl) {
-        wireCode += `Wire.begin(${sda}, ${scl}); // ESP8266 SDA=${sda}, SCL=${scl}
-Serial.println("使用ESP8266自定义引脚: SDA=" + String(${sda}) + ", SCL=" + String(${scl}));\n`;
-      } else {
-        wireCode += `Wire.begin(4, 5); // ESP8266默认引脚 SDA=4, SCL=5
-Serial.println("使用ESP8266默认引脚: SDA=4, SCL=5");\n`;
-      }
-    } else {
-      // Arduino或其他板卡 - 使用默认引脚
-      wireCode += `Wire.begin(); // 使用Arduino默认I2C引脚(A4=SDA, A5=SCL)
-Serial.println("使用Arduino默认I2C引脚(A4=SDA, A5=SCL)");\n`;
+  // 获取开发板配置信息
+  var boardConfig = window['boardConfig'] || {};
+  var boardCore = (boardConfig.core || '').toLowerCase();
+  var boardName = (boardConfig.name || '').toLowerCase();
+  
+  // 判断开发板类型 (更可靠的检测方法)
+  var isArduinoCore = boardCore.indexOf('arduino') > -1 || 
+                     boardName.indexOf('arduino') > -1 || 
+                     boardName.indexOf('uno') > -1 || 
+                     boardName.indexOf('nano') > -1 || 
+                     boardName.indexOf('mega') > -1;
+                     
+  var isESP32Core = boardCore.indexOf('esp32') > -1 || 
+                   boardName.indexOf('esp32') > -1 || 
+                   boardName.indexOf('esp') > -1;
+                   
+  var isESP8266Core = boardCore.indexOf('esp8266') > -1 || 
+                     boardName.indexOf('esp8266') > -1;
+  
+  // 调试信息
+  console.log('BH1750 Init: 开发板信息:', boardConfig);
+  console.log('BH1750 Init: 核心类型:', boardCore);
+  console.log('BH1750 Init: 板名:', boardName);
+  console.log('BH1750 Init: isArduinoCore:', isArduinoCore);
+  console.log('BH1750 Init: isESP32Core:', isESP32Core);
+  console.log('BH1750 Init: isESP8266Core:', isESP8266Core);
+  console.log('BH1750 Init: wireOption:', wireOption);
+  
+  // 初始化I2C总线
+  var setupCode = '// 配置I2C引脚并初始化BH1750传感器\n';
+  setupCode += 'Serial.println("BH1750初始化...");\n';
+  
+  if (isArduinoCore) {
+    // Arduino核心固定使用 SDA:A4, SCL:A5
+    setupCode += 'Wire.begin();  // 初始化硬件 I2C (Arduino核心)\n';
+    setupCode += 'Serial.println("Arduino板卡使用默认引脚: SDA=A4, SCL=A5");\n';
+  } else if (isESP32Core) {
+    // ESP32核心，根据Wire选项初始化
+    if (wireOption === 'WIRE2') {
+      setupCode += 'Wire.begin(4, 5);  // 初始化硬件 I2C，Wire2 SDA:4, SCL:5 (ESP32核心)\n';
+      setupCode += 'Serial.println("ESP32使用Wire2 (SDA:4, SCL:5)");\n';
+    } else { // WIRE1 或默认
+      setupCode += 'Wire.begin(8, 9);  // 初始化硬件 I2C，Wire1 SDA:8, SCL:9 (ESP32核心)\n';
+      setupCode += 'Serial.println("ESP32使用Wire1 (SDA:8, SCL:9)");\n';
+    }
+  } else if (isESP8266Core) {
+    // ESP8266核心，根据Wire选项初始化
+    if (wireOption === 'WIRE2') {
+      setupCode += 'Wire.begin(4, 5);  // 初始化硬件 I2C，Wire2 SDA:4, SCL:5 (ESP8266核心)\n';
+      setupCode += 'Serial.println("ESP8266使用Wire2 (SDA:4, SCL:5)");\n';
+    } else { // WIRE1 或默认
+      setupCode += 'Wire.begin(8, 9);  // 初始化硬件 I2C，Wire1 SDA:8, SCL:9 (ESP8266核心)\n';
+      setupCode += 'Serial.println("ESP8266使用Wire1 (SDA:8, SCL:9)");\n';
     }
   } else {
-    // 如果无法获取boardConfig，则使用传统判断方式
-    if (sda && scl) {
-      wireCode += `// 使用自定义引脚
-#if defined(ARDUINO_ARCH_ESP32) || defined(ESP32) || defined(ARDUINO_ARCH_ESP8266) || defined(ESP8266)
-  Wire.begin(${sda}, ${scl}); // 使用指定的SDA和SCL引脚
-  Serial.println("使用指定引脚: SDA=" + String(${sda}) + ", SCL=" + String(${scl}));
-#else
-  // Arduino不支持自定义引脚
-  Wire.begin(); // 使用默认I2C引脚
-  Serial.println("Arduino不支持自定义I2C引脚，使用默认引脚");
-#endif\n`;
-    } else {
-      wireCode += `// 使用默认引脚
-#if defined(ARDUINO_ARCH_ESP32) || defined(ESP32)
-  Wire.begin(21, 22); // ESP32默认引脚
-  Serial.println("使用ESP32默认引脚: SDA=21, SCL=22");
-#elif defined(ARDUINO_ARCH_ESP8266) || defined(ESP8266)
-  Wire.begin(4, 5); // ESP8266默认引脚
-  Serial.println("使用ESP8266默认引脚: SDA=4, SCL=5");
-#else
-  Wire.begin(); // Arduino默认引脚
-  Serial.println("使用Arduino默认引脚(A4=SDA, A5=SCL)");
-#endif\n`;
+    // 其他非Arduino核心，根据Wire选项初始化
+    if (wireOption === 'WIRE2') {
+      setupCode += 'Wire.begin(4, 5);  // 初始化硬件 I2C，Wire2 SDA:4, SCL:5 (其他核心)\n';
+      setupCode += 'Serial.println("其他板卡使用Wire2 (SDA:4, SCL:5)");\n';
+    } else { // WIRE1 或默认
+      setupCode += 'Wire.begin(8, 9);  // 初始化硬件 I2C，Wire1 SDA:8, SCL:9 (其他核心)\n';
+      setupCode += 'Serial.println("其他板卡使用Wire1 (SDA:8, SCL:9)");\n';
     }
   }
   
-  generator.addSetup('wire_begin', wireCode);
-  
   // 添加BH1750初始化代码
-  const bh1750Code = `// 初始化BH1750光照传感器
+  setupCode += `
+// 初始化BH1750光照传感器
 if (${varName}.begin()) {
   Serial.println("BH1750传感器初始化成功!");
 } else {
   Serial.println("警告: BH1750传感器初始化失败，请检查接线!");
-}\n`;
+}
+`;
+
+  generator.addSetup('bh1750_init', setupCode);
   
-  generator.addSetup('bh1750_begin', bh1750Code);
+  // 保存变量名，方便后续块使用
+  generator.sensorVarName = varName;
   
   return '';
 };
-
 
 
 // 初始化或开始
@@ -124,27 +170,6 @@ Arduino.forBlock['bh1750_begin'] = function(block, generator) {
   }
   generator.addSetup(`bh1750_begin_${varName}`, code);
   return '';
-};
-
-// 配置模式
-Arduino.forBlock['bh1750_configure'] = function(block, generator) {
-  const varName = block.getFieldValue('VAR');
-  const mode = block.getFieldValue('MODE');
-  return `${varName}.configure(${mode});\n`;
-};
-
-// 设置测量时间寄存器
-Arduino.forBlock['bh1750_set_mtreg'] = function(block, generator) {
-  const varName = block.getFieldValue('VAR');
-  const value = generator.valueToCode(block, 'VALUE', Arduino.ORDER_ATOMIC) || '69';
-  return `${varName}.setMTreg(${value});\n`;
-};
-
-// 检查测量是否就绪
-Arduino.forBlock['bh1750_measurement_ready'] = function(block, generator) {
-  const varName = block.getFieldValue('VAR');
-  const maxWait = block.getFieldValue('MAX_WAIT') === 'TRUE' ? 'true' : 'false';
-  return [`${varName}.measurementReady(${maxWait})`, Arduino.ORDER_FUNCTION_CALL];
 };
 
 // 读取光照强度
