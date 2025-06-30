@@ -2,7 +2,7 @@
 [
   {
     "type": "ina219_create_and_begin",
-    "message0": "创建并初始化 INA219 %1 使用 %2",
+    "message0": "创建并初始化 INA219 %1 %2",
     "args0": [
       {
         "type": "field_variable",
@@ -14,19 +14,16 @@
         "defaultType": "Adafruit_INA219"
       },
       {
-        "type": "field_dropdown",
-        "name": "WIRE_OPTION",
-        "options": [
-          ["Wire1 (SDA:8, SCL:9)", "WIRE1"],
-          ["Wire2 (SDA:4, SCL:5)", "WIRE2"]
-        ]
+        "type": "input_dummy",
+        "name": "I2C_PINS"
       }
     ],
     "previousStatement": null,
     "nextStatement": null,
     "colour": "#FFA500",
     "tooltip": "创建 INA219 对象并自动初始化I2C总线和传感器",
-    "helpUrl": ""
+    "helpUrl": "",
+    "extensions": ["ina219_create_extension"]
   },
   {
     "type": "ina219_read_value",

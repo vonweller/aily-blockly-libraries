@@ -1,271 +1,59 @@
+// SPI 库 unified generator
 
-Arduino.forBlock['spi_begin'] = function(block, generator) {
-  generator.addLibrary('#include <SPI.h>', '#include <SPI.h>');
-  generator.addSetupBegin('spi_begin', 'SPI.begin();');
+// 引入库
+Arduino.forBlock['esp32_spi_create'] = function(block, generator) {
+  generator.addLibrary('esp32_spi', '#include <SPI.h>');
+  const spiType = block.getFieldValue('SPI_TYPE');
+  const variableName = generator.nameDB_.getName(block.getFieldValue('VAR'), Blockly.Names.NameType.VARIABLE);
+  const code = `SPIClass ${variableName} = SPIClass(${spiType});\n`;
+  generator.addVariable(`spi_${variableName}`, code);
   return '';
 };
 
-Arduino.forBlock['spi_transfer'] = function(block, generator) {
-  generator.addLibrary('#include <SPI.h>', '#include <SPI.h>');
-  var value = generator.valueToCode(block, 'VALUE', Arduino.ORDER_ATOMIC);
-  var code = 'SPI.transfer(' + value + ')';
-  return [code, Arduino.ORDER_ATOMIC];
+// SPI 初始化，兼容默认和自定义引脚
+Arduino.forBlock['esp32_spi_begin'] = function(block, generator) {
+  const spiInstance = generator.valueToCode(block, 'SPI_INST', Arduino.ORDER_ATOMIC) || 'SPI';
+  return `${spiInstance}->begin();\n`;
 };
 
-Arduino.forBlock['spi_transfer16'] = function(block, generator) {
-  generator.addLibrary('#include <SPI.h>', '#include <SPI.h>');
-  var value = generator.valueToCode(block, 'VALUE', Arduino.ORDER_ATOMIC);
-  var code = 'SPI.transfer16(' + value + ')';
-  return [code, Arduino.ORDER_ATOMIC];
+Arduino.forBlock['esp32_spi_begin_pins'] = function(block, generator) {
+  const spiInstance = generator.valueToCode(block, 'SPI_INST', Arduino.ORDER_ATOMIC) || 'SPI';
+  const sckPin = generator.valueToCode(block, 'SCK_PIN', Arduino.ORDER_ATOMIC);
+  const misoPin = generator.valueToCode(block, 'MISO_PIN', Arduino.ORDER_ATOMIC);
+  const mosiPin = generator.valueToCode(block, 'MOSI_PIN', Arduino.ORDER_ATOMIC);
+  const csPin = generator.valueToCode(block, 'CS_PIN', Arduino.ORDER_ATOMIC);
+  
+  // 使用数字前缀降低优先级（数字越小优先级越高）
+  generator.addSetup('010_spi_begin', `${spiInstance}.begin(${sckPin}, ${misoPin}, ${mosiPin}, ${csPin});\n`);
+  return '';
 };
 
-Arduino.forBlock['spi_begin_transaction'] = function(block, generator) {
-  generator.addLibrary('#include <SPI.h>', '#include <SPI.h>');
-  var clock = generator.valueToCode(block, 'CLOCK', Arduino.ORDER_ATOMIC);
-  var bitOrder = block.getFieldValue('BIT_ORDER');
-  var dataMode = block.getFieldValue('DATA_MODE');
-  var code = 'SPI.beginTransaction(SPISettings(' + clock + ', ' + bitOrder + ', ' + dataMode + '));\n';
-  return code;
+// SPI 开始事务
+Arduino.forBlock['esp32_spi_begin_transaction'] = function(block, generator) {
+  const spiInstance = generator.valueToCode(block, 'SPI_INST', Arduino.ORDER_ATOMIC) || 'SPI';
+  const clockSpeed = generator.valueToCode(block, 'CLOCK_SPEED', Arduino.ORDER_ATOMIC) || '1000000';
+  const bitOrder = block.getFieldValue('BIT_ORDER');
+  const dataMode = block.getFieldValue('DATA_MODE');
+  return `${spiInstance}.beginTransaction(SPISettings(${clockSpeed}, ${bitOrder}, ${dataMode}));\n`;
 };
 
-Arduino.forBlock['spi_end_transaction'] = function(block, generator) {
-  generator.addLibrary('#include <SPI.h>', '#include <SPI.h>');
-  return 'SPI.endTransaction();\n';
+// SPI 结束事务
+Arduino.forBlock['esp32_spi_end_transaction'] = function(block, generator) {
+  const spiInstance = generator.valueToCode(block, 'SPI_INST', Arduino.ORDER_ATOMIC) || 'SPI';
+  return `${spiInstance}.endTransaction();\n`;
 };
 
-Arduino.forBlock['spi_set_bit_order'] = function(block, generator) {
-  generator.addLibrary('#include <SPI.h>', '#include <SPI.h>');
-  var bitOrder = block.getFieldValue('BIT_ORDER');
-  return 'SPI.setBitOrder(' + bitOrder + ');\n';
+// SPI 传输一个字节数据
+Arduino.forBlock['esp32_spi_transfer'] = function(block, generator) {
+  const spiInstance = generator.valueToCode(block, 'SPI_INST', Arduino.ORDER_ATOMIC) || 'SPI';
+  const data = generator.valueToCode(block, 'DATA', Arduino.ORDER_ATOMIC) || '0';
+  const varName = generator.nameDB_.getDistinctName('spiData', Blockly.Variables.NAME_TYPE);
+  const code = `uint8_t ${varName} = ${spiInstance}.transfer(${data});\n`;
+  return [varName, Arduino.ORDER_ATOMIC];
 };
 
-Arduino.forBlock['spi_set_data_mode'] = function(block, generator) {
-  generator.addLibrary('#include <SPI.h>', '#include <SPI.h>');
-  var dataMode = block.getFieldValue('DATA_MODE');
-  return 'SPI.setDataMode(' + dataMode + ');\n';
-};
-
-Arduino.forBlock['spi_set_clock_divider'] = function(block, generator) {
-  generator.addLibrary('#include <SPI.h>', '#include <SPI.h>');
-  var clockDiv = block.getFieldValue('CLOCK_DIV');
-  return 'SPI.setClockDivider(' + clockDiv + ');\n';
-};
-
-// 温度传感器读取功能
-Arduino.forBlock['spi_read_temperature'] = function(block, generator) {
-  generator.addLibrary('#include <SPI.h>', '#include <SPI.h>');
-  var csPin = generator.valueToCode(block, 'CS_PIN', Arduino.ORDER_ATOMIC);
-  
-  // 添加CS引脚初始化代码到setup
-  generator.addSetupBegin('pinMode_' + csPin, 'pinMode(' + csPin + ', OUTPUT);');
-  generator.addSetupBegin('digitalWrite_' + csPin, 'digitalWrite(' + csPin + ', HIGH);');
-  
-  var functionName = 'readTemperature';
-  var functionCode = 'float ' + functionName + '(int csPin) {\n' +
-                     '  digitalWrite(csPin, LOW);\n' +
-                     '  SPI.transfer(0x01); // 读取温度的命令\n' +
-                     '  byte msb = SPI.transfer(0x00);\n' +
-                     '  byte lsb = SPI.transfer(0x00);\n' +
-                     '  digitalWrite(csPin, HIGH);\n' +
-                     '  return ((msb << 8) | lsb) * 0.0625; // 转换为摄氏度\n' +
-                     '}\n';
-  
-  generator.addFunction(functionName, functionCode);
-  
-  var code = functionName + '(' + csPin + ')';
-  return [code, Arduino.ORDER_FUNCTION_CALL];
-};
-
-// 压力传感器读取功能
-Arduino.forBlock['spi_read_pressure'] = function(block, generator) {
-  generator.addLibrary('#include <SPI.h>', '#include <SPI.h>');
-  var csPin = generator.valueToCode(block, 'CS_PIN', Arduino.ORDER_ATOMIC);
-  
-  // 添加CS引脚初始化代码到setup
-  generator.addSetupBegin('pinMode_' + csPin, 'pinMode(' + csPin + ', OUTPUT);');
-  generator.addSetupBegin('digitalWrite_' + csPin, 'digitalWrite(' + csPin + ', HIGH);');
-  
-  var functionName = 'readPressure';
-  var functionCode = 'float ' + functionName + '(int csPin) {\n' +
-                     '  digitalWrite(csPin, LOW);\n' +
-                     '  SPI.transfer(0x02); // 读取压力的命令\n' +
-                     '  byte msb = SPI.transfer(0x00);\n' +
-                     '  byte lsb = SPI.transfer(0x00);\n' +
-                     '  digitalWrite(csPin, HIGH);\n' +
-                     '  return ((msb << 8) | lsb) * 0.1; // 转换为kPa\n' +
-                     '}\n';
-  
-  generator.addFunction(functionName, functionCode);
-  
-  var code = functionName + '(' + csPin + ')';
-  return [code, Arduino.ORDER_FUNCTION_CALL];
-};
-
-// 数字电位器控制功能
-Arduino.forBlock['spi_digital_potentiometer_write'] = function(block, generator) {
-  generator.addLibrary('#include <SPI.h>', '#include <SPI.h>');
-  var csPin = generator.valueToCode(block, 'CS_PIN', Arduino.ORDER_ATOMIC);
-  var channel = generator.valueToCode(block, 'CHANNEL', Arduino.ORDER_ATOMIC);
-  var value = generator.valueToCode(block, 'VALUE', Arduino.ORDER_ATOMIC);
-  
-  // 添加CS引脚初始化代码到setup
-  generator.addSetupBegin('pinMode_' + csPin, 'pinMode(' + csPin + ', OUTPUT);');
-  generator.addSetupBegin('digitalWrite_' + csPin, 'digitalWrite(' + csPin + ', HIGH);');
-  
-  var functionName = 'digitalPotWrite';
-  var functionCode = 'void ' + functionName + '(int csPin, int channel, int value) {\n' +
-                     '  digitalWrite(csPin, LOW);\n' +
-                     '  SPI.transfer(channel);\n' +
-                     '  SPI.transfer(value);\n' +
-                     '  digitalWrite(csPin, HIGH);\n' +
-                     '}\n';
-  
-  generator.addFunction(functionName, functionCode);
-  
-  return functionName + '(' + csPin + ', ' + channel + ', ' + value + ');\n';
-};
-
-// 通用SPI寄存器写入功能
-Arduino.forBlock['spi_write_register'] = function(block, generator) {
-  generator.addLibrary('#include <SPI.h>', '#include <SPI.h>');
-  var csPin = generator.valueToCode(block, 'CS_PIN', Arduino.ORDER_ATOMIC);
-  var register = generator.valueToCode(block, 'REGISTER', Arduino.ORDER_ATOMIC);
-  var value = generator.valueToCode(block, 'VALUE', Arduino.ORDER_ATOMIC);
-  
-  // 添加CS引脚初始化代码到setup
-  generator.addSetupBegin('pinMode_' + csPin, 'pinMode(' + csPin + ', OUTPUT);');
-  generator.addSetupBegin('digitalWrite_' + csPin, 'digitalWrite(' + csPin + ', HIGH);');
-  
-  var functionName = 'writeRegister';
-  var functionCode = 'void ' + functionName + '(int csPin, byte reg, byte value) {\n' +
-                     '  digitalWrite(csPin, LOW);\n' +
-                     '  SPI.transfer(reg);\n' +
-                     '  SPI.transfer(value);\n' +
-                     '  digitalWrite(csPin, HIGH);\n' +
-                     '}\n';
-  
-  generator.addFunction(functionName, functionCode);
-  
-  return functionName + '(' + csPin + ', ' + register + ', ' + value + ');\n';
-};
-
-// 通用SPI寄存器读取功能
-Arduino.forBlock['spi_read_register'] = function(block, generator) {
-  generator.addLibrary('#include <SPI.h>', '#include <SPI.h>');
-  var csPin = generator.valueToCode(block, 'CS_PIN', Arduino.ORDER_ATOMIC);
-  var register = generator.valueToCode(block, 'REGISTER', Arduino.ORDER_ATOMIC);
-  
-  // 添加CS引脚初始化代码到setup
-  generator.addSetupBegin('pinMode_' + csPin, 'pinMode(' + csPin + ', OUTPUT);');
-  generator.addSetupBegin('digitalWrite_' + csPin, 'digitalWrite(' + csPin + ', HIGH);');
-  
-  var functionName = 'readRegister';
-  var functionCode = 'byte ' + functionName + '(int csPin, byte reg) {\n' +
-                     '  digitalWrite(csPin, LOW);\n' +
-                     '  SPI.transfer(reg | 0x80); // 通常最高位置1表示读取操作\n' +
-                     '  byte value = SPI.transfer(0x00);\n' +
-                     '  digitalWrite(csPin, HIGH);\n' +
-                     '  return value;\n' +
-                     '}\n';
-  
-  generator.addFunction(functionName, functionCode);
-  
-  var code = functionName + '(' + csPin + ', ' + register + ')';
-  return [code, Arduino.ORDER_FUNCTION_CALL];
-};
-
-// 读取多个寄存器功能
-Arduino.forBlock['spi_read_registers'] = function(block, generator) {
-  generator.addLibrary('#include <SPI.h>', '#include <SPI.h>');
-  var csPin = generator.valueToCode(block, 'CS_PIN', Arduino.ORDER_ATOMIC);
-  var register = generator.valueToCode(block, 'REGISTER', Arduino.ORDER_ATOMIC);
-  var count = generator.valueToCode(block, 'COUNT', Arduino.ORDER_ATOMIC);
-  var arrayName = block.getFieldValue('ARRAY_NAME');
-  
-  // 添加CS引脚初始化代码到setup
-  generator.addSetupBegin('pinMode_' + csPin, 'pinMode(' + csPin + ', OUTPUT);');
-  generator.addSetupBegin('digitalWrite_' + csPin, 'digitalWrite(' + csPin + ', HIGH);');
-  
-  // 添加数组变量声明
-  generator.addVariable('byte ' + arrayName + '[' + count + ']', 'byte ' + arrayName + '[' + count + '];');
-  
-  var functionName = 'readRegisters';
-  var functionCode = 'void ' + functionName + '(int csPin, byte reg, byte *buffer, byte count) {\n' +
-                     '  digitalWrite(csPin, LOW);\n' +
-                     '  SPI.transfer(reg | 0x80); // 通常最高位置1表示读取操作\n' +
-                     '  for (byte i = 0; i < count; i++) {\n' +
-                     '    buffer[i] = SPI.transfer(0x00);\n' +
-                     '  }\n' +
-                     '  digitalWrite(csPin, HIGH);\n' +
-                     '}\n';
-  
-  generator.addFunction(functionName, functionCode);
-  
-  return functionName + '(' + csPin + ', ' + register + ', ' + arrayName + ', ' + count + ');\n';
-};
-
-// 简化版传感器读取功能，自动处理SPI初始化
-Arduino.forBlock['spi_sensor_read'] = function(block, generator) {
-  generator.addLibrary('#include <SPI.h>', '#include <SPI.h>');
-  var csPin = generator.valueToCode(block, 'CS_PIN', Arduino.ORDER_ATOMIC);
-  var sensorType = block.getFieldValue('SENSOR_TYPE');
-  
-  // 添加SPI初始化和CS引脚初始化代码到setup
-  generator.addSetupBegin('spi_begin', 'SPI.begin();');
-  generator.addSetupBegin('pinMode_' + csPin, 'pinMode(' + csPin + ', OUTPUT);');
-  generator.addSetupBegin('digitalWrite_' + csPin, 'digitalWrite(' + csPin + ', HIGH);');
-  
-  var functionName;
-  var functionCode;
-  
-  if (sensorType === 'TEMPERATURE') {
-    functionName = 'readTemperatureSensor';
-    functionCode = 'float ' + functionName + '(int csPin) {\n' +
-                   '  digitalWrite(csPin, LOW);\n' +
-                   '  SPI.transfer(0x01); // 读取温度的命令\n' +
-                   '  byte msb = SPI.transfer(0x00);\n' +
-                   '  byte lsb = SPI.transfer(0x00);\n' +
-                   '  digitalWrite(csPin, HIGH);\n' +
-                   '  return ((msb << 8) | lsb) * 0.0625; // 转换为摄氏度\n' +
-                   '}\n';
-  } else if (sensorType === 'PRESSURE') {
-    functionName = 'readPressureSensor';
-    functionCode = 'float ' + functionName + '(int csPin) {\n' +
-                   '  digitalWrite(csPin, LOW);\n' +
-                   '  SPI.transfer(0x02); // 读取压力的命令\n' +
-                   '  byte msb = SPI.transfer(0x00);\n' +
-                   '  byte lsb = SPI.transfer(0x00);\n' +
-                   '  digitalWrite(csPin, HIGH);\n' +
-                   '  return ((msb << 8) | lsb) * 0.1; // 转换为kPa\n' +
-                   '}\n';
-  }
-  
-  generator.addFunction(functionName, functionCode);
-  
-  var code = functionName + '(' + csPin + ')';
-  return [code, Arduino.ORDER_FUNCTION_CALL];
-};
-
-// 简化版数字电位器控制功能
-Arduino.forBlock['spi_digital_pot_simple'] = function(block, generator) {
-  generator.addLibrary('#include <SPI.h>', '#include <SPI.h>');
-  var csPin = generator.valueToCode(block, 'CS_PIN', Arduino.ORDER_ATOMIC);
-  var value = generator.valueToCode(block, 'VALUE', Arduino.ORDER_ATOMIC);
-  
-  // 添加SPI初始化和CS引脚初始化代码到setup
-  generator.addSetupBegin('spi_begin', 'SPI.begin();');
-  generator.addSetupBegin('pinMode_' + csPin, 'pinMode(' + csPin + ', OUTPUT);');
-  generator.addSetupBegin('digitalWrite_' + csPin, 'digitalWrite(' + csPin + ', HIGH);');
-  
-  var functionName = 'setDigitalPotValue';
-  var functionCode = 'void ' + functionName + '(int csPin, int value) {\n' +
-                     '  digitalWrite(csPin, LOW);\n' +
-                     '  SPI.transfer(0x00); // 默认通道 0\n' +
-                     '  SPI.transfer(value);\n' +
-                     '  digitalWrite(csPin, HIGH);\n' +
-                     '}\n';
-  
-  generator.addFunction(functionName, functionCode);
-  
-  return functionName + '(' + csPin + ', ' + value + ');\n';
+// SPI 获取SS管脚
+Arduino.forBlock['esp32_spi_pin_ss'] = function(block, generator) {
+  const spiInstance = generator.valueToCode(block, 'SPI_INST', Arduino.ORDER_ATOMIC) || 'SPI';
+  return [`${spiInstance}.pinSS()`, Arduino.ORDER_FUNCTION_CALL];
 };

@@ -19,7 +19,7 @@
     },
     {
         "type": "vl53l0x_begin",
-        "message0": "初始化VL53L0X传感器 %1 使用 %2 并检查连接",
+        "message0": "初始化VL53L0X传感器 %1 %2",
         "args0": [
             {
                 "type": "field_variable",
@@ -29,18 +29,15 @@
                 "defaultType": "Adafruit_VL53L0X"
             },
             {
-                "type": "field_dropdown",
-                "name": "WIRE_OPTION",
-                "options": [
-                    ["Wire1 (SDA:8, SCL:9)", "WIRE1"],
-                    ["Wire2 (SDA:4, SCL:5)", "WIRE2"]
-                ]
+                "type": "input_dummy",
+                "name": "I2C_PINS"
             }
         ],
         "previousStatement": null,
         "nextStatement": null,
         "colour": "#2D7DB3",
-        "tooltip": "初始化VL53L0X激光测距传感器，配置I2C引脚并检查连接"
+        "tooltip": "初始化VL53L0X激光测距传感器，配置I2C引脚并检查连接",
+        "extensions": ["vl53l0x_begin_extension"]
     },
     {
         "type": "vl53l0x_ranging_test",

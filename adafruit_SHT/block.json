@@ -1,0 +1,39 @@
+[
+  {
+  "type": "sht30_init",
+  "message0": "初始化SHT30温湿度传感器 %1",
+  "args0": [
+    {
+      "type": "input_dummy",
+      "name": "I2C_PINS"
+    }
+  ],
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 120,
+  "tooltip": "初始化SHT30温湿度传感器，自动根据板卡类型配置I2C引脚",
+  "extensions": ["sht30_init_extension"]
+  },
+  {
+    "type": "sht30_read_data",
+    "message0": "读取SHT30传感器数据",
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": 120,
+    "tooltip": "从SHT30传感器读取温度和湿度数据，必须在读取具体值之前调用"
+  },
+  {
+    "type": "sht30_read_temperature",
+    "message0": "读取SHT30温度(°C)",
+    "output": "Number",
+    "colour": 120,
+    "tooltip": "读取SHT30传感器的温度值(摄氏度)"
+  },
+  {
+    "type": "sht30_read_humidity",
+    "message0": "读取SHT30相对湿度(%RH)",
+    "output": "Number",
+    "colour": 120,
+    "tooltip": "读取SHT30传感器的相对湿度值(百分比)"
+  }
+]
