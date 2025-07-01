@@ -1,100 +1,110 @@
-// SparkFun TB6612 Motor Driver Library - Combined Generator
-
 Arduino.forBlock['tb6612_motor_init'] = function(block, generator) {
   generator.addLibrary('SparkFun_TB6612', '#include <SparkFun_TB6612.h>');
-  var pin1 = generator.valueToCode(block, 'PIN1', Arduino.ORDER_ATOMIC);
-  var pin2 = generator.valueToCode(block, 'PIN2', Arduino.ORDER_ATOMIC);
-  var pwmPin = generator.valueToCode(block, 'PWM_PIN', Arduino.ORDER_ATOMIC);
-  var offset = generator.valueToCode(block, 'OFFSET', Arduino.ORDER_ATOMIC);
+  
+  // 电机A的引脚
+  var ain1 = generator.valueToCode(block, 'AIN1', Arduino.ORDER_ATOMIC);
+  var ain2 = generator.valueToCode(block, 'AIN2', Arduino.ORDER_ATOMIC);
+  var pwmA = generator.valueToCode(block, 'PWMA', Arduino.ORDER_ATOMIC);
+  var offsetA = generator.valueToCode(block, 'OFFSET_A', Arduino.ORDER_ATOMIC);
+  
+  // 电机B的引脚
+  var bin1 = generator.valueToCode(block, 'BIN1', Arduino.ORDER_ATOMIC);
+  var bin2 = generator.valueToCode(block, 'BIN2', Arduino.ORDER_ATOMIC);
+  var pwmB = generator.valueToCode(block, 'PWMB', Arduino.ORDER_ATOMIC);
+  var offsetB = generator.valueToCode(block, 'OFFSET_B', Arduino.ORDER_ATOMIC);
+  
+  // 待机引脚
   var stbyPin = generator.valueToCode(block, 'STBY_PIN', Arduino.ORDER_ATOMIC);
 
-  const motorName = Arduino.nameDB_.getName(
-    block.getFieldValue('MOTOR_NAME'),
+  // 获取电机名称
+  const motorA_Name = Arduino.nameDB_.getName(
+    block.getFieldValue('MOTOR_A_NAME') || 'motor1',
     "VARIABLE"
   );
   
-  generator.addVariable(motorName, 'Motor ' + motorName + '(' + pin1 + ', ' + pin2 + ', ' + pwmPin + ', ' + offset + ', ' + stbyPin + ');');
+  const motorB_Name = Arduino.nameDB_.getName(
+    block.getFieldValue('MOTOR_B_NAME') || 'motor2',
+    "VARIABLE"
+  );
+  
+  // 添加两个电机变量
+  generator.addVariable(motorA_Name, 'Motor ' + motorA_Name + '(' + ain1 + ', ' + ain2 + ', ' + pwmA + ', ' + offsetA + ', ' + stbyPin + ');');
+  generator.addVariable(motorB_Name, 'Motor ' + motorB_Name + '(' + bin1 + ', ' + bin2 + ', ' + pwmB + ', ' + offsetB + ', ' + stbyPin + ');');
+  
+  // 添加初始化代码到setup函数
+  var setupCode = `// 初始化TB6612双电机驱动器
+Serial.println("TB6612双电机驱动器初始化完成");
+Serial.println("电机A: " + String(${ain1}) + "," + String(${ain2}) + "," + String(${pwmA}));
+Serial.println("电机B: " + String(${bin1}) + "," + String(${bin2}) + "," + String(${pwmB}));
+Serial.println("待机引脚: " + String(${stbyPin}));`;
+
+  generator.addSetup('tb6612_dual_init', setupCode);
+  
+  // 保存电机名称供其他函数使用
+  generator.tb6612_motorA = motorA_Name;
+  generator.tb6612_motorB = motorB_Name;
+  
   return '';
 };
 
-// Drive, brake, and dual-motor action (forward/back/left/right/brake)
+// Drive - 电机前进
 Arduino.forBlock['tb6612_drive'] = function(block, generator) {
-  var motorName = block.getFieldValue('MOTOR_NAME');
+  // 获取要控制的电机选择（A或B）
+  var motorSelect = block.getFieldValue('MOTOR_SELECT') || 'A'; // 默认电机A
   var speed = generator.valueToCode(block, 'SPEED', Arduino.ORDER_ATOMIC);
-  var duration = generator.valueToCode(block, 'DURATION', Arduino.ORDER_ATOMIC);
-  if (duration && duration !== '0') {
-    return motorName + '.drive(' + speed + ', ' + duration + ');\n';
-  } else {
-    return motorName + '.drive(' + speed + ');\n';
-  }
+  
+  // 使用固定的电机名称
+  var motorName = (motorSelect === 'A') ? 'motor1' : 'motor2';
+  
+  // 确保速度为正值（前进）
+  return motorName + '.drive(' + Math.abs(speed) + ');\n';
+};
+
+// 单个电机后退
+Arduino.forBlock['tb6612_reverse'] = function(block, generator) {
+  // 获取要控制的电机选择（A或B）
+  var motorSelect = block.getFieldValue('MOTOR_SELECT') || 'A'; // 默认电机A
+  var speed = generator.valueToCode(block, 'SPEED', Arduino.ORDER_ATOMIC);
+  
+  // 使用固定的电机名称
+  var motorName = (motorSelect === 'A') ? 'motor1' : 'motor2';
+  
+  // 电机后退（负速度）
+  return motorName + '.drive(-' + speed + ');\n';
 };
 
 Arduino.forBlock['tb6612_brake'] = function(block, generator) {
-  var motorName = block.getFieldValue('MOTOR_NAME');
+  // 获取要控制的电机选择（A或B）
+  var motorSelect = block.getFieldValue('MOTOR_SELECT') || 'A'; // 默认电机A
+  
+  // 使用固定的电机名称
+  var motorName = (motorSelect === 'A') ? 'motor1' : 'motor2';
+  
   return motorName + '.brake();\n';
 };
 
 Arduino.forBlock['tb6612_dual_action'] = function(block, generator) {
   var mode = block.getFieldValue('MODE'); // 'forward', 'back', 'left', 'right', 'brake'
-  var m1 = block.getFieldValue('MOTOR1');
-  var m2 = block.getFieldValue('MOTOR2');
   var speed = generator.valueToCode(block, 'SPEED', Arduino.ORDER_ATOMIC);
-  // For left/right use different field names if needed
-  var mL = block.getFieldValue('LEFT_MOTOR');
-  var mR = block.getFieldValue('RIGHT_MOTOR');
+  
+  // 使用固定的电机名称
+  var motor1 = 'motor1';
+  var motor2 = 'motor2';
+  
   switch (mode) {
     case 'forward':
-      if (speed && speed !== '255') return 'forward(' + m1 + ', ' + m2 + ', ' + speed + ');\n';
-      else return 'forward(' + m1 + ', ' + m2 + ');\n';
+      if (speed && speed !== '255') return 'forward(' + motor1 + ', ' + motor2 + ', ' + speed + ');\n';
+      else return 'forward(' + motor1 + ', ' + motor2 + ');\n';
     case 'back':
-      if (speed && speed !== '255') return 'back(' + m1 + ', ' + m2 + ', ' + speed + ');\n';
-      else return 'back(' + m1 + ', ' + m2 + ');\n';
+      if (speed && speed !== '255') return 'back(' + motor1 + ', ' + motor2 + ', ' + speed + ');\n';
+      else return 'back(' + motor1 + ', ' + motor2 + ');\n';
     case 'left':
-      return 'left(' + mL + ', ' + mR + ', ' + speed + ');\n';
+      return 'left(' + motor1 + ', ' + motor2 + ', ' + speed + ');\n';
     case 'right':
-      return 'right(' + mL + ', ' + mR + ', ' + speed + ');\n';
+      return 'right(' + motor1 + ', ' + motor2 + ', ' + speed + ');\n';
     case 'brake':
-      return 'brake(' + m1 + ', ' + m2 + ');\n';
+      return 'brake(' + motor1 + ', ' + motor2 + ');\n';
     default:
       return '';
   }
-};
-
-// 兼容原有结构
-Arduino.forBlock['tb6612_forward'] = function(block, generator) {
-  var motor1 = block.getFieldValue('MOTOR1');
-  var motor2 = block.getFieldValue('MOTOR2');
-  var speed = generator.valueToCode(block, 'SPEED', Arduino.ORDER_ATOMIC);
-  if (speed && speed !== '255') {
-    return 'forward(' + motor1 + ', ' + motor2 + ', ' + speed + ');\n';
-  } else {
-    return 'forward(' + motor1 + ', ' + motor2 + ');\n';
-  }
-};
-Arduino.forBlock['tb6612_back'] = function(block, generator) {
-  var motor1 = block.getFieldValue('MOTOR1');
-  var motor2 = block.getFieldValue('MOTOR2');
-  var speed = generator.valueToCode(block, 'SPEED', Arduino.ORDER_ATOMIC);
-  if (speed && speed !== '255') {
-    return 'back(' + motor1 + ', ' + motor2 + ', ' + speed + ');\n';
-  } else {
-    return 'back(' + motor1 + ', ' + motor2 + ');\n';
-  }
-};
-Arduino.forBlock['tb6612_left'] = function(block, generator) {
-  var leftMotor = block.getFieldValue('LEFT_MOTOR');
-  var rightMotor = block.getFieldValue('RIGHT_MOTOR');
-  var speed = generator.valueToCode(block, 'SPEED', Arduino.ORDER_ATOMIC);
-  return 'left(' + leftMotor + ', ' + rightMotor + ', ' + speed + ');\n';
-};
-Arduino.forBlock['tb6612_right'] = function(block, generator) {
-  var leftMotor = block.getFieldValue('LEFT_MOTOR');
-  var rightMotor = block.getFieldValue('RIGHT_MOTOR');
-  var speed = generator.valueToCode(block, 'SPEED', Arduino.ORDER_ATOMIC);
-  return 'right(' + leftMotor + ', ' + rightMotor + ', ' + speed + ');\n';
-};
-Arduino.forBlock['tb6612_brake_both'] = function(block, generator) {
-  var motor1 = block.getFieldValue('MOTOR1');
-  var motor2 = block.getFieldValue('MOTOR2');
-  return 'brake(' + motor1 + ', ' + motor2 + ');\n';
 };
