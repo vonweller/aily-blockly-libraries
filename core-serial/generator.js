@@ -1,6 +1,38 @@
+// 跟踪已初始化的串口
+// 在每次代码生成时重置跟踪状态
+if (!Arduino.serialCodeGeneration) {
+  Arduino.serialCodeGeneration = true;
+  
+  // 保存原始的代码生成方法
+  const originalWorkspaceToCode = Arduino.workspaceToCode;
+  
+  // 重写代码生成方法以在开始时重置串口跟踪
+  Arduino.workspaceToCode = function(workspace) {
+    // 重置串口初始化跟踪
+    Arduino.initializedSerialPorts = new Set();
+    Arduino.addedSerialInitCode = new Set();
+    
+    // 调用原始方法
+    return originalWorkspaceToCode ? originalWorkspaceToCode.call(this, workspace) : '';
+  };
+}
+
+if (!Arduino.initializedSerialPorts) {
+  Arduino.initializedSerialPorts = new Set();
+}
+
+if (!Arduino.addedSerialInitCode) {
+  Arduino.addedSerialInitCode = new Set();
+}
+
 Arduino.forBlock["serial_begin"] = function (block, generator) {
   const obj = block.getFieldValue("SERIAL");
   const speed = block.getFieldValue("SPEED");
+  
+  // 标记这个串口为已初始化
+  Arduino.initializedSerialPorts.add(obj);
+  Arduino.addedSerialInitCode.add(obj);
+  
   generator.addSetupBegin(`serial_${obj}_begin`, `${obj}.begin(${speed});`);
   return ``;
 };
@@ -61,7 +93,12 @@ Arduino.forBlock["serial_read_string"] = function (block, generator) {
 
 // 辅助函数，确保串口已被初始化
 function ensureSerialBegin(serialPort, generator) {
-  // 使用条件方式添加串口初始化代码，如果同名tag的代码已存在则不会重复添加
-  generator.addSetupBegin(`serial_${serialPort}_begin`, `${serialPort}.begin(9600);`);
+  // 检查这个串口是否已经添加过初始化代码（无论是用户设置的还是默认的）
+  if (!Arduino.addedSerialInitCode.has(serialPort)) {
+    // 只有在没有添加过任何初始化代码时才添加默认初始化
+    generator.addSetupBegin(`serial_${serialPort}_begin`, `${serialPort}.begin(9600);`);
+    // 标记为已添加初始化代码
+    Arduino.addedSerialInitCode.add(serialPort);
+  }
 }
 
