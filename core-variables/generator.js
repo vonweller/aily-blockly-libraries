@@ -35,6 +35,10 @@ Blockly.getMainWorkspace().registerButtonCallback(
                 {
                   "kind": "block",
                   "type": "variables_set"
+                },
+                {
+                  "kind": "block",
+                  "type": "type_cast"
                 }
               ];
             }
@@ -85,7 +89,23 @@ Blockly.getMainWorkspace().addChangeListener((event) => {
       if ((category.name === "Variables" ||
         (category.contents && category.contents[0]?.callbackKey === "CREATE_VARIABLE"))) {
 
-        if (category.contents.length === 4) {
+        // 首先过滤删除的变量
+        category.contents = category.contents.filter(item => {
+          // Check if this is a variables_get block with the deleted variable's ID
+          if (item.type === "variables_get" &&
+            item.fields &&
+            item.fields.VAR &&
+            item.fields.VAR.id === event.varId) {
+            return false; // Remove this item
+          }
+          return true; // Keep all other items
+        });
+        
+        // 检查删除后是否还有变量
+        const allVariables = workspace.getAllVariables();
+        
+        // 如果没有变量了，重置为只有"新建变量"按钮
+        if (allVariables.length === 0) {
           category.contents = [
             {
               "kind": "button",
@@ -94,20 +114,8 @@ Blockly.getMainWorkspace().addChangeListener((event) => {
             }
           ];
         } else {
-          // Filter out the deleted variable from category.contents
-          category.contents = category.contents.filter(item => {
-            // Check if this is a variables_get block with the deleted variable's ID
-            if (item.type === "variables_get" &&
-              item.fields &&
-              item.fields.VAR &&
-              item.fields.VAR.id === event.varId) {
-              return false; // Remove this item
-            }
-            return true; // Keep all other items
-          });
-          const allVariables = workspace.getAllVariables();
-          // const allVariables = workspace.getVariableMap().getAllVariables;
-          Blockly.Msg.VARIABLES_CURRENT_NAME = allVariables.at(-1)?.name;;
+          // 更新最后使用的变量名
+          Blockly.Msg.VARIABLES_CURRENT_NAME = allVariables.at(-1)?.name;
         }
 
         refreshToolbox(workspace);
@@ -171,6 +179,10 @@ addVariableToToolbox = function (block, varName) {
             {
               "kind": "block",
               "type": "variables_set"
+            },
+            {
+              "kind": "block",
+              "type": "type_cast"
             }
           ];
         }
@@ -238,6 +250,10 @@ function loadExistingVariablesToToolbox(workspace) {
           {
             "kind": "block",
             "type": "variables_set"
+          },
+          {
+            "kind": "block",
+            "type": "type_cast"
           }
         ];
       }
@@ -466,12 +482,16 @@ Arduino.forBlock["variable_define"] = function (block, generator) {
 
   let defaultValue = "";
 
+  // 首先统一处理类型转换
+  if (type === "string") {
+    type = "String"; // Arduino 使用 String 类型
+  }
+
   if (!value) {
     switch (type) {
-      case "string":
+      case "String":
         // Arduino中字符串使用String或char数组
         defaultValue = `""`;
-        type = "String"; // 确保Arduino使用String类型
         break;
       case "char":
         defaultValue = `''`;
@@ -521,5 +541,33 @@ Arduino.forBlock["variables_set"] = function (block, generator) {
   return `${code} = ${value};\n`;
 };
 
+Arduino.forBlock["type_cast"] = function (block, generator) {
+  // 类型强制转换
+  const value = Arduino.valueToCode(block, "VALUE", Arduino.ORDER_ATOMIC) || "0";
+  const type = block.getFieldValue("TYPE");
+  
+  let code;
+  
+  // 根据目标类型生成相应的转换代码
+  switch (type) {
+    case "String":
+      // 转换为字符串使用 String() 构造函数
+      code = "String(" + value + ")";
+      break;
+    case "unsigned int":
+    case "unsigned long":
+      // 无符号类型需要空格
+      code = "(" + type + ")" + value;
+      break;
+    default:
+      // 其他类型使用标准 C++ 类型转换语法
+      code = "(" + type + ")" + value;
+      break;
+  }
+  
+  return [code, Arduino.ORDER_ATOMIC];
+};
+
 Arduino.forBlock["variables_get_dynamic"] = Arduino.forBlock["variables_get"];
 Arduino.forBlock["variables_set_dynamic"] = Arduino.forBlock["variables_set"];
+Arduino.forBlock["type_cast_dynamic"] = Arduino.forBlock["type_cast"];

@@ -719,3 +719,56 @@ Arduino.forBlock["string_startsWith"] = function (block) {
   const code = text + ".startsWith(" + prefix + ")";
   return [code, Arduino.ORDER_FUNCTION_CALL];
 };
+
+Arduino.forBlock["string_to_something"] = function (block) {
+  // 字符串类型转换
+  const string = Arduino.valueToCode(block, "TEXT", Arduino.ORDER_MEMBER) || "\"\"";
+  const type = block.getFieldValue("TYPE");
+  
+  let code;
+  let order = Arduino.ORDER_FUNCTION_CALL;
+  
+  switch (type) {
+    case "toInt":
+      code = string + ".toInt()";
+      break;
+    case "toLong":  
+      // Arduino String 没有直接的 toLong，使用 atol
+      code = "atol(" + string + ".c_str())";
+      break;
+    case "toFloat":
+      code = string + ".toFloat()";
+      break;
+    case "toDouble":
+      // Arduino String 没有直接的 toDouble，使用 atof
+      code = "atof(" + string + ".c_str())";
+      break;
+    case "c_str":
+      code = string + ".c_str()";
+      break;
+    case "charAt0":
+      code = string + ".charAt(0)";
+      break;
+    case "toUpper":
+      // 直接使用 Arduino String 的 toUpperCase() 方法
+      code = "(" + string + ".toUpperCase(), " + string + ")";
+      break;
+    case "toLower":
+      // 直接使用 Arduino String 的 toLowerCase() 方法
+      code = "(" + string + ".toLowerCase(), " + string + ")";
+      break;
+    default:
+      code = string + ".toInt()";
+      break;
+  }
+  
+  return [code, order];
+};
+
+Arduino.forBlock["array_get_dataAt"] = function (block) {
+  const array = Arduino.valueToCode(block, "ARRAY", Arduino.ORDER_MEMBER) || "\"\"";
+  const index = Arduino.valueToCode(block, "INDEX", Arduino.ORDER_NONE) || "0";
+  
+  const code = array + "[" + index + "]";
+  return [code, Arduino.ORDER_MEMBER];
+};
