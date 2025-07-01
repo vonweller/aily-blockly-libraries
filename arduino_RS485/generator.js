@@ -1,5 +1,18 @@
 // Arduino RS485 库代码生成器
 
+// 添加自动初始化函数
+Arduino.addRS485AutoInit = function(generator, baudrate, txPin, dePin, rePin) {
+    generator.addLibrary('#include <ArduinoRS485.h>', '#include <ArduinoRS485.h>');
+    
+    if (txPin && dePin && rePin) {
+        generator.addSetup(`rs485_pins_${txPin}_${dePin}_${rePin}`, `RS485.setPins(${txPin}, ${dePin}, ${rePin});`);
+    }
+    
+    if (baudrate) {
+        generator.addSetup(`rs485_begin_${baudrate}`, `RS485.begin(${baudrate});`);
+    }
+};
+
 // 初始化RS485通信
 Arduino.forBlock['rs485_begin'] = function(block, generator) {
     const baudrate = block.getFieldValue('BAUDRATE');
@@ -38,29 +51,29 @@ Arduino.forBlock['rs485_peek'] = function(block, generator) {
     return ['RS485.peek()', generator.ORDER_FUNCTION_CALL];
 };
 
-// 写入数据
+// 写入数据 - 自动添加初始化
 Arduino.forBlock['rs485_write'] = function(block, generator) {
     const data = generator.valueToCode(block, 'DATA', generator.ORDER_ATOMIC) || '0';
     
-    generator.addLibrary('#include <ArduinoRS485.h>', '#include <ArduinoRS485.h>');
+    Arduino.addRS485AutoInit(generator, '9600'); // 使用默认波特率
     
     return `RS485.write(${data});\n`;
 };
 
-// 打印数据
+// 打印数据 - 自动添加初始化
 Arduino.forBlock['rs485_print'] = function(block, generator) {
     const data = generator.valueToCode(block, 'DATA', generator.ORDER_ATOMIC) || '""';
     
-    generator.addLibrary('#include <ArduinoRS485.h>', '#include <ArduinoRS485.h>');
+    Arduino.addRS485AutoInit(generator, '9600'); // 使用默认波特率
     
     return `RS485.print(${data});\n`;
 };
 
-// 打印数据并换行
+// 打印数据并换行 - 自动添加初始化
 Arduino.forBlock['rs485_println'] = function(block, generator) {
     const data = generator.valueToCode(block, 'DATA', generator.ORDER_ATOMIC) || '""';
     
-    generator.addLibrary('#include <ArduinoRS485.h>', '#include <ArduinoRS485.h>');
+    Arduino.addRS485AutoInit(generator, '9600'); // 使用默认波特率
     
     return `RS485.println(${data});\n`;
 };
@@ -129,20 +142,20 @@ Arduino.forBlock['rs485_set_pins'] = function(block, generator) {
     return `RS485.setPins(${txPin}, ${dePin}, ${rePin});\n`;
 };
 
-// 简化的发送函数
+// 简化的发送函数 - 自动处理传输控制
 Arduino.forBlock['rs485_simple_send'] = function(block, generator) {
     const data = generator.valueToCode(block, 'DATA', generator.ORDER_ATOMIC) || '""';
     
-    generator.addLibrary('#include <ArduinoRS485.h>', '#include <ArduinoRS485.h>');
+    Arduino.addRS485AutoInit(generator, '9600'); // 使用默认波特率
     
     return `RS485.beginTransmission();\nRS485.print(${data});\nRS485.endTransmission();\n`;
 };
 
-// 简化的接收处理
+// 简化的接收处理 - 自动启用接收
 Arduino.forBlock['rs485_simple_receive'] = function(block, generator) {
     const statements = generator.statementToCode(block, 'DO');
     
-    generator.addLibrary('#include <ArduinoRS485.h>', '#include <ArduinoRS485.h>');
+    Arduino.addRS485AutoInit(generator, '9600'); // 使用默认波特率
     generator.addVariable('rs485_receivedData', 'String rs485_receivedData = "";');
     generator.addSetup('rs485_receive_enable', 'RS485.receive();');
     
@@ -163,8 +176,55 @@ ${statements}
 
 // 获取接收到的数据
 Arduino.forBlock['rs485_received_data'] = function(block, generator) {
-    generator.addLibrary('#include <ArduinoRS485.h>', '#include <ArduinoRS485.h>');
+    Arduino.addRS485AutoInit(generator, '9600'); // 使用默认波特率
     generator.addVariable('rs485_receivedData', 'String rs485_receivedData = "";');
     
     return ['rs485_receivedData', generator.ORDER_ATOMIC];
+};
+
+// 快速设置RS485 - 一步完成所有配置
+Arduino.forBlock['rs485_quick_setup'] = function(block, generator) {
+    const baudrate = block.getFieldValue('BAUDRATE');
+    const txPin = block.getFieldValue('TX_PIN');
+    const dePin = block.getFieldValue('DE_PIN');
+    const rePin = block.getFieldValue('RE_PIN');
+    
+    Arduino.addRS485AutoInit(generator, baudrate, txPin, dePin, rePin);
+    
+    return '';
+};
+
+// RS485主机发送数据
+Arduino.forBlock['rs485_master_send'] = function(block, generator) {
+    const data = generator.valueToCode(block, 'DATA', generator.ORDER_ATOMIC) || '""';
+    const slaveAddr = block.getFieldValue('SLAVE_ADDR');
+    
+    Arduino.addRS485AutoInit(generator, '9600');
+    
+    return `RS485.beginTransmission();\nRS485.print("TO:${slaveAddr}:");\nRS485.print(${data});\nRS485.endTransmission();\n`;
+};
+
+// RS485从机接收数据
+Arduino.forBlock['rs485_slave_receive'] = function(block, generator) {
+    const slaveAddr = block.getFieldValue('SLAVE_ADDR');
+    const statements = generator.statementToCode(block, 'DO');
+    
+    Arduino.addRS485AutoInit(generator, '9600');
+    generator.addVariable('rs485_receivedData', 'String rs485_receivedData = "";');
+    generator.addSetup('rs485_receive_enable', 'RS485.receive();');
+    
+    const code = `if (RS485.available()) {
+    rs485_receivedData = "";
+    while (RS485.available()) {
+        char c = RS485.read();
+        rs485_receivedData += c;
+        delay(1);
+    }
+    if (rs485_receivedData.length() > 0 && rs485_receivedData.indexOf("TO:${slaveAddr}:") == 0) {
+        rs485_receivedData = rs485_receivedData.substring(${String(slaveAddr).length + 4});
+${statements}
+    }
+}\n`;
+    
+    return code;
 };
