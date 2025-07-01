@@ -1,0 +1,190 @@
+[
+    {
+        "type": "esp32_wifi_begin",
+        "message0": "连接WiFi网络 SSID %1 密码 %2",
+        "args0": [
+            {
+                "type": "input_value",
+                "name": "SSID",
+                "check": "String"
+            },
+            {
+                "type": "input_value",
+                "name": "PASSWORD",
+                "check": "String"
+            }
+        ],
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#03A9F4",
+        "inputsInline": true
+    },
+    {
+        "type": "esp32_wifi_status",
+        "message0": "WiFi连接状态",
+        "output": "Boolean",
+        "colour": "#03A9F4"
+    },
+    {
+        "type": "esp32_wifi_connected",
+        "message0": "WiFi已连接",
+        "output": "Boolean",
+        "colour": "#03A9F4"
+    },
+    {
+        "type": "esp32_wifi_disconnect",
+        "message0": "断开WiFi连接",
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#03A9F4"
+    },
+    {
+        "type": "esp32_wifi_local_ip",
+        "message0": "获取本地IP地址",
+        "output": "String",
+        "colour": "#03A9F4"
+    },
+    {
+        "type": "esp32_wifi_rssi",
+        "message0": "获取信号强度",
+        "output": "Number",
+        "colour": "#03A9F4"
+    },
+    {
+        "type": "esp32_wifi_scan",
+        "message0": "扫描WiFi网络",
+        "output": "Number",
+        "colour": "#03A9F4"
+    },
+    {
+        "type": "esp32_wifi_get_scan_result",
+        "message0": "获取扫描到的网络 %1 的SSID",
+        "args0": [
+            {
+                "type": "input_value",
+                "name": "INDEX",
+                "check": "Number"
+            }
+        ],
+        "output": "String",
+        "colour": "#03A9F4",
+        "inputsInline": true
+    },
+    {
+        "type": "esp32_wifi_ap_mode",
+        "message0": "创建WiFi热点 SSID %1 密码 %2",
+        "args0": [
+            {
+                "type": "input_value",
+                "name": "SSID",
+                "check": "String"
+            },
+            {
+                "type": "input_value",
+                "name": "PASSWORD",
+                "check": "String"
+            }
+        ],
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#03A9F4",
+        "inputsInline": true
+    },
+    {
+        "type": "esp32_wifi_ap_ip",
+        "message0": "获取热点IP地址",
+        "output": "String",
+        "colour": "#03A9F4"
+    },
+    {
+        "type": "esp32_wifi_client_connect",
+        "message0": "连接到服务器 %1 端口 %2",
+        "args0": [
+            {
+                "type": "input_value",
+                "name": "HOST",
+                "check": "String"
+            },
+            {
+                "type": "input_value",
+                "name": "PORT",
+                "check": "Number"
+            }
+        ],
+        "output": "Boolean",
+        "colour": "#03A9F4",
+        "inputsInline": true
+    },
+    {
+        "type": "esp32_wifi_client_print",
+        "message0": "发送数据 %1",
+        "args0": [
+            {
+                "type": "input_value",
+                "name": "DATA",
+                "check": "String"
+            }
+        ],
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#03A9F4",
+        "inputsInline": true
+    },
+    {
+        "type": "esp32_wifi_client_available",
+        "message0": "客户端有数据可读",
+        "output": "Boolean",
+        "colour": "#03A9F4"
+    },
+    {
+        "type": "esp32_wifi_client_read_string",
+        "message0": "读取服务器响应",
+        "output": "String",
+        "colour": "#03A9F4"
+    },
+    {
+        "type": "esp32_wifi_client_stop",
+        "message0": "关闭客户端连接",
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#03A9F4"
+    },
+    {
+        "type": "esp32_wifi_http_get",
+        "message0": "HTTP GET请求 %1",
+        "args0": [
+            {
+                "type": "input_value",
+                "name": "URL",
+                "check": "String"
+            }
+        ],
+        "output": "String",
+        "colour": "#03A9F4",
+        "inputsInline": true
+    },
+    {
+        "type": "esp32_wifi_event_handler",
+        "message0": "WiFi事件处理 %1 %2",
+        "args0": [
+            {
+                "type": "field_dropdown",
+                "name": "EVENT",
+                "options": [
+                    ["连接成功", "ARDUINO_EVENT_WIFI_STA_CONNECTED"],
+                    ["断开连接", "ARDUINO_EVENT_WIFI_STA_DISCONNECTED"],
+                    ["获得IP", "ARDUINO_EVENT_WIFI_STA_GOT_IP"],
+                    ["丢失IP", "ARDUINO_EVENT_WIFI_STA_LOST_IP"]
+                ]
+            },
+            {
+                "type": "input_statement",
+                "name": "HANDLER"
+            }
+        ],
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#03A9F4",
+        "inputsInline": false
+    }
+]
