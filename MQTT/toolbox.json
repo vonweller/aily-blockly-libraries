@@ -1,0 +1,65 @@
+
+{
+  "kind": "category",
+  "icon": "fal fa-comments",
+  "name": "MQTT",
+  "colour": "#FF5722",
+  "contents": [
+    {
+      "kind": "block",
+      "type": "pubsub_create"
+    },
+    {
+      "kind": "block",
+      "type": "pubsub_set_callback"
+    },
+    {
+      "kind": "block",
+      "type": "pubsub_connect_with_credentials"
+    },
+    {
+      "kind": "block",
+      "type": "pubsub_connected"
+    },
+    {
+      "kind": "block",
+      "type": "pubsub_state"
+    },
+    {
+      "kind": "block",
+      "type": "pubsub_subscribe",
+      "inputs": {
+        "TOPIC": {
+          "shadow": {
+            "type": "text",
+            "fields": {
+              "TEXT": "topic"
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "pubsub_publish",
+      "inputs": {
+        "TOPIC": {
+          "shadow": {
+            "type": "text",
+            "fields": {
+              "TEXT": "topic"
+            }
+          }
+        },
+        "PAYLOAD": {
+          "shadow": {
+            "type": "text",
+            "fields": {
+              "TEXT": "message"
+            }
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,708 @@
+
+[
+  {
+    "type": "wifi_begin",
+    "message0": "WiFi连接 SSID %1 密码 %2",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "SSID",
+        "text": "your_ssid"
+      },
+      {
+        "type": "field_input",
+        "name": "PASSWORD",
+        "text": "your_password"
+      }
+    ],
+    "inputsInline": true,
+    "output": null,
+    "colour": "#FF5722"
+  },
+  {
+    "type": "wifi_begin_ap",
+    "message0": "WiFi AP模式 广播 SSID %1 密码 %2 频道 %3",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "SSID",
+        "text": "your_ap_ssid"
+      },
+      {
+        "type": "field_input",
+        "name": "PASSWORD",
+        "text": "your_ap_password"
+      },
+      {
+        "type": "field_input",
+        "name": "CHANNEL"
+      }
+    ],
+    "inputsInline": true,
+    "output": null,
+    "colour": "#FF5722"
+  },
+  {
+    "type": "wifi_disconnect",
+    "message0": "WiFi断开连接",
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF5722"
+  },
+  {
+    "type": "wifi_status",
+    "message0": "获取WiFi状态",
+    "output": null,
+    "colour": "#FF5722"
+  },
+  {
+    "type": "wifi_status_t",
+    "message0": "WiFi状态 %1",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "STATUS",
+        "options": [
+          ["无WiFi扩展板", "WL_NO_SHIELD"],
+          ["无WiFi模块", "WL_NO_MODULE"],
+          ["空闲状态", "WL_IDLE_STATUS"],
+          ["无可用SSID", "WL_NO_SSID_AVAIL"],
+          ["扫描完成", "WL_SCAN_COMPLETED"],
+          ["已连接", "WL_CONNECTED"],
+          ["连接失败", "WL_CONNECT_FAILED"],
+          ["连接丢失", "WL_CONNECTION_LOST"],
+          ["已断开", "WL_DISCONNECTED"],
+          ["AP监听中", "WL_AP_LISTENING"],
+          ["AP已连接", "WL_AP_CONNECTED"],
+          ["AP失败", "WL_AP_FAILED"]
+        ]
+      }
+    ],
+    "output": null,
+    "colour": "#FF5722"
+  },
+  {
+    "type": "wifi_firmware_version",
+    "message0": "WiFi固件版本",
+    "output": null,
+    "colour": "#FF5722"
+  },
+  {
+    "type": "wifi_local_ip",
+    "message0": "WiFi本地IP",
+    "output": null,
+    "colour": "#FF5722"
+  },
+  {
+    "type": "wifi_ssid",
+    "message0": "WiFi获取SSID",
+    "output": null,
+    "colour": "#FF5722"
+  },
+  {
+    "type": "wifi_bssid",
+    "message0": "WiFi获取BSSID 并赋值到 %1",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "MAC"
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF5722"
+  },
+  {
+    "type": "wifi_rssi",
+    "message0": "WiFi信号强度",
+    "output": null,
+    "colour": "#FF5722"
+  },
+  {
+    "type": "wifi_channel",
+    "message0": "WiFi信道 %1",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "INDEX"
+      }
+    ],
+    "output": null,
+    "colour": "#FF5722"
+  },
+  {
+    "type": "wifi_encryption_type",
+    "message0": "WiFi加密类型",
+    "output": null,
+    "colour": "#FF5722"
+  },
+  {
+    "type": "wifi_config",
+    "message0": "WiFi配置 IP %1",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "IP"
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF5722"
+  },
+  {
+    "type": "wifi_mac_address",
+    "message0": "WiFi获取MAC地址 并赋值到 %1",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "MAC"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF5722"
+  },
+  {
+    "type": "wifi_scan_networks",
+    "message0": "WiFi扫描网络",
+    "output": null,
+    "colour": "#FF5722"
+  },
+  {
+    "type": "wifi_ping_new",
+    "message0": "WiFi Ping 到 %1 生存周期 %2 超时 %3",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "HOST"
+      },
+      {
+        "type": "input_value",
+        "name": "TTL"
+      },
+      {
+        "type": "input_value",
+        "name": "TIMEOUT"
+      }
+    ],
+    "inputsInline": true,
+    "output": null,
+    "colour": "#FF5722"
+  },
+  {
+    "type": "wifi_ping",
+    "message0": "WiFi Ping 模式 %1 IP %2 HOST %3 TTL %4 TIMEOUT %5",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "MODE",
+        "options": [
+          [
+            "IP",
+            "IP"
+          ],
+          [
+            "HOST",
+            "HOST"
+          ]
+        ]
+      },
+      {
+        "type": "input_value",
+        "name": "IP"
+      },
+      {
+        "type": "input_value",
+        "name": "HOST"
+      },
+      {
+        "type": "input_value",
+        "name": "TTL"
+      },
+      {
+        "type": "input_value",
+        "name": "TIMEOUT"
+      }
+    ],
+    "output": null,
+    "colour": "#FF5722"
+  },
+  {
+    "type": "wifi_ping_host",
+    "message0": "WiFi Ping 到主机 %1 TTL %2 超时 %3",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "HOST"
+      },
+      {
+        "type": "input_value",
+        "name": "TTL"
+      },
+      {
+        "type": "input_value",
+        "name": "TIMEOUT"
+      }
+    ],
+    "output": null,
+    "colour": "#FF5722"
+  },
+  {
+    "type": "wifi_get_time",
+    "message0": "WiFi获取时间",
+    "output": null,
+    "colour": "#FF5722"
+  },
+  {
+    "type": "wifi_ip_set",
+    "message0": "IP %1",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "IP",
+        "text": "192.168.1.1"
+      }
+    ],
+    "inputsInline": true,
+    "output": null,
+    "colour": "#FF5722"
+  },
+  {
+    "type": "wifi_server_begin",
+    "message0": "WiFi服务器 %1 启动 端口 %2",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "SERVER_NAME",
+        "text": "server"
+      },
+      {
+        "type": "input_value",
+        "name": "PORT"
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#3F51B5"
+  },
+  {
+    "type": "wifi_server_available",
+    "message0": "WiFi服务器 %1 可用客户端 %2",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "SERVER_NAME",
+        "text": "server"
+      },
+      {
+        "type": "field_input",
+        "name": "CLIENT_NAME",
+        "text": "client"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#3F51B5"
+  },
+  {
+    "type": "wifi_server_accept",
+    "message0": "WiFi服务器 %1 接受连接",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "SERVER_NAME",
+        "text": "server"
+      }
+    ],
+    "output": null,
+    "colour": "#3F51B5"
+  },
+  {
+    "type": "wifi_client_connect",
+    "message0": "WiFi客户端 %1 连接到服务器 %2 端口 %3 SSL模式 %4",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "CLIENT_NAME",
+        "text": "client"
+      },
+      {
+        "type": "input_value",
+        "name": "SERVER"
+      },
+      {
+        "type": "input_value",
+        "name": "PORT"
+      },
+      {
+        "type": "field_checkbox",
+        "name": "SSL",
+        "checked": false
+      }
+    ],
+    "output": null,
+    "colour": "#009688"
+  },
+  {
+    "type": "wifi_client_stop",
+    "message0": "WiFi客户端 %1 停止",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "CLIENT_NAME",
+        "text": "client"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#009688"
+  },
+  {
+    "type": "wifi_client_connected",
+    "message0": "WiFi客户端 %1 已连接",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "CLIENT_NAME",
+        "text": "client"
+      }
+    ],
+    "output": null,
+    "colour": "#009688"
+  },
+  {
+    "type": "wifi_client_available",
+    "message0": "WiFi客户端 %1 可用",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "CLIENT_NAME",
+        "text": "client"
+      }
+    ],
+    "output": null,
+    "colour": "#009688"
+  },
+  {
+    "type": "wifi_client_read",
+    "message0": "WiFi客户端 %1 读取数据",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "CLIENT_NAME",
+        "text": "client"
+      }
+    ],
+    "inputsInline":true,
+    "output": null,
+    "colour": "#009688"
+  },
+  {
+    "type": "wifi_client_read_buffer",
+    "message0": "WiFi客户端 %1 读取数据 缓冲区 %2 长度 %3",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "CLIENT_NAME",
+        "text": "client"
+      },
+      {
+        "type": "input_value",
+        "name": "BUFFER"
+      },
+      {
+        "type": "input_value",
+        "name": "LENGTH"
+      }
+    ],
+    "inputsInline":true,
+    "output": null,
+    "colour": "#009688"
+  },
+  {
+    "type": "wifi_client_flush",
+    "message0": "WiFi客户端 %1 刷新",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "CLIENT_NAME",
+        "text": "client"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#009688"
+  },
+  {
+    "type": "wifi_client_write",
+    "message0": "WiFi客户端 %1 写入数据 %2 长度 %3",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "CLIENT_NAME",
+        "text": "client"
+      },
+      {
+        "type": "input_value",
+        "name": "DATA"
+      },
+      {
+        "type": "input_value",
+        "name": "LENGTH"
+      }
+    ],
+    "output": null,
+    "colour": "#009688"
+  },
+  {
+    "type": "wifi_client_print",
+    "message0": "WiFi客户端 %1 打印 %2",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "CLIENT_NAME",
+        "text": "client"
+      },
+      {
+        "type": "input_value",
+        "name": "DATA"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#009688"
+  },
+  {
+    "type": "wifi_client_println",
+    "message0": "WiFi客户端 %1 打印并换行 %2",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "CLIENT_NAME",
+        "text": "client"
+      },
+      {
+        "type": "input_value",
+        "name": "DATA"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#009688"
+  },
+  {
+    "type": "wifi_client_read_string_until",
+    "message0": "WiFi客户端 %1 读取字符串直到 %2",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "CLIENT_NAME",
+        "text": "client"
+      },
+      {
+        "type": "input_value",
+        "name": "TERMINATOR"
+      }
+    ],
+    "output": null,
+    "colour": "#009688"
+  },
+  {
+    "type": "wifi_udp_create",
+    "message0": "创建WiFiUDP %1",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "UDP_NAME",
+        "text": "Udp"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#795548"
+  },
+  {
+    "type": "wifi_udp_begin",
+    "message0": "WiFi UDP %1 开始，端口 %2",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "UDP_NAME",
+        "text": "Udp"
+      },
+      {
+        "type": "input_value",
+        "name": "PORT"
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#795548"
+  },
+  {
+    "type": "wifi_udp_begin_packet",
+    "message0": "WiFi UDP %1 开始数据包, 地址 %2 端口 %3",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "UDP_NAME",
+        "text": "Udp"
+      },
+      {
+        "type": "input_value",
+        "name": "ADDRESS"
+      },
+      {
+        "type": "input_value",
+        "name": "PORT"
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#795548"
+  },
+  {
+    "type": "wifi_udp_write",
+    "message0": "WiFi UDP %1 写入数据 %2 长度 %3",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "UDP_NAME",
+        "text": "Udp"
+      },
+      {
+        "type": "input_value",
+        "name": "BUFFER"
+      },
+      {
+        "type": "input_value",
+        "name": "SIZE"
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#795548"
+  },
+  {
+    "type": "wifi_udp_end_packet",
+    "message0": "WiFi UDP %1 结束数据包",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "UDP_NAME",
+        "text": "Udp"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#795548"
+  },
+  {
+    "type": "wifi_udp_parse_packet",
+    "message0": "WiFi UDP %1 解析数据包",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "UDP_NAME",
+        "text": "Udp"
+      }
+    ],
+    "output": null,
+    "colour": "#795548"
+  },
+  {
+    "type": "wifi_udp_read",
+    "message0": "WiFi UDP %1 读取数据 缓冲区 %2 长度 %3",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "UDP_NAME",
+        "text": "Udp"
+      },
+      {
+        "type": "field_input",
+        "name": "BUFFER"
+      },
+      {
+        "type": "input_value",
+        "name": "SIZE"
+      }
+    ],
+    "inputsInline": true,
+    "output": null,
+    "colour": "#795548"
+  },
+  {
+    "type": "wifi_udp_remote_ip",
+    "message0": "WiFi UDP %1 远程IP",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "UDP_NAME",
+        "text": "Udp"
+      }
+    ],
+    "output": null,
+    "colour": "#795548"
+  },
+  {
+    "type": "wifi_udp_remote_port",
+    "message0": "WiFi UDP %1 远程端口",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "UDP_NAME",
+        "text": "Udp"
+      }
+    ],
+    "output": null,
+    "colour": "#795548"
+  },
+  {
+    "type": "rtc_begin",
+    "message0": "RTC初始化",
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#9C27B0"
+  },
+  {
+    "type": "rtc_set_time",
+    "message0": "RTC设置时间 %1 并赋值到 %2",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "TIME"
+      },
+      {
+          "type": "field_input",
+          "name": "NAME",
+          "text": "timeToSet"
+      }
+    ],
+    "inputsInline":true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#9C27B0"
+  },
+  {
+    "type": "rtc_get_time",
+    "message0": "RTC获取时间 并赋值到 %1",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "NAME",
+        "text": "currentTime"
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#9C27B0"
+  }
+]

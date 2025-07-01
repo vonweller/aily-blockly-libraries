@@ -14,6 +14,27 @@ function ensureBH1750Setup(varName, address, generator) {
   return fixedVarName; // 返回使用的变量名，供后续引用
 }
 
+// BH1750创建传感器对象
+Arduino.forBlock['bh1750_create'] = function(block, generator) {
+  const address = block.getFieldValue('ADDRESS') || '0x23';
+  
+  // 添加必要的库
+  generator.addLibrary('Wire', '#include <Wire.h>');
+  generator.addLibrary('BH1750', '#include <BH1750.h>');
+  
+  // 使用固定的变量名
+  const varName = "lightMeter";
+  
+  // 添加BH1750对象变量
+  generator.addVariable('bh1750_sensor', `BH1750 ${varName}(${address});`);
+  
+  // 保存变量名和地址，供后续块使用
+  generator.sensorVarName = varName;
+  generator.sensorAddress = address;
+  
+  return '';
+};
+
 // 注册 BH1750 扩展 - 根据板子类型决定是否显示 I2C 引脚选择
 // 避免重复加载
 if (Blockly.Extensions.isRegistered('bh1750_init_extension')) {
@@ -57,7 +78,9 @@ Blockly.Extensions.register('bh1750_init_extension', function() {
 // BH1750统一初始化函数 - 根据板卡类型自动适配
 Arduino.forBlock['bh1750_init'] = function(block, generator) {
   var wireOption = block.getFieldValue('WIRE_OPTION') || 'WIRE1'; // 默认值
-  const address = block.getFieldValue('ADDRESS') || '0x23';
+  
+  // 使用之前保存的地址，如果没有则使用默认地址
+  const address = generator.sensorAddress || '0x23';
   
   // 添加必要的库
   generator.addLibrary('Wire', '#include <Wire.h>');
@@ -66,8 +89,11 @@ Arduino.forBlock['bh1750_init'] = function(block, generator) {
   // 使用固定的变量名
   const varName = generator.sensorVarName || "lightMeter";
   
-  // 添加BH1750对象变量
-  generator.addVariable('bh1750_sensor', `BH1750 ${varName}(${address});`);
+  // 如果还没有创建传感器对象，则创建一个
+  if (!generator.sensorVarName) {
+    generator.addVariable('bh1750_sensor', `BH1750 ${varName}(${address});`);
+    generator.sensorVarName = varName;
+  }
   
   // 获取开发板配置信息
   var boardConfig = window['boardConfig'] || {};
@@ -111,7 +137,7 @@ Arduino.forBlock['bh1750_init'] = function(block, generator) {
       setupCode += 'Wire.begin(4, 5);  // 初始化硬件 I2C，Wire2 SDA:4, SCL:5 (ESP32核心)\n';
       setupCode += 'Serial.println("ESP32使用Wire2 (SDA:4, SCL:5)");\n';
     } else { // WIRE1 或默认
-      setupCode += 'Wire.begin(8, 9);  // 初始化硬件 I2C，Wire1 SDA:8, SCL:9 (ESP32核心)\n';
+      setupCode += 'Wire.begin();  // 初始化硬件 I2C，Wire1 SDA:8, SCL:9 (ESP32核心)\n';
       setupCode += 'Serial.println("ESP32使用Wire1 (SDA:8, SCL:9)");\n';
     }
   } else if (isESP8266Core) {
@@ -146,12 +172,8 @@ if (${varName}.begin()) {
 
   generator.addSetup('bh1750_init', setupCode);
   
-  // 保存变量名，方便后续块使用
-  generator.sensorVarName = varName;
-  
   return '';
 };
-
 
 // 初始化或开始
 Arduino.forBlock['bh1750_begin'] = function(block, generator) {
