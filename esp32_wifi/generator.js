@@ -163,6 +163,102 @@ Arduino.forBlock['esp32_wifi_http_get'] = function(block, generator) {
     return [code, Arduino.ORDER_FUNCTION_CALL];
 };
 
+// HTTP POST请求
+Arduino.forBlock['esp32_wifi_http_post'] = function(block, generator) {
+    const url = generator.valueToCode(block, 'URL', Arduino.ORDER_ATOMIC) || '""';
+    const data = generator.valueToCode(block, 'DATA', Arduino.ORDER_ATOMIC) || '""';
+    
+    generator.addLibrary('#include <WiFi.h>', '#include <WiFi.h>');
+    generator.addLibrary('#include <HTTPClient.h>', '#include <HTTPClient.h>');
+    generator.addVariable('HTTPClient http', 'HTTPClient http;');
+    
+    generator.addFunction('esp32_wifi_http_post_function', 
+        'String httpPOST(String url, String data) {\n' +
+        '  http.begin(url);\n' +
+        '  http.addHeader("Content-Type", "application/x-www-form-urlencoded");\n' +
+        '  int httpCode = http.POST(data);\n' +
+        '  String payload = "";\n' +
+        '  if (httpCode > 0) {\n' +
+        '    payload = http.getString();\n' +
+        '  }\n' +
+        '  http.end();\n' +
+        '  return payload;\n' +
+        '}\n'
+    );
+    
+    const code = `httpPOST(${url}, ${data})`;
+    return [code, Arduino.ORDER_FUNCTION_CALL];
+};
+
+// HTTP POST JSON请求
+Arduino.forBlock['esp32_wifi_http_post_json'] = function(block, generator) {
+    const url = generator.valueToCode(block, 'URL', Arduino.ORDER_ATOMIC) || '""';
+    const jsonData = generator.valueToCode(block, 'JSON_DATA', Arduino.ORDER_ATOMIC) || '""';
+    
+    generator.addLibrary('#include <WiFi.h>', '#include <WiFi.h>');
+    generator.addLibrary('#include <HTTPClient.h>', '#include <HTTPClient.h>');
+    generator.addVariable('HTTPClient http', 'HTTPClient http;');
+    
+    generator.addFunction('esp32_wifi_http_post_json_function', 
+        'String httpPOSTJSON(String url, String jsonData) {\n' +
+        '  http.begin(url);\n' +
+        '  http.addHeader("Content-Type", "application/json");\n' +
+        '  int httpCode = http.POST(jsonData);\n' +
+        '  String payload = "";\n' +
+        '  if (httpCode > 0) {\n' +
+        '    payload = http.getString();\n' +
+        '  }\n' +
+        '  http.end();\n' +
+        '  return payload;\n' +
+        '}\n'
+    );
+    
+    const code = `httpPOSTJSON(${url}, ${jsonData})`;
+    return [code, Arduino.ORDER_FUNCTION_CALL];
+};
+
+// 通用HTTP请求
+Arduino.forBlock['esp32_wifi_http_request'] = function(block, generator) {
+    const method = block.getFieldValue('METHOD');
+    const url = generator.valueToCode(block, 'URL', Arduino.ORDER_ATOMIC) || '""';
+    const data = generator.valueToCode(block, 'DATA', Arduino.ORDER_ATOMIC) || '""';
+    const contentType = generator.valueToCode(block, 'CONTENT_TYPE', Arduino.ORDER_ATOMIC) || '"application/x-www-form-urlencoded"';
+    
+    generator.addLibrary('#include <WiFi.h>', '#include <WiFi.h>');
+    generator.addLibrary('#include <HTTPClient.h>', '#include <HTTPClient.h>');
+    generator.addVariable('HTTPClient http', 'HTTPClient http;');
+    
+    generator.addFunction('esp32_wifi_http_request_function', 
+        'String httpRequest(String method, String url, String data, String contentType) {\n' +
+        '  http.begin(url);\n' +
+        '  if (data.length() > 0) {\n' +
+        '    http.addHeader("Content-Type", contentType);\n' +
+        '  }\n' +
+        '  int httpCode = -1;\n' +
+        '  if (method == "GET") {\n' +
+        '    httpCode = http.GET();\n' +
+        '  } else if (method == "POST") {\n' +
+        '    httpCode = http.POST(data);\n' +
+        '  } else if (method == "PUT") {\n' +
+        '    httpCode = http.PUT(data);\n' +
+        '  } else if (method == "DELETE") {\n' +
+        '    httpCode = http.sendRequest("DELETE", data);\n' +
+        '  } else if (method == "PATCH") {\n' +
+        '    httpCode = http.PATCH(data);\n' +
+        '  }\n' +
+        '  String payload = "";\n' +
+        '  if (httpCode > 0) {\n' +
+        '    payload = http.getString();\n' +
+        '  }\n' +
+        '  http.end();\n' +
+        '  return payload;\n' +
+        '}\n'
+    );
+    
+    const code = `httpRequest("${method}", ${url}, ${data}, ${contentType})`;
+    return [code, Arduino.ORDER_FUNCTION_CALL];
+};
+
 // WiFi事件处理
 Arduino.forBlock['esp32_wifi_event_handler'] = function(block, generator) {
     const event = block.getFieldValue('EVENT');

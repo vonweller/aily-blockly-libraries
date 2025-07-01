@@ -191,6 +191,80 @@
             }
         },
         {
+            "kind": "block",
+            "type": "esp32_wifi_http_post",
+            "inputs": {
+                "URL": {
+                    "shadow": {
+                        "type": "text",
+                        "fields": {
+                            "TEXT": "http://httpbin.org/post"
+                        }
+                    }
+                },
+                "DATA": {
+                    "shadow": {
+                        "type": "text",
+                        "fields": {
+                            "TEXT": "key=value&name=test"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "kind": "block",
+            "type": "esp32_wifi_http_post_json",
+            "inputs": {
+                "URL": {
+                    "shadow": {
+                        "type": "text",
+                        "fields": {
+                            "TEXT": "http://httpbin.org/post"
+                        }
+                    }
+                },
+                "JSON_DATA": {
+                    "shadow": {
+                        "type": "text",
+                        "fields": {
+                            "TEXT": "{\"name\":\"test\",\"value\":123}"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "kind": "block",
+            "type": "esp32_wifi_http_request",
+            "inputs": {
+                "URL": {
+                    "shadow": {
+                        "type": "text",
+                        "fields": {
+                            "TEXT": "http://httpbin.org/post"
+                        }
+                    }
+                },
+                "DATA": {
+                    "shadow": {
+                        "type": "text",
+                        "fields": {
+                            "TEXT": "data to send"
+                        }
+                    }
+                },
+                "CONTENT_TYPE": {
+                    "shadow": {
+                        "type": "text",
+                        "fields": {
+                            "TEXT": "application/json"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "kind": "sep"
         },
         {

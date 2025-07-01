@@ -164,6 +164,79 @@
         "inputsInline": true
     },
     {
+        "type": "esp32_wifi_http_post",
+        "message0": "HTTP POST请求 URL %1 数据 %2",
+        "args0": [
+            {
+                "type": "input_value",
+                "name": "URL",
+                "check": "String"
+            },
+            {
+                "type": "input_value",
+                "name": "DATA",
+                "check": "String"
+            }
+        ],
+        "output": "String",
+        "colour": "#03A9F4",
+        "inputsInline": true
+    },
+    {
+        "type": "esp32_wifi_http_post_json",
+        "message0": "HTTP POST JSON请求 URL %1 JSON数据 %2",
+        "args0": [
+            {
+                "type": "input_value",
+                "name": "URL",
+                "check": "String"
+            },
+            {
+                "type": "input_value",
+                "name": "JSON_DATA",
+                "check": "String"
+            }
+        ],
+        "output": "String",
+        "colour": "#03A9F4",
+        "inputsInline": true
+    },
+    {
+        "type": "esp32_wifi_http_request",
+        "message0": "HTTP请求 方法 %1 URL %2 数据 %3 Content-Type %4",
+        "args0": [
+            {
+                "type": "field_dropdown",
+                "name": "METHOD",
+                "options": [
+                    ["GET", "GET"],
+                    ["POST", "POST"],
+                    ["PUT", "PUT"],
+                    ["DELETE", "DELETE"],
+                    ["PATCH", "PATCH"]
+                ]
+            },
+            {
+                "type": "input_value",
+                "name": "URL",
+                "check": "String"
+            },
+            {
+                "type": "input_value",
+                "name": "DATA",
+                "check": "String"
+            },
+            {
+                "type": "input_value",
+                "name": "CONTENT_TYPE",
+                "check": "String"
+            }
+        ],
+        "output": "String",
+        "colour": "#03A9F4",
+        "inputsInline": false
+    },
+    {
         "type": "esp32_wifi_event_handler",
         "message0": "WiFi事件处理 %1 %2",
         "args0": [
