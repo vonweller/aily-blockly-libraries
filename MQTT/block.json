@@ -1,0 +1,519 @@
+
+[
+  {
+    "type": "ethernet_begin",
+    "message0": "初始化以太网，MAC地址 %1 IP地址 %2",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "MAC"
+      },
+      {
+        "type": "input_value",
+        "name": "IP"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF5722"
+  },
+  {
+    "type": "wifi_mode",
+    "message0": "设置WiFi模式 %1",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "MODE"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#4CAF50"
+  },
+  {
+    "type": "wifi_begin",
+    "message0": "连接WiFi，SSID %1 密码 %2",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "SSID"
+      },
+      {
+        "type": "input_value",
+        "name": "PASSWORD"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#4CAF50"
+  },
+  {
+    "type": "wifi_status",
+    "message0": "获取WiFi状态",
+    "output": "Boolean",
+    "colour": "#4CAF50"
+  },
+  {
+    "type": "wifi_local_ip",
+    "message0": "获取WiFi本地IP",
+    "output": "String",
+    "colour": "#4CAF50"
+  },
+  {
+    "type": "pubsub_create",
+    "message0": "创建MQTT客户端 %1 使用客户端 %2 SSL %3\n服务器 %4 端口 %5",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "NAME",
+        "text": "mqttClient"
+      },
+      {
+        "type": "field_input",
+        "name": "CLIENT",
+        "text": "client"
+      },
+      {
+        "type": "field_checkbox",
+        "name": "SSL",
+        "checked": false
+      },
+      {
+        "type": "field_input",
+        "name": "SERVER",
+        "text": "broker.diandeng.tech"
+      },
+      {
+        "type": "field_input",
+        "name": "PORT",
+        "text": "1883"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#9C27B0"
+  },
+  {
+    "type": "pubsub_create_with_server",
+    "message0": "创建MQTT客户端 %1，连接服务器 %2 端口 %3，回调 %4，客户端 %5",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "NAME",
+        "variable": "mqttClient",
+        "variableTypes": [
+          "PubSubClient"
+        ],
+        "defaultType": "PubSubClient"
+      },
+      {
+        "type": "input_value",
+        "name": "SERVER"
+      },
+      {
+        "type": "input_value",
+        "name": "PORT"
+      },
+      {
+        "type": "input_value",
+        "name": "CALLBACK"
+      },
+      {
+        "type": "input_value",
+        "name": "CLIENT"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#9C27B0"
+  },
+  {
+    "type": "pubsub_set_server_ip",
+    "message0": "MQTT客户端 %1 设置服务器IP %2 端口 %3",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "NAME",
+        "variable": "mqttClient",
+        "variableTypes": [
+          "PubSubClient"
+        ],
+        "defaultType": "PubSubClient"
+      },
+      {
+        "type": "input_value",
+        "name": "SERVER"
+      },
+      {
+        "type": "input_value",
+        "name": "PORT"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#9C27B0"
+  },
+  {
+    "type": "pubsub_set_server_domain",
+    "message0": "MQTT客户端 %1 设置服务器域名 %2 端口 %3",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "NAME",
+        "variable": "mqttClient",
+        "variableTypes": [
+          "PubSubClient"
+        ],
+        "defaultType": "PubSubClient"
+      },
+      {
+        "type": "input_value",
+        "name": "DOMAIN"
+      },
+      {
+        "type": "input_value",
+        "name": "PORT"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#9C27B0"
+  },
+  {
+    "type": "pubsub_set_callback",
+    "message0": "MQTT客户端 %1 收到消息时执行",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "NAME",
+        "text": "mqttClient"
+      }
+    ],
+    "message1": "%1",
+    "args1": [
+      {
+        "type": "input_statement",
+        "name": "NAME"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#9C27B0"
+  },
+  {
+    "type": "pubsub_connect",
+    "message0": "MQTT客户端 %1 连接，客户端ID %2",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "NAME",
+        "variable": "mqttClient",
+        "variableTypes": [
+          "PubSubClient"
+        ],
+        "defaultType": "PubSubClient"
+      },
+      {
+        "type": "input_value",
+        "name": "CLIENT_ID"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#9C27B0"
+  },
+  {
+    "type": "pubsub_connect_with_credentials",
+    "message0": "MQTT客户端 %1 连接，ID %2 用户名 %3 密码 %4",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "NAME",
+        "text": "mqttClient"
+      },
+      {
+        "type": "field_input",
+        "name": "CLIENT_ID"
+      },
+      {
+        "type": "field_input",
+        "name": "USERNAME"
+      },
+      {
+        "type": "field_input",
+        "name": "PASSWORD"
+      }
+    ],
+    "output": "Boolean",
+    "colour": "#9C27B0"
+  },
+  {
+    "type": "pubsub_connected",
+    "message0": "MQTT客户端 %1 已连接",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "NAME",
+        "text": "mqttClient"
+      }
+    ],
+    "output": "Boolean",
+    "colour": "#9C27B0"
+  },
+  {
+    "type": "pubsub_loop",
+    "message0": "MQTT客户端 %1 循环处理",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "NAME",
+        "variable": "mqttClient",
+        "variableTypes": [
+          "PubSubClient"
+        ],
+        "defaultType": "PubSubClient"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#9C27B0"
+  },
+  {
+    "type": "pubsub_state",
+    "message0": "MQTT客户端 %1 状态",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "NAME",
+        "text": "mqttClient"
+      }
+    ],
+    "output": "Number",
+    "colour": "#9C27B0"
+  },
+  {
+    "type": "pubsub_publish",
+    "message0": "MQTT客户端 %1 发布到主题 %2 消息 %3",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "NAME",
+        "text": "mqttClient"
+      },
+      {
+        "type": "input_value",
+        "name": "TOPIC"
+      },
+      {
+        "type": "input_value",
+        "name": "PAYLOAD"
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#9C27B0"
+  },
+  {
+    "type": "pubsub_publish_with_length",
+    "message0": "MQTT客户端 %1 发布到主题 %2 消息 %3 长度 %4",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "NAME",
+        "variable": "mqttClient",
+        "variableTypes": [
+          "PubSubClient"
+        ],
+        "defaultType": "PubSubClient"
+      },
+      {
+        "type": "input_value",
+        "name": "TOPIC"
+      },
+      {
+        "type": "input_value",
+        "name": "PAYLOAD"
+      },
+      {
+        "type": "input_value",
+        "name": "LENGTH"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#9C27B0"
+  },
+  {
+    "type": "pubsub_subscribe",
+    "message0": "MQTT客户端 %1 订阅主题 %2",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "NAME",
+        "text": "mqttClient"
+      },
+      {
+        "type": "input_value",
+        "name": "TOPIC"
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#9C27B0"
+  },
+  {
+    "type": "pubsub_begin_publish",
+    "message0": "MQTT客户端 %1 开始发布到主题 %2，消息长度 %3，保留 %4",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "NAME",
+        "variable": "mqttClient",
+        "variableTypes": [
+          "PubSubClient"
+        ],
+        "defaultType": "PubSubClient"
+      },
+      {
+        "type": "input_value",
+        "name": "TOPIC"
+      },
+      {
+        "type": "input_value",
+        "name": "LENGTH"
+      },
+      {
+        "type": "input_value",
+        "name": "RETAINED"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#9C27B0"
+  },
+  {
+    "type": "pubsub_print",
+    "message0": "MQTT客户端 %1 发布时打印 %2",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "NAME",
+        "variable": "mqttClient",
+        "variableTypes": [
+          "PubSubClient"
+        ],
+        "defaultType": "PubSubClient"
+      },
+      {
+        "type": "input_value",
+        "name": "DATA"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#9C27B0"
+  },
+  {
+    "type": "pubsub_end_publish",
+    "message0": "MQTT客户端 %1 结束发布",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "NAME",
+        "variable": "mqttClient",
+        "variableTypes": [
+          "PubSubClient"
+        ],
+        "defaultType": "PubSubClient"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#9C27B0"
+  },
+  {
+    "type": "sram_create",
+    "message0": "创建SRAM %1，CS引脚 %2，大小 %3",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "NAME",
+        "variable": "sram",
+        "variableTypes": [
+          "SRAM"
+        ],
+        "defaultType": "SRAM"
+      },
+      {
+        "type": "input_value",
+        "name": "CS_PIN"
+      },
+      {
+        "type": "input_value",
+        "name": "SIZE"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF9800"
+  },
+  {
+    "type": "sram_begin",
+    "message0": "SRAM %1 初始化",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "NAME",
+        "variable": "sram",
+        "variableTypes": [
+          "SRAM"
+        ],
+        "defaultType": "SRAM"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF9800"
+  },
+  {
+    "type": "sram_seek",
+    "message0": "SRAM %1 定位到地址 %2",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "NAME",
+        "variable": "sram",
+        "variableTypes": [
+          "SRAM"
+        ],
+        "defaultType": "SRAM"
+      },
+      {
+        "type": "input_value",
+        "name": "ADDRESS"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF9800"
+  },
+  {
+    "type": "sram_read",
+    "message0": "读取SRAM %1 的数据",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "NAME",
+        "variable": "sram",
+        "variableTypes": [
+          "SRAM"
+        ],
+        "defaultType": "SRAM"
+      }
+    ],
+    "output": "Number",
+    "colour": "#FF9800"
+  }
+]

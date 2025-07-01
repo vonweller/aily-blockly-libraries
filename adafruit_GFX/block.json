@@ -1,43 +1,27 @@
 [
   {
-    "type": "tft_init",
-    "message0": "初始化TFT屏幕 模型 %1 CS: %2 DC: %3 MOSI: %4 SCLK: %5 RST: %6",
-    "args0": [
-      {
-        "type": "field_dropdown",
-        "name": "MODEL",
-        "options": [
-          [ "ST7735", "ST7735" ],
-          [ "ST7789", "ST7789" ],
-          [ "ST7796S", "ST7796S" ]
-        ]
-      },
-      {
-        "type": "input_value",
-        "name": "CS_PIN"
-      },
-      {
-        "type": "input_value",
-        "name": "DC_PIN"
-      },
-      {
-        "type": "input_value",
-        "name": "MOSI_PIN"
-      },
-      {
-        "type": "input_value",
-        "name": "SCLK_PIN"
-      },
-      {
-        "type": "input_value",
-        "name": "RST_PIN"
-      }
-    ],
-    "inputsInline": true,
-    "previousStatement": null,
-    "nextStatement": null,
-    "colour": "#FFA500"
-  },
+  "type": "tft_init",
+  "message0": "初始化TFT屏幕 型号 %1",
+  "args0": [
+    {
+      "type": "field_dropdown",
+      "name": "MODEL",
+      "options": [
+        ["ST7735", "ST7735"],
+        ["ST7789", "ST7789"],
+        ["ST7796S", "ST7796S"]
+      ]
+    }
+  ],
+  "message1": "引脚配置: CS:44 DC:43 MOSI:47 SCLK:21 RST:-1",
+  "args1": [],
+  "inputsInline": false,
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": "#FFA500",
+  "tooltip": "初始化TFT屏幕，使用固定引脚配置：CS:44, DC:43, MOSI:47, SCLK:21, RST:-1",
+  "helpUrl": ""
+},
   {
     "type": "tft_set_rotation",
     "message0": "设置TFT旋转 %1",

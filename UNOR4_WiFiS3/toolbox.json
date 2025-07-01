@@ -1,0 +1,294 @@
+{
+  "kind": "category",
+  "icon": "fa-light fa-wifi",
+  "name": "WiFiS3",
+  "colour": "#FF5722",
+  "contents": [
+    {
+      "kind": "label",
+      "tetx": "WiFi基础功能"
+    },
+    {
+      "kind": "block",
+      "type": "wifi_begin"
+    },
+    {
+      "kind": "block",
+      "type": "wifi_begin_ap"
+    },
+    {
+      "kind": "block",
+      "type": "wifi_disconnect"
+    },
+    {
+      "kind": "block",
+      "type": "wifi_status"
+    },
+    {
+      "kind": "block",
+      "type": "wifi_status_t"
+    },
+    {
+      "kind": "block",
+      "type": "wifi_firmware_version"
+    },
+    {
+      "kind": "block",
+      "type": "wifi_local_ip"
+    },
+    {
+      "kind": "block",
+      "type": "wifi_ssid"
+    },
+    {
+      "kind": "block",
+      "type": "wifi_bssid"
+    },
+    {
+      "kind": "block",
+      "type": "wifi_rssi"
+    },
+    {
+      "kind": "block",
+      "type": "wifi_config",
+      "inputs": {
+        "IP": {
+          "shadow": {
+            "type": "wifi_ip_set",
+            "fields": {
+              "IP": "192.168.1.1"
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "wifi_ip_set"
+    },
+    {
+      "kind": "block",
+      "type": "wifi_mac_address"
+    },
+    {
+      "kind": "block",
+      "type": "wifi_scan_networks"
+    },
+    {
+      "kind": "block",
+      "type": "wifi_ping_new",
+      "inputs": {
+        "HOST": {
+          "shadow": {
+            "type": "text",
+            "fields": {
+              "TEXT": "example.com"
+            }
+          }
+        },
+        "TTL": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 128
+            }
+          }
+        },
+        "TIMEOUT": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 10
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "wifi_get_time"
+    },
+    {
+      "kind": "block",
+      "type": "wifi_server_begin",
+      "inputs": {
+        "PORT": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 80
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "wifi_server_available"
+    },
+    {
+      "kind": "block",
+      "type": "wifi_server_accept"
+    },
+    {
+      "kind": "block",
+      "type": "wifi_client_connect",
+      "inputs": {
+        "SERVER": {
+          "shadow": {
+            "type": "text",
+            "fields": {
+              "TEXT": "example.com"
+            }
+          }
+        },
+        "PORT": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 80
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "wifi_client_connected"
+    },
+    {
+      "kind": "block",
+      "type": "wifi_client_stop"
+    },
+    {
+      "kind": "block",
+      "type": "wifi_client_available"
+    },
+    {
+      "kind": "block",
+      "type": "wifi_client_flush"
+    },
+    {
+      "kind": "block",
+      "type": "wifi_client_print"
+    },
+    {
+      "kind": "block",
+      "type": "wifi_client_println"
+    },
+    {
+      "kind": "block",
+      "type": "wifi_client_read"
+    },
+    {
+      "kind": "block",
+      "type": "wifi_udp_begin",
+      "inputs": {
+        "PORT": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 2390
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "wifi_udp_begin_packet",
+      "inputs": {
+        "ADDRESS": {
+          "shadow": {
+            "type": "wifi_ip_set",
+            "fields": {
+              "IP": "192.168.1.100"
+            }
+          }
+        },
+        "PORT": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 2390
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "wifi_udp_write",
+      "inputs": {
+        "BUFFER": {
+          "shadow": {
+            "type": "text",
+            "fields": {
+              "TEXT": "Hello, UDP!"
+            }
+          }
+        },
+        "SIZE": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 255
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "wifi_udp_end_packet"
+    },
+    {
+      "kind": "block",
+      "type": "wifi_udp_parse_packet"
+    },
+    {
+      "kind": "block",
+      "type": "wifi_udp_read",
+      "inputs": {
+        "SIZE": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 255
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "wifi_udp_remote_ip"
+    },
+    {
+      "kind": "block",
+      "type": "wifi_udp_remote_port"
+    },
+    {
+      "kind": "block",
+      "type": "rtc_begin"
+    },
+    {
+      "kind": "block",
+      "type": "rtc_set_time",
+      "inputs": {
+        "TIME": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 1696156800
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "rtc_get_time"
+    }
+  ]
+}

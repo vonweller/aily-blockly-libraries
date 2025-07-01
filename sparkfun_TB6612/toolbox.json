@@ -4,40 +4,128 @@
   "name": "TB6612",
   "contents": [
     {
-      "kind": "block",
-      "type": "tb6612_motor_init"
+  "kind": "block",
+  "type": "tb6612_motor_init",
+  "inputs": {
+    "AIN1": {
+      "shadow": {
+        "type": "math_number",
+        "fields": {
+          "NUM": 36
+        }
+      }
     },
+    "AIN2": {
+      "shadow": {
+        "type": "math_number",
+        "fields": {
+          "NUM": 37
+        }
+      }
+    },
+    "PWMA": {
+      "shadow": {
+        "type": "math_number",
+        "fields": {
+          "NUM": 35
+        }
+      }
+    },
+    "OFFSET_A": {
+      "shadow": {
+        "type": "math_number",
+        "fields": {
+          "NUM": 1
+        }
+      }
+    },
+    "BIN1": {
+      "shadow": {
+        "type": "math_number",
+        "fields": {
+          "NUM": 11
+        }
+      }
+    },
+    "BIN2": {
+      "shadow": {
+        "type": "math_number",
+        "fields": {
+          "NUM": 12
+        }
+      }
+    },
+    "PWMB": {
+      "shadow": {
+        "type": "math_number",
+        "fields": {
+          "NUM": 10
+        }
+      }
+    },
+    "OFFSET_B": {
+      "shadow": {
+        "type": "math_number",
+        "fields": {
+          "NUM": 1
+        }
+      }
+    },
+    "STBY_PIN": {
+      "shadow": {
+        "type": "math_number",
+        "fields": {
+          "NUM": 45
+        }
+      }
+    }
+  }
+},
     {
-      "kind": "block",
-      "type": "tb6612_drive"
-    },
+  "kind": "block",
+  "type": "tb6612_drive",
+  "inputs": {
+    "SPEED": {
+      "shadow": {
+        "type": "math_number",
+        "fields": {
+          "NUM": 100
+        }
+      }
+    }
+  }
+},
+{
+  "kind": "block",
+  "type": "tb6612_reverse",
+  "inputs": {
+    "SPEED": {
+      "shadow": {
+        "type": "math_number",
+        "fields": {
+          "NUM": 100
+        }
+      }
+    }
+  }
+},
     {
       "kind": "block",
       "type": "tb6612_brake"
     },
     {
-      "kind": "block",
-      "type": "tb6612_dual_action"
-    },
-    {
-      "kind": "block",
-      "type": "tb6612_forward"
-    },
-    {
-      "kind": "block",
-      "type": "tb6612_back"
-    },
-    {
-      "kind": "block",
-      "type": "tb6612_left"
-    },
-    {
-      "kind": "block",
-      "type": "tb6612_right"
-    },
-    {
-      "kind": "block",
-      "type": "tb6612_brake_both"
+  "kind": "block",
+  "type": "tb6612_dual_action",
+  "inputs": {
+    "SPEED": {
+      "shadow": {
+        "type": "math_number",
+        "fields": {
+          "NUM": 100
+        }
+      }
     }
+  }
+}
   ]
 }
