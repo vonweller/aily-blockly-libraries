@@ -1,0 +1,576 @@
+[
+    {
+        "inputsInline": false,
+        "message0": "初始化PID控制器%1输入变量%2输出变量%3目标值%4P参数%5I参数%6D参数%7控制方向%8",
+        "type": "pid_init",
+        "args0": [
+            {
+                "type": "field_variable",
+                "name": "PID_NAME",
+                "variable": "myPID",
+                "variableTypes": [
+                    "PID"
+                ],
+                "defaultType": "PID"
+            },
+            {
+                "type": "field_variable",
+                "name": "INPUT",
+                "variable": "input",
+                "variableTypes": [
+                    "double"
+                ],
+                "defaultType": "double"
+            },
+            {
+                "type": "field_variable",
+                "name": "OUTPUT",
+                "variable": "output",
+                "variableTypes": [
+                    "double"
+                ],
+                "defaultType": "double"
+            },
+            {
+                "type": "field_variable",
+                "name": "SETPOINT",
+                "variable": "setpoint",
+                "variableTypes": [
+                    "double"
+                ],
+                "defaultType": "double"
+            },
+            {
+                "type": "field_number",
+                "name": "KP",
+                "value": 2,
+                "min": 0,
+                "precision": 0.01
+            },
+            {
+                "type": "field_number",
+                "name": "KI",
+                "value": 5,
+                "min": 0,
+                "precision": 0.01
+            },
+            {
+                "type": "field_number",
+                "name": "KD",
+                "value": 1,
+                "min": 0,
+                "precision": 0.01
+            },
+            {
+                "type": "field_dropdown",
+                "name": "DIRECTION",
+                "options": [
+                    [
+                        "正向控制",
+                        "DIRECT"
+                    ],
+                    [
+                        "反向控制",
+                        "REVERSE"
+                    ]
+                ]
+            }
+        ],
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#FF6600"
+    },
+    {
+        "inputsInline": true,
+        "message0": "PID控制器%1计算",
+        "type": "pid_compute",
+        "args0": [
+            {
+                "type": "field_variable",
+                "name": "PID_NAME",
+                "variable": "myPID",
+                "variableTypes": [
+                    "PID"
+                ],
+                "defaultType": "PID"
+            }
+        ],
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#FF6600"
+    },
+    {
+        "inputsInline": true,
+        "message0": "设置PID控制器%1模式为%2",
+        "type": "pid_set_mode",
+        "args0": [
+            {
+                "type": "field_variable",
+                "name": "PID_NAME",
+                "variable": "myPID",
+                "variableTypes": [
+                    "PID"
+                ],
+                "defaultType": "PID"
+            },
+            {
+                "type": "field_dropdown",
+                "name": "MODE",
+                "options": [
+                    [
+                        "自动",
+                        "AUTOMATIC"
+                    ],
+                    [
+                        "手动",
+                        "MANUAL"
+                    ]
+                ]
+            }
+        ],
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#FF6600"
+    },
+    {
+        "inputsInline": false,
+        "message0": "设置PID控制器%1参数%2P参数%3I参数%4D参数%5",
+        "type": "pid_set_tunings",
+        "args0": [
+            {
+                "type": "field_variable",
+                "name": "PID_NAME",
+                "variable": "myPID",
+                "variableTypes": [
+                    "PID"
+                ],
+                "defaultType": "PID"
+            },
+            {
+                "type": "input_dummy"
+            },
+            {
+                "type": "input_value",
+                "name": "KP",
+                "check": "Number"
+            },
+            {
+                "type": "input_value",
+                "name": "KI",
+                "check": "Number"
+            },
+            {
+                "type": "input_value",
+                "name": "KD",
+                "check": "Number"
+            }
+        ],
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#FF6600"
+    },
+    {
+        "inputsInline": false,
+        "message0": "设置PID控制器%1输出限制%2最小值%3最大值%4",
+        "type": "pid_set_output_limits",
+        "args0": [
+            {
+                "type": "field_variable",
+                "name": "PID_NAME",
+                "variable": "myPID",
+                "variableTypes": [
+                    "PID"
+                ],
+                "defaultType": "PID"
+            },
+            {
+                "type": "input_dummy"
+            },
+            {
+                "type": "input_value",
+                "name": "MIN",
+                "check": "Number"
+            },
+            {
+                "type": "input_value",
+                "name": "MAX",
+                "check": "Number"
+            }
+        ],
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#FF6600"
+    },
+    {
+        "inputsInline": true,
+        "message0": "简化PID控制%1输入引脚%2输出引脚%3目标值%4P参数%5I参数%6D参数%7",
+        "type": "pid_simple_control",
+        "args0": [
+            {
+                "type": "input_dummy"
+            },
+            {
+                "type": "field_dropdown",
+                "name": "INPUT_PIN",
+                "options": "${board.analogPins}"
+            },
+            {
+                "type": "field_dropdown",
+                "name": "OUTPUT_PIN",
+                "options": "${board.pwmPins}"
+            },
+            {
+                "type": "field_number",
+                "name": "SETPOINT",
+                "value": 100,
+                "min": 0,
+                "max": 1023
+            },
+            {
+                "type": "field_number",
+                "name": "KP",
+                "value": 2,
+                "min": 0,
+                "precision": 0.01
+            },
+            {
+                "type": "field_number",
+                "name": "KI",
+                "value": 5,
+                "min": 0,
+                "precision": 0.01
+            },
+            {
+                "type": "field_number",
+                "name": "KD",
+                "value": 1,
+                "min": 0,
+                "precision": 0.01
+            }
+        ],
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#FF6600"
+    },
+    {
+        "inputsInline": true,
+        "message0": "获取PID输入值%1",
+        "type": "pid_get_input",
+        "args0": [
+            {
+                "type": "field_variable",
+                "name": "INPUT",
+                "variable": "input",
+                "variableTypes": [
+                    "double"
+                ],
+                "defaultType": "double"
+            }
+        ],
+        "output": "Number",
+        "colour": "#FF6600"
+    },
+    {
+        "inputsInline": true,
+        "message0": "获取PID输出值%1",
+        "type": "pid_get_output",
+        "args0": [
+            {
+                "type": "field_variable",
+                "name": "OUTPUT",
+                "variable": "output",
+                "variableTypes": [
+                    "double"
+                ],
+                "defaultType": "double"
+            }
+        ],
+        "output": "Number",
+        "colour": "#FF6600"
+    },
+    {
+        "inputsInline": true,
+        "message0": "设置PID目标值%1为%2",
+        "type": "pid_set_setpoint",
+        "args0": [
+            {
+                "type": "field_variable",
+                "name": "SETPOINT",
+                "variable": "setpoint",
+                "variableTypes": [
+                    "double"
+                ],
+                "defaultType": "double"
+            },
+            {
+                "type": "input_value",
+                "name": "VALUE",
+                "check": "Number"
+            }
+        ],
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#FF6600"
+    },
+    {
+        "inputsInline": true,
+        "message0": "设置PID输入值%1为%2",
+        "type": "pid_set_input",
+        "args0": [
+            {
+                "type": "field_variable",
+                "name": "INPUT",
+                "variable": "input",
+                "variableTypes": [
+                    "double"
+                ],
+                "defaultType": "double"
+            },
+            {
+                "type": "input_value",
+                "name": "VALUE",
+                "check": "Number"
+            }
+        ],
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#FF6600"
+    },
+    {
+        "inputsInline": false,
+        "message0": "自适应PID控制%1PID控制器%2输入变量%3目标值%4阈值%5激进参数 P%6I%7D%8保守参数 P%9I%10D%11",
+        "type": "pid_adaptive_control",
+        "args0": [
+            {
+                "type": "input_dummy"
+            },
+            {
+                "type": "field_variable",
+                "name": "PID_NAME",
+                "variable": "myPID",
+                "variableTypes": [
+                    "PID"
+                ],
+                "defaultType": "PID"
+            },
+            {
+                "type": "field_variable",
+                "name": "INPUT",
+                "variable": "input",
+                "variableTypes": [
+                    "double"
+                ],
+                "defaultType": "double"
+            },
+            {
+                "type": "field_variable",
+                "name": "SETPOINT",
+                "variable": "setpoint",
+                "variableTypes": [
+                    "double"
+                ],
+                "defaultType": "double"
+            },
+            {
+                "type": "field_number",
+                "name": "THRESHOLD",
+                "value": 10,
+                "min": 0
+            },
+            {
+                "type": "field_number",
+                "name": "AGG_KP",
+                "value": 4,
+                "min": 0,
+                "precision": 0.01
+            },
+            {
+                "type": "field_number",
+                "name": "AGG_KI",
+                "value": 0.2,
+                "min": 0,
+                "precision": 0.01
+            },
+            {
+                "type": "field_number",
+                "name": "AGG_KD",
+                "value": 1,
+                "min": 0,
+                "precision": 0.01
+            },
+            {
+                "type": "field_number",
+                "name": "CONS_KP",
+                "value": 1,
+                "min": 0,
+                "precision": 0.01
+            },
+            {
+                "type": "field_number",
+                "name": "CONS_KI",
+                "value": 0.05,
+                "min": 0,
+                "precision": 0.01
+            },
+            {
+                "type": "field_number",
+                "name": "CONS_KD",
+                "value": 0.25,
+                "min": 0,
+                "precision": 0.01
+            }
+        ],
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#FF6600"
+    },
+    {
+        "inputsInline": false,
+        "message0": "设置PID控制器%1比例控制模式%2输入变量%3输出变量%4目标值%5P参数%6I参数%7D参数%8控制方向%9",
+        "type": "pid_set_proportional_mode",
+        "args0": [
+            {
+                "type": "field_variable",
+                "name": "PID_NAME",
+                "variable": "myPID",
+                "variableTypes": [
+                    "PID"
+                ],
+                "defaultType": "PID"
+            },
+            {
+                "type": "field_dropdown",
+                "name": "MODE",
+                "options": [
+                    [
+                        "基于误差(P_ON_E)",
+                        "P_ON_E"
+                    ],
+                    [
+                        "基于测量值(P_ON_M)",
+                        "P_ON_M"
+                    ]
+                ]
+            },
+            {
+                "type": "field_variable",
+                "name": "INPUT",
+                "variable": "input",
+                "variableTypes": [
+                    "double"
+                ],
+                "defaultType": "double"
+            },
+            {
+                "type": "field_variable",
+                "name": "OUTPUT",
+                "variable": "output",
+                "variableTypes": [
+                    "double"
+                ],
+                "defaultType": "double"
+            },
+            {
+                "type": "field_variable",
+                "name": "SETPOINT",
+                "variable": "setpoint",
+                "variableTypes": [
+                    "double"
+                ],
+                "defaultType": "double"
+            },
+            {
+                "type": "input_value",
+                "name": "KP",
+                "check": "Number"
+            },
+            {
+                "type": "input_value",
+                "name": "KI",
+                "check": "Number"
+            },
+            {
+                "type": "input_value",
+                "name": "KD",
+                "check": "Number"
+            },
+            {
+                "type": "field_dropdown",
+                "name": "DIRECTION",
+                "options": [
+                    [
+                        "正向控制",
+                        "DIRECT"
+                    ],
+                    [
+                        "反向控制",
+                        "REVERSE"
+                    ]
+                ]
+            }
+        ],
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#FF6600"
+    },
+    {
+        "inputsInline": true,
+        "message0": "PID是否达到目标值%1目标值%2容差%3",
+        "type": "pid_is_at_setpoint",
+        "args0": [
+            {
+                "type": "field_variable",
+                "name": "INPUT",
+                "variable": "input",
+                "variableTypes": [
+                    "double"
+                ],
+                "defaultType": "double"
+            },
+            {
+                "type": "field_variable",
+                "name": "SETPOINT",
+                "variable": "setpoint",
+                "variableTypes": [
+                    "double"
+                ],
+                "defaultType": "double"
+            },
+            {
+                "type": "field_number",
+                "name": "TOLERANCE",
+                "value": 5,
+                "min": 0
+            }
+        ],
+        "output": "Boolean",
+        "colour": "#FF6600"
+    },
+    {
+        "inputsInline": true,
+        "message0": "获取PID误差值%1目标值%2",
+        "type": "pid_get_error",
+        "args0": [
+            {
+                "type": "field_variable",
+                "name": "INPUT",
+                "variable": "input",
+                "variableTypes": [
+                    "double"
+                ],
+                "defaultType": "double"
+            },
+            {
+                "type": "field_variable",
+                "name": "SETPOINT",
+                "variable": "setpoint",
+                "variableTypes": [
+                    "double"
+                ],
+                "defaultType": "double"
+            }
+        ],
+        "output": "Number",
+        "colour": "#FF6600"
+    }
+]
