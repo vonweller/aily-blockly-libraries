@@ -3,11 +3,13 @@
 // 初始化、对象定义部分，兼容ST7735/ST7789/ST7796S/自定义
 Arduino.forBlock['tft_init'] = function(block, generator) {
   var model = block.getFieldValue('MODEL'); // ST7735、ST7789或ST7796S
-  var cs = generator.valueToCode(block, 'CS_PIN', Arduino.ORDER_ATOMIC) || '10';
-  var dc = generator.valueToCode(block, 'DC_PIN', Arduino.ORDER_ATOMIC) || '9';
-  var mosi = generator.valueToCode(block, 'MOSI_PIN', Arduino.ORDER_ATOMIC) || 'SPI_MOSI_PIN';
-  var sclk = generator.valueToCode(block, 'SCLK_PIN', Arduino.ORDER_ATOMIC) || 'SPI_SCK_PIN';
-  var rst = generator.valueToCode(block, 'RST_PIN', Arduino.ORDER_ATOMIC) || '8';
+  
+  // 固定引脚配置
+  var cs = '44';
+  var dc = '43';
+  var mosi = '47';
+  var sclk = '21';
+  var rst = '-1';
   
   // 添加SPI库
   generator.addLibrary('SPI', '#include <SPI.h>');
@@ -16,7 +18,7 @@ Arduino.forBlock['tft_init'] = function(block, generator) {
     generator.addLibrary('Adafruit_ST7796S', '#include <Adafruit_ST7796S.h>');
     generator.addLibrary('Adafruit_GFX', '#include <Adafruit_GFX.h>');
     
-    // 使用软件SPI构造函数，包含MOSI和SCLK引脚
+    // 使用软件SPI构造函数，包含固定引脚
     generator.addObject('tft', 'Adafruit_ST7796S tft = Adafruit_ST7796S('+cs+', '+dc+', '+mosi+', '+sclk+', '+rst+');');
     generator.addSetupBegin('tft_init', 'tft.begin();');
     
@@ -24,7 +26,7 @@ Arduino.forBlock['tft_init'] = function(block, generator) {
     generator.addLibrary('Adafruit_ST7789', '#include <Adafruit_ST7789.h>');
     generator.addLibrary('Adafruit_GFX', '#include <Adafruit_GFX.h>');
     
-    // 使用软件SPI构造函数，包含MOSI和SCLK引脚
+    // 使用软件SPI构造函数，包含固定引脚
     generator.addObject('tft', 'Adafruit_ST7789 tft = Adafruit_ST7789('+cs+', '+dc+', '+mosi+', '+sclk+', '+rst+');');
     generator.addSetupBegin('tft_init', 'tft.init(240, 240);');
     
@@ -32,7 +34,7 @@ Arduino.forBlock['tft_init'] = function(block, generator) {
     generator.addLibrary('Adafruit_ST7735', '#include <Adafruit_ST7735.h>');
     generator.addLibrary('Adafruit_GFX', '#include <Adafruit_GFX.h>');
     
-    // 使用软件SPI构造函数，包含MOSI和SCLK引脚
+    // 使用软件SPI构造函数，包含固定引脚
     generator.addObject('tft', 'Adafruit_ST7735 tft = Adafruit_ST7735('+cs+', '+dc+', '+mosi+', '+sclk+', '+rst+');');
     generator.addSetupBegin('tft_init', 'tft.initR(INITR_BLACKTAB);');
   }
