@@ -1,23 +1,27 @@
 {
     "kind": "category",
-    "colour": "120",
-    "name": "SHT30温湿度传感器",
+    "name": "SHT3x传感器",
+    "colour": "#4CAF50",
     "contents": [
         {
             "kind": "block",
-            "type": "sht30_init"
+            "type": "sht3x_init"
         },
         {
             "kind": "block",
-            "type": "sht30_read_data"
+            "type": "sht3x_update_data"
         },
         {
             "kind": "block",
-            "type": "sht30_read_temperature"
+            "type": "sht3x_get_temperature"
         },
         {
             "kind": "block",
-            "type": "sht30_read_humidity"
+            "type": "sht3x_get_humidity"
+        },
+        {
+            "kind": "block",
+            "type": "sht3x_read_temp_humidity"
         }
     ]
 }
