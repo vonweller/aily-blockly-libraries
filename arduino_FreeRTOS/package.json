@@ -1,7 +1,8 @@
 {
   "name": "@aily-project/lib-arduino-freertos",
+  "nickname": "Arduino freeRTOS",
   "version": "1.0.0",
-  "description": "Arduino FreeRTOS Blockly Library - 基于FreeRTOS实时操作系统的Arduino块库",
+  "description": "适用于Arduino UNO R4的freeRTOS支持库",
   "main": "block.json",
   "keywords": [
     "arduino",
@@ -22,8 +23,18 @@
   "peerDependencies": {},
   "files": [
     "block.json",
-    "generator.js", 
+    "generator.js",
     "toolbox.json",
     "readme.md"
-  ]
+  ],
+  "compatibility": {
+    "core": [
+      "renesas_uno:minima",
+      "renesas_uno:unor4wifi"
+    ],
+    "voltage": [
+      3.3,
+      5
+    ]
+  }
 }
