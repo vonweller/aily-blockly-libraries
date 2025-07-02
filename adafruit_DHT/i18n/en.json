@@ -16,12 +16,48 @@
     ]
 },
 "dht_read_temperature": {
-    "message0": "Read temperature (℃) from DHT sensor"
+    "message0": "Read temperature (℃) from DHT %1 sensor on pin %2",
+    "args0": [
+        {
+            "options": [
+                ["DHT11", "DHT11"],
+                ["DHT22", "DHT22"],
+                ["DHT21", "DHT21"]
+            ]
+        },
+        {
+            "options": "${board.digitalPins}"
+        }
+    ]
 },
 "dht_read_humidity": {
-    "message0": "Read humidity (%) from DHT sensor"
+    "message0": "Read humidity (%) from DHT %1 sensor on pin %2",
+    "args0": [
+        {
+            "options": [
+                ["DHT11", "DHT11"],
+                ["DHT22", "DHT22"],
+                ["DHT21", "DHT21"]
+            ]
+        },
+        {
+            "options": "${board.digitalPins}"
+        }
+    ]
 },
 "dht_read_success": {
-    "message0": "DHT sensor read successful"
+    "message0": "DHT %1 sensor on pin %2 read successful",
+    "args0": [
+        {
+            "options": [
+                ["DHT11", "DHT11"],
+                ["DHT22", "DHT22"],
+                ["DHT21", "DHT21"]
+            ]
+        },
+        {
+            "options": "${board.digitalPins}"
+        }
+    ]
 }
 }

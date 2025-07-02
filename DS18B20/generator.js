@@ -1,166 +1,83 @@
-
-// 初始化DS18B20传感器
-Arduino.forBlock['ds18b20_init'] = function(block, generator) {
-  const pin = generator.valueToCode(block, 'PIN', Arduino.ORDER_ATOMIC);
-  const varName = block.getFieldValue('VAR') || 'ds18b20';
-  
-  generator.addLibrary('#include <DS18B20.h>', '#include <DS18B20.h>');
-  generator.addVariable(`DS18B20 ${varName}`, `DS18B20 ${varName}(${pin})`);
-  
-  return '';
+// 创建安全的引脚变量名
+Arduino.createPinVar = function(pin) {
+    return 'pin_' + pin.toString().replace(/[^a-zA-Z0-9]/g, '_');
 };
 
-// 读取温度（摄氏度）
-Arduino.forBlock['ds18b20_read_temp_c'] = function(block, generator) {
-  const varName = block.getFieldValue('VAR') || 'ds18b20';
-  const code = `${varName}.getTempC()`;
-  
-  return [code, Arduino.ORDER_FUNCTION_CALL];
+// 初始化指定引脚的DS18B20传感器
+Arduino.forBlock['ds18b20_init_pin'] = function (block, generator) {
+    var pin = generator.valueToCode(block, 'PIN', Arduino.ORDER_ATOMIC) || '2';
+    var pinVar = Arduino.createPinVar(pin);
+
+    // 添加必要的库
+    generator.addLibrary('OneWire_include', '#include <OneWire.h>');
+    generator.addLibrary('DallasTemperature_include', '#include <DallasTemperature.h>');
+
+    // 为每个引脚创建独立的对象
+    var oneWireDef = 'OneWire oneWire_' + pinVar + '(' + pin + ');';
+    generator.addVariable('oneWire_def_' + pinVar, oneWireDef);
+
+    var sensorsDef = 'DallasTemperature sensors_' + pinVar + '(&oneWire_' + pinVar + ');';
+    generator.addVariable('sensors_def_' + pinVar, sensorsDef);
+
+    // 在setup中初始化传感器
+    generator.addSetupBegin('ds18b20_begin_' + pinVar, 'sensors_' + pinVar + '.begin();');
+
+    return '';
 };
 
-// 读取温度（华氏度）
-Arduino.forBlock['ds18b20_read_temp_f'] = function(block, generator) {
-  const varName = block.getFieldValue('VAR') || 'ds18b20';
-  const code = `${varName}.getTempF()`;
-  
-  return [code, Arduino.ORDER_FUNCTION_CALL];
+// 读取指定引脚的DS18B20温度 (摄氏度)
+Arduino.forBlock['ds18b20_read_temperature_c_pin'] = function (block, generator) {
+    var pin = generator.valueToCode(block, 'PIN', Arduino.ORDER_ATOMIC) || '2';
+    var pinVar = Arduino.createPinVar(pin);
+    
+    // 创建读取温度的函数
+    var functionName = 'readDS18B20C_' + pinVar;
+    var functionCode = 'float ' + functionName + '() {\n' +
+        '  sensors_' + pinVar + '.requestTemperatures();\n' +
+        '  return sensors_' + pinVar + '.getTempCByIndex(0);\n' +
+        '}';
+    generator.addFunction(functionName, functionCode);
+
+    return [functionName + '()', Arduino.ORDER_ATOMIC];
 };
 
-// 设置温度报警阈值
-Arduino.forBlock['ds18b20_set_alarms'] = function(block, generator) {
-  const varName = block.getFieldValue('VAR') || 'ds18b20';
-  const lowAlarm = generator.valueToCode(block, 'LOW_ALARM', Arduino.ORDER_ATOMIC);
-  const highAlarm = generator.valueToCode(block, 'HIGH_ALARM', Arduino.ORDER_ATOMIC);
-  
-  return `${varName}.setAlarms(${lowAlarm}, ${highAlarm});\n`;
+// 读取指定引脚的DS18B20温度 (华氏度)
+Arduino.forBlock['ds18b20_read_temperature_f_pin'] = function (block, generator) {
+    var pin = generator.valueToCode(block, 'PIN', Arduino.ORDER_ATOMIC) || '2';
+    var pinVar = Arduino.createPinVar(pin);
+    
+    // 创建读取温度的函数
+    var functionName = 'readDS18B20F_' + pinVar;
+    var functionCode = 'float ' + functionName + '() {\n' +
+        '  sensors_' + pinVar + '.requestTemperatures();\n' +
+        '  return sensors_' + pinVar + '.getTempFByIndex(0);\n' +
+        '}';
+    generator.addFunction(functionName, functionCode);
+
+    return [functionName + '()', Arduino.ORDER_ATOMIC];
 };
 
-// 获取低温报警阈值
-Arduino.forBlock['ds18b20_get_alarm_low'] = function(block, generator) {
-  const varName = block.getFieldValue('VAR') || 'ds18b20';
-  const code = `${varName}.getAlarmLow()`;
-  
-  return [code, Arduino.ORDER_FUNCTION_CALL];
+// 获取指定引脚总线上的设备数量
+Arduino.forBlock['ds18b20_get_device_count_pin'] = function (block, generator) {
+    var pin = generator.valueToCode(block, 'PIN', Arduino.ORDER_ATOMIC) || '2';
+    var pinVar = Arduino.createPinVar(pin);
+    
+    return ['sensors_' + pinVar + '.getDeviceCount()', Arduino.ORDER_ATOMIC];
 };
 
-// 获取高温报警阈值
-Arduino.forBlock['ds18b20_get_alarm_high'] = function(block, generator) {
-  const varName = block.getFieldValue('VAR') || 'ds18b20';
-  const code = `${varName}.getAlarmHigh()`;
-  
-  return [code, Arduino.ORDER_FUNCTION_CALL];
-};
+// 按索引读取指定引脚上的特定DS18B20传感器温度
+Arduino.forBlock['ds18b20_read_temperature_by_index_pin'] = function (block, generator) {
+    var pin = generator.valueToCode(block, 'PIN', Arduino.ORDER_ATOMIC) || '2';
+    var index = generator.valueToCode(block, 'INDEX', Arduino.ORDER_ATOMIC) || '0';
+    var pinVar = Arduino.createPinVar(pin);
+    
+    // 创建按索引读取温度的函数
+    var functionName = 'readDS18B20ByIndex_' + pinVar;
+    var functionCode = 'float ' + functionName + '(int index) {\n' +
+        '  sensors_' + pinVar + '.requestTemperatures();\n' +
+        '  return sensors_' + pinVar + '.getTempCByIndex(index);\n' +
+        '}';
+    generator.addFunction(functionName, functionCode);
 
-// 检查是否有温度报警
-Arduino.forBlock['ds18b20_has_alarm'] = function(block, generator) {
-  const varName = block.getFieldValue('VAR') || 'ds18b20';
-  const code = `${varName}.hasAlarm()`;
-  
-  return [code, Arduino.ORDER_FUNCTION_CALL];
-};
-
-// 获取传感器分辨率
-Arduino.forBlock['ds18b20_get_resolution'] = function(block, generator) {
-  const varName = block.getFieldValue('VAR') || 'ds18b20';
-  const code = `${varName}.getResolution()`;
-  
-  return [code, Arduino.ORDER_FUNCTION_CALL];
-};
-
-// 设置传感器分辨率
-Arduino.forBlock['ds18b20_set_resolution'] = function(block, generator) {
-  const varName = block.getFieldValue('VAR') || 'ds18b20';
-  const resolution = generator.valueToCode(block, 'RESOLUTION', Arduino.ORDER_ATOMIC);
-  
-  return `${varName}.setResolution(${resolution});\n`;
-};
-
-// 获取传感器电源模式
-Arduino.forBlock['ds18b20_get_power_mode'] = function(block, generator) {
-  const varName = block.getFieldValue('VAR') || 'ds18b20';
-  const code = `${varName}.getPowerMode()`;
-  
-  return [code, Arduino.ORDER_FUNCTION_CALL];
-};
-
-// 进行温度转换
-Arduino.forBlock['ds18b20_do_conversion'] = function(block, generator) {
-  const varName = block.getFieldValue('VAR') || 'ds18b20';
-  
-  return `${varName}.doConversion();\n`;
-};
-
-// 获取连接的设备数量
-Arduino.forBlock['ds18b20_get_number_of_devices'] = function(block, generator) {
-  const varName = block.getFieldValue('VAR') || 'ds18b20';
-  const code = `${varName}.getNumberOfDevices()`;
-  
-  return [code, Arduino.ORDER_FUNCTION_CALL];
-};
-
-// 选择下一个传感器
-Arduino.forBlock['ds18b20_select_next'] = function(block, generator) {
-  const varName = block.getFieldValue('VAR') || 'ds18b20';
-  const code = `${varName}.selectNext()`;
-  
-  return [code, Arduino.ORDER_FUNCTION_CALL];
-};
-
-// 选择下一个触发报警的传感器
-Arduino.forBlock['ds18b20_select_next_alarm'] = function(block, generator) {
-  const varName = block.getFieldValue('VAR') || 'ds18b20';
-  const code = `${varName}.selectNextAlarm()`;
-  
-  return [code, Arduino.ORDER_FUNCTION_CALL];
-};
-
-// 重置传感器搜索
-Arduino.forBlock['ds18b20_reset_search'] = function(block, generator) {
-  const varName = block.getFieldValue('VAR') || 'ds18b20';
-  
-  return `${varName}.resetSearch();\n`;
-};
-
-// 获取设备型号代码
-Arduino.forBlock['ds18b20_get_family_code'] = function(block, generator) {
-  const varName = block.getFieldValue('VAR') || 'ds18b20';
-  const code = `${varName}.getFamilyCode()`;
-  
-  return [code, Arduino.ORDER_FUNCTION_CALL];
-};
-
-// 获取设备地址
-Arduino.forBlock['ds18b20_get_address'] = function(block, generator) {
-  const varName = block.getFieldValue('VAR') || 'ds18b20';
-  const addrVarName = generator.nameDB_.getDistinctName('ds18b20Address', 'Variable');
-  
-  generator.addVariable(`uint8_t ${addrVarName}[8]`, `uint8_t ${addrVarName}[8]`);
-  
-  return `${varName}.getAddress(${addrVarName});\n`;
-};
-
-// 简化版读取温度（摄氏度）- 自动创建传感器对象
-Arduino.forBlock['ds18b20_simple_read_temp_c'] = function(block, generator) {
-  const pin = generator.valueToCode(block, 'PIN', Arduino.ORDER_ATOMIC);
-  const varName = generator.nameDB_.getDistinctName('tempSensor', 'Variable');
-  
-  generator.addLibrary('#include <DS18B20.h>', '#include <DS18B20.h>');
-  generator.addVariable(`DS18B20 ${varName}`, `DS18B20 ${varName}(${pin})`);
-  
-  const code = `${varName}.getTempC()`;
-  
-  return [code, Arduino.ORDER_FUNCTION_CALL];
-};
-
-// 简化版读取温度（华氏度）- 自动创建传感器对象
-Arduino.forBlock['ds18b20_simple_read_temp_f'] = function(block, generator) {
-  const pin = generator.valueToCode(block, 'PIN', Arduino.ORDER_ATOMIC);
-  const varName = generator.nameDB_.getDistinctName('tempSensor', 'Variable');
-  
-  generator.addLibrary('#include <DS18B20.h>', '#include <DS18B20.h>');
-  generator.addVariable(`DS18B20 ${varName}`, `DS18B20 ${varName}(${pin})`);
-  
-  const code = `${varName}.getTempF()`;
-  
-  return [code, Arduino.ORDER_FUNCTION_CALL];
+    return [functionName + '(' + index + ')', Arduino.ORDER_ATOMIC];
 };

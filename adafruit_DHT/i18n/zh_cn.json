@@ -16,12 +16,48 @@
     ]
 },
 "dht_read_temperature": {
-    "message0": "从 DHT 传感器读取温度 (℃)"
+    "message0": "从 DHT %1 传感器 引脚 %2 读取温度 (℃)",
+    "args0": [
+        {
+            "options": [
+                ["DHT11", "DHT11"],
+                ["DHT22", "DHT22"],
+                ["DHT21", "DHT21"]
+            ]
+        },
+        {
+            "options": "${board.digitalPins}"
+        }
+    ]
 },
 "dht_read_humidity": {
-    "message0": "从 DHT 传感器读取湿度 (%)"
+    "message0": "从 DHT %1 传感器 引脚 %2 读取湿度 (%)",
+    "args0": [
+        {
+            "options": [
+                ["DHT11", "DHT11"],
+                ["DHT22", "DHT22"],
+                ["DHT21", "DHT21"]
+            ]
+        },
+        {
+            "options": "${board.digitalPins}"
+        }
+    ]
 },
 "dht_read_success": {
-    "message0": "DHT 传感器读取成功"
+    "message0": "DHT %1 传感器 引脚 %2 读取成功",
+    "args0": [
+        {
+            "options": [
+                ["DHT11", "DHT11"],
+                ["DHT22", "DHT22"],
+                ["DHT21", "DHT21"]
+            ]
+        },
+        {
+            "options": "${board.digitalPins}"
+        }
+    ]
 }
 }
