@@ -1,7 +1,6 @@
-
 {
   "kind": "category",
-  "name": "AGS02MA传感器",
+  "name": "AGS02MA",
   "contents": [
     {
       "kind": "block",
@@ -9,19 +8,117 @@
     },
     {
       "kind": "block",
-      "type": "ags02ma_firmware_version"
+      "type": "ags02ma_read_simple",
+      "fields": {
+        "UNIT": "PPB"
+      }
     },
     {
       "kind": "block",
-      "type": "ags02ma_gas_resistance"
+      "type": "ags02ma_read_tvoc_ppb"
     },
     {
       "kind": "block",
-      "type": "ags02ma_tvoc"
+      "type": "ags02ma_read_tvoc_ugm3"
     },
     {
       "kind": "block",
-      "type": "ags02ma_print_details"
+      "type": "ags02ma_reset"
+    },
+    {
+      "kind": "label",
+      "text": "常用程序段"
+    },
+    {
+      "kind": "block",
+      "type": "text_print",
+      "inputs": {
+        "TEXT": {
+          "block": {
+            "type": "text_join",
+            "inputs": {
+              "ADD0": {
+                "block": {
+                  "type": "text",
+                  "fields": {
+                    "TEXT": "TVOC浓度: "
+                  }
+                }
+              },
+              "ADD1": {
+                "block": {
+                  "type": "text_join",
+                  "inputs": {
+                    "ADD0": {
+                      "block": {
+                        "type": "ags02ma_read_simple",
+                        "fields": {
+                          "UNIT": "PPB"
+                        }
+                      }
+                    },
+                    "ADD1": {
+                      "block": {
+                        "type": "text",
+                        "fields": {
+                          "TEXT": " PPB"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "controls_if",
+      "inputs": {
+        "IF0": {
+          "block": {
+            "type": "logic_compare",
+            "fields": {
+              "OP": "GT"
+            },
+            "inputs": {
+              "A": {
+                "block": {
+                  "type": "ags02ma_read_simple",
+                  "fields": {
+                    "UNIT": "PPB"
+                  }
+                }
+              },
+              "B": {
+                "block": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 500
+                  }
+                }
+              }
+            }
+          }
+        },
+        "DO0": {
+          "block": {
+            "type": "text_print",
+            "inputs": {
+              "TEXT": {
+                "block": {
+                  "type": "text",
+                  "fields": {
+                    "TEXT": "空气质量较差，TVOC浓度过高！"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   ]
 }

@@ -1,31 +1,41 @@
-
 {
   "name": "@aily-project/lib-ags02ma",
-  "nickname": "AGS02MA",
-  "author": "adafruit",
-  "description": "基于Adafruit_AGS02MA.h库的气体传感器支持库，可用于Arduino UNO、MEGA、ESP8266、ESP32等开发板",
-  "version": "0.0.1",
+  "nickname": "AGS02MA TVOC传感器",
+  "author": "aily Project",
+  "description": "AGS02MA TVOC气体传感器控制库，支持自动初始化和多种读取模式，适用于Arduino、ESP32等开发板",
+  "version": "0.1.0",
   "compatibility": {
     "core": [
       "arduino:avr",
       "esp32:esp32",
-      "esp8266:esp8266"
+      "esp32:esp32c3",
+      "esp32:esp32s3",
+      "esp8266:esp8266",
+      "renesas_uno:minima",
+      "renesas_uno:unor4wifi"
     ],
-    "voltage": [
-      3.3,
-      5
-    ]
+    "voltage": [3.3, 5]
   },
   "keywords": [
+    "aily",
+    "blockly",
     "ags02ma",
+    "TVOC传感器",
+    "AGS02MA",
     "gas-sensor",
-    "Adafruit",
+    "气体传感器",
+    "空气质量",
     "TVOC",
-    "gas resistance"
+    "i2c",
+    "ags02ma_init",
+    "ags02ma_read_tvoc_ppb",
+    "ags02ma_read_tvoc_ugm3",
+    "ags02ma_read_simple",
+    "ags02ma_reset"
   ],
   "scripts": {},
   "dependencies": {},
   "devDependencies": {},
-  "tested": false,
-  "tester": ""
+  "tested": true,
+  "tester": "openjumper"
 }
