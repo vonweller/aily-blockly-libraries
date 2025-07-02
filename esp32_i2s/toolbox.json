@@ -1,0 +1,130 @@
+{
+    "kind": "category",
+    "name": "ESP32 I2S",
+    "contents": [
+        {
+            "kind": "label",
+            "text": "简化使用"
+        },
+        {
+            "kind": "block",
+            "type": "esp32_i2s_simple_init"
+        },
+        {
+            "kind": "block",
+            "type": "esp32_i2s_simple_detect",
+            "inputs": {
+                "THRESHOLD": {
+                    "shadow": {
+                        "type": "math_number",
+                        "fields": {
+                            "NUM": 1000
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "kind": "block",
+            "type": "esp32_i2s_simple_level"
+        },
+        {
+            "kind": "sep"
+        },
+        {
+            "kind": "label",
+            "text": "高级控制"
+        },
+        {
+            "kind": "block",
+            "type": "esp32_i2s_init"
+        },
+        {
+            "kind": "block",
+            "type": "esp32_i2s_begin",
+            "fields": {
+                "OBJECT": "microphone"
+            }
+        },
+        {
+            "kind": "block",
+            "type": "esp32_i2s_read_samples",
+            "fields": {
+                "OBJECT": "microphone"
+            }
+        },
+        {
+            "kind": "sep"
+        },
+        {
+            "kind": "label",
+            "text": "音频分析"
+        },
+        {
+            "kind": "block",
+            "type": "esp32_i2s_get_level",
+            "fields": {
+                "OBJECT": "microphone"
+            }
+        },
+        {
+            "kind": "block",
+            "type": "esp32_i2s_sound_detected",
+            "fields": {
+                "OBJECT": "microphone"
+            },
+            "inputs": {
+                "THRESHOLD": {
+                    "shadow": {
+                        "type": "math_number",
+                        "fields": {
+                            "NUM": 1000
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "kind": "block",
+            "type": "esp32_i2s_get_quality",
+            "fields": {
+                "OBJECT": "microphone"
+            }
+        },
+        {
+            "kind": "block",
+            "type": "esp32_i2s_get_freq_energy",
+            "fields": {
+                "OBJECT": "microphone"
+            }
+        },
+        {
+            "kind": "block",
+            "type": "esp32_i2s_get_snr",
+            "fields": {
+                "OBJECT": "microphone"
+            }
+        },
+        {
+            "kind": "sep"
+        },
+        {
+            "kind": "label",
+            "text": "状态检查"
+        },
+        {
+            "kind": "block",
+            "type": "esp32_i2s_is_ready",
+            "fields": {
+                "OBJECT": "microphone"
+            }
+        },
+        {
+            "kind": "block",
+            "type": "esp32_i2s_calibrate",
+            "fields": {
+                "OBJECT": "microphone"
+            }
+        }
+    ]
+}
