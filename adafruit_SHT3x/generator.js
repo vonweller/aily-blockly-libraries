@@ -10,8 +10,8 @@ Arduino.forBlock['sht31_init'] = function (block, generator) {
     generator.addObject('Adafruit_SHT31 sht31 = Adafruit_SHT31();', 'Adafruit_SHT31 sht31 = Adafruit_SHT31();');
 
     // 添加初始化代码到setup
-    const initCode = `  if (!sht31.begin(${address})) {
-    Serial.println("找不到SHT31传感器!");
+    const initCode = `if (!sht31.begin(${address})) {
+    Serial.println("SHT31 sensor not found!");
   }`;
     generator.addSetupBegin('sht31_init', initCode);
 
@@ -56,8 +56,8 @@ Arduino.forBlock['sht31_simple_read'] = function (block, generator) {
     generator.addObject('Adafruit_SHT31 sht31 = Adafruit_SHT31();', 'Adafruit_SHT31 sht31 = Adafruit_SHT31();');
 
     // 自动初始化（简化版本）
-    const initCode = `  if (!sht31.begin(0x44)) {
-    Serial.println("找不到SHT31传感器!");
+    const initCode = `if (!sht31.begin(0x44)) {
+    Serial.println("SHT31 sensor not found!");
   }`;
     generator.addSetupBegin('sht31_init', initCode);
 
