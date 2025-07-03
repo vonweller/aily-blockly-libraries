@@ -19,45 +19,6 @@
         "tooltip": "初始化SHT3x温湿度传感器，选择I2C地址"
     },
     {
-        "type": "sht31_read_temperature",
-        "message0": "SHT3x读取温度(°C)",
-        "output": "Number",
-        "colour": "#4CAF50",
-        "tooltip": "读取SHT3x传感器的温度值，返回摄氏度"
-    },
-    {
-        "type": "sht31_read_humidity",
-        "message0": "SHT3x读取湿度(%)",
-        "output": "Number",
-        "colour": "#4CAF50",
-        "tooltip": "读取SHT3x传感器的湿度值，返回百分比"
-    },
-    {
-        "type": "sht31_read_both",
-        "message0": "SHT3x读取 温度变量%1 湿度变量%2",
-        "args0": [
-            {
-                "type": "field_variable",
-                "name": "TEMP_VAR",
-                "variable": "temperature",
-                "variableTypes": ["Number"],
-                "defaultType": "Number"
-            },
-            {
-                "type": "field_variable",
-                "name": "HUM_VAR", 
-                "variable": "humidity",
-                "variableTypes": ["Number"],
-                "defaultType": "Number"
-            }
-        ],
-        "inputsInline": true,
-        "previousStatement": null,
-        "nextStatement": null,
-        "colour": "#4CAF50",
-        "tooltip": "同时读取温度和湿度值到指定变量中"
-    },
-    {
         "type": "sht31_heater_control",
         "message0": "SHT3x加热器%1",
         "args0": [

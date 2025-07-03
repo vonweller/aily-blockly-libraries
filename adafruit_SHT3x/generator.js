@@ -18,41 +18,6 @@ Arduino.forBlock['sht31_init'] = function (block, generator) {
     return '';
 };
 
-Arduino.forBlock['sht31_read_temperature'] = function (block, generator) {
-    // 确保已初始化
-    generator.addLibrary('#include <Wire.h>', '#include <Wire.h>');
-    generator.addLibrary('#include "Adafruit_SHT31.h"', '#include "Adafruit_SHT31.h"');
-    generator.addObject('Adafruit_SHT31 sht31 = Adafruit_SHT31();', 'Adafruit_SHT31 sht31 = Adafruit_SHT31();');
-
-    return ['sht31.readTemperature()', generator.ORDER_ATOMIC];
-};
-
-Arduino.forBlock['sht31_read_humidity'] = function (block, generator) {
-    // 确保已初始化
-    generator.addLibrary('#include <Wire.h>', '#include <Wire.h>');
-    generator.addLibrary('#include "Adafruit_SHT31.h"', '#include "Adafruit_SHT31.h"');
-    generator.addObject('Adafruit_SHT31 sht31 = Adafruit_SHT31();', 'Adafruit_SHT31 sht31 = Adafruit_SHT31();');
-
-    return ['sht31.readHumidity()', generator.ORDER_ATOMIC];
-};
-
-Arduino.forBlock['sht31_read_both'] = function (block, generator) {
-    const tempVar = generator.nameDB_.getName(block.getFieldValue('TEMP_VAR'), 'VARIABLE');
-    const humVar = generator.nameDB_.getName(block.getFieldValue('HUM_VAR'), 'VARIABLE');
-    addVariableToToolbox(block, tempVar);
-    addVariableToToolbox(block, humVar);
-    generator.addVariable(tempVar, 'float ' + tempVar + ';');
-    generator.addVariable(humVar, 'float ' + humVar + ';');
-    // 确保已初始化
-    generator.addLibrary('#include <Wire.h>', '#include <Wire.h>');
-    generator.addLibrary('#include "Adafruit_SHT31.h"', '#include "Adafruit_SHT31.h"');
-    generator.addObject('Adafruit_SHT31 sht31 = Adafruit_SHT31();', 'Adafruit_SHT31 sht31 = Adafruit_SHT31();');
-
-    const code = `${tempVar} = sht31.readTemperature();\n${humVar} = sht31.readHumidity();`;
-
-    return code + '\n';
-};
-
 Arduino.forBlock['sht31_heater_control'] = function (block, generator) {
     const state = block.getFieldValue('STATE');
 
@@ -94,7 +59,7 @@ Arduino.forBlock['sht31_simple_read'] = function (block, generator) {
     const initCode = `  if (!sht31.begin(0x44)) {
     Serial.println("找不到SHT31传感器!");
   }`;
-    generator.addSetupBegin('sht31_auto_init', initCode);
+    generator.addSetupBegin('sht31_init', initCode);
 
     if (type === 'temperature') {
         return ['sht31.readTemperature()', generator.ORDER_ATOMIC];
