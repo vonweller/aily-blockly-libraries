@@ -48,8 +48,7 @@ Arduino.forBlock['sht31_read_both'] = function (block, generator) {
     generator.addLibrary('#include "Adafruit_SHT31.h"', '#include "Adafruit_SHT31.h"');
     generator.addObject('Adafruit_SHT31 sht31 = Adafruit_SHT31();', 'Adafruit_SHT31 sht31 = Adafruit_SHT31();');
 
-    const code = `${tempVar} = sht31.readTemperature();
-${humVar} = sht31.readHumidity();`;
+    const code = `${tempVar} = sht31.readTemperature();\n${humVar} = sht31.readHumidity();`;
 
     return code + '\n';
 };
