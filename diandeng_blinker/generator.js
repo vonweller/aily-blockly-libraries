@@ -140,7 +140,7 @@ Arduino.forBlock['blinker_slider'] = function (block, generator) {
   let statements = generator.statementToCode(block, 'NAME');
 
   // 创建滑块对象变量名
-  let varName = 'Slider_' + key.replace(/-/g, '_');
+  let varName = 'Blinker_' + key.replace(/-/g, '_');
 
   // 添加滑块组件对象
   generator.addVariable(varName, 'BlinkerSlider ' + varName + '("' + key + '");');
@@ -171,7 +171,7 @@ Arduino.forBlock['blinker_colorpicker'] = function (block, generator) {
   let statements = generator.statementToCode(block, 'NAME');
 
   // 创建RGB对象变量名
-  let varName = 'RGB_' + key.replace(/-/g, '_');
+  let varName = 'Blinker_' + key.replace(/-/g, '_');
 
   // 添加RGB组件对象
   generator.addVariable(varName, 'BlinkerRGB ' + varName + '("' + key + '");');
@@ -205,7 +205,7 @@ Arduino.forBlock['blinker_joystick'] = function (block, generator) {
   let statements = generator.statementToCode(block, 'NAME');
 
   // 创建摇杆对象变量名
-  let varName = 'Joystick_' + key.replace(/-/g, '_');
+  let varName = 'Blinker_' + key.replace(/-/g, '_');
 
   // 添加摇杆组件对象
   generator.addVariable(varName, 'BlinkerJoystick ' + varName + '("' + key + '");');
@@ -230,6 +230,39 @@ Arduino.forBlock['blinker_joystick_value'] = function (block, generator) {
 
   let code = axis.toLowerCase() + 'Axis';
   return [code, Arduino.ORDER_ATOMIC];
+};
+
+Arduino.forBlock['blinker_chart'] = function (block, generator) {
+  // 获取图表名称
+  let key = block.getFieldValue('KEY');
+  // 获取内部语句块
+  let statements = generator.statementToCode(block, 'NAME');
+  // 创建图表对象变量名
+  let varName = 'Blinker_' + key.replace(/-/g, '_');
+  // 添加图表组件对象
+  generator.addVariable(varName, 'BlinkerChart ' + varName + '("' +
+    key + '");');
+  // 添加图表回调函数
+  let functionName = 'chart_' + key.replace(/-/g, '_') + '_callback';
+  let functionCode = 'void ' + functionName + '() {\n' +
+    statements +  // 将用户的代码插入到函数中
+    '}\n';
+
+  generator.addFunction(functionName, functionCode);
+  generator.addSetupEnd('chart_' + key, varName + '.attach(' + functionName + ');');
+
+  return '';
+};
+
+Arduino.forBlock['blinker_data_upload'] = function (block, generator) {
+  // 获取图表名称和数据键名
+  let chartKey = block.getFieldValue('CHART');
+  let dataKey = block.getFieldValue('KEY');
+  let value = generator.valueToCode(block, 'VALUE', Arduino.ORDER_ATOMIC) || '0';
+  
+  chartKey = 'Blinker_' + chartKey.replace(/-/g, '_');
+
+  return chartKey + '.upload(' + dataKey + ', ' + value + ');\n';
 };
 
 Arduino.forBlock['blinker_data_handler'] = function (block, generator) {
