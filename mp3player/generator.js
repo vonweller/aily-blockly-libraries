@@ -35,7 +35,7 @@ Arduino.forBlock['gd3800_init'] = function(block, generator) {
   // 根据开发板类型选择不同的串口实现
   if (isESP32Core) {
     // ESP32平台使用HardwareSerial，默认使用UART2
-    generator.addVariable('MP3INIT', `GD3800_Serial mp3(${pinTx}, ${pinRx}, 2);  // ESP32: RX, TX, UART2`);
+    generator.addVariable('MP3INIT', `GD3800_Serial mp3(${pinRx},${pinTx}, 2);  // ESP32: RX, TX, UART2`);
     generator.addSetupBegin('mp3being', 'mp3.begin(9600, SERIAL_8N1, ' + pinRx + ', ' + pinTx + ');  // ESP32串口初始化与引脚指定');
   } else {
     // Arduino平台使用SoftwareSerial
