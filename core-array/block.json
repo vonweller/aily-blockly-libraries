@@ -74,7 +74,8 @@
     "nextStatement": null,
     "helpUrl": "",
     "tooltip": "创建数组初始值，可以动态设置长度和各个值",
-    "extensions": ["array_init_mutator"]
+    "extensions": ["array_init_mutator"],
+    "mutator": "array_init_dynamic_mutator"
   },
   {
     "type": "array_create_with_text",
@@ -86,7 +87,7 @@
       {
         "type": "field_variable",
         "name": "VAR",
-        "variable": "list"
+        "variable": "array"
       },
       {
         "type": "field_dropdown",
@@ -127,16 +128,15 @@
       {
         "type": "field_variable",
         "name": "VAR",
-        "variable": "list"
+        "variable": "array"
       },
       {
         "type": "input_value",
-        "name": "AT",
-        "check": "Number"
+        "name": "AT"
       }
     ],
     "colour": "#03A9F4",
-    "output": "String",
+    "output": "Number",
     "helpUrl": "",
     "tooltip": "返回数组指定位置的值，索引从1开始"
   },
@@ -147,7 +147,7 @@
       {
         "type": "field_variable",
         "name": "VAR",
-        "variable": "list"
+        "variable": "array"
       },
       {
         "type": "input_value",
@@ -173,7 +173,7 @@
       {
         "type": "field_variable",
         "name": "VAR",
-        "variable": "list"
+        "variable": "array"
       }
     ],
     "colour": "#03A9F4",
@@ -191,7 +191,7 @@
       {
         "type": "field_variable",
         "name": "VAR",
-        "variable": "array2d"
+        "variable": "array"
       },
       {
         "type": "field_dropdown",
@@ -239,7 +239,7 @@
       {
         "type": "field_variable",
         "name": "VAR",
-        "variable": "array2d"
+        "variable": "array"
       },
       {
         "type": "input_value",
@@ -265,7 +265,7 @@
       {
         "type": "field_variable",
         "name": "VAR",
-        "variable": "array2d"
+        "variable": "array"
       },
       {
         "type": "input_value",
@@ -296,7 +296,7 @@
       {
         "type": "field_variable",
         "name": "VAR",
-        "variable": "array2d"
+        "variable": "array"
       },
       {
         "type": "field_dropdown",
@@ -319,7 +319,7 @@
       {
         "type": "field_variable",
         "name": "VAR",
-        "variable": "list"
+        "variable": "array"
       },
       {
         "type": "field_dropdown",

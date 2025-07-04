@@ -5,7 +5,7 @@ if (Blockly.Extensions.isRegistered('array_init_mutator')) {
 
 // 数组初始化动态扩展
 Blockly.Extensions.register('array_init_mutator', function() {
-  this.itemCount_ = 3; // 默认3个项目
+  this.itemCount_ = 3; // 默认3个项目，与 block.json 中的 value: 3 保持一致
   
   // 更新块的形状
   this.updateShape_ = function() {
@@ -61,6 +61,84 @@ Blockly.Extensions.register('array_init_mutator', function() {
   });
 });
 
+// 检查并移除已存在的 mutator 扩展注册
+if (Blockly.Extensions.isRegistered('array_init_dynamic_mutator')) {
+  Blockly.Extensions.unregister('array_init_dynamic_mutator');
+}
+
+// 定义 Mutator 来处理序列化
+Blockly.Extensions.registerMutator('array_init_dynamic_mutator', {
+  /**
+   * 将变异状态转换为 DOM 元素
+   */
+  mutationToDom: function () {
+    const container = Blockly.utils.xml.createElement('mutation');
+    container.setAttribute('items', `${this.itemCount_ || 3}`);
+    return container;
+  },
+
+  /**
+   * 从 DOM 元素恢复变异状态
+   */
+  domToMutation: function (xmlElement) {
+    const itemCount = parseInt(xmlElement.getAttribute('items') || '3', 10);
+    this.itemCount_ = itemCount;
+    
+    // 先清理所有现有的 VALUE 输入
+    for (let i = this.inputList.length - 1; i >= 0; i--) {
+      const inputName = this.inputList[i].name;
+      if (inputName && inputName.startsWith('VALUE')) {
+        this.removeInput(inputName);
+      }
+    }
+    
+    // 重新创建正确数量的输入
+    for (let i = 0; i < itemCount; i++) {
+      this.appendValueInput(`VALUE${i}`);
+    }
+    
+    // 更新 LENGTH 字段的值
+    this.setFieldValue(itemCount.toString(), 'LENGTH');
+  },
+
+  /**
+   * 保存额外的状态信息
+   */
+  saveExtraState: function () {
+    return {
+      itemCount: this.itemCount_ || 3,
+    };
+  },
+
+  /**
+   * 加载额外的状态信息
+   */
+  loadExtraState: function (state) {
+    if (typeof state === 'string') {
+      this.domToMutation(Blockly.utils.xml.textToDom(state));
+      return;
+    }
+
+    const itemCount = state['itemCount'] || 3;
+    this.itemCount_ = itemCount;
+    
+    // 先清理所有现有的 VALUE 输入
+    for (let i = this.inputList.length - 1; i >= 0; i--) {
+      const inputName = this.inputList[i].name;
+      if (inputName && inputName.startsWith('VALUE')) {
+        this.removeInput(inputName);
+      }
+    }
+    
+    // 重新创建正确数量的输入
+    for (let i = 0; i < itemCount; i++) {
+      this.appendValueInput(`VALUE${i}`);
+    }
+    
+    this.setFieldValue(itemCount.toString(), 'LENGTH');
+  }
+});
+
 // 创建一维数组（使用项目列表）
 Arduino.forBlock["array_create_with"] = function (block, generator) {
   const { name: varName } = block.workspace.getVariableById(block.getFieldValue("VAR"));
@@ -89,7 +167,7 @@ Arduino.forBlock["array_create_with"] = function (block, generator) {
     
     // 收集该块中的所有值
     for (let i = 0; i < length; i++) {
-      const value = Arduino.valueToCode(itemBlock, "VALUE" + i, Arduino.ORDER_ATOMIC) || (arrayType === "String" ? '""' : "0");
+      const value = generator.valueToCode(itemBlock, "VALUE" + i, Arduino.ORDER_ATOMIC) || (arrayType === "String" ? '""' : "0");
       items.push(value);
     }
     
@@ -108,7 +186,7 @@ Arduino.forBlock["array_create_with"] = function (block, generator) {
     // 处理第一行（来自第一个块）
     let firstRowItems = [];
     for (let i = 0; i < cols; i++) {
-      const value = Arduino.valueToCode(firstBlock, "VALUE" + i, Arduino.ORDER_ATOMIC) || (arrayType === "String" ? '""' : "0");
+      const value = generator.valueToCode(firstBlock, "VALUE" + i, Arduino.ORDER_ATOMIC) || (arrayType === "String" ? '""' : "0");
       firstRowItems.push(value);
     }
     arrayRows.push("{" + firstRowItems.join(", ") + "}");
@@ -120,7 +198,7 @@ Arduino.forBlock["array_create_with"] = function (block, generator) {
         // 使用第二个块的值作为模板，如果超出范围则使用默认值
         let value;
         if (col < parseInt(secondBlock.getFieldValue('LENGTH'))) {
-          value = Arduino.valueToCode(secondBlock, "VALUE" + col, Arduino.ORDER_ATOMIC) || (arrayType === "String" ? '""' : "0");
+          value = generator.valueToCode(secondBlock, "VALUE" + col, Arduino.ORDER_ATOMIC) || (arrayType === "String" ? '""' : "0");
         } else {
           value = arrayType === "String" ? '""' : "0";
         }
@@ -143,7 +221,7 @@ Arduino.forBlock["array_create_with"] = function (block, generator) {
     
     let firstRowItems = [];
     for (let i = 0; i < cols; i++) {
-      const value = Arduino.valueToCode(firstBlock, "VALUE" + i, Arduino.ORDER_ATOMIC) || (arrayType === "String" ? '""' : "0");
+      const value = generator.valueToCode(firstBlock, "VALUE" + i, Arduino.ORDER_ATOMIC) || (arrayType === "String" ? '""' : "0");
       firstRowItems.push(value);
     }
     arrayRows.push("{" + firstRowItems.join(", ") + "}");
@@ -154,7 +232,7 @@ Arduino.forBlock["array_create_with"] = function (block, generator) {
         // 使用第二个块的值作为模板，如果超出范围则使用默认值
         let value;
         if (col < parseInt(secondBlock.getFieldValue('LENGTH'))) {
-          value = Arduino.valueToCode(secondBlock, "VALUE" + col, Arduino.ORDER_ATOMIC) || (arrayType === "String" ? '""' : "0");
+          value = generator.valueToCode(secondBlock, "VALUE" + col, Arduino.ORDER_ATOMIC) || (arrayType === "String" ? '""' : "0");
         } else {
           value = arrayType === "String" ? '""' : "0";
         }
@@ -184,7 +262,7 @@ Arduino.forBlock["array_create_with_text"] = function (block, generator) {
   const arraySize = parseInt(block.getFieldValue("SIZE"));
   
   // 获取初始值，可能来自数组初始化块或文本输入
-  let values = Arduino.valueToCode(block, "VALUES", Arduino.ORDER_ATOMIC);
+  let values = generator.valueToCode(block, "VALUES", Arduino.ORDER_ATOMIC);
   
   // 如果没有连接任何块，提供默认值
   if (!values) {
@@ -202,7 +280,7 @@ Arduino.forBlock["array_create_with_text"] = function (block, generator) {
 // 获取数组元素
 Arduino.forBlock["array_get_index"] = function (block, generator) {
   const { name: varName } = block.workspace.getVariableById(block.getFieldValue("VAR"));
-  const index = Arduino.valueToCode(block, "AT", Arduino.ORDER_ADDITIVE) || "0";
+  const index = generator.valueToCode(block, "AT", Arduino.ORDER_ATOMIC) || "0";
   
   const code = varName + "[" + index + "]";
   return [code, Arduino.ORDER_ATOMIC];
@@ -211,8 +289,8 @@ Arduino.forBlock["array_get_index"] = function (block, generator) {
 // 设置数组元素
 Arduino.forBlock["array_set_index"] = function (block, generator) {
   const { name: varName } = block.workspace.getVariableById(block.getFieldValue("VAR"));
-  const index = Arduino.valueToCode(block, "AT", Arduino.ORDER_ADDITIVE) || "0";
-  const value = Arduino.valueToCode(block, "TO", Arduino.ORDER_ASSIGNMENT) || "0";
+  const index = generator.valueToCode(block, "AT", Arduino.ORDER_ATOMIC) || "0";
+  const value = generator.valueToCode(block, "TO", Arduino.ORDER_ASSIGNMENT) || "0";
   
   return varName + "[" + index + "] = " + value + ";\n";
 };
@@ -241,8 +319,8 @@ Arduino.forBlock["array2_create_with_text"] = function (block, generator) {
 // 获取二维数组元素
 Arduino.forBlock["array2_get_value"] = function (block, generator) {
   const { name: varName } = block.workspace.getVariableById(block.getFieldValue("VAR"));
-  const row = Arduino.valueToCode(block, "ROW", Arduino.ORDER_ADDITIVE) || "0";
-  const col = Arduino.valueToCode(block, "COL", Arduino.ORDER_ADDITIVE) || "0";
+  const row = generator.valueToCode(block, "ROW", Arduino.ORDER_ATOMIC) || "0";
+  const col = generator.valueToCode(block, "COL", Arduino.ORDER_ATOMIC) || "0";
   
   const code = varName + "[" + row + "][" + col + "]";
   return [code, Arduino.ORDER_ATOMIC];
@@ -251,9 +329,9 @@ Arduino.forBlock["array2_get_value"] = function (block, generator) {
 // 设置二维数组元素
 Arduino.forBlock["array2_set_value"] = function (block, generator) {
   const { name: varName } = block.workspace.getVariableById(block.getFieldValue("VAR"));
-  const row = Arduino.valueToCode(block, "ROW", Arduino.ORDER_ADDITIVE) || "0";
-  const col = Arduino.valueToCode(block, "COL", Arduino.ORDER_ADDITIVE) || "0";
-  const value = Arduino.valueToCode(block, "VALUE", Arduino.ORDER_ASSIGNMENT) || "0";
+  const row = generator.valueToCode(block, "ROW", Arduino.ORDER_ATOMIC) || "0";
+  const col = generator.valueToCode(block, "COL", Arduino.ORDER_ATOMIC) || "0";
+  const value = generator.valueToCode(block, "VALUE", Arduino.ORDER_ASSIGNMENT) || "0";
   
   return varName + "[" + row + "][" + col + "] = " + value + ";\n";
 };
