@@ -246,7 +246,7 @@
   },
   {
     "type": "blinker_data_handler",
-    "message0": "Blinker数据处理 %1",
+    "message0": "数据处理 %1",
     "args0": [
       {
         "type": "input_statement",
@@ -255,6 +255,50 @@
     ],
     "colour": "#03A9F4",
     "inputsInline": false
+  },
+  {
+    "type": "blinker_chart",
+    "message0": "图表组件 键名 %1 上传数据时执行",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "KEY",
+        "text": "chart-"
+      }
+    ],
+    "message1": "%1",
+    "args1": [
+      {
+        "type": "input_statement",
+        "name": "NAME"
+      }
+    ],
+    "colour": "#03A9F4",
+    "inputsInline": false
+  },
+  {
+    "type": "blinker_data_upload",
+    "message0": "图表 %1 上传数据键名 %2 值 %3",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "CHART",
+        "text": "chart-"
+      },
+      {
+        "type": "field_input",
+        "name": "KEY",
+        "text": "data-"
+      },
+      {
+        "type": "input_value",
+        "name": "VALUE"
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#03A9F4"
   },
   {
     "type": "blinker_log",
