@@ -1,0 +1,136 @@
+{
+    "kind": "category",
+    "name": "ESP-NOW通信",
+    "icon": "fa-light fa-signal-stream",
+    "colour": "#4CAF50",
+    "contents": [
+        {
+            "kind": "label",
+            "text": "串口模式(点对点)"
+        },
+        {
+            "kind": "block",
+            "type": "espnow_serial_init",
+            "inputs": {
+                "PEER_MAC": {
+                    "shadow": {
+                        "type": "text",
+                        "fields": {
+                            "TEXT": "F4:12:FA:40:64:4C"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "kind": "block",
+            "type": "espnow_serial_available"
+        },
+        {
+            "kind": "block",
+            "type": "espnow_serial_read"
+        },
+        {
+            "kind": "block",
+            "type": "espnow_serial_write",
+            "inputs": {
+                "DATA": {
+                    "shadow": {
+                        "type": "text",
+                        "fields": {
+                            "TEXT": "Hello ESP-NOW!"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "kind": "sep"
+        },
+        {
+            "kind": "label",
+            "text": "广播模式"
+        },
+        {
+            "kind": "block",
+            "type": "espnow_broadcast_master_init"
+        },
+        {
+            "kind": "block",
+            "type": "espnow_broadcast_send",
+            "inputs": {
+                "MESSAGE": {
+                    "shadow": {
+                        "type": "text",
+                        "fields": {
+                            "TEXT": "Broadcast Message"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "kind": "block",
+            "type": "espnow_broadcast_slave_init"
+        },
+        {
+            "kind": "sep"
+        },
+        {
+            "kind": "label",
+            "text": "网络模式"
+        },
+        {
+            "kind": "block",
+            "type": "espnow_network_init"
+        },
+        {
+            "kind": "block",
+            "type": "espnow_network_send_data",
+            "inputs": {
+                "DATA": {
+                    "shadow": {
+                        "type": "math_number",
+                        "fields": {
+                            "NUM": 100
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "kind": "block",
+            "type": "espnow_is_master"
+        },
+        {
+            "kind": "sep"
+        },
+        {
+            "kind": "label",
+            "text": "数据接收回调"
+        },
+        {
+            "kind": "block",
+            "type": "espnow_on_receive"
+        },
+        {
+            "kind": "block",
+            "type": "espnow_get_received_data"
+        },
+        {
+            "kind": "block",
+            "type": "espnow_get_sender_mac"
+        },
+        {
+            "kind": "sep"
+        },
+        {
+            "kind": "label",
+            "text": "工具函数"
+        },
+        {
+            "kind": "block",
+            "type": "espnow_get_mac_address"
+        }
+    ]
+}
