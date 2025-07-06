@@ -9,11 +9,10 @@ Arduino.forBlock['dht_init'] = function (block, generator) {
     var dhtDef = 'DHT dht(' + pin + ', ' + dht_type + ');';
     generator.addVariable('dht_def', dhtDef);
 
-    let code = '';
-    code = 'dht.begin();';
     // 在setup中初始化DHT
-    //generator.addSetupBegin('dht_begin', 'dht.begin();');
-    return code + '\n';
+    generator.addSetupBegin('dht_begin', 'dht.begin();');
+
+    return '';
 };
 
 Arduino.forBlock['dht_read_temperature'] = function (block, generator) {
