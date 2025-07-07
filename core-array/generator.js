@@ -1,3 +1,161 @@
+// 检查并移除已存在的数组动态扩展注册
+if (Blockly.Extensions.isRegistered('array_dynamic_extension')) {
+  Blockly.Extensions.unregister('array_dynamic_extension');
+}
+
+Blockly.Extensions.register('array_dynamic_extension', function () {
+  // 最小输入数量
+  this.minInputs = 2;
+  // 输入项计数
+  this.itemCount = this.minInputs;
+
+  // 添加所有动态块需要的方法
+  this.findInputIndexForConnection = function (connection) {
+    if (!connection.targetConnection || connection.targetBlock()?.isInsertionMarker()) {
+      return null;
+    }
+
+    let connectionIndex = -1;
+    for (let i = 0; i < this.inputList.length; i++) {
+      if (this.inputList[i].connection == connection) {
+        connectionIndex = i;
+      }
+    }
+
+    if (connectionIndex == this.inputList.length - 1) {
+      return this.inputList.length + 1;
+    }
+
+    const nextInput = this.inputList[connectionIndex + 1];
+    const nextConnection = nextInput?.connection?.targetConnection;
+    if (nextConnection && !nextConnection.getSourceBlock().isInsertionMarker()) {
+      return connectionIndex + 1;
+    }
+
+    return null;
+  };
+
+  this.onPendingConnection = function (connection) {
+    const insertIndex = this.findInputIndexForConnection(connection);
+    if (insertIndex == null) {
+      return;
+    }
+
+    this.appendValueInput(`INPUT${Blockly.utils.idGenerator.genUid()}`);
+    this.moveNumberedInputBefore(this.inputList.length - 1, insertIndex);
+  };
+
+  this.finalizeConnections = function () {
+    const targetConns = this.removeUnnecessaryEmptyConns(
+      this.inputList.map((i) => i.connection?.targetConnection),
+    );
+
+    this.tearDownBlock();
+    this.addItemInputs(targetConns);
+    this.itemCount = targetConns.length;
+  };
+
+  this.tearDownBlock = function () {
+    // 只删除动态添加的输入（INPUT2及以后）
+    for (let i = this.inputList.length - 1; i >= 0; i--) {
+      const inputName = this.inputList[i].name;
+      // 保留原始的INPUT0和INPUT1，只删除动态添加的
+      if (inputName.startsWith('INPUT') && inputName !== 'INPUT0' && inputName !== 'INPUT1') {
+        this.removeInput(inputName);
+      }
+    }
+  };
+
+  this.removeUnnecessaryEmptyConns = function (targetConns) {
+    const filteredConns = [...targetConns];
+    for (let i = filteredConns.length - 1; i >= 0; i--) {
+      if (!filteredConns[i] && filteredConns.length > this.minInputs) {
+        filteredConns.splice(i, 1);
+      }
+    }
+    return filteredConns;
+  };
+
+  this.addItemInputs = function (targetConns) {
+    // 从INPUT2开始添加动态输入
+    for (let i = this.minInputs; i < targetConns.length; i++) {
+      const inputName = `INPUT${i}`;
+      const input = this.appendValueInput(inputName);
+      input.setCheck(["Array", "String"]);
+      const targetConn = targetConns[i];
+      if (targetConn) input.connection?.connect(targetConn);
+    }
+  };
+
+  this.isCorrectlyFormatted = function () {
+    // 检查动态输入是否正确格式化
+    let dynamicInputIndex = this.minInputs;
+    for (let i = 0; i < this.inputList.length; i++) {
+      const inputName = this.inputList[i].name;
+      if (inputName.startsWith('INPUT') && inputName !== 'INPUT0' && inputName !== 'INPUT1') {
+        if (inputName !== `INPUT${dynamicInputIndex}`) return false;
+        dynamicInputIndex++;
+      }
+    }
+    return true;
+  };
+});
+
+// 检查并移除已存在的数组动态变异器注册
+if (Blockly.Extensions.isRegistered('array_dynamic_mutator')) {
+  Blockly.Extensions.unregister('array_dynamic_mutator');
+}
+
+// 定义数组动态变异器来处理序列化
+Blockly.Extensions.registerMutator('array_dynamic_mutator', {
+  mutationToDom: function () {
+    if (!this.isDeadOrDying()) {
+      Blockly.Events.disable();
+      this.finalizeConnections();
+      if (this instanceof Blockly.BlockSvg) this.initSvg();
+      Blockly.Events.enable();
+    }
+    const container = Blockly.utils.xml.createElement('mutation');
+    container.setAttribute('items', `${this.itemCount}`);
+    return container;
+  },
+
+  domToMutation: function (xmlElement) {
+    this.itemCount = Math.max(
+      parseInt(xmlElement.getAttribute('items') || '0', 10),
+      this.minInputs,
+    );
+    for (let i = this.minInputs; i < this.itemCount; i++) {
+      const input = this.appendValueInput(`INPUT${i}`);
+      input.setCheck(["Array", "String"]);
+    }
+  },
+
+  saveExtraState: function () {
+    if (!this.isDeadOrDying() && !this.isCorrectlyFormatted()) {
+      Blockly.Events.disable();
+      this.finalizeConnections();
+      if (this instanceof Blockly.BlockSvg) this.initSvg();
+      Blockly.Events.enable();
+    }
+    return {
+      itemCount: this.itemCount,
+    };
+  },
+
+  loadExtraState: function (state) {
+    if (typeof state === 'string') {
+      this.domToMutation(Blockly.utils.xml.textToDom(state));
+      return;
+    }
+    this.itemCount = state['itemCount'] || 0;
+    for (let i = this.minInputs; i < this.itemCount; i++) {
+      const input = this.appendValueInput(`INPUT${i}`);
+      input.setCheck(["Array", "String"]);
+    }
+  }
+});
+
 // 避免重复加载扩展
 if (Blockly.Extensions.isRegistered('array_init_mutator')) {
   Blockly.Extensions.unregister('array_init_mutator');
@@ -5,16 +163,24 @@ if (Blockly.Extensions.isRegistered('array_init_mutator')) {
 
 // 数组初始化动态扩展
 Blockly.Extensions.register('array_init_mutator', function() {
-  this.itemCount_ = 3; // 默认3个项目，与 block.json 中的 value: 3 保持一致
+  this.itemCount_ = 3; // 默认3个项目
   
   // 更新块的形状
   this.updateShape_ = function() {
-    const length = parseInt(this.getFieldValue('LENGTH')) || 3;
+    // 获取LENGTH输入连接的值
+    let length = 3; // 默认长度
+    const lengthBlock = this.getInputTargetBlock('LENGTH');
+    if (lengthBlock && lengthBlock.type === 'math_number') {
+      const lengthValue = lengthBlock.getFieldValue('NUM');
+      if (lengthValue && !isNaN(parseInt(lengthValue))) {
+        length = Math.max(1, Math.min(20, parseInt(lengthValue))); // 限制在1-20之间
+      }
+    }
     
     // 如果长度改变，更新项目数量
     if (this.itemCount_ !== length) {
       // 移除多余的输入
-      for (let i = length; i < this.itemCount_; i++) {
+      for (let i = length; i < Math.max(this.itemCount_, 20); i++) {
         if (this.getInput(`VALUE${i}`)) {
           this.removeInput(`VALUE${i}`);
         }
@@ -48,17 +214,30 @@ Blockly.Extensions.register('array_init_mutator', function() {
     }
   };
   
-  // 监听长度字段的变化
-  this.getField('LENGTH').setValidator((newValue) => {
-    const length = parseInt(newValue) || 3;
-    if (length >= 1 && length <= 20) {
-      setTimeout(() => {
-        this.updateShape_();
-      }, 0);
-      return newValue;
+  // 重写 onchange 方法来监听变化
+  const originalOnChange = this.onchange;
+  this.onchange = function(event) {
+    if (originalOnChange) {
+      originalOnChange.call(this, event);
     }
-    return null;
-  });
+    
+    // 只响应字段变化事件
+    if (event && event.type === Blockly.Events.BLOCK_CHANGE && 
+        event.blockId && this.workspace) {
+      const changedBlock = this.workspace.getBlockById(event.blockId);
+      const lengthBlock = this.getInputTargetBlock('LENGTH');
+      
+      // 检查变化的块是否是我们LENGTH输入连接的块
+      if (changedBlock && lengthBlock && changedBlock.id === lengthBlock.id) {
+        setTimeout(() => {
+          this.updateShape_();
+        }, 50);
+      }
+    }
+  };
+  
+  // 初始化形状
+  this.updateShape_();
 });
 
 // 检查并移除已存在的 mutator 扩展注册
@@ -96,9 +275,6 @@ Blockly.Extensions.registerMutator('array_init_dynamic_mutator', {
     for (let i = 0; i < itemCount; i++) {
       this.appendValueInput(`VALUE${i}`);
     }
-    
-    // 更新 LENGTH 字段的值
-    this.setFieldValue(itemCount.toString(), 'LENGTH');
   },
 
   /**
@@ -134,8 +310,6 @@ Blockly.Extensions.registerMutator('array_init_dynamic_mutator', {
     for (let i = 0; i < itemCount; i++) {
       this.appendValueInput(`VALUE${i}`);
     }
-    
-    this.setFieldValue(itemCount.toString(), 'LENGTH');
   }
 });
 
@@ -163,7 +337,30 @@ function isInFunctionScope(block) {
   return false;
 }
 
-// 创建一维数组（使用项目列表）
+// 帮助函数：获取数据类型的默认值
+function getDefaultValue(arrayType) {
+  switch (arrayType) {
+    case "String":
+      return '""';
+    case "char":
+    case "unsigned char":
+      return "'\\0'";
+    case "float":
+    case "double":
+      return "0.0";
+    case "int":
+    case "unsigned int":
+    case "long":
+    case "unsigned long":
+    case "short":
+    case "unsigned short":
+    case "byte":
+    default:
+      return "0";
+  }
+}
+
+// 创建数组（支持动态多输入，可生成一维/二维数组）
 Arduino.forBlock["array_create_with"] = function (block, generator) {
   const { name: varName } = block.workspace.getVariableById(block.getFieldValue("VAR"));
   const arrayType = block.getFieldValue("TYPE");
@@ -171,176 +368,205 @@ Arduino.forBlock["array_create_with"] = function (block, generator) {
   // 判断是否在函数作用域内
   const isLocal = isInFunctionScope(block);
   
-  // 收集所有连接的 array_create_with_item 块
-  let arrayBlocks = [];
-  let currentBlock = block.getInputTargetBlock("STACK");
+  // 收集所有连接的输入值
+  let inputValues = [];
   
-  while (currentBlock && currentBlock.type === "array_create_with_item") {
-    arrayBlocks.push(currentBlock);
-    currentBlock = currentBlock.getNextBlock();
+  // 遍历所有输入连接
+  for (let i = 0; i < block.inputList.length; i++) {
+    const input = block.inputList[i];
+    if (input.type === Blockly.INPUT_VALUE && input.name.startsWith('INPUT')) {
+      const value = generator.valueToCode(block, input.name, Arduino.ORDER_ATOMIC);
+      if (value && value !== '""') {
+        inputValues.push(value);
+      }
+    }
   }
   
-  // 根据连接的块数量决定是一维还是二维数组
-  if (arrayBlocks.length === 0) {
-    // 没有连接任何块，创建默认一维数组
-    const defaultValue = arrayType === "String" ? '""' : "0";
-    const arrayDeclaration = arrayType + " " + varName + "[3] = {" + defaultValue + ", " + defaultValue + ", " + defaultValue + "};";
+  // 根据输入数量和类型决定如何创建数组
+  if (inputValues.length === 0) {
+    // 没有连接任何块，使用用户选择的类型和长度创建默认数组
+    const lengthValue = block.getFieldValue("LENGTH");
+    const arrayLength = lengthValue && !isNaN(parseInt(lengthValue)) ? parseInt(lengthValue) : 3;
+    
+    // 根据用户选择的类型创建相应的数组声明
+    const arrayDeclaration = arrayType + " " + varName + "[" + arrayLength + "];";
     
     if (isLocal) {
-      // 在函数内，作为局部变量直接返回代码
       return "  " + arrayDeclaration + "\n";
     } else {
-      // 在全局作用域，添加到全局变量
       generator.addVariable("var_declare_" + varName, arrayDeclaration);
     }
-  } else if (arrayBlocks.length === 1) {
-    // 一个块，创建一维数组
-    const itemBlock = arrayBlocks[0];
-    const length = parseInt(itemBlock.getFieldValue('LENGTH')) || 3;
-    let items = [];
-    
-    // 收集该块中的所有值
-    for (let i = 0; i < length; i++) {
-      const value = generator.valueToCode(itemBlock, "VALUE" + i, Arduino.ORDER_ATOMIC) || (arrayType === "String" ? '""' : "0");
-      items.push(value);
-    }
-    
-    const arrayDeclaration = arrayType + " " + varName + "[" + length + "] = {" + items.join(", ") + "};";
+    return "";
+  }
+  
+  // 检查是否有字符串输入（用于字符数组）
+  const hasStringInput = inputValues.some(value => value.startsWith('"') && value.endsWith('"'));
+  
+  if (hasStringInput && inputValues.length === 1) {
+    // 单个字符串输入，创建字符数组
+    const arrayDeclaration = "char " + varName + "[] = " + inputValues[0] + ";";
     
     if (isLocal) {
-      // 在函数内，作为局部变量直接返回代码
-      return arrayDeclaration + "\n";
+      return "  " + arrayDeclaration + "\n";
     } else {
-      // 在全局作用域，添加到全局变量
       generator.addVariable("var_declare_" + varName, arrayDeclaration);
     }
-  } else if (arrayBlocks.length === 2) {
-    // 两个块，创建二维数组
-    const firstBlock = arrayBlocks[0];
-    const secondBlock = arrayBlocks[1];
-    const rows = parseInt(firstBlock.getFieldValue('LENGTH')) || 3;
-    const cols = parseInt(secondBlock.getFieldValue('LENGTH')) || 3;
+    return "";
+  }
+  
+  if (inputValues.length === 1) {
+    // 单个数组输入，创建一维数组
+    const arrayText = inputValues[0];
     
-    // 构建二维数组的初始值
-    let arrayRows = [];
-    
-    // 处理第一行（来自第一个块）
-    let firstRowItems = [];
-    for (let i = 0; i < cols; i++) {
-      const value = generator.valueToCode(firstBlock, "VALUE" + i, Arduino.ORDER_ATOMIC) || (arrayType === "String" ? '""' : "0");
-      firstRowItems.push(value);
-    }
-    arrayRows.push("{" + firstRowItems.join(", ") + "}");
-    
-    // 处理其余行（使用第二个块的值作为模板）
-    for (let row = 1; row < rows; row++) {
-      let rowItems = [];
-      for (let col = 0; col < cols; col++) {
-        // 使用第二个块的值作为模板，如果超出范围则使用默认值
-        let value;
-        if (col < parseInt(secondBlock.getFieldValue('LENGTH'))) {
-          value = generator.valueToCode(secondBlock, "VALUE" + col, Arduino.ORDER_ATOMIC) || (arrayType === "String" ? '""' : "0");
-        } else {
-          value = arrayType === "String" ? '""' : "0";
-        }
-        rowItems.push(value);
+    if (arrayText.startsWith('{') && arrayText.endsWith('}')) {
+      // 从数组文本中提取元素数量
+      const elementsStr = arrayText.slice(1, -1).trim();
+      const elements = elementsStr ? elementsStr.split(',').map(s => s.trim()) : [];
+      const length = elements.length || 3;
+      
+      const arrayDeclaration = arrayType + " " + varName + "[" + length + "] = " + arrayText + ";";
+      
+      if (isLocal) {
+        return "  " + arrayDeclaration + "\n";
+      } else {
+        generator.addVariable("var_declare_" + varName, arrayDeclaration);
       }
-      arrayRows.push("{" + rowItems.join(", ") + "}");
+    } else {
+      // 其他情况，使用用户选择的类型和长度创建默认数组
+      const lengthValue = block.getFieldValue("LENGTH");
+      const arrayLength = lengthValue && !isNaN(parseInt(lengthValue)) ? parseInt(lengthValue) : 3;
+      
+      const arrayDeclaration = arrayType + " " + varName + "[" + arrayLength + "];";
+      
+      if (isLocal) {
+        return "  " + arrayDeclaration + "\n";
+      } else {
+        generator.addVariable("var_declare_" + varName, arrayDeclaration);
+      }
+    }
+    return "";
+  }
+  
+  if (inputValues.length >= 2) {
+    // 多个输入，创建二维数组
+    let arrayRows = [];
+    let maxCols = 0;
+    
+    // 处理每个输入作为数组的一行
+    for (let i = 0; i < inputValues.length; i++) {
+      const inputValue = inputValues[i];
+      
+      if (inputValue.startsWith('{') && inputValue.endsWith('}')) {
+        // 数组格式 {1, 2, 3}
+        const elementsStr = inputValue.slice(1, -1).trim();
+        const elements = elementsStr ? elementsStr.split(',').map(s => s.trim()) : [];
+        maxCols = Math.max(maxCols, elements.length);
+        arrayRows.push(inputValue);
+      } else {
+        // 单个值，转换为数组格式
+        arrayRows.push("{" + inputValue + "}");
+        maxCols = Math.max(maxCols, 1);
+      }
     }
     
+    // 确保所有行有相同的列数（用默认值填充）
+    const defaultValue = getDefaultValue(arrayType);
+    for (let i = 0; i < arrayRows.length; i++) {
+      if (arrayRows[i].startsWith('{') && arrayRows[i].endsWith('}')) {
+        const elementsStr = arrayRows[i].slice(1, -1).trim();
+        const elements = elementsStr ? elementsStr.split(',').map(s => s.trim()) : [];
+        
+        // 补齐到maxCols列
+        while (elements.length < maxCols) {
+          elements.push(defaultValue);
+        }
+        
+        arrayRows[i] = "{" + elements.join(", ") + "}";
+      }
+    }
+    
+    const rows = arrayRows.length;
+    const cols = maxCols;
     const arrayDeclaration = arrayType + " " + varName + "[" + rows + "][" + cols + "] = {" + arrayRows.join(", ") + "};";
     
     if (isLocal) {
-      // 在函数内，作为局部变量直接返回代码
       return "  " + arrayDeclaration + "\n";
     } else {
-      // 在全局作用域，添加到全局变量
       generator.addVariable("var_declare_" + varName, arrayDeclaration);
     }
-  } else {
-    // 超过两个块，只取前两个作为二维数组处理
-    const firstBlock = arrayBlocks[0];
-    const secondBlock = arrayBlocks[1];
-    const rows = parseInt(firstBlock.getFieldValue('LENGTH')) || 3;
-    const cols = parseInt(secondBlock.getFieldValue('LENGTH')) || 3;
-    
-    // 构建二维数组的初始值（与上面逻辑相同）
-    let arrayRows = [];
-    
-    let firstRowItems = [];
-    for (let i = 0; i < cols; i++) {
-      const value = generator.valueToCode(firstBlock, "VALUE" + i, Arduino.ORDER_ATOMIC) || (arrayType === "String" ? '""' : "0");
-      firstRowItems.push(value);
-    }
-    arrayRows.push("{" + firstRowItems.join(", ") + "}");
-    
-    for (let row = 1; row < rows; row++) {
-      let rowItems = [];
-      for (let col = 0; col < cols; col++) {
-        // 使用第二个块的值作为模板，如果超出范围则使用默认值
-        let value;
-        if (col < parseInt(secondBlock.getFieldValue('LENGTH'))) {
-          value = generator.valueToCode(secondBlock, "VALUE" + col, Arduino.ORDER_ATOMIC) || (arrayType === "String" ? '""' : "0");
-        } else {
-          value = arrayType === "String" ? '""' : "0";
-        }
-        rowItems.push(value);
-      }
-      arrayRows.push("{" + rowItems.join(", ") + "}");
-    }
-    
-    const arrayDeclaration = arrayType + " " + varName + "[" + rows + "][" + cols + "] = {" + arrayRows.join(", ") + "};";
-    
-    if (isLocal) {
-      // 在函数内，作为局部变量直接返回代码
-      return "  " + arrayDeclaration + "\n";
-    } else {
-      // 在全局作用域，添加到全局变量
-      generator.addVariable("var_declare_" + varName, arrayDeclaration);
-    }
+    return "";
   }
   
-  return "";
-};
-
-// 数组初始化块（作为语句块时不生成代码，只在 array_create_with 中被处理）
-Arduino.forBlock["array_create_with_item"] = function (block, generator) {
-  // 作为语句块时，不需要生成独立代码
-  // 值的获取在 array_create_with 的 generator 中处理
-  return "";
-};
-
-// 创建一维数组（使用初始值）
-Arduino.forBlock["array_create_with_text"] = function (block, generator) {
-  const { name: varName } = block.workspace.getVariableById(block.getFieldValue("VAR"));
-  const arrayType = block.getFieldValue("TYPE");
-  const arraySize = parseInt(block.getFieldValue("SIZE"));
+  // 默认情况 - 使用用户选择的类型和长度
+  const lengthValue = block.getFieldValue("LENGTH");
+  const arrayLength = lengthValue && !isNaN(parseInt(lengthValue)) ? parseInt(lengthValue) : 3;
   
-  // 判断是否在函数作用域内
-  const isLocal = isInFunctionScope(block);
-  
-  // 获取初始值，可能来自数组初始化块或文本输入
-  let values = generator.valueToCode(block, "VALUES", Arduino.ORDER_ATOMIC);
-  
-  // 如果没有连接任何块，提供默认值
-  if (!values) {
-    const defaultValue = arrayType === "String" ? '""' : "0";
-    const defaultValues = new Array(arraySize).fill(defaultValue);
-    values = defaultValues.join(", ");
-  }
-  
-  const arrayDeclaration = arrayType + " " + varName + "[" + arraySize + "] = {" + values + "};";
+  const arrayDeclaration = arrayType + " " + varName + "[" + arrayLength + "];";
   
   if (isLocal) {
-    // 在函数内，作为局部变量直接返回代码
     return "  " + arrayDeclaration + "\n";
   } else {
-    // 在全局作用域，添加到全局变量
     generator.addVariable("var_declare_" + varName, arrayDeclaration);
   }
   
   return "";
 };
+
+// array_create_with_item 作为输出块，返回数组文本
+Arduino.forBlock["array_create_with_item"] = function (block, generator) {
+  const lengthValue = generator.valueToCode(block, "LENGTH", Arduino.ORDER_ATOMIC);
+  const length = lengthValue && !isNaN(parseInt(lengthValue)) ? parseInt(lengthValue) : 3;
+  let items = [];
+  
+  // 收集该块中的所有值
+  for (let i = 0; i < length; i++) {
+    const value = generator.valueToCode(block, "VALUE" + i, Arduino.ORDER_ATOMIC) || getDefaultValue('int');
+    items.push(value);
+  }
+  
+  // 返回数组文本格式，如 "{1, 2, 3}"
+  const code = '{' + items.join(', ') + '}';
+  return [code, Arduino.ORDER_ATOMIC];
+};
+
+Arduino.forBlock["array_create_with_text"] = function (block, generator) {
+  // 获取文本输入值
+  const textValue = generator.valueToCode(block, "TEXT", Arduino.ORDER_ATOMIC) || '""';
+  
+  // 直接返回字符串值，保持原有的引号格式
+  return [textValue, Arduino.ORDER_ATOMIC];
+};
+// // 创建一维数组（使用初始值）
+// Arduino.forBlock["array_create_with_text"] = function (block, generator) {
+//   const { name: varName } = block.workspace.getVariableById(block.getFieldValue("VAR"));
+//   const arrayType = block.getFieldValue("TYPE");
+//   const arraySize = parseInt(block.getFieldValue("SIZE"));
+  
+//   // 判断是否在函数作用域内
+//   const isLocal = isInFunctionScope(block);
+  
+//   // 获取初始值，可能来自数组初始化块或文本输入
+//   let values = generator.valueToCode(block, "VALUES", Arduino.ORDER_ATOMIC);
+  
+//   // 如果没有连接任何块，提供默认值
+//   if (!values) {
+//     const defaultValue = getDefaultValue(arrayType);
+//     const defaultValues = new Array(arraySize).fill(defaultValue);
+//     values = defaultValues.join(", ");
+//
+  
+//   const arrayDeclaration = arrayType + " " + varName + "[" + arraySize + "] = {" + values + "};";
+  
+//   if (isLocal) {
+//     // 在函数内，作为局部变量直接返回代码
+//     return "  " + arrayDeclaration + "\n";
+//   } else {
+//     // 在全局作用域，添加到全局变量
+//     generator.addVariable("var_declare_" + varName, arrayDeclaration);
+//   }
+  
+//   return "";
+// };
 
 // 获取数组元素
 Arduino.forBlock["array_get_index"] = function (block, generator) {

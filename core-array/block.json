@@ -1,7 +1,7 @@
 [
   {
     "type": "array_create_with",
-    "message0": "创建数组 %1 类型 %2 %3",
+    "message0": "创建数组 %1 类型 %2 长度 %3 %4",
     "args0": [
       {
         "type": "field_variable",
@@ -13,35 +13,56 @@
         "name": "TYPE",
         "options": [
           ["整数", "int"],
-          ["浮点数", "float"],
-          ["字符串", "String"],
-          ["字符", "char"],
-          ["布尔", "bool"],
+          ["无符号整数", "unsigned int"],
           ["长整数", "long"],
-          ["双精度", "double"]
+          ["无符号长整数", "unsigned long"],
+          ["短整数", "short"],
+          ["无符号短整数", "unsigned short"],
+          ["浮点数", "float"],
+          ["双精度浮点数", "double"],
+          ["字节", "byte"],
+          ["字符", "char"],
+          ["无符号字符", "unsigned char"],
+          ["字符串", "String"]
         ]
       },
       {
-        "type": "input_statement",
-        "name": "STACK"
+        "type": "field_input",
+        "name": "LENGTH",
+        "text": "3"
+      },
+      {
+        "type": "input_value",
+        "name": "INPUT0",
+        "check": ["Array", "String"]
       }
     ],
+    "message1": "%1",
+    "args1": [
+      {
+        "type": "input_value",
+        "name": "INPUT1",
+        "check": ["Array", "String"]
+      }
+    ],
+    "inputsInline": false,
     "colour": "#03A9F4",
     "previousStatement": null,
     "nextStatement": null,
     "helpUrl": "",
-    "tooltip": "创建一个指定类型和长度的数组"
+    "tooltip": "创建数组，支持一维/二维数组，可连接多个数组项或字符串",
+    "mutator": "array_dynamic_mutator",
+    "extensions": [
+      "array_dynamic_extension"
+    ]
   },
   {
     "type": "array_create_with_item",
-    "message0": "初始化 长度 %1 值 %2",
+    "message0": "长度 %1 值 %2",
     "args0": [
       {
-        "type": "field_number",
-        "name": "LENGTH",
-        "value": 3,
-        "min": 1,
-        "max": 20
+        "type": "input_value",
+        "name": "LENGTH"
       },
       {
         "type": "input_dummy"
@@ -70,8 +91,7 @@
     ],
     "colour": "#03A9F4",
     "inputsInline": true,
-    "previousStatement": null,
-    "nextStatement": null,
+    "output": "Array",
     "helpUrl": "",
     "tooltip": "创建数组初始值，可以动态设置长度和各个值",
     "extensions": ["array_init_mutator"],
@@ -79,47 +99,16 @@
   },
   {
     "type": "array_create_with_text",
-    "message0": "创建数组 %1 变量名 %2 类型 %3 长度 %4 初始值 %5",
+    "message0": "字符串 %1",
     "args0": [
       {
-        "type": "input_dummy"
-      },
-      {
-        "type": "field_variable",
-        "name": "VAR",
-        "variable": "array"
-      },
-      {
-        "type": "field_dropdown",
-        "name": "TYPE",
-        "options": [
-          ["整数", "int"],
-          ["浮点数", "float"],
-          ["字符串", "String"],
-          ["字符", "char"],
-          ["布尔", "bool"],
-          ["长整数", "long"],
-          ["双精度", "double"]
-        ]
-      },
-      {
-        "type": "field_number",
-        "name": "SIZE",
-        "value": 3,
-        "min": 1,
-        "max": 100
-      },
-      {
         "type": "input_value",
-        "name": "VALUES",
-        "check": ["Array", "String"]
+        "name": "TEXT"
       }
     ],
     "colour": "#03A9F4",
-    "previousStatement": null,
-    "nextStatement": null,
-    "helpUrl": "",
-    "tooltip": "用初始值创建数组，可以连接数组初始化块或直接输入文本"
+    "inputsInline": true,
+    "output": "String"
   },
   {
     "type": "array_get_index",
@@ -198,12 +187,17 @@
         "name": "TYPE",
         "options": [
           ["整数", "int"],
-          ["浮点数", "float"],
-          ["字符串", "String"],
-          ["字符", "char"],
-          ["布尔", "bool"],
+          ["无符号整数", "unsigned int"],
           ["长整数", "long"],
-          ["双精度", "double"]
+          ["无符号长整数", "unsigned long"],
+          ["短整数", "short"],
+          ["无符号短整数", "unsigned short"],
+          ["浮点数", "float"],
+          ["双精度浮点数", "double"],
+          ["字节", "byte"],
+          ["字符", "char"],
+          ["无符号字符", "unsigned char"],
+          ["字符串", "String"]
         ]
       },
       {

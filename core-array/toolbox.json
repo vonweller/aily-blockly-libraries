@@ -8,14 +8,20 @@
       "kind": "block",
       "type": "array_create_with",
       "inputs": {
-        "STACK": {
+        "INPUT0": {
           "block": {
             "kind": "block",
             "type": "array_create_with_item",
-            "fields": {
-              "LENGTH": "3"
-            },
             "inputs": {
+              "LENGTH": {
+                "block": {
+                  "kind": "block",
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": "3"
+                  }
+                }
+              },
               "VALUE0": {
                 "block": {
                   "kind": "block",
@@ -52,6 +58,15 @@
       "kind": "block",
       "type": "array_create_with_item",
       "inputs": {
+        "LENGTH": {
+          "block": {
+            "kind": "block",
+            "type": "math_number",
+            "fields": {
+              "NUM": "3"
+            }
+          }
+        },
         "VALUE0": {
           "block": {
             "kind": "block",
@@ -83,6 +98,21 @@
     },
     {
       "kind": "block",
+      "type": "array_create_with_text",
+      "inputs": {
+        "TEXT": {
+          "block": {
+            "kind": "block",
+            "type": "text",
+            "fields": {
+              "TEXT": "Hello, World!"
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
       "type": "array_get_index",
       "inputs": {
         "AT": {
@@ -90,7 +120,7 @@
             "kind": "block",
             "type": "math_number",
             "fields": {
-              "NUM": "1"
+              "NUM": "0"
             }
           }
         }
@@ -105,7 +135,7 @@
             "kind": "block",
             "type": "math_number",
             "fields": {
-              "NUM": "1"
+              "NUM": "0"
             }
           }
         },
@@ -133,7 +163,7 @@
             "kind": "block",
             "type": "math_number",
             "fields": {
-              "NUM": "1"
+              "NUM": "0"
             }
           }
         },
@@ -142,7 +172,7 @@
             "kind": "block",
             "type": "math_number",
             "fields": {
-              "NUM": "1"
+              "NUM": "0"
             }
           }
         }
@@ -157,7 +187,7 @@
             "kind": "block",
             "type": "math_number",
             "fields": {
-              "NUM": "1"
+              "NUM": "0"
             }
           }
         },
@@ -166,7 +196,7 @@
             "kind": "block",
             "type": "math_number",
             "fields": {
-              "NUM": "1"
+              "NUM": "0"
             }
           }
         },
