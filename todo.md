@@ -10,6 +10,5 @@
 - [ble_serial](./ble_serial)
 - [esp32_ble](./esp32_ble)
 - [esp32_deepsleep](./esp32_deepsleep)
-- [esp32_i2c](./esp32_i2c)
 - [max30102](./max30102)
 - [sentry](./sentry)
