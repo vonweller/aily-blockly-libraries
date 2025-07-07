@@ -6,25 +6,62 @@ if (Blockly.Extensions.isRegistered('blinker_init_wifi_extension')) {
 Blockly.Extensions.register('blinker_init_wifi_extension', function () {
   // 直接在扩展中添加updateShape_函数
   this.updateShape_ = function (configType) {
-    // 先移除消息1和消息2
-    if (this.getInput('MESSAGE1')) {
-      this.removeInput('MESSAGE1');
+    // 先移除已存在的输入
+    if (this.getInput('AUTH')) {
+      this.removeInput('AUTH');
     }
-    if (this.getInput('MESSAGE2')) {
-      this.removeInput('MESSAGE2');
+    if (this.getInput('SSID')) {
+      this.removeInput('SSID');
+    }
+    if (this.getInput('PSWD')) {
+      this.removeInput('PSWD');
     }
 
     // 如果是手动配网，添加密钥和WiFi配置字段
     if (configType !== 'EspTouchV2') {
-      this.appendDummyInput('MESSAGE1')
-        .appendField("密钥")
-        .appendField(new Blockly.FieldTextInput(""), "AUTH");
+      // 添加密钥输入，使用input_value类型
+      this.appendValueInput('AUTH')
+        .setCheck('String')
+        .appendField("密钥");
+      
+      // 为AUTH输入添加默认的字符串块
+      if (!this.getInput('AUTH').connection.targetConnection) {
+        var authShadow = this.workspace.newBlock('text');
+        authShadow.setFieldValue('Your Device Secret Key', 'TEXT');
+        authShadow.setShadow(true);
+        authShadow.initSvg();
+        authShadow.render();
+        this.getInput('AUTH').connection.connect(authShadow.outputConnection);
+      }
 
-      this.appendDummyInput('MESSAGE2')
-        .appendField("WiFi名称")
-        .appendField(new Blockly.FieldTextInput(""), "SSID")
-        .appendField("WiFi密码")
-        .appendField(new Blockly.FieldTextInput(""), "PSWD");
+      // 添加WiFi配置输入
+      this.appendValueInput('SSID')
+        .setCheck('String')
+        .appendField("WiFi名称");
+      
+      // 为SSID输入添加默认的字符串块
+      if (!this.getInput('SSID').connection.targetConnection) {
+        var ssidShadow = this.workspace.newBlock('text');
+        ssidShadow.setFieldValue('Your WiFi SSID', 'TEXT');
+        ssidShadow.setShadow(true);
+        ssidShadow.initSvg();
+        ssidShadow.render();
+        this.getInput('SSID').connection.connect(ssidShadow.outputConnection);
+      }
+
+      this.appendValueInput('PSWD')
+        .setCheck('String')
+        .appendField("WiFi密码");
+      
+      // 为PSWD输入添加默认的字符串块
+      if (!this.getInput('PSWD').connection.targetConnection) {
+        var pswdShadow = this.workspace.newBlock('text');
+        pswdShadow.setFieldValue('Your WiFi Password', 'TEXT');
+        pswdShadow.setShadow(true);
+        pswdShadow.initSvg();
+        pswdShadow.render();
+        this.getInput('PSWD').connection.connect(pswdShadow.outputConnection);
+      }
     }
   };
 
@@ -54,15 +91,12 @@ Arduino.forBlock['blinker_init_wifi'] = function (block, generator) {
     generator.addMacro('#define BLINKER_ESPTOUCH_V2', '#define BLINKER_ESPTOUCH_V2');
     code = 'Blinker.begin();\n';
   } else {
-    // 手动配网方式
-    let ssid = block.getFieldValue('SSID') || "Your WiFi SSID";
-    let pswd = block.getFieldValue('PSWD') || "Your WiFi Password";
-    let auth = block.getFieldValue('AUTH') || "Your Device Secret Key";
+    // 手动配网方式 - 使用valueToCode获取输入值
+    let auth = generator.valueToCode(block, 'AUTH', generator.ORDER_ATOMIC) || '"Your Device Secret Key"';
+    let ssid = generator.valueToCode(block, 'SSID', generator.ORDER_ATOMIC) || '"Your WiFi SSID"';
+    let pswd = generator.valueToCode(block, 'PSWD', generator.ORDER_ATOMIC) || '"Your WiFi Password"';
 
-    generator.addVariable('char ssid[]', 'char ssid[] = "' + ssid + '";');
-    generator.addVariable('char pswd[]', 'char pswd[] = "' + pswd + '";');
-    generator.addVariable('char auth[]', 'char auth[] = "' + auth + '";');
-    code = 'Blinker.begin(auth, ssid, pswd);\n';
+    code = 'Blinker.begin(' + auth + ', ' + ssid + ', ' + pswd + ');\n';
   }
 
   return code;

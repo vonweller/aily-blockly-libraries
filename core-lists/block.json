@@ -1,0 +1,219 @@
+[
+  {
+    "type": "list_create_with",
+    "message0": "创建数组 %1 类型 %2 长度 %3 %4",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "VAR",
+        "variable": "list"
+      },
+      {
+        "type": "field_dropdown",
+        "name": "TYPE",
+        "options": [
+          ["整数", "int"],
+          ["无符号整数", "unsigned int"],
+          ["长整数", "long"],
+          ["无符号长整数", "unsigned long"],
+          ["短整数", "short"],
+          ["无符号短整数", "unsigned short"],
+          ["浮点数", "float"],
+          ["双精度浮点数", "double"],
+          ["字符", "char"],
+          ["无符号字符", "unsigned char"],
+          ["字符串", "String"],
+          ["字节", "byte"]
+        ]
+      },
+      {
+        "type": "field_input",
+        "name": "LENGTH",
+        "text": "3"
+      },
+      {
+        "type": "input_value",
+        "name": "INPUT0",
+        "check": ["Array", "String"]
+      }
+    ],
+    "message1": "%1",
+    "args1": [
+      {
+        "type": "input_value",
+        "name": "INPUT1",
+        "check": ["Array", "String"]
+      }
+    ],
+    "inputsInline": false,
+    "colour": "#03A9F4",
+    "previousStatement": null,
+    "nextStatement": null,
+    "helpUrl": "",
+    "tooltip": "创建数组，支持一维/二维数组，可连接多个数组项或字符串",
+    "mutator": "list_dynamic_mutator",
+    "extensions": [
+      "list_dynamic_extension"
+    ]
+  },
+  {
+    "type": "list_create_with_item",
+    "message0": "长度 %1 值 %2",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "LENGTH"
+      },
+      {
+        "type": "input_dummy"
+      }
+    ],
+    "colour": "#03A9F4",
+    "inputsInline": true,
+    "output": "Array",
+    "helpUrl": "",
+    "tooltip": "创建数组初始值，可以动态设置长度和各个值",
+    "extensions": ["list_init_mutator"],
+    "mutator": "list_init_dynamic_mutator"
+  },
+  {
+    "type": "list_get_index",
+    "message0": "数组 %1 第 %2 项",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "VAR",
+        "variable": "list"
+      },
+      {
+        "type": "input_value",
+        "name": "AT"
+      }
+    ],
+    "colour": "#03A9F4",
+    "output": "Number",
+    "helpUrl": "",
+    "tooltip": "返回数组指定位置的值，索引从1开始"
+  },
+  {
+    "type": "list_set_index",
+    "message0": "设置数组 %1 第 %2 项为 %3",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "VAR",
+        "variable": "list"
+      },
+      {
+        "type": "input_value",
+        "name": "AT",
+        "check": "Number"
+      },
+      {
+        "type": "input_value",
+        "name": "TO"
+      }
+    ],
+    "colour": "#03A9F4",
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "helpUrl": "",
+    "tooltip": "设置数组指定位置的值，索引从1开始"
+  },
+  {
+    "type": "list_length",
+    "message0": "数组 %1 的长度",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "VAR",
+        "variable": "list"
+      }
+    ],
+    "colour": "#03A9F4",
+    "output": "Number",
+    "helpUrl": "",
+    "tooltip": "返回数组的长度"
+  },
+  {
+    "type": "list2_get_value",
+    "message0": "二维数组 %1 第 %2 行 第 %3 列",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "VAR",
+        "variable": "list"
+      },
+      {
+        "type": "input_value",
+        "name": "ROW",
+        "check": "Number"
+      },
+      {
+        "type": "input_value",
+        "name": "COL",
+        "check": "Number"
+      }
+    ],
+    "colour": "#03A9F4",
+    "inputsInline": true,
+    "output": null,
+    "helpUrl": "",
+    "tooltip": "获取二维数组指定位置的值，索引从1开始"
+  },
+  {
+    "type": "list2_set_value",
+    "message0": "设置二维数组 %1 第 %2 行 第 %3 列为 %4",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "VAR",
+        "variable": "list"
+      },
+      {
+        "type": "input_value",
+        "name": "ROW",
+        "check": "Number"
+      },
+      {
+        "type": "input_value",
+        "name": "COL",
+        "check": "Number"
+      },
+      {
+        "type": "input_value",
+        "name": "VALUE"
+      }
+    ],
+    "colour": "#03A9F4",
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "helpUrl": "",
+    "tooltip": "设置二维数组指定位置的值，索引从1开始"
+  },
+  {
+    "type": "list2_get_length",
+    "message0": "二维数组 %1 的 %2",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "VAR",
+        "variable": "list"
+      },
+      {
+        "type": "field_dropdown",
+        "name": "TYPE",
+        "options": [
+          ["行数", "rows"],
+          ["列数", "cols"]
+        ]
+      }
+    ],
+    "colour": "#03A9F4",
+    "output": "Number",
+    "helpUrl": "",
+    "tooltip": "获取二维数组的行数或列数"
+  }
+]
