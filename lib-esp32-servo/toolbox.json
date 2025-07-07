@@ -1,0 +1,72 @@
+{
+    "kind": "category",
+    "name": "ESP32舵机",
+    "contents": [
+        {
+            "kind": "block",
+            "type": "esp32_servo_attach"
+        },
+        {
+            "kind": "block",
+            "type": "esp32_servo_write",
+            "inputs": {
+                "ANGLE": {
+                    "shadow": {
+                        "type": "math_number",
+                        "fields": {
+                            "NUM": 90
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "kind": "block",
+            "type": "esp32_servo_write_microseconds",
+            "inputs": {
+                "MICROSECONDS": {
+                    "shadow": {
+                        "type": "math_number",
+                        "fields": {
+                            "NUM": 1500
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "kind": "block",
+            "type": "esp32_servo_read"
+        },
+        {
+            "kind": "block",
+            "type": "esp32_servo_read_microseconds"
+        },
+        {
+            "kind": "block",
+            "type": "esp32_servo_detach"
+        },
+        {
+            "kind": "block",
+            "type": "esp32_servo_attached"
+        },
+        {
+            "kind": "label",
+            "text": "简化操作"
+        },
+        {
+            "kind": "block",
+            "type": "esp32_servo_simple_write",
+            "inputs": {
+                "ANGLE": {
+                    "shadow": {
+                        "type": "math_number",
+                        "fields": {
+                            "NUM": 90
+                        }
+                    }
+                }
+            }
+        }
+    ]
+} 

@@ -1,0 +1,213 @@
+[
+    {
+        "inputsInline": true,
+        "message0": "ESP32舵机%1连接到引脚%2",
+        "type": "esp32_servo_attach",
+        "args0": [
+            {
+                "type": "field_variable",
+                "name": "OBJECT",
+                "variable": "servo1",
+                "variableTypes": [
+                    "Servo"
+                ],
+                "defaultType": "Servo"
+            },
+            {
+                "type": "field_dropdown",
+                "name": "PIN",
+                "options": [
+                    ["2", "2"],
+                    ["4", "4"],
+                    ["12", "12"],
+                    ["13", "13"],
+                    ["14", "14"],
+                    ["15", "15"],
+                    ["16", "16"],
+                    ["17", "17"],
+                    ["18", "18"],
+                    ["19", "19"],
+                    ["21", "21"],
+                    ["22", "22"],
+                    ["23", "23"],
+                    ["25", "25"],
+                    ["26", "26"],
+                    ["27", "27"],
+                    ["32", "32"],
+                    ["33", "33"]
+                ]
+            }
+        ],
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#03a9f4",
+        "tooltip": "将ESP32舵机连接到指定的PWM引脚"
+    },
+    {
+        "inputsInline": true,
+        "message0": "ESP32舵机%1移动到%2度",
+        "type": "esp32_servo_write",
+        "args0": [
+            {
+                "type": "field_variable",
+                "name": "OBJECT",
+                "variable": "servo1",
+                "variableTypes": [
+                    "Servo"
+                ],
+                "defaultType": "Servo"
+            },
+            {
+                "type": "input_value",
+                "name": "ANGLE",
+                "check": "Number"
+            }
+        ],
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#03a9f4",
+        "tooltip": "设置ESP32舵机转动到指定角度（0-180度）"
+    },
+    {
+        "inputsInline": true,
+        "message0": "ESP32舵机%1设置脉宽%2微秒",
+        "type": "esp32_servo_write_microseconds",
+        "args0": [
+            {
+                "type": "field_variable",
+                "name": "OBJECT",
+                "variable": "servo1",
+                "variableTypes": [
+                    "Servo"
+                ],
+                "defaultType": "Servo"
+            },
+            {
+                "type": "input_value",
+                "name": "MICROSECONDS",
+                "check": "Number"
+            }
+        ],
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#03a9f4",
+        "tooltip": "设置ESP32舵机脉宽（500-2500微秒）"
+    },
+    {
+        "inputsInline": true,
+        "message0": "ESP32舵机%1当前角度",
+        "type": "esp32_servo_read",
+        "args0": [
+            {
+                "type": "field_variable",
+                "name": "OBJECT",
+                "variable": "servo1",
+                "variableTypes": [
+                    "Servo"
+                ],
+                "defaultType": "Servo"
+            }
+        ],
+        "output": "Number",
+        "colour": "#03a9f4",
+        "tooltip": "读取ESP32舵机当前角度（0-180度）"
+    },
+    {
+        "inputsInline": true,
+        "message0": "ESP32舵机%1当前脉宽",
+        "type": "esp32_servo_read_microseconds",
+        "args0": [
+            {
+                "type": "field_variable",
+                "name": "OBJECT",
+                "variable": "servo1",
+                "variableTypes": [
+                    "Servo"
+                ],
+                "defaultType": "Servo"
+            }
+        ],
+        "output": "Number",
+        "colour": "#03a9f4",
+        "tooltip": "读取ESP32舵机当前脉宽（微秒）"
+    },
+    {
+        "inputsInline": true,
+        "message0": "ESP32舵机%1断开连接",
+        "type": "esp32_servo_detach",
+        "args0": [
+            {
+                "type": "field_variable",
+                "name": "OBJECT",
+                "variable": "servo1",
+                "variableTypes": [
+                    "Servo"
+                ],
+                "defaultType": "Servo"
+            }
+        ],
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#03a9f4",
+        "tooltip": "断开ESP32舵机连接，释放PWM通道"
+    },
+    {
+        "inputsInline": true,
+        "message0": "ESP32舵机%1是否已连接",
+        "type": "esp32_servo_attached",
+        "args0": [
+            {
+                "type": "field_variable",
+                "name": "OBJECT",
+                "variable": "servo1",
+                "variableTypes": [
+                    "Servo"
+                ],
+                "defaultType": "Servo"
+            }
+        ],
+        "output": "Boolean",
+        "colour": "#03a9f4",
+        "tooltip": "检查ESP32舵机是否已连接到引脚"
+    },
+    {
+        "inputsInline": true,
+        "message0": "引脚%1的舵机转到%2度",
+        "type": "esp32_servo_simple_write",
+        "args0": [
+            {
+                "type": "field_dropdown",
+                "name": "PIN",
+                "options": [
+                    ["2", "2"],
+                    ["4", "4"],
+                    ["12", "12"],
+                    ["13", "13"],
+                    ["14", "14"],
+                    ["15", "15"],
+                    ["16", "16"],
+                    ["17", "17"],
+                    ["18", "18"],
+                    ["19", "19"],
+                    ["21", "21"],
+                    ["22", "22"],
+                    ["23", "23"],
+                    ["25", "25"],
+                    ["26", "26"],
+                    ["27", "27"],
+                    ["32", "32"],
+                    ["33", "33"]
+                ]
+            },
+            {
+                "type": "input_value",
+                "name": "ANGLE",
+                "check": "Number"
+            }
+        ],
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#03a9f4",
+        "tooltip": "简化版：直接控制指定引脚的舵机转动到指定角度"
+    }
+] 
