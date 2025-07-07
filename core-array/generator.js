@@ -139,10 +139,37 @@ Blockly.Extensions.registerMutator('array_init_dynamic_mutator', {
   }
 });
 
+// 帮助函数：检查块是否在函数作用域内
+function isInFunctionScope(block) {
+  let currentBlock = block;
+  while (currentBlock) {
+    // 检查是否在函数定义块内
+    if (currentBlock.type === 'procedures_defnoreturn' || 
+        currentBlock.type === 'procedures_defreturn' ||
+        currentBlock.type === 'function_definition' ||
+        currentBlock.type === 'custom_function') {
+      return true;
+    }
+    
+    // 检查是否在setup或loop函数内
+    if (currentBlock.type === 'arduino_setup' || 
+        currentBlock.type === 'arduino_loop') {
+      return true;
+    }
+    
+    // 向上遍历查找父级块
+    currentBlock = currentBlock.getParent();
+  }
+  return false;
+}
+
 // 创建一维数组（使用项目列表）
 Arduino.forBlock["array_create_with"] = function (block, generator) {
   const { name: varName } = block.workspace.getVariableById(block.getFieldValue("VAR"));
   const arrayType = block.getFieldValue("TYPE");
+  
+  // 判断是否在函数作用域内
+  const isLocal = isInFunctionScope(block);
   
   // 收集所有连接的 array_create_with_item 块
   let arrayBlocks = [];
@@ -158,7 +185,14 @@ Arduino.forBlock["array_create_with"] = function (block, generator) {
     // 没有连接任何块，创建默认一维数组
     const defaultValue = arrayType === "String" ? '""' : "0";
     const arrayDeclaration = arrayType + " " + varName + "[3] = {" + defaultValue + ", " + defaultValue + ", " + defaultValue + "};";
-    generator.addVariable("var_declare_" + varName, arrayDeclaration);
+    
+    if (isLocal) {
+      // 在函数内，作为局部变量直接返回代码
+      return "  " + arrayDeclaration + "\n";
+    } else {
+      // 在全局作用域，添加到全局变量
+      generator.addVariable("var_declare_" + varName, arrayDeclaration);
+    }
   } else if (arrayBlocks.length === 1) {
     // 一个块，创建一维数组
     const itemBlock = arrayBlocks[0];
@@ -172,7 +206,14 @@ Arduino.forBlock["array_create_with"] = function (block, generator) {
     }
     
     const arrayDeclaration = arrayType + " " + varName + "[" + length + "] = {" + items.join(", ") + "};";
-    generator.addVariable("var_declare_" + varName, arrayDeclaration);
+    
+    if (isLocal) {
+      // 在函数内，作为局部变量直接返回代码
+      return arrayDeclaration + "\n";
+    } else {
+      // 在全局作用域，添加到全局变量
+      generator.addVariable("var_declare_" + varName, arrayDeclaration);
+    }
   } else if (arrayBlocks.length === 2) {
     // 两个块，创建二维数组
     const firstBlock = arrayBlocks[0];
@@ -208,7 +249,14 @@ Arduino.forBlock["array_create_with"] = function (block, generator) {
     }
     
     const arrayDeclaration = arrayType + " " + varName + "[" + rows + "][" + cols + "] = {" + arrayRows.join(", ") + "};";
-    generator.addVariable("var_declare_" + varName, arrayDeclaration);
+    
+    if (isLocal) {
+      // 在函数内，作为局部变量直接返回代码
+      return "  " + arrayDeclaration + "\n";
+    } else {
+      // 在全局作用域，添加到全局变量
+      generator.addVariable("var_declare_" + varName, arrayDeclaration);
+    }
   } else {
     // 超过两个块，只取前两个作为二维数组处理
     const firstBlock = arrayBlocks[0];
@@ -242,7 +290,14 @@ Arduino.forBlock["array_create_with"] = function (block, generator) {
     }
     
     const arrayDeclaration = arrayType + " " + varName + "[" + rows + "][" + cols + "] = {" + arrayRows.join(", ") + "};";
-    generator.addVariable("var_declare_" + varName, arrayDeclaration);
+    
+    if (isLocal) {
+      // 在函数内，作为局部变量直接返回代码
+      return "  " + arrayDeclaration + "\n";
+    } else {
+      // 在全局作用域，添加到全局变量
+      generator.addVariable("var_declare_" + varName, arrayDeclaration);
+    }
   }
   
   return "";
@@ -261,6 +316,9 @@ Arduino.forBlock["array_create_with_text"] = function (block, generator) {
   const arrayType = block.getFieldValue("TYPE");
   const arraySize = parseInt(block.getFieldValue("SIZE"));
   
+  // 判断是否在函数作用域内
+  const isLocal = isInFunctionScope(block);
+  
   // 获取初始值，可能来自数组初始化块或文本输入
   let values = generator.valueToCode(block, "VALUES", Arduino.ORDER_ATOMIC);
   
@@ -272,7 +330,14 @@ Arduino.forBlock["array_create_with_text"] = function (block, generator) {
   }
   
   const arrayDeclaration = arrayType + " " + varName + "[" + arraySize + "] = {" + values + "};";
-  generator.addVariable("var_declare_" + varName, arrayDeclaration);
+  
+  if (isLocal) {
+    // 在函数内，作为局部变量直接返回代码
+    return "  " + arrayDeclaration + "\n";
+  } else {
+    // 在全局作用域，添加到全局变量
+    generator.addVariable("var_declare_" + varName, arrayDeclaration);
+  }
   
   return "";
 };
@@ -310,8 +375,18 @@ Arduino.forBlock["array2_create_with_text"] = function (block, generator) {
   const cols = parseInt(block.getFieldValue("COLS"));
   const text = block.getFieldValue("TEXT");
   
+  // 判断是否在函数作用域内
+  const isLocal = isInFunctionScope(block);
+  
   const arrayDeclaration = arrayType + " " + varName + "[" + rows + "][" + cols + "] = " + text + ";";
-  generator.addVariable("var_declare_" + varName, arrayDeclaration);
+  
+  if (isLocal) {
+    // 在函数内，作为局部变量直接返回代码
+    return "  " + arrayDeclaration + "\n";
+  } else {
+    // 在全局作用域，添加到全局变量
+    generator.addVariable("var_declare_" + varName, arrayDeclaration);
+  }
   
   return "";
 };
