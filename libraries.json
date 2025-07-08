@@ -30,18 +30,14 @@
   {
     "name": "@aily-project/lib-ags02ma",
     "nickname": "AGS02MA TVOC传感器",
-    "version": "0.1.0",
-    "description": "AGS02MA TVOC气体传感器控制库，支持自动初始化和多种读取模式，适用于Arduino、ESP32等开发板",
+    "version": "0.0.1",
+    "description": "AGS02MA TVOC气体传感器控制库,适用于Arduino、ESP32等开发板",
     "author": "aily Project",
     "compatibility": {
       "core": [
-        "arduino:avr",
+        "arduino:var",
         "esp32:esp32",
-        "esp32:esp32c3",
-        "esp32:esp32s3",
-        "esp8266:esp8266",
-        "renesas_uno:minima",
-        "renesas_uno:unor4wifi"
+        "esp32:esp32s3"
       ],
       "voltage": [
         3.3,
@@ -49,21 +45,13 @@
       ]
     },
     "keywords": [
-      "aily",
-      "blockly",
       "ags02ma",
       "TVOC传感器",
       "AGS02MA",
       "gas-sensor",
       "气体传感器",
       "空气质量",
-      "TVOC",
-      "i2c",
-      "ags02ma_init",
-      "ags02ma_read_tvoc_ppb",
-      "ags02ma_read_tvoc_ugm3",
-      "ags02ma_read_simple",
-      "ags02ma_reset"
+      "TVOC"
     ],
     "tested": true,
     "icon": ""
@@ -106,11 +94,10 @@
     "name": "@aily-project/lib-adafruit-gfx",
     "nickname": "Adafruit GFX显示库",
     "version": "0.0.1",
-    "description": "基于Adafruit_GFX及各驱动库的彩色TFT屏显示与绘图支持库,适用于Arduino uno、ESP32等开发板",
+    "description": "基于Adafruit_GFX及各驱动库的彩色TFT屏显示与绘图支持库,适用于ESP32等开发板",
     "author": "Adafruit",
     "compatibility": {
       "core": [
-        "arduino:avr",
         "esp32:esp32",
         "esp32:esp32s3"
       ],
@@ -494,6 +481,30 @@
     "icon": ""
   },
   {
+    "name": "@aily-project/lib-esp32-sd",
+    "nickname": "ESP32 SD卡库",
+    "version": "0.0.1",
+    "description": "SD卡及文件系统操作库,适用于ESP32等开发板",
+    "author": "esp32",
+    "compatibility": {
+      "core": [
+        "esp32:esp32",
+        "esp32:esp32s3"
+      ],
+      "voltage": [
+        3.3,
+        5
+      ]
+    },
+    "keywords": [
+      "sd",
+      "SD卡",
+      "存储"
+    ],
+    "tested": true,
+    "icon": ""
+  },
+  {
     "name": "@aily-project/lib-fastled",
     "nickname": "FastLED灯带驱动库",
     "version": "1.0.1",
@@ -670,10 +681,10 @@
     "icon": "fa-light fa-temperature-half"
   },
   {
-    "name": "@aily-project/lib-mp3player",
-    "nickname": "GD3800音乐播放模块驱动库",
+    "name": "@aily-project/lib-mp3player-gd3800",
+    "nickname": "GD3800音频播放",
     "version": "0.0.1",
-    "description": "GD3800音乐播放模块驱动库适用于esp32、rduino，支持串口通信，提供音乐播放功能。",
+    "description": "GD3800音乐播放模块驱动库，支持串口通信，提供音频播放功能，适用于esp32和arduino。",
     "author": "openjumper",
     "compatibility": {
       "core": [
@@ -690,15 +701,68 @@
       "aily",
       "blockly",
       "GD3800",
-      "音乐播放",
-      "传感器",
-      "声音",
       "音乐",
-      "mp3",
-      "模块"
+      "模块",
+      "mp3"
     ],
     "tested": true,
     "icon": "fa-light fa-music"
+  },
+  {
+    "name": "@aily-project/lib-mqtt",
+    "nickname": "MQTT通信",
+    "version": "0.0.1",
+    "description": "基于PubSubClient的MQTT支持库，适用于Arduino UNO R4 WiFi、ESP32等开发板",
+    "author": "aily Project",
+    "compatibility": {
+      "core": [
+        "esp32:esp32",
+        "renesas_uno:unor4wifi"
+      ],
+      "voltage": [
+        3.3,
+        5
+      ]
+    },
+    "keywords": [
+      "aily",
+      "iot",
+      "mqtt",
+      "ethernet",
+      "wifi",
+      "PubSubClient",
+      "SRAM",
+      "network"
+    ],
+    "tested": true,
+    "icon": "fa-light fa-comments"
+  },
+  {
+    "name": "@aily-project/lib-ntc",
+    "nickname": "NTC热敏电阻",
+    "version": "1.0.0",
+    "description": "NTC热敏电阻库，支持Esp32等开发板，提供摄氏度、华氏度、开尔文温度读取",
+    "author": "aily Project",
+    "compatibility": {
+      "core": [
+        "esp32:esp32",
+        "esp32:esp32s3"
+      ],
+      "voltage": [
+        3.3,
+        5
+      ]
+    },
+    "keywords": [
+      "ntc",
+      "thermistor",
+      "temperature",
+      "sensor",
+      "温度传感器",
+      "热敏电阻"
+    ],
+    "tested": true,
+    "icon": "fa-light fa-temperature-three-quarters"
   },
   {
     "name": "@aily-project/lib-nv170d",
@@ -1007,6 +1071,41 @@
     "icon": ""
   },
   {
+    "name": "@aily-project/lib-adafruit-adxl345",
+    "nickname": "ADXL345加速度传感器",
+    "version": "1.0.0",
+    "description": "ADXL345三轴加速度传感器库，I2C通信，可读取X/Y/Z轴加速度数据",
+    "author": "adafruit",
+    "compatibility": {
+      "core": [],
+      "voltage": [
+        3.3,
+        5
+      ]
+    },
+    "keywords": [
+      "aily",
+      "blockly",
+      "sensor",
+      "accelerometer",
+      "ADXL345",
+      "acceleration",
+      "I2C",
+      "加速度",
+      "传感器",
+      "三轴",
+      "adxl345_init",
+      "adxl345_read_x",
+      "adxl345_read_y",
+      "adxl345_read_z",
+      "adxl345_read_xyz",
+      "adxl345_set_range",
+      "adxl345_set_data_rate"
+    ],
+    "tested": false,
+    "icon": "fa-light fa-gauge"
+  },
+  {
     "name": "@aily-project/lib-aht-sensor",
     "nickname": "AHT温湿度传感器",
     "version": "0.0.1",
@@ -1091,33 +1190,102 @@
     "icon": ""
   },
   {
-    "name": "@aily-project/lib-sht3x",
+    "name": "@aily-project/lib-adafruit-sht3x",
     "nickname": "SHT3x温湿度传感器",
-    "version": "0.0.1",
-    "description": "支持SHT30、SHT31和SHT35温湿度传感器的控制库，适用于Arduino、ESP32等开发板",
-    "author": "aily Project",
+    "version": "1.0.0",
+    "description": "SHT30/SHT31/SHT35温湿度传感器控制库，I2C通讯，包含温度、湿度读取及加热器控制功能",
+    "author": "Adafruit",
     "compatibility": {
-      "core": [
-        "arduino:avr",
-        "esp32:esp32",
-        "esp32:esp32s3"
-      ],
+      "core": [],
       "voltage": [
         3.3,
         5
       ]
     },
     "keywords": [
-      "sht3x",
-      "温湿度传感器",
-      "SHT30",
-      "SHT31",
-      "SHT35",
+      "aily",
+      "blockly",
+      "sht31",
+      "temperature",
       "humidity",
-      "temperature"
+      "sensor",
+      "i2c",
+      "adafruit",
+      "sht31_init",
+      "sht31_read_temperature",
+      "sht31_read_humidity",
+      "sht31_heater_control"
     ],
     "tested": false,
-    "icon": ""
+    "icon": "fa-light fa-temperature-three-quarters"
+  },
+  {
+    "name": "@aily-project/lib-adafruit-sht4x",
+    "nickname": "SHT4x温湿度传感器",
+    "version": "1.0.0",
+    "description": "SHT40/SHT41/SHT45温湿度传感器支持库，支持高精度温湿度测量",
+    "author": "Adafruit",
+    "compatibility": {
+      "core": [],
+      "voltage": [
+        3.3,
+        5
+      ]
+    },
+    "keywords": [
+      "aily",
+      "blockly",
+      "sht4x",
+      "temperature",
+      "humidity",
+      "sensor",
+      "i2c",
+      "adafruit",
+      "sht40",
+      "sht41",
+      "sht45"
+    ],
+    "tested": false,
+    "icon": "fa-light fa-temperature-three-quarters"
+  },
+  {
+    "name": "@aily-project/lib-adafruit-shtc3",
+    "nickname": "SHTC3温湿度传感器",
+    "version": "1.0.0",
+    "description": "SHTC3数字温湿度传感器库，支持I2C通信，低功耗模式，适用于精确温湿度检测",
+    "author": "Adafruit",
+    "compatibility": {
+      "core": [],
+      "voltage": [
+        3.3,
+        5
+      ]
+    },
+    "keywords": [
+      "aily",
+      "blockly",
+      "sensor",
+      "temperature",
+      "humidity",
+      "SHTC3",
+      "I2C",
+      "digital",
+      "precision",
+      "温度",
+      "湿度",
+      "传感器",
+      "数字",
+      "精密",
+      "shtc3_init",
+      "shtc3_read_temperature",
+      "shtc3_read_humidity",
+      "shtc3_read_both",
+      "shtc3_is_connected",
+      "shtc3_sleep",
+      "shtc3_set_power_mode"
+    ],
+    "tested": false,
+    "icon": "fa-light fa-temperature-three-quarters"
   },
   {
     "name": "@aily-project/lib-adafruit-vl53l0x",
@@ -1137,33 +1305,6 @@
       "blockly",
       "VL53L0X",
       "激光测距"
-    ],
-    "tested": false,
-    "icon": ""
-  },
-  {
-    "name": "@aily-project/lib-adxl345",
-    "nickname": "ADXL345传感器库",
-    "version": "0.0.1",
-    "description": "支持ADXL345加速度传感器的Arduino库，支持Arduino UNO、MEGA、ESP8266、ESP32等开发板",
-    "author": "aily Project",
-    "compatibility": {
-      "core": [
-        "arduino:avr",
-        "esp32:esp32"
-      ],
-      "voltage": [
-        3.3,
-        5
-      ]
-    },
-    "keywords": [
-      "aily",
-      "blockly",
-      "ADXL345",
-      "accelerometer",
-      "adxl345_start",
-      "adxl345_getX"
     ],
     "tested": false,
     "icon": ""
@@ -1199,11 +1340,20 @@
   },
   {
     "name": "@aily-project/lib-arduino-freertos",
-    "nickname": "",
+    "nickname": "Arduino freeRTOS",
     "version": "1.0.0",
-    "description": "Arduino FreeRTOS Blockly Library - 基于FreeRTOS实时操作系统的Arduino块库",
+    "description": "适用于Arduino UNO R4的freeRTOS支持库",
     "author": "aily-project",
-    "compatibility": "",
+    "compatibility": {
+      "core": [
+        "renesas_uno:minima",
+        "renesas_uno:unor4wifi"
+      ],
+      "voltage": [
+        3.3,
+        5
+      ]
+    },
     "keywords": [
       "arduino",
       "freertos",
@@ -1341,7 +1491,6 @@
     "author": "Arduino",
     "compatibility": {
       "core": [
-        "renesas_uno:minima",
         "renesas_uno:unor4wifi"
       ],
       "voltage": [
@@ -1418,6 +1567,34 @@
     ],
     "tested": false,
     "icon": "fa-light fa-shield-dog"
+  },
+  {
+    "name": "@aily-project/lib-wifis3",
+    "nickname": "WiFiS3",
+    "version": "0.0.1",
+    "description": "Arduino UNO R4 WiFi库 WiFiS3",
+    "author": "奈何col",
+    "compatibility": {
+      "core": [
+        "renesas_uno:unor4wifi"
+      ],
+      "voltage": [
+        3.3
+      ]
+    },
+    "keywords": [
+      "aily",
+      "blockly",
+      "wifi",
+      "WiFiS3",
+      "WiFiServer",
+      "WiFiClient",
+      "WiFiUDP",
+      "RTC",
+      "ping"
+    ],
+    "tested": false,
+    "icon": "fa-light fa-wifi"
   },
   {
     "name": "@aily-project/lib-arduino-rs485",
@@ -1578,15 +1755,12 @@
   },
   {
     "name": "@aily-project/lib-ds18b20",
-    "nickname": "DS18B20温度传感器库",
-    "version": "0.0.1",
-    "description": "支持与DS18B20温度传感器进行交互，支持读取温度数据、设置报警阈值和检测温度报警",
-    "author": "Mathias Munk Hansen",
+    "nickname": "Dallas温度传感器",
+    "version": "1.0.0",
+    "description": "Dallas数字温度传感器库，支持DS18B20、DS18S20、DS1820、DS1822、DS1825、MAX31820、MAX31850等Dallas/MAXIM温度传感器",
+    "author": "aily Project",
     "compatibility": {
-      "core": [
-        "arduino:avr",
-        "esp32:esp32"
-      ],
+      "core": [],
       "voltage": [
         3.3,
         5
@@ -1594,17 +1768,37 @@
     },
     "keywords": [
       "aily",
-      "ds18b20",
-      "temperature",
-      "temperature_sensor",
-      "alarm",
-      "celsius",
-      "fahrenheit",
+      "blockly",
       "sensor",
-      "arduino"
+      "temperature",
+      "DS18B20",
+      "DS18S20",
+      "DS1820",
+      "DS1822",
+      "DS1825",
+      "MAX31820",
+      "MAX31850",
+      "Dallas",
+      "OneWire",
+      "温度",
+      "传感器",
+      "数字温度传感器",
+      "ds18b20_init",
+      "ds18b20_init_pin",
+      "ds18b20_read_temperature_c",
+      "ds18b20_read_temperature_f",
+      "ds18b20_read_temperature_c_pin",
+      "ds18b20_read_temperature_f_pin",
+      "ds18b20_simple_read",
+      "ds18b20_get_device_count",
+      "ds18b20_get_device_count_pin",
+      "ds18b20_read_temperature_by_index",
+      "ds18b20_read_temperature_by_index_pin",
+      "ds18b20_set_resolution",
+      "ds18b20_is_parasite_power"
     ],
     "tested": false,
-    "icon": ""
+    "icon": "fa-light fa-temperature-three-quarters"
   },
   {
     "name": "@aily-project/lib-esp32-ble-gamepad",
@@ -1732,6 +1926,78 @@
     "icon": ""
   },
   {
+    "name": "@aily-project/lib-esp32-espnow",
+    "nickname": "ESP-NOW通信",
+    "version": "1.0.0",
+    "description": "ESP32 ESP-NOW无线通信支持库，支持点对点通信、广播模式和网络模式",
+    "author": "aily Project",
+    "compatibility": {
+      "core": [
+        "esp32:esp32",
+        "esp32:esp32c3",
+        "esp32:esp32s3",
+        "esp32:esp32c6",
+        "esp32:esp32h2"
+      ],
+      "voltage": [
+        3.3
+      ]
+    },
+    "keywords": [
+      "aily",
+      "blockly",
+      "esp32",
+      "espnow",
+      "wireless",
+      "communication",
+      "mesh",
+      "broadcast",
+      "peer-to-peer"
+    ],
+    "tested": false,
+    "icon": "fa-light fa-signal-stream"
+  },
+  {
+    "name": "@aily-project/lib-esp32-i2c",
+    "nickname": "ESP32 I2C通信库",
+    "version": "1.0.0",
+    "description": "ESP32专用I2C通信支持库，提供主从模式通信、设备扫描等功能，支持自定义引脚配置",
+    "author": "aily Project",
+    "compatibility": {
+      "core": [
+        "esp32:esp32",
+        "esp32:esp32c3",
+        "esp32:esp32s2",
+        "esp32:esp32s3",
+        "esp32:esp32c6",
+        "esp32:esp32h2"
+      ],
+      "voltage": [
+        3.3
+      ]
+    },
+    "keywords": [
+      "aily",
+      "blockly",
+      "esp32",
+      "i2c",
+      "wire",
+      "communication",
+      "master",
+      "slave",
+      "scan",
+      "iic",
+      "两线通信",
+      "esp32_i2c_begin",
+      "esp32_i2c_scan_devices",
+      "esp32_i2c_write_to_device",
+      "esp32_i2c_read_from_device",
+      "esp32_i2c_slave_begin"
+    ],
+    "tested": false,
+    "icon": ""
+  },
+  {
     "name": "@aily-project/lib-esp32-i2s",
     "nickname": "ESP32 I2S音频处理库",
     "version": "1.0.0",
@@ -1774,36 +2040,6 @@
     "icon": ""
   },
   {
-    "name": "@aily-project/lib-esp32-sd",
-    "nickname": "ESP32 SD",
-    "version": "0.0.1",
-    "description": "SD卡及文件系统操作库，适用于Arduino、ESP8266、ESP32等开发板",
-    "author": "esp32",
-    "compatibility": {
-      "core": [
-        "arduino:avr",
-        "esp32:esp32",
-        "esp8266:esp8266"
-      ],
-      "voltage": [
-        3.3,
-        5
-      ]
-    },
-    "keywords": [
-      "sd",
-      "filesystem",
-      "fs",
-      "SD.begin",
-      "SD.open",
-      "SD.mkdir",
-      "file",
-      "directory"
-    ],
-    "tested": false,
-    "icon": ""
-  },
-  {
     "name": "@aily-project/lib-esp32-spi",
     "nickname": "ESP32 SPI",
     "version": "0.0.1",
@@ -1812,8 +2048,7 @@
     "compatibility": {
       "core": [
         "arduino:avr",
-        "esp32:esp32",
-        "esp8266:esp8266"
+        "esp32:esp32"
       ],
       "voltage": [
         3.3,
@@ -1934,6 +2169,39 @@
     ],
     "tested": false,
     "icon": "fa-light fa-wifi"
+  },
+  {
+    "name": "@aily-project/lib-esp32-wifimanager",
+    "nickname": "WiFi管理器",
+    "version": "1.0.0",
+    "description": "ESP32 WiFiManager库，提供WiFi配置门户和自动连接功能",
+    "author": "aily Project",
+    "compatibility": {
+      "core": [
+        "esp32:esp32",
+        "esp32:esp32c3",
+        "esp32:esp32s2",
+        "esp32:esp32s3"
+      ],
+      "voltage": [
+        3.3
+      ]
+    },
+    "keywords": [
+      "aily",
+      "blockly",
+      "wifi",
+      "wifimanager",
+      "esp32",
+      "esp8266",
+      "autoconnect",
+      "config",
+      "portal",
+      "wireless",
+      "network"
+    ],
+    "tested": false,
+    "icon": "fa-light fa-router"
   },
   {
     "name": "@aily-project/lib-gp2y1010au0f",
@@ -2164,35 +2432,6 @@
     "icon": "fa-light fa-drone-front"
   },
   {
-    "name": "@aily-project/lib-mqtt",
-    "nickname": "物联网通信支持库",
-    "version": "0.0.1",
-    "description": "基于PubSubClient的MQTT支持库，适用于Arduino UNO R4 WiFi、ESP32等开发板",
-    "author": "奈何col",
-    "compatibility": {
-      "core": [
-        "esp32:esp32",
-        "renesas_uno:unor4wifi"
-      ],
-      "voltage": [
-        3.3,
-        5
-      ]
-    },
-    "keywords": [
-      "aily",
-      "iot",
-      "mqtt",
-      "ethernet",
-      "wifi",
-      "PubSubClient",
-      "SRAM",
-      "network"
-    ],
-    "tested": false,
-    "icon": "fal fa-comments"
-  },
-  {
     "name": "@aily-project/lib-onebutton",
     "nickname": "OneButton按键",
     "version": "0.0.1",
@@ -2402,34 +2641,6 @@
     "icon": ""
   },
   {
-    "name": "@aily-project/lib-wifis3",
-    "nickname": "WiFiS3",
-    "version": "0.0.1",
-    "description": "Arduino UNO R4 WiFi核心库WiFiS3",
-    "author": "奈何col",
-    "compatibility": {
-      "core": [
-        "arduino:renesas_uno"
-      ],
-      "voltage": [
-        3.3
-      ]
-    },
-    "keywords": [
-      "aily",
-      "blockly",
-      "wifi",
-      "WiFiS3",
-      "WiFiServer",
-      "WiFiClient",
-      "WiFiUDP",
-      "RTC",
-      "ping"
-    ],
-    "tested": false,
-    "icon": "fa-light fa-wifi"
-  },
-  {
     "name": "@aily-project/lib-core-custom",
     "nickname": "自定义代码",
     "version": "1.0.0",
@@ -2531,17 +2742,24 @@
     "name": "@aily-project/lib-core-lists",
     "nickname": "数组",
     "version": "0.0.1",
-    "description": "数组",
+    "description": "核心库，通常已经集成到初始模板中",
     "author": "aily Project",
-    "compatibility": "",
+    "compatibility": {
+      "core": [],
+      "voltage": [
+        3.3,
+        5
+      ]
+    },
     "keywords": [
       "aily",
       "blockly",
-      "core",
-      "lists"
+      "lib",
+      "list",
+      "code"
     ],
     "tested": false,
-    "icon": "fa-light fa-books"
+    "icon": "fa-light fa-layer-group"
   },
   {
     "name": "@aily-project/lib-core-logic",
@@ -2584,7 +2802,7 @@
       "core",
       "loop"
     ],
-    "tested": false,
+    "tested": true,
     "icon": "fa-light fa-arrows-repeat"
   },
   {
