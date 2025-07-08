@@ -156,7 +156,7 @@ Arduino.forBlock['bh1750_init_with_wire'] = function(block, generator) {
   setupCode += '  Serial.println("BH1750传感器 ' + varName + ' 初始化成功!");\n  ';
   setupCode += '} else {\n  ';
   setupCode += '  Serial.println("警告: BH1750传感器 ' + varName + ' 初始化失败，请检查接线!");\n  ';
-  setupCode += '}\n  ';
+  setupCode += '}\n';
   
   generator.addSetup('bh1750_init_' + varName, setupCode);
   
