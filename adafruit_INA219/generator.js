@@ -60,7 +60,7 @@ Arduino.forBlock['ina219_init_with_wire'] = function(block, generator) {
   generator.sensorAddress = address;
   
   // 生成初始化代码
-  let setupCode = '// 初始化INA219电流传感器 ' + varName + '\n  ';
+  let setupCode = '// 初始化INA219电流传感器 ' + varName + '\n';
   
   // 如果指定了特定的Wire实例，使用该实例初始化
   if (wire && wire !== 'Wire' && wire !== '') {
@@ -94,17 +94,17 @@ Arduino.forBlock['ina219_init_with_wire'] = function(block, generator) {
           const sdaPin = pins.find(pin => pin[0] === 'SDA');
           const sclPin = pins.find(pin => pin[0] === 'SCL');
           if (sdaPin && sclPin) {
-            pinComment = '// ' + wire + ': SDA=' + sdaPin[1] + ', SCL=' + sclPin[1] + '\n  ';
+            pinComment = '// ' + wire + ': SDA=' + sdaPin[1] + ', SCL=' + sclPin[1] + '\n';
           }
         }
       } catch (e) {
         // 静默处理错误
       }
       
-      generator.addSetup(wireBeginKey, pinComment + wire + '.begin();\n  ');
+      generator.addSetup(wireBeginKey, pinComment + wire + '.begin();\n');
     }
     
-    setupCode += 'if (' + varName + '.begin(&' + wire + ')) {\n  ';
+    setupCode += 'if (' + varName + '.begin(&' + wire + ')) {\n';
   } else {
     // 统一使用与new_iic库相同的setupKey命名规范
     const wireBeginKey = 'wire_begin_Wire';
@@ -136,27 +136,27 @@ Arduino.forBlock['ina219_init_with_wire'] = function(block, generator) {
           const sdaPin = pins.find(pin => pin[0] === 'SDA');
           const sclPin = pins.find(pin => pin[0] === 'SCL');
           if (sdaPin && sclPin) {
-            pinComment = '// Wire: SDA=' + sdaPin[1] + ', SCL=' + sclPin[1] + '\n  ';
+            pinComment = '// Wire: SDA=' + sdaPin[1] + ', SCL=' + sclPin[1] + '\n';
           }
         }
       } catch (e) {
         // 静默处理错误
       }
       
-      generator.addSetup(wireBeginKey, pinComment + 'Wire.begin();\n  ');
+      generator.addSetup(wireBeginKey, pinComment + 'Wire.begin();\n');
     }
     
-    setupCode += 'if (' + varName + '.begin()) {\n  ';
+    setupCode += 'if (' + varName + '.begin()) {\n';
   }
   
-  setupCode += '  Serial.println("INA219传感器 ' + varName + ' 初始化成功!");\n  ';
-  setupCode += '} else {\n  ';
-  setupCode += '  Serial.println("警告: INA219传感器 ' + varName + ' 初始化失败，请检查接线!");\n  ';
+  setupCode += '  Serial.println("INA219传感器 ' + varName + ' 初始化成功!");\n';
+  setupCode += '} else {\n';
+  setupCode += '  Serial.println("警告: INA219传感器 ' + varName + ' 初始化失败，请检查接线!");\n';
   setupCode += '}\n';
   
-  generator.addSetup('ina219_init_' + varName, setupCode);
-  
-  return '';
+  // 返回初始化代码，让它可以插入到任何代码块中（setup、loop等）
+  // 而不是强制添加到setup中
+  return setupCode;
 };
 
 

@@ -46,15 +46,15 @@ Arduino.forBlock['bh1750_init_with_wire'] = function(block, generator) {
   // 添加必要的库
   ensureBH1750Libraries(generator);
   
-  // 添加BH1750对象变量，使用用户选择的变量名
-  generator.addVariable('bh1750_sensor', 'BH1750 ' + varName + '(' + address + ');');
+  // 添加BH1750对象变量到全局变量区域，与INA219库保持一致
+  generator.addVariable(varName, 'BH1750 ' + varName + '(' + address + ');');
   
   // 保存变量名和地址，供后续块使用
   generator.sensorVarName = varName;
   generator.sensorAddress = address;
   
   // 生成初始化代码
-  let setupCode = '// 初始化BH1750光照传感器 ' + varName + '\n  ';
+  let setupCode = '// 初始化BH1750光照传感器 ' + varName + '\n';
   
   // 如果指定了特定的Wire实例，使用该实例初始化
   if (wire && wire !== 'Wire' && wire !== '') {
@@ -88,7 +88,7 @@ Arduino.forBlock['bh1750_init_with_wire'] = function(block, generator) {
           const sdaPin = pins.find(pin => pin[0] === 'SDA');
           const sclPin = pins.find(pin => pin[0] === 'SCL');
           if (sdaPin && sclPin) {
-            pinComment = '  // ' + wire + ': SDA=' + sdaPin[1] + ', SCL=' + sclPin[1] + '\n  ';
+            pinComment = '// ' + wire + ': SDA=' + sdaPin[1] + ', SCL=' + sclPin[1] + '\n';
           }
         }
       } catch (e) {
@@ -100,9 +100,9 @@ Arduino.forBlock['bh1750_init_with_wire'] = function(block, generator) {
     
     // 当mode为默认值CONTINUOUS_HIGH_RES_MODE时，可以省略mode参数
     if (mode === 'CONTINUOUS_HIGH_RES_MODE') {
-      setupCode += 'if (' + varName + '.begin(' + address + ', &' + wire + ')) {\n  ';
+      setupCode += 'if (' + varName + '.begin(' + address + ', &' + wire + ')) {\n';
     } else {
-      setupCode += 'if (' + varName + '.begin(BH1750::' + mode + ', ' + address + ', &' + wire + ')) {\n  ';
+      setupCode += 'if (' + varName + '.begin(BH1750::' + mode + ', ' + address + ', &' + wire + ')) {\n';
     }
   } else {
     // 统一使用与new_iic库相同的setupKey命名规范
@@ -135,7 +135,7 @@ Arduino.forBlock['bh1750_init_with_wire'] = function(block, generator) {
           const sdaPin = pins.find(pin => pin[0] === 'SDA');
           const sclPin = pins.find(pin => pin[0] === 'SCL');
           if (sdaPin && sclPin) {
-            pinComment = '  // Wire: SDA=' + sdaPin[1] + ', SCL=' + sclPin[1] + '\n  ';
+            pinComment = '// Wire: SDA=' + sdaPin[1] + ', SCL=' + sclPin[1] + '\n';
           }
         }
       } catch (e) {
@@ -147,18 +147,18 @@ Arduino.forBlock['bh1750_init_with_wire'] = function(block, generator) {
     
     // 当mode为默认值CONTINUOUS_HIGH_RES_MODE时，可以省略mode参数
     if (mode === 'CONTINUOUS_HIGH_RES_MODE') {
-      setupCode += 'if (' + varName + '.begin()) {\n  ';
+      setupCode += 'if (' + varName + '.begin()) {\n';
     } else {
-      setupCode += 'if (' + varName + '.begin(BH1750::' + mode + ')) {\n  ';
+      setupCode += 'if (' + varName + '.begin(BH1750::' + mode + ')) {\n';
     }
   }
   
-  setupCode += '  Serial.println("BH1750传感器 ' + varName + ' 初始化成功!");\n  ';
-  setupCode += '} else {\n  ';
-  setupCode += '  Serial.println("警告: BH1750传感器 ' + varName + ' 初始化失败，请检查接线!");\n  ';
+  setupCode += '  Serial.println("BH1750传感器 ' + varName + ' 初始化成功!");\n';
+  setupCode += '} else {\n';
+  setupCode += '  Serial.println("警告: BH1750传感器 ' + varName + ' 初始化失败，请检查接线!");\n';
   setupCode += '}\n';
   
-  generator.addSetup('bh1750_init_' + varName, setupCode);
-  
-  return '';
+  // 返回初始化代码，让它可以插入到任何代码块中（setup、loop等）
+  // 而不是强制添加到setup中
+  return setupCode;
 }
