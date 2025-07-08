@@ -79,7 +79,23 @@ Arduino.forBlock['bh1750_init_with_wire'] = function(block, generator) {
     }
     
     if (!isAlreadyInitialized) {
-      generator.addSetup(wireBeginKey, wire + '.begin();\n  ');
+      // 获取I2C引脚信息并添加到注释中
+      var pinComment = '';
+      try {
+        const boardConfig = window['boardConfig'];
+        if (boardConfig && boardConfig.i2cPins && boardConfig.i2cPins[wire]) {
+          const pins = boardConfig.i2cPins[wire];
+          const sdaPin = pins.find(pin => pin[0] === 'SDA');
+          const sclPin = pins.find(pin => pin[0] === 'SCL');
+          if (sdaPin && sclPin) {
+            pinComment = '  // ' + wire + ': SDA=' + sdaPin[1] + ', SCL=' + sclPin[1] + '\n  ';
+          }
+        }
+      } catch (e) {
+        // 静默处理错误
+      }
+      
+      generator.addSetup(wireBeginKey, pinComment + wire + '.begin();\n');
     }
     
     // 当mode为默认值CONTINUOUS_HIGH_RES_MODE时，可以省略mode参数
@@ -110,7 +126,23 @@ Arduino.forBlock['bh1750_init_with_wire'] = function(block, generator) {
     }
     
     if (!isAlreadyInitialized) {
-      generator.addSetup(wireBeginKey, 'Wire.begin();\n  ');
+      // 获取I2C引脚信息并添加到注释中
+      var pinComment = '';
+      try {
+        const boardConfig = window['boardConfig'];
+        if (boardConfig && boardConfig.i2cPins && boardConfig.i2cPins['Wire']) {
+          const pins = boardConfig.i2cPins['Wire'];
+          const sdaPin = pins.find(pin => pin[0] === 'SDA');
+          const sclPin = pins.find(pin => pin[0] === 'SCL');
+          if (sdaPin && sclPin) {
+            pinComment = '  // Wire: SDA=' + sdaPin[1] + ', SCL=' + sclPin[1] + '\n  ';
+          }
+        }
+      } catch (e) {
+        // 静默处理错误
+      }
+      
+      generator.addSetup(wireBeginKey, pinComment + 'Wire.begin();\n');
     }
     
     // 当mode为默认值CONTINUOUS_HIGH_RES_MODE时，可以省略mode参数
