@@ -1,33 +1,32 @@
 
 [
   {
-    "type": "ina219_create_and_begin",
-    "message0": "创建并初始化 INA219 %1 %2",
+    "type": "ina219_init_with_wire",
+    "message0": "初始化IN219模块 %1 地址 %2 使用 I2C %3",
     "args0": [
       {
         "type": "field_variable",
         "name": "VAR",
-        "variable": "ina219",
-        "variableTypes": [
-          "Adafruit_INA219"
-        ],
-        "defaultType": "Adafruit_INA219"
+        "variable": "ina219"
       },
       {
-        "type": "input_dummy",
-        "name": "I2C_PINS"
+        "type": "field_input",
+        "name": "ADDRESS",
+        "text": "0x40"
+      },
+      {
+        "type": "input_value",
+        "name": "WIRE"
       }
     ],
     "previousStatement": null,
     "nextStatement": null,
     "colour": "#FFA500",
-    "tooltip": "创建 INA219 对象并自动初始化I2C总线和传感器",
-    "helpUrl": "",
-    "extensions": ["ina219_create_extension"]
+    "tooltip": "初始化 INA219 传感器，指定 I2C 地址和使用的 I2C 总线"
   },
   {
     "type": "ina219_read_value",
-    "message0": "读取 INA219 %1 %2",
+    "message0": "读取IN219模块 %1 %2",
     "args0": [
       {
         "type": "field_variable",

@@ -4,143 +4,160 @@
  * Adafruit_NeoPixel, Adafruit_SSD1306, Adafruit_INA219 生成器统一处理
  */
 
-// 注册 INA219 扩展 - 根据板子类型决定是否显示 I2C 引脚选择
-// 避免重复加载
-if (Blockly.Extensions.isRegistered('ina219_create_extension')) {
-  Blockly.Extensions.unregister('ina219_create_extension');
-}
-
-Blockly.Extensions.register('ina219_create_extension', function() {
-  // 获取开发板配置信息
-  var boardConfig = window['boardConfig'] || {};
-  var boardCore = (boardConfig.core || '').toLowerCase();
-  var boardName = (boardConfig.name || '').toLowerCase();
-  
-  // 判断是否为 ESP32 系列
-  var isESP32 = boardCore.indexOf('esp32') > -1 || 
-                boardName.indexOf('esp32') > -1;
-  
-  // 获取 input_dummy 的引用
-  var dummyInput = this.getInput('I2C_PINS');
-  
-  if (isESP32) {
-    // 对于 ESP32，添加 I2C 引脚选择下拉菜单
-    dummyInput.appendField('使用');
-    dummyInput.appendField(new Blockly.FieldDropdown([
-      ['Wire1 (SDA:4, SCL:5)', 'WIRE_4_5'],
-      ['Wire2 (SDA:8, SCL:9)', 'WIRE_DEFAULT']
-    ]), 'WIRE_OPTION');
-  } else {
-    // 对于 Arduino，使用默认引脚 SDA:4, SCL:5，不可选择
-    dummyInput.appendField('使用 Wire (SDA:4, SCL:5)');
-    
-    // 添加一个不可见的字段，以便在生成器中使用
-    this.appendDummyInput().appendField(
-      new Blockly.FieldLabelSerializable('WIRE_4_5'), 'WIRE_OPTION')
-      .setVisible(false);
-  }
-});
-
-function simpleMethod(block, generator, field, method) {
-  var n = Arduino.nameDB_.getName(block.getFieldValue('VAR'), 'VARIABLE');
-  return n + '.' + method + '();\n';
-}
-
-function singleParam(block, generator, field, method) {
-  var n = Arduino.nameDB_.getName(block.getFieldValue('VAR'), 'VARIABLE');
-  var v = generator.valueToCode(block, field, Arduino.ORDER_ATOMIC);
-  return n + '.' + method + '(' + v + ');\n';
-}
-
-function doubleParam(block, generator, field1, field2, method) {
-  var n = Arduino.nameDB_.getName(block.getFieldValue('VAR'), 'VARIABLE');
-  var v1 = generator.valueToCode(block, field1, Arduino.ORDER_COMMA);
-  var v2 = generator.valueToCode(block, field2, Arduino.ORDER_COMMA);
-  return n + '.' + method + '(' + v1 + ', ' + v2 + ');\n';
-}
-
-
-
-
-
-// Adafruit_INA219
-Arduino.forBlock['ina219_create_and_begin'] = function(block, generator) {
-  var v = Arduino.nameDB_.getName(block.getFieldValue('VAR'), 'VARIABLE');
-  var wireOption = block.getFieldValue('WIRE_OPTION') || 'WIRE_4_5'; // 默认值
-  
-  // 添加必要的库
-  generator.addLibrary('adafruit_ina219', '#include <Adafruit_INA219.h>');
-  generator.addLibrary('wire', '#include <Wire.h>');
-  
-  // 添加变量定义
-  generator.addVariable(v, 'Adafruit_INA219 '+v+';');
-  
-  // 获取开发板配置信息
-  var boardConfig = window['boardConfig'] || {};
-  var boardCore = (boardConfig.core || '').toLowerCase();
-  var boardName = (boardConfig.name || '').toLowerCase();
-  
-  // 判断开发板类型
-  var isArduinoCore = boardCore.indexOf('arduino') > -1 || 
-                     boardName.indexOf('arduino') > -1 || 
-                     boardName.indexOf('uno') > -1 || 
-                     boardName.indexOf('nano') > -1 || 
-                     boardName.indexOf('mega') > -1;
-                     
-  var isESP32Core = boardCore.indexOf('esp32') > -1 || 
-                   boardName.indexOf('esp32') > -1 || 
-                   boardName.indexOf('esp') > -1;
-  
-  // 调试信息
-  console.log('INA219: 开发板信息:', boardConfig);
-  console.log('INA219: 核心类型:', boardCore);
-  console.log('INA219: 板名:', boardName);
-  console.log('INA219: isArduinoCore:', isArduinoCore);
-  console.log('INA219: isESP32Core:', isESP32Core);
-  
-  // 返回初始化代码
-  var code = '';
-  
-  if (isArduinoCore) {
-    // Arduino核心固定使用 SDA:4, SCL:5
-    code = 'Wire.begin();  // 初始化硬件 I2C (Arduino核心)\n' + v + '.begin();\n';
-  } else if (isESP32Core) {
-    // ESP32核心，根据Wire选项初始化
-    switch (wireOption) {
-      case 'WIRE_DEFAULT':
-        // Wire2 使用 SDA:8, SCL:9，不需要指定引脚
-        code = 'Wire.begin();  // 初始化硬件 I2C，Wire2 (ESP32核心)\n' + v + '.begin();\n';
-        break;
-      case 'WIRE_4_5':
-      default:
-        // Wire1 使用 SDA:4, SCL:5
-        code = 'Wire.begin(4, 5);  // 初始化硬件 I2C，使用 SDA:4, SCL:5 (ESP32核心)\n' + v + '.begin();\n';
-        break;
-    }
-  } else {
-    // 其他非Arduino核心，默认与ESP32相同
-    code = 'Wire.begin(4, 5);  // 初始化硬件 I2C，使用 SDA:4, SCL:5\n' + v + '.begin();\n';
-  }
-  
-  return code;
-};
-
 // 带下拉选项的读取值块
 Arduino.forBlock['ina219_read_value'] = function(block, generator) {
-  var v = Arduino.nameDB_.getName(block.getFieldValue('VAR'), 'VARIABLE');
-  var type = block.getFieldValue('TYPE');
+  // 从block中获取变量的文本值，而不是变量引用，与ina219_init_with_wire保持一致
+  const varField = block.getField('VAR');
+  const varName = varField ? varField.getText() : (generator.sensorVarName || "ina219");
+  const type = block.getFieldValue('TYPE') || 'BUS_VOLTAGE';
   
   // 根据下拉选项返回不同的函数调用
   switch(type) {
     case 'BUS_VOLTAGE':
-      return [v + '.getBusVoltage_V()', Arduino.ORDER_FUNCTION_CALL];
+      return [varName + '.getBusVoltage_V()', generator.ORDER_FUNCTION_CALL];
     case 'SHUNT_VOLTAGE':
-      return [v + '.getShuntVoltage_mV()', Arduino.ORDER_FUNCTION_CALL];
+      return [varName + '.getShuntVoltage_mV()', generator.ORDER_FUNCTION_CALL];
     case 'CURRENT':
-      return [v + '.getCurrent_mA()', Arduino.ORDER_FUNCTION_CALL];
+      return [varName + '.getCurrent_mA()', generator.ORDER_FUNCTION_CALL];
     case 'POWER':
-      return [v + '.getPower_mW()', Arduino.ORDER_FUNCTION_CALL];
+      return [varName + '.getPower_mW()', generator.ORDER_FUNCTION_CALL];
     default:
-      return [v + '.getBusVoltage_V()', Arduino.ORDER_FUNCTION_CALL];
+      return [varName + '.getBusVoltage_V()', generator.ORDER_FUNCTION_CALL];
   }
 };
+
+// 通用库管理函数，确保不重复添加库
+function ensureLibrary(generator, libraryKey, libraryCode) {
+  if (!generator.libraries_) {
+    generator.libraries_ = {};
+  }
+  if (!generator.libraries_[libraryKey]) {
+    generator.addLibrary(libraryKey, libraryCode);
+  }
+}
+
+// 确保Wire库和INA219库
+function ensureINA219Libraries(generator) {
+  ensureLibrary(generator, 'wire', '#include <Wire.h>');
+  ensureLibrary(generator, 'adafruit_ina219', '#include <Adafruit_INA219.h>');
+}
+
+// INA219初始化传感器（支持Wire实例选择）
+Arduino.forBlock['ina219_init_with_wire'] = function(block, generator) {
+  const varField = block.getField('VAR');
+  const varName = varField ? varField.getText() : 'ina219';
+  const address = block.getFieldValue('ADDRESS') || '0x40'; // 从field_input获取地址
+  const wire = generator.valueToCode(block, 'WIRE', generator.ORDER_ATOMIC) || 'Wire'; // 从input_value获取Wire
+  
+  // 添加必要的库
+  ensureINA219Libraries(generator);
+  
+  // 添加INA219对象变量，使用用户选择的变量名
+  generator.addVariable(varName, 'Adafruit_INA219 ' + varName + '(' + address + ');');
+  
+  // 保存变量名和地址，供后续块使用
+  generator.sensorVarName = varName;
+  generator.sensorAddress = address;
+  
+  // 生成初始化代码
+  let setupCode = '// 初始化INA219电流传感器 ' + varName + '\n  ';
+  
+  // 如果指定了特定的Wire实例，使用该实例初始化
+  if (wire && wire !== 'Wire' && wire !== '') {
+    // 统一使用与new_iic库相同的setupKey命名规范
+    const wireBeginKey = 'wire_begin_' + wire;
+    
+    // 检查是否已经初始化过这个Wire实例（包括wire_begin_with_settings的初始化）
+    var isAlreadyInitialized = false;
+    if (generator.setupCodes_) {
+      // 检查基础key或任何以该Wire实例开头的key
+      if (generator.setupCodes_[wireBeginKey]) {
+        isAlreadyInitialized = true;
+      } else {
+        // 检查是否存在该Wire实例的wire_begin_with_settings初始化记录
+        for (var key in generator.setupCodes_) {
+          if (key.startsWith('wire_begin_' + wire + '_') && key !== wireBeginKey) {
+            isAlreadyInitialized = true;
+            break;
+          }
+        }
+      }
+    }
+    
+    if (!isAlreadyInitialized) {
+      // 获取I2C引脚信息并添加到注释中
+      var pinComment = '';
+      try {
+        const boardConfig = window['boardConfig'];
+        if (boardConfig && boardConfig.i2cPins && boardConfig.i2cPins[wire]) {
+          const pins = boardConfig.i2cPins[wire];
+          const sdaPin = pins.find(pin => pin[0] === 'SDA');
+          const sclPin = pins.find(pin => pin[0] === 'SCL');
+          if (sdaPin && sclPin) {
+            pinComment = '// ' + wire + ': SDA=' + sdaPin[1] + ', SCL=' + sclPin[1] + '\n  ';
+          }
+        }
+      } catch (e) {
+        // 静默处理错误
+      }
+      
+      generator.addSetup(wireBeginKey, pinComment + wire + '.begin();\n  ');
+    }
+    
+    setupCode += 'if (' + varName + '.begin(&' + wire + ')) {\n  ';
+  } else {
+    // 统一使用与new_iic库相同的setupKey命名规范
+    const wireBeginKey = 'wire_begin_Wire';
+    
+    // 检查是否已经初始化过Wire实例（包括wire_begin_with_settings的初始化）
+    var isAlreadyInitialized = false;
+    if (generator.setupCodes_) {
+      // 检查基础key或任何以Wire开头的key
+      if (generator.setupCodes_[wireBeginKey]) {
+        isAlreadyInitialized = true;
+      } else {
+        // 检查是否存在Wire实例的wire_begin_with_settings初始化记录
+        for (var key in generator.setupCodes_) {
+          if (key.startsWith('wire_begin_Wire_') && key !== wireBeginKey) {
+            isAlreadyInitialized = true;
+            break;
+          }
+        }
+      }
+    }
+    
+    if (!isAlreadyInitialized) {
+      // 获取I2C引脚信息并添加到注释中
+      var pinComment = '';
+      try {
+        const boardConfig = window['boardConfig'];
+        if (boardConfig && boardConfig.i2cPins && boardConfig.i2cPins['Wire']) {
+          const pins = boardConfig.i2cPins['Wire'];
+          const sdaPin = pins.find(pin => pin[0] === 'SDA');
+          const sclPin = pins.find(pin => pin[0] === 'SCL');
+          if (sdaPin && sclPin) {
+            pinComment = '// Wire: SDA=' + sdaPin[1] + ', SCL=' + sclPin[1] + '\n  ';
+          }
+        }
+      } catch (e) {
+        // 静默处理错误
+      }
+      
+      generator.addSetup(wireBeginKey, pinComment + 'Wire.begin();\n  ');
+    }
+    
+    setupCode += 'if (' + varName + '.begin()) {\n  ';
+  }
+  
+  setupCode += '  Serial.println("INA219传感器 ' + varName + ' 初始化成功!");\n  ';
+  setupCode += '} else {\n  ';
+  setupCode += '  Serial.println("警告: INA219传感器 ' + varName + ' 初始化失败，请检查接线!");\n  ';
+  setupCode += '}\n';
+  
+  generator.addSetup('ina219_init_' + varName, setupCode);
+  
+  return '';
+};
+
+
+
