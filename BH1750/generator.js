@@ -88,7 +88,7 @@ Arduino.forBlock['bh1750_init_with_wire'] = function(block, generator) {
           const sdaPin = pins.find(pin => pin[0] === 'SDA');
           const sclPin = pins.find(pin => pin[0] === 'SCL');
           if (sdaPin && sclPin) {
-            pinComment = '// ' + wire + ': SDA=' + sdaPin[1] + ', SCL=' + sclPin[1] + '\n';
+            pinComment = '  // ' + wire + ': SDA=' + sdaPin[1] + ', SCL=' + sclPin[1] + '\n  ';
           }
         }
       } catch (e) {
@@ -135,7 +135,7 @@ Arduino.forBlock['bh1750_init_with_wire'] = function(block, generator) {
           const sdaPin = pins.find(pin => pin[0] === 'SDA');
           const sclPin = pins.find(pin => pin[0] === 'SCL');
           if (sdaPin && sclPin) {
-            pinComment = '// Wire: SDA=' + sdaPin[1] + ', SCL=' + sclPin[1] + '\n';
+            pinComment = '  // Wire: SDA=' + sdaPin[1] + ', SCL=' + sclPin[1] + '\n  ';
           }
         }
       } catch (e) {
