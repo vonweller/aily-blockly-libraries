@@ -97,7 +97,20 @@ Arduino.forBlock["procedures_defreturn"] = function (block) {
   const args = [];
   const variables = block.getVars();
   for (let i = 0; i < variables.length; i++) {
-    args[i] = Arduino.getVariableName(variables[i]);
+    const originalVarInput = variables[i];
+    
+    // Check if the variable input contains type information (e.g., "int a", "float temperature")
+    const typePattern = /^(int|float|double|long|short|byte|boolean|char|String|void|\w+\*?)\s+(\w+)$/;
+    const match = originalVarInput.match(typePattern);
+    
+    if (match) {
+      // User input includes type: "int a" -> use as is
+      args[i] = originalVarInput;
+    } else {
+      // User input is just variable name: "a" -> add default type
+      const varName = Arduino.getVariableName(originalVarInput);
+      args[i] = "int " + varName;
+    }
   }
 
   // Add Chinese function name comment if the original name contains Chinese characters
