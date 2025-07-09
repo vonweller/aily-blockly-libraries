@@ -2,12 +2,16 @@
     "name": "@aily-project/lib-ps2x",
     "nickname": "PS2控制器库",
     "author": "Bill Porter",
-    "description": "用于读取PlayStation 2控制器输入的库，支持模拟摇杆和按钮检测",
-    "version": "1.0.0",
+    "description": "用于读取PlayStation 2控制器输入的库，支持模拟摇杆、按钮检测、压力感应和震动反馈",
+    "version": "1.1.0",
     "compatibility": {
         "core": [
             "arduino:avr",
-            "esp32:esp32"
+            "esp32:esp32",
+            "esp32:esp32c3",
+            "esp32:esp32s3",
+            "renesas_uno:minima",
+            "renesas_uno:unor4wifi"
         ],
         "voltage": [3.3, 5]
     },
@@ -18,7 +22,15 @@
         "controller",
         "playstation",
         "joystick",
-        "button"
+        "button",
+        "analog",
+        "pressure",
+        "vibration",
+        "rumble",
+        "ps2x_init",
+        "ps2x_read",
+        "ps2x_button",
+        "ps2x_analog"
     ],
     "scripts": {},
     "dependencies": {},
