@@ -2,7 +2,7 @@
 [
   {
     "type": "ina219_init_with_wire",
-    "message0": "初始化IN219模块 %1 地址 %2 使用 I2C %3",
+    "message0": "初始化IN219模块 %1 地址 %2 使用 %3",
     "args0": [
       {
         "type": "field_variable",
@@ -15,8 +15,9 @@
         "text": "0x40"
       },
       {
-        "type": "input_value",
-        "name": "WIRE"
+        "type": "field_dropdown",
+        "name": "WIRE",
+        "options": "${board.i2c}"
       }
     ],
     "previousStatement": null,
