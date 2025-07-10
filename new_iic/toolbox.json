@@ -6,11 +6,17 @@
   "contents": [
     {
       "kind": "block",
-      "type": "wire_begin"
+      "type": "wire_begin",
+      "fields": {
+        "MODE": "MASTER"
+      }
     },
     {
       "kind": "block",
       "type": "wire_begin_with_settings",
+      "fields": {
+        "MODE": "MASTER"
+      },
       "inputs": {
         "SDA": {
           "shadow": {
@@ -112,7 +118,8 @@
     },
     {
       "kind": "block",
-      "type": "wire_variables"
+      "type": "wire_variables",
+      "tooltip": "获取Wire对象引用，可用于需要I2C实例的函数中"
     },
     {
       "kind": "block",

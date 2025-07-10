@@ -35,30 +35,29 @@ function ensureSerialBegin(serialPort, generator) {
 
 /**
  * Wire.begin() / Wire.begin(address)
+ * 根据模式字段生成不同的代码：
+ * - 主模式 (MASTER): Wire.begin() - 无参数版本
+ * - 从模式 (SLAVE): Wire.begin(address) - 仅地址参数版本
+ * 从模式下的地址输入由 wire_begin_mutator 扩展动态添加
  */
 Arduino.forBlock['wire_begin'] = function(block, generator) {
   ensureWireLibrary(generator);
   var wire = block.getFieldValue('WIRE') || 'Wire';
-  var address = generator.valueToCode(block, 'ADDRESS', generator.ORDER_ATOMIC);
+  var mode = block.getFieldValue('MODE');
   
-  // 获取I2C引脚信息并添加到注释中（优先使用自定义引脚信息）
+  // 获取引脚注释信息
   var pinComment = '';
   try {
     let pins = null;
-    
-    // 优先使用自定义引脚配置
     const customPins = window['customI2CPins'];
     if (customPins && customPins[wire]) {
       pins = customPins[wire];
-    }
-    // 回退到boardConfig中的引脚信息
-    else {
+    } else {
       const boardConfig = window['boardConfig'];
       if (boardConfig && boardConfig.i2cPins && boardConfig.i2cPins[wire]) {
         pins = boardConfig.i2cPins[wire];
       }
     }
-    
     if (pins) {
       const sdaPin = pins.find(pin => pin[0] === 'SDA');
       const sclPin = pins.find(pin => pin[0] === 'SCL');
@@ -67,35 +66,39 @@ Arduino.forBlock['wire_begin'] = function(block, generator) {
       }
     }
   } catch (e) {
-    // 静默处理错误
+    console.error('Error generating pin comment:', e);
   }
+
+  // 根据模式生成不同的代码
+  var code = '';
+  var setupKey = '';
   
-  var code = address ? wire + '.begin(' + address + ');\n' : wire + '.begin();\n';
-  var fullCode = pinComment + code;
-  
-  // 为每个Wire实例使用不同的setupKey，避免冲突
-  // 主设备模式(无address)和从设备模式(有address)使用不同的key
-  var setupKey = address ? 'wire_begin_' + wire + '_' + address : 'wire_begin_' + wire;
-  
-  // 检查是否已经初始化过这个Wire实例（包括wire_begin_with_settings的初始化）
-  var baseSetupKey = 'wire_begin_' + wire;
-  if (!generator.setupCodes_ || !generator.setupCodes_[setupKey]) {
-    // 额外检查是否已经被wire_begin_with_settings初始化
-    var isAlreadyInitialized = false;
-    if (generator.setupCodes_) {
-      // 检查是否存在该Wire实例的任何初始化记录
-      for (var key in generator.setupCodes_) {
-        if (key.startsWith('wire_begin_' + wire + '_') && key !== setupKey) {
-          isAlreadyInitialized = true;
-          break;
-        }
+  if (mode === 'SLAVE') {
+    // 从模式：Wire.begin(address) - 使用默认引脚
+    // 确保获取ADDRESS输入值，如果不存在则使用默认值8
+    var address = '8'; // 默认值
+    try {
+      if (block.getInput('ADDRESS')) {
+        address = generator.valueToCode(block, 'ADDRESS', generator.ORDER_ATOMIC) || '8';
       }
+    } catch (e) {
+      console.error('Error getting ADDRESS value:', e);
     }
     
-    if (!isAlreadyInitialized) {
-      generator.addSetup(setupKey, fullCode);
-    }
+    code = wire + '.begin(' + address + '); // 从设备模式 设备地址: ' + address + '\n';
+    setupKey = 'wire_begin_' + wire + '_slave_' + address;
+  } else {
+    // 主模式：Wire.begin()
+    code = wire + '.begin(); // 主设备模式\n';
+    setupKey = 'wire_begin_' + wire + '_master';
   }
+  
+  // 组合最终代码并添加到setup部分
+  var fullCode = pinComment + code;
+  if (!generator.setupCodes_ || !generator.setupCodes_[setupKey]) {
+    generator.addSetup(setupKey, fullCode);
+  }
+  
   return '';
 };
 
@@ -110,26 +113,51 @@ Arduino.forBlock['wire_set_clock'] = function(block, generator) {
 };
 
 /**
- * Wire.begin(sda, scl) for ESP32
+ * Wire.begin(sda, scl) / Wire.begin(address, sda, scl) for ESP32
+ * 根据模式字段生成不同的代码：
+ * - 主模式 (MASTER): Wire.begin(sda, scl)
+ * - 从模式 (SLAVE): Wire.begin(address, sda, scl)
+ * 从模式下的地址输入由 wire_begin_with_settings_mutator 扩展动态添加
  */
 Arduino.forBlock['wire_begin_with_settings'] = function(block, generator) {
   ensureWireLibrary(generator);
   var wire = block.getFieldValue('WIRE') || 'Wire';
+  var mode = block.getFieldValue('MODE');
   var sda = generator.valueToCode(block, 'SDA', generator.ORDER_ATOMIC);
   var scl = generator.valueToCode(block, 'SCL', generator.ORDER_ATOMIC);
   
-  // 添加引脚注释，显示自定义引脚配置
-  var pinComment = '  // ' + wire + ': SDA=' + sda + ', SCL=' + scl + ' (custom)\n  ';
-  var code = pinComment + wire + '.begin(' + sda + ', ' + scl + ');\n';
+  // 添加引脚注释
+  var pinComment = '  // ' + wire + ': SDA=' + sda + ', SCL=' + scl + ' (custom)';
+  var code = '';
+  var setupKey = '';
+  
+  // 根据模式生成不同的代码
+  if (mode === 'SLAVE') {
+    // 从模式：Wire.begin(address, sda, scl) - 从设备模式下参数顺序为地址在前
+    // 确保获取ADDRESS输入值，如果不存在则使用默认值8
+    var address = '8'; // 默认值
+    try {
+      if (block.getInput('ADDRESS')) {
+        address = generator.valueToCode(block, 'ADDRESS', generator.ORDER_ATOMIC) || '8';
+      }
+    } catch (e) {
+      console.error('Error getting ADDRESS value:', e);
+    }
+
+    code = pinComment + ' 从设备模式 设备地址: ' + address + '\n  ' + wire + '.begin(' + address + ', ' + sda + ', ' + scl + ');\n';
+    setupKey = 'wire_begin_' + wire + '_slave_' + address + '_' + sda + '_' + scl;
+  } else {
+    // 主模式：Wire.begin(sda, scl)
+    code = pinComment + ' 主设备模式\n  ' + wire + '.begin(' + sda + ', ' + scl + ');\n';
+    setupKey = 'wire_begin_' + wire + '_' + sda + '_' + scl + '_master';
+  }
   
   // 为每个Wire实例使用基础的setupKey，避免与wire_begin冲突
-  // 同时使用详细的key来区分不同的引脚配置
   var baseSetupKey = 'wire_begin_' + wire;
-  var specificSetupKey = 'wire_begin_' + wire + '_' + sda + '_' + scl;
   
   // 检查是否已经初始化过这个Wire实例（任何形式的初始化）
-  if (!generator.setupCodes_ || (!generator.setupCodes_[baseSetupKey] && !generator.setupCodes_[specificSetupKey])) {
-    generator.addSetup(specificSetupKey, code);
+  if (!generator.setupCodes_ || (!generator.setupCodes_[baseSetupKey] && !generator.setupCodes_[setupKey])) {
+    generator.addSetup(setupKey, code);
     // 同时标记基础key，防止后续的wire_begin重复初始化
     generator.addSetup(baseSetupKey, '// Wire ' + wire + ' initialized with custom pins\n');
   }
@@ -232,9 +260,14 @@ Arduino.forBlock['wire_read'] = function(block, generator) {
   return [wire + '.read()', generator.ORDER_FUNCTION_CALL];
 };
 
+/**
+ * 获取Wire对象引用
+ * 返回Wire对象名称，可以用在需要Wire实例的函数或表达式中
+ */
 Arduino.forBlock['wire_variables'] = function(block, generator) {
   ensureWireLibrary(generator);
   var wire = block.getFieldValue('WIRE') || 'Wire';
+  // 返回Wire对象名称作为表达式
   return [wire, generator.ORDER_ATOMIC];
 };
 
@@ -449,7 +482,6 @@ function initializeI2CBlock(block) {
         // 设置显示文本
         const matchingOption = boardConfig.i2c.find(([text, value]) => value === wireField.getValue());
         if (matchingOption) {
-          wireField.setText(matchingOption[0]);
         }
       }
     }, 100);
@@ -587,11 +619,9 @@ function updateBlockDropdownWithPinInfo(block, config) {
       if (currentValue) {
         const matchingOption = optionsWithPins.find(([text, value]) => value === currentValue);
         if (matchingOption) {
-          wireField.setText(matchingOption[0]);
         }
       } else if (optionsWithPins.length > 0) {
         // 设置默认选项
-        wireField.setText(optionsWithPins[0][0]);
         wireField.setValue(optionsWithPins[0][1]);
       }
     }
@@ -1024,5 +1054,168 @@ function clearCustomPinConfig(wire) {
     }
   } catch (e) {
     console.error('Error in clearCustomPinConfig:', e); // 调试信息
+  }
+}
+
+/**
+ * 根据I2C模式动态显示地址输入
+ * 当模式为从设备（SLAVE）时，添加地址输入字段
+ * 当模式为主设备（MASTER）时，移除地址输入字段
+ * 该扩展在 block.json 中通过 "extensions": ["wire_begin_pin_info", "wire_begin_mutator"] 激活
+ */
+// 检查并移除已存在的扩展注册
+if (Blockly && Blockly.Extensions && Blockly.Extensions.isRegistered && 
+    Blockly.Extensions.isRegistered('wire_begin_mutator')) {
+  Blockly.Extensions.unregister('wire_begin_mutator');
+}
+
+// 重新注册扩展，参考blinker库的实现方式
+if (Blockly && Blockly.Extensions) {
+  Blockly.Extensions.register('wire_begin_mutator', function() {
+    // 定义updateShape_函数作为block的方法
+    this.updateShape_ = function(mode) {
+      try {
+        // 检查是否有ADDRESS输入
+        var addressInput = this.getInput('ADDRESS');
+        
+        if (mode === 'SLAVE') {
+          // 从模式: 显示地址输入
+          if (!addressInput) {
+            addressInput = this.appendValueInput('ADDRESS')
+              .setCheck('Number')
+              .appendField('从设备地址');
+              
+            // 添加默认的数字块
+            if (!this.isInFlyout) {
+              var shadowBlock = this.workspace.newBlock('math_number');
+              shadowBlock.setFieldValue('8', 'NUM');
+              shadowBlock.setShadow(true);
+              shadowBlock.initSvg();
+              shadowBlock.render();
+              this.getInput('ADDRESS').connection.connect(shadowBlock.outputConnection);
+            }
+            
+            if (!this.isInFlyout) {
+              this.render();
+            }
+          }
+        } else {
+          // 主模式: 移除地址输入
+          if (addressInput) {
+            this.removeInput('ADDRESS');
+            
+            if (!this.isInFlyout) {
+              this.render();
+            }
+          }
+        }
+      } catch (e) {
+        console.error('Error updating wire_begin shape:', e);
+      }
+    };
+
+    // 为MODE字段添加验证器，在字段值变化时更新块形状
+    this.getField('MODE').setValidator(function(option) {
+      // this指向字段，getSourceBlock()获取所属的块
+      this.getSourceBlock().updateShape_(option);
+      return option; // 返回新值
+    });
+    
+    // 初始状态根据当前MODE值设置块形状
+    this.updateShape_(this.getFieldValue('MODE'));
+  });
+  
+  // 为 wire_begin_with_settings 添加类似的 mutator 扩展
+  Blockly.Extensions.register('wire_begin_with_settings_mutator', function() {
+    // 定义updateShape_函数作为block的方法
+    this.updateShape_ = function(mode) {
+      try {
+        // 检查是否有ADDRESS输入
+        var addressInput = this.getInput('ADDRESS');
+        
+        if (mode === 'SLAVE') {
+          // 从模式: 显示地址输入
+          if (!addressInput) {
+            // 将ADDRESS输入插入到SCL输入之后
+            var sclInput = this.getInput('SCL');
+            var position = this.inputList.indexOf(sclInput);
+            
+            if (position !== -1) {
+              addressInput = this.appendValueInput('ADDRESS')
+                .setCheck('Number')
+                .appendField('从设备地址');
+                
+              // 移动ADDRESS输入到正确位置（SCL后面）
+              if (position + 1 < this.inputList.length) {
+                this.moveInputBefore('ADDRESS', this.inputList[position + 1].name);
+              }
+              
+              // 添加默认的数字块
+              if (!this.isInFlyout) {
+                var shadowBlock = this.workspace.newBlock('math_number');
+                shadowBlock.setFieldValue('8', 'NUM');
+                shadowBlock.setShadow(true);
+                shadowBlock.initSvg();
+                shadowBlock.render();
+                this.getInput('ADDRESS').connection.connect(shadowBlock.outputConnection);
+              }
+              
+              if (!this.isInFlyout) {
+                this.render();
+              }
+            }
+          }
+        } else {
+          // 主模式: 移除地址输入
+          if (addressInput) {
+            this.removeInput('ADDRESS');
+            
+            if (!this.isInFlyout) {
+              this.render();
+            }
+          }
+        }
+      } catch (e) {
+        console.error('Error updating wire_begin_with_settings shape:', e);
+      }
+    };
+
+    // 为MODE字段添加验证器，在字段值变化时更新块形状
+    this.getField('MODE').setValidator(function(option) {
+      // this指向字段，getSourceBlock()获取所属的块
+      this.getSourceBlock().updateShape_(option);
+      return option; // 返回新值
+    });
+    
+    // 初始状态根据当前MODE值设置块形状
+    this.updateShape_(this.getFieldValue('MODE'));
+  });
+}
+
+// 初始化完成后，监听工作区加载事件，确保已有的wire_begin和wire_begin_with_settings块被正确初始化
+if (typeof Blockly !== 'undefined' && Blockly.getMainWorkspace) {
+  try {
+    Blockly.getMainWorkspace().addChangeListener(function(event) {
+      if (event.type === Blockly.Events.FINISHED_LOADING) {
+        setTimeout(() => {
+          const workspace = Blockly.getMainWorkspace();
+          if (workspace) {
+            // 查找所有需要更新的I2C块
+            const blocksToUpdate = workspace.getAllBlocks().filter(block => 
+              block.type === 'wire_begin' || block.type === 'wire_begin_with_settings');
+            
+            // 重新触发每个块的MODE字段验证器，以更新块的形状
+            blocksToUpdate.forEach(block => {
+              if (block.getField('MODE')) {
+                const currentMode = block.getFieldValue('MODE');
+                block.getField('MODE').setValue(currentMode);
+              }
+            });
+          }
+        }, 200);
+      }
+    });
+  } catch (e) {
+    console.error('Error setting up I2C blocks initialization listener:', e);
   }
 }
