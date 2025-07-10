@@ -2,7 +2,7 @@
 [
   {
     "type": "wire_begin",
-    "message0": "初始化%1 %2",
+    "message0": "初始化%1 模式%2",
     "args0": [
       {
         "type": "field_dropdown",
@@ -10,24 +10,36 @@
         "options": "${board.i2c}"
       },
       {
-        "type": "input_value",
-        "name": "ADDRESS"
+        "type": "field_dropdown",
+        "name": "MODE",
+        "options": [
+          ["主设备", "MASTER"],
+          ["从设备", "SLAVE"]
+        ]
       }
     ],
     "previousStatement": null,
     "nextStatement": null,
     "colour": "#FF9800",
-    "inputsInline": false,
-    "extensions": ["wire_begin_pin_info"]
+    "inputsInline": true,
+    "extensions": ["wire_begin_pin_info", "wire_begin_mutator"]
   },
   {
     "type": "wire_begin_with_settings",
-    "message0": "初始化%1 SDA %2 SCL %3",
+    "message0": "初始化%1 模式%2 SDA %3 SCL %4",
     "args0": [
       {
         "type": "field_dropdown",
         "name": "WIRE",
         "options": "${board.i2c}"
+      },
+      {
+        "type": "field_dropdown",
+        "name": "MODE",
+        "options": [
+          ["主设备", "MASTER"],
+          ["从设备", "SLAVE"]
+        ]
       },
       {
         "type": "input_value",
@@ -42,7 +54,7 @@
     "nextStatement": null,
     "colour": "#FF9800",
     "inputsInline": true,
-    "extensions": ["wire_begin_with_settings_pin_info"]
+    "extensions": ["wire_begin_with_settings_pin_info", "wire_begin_with_settings_mutator"]
   },
   {
     "type": "wire_set_clock",
@@ -177,7 +189,7 @@
   },
   {
     "type": "wire_variables",
-    "message0": "%1",
+    "message0": "I2C对象 %1",
     "args0": [
       {
         "type": "field_dropdown",
@@ -187,6 +199,8 @@
     ],
     "output": "Variable",
     "colour": "#FF9800",
+    "tooltip": "获取Wire对象引用，可用于需要I2C实例的函数或表达式中",
+    "helpUrl": "",
     "extensions": ["wire_variables_pin_info"]
   },
   {
