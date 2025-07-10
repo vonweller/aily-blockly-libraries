@@ -1,228 +1,45 @@
-
 [
   {
-    "type": "ags02ma_init",
-    "message0": "AGS02MA初始化 地址 %1",
-    "args0": [
-      {
-        "type": "field_number",
-        "name": "ADDRESS",
-        "value": 26
-      }
-    ],
+  "type": "ags02ma_init",
+  "message0": "初始化AGS02MA TVOC传感器 %1",
+  "args0": [
+    {
+      "type": "input_dummy",
+      "name": "I2C_PINS"
+    }
+  ],
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": "#4CAF50",
+  "tooltip": "初始化AGS02MA TVOC传感器，自动根据板卡类型配置I2C引脚",
+  "extensions": ["ags02ma_init_extension"]
+},
+  {
+    "type": "ags02ma_read_tvoc_ppb",
+    "message0": "读取TVOC浓度(PPB)",
+    "args0": [],
+    "output": "Number",
+    "colour": "#4CAF50",
+    "tooltip": "读取TVOC浓度，返回PPB单位的数值",
+    "helpUrl": ""
+  },
+  {
+    "type": "ags02ma_read_tvoc_ugm3",
+    "message0": "读取TVOC浓度(μg/m³)",
+    "args0": [],
+    "output": "Number",
+    "colour": "#4CAF50",
+    "tooltip": "读取TVOC浓度，返回μg/m³单位的数值",
+    "helpUrl": ""
+  },
+  {
+    "type": "ags02ma_reset",
+    "message0": "重置AGS02MA传感器",
+    "args0": [],
     "previousStatement": null,
     "nextStatement": null,
-    "colour": "#f39c12",
-    "tooltip": "初始化AGS02MA气体传感器，并设置I2C地址",
-    "helpUrl": ""
-  },
-  {
-    "type": "ags02ma_set_mode",
-    "message0": "设置传感器模式为 %1",
-    "args0": [
-      {
-        "type": "field_dropdown",
-        "name": "MODE",
-        "options": [
-          [
-            "PPB",
-            "PPB"
-          ],
-          [
-            "UGM3",
-            "UGM3"
-          ]
-        ]
-      }
-    ],
-    "previousStatement": null,
-    "nextStatement": null,
-    "colour": "#f39c12",
-    "tooltip": "设置气体传感器的量程模式",
-    "helpUrl": ""
-  },
-  {
-    "type": "ags02ma_get_mode",
-    "message0": "获取传感器模式",
-    "output": "Number",
-    "colour": "#f39c12",
-    "tooltip": "返回传感器当前模式",
-    "helpUrl": ""
-  },
-  {
-    "type": "ags02ma_get_sensor_info",
-    "message0": "获取传感器信息 %1",
-    "args0": [
-      {
-        "type": "field_dropdown",
-        "name": "TYPE",
-        "options": [
-          [
-            "版本",
-            "VERSION"
-          ],
-          [
-            "日期",
-            "DATE"
-          ],
-          [
-            "地址",
-            "ADDRESS"
-          ]
-        ]
-      }
-    ],
-    "output": "Number",
-    "colour": "#f39c12",
-    "tooltip": "获取传感器的版本号、日期或地址",
-    "helpUrl": ""
-  },
-  {
-    "type": "ags02ma_set_address",
-    "message0": "设置传感器地址为 %1",
-    "args0": [
-      {
-        "type": "input_value",
-        "name": "ADDRESS",
-        "check": "Number"
-      }
-    ],
-    "previousStatement": null,
-    "nextStatement": null,
-    "colour": "#f39c12",
-    "tooltip": "设置传感器的地址",
-    "helpUrl": ""
-  },
-  {
-    "type": "ags02ma_read_concentration",
-    "message0": "读取气体浓度（%1）",
-    "args0": [
-      {
-        "type": "field_dropdown",
-        "name": "UNIT",
-        "options": [
-          [
-            "PPB",
-            "PPB"
-          ],
-          [
-            "PPM",
-            "PPM"
-          ],
-          [
-            "UGM3",
-            "UGM3"
-          ]
-        ]
-      }
-    ],
-    "output": "Number",
-    "colour": "#f39c12",
-    "tooltip": "读取气体浓度，返回不同单位的数值",
-    "helpUrl": ""
-  },
-  {
-    "type": "ags02ma_data_ready",
-    "message0": "检查数据就绪",
-    "output": "Boolean",
-    "colour": "#f39c12",
-    "tooltip": "检查传感器是否有新数据",
-    "helpUrl": ""
-  },
-  {
-    "type": "ags02ma_is_heated",
-    "message0": "检查传感器是否加热",
-    "output": "Boolean",
-    "colour": "#f39c12",
-    "tooltip": "判断传感器是否完成预热",
-    "helpUrl": ""
-  },
-  {
-    "type": "ags02ma_zero_calibration",
-    "message0": "执行零校准",
-    "previousStatement": null,
-    "nextStatement": null,
-    "colour": "#f39c12",
-    "tooltip": "执行传感器内部零校准",
-    "helpUrl": ""
-  },
-  {
-    "type": "ags02ma_manual_zero_calibration",
-    "message0": "执行手动零校准 值 %1",
-    "args0": [
-      {
-        "type": "input_value",
-        "name": "VALUE",
-        "check": "Number"
-      }
-    ],
-    "previousStatement": null,
-    "nextStatement": null,
-    "colour": "#f39c12",
-    "tooltip": "手动指定零点校准的数值",
-    "helpUrl": ""
-  },
-  {
-    "type": "ags02ma_get_zero_cal_data",
-    "message0": "获取零校准数据 %1",
-    "args0": [
-      {
-        "type": "field_dropdown",
-        "name": "DATATYPE",
-        "options": [
-          [
-            "状态",
-            "STATUS"
-          ],
-          [
-            "数值",
-            "VALUE"
-          ]
-        ]
-      }
-    ],
-    "output": "Number",
-    "colour": "#f39c12",
-    "tooltip": "获取零校准数据中的状态或校准值",
-    "helpUrl": ""
-  },
-  {
-    "type": "ags02ma_read_register",
-    "message0": "读取寄存器数据 地址 %1",
-    "args0": [
-      {
-        "type": "input_value",
-        "name": "ADDRESS",
-        "check": "Number"
-      }
-    ],
-    "output": "Number",
-    "colour": "#f39c12",
-    "tooltip": "读取传感器指定寄存器的数据",
-    "helpUrl": ""
-  },
-  {
-    "type": "ags02ma_status_error",
-    "message0": "获取传感器 %1 信息",
-    "args0": [
-      {
-        "type": "field_dropdown",
-        "name": "INFO",
-        "options": [
-          [
-            "状态",
-            "STATUS"
-          ],
-          [
-            "错误",
-            "ERROR"
-          ]
-        ]
-      }
-    ],
-    "output": "Number",
-    "colour": "#f39c12",
-    "tooltip": "获取传感器最后的状态或错误码",
+    "colour": "#4CAF50",
+    "tooltip": "重置AGS02MA传感器到初始状态",
     "helpUrl": ""
   }
 ]
