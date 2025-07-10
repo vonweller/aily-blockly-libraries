@@ -57,7 +57,9 @@ Arduino.forBlock['bh1750_init_with_wire'] = function(block, generator) {
   const varName = varField ? varField.getText() : 'lightMeter';
   const mode = block.getFieldValue('MODE') || 'CONTINUOUS_HIGH_RES_MODE';
   const address = block.getFieldValue('ADDRESS') || '0x23';
-  const wire = generator.valueToCode(block, 'WIRE', generator.ORDER_ATOMIC) || 'Wire';
+  
+  // 获取WIRE字段值，使用field_dropdown类型
+  const wire = block.getFieldValue('WIRE') || 'Wire';
   
   // 添加必要的库
   ensureBH1750Libraries(generator);
@@ -65,7 +67,7 @@ Arduino.forBlock['bh1750_init_with_wire'] = function(block, generator) {
   // 确保Serial已初始化（兼容core-serial的去重机制）
   ensureSerialBegin('Serial', generator);
   
-  // 添加BH1750对象变量到全局变量区域，与INA219库保持一致
+  // 添加BH1750对象变量到全局变量区域
   generator.addVariable(varName, 'BH1750 ' + varName + '(' + address + ');');
   
   // 保存变量名和地址，供后续块使用
@@ -132,7 +134,7 @@ Arduino.forBlock['bh1750_init_with_wire'] = function(block, generator) {
     
     // 当mode为默认值CONTINUOUS_HIGH_RES_MODE时，可以省略mode参数
     if (mode === 'CONTINUOUS_HIGH_RES_MODE') {
-      setupCode += 'if (' + varName + '.begin(' + address + ', &' + wire + ')) {\n';
+      setupCode += 'if (' + varName + '.begin(BH1750::' + mode + ', ' + address + ', &' + wire + ')) {\n';
     } else {
       setupCode += 'if (' + varName + '.begin(BH1750::' + mode + ', ' + address + ', &' + wire + ')) {\n';
     }
@@ -234,84 +236,37 @@ function addBH1750PinInfoExtensions() {
   }
 }
 
-// 初始化BH1750块的WIRE输入显示
+// 初始化BH1750块的WIRE字段显示
 function initializeBH1750Block(block) {
   try {
-    // 检查block是否有WIRE输入
-    const wireInput = block.getInput('WIRE');
-    if (!wireInput) return;
+    // 由于WIRE字段是field_dropdown类型，我们需要确保它有正确的选项
+    // 这里可以添加任何与WIRE字段相关的初始化代码
     
-    // 延迟初始化，等待boardConfig加载
-    setTimeout(() => {
-      updateBH1750BlockWithPinInfo(block);
-    }, 100);
+    // 如果需要，可以在这里添加引脚信息显示逻辑
+    
   } catch (e) {
     // 忽略错误
   }
 }
 
-// 更新BH1750块的Wire输入显示引脚信息
+// 更新BH1750块的Wire字段显示引脚信息
 function updateBH1750BlockWithPinInfo(block) {
   try {
-    // 检查block是否有WIRE输入
-    const wireInput = block.getInput('WIRE');
-    if (!wireInput || !wireInput.connection) return;
+    // 由于WIRE字段是field_dropdown类型，我们可以直接获取字段值
+    const wireFieldName = block.getFieldValue('WIRE');
+    if (!wireFieldName) return;
     
-    // 如果WIRE输入已经连接了其他block，就不需要更新
-    if (wireInput.connection.targetBlock()) return;
-    
-    const boardConfig = window['boardConfig'];
-    if (!boardConfig || !boardConfig.i2c) {
-      return;
-    }
-    
-    // 创建带引脚信息的下拉选项
-    const i2cOptionsWithPins = generateBH1750I2COptionsWithPins(boardConfig);
-    
-    // 如果输入为空，可以添加一个默认的Wire变量块显示引脚信息
-    // 这里暂时不修改已有的输入结构，保持兼容性
+    // 这里可以添加任何需要动态更新的引脚信息显示逻辑
+    // 例如更新下拉菜单选项或显示引脚信息
     
   } catch (e) {
     // 忽略错误
+    console.error('Error in updateBH1750BlockWithPinInfo:', e);
   }
 }
 
-// 为BH1750生成带引脚信息的I2C选项
-function generateBH1750I2COptionsWithPins(boardConfig) {
-  const originalI2C = boardConfig.i2cOriginal || boardConfig.i2c;
-  
-  return originalI2C.map(([displayName, value]) => {
-    // 移除已有的引脚信息，重新生成
-    const cleanDisplayName = displayName.replace(/\(SDA=\d+,\s*SCL=\d+\)/, '').trim();
-    
-    // 优先使用自定义引脚信息，再使用boardConfig中的引脚信息
-    let pins = null;
-    let isCustom = false;
-    
-    // 检查自定义引脚配置
-    const customPins = window['customI2CPins'];
-    if (customPins && customPins[value]) {
-      pins = customPins[value];
-      isCustom = true;
-    }
-    // 回退到boardConfig中的引脚信息
-    else if (boardConfig.i2cPins && boardConfig.i2cPins[value]) {
-      pins = boardConfig.i2cPins[value];
-      isCustom = false;
-    }
-    
-    if (pins) {
-      const sdaPin = pins.find(pin => pin[0] === 'SDA');
-      const sclPin = pins.find(pin => pin[0] === 'SCL');
-      if (sdaPin && sclPin) {
-        const suffix = isCustom ? ' (custom)' : '';
-        return [cleanDisplayName + '(SDA=' + sdaPin[1] + ', SCL=' + sclPin[1] + ')' + suffix, value];
-      }
-    }
-    
-    return [cleanDisplayName, value];
-  });
-}
+// 注释：由于WIRE字段已更改为input_value类型，不再需要生成引脚信息选项
+// 此函数已被移除
 
 // 监听工作区变化，注册BH1750扩展
 if (typeof Blockly !== 'undefined') {

@@ -63,7 +63,7 @@ Arduino.forBlock['ina219_init_with_wire'] = function(block, generator) {
   const varField = block.getField('VAR');
   const varName = varField ? varField.getText() : 'ina219';
   const address = block.getFieldValue('ADDRESS') || '0x40'; // 从field_input获取地址
-  const wire = generator.valueToCode(block, 'WIRE', generator.ORDER_ATOMIC) || 'Wire'; // 从input_value获取Wire
+  const wire = block.getFieldValue('WIRE') || 'Wire'; // 从field_dropdown获取Wire
   
   // 添加必要的库
   ensureINA219Libraries(generator);
@@ -230,12 +230,12 @@ function addINA219PinInfoExtensions() {
   }
 }
 
-// 初始化INA219块的WIRE输入显示
+// 初始化INA219块的WIRE字段显示
 function initializeINA219Block(block) {
   try {
-    // 检查block是否有WIRE输入
-    const wireInput = block.getInput('WIRE');
-    if (!wireInput) return;
+    // 检查block是否有WIRE字段（现在是field_dropdown类型）
+    const wireField = block.getField('WIRE');
+    if (!wireField) return;
     
     // 延迟初始化，等待boardConfig加载
     setTimeout(() => {
@@ -246,15 +246,12 @@ function initializeINA219Block(block) {
   }
 }
 
-// 更新INA219块的Wire输入显示引脚信息
+// 更新INA219块的Wire字段显示引脚信息
 function updateINA219BlockWithPinInfo(block) {
   try {
-    // 检查block是否有WIRE输入
-    const wireInput = block.getInput('WIRE');
-    if (!wireInput || !wireInput.connection) return;
-    
-    // 如果WIRE输入已经连接了其他block，就不需要更新
-    if (wireInput.connection.targetBlock()) return;
+    // 检查block是否有WIRE字段（现在是field_dropdown类型）
+    const wireField = block.getField('WIRE');
+    if (!wireField) return;
     
     const boardConfig = window['boardConfig'];
     if (!boardConfig || !boardConfig.i2c) {
@@ -262,10 +259,8 @@ function updateINA219BlockWithPinInfo(block) {
     }
     
     // 创建带引脚信息的下拉选项
-    const i2cOptionsWithPins = generateINA219I2COptionsWithPins(boardConfig);
-    
-    // 如果输入为空，可以添加一个默认的Wire变量块显示引脚信息
-    // 这里暂时不修改已有的输入结构，保持兼容性
+    // 由于WIRE字段是field_dropdown类型，引脚信息会通过board.i2c动态加载
+    // 如果需要额外的引脚信息显示，可以在这里添加
     
   } catch (e) {
     // 忽略错误
