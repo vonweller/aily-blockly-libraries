@@ -12,7 +12,7 @@ function addSDFSLib(generator) {
 }
 
 // 一键初始化SPI和SD卡
-Arduino.forBlock['esp32_spi_sd_init'] = function(block, generator) {
+Arduino.forBlock['sd_init'] = function(block, generator) {
   // 添加必要的库
   generator.addLibrary('esp32_spi', '#include <SPI.h>');
   addSDFSLib(generator);
