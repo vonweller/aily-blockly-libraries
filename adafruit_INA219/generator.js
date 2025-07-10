@@ -36,6 +36,22 @@ function ensureLibrary(generator, libraryKey, libraryCode) {
   }
 }
 
+// 确保Serial已初始化，兼容core-serial的去重机制
+function ensureSerialBegin(serialPort, generator) {
+  // 初始化Arduino的Serial相关全局变量，兼容core-serial
+  if (!Arduino.addedSerialInitCode) {
+    Arduino.addedSerialInitCode = new Set();
+  }
+  
+  // 检查这个串口是否已经添加过初始化代码（无论是用户设置的还是默认的）
+  if (!Arduino.addedSerialInitCode.has(serialPort)) {
+    // 只有在没有添加过任何初始化代码时才添加默认初始化
+    generator.addSetupBegin(`serial_${serialPort}_begin`, `${serialPort}.begin(9600);`);
+    // 标记为已添加初始化代码
+    Arduino.addedSerialInitCode.add(serialPort);
+  }
+}
+
 // 确保Wire库和INA219库
 function ensureINA219Libraries(generator) {
   ensureLibrary(generator, 'wire', '#include <Wire.h>');
@@ -51,6 +67,9 @@ Arduino.forBlock['ina219_init_with_wire'] = function(block, generator) {
   
   // 添加必要的库
   ensureINA219Libraries(generator);
+  
+  // 确保Serial已初始化（兼容core-serial的去重机制）
+  ensureSerialBegin('Serial', generator);
   
   // 添加INA219对象变量，使用用户选择的变量名
   generator.addVariable(varName, 'Adafruit_INA219 ' + varName + '(' + address + ');');
@@ -85,16 +104,29 @@ Arduino.forBlock['ina219_init_with_wire'] = function(block, generator) {
     }
     
     if (!isAlreadyInitialized) {
-      // 获取I2C引脚信息并添加到注释中
+      // 获取I2C引脚信息并添加到注释中（优先使用自定义引脚信息）
       var pinComment = '';
       try {
-        const boardConfig = window['boardConfig'];
-        if (boardConfig && boardConfig.i2cPins && boardConfig.i2cPins[wire]) {
-          const pins = boardConfig.i2cPins[wire];
+        let pins = null;
+        
+        // 优先使用自定义引脚配置
+        const customPins = window['customI2CPins'];
+        if (customPins && customPins[wire]) {
+          pins = customPins[wire];
+        }
+        // 回退到boardConfig中的引脚信息
+        else {
+          const boardConfig = window['boardConfig'];
+          if (boardConfig && boardConfig.i2cPins && boardConfig.i2cPins[wire]) {
+            pins = boardConfig.i2cPins[wire];
+          }
+        }
+        
+        if (pins) {
           const sdaPin = pins.find(pin => pin[0] === 'SDA');
           const sclPin = pins.find(pin => pin[0] === 'SCL');
           if (sdaPin && sclPin) {
-            pinComment = '// ' + wire + ': SDA=' + sdaPin[1] + ', SCL=' + sclPin[1] + '\n';
+            pinComment = '  // ' + wire + ': SDA=' + sdaPin[1] + ', SCL=' + sclPin[1] + '\n  ';
           }
         }
       } catch (e) {
@@ -126,22 +158,34 @@ Arduino.forBlock['ina219_init_with_wire'] = function(block, generator) {
       }
     }
     
-    if (!isAlreadyInitialized) {
-      // 获取I2C引脚信息并添加到注释中
-      var pinComment = '';
-      try {
+    if (!isAlreadyInitialized) {    // 获取I2C引脚信息并添加到注释中（优先使用自定义引脚信息）
+    var pinComment = '';
+    try {
+      let pins = null;
+      
+      // 优先使用自定义引脚配置
+      const customPins = window['customI2CPins'];
+      if (customPins && customPins['Wire']) {
+        pins = customPins['Wire'];
+      }
+      // 回退到boardConfig中的引脚信息
+      else {
         const boardConfig = window['boardConfig'];
         if (boardConfig && boardConfig.i2cPins && boardConfig.i2cPins['Wire']) {
-          const pins = boardConfig.i2cPins['Wire'];
-          const sdaPin = pins.find(pin => pin[0] === 'SDA');
-          const sclPin = pins.find(pin => pin[0] === 'SCL');
-          if (sdaPin && sclPin) {
-            pinComment = '// Wire: SDA=' + sdaPin[1] + ', SCL=' + sclPin[1] + '\n';
-          }
+          pins = boardConfig.i2cPins['Wire'];
         }
-      } catch (e) {
-        // 静默处理错误
       }
+      
+      if (pins) {
+        const sdaPin = pins.find(pin => pin[0] === 'SDA');
+        const sclPin = pins.find(pin => pin[0] === 'SCL');
+        if (sdaPin && sclPin) {
+          pinComment = '  // Wire: SDA=' + sdaPin[1] + ', SCL=' + sclPin[1] + '\n  ';
+        }
+      }
+    } catch (e) {
+      // 静默处理错误
+    }
       
       generator.addSetup(wireBeginKey, pinComment + 'Wire.begin();\n');
     }
@@ -158,6 +202,158 @@ Arduino.forBlock['ina219_init_with_wire'] = function(block, generator) {
   // 而不是强制添加到setup中
   return setupCode;
 };
+
+// INA219块的引脚信息显示扩展
+function addINA219PinInfoExtensions() {
+  if (typeof Blockly === 'undefined' || !Blockly.Extensions) return;
+  
+  try {
+    // INA219需要支持引脚信息显示的block类型
+    const ina219BlockTypes = [
+      'ina219_init_with_wire'
+    ];
+
+    // 为每种block类型注册扩展
+    ina219BlockTypes.forEach(blockType => {
+      const extensionName = blockType + '_pin_info';
+      
+      if (!Blockly.Extensions.isRegistered || !Blockly.Extensions.isRegistered(extensionName)) {
+        Blockly.Extensions.register(extensionName, function() {
+          setTimeout(() => {
+            initializeINA219Block(this);
+          }, 50);
+        });
+      }
+    });
+  } catch (e) {
+    // 忽略扩展注册错误
+  }
+}
+
+// 初始化INA219块的WIRE输入显示
+function initializeINA219Block(block) {
+  try {
+    // 检查block是否有WIRE输入
+    const wireInput = block.getInput('WIRE');
+    if (!wireInput) return;
+    
+    // 延迟初始化，等待boardConfig加载
+    setTimeout(() => {
+      updateINA219BlockWithPinInfo(block);
+    }, 100);
+  } catch (e) {
+    // 忽略错误
+  }
+}
+
+// 更新INA219块的Wire输入显示引脚信息
+function updateINA219BlockWithPinInfo(block) {
+  try {
+    // 检查block是否有WIRE输入
+    const wireInput = block.getInput('WIRE');
+    if (!wireInput || !wireInput.connection) return;
+    
+    // 如果WIRE输入已经连接了其他block，就不需要更新
+    if (wireInput.connection.targetBlock()) return;
+    
+    const boardConfig = window['boardConfig'];
+    if (!boardConfig || !boardConfig.i2c) {
+      return;
+    }
+    
+    // 创建带引脚信息的下拉选项
+    const i2cOptionsWithPins = generateINA219I2COptionsWithPins(boardConfig);
+    
+    // 如果输入为空，可以添加一个默认的Wire变量块显示引脚信息
+    // 这里暂时不修改已有的输入结构，保持兼容性
+    
+  } catch (e) {
+    // 忽略错误
+  }
+}
+
+// 为INA219生成带引脚信息的I2C选项
+function generateINA219I2COptionsWithPins(boardConfig) {
+  const originalI2C = boardConfig.i2cOriginal || boardConfig.i2c;
+  
+  return originalI2C.map(([displayName, value]) => {
+    // 移除已有的引脚信息，重新生成
+    const cleanDisplayName = displayName.replace(/\(SDA=\d+,\s*SCL=\d+\)/, '').trim();
+    
+    // 优先使用自定义引脚信息，再使用boardConfig中的引脚信息
+    let pins = null;
+    let isCustom = false;
+    
+    // 检查自定义引脚配置
+    const customPins = window['customI2CPins'];
+    if (customPins && customPins[value]) {
+      pins = customPins[value];
+      isCustom = true;
+    }
+    // 回退到boardConfig中的引脚信息
+    else if (boardConfig.i2cPins && boardConfig.i2cPins[value]) {
+      pins = boardConfig.i2cPins[value];
+      isCustom = false;
+    }
+    
+    if (pins) {
+      const sdaPin = pins.find(pin => pin[0] === 'SDA');
+      const sclPin = pins.find(pin => pin[0] === 'SCL');
+      if (sdaPin && sclPin) {
+        const suffix = isCustom ? ' (custom)' : '';
+        return [cleanDisplayName + '(SDA=' + sdaPin[1] + ', SCL=' + sclPin[1] + ')' + suffix, value];
+      }
+    }
+    
+    return [cleanDisplayName, value];
+  });
+}
+
+// 监听工作区变化，注册INA219扩展
+if (typeof Blockly !== 'undefined') {
+  // 立即注册扩展
+  addINA219PinInfoExtensions();
+
+  // 添加工作区变化监听器
+  const addINA219BlocksListener = function(event) {
+    // 当工作区完成加载时调用
+    if (event.type === Blockly.Events.FINISHED_LOADING) {
+      // 延迟执行以确保所有初始化完成
+      setTimeout(() => {
+        // 更新引脚信息
+        const workspace = Blockly.getMainWorkspace();
+        if (workspace) {
+          const allBlocks = workspace.getAllBlocks();
+          allBlocks.forEach(block => {
+            if (block.type === 'ina219_init_with_wire') {
+              updateINA219BlockWithPinInfo(block);
+            }
+          });
+        }
+      }, 200);
+    }
+  };
+
+  // 尝试添加监听器
+  try {
+    if (Blockly.getMainWorkspace) {
+      const workspace = Blockly.getMainWorkspace();
+      if (workspace) {
+        workspace.addChangeListener(addINA219BlocksListener);
+      } else {
+        // 如果工作区还未创建，延迟添加监听器
+        setTimeout(() => {
+          const delayedWorkspace = Blockly.getMainWorkspace();
+          if (delayedWorkspace) {
+            delayedWorkspace.addChangeListener(addINA219BlocksListener);
+          }
+        }, 500);
+      }
+    }
+  } catch (e) {
+    // 静默处理错误
+  }
+}
 
 
 
