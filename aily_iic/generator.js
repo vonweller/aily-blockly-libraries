@@ -17,6 +17,84 @@ function ensureWireLibrary(generator) {
   ensureLibrary(generator, 'wire', '#include <Wire.h>');
 }
 
+// 通用的获取ADDRESS值函数，避免重复代码
+function getAddressValue(block, generator, defaultValue = '8') {
+  try {
+    if (block.getInput('ADDRESS')) {
+      return generator.valueToCode(block, 'ADDRESS', generator.ORDER_ATOMIC) || defaultValue;
+    }
+  } catch (e) {
+    // 忽略错误
+  }
+  return defaultValue;
+}
+
+// 通用的更新所有相关I2C块的函数
+function updateAllWireBlocksInWorkspace(wire) {
+  try {
+    const workspace = Blockly.getMainWorkspace();
+    if (!workspace) return;
+    
+    const allBlocks = workspace.getAllBlocks();
+    allBlocks.forEach(b => {
+      if (b.getField && b.getField('WIRE')) {
+        try {
+          const blockWire = b.getFieldValue('WIRE');
+          if (!wire || blockWire === wire) {
+            updateBlockDropdownWithPinInfo(b);
+            b.render();
+          }
+        } catch (e) {
+          // 忽略已销毁的块
+        }
+      }
+    });
+  } catch (e) {
+    // 忽略错误
+  }
+}
+
+// 更新自定义引脚配置的辅助函数
+function updateCustomPinConfig(wire, sdaValue, sclValue) {
+  try {
+    // 检查引脚值是否已更改
+    let pinsChanged = true;
+    
+    if (window['customI2CPins'] && window['customI2CPins'][wire]) {
+      const existingPins = window['customI2CPins'][wire];
+      const existingSda = existingPins.find(p => p[0] === 'SDA');
+      const existingScl = existingPins.find(p => p[0] === 'SCL');
+      
+      if (existingSda && existingScl && 
+          existingSda[1] === sdaValue && existingScl[1] === sclValue) {
+        pinsChanged = false;
+      }
+    }
+    
+    // 只有当引脚值确实变化时才更新
+    if (pinsChanged) {
+      if (!window['customI2CPins']) {
+        window['customI2CPins'] = {};
+      }
+      if (!window['customI2CWires']) {
+        window['customI2CWires'] = {};
+      }
+      
+      window['customI2CPins'][wire] = [
+        ['SDA', sdaValue],
+        ['SCL', sclValue]
+      ];
+      window['customI2CWires'][wire] = true;
+      
+      // 立即更新UI
+      updateI2CBlocksWithPinInfo();
+      updateAllWireBlocksInWorkspace(wire);
+    }
+  } catch (e) {
+    // 忽略错误
+  }
+}
+
 // 确保Serial已初始化，兼容core-serial的去重机制
 function ensureSerialBegin(serialPort, generator) {
   // 初始化Arduino的Serial相关全局变量，兼容core-serial
@@ -66,7 +144,7 @@ Arduino.forBlock['wire_begin'] = function(block, generator) {
       }
     }
   } catch (e) {
-    console.error('Error generating pin comment:', e);
+    // 忽略引脚注释生成错误
   }
 
   // 根据模式生成不同的代码
@@ -75,15 +153,7 @@ Arduino.forBlock['wire_begin'] = function(block, generator) {
   
   if (mode === 'SLAVE') {
     // 从模式：Wire.begin(address) - 使用默认引脚
-    // 确保获取ADDRESS输入值，如果不存在则使用默认值8
-    var address = '8'; // 默认值
-    try {
-      if (block.getInput('ADDRESS')) {
-        address = generator.valueToCode(block, 'ADDRESS', generator.ORDER_ATOMIC) || '8';
-      }
-    } catch (e) {
-      console.error('Error getting ADDRESS value:', e);
-    }
+    var address = getAddressValue(block, generator);
     
     code = wire + '.begin(' + address + '); // 从设备模式 设备地址: ' + address + '\n';
     setupKey = 'wire_begin_' + wire + '_slave_' + address;
@@ -134,15 +204,7 @@ Arduino.forBlock['wire_begin_with_settings'] = function(block, generator) {
   // 根据模式生成不同的代码
   if (mode === 'SLAVE') {
     // 从模式：Wire.begin(address, sda, scl) - 从设备模式下参数顺序为地址在前
-    // 确保获取ADDRESS输入值，如果不存在则使用默认值8
-    var address = '8'; // 默认值
-    try {
-      if (block.getInput('ADDRESS')) {
-        address = generator.valueToCode(block, 'ADDRESS', generator.ORDER_ATOMIC) || '8';
-      }
-    } catch (e) {
-      console.error('Error getting ADDRESS value:', e);
-    }
+    var address = getAddressValue(block, generator);
 
     code = pinComment + ' 从设备模式 设备地址: ' + address + '\n  ' + wire + '.begin(' + address + ', ' + sda + ', ' + scl + ');\n';
     setupKey = 'wire_begin_' + wire + '_slave_' + address + '_' + sda + '_' + scl;
@@ -179,21 +241,10 @@ Arduino.forBlock['wire_begin_with_settings'] = function(block, generator) {
     ];
     window['customI2CWires'][wire] = true;
     
-    // 触发引脚信息更新
+    // 延迟更新UI确保立即生效
     setTimeout(() => {
       updateI2CBlocksWithPinInfo();
-      // 同时更新所有相关的I2C块
-      const workspace = Blockly.getMainWorkspace();
-      if (workspace) {
-        const allBlocks = workspace.getAllBlocks();
-        allBlocks.forEach(b => {
-          if ((b.type === 'wire_begin' || b.type === 'wire_begin_with_settings' || 
-               b.type === 'wire_scan' || b.type.includes('wire_')) && 
-              b.getField && b.getField('WIRE')) {
-            updateBlockDropdownWithPinInfo(b);
-          }
-        });
-      }
+      updateAllWireBlocksInWorkspace(wire);
     }, 50);
   } catch (e) {
     // 静默处理错误
@@ -604,8 +655,8 @@ function generateI2COptionsWithPins(boardConfig) {
       const sdaPin = pins.find(pin => pin[0] === 'SDA');
       const sclPin = pins.find(pin => pin[0] === 'SCL');
       if (sdaPin && sclPin) {
-        const suffix = isCustom ? ' (custom)' : '';
-        return [cleanDisplayName + '(SDA=' + sdaPin[1] + ', SCL=' + sclPin[1] + ')' + suffix, value];
+        const suffix = isCustom ? ' (自定义)' : '';
+        return [cleanDisplayName + '(SDA:' + sdaPin[1] + ', SCL:' + sclPin[1] + ')' + suffix, value];
       }
     }
     
@@ -645,24 +696,34 @@ function updateBlockDropdownWithPinInfo(block, config) {
       
       // 如果当前值存在并且在选项列表中，则保持该值并更新显示文本
       if (currentValue && matchingOption) {
-        // 触发字段重新渲染，确保显示文本更新
+        // 强制更新字段的显示文本
         try {
-          // 避免直接设置为空值，而是先检查是否有合法选项
-          // 通过先设为另一个合法值再设回原值来触发更新
+          // 直接设置显示文本
+          wireField.text_ = matchingOption[0];
+          
+          // 如果字段有textElement，直接更新DOM
+          if (wireField.textElement_) {
+            wireField.textElement_.textContent = matchingOption[0];
+          }
+          
+          // 强制触发字段重新渲染
+          if (wireField.render_) {
+            wireField.render_();
+          }
+          
+          // 强制触发块重绘
+          block.render();
+        } catch (e) {
+          // 如果上述方法失败，回退到切换值的方法
           if (optionsWithPins.length > 1) {
-            // 找到一个不同的合法值
             const alternativeOption = optionsWithPins.find(([text, value]) => value !== currentValue);
             if (alternativeOption) {
-              wireField.setValue(alternativeOption[1]);  // 临时设为另一个合法值
-              wireField.setValue(currentValue); // 设回原值以触发更新
+              wireField.setValue(alternativeOption[1]);
+              wireField.setValue(currentValue);
             }
           } else {
-            // 如果只有一个选项，就不需要触发重绘了，因为已经是唯一的选项
-            // 或者可以使用其他方式触发重绘，如调用render()
             block.render();
           }
-        } catch (e) {
-          // 忽略错误
         }
       } 
       // 如果当前值不在选项列表中，或者没有当前值，则设为默认值
@@ -786,29 +847,12 @@ window.updateI2CPinInfo = function() {
   }
 };
 
-window.addWireBeginWithSettingsToToolbox = function() {
-  addWireBeginWithSettingsBlock();
-  const workspace = Blockly.getMainWorkspace();
-  if (workspace) {
-    refreshI2CToolbox(workspace);
-  }
-};
-
-window.forceAddWireBeginWithSettings = function() {
-  addWireBeginWithSettingsBlock();
-  const workspace = Blockly.getMainWorkspace();
-  if (workspace) {
-    refreshI2CToolbox(workspace);
-  }
-};
-
+// 合并多个相似的全局函数
+window.addWireBeginWithSettingsToToolbox = window.updateI2CPinInfo;
+window.forceAddWireBeginWithSettings = window.updateI2CPinInfo;
 window.ensureI2CBlocks = function() {
   addWireBeginWithSettingsBlock();
-  updateI2CBlocksWithPinInfo();
-  const workspace = Blockly.getMainWorkspace();
-  if (workspace) {
-    refreshI2CToolbox(workspace);
-  }
+  window.updateI2CPinInfo();
 };
 
 // 清理未使用的自定义引脚配置
@@ -850,16 +894,7 @@ window.cleanupUnusedCustomPins = function() {
     // 更新UI
     if (configChanged) {
       updateI2CBlocksWithPinInfo();
-      
-      // 强制更新所有I2C块的显示
-      setTimeout(() => {
-        const allBlocksAgain = workspace.getAllBlocks();
-        allBlocksAgain.forEach(b => {
-          if (b.getField && b.getField('WIRE')) {
-            updateBlockDropdownWithPinInfo(b);
-          }
-        });
-      }, 100);
+      setTimeout(() => updateAllWireBlocksInWorkspace(), 100);
     }
   } catch (e) {
     // 忽略错误
@@ -879,17 +914,7 @@ window.forceResetCustomPins = function() {
     
     // 立即更新UI
     updateI2CBlocksWithPinInfo();
-    
-    // 强制更新所有I2C块的显示
-    const workspace = Blockly.getMainWorkspace();
-    if (workspace) {
-      const allBlocks = workspace.getAllBlocks();
-      allBlocks.forEach(b => {
-        if (b.getField && b.getField('WIRE')) {
-          updateBlockDropdownWithPinInfo(b);
-        }
-      });
-    }
+    updateAllWireBlocksInWorkspace();
   } catch (e) {
     // 忽略错误
   }
@@ -933,66 +958,8 @@ function addInputChangeListener(block) {
             const sdaValue = sdaBlock.getFieldValue('NUM');
             const sclValue = sclBlock.getFieldValue('NUM');
             
-            // 更新自定义引脚配置（不修改boardConfig）
-            try {
-              // 检查引脚值是否已更改
-              let pinsChanged = true;
-              
-              if (window['customI2CPins'] && window['customI2CPins'][newWire]) {
-                const existingPins = window['customI2CPins'][newWire];
-                const existingSda = existingPins.find(p => p[0] === 'SDA');
-                const existingScl = existingPins.find(p => p[0] === 'SCL');
-                
-                if (existingSda && existingScl && 
-                    existingSda[1] === sdaValue && existingScl[1] === sclValue) {
-                  pinsChanged = false;
-                }
-              }
-              
-              // 只有当引脚值确实变化时才更新
-              if (pinsChanged) {
-                if (!window['customI2CPins']) {
-                  window['customI2CPins'] = {};
-                }
-                if (!window['customI2CWires']) {
-                  window['customI2CWires'] = {};
-                }
-                
-                window['customI2CPins'][newWire] = [
-                  ['SDA', sdaValue],
-                  ['SCL', sclValue]
-                ];
-                window['customI2CWires'][newWire] = true;
-                
-
-                
-                // 立即更新UI
-                updateI2CBlocksWithPinInfo();
-                
-                // 强制刷新所有相关块的下拉菜单
-                const workspace = Blockly.getMainWorkspace();
-                if (workspace) {
-                  const allBlocks = workspace.getAllBlocks();
-                  allBlocks.forEach(b => {
-                    if (b.getField && b.getField('WIRE')) {
-                      try {
-                        const blockWire = b.getFieldValue('WIRE');
-                        if (blockWire === newWire) {
-                          // 更新这个块的下拉菜单显示
-                          updateBlockDropdownWithPinInfo(b);
-                          // 强制重绘以确保UI更新
-                          b.render();
-                        }
-                      } catch (e) {
-                        // 忽略错误
-                      }
-                    }
-                  });
-                }
-              }
-            } catch (e) {
-              // 忽略错误
-            }
+            // 更新自定义引脚配置
+            updateCustomPinConfig(newWire, sdaValue, sclValue);
           }
         }
       };
