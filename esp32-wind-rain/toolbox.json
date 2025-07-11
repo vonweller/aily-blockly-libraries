@@ -1,10 +1,10 @@
 {
     "kind": "category",
-    "name": "风速风向传感器",
+    "name": "风速风向雨量",
     "contents": [
         {
             "kind": "label",
-            "text": "初始化"
+            "text": "初始化风速风向传感器"
         },
         {
             "kind": "block",
@@ -77,6 +77,44 @@
         {
             "kind": "block",
             "type": "wind_is_data_ready"
+        },
+        {
+            "kind": "sep"
+        },
+        {
+            "kind": "label",
+            "text": "雨量传感器"
+        },
+        {
+      "kind": "block",
+      "type": "rain_init",
+        "fields": {
+            "PIN": "32"
         }
+    },
+    {
+      "kind": "block",
+      "type": "rain_update"
+    },
+    {
+      "kind": "block",
+      "type": "rain_get_total"
+    },
+    {
+      "kind": "block",
+      "type": "rain_get_hour"
+    },
+    {
+      "kind": "block",
+      "type": "rain_get_day"
+    },
+    {
+      "kind": "block",
+      "type": "rain_get_ticks"
+    },
+    {
+      "kind": "block",
+      "type": "rain_is_data_ready"
+    }
     ]
 }

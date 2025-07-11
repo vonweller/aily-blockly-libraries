@@ -25,28 +25,18 @@ Arduino.forBlock['bmp280_init'] = function(block, generator) {
     return ['bmp.readAltitude(' + seaLevelPressure + 'F)', Arduino.ORDER_FUNCTION_CALL];
   };
   
-  Arduino.forBlock['bmp280_set_oversampling'] = function(block, generator) {
+  Arduino.forBlock['bmp280_set_sampling'] = function(block, generator) {
+    var mode = block.getFieldValue('MODE');
     var temp_os = block.getFieldValue('TEMP_OS');
     var pres_os = block.getFieldValue('PRES_OS');
-    
-    var code = 'bmp.setSampling(Adafruit_BMP280::MODE_NORMAL, ';
-    code += 'Adafruit_BMP280::SAMPLING_X' + temp_os + ', ';
-    code += 'Adafruit_BMP280::SAMPLING_X' + pres_os + ', ';
-    code += 'Adafruit_BMP280::FILTER_OFF, ';
-    code += 'Adafruit_BMP280::STANDBY_MS_1);\n';
-    
-    return code;
-  };
-  
-  Arduino.forBlock['bmp280_set_filter'] = function(block, generator) {
     var filter = block.getFieldValue('FILTER');
-    
-    var code;
-    if (filter === '0') {
-      code = 'bmp.setFilter(Adafruit_BMP280::FILTER_OFF);\n';
-    } else {
-      code = 'bmp.setFilter(Adafruit_BMP280::FILTER_X' + filter + ');\n';
-    }
-    
+    var duration = block.getFieldValue('DURATION');
+
+    var code = 'bmp.setSampling(Adafruit_BMP280::' + mode + ', ';
+    code += 'Adafruit_BMP280::' + temp_os + ', ';
+    code += 'Adafruit_BMP280::' + pres_os + ', ';
+    code += 'Adafruit_BMP280::' + filter + ', ';
+    code += 'Adafruit_BMP280::' + duration + ');\n';
+
     return code;
-  };
+};
