@@ -51,7 +51,7 @@
   },
   {
     "type": "wifi_status",
-    "message0": "获取WiFi状态",
+    "message0": "WiFi状态获取",
     "output": null,
     "colour": "#FF5722"
   },
@@ -83,13 +83,13 @@
   },
   {
     "type": "wifi_firmware_version",
-    "message0": "WiFi固件版本",
+    "message0": "WiFi固件版本获取",
     "output": null,
     "colour": "#FF5722"
   },
   {
     "type": "wifi_local_ip",
-    "message0": "WiFi本地IP",
+    "message0": "WiFi本地IP获取",
     "output": null,
     "colour": "#FF5722"
   },
@@ -104,8 +104,9 @@
     "message0": "WiFi获取BSSID 并赋值到 %1",
     "args0": [
       {
-        "type": "field_input",
-        "name": "MAC"
+        "type": "field_variable",
+        "name": "MAC",
+        "variable": "bssid"
       }
     ],
     "inputsInline": true,
@@ -115,7 +116,7 @@
   },
   {
     "type": "wifi_rssi",
-    "message0": "WiFi信号强度",
+    "message0": "WiFi信号强度获取",
     "output": null,
     "colour": "#FF5722"
   },
@@ -156,8 +157,9 @@
     "message0": "WiFi获取MAC地址 并赋值到 %1",
     "args0": [
       {
-        "type": "field_input",
-        "name": "MAC"
+        "type": "field_variable",
+        "name": "MAC",
+        "variable": "macAddress"
       }
     ],
     "previousStatement": null,
@@ -172,7 +174,7 @@
   },
   {
     "type": "wifi_ping_new",
-    "message0": "WiFi Ping 到 %1 生存周期 %2 超时 %3",
+    "message0": "WiFi Ping 到 %1 TTL %2 超时 %3",
     "args0": [
       {
         "type": "input_value",
@@ -274,9 +276,9 @@
     "message0": "WiFi服务器 %1 启动 端口 %2",
     "args0": [
       {
-        "type": "field_input",
+        "type": "field_variable",
         "name": "SERVER_NAME",
-        "text": "server"
+        "variable": "server"
       },
       {
         "type": "input_value",
@@ -293,14 +295,14 @@
     "message0": "WiFi服务器 %1 可用客户端 %2",
     "args0": [
       {
-        "type": "field_input",
+        "type": "field_variable",
         "name": "SERVER_NAME",
-        "text": "server"
+        "variable": "server"
       },
       {
-        "type": "field_input",
+        "type": "field_variable",
         "name": "CLIENT_NAME",
-        "text": "client"
+        "variable": "client"
       }
     ],
     "previousStatement": null,
@@ -312,9 +314,9 @@
     "message0": "WiFi服务器 %1 接受连接",
     "args0": [
       {
-        "type": "field_input",
+        "type": "field_variable",
         "name": "SERVER_NAME",
-        "text": "server"
+        "variable": "server"
       }
     ],
     "output": null,
@@ -325,9 +327,9 @@
     "message0": "WiFi客户端 %1 连接到服务器 %2 端口 %3 SSL模式 %4",
     "args0": [
       {
-        "type": "field_input",
+        "type": "field_variable",
         "name": "CLIENT_NAME",
-        "text": "client"
+        "variable": "client"
       },
       {
         "type": "input_value",
@@ -351,9 +353,9 @@
     "message0": "WiFi客户端 %1 停止",
     "args0": [
       {
-        "type": "field_input",
+        "type": "field_variable",
         "name": "CLIENT_NAME",
-        "text": "client"
+        "variable": "client"
       }
     ],
     "previousStatement": null,
@@ -365,9 +367,9 @@
     "message0": "WiFi客户端 %1 已连接",
     "args0": [
       {
-        "type": "field_input",
+        "type": "field_variable",
         "name": "CLIENT_NAME",
-        "text": "client"
+        "variable": "client"
       }
     ],
     "output": null,
@@ -378,9 +380,9 @@
     "message0": "WiFi客户端 %1 可用",
     "args0": [
       {
-        "type": "field_input",
+        "type": "field_variable",
         "name": "CLIENT_NAME",
-        "text": "client"
+        "variable": "client"
       }
     ],
     "output": null,
@@ -391,9 +393,9 @@
     "message0": "WiFi客户端 %1 读取数据",
     "args0": [
       {
-        "type": "field_input",
+        "type": "field_variable",
         "name": "CLIENT_NAME",
-        "text": "client"
+        "variable": "client"
       }
     ],
     "inputsInline":true,
@@ -405,13 +407,14 @@
     "message0": "WiFi客户端 %1 读取数据 缓冲区 %2 长度 %3",
     "args0": [
       {
-        "type": "field_input",
+        "type": "field_variable",
         "name": "CLIENT_NAME",
-        "text": "client"
+        "variable": "client"
       },
       {
-        "type": "input_value",
-        "name": "BUFFER"
+        "type": "field_variable",
+        "name": "BUFFER",
+        "variable": "buffer"
       },
       {
         "type": "input_value",
@@ -427,9 +430,9 @@
     "message0": "WiFi客户端 %1 刷新",
     "args0": [
       {
-        "type": "field_input",
+        "type": "field_variable",
         "name": "CLIENT_NAME",
-        "text": "client"
+        "variable": "client"
       }
     ],
     "previousStatement": null,
@@ -441,9 +444,9 @@
     "message0": "WiFi客户端 %1 写入数据 %2 长度 %3",
     "args0": [
       {
-        "type": "field_input",
+        "type": "field_variable",
         "name": "CLIENT_NAME",
-        "text": "client"
+        "variable": "client"
       },
       {
         "type": "input_value",
@@ -462,9 +465,9 @@
     "message0": "WiFi客户端 %1 打印 %2",
     "args0": [
       {
-        "type": "field_input",
+        "type": "field_variable",
         "name": "CLIENT_NAME",
-        "text": "client"
+        "variable": "client"
       },
       {
         "type": "input_value",
@@ -480,9 +483,9 @@
     "message0": "WiFi客户端 %1 打印并换行 %2",
     "args0": [
       {
-        "type": "field_input",
+        "type": "field_variable",
         "name": "CLIENT_NAME",
-        "text": "client"
+        "variable": "client"
       },
       {
         "type": "input_value",
@@ -498,9 +501,9 @@
     "message0": "WiFi客户端 %1 读取字符串直到 %2",
     "args0": [
       {
-        "type": "field_input",
+        "type": "field_variable",
         "name": "CLIENT_NAME",
-        "text": "client"
+        "variable": "client"
       },
       {
         "type": "input_value",
@@ -515,9 +518,9 @@
     "message0": "创建WiFiUDP %1",
     "args0": [
       {
-        "type": "field_input",
+        "type": "field_variable",
         "name": "UDP_NAME",
-        "text": "Udp"
+        "variable": "Udp"
       }
     ],
     "previousStatement": null,
@@ -529,9 +532,9 @@
     "message0": "WiFi UDP %1 开始，端口 %2",
     "args0": [
       {
-        "type": "field_input",
+        "type": "field_variable",
         "name": "UDP_NAME",
-        "text": "Udp"
+        "variable": "Udp"
       },
       {
         "type": "input_value",
@@ -548,9 +551,9 @@
     "message0": "WiFi UDP %1 开始数据包, 地址 %2 端口 %3",
     "args0": [
       {
-        "type": "field_input",
+        "type": "field_variable",
         "name": "UDP_NAME",
-        "text": "Udp"
+        "variable": "Udp"
       },
       {
         "type": "input_value",
@@ -571,9 +574,9 @@
     "message0": "WiFi UDP %1 写入数据 %2 长度 %3",
     "args0": [
       {
-        "type": "field_input",
+        "type": "field_variable",
         "name": "UDP_NAME",
-        "text": "Udp"
+        "variable": "Udp"
       },
       {
         "type": "input_value",
@@ -594,9 +597,9 @@
     "message0": "WiFi UDP %1 结束数据包",
     "args0": [
       {
-        "type": "field_input",
+        "type": "field_variable",
         "name": "UDP_NAME",
-        "text": "Udp"
+        "variable": "Udp"
       }
     ],
     "previousStatement": null,
@@ -608,9 +611,9 @@
     "message0": "WiFi UDP %1 解析数据包",
     "args0": [
       {
-        "type": "field_input",
+        "type": "field_variable",
         "name": "UDP_NAME",
-        "text": "Udp"
+        "variable": "Udp"
       }
     ],
     "output": null,
@@ -621,13 +624,14 @@
     "message0": "WiFi UDP %1 读取数据 缓冲区 %2 长度 %3",
     "args0": [
       {
-        "type": "field_input",
+        "type": "field_variable",
         "name": "UDP_NAME",
-        "text": "Udp"
+        "variable": "Udp"
       },
       {
-        "type": "field_input",
-        "name": "BUFFER"
+        "type": "field_variable",
+        "name": "BUFFER",
+        "variable": "buffer"
       },
       {
         "type": "input_value",
@@ -640,12 +644,12 @@
   },
   {
     "type": "wifi_udp_remote_ip",
-    "message0": "WiFi UDP %1 远程IP",
+    "message0": "WiFi UDP %1 远程IP读取",
     "args0": [
       {
-        "type": "field_input",
+        "type": "field_variable",
         "name": "UDP_NAME",
-        "text": "Udp"
+        "variable": "Udp"
       }
     ],
     "output": null,
@@ -653,12 +657,12 @@
   },
   {
     "type": "wifi_udp_remote_port",
-    "message0": "WiFi UDP %1 远程端口",
+    "message0": "WiFi UDP %1 远程端口读取",
     "args0": [
       {
-        "type": "field_input",
+        "type": "field_variable",
         "name": "UDP_NAME",
-        "text": "Udp"
+        "variable": "Udp"
       }
     ],
     "output": null,
@@ -680,9 +684,9 @@
         "name": "TIME"
       },
       {
-          "type": "field_input",
+          "type": "field_variable",
           "name": "NAME",
-          "text": "timeToSet"
+          "variable": "timeToSet"
       }
     ],
     "inputsInline":true,
@@ -695,9 +699,9 @@
     "message0": "RTC获取时间 并赋值到 %1",
     "args0": [
       {
-        "type": "field_input",
+        "type": "field_variable",
         "name": "NAME",
-        "text": "currentTime"
+        "variable": "currentTime"
       }
     ],
     "inputsInline": true,
