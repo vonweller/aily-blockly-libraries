@@ -33,8 +33,8 @@ Arduino.forBlock['bmp280_init'] = function(block, generator) {
     var duration = block.getFieldValue('DURATION');
 
     var code = 'bmp.setSampling(Adafruit_BMP280::' + mode + ', ';
-    code += 'Adafruit_BMP280::SAMPLING_X' + temp_os + ', ';
-    code += 'Adafruit_BMP280::SAMPLING_X' + pres_os + ', ';
+    code += 'Adafruit_BMP280::' + temp_os + ', ';
+    code += 'Adafruit_BMP280::' + pres_os + ', ';
     code += 'Adafruit_BMP280::' + filter + ', ';
     code += 'Adafruit_BMP280::' + duration + ');\n';
 
