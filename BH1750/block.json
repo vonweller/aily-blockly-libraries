@@ -1,7 +1,7 @@
 [
   {
     "type": "bh1750_init_with_wire",
-    "message0": "初始化光照传感器 %1\n模式 %2\n地址 %3 使用I2C %4",
+    "message0": "初始化光照传感器 %1\n模式 %2\n地址 %3\n使用 %4",
     "args0": [
       {
         "type": "field_variable",
@@ -57,8 +57,9 @@
         ]
       },
       {
-        "type": "input_value",
-        "name": "WIRE"
+        "type": "field_dropdown",
+        "name": "WIRE",
+        "options": "${board.i2c}"
       }
     ],
     "previousStatement": null,

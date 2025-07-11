@@ -6,11 +6,17 @@
   "contents": [
     {
       "kind": "block",
-      "type": "wire_begin"
+      "type": "wire_begin",
+      "fields": {
+        "MODE": "MASTER"
+      }
     },
     {
       "kind": "block",
       "type": "wire_begin_with_settings",
+      "fields": {
+        "MODE": "MASTER"
+      },
       "inputs": {
         "SDA": {
           "shadow": {
@@ -109,10 +115,6 @@
     {
       "kind": "block",
       "type": "wire_read"
-    },
-    {
-      "kind": "block",
-      "type": "wire_variables"
     },
     {
       "kind": "block",
