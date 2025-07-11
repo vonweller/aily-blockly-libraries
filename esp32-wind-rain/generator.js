@@ -79,3 +79,46 @@ Arduino.forBlock['wind_is_data_ready'] = function(block, generator) {
   
   return ['WindSpeed::isDataReady()', generator.ORDER_ATOMIC];
 };
+
+// 初始化雨量传感器
+Arduino.forBlock['rain_init'] = function(block, generator) {
+  const pin = block.getFieldValue('PIN');
+  generator.addLibrary('#include <Wind.h>', '#include "Wind.h"');
+  generator.addSetupBegin('rain_init', 'RainSensor::begin(' + pin + ');');
+  return '';
+};
+
+// 更新雨量数据
+Arduino.forBlock['rain_update'] = function(block, generator) {
+  generator.addLibrary('#include <Wind.h>', '#include "Wind.h"');
+  return 'RainSensor::update();\n';
+};
+
+// 获取累计降雨量（毫米）
+Arduino.forBlock['rain_get_total'] = function(block, generator) {
+  generator.addLibrary('#include <Wind.h>', '#include "Wind.h"');
+  return ['RainSensor::getRainfallTotal()', Arduino.ORDER_FUNCTION_CALL];
+};
+
+// 获取最近1小时降雨量（毫米）
+Arduino.forBlock['rain_get_hour'] = function(block, generator) {
+  generator.addLibrary('#include <Wind.h>', '#include "Wind.h"');
+  return ['RainSensor::getRainfallLastHour()', Arduino.ORDER_FUNCTION_CALL];
+};
+
+// 获取最近24小时降雨量（毫米）
+Arduino.forBlock['rain_get_day'] = function(block, generator) {
+  generator.addLibrary('#include <Wind.h>', '#include "Wind.h"');
+  return ['RainSensor::getRainfallLastDay()', Arduino.ORDER_FUNCTION_CALL];
+};
+
+// 获取雨滴计数
+Arduino.forBlock['rain_get_ticks'] = function(block, generator) {
+  generator.addLibrary('#include <Wind.h>', '#include "Wind.h"');
+  return ['RainSensor::getRainTicks()', Arduino.ORDER_FUNCTION_CALL];
+};
+
+Arduino.forBlock['rain_is_data_ready'] = function(block, generator) {
+  generator.addLibrary('#include <Wind.h>', '#include "Wind.h"');
+  return ['RainSensor::isDataReady()', generator.ORDER_ATOMIC];
+};
