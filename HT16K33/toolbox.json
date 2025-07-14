@@ -26,50 +26,224 @@
         },
         {
             "kind": "label",
-            "text": "专用显示"
+            "text": "常用场景"
         },
         {
             "kind": "block",
-            "type": "ht16k33_display_temperature"
+            "type": "ht16k33_display_temperature",
+            "inputs": {
+                "TEMP": {
+                    "shadow": {
+                        "type": "math_number",
+                        "fields": {
+                            "NUM": 25.6
+                        }
+                    }
+                }
+            }
         },
         {
             "kind": "block",
-            "type": "ht16k33_display_voltage"
+            "type": "ht16k33_display_voltage",
+            "inputs": {
+                "VOLTAGE": {
+                    "shadow": {
+                        "type": "math_number",
+                        "fields": {
+                            "NUM": 3.3
+                        }
+                    }
+                }
+            }
         },
         {
             "kind": "block",
-            "type": "ht16k33_clock_display"
+            "type": "ht16k33_clock_display",
+            "inputs": {
+                "HOUR": {
+                    "shadow": {
+                        "type": "math_number",
+                        "fields": {
+                            "NUM": 12
+                        }
+                    }
+                },
+                "MINUTE": {
+                    "shadow": {
+                        "type": "math_number",
+                        "fields": {
+                            "NUM": 30
+                        }
+                    }
+                }
+            }
         },
         {
             "kind": "block",
-            "type": "ht16k33_countdown"
+            "type": "ht16k33_countdown",
+            "inputs": {
+                "SECONDS": {
+                    "shadow": {
+                        "type": "math_number",
+                        "fields": {
+                            "NUM": 60
+                        }
+                    }
+                }
+            }
         },
         {
             "kind": "sep"
         },
         {
             "kind": "label",
-            "text": "基本显示"
+            "text": "常用组合"
         },
         {
             "kind": "block",
-            "type": "ht16k33_display_int"
+            "type": "ht16k33_sensor_display",
+            "inputs": {
+                "VALUE": {
+                    "shadow": {
+                        "type": "math_number",
+                        "fields": {
+                            "NUM": 25.6
+                        }
+                    }
+                }
+            }
         },
         {
             "kind": "block",
-            "type": "ht16k33_display_float"
+            "type": "ht16k33_digital_clock"
         },
         {
             "kind": "block",
-            "type": "ht16k33_display_hex"
+            "type": "ht16k33_score_display",
+            "inputs": {
+                "SCORE": {
+                    "shadow": {
+                        "type": "math_number",
+                        "fields": {
+                            "NUM": 0
+                        }
+                    }
+                }
+            }
         },
         {
             "kind": "block",
-            "type": "ht16k33_display_time"
+            "type": "ht16k33_counter_display",
+            "inputs": {
+                "STEP": {
+                    "shadow": {
+                        "type": "math_number",
+                        "fields": {
+                            "NUM": 1
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "kind": "sep"
+        },
+        {
+            "kind": "label",
+            "text": "数据类型显示"
         },
         {
             "kind": "block",
-            "type": "ht16k33_display_date"
+            "type": "ht16k33_display_int",
+            "inputs": {
+                "VALUE": {
+                    "shadow": {
+                        "type": "math_number",
+                        "fields": {
+                            "NUM": 1234
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "kind": "block",
+            "type": "ht16k33_display_float",
+            "inputs": {
+                "VALUE": {
+                    "shadow": {
+                        "type": "math_number",
+                        "fields": {
+                            "NUM": 12.34
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "kind": "block",
+            "type": "ht16k33_display_hex",
+            "inputs": {
+                "VALUE": {
+                    "shadow": {
+                        "type": "math_number",
+                        "fields": {
+                            "NUM": 255
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "kind": "sep"
+        },
+        {
+            "kind": "label",
+            "text": "时间日期"
+        },
+        {
+            "kind": "block",
+            "type": "ht16k33_display_time",
+            "inputs": {
+                "HOUR": {
+                    "shadow": {
+                        "type": "math_number",
+                        "fields": {
+                            "NUM": 12
+                        }
+                    }
+                },
+                "MINUTE": {
+                    "shadow": {
+                        "type": "math_number",
+                        "fields": {
+                            "NUM": 30
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "kind": "block",
+            "type": "ht16k33_display_date",
+            "inputs": {
+                "MONTH": {
+                    "shadow": {
+                        "type": "math_number",
+                        "fields": {
+                            "NUM": 12
+                        }
+                    }
+                },
+                "DAY": {
+                    "shadow": {
+                        "type": "math_number",
+                        "fields": {
+                            "NUM": 25
+                        }
+                    }
+                }
+            }
         },
         {
             "kind": "sep"
@@ -99,7 +273,17 @@
         },
         {
             "kind": "block",
-            "type": "ht16k33_set_brightness"
+            "type": "ht16k33_set_brightness",
+            "inputs": {
+                "BRIGHTNESS": {
+                    "shadow": {
+                        "type": "math_number",
+                        "fields": {
+                            "NUM": 8
+                        }
+                    }
+                }
+            }
         },
         {
             "kind": "block",
@@ -118,7 +302,17 @@
         },
         {
             "kind": "block",
-            "type": "ht16k33_display_test"
+            "type": "ht16k33_display_test",
+            "inputs": {
+                "DELAY": {
+                    "shadow": {
+                        "type": "math_number",
+                        "fields": {
+                            "NUM": 1000
+                        }
+                    }
+                }
+            }
         }
     ]
 }
