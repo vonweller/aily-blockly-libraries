@@ -5,7 +5,7 @@ Arduino.forBlock['sgp30_init'] = function(block, generator) {
     generator.addObject('Adafruit_SGP30 sgp', 'Adafruit_SGP30 sgp;');
     
     // 添加I2C初始化
-    generator.addSetupBegin('WIRE_BEGIN', '// 默认Wire:  SDA = 21 ,  SCL = 22\n  Wire.begin();');
+    generator.addSetupBegin('WIRE_BEGIN', 'Wire.begin();');
     generator.addLibrary('WIRE_INCLUDE', '#include <Wire.h>');
 
     var code = 'if (!sgp.begin()) {\n';
