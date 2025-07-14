@@ -3,6 +3,22 @@ if (Blockly.Extensions.isRegistered('blinker_init_wifi_extension')) {
   Blockly.Extensions.unregister('blinker_init_wifi_extension');
 }
 
+// 确保Serial已初始化，兼容core-serial的去重机制
+function ensureSerialBegin(serialPort, speed, generator) {
+  // 初始化Arduino的Serial相关全局变量，兼容core-serial
+  if (!Arduino.addedSerialInitCode) {
+    Arduino.addedSerialInitCode = new Set();
+  }
+  
+  // 检查这个串口是否已经添加过初始化代码（无论是用户设置的还是默认的）
+  if (!Arduino.addedSerialInitCode.has(serialPort)) {
+    // 只有在没有添加过任何初始化代码时才添加初始化
+    generator.addSetupBegin(`serial_${serialPort}_begin`, `${serialPort}.begin(${speed});`);
+    // 标记为已添加初始化代码
+    Arduino.addedSerialInitCode.add(serialPort);
+  }
+}
+
 Blockly.Extensions.register('blinker_init_wifi_extension', function () {
   // 直接在扩展中添加updateShape_函数
   this.updateShape_ = function (configType) {
@@ -23,44 +39,69 @@ Blockly.Extensions.register('blinker_init_wifi_extension', function () {
       this.appendValueInput('AUTH')
         .setCheck('String')
         .appendField("密钥");
-      
-      // 为AUTH输入添加默认的字符串块
-      if (!this.getInput('AUTH').connection.targetConnection) {
-        var authShadow = this.workspace.newBlock('text');
-        authShadow.setFieldValue('Your Device Secret Key', 'TEXT');
-        authShadow.setShadow(true);
-        authShadow.initSvg();
-        authShadow.render();
-        this.getInput('AUTH').connection.connect(authShadow.outputConnection);
-      }
 
       // 添加WiFi配置输入
       this.appendValueInput('SSID')
         .setCheck('String')
         .appendField("WiFi名称");
-      
-      // 为SSID输入添加默认的字符串块
-      if (!this.getInput('SSID').connection.targetConnection) {
-        var ssidShadow = this.workspace.newBlock('text');
-        ssidShadow.setFieldValue('Your WiFi SSID', 'TEXT');
-        ssidShadow.setShadow(true);
-        ssidShadow.initSvg();
-        ssidShadow.render();
-        this.getInput('SSID').connection.connect(ssidShadow.outputConnection);
-      }
 
       this.appendValueInput('PSWD')
         .setCheck('String')
         .appendField("WiFi密码");
       
-      // 为PSWD输入添加默认的字符串块
-      if (!this.getInput('PSWD').connection.targetConnection) {
-        var pswdShadow = this.workspace.newBlock('text');
-        pswdShadow.setFieldValue('Your WiFi Password', 'TEXT');
-        pswdShadow.setShadow(true);
-        pswdShadow.initSvg();
-        pswdShadow.render();
-        this.getInput('PSWD').connection.connect(pswdShadow.outputConnection);
+      // 延迟创建默认块，避免重复创建
+      setTimeout(() => {
+        this.createDefaultBlocks_();
+      }, 100);
+    }
+  };
+
+  // 创建默认字符串块的方法
+  this.createDefaultBlocks_ = function() {
+    // 检查workspace是否存在且已渲染
+    if (!this.workspace || !this.workspace.rendered) {
+      return;
+    }
+
+    // 为AUTH输入添加默认的字符串块
+    const authInput = this.getInput('AUTH');
+    if (authInput && !authInput.connection.targetConnection) {
+      try {
+        var authBlock = this.workspace.newBlock('text');
+        authBlock.setFieldValue('Your Device Secret Key', 'TEXT');
+        authBlock.initSvg();
+        authBlock.render();
+        authInput.connection.connect(authBlock.outputConnection);
+      } catch (e) {
+        console.warn('Failed to create AUTH default block:', e);
+      }
+    }
+
+    // 为SSID输入添加默认的字符串块
+    const ssidInput = this.getInput('SSID');
+    if (ssidInput && !ssidInput.connection.targetConnection) {
+      try {
+        var ssidBlock = this.workspace.newBlock('text');
+        ssidBlock.setFieldValue('Your WiFi SSID', 'TEXT');
+        ssidBlock.initSvg();
+        ssidBlock.render();
+        ssidInput.connection.connect(ssidBlock.outputConnection);
+      } catch (e) {
+        console.warn('Failed to create SSID default block:', e);
+      }
+    }
+
+    // 为PSWD输入添加默认的字符串块
+    const pswdInput = this.getInput('PSWD');
+    if (pswdInput && !pswdInput.connection.targetConnection) {
+      try {
+        var pswdBlock = this.workspace.newBlock('text');
+        pswdBlock.setFieldValue('Your WiFi Password', 'TEXT');
+        pswdBlock.initSvg();
+        pswdBlock.render();
+        pswdInput.connection.connect(pswdBlock.outputConnection);
+      } catch (e) {
+        console.warn('Failed to create PSWD default block:', e);
       }
     }
   };
@@ -93,10 +134,28 @@ Arduino.forBlock['blinker_init_wifi'] = function (block, generator) {
   } else {
     // 手动配网方式 - 使用valueToCode获取输入值
     let auth = generator.valueToCode(block, 'AUTH', generator.ORDER_ATOMIC) || '"Your Device Secret Key"';
-    let ssid = generator.valueToCode(block, 'SSID', generator.ORDER_ATOMIC) || '"Your WiFi SSID"';
-    let pswd = generator.valueToCode(block, 'PSWD', generator.ORDER_ATOMIC) || '"Your WiFi Password"';
+    let ssid = generator.valueToCode(block, 'SSID', generator.ORDER_ATOMIC) || '';
+    let pswd = generator.valueToCode(block, 'PSWD', generator.ORDER_ATOMIC) || '';
 
-    code = 'Blinker.begin(' + auth + ', ' + ssid + ', ' + pswd + ');\n';
+    // 检测是否为ESP32核心（参考boardConfig检测方式）
+    const boardConfig = window['boardConfig'];
+    const isESP32 = boardConfig && boardConfig.core && boardConfig.core.indexOf('esp32') > -1;
+
+    // 检查SSID和PSWD输入是否连接了块
+    const ssidInput = block.getInput('SSID');
+    const pswdInput = block.getInput('PSWD');
+    const hasSSIDBlock = ssidInput && ssidInput.connection && ssidInput.connection.targetConnection;
+    const hasPSWDBlock = pswdInput && pswdInput.connection && pswdInput.connection.targetConnection;
+    
+    if (isESP32 && !hasSSIDBlock && !hasPSWDBlock) {
+      // ESP32且没有连接SSID和密码块，使用单参数
+      code = 'Blinker.begin(' + auth + ');\n';
+    } else {
+      // 其他情况使用完整的三个参数
+      if (ssid === '') ssid = '"Your WiFi SSID"';
+      if (pswd === '') pswd = '"Your WiFi Password"';
+      code = 'Blinker.begin(' + auth + ', ' + ssid + ', ' + pswd + ');\n';
+    }
   }
 
   return code;
@@ -123,8 +182,10 @@ Arduino.forBlock['blinker_debug_init'] = function (block, generator) {
   let speed = block.getFieldValue('SPEED');
   let debugAll = block.getFieldValue('DEBUG_ALL');
 
-  let code = serial + '.begin(' + speed + ');\n';
-  code += 'BLINKER_DEBUG.stream(' + serial + ');\n';
+  // 确保Serial已初始化（兼容core-serial的去重机制）
+  ensureSerialBegin(serial, speed, generator);
+
+  let code = 'BLINKER_DEBUG.stream(' + serial + ');\n';
 
   if (debugAll === 'true') {
     code += 'BLINKER_DEBUG.debugAll();\n';
