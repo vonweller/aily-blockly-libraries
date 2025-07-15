@@ -3,118 +3,87 @@ if (Blockly.Extensions.isRegistered('ags02ma_init_extension')) {
   Blockly.Extensions.unregister('ags02ma_init_extension');
 }
 Blockly.Extensions.register('ags02ma_init_extension', function() {
-  // 动态根据板卡类型显示不同的界面
+  // 直接使用 args0 里的 options，不再动态生成
+  // 如果后续需要动态变更，可以用 this.getField('WIRE').menuGenerator_ = ... 赋值
+  // 但通常 blockly 会自动用 block.json 里的 options
+
   var boardConfig = window['boardConfig'] || {};
   var boardCore = (boardConfig.core || '').toLowerCase();
   var boardName = (boardConfig.name || '').toLowerCase();
-  
-  var isArduinoCore = boardCore.indexOf('arduino') > -1 || 
-                     boardName.indexOf('arduino') > -1 || 
-                     boardName.indexOf('uno') > -1 || 
-                     boardName.indexOf('nano') > -1 || 
-                     boardName.indexOf('mega') > -1 ||
-                     boardCore.indexOf('avr') > -1;
-  
-  if (!isArduinoCore) {
-    // 只有非Arduino板卡才显示Wire选择
-    this.getInput('I2C_PINS').appendField('I2C').appendField(
-      new Blockly.FieldDropdown([
-        ["Wire1 (SDA:8, SCL:9)", "WIRE1"],
-        ["Wire2 (SDA:4, SCL:5)", "WIRE2"]
-      ]), 'WIRE_OPTION'
-    );
-  } else {
-    // Arduino板卡显示固定文本
-    this.getInput('I2C_PINS').appendField('(固定引脚 SDA:A4, SCL:A5)');
-  }
+    boardName.indexOf('arduino') > -1 ||
+    boardName.indexOf('uno') > -1 ||
+    boardName.indexOf('nano') > -1 ||
+    boardName.indexOf('mega') > -1 ||
+    boardCore.indexOf('avr') > -1;
+
+  var wireField = this.getField('WIRE');
+  if (!wireField) return;
+
 });
 
-// 导入AGS02MA库和初始化全局变量，只添加一次
 Arduino.forBlock['ags02ma_init'] = function(block, generator) {
-  // 获取开发板配置信息
   var boardConfig = window['boardConfig'] || {};
   var boardCore = (boardConfig.core || '').toLowerCase();
   var boardName = (boardConfig.name || '').toLowerCase();
-  
-  // 判断开发板类型
-  var isArduinoCore = boardCore.indexOf('arduino') > -1 || 
-                     boardName.indexOf('arduino') > -1 || 
-                     boardName.indexOf('uno') > -1 || 
-                     boardName.indexOf('nano') > -1 || 
-                     boardName.indexOf('mega') > -1 ||
-                     boardCore.indexOf('avr') > -1;
-                     
-  var isESP32Core = boardCore.indexOf('esp32') > -1 || 
-                   boardName.indexOf('esp32') > -1 || 
-                   boardName.indexOf('esp') > -1;
-                   
-  var isESP8266Core = boardCore.indexOf('esp8266') > -1 || 
-                     boardName.indexOf('esp8266') > -1;
-  
-  // 只有非Arduino板卡才获取Wire选项
-  var wireOption = 'WIRE1'; // 默认值
+
+  var isArduinoCore = boardCore.indexOf('arduino') > -1 ||
+    boardName.indexOf('arduino') > -1 ||
+    boardName.indexOf('uno') > -1 ||
+    boardName.indexOf('nano') > -1 ||
+    boardName.indexOf('mega') > -1 ||
+    boardCore.indexOf('avr') > -1;
+
+  // 获取wire选项
+  var wireOption = 'Wire';
   if (!isArduinoCore) {
-    wireOption = block.getFieldValue('WIRE_OPTION') || 'WIRE1';
+    wireOption = block.getFieldValue('WIRE') || 'Wire';
   }
-  
+
   generator.addLibrary('Wire', '#include <Wire.h>');
   generator.addLibrary('AGS02MA', '#include <AGS02MA.h>');
-  
-  // 创建AGS02MA对象，默认地址0x1A
-  generator.addVariable('ags02ma', 'AGS02MA ags02ma(0x1A, &Wire);');
-  
-  // 调试信息
-  console.log('AGS02MA Init: 开发板信息:', boardConfig);
-  console.log('AGS02MA Init: 核心类型:', boardCore);
-  console.log('AGS02MA Init: 板名:', boardName);
-  console.log('AGS02MA Init: isArduinoCore:', isArduinoCore);
-  console.log('AGS02MA Init: isESP32Core:', isESP32Core);
-  console.log('AGS02MA Init: isESP8266Core:', isESP8266Core);
-  console.log('AGS02MA Init: wireOption:', wireOption);
-  
-  // 初始化I2C总线和传感器
-  var setupCode = '// 配置I2C引脚并初始化AGS02MA TVOC传感器\n';
+  generator.addVariable('ags02ma', 'AGS02MA ags02ma(0x1A, &' + wireOption + ');');
+
+  // 动态获取I2C引脚
+  let sda = null, scl = null;
+  try {
+    let pins = null;
+    const customPins = window['customI2CPins'];
+    if (customPins && customPins[wireOption]) {
+      pins = customPins[wireOption];
+    } else if (boardConfig && boardConfig.i2cPins && boardConfig.i2cPins[wireOption]) {
+      pins = boardConfig.i2cPins[wireOption];
+    }
+    if (pins) {
+      const sdaPin = pins.find(pin => pin[0] === 'SDA');
+      const sclPin = pins.find(pin => pin[0] === 'SCL');
+      if (sdaPin && sclPin) {
+        sda = sdaPin[1];
+        scl = sclPin[1];
+      }
+    }
+  } catch (e) {}
+
+  // 生成 Wire.begin 代码
+  let setupCode = '// 配置I2C引脚并初始化AGS02MA TVOC传感器\n';
   setupCode += 'Serial.println("AGS02MA TVOC传感器初始化...");\n';
-  
   if (isArduinoCore) {
-    // Arduino核心固定使用 SDA:A4, SCL:A5，不支持选择
-    setupCode += 'Wire.begin();  // 初始化I2C (Arduino SDA:A4, SCL:A5)\n';
-    setupCode += 'Serial.println("Arduino板卡使用固定引脚: SDA=A4, SCL=A5");\n';
-  } else if (isESP32Core) {
-    // ESP32核心，根据Wire选项初始化
-    if (wireOption === 'WIRE2') {
-      setupCode += 'Wire.begin(4, 5);  // 初始化I2C，Wire2 SDA:4, SCL:5 (ESP32)\n';
-      setupCode += 'Serial.println("ESP32使用Wire2 (SDA:4, SCL:5)");\n';
-    } else { // WIRE1 或默认
-      setupCode += 'Wire.begin();  // 初始化I2C，Wire1 SDA:8, SCL:9 (ESP32)\n';
-      setupCode += 'Serial.println("ESP32使用Wire1 (SDA:8, SCL:9)");\n';
-    }
-  } else if (isESP8266Core) {
-    // ESP8266核心，根据Wire选项初始化
-    if (wireOption === 'WIRE2') {
-      setupCode += 'Wire.begin(0, 2);  // 初始化I2C，Wire2 SDA:0, SCL:2 (ESP8266)\n';
-      setupCode += 'Serial.println("ESP8266使用Wire2 (SDA:0, SCL:2)");\n';
-    } else { // WIRE1 或默认
-      setupCode += 'Wire.begin(4, 5);  // 初始化I2C，Wire1 SDA:4, SCL:5 (ESP8266)\n';
-      setupCode += 'Serial.println("ESP8266使用Wire1 (SDA:4, SCL:5)");\n';
-    }
+    setupCode += 'Wire.begin();\n';
+    setupCode += 'Serial.println("Arduino板卡使用引脚: SDA=A4, SCL=A5");\n';
   } else {
-    // 其他板卡，根据Wire选项初始化
-    if (wireOption === 'WIRE2') {
-      setupCode += 'Wire.begin(4, 5);  // 初始化I2C，Wire2 SDA:4, SCL:5 (其他板卡)\n';
-      setupCode += 'Serial.println("其他板卡使用Wire2 (SDA:4, SCL:5)");\n';
-    } else { // WIRE1 或默认
-      setupCode += 'Wire.begin(8, 9);  // 初始化I2C，Wire1 SDA:8, SCL:9 (其他板卡)\n';
-      setupCode += 'Serial.println("其他板卡使用Wire1 (SDA:8, SCL:9)");\n';
+    if (sda !== null && scl !== null) {
+      setupCode += `${wireOption}.begin(${sda}, ${scl});\n`;
+      setupCode += `Serial.println("${wireOption}使用引脚: SDA=${sda}, SCL=${scl}");\n`;
+    } else {
+      setupCode += `${wireOption}.begin();\n`;
+      setupCode += `Serial.println("${wireOption}使用默认引脚");\n`;
     }
   }
-  
+
   // 添加AGS02MA初始化代码
   setupCode += `
-// 初始化AGS02MA TVOC传感器
 if (ags02ma.begin()) {
   Serial.println("AGS02MA传感器初始化成功!");
-  ags02ma.setPPBMode(); // 默认设置为PPB模式
+  ags02ma.setPPBMode();
   Serial.println("传感器设置完成，开始测量!");
 } else {
   Serial.println("警告: AGS02MA传感器初始化失败!");
