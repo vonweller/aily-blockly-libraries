@@ -1,4 +1,7 @@
 // 在generator.js文件开头添加扩展定义
+if (Blockly.Extensions.isRegistered('ags02ma_init_extension')) {
+  Blockly.Extensions.unregister('ags02ma_init_extension');
+}
 Blockly.Extensions.register('ags02ma_init_extension', function() {
   // 动态根据板卡类型显示不同的界面
   var boardConfig = window['boardConfig'] || {};
