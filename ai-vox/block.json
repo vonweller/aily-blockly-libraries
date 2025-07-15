@@ -12,22 +12,9 @@
         "nextStatement": null,
         "colour": "#4CAF50"
     },
-
     {
         "type": "aivox_init_std",
-        "message0": "初始化 AI-VOX (标准I2S) %1 Mic BCLK %2 WS %3 DIN %4 %5 Speaker BCLK %6 WS %7 DOUT %8 %9 触发引脚 %10",
-        "args0": [
-            { "type": "input_dummy" },
-            { "type": "field_dropdown", "name": "MIC_BCLK", "options": [["GPIO5", "5"]] },
-            { "type": "field_dropdown", "name": "MIC_WS", "options": [["GPIO2", "2"]] },
-            { "type": "field_dropdown", "name": "MIC_DIN", "options": [["GPIO4", "4"]] },
-            { "type": "input_dummy" },
-            { "type": "field_dropdown", "name": "SPK_BCLK", "options": [["GPIO13", "13"]] },
-            { "type": "field_dropdown", "name": "SPK_WS", "options": [["GPIO14", "14"]] },
-            { "type": "field_dropdown", "name": "SPK_DOUT", "options": [["GPIO1", "1"]] },
-            { "type": "input_dummy" },
-            { "type": "field_dropdown", "name": "TRIGGER_PIN", "options": [["GPIO0", "0"]] }
-        ],
+        "extensions":["aivox_init_std_extension"],
         "inputsInline": false,
         "previousStatement": null,
         "nextStatement": null,
@@ -37,21 +24,12 @@
     },
     {
         "type": "aivox_init_lcd",
-        "message0": "初始化 AI-VOX 显示屏(7789驱动) %1 背光引脚 backLight %2 MOSI %3 CLK %4 DC %5 RST %6 CS %7",
-        "args0": [
-            { "type": "input_dummy" },
-            { "type": "field_dropdown", "name": "backLight", "options": [["GPIO11", "11"]] },
-            { "type": "field_dropdown", "name": "MOSI", "options": [["GPIO17", "17"]] },
-            { "type": "field_dropdown", "name": "CLK", "options": [["GPIO16", "16"]] },
-            { "type": "field_dropdown", "name": "DC", "options": [["GPIO12", "12"]] },
-            { "type": "field_dropdown", "name": "RST", "options": [["GPIO21", "21"]] },
-            { "type": "field_dropdown", "name": "CS", "options": [["GPIO15", "15"]] }
-        ],
+        "extensions":["aivox_init_lcd_extension"],
         "inputsInline": false,
         "previousStatement": null,
         "nextStatement": null,
         "colour": "#4CAF50",
-        "tooltip": "初始化AI-VOX屏幕，使用7789驱动。",
+        "tooltip": "初始化AI-VOX屏幕，使用ST7789驱动。",
         "helpUrl": ""
     },
     {

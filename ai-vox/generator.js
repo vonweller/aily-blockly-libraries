@@ -1,8 +1,114 @@
+// 检查并移除已存在的扩展注册
+if (Blockly.Extensions.isRegistered('aivox_init_std_extension')) {
+  Blockly.Extensions.unregister('aivox_init_std_extension');
+}
+
+if (Blockly.Extensions.isRegistered('aivox_init_lcd_extension')) {
+  Blockly.Extensions.unregister('aivox_init_lcd_extension');
+}
+
+Blockly.Extensions.register('aivox_init_std_extension', function () {
+  // 直接在扩展中添加updateShape_函数
+  this.updateShape_ = function (boardType) {
+    if(boardType.indexOf('aivox') > -1) {
+        console.log("board is aivox");
+        this.appendDummyInput('')
+        .appendField("初始化 AI-VOX(标准I2S) 麦克风引脚 BCLK")
+        .appendField(new Blockly.FieldDropdown([
+            ["GPIO5", "5"]]), "MIC_BCLK")
+        .appendField("WS")
+        .appendField(new Blockly.FieldDropdown([
+            ["GPIO2", "2"]]), "MIC_WS")
+        .appendField("DIN")
+        .appendField(new Blockly.FieldDropdown([
+            ["GPIO4", "4"]]), "MIC_DIN")   
+         this.appendDummyInput('')
+          .appendField("扬声器功放引脚 BCLK")
+        .appendField(new Blockly.FieldDropdown([
+            ["GPIO13", "13"]]), "SPK_BCLK")
+        .appendField("WS")
+        .appendField(new Blockly.FieldDropdown([
+            ["GPIO14", "14"]]), "SPK_WS")
+        .appendField("DOUT")
+        .appendField(new Blockly.FieldDropdown([
+            ["GPIO1", "1"]]), "SPK_DOUT") 
+         this.appendDummyInput('')
+          .appendField("触发引脚Trigger")
+        .appendField(new Blockly.FieldDropdown([
+            ["GPIO0", "0"]]), "TRIGGER_PIN")    
+    } else {
+        let pins = window['boardConfig'].digitalPins;
+        this.appendDummyInput('')
+        .appendField("初始化小智AI麦克风(标准I2S)引脚 BCLK")
+        .appendField(new Blockly.FieldDropdown(pins), "MIC_BCLK")
+        .appendField("WS")
+        .appendField(new Blockly.FieldDropdown(pins), "MIC_WS")
+        .appendField("DIN")
+        .appendField(new Blockly.FieldDropdown(pins), "MIC_DIN")   
+         this.appendDummyInput('')
+          .appendField("扬声器功放引脚 BCLK")
+        .appendField(new Blockly.FieldDropdown(pins), "SPK_BCLK")
+        .appendField("WS")
+        .appendField(new Blockly.FieldDropdown(pins), "SPK_WS")
+        .appendField("DOUT")
+        .appendField(new Blockly.FieldDropdown(pins), "SPK_DOUT") 
+         this.appendDummyInput('')
+          .appendField("触发引脚Trigger")
+        .appendField(new Blockly.FieldDropdown(pins), "TRIGGER_PIN")    
+    }
+  };
+  this.updateShape_(window['boardConfig'].name);
+});
+
+
+Blockly.Extensions.register('aivox_init_lcd_extension', function () {
+  // 直接在扩展中添加updateShape_函数
+  this.updateShape_ = function (boardType) {
+    if(boardType.indexOf('aivox') > -1) {
+        console.log("board is aivox");
+        this.appendDummyInput('')
+        .appendField("初始化 AI-VOX 显示屏(ST7789驱动) 背光引脚backLight")
+        .appendField(new Blockly.FieldDropdown([
+            ["GPIO11", "11"]]), "backLight")
+        .appendField("MOSI")
+        .appendField(new Blockly.FieldDropdown([
+            ["GPIO17", "17"]]), "MOSI")
+        .appendField("CLK")
+        .appendField(new Blockly.FieldDropdown([
+            ["GPIO16", "16"]]), "CLK")   
+          .appendField("DC")
+        .appendField(new Blockly.FieldDropdown([
+            ["GPIO12", "12"]]), "DC")
+        .appendField("RST")
+        .appendField(new Blockly.FieldDropdown([
+            ["GPIO21", "21"]]), "RST")
+        .appendField("CS")
+        .appendField(new Blockly.FieldDropdown([
+            ["GPIO15", "15"]]), "CS") 
+    } else {
+        let pins = window['boardConfig'].digitalPins;
+        this.appendDummyInput('')
+        .appendField("初始化小智AI显示屏(ST7789驱动) 背光引脚backLight")
+        .appendField(new Blockly.FieldDropdown(pins), "backLight")
+        .appendField("MOSI")
+        .appendField(new Blockly.FieldDropdown(pins), "MOSI")
+        .appendField("CLK")
+        .appendField(new Blockly.FieldDropdown(pins), "CLK")   
+        .appendField("DC")
+        .appendField(new Blockly.FieldDropdown(pins), "DC")
+        .appendField("RST")
+        .appendField(new Blockly.FieldDropdown(pins), "RST")
+        .appendField("CS")
+        .appendField(new Blockly.FieldDropdown(pins), "CS") 
+    }
+  };
+  this.updateShape_(window['boardConfig'].name);
+});
+
 // AIVOX wifi init
 Arduino.forBlock['aivox_init_wifi'] = function (block, generator) {
     let wifi_ssid = generator.valueToCode(block, 'wifi_ssid', generator.ORDER_ATOMIC) || '""';
     let wifi_pwd = generator.valueToCode(block, 'wifi_pwd', generator.ORDER_ATOMIC) || '""';
-  
     generator.addLibrary('AIVOX_wifi_init', '#include <WiFi.h>\n#include <driver/spi_common.h>\n#include <esp_heap_caps.h>');
     generator.addVariable('AIVOX_wifi_ssid_define', `#define WIFI_SSID ${wifi_ssid}`);
     generator.addVariable('AIVOX_wifi_pwd_define', `#define WIFI_PASSWORD ${wifi_pwd}`);
@@ -17,8 +123,6 @@ const setupCode = `
     return '';
   };
   
-
-
 Arduino.forBlock['aivox_init_std'] = function(block, generator) {
     const micBclk = block.getFieldValue('MIC_BCLK');
     const micWs = block.getFieldValue('MIC_WS');
@@ -142,45 +246,86 @@ Arduino.forBlock['aivox_init_lcd'] = function(block, generator) {
     return '';
 }
 
-Arduino.forBlock['aivox_register_driver_status'] = function(block, generator) {
+Arduino.forBlock['aivox_register_led_driver_status'] = function(block, generator) {
     const driverName = generator.valueToCode(block, 'driver_name', generator.ORDER_ATOMIC) || '""';
     let name = driverName.replace(/"/g, '');
+    const driver_num = generator.valueToCode(block, 'driver_num', generator.ORDER_ATOMIC) || '""';
     const properties = generator.valueToCode(block, 'driver_properties', generator.ORDER_ATOMIC) || '""';
     const open = generator.valueToCode(block, 'driver_open', generator.ORDER_ATOMIC) || '""';
     const close = generator.valueToCode(block, 'driver_close', generator.ORDER_ATOMIC) || '""';
-    generator.addObject(`aivox_register_${name}`, `std::shared_ptr<ai_vox::iot::Entity> g_${name}_iot_entity;`, true);
-    
-    generator.addObject(`aivox_init_${name}_digital_state`, 
-`void InitDigitalControl${name}Iot() {
+    generator.addObject(`aivox_register_led`, `std::shared_ptr<ai_vox::iot::Entity> g_led_iot_entity;`, true);
+    generator.addObject(`aivox_init_led_state`, 
+`void InitLedControlIot() {
   auto& ai_vox_engine = ai_vox::Engine::GetInstance();
-  std::vector<ai_vox::iot::Property> ${name}_properties({
-      {
-          ${driverName},                       
-          ${properties},              
-          ai_vox::iot::ValueType::kString
-      }
-  });
-  std::vector<ai_vox::iot::Function> ${name}_functions({
+  std::vector<ai_vox::iot::Property> led_properties;
+  for (uint32_t i = 1; i <= ${driver_num}; i++) {
+    std::string property_name = std::to_string(i) + "号" + ${driverName};
+    std::string property_describe = std::to_string(i) + "号" + ${properties};
+    servo_iot_properties.push_back({
+        std::move(property_name),        // property name
+        std::move(property_describe),    // property description
+        ai_vox::iot::ValueType::kBool  // property type
+    });
+  }
+  std::vector<ai_vox::iot::Function> led_functions({
       {"TurnOn",     
        ${open},  
-       {
-           
-       }},
+       {}},
       {"TurnOff",   
        ${close},  
-       {
-           
-       }},
+       {}},
+  });
+  g_led_iot_entity = std::make_shared<ai_vox::iot::Entity>(${driverName},                      
+                                                           ${properties},                   
+                                                           std::move(led_properties),  
+                                                           std::move(led_functions)
+    );
+  g_led_iot_entity->UpdateState(${driverName}, false);
+  ai_vox_engine.RegisterIotEntity(g_led_iot_entity);
+}`, false);
+    generator.addSetup(`aivox_register_led_driver_status`, `InitLedControlIot();`);
+    return "";
+}
+
+Arduino.forBlock['aivox_register_servo_driver_status'] = function(block, generator) {
+    const driverName = generator.valueToCode(block, 'driver_name', generator.ORDER_ATOMIC) || '""';
+    let name = driverName.replace(/"/g, '');
+    const driver_num = generator.valueToCode(block, 'driver_num', generator.ORDER_ATOMIC) || '""';
+    const properties = generator.valueToCode(block, 'driver_properties', generator.ORDER_ATOMIC) || '""';
+    generator.addObject(`aivox_register_servo`, `std::shared_ptr<ai_vox::iot::Entity> g_servo_iot_entity;`, true);
+    generator.addObject(`aivox_init_digital_state`, 
+`void InitServoControlIot() {
+  auto& ai_vox_engine = ai_vox::Engine::GetInstance();
+  std::vector<ai_vox::iot::Property> servo_properties;
+  for (uint32_t i = 1; i <= ${driver_num}; i++) {
+    std::string property_name = std::to_string(i) + "号" + ${driverName};
+    std::string property_describe = std::to_string(i) + "号" + ${properties};
+    servo_iot_properties.push_back({
+        std::move(property_name),        
+        std::move(property_describe),    
+        ai_vox::iot::ValueType::kNumber  
+    });
+  }
+  std::vector<ai_vox::iot::Function> servo_iot_functions({
+      {"SetOneServo",
+       "设置单个舵机角度",
+       {{"angle_value", "舵机角度(0-180之间的整数)", ai_vox::iot::ValueType::kNumber, true},
+        {"index", "舵机编号", ai_vox::iot::ValueType::kNumber, true}}},
+      {"SetAllServos", "设置所有舵机角度", {{"angle_value", "舵机角度(0-180之间的整数)", ai_vox::iot::ValueType::kNumber, true}}}
+
   });
   g_${name}_iot_entity = std::make_shared<ai_vox::iot::Entity>(${driverName},                      
                                                            ${properties},                   
-                                                           std::move(${name}_properties),  
-                                                           std::move(${name}_functions)
+                                                           std::move(servo_properties),  
+                                                           std::move(servo_iot_functions)
     );
-  g_${name}_iot_entity->UpdateState(${driverName}, "close");
-  ai_vox_engine.RegisterIotEntity(g_${name}_iot_entity);
-}`, true);
-    generator.addSetup('aivox_register_driver_status', `InitDigitalControl${name}Iot();`, false);
+  for (uint32_t i = 1; i <= ${driver_num}; i++) {
+    std::string property_name = std::to_string(i) + "号舵机";
+    g_servo_iot_entity->UpdateState(std::move(property_name), 0);
+  }
+  ai_vox_engine.RegisterIotEntity(g_servo_iot_entity);
+}`, false);
+    generator.addSetup(`aivox_register_servo_driver_status`, `InitServoControlIot();`);
     return "";
 }
 
@@ -215,6 +360,12 @@ function getEventVarName(block) {
     }
     return null; // Should not happen if blocks are used correctly
 }
+
+Arduino.forBlock['aivox_set_ota_link'] = function (block, generator) {
+    let ota_link = generator.valueToCode(block, 'ota_link', generator.ORDER_ATOMIC) || '""';
+    let code = `ai_vox_engine->SetOtaUrl(${ota_link});\n`;
+    return code;
+};
 
 Arduino.forBlock['aivox_lcd_show_status'] = function (block, generator) {
     let ai_vox_status = generator.valueToCode(block, 'ai_vox_status', generator.ORDER_ATOMIC) || '""';
@@ -348,7 +499,7 @@ Arduino.forBlock['aivox_get_iot_message_event_name'] = function(block, generator
     return [code, Arduino.ORDER_MEMBER];
 };
 
-Arduino.forBlock['aivox_get_iot_message_event_fuction'] = function(block, generator) {
+Arduino.forBlock['aivox_get_iot_led_message_event_fuction'] = function(block, generator) {
     const eventVar = getEventVarName(block);
     const event_fuction = block.getFieldValue('event_fuction');
      if (!eventVar || eventVar !== 'iot_message_event') {
@@ -358,7 +509,35 @@ Arduino.forBlock['aivox_get_iot_message_event_fuction'] = function(block, genera
     return [code, Arduino.ORDER_MEMBER];
 };
 
-Arduino.forBlock['aivox_update_iot_state'] = function(block, generator) {
+Arduino.forBlock['aivox_get_iot_servo_message_event_fuction'] = function(block, generator) {
+    const eventVar = getEventVarName(block);
+    const event_fuction = block.getFieldValue('event_fuction');
+     if (!eventVar || eventVar !== 'iot_message_event') {
+        return ['/* ERROR: Block must be inside "If event is iot Message" */', Arduino.ORDER_ATOMIC];
+    }
+    const code = `${eventVar}->function == "${event_fuction}"`;
+    return [code, Arduino.ORDER_MEMBER];
+};
+
+Arduino.forBlock['aivox_get_iot_servo_index'] = function(block, generator) {
+    const eventVar = getEventVarName(block);
+
+     if (!eventVar || eventVar !== 'iot_message_event') {
+        return ['/* ERROR: Block must be inside "If event is iot Message" */', Arduino.ORDER_ATOMIC];
+    }
+    const code = ` std::get<int64_t>(iot_message_event->parameters.find("index")->second)`;
+    return [code, Arduino.ORDER_MEMBER];
+};
+
+Arduino.forBlock['aivox_update_led_iot_state'] = function(block, generator) {
+    let aivox_drive = generator.valueToCode(block, 'aivox_drive', generator.ORDER_ATOMIC) || '""';
+    let name = aivox_drive.replace(/"/g, '');
+    let aivox_drive_state = generator.valueToCode(block, 'aivox_drive_state', generator.ORDER_ATOMIC) || '""';
+    let code = `g_${name}_iot_entity->UpdateState(${aivox_drive}, ${aivox_drive_state});\n`;
+    return code;
+};
+
+Arduino.forBlock['aivox_update_servo_iot_state'] = function(block, generator) {
     let aivox_drive = generator.valueToCode(block, 'aivox_drive', generator.ORDER_ATOMIC) || '""';
     let name = aivox_drive.replace(/"/g, '');
     let aivox_drive_state = generator.valueToCode(block, 'aivox_drive_state', generator.ORDER_ATOMIC) || '""';
