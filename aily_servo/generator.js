@@ -55,68 +55,26 @@ Arduino.forBlock['servo_attach'] = function(block, generator) {
 // 舵机初始化（高级版本）
 Arduino.forBlock['servo_attach_advanced'] = function(block, generator) {
   ensureServoLibrary(generator);
-  
-  // PIN是dropdown字段，使用getFieldValue获取
   var pin = block.getFieldValue('PIN') || '18';
-  var minAngle = generator.valueToCode(block, 'MIN_ANGLE', generator.ORDER_ATOMIC) || '0';
-  var maxAngle = generator.valueToCode(block, 'MAX_ANGLE', generator.ORDER_ATOMIC) || '180';
-  
+  var minPulseWidth = generator.valueToCode(block, 'MIN_PULSE_WIDTH', generator.ORDER_ATOMIC) || '544';
+  var maxPulseWidth = generator.valueToCode(block, 'MAX_PULSE_WIDTH', generator.ORDER_ATOMIC) || '2400';
   var servoName = 'servo_pin_' + pin;
-  
-  // 使用addObject来声明舵机对象
   generator.addObject(servoName, 'Servo ' + servoName + ';');
-  
-  // 检测是否为ESP32核心
-  const isESP32 = isESP32Core();
-  
-  // ESP32Servo会自动分配通道，只需要pin、min、max参数
-  if (isESP32) {
-    // ESP32Servo的attach方法: attach(pin, minPulseWidth, maxPulseWidth)
-    // 角度范围会在内部处理，这里使用标准脉宽范围
-    var minPulseWidth = 'map(' + minAngle + ', 0, 180, 544, 2400)';
-    var maxPulseWidth = 'map(' + maxAngle + ', 0, 180, 544, 2400)';
-    generator.addSetupBegin('servo_attach_' + pin, servoName + '.attach(' + pin + ', ' + minPulseWidth + ', ' + maxPulseWidth + ');');
-  } else {
-    // 标准Servo库: attach(pin, min, max)
-    generator.addSetupBegin('servo_attach_' + pin, servoName + '.attach(' + pin + ', 544, 2400);');
-  }
-  
-  var code = '// 引脚 ' + pin + ' 舵机已初始化 (高级模式，角度范围: ' + minAngle + '-' + maxAngle + '度)\n';
+  generator.addSetupBegin('servo_attach_' + pin, servoName + '.attach(' + pin + ', ' + minPulseWidth + ', ' + maxPulseWidth + ');');
+  var code = '// 引脚 ' + pin + ' 舵机已初始化 (脉宽范围: ' + minPulseWidth + '-' + maxPulseWidth + 'μs)\n';
   return code;
 };
 
 // 舵机连接到引脚（完整版本）
 Arduino.forBlock['servo_attach_full'] = function(block, generator) {
   ensureServoLibrary(generator);
-  
-  // PIN是dropdown字段，使用getFieldValue获取
   var pin = block.getFieldValue('PIN') || '18';
-  var minAngle = generator.valueToCode(block, 'MIN_ANGLE', generator.ORDER_ATOMIC) || '0';
-  var maxAngle = generator.valueToCode(block, 'MAX_ANGLE', generator.ORDER_ATOMIC) || '180';
   var minPulseWidth = generator.valueToCode(block, 'MIN_PULSE_WIDTH', generator.ORDER_ATOMIC) || '544';
   var maxPulseWidth = generator.valueToCode(block, 'MAX_PULSE_WIDTH', generator.ORDER_ATOMIC) || '2400';
-  var frequency = generator.valueToCode(block, 'FREQUENCY', generator.ORDER_ATOMIC) || '50';
-  
   var servoName = 'servo_pin_' + pin;
-  
-  // 使用addObject来声明舵机对象
   generator.addObject(servoName, 'Servo ' + servoName + ';');
-  
-  // 检测是否为ESP32核心
-  const isESP32 = isESP32Core();
-  
-  if (isESP32) {
-    // ESP32Servo: 设置频率，然后attach
-    if (frequency !== '50') {
-      generator.addSetupBegin('servo_freq_' + pin, servoName + '.setPeriodHertz(' + frequency + ');');
-    }
-    generator.addSetupBegin('servo_attach_' + pin, servoName + '.attach(' + pin + ', ' + minPulseWidth + ', ' + maxPulseWidth + ');');
-  } else {
-    // 标准Servo库: attach(pin, min, max)
-    generator.addSetupBegin('servo_attach_' + pin, servoName + '.attach(' + pin + ', ' + minPulseWidth + ', ' + maxPulseWidth + ');');
-  }
-  
-  var code = '// 引脚 ' + pin + ' 舵机已初始化 (完整模式: 脉宽' + minPulseWidth + '-' + maxPulseWidth + 'μs, ' + frequency + 'Hz)\n';
+  generator.addSetupBegin('servo_attach_' + pin, servoName + '.attach(' + pin + ', ' + minPulseWidth + ', ' + maxPulseWidth + ');');
+  var code = '// 引脚 ' + pin + ' 舵机已初始化 (完整模式: 脉宽' + minPulseWidth + '-' + maxPulseWidth + 'μs)\n';
   return code;
 };
 

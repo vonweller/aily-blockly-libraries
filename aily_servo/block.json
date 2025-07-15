@@ -17,7 +17,7 @@
   },
   {
     "type": "servo_attach_advanced",
-    "message0": "初始化引脚 %1 舵机\n最小角度 %2 最大角度 %3",
+    "message0": "初始化引脚 %1 舵机\n最小脉宽 %2 最大脉宽 %3",
     "args0": [
       {
         "type": "field_dropdown",
@@ -26,12 +26,12 @@
       },
       {
         "type": "input_value",
-        "name": "MIN_ANGLE",
+        "name": "MIN_PULSE_WIDTH",
         "check": "Number"
       },
       {
         "type": "input_value",
-        "name": "MAX_ANGLE",
+        "name": "MAX_PULSE_WIDTH",
         "check": "Number"
       }
     ],
@@ -39,12 +39,12 @@
     "nextStatement": null,
     "inputsInline": true,
     "colour": "#FF6B35",
-    "tooltip": "初始化指定引脚的舵机，并设置角度范围。ESP32会自动分配PWM通道，无需手动指定",
+    "tooltip": "初始化指定引脚的舵机，并设置脉宽范围。ESP32会自动分配PWM通道，无需手动指定",
     "helpUrl": ""
   },
   {
     "type": "servo_attach_full",
-    "message0": "初始化引脚 %1 舵机\n最小角度 %2 最大角度 %3\n最小脉宽 %4 最大脉宽 %5 频率 %6",
+    "message0": "初始化引脚 %1 舵机\n最小角度 %2 最大角度 %3\n最小脉宽 %4 最大脉宽 %5",
     "args0": [
       {
         "type": "field_dropdown",
@@ -70,18 +70,13 @@
         "type": "input_value",
         "name": "MAX_PULSE_WIDTH",
         "check": "Number"
-      },
-      {
-        "type": "input_value",
-        "name": "FREQUENCY",
-        "check": "Number"
       }
     ],
     "previousStatement": null,
     "nextStatement": null,
     "inputsInline": true,
     "colour": "#FF6B35",
-    "tooltip": "初始化指定引脚的舵机，并设置完整参数（角度范围、脉宽范围、频率）。ESP32会自动分配PWM通道",
+    "tooltip": "初始化指定引脚的舵机，并设置完整参数（角度范围、脉宽范围）。ESP32会自动分配PWM通道",
     "helpUrl": ""
   },
   {
