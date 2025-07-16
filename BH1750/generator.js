@@ -53,8 +53,7 @@ Arduino.forBlock['bh1750_read_light_level'] = function(block, generator) {
 };
 
 Arduino.forBlock['bh1750_init_with_wire'] = function(block, generator) {
-  const varField = block.getField('VAR');
-  const varName = varField ? varField.getText() : 'lightMeter';
+  const varName = block.getFieldValue('VAR') || 'lightMeter';
   const mode = block.getFieldValue('MODE') || 'CONTINUOUS_HIGH_RES_MODE';
   const address = block.getFieldValue('ADDRESS') || '0x23';
   
