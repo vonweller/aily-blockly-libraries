@@ -253,37 +253,38 @@ Arduino.forBlock['aivox_register_led_driver_status'] = function(block, generator
     const properties = generator.valueToCode(block, 'driver_properties', generator.ORDER_ATOMIC) || '""';
     const open = generator.valueToCode(block, 'driver_open', generator.ORDER_ATOMIC) || '""';
     const close = generator.valueToCode(block, 'driver_close', generator.ORDER_ATOMIC) || '""';
-    generator.addObject(`aivox_register_led`, `std::shared_ptr<ai_vox::iot::Entity> g_led_iot_entity;`, true);
-    generator.addObject(`aivox_init_led_state`, 
-`void InitLedControlIot() {
+    generator.addObject(`aivox_register_led`, `std::shared_ptr<ai_vox::iot::Entity> g_${name}_iot_entity;`, true);
+    generator.addObject(`aivox_init_${name}_digital_state`, 
+`void InitDigitalControl${name}Iot() {
   auto& ai_vox_engine = ai_vox::Engine::GetInstance();
-  std::vector<ai_vox::iot::Property> led_properties;
-  for (uint32_t i = 1; i <= ${driver_num}; i++) {
-    std::string property_name = std::to_string(i) + "号" + ${driverName};
-    std::string property_describe = std::to_string(i) + "号" + ${properties};
-    servo_iot_properties.push_back({
-        std::move(property_name),        // property name
-        std::move(property_describe),    // property description
-        ai_vox::iot::ValueType::kBool  // property type
-    });
-  }
-  std::vector<ai_vox::iot::Function> led_functions({
+  std::vector<ai_vox::iot::Property> ${name}_properties({
+      {
+          ${driverName},                       
+          ${properties},              
+          ai_vox::iot::ValueType::kBool
+      }
+  });
+  std::vector<ai_vox::iot::Function> ${name}_functions({
       {"TurnOn",     
        ${open},  
-       {}},
+       {
+           
+       }},
       {"TurnOff",   
        ${close},  
-       {}},
+       {
+           
+       }},
   });
-  g_led_iot_entity = std::make_shared<ai_vox::iot::Entity>(${driverName},                      
+  g_${name}_iot_entity = std::make_shared<ai_vox::iot::Entity>(${driverName},                      
                                                            ${properties},                   
-                                                           std::move(led_properties),  
-                                                           std::move(led_functions)
+                                                           std::move(${name}_properties),  
+                                                           std::move(${name}_functions)
     );
-  g_led_iot_entity->UpdateState(${driverName}, false);
-  ai_vox_engine.RegisterIotEntity(g_led_iot_entity);
-}`, false);
-    generator.addSetup(`aivox_register_led_driver_status`, `InitLedControlIot();`);
+  g_${name}_iot_entity->UpdateState(${driverName}, false);
+  ai_vox_engine.RegisterIotEntity(g_${name}_iot_entity);
+}`, true);
+    generator.addSetup('aivox_register_led_driver_status', `InitDigitalControl${name}Iot();`, false);
     return "";
 }
 
@@ -296,9 +297,9 @@ Arduino.forBlock['aivox_register_servo_driver_status'] = function(block, generat
     generator.addObject(`aivox_init_digital_state`, 
 `void InitServoControlIot() {
   auto& ai_vox_engine = ai_vox::Engine::GetInstance();
-  std::vector<ai_vox::iot::Property> servo_properties;
+  std::vector<ai_vox::iot::Property> servo_iot_properties;
   for (uint32_t i = 1; i <= ${driver_num}; i++) {
-    std::string property_name = std::to_string(i) + "号" + ${driverName};
+    std::string property_name = std::to_string(i) + "号舵机";
     std::string property_describe = std::to_string(i) + "号" + ${properties};
     servo_iot_properties.push_back({
         std::move(property_name),        
@@ -314,9 +315,9 @@ Arduino.forBlock['aivox_register_servo_driver_status'] = function(block, generat
       {"SetAllServos", "设置所有舵机角度", {{"angle_value", "舵机角度(0-180之间的整数)", ai_vox::iot::ValueType::kNumber, true}}}
 
   });
-  g_${name}_iot_entity = std::make_shared<ai_vox::iot::Entity>(${driverName},                      
+  g_servo_iot_entity = std::make_shared<ai_vox::iot::Entity>("Servo",                      
                                                            ${properties},                   
-                                                           std::move(servo_properties),  
+                                                           std::move(servo_iot_properties),  
                                                            std::move(servo_iot_functions)
     );
   for (uint32_t i = 1; i <= ${driver_num}; i++) {
@@ -328,6 +329,174 @@ Arduino.forBlock['aivox_register_servo_driver_status'] = function(block, generat
     generator.addSetup(`aivox_register_servo_driver_status`, `InitServoControlIot();`);
     return "";
 }
+
+// 
+Arduino.forBlock['aivox_register_ultrasonic_sensor_driver_status'] = function(block, generator) {
+    const driverName = generator.valueToCode(block, 'driver_name', generator.ORDER_ATOMIC) || '""';
+    let name = driverName.replace(/"/g, '');
+    const properties = generator.valueToCode(block, 'driver_properties', generator.ORDER_ATOMIC) || '""';
+    generator.addObject(`aivox_register_ultrasonic`, `std::shared_ptr<ai_vox::iot::Entity> g_us04_ultrasonic_sensor_iot_entity;`, true);
+    generator.addObject(`aivox_init_ultrasonic_sensor_state`, 
+`void InitUltrasonicSensorIot() {
+  auto& ai_vox_engine = ai_vox::Engine::GetInstance();
+  std::vector<ai_vox::iot::Property> us04_ultrasonic_sensor_iot_properties({
+      {
+          ${driverName},                       
+          ${properties},              
+          ai_vox::iot::ValueType::kString
+      }
+  });
+  std::vector<ai_vox::iot::Function> us04_ultrasonic_sensor_iot_functions({});
+  g_us04_ultrasonic_sensor_iot_entity = std::make_shared<ai_vox::iot::Entity>(${driverName},                      
+                                                           "超声波传感器",                   
+                                                           std::move(us04_ultrasonic_sensor_iot_properties),  
+                                                           std::move(us04_ultrasonic_sensor_iot_functions)
+    );
+  g_us04_ultrasonic_sensor_iot_entity->UpdateState("distance", "0");
+  ai_vox_engine.RegisterIotEntity(g_us04_ultrasonic_sensor_iot_entity);
+}`, true);
+    generator.addSetup('aivox_register_us04_ultrasonic_driver_status', `InitUltrasonicSensorIot();`, false);
+    return "";
+}
+
+Arduino.forBlock['aivox_register_dht11_sensor_driver_status'] = function(block, generator) {
+    const dht11_temp_name = generator.valueToCode(block, 'dht11_temp_name', generator.ORDER_ATOMIC) || '""';
+    const temp_properties = generator.valueToCode(block, 'temp_properties', generator.ORDER_ATOMIC) || '""';
+    const dht11_humidity_name = generator.valueToCode(block, 'dht11_humidity_name', generator.ORDER_ATOMIC) || '""';
+    const humidity_properties = generator.valueToCode(block, 'humidity_properties', generator.ORDER_ATOMIC) || '""';
+    generator.addObject(`aivox_register_dht11`, `std::shared_ptr<ai_vox::iot::Entity> g_dht11_sensor_iot_entity;`, true);
+    generator.addObject(`aivox_init_dht11_sensor_state`, 
+`void InitDht11SensorIot() {
+  auto& ai_vox_engine = ai_vox::Engine::GetInstance();
+  std::vector<ai_vox::iot::Property> dht11_sensor_iot_properties({
+      {
+          ${dht11_temp_name},                       
+          ${temp_properties},              
+          ai_vox::iot::ValueType::kString
+      },
+      {
+          ${dht11_humidity_name},                       
+          ${humidity_properties},              
+          ai_vox::iot::ValueType::kString
+      }
+  });
+  std::vector<ai_vox::iot::Function> dht11_sensor_iot_functions({});
+  g_dht11_sensor_iot_entity = std::make_shared<ai_vox::iot::Entity>("DHT11Sensor",                      
+                                                           "DHT11温湿度传感器",                   
+                                                           std::move(dht11_sensor_iot_properties),  
+                                                           std::move(dht11_sensor_iot_functions)
+    );
+  g_dht11_sensor_iot_entity->UpdateState(${dht11_temp_name}, "0");
+  g_dht11_sensor_iot_entity->UpdateState(${dht11_humidity_name}, "0");
+  ai_vox_engine.RegisterIotEntity(g_dht11_sensor_iot_entity);
+}`, true);
+    generator.addSetup('aivox_register_dht11_driver_status', `InitDht11SensorIot();`, false);
+    return "";
+}
+
+Arduino.forBlock['aivox_register_analog_sensor_driver_status'] = function(block, generator) {
+    const aivox_analog_name = generator.valueToCode(block, 'aivox_analog_name', generator.ORDER_ATOMIC) || '""';
+    let analog_name = aivox_analog_name.replace(/"/g, '');
+    const aivox_analog_desc = generator.valueToCode(block, 'aivox_analog_desc', generator.ORDER_ATOMIC) || '""';
+    const aivox_analog_status = generator.valueToCode(block, 'aivox_analog_status', generator.ORDER_ATOMIC) || '""';
+    generator.addObject(`aivox_register_${aivox_analog_name}`, `std::shared_ptr<ai_vox::iot::Entity> g_${analog_name}_sensor_iot_entity;`, true);
+    generator.addObject(`aivox_init_${analog_name}_sensor_state`, 
+`void Init${analog_name}SensorIot() {
+  auto& ai_vox_engine = ai_vox::Engine::GetInstance();
+  std::vector<ai_vox::iot::Property> ${analog_name}_sensor_iot_properties({
+      {
+          ${aivox_analog_name},                       
+          ${aivox_analog_status},              
+          ai_vox::iot::ValueType::kString
+      },
+      {
+      }
+  });
+  std::vector<ai_vox::iot::Function>  ${analog_name}_sensor_iot_functions({});
+  g_${analog_name}_sensor_iot_entity = std::make_shared<ai_vox::iot::Entity>(${aivox_analog_name},                      
+                                                           ${aivox_analog_desc},                   
+                                                           std::move(${analog_name}_sensor_iot_properties),  
+                                                           std::move(${analog_name}_sensor_iot_functions)
+    );
+  g_${analog_name}_sensor_iot_entity->UpdateState(${aivox_analog_name}, "0");
+  ai_vox_engine.RegisterIotEntity(g_${analog_name}_sensor_iot_entity);
+}`, true);
+    generator.addSetup(`aivox_register_${analog_name}_driver_status`, `Init${analog_name}SensorIot();`, false);
+    return "";
+}
+
+Arduino.forBlock['aivox_register_ws2812_driver_status'] = function(block, generator) {
+    const aivox_ws2812_name = generator.valueToCode(block, 'aivox_ws2812_name', generator.ORDER_ATOMIC) || '""';
+    let ws2812_name = aivox_ws2812_name.replace(/"/g, '');
+    const aivox_ws2812_num = generator.valueToCode(block, 'aivox_ws2812_num', generator.ORDER_ATOMIC) || '""';
+    generator.addObject(`aivox_register_${ws2812_name}`, `std::shared_ptr<ai_vox::iot::Entity> g_${ws2812_name}_iot_entity;`, true);
+    generator.addObject(`aivox_init_${ws2812_name}_sensor_state`, 
+`void Init${analog_name}Iot() {
+  auto& ai_vox_engine = ai_vox::Engine::GetInstance();
+  std::vector<ai_vox::iot::Property> ${ws2812_name}_properties({
+      {
+          "brightness",                       
+          "亮度(0-255)",,              
+          ai_vox::iot::ValueType::kNumber
+      },
+      {
+          "LedNums",                       
+          "灯的数量",                      
+          ai_vox::iot::ValueType::kNumber  
+      }
+  });
+  for (uint32_t i = 1; i <= ${aivox_ws2812_num}; ++i) {
+    const std::string property_name = "color" + std::to_string(i);
+    const std::string property_describe = std::to_string(i) + "号灯颜色";
+    ${ws2812_name}_properties.push_back({std::move(property_name), std::move(property_describe), ai_vox::iot::ValueType::kString});
+  }
+  std::vector<ai_vox::iot::Function>  ${ws2812_name}_functions({
+  {"SetIndexColor",    
+       "设置指定LED颜色",  
+       {
+           {
+               "index",                          
+               "LED索引(1-总数)",                
+               ai_vox::iot::ValueType::kNumber,  
+               true                              
+           },
+           {"red", "红色值(0-255)", ai_vox::iot::ValueType::kNumber, true},
+           {"green", "绿色值(0-255)", ai_vox::iot::ValueType::kNumber, true},
+           {"blue", "蓝色值(0-255)", ai_vox::iot::ValueType::kNumber, true},
+       }},
+      {"SetRangeIndexsColor",
+       "设置连续LED范围颜色",
+       {
+           {"start", "起始LED索引(1-总数)", ai_vox::iot::ValueType::kNumber, true},
+           {"end", "结束LED索引(1-总数)", ai_vox::iot::ValueType::kNumber, true},
+           {"red", "红色值(0-255)", ai_vox::iot::ValueType::kNumber, true},
+           {"green", "绿色值(0-255)", ai_vox::iot::ValueType::kNumber, true},
+           {"blue", "蓝色值(0-255)", ai_vox::iot::ValueType::kNumber, true},
+       }},
+       {"SetBrightness",
+       "设置亮度",
+       {
+           {"brightness", "亮度值(0-255)", ai_vox::iot::ValueType::kNumber, true},
+       }},
+       {"Clear", "清除所有LED", {}},
+  });
+  g_${ws2812_name}_iot_entity = std::make_shared<ai_vox::iot::Entity>(${aivox_ws2812_name},                      
+                                                           "RGB灯环",                   
+                                                           std::move(${ws2812_name}_properties),  
+                                                           std::move(${ws2812_name}_functions)
+    );
+  g_ws2812b_iot_entity->UpdateState("brightness", 128);
+  g_ws2812b_iot_entity->UpdateState("LedNums", ${aivox_ws2812_num});
+  for (uint32_t i = 1; i <= ${aivox_ws2812_num}; ++i) {
+    const std::string property_name = "color" + std::to_string(i);
+    g_ws2812b_iot_entity->UpdateState(std::move(property_name), R"({"red":0,"green":0,"blue":0})");
+  }
+  ai_vox_engine.RegisterIotEntity(g_${ws2812_name}_iot_entity);
+}`, true);
+    generator.addSetup(`aivox_register_${ws2812_name}_driver_status`, `Init${ws2812_name}Iot();`, false);
+    return "";
+}
+
 
 // --- Event Loop ---
 Arduino.forBlock['aivox_loop'] = function(block, generator) {
@@ -486,6 +655,7 @@ Arduino.forBlock['aivox_get_chat_content'] = function(block, generator) {
 
 Arduino.forBlock['aivox_event_is_iot_message'] = function(block, generator) {
     const statements_do = generator.statementToCode(block, 'DO');
+    // const code = `const auto it = iot_message_event->parameters.find("index");\nint64_t index = std::get<int64_t>(it->second);\n`;
     const code = `if (auto iot_message_event = std::get_if<ai_vox::Observer::IotMessageEvent>(&event)) {\n${statements_do}}\n`;
     return code;
 };
@@ -519,13 +689,24 @@ Arduino.forBlock['aivox_get_iot_servo_message_event_fuction'] = function(block, 
     return [code, Arduino.ORDER_MEMBER];
 };
 
-Arduino.forBlock['aivox_get_iot_servo_index'] = function(block, generator) {
+Arduino.forBlock['aivox_get_iot_servo_message'] = function(block, generator) {
     const eventVar = getEventVarName(block);
-
-     if (!eventVar || eventVar !== 'iot_message_event') {
+    const iot_servo_msg = block.getFieldValue('iot_servo_msg');
+    if (!eventVar || eventVar !== 'iot_message_event') {
         return ['/* ERROR: Block must be inside "If event is iot Message" */', Arduino.ORDER_ATOMIC];
     }
-    const code = ` std::get<int64_t>(iot_message_event->parameters.find("index")->second)`;
+    generator.addObject(`aivox_get_iot_servo_message`, `int getIotServoMessage(auto iotEvent, int type){
+        int res = 0;    
+            if(type == 1) {
+                auto it = iotEvent->parameters.find("index");
+                res = std::get<int64_t>(it->second);
+            }else if(type == 2) {
+                auto it = iotEvent->parameters.find("angle_value");
+                res = std::get<int64_t>(it->second);
+            }
+            return res;
+        }`);
+    const code = `getIotServoMessage(iot_message_event, ${iot_servo_msg})`;
     return [code, Arduino.ORDER_MEMBER];
 };
 
@@ -539,8 +720,39 @@ Arduino.forBlock['aivox_update_led_iot_state'] = function(block, generator) {
 
 Arduino.forBlock['aivox_update_servo_iot_state'] = function(block, generator) {
     let aivox_drive = generator.valueToCode(block, 'aivox_drive', generator.ORDER_ATOMIC) || '""';
-    let name = aivox_drive.replace(/"/g, '');
     let aivox_drive_state = generator.valueToCode(block, 'aivox_drive_state', generator.ORDER_ATOMIC) || '""';
-    let code = `g_${name}_iot_entity->UpdateState(${aivox_drive}, ${aivox_drive_state});\n`;
+    let code = `g_servo_iot_entity->UpdateState(${aivox_drive}, ${aivox_drive_state});\n`;
+    return code;
+};
+
+Arduino.forBlock['aivox_update_all_servo_iot_state'] = function(block, generator) {
+    let aivox_servo_num = generator.valueToCode(block, 'aivox_servo_num', generator.ORDER_ATOMIC) || '""';
+    let aivox_drive_state = generator.valueToCode(block, 'aivox_drive_state', generator.ORDER_ATOMIC) || '""';
+    let code = `for (uint32_t i = 1; i <= ${aivox_servo_num}; i++) {
+    g_servo_iot_entity->UpdateState(std::to_string(i) + "号舵机", ${aivox_drive_state});
+}\n`;
+    return code;
+};
+
+// 
+Arduino.forBlock['aivox_update_ultrasonic_iot_state'] = function(block, generator) {
+    let aivox_ultrasonic = generator.valueToCode(block, 'aivox_ultrasonic', generator.ORDER_ATOMIC) || '""';
+    let aivox_ultrasonic_distance = generator.valueToCode(block, 'aivox_ultrasonic_distance', generator.ORDER_ATOMIC) || '""';
+    let code = `g_us04_ultrasonic_sensor_iot_entity->UpdateState(${aivox_ultrasonic}, std::to_string(${aivox_ultrasonic_distance}));\n`;
+    return code;
+};
+
+Arduino.forBlock['aivox_update_dht11_iot_state'] = function(block, generator) {
+    let aivox_dht11 = generator.valueToCode(block, 'aivox_dht11', generator.ORDER_ATOMIC) || '""';
+    let aivox_dnt11_value = generator.valueToCode(block, 'aivox_dnt11_value', generator.ORDER_ATOMIC) || '""';
+    let code = `g_dht11_sensor_iot_entity->UpdateState(${aivox_dht11}, std::to_string(${aivox_dnt11_value}));\n`;
+    return code;
+};
+
+Arduino.forBlock['aivox_update_analog_sensor_iot_state'] = function(block, generator) {
+    let aivox_analog_sensor_name = generator.valueToCode(block, 'aivox_analog_sensor_name', generator.ORDER_ATOMIC) || '""';
+    let analog_name = aivox_analog_sensor_name.replace(/"/g, '');
+    let aivox_analog_sensor_value = generator.valueToCode(block, 'aivox_analog_sensor_value', generator.ORDER_ATOMIC) || '""';
+    let code = `g_${analog_name}_sensor_iot_entity->UpdateState(${aivox_analog_sensor_name}, std::to_string(${aivox_analog_sensor_value}));\n`;
     return code;
 };
