@@ -3,10 +3,11 @@
   "type": "ags02ma_init",
   "message0": "初始化AGS02MA TVOC传感器 %1",
   "args0": [
-    {
-      "type": "input_dummy",
-      "name": "I2C_PINS"
-    }
+      {
+        "type": "field_dropdown",
+        "name": "WIRE",
+        "options": "${board.i2c}"
+      }
   ],
   "previousStatement": null,
   "nextStatement": null,

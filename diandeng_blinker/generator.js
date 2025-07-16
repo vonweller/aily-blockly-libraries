@@ -206,6 +206,12 @@ Arduino.forBlock['blinker_button'] = function (block, generator) {
   // 添加按钮组件对象
   generator.addVariable(varName, 'BlinkerButton ' + varName + '("' + key + '");');
 
+  // 注册到变量数据库，供blinker_widget_print使用
+  if (!generator.variableDB_) {
+    generator.variableDB_ = {};
+  }
+  generator.variableDB_[varName] = 'BlinkerButton';
+
   // 添加按钮回调函数
   let functionName = 'button_' + key.replace(/-/g, '_') + '_callback';
   let functionCode = 'void ' + functionName + '(const String & state) {\n' +
@@ -240,6 +246,12 @@ Arduino.forBlock['blinker_slider'] = function (block, generator) {
   // 添加滑块组件对象
   generator.addVariable(varName, 'BlinkerSlider ' + varName + '("' + key + '");');
 
+  // 注册到变量数据库，供blinker_widget_print使用
+  if (!generator.variableDB_) {
+    generator.variableDB_ = {};
+  }
+  generator.variableDB_[varName] = 'BlinkerSlider';
+
   // 添加滑块回调函数
   let functionName = 'slider_' + key.replace(/-/g, '_') + '_callback';
   let functionCode = 'void ' + functionName + '(int32_t value) {\n' +
@@ -270,6 +282,12 @@ Arduino.forBlock['blinker_colorpicker'] = function (block, generator) {
 
   // 添加RGB组件对象
   generator.addVariable(varName, 'BlinkerRGB ' + varName + '("' + key + '");');
+
+  // 注册到变量数据库，供blinker_widget_print使用
+  if (!generator.variableDB_) {
+    generator.variableDB_ = {};
+  }
+  generator.variableDB_[varName] = 'BlinkerRGB';
 
   // 添加RGB回调函数
   let functionName = 'rgb_' + key.replace(/-/g, '_') + '_callback';
@@ -305,6 +323,12 @@ Arduino.forBlock['blinker_joystick'] = function (block, generator) {
   // 添加摇杆组件对象
   generator.addVariable(varName, 'BlinkerJoystick ' + varName + '("' + key + '");');
 
+  // 注册到变量数据库，供blinker_widget_print使用
+  if (!generator.variableDB_) {
+    generator.variableDB_ = {};
+  }
+  generator.variableDB_[varName] = 'BlinkerJoystick';
+
   // 添加摇杆回调函数
   let functionName = 'joystick_' + key.replace(/-/g, '_') + '_callback';
   let functionCode = 'void ' + functionName + '(uint8_t xAxis, uint8_t yAxis) {\n' +
@@ -337,6 +361,13 @@ Arduino.forBlock['blinker_chart'] = function (block, generator) {
   // 添加图表组件对象
   generator.addVariable(varName, 'BlinkerChart ' + varName + '("' +
     key + '");');
+
+  // 注册到变量数据库，供blinker_widget_print使用
+  if (!generator.variableDB_) {
+    generator.variableDB_ = {};
+  }
+  generator.variableDB_[varName] = 'BlinkerChart';
+
   // 添加图表回调函数
   let functionName = 'chart_' + key.replace(/-/g, '_') + '_callback';
   let functionCode = 'void ' + functionName + '() {\n' +
@@ -415,36 +446,20 @@ Arduino.forBlock['blinker_widget_print'] = function (block, generator) {
   // 创建组件变量名
   let varName = 'Blinker_' + widget.replace(/-/g, '_');
 
-//   generator.addVariable(varName, 'BlinkerButton ' + varName + '("' + widget + '");');
-  
   // 检查变量名是否已经存在
   if (!generator.variableDB_) {
     generator.variableDB_ = {};
   }
 
-  // 判断varName是否有相同的
+  // 判断varName是否已经注册过
   if (!generator.variableDB_[varName]) {
-    let componentType = 'BlinkerNumber'; // 默认组件类型
-    if (widget.startsWith('btn')) {
-        componentType = 'BlinkerButton';
-    }
-    else if (widget.startsWith('sld')) {
-      componentType = 'BlinkerSlider';
-    }
-    else if (widget.startsWith('rgb')) {
-      componentType = 'BlinkerRGB';
-    }
-    else if (widget.startsWith('joy')) {
-      componentType = 'BlinkerJoystick';
-    }
-    else if (widget.startsWith('num')) {
-      componentType = 'BlinkerNumber';
-    }
-
+    // 如果没有注册过，说明用户直接使用了blinker_widget_print而没有先创建组件
+    // 这种情况下创建一个默认的BlinkerNumber组件
+    let componentType = 'BlinkerNumber';
     generator.addVariable(varName, componentType + ' ' + varName + '("' + widget + '");');
-    // 设置block的颜色为红色
-    // block.setColour('#FF0000');
+    generator.variableDB_[varName] = componentType;
   }
+
   // 收集所有连接的对象块返回的代码
   let objectValues = [];
   
