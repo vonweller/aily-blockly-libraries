@@ -13,13 +13,39 @@
       ]
     }
   ],
-  "message1": "引脚配置: CS:44 DC:43 MOSI:47 SCLK:21 RST:-1",
-  "args1": [],
+  "message1": "引脚配置 CS %1 DC %2 MOSI %3 SCLK %4 RST %5",
+  "args1": [
+    {
+      "type": "input_value",
+      "name": "CS",
+      "check": "Number"
+    },
+    {
+      "type": "input_value",
+      "name": "DC", 
+      "check": "Number"
+    },
+    {
+      "type": "input_value",
+      "name": "MOSI",
+      "check": "Number"
+    },
+    {
+      "type": "input_value",
+      "name": "SCLK",
+      "check": "Number"
+    },
+    {
+      "type": "input_value",
+      "name": "RST",
+      "check": "Number"
+    }
+  ],
   "inputsInline": false,
   "previousStatement": null,
   "nextStatement": null,
   "colour": "#FFA500",
-  "tooltip": "初始化TFT屏幕，使用固定引脚配置：CS:44, DC:43, MOSI:47, SCLK:21, RST:-1",
+  "tooltip": "初始化TFT屏幕，可自定义引脚配置：CS(片选), DC(数据/命令), MOSI(数据), SCLK(时钟), RST(复位,-1表示不使用)",
   "helpUrl": ""
 },
   {
@@ -55,6 +81,15 @@
     "previousStatement": null,
     "nextStatement": null,
     "colour": "#FFA500"
+  },
+  {
+    "type": "tft_clear_screen",
+    "message0": "清空屏幕",
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FFA500",
+    "tooltip": "清空屏幕显示内容，相当于用黑色填充整个屏幕"
   },
   {
         "type": "tft_preset_color",
@@ -377,6 +412,34 @@
   "output": "Image",
   "colour": "#FFA500",
   "tooltip": "创建一个图像数据，可以在TFT屏幕上显示（留空将使用默认图像）"
+},
+{
+  "type": "tft_image_file",
+  "message0": "选择图片文件 %1",
+  "args0": [
+    {
+      "type": "field_input",
+      "name": "FILE_PATH",
+      "text": "点击选择图片..."
+    }
+  ],
+  "message1": "调整尺寸 宽:%1 高:%2",
+  "args1": [
+    {
+      "type": "input_value",
+      "name": "WIDTH",
+      "check": "Number"
+    },
+    {
+      "type": "input_value",
+      "name": "HEIGHT", 
+      "check": "Number"
+    }
+  ],
+  "output": "Image",
+  "colour": "#FFA500",
+  "tooltip": "选择电脑中的图片文件，自动转换为TFT显示格式",
+  "extensions": ["tft_image_file_extension"]
 },
 {
   "type": "tft_draw_image",
