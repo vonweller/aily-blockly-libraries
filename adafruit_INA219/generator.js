@@ -60,8 +60,7 @@ function ensureINA219Libraries(generator) {
 
 // INA219初始化传感器（支持Wire实例选择）
 Arduino.forBlock['ina219_init_with_wire'] = function(block, generator) {
-  const varField = block.getField('VAR');
-  const varName = varField ? varField.getText() : 'ina219';
+  const varName = block.getFieldValue('VAR') || 'ina219';
   const address = block.getFieldValue('ADDRESS') || '0x40'; // 从field_input获取地址
   const wire = block.getFieldValue('WIRE') || 'Wire'; // 从field_dropdown获取Wire
   
