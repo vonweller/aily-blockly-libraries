@@ -60,23 +60,57 @@ function ensureINA219Libraries(generator) {
 
 // INA219初始化传感器（支持Wire实例选择）
 Arduino.forBlock['ina219_init_with_wire'] = function(block, generator) {
+  // 监听VAR输入值的变化，自动重命名Blockly变量
+  if (!block._ina219VarMonitorAttached) {
+    block._ina219VarMonitorAttached = true;
+    block._ina219VarLastName = block.getFieldValue('VAR') || 'ina219';
+    const varField = block.getField('VAR');
+    if (varField && typeof varField.setValidator === 'function') {
+      varField.setValidator(function(newName) {
+        const workspace = block.workspace || (typeof Blockly !== 'undefined' && Blockly.getMainWorkspace && Blockly.getMainWorkspace());
+        const oldName = block._ina219VarLastName;
+        if (workspace && newName && newName !== oldName) {
+          const oldVar = workspace.getVariable(oldName, 'INA219');
+          const existVar = workspace.getVariable(newName, 'INA219');
+          console.log("Renaming INA219 variable from", oldName, "to", newName);
+          if (oldVar && !existVar) {
+            workspace.renameVariableById(oldVar.getId(), newName);
+            if (typeof refreshToolbox === 'function') refreshToolbox(workspace, false);
+          }
+          block._ina219VarLastName = newName;
+        }
+        return newName;
+      });
+    }
+  }
+
   const varName = block.getFieldValue('VAR') || 'ina219';
   const address = block.getFieldValue('ADDRESS') || '0x40'; // 从field_input获取地址
   const wire = block.getFieldValue('WIRE') || 'Wire'; // 从field_dropdown获取Wire
-  
+
+  // 1. 注册变量到Blockly变量系统和工具箱，类型固定为'INA219'，同名变量唯一
+  const workspace = block.workspace || (typeof Blockly !== 'undefined' && Blockly.getMainWorkspace && Blockly.getMainWorkspace());
+  if (workspace) {
+    let existVar = workspace.getVariable(varName, 'INA219');
+    if (!existVar) {
+      workspace.createVariable(varName, 'INA219');
+      if (typeof refreshToolbox === 'function') refreshToolbox(workspace, false);
+    }
+  }
+
   // 添加必要的库
   ensureINA219Libraries(generator);
-  
+
   // 确保Serial已初始化（兼容core-serial的去重机制）
   ensureSerialBegin('Serial', generator);
-  
+
   // 添加INA219对象变量，使用用户选择的变量名
   generator.addVariable(varName, 'Adafruit_INA219 ' + varName + '(' + address + ');');
-  
+
   // 保存变量名和地址，供后续块使用
   generator.sensorVarName = varName;
   generator.sensorAddress = address;
-  
+
   // 生成初始化代码
   let setupCode = '// 初始化INA219电流传感器 ' + varName + '\n';
   

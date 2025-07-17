@@ -545,8 +545,43 @@ function getDefaultValue(listType) {
 
 // 创建数组（支持动态多输入，可生成一维/二维数组）
 Arduino.forBlock["list_create_with"] = function (block, generator) {
+  // 监听VAR输入值的变化，自动重命名Blockly变量
+  if (!block._listVarMonitorAttached) {
+    block._listVarMonitorAttached = true;
+    block._listVarLastName = block.getFieldValue('VAR') || 'list';
+    const varField = block.getField('VAR');
+    if (varField && typeof varField.setValidator === 'function') {
+      varField.setValidator(function(newName) {
+        const workspace = block.workspace || (typeof Blockly !== 'undefined' && Blockly.getMainWorkspace && Blockly.getMainWorkspace());
+        const oldName = block._listVarLastName;
+        if (workspace && newName && newName !== oldName) {
+          const oldVar = workspace.getVariable(oldName, 'LISTS');
+          const existVar = workspace.getVariable(newName, 'LISTS');
+          if (oldVar && !existVar) {
+            workspace.renameVariableById(oldVar.getId(), newName);
+            if (typeof refreshToolbox === 'function') refreshToolbox(workspace, false);
+          }
+          block._listVarLastName = newName;
+        }
+        return newName;
+      });
+    }
+  }
+  
   const varName = block.getFieldValue("VAR") || "list";
   const listType = block.getFieldValue("TYPE");
+
+  // 注册变量到Blockly工具箱
+  const workspace = block.workspace || (typeof Blockly !== 'undefined' && Blockly.getMainWorkspace && Blockly.getMainWorkspace());
+  if (workspace && varName) {
+    let variable = workspace.getVariable(varName, 'LISTS');
+    if (!variable) {
+      // 如果变量不存在，创建一个新的变量
+      variable = workspace.createVariable(varName, 'LISTS', null, 'list');
+      // 添加到工具箱中
+      if (typeof refreshToolbox === 'function') refreshToolbox(workspace, false);
+    }
+  }
 
   // 判断是否在函数作用域内
   const isLocal = isInFunctionScope(block);

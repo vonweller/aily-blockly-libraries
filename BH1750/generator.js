@@ -53,42 +53,64 @@ Arduino.forBlock['bh1750_read_light_level'] = function(block, generator) {
 };
 
 Arduino.forBlock['bh1750_init_with_wire'] = function(block, generator) {
-  const varName = block.getFieldValue('VAR') || 'lightMeter';
+  // 监听VAR输入值的变化，自动重命名Blockly变量
+  if (!block._bh1750VarMonitorAttached) {
+    block._bh1750VarMonitorAttached = true;
+    block._bh1750VarLastName = block.getFieldValue('VAR') || 'lightMeter';
+    const varField = block.getField('VAR');
+    if (varField && typeof varField.setValidator === 'function') {
+      varField.setValidator(function(newName) {
+        const workspace = block.workspace || (typeof Blockly !== 'undefined' && Blockly.getMainWorkspace && Blockly.getMainWorkspace());
+        const oldName = block._bh1750VarLastName;
+        if (workspace && newName && newName !== oldName) {
+          const oldVar = workspace.getVariable(oldName, 'BH1750');
+          const existVar = workspace.getVariable(newName, 'BH1750');
+          if (oldVar && !existVar) {
+            workspace.renameVariableById(oldVar.getId(), newName);
+            if (typeof refreshToolbox === 'function') refreshToolbox(workspace, false);
+          }
+          block._bh1750VarLastName = newName;
+        }
+        return newName;
+      });
+    }
+  }
+
+  let varName = block.getFieldValue('VAR') || 'lightMeter';
   const mode = block.getFieldValue('MODE') || 'CONTINUOUS_HIGH_RES_MODE';
   const address = block.getFieldValue('ADDRESS') || '0x23';
-  
-  // 获取WIRE字段值，使用field_dropdown类型
   const wire = block.getFieldValue('WIRE') || 'Wire';
-  
-  // 添加必要的库
+
+  // 1. 注册变量到Blockly变量系统和工具箱，类型固定为'BH1750'，同名变量唯一
+  const workspace = block.workspace || (typeof Blockly !== 'undefined' && Blockly.getMainWorkspace && Blockly.getMainWorkspace());
+  if (workspace) {
+    let existVar = workspace.getVariable(varName, 'BH1750');
+    if (!existVar) {
+      workspace.createVariable(varName, 'BH1750');
+      if (typeof refreshToolbox === 'function') refreshToolbox(workspace, false);
+    }
+  }
+
+  // 2. 添加必要的库
   ensureBH1750Libraries(generator);
-  
-  // 确保Serial已初始化（兼容core-serial的去重机制）
   ensureSerialBegin('Serial', generator);
-  
-  // 添加BH1750对象变量到全局变量区域
+
+  // 3. 添加BH1750对象变量到全局变量区域
   generator.addVariable(varName, 'BH1750 ' + varName + '(' + address + ');');
-  
+
   // 保存变量名和地址，供后续块使用
   generator.sensorVarName = varName;
   generator.sensorAddress = address;
-  
+
   // 生成初始化代码
   let setupCode = '// 初始化BH1750光照传感器 ' + varName + '\n';
-  
-  // 如果指定了特定的Wire实例，使用该实例初始化
   if (wire && wire !== 'Wire' && wire !== '') {
-    // 统一使用与new_iic库相同的setupKey命名规范
     const wireBeginKey = 'wire_begin_' + wire;
-    
-    // 检查是否已经初始化过这个Wire实例（包括wire_begin_with_settings的初始化）
     var isAlreadyInitialized = false;
     if (generator.setupCodes_) {
-      // 检查基础key或任何以该Wire实例开头的key
       if (generator.setupCodes_[wireBeginKey]) {
         isAlreadyInitialized = true;
       } else {
-        // 检查是否存在该Wire实例的wire_begin_with_settings初始化记录
         for (var key in generator.setupCodes_) {
           if (key.startsWith('wire_begin_' + wire + '_') && key !== wireBeginKey) {
             isAlreadyInitialized = true;
@@ -97,26 +119,19 @@ Arduino.forBlock['bh1750_init_with_wire'] = function(block, generator) {
         }
       }
     }
-    
     if (!isAlreadyInitialized) {
-      // 获取I2C引脚信息并添加到注释中（优先使用自定义引脚信息）
       var pinComment = '';
       try {
         let pins = null;
-        
-        // 优先使用自定义引脚配置
         const customPins = window['customI2CPins'];
         if (customPins && customPins[wire]) {
           pins = customPins[wire];
-        }
-        // 回退到boardConfig中的引脚信息
-        else {
+        } else {
           const boardConfig = window['boardConfig'];
           if (boardConfig && boardConfig.i2cPins && boardConfig.i2cPins[wire]) {
             pins = boardConfig.i2cPins[wire];
           }
         }
-        
         if (pins) {
           const sdaPin = pins.find(pin => pin[0] === 'SDA');
           const sclPin = pins.find(pin => pin[0] === 'SCL');
@@ -124,31 +139,17 @@ Arduino.forBlock['bh1750_init_with_wire'] = function(block, generator) {
             pinComment = '  // ' + wire + ': SDA=' + sdaPin[1] + ', SCL=' + sclPin[1] + '\n  ';
           }
         }
-      } catch (e) {
-        // 静默处理错误
-      }
-      
+      } catch (e) {}
       generator.addSetup(wireBeginKey, pinComment + wire + '.begin();\n');
     }
-    
-    // 当mode为默认值CONTINUOUS_HIGH_RES_MODE时，可以省略mode参数
-    if (mode === 'CONTINUOUS_HIGH_RES_MODE') {
-      setupCode += 'if (' + varName + '.begin(BH1750::' + mode + ', ' + address + ', &' + wire + ')) {\n';
-    } else {
-      setupCode += 'if (' + varName + '.begin(BH1750::' + mode + ', ' + address + ', &' + wire + ')) {\n';
-    }
+    setupCode += 'if (' + varName + '.begin(BH1750::' + mode + ', ' + address + ', &' + wire + ')) {\n';
   } else {
-    // 统一使用与new_iic库相同的setupKey命名规范
     const wireBeginKey = 'wire_begin_Wire';
-    
-    // 检查是否已经初始化过Wire实例（包括wire_begin_with_settings的初始化）
     var isAlreadyInitialized = false;
     if (generator.setupCodes_) {
-      // 检查基础key或任何以Wire开头的key
       if (generator.setupCodes_[wireBeginKey]) {
         isAlreadyInitialized = true;
       } else {
-        // 检查是否存在Wire实例的wire_begin_with_settings初始化记录
         for (var key in generator.setupCodes_) {
           if (key.startsWith('wire_begin_Wire_') && key !== wireBeginKey) {
             isAlreadyInitialized = true;
@@ -157,54 +158,39 @@ Arduino.forBlock['bh1750_init_with_wire'] = function(block, generator) {
         }
       }
     }
-    
-    if (!isAlreadyInitialized) {    // 获取I2C引脚信息并添加到注释中（优先使用自定义引脚信息）
-    var pinComment = '';
-    try {
-      let pins = null;
-      
-      // 优先使用自定义引脚配置
-      const customPins = window['customI2CPins'];
-      if (customPins && customPins['Wire']) {
-        pins = customPins['Wire'];
-      }
-      // 回退到boardConfig中的引脚信息
-      else {
-        const boardConfig = window['boardConfig'];
-        if (boardConfig && boardConfig.i2cPins && boardConfig.i2cPins['Wire']) {
-          pins = boardConfig.i2cPins['Wire'];
+    if (!isAlreadyInitialized) {
+      var pinComment = '';
+      try {
+        let pins = null;
+        const customPins = window['customI2CPins'];
+        if (customPins && customPins['Wire']) {
+          pins = customPins['Wire'];
+        } else {
+          const boardConfig = window['boardConfig'];
+          if (boardConfig && boardConfig.i2cPins && boardConfig.i2cPins['Wire']) {
+            pins = boardConfig.i2cPins['Wire'];
+          }
         }
-      }
-      
-      if (pins) {
-        const sdaPin = pins.find(pin => pin[0] === 'SDA');
-        const sclPin = pins.find(pin => pin[0] === 'SCL');
-        if (sdaPin && sclPin) {
-          pinComment = '  // Wire: SDA=' + sdaPin[1] + ', SCL=' + sclPin[1] + '\n  ';
+        if (pins) {
+          const sdaPin = pins.find(pin => pin[0] === 'SDA');
+          const sclPin = pins.find(pin => pin[0] === 'SCL');
+          if (sdaPin && sclPin) {
+            pinComment = '  // Wire: SDA=' + sdaPin[1] + ', SCL=' + sclPin[1] + '\n  ';
+          }
         }
-      }
-    } catch (e) {
-      // 静默处理错误
-    }
-      
+      } catch (e) {}
       generator.addSetup(wireBeginKey, pinComment + 'Wire.begin();\n');
     }
-    
-    // 当mode为默认值CONTINUOUS_HIGH_RES_MODE时，可以省略mode参数
     if (mode === 'CONTINUOUS_HIGH_RES_MODE') {
       setupCode += 'if (' + varName + '.begin()) {\n';
     } else {
       setupCode += 'if (' + varName + '.begin(BH1750::' + mode + ')) {\n';
     }
   }
-  
   setupCode += '  Serial.println("BH1750传感器 ' + varName + ' 初始化成功!");\n';
   setupCode += '} else {\n';
   setupCode += '  Serial.println("警告: BH1750传感器 ' + varName + ' 初始化失败，请检查接线!");\n';
   setupCode += '}\n';
-  
-  // 返回初始化代码，让它可以插入到任何代码块中（setup、loop等）
-  // 而不是强制添加到setup中
   return setupCode;
 }
 

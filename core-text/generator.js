@@ -120,56 +120,55 @@ Arduino.getSubstringIndex = function (stringName, where, opt_at) {
 };
 
 Arduino.forBlock["string_add_string"] = function (block) {
-  const string1 = block.getFieldValue("STRING1") || "";
-  const string2 = block.getFieldValue("STRING2") || "";
-  const code =
-    Arduino.forceString(`"${string1}"`)[0] + " + " + Arduino.forceString(`"${string2}"`)[0];
+  // STRING1/STRING2改为input_value类型，需用valueToCode获取
+  const string1 = Arduino.valueToCode(block, "STRING1", Arduino.ORDER_NONE) || '""';
+  const string2 = Arduino.valueToCode(block, "STRING2", Arduino.ORDER_NONE) || '""';
+  const code = Arduino.forceString(string1)[0] + " + " + Arduino.forceString(string2)[0];
   return [code, Arduino.ORDER_ADDITION];
 };
 
 Arduino.forBlock["string_charAt"] = function (block) {
-  const string = block.getFieldValue("STRING") || "";
-  const num = block.getFieldValue("NUM") || 0;
-  const code = Arduino.forceString(
-    Arduino.forceString(`"${string}"`)[0] + `.charAt(${num}-1)`,
-  )[0];
+  // STRING/NUM改为input_value类型，需用valueToCode获取
+  const string = Arduino.valueToCode(block, "STRING", Arduino.ORDER_NONE) || '""';
+  const num = Arduino.valueToCode(block, "NUM", Arduino.ORDER_NONE) || '0';
+  const code = Arduino.forceString(string)[0] + ".charAt(" + num + "-1)";
   return [code, Arduino.ORDER_ADDITION];
 };
 
 Arduino.forBlock["string_length"] = function (block) {
-  const string = block.getFieldValue("STRING") || "";
-  const code = Arduino.forceString(`"${string}"`)[0] + ".length()";
+  // STRING改为input_value类型，需用valueToCode获取
+  const string = Arduino.valueToCode(block, "STRING", Arduino.ORDER_NONE) || '""';
+  const code = Arduino.forceString(string)[0] + ".length()";
   return [code, Arduino.ORDER_ADDITION];
 };
 
 Arduino.forBlock["string_indexOf"] = function (block) {
-  const string1 = block.getFieldValue("STRING1") || "";
-  const string2 = block.getFieldValue("STRING2") || "";
-  const code =
-    Arduino.forceString(`"${string1}"`)[0] +
-    ".indexOf(" +
-    Arduino.forceString(`"${string2}"`)[0] +
-    ") != -1";
+  // STRING1/STRING2改为input_value类型，需用valueToCode获取
+  const string1 = Arduino.valueToCode(block, "STRING1", Arduino.ORDER_NONE) || '""';
+  const string2 = Arduino.valueToCode(block, "STRING2", Arduino.ORDER_NONE) || '""';
+  const code = Arduino.forceString(string1)[0] + ".indexOf(" + Arduino.forceString(string2)[0] + ") != -1";
   return [code, Arduino.ORDER_ADDITION];
 };
 
 Arduino.forBlock["string_substring"] = function (block) {
-  const string = block.getFieldValue("STRING") || "";
+  // STRING改为input_value类型，需用valueToCode获取
+  const string = Arduino.valueToCode(block, "STRING", Arduino.ORDER_NONE) || '""';
   const start = block.getFieldValue("START");
   const startIndex = block.getFieldValue("START_INDEX") || 0;
   const last = block.getFieldValue("LAST");
   const lastIndex = block.getFieldValue("LAST_INDEX") || 0;
-  const code = `dfstring.substring("${string}",${start},${startIndex},${last},${lastIndex})`;
+  const code = `dfstring.substring(${string},${start},${startIndex},${last},${lastIndex})`;
 
   Arduino.addLibrary("DFString", "#include <DFString.h>");
   return [code, Arduino.ORDER_ADDITION];
 };
 
 Arduino.forBlock["string_find_str"] = function (block) {
-  const string1 = block.getFieldValue("STRING1") || "";
-  const string2 = block.getFieldValue("STRING2") || "";
+  // STRING1/STRING2改为input_value类型，需用valueToCode获取
+  const string1 = Arduino.valueToCode(block, "STRING1", Arduino.ORDER_NONE) || '""';
+  const string2 = Arduino.valueToCode(block, "STRING2", Arduino.ORDER_NONE) || '""';
   const find = block.getFieldValue("FIND") || "";
-  const code = `dfstring.${find}(String("${string1}"), String("${string2}"))`;
+  const code = `dfstring.${find}(String(${string1}), String(${string2}))`;
 
   Arduino.addLibrary("DFString", "#include <DFString.h>");
   return [code, Arduino.ORDER_ADDITION];
