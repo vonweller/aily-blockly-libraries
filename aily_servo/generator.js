@@ -203,11 +203,11 @@ Arduino.forBlock['servo_write_float'] = function(block, generator) {
   const isESP32 = isESP32Core();
   
   // ESP32Servo支持writeFloat方法，标准Servo使用write方法
-  if (isESP32) {
-    var code = servoName + '.writeFloat(' + angle + ');\n';
-  } else {
-    var code = servoName + '.write(' + angle + ');\n';
-  }
+  // if (isESP32) {
+  //   var code = servoName + '.writeFloat(' + angle + ');\n';
+  // } else {
+  var code = servoName + '.write(' + angle + ');\n';
+  // }
   return code;
 };
 

@@ -63,12 +63,13 @@ Arduino.forBlock['bh1750_init_with_wire'] = function(block, generator) {
         const workspace = block.workspace || (typeof Blockly !== 'undefined' && Blockly.getMainWorkspace && Blockly.getMainWorkspace());
         const oldName = block._bh1750VarLastName;
         if (workspace && newName && newName !== oldName) {
-          const oldVar = workspace.getVariable(oldName, 'BH1750');
-          const existVar = workspace.getVariable(newName, 'BH1750');
-          if (oldVar && !existVar) {
-            workspace.renameVariableById(oldVar.getId(), newName);
-            if (typeof refreshToolbox === 'function') refreshToolbox(workspace, false);
-          }
+          renameVariableInBlockly(block, oldName, newName, 'BH1750');
+          // const oldVar = workspace.getVariable(oldName, 'BH1750');
+          // const existVar = workspace.getVariable(newName, 'BH1750');
+          // if (oldVar && !existVar) {
+          //   workspace.renameVariableById(oldVar.getId(), newName);
+          //   if (typeof refreshToolbox === 'function') refreshToolbox(workspace, false);
+          // }
           block._bh1750VarLastName = newName;
         }
         return newName;
@@ -82,14 +83,15 @@ Arduino.forBlock['bh1750_init_with_wire'] = function(block, generator) {
   const wire = block.getFieldValue('WIRE') || 'Wire';
 
   // 1. 注册变量到Blockly变量系统和工具箱，类型固定为'BH1750'，同名变量唯一
-  const workspace = block.workspace || (typeof Blockly !== 'undefined' && Blockly.getMainWorkspace && Blockly.getMainWorkspace());
-  if (workspace) {
-    let existVar = workspace.getVariable(varName, 'BH1750');
-    if (!existVar) {
-      workspace.createVariable(varName, 'BH1750');
-      if (typeof refreshToolbox === 'function') refreshToolbox(workspace, false);
-    }
-  }
+  // const workspace = block.workspace || (typeof Blockly !== 'undefined' && Blockly.getMainWorkspace && Blockly.getMainWorkspace());
+  // if (workspace) {
+  //   let existVar = workspace.getVariable(varName, 'BH1750');
+  //   if (!existVar) {
+  //     workspace.createVariable(varName, 'BH1750');
+  //     if (typeof refreshToolbox === 'function') refreshToolbox(workspace, false);
+  //   }
+  // }
+  registerVariableToBlockly(varName, 'BH1750');
 
   // 2. 添加必要的库
   ensureBH1750Libraries(generator);

@@ -308,6 +308,32 @@ function refreshToolbox(oldWorkspace, openVariableItem = true) {
   }
 }
 
+function registerVariableToBlockly(varName, varType) {
+  // 获取当前工作区
+  const workspace = Blockly.getMainWorkspace();
+  if (workspace && workspace.createVariable) {
+    // 检查变量是否已存在
+    const existingVar = workspace.getVariable(varName);
+    if (!existingVar) {
+      // 创建新变量
+      workspace.createVariable(varName, varType);
+      console.log('Variable registered to Blockly:', varName);
+    }
+  }
+}
+
+function renameVariableInBlockly(block, oldName, newName, varType) {
+  const workspace = block.workspace || (typeof Blockly !== 'undefined' && Blockly.getMainWorkspace && Blockly.getMainWorkspace());
+  if (workspace) {
+    const oldVar = workspace.getVariable(oldName, varType);
+    const existVar = workspace.getVariable(newName, varType);
+    if (oldVar && !existVar) {
+      workspace.renameVariableById(oldVar.getId(), newName);
+      if (typeof refreshToolbox === 'function') refreshToolbox(workspace, false);
+    }
+  }
+}
+
 // 重命名变量
 function renameVariable(block, oldName, newName, vtype) {
   try {

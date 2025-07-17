@@ -555,12 +555,13 @@ Arduino.forBlock["list_create_with"] = function (block, generator) {
         const workspace = block.workspace || (typeof Blockly !== 'undefined' && Blockly.getMainWorkspace && Blockly.getMainWorkspace());
         const oldName = block._listVarLastName;
         if (workspace && newName && newName !== oldName) {
-          const oldVar = workspace.getVariable(oldName, 'LISTS');
-          const existVar = workspace.getVariable(newName, 'LISTS');
-          if (oldVar && !existVar) {
-            workspace.renameVariableById(oldVar.getId(), newName);
-            if (typeof refreshToolbox === 'function') refreshToolbox(workspace, false);
-          }
+          renameVariableInBlockly(block, oldName, newName, 'LISTS');
+          // const oldVar = workspace.getVariable(oldName, 'LISTS');
+          // const existVar = workspace.getVariable(newName, 'LISTS');
+          // if (oldVar && !existVar) {
+          //   workspace.renameVariableById(oldVar.getId(), newName);
+          //   if (typeof refreshToolbox === 'function') refreshToolbox(workspace, false);
+          // }
           block._listVarLastName = newName;
         }
         return newName;
@@ -572,16 +573,17 @@ Arduino.forBlock["list_create_with"] = function (block, generator) {
   const listType = block.getFieldValue("TYPE");
 
   // 注册变量到Blockly工具箱
-  const workspace = block.workspace || (typeof Blockly !== 'undefined' && Blockly.getMainWorkspace && Blockly.getMainWorkspace());
-  if (workspace && varName) {
-    let variable = workspace.getVariable(varName, 'LISTS');
-    if (!variable) {
-      // 如果变量不存在，创建一个新的变量
-      variable = workspace.createVariable(varName, 'LISTS', null, 'list');
-      // 添加到工具箱中
-      if (typeof refreshToolbox === 'function') refreshToolbox(workspace, false);
-    }
-  }
+  // const workspace = block.workspace || (typeof Blockly !== 'undefined' && Blockly.getMainWorkspace && Blockly.getMainWorkspace());
+  // if (workspace && varName) {
+  //   let variable = workspace.getVariable(varName, 'LISTS');
+  //   if (!variable) {
+  //     // 如果变量不存在，创建一个新的变量
+  //     variable = workspace.createVariable(varName, 'LISTS', null, 'list');
+  //     // 添加到工具箱中
+  //     if (typeof refreshToolbox === 'function') refreshToolbox(workspace, false);
+  //   }
+  // }
+  registerVariableToBlockly(varName, 'LISTS');
 
   // 判断是否在函数作用域内
   const isLocal = isInFunctionScope(block);

@@ -336,26 +336,76 @@ Arduino.forBlock['wifi_ip_set'] = function(block, generator) {
 // };
 
 Arduino.forBlock['wifi_server_begin'] = function(block, generator) {
+  // 监听SERVER输入值的变化，自动重命名Blockly变量
+  if (!block._wifiServerVarMonitorAttached) {
+    block._wifiServerVarMonitorAttached = true;
+    block._wifiServerVarLastName = block.getFieldValue('SERVER') || 'server';
+    const serverField = block.getField('SERVER');
+    if (serverField && typeof serverField.setValidator === 'function') {
+      serverField.setValidator(function(newName) {
+        const workspace = block.workspace || (typeof Blockly !== 'undefined' && Blockly.getMainWorkspace && Blockly.getMainWorkspace());
+        const oldName = block._wifiServerVarLastName;
+        if (workspace && newName && newName !== oldName) {
+          renameVariableInBlockly(block, oldName, newName, 'WiFiServer');
+          // const oldVar = workspace.getVariable(oldName, 'WiFiServer');
+          // const existVar = workspace.getVariable(newName, 'WiFiServer');
+          // if (oldVar && !existVar) {
+          //   workspace.renameVariableById(oldVar.getId(), newName);
+          //   if (typeof refreshToolbox === 'function') refreshToolbox(workspace, false);
+          // }
+          block._wifiServerVarLastName = newName;
+        }
+        return newName;
+      });
+    }
+  }
+  
   ensureWiFiLibrary(generator);
   var port = generator.valueToCode(block, 'PORT', Arduino.ORDER_ATOMIC) || '80';
   
-  // 参考 BH1750 的变量获取方式
-  const varField = block.getField('SERVER_NAME');
-  const serverName = varField ? varField.getText() : 'server';
+  let serverName = block.getFieldValue('SERVER') || 'server';
   
   addVariableAndRegister(generator, 'WiFiServer ' + serverName, 'WiFiServer ' + serverName + '(' + port + ');', serverName);
+  
+  // 添加全局变量声明并注册到 Blockly 变量系统
+  registerVariableToBlockly(serverName, 'WiFiServer');
 
   let code = serverName + '.begin();\n';
   return code;
 };
 
 Arduino.forBlock['wifi_server_available'] = function(block, generator) {
+  // 监听CLIENT_NAME输入值的变化，自动重命名Blockly变量
+  if (!block._wifiClientVarMonitorAttached) {
+    block._wifiClientVarMonitorAttached = true;
+    block._wifiClientVarLastName = block.getFieldValue('CLIENT_NAME') || 'client';
+    const clientField = block.getField('CLIENT_NAME');
+    if (clientField && typeof clientField.setValidator === 'function') {
+      clientField.setValidator(function(newName) {
+        const workspace = block.workspace || (typeof Blockly !== 'undefined' && Blockly.getMainWorkspace && Blockly.getMainWorkspace());
+        const oldName = block._wifiClientVarLastName;
+        if (workspace && newName && newName !== oldName) {
+          renameVariableInBlockly(block, oldName, newName, 'WiFiClient');
+          // const oldVar = workspace.getVariable(oldName, 'WiFiClient');
+          // const existVar = workspace.getVariable(newName, 'WiFiClient');
+          // if (oldVar && !existVar) {
+          //   workspace.renameVariableById(oldVar.getId(), newName);
+          //   if (typeof refreshToolbox === 'function') refreshToolbox(workspace, false);
+          // }
+          block._wifiClientVarLastName = newName;
+        }
+        return newName;
+      });
+    }
+  }
+
   // 参考 BH1750 的变量获取方式
   const serverField = block.getField('SERVER_NAME');
   const serverName = serverField ? serverField.getText() : 'server';
   
-  const clientField = block.getField('CLIENT_NAME');
-  const clientName = clientField ? clientField.getText() : 'client';
+  let clientName = block.getFieldValue('CLIENT_NAME') || 'client';
+
+  registerVariableToBlockly(clientName, 'WiFiClient');
   
   let code = 'WiFiClient ' + clientName + ' = ' + serverName + '.available();\n';
   return code;
@@ -380,15 +430,33 @@ Arduino.forBlock['wifi_server_accept'] = function(block, generator) {
 // };
 
 Arduino.forBlock['wifi_client_connect'] = function(block, generator) {
+  // 监听CLIENT_NAME输入值的变化，自动重命名Blockly变量
+  if (!block._wifiClientVarMonitorAttached) {
+    block._wifiClientVarMonitorAttached = true;
+    block._wifiClientVarLastName = block.getFieldValue('CLIENT_NAME') || 'client';
+    const clientField = block.getField('CLIENT_NAME');
+    if (clientField && typeof clientField.setValidator === 'function') {
+      clientField.setValidator(function(newName) {
+        const workspace = block.workspace || (typeof Blockly !== 'undefined' && Blockly.getMainWorkspace && Blockly.getMainWorkspace());
+        const oldName = block._wifiClientVarLastName;
+        if (workspace && newName && newName !== oldName) {
+          renameVariableInBlockly(block, oldName, newName, 'WiFiClient');
+          block._wifiClientVarLastName = newName;
+        }
+        return newName;
+      });
+    }
+  }
+
   ensureWiFiLibrary(generator);
   
-  // 参考 BH1750 的变量获取方式
-  const varField = block.getField('CLIENT_NAME');
-  const clientName = varField ? varField.getText() : 'client';
+  let clientName = block.getFieldValue('CLIENT_NAME') || 'client';
   
   var isSSL = block.getFieldValue && block.getFieldValue('SSL') === 'TRUE';
   var clientType = isSSL ? 'WiFiSSLClient' : 'WiFiClient';
   addVariableAndRegister(generator, clientName, clientType + ' ' + clientName + ';', clientName);
+
+  registerVariableToBlockly(clientName, 'WiFiClient');
 
   var server = generator.valueToCode(block, 'SERVER', Arduino.ORDER_ATOMIC);
   var port = generator.valueToCode(block, 'PORT', Arduino.ORDER_ATOMIC);
@@ -423,12 +491,32 @@ Arduino.forBlock['wifi_client_read'] = function(block, generator) {
 
 
 Arduino.forBlock['wifi_client_read_buffer'] = function(block, generator) {
+  // 监听BUFFER输入值的变化，自动重命名Blockly变量
+  if (!block._wifiBufferVarMonitorAttached) {
+    block._wifiBufferVarMonitorAttached = true;
+    block._wifiBufferVarLastName = block.getFieldValue('BUFFER') || 'buffer';
+    const bufferField = block.getField('BUFFER');
+    if (bufferField && typeof bufferField.setValidator === 'function') {
+      bufferField.setValidator(function(newName) {
+        const workspace = block.workspace || (typeof Blockly !== 'undefined' && Blockly.getMainWorkspace && Blockly.getMainWorkspace());
+        const oldName = block._wifiBufferVarLastName;
+        if (workspace && newName && newName !== oldName) {
+          renameVariableInBlockly(block, oldName, newName, 'BUFFER');
+          block._wifiBufferVarLastName = newName;
+        }
+        return newName;
+      });
+    }
+  }
   // 参考 BH1750 的变量获取方式
   const clientField = block.getField('CLIENT_NAME');
   const clientName = clientField ? clientField.getText() : 'client';
   
-  const bufferField = block.getField('BUFFER');
-  const buffer = bufferField ? bufferField.getText() : 'buffer';
+  // const bufferField = block.getField('BUFFER');
+  // const buffer = bufferField ? bufferField.getText() : 'buffer';
+  let buffer = block.getFieldValue('BUFFER') || 'buffer';
+
+  registerVariableToBlockly(buffer, 'BUFFER');
   
   var length = generator.valueToCode(block, 'LENGTH', Arduino.ORDER_ATOMIC);
   return [buffer && length ? clientName + '.read(' + buffer + ', ' + length + ')' : clientName + '.read()', Arduino.ORDER_FUNCTION_CALL];
@@ -495,11 +583,36 @@ Arduino.forBlock['wifi_udp_create'] = function(block, generator) {
 };
 
 Arduino.forBlock['wifi_udp_begin'] = function(block, generator) {
+  // 监听UDP_NAME输入值的变化，自动重命名Blockly变量
+  if (!block._wifiUdpVarMonitorAttached) {
+    block._wifiUdpVarMonitorAttached = true;
+    block._wifiUdpVarLastName = block.getFieldValue('UDP_NAME') || 'Udp';
+    const udpField = block.getField('UDP_NAME');
+    if (udpField && typeof udpField.setValidator === 'function') {
+      udpField.setValidator(function(newName) {
+        const workspace = block.workspace || (typeof Blockly !== 'undefined' && Blockly.getMainWorkspace && Blockly.getMainWorkspace());
+        const oldName = block._wifiUdpVarLastName;
+        if (workspace && newName && newName !== oldName) {
+          renameVariableInBlockly(block, oldName, newName, 'WiFiUDP');
+          // const oldVar = workspace.getVariable(oldName, 'WiFiUDP');
+          // const existVar = workspace.getVariable(newName, 'WiFiUDP');
+          // if (oldVar && !existVar) {
+          //   workspace.renameVariableById(oldVar.getId(), newName);
+          //   if (typeof refreshToolbox === 'function') refreshToolbox(workspace, false);
+          // }
+          block._wifiUdpVarLastName = newName;
+        }
+        return newName;
+      });
+    }
+  }
+  
   ensureWiFiLibrary(generator);
   
   // 参考 BH1750 的变量获取方式
-  const varField = block.getField('UDP_NAME');
-  const udpName = varField ? varField.getText() : 'Udp';
+  let udpName = block.getFieldValue('UDP_NAME') || 'Udp';
+
+  registerVariableToBlockly(udpName, 'WiFiUDP');
   
   var port = generator.valueToCode(block, 'PORT', Arduino.ORDER_ATOMIC);
   

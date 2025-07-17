@@ -70,13 +70,14 @@ Arduino.forBlock['ina219_init_with_wire'] = function(block, generator) {
         const workspace = block.workspace || (typeof Blockly !== 'undefined' && Blockly.getMainWorkspace && Blockly.getMainWorkspace());
         const oldName = block._ina219VarLastName;
         if (workspace && newName && newName !== oldName) {
-          const oldVar = workspace.getVariable(oldName, 'INA219');
-          const existVar = workspace.getVariable(newName, 'INA219');
-          console.log("Renaming INA219 variable from", oldName, "to", newName);
-          if (oldVar && !existVar) {
-            workspace.renameVariableById(oldVar.getId(), newName);
-            if (typeof refreshToolbox === 'function') refreshToolbox(workspace, false);
-          }
+          renameVariableInBlockly(block, oldName, newName, 'INA219');
+          // const oldVar = workspace.getVariable(oldName, 'INA219');
+          // const existVar = workspace.getVariable(newName, 'INA219');
+          // console.log("Renaming INA219 variable from", oldName, "to", newName);
+          // if (oldVar && !existVar) {
+          //   workspace.renameVariableById(oldVar.getId(), newName);
+          //   if (typeof refreshToolbox === 'function') refreshToolbox(workspace, false);
+          // }
           block._ina219VarLastName = newName;
         }
         return newName;
@@ -89,14 +90,15 @@ Arduino.forBlock['ina219_init_with_wire'] = function(block, generator) {
   const wire = block.getFieldValue('WIRE') || 'Wire'; // 从field_dropdown获取Wire
 
   // 1. 注册变量到Blockly变量系统和工具箱，类型固定为'INA219'，同名变量唯一
-  const workspace = block.workspace || (typeof Blockly !== 'undefined' && Blockly.getMainWorkspace && Blockly.getMainWorkspace());
-  if (workspace) {
-    let existVar = workspace.getVariable(varName, 'INA219');
-    if (!existVar) {
-      workspace.createVariable(varName, 'INA219');
-      if (typeof refreshToolbox === 'function') refreshToolbox(workspace, false);
-    }
-  }
+  // const workspace = block.workspace || (typeof Blockly !== 'undefined' && Blockly.getMainWorkspace && Blockly.getMainWorkspace());
+  // if (workspace) {
+  //   let existVar = workspace.getVariable(varName, 'INA219');
+  //   if (!existVar) {
+  //     workspace.createVariable(varName, 'INA219');
+  //     if (typeof refreshToolbox === 'function') refreshToolbox(workspace, false);
+  //   }
+  // }
+  registerVariableToBlockly(varName, 'INA219');
 
   // 添加必要的库
   ensureINA219Libraries(generator);
