@@ -451,13 +451,15 @@ Arduino.forBlock['blinker_widget_print'] = function (block, generator) {
     generator.variableDB_ = {};
   }
 
-  // 判断varName是否已经注册过
-  if (!generator.variableDB_[varName]) {
-    // 如果没有注册过，说明用户直接使用了blinker_widget_print而没有先创建组件
-    // 这种情况下创建一个默认的BlinkerNumber组件
+  // 判断varName未注册或类型为BlinkerNumber时，创建默认组件
+  if (!generator.variableDB_[varName] || generator.variableDB_[varName] === 'BlinkerNumber') {
     let componentType = 'BlinkerNumber';
     generator.addVariable(varName, componentType + ' ' + varName + '("' + widget + '");');
     generator.variableDB_[varName] = componentType;
+    console.log(`Widget "${widget}" is not registered, using default BlinkerNumber component.`);
+  } else {
+    // 如果已经注册过，直接使用已存在的变量名
+    console.log(`Using existing component variable: ${varName}`);
   }
 
   // 收集所有连接的对象块返回的代码
