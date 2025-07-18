@@ -456,10 +456,10 @@ Arduino.forBlock['blinker_widget_print'] = function (block, generator) {
     let componentType = 'BlinkerNumber';
     generator.addVariable(varName, componentType + ' ' + varName + '("' + widget + '");');
     generator.variableDB_[varName] = componentType;
-    console.log(`Widget "${widget}" is not registered, using default BlinkerNumber component.`);
+    // console.log(`Widget "${widget}" is not registered, using default BlinkerNumber component.`);
   } else {
     // 如果已经注册过，直接使用已存在的变量名
-    console.log(`Using existing component variable: ${varName}`);
+    // console.log(`Using existing component variable: ${varName}`);
   }
 
   // 收集所有连接的对象块返回的代码
