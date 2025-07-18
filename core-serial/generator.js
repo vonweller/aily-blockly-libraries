@@ -33,7 +33,8 @@ Arduino.forBlock["serial_begin"] = function (block, generator) {
   Arduino.initializedSerialPorts.add(obj);
   Arduino.addedSerialInitCode.add(obj);
   
-  generator.addSetupBegin(`serial_${obj}_begin`, `${obj}.begin(${speed});`);
+  // generator.addSetupBegin(`serial_${obj}_begin`, `${obj}.begin(${speed});`);
+  ensureSerialBegin(obj, generator, speed);
   return ``;
 };
 
@@ -92,13 +93,16 @@ Arduino.forBlock["serial_read_string"] = function (block, generator) {
 };
 
 // 辅助函数，确保串口已被初始化
-function ensureSerialBegin(serialPort, generator) {
+function ensureSerialBegin(serialPort, generator, baudrate = 9600) {
   // 检查这个串口是否已经添加过初始化代码（无论是用户设置的还是默认的）
   if (!Arduino.addedSerialInitCode.has(serialPort)) {
+    // console.log(`Adding default serial initialization for ${serialPort} at ${baudrate} baud.`);
     // 只有在没有添加过任何初始化代码时才添加默认初始化
-    generator.addSetupBegin(`serial_${serialPort}_begin`, `${serialPort}.begin(9600);`);
+    generator.addSetupBegin(`serial_${serialPort}_begin`, `${serialPort}.begin(${baudrate});`);
     // 标记为已添加初始化代码
     Arduino.addedSerialInitCode.add(serialPort);
+  } else {
+    // console.log(`Serial port ${serialPort} already initialized.`);
   }
 }
 
