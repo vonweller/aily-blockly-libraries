@@ -46,9 +46,18 @@ Arduino.forBlock['tft_init'] = function(block, generator) {
 Arduino.forBlock['tft_set_rotation'] = function(block, generator) {
   // 直接从下拉菜单获取旋转值
   const rotation = block.getFieldValue('ROTATION');
-  
+
   // 生成代码
   return `tft.setRotation(${rotation});\n`;
+};
+
+// TFT反色显示设置
+Arduino.forBlock['tft_invert_display'] = function(block, generator) {
+  // 从下拉菜单获取反色设置值
+  const invert = block.getFieldValue('INVERT');
+
+  // 生成代码
+  return `tft.invertDisplay(${invert});\n`;
 };
 
 Arduino.forBlock['tft_fill_screen'] = function(block, generator) {
@@ -378,9 +387,9 @@ Arduino.forBlock['tft_image_file'] = function(block, generator) {
   return processImageFile(filePath, width, height, bitmapVarName, generator);
 };
 
-// 添加文件选择器扩展
+// 添加文件选择器扩展 - 简化版本
 if (typeof Blockly !== 'undefined' && Blockly.Extensions) {
-  Blockly.Extensions.register('tft_image_file_extension', function() {
+  Blockly.Extensions.register('tft_image_file_extension_simple', function() {
     const block = this;
     const fileField = this.getField('FILE_PATH');
     
@@ -398,10 +407,11 @@ if (typeof Blockly !== 'undefined' && Blockly.Extensions) {
       
       // 显示用户友好的消息
       function showUserMessage(message, type = 'info') {
-        if (typeof Blockly !== 'undefined' && Blockly.mainWorkspace) {
-          Blockly.mainWorkspace.setWarningText(message);
-        }
         console.log(`[${type.toUpperCase()}] ${message}`);
+        // 可选：显示在页面上
+        if (typeof alert !== 'undefined' && type === 'error') {
+          alert(message);
+        }
       }
       
       // 处理文件选择
@@ -510,14 +520,23 @@ if (typeof Blockly !== 'undefined' && Blockly.Extensions) {
                   };
                 });
                 
-                // 确保文件选择器字段的值被正确设置并触发事件
+                // 设置文件选择器字段的值
                 fileField.setValue(file.name);
-                
-                // 强制触发字段更新事件
-                if (typeof Blockly !== 'undefined' && block && block.workspace) {
-                  block.workspace.fireChangeListener(new Blockly.Events.Change(
-                    block, 'field', 'FILE_PATH', '点击选择图片...', file.name
-                  ));
+
+                // 简单地标记工作区已修改，不触发复杂事件
+                try {
+                  if (block && block.workspace) {
+                    // 只标记工作区已修改，不触发事件
+                    if (block.workspace.markFocused) {
+                      block.workspace.markFocused();
+                    }
+                    // 强制重新渲染块
+                    if (block.render) {
+                      block.render();
+                    }
+                  }
+                } catch (error) {
+                  console.log('工作区更新失败:', error);
                 }
                 
                 showUserMessage(`图片 ${file.name} 处理完成！支持尺寸: ${Object.keys(processedSizes).join(', ')}`, 'success');
@@ -552,12 +571,10 @@ if (typeof Blockly !== 'undefined' && Blockly.Extensions) {
       fileField.onMouseDown_ = function(e) {
         e.preventDefault();
         e.stopPropagation();
-        
+
         // 清除之前的警告
-        if (typeof Blockly !== 'undefined' && Blockly.mainWorkspace) {
-          Blockly.mainWorkspace.setWarningText(null);
-        }
-        
+        console.log('打开文件选择器...');
+
         input.click();
       };
        
@@ -635,16 +652,14 @@ function processImageFile(filePath, width, height, bitmapVarName, generator) {
     } else {
       // 没有图片数据，使用占位图像但不阻止代码生成
       console.warn(`[图片处理] 未命中缓存: ${filePath}，使用占位图像`);
-      if (typeof Blockly !== 'undefined' && Blockly.mainWorkspace) {
-        Blockly.mainWorkspace.setWarningText('图片未加载完成，已使用占位图像');
-      }
+      // 显示警告信息（如果可能的话）
+      console.warn('图片未加载完成，已使用占位图像');
       return processDefaultImage(bitmapVarName, width, height, generator);
     }
   } catch (e) {
     console.error('处理图片文件时出错:', e);
-    if (typeof Blockly !== 'undefined' && Blockly.mainWorkspace) {
-      Blockly.mainWorkspace.setWarningText('图片处理出错，已使用默认占位图像！');
-    }
+    // 显示错误信息
+    console.error('图片处理出错，已使用默认占位图像！');
     return processDefaultImage(bitmapVarName, width, height, generator);
   }
 }
@@ -692,37 +707,7 @@ function processImageToRGB565(imageData, targetWidth, targetHeight) {
   }
 }
 
-// 修复的图片文件处理函数
-function processImageFile(filePath, width, height, bitmapVarName, generator) {
-  try {
-    console.log(`[图片处理] 开始处理文件: ${filePath}`);
-    
-    // 检查全局存储的图片数据
-    if (window.tftImageCache && window.tftImageCache[filePath]) {
-      const imageData = window.tftImageCache[filePath];
-      console.log(`[图片处理] 命中缓存: ${filePath}`, imageData);
-      const processedData = processImageToRGB565(imageData, width, height);
-      
-      if (processedData && processedData.length > 10) {
-        const bitmapDeclaration = `// 从文件加载的图像: ${filePath} (${width}x${height})
-static const uint16_t ${bitmapVarName}[] PROGMEM = {
-  ${processedData}
-};
-const uint16_t ${bitmapVarName}_width = ${width};
-const uint16_t ${bitmapVarName}_height = ${height};`;
-        generator.addVariable(bitmapVarName, bitmapDeclaration);
-        return [`${bitmapVarName}`, Arduino.ORDER_ATOMIC];
-      }
-    }
-    
-    // 使用占位图像，但添加调试信息
-    console.warn(`[图片处理] 使用占位图像: ${filePath || '未选择文件'}`);
-    return processDefaultImage(bitmapVarName, width, height, generator);
-  } catch (e) {
-    console.error('处理图片文件时出错:', e);
-    return processDefaultImage(bitmapVarName, width, height, generator);
-  }
-}
+
 
 // 格式化RGB565数组为C代码格式
 function formatRGB565Array(rgb565Array, width) {
@@ -810,7 +795,7 @@ function processImageRealTime(img, width, height) {
 }
 
 // 生成占位数据 - 改进为更友好的占位图案
-function generatePlaceholderData(width, height, color) {
+function generatePlaceholderData(width, height, color = '0x8410') {
   const w = parseInt(width);
   const h = parseInt(height);
   const size = w * h;
