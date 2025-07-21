@@ -29,12 +29,13 @@ Arduino.forBlock["serial_begin"] = function (block, generator) {
   const obj = block.getFieldValue("SERIAL");
   const speed = block.getFieldValue("SPEED");
   
+  ensureSerialBegin(obj, generator, speed);
+  
   // 标记这个串口为已初始化
   Arduino.initializedSerialPorts.add(obj);
   Arduino.addedSerialInitCode.add(obj);
   
   // generator.addSetupBegin(`serial_${obj}_begin`, `${obj}.begin(${speed});`);
-  ensureSerialBegin(obj, generator, speed);
   return ``;
 };
 
