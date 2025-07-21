@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>TFT反色显示积木测试</title>
+    <script src="https://unpkg.com/blockly/blockly.min.js"></script>
+</head>
+<body>
+    <h1>TFT反色显示积木测试</h1>
+    <div id="test-results"></div>
+    
+    <script>
+        // 模拟Arduino代码生成器
+        const Arduino = {
+            ORDER_ATOMIC: 0,
+            forBlock: {}
+        };
+        
+        // 加载我们的generator.js文件进行测试
+        const script = document.createElement('script');
+        script.src = './generator.js';
+        script.onload = function() {
+            console.log('Generator.js loaded successfully!');
+            
+            const resultsDiv = document.getElementById('test-results');
+            
+            // 测试反色显示积木 - 开启
+            try {
+                console.log('测试反色显示积木 - 开启...');
+                const mockBlockOn = {
+                    getFieldValue: function(name) {
+                        if (name === 'INVERT') return 'true';
+                        return null;
+                    }
+                };
+                
+                const mockGenerator = {};
+                const resultOn = Arduino.forBlock['tft_invert_display'](mockBlockOn, mockGenerator);
+                
+                console.log('开启反色显示结果:', resultOn);
+                
+                if (resultOn === 'tft.invertDisplay(true);\n') {
+                    resultsDiv.innerHTML += '<p style="color: green;">✅ 开启反色显示测试通过！</p>';
+                } else {
+                    resultsDiv.innerHTML += '<p style="color: red;">❌ 开启反色显示测试失败！期望: "tft.invertDisplay(true);\\n", 实际: "' + resultOn + '"</p>';
+                }
+            } catch (error) {
+                console.error('开启反色显示测试失败:', error);
+                resultsDiv.innerHTML += '<p style="color: red;">❌ 开启反色显示测试出错: ' + error.message + '</p>';
+            }
+            
+            // 测试反色显示积木 - 关闭
+            try {
+                console.log('测试反色显示积木 - 关闭...');
+                const mockBlockOff = {
+                    getFieldValue: function(name) {
+                        if (name === 'INVERT') return 'false';
+                        return null;
+                    }
+                };
+                
+                const mockGenerator = {};
+                const resultOff = Arduino.forBlock['tft_invert_display'](mockBlockOff, mockGenerator);
+                
+                console.log('关闭反色显示结果:', resultOff);
+                
+                if (resultOff === 'tft.invertDisplay(false);\n') {
+                    resultsDiv.innerHTML += '<p style="color: green;">✅ 关闭反色显示测试通过！</p>';
+                } else {
+                    resultsDiv.innerHTML += '<p style="color: red;">❌ 关闭反色显示测试失败！期望: "tft.invertDisplay(false);\\n", 实际: "' + resultOff + '"</p>';
+                }
+            } catch (error) {
+                console.error('关闭反色显示测试失败:', error);
+                resultsDiv.innerHTML += '<p style="color: red;">❌ 关闭反色显示测试出错: ' + error.message + '</p>';
+            }
+            
+            resultsDiv.innerHTML += '<h3>测试完成！</h3>';
+            resultsDiv.innerHTML += '<p>请检查控制台输出以获取更多详细信息。</p>';
+        };
+        
+        script.onerror = function() {
+            console.error('❌ 无法加载generator.js文件');
+            document.getElementById('test-results').innerHTML = '<p style="color: red;">❌ 无法加载generator.js文件</p>';
+        };
+        
+        document.head.appendChild(script);
+    </script>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>图像上传积木修复测试</title>
+    <script src="https://unpkg.com/blockly/blockly.min.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        #blocklyDiv { height: 400px; width: 800px; border: 1px solid #ccc; }
+        .status { margin: 10px 0; padding: 10px; border-radius: 4px; }
+        .success { background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .error { background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        .info { background-color: #d1ecf1; color: #0c5460; border: 1px solid #bee5eb; }
+    </style>
+</head>
+<body>
+    <h1>图像上传积木修复测试</h1>
+    <div id="status" class="status info">正在初始化...</div>
+    
+    <div id="blocklyDiv"></div>
+    
+    <script>
+        const statusDiv = document.getElementById('status');
+        
+        function updateStatus(message, type = 'info') {
+            statusDiv.className = `status ${type}`;
+            statusDiv.textContent = message;
+            console.log(`[${type.toUpperCase()}] ${message}`);
+        }
+        
+        // 简单的工具箱定义
+        const toolbox = {
+            "kind": "categoryToolbox",
+            "contents": [
+                {
+                    "kind": "category",
+                    "name": "GFX测试",
+                    "contents": [
+                        {
+                            "kind": "block",
+                            "type": "tft_image_file",
+                            "inputs": {
+                                "WIDTH": {
+                                    "shadow": {
+                                        "type": "math_number",
+                                        "fields": { "NUM": 32 }
+                                    }
+                                },
+                                "HEIGHT": {
+                                    "shadow": {
+                                        "type": "math_number",
+                                        "fields": { "NUM": 32 }
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "kind": "block",
+                            "type": "tft_invert_display"
+                        }
+                    ]
+                }
+            ]
+        };
+        
+        // 加载积木定义和生成器
+        const script1 = document.createElement('script');
+        script1.src = './generator.js';
+        script1.onload = function() {
+            updateStatus('Generator.js 加载成功', 'success');
+            
+            try {
+                // 初始化Blockly工作区
+                const workspace = Blockly.inject('blocklyDiv', {
+                    toolbox: toolbox,
+                    grid: {
+                        spacing: 20,
+                        length: 3,
+                        colour: '#ccc',
+                        snap: true
+                    },
+                    zoom: {
+                        controls: true,
+                        wheel: true,
+                        startScale: 1.0,
+                        maxScale: 3,
+                        minScale: 0.3,
+                        scaleSpeed: 1.2
+                    }
+                });
+                
+                updateStatus('Blockly工作区初始化成功！现在可以测试图像上传积木了。', 'success');
+                
+                // 监听错误
+                window.addEventListener('error', function(e) {
+                    if (e.message.includes('BlocklyEvents.Change')) {
+                        updateStatus('❌ 仍然存在 BlocklyEvents.Change 错误: ' + e.message, 'error');
+                    } else {
+                        console.error('其他错误:', e.message);
+                    }
+                });
+                
+                // 监听未捕获的Promise错误
+                window.addEventListener('unhandledrejection', function(e) {
+                    if (e.reason && e.reason.toString().includes('BlocklyEvents.Change')) {
+                        updateStatus('❌ Promise中的 BlocklyEvents.Change 错误: ' + e.reason, 'error');
+                    }
+                });
+                
+            } catch (error) {
+                updateStatus('Blockly初始化失败: ' + error.message, 'error');
+            }
+        };
+        
+        script1.onerror = function() {
+            updateStatus('❌ 无法加载 generator.js', 'error');
+        };
+        
+        document.head.appendChild(script1);
+    </script>
+</body>
+</html>

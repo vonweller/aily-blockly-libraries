@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>图像上传积木测试</title>
+    <script src="https://unpkg.com/blockly/blockly.min.js"></script>
+</head>
+<body>
+    <div id="blocklyDiv" style="height: 480px; width: 600px;"></div>
+    
+    <script>
+        // 模拟Arduino代码生成器
+        const Arduino = {
+            ORDER_ATOMIC: 0,
+            forBlock: {}
+        };
+        
+        // 加载我们的generator.js文件进行测试
+        const script = document.createElement('script');
+        script.src = './generator.js';
+        script.onload = function() {
+            console.log('Generator.js loaded successfully!');
+            
+            // 测试图像文件处理块
+            const mockBlock = {
+                id: 'test_block_123',
+                getFieldValue: function(name) {
+                    if (name === 'FILE_PATH') return 'test.jpg';
+                    return null;
+                },
+                workspace: {
+                    fireChangeListener: function(event) {
+                        console.log('事件触发成功:', event);
+                    },
+                    markFocused: function() {
+                        console.log('工作区标记为已聚焦');
+                    },
+                    setWarningText: function(text) {
+                        console.log('警告文本:', text);
+                    }
+                }
+            };
+            
+            const mockGenerator = {
+                valueToCode: function(block, name, order) {
+                    return '32'; // 默认尺寸
+                },
+                addVariable: function(name, declaration) {
+                    console.log('添加变量:', name);
+                    console.log('声明:', declaration);
+                }
+            };
+            
+            // 测试图像文件处理
+            try {
+                console.log('开始测试图像文件处理...');
+                const result = Arduino.forBlock['tft_image_file'](mockBlock, mockGenerator);
+                console.log('测试结果:', result);
+                console.log('✅ 图像文件处理测试通过！');
+            } catch (error) {
+                console.error('❌ 图像文件处理测试失败:', error);
+            }
+            
+            // 测试位图数据处理
+            try {
+                console.log('开始测试位图数据处理...');
+                const bitmapBlock = {
+                    id: 'bitmap_test_456',
+                    getFieldValue: function(name) {
+                        if (name === 'IMAGE_DATA') return '';
+                        return null;
+                    }
+                };
+                
+                const bitmapResult = Arduino.forBlock['tft_bitmap_image'](bitmapBlock, mockGenerator);
+                console.log('位图测试结果:', bitmapResult);
+                console.log('✅ 位图数据处理测试通过！');
+            } catch (error) {
+                console.error('❌ 位图数据处理测试失败:', error);
+            }
+        };
+        
+        script.onerror = function() {
+            console.error('❌ 无法加载generator.js文件');
+        };
+        
+        document.head.appendChild(script);
+    </script>
+</body>
+</html>
