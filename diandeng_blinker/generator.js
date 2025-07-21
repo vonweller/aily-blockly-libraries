@@ -3,6 +3,22 @@ if (Blockly.Extensions.isRegistered('blinker_init_wifi_extension')) {
   Blockly.Extensions.unregister('blinker_init_wifi_extension');
 }
 
+// // 确保Serial已初始化，兼容core-serial的去重机制
+// function ensureSerialBegin(serialPort, speed, generator) {
+//   // 初始化Arduino的Serial相关全局变量，兼容core-serial
+//   if (!Arduino.addedSerialInitCode) {
+//     Arduino.addedSerialInitCode = new Set();
+//   }
+  
+//   // 检查这个串口是否已经添加过初始化代码（无论是用户设置的还是默认的）
+//   if (!Arduino.addedSerialInitCode.has(serialPort)) {
+//     // 只有在没有添加过任何初始化代码时才添加初始化
+//     generator.addSetupBegin(`serial_${serialPort}_begin`, `${serialPort}.begin(${speed});`);
+//     // 标记为已添加初始化代码
+//     Arduino.addedSerialInitCode.add(serialPort);
+//   }
+// }
+
 Blockly.Extensions.register('blinker_init_wifi_extension', function () {
   // 直接在扩展中添加updateShape_函数
   this.updateShape_ = function (configType) {
@@ -166,8 +182,10 @@ Arduino.forBlock['blinker_debug_init'] = function (block, generator) {
   let speed = block.getFieldValue('SPEED');
   let debugAll = block.getFieldValue('DEBUG_ALL');
 
-  let code = serial + '.begin(' + speed + ');\n';
-  code += 'BLINKER_DEBUG.stream(' + serial + ');\n';
+  // 确保Serial已初始化（兼容core-serial的去重机制）
+  ensureSerialBegin(serial, generator, speed);
+
+  let code = 'BLINKER_DEBUG.stream(' + serial + ');\n';
 
   if (debugAll === 'true') {
     code += 'BLINKER_DEBUG.debugAll();\n';
@@ -187,6 +205,12 @@ Arduino.forBlock['blinker_button'] = function (block, generator) {
 
   // 添加按钮组件对象
   generator.addVariable(varName, 'BlinkerButton ' + varName + '("' + key + '");');
+
+  // 注册到变量数据库，供blinker_widget_print使用
+  if (!generator.variableDB_) {
+    generator.variableDB_ = {};
+  }
+  generator.variableDB_[varName] = 'BlinkerButton';
 
   // 添加按钮回调函数
   let functionName = 'button_' + key.replace(/-/g, '_') + '_callback';
@@ -222,6 +246,12 @@ Arduino.forBlock['blinker_slider'] = function (block, generator) {
   // 添加滑块组件对象
   generator.addVariable(varName, 'BlinkerSlider ' + varName + '("' + key + '");');
 
+  // 注册到变量数据库，供blinker_widget_print使用
+  if (!generator.variableDB_) {
+    generator.variableDB_ = {};
+  }
+  generator.variableDB_[varName] = 'BlinkerSlider';
+
   // 添加滑块回调函数
   let functionName = 'slider_' + key.replace(/-/g, '_') + '_callback';
   let functionCode = 'void ' + functionName + '(int32_t value) {\n' +
@@ -252,6 +282,12 @@ Arduino.forBlock['blinker_colorpicker'] = function (block, generator) {
 
   // 添加RGB组件对象
   generator.addVariable(varName, 'BlinkerRGB ' + varName + '("' + key + '");');
+
+  // 注册到变量数据库，供blinker_widget_print使用
+  if (!generator.variableDB_) {
+    generator.variableDB_ = {};
+  }
+  generator.variableDB_[varName] = 'BlinkerRGB';
 
   // 添加RGB回调函数
   let functionName = 'rgb_' + key.replace(/-/g, '_') + '_callback';
@@ -287,6 +323,12 @@ Arduino.forBlock['blinker_joystick'] = function (block, generator) {
   // 添加摇杆组件对象
   generator.addVariable(varName, 'BlinkerJoystick ' + varName + '("' + key + '");');
 
+  // 注册到变量数据库，供blinker_widget_print使用
+  if (!generator.variableDB_) {
+    generator.variableDB_ = {};
+  }
+  generator.variableDB_[varName] = 'BlinkerJoystick';
+
   // 添加摇杆回调函数
   let functionName = 'joystick_' + key.replace(/-/g, '_') + '_callback';
   let functionCode = 'void ' + functionName + '(uint8_t xAxis, uint8_t yAxis) {\n' +
@@ -319,6 +361,13 @@ Arduino.forBlock['blinker_chart'] = function (block, generator) {
   // 添加图表组件对象
   generator.addVariable(varName, 'BlinkerChart ' + varName + '("' +
     key + '");');
+
+  // 注册到变量数据库，供blinker_widget_print使用
+  if (!generator.variableDB_) {
+    generator.variableDB_ = {};
+  }
+  generator.variableDB_[varName] = 'BlinkerChart';
+
   // 添加图表回调函数
   let functionName = 'chart_' + key.replace(/-/g, '_') + '_callback';
   let functionCode = 'void ' + functionName + '() {\n' +
@@ -397,36 +446,22 @@ Arduino.forBlock['blinker_widget_print'] = function (block, generator) {
   // 创建组件变量名
   let varName = 'Blinker_' + widget.replace(/-/g, '_');
 
-//   generator.addVariable(varName, 'BlinkerButton ' + varName + '("' + widget + '");');
-  
   // 检查变量名是否已经存在
   if (!generator.variableDB_) {
     generator.variableDB_ = {};
   }
 
-  // 判断varName是否有相同的
-  if (!generator.variableDB_[varName]) {
-    let componentType = 'BlinkerNumber'; // 默认组件类型
-    if (widget.startsWith('btn')) {
-        componentType = 'BlinkerButton';
-    }
-    else if (widget.startsWith('sld')) {
-      componentType = 'BlinkerSlider';
-    }
-    else if (widget.startsWith('rgb')) {
-      componentType = 'BlinkerRGB';
-    }
-    else if (widget.startsWith('joy')) {
-      componentType = 'BlinkerJoystick';
-    }
-    else if (widget.startsWith('num')) {
-      componentType = 'BlinkerNumber';
-    }
-
+  // 判断varName未注册或类型为BlinkerNumber时，创建默认组件
+  if (!generator.variableDB_[varName] || generator.variableDB_[varName] === 'BlinkerNumber') {
+    let componentType = 'BlinkerNumber';
     generator.addVariable(varName, componentType + ' ' + varName + '("' + widget + '");');
-    // 设置block的颜色为红色
-    // block.setColour('#FF0000');
+    generator.variableDB_[varName] = componentType;
+    // console.log(`Widget "${widget}" is not registered, using default BlinkerNumber component.`);
+  } else {
+    // 如果已经注册过，直接使用已存在的变量名
+    // console.log(`Using existing component variable: ${varName}`);
   }
+
   // 收集所有连接的对象块返回的代码
   let objectValues = [];
   

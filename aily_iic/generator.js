@@ -95,21 +95,21 @@ function updateCustomPinConfig(wire, sdaValue, sclValue) {
   }
 }
 
-// 确保Serial已初始化，兼容core-serial的去重机制
-function ensureSerialBegin(serialPort, generator) {
-  // 初始化Arduino的Serial相关全局变量，兼容core-serial
-  if (!Arduino.addedSerialInitCode) {
-    Arduino.addedSerialInitCode = new Set();
-  }
+// // 确保Serial已初始化，兼容core-serial的去重机制
+// function ensureSerialBegin(serialPort, generator) {
+//   // 初始化Arduino的Serial相关全局变量，兼容core-serial
+//   if (!Arduino.addedSerialInitCode) {
+//     Arduino.addedSerialInitCode = new Set();
+//   }
   
-  // 检查这个串口是否已经添加过初始化代码（无论是用户设置的还是默认的）
-  if (!Arduino.addedSerialInitCode.has(serialPort)) {
-    // 只有在没有添加过任何初始化代码时才添加默认初始化
-    generator.addSetupBegin(`serial_${serialPort}_begin`, `${serialPort}.begin(9600);`);
-    // 标记为已添加初始化代码
-    Arduino.addedSerialInitCode.add(serialPort);
-  }
-}
+//   // 检查这个串口是否已经添加过初始化代码（无论是用户设置的还是默认的）
+//   if (!Arduino.addedSerialInitCode.has(serialPort)) {
+//     // 只有在没有添加过任何初始化代码时才添加默认初始化
+//     generator.addSetupBegin(`serial_${serialPort}_begin`, `${serialPort}.begin(9600);`);
+//     // 标记为已添加初始化代码
+//     Arduino.addedSerialInitCode.add(serialPort);
+//   }
+// }
 
 /**
  * Wire.begin() / Wire.begin(address)
@@ -679,7 +679,7 @@ function updateBlockDropdownWithPinInfo(block, config) {
     if (!wireField) return;
     
     const optionsWithPins = generateI2COptionsWithPins(boardConfig);
-    
+
     // 更新下拉菜单选项
     if (optionsWithPins.length > 0) {
       // 更新字段的选项生成器
@@ -687,48 +687,17 @@ function updateBlockDropdownWithPinInfo(block, config) {
       wireField.getOptions = function() {
         return optionsWithPins;
       };
-      
-      // 更新当前显示文本
+
+      // 获取当前值
       const currentValue = wireField.getValue();
-      
       // 检查当前值是否在新的选项列表中
       const matchingOption = optionsWithPins.find(([text, value]) => value === currentValue);
-      
-      // 如果当前值存在并且在选项列表中，则保持该值并更新显示文本
+
       if (currentValue && matchingOption) {
-        // 强制更新字段的显示文本
-        try {
-          // 直接设置显示文本
-          wireField.text_ = matchingOption[0];
-          
-          // 如果字段有textElement，直接更新DOM
-          if (wireField.textElement_) {
-            wireField.textElement_.textContent = matchingOption[0];
-          }
-          
-          // 强制触发字段重新渲染
-          if (wireField.render_) {
-            wireField.render_();
-          }
-          
-          // 强制触发块重绘
-          block.render();
-        } catch (e) {
-          // 如果上述方法失败，回退到切换值的方法
-          if (optionsWithPins.length > 1) {
-            const alternativeOption = optionsWithPins.find(([text, value]) => value !== currentValue);
-            if (alternativeOption) {
-              wireField.setValue(alternativeOption[1]);
-              wireField.setValue(currentValue);
-            }
-          } else {
-            block.render();
-          }
-        }
-      } 
-      // 如果当前值不在选项列表中，或者没有当前值，则设为默认值
-      else if (optionsWithPins.length > 0) {
-        // 设置默认选项
+        // 强制调用setValue刷新UI（即使值未变，setValue也会刷新显示文本）
+        wireField.setValue(currentValue);
+      } else {
+        // 当前值无效，设置为第一个选项
         wireField.setValue(optionsWithPins[0][1]);
       }
     }

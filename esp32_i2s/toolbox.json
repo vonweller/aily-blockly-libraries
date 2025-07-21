@@ -10,20 +10,73 @@
             "text": "🔧 系统初始化"
         },
         {
-            "kind": "block",
-            "type": "esp32_sd_init"
-        },
-        {
-            "kind": "block",
-            "type": "esp32_i2s_init"
-        },
-        {
-            "kind": "block",
-            "type": "esp32_i2s_begin",
-            "fields": {
-                "OBJECT": "microphone"
+    "kind": "block",
+    "type": "esp32_sd_init",
+    "inputs": {
+        "CS_PIN": {
+            "shadow": {
+                "type": "math_number",
+                "fields": {
+                    "NUM": 46
+                }
             }
         },
+        "SCK_PIN": {
+            "shadow": {
+                "type": "math_number",
+                "fields": {
+                    "NUM": 3
+                }
+            }
+        },
+        "MOSI_PIN": {
+            "shadow": {
+                "type": "math_number",
+                "fields": {
+                    "NUM": 14
+                }
+            }
+        },
+        "MISO_PIN": {
+            "shadow": {
+                "type": "math_number",
+                "fields": {
+                    "NUM": 35
+                }
+            }
+        }
+    }
+},
+        {
+    "kind": "block",
+    "type": "esp32_i2s_init_and_begin",
+    "inputs": {
+        "SCK_PIN": {
+            "shadow": {
+                "type": "math_number",
+                "fields": {
+                    "NUM": 41
+                }
+            }
+        },
+        "WS_PIN": {
+            "shadow": {
+                "type": "math_number",
+                "fields": {
+                    "NUM": 42
+                }
+            }
+        },
+        "SD_PIN": {
+            "shadow": {
+                "type": "math_number",
+                "fields": {
+                    "NUM": 2
+                }
+            }
+        }
+    }
+},
         {
             "kind": "sep"
         },
@@ -206,9 +259,35 @@
             "text": "🔊 I2S功放"
         },
         {
-            "kind": "block",
-            "type": "esp32_i2s_init_speaker"
+    "kind": "block",
+    "type": "esp32_i2s_init_speaker",
+    "inputs": {
+        "BCLK_PIN": {
+            "shadow": {
+                "type": "math_number",
+                "fields": {
+                    "NUM": 39
+                }
+            }
         },
+        "LRC_PIN": {
+            "shadow": {
+                "type": "math_number",
+                "fields": {
+                    "NUM": 40
+                }
+            }
+        },
+        "DIN_PIN": {
+            "shadow": {
+                "type": "math_number",
+                "fields": {
+                    "NUM": 38
+                }
+            }
+        }
+    }
+},
         {
             "kind": "block",
             "type": "esp32_i2s_play_wav_file",

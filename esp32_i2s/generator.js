@@ -4,47 +4,60 @@ Arduino.forBlock['esp32_sd_init'] = function(block, generator) {
     generator.addLibrary('#include "SD.h"', '#include "SD.h"');
     generator.addLibrary('#include "SPI.h"', '#include "SPI.h"');
     generator.addLibrary('#include "FS.h"', '#include "FS.h"');
-    
+
+    // 从 block 获取自定义引脚号
+    const csPin = generator.valueToCode(block, 'CS_PIN', Arduino.ORDER_ATOMIC) || '46';
+    const sckPin = generator.valueToCode(block, 'SCK_PIN', Arduino.ORDER_ATOMIC) || '3';
+    const mosiPin = generator.valueToCode(block, 'MOSI_PIN', Arduino.ORDER_ATOMIC) || '14';
+    const misoPin = generator.valueToCode(block, 'MISO_PIN', Arduino.ORDER_ATOMIC) || '35';
+
     // 创建SPI对象
     generator.addObject('SPIClass spi = SPIClass(FSPI);', 'SPIClass spi = SPIClass(FSPI);');
-    
+
     // 在setup中添加SD卡初始化代码
     const initCode = `
     // 初始化SPI总线
-    spi.begin(3, 35, 14, 46);  // SCK, MISO, MOSI, CS
-    
+    spi.begin(${sckPin}, ${misoPin}, ${mosiPin}, ${csPin});  // SCK, MISO, MOSI, CS
+
     // 初始化SD卡
-    if (!SD.begin(46, spi)) {
+    if (!SD.begin(${csPin}, spi)) {
         Serial.println("❌ 无法挂载 SD 卡！");
         return;
     }
     Serial.println("✅ SD 卡已挂载！");`;
-    
+
     generator.addSetup('sd_init', initCode);
-    
+
     return '';
 };
 
 // 修改 esp32_i2s_init 函数，移除SD相关库（避免重复）
-Arduino.forBlock['esp32_i2s_init'] = function(block, generator) {
-    const bclkPin = '41';
-    const wsPin = '42';
-    const dinPin = '2';
-    
-    generator.addLibrary('#include "Esp_I2S.h"', '#include "Esp_I2S.h"');
-    generator.addObject(`EspI2S microphone(${bclkPin}, ${wsPin}, ${dinPin});`, `EspI2S microphone(${bclkPin}, ${wsPin}, ${dinPin});`);
-    
-    return '';
-};
+Arduino.forBlock['esp32_i2s_init_and_begin'] = function(block, generator) {
+    // 获取自定义引脚和参数
+    const bclkPin = generator.valueToCode(block, 'SCK_PIN', Arduino.ORDER_ATOMIC) || '41';
+    const wsPin = generator.valueToCode(block, 'WS_PIN', Arduino.ORDER_ATOMIC) || '42';
+    const dinPin = generator.valueToCode(block, 'SD_PIN', Arduino.ORDER_ATOMIC) || '2';
+    const sampleRate = block.getFieldValue('SAMPLE_RATE') || '8000';
+    const bufferSize = block.getFieldValue('BUFFER_SIZE') || '512';
 
-Arduino.forBlock['esp32_i2s_begin'] = function(block, generator) {
-    const objectName = generator.nameDB_.getName(block.getFieldValue('OBJECT'), 'VARIABLE');
-    const sampleRate = block.getFieldValue('SAMPLE_RATE');
-    const bufferSize = block.getFieldValue('BUFFER_SIZE');
-    
+    // 添加库
     generator.addLibrary('#include "Esp_I2S.h"', '#include "Esp_I2S.h"');
-    
-    return `${objectName}.begin(${sampleRate}, ${bufferSize});\n`;
+
+    // 创建对象
+    generator.addObject(
+        `EspI2S microphone;`,
+        `EspI2S microphone;`
+    );
+
+    // 生成初始化代码（合并对象和 begin）
+    const initCode = `
+    // 初始化I2S麦克风
+    microphone.begin(${sampleRate}, ${bufferSize}, ${bclkPin}, ${wsPin}, ${dinPin});
+    `;
+
+    generator.addSetup('i2s_init', initCode);
+
+    return '';
 };
 
 Arduino.forBlock['esp32_i2s_read_samples'] = function(block, generator) {
@@ -185,23 +198,21 @@ Arduino.forBlock['esp32_i2s_delete_file'] = function(block, generator) {
 
 // 功放初始化
 Arduino.forBlock['esp32_i2s_init_speaker'] = function(block, generator) {
-    // 麦克风引脚配置（固定）
-    const micBclkPin = '41';
-    const micWsPin = '42';
-    const micDinPin = '2';
-    
-    // 功放引脚配置（固定）
-    const speakerBclkPin = '39';
-    const speakerWsPin = '40';
-    const speakerDinPin = '38';
-    
+    // 从 block 获取自定义功放引脚号
+    const speakerBclkPin = generator.valueToCode(block, 'BCLK_PIN', Arduino.ORDER_ATOMIC) || '39';
+    const speakerWsPin = generator.valueToCode(block, 'LRC_PIN', Arduino.ORDER_ATOMIC) || '40';
+    const speakerDinPin = generator.valueToCode(block, 'DIN_PIN', Arduino.ORDER_ATOMIC) || '38';
+
     // 添加必要的库文件
     generator.addLibrary('#include "Esp_I2S.h"', '#include "Esp_I2S.h"');
-    
-    // 创建EspI2S对象（固定使用麦克风引脚）
-    generator.addObject(`EspI2S microphone(${micBclkPin}, ${micWsPin}, ${micDinPin});`, `EspI2S microphone(${micBclkPin}, ${micWsPin}, ${micDinPin});`);
-    
-    // 在setup中添加功放初始化代码
+
+    // 创建对象
+    generator.addObject(
+        `EspI2S microphone;`,
+        `EspI2S microphone;`
+    );
+
+    // 功放初始化代码
     const initCode = `
     // 初始化I2S功放
     if (!microphone.initSpeaker(${speakerBclkPin}, ${speakerWsPin}, ${speakerDinPin})) {
@@ -209,9 +220,9 @@ Arduino.forBlock['esp32_i2s_init_speaker'] = function(block, generator) {
     } else {
         Serial.println("✅ 功放初始化成功！");
     }`;
-    
+
     generator.addSetup('speaker_init', initCode);
-    
+
     return '';
 };
 

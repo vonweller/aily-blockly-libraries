@@ -276,9 +276,9 @@
     "message0": "WiFi服务器 %1 启动 端口 %2",
     "args0": [
       {
-        "type": "field_variable",
-        "name": "SERVER_NAME",
-        "variable": "server"
+        "type": "field_input",
+        "name": "SERVER",
+        "text": "server"
       },
       {
         "type": "input_value",
@@ -297,12 +297,16 @@
       {
         "type": "field_variable",
         "name": "SERVER_NAME",
-        "variable": "server"
+        "variable": "server",
+        "variableTypes": [
+          "WiFiServer"
+        ],
+        "defaultType": "WiFiServer"
       },
       {
-        "type": "field_variable",
+        "type": "field_input",
         "name": "CLIENT_NAME",
-        "variable": "client"
+        "text": "client"
       }
     ],
     "previousStatement": null,
@@ -316,7 +320,11 @@
       {
         "type": "field_variable",
         "name": "SERVER_NAME",
-        "variable": "server"
+        "variable": "server",
+        "variableTypes": [
+          "WiFiServer"
+        ],
+        "defaultType": "WiFiServer"
       }
     ],
     "output": null,
@@ -327,9 +335,9 @@
     "message0": "WiFi客户端 %1 连接到服务器 %2 端口 %3 SSL模式 %4",
     "args0": [
       {
-        "type": "field_variable",
+        "type": "field_input",
         "name": "CLIENT_NAME",
-        "variable": "client"
+        "text": "client"
       },
       {
         "type": "input_value",
@@ -355,7 +363,11 @@
       {
         "type": "field_variable",
         "name": "CLIENT_NAME",
-        "variable": "client"
+        "variable": "client",
+        "variableTypes": [
+          "WiFiClient"
+        ],
+        "defaultType": "WiFiClient"
       }
     ],
     "previousStatement": null,
@@ -369,7 +381,11 @@
       {
         "type": "field_variable",
         "name": "CLIENT_NAME",
-        "variable": "client"
+        "variable": "client",
+        "variableTypes": [
+          "WiFiClient"
+        ],
+        "defaultType": "WiFiClient"
       }
     ],
     "output": null,
@@ -382,7 +398,11 @@
       {
         "type": "field_variable",
         "name": "CLIENT_NAME",
-        "variable": "client"
+        "variable": "client",
+        "variableTypes": [
+          "WiFiClient"
+        ],
+        "defaultType": "WiFiClient"
       }
     ],
     "output": null,
@@ -395,7 +415,11 @@
       {
         "type": "field_variable",
         "name": "CLIENT_NAME",
-        "variable": "client"
+        "variable": "client",
+        "variableTypes": [
+          "WiFiClient"
+        ],
+        "defaultType": "WiFiClient"
       }
     ],
     "inputsInline":true,
@@ -409,12 +433,17 @@
       {
         "type": "field_variable",
         "name": "CLIENT_NAME",
-        "variable": "client"
+        "variable": "client",
+        "variableTypes": [
+          "WiFiClient"
+        ],
+        "defaultType": "WiFiClient",
+        "text": "client"
       },
       {
-        "type": "field_variable",
+        "type": "field_input",
         "name": "BUFFER",
-        "variable": "buffer"
+        "text": "buffer"
       },
       {
         "type": "input_value",
@@ -432,7 +461,11 @@
       {
         "type": "field_variable",
         "name": "CLIENT_NAME",
-        "variable": "client"
+        "variable": "client",
+        "variableTypes": [
+          "WiFiClient"
+        ],
+        "defaultType": "WiFiClient"
       }
     ],
     "previousStatement": null,
@@ -446,7 +479,11 @@
       {
         "type": "field_variable",
         "name": "CLIENT_NAME",
-        "variable": "client"
+        "variable": "client",
+        "variableTypes": [
+          "WiFiClient"
+        ],
+        "defaultType": "WiFiClient"
       },
       {
         "type": "input_value",
@@ -467,7 +504,11 @@
       {
         "type": "field_variable",
         "name": "CLIENT_NAME",
-        "variable": "client"
+        "variable": "client",
+        "variableTypes": [
+          "WiFiClient"
+        ],
+        "defaultType": "WiFiClient"
       },
       {
         "type": "input_value",
@@ -485,7 +526,11 @@
       {
         "type": "field_variable",
         "name": "CLIENT_NAME",
-        "variable": "client"
+        "variable": "client",
+        "variableTypes": [
+          "WiFiClient"
+        ],
+        "defaultType": "WiFiClient"
       },
       {
         "type": "input_value",
@@ -503,7 +548,11 @@
       {
         "type": "field_variable",
         "name": "CLIENT_NAME",
-        "variable": "client"
+        "variable": "client",
+        "variableTypes": [
+          "WiFiClient"
+        ],
+        "defaultType": "WiFiClient"
       },
       {
         "type": "input_value",
@@ -518,9 +567,9 @@
     "message0": "创建WiFiUDP %1",
     "args0": [
       {
-        "type": "field_variable",
+        "type": "field_input",
         "name": "UDP_NAME",
-        "variable": "Udp"
+        "text": "Udp"
       }
     ],
     "previousStatement": null,
@@ -532,9 +581,9 @@
     "message0": "WiFi UDP %1 开始，端口 %2",
     "args0": [
       {
-        "type": "field_variable",
+        "type": "field_input",
         "name": "UDP_NAME",
-        "variable": "Udp"
+        "text": "Udp"
       },
       {
         "type": "input_value",
@@ -553,7 +602,11 @@
       {
         "type": "field_variable",
         "name": "UDP_NAME",
-        "variable": "Udp"
+        "variable": "Udp",
+        "variableTypes": [
+          "WiFiUDP"
+        ],
+        "defaultType": "WiFiUDP"
       },
       {
         "type": "input_value",
@@ -576,7 +629,11 @@
       {
         "type": "field_variable",
         "name": "UDP_NAME",
-        "variable": "Udp"
+        "variable": "Udp",
+        "variableTypes": [
+          "WiFiUDP"
+        ],
+        "defaultType": "WiFiUDP"
       },
       {
         "type": "input_value",
@@ -599,7 +656,11 @@
       {
         "type": "field_variable",
         "name": "UDP_NAME",
-        "variable": "Udp"
+        "variable": "Udp",
+        "variableTypes": [
+          "WiFiUDP"
+        ],
+        "defaultType": "WiFiUDP"
       }
     ],
     "previousStatement": null,
@@ -613,7 +674,11 @@
       {
         "type": "field_variable",
         "name": "UDP_NAME",
-        "variable": "Udp"
+        "variable": "Udp",
+        "variableTypes": [
+          "WiFiUDP"
+        ],
+        "defaultType": "WiFiUDP"
       }
     ],
     "output": null,
@@ -626,12 +691,16 @@
       {
         "type": "field_variable",
         "name": "UDP_NAME",
-        "variable": "Udp"
+        "variable": "Udp",
+        "variableTypes": [
+          "WiFiUDP"
+        ],
+        "defaultType": "WiFiUDP"
       },
       {
-        "type": "field_variable",
+        "type": "field_input",
         "name": "BUFFER",
-        "variable": "buffer"
+        "text": "buffer"
       },
       {
         "type": "input_value",
@@ -649,7 +718,11 @@
       {
         "type": "field_variable",
         "name": "UDP_NAME",
-        "variable": "Udp"
+        "variable": "Udp",
+        "variableTypes": [
+          "WiFiUDP"
+        ],
+        "defaultType": "WiFiUDP"
       }
     ],
     "output": null,
@@ -662,7 +735,11 @@
       {
         "type": "field_variable",
         "name": "UDP_NAME",
-        "variable": "Udp"
+        "variable": "Udp",
+        "variableTypes": [
+          "WiFiUDP"
+        ],
+        "defaultType": "WiFiUDP"
       }
     ],
     "output": null,

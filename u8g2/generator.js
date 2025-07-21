@@ -3,33 +3,23 @@ if (Blockly.Extensions.isRegistered('u8g2_begin_dynamic_inputs')) {
   Blockly.Extensions.unregister('u8g2_begin_dynamic_inputs');
 }
 Blockly.Extensions.register('u8g2_begin_dynamic_inputs', function () {
-  // 保存block的引用
-  var thisBlock = this;
-
-  // 定义更新函数，用于根据PROTOCOL值动态更新输入
-  function updateShape() {
-    var protocolValue = thisBlock.getFieldValue('PROTOCOL');
-
+  // 参考 wire_begin_with_settings_mutator，动态增删输入
+  this.updateShape_ = function (protocolValue) {
     // 统一移除所有可能存在的输入
-    if (thisBlock.getInput('I2C_PINS')) thisBlock.removeInput('I2C_PINS');
-    if (thisBlock.getInput('SW_I2C_PINS')) thisBlock.removeInput('SW_I2C_PINS');
-    if (thisBlock.getInput('3W_SPI_PINS')) thisBlock.removeInput('3W_SPI_PINS');
-    if (thisBlock.getInput('3W_SW_SPI_PINS')) thisBlock.removeInput('3W_SW_SPI_PINS');
-    if (thisBlock.getInput('4W_SPI_PINS')) thisBlock.removeInput('4W_SPI_PINS');
-    if (thisBlock.getInput('4W_SW_SPI_PINS')) thisBlock.removeInput('4W_SW_SPI_PINS');
-
-    // 根据选择添加配置项
+    if (this.getInput('I2C_PINS')) this.removeInput('I2C_PINS');
+    if (this.getInput('SW_I2C_PINS')) this.removeInput('SW_I2C_PINS');
+    if (this.getInput('3W_SPI_PINS')) this.removeInput('3W_SPI_PINS');
+    if (this.getInput('3W_SW_SPI_PINS')) this.removeInput('3W_SW_SPI_PINS');
+    if (this.getInput('4W_SPI_PINS')) this.removeInput('4W_SPI_PINS');
+    if (this.getInput('4W_SW_SPI_PINS')) this.removeInput('4W_SW_SPI_PINS');
     switch (protocolValue) {
       case '_HW_I2C':
-        // 添加I2C配置
-        thisBlock.appendDummyInput('I2C_PINS')
+        this.appendDummyInput('I2C_PINS')
           .appendField('引脚RST')
           .appendField(new Blockly.FieldTextInput('U8X8_PIN_NONE'), 'RESET_PIN');
         break;
-
       case '_SW_I2C':
-        // 添加软件I2C配置
-        thisBlock.appendDummyInput('SW_I2C_PINS')
+        this.appendDummyInput('SW_I2C_PINS')
           .appendField('引脚SCL')
           .appendField(new Blockly.FieldTextInput('13'), 'CLOCK_PIN')
           .appendField('SDA')
@@ -37,19 +27,15 @@ Blockly.Extensions.register('u8g2_begin_dynamic_inputs', function () {
           .appendField('RST')
           .appendField(new Blockly.FieldTextInput('8'), 'RESET_PIN');
         break;
-
       case '_3W_HW_SPI':
-        // 添加3线硬件SPI配置
-        thisBlock.appendDummyInput('3W_SPI_PINS')
+        this.appendDummyInput('3W_SPI_PINS')
           .appendField('引脚CS')
           .appendField(new Blockly.FieldTextInput('10'), 'CS_PIN')
           .appendField('RST')
           .appendField(new Blockly.FieldTextInput('8'), 'RESET_PIN');
         break;
-
       case '_3W_SW_SPI':
-        // 添加3线软件SPI配置
-        thisBlock.appendDummyInput('3W_SW_SPI_PINS')
+        this.appendDummyInput('3W_SW_SPI_PINS')
           .appendField('引脚CLK')
           .appendField(new Blockly.FieldTextInput('13'), 'CLOCK_PIN')
           .appendField('DATA')
@@ -59,10 +45,8 @@ Blockly.Extensions.register('u8g2_begin_dynamic_inputs', function () {
           .appendField('RST')
           .appendField(new Blockly.FieldTextInput('8'), 'RESET_PIN');
         break;
-
       case '_4W_HW_SPI':
-        // 添加4线硬件SPI配置
-        thisBlock.appendDummyInput('4W_SPI_PINS')
+        this.appendDummyInput('4W_SPI_PINS')
           .appendField('引脚CS')
           .appendField(new Blockly.FieldTextInput('10'), 'CS_PIN')
           .appendField('DC')
@@ -70,10 +54,8 @@ Blockly.Extensions.register('u8g2_begin_dynamic_inputs', function () {
           .appendField('RST')
           .appendField(new Blockly.FieldTextInput('8'), 'RESET_PIN');
         break;
-
       case '_4W_SW_SPI':
-        // 添加4线软件SPI配置
-        thisBlock.appendDummyInput('4W_SW_SPI_PINS')
+        this.appendDummyInput('4W_SW_SPI_PINS')
           .appendField('引脚CLK')
           .appendField(new Blockly.FieldTextInput('13'), 'CLOCK_PIN')
           .appendField('DATA')
@@ -85,23 +67,17 @@ Blockly.Extensions.register('u8g2_begin_dynamic_inputs', function () {
           .appendField('RST')
           .appendField(new Blockly.FieldTextInput('8'), 'RESET_PIN');
         break;
-
       default:
-        // 默认情况下不添加任何输入
         break;
     }
-  }
-  // 初始化时运行一次更新
-  updateShape();
-
-  // 监听PROTOCOL字段的变化
-  this.setOnChange(function (changeEvent) {
-    if (changeEvent.type === Blockly.Events.BLOCK_CHANGE &&
-      changeEvent.element === 'field' &&
-      changeEvent.name === 'PROTOCOL') {
-      updateShape();
-    }
+  };
+  // 为PROTOCOL字段添加验证器，切换时动态更新输入
+  this.getField('PROTOCOL').setValidator(option => {
+    this.updateShape_(option);
+    return option;
   });
+  // 初始化时根据当前协议值设置输入
+  this.updateShape_(this.getFieldValue('PROTOCOL'));
 });
 
 Arduino.forBlock['u8g2_begin'] = function (block, generator) {

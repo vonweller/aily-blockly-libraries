@@ -1,3 +1,35 @@
+// // 引入变量工具箱批量移除工具
+// function removeVariableFromToolboxById(workspace, varId) {
+//   if (!workspace || !varId) return;
+//   const originalToolboxDef = workspace.options.languageTree;
+//   if (!originalToolboxDef) return;
+//   const blockTypes = ["variables_get", "variable_define", "variables_set", "type_cast"];
+//   for (let category of originalToolboxDef.contents) {
+//     if ((category.name === "Variables" ||
+//       (category.contents && category.contents[0]?.callbackKey === "CREATE_VARIABLE"))) {
+//       category.contents = category.contents.filter(item => {
+//         if (
+//           blockTypes.includes(item.type) &&
+//           item.fields && item.fields.VAR &&
+//           item.fields.VAR.id === varId
+//         ) {
+//           return false;
+//         }
+//         return true;
+//       });
+//       const allVariables = workspace.getAllVariables();
+//       if (allVariables.length === 0) {
+//         category.contents = [{
+//           "kind": "button",
+//           "text": "新建变量",
+//           "callbackKey": "CREATE_VARIABLE"
+//         }];
+//       }
+//       if (typeof refreshToolbox === 'function') refreshToolbox(workspace);
+//       break;
+//     }
+//   }
+// }
 // 检查并移除已存在的数组动态扩展注册
 if (Blockly.Extensions.isRegistered('list_dynamic_extension')) {
   Blockly.Extensions.unregister('list_dynamic_extension');
@@ -513,15 +545,52 @@ function getDefaultValue(listType) {
 
 // 创建数组（支持动态多输入，可生成一维/二维数组）
 Arduino.forBlock["list_create_with"] = function (block, generator) {
-  const { name: varName } = block.workspace.getVariableById(block.getFieldValue("VAR"));
-  const listType = block.getFieldValue("TYPE");
+  // 监听VAR输入值的变化，自动重命名Blockly变量
+  if (!block._listVarMonitorAttached) {
+    block._listVarMonitorAttached = true;
+    block._listVarLastName = block.getFieldValue('VAR') || 'list';
+    const varField = block.getField('VAR');
+    if (varField && typeof varField.setValidator === 'function') {
+      varField.setValidator(function(newName) {
+        const workspace = block.workspace || (typeof Blockly !== 'undefined' && Blockly.getMainWorkspace && Blockly.getMainWorkspace());
+        const oldName = block._listVarLastName;
+        if (workspace && newName && newName !== oldName) {
+          renameVariableInBlockly(block, oldName, newName, 'LISTS');
+          // const oldVar = workspace.getVariable(oldName, 'LISTS');
+          // const existVar = workspace.getVariable(newName, 'LISTS');
+          // if (oldVar && !existVar) {
+          //   workspace.renameVariableById(oldVar.getId(), newName);
+          //   if (typeof refreshToolbox === 'function') refreshToolbox(workspace, false);
+          // }
+          block._listVarLastName = newName;
+        }
+        return newName;
+      });
+    }
+  }
   
+  const varName = block.getFieldValue("VAR") || "list";
+  const listType = block.getFieldValue("TYPE");
+
+  // 注册变量到Blockly工具箱
+  // const workspace = block.workspace || (typeof Blockly !== 'undefined' && Blockly.getMainWorkspace && Blockly.getMainWorkspace());
+  // if (workspace && varName) {
+  //   let variable = workspace.getVariable(varName, 'LISTS');
+  //   if (!variable) {
+  //     // 如果变量不存在，创建一个新的变量
+  //     variable = workspace.createVariable(varName, 'LISTS', null, 'list');
+  //     // 添加到工具箱中
+  //     if (typeof refreshToolbox === 'function') refreshToolbox(workspace, false);
+  //   }
+  // }
+  registerVariableToBlockly(varName, 'LISTS');
+
   // 判断是否在函数作用域内
   const isLocal = isInFunctionScope(block);
-  
+
   // 收集所有连接的输入值
   let inputValues = [];
-  
+
   // 遍历所有输入连接
   for (let i = 0; i < block.inputList.length; i++) {
     const input = block.inputList[i];
@@ -532,16 +601,16 @@ Arduino.forBlock["list_create_with"] = function (block, generator) {
       }
     }
   }
-  
+
   // 根据输入数量和类型决定如何创建数组
   if (inputValues.length === 0) {
     // 没有连接任何块，使用用户选择的类型和长度创建默认数组
     const lengthValue = block.getFieldValue("LENGTH");
     const listLength = lengthValue && !isNaN(parseInt(lengthValue)) ? parseInt(lengthValue) : 3;
-    
+
     // 根据用户选择的类型创建相应的数组声明
-    const listDeclaration = listType + " " + varName + "[" + listLength + "];";
-    
+    const listDeclaration = listType + " " + varName + "[" + listLength + "]" + ";";
+
     if (isLocal) {
       return listDeclaration + "\n";
     } else {
@@ -712,12 +781,12 @@ Arduino.forBlock["list2_create_with_text"] = function (block, generator) {
   const rows = parseInt(block.getFieldValue("ROWS"));
   const cols = parseInt(block.getFieldValue("COLS"));
   const text = block.getFieldValue("TEXT");
-  
+
   // 判断是否在函数作用域内
   const isLocal = isInFunctionScope(block);
-  
+
   const listDeclaration = listType + " " + varName + "[" + rows + "][" + cols + "] = " + text + ";";
-  
+
   if (isLocal) {
     // 在函数内，作为局部变量直接返回代码
     return "  " + listDeclaration + "\n";
@@ -725,7 +794,7 @@ Arduino.forBlock["list2_create_with_text"] = function (block, generator) {
     // 在全局作用域，添加到全局变量
     generator.addVariable("var_declare_" + varName, listDeclaration);
   }
-  
+
   return "";
 };
 
