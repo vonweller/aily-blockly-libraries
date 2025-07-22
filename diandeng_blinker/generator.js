@@ -391,6 +391,21 @@ Arduino.forBlock['blinker_data_upload'] = function (block, generator) {
   return chartKey + '.upload(' + dataKey + ', ' + value + ');\n';
 };
 
+Arduino.forBlock['blinker_heartbeat'] = function (block, generator) {
+  // 获取内部语句块
+  let statements = generator.statementToCode(block, 'NAME');
+  
+  let functionName = 'heartbeat_callback';
+  let functionCode = 'void ' + functionName + '() {\n' +
+    statements +  // 将用户的代码插入到函数中
+    '}\n';
+
+  generator.addFunction(functionName, functionCode);
+  generator.addSetupEnd('heartbeat', 'Blinker.attachHeartbeat(' + functionName + ');');
+
+  return '';
+};
+
 Arduino.forBlock['blinker_data_handler'] = function (block, generator) {
   // 获取内部语句块
   let statements = generator.statementToCode(block, 'NAME');
