@@ -3,21 +3,21 @@ if (Blockly.Extensions.isRegistered('blinker_init_wifi_extension')) {
   Blockly.Extensions.unregister('blinker_init_wifi_extension');
 }
 
-// 确保Serial已初始化，兼容core-serial的去重机制
-function ensureSerialBegin(serialPort, speed, generator) {
-  // 初始化Arduino的Serial相关全局变量，兼容core-serial
-  if (!Arduino.addedSerialInitCode) {
-    Arduino.addedSerialInitCode = new Set();
-  }
+// // 确保Serial已初始化，兼容core-serial的去重机制
+// function ensureSerialBegin(serialPort, speed, generator) {
+//   // 初始化Arduino的Serial相关全局变量，兼容core-serial
+//   if (!Arduino.addedSerialInitCode) {
+//     Arduino.addedSerialInitCode = new Set();
+//   }
   
-  // 检查这个串口是否已经添加过初始化代码（无论是用户设置的还是默认的）
-  if (!Arduino.addedSerialInitCode.has(serialPort)) {
-    // 只有在没有添加过任何初始化代码时才添加初始化
-    generator.addSetupBegin(`serial_${serialPort}_begin`, `${serialPort}.begin(${speed});`);
-    // 标记为已添加初始化代码
-    Arduino.addedSerialInitCode.add(serialPort);
-  }
-}
+//   // 检查这个串口是否已经添加过初始化代码（无论是用户设置的还是默认的）
+//   if (!Arduino.addedSerialInitCode.has(serialPort)) {
+//     // 只有在没有添加过任何初始化代码时才添加初始化
+//     generator.addSetupBegin(`serial_${serialPort}_begin`, `${serialPort}.begin(${speed});`);
+//     // 标记为已添加初始化代码
+//     Arduino.addedSerialInitCode.add(serialPort);
+//   }
+// }
 
 Blockly.Extensions.register('blinker_init_wifi_extension', function () {
   // 直接在扩展中添加updateShape_函数
@@ -183,7 +183,7 @@ Arduino.forBlock['blinker_debug_init'] = function (block, generator) {
   let debugAll = block.getFieldValue('DEBUG_ALL');
 
   // 确保Serial已初始化（兼容core-serial的去重机制）
-  ensureSerialBegin(serial, speed, generator);
+  ensureSerialBegin(serial, generator, speed);
 
   let code = 'BLINKER_DEBUG.stream(' + serial + ');\n';
 
@@ -451,13 +451,15 @@ Arduino.forBlock['blinker_widget_print'] = function (block, generator) {
     generator.variableDB_ = {};
   }
 
-  // 判断varName是否已经注册过
-  if (!generator.variableDB_[varName]) {
-    // 如果没有注册过，说明用户直接使用了blinker_widget_print而没有先创建组件
-    // 这种情况下创建一个默认的BlinkerNumber组件
+  // 判断varName未注册或类型为BlinkerNumber时，创建默认组件
+  if (!generator.variableDB_[varName] || generator.variableDB_[varName] === 'BlinkerNumber') {
     let componentType = 'BlinkerNumber';
     generator.addVariable(varName, componentType + ' ' + varName + '("' + widget + '");');
     generator.variableDB_[varName] = componentType;
+    // console.log(`Widget "${widget}" is not registered, using default BlinkerNumber component.`);
+  } else {
+    // 如果已经注册过，直接使用已存在的变量名
+    // console.log(`Using existing component variable: ${varName}`);
   }
 
   // 收集所有连接的对象块返回的代码

@@ -347,12 +347,4 @@ Arduino.forBlock["map_to"] = function (block) {
   return [code, Arduino.ORDER_ADDITION];
 };
 
-Arduino.forBlock["constrain"] = function (block) {
-  const num = Arduino.valueToCode(block, "NUM", Arduino.ORDER_ASSIGNMENT) || 0;
-  const min = Arduino.valueToCode(block, "MIN", Arduino.ORDER_ASSIGNMENT) || 1;
-  const max = Arduino.valueToCode(block, "MAX", Arduino.ORDER_ASSIGNMENT) || 100;
 
-  const code = `constrain(${num}, ${min}, ${max})`;
-
-  return [code, Arduino.ORDER_ADDITION];
-};
