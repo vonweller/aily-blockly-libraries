@@ -18,7 +18,7 @@ Arduino.forBlock['74hc595_create'] = function(block, generator) {
 
 Arduino.forBlock['74hc595_set'] = function(block, generator) {
   const hcnm = getVariableName(block);
-  const pin = block.getFieldValue("HCPIN");
+  const pin = Arduino.valueToCode(block, "HCPIN", Arduino.ORDER_ATOMIC);
   const value = block.getFieldValue("VALUE");
   
   const code = hcnm + '.set(' + pin + ', ' + value + ');\n';
