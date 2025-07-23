@@ -69,6 +69,25 @@
     "colour": "#FFA500"
   },
   {
+    "type": "tft_invert_display",
+    "message0": "设置TFT反色显示 %1",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "INVERT",
+        "options": [
+          [ "开启", "true" ],
+          [ "关闭", "false" ]
+        ]
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FFA500",
+    "tooltip": "开启或关闭TFT屏幕的反色显示模式"
+  },
+  {
     "type": "tft_fill_screen",
     "message0": "填充屏幕颜色 %1",
     "args0": [
@@ -439,7 +458,7 @@
   "output": "Image",
   "colour": "#FFA500",
   "tooltip": "选择电脑中的图片文件，自动转换为TFT显示格式",
-  "extensions": ["tft_image_file_extension"]
+  "extensions": ["tft_image_file_extension_simple"]
 },
 {
   "type": "tft_draw_image",
