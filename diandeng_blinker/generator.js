@@ -576,6 +576,13 @@ Arduino.forBlock['blinker_value'] = function (block, generator) {
   return [code, Arduino.ORDER_ATOMIC];
 };
 
+Arduino.forBlock['blinker_delay'] = function (block, generator) {
+  // 获取延迟时间
+  // 获取延迟时间，确保输入类型为数字
+  let delayTime = generator.valueToCode(block, 'DELAY', Arduino.ORDER_ATOMIC) || '0';
+  // 返回Blinker.delay(time)语句代码
+  return 'Blinker.delay(' + delayTime + ');\n';
+}
 
 // 检查并移除已存在的扩展注册
 if (Blockly.Extensions.isRegistered('custom_dynamic_extension')) {
