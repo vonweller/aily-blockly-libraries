@@ -365,29 +365,68 @@ const uint16_t ${bitmapVarName}_height = ${height};`;
   }
 };
 
-// 图片文件处理块 - 修复版本
+// 图片文件处理块 - 使用新的图片预览字段
 Arduino.forBlock['tft_image_file'] = function(block, generator) {
-  // 获取文件路径和尺寸
-  const filePath = block.getFieldValue('FILE_PATH');
-  const width = generator.valueToCode(block, 'WIDTH', Arduino.ORDER_ATOMIC) || '32';
-  const height = generator.valueToCode(block, 'HEIGHT', Arduino.ORDER_ATOMIC) || '32';
-  
+  // 获取图片预览字段的值和坐标
+  const imagePreview = block.getFieldValue('IMAGE_PREVIEW');
+  const x = generator.valueToCode(block, 'X', Arduino.ORDER_ATOMIC) || '0';
+  const y = generator.valueToCode(block, 'Y', Arduino.ORDER_ATOMIC) || '0';
+
+  // 获取尺寸输入值，如果没有则使用图片预览字段中的尺寸
+  let width = generator.valueToCode(block, 'WIDTH', Arduino.ORDER_ATOMIC);
+  let height = generator.valueToCode(block, 'HEIGHT', Arduino.ORDER_ATOMIC);
+
+  // 解析图片预览字段的值
+  let filePath = '';
+  let previewWidth = 32;
+  let previewHeight = 32;
+
+  if (imagePreview && typeof imagePreview === 'object') {
+    filePath = imagePreview.filePath || '';
+    previewWidth = imagePreview.width || 32;
+    previewHeight = imagePreview.height || 32;
+  } else if (typeof imagePreview === 'string') {
+    try {
+      const parsed = JSON.parse(imagePreview);
+      filePath = parsed.filePath || '';
+      previewWidth = parsed.width || 32;
+      previewHeight = parsed.height || 32;
+    } catch (e) {
+      filePath = imagePreview;
+    }
+  }
+
+  // 如果没有外部尺寸输入，使用预览字段中的尺寸
+  if (!width) width = previewWidth.toString();
+  if (!height) height = previewHeight.toString();
+
   // 生成唯一的变量名
   const bitmapVarName = `imageFile_${block.id.replace(/[^a-zA-Z0-9]/g, '')}`;
-  
-  console.log(`[图片文件] 处理文件: ${filePath}, 尺寸: ${width}x${height}`);
-  
+
+  console.log(`[图片文件] 处理文件: ${filePath}, 尺寸: ${width}x${height}, 位置: (${x}, ${y})`);
+
   // 检查是否已选择文件
-  if (!filePath || filePath === '点击选择图片...') {
+  if (!filePath || filePath.trim() === '') {
     console.log('使用默认占位图像');
-    return processDefaultImage(bitmapVarName, width, height, generator);
+    const defaultCode = processDefaultImage(bitmapVarName, width, height, generator);
+    if (defaultCode && defaultCode[0] !== 'NULL') {
+      return `tft.drawRGBBitmap(${x}, ${y}, ${bitmapVarName}, ${width}, ${height});\n`;
+    }
+    return '';
   }
-  
-  // 处理图片文件
-  return processImageFile(filePath, width, height, bitmapVarName, generator);
+
+  // 处理图片文件并生成显示代码
+  const imageCode = processImageFile(filePath, width, height, bitmapVarName, generator);
+  if (imageCode && imageCode[0] !== 'NULL') {
+    return `tft.drawRGBBitmap(${x}, ${y}, ${bitmapVarName}, ${width}, ${height});\n`;
+  }
+
+  return '';
 };
 
-// 添加文件选择器扩展 - 简化版本
+// 注释：文件选择器扩展已移除，现在使用field_image_preview字段
+// 添加文件选择器扩展 - 简化版本（已废弃）
+/*
 if (typeof Blockly !== 'undefined' && Blockly.Extensions) {
   Blockly.Extensions.register('tft_image_file_extension_simple', function() {
     const block = this;
@@ -583,6 +622,7 @@ if (typeof Blockly !== 'undefined' && Blockly.Extensions) {
      }
    });
  }
+*/
 
 // 处理默认图像 - 改进为更实用的占位图案
 function processDefaultImage(bitmapVarName, width, height, generator) {
