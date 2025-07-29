@@ -1,0 +1,83 @@
+{
+  "kind": "category",
+  "name": "通义千问",
+  "icon": "fa-light fa-head-side-gear",
+  "contents": [
+    {
+      "kind": "block",
+      "type": "qwen_omni_config",
+      "inputs": {
+        "API_KEY": {
+          "shadow": {
+            "type": "text",
+            "fields": {
+              "TEXT": "sk-your-api-key-here"
+            }
+          }
+        },
+        "BASE_URL": {
+          "shadow": {
+            "type": "text",
+            "fields": {
+              "TEXT": "https://dashscope.aliyuncs.com/compatible-mode/v1"
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "qwen_omni_set_system_prompt",
+      "inputs": {
+        "SYSTEM_PROMPT": {
+          "shadow": {
+            "type": "text",
+            "fields": {
+              "TEXT": "你是一个有用的AI助手"
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "qwen_omni_chat",
+      "inputs": {
+        "MESSAGE": {
+          "shadow": {
+            "type": "text",
+            "fields": {
+              "TEXT": "你好"
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "qwen_omni_chat_with_history",
+      "inputs": {
+        "MESSAGE": {
+          "shadow": {
+            "type": "text",
+            "fields": {
+              "TEXT": "继续我们的对话"
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "qwen_omni_clear_history"
+    },
+    {
+      "kind": "block",
+      "type": "qwen_omni_get_response_status"
+    },
+    {
+      "kind": "block",
+      "type": "qwen_omni_get_error_message"
+    }
+  ]
+}
