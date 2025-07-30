@@ -35,7 +35,37 @@
     },
     {
       "kind": "block",
-      "type": "led_matrix_display_frame"
+      "type": "led_matrix_display_frame",
+      "inputs": {
+        "FRAME": {
+          "block": {
+            "type": "led_matrix_preset_pattern"
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "led_matrix_display_frame_set"
+    },
+    {
+      "kind": "block",
+      "type": "led_matrix_display_animation",
+      "inputs": {
+        "ADD0": {
+          "block": {
+            "type": "led_matrix_custom_pattern"
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "led_matrix_custom_pattern"
+    },
+    {
+      "kind": "block",
+      "type": "led_matrix_preset_pattern"
     }
   ]
 }
