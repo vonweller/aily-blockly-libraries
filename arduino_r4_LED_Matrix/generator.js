@@ -30,15 +30,24 @@ Arduino.forBlock['led_matrix_display_text'] = function(block, generator) {
 Arduino.forBlock['led_matrix_display_frame'] = function(block, generator) {
   var frame = generator.valueToCode(block, 'FRAME', Arduino.ORDER_ATOMIC);
 
-  // 基于数组内容生成哈希（frame是数组字符串格式）
-  var arrayName = 'led_matrix_' + generateArrayHash(frame);
-  
-  generator.addMacro(arrayName,
-    '// 自定义图案 - 12x8 LED矩阵\n' +
-    'const uint32_t ' + arrayName + '[] = ' + frame + ';'
-  );
+  var code;
 
-  var code = 'matrix.loadFrame(' + arrayName + ');\n';
+  // 检查是否是Arduino R4官方常量名称
+  if (frame && frame.startsWith('LEDMATRIX_')) {
+    // 直接使用Arduino R4官方常量
+    code = 'matrix.loadFrame(' + frame + ');\n';
+  } else {
+    // 自定义数组，需要生成数组定义
+    var arrayName = 'led_matrix_' + generateArrayHash(frame);
+
+    generator.addMacro(arrayName,
+      '// 自定义图案 - 12x8 LED矩阵\n' +
+      'const uint32_t ' + arrayName + '[] = ' + frame + ';'
+    );
+
+    code = 'matrix.loadFrame(' + arrayName + ');\n';
+  }
+
   return code;
 };
 
@@ -130,13 +139,47 @@ Arduino.forBlock['led_matrix_custom_pattern'] = function(block, generator) {
 // LED矩阵预设图案块
 Arduino.forBlock['led_matrix_preset_pattern'] = function(block, generator) {
   var selectedPattern = block.getFieldValue('PATTERN');
+  var field = block.getField('PATTERN');
+  var patternName = field.getSelectedPatternName();
 
-  // 解析选中的预设图案数据
+  // Arduino R4官方图标名称映射
+  var iconNameMap = {
+    '蓝牙': 'LEDMATRIX_BLUETOOTH',
+    '启动器': 'LEDMATRIX_BOOTLOADER_ON',
+    '芯片': 'LEDMATRIX_CHIP',
+    '云WiFi': 'LEDMATRIX_CLOUD_WIFI',
+    '危险': 'LEDMATRIX_DANGER',
+    '基础笑脸': 'LEDMATRIX_EMOJI_BASIC',
+    '开心笑脸': 'LEDMATRIX_EMOJI_HAPPY',
+    '伤心脸': 'LEDMATRIX_EMOJI_SAD',
+    '大心形': 'LEDMATRIX_HEART_BIG',
+    '小心形': 'LEDMATRIX_HEART_SMALL',
+    '点赞': 'LEDMATRIX_LIKE',
+    '音符': 'LEDMATRIX_MUSIC_NOTE',
+    '电阻': 'LEDMATRIX_RESISTOR',
+    'UNO': 'LEDMATRIX_UNO'
+  };
+
+  // 获取Arduino R4官方常量名称
+  var arduinoConstantName = null;
+  if (patternName && iconNameMap[patternName]) {
+    arduinoConstantName = iconNameMap[patternName];
+  }
+
+  // console.info('Selected Pattern:', selectedPattern);
+  // console.info('Pattern Name:', patternName);
+  // console.info('Arduino Constant:', arduinoConstantName);
+
+  // 解析选中的预设图案数据（用于自定义图案的备用方案）
   var matrixData;
+  var selectedPattern = block.getFieldValue('PATTERN');
 
   if (Array.isArray(selectedPattern)) {
     // 处理二维数组格式（来自field_led_pattern_selector组件）
     matrixData = convertLedMatrixToUint32(selectedPattern);
+  } else if (typeof selectedPattern === 'object' && selectedPattern.hex) {
+    // 处理新的十六进制格式（Arduino R4官方图标）
+    matrixData = selectedPattern.hex;
   } else {
     // 默认空图案
     matrixData = ['0x0', '0x0', '0x0'];
@@ -145,38 +188,105 @@ Arduino.forBlock['led_matrix_preset_pattern'] = function(block, generator) {
   // 检查是否作为input_value连接到动画块中
   var parentConnection = block.outputConnection && block.outputConnection.targetConnection;
   var isInAnimation = false;
-  var animationDelay = '100';
+  var animationDelay = '66'; // Arduino R4官方图标默认延迟
 
   // 只有当作为input_value连接时才检查动画上下文
   if (parentConnection && parentConnection.getSourceBlock) {
     var parentBlock = parentConnection.getSourceBlock();
     if (parentBlock && parentBlock.type === 'led_matrix_display_animation') {
       isInAnimation = true;
-      animationDelay = parentBlock.getFieldValue('DELAY') || '100';
+      animationDelay = parentBlock.getFieldValue('DELAY') || '66';
     }
   }
 
-  // 根据是否在动画中生成不同格式的数组
+  // 根据是否在动画中生成不同格式的代码
   var code;
-  if (isInAnimation) {
-    // 在动画中：生成4个元素的数组（包含延迟）
-    code = '{' + matrixData.join(',') + ',' + animationDelay + '}';
+  if (arduinoConstantName) {
+    // 使用Arduino R4官方常量名称
+    code = arduinoConstantName;
   } else {
-    // 单独使用：生成3个元素的数组
-    code = '{' + matrixData.join(',') + '}';
+    // 使用自定义十六进制数组
+    if (isInAnimation) {
+      // 在动画中：生成4个元素的数组（包含延迟）
+      code = '{' + matrixData.join(',') + ',' + animationDelay + '}';
+    } else {
+      // 单独使用：生成3个元素的数组
+      code = '{' + matrixData.join(',') + '}';
+    }
   }
 
   return [code, Arduino.ORDER_ATOMIC];
 };
 
+// LED矩阵预设动画块
+Arduino.forBlock['led_matrix_preset_animation'] = function(block, generator) {
+  var field = block.getField('PATTERN');
+  var patternName = field.getSelectedPatternName();
+
+  // Arduino R4官方动画名称映射
+  var animationNameMap = {
+    '启动动画': 'LEDMATRIX_ANIMATION_STARTUP',
+    '俄罗斯方块介绍': 'LEDMATRIX_ANIMATION_TETRIS_INTRO',
+    'ATmega芯片': 'LEDMATRIX_ANIMATION_ATMEGA',
+    'LED水平闪烁': 'LEDMATRIX_ANIMATION_LED_BLINK_HORIZONTAL',
+    'LED垂直闪烁': 'LEDMATRIX_ANIMATION_LED_BLINK_VERTICAL',
+    '箭头指南针': 'LEDMATRIX_ANIMATION_ARROWS_COMPASS',
+    '音频波形': 'LEDMATRIX_ANIMATION_AUDIO_WAVEFORM',
+    '电池': 'LEDMATRIX_ANIMATION_BATTERY',
+    '弹跳球': 'LEDMATRIX_ANIMATION_BOUNCING_BALL',
+    '虫子': 'LEDMATRIX_ANIMATION_BUG',
+    '检查': 'LEDMATRIX_ANIMATION_CHECK',
+    '云': 'LEDMATRIX_ANIMATION_CLOUD',
+    '下载': 'LEDMATRIX_ANIMATION_DOWNLOAD',
+    'DVD标志': 'LEDMATRIX_ANIMATION_DVD',
+    '心跳线': 'LEDMATRIX_ANIMATION_HEARTBEAT_LINE',
+    '心跳': 'LEDMATRIX_ANIMATION_HEARTBEAT',
+    '无限循环加载': 'LEDMATRIX_ANIMATION_INFINITY_LOOP_LOADER',
+    '时钟加载': 'LEDMATRIX_ANIMATION_LOAD_CLOCK',
+    '加载': 'LEDMATRIX_ANIMATION_LOAD',
+    '锁': 'LEDMATRIX_ANIMATION_LOCK',
+    '通知': 'LEDMATRIX_ANIMATION_NOTIFICATION',
+    '开源': 'LEDMATRIX_ANIMATION_OPENSOURCE',
+    '旋转硬币': 'LEDMATRIX_ANIMATION_SPINNING_COIN',
+    '俄罗斯方块': 'LEDMATRIX_ANIMATION_TETRIS',
+    'WiFi搜索': 'LEDMATRIX_ANIMATION_WIFI_SEARCH',
+    '沙漏': 'LEDMATRIX_ANIMATION_HOURGLASS'
+  };
+
+  // 获取Arduino R4官方动画常量名称
+  var animationConstantName = null;
+  if (patternName && animationNameMap[patternName]) {
+    animationConstantName = animationNameMap[patternName];
+  }
+
+  // console.info('Animation Pattern Name:', patternName);
+  // console.info('Animation Constant:', animationConstantName);
+
+  var code;
+  if (animationConstantName) {
+    // 使用Arduino R4官方动画常量
+    code = 'matrix.loadSequence(' + animationConstantName + ');\nmatrix.play(true);\n';
+  } else {
+    // 默认代码
+    code = '// 未选择动画\n';
+  }
+
+  return code;
+};
+
 // LED矩阵动画序列块
 Arduino.forBlock['led_matrix_display_animation'] = function(block, generator) {
   var frames = [];
+  var hasArduinoR4Icons = false;
 
   // 收集所有动画帧（使用itemCount属性）
   for (var i = 0; i < block.itemCount; i++) {
     var frameCode = generator.valueToCode(block, 'ADD' + i, Arduino.ORDER_ATOMIC);
     if (frameCode) {
+      // 检查是否包含Arduino R4官方常量
+      if (frameCode.startsWith('LEDMATRIX_')) {
+        hasArduinoR4Icons = true;
+      }
       frames.push(frameCode);
     }
   }
@@ -185,18 +295,38 @@ Arduino.forBlock['led_matrix_display_animation'] = function(block, generator) {
     return '// 没有动画帧\n';
   }
 
-  // 基于动画帧内容生成固定的动画序列名
-  var animationName = 'animation_' + generateAnimationHash(frames);
+  var code;
 
-  // 现在每个frame已经包含了延迟信息，直接使用
-  generator.addMacro(animationName,
-    '// LED矩阵动画序列\n' +
-    'const uint32_t ' + animationName + '[][4] = {\n' +
-    '  ' + frames.join(',\n  ') + '\n' +
-    '};'
-  );
+  if (hasArduinoR4Icons && frames.every(frame => frame.startsWith('LEDMATRIX_'))) {
+    // 所有帧都是Arduino R4官方常量，使用简化的动画代码
+    var animationName = 'arduino_r4_animation_' + generateAnimationHash(frames);
 
-  var code = 'matrix.loadSequence(' + animationName + ');\nmatrix.play(true);\n';
+    generator.addMacro(animationName,
+      '// Arduino R4官方图标动画序列\n' +
+      'const uint32_t* ' + animationName + '[] = {\n' +
+      '  ' + frames.join(',\n  ') + '\n' +
+      '};'
+    );
+
+    code = '// 播放Arduino R4官方图标动画\n';
+    code += 'for (int i = 0; i < ' + frames.length + '; i++) {\n';
+    code += '  matrix.loadFrame(' + animationName + '[i]);\n';
+    code += '  delay(66); // Arduino R4官方延迟\n';
+    code += '}\n';
+  } else {
+    // 包含自定义图案，使用传统的动画序列
+    var animationName = 'animation_' + generateAnimationHash(frames);
+
+    generator.addMacro(animationName,
+      '// LED矩阵动画序列\n' +
+      'const uint32_t ' + animationName + '[][4] = {\n' +
+      '  ' + frames.join(',\n  ') + '\n' +
+      '};'
+    );
+
+    code = 'matrix.loadSequence(' + animationName + ');\nmatrix.play(true);\n';
+  }
+
   return code;
 };
 
