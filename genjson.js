@@ -12,7 +12,8 @@ const defaultKeysToExtract = [
   'keywords',
   'tested',
   'icon',
-  'example'
+  'example',
+  'url'
 ];
 
 // 根据配置过滤package.json对象
