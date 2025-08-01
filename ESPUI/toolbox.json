@@ -35,6 +35,24 @@
         },
         {
             "kind": "label",
+            "text": "容器"
+        },
+        {
+            "kind": "block",
+            "type": "espui_tab",
+            "inputs": {
+                "TEXT": { "shadow": { "type": "text", "fields": { "TEXT": "页面一" } } }
+            }
+        },
+        {
+            "kind": "block",
+            "type": "espui_panel",
+            "inputs": {
+                "TEXT": { "shadow": { "type": "text", "fields": { "TEXT": "主面板" } } }
+            }
+        },
+        {
+            "kind": "label",
             "text": "UI控件创建"
         },
         {
@@ -227,6 +245,35 @@
                         }
                     }
                 }
+            }
+        },
+        {
+            "kind": "label",
+            "text": "选择器/文件显示"
+        },
+        {
+            "kind": "block",
+            "type": "espui_select",
+            "inputs": {
+                "TEXT": { "shadow": { "type": "text", "fields": { "TEXT": "选择" } } },
+                "OPTIONS_JSON": { "shadow": { "type": "text", "fields": { "TEXT": "[[\"显示A\",\"A\"],[\"显示B\",\"B\"]]" } } },
+                "VALUE": { "shadow": { "type": "text", "fields": { "TEXT": "A" } } }
+            }
+        },
+        {
+            "kind": "block",
+            "type": "espui_update_select",
+            "inputs": {
+                "CONTROL_ID": { "shadow": { "type": "math_number", "fields": { "NUM": 1 } } },
+                "VALUE": { "shadow": { "type": "text", "fields": { "TEXT": "B" } } }
+            }
+        },
+        {
+            "kind": "block",
+            "type": "espui_file_display",
+            "inputs": {
+                "TEXT": { "shadow": { "type": "text", "fields": { "TEXT": "文件内容" } } },
+                "FILENAME": { "shadow": { "type": "text", "fields": { "TEXT": "/index.txt" } } }
             }
         },
         {
