@@ -1,0 +1,405 @@
+{
+  "blocks": {
+    "languageVersion": 0,
+    "blocks": [
+      {
+        "type": "arduino_setup",
+        "id": "arduino_setup_id0",
+        "x": 30,
+        "y": -50,
+        "deletable": false,
+        "inputs": {
+          "ARDUINO_SETUP": {
+            "block": {
+              "type": "serial_begin",
+              "id": "QUu)k=25kNrJ}SJ2HOla",
+              "fields": {
+                "SERIAL": "Serial",
+                "SPEED": "115200"
+              },
+              "next": {
+                "block": {
+                  "type": "esp32_wifi_begin",
+                  "id": "`O:9l3XAQ+ze#h#nnQoS",
+                  "inputs": {
+                    "SSID": {
+                      "shadow": {
+                        "type": "text",
+                        "id": "`+ts^af`0Wwr6ktYTp:o",
+                        "fields": {
+                          "TEXT": "openjumper_2.4G"
+                        }
+                      }
+                    },
+                    "PASSWORD": {
+                      "shadow": {
+                        "type": "text",
+                        "id": "g;pORGl#z`EJ^^mmvKD5",
+                        "fields": {
+                          "TEXT": "cd85586651"
+                        }
+                      }
+                    }
+                  },
+                  "next": {
+                    "block": {
+                      "type": "controls_whileUntil",
+                      "id": ":gw8Ic]`E09XZO[DO%?Q",
+                      "fields": {
+                        "MODE": "UNTIL"
+                      },
+                      "inputs": {
+                        "BOOL": {
+                          "block": {
+                            "type": "esp32_wifi_connected",
+                            "id": "piFuTe`nUE7sWryqNhAY"
+                          }
+                        },
+                        "DO": {
+                          "block": {
+                            "type": "time_delay",
+                            "id": "5jy-VU=22HDU/N1^A[P5",
+                            "inputs": {
+                              "DELAY_TIME": {
+                                "shadow": {
+                                  "type": "math_number",
+                                  "id": "f;fp]2ff8T|m{@M~;;ZJ",
+                                  "fields": {
+                                    "NUM": 1000
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "next": {
+                        "block": {
+                          "type": "serial_println",
+                          "id": "Nj#|p!0$[dTVLY[X[+XB",
+                          "fields": {
+                            "SERIAL": "Serial"
+                          },
+                          "inputs": {
+                            "VAR": {
+                              "shadow": {
+                                "type": "text",
+                                "id": "03*B5koqA8kb7kfuMC%f",
+                                "fields": {
+                                  "TEXT": "WiFi connected!"
+                                }
+                              }
+                            }
+                          },
+                          "next": {
+                            "block": {
+                              "type": "pubsub_create",
+                              "id": "R^.ORwAUqN9}K3y],uG?",
+                              "fields": {
+                                "NAME": "mqttClient",
+                                "CLIENT": "client",
+                                "SSL": false,
+                                "SERVER": "broker.diandeng.tech",
+                                "PORT": "1883"
+                              },
+                              "next": {
+                                "block": {
+                                  "type": "controls_whileUntil",
+                                  "id": "}zKs~5#%CzU9BeBluoHW",
+                                  "fields": {
+                                    "MODE": "UNTIL"
+                                  },
+                                  "inputs": {
+                                    "BOOL": {
+                                      "block": {
+                                        "type": "pubsub_connect_with_credentials",
+                                        "id": "_x_pifF8T},2C/wN4j3.",
+                                        "fields": {
+                                          "NAME": "mqttClient",
+                                          "CLIENT_ID": "6120685250EX0GY0AV1CBRCM",
+                                          "USERNAME": "6120685250EX0GY0AV1CBRCM",
+                                          "PASSWORD": "f2m8ClLZ4dx6btyaCwZNnt1iwUYfIbaE"
+                                        }
+                                      }
+                                    },
+                                    "DO": {
+                                      "block": {
+                                        "type": "time_delay",
+                                        "id": "`KJkE#_P#}UmK=7-1ST]",
+                                        "inputs": {
+                                          "DELAY_TIME": {
+                                            "shadow": {
+                                              "type": "math_number",
+                                              "id": "3y]-q5ed(#_HYdc3VYS:",
+                                              "fields": {
+                                                "NUM": 1000
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  },
+                                  "next": {
+                                    "block": {
+                                      "type": "serial_println",
+                                      "id": "Zw(l18JRj;dT#GfK:KFc",
+                                      "fields": {
+                                        "SERIAL": "Serial"
+                                      },
+                                      "inputs": {
+                                        "VAR": {
+                                          "shadow": {
+                                            "type": "text",
+                                            "id": "5DREE^S:j@6SNKf=Z9j.",
+                                            "fields": {
+                                              "TEXT": "MQTT connected!"
+                                            }
+                                          }
+                                        }
+                                      },
+                                      "next": {
+                                        "block": {
+                                          "type": "pubsub_subscribe",
+                                          "id": "HutmM!g|/6g:AGV*j)q^",
+                                          "fields": {
+                                            "NAME": "mqttClient"
+                                          },
+                                          "inputs": {
+                                            "TOPIC": {
+                                              "shadow": {
+                                                "type": "text",
+                                                "id": "?}UW4TC,dAK8{/AZ06~4",
+                                                "fields": {
+                                                  "TEXT": "/device/6120685250EX0GY0AV1CBRCM/r"
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "type": "arduino_loop",
+        "id": "arduino_loop_id0",
+        "x": 30,
+        "y": 550,
+        "deletable": false,
+        "inputs": {
+          "ARDUINO_LOOP": {
+            "block": {
+              "type": "time_delay",
+              "id": "YEFZk0hkZ(OK6(I^8v+|",
+              "inputs": {
+                "DELAY_TIME": {
+                  "shadow": {
+                    "type": "math_number",
+                    "id": "/xk$!B8i;Lr/UM,CLR:!",
+                    "fields": {
+                      "NUM": 1000
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "type": "pubsub_set_callback",
+        "id": "c4=cBAF5R}A$Y:yWXS$}",
+        "x": 30,
+        "y": -350,
+        "fields": {
+          "NAME": "mqttClient"
+        },
+        "inputs": {
+          "NAME": {
+            "block": {
+              "type": "variable_define",
+              "id": "M$sAFz:y?NiyrhH+U^)B",
+              "fields": {
+                "VAR": "test_var1",
+                "TYPE": "int"
+              },
+              "next": {
+                "block": {
+                  "type": "pubsub_set_callback_with_topic",
+                  "id": "b-1#FUHr[FKHYm7Xx2+(",
+                  "inputs": {
+                    "TOPIC": {
+                      "shadow": {
+                        "type": "text",
+                        "id": "|u}I([=UWa;}vXIlx][T",
+                        "fields": {
+                          "TEXT": "/device/6120685250EX0GY0AV1CBRCM/r"
+                        }
+                      }
+                    },
+                    "NAME": {
+                      "block": {
+                        "type": "serial_println",
+                        "id": "9B~iR9BI5RyXfN_UhGOf",
+                        "fields": {
+                          "SERIAL": "Serial"
+                        },
+                        "inputs": {
+                          "VAR": {
+                            "shadow": {
+                              "type": "text",
+                              "id": "*v`E|qF@u:pY}U]S|d4E",
+                              "fields": {
+                                "TEXT": ""
+                              }
+                            },
+                            "block": {
+                              "type": "variables_get",
+                              "id": "mG-4HAyQ9J%w^p?$/z[7",
+                              "fields": {
+                                "VAR": {
+                                  "id": "|tS@zI6Hy8eLbES_IU3)"
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "next": {
+                          "block": {
+                            "type": "json_document_deserialize_from_somewhere",
+                            "id": "3$^HKt,y7Q8!/AQg{@;n",
+                            "fields": {
+                              "VAR": "doc"
+                            },
+                            "inputs": {
+                              "INPUT": {
+                                "shadow": {
+                                  "type": "text",
+                                  "id": "Y0,_kBl@I}UZ9Xi}.!f0",
+                                  "fields": {
+                                    "TEXT": "{\"hello\": \"world\"}"
+                                  }
+                                },
+                                "block": {
+                                  "type": "variables_get",
+                                  "id": "3W1I[uM(KXz=lN?d2QqK",
+                                  "fields": {
+                                    "VAR": {
+                                      "id": "|tS@zI6Hy8eLbES_IU3)"
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "next": {
+                              "block": {
+                                "type": "serial_println",
+                                "id": "kUzxv)a)^NUEPR`zwo3H",
+                                "fields": {
+                                  "SERIAL": "Serial"
+                                },
+                                "inputs": {
+                                  "VAR": {
+                                    "shadow": {
+                                      "type": "text",
+                                      "id": "]e/P,$D)IQ5*Z92Lmbq;",
+                                      "fields": {
+                                        "TEXT": ""
+                                      }
+                                    },
+                                    "block": {
+                                      "type": "json_document_get_value_type",
+                                      "id": "ud_#p3}W+4!B#O.W(0xB",
+                                      "fields": {
+                                        "VAR": {
+                                          "id": "_pH,{NZ(U`#;seGSFk},"
+                                        },
+                                        "KEY": "data",
+                                        "TYPE": "String"
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "type": "variable_define",
+        "id": "bpF[Dv:gqw#pokM/EAZe",
+        "x": 30,
+        "y": -430,
+        "fields": {
+          "VAR": "test_var",
+          "TYPE": "int"
+        }
+      }
+    ]
+  },
+  "variables": [
+    {
+      "name": "topic",
+      "id": "jHu?8sJ:WX~r26._*acw",
+      "type": "mqttClientCallback"
+    },
+    {
+      "name": "payload",
+      "id": "|tS@zI6Hy8eLbES_IU3)",
+      "type": "mqttClientCallback"
+    },
+    {
+      "name": "payload_str",
+      "id": "NB=/e}`0br#Ai0+a!M9z",
+      "type": "mqttClientCallback"
+    },
+    {
+      "name": "length",
+      "id": "9ik^jB`LfQ}mWx0hc}(J",
+      "type": "mqttClientCallback"
+    },
+    {
+      "name": "doc",
+      "id": "_pH,{NZ(U`#;seGSFk},",
+      "type": "JsonDocument"
+    },
+    {
+      "name": "length",
+      "id": "-2J{=TK{AI?3U9lk?W8x"
+    },
+    {
+      "name": "data",
+      "id": "_:+wEW6+dH$y(fP2=9wF"
+    },
+    {
+      "name": "test_var",
+      "id": "fVx5S}4E5`_OpR,FF^JF"
+    },
+    {
+      "name": "test_var1",
+      "id": "$1Mp}xvji]Ea3lpD:$K_"
+    }
+  ]
+}
