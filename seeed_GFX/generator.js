@@ -676,7 +676,16 @@ function seeedGfxFormatRgb565Frame(bytes) {
   return lines.join(',\n');
 }
 
-function seeedGfxGetAnimationSignature(width, height, fps, encodedFrames) {
+function seeedGfxFormatRgb332Frame(bytes) {
+  const values = Array.from(bytes, value => `0x${value.toString(16).padStart(2, '0').toUpperCase()}`);
+  const lines = [];
+  for (let index = 0; index < values.length; index += 16) {
+    lines.push(`  ${values.slice(index, index + 16).join(', ')}`);
+  }
+  return lines.join(',\n');
+}
+
+function seeedGfxGetAnimationSignature(format, encoding, width, height, fps, encodedFrames) {
   let hash1 = 0x811C9DC5;
   let hash2 = 0x9E3779B9;
   const updateHash = (value) => {
@@ -688,7 +697,7 @@ function seeedGfxGetAnimationSignature(width, height, fps, encodedFrames) {
     }
   };
 
-  updateHash(`${width}:${height}:${fps}:${encodedFrames.length}|`);
+  updateHash(`${format}:${encoding}:${width}:${height}:${fps}:${encodedFrames.length}|`);
   for (const encodedFrame of encodedFrames) {
     updateHash(encodedFrame);
     updateHash('|');
@@ -712,7 +721,11 @@ function seeedGfxGetAnimationData(block) {
     console.error('[seeed_gfx_animation] Animation data is missing');
     return null;
   }
-  if (animationData.version !== 1 || animationData.format !== 'rgb565' || animationData.encoding !== 'rgb565-be-base64') {
+  const format = animationData.format;
+  const encoding = animationData.encoding;
+  const isRgb565 = format === 'rgb565' && encoding === 'rgb565-be-base64';
+  const isRgb332 = format === 'rgb332' && encoding === 'rgb332-base64';
+  if (animationData.version !== 1 || (!isRgb565 && !isRgb332)) {
     console.error('[seeed_gfx_animation] Unsupported animation version, format, or encoding');
     return null;
   }
@@ -742,7 +755,7 @@ function seeedGfxGetAnimationData(block) {
     return null;
   }
 
-  const expectedByteLength = width * height * 2;
+  const expectedByteLength = width * height * (isRgb332 ? 1 : 2);
   if (!Number.isSafeInteger(expectedByteLength)) {
     console.error('[seeed_gfx_animation] Animation dimensions are too large');
     return null;
@@ -754,14 +767,15 @@ function seeedGfxGetAnimationData(block) {
     if (binary === null) {
       return null;
     }
-    frames.push(seeedGfxFormatRgb565Frame(binary));
+    frames.push(isRgb332 ? seeedGfxFormatRgb332Frame(binary) : seeedGfxFormatRgb565Frame(binary));
   }
 
   return {
     width,
     height,
     fps,
-    signature: seeedGfxGetAnimationSignature(width, height, fps, animationData.frames),
+    format,
+    signature: seeedGfxGetAnimationSignature(format, encoding, width, height, fps, animationData.frames),
     frames
   };
 }
@@ -786,6 +800,318 @@ function seeedGfxGetVariableCodeName(block, fieldName, fallbackName) {
     : null;
   return variable && variable.name ? variable.name : fallbackName;
 }
+
+function seeedGfxAddSdVideoPlayer(generator) {
+  seeedGfxEnsureAnimationLibraries(generator);
+  generator.addLibrary('seeed_gfx_sd_filesystem', `#if defined(WIO_TERMINAL) || defined(SEEED_WIO_TERMINAL)
+#include <Seeed_Arduino_FS.h>
+#else
+#include <FS.h>
+#include <SD.h>
+#endif`);
+  generator.addLibrary('stdlib', '#include <stdlib.h>');
+  generator.addLibrary('stdint', '#include <stdint.h>');
+  generator.addLibrary('esp_heap_caps', `#if defined(ESP32)
+#include <esp_heap_caps.h>
+#endif`);
+
+  generator.addFunction('seeed_gfx_play_sd_video', `static uint16_t seeedGfxReadVideoLe16(const uint8_t *data) {
+  return (uint16_t)data[0] | ((uint16_t)data[1] << 8);
+}
+
+static uint32_t seeedGfxReadVideoLe32(const uint8_t *data) {
+  return (uint32_t)data[0]
+    | ((uint32_t)data[1] << 8)
+    | ((uint32_t)data[2] << 16)
+    | ((uint32_t)data[3] << 24);
+}
+
+static uint8_t *seeedGfxAllocateVideoBuffer(size_t bufferSize) {
+  uint8_t *buffer = nullptr;
+#if defined(ESP32) && defined(MALLOC_CAP_SPIRAM)
+  buffer = (uint8_t *)heap_caps_malloc(bufferSize, MALLOC_CAP_SPIRAM | MALLOC_CAP_8BIT);
+#endif
+  if (buffer == nullptr) {
+    buffer = (uint8_t *)malloc(bufferSize);
+  }
+  return buffer;
+}
+
+static bool seeedGfxReadVideoData(fs::File &file, uint8_t *buffer, size_t length) {
+  size_t bytesRead = 0;
+  while (bytesRead < length) {
+    const size_t remaining = length - bytesRead;
+    size_t count = file.read(buffer + bytesRead, remaining);
+    if (count == 0 || count > remaining) {
+      return false;
+    }
+    bytesRead += count;
+  }
+  return true;
+}
+
+static void seeedGfxWaitVideoFrame(uint32_t frameStartedAt, uint64_t frameIntervalUs) {
+  uint64_t elapsedUs = (uint32_t)(micros() - frameStartedAt);
+  if (elapsedUs >= frameIntervalUs) {
+    return;
+  }
+
+  uint64_t remainingUs = frameIntervalUs - elapsedUs;
+  while (remainingUs >= 1000) {
+    uint32_t waitMs = remainingUs / 1000 > 1000 ? 1000 : (uint32_t)(remainingUs / 1000);
+    delay(waitMs);
+    remainingUs -= (uint64_t)waitMs * 1000;
+  }
+  if (remainingUs > 0) {
+    delayMicroseconds((uint32_t)remainingUs);
+  }
+}
+
+bool seeedGfxPlaySdVideo(TFT_eSPI &display, const String &fileName, int32_t bufferSizeKb) {
+  const uint8_t AILY_RGB565_LE = 1;
+  const uint8_t AILY_RGB332 = 2;
+  const uint8_t AILY_MONO1_XBM = 3;
+  const uint8_t AILY_HEADER_SIZE = 40;
+
+  if (bufferSizeKb <= 0 || (uint64_t)bufferSizeKb * 1024 > (uint64_t)SIZE_MAX) {
+    return false;
+  }
+  const size_t bufferSize = (size_t)bufferSizeKb * 1024;
+
+  String normalizedFileName = fileName;
+#if defined(WIO_TERMINAL) || defined(SEEED_WIO_TERMINAL)
+  while (normalizedFileName.startsWith("/")) {
+    normalizedFileName.remove(0, 1);
+  }
+#else
+  if (!normalizedFileName.startsWith("/")) {
+    normalizedFileName = String("/") + normalizedFileName;
+  }
+#endif
+  if (normalizedFileName.length() == 0) {
+    return false;
+  }
+
+  fs::File file = SD.open(normalizedFileName.c_str(), FILE_READ);
+#if defined(WIO_TERMINAL) || defined(SEEED_WIO_TERMINAL)
+  if (!file) {
+    fs::File root = SD.open("", FILE_READ);
+    if (root) {
+      root.close();
+      return false;
+    }
+
+    static bool autoInitAttempted = false;
+    if (autoInitAttempted) {
+      return false;
+    }
+    autoInitAttempted = true;
+    // Discard any failed or incompatible mount (for example SPI instead of
+    // Wio Terminal's dedicated SDCARD_SPI) before selecting the video clock.
+    SD.end();
+    bool sdMounted = SD.begin(SDCARD_SS_PIN, SDCARD_SPI, 24000000UL);
+    if (!sdMounted) {
+      SD.end();
+      sdMounted = SD.begin(SDCARD_SS_PIN, SDCARD_SPI, 16000000UL);
+    }
+    if (!sdMounted) {
+      SD.end();
+      sdMounted = SD.begin(SDCARD_SS_PIN, SDCARD_SPI, 4000000UL);
+    }
+    if (!sdMounted) {
+      SD.end();
+      return false;
+    }
+    file = SD.open(normalizedFileName.c_str(), FILE_READ);
+  }
+#endif
+  if (!file || file.isDirectory()) {
+    if (file) file.close();
+    return false;
+  }
+
+  uint8_t header[AILY_HEADER_SIZE];
+  if (!seeedGfxReadVideoData(file, header, sizeof(header))) {
+    file.close();
+    return false;
+  }
+
+  if (header[0] != 'A' || header[1] != 'I' || header[2] != 'L' || header[3] != 'Y'
+      || header[4] != 1 || header[5] < AILY_HEADER_SIZE) {
+    file.close();
+    return false;
+  }
+
+  const uint8_t pixelFormat = header[6];
+  const uint16_t width = seeedGfxReadVideoLe16(header + 8);
+  const uint16_t height = seeedGfxReadVideoLe16(header + 10);
+  const uint32_t fpsNumerator = seeedGfxReadVideoLe32(header + 12);
+  const uint32_t fpsDenominator = seeedGfxReadVideoLe32(header + 16);
+  const uint32_t frameCount = seeedGfxReadVideoLe32(header + 20);
+  const uint32_t frameSize = seeedGfxReadVideoLe32(header + 24);
+  const uint32_t dataOffset = seeedGfxReadVideoLe32(header + 28);
+  const uint32_t dataSize = seeedGfxReadVideoLe32(header + 32);
+
+  if (width == 0 || height == 0 || fpsNumerator == 0 || fpsDenominator == 0
+      || frameCount == 0 || dataOffset < header[5]) {
+    file.close();
+    return false;
+  }
+
+  uint64_t expectedFrameSize = 0;
+  if (pixelFormat == AILY_RGB565_LE) {
+    expectedFrameSize = (uint64_t)width * height * 2;
+  } else if (pixelFormat == AILY_RGB332) {
+    expectedFrameSize = (uint64_t)width * height;
+  } else if (pixelFormat == AILY_MONO1_XBM) {
+    expectedFrameSize = (uint64_t)((width + 7) / 8) * height;
+  } else {
+    file.close();
+    return false;
+  }
+
+  const uint64_t expectedDataSize = expectedFrameSize * frameCount;
+  const uint64_t requiredFileSize = (uint64_t)dataOffset + dataSize;
+  if (expectedFrameSize > UINT32_MAX || frameSize != (uint32_t)expectedFrameSize
+      || expectedDataSize > UINT32_MAX || dataSize != (uint32_t)expectedDataSize
+      || requiredFileSize > (uint64_t)file.size()
+      || (pixelFormat == AILY_MONO1_XBM && (width > INT16_MAX || height > INT16_MAX))) {
+    file.close();
+    return false;
+  }
+
+  if (file.position() != dataOffset) {
+    file.seek(dataOffset);
+    if (file.position() != dataOffset) {
+      file.close();
+      return false;
+    }
+  }
+
+  uint8_t *buffer = seeedGfxAllocateVideoBuffer(bufferSize);
+  if (buffer == nullptr) {
+    file.close();
+    return false;
+  }
+
+  uint64_t frameIntervalUs = 1000000ULL * fpsDenominator / fpsNumerator;
+  if (frameIntervalUs == 0) frameIntervalUs = 1;
+  bool success = true;
+  uint32_t framesPlayed = 0;
+  bool previousSwapBytes = display.getSwapBytes();
+  if (pixelFormat == AILY_RGB565_LE) {
+    display.setSwapBytes(true);
+  }
+
+  while (framesPlayed < frameCount && success) {
+    uint32_t frameStartedAt = micros();
+
+    if (pixelFormat == AILY_MONO1_XBM) {
+      const uint32_t rowBytes = ((uint32_t)width + 7) / 8;
+      uint32_t y = 0;
+      while (y < height && success) {
+        if (bufferSize >= rowBytes) {
+          const size_t rowsInBuffer = bufferSize / rowBytes;
+          const uint32_t remainingRows = (uint32_t)height - y;
+          const uint32_t rows = rowsInBuffer > remainingRows
+            ? remainingRows
+            : (uint32_t)rowsInBuffer;
+          const size_t bytes = (size_t)rowBytes * rows;
+          success = seeedGfxReadVideoData(file, buffer, bytes);
+          if (success) {
+            display.drawXBitmap(0, (int16_t)y, buffer, width, (int16_t)rows, TFT_WHITE, TFT_BLACK);
+            y += rows;
+          }
+        } else {
+          uint32_t byteX = 0;
+          while (byteX < rowBytes && success) {
+            size_t bytes = rowBytes - byteX;
+            if (bytes > bufferSize) bytes = bufferSize;
+            success = seeedGfxReadVideoData(file, buffer, bytes);
+            if (success) {
+              uint32_t x = byteX * 8;
+              uint32_t pixels = (uint32_t)bytes * 8;
+              if (pixels > (uint32_t)width - x) pixels = (uint32_t)width - x;
+              display.drawXBitmap((int16_t)x, (int16_t)y, buffer, (int16_t)pixels, 1, TFT_WHITE, TFT_BLACK);
+              byteX += bytes;
+            }
+          }
+          y++;
+        }
+      }
+    } else {
+      const uint32_t bytesPerPixel = pixelFormat == AILY_RGB565_LE ? 2 : 1;
+      const uint32_t rowBytes = (uint32_t)width * bytesPerPixel;
+      uint32_t y = 0;
+      while (y < height && success) {
+        if (bufferSize >= rowBytes) {
+          const size_t rowsInBuffer = bufferSize / rowBytes;
+          const uint32_t remainingRows = (uint32_t)height - y;
+          const uint32_t rows = rowsInBuffer > remainingRows
+            ? remainingRows
+            : (uint32_t)rowsInBuffer;
+          const size_t bytes = (size_t)rowBytes * rows;
+          success = seeedGfxReadVideoData(file, buffer, bytes);
+          if (success) {
+            if (pixelFormat == AILY_RGB565_LE) {
+              display.pushImage(0, y, width, rows, reinterpret_cast<uint16_t *>(buffer));
+            } else {
+              display.pushImage(0, y, width, rows, buffer, true);
+            }
+            y += rows;
+          }
+        } else {
+          const size_t usableBytes = bufferSize - bufferSize % bytesPerPixel;
+          if (usableBytes == 0) {
+            success = false;
+            break;
+          }
+
+          uint32_t x = 0;
+          while (x < width && success) {
+            const size_t pixelsInBuffer = usableBytes / bytesPerPixel;
+            const uint32_t remainingPixels = (uint32_t)width - x;
+            const uint32_t pixels = pixelsInBuffer > remainingPixels
+              ? remainingPixels
+              : (uint32_t)pixelsInBuffer;
+            const size_t bytes = (size_t)pixels * bytesPerPixel;
+            success = seeedGfxReadVideoData(file, buffer, bytes);
+            if (success) {
+              if (pixelFormat == AILY_RGB565_LE) {
+                display.pushImage(x, y, pixels, 1, reinterpret_cast<uint16_t *>(buffer));
+              } else {
+                display.pushImage(x, y, pixels, 1, buffer, true);
+              }
+              x += pixels;
+            }
+          }
+          y++;
+        }
+      }
+    }
+
+    if (success) {
+      framesPlayed++;
+      seeedGfxWaitVideoFrame(frameStartedAt, frameIntervalUs);
+    }
+  }
+
+  if (pixelFormat == AILY_RGB565_LE) {
+    display.setSwapBytes(previousSwapBytes);
+  }
+  free(buffer);
+  file.close();
+  return success && framesPlayed == frameCount;
+}`);
+}
+
+Arduino.forBlock['seeed_gfx_play_sd_video'] = function(block, generator) {
+  const display = seeedGfxGetVariableCodeName(block, 'VAR', 'tft');
+  const fileName = generator.valueToCode(block, 'FILENAME', generator.ORDER_ATOMIC) || '"/video.rgb565v"';
+  const bufferSizeKb = generator.valueToCode(block, 'BUFFER_KB', generator.ORDER_ATOMIC) || '15';
+  seeedGfxAddSdVideoPlayer(generator);
+  return `seeedGfxPlaySdVideo(${display}, String(${fileName}), (int32_t)(${bufferSizeKb}));\n`;
+};
 
 function seeedGfxGetFrameVariableCodeName(block, generator) {
   if (generator && typeof generator.getValue === 'function') {
@@ -832,8 +1158,10 @@ Arduino.forBlock['seeed_gfx_animation'] = function(block, generator) {
     return ['', generator.ORDER_ATOMIC];
   }
 
-  const { width, height, fps, signature, frames } = animationData;
+  const { width, height, fps, format, signature, frames } = animationData;
   const symbolPrefix = `seeed_gfx_animation_${signature}`;
+  const frameType = format === 'rgb332' ? 'uint8_t' : 'uint16_t';
+  const formatLabel = format.toUpperCase();
   const frameNames = [];
   const frameDeclarations = [];
   const frameNameByData = new Map();
@@ -848,15 +1176,15 @@ Arduino.forBlock['seeed_gfx_animation'] = function(block, generator) {
     const frameName = `${symbolPrefix}_frame_${index}`;
     frameNameByData.set(frames[index], frameName);
     frameNames.push(frameName);
-    frameDeclarations.push(`static const uint16_t ${frameName}[] PROGMEM = {
+    frameDeclarations.push(`static const ${frameType} ${frameName}[] PROGMEM = {
 ${frames[index]}
 };`);
   }
 
   const frameDelay = Math.max(1, Math.round(1000 / fps));
-  const animationDeclaration = `// Seeed GFX animation (${width}x${height}, ${frameNames.length} frames, ${frameDeclarations.length} unique, ${fps} FPS, RGB565)
+  const animationDeclaration = `// Seeed GFX animation (${width}x${height}, ${frameNames.length} frames, ${frameDeclarations.length} unique, ${fps} FPS, ${formatLabel})
 ${frameDeclarations.join('\n\n')}
-static const uint16_t* const ${symbolPrefix}_frames[] = {
+static const ${frameType}* const ${symbolPrefix}_frames[] = {
   ${frameNames.join(',\n  ')}
 };
 static const uint16_t ${symbolPrefix}_width = ${width};
@@ -875,12 +1203,29 @@ function seeedGfxAddAnimationRenderHelper(generator) {
   seeedGfxDisplay.setSwapBytes(true);
   seeedGfxDisplay.pushImage(seeedGfxX, seeedGfxY, seeedGfxWidth, seeedGfxHeight, seeedGfxFrame);
   seeedGfxDisplay.setSwapBytes(seeedGfxPreviousSwapBytes);
+}
+
+void seeedGfxDrawAnimationFrame(TFT_eSPI &seeedGfxDisplay, int32_t seeedGfxX, int32_t seeedGfxY, uint16_t seeedGfxWidth, uint16_t seeedGfxHeight, const uint8_t *seeedGfxFrame) {
+  seeedGfxDisplay.pushImage(seeedGfxX, seeedGfxY, seeedGfxWidth, seeedGfxHeight, seeedGfxFrame, true);
 }`);
 }
 
 function seeedGfxAddAnimationFrameByIndexHelper(generator) {
   seeedGfxAddAnimationRenderHelper(generator);
   generator.addFunction('seeed_gfx_draw_animation_frame_by_index', `void seeedGfxDrawAnimationFrameByIndex(TFT_eSPI &seeedGfxDisplay, int32_t seeedGfxX, int32_t seeedGfxY, uint16_t seeedGfxWidth, uint16_t seeedGfxHeight, const uint16_t * const seeedGfxFrames[], uint16_t seeedGfxFrameCount, int32_t seeedGfxFrameIndex) {
+  if (seeedGfxFrameCount == 0) {
+    return;
+  }
+  if (seeedGfxFrameIndex < 0) {
+    seeedGfxFrameIndex = 0;
+  }
+  if (seeedGfxFrameIndex >= (int32_t)seeedGfxFrameCount) {
+    seeedGfxFrameIndex = seeedGfxFrameCount - 1;
+  }
+  seeedGfxDrawAnimationFrame(seeedGfxDisplay, seeedGfxX, seeedGfxY, seeedGfxWidth, seeedGfxHeight, seeedGfxFrames[seeedGfxFrameIndex]);
+}
+
+void seeedGfxDrawAnimationFrameByIndex(TFT_eSPI &seeedGfxDisplay, int32_t seeedGfxX, int32_t seeedGfxY, uint16_t seeedGfxWidth, uint16_t seeedGfxHeight, const uint8_t * const seeedGfxFrames[], uint16_t seeedGfxFrameCount, int32_t seeedGfxFrameIndex) {
   if (seeedGfxFrameCount == 0) {
     return;
   }
