@@ -37,11 +37,19 @@
         },
         {
             "kind": "block",
+            "type": "huskylensv2_get_result_until"
+        },
+        {
+            "kind": "block",
             "type": "huskylensv2_get_result"
         },
         {
             "kind": "block",
             "type": "huskylensv2_available"
+        },
+        {
+            "kind": "block",
+            "type": "huskylensv2_result_count"
         },
         {
             "kind": "block",
@@ -62,8 +70,16 @@
             }
         },
         {
+            "kind": "block",
+            "type": "huskylensv2_max_id"
+        },
+        {
             "kind": "label",
             "text": "结果获取"
+        },
+        {
+            "kind": "block",
+            "type": "huskylensv2_pop_result"
         },
         {
             "kind": "block",
@@ -121,6 +137,32 @@
         },
         {
             "kind": "label",
+            "text": "巡线分支"
+        },
+        {
+            "kind": "block",
+            "type": "huskylensv2_current_branch"
+        },
+        {
+            "kind": "block",
+            "type": "huskylensv2_upcoming_branch_count"
+        },
+        {
+            "kind": "block",
+            "type": "huskylensv2_get_branch",
+            "inputs": {
+                "INDEX": {
+                    "shadow": {
+                        "type": "math_number",
+                        "fields": {
+                            "NUM": 0
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "kind": "label",
             "text": "学习功能"
         },
         {
@@ -129,7 +171,49 @@
         },
         {
             "kind": "block",
+            "type": "huskylensv2_learn_value"
+        },
+        {
+            "kind": "block",
             "type": "huskylensv2_learn_block",
+            "inputs": {
+                "X": {
+                    "shadow": {
+                        "type": "math_number",
+                        "fields": {
+                            "NUM": 0
+                        }
+                    }
+                },
+                "Y": {
+                    "shadow": {
+                        "type": "math_number",
+                        "fields": {
+                            "NUM": 0
+                        }
+                    }
+                },
+                "WIDTH": {
+                    "shadow": {
+                        "type": "math_number",
+                        "fields": {
+                            "NUM": 100
+                        }
+                    }
+                },
+                "HEIGHT": {
+                    "shadow": {
+                        "type": "math_number",
+                        "fields": {
+                            "NUM": 100
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "kind": "block",
+            "type": "huskylensv2_learn_block_value",
             "inputs": {
                 "X": {
                     "shadow": {
@@ -357,7 +441,7 @@
         },
         {
             "kind": "label",
-            "text": "音乐播放"
+            "text": "音乐与命名"
         },
         {
             "kind": "block",
@@ -380,10 +464,6 @@
                     }
                 }
             }
-        },
-        {
-            "kind": "label",
-            "text": "设置名称"
         },
         {
             "kind": "block",
@@ -409,7 +489,127 @@
         },
         {
             "kind": "label",
+            "text": "算法参数"
+        },
+        {
+            "kind": "block",
+            "type": "huskylensv2_get_algo_param_bool",
+            "inputs": {
+                "KEY": {
+                    "shadow": {
+                        "type": "text",
+                        "fields": {
+                            "TEXT": "show_name"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "kind": "block",
+            "type": "huskylensv2_get_algo_param_float",
+            "inputs": {
+                "KEY": {
+                    "shadow": {
+                        "type": "text",
+                        "fields": {
+                            "TEXT": "det_thres"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "kind": "block",
+            "type": "huskylensv2_get_algo_param_string",
+            "inputs": {
+                "KEY": {
+                    "shadow": {
+                        "type": "text",
+                        "fields": {
+                            "TEXT": "dict_type"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "kind": "block",
+            "type": "huskylensv2_set_algo_param_bool",
+            "inputs": {
+                "KEY": {
+                    "shadow": {
+                        "type": "text",
+                        "fields": {
+                            "TEXT": "show_name"
+                        }
+                    }
+                },
+                "VALUE": {
+                    "shadow": {
+                        "type": "logic_boolean",
+                        "fields": {
+                            "BOOL": "TRUE"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "kind": "block",
+            "type": "huskylensv2_set_algo_param_float",
+            "inputs": {
+                "KEY": {
+                    "shadow": {
+                        "type": "text",
+                        "fields": {
+                            "TEXT": "det_thres"
+                        }
+                    }
+                },
+                "VALUE": {
+                    "shadow": {
+                        "type": "math_number",
+                        "fields": {
+                            "NUM": 0.5
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "kind": "block",
+            "type": "huskylensv2_set_algo_param_string",
+            "inputs": {
+                "KEY": {
+                    "shadow": {
+                        "type": "text",
+                        "fields": {
+                            "TEXT": "dict_type"
+                        }
+                    }
+                },
+                "VALUE": {
+                    "shadow": {
+                        "type": "text",
+                        "fields": {
+                            "TEXT": "36h11"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "kind": "block",
+            "type": "huskylensv2_update_algo_params"
+        },
+        {
+            "kind": "label",
             "text": "结果属性"
+        },
+        {
+            "kind": "block",
+            "type": "huskylensv2_is_valid"
         },
         {
             "kind": "block",
@@ -449,7 +649,155 @@
         },
         {
             "kind": "block",
-            "type": "huskylensv2_is_valid"
+            "type": "huskylensv2_result_pitch"
+        },
+        {
+            "kind": "block",
+            "type": "huskylensv2_result_yaw"
+        },
+        {
+            "kind": "block",
+            "type": "huskylensv2_result_roll"
+        },
+        {
+            "kind": "block",
+            "type": "huskylensv2_result_azimuth"
+        },
+        {
+            "kind": "block",
+            "type": "huskylensv2_result_classid"
+        },
+        {
+            "kind": "block",
+            "type": "huskylensv2_result_xtarget"
+        },
+        {
+            "kind": "block",
+            "type": "huskylensv2_result_ytarget"
+        },
+        {
+            "kind": "block",
+            "type": "huskylensv2_result_angle"
+        },
+        {
+            "kind": "block",
+            "type": "huskylensv2_result_length"
+        },
+        {
+            "kind": "block",
+            "type": "huskylensv2_result_level"
+        },
+        {
+            "kind": "block",
+            "type": "huskylensv2_result_steering"
+        },
+        {
+            "kind": "block",
+            "type": "huskylensv2_result_throttle"
+        },
+        {
+            "kind": "label",
+            "text": "人脸关键点"
+        },
+        {
+            "kind": "block",
+            "type": "huskylensv2_face_leye"
+        },
+        {
+            "kind": "block",
+            "type": "huskylensv2_face_reye"
+        },
+        {
+            "kind": "block",
+            "type": "huskylensv2_face_nose"
+        },
+        {
+            "kind": "block",
+            "type": "huskylensv2_face_lmouth"
+        },
+        {
+            "kind": "block",
+            "type": "huskylensv2_face_rmouth"
+        },
+        {
+            "kind": "label",
+            "text": "手势/姿态关键点"
+        },
+        {
+            "kind": "block",
+            "type": "huskylensv2_hand_point"
+        },
+        {
+            "kind": "block",
+            "type": "huskylensv2_pose_point"
+        },
+        {
+            "kind": "label",
+            "text": "多算法"
+        },
+        {
+            "kind": "block",
+            "type": "huskylensv2_set_multi_algorithm"
+        },
+        {
+            "kind": "block",
+            "type": "huskylensv2_set_multi_algorithm_ratio",
+            "inputs": {
+                "RATIO1": {
+                    "shadow": {
+                        "type": "math_number",
+                        "fields": {
+                            "NUM": 0
+                        }
+                    }
+                },
+                "RATIO2": {
+                    "shadow": {
+                        "type": "math_number",
+                        "fields": {
+                            "NUM": 1
+                        }
+                    }
+                },
+                "RATIO3": {
+                    "shadow": {
+                        "type": "math_number",
+                        "fields": {
+                            "NUM": -1
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "kind": "label",
+            "text": "媒体录制"
+        },
+        {
+            "kind": "block",
+            "type": "huskylensv2_start_recording",
+            "inputs": {
+                "DURATION": {
+                    "shadow": {
+                        "type": "math_number",
+                        "fields": {
+                            "NUM": -1
+                        }
+                    }
+                },
+                "FILENAME": {
+                    "shadow": {
+                        "type": "text",
+                        "fields": {
+                            "TEXT": ""
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "kind": "block",
+            "type": "huskylensv2_stop_recording"
         }
     ]
 }
