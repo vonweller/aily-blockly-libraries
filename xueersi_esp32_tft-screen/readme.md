@@ -1,40 +1,24 @@
-# TFT屏幕库 (TFT Screen)
+# TFT Screen
 
-ST7735 TFT屏幕简化库：一键初始化(引脚预设)，绘图/文字/颜色/屏幕信息
+## Description
+
+ST7735 TFT drawing and animation blocks for the Xueersi ESP32 handheld.
 
 ## Library Info
 
-| Field | Value |
-|-------|-------|
-| Package | @aily-project/lib-tft-screen |
-| Version | 1.0.0 |
-| Author | ailyProject |
-| License | MIT |
+| Package | Version | License |
+|---|---|---|
+| @aily-project/lib-tft-screen | 1.0.4 | MIT |
 
 ## Supported Boards
 
-ESP32 系列（依赖TFT_eSPI库）
-
-## Pin Configuration (预设)
-
-| 引脚 | GPIO |
-|------|------|
-| MOSI | 23 |
-| SCLK | 18 |
-| CS   | 5  |
-| DC   | 4  |
-| RST  | 19 |
-| MISO | 19 |
-| BL   | 未使用(-1) |
-
-- 驱动: ST7735_DRIVER
-- 分辨率: 128x160
-- SPI频率: 27MHz
-- 旋转: 3 (横屏)
-- 颜色模式: RGB
+Xueersi ESP32 handheld.
 
 ## Quick Start
 
-1. `tftscr_init` 一键初始化（无参数）
-2. 用绘图块绘制图形/文字
-3. 用颜色块选择预设色或自定义RGB
+1. Add `tftscr_init`.
+2. Use drawing blocks or `tftscr_animation` for embedded animations.
+3. Initialize the TF card with the parameter-free `xueersi_esp32_sd` block.
+4. For long animations, copy an AILY video to TF and use `tftscr_play_tf_animation` with the recommended 48 KB buffer.
+
+The TF playback block uses the global ESP32 `SD`/`FS` instance after it has been initialized by `xueersi_esp32_sd`; it never calls `SD.begin()`, `SD.end()`, or restarts SPI. TFT and TF share SCLK 18, MOSI 23, and MISO 19, with CS 5/22. GPIO19 is also wired to panel RESET, so TFT hardware reset is disabled and ST7735 software reset is used. Large row-aligned reads and synchronous batched LCD writes maximize throughput while keeping the shared bus under one SPI owner. TFT_eSPI DMA is intentionally disabled during TF playback because its ESP32 DMA setup reinitializes and later frees the same HSPI host used by `SD`.
