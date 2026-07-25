@@ -1,0 +1,217 @@
+{
+  "toolbox_name": "淘晶驰 Serial Screen",
+  "toolbox_labels": {
+    "Initialization": "Initialization",
+    "Screen control": "Screen control",
+    "Communication and returns": "Communication and returns"
+  },
+  "tjc_begin_hardware": {
+    "message0": "Initialize 淘晶驰 hardware serial %1 at %2 baud",
+    "tooltip": "Initialize the selected hardware UART",
+    "args0": [
+      null,
+      null
+    ]
+  },
+  "tjc_begin_software": {
+    "message0": "Initialize 淘晶驰 software serial %1 at %2 baud RX %3 TX %4",
+    "tooltip": "Create a SoftwareSerial port",
+    "args0": [
+      null,
+      null,
+      null,
+      null
+    ]
+  },
+  "tjc_clear_startup": {
+    "message0": "Clear 淘晶驰 startup data on %1",
+    "tooltip": "Discard startup bytes",
+    "args0": [
+      null
+    ]
+  },
+  "tjc_set_brightness": {
+    "message0": "Set 淘晶驰 backlight brightness on %1 to %2",
+    "tooltip": "Set runtime brightness",
+    "args0": [
+      null,
+      null
+    ]
+  },
+  "tjc_page": {
+    "message0": "Switch 淘晶驰 page on %1 to %2",
+    "tooltip": "Switch to a page",
+    "args0": [
+      null,
+      null
+    ]
+  },
+  "tjc_set_variable": {
+    "message0": "Set 淘晶驰 variable %1 to %2",
+    "tooltip": "Assign a 淘晶驰 variable",
+    "args0": [
+      null,
+      null
+    ]
+  },
+  "tjc_set_property": {
+    "message0": "On serial %1 set component %2 property %3 to %4",
+    "tooltip": "Set a component property on the selected serial port. The serial selector is first; use text values for txt and numbers for val, pic, and geometry fields.",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "Text (txt)",
+            "txt"
+          ],
+          [
+            "Value (val)",
+            "val"
+          ],
+          [
+            "Picture (pic)",
+            "pic"
+          ],
+          [
+            "Visible (vis)",
+            "vis"
+          ],
+          [
+            "Touch (tsw)",
+            "tsw"
+          ],
+          [
+            "Background (bco)",
+            "bco"
+          ],
+          [
+            "Foreground (pco)",
+            "pco"
+          ],
+          [
+            "Font (font)",
+            "font"
+          ],
+          [
+            "X (x)",
+            "x"
+          ],
+          [
+            "Y (y)",
+            "y"
+          ],
+          [
+            "Width (w)",
+            "w"
+          ],
+          [
+            "Height (h)",
+            "h"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "tjc_send_command": {
+    "message0": "Send 淘晶驰 command %1 on %2",
+    "tooltip": "Send a command with FF FF FF",
+    "args0": [
+      null,
+      null
+    ]
+  },
+  "tjc_set_bkcmd": {
+    "message0": "Set 淘晶驰 bkcmd on %1 to %2",
+    "tooltip": "Configure command feedback",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "0 - none",
+            "0"
+          ],
+          [
+            "1 - success and error",
+            "1"
+          ],
+          [
+            "2 - errors only",
+            "2"
+          ],
+          [
+            "3 - all",
+            "3"
+          ]
+        ]
+      }
+    ]
+  },
+  "tjc_enable_frame_parser": {
+    "message0": "Enable 淘晶驰 return frame parser on %1",
+    "tooltip": "Parse terminated frames",
+    "args0": [
+      null
+    ]
+  },
+  "tjc_frame_event": {
+    "message0": "When 淘晶驰 frame %1 is received on %2",
+    "message1": "do %1",
+    "tooltip": "Handle a return frame",
+    "args0": [
+      {
+        "options": [
+          [
+            "touch event (65)",
+            "65"
+          ],
+          [
+            "page ID (66)",
+            "66"
+          ],
+          [
+            "touch coordinates (67)",
+            "67"
+          ],
+          [
+            "string (70)",
+            "70"
+          ],
+          [
+            "number (71)",
+            "71"
+          ],
+          [
+            "startup (88)",
+            "88"
+          ],
+          [
+            "any frame",
+            "ANY"
+          ]
+        ]
+      },
+      null
+    ],
+    "args1": [
+      null
+    ]
+  },
+  "tjc_frame_type": {
+    "message0": "淘晶驰 last frame type on %1",
+    "tooltip": "Read the last frame type",
+    "args0": [
+      null
+    ]
+  },
+  "tjc_frame_available": {
+    "message0": "淘晶驰 frame available on %1",
+    "tooltip": "Check for a complete frame",
+    "args0": [
+      null
+    ]
+  }
+}
