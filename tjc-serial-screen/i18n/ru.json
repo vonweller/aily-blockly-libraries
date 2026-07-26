@@ -1,21 +1,21 @@
 {
-  "toolbox_name": "淘晶驰 Serial Screen",
+  "toolbox_name": "Последовательный дисплей 淘晶驰",
   "toolbox_labels": {
-    "Initialization": "Initialization",
-    "Screen control": "Screen control",
-    "Communication and returns": "Communication and returns"
+    "Initialization": "Инициализация",
+    "Screen control": "Управление экраном",
+    "Communication and returns": "Связь и ответы"
   },
   "tjc_begin_hardware": {
-    "message0": "Initialize 淘晶驰 hardware serial %1 at %2 baud",
-    "tooltip": "Initialize the selected hardware UART",
+    "message0": "Инициализировать аппаратный последовательный порт 淘晶驰 %1, скорость %2 бод",
+    "tooltip": "Запустите выбранное оборудование платы UART. Подключите экран TX к плате RX и экран RX к плате TX, используйте ту же скорость передачи данных, что и экран, и поместите ее перед командами или анализом кадров.",
     "args0": [
       null,
       null
     ]
   },
   "tjc_begin_software": {
-    "message0": "Initialize 淘晶驰 software serial %1 at %2 baud RX %3 TX %4",
-    "tooltip": "Create a SoftwareSerial port",
+    "message0": "Инициализировать программный последовательный порт 淘晶驰 %1, скорость %2 бод, RX %3 TX %4",
+    "tooltip": "Создайте SoftwareSerial с выбранным именем, контактами RX/TX и скоростью передачи данных. Перекрестно соедините провода экрана; это предназначено для плат типа UNO/Nano без запасного оборудования UART.",
     "args0": [
       null,
       null,
@@ -24,74 +24,74 @@
     ]
   },
   "tjc_clear_startup": {
-    "message0": "Clear 淘晶驰 startup data on %1",
-    "tooltip": "Discard startup bytes",
+    "message0": "Очистить данные запуска 淘晶驰 на %1",
+    "tooltip": "Отбросить байты, ожидающие в UART, включая общий кадр включения питания 0x88 FF FF FF. Запускаться после инициализации последовательного порта и перед разбором кадра.",
     "args0": [
       null
     ]
   },
   "tjc_set_brightness": {
-    "message0": "Set 淘晶驰 backlight brightness on %1 to %2",
-    "tooltip": "Set runtime brightness",
+    "message0": "Установить яркость подсветки 淘晶驰 на %1 в %2",
+    "tooltip": "Отправьте dim с яркостью времени выполнения обычно от 0 до 100. Это не записывает постоянные настройки вспышки, поэтому подходит для случайных корректировок.",
     "args0": [
       null,
       null
     ]
   },
   "tjc_page": {
-    "message0": "Switch 淘晶驰 page on %1 to %2",
-    "tooltip": "Switch to a page",
+    "message0": "Переключение страницы 淘晶驰 с %1 на %2",
+    "tooltip": "Перейдите по имени страницы, например main, или по числовому ID страницы. Введите только значение; завершитель команды добавляется автоматически.",
     "args0": [
       null,
       null
     ]
   },
   "tjc_set_variable": {
-    "message0": "Set 淘晶驰 variable %1 to %2",
-    "tooltip": "Assign a 淘晶驰 variable",
+    "message0": "Задайте для переменной 淘晶驰 %1 значение %2.",
+    "tooltip": "Назначьте системную, глобальную или страничную переменную, например sys0 или va0. Числа остаются без кавычек, а текст цитируется автоматически; не добавляйте байты FF.",
     "args0": [
       null,
       null
     ]
   },
   "tjc_set_property": {
-    "message0": "On serial %1 set component %2 property %3 to %4",
-    "tooltip": "Set a component property on the selected serial port. The serial selector is first; use text values for txt and numbers for val, pic, and geometry fields.",
+    "message0": "В последовательном порту %1 установить свойство %3 компонента %2 в %4",
+    "tooltip": "Запишите свойство компонента, например p0.pic=2, n0.val=100 или t0.txt=\"Ready\". Селектор последовательного порта стоит первым, поэтому цель UART ясна; выберите метку свойства на китайском/английском языке и сопоставьте текстовые свойства с текстовыми значениями, а числовые свойства — с числами.",
     "args0": [
       null,
       null,
       {
         "options": [
           [
-            "Text (txt)",
+            "Текст (txt)",
             "txt"
           ],
           [
-            "Value (val)",
+            "Значение (val)",
             "val"
           ],
           [
-            "Picture (pic)",
+            "Номер изображения (pic)",
             "pic"
           ],
           [
-            "Visible (vis)",
+            "Видимость (vis)",
             "vis"
           ],
           [
-            "Touch (tsw)",
+            "Сенсорный ввод (tsw)",
             "tsw"
           ],
           [
-            "Background (bco)",
+            "Цвет фона (bco)",
             "bco"
           ],
           [
-            "Foreground (pco)",
+            "Цвет переднего плана (pco)",
             "pco"
           ],
           [
-            "Font (font)",
+            "Шрифт (font)",
             "font"
           ],
           [
@@ -103,11 +103,11 @@
             "y"
           ],
           [
-            "Width (w)",
+            "Ширина (w)",
             "w"
           ],
           [
-            "Height (h)",
+            "Высота (h)",
             "h"
           ]
         ]
@@ -116,34 +116,34 @@
     ]
   },
   "tjc_send_command": {
-    "message0": "Send 淘晶驰 command %1 on %2",
-    "tooltip": "Send a command with FF FF FF",
+    "message0": "Отправьте команду 淘晶驰 %1 на %2",
+    "tooltip": "Отправьте необработанный 淘晶驰 ASCII, например page main, ref t0 или get sys0. Введите только текст команды; три байта терминатора 0xFF добавляются автоматически.",
     "args0": [
       null,
       null
     ]
   },
   "tjc_set_bkcmd": {
-    "message0": "Set 淘晶驰 bkcmd on %1 to %2",
-    "tooltip": "Configure command feedback",
+    "message0": "Установить bkcmd 淘晶驰 на %1 в %2",
+    "tooltip": "Выберите режим обратной связи: 0 нет, 1 успех и ошибки, 2 только ошибки или 3 все. Включите анализатор обратного кадра отдельно, когда программа должна проверять ответы.",
     "args0": [
       null,
       {
         "options": [
           [
-            "0 - none",
+            "0 - без ответа",
             "0"
           ],
           [
-            "1 - success and error",
+            "1 - успех и ошибка",
             "1"
           ],
           [
-            "2 - errors only",
+            "2 - только ошибки",
             "2"
           ],
           [
-            "3 - all",
+            "3 - все ответы",
             "3"
           ]
         ]
@@ -151,45 +151,45 @@
     ]
   },
   "tjc_enable_frame_parser": {
-    "message0": "Enable 淘晶驰 return frame parser on %1",
-    "tooltip": "Parse terminated frames",
+    "message0": "Включить анализатор возвращаемого кадра 淘晶驰 на %1",
+    "tooltip": "Установите считыватель loop, который разбивает байты по адресу FF FF FF и сохраняет первый байт как тип кадра. Используйте после последовательной инициализации и перед событиями кадра или блоками значений.",
     "args0": [
       null
     ]
   },
   "tjc_frame_event": {
-    "message0": "When 淘晶驰 frame %1 is received on %2",
-    "message1": "do %1",
-    "tooltip": "Handle a return frame",
+    "message0": "Когда 淘晶驰 кадр %1 получен на %2",
+    "message1": "выполнить %1",
+    "tooltip": "Запустите обработчик для кадра 65 касания, 66 страницы, 67 координат, 70 строки, 71 числа, 88 запуска или любого кадра. Сначала необходимо инициализировать анализатор, а обработчик запустить в loop.",
     "args0": [
       {
         "options": [
           [
-            "touch event (65)",
+            "событие касания (65)",
             "65"
           ],
           [
-            "page ID (66)",
+            "ID страницы (66)",
             "66"
           ],
           [
-            "touch coordinates (67)",
+            "координаты касания (67)",
             "67"
           ],
           [
-            "string (70)",
+            "строка (70)",
             "70"
           ],
           [
-            "number (71)",
+            "число (71)",
             "71"
           ],
           [
-            "startup (88)",
+            "запуск (88)",
             "88"
           ],
           [
-            "any frame",
+            "любой кадр",
             "ANY"
           ]
         ]
@@ -201,15 +201,15 @@
     ]
   },
   "tjc_frame_type": {
-    "message0": "淘晶驰 last frame type on %1",
-    "tooltip": "Read the last frame type",
+    "message0": "淘晶驰 последний тип кадра на %1",
+    "tooltip": "Возвращает первый байт самого последнего полного кадра, например 65 для сенсорного экрана или 71 для номера. Перед первым кадром это 0; сначала включите парсер.",
     "args0": [
       null
     ]
   },
   "tjc_frame_available": {
-    "message0": "淘晶驰 frame available on %1",
-    "tooltip": "Check for a complete frame",
+    "message0": "Кадр 淘晶驰 доступен на %1",
+    "tooltip": "Верните true, когда прибудет полный кадр, завершающийся FF FF FF. Используйте условие if с типом кадра или используйте событие кадра, чтобы избежать неполных данных.",
     "args0": [
       null
     ]

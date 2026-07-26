@@ -1,21 +1,21 @@
 {
-  "toolbox_name": "淘晶驰 Serial Screen",
+  "toolbox_name": "Écran série 淘晶驰",
   "toolbox_labels": {
-    "Initialization": "Initialization",
-    "Screen control": "Screen control",
-    "Communication and returns": "Communication and returns"
+    "Initialization": "Initialisation",
+    "Screen control": "Contrôle de l’écran",
+    "Communication and returns": "Communication et réponses"
   },
   "tjc_begin_hardware": {
-    "message0": "Initialize 淘晶驰 hardware serial %1 at %2 baud",
-    "tooltip": "Initialize the selected hardware UART",
+    "message0": "Initialiser le port série matériel 淘晶驰 %1 à %2 bauds",
+    "tooltip": "Démarrez le matériel de la carte sélectionnée UART. Câblez l'écran TX à la carte RX et l'écran RX à la carte TX, utilisez le même débit en bauds que l'écran et placez-le avant les commandes ou l'analyse des images.",
     "args0": [
       null,
       null
     ]
   },
   "tjc_begin_software": {
-    "message0": "Initialize 淘晶驰 software serial %1 at %2 baud RX %3 TX %4",
-    "tooltip": "Create a SoftwareSerial port",
+    "message0": "Initialiser le port série logiciel 淘晶驰 %1 à %2 bauds, RX %3 TX %4",
+    "tooltip": "Créez SoftwareSerial avec le nom choisi, les broches RX/TX et la vitesse de transmission. Interconnectez les fils de l'écran ; ceci est destiné aux cartes de style UNO/Nano sans matériel de rechange UART.",
     "args0": [
       null,
       null,
@@ -24,54 +24,54 @@
     ]
   },
   "tjc_clear_startup": {
-    "message0": "Clear 淘晶驰 startup data on %1",
-    "tooltip": "Discard startup bytes",
+    "message0": "Effacer les données de démarrage de 淘晶驰 sur %1",
+    "tooltip": "Supprimez les octets en attente dans le UART, y compris la trame de mise sous tension commune 0x88 FF FF FF. Exécuté après l'initialisation série et avant l'analyse des images.",
     "args0": [
       null
     ]
   },
   "tjc_set_brightness": {
-    "message0": "Set 淘晶驰 backlight brightness on %1 to %2",
-    "tooltip": "Set runtime brightness",
+    "message0": "Régler la luminosité du rétroéclairage 淘晶驰 sur %1 à %2",
+    "tooltip": "Envoyez dim avec une luminosité d'exécution normalement comprise entre 0 et 100. Cela n'écrit pas les paramètres de flash persistants, il convient donc aux ajustements occasionnels.",
     "args0": [
       null,
       null
     ]
   },
   "tjc_page": {
-    "message0": "Switch 淘晶驰 page on %1 to %2",
-    "tooltip": "Switch to a page",
+    "message0": "Basculez la page 淘晶驰 sur %1 vers %2",
+    "tooltip": "Naviguer avec un nom de page tel que main ou un ID de page numérique. Saisissez uniquement la valeur ; le terminateur de commande est ajouté automatiquement.",
     "args0": [
       null,
       null
     ]
   },
   "tjc_set_variable": {
-    "message0": "Set 淘晶驰 variable %1 to %2",
-    "tooltip": "Assign a 淘晶驰 variable",
+    "message0": "Définissez la variable 淘晶驰 %1 sur %2",
+    "tooltip": "Attribuez une variable système, globale ou de page telle que sys0 ou va0. Les chiffres ne sont pas cités et le texte est automatiquement cité ; n'ajoutez pas d'octets FF.",
     "args0": [
       null,
       null
     ]
   },
   "tjc_set_property": {
-    "message0": "On serial %1 set component %2 property %3 to %4",
-    "tooltip": "Set a component property on the selected serial port. The serial selector is first; use text values for txt and numbers for val, pic, and geometry fields.",
+    "message0": "Sur le port série %1, définir la propriété %3 du composant %2 sur %4",
+    "tooltip": "Écrivez une propriété de composant telle que p0.pic=2, n0.val=100 ou t0.txt=\"Ready\". Le sélecteur de série est le premier donc la cible UART est claire ; sélectionnez l'étiquette de propriété chinois/anglais et faites correspondre les propriétés de texte avec des valeurs de texte et les propriétés numériques avec des nombres.",
     "args0": [
       null,
       null,
       {
         "options": [
           [
-            "Text (txt)",
+            "Texte (txt)",
             "txt"
           ],
           [
-            "Value (val)",
+            "Valeur (val)",
             "val"
           ],
           [
-            "Picture (pic)",
+            "Numéro d’image (pic)",
             "pic"
           ],
           [
@@ -79,19 +79,19 @@
             "vis"
           ],
           [
-            "Touch (tsw)",
+            "Tactile activé (tsw)",
             "tsw"
           ],
           [
-            "Background (bco)",
+            "Couleur d’arrière-plan (bco)",
             "bco"
           ],
           [
-            "Foreground (pco)",
+            "Couleur de premier plan (pco)",
             "pco"
           ],
           [
-            "Font (font)",
+            "Police (font)",
             "font"
           ],
           [
@@ -103,11 +103,11 @@
             "y"
           ],
           [
-            "Width (w)",
+            "Largeur (w)",
             "w"
           ],
           [
-            "Height (h)",
+            "Hauteur (h)",
             "h"
           ]
         ]
@@ -116,34 +116,34 @@
     ]
   },
   "tjc_send_command": {
-    "message0": "Send 淘晶驰 command %1 on %2",
-    "tooltip": "Send a command with FF FF FF",
+    "message0": "Envoyer la commande 淘晶驰 %1 sur %2",
+    "tooltip": "Envoyez du 淘晶驰 ASCII brut tel que page main, ref t0 ou get sys0. Entrez uniquement le texte de la commande ; trois octets de terminaison 0xFF sont automatiquement ajoutés.",
     "args0": [
       null,
       null
     ]
   },
   "tjc_set_bkcmd": {
-    "message0": "Set 淘晶驰 bkcmd on %1 to %2",
-    "tooltip": "Configure command feedback",
+    "message0": "Régler le bkcmd de 淘晶驰 sur %1 à %2",
+    "tooltip": "Choisissez le mode de retour 0 aucun, 1 succès et erreurs, 2 erreurs uniquement ou 3 tous. Activez l'analyseur de trame de retour séparément lorsque le programme doit inspecter les réponses.",
     "args0": [
       null,
       {
         "options": [
           [
-            "0 - none",
+            "0 - aucune réponse",
             "0"
           ],
           [
-            "1 - success and error",
+            "1 - succès et erreur",
             "1"
           ],
           [
-            "2 - errors only",
+            "2 - erreurs uniquement",
             "2"
           ],
           [
-            "3 - all",
+            "3 - toutes les réponses",
             "3"
           ]
         ]
@@ -151,45 +151,45 @@
     ]
   },
   "tjc_enable_frame_parser": {
-    "message0": "Enable 淘晶驰 return frame parser on %1",
-    "tooltip": "Parse terminated frames",
+    "message0": "Activer l'analyseur de trame de retour 淘晶驰 sur %1",
+    "tooltip": "Installez un lecteur loop qui divise les octets en FF FF FF et stocke le premier octet comme type de trame. À utiliser après l'initialisation série et avant les événements de trame ou les blocs de valeurs.",
     "args0": [
       null
     ]
   },
   "tjc_frame_event": {
-    "message0": "When 淘晶驰 frame %1 is received on %2",
-    "message1": "do %1",
-    "tooltip": "Handle a return frame",
+    "message0": "Lorsque la trame 淘晶驰 %1 est reçue sur %2",
+    "message1": "exécuter %1",
+    "tooltip": "Exécute le gestionnaire pour les trames 65 tactile, 66 page, 67 coordonnées, 70 chaîne, 71 nombre, 88 démarrage ou toute trame. L’analyseur doit d’abord être initialisé et le gestionnaire s’exécute dans loop.",
     "args0": [
       {
         "options": [
           [
-            "touch event (65)",
+            "événement tactile (65)",
             "65"
           ],
           [
-            "page ID (66)",
+            "ID de page (66)",
             "66"
           ],
           [
-            "touch coordinates (67)",
+            "coordonnées tactiles (67)",
             "67"
           ],
           [
-            "string (70)",
+            "chaîne (70)",
             "70"
           ],
           [
-            "number (71)",
+            "nombre (71)",
             "71"
           ],
           [
-            "startup (88)",
+            "démarrage (88)",
             "88"
           ],
           [
-            "any frame",
+            "toute trame",
             "ANY"
           ]
         ]
@@ -201,15 +201,15 @@
     ]
   },
   "tjc_frame_type": {
-    "message0": "淘晶驰 last frame type on %1",
-    "tooltip": "Read the last frame type",
+    "message0": "淘晶驰 dernier type de trame sur %1",
+    "tooltip": "Renvoie le premier octet de la dernière trame complète, par exemple 65 pour le tactile ou 71 pour le nombre. Renvoie 0 avant la première trame ; activez d’abord l’analyseur.",
     "args0": [
       null
     ]
   },
   "tjc_frame_available": {
-    "message0": "淘晶驰 frame available on %1",
-    "tooltip": "Check for a complete frame",
+    "message0": "Trame 淘晶驰 disponible sur %1",
+    "tooltip": "Renvoie true lorsqu’une trame complète terminée par FF FF FF est arrivée. Utilisez ce bloc dans une condition if avec le type de trame, ou utilisez un événement de trame pour éviter les données incomplètes.",
     "args0": [
       null
     ]
