@@ -30,7 +30,6 @@ UNIHIKER K10 screen display library with drawing, text, image, animation, and QR
 | `k10_play_animation` | Statement | X, Y, ANIMATION(input_value), PLAY_MODE(dropdown), LOOP(field_checkbox) | `k10_play_animation(math_number(0), math_number(0), k10_animation(), BLOCKING, FALSE)` | Blocking or non-blocking playback with automatic canvas refresh |
 | `k10_draw_animation_frame` | Statement | X, Y, ANIMATION, FRAME(input_value) | `k10_draw_animation_frame(math_number(0), math_number(0), k10_animation(), math_number(0))` | Draw and refresh one clamped animation frame |
 | `k10_animation_frame_count` | Value (Number) | ANIMATION(input_value) | `k10_animation_frame_count(k10_animation())` | Animation frame count |
-| `k10_step_animation_frame` | Statement | FRAME_VAR(field_variable), TARGET, FRAME_COUNT(input_value), DIRECTION(dropdown) | `k10_step_animation_frame(variables_get($k10AnimationFrame), math_number(0), math_number(1), AUTO)` | Move a frame variable one step |
 | `k10_screen_size` | Value | WHICH(dropdown) | `k10_screen_size(W)` | Dynamic code |
 
 ## Parameter Options
@@ -41,7 +40,6 @@ UNIHIKER K10 screen display library with drawing, text, image, animation, and QR
 | FONT | eCNAndENFont16, eCNAndENFont24 | k10_draw_text |
 | MODE | 0, 1 | Clear all rows or clear row 1; saved value `1` remains compatible |
 | PLAY_MODE | BLOCKING, NON_BLOCKING | Play the whole animation at once or advance it from repeated loop execution |
-| DIRECTION | AUTO, FORWARD, BACKWARD | Direction used when stepping a frame variable |
 | WHICH | W, H | k10_screen_size |
 
 ## ABS Examples

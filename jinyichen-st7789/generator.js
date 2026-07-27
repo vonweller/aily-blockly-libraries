@@ -358,22 +358,6 @@ function tftScreenGetVariableCodeName(block, fieldName, fallbackName) {
   return variable && variable.name ? variable.name : fallbackName;
 }
 
-function tftScreenGetFrameVariableCodeName(block, generator) {
-  if (generator && typeof generator.getValue === 'function') {
-    const generatedName = generator.getValue(block, 'FRAME_VAR', 'field_variable');
-    if (generatedName && generatedName !== '?') {
-      return generatedName;
-    }
-  }
-
-  const variableId = block.getFieldValue('FRAME_VAR');
-  if (variableId && generator && generator.nameDB_ && typeof generator.nameDB_.getName === 'function') {
-    return generator.nameDB_.getName(variableId, 'VARIABLE');
-  }
-
-  return tftScreenGetVariableCodeName(block, 'FRAME_VAR', 'tftScreenAnimationFrame');
-}
-
 function tftScreenGetAnimationPrefix(block, generator) {
   if (typeof block.getInputTargetBlock === 'function') {
     const animationBlock = block.getInputTargetBlock('ANIMATION');
@@ -557,48 +541,6 @@ Arduino.forBlock['tftscr_animation_frame_count'] = function(block, generator) {
   }
 
   return [`${animationPrefix}_frame_count`, generator.ORDER_ATOMIC];
-};
-
-Arduino.forBlock['tftscr_step_animation_frame'] = function(block, generator) {
-  tftScreenEnsureAnimationLibraries(generator);
-  const frameVariable = tftScreenGetFrameVariableCodeName(block, generator);
-  const target = generator.valueToCode(block, 'TARGET', generator.ORDER_ATOMIC) || '0';
-  const frameCount = generator.valueToCode(block, 'FRAME_COUNT', generator.ORDER_ATOMIC) || '1';
-  const direction = block.getFieldValue('DIRECTION') || 'AUTO';
-  const symbolSuffix = tftScreenGetBlockSymbolSuffix(block);
-  const targetVariable = `tftscr_animation_target_${symbolSuffix}`;
-  const countVariable = `tftscr_animation_frame_count_${symbolSuffix}`;
-
-  let code = `int32_t ${countVariable} = (int32_t)(${frameCount});\n`;
-  code += `if (${countVariable} > 0) {\n`;
-  code += `  int32_t ${targetVariable} = constrain((int32_t)(${target}), 0, ${countVariable} - 1);\n`;
-  code += `  ${frameVariable} = constrain((int32_t)${frameVariable}, 0, ${countVariable} - 1);\n`;
-
-  if (direction === 'FORWARD') {
-    code += `  if (${frameVariable} != ${targetVariable}) {\n`;
-    code += `    ${frameVariable}++;\n`;
-    code += `    if (${frameVariable} >= ${countVariable}) {\n`;
-    code += `      ${frameVariable} = 0;\n`;
-    code += '    }\n';
-    code += '  }\n';
-  } else if (direction === 'BACKWARD') {
-    code += `  if (${frameVariable} != ${targetVariable}) {\n`;
-    code += `    if (${frameVariable} <= 0) {\n`;
-    code += `      ${frameVariable} = ${countVariable} - 1;\n`;
-    code += '    } else {\n';
-    code += `      ${frameVariable}--;\n`;
-    code += '    }\n';
-    code += '  }\n';
-  } else {
-    code += `  if (${frameVariable} < ${targetVariable}) {\n`;
-    code += `    ${frameVariable}++;\n`;
-    code += `  } else if (${frameVariable} > ${targetVariable}) {\n`;
-    code += `    ${frameVariable}--;\n`;
-    code += '  }\n';
-  }
-
-  code += '}\n';
-  return code;
 };
 
 if (Blockly.Extensions.isRegistered('tftscr_animation_play_dynamic_inputs')) {

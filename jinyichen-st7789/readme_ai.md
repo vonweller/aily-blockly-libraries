@@ -42,7 +42,6 @@ ST7789 TFT屏幕简化库：一键初始化(引脚预设)，绘图/文字/颜色
 | `tftscr_play_animation` | Statement | X, Y, ANIMATION (input_value), PLAY_MODE(dropdown), LOOP(field_checkbox) | `tftscr_play_animation(math_number(0), math_number(0), tftscr_animation(), BLOCKING, FALSE)` | 阻塞或非阻塞播放 RGB565/RGB332 动画 |
 | `tftscr_draw_animation_frame` | Statement | X, Y, ANIMATION, FRAME (input_value) | `tftscr_draw_animation_frame(math_number(0), math_number(0), tftscr_animation(), math_number(0))` | 显示指定动画帧 |
 | `tftscr_animation_frame_count` | Value (Number) | ANIMATION(input_value) | `tftscr_animation_frame_count(tftscr_animation())` | 动画总帧数 |
-| `tftscr_step_animation_frame` | Statement | FRAME_VAR(field_variable), TARGET, FRAME_COUNT (input_value), DIRECTION(dropdown) | `tftscr_step_animation_frame(variables_get($tftScreenAnimationFrame), math_number(0), math_number(1), AUTO)` | 让帧变量向目标帧移动一步 |
 
 ## Parameter Options
 
@@ -51,7 +50,6 @@ ST7789 TFT屏幕简化库：一键初始化(引脚预设)，绘图/文字/颜色
 | SIZE | 1, 2, 3, 4, 5, 6, 7 | 文字大小 |
 | COLOR | TFT_BLACK, TFT_WHITE, TFT_RED, TFT_GREEN, TFT_BLUE, TFT_YELLOW, TFT_CYAN, TFT_MAGENTA, TFT_ORANGE, TFT_LIGHTGREY, TFT_DARKGREY, TFT_NAVY, TFT_DARKGREEN, TFT_DARKCYAN, TFT_MAROON, TFT_PINK | 预设颜色 |
 | PLAY_MODE | BLOCKING, NON_BLOCKING | 阻塞播放或在主循环中非阻塞播放 |
-| DIRECTION | AUTO, FORWARD, BACKWARD | 帧变量移动方向 |
 
 ## Notes
 

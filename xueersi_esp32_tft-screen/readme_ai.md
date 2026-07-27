@@ -1,6 +1,6 @@
 # TFT屏幕库 (TFT Screen)
 
-ST7735 TFT屏幕简化库：一键初始化(引脚预设)，绘图/文字/颜色/动画/TF卡流式动画/屏幕信息
+ST7735 TFT屏幕简化库：一键初始化(引脚预设)，绘图/文字/颜色/图片/动画/TF卡流式动画/屏幕信息
 
 ## Library Info
 - **Name**: @aily-project/lib-tft-screen
@@ -38,12 +38,13 @@ ST7735 TFT屏幕简化库：一键初始化(引脚预设)，绘图/文字/颜色
 | `tftscr_color_rgb` | Value (Number) | R, G, B (input_value) | `tftscr_color_rgb(math_number(255), math_number(0), math_number(0))` | `tft.color565(255, 0, 0)` |
 | `tftscr_width` | Value (Number) | (无) | `tftscr_width()` | `tft.width()` |
 | `tftscr_height` | Value (Number) | (无) | `tftscr_height()` | `tft.height()` |
+| `tftscr_image` | Value (TftScreenImage) | CUSTOM_IMAGE(field_tftespi_image) | `tftscr_image()` | `tftscr_image_..._data` |
+| `tftscr_draw_image` | Statement | X, Y, IMAGE (input_value) | `tftscr_draw_image(math_number(0), math_number(0), tftscr_image())` | 在指定坐标显示 RGB565/RGB332 图片 |
 | `tftscr_animation` | Value (TftScreenAnimation) | CUSTOM_ANIMATION(field_tftespi_animation) | `tftscr_animation()` | `tftscr_animation_..._frames` |
 | `tftscr_play_animation` | Statement | X, Y, ANIMATION (input_value), PLAY_MODE(dropdown), LOOP(field_checkbox) | `tftscr_play_animation(math_number(0), math_number(0), tftscr_animation(), BLOCKING, FALSE)` | 阻塞或非阻塞播放 RGB565/RGB332 动画 |
 | `tftscr_play_tf_animation` | Statement | FILENAME(String), BUFFER_KB(Number) | `tftscr_play_tf_animation(text("/animation.rgb565v"), math_number(48))` | 从板载 TF 卡分块流式播放 AILY 动画，使用同步批量写屏 |
 | `tftscr_draw_animation_frame` | Statement | X, Y, ANIMATION, FRAME (input_value) | `tftscr_draw_animation_frame(math_number(0), math_number(0), tftscr_animation(), math_number(0))` | 显示指定动画帧 |
 | `tftscr_animation_frame_count` | Value (Number) | ANIMATION(input_value) | `tftscr_animation_frame_count(tftscr_animation())` | 动画总帧数 |
-| `tftscr_step_animation_frame` | Statement | FRAME_VAR(field_variable), TARGET, FRAME_COUNT (input_value), DIRECTION(dropdown) | `tftscr_step_animation_frame(variables_get($tftScreenAnimationFrame), math_number(0), math_number(1), AUTO)` | 让帧变量向目标帧移动一步 |
 
 ## Parameter Options
 
@@ -52,7 +53,6 @@ ST7735 TFT屏幕简化库：一键初始化(引脚预设)，绘图/文字/颜色
 | SIZE | 1, 2, 3, 4, 5, 6, 7 | 文字大小 |
 | COLOR | TFT_BLACK, TFT_WHITE, TFT_RED, TFT_GREEN, TFT_BLUE, TFT_YELLOW, TFT_CYAN, TFT_MAGENTA, TFT_ORANGE, TFT_LIGHTGREY, TFT_DARKGREY, TFT_NAVY, TFT_DARKGREEN, TFT_DARKCYAN, TFT_MAROON, TFT_PINK | 预设颜色 |
 | PLAY_MODE | BLOCKING, NON_BLOCKING | 阻塞播放或在主循环中非阻塞播放 |
-| DIRECTION | AUTO, FORWARD, BACKWARD | 帧变量移动方向 |
 
 ## Notes
 
@@ -61,12 +61,13 @@ ST7735 TFT屏幕简化库：一键初始化(引脚预设)，绘图/文字/颜色
 3. **编译宏**: `tftscr_init` 自动设置 TFT_eSPI 所需的所有编译宏（TFT_MODEL/TFT_MOSI/TFT_SCLK等）
 4. **与原tftespi_setup的区别**: 去掉了所有输入参数，驱动/频率/引脚/旋转全部预设，使用更简洁
 5. **颜色块**: `tftscr_color` 提供常用预设色，`tftscr_color_rgb` 支持自定义RGB(0-255)
-6. **动画数据**: `tftscr_animation` 使用 `field_tftespi_animation` 上传 GIF/MP4，默认转换区域为160x120，支持RGB565和RGB332
-7. **动画连接**: 播放、单帧显示和总帧数块的 `ANIMATION` 输入需直接连接 `tftscr_animation` 数据块
-8. **播放方式**: 阻塞模式一次播放完整动画；非阻塞模式应放在主循环中反复执行，并可选择循环播放
-9. **TF-card animation**: `tftscr_play_tf_animation` requires the global `SD` filesystem to be initialized first by the `xueersi_esp32_sd` Blockly package. It never calls `SD.begin()`, `SD.end()`, or restarts SPI. GPIO19 is physically shared by panel RESET and TF MISO, so the generator sets `TFT_RST=-1` and relies on the ST7735 software-reset command; it must never drive GPIO19 as an output.
-10. **High-FPS path**: ESP32 core 3.3.10 uses CMD18 multi-sector reads. Row-aligned large reads are used, and the default 48 KB buffer can hold a full native RGB565 frame. SD clock selection and mount fallback are owned by `xueersi_esp32_sd`.
-11. **Shared-bus safety**: TF playback intentionally does not call TFT_eSPI `initDMA()` / `deInitDMA()`. That DMA implementation directly reinitializes and frees the same IDF HSPI host still owned by Arduino `SPIClass`/`SD`. RGB565 instead uses synchronous batched `pushImage()` calls, keeping card reads and LCD writes serialized without invalidating the mounted card.
-12. **Scaling**: Oversized RGB565/RGB332 video is proportionally downscaled and centered. Native-size RGB565 remains preferable for FPS; scaling and MONO1_XBM use synchronous display transfers.
-13. **ESP32-only wiring**: TFT and TF time-share the same HSPI instance. TFT CS is 5 and TF CS is 22.
-14. **Visible failures**: Missing SD initialization, missing paths, open, AILY validation, frame-read, and allocation failures display a corresponding `TF ERR` instead of returning silently. Missing/open failures also print up to 32 root entries for diagnosis.
+6. **图片数据**: `tftscr_image` 使用 `field_tftespi_image` 上传 PNG/JPEG/WebP/BMP，默认转换区域为160x120，支持RGB565和RGB332；`IMAGE` 输入需直接连接图片数据块
+7. **动画数据**: `tftscr_animation` 使用 `field_tftespi_animation` 上传 GIF/MP4，默认转换区域为160x120，支持RGB565和RGB332
+8. **动画连接**: 播放、单帧显示和总帧数块的 `ANIMATION` 输入需直接连接 `tftscr_animation` 数据块
+9. **播放方式**: 阻塞模式一次播放完整动画；非阻塞模式应放在主循环中反复执行，并可选择循环播放
+10. **TF-card animation**: `tftscr_play_tf_animation` requires the global `SD` filesystem to be initialized first by the `xueersi_esp32_sd` Blockly package. It never calls `SD.begin()`, `SD.end()`, or restarts SPI. GPIO19 is physically shared by panel RESET and TF MISO, so the generator sets `TFT_RST=-1` and relies on the ST7735 software-reset command; it must never drive GPIO19 as an output.
+11. **High-FPS path**: ESP32 core 3.3.10 uses CMD18 multi-sector reads. Row-aligned large reads are used, and the default 48 KB buffer can hold a full native RGB565 frame. SD clock selection and mount fallback are owned by `xueersi_esp32_sd`.
+12. **Shared-bus safety**: TF playback intentionally does not call TFT_eSPI `initDMA()` / `deInitDMA()`. That DMA implementation directly reinitializes and frees the same IDF HSPI host still owned by Arduino `SPIClass`/`SD`. RGB565 instead uses synchronous batched `pushImage()` calls, keeping card reads and LCD writes serialized without invalidating the mounted card.
+13. **Scaling**: Oversized RGB565/RGB332 video is proportionally downscaled and centered. Native-size RGB565 remains preferable for FPS; scaling and MONO1_XBM use synchronous display transfers.
+14. **ESP32-only wiring**: TFT and TF time-share the same HSPI instance. TFT CS is 5 and TF CS is 22.
+15. **Visible failures**: Missing SD initialization, missing paths, open, AILY validation, frame-read, and allocation failures display a corresponding `TF ERR` instead of returning silently. Missing/open failures also print up to 32 root entries for diagnosis.
