@@ -607,6 +607,42 @@ function tftScreenEnsureAnimationLibraries(generator) {
   generator.addLibrary('SPI', '#include <SPI.h>');
 }
 
+function tftScreenDecodeBase64Frame(frameValue, expectedByteLength, frameIndex) {
+  if (typeof frameValue !== 'string') {
+    console.error(`[tftscr_animation] Frame ${frameIndex} is not a Base64 string`);
+    return null;
+  }
+
+  const base64 = frameValue.trim();
+  const base64Pattern = /^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/;
+  if (!base64 || base64.length % 4 !== 0 || !base64Pattern.test(base64)) {
+    console.error(`[tftscr_animation] Frame ${frameIndex} contains invalid Base64 data`);
+    return null;
+  }
+
+  try {
+    let bytes;
+    if (typeof atob === 'function') {
+      const binary = atob(base64);
+      bytes = Uint8Array.from(binary, character => character.charCodeAt(0));
+    } else if (typeof Buffer !== 'undefined') {
+      bytes = Uint8Array.from(Buffer.from(base64, 'base64'));
+    } else {
+      console.error('[tftscr_animation] Base64 decoder is unavailable');
+      return null;
+    }
+
+    if (bytes.length !== expectedByteLength) {
+      console.error(`[tftscr_animation] Frame ${frameIndex} has ${bytes.length} bytes; expected ${expectedByteLength}`);
+      return null;
+    }
+    return bytes;
+  } catch (error) {
+    console.error(`[tftscr_animation] Failed to decode frame ${frameIndex}:`, error);
+    return null;
+  }
+}
+
 function tftScreenFormatRgb565Frame(bytes) {
   const values = [];
   for (let offset = 0; offset < bytes.length; offset += 2) {
@@ -657,67 +693,63 @@ function tftScreenGetAnimationData(block) {
     try {
       animationData = JSON.parse(animationData);
     } catch (error) {
-      throw new Error(`[tftscr_animation] Failed to parse CUSTOM_ANIMATION: ${error}`);
+      console.error('[tftscr_animation] Failed to parse animation field value:', error);
+      return null;
     }
   }
 
-  if (!animationData) {
+  if (!animationData || typeof animationData !== 'object') {
+    console.error('[tftscr_animation] Animation data is missing');
     return null;
   }
 
   const format = animationData.format;
   const encoding = animationData.encoding;
-  const isRgb565 = format === 'rgb565' && encoding === 'rgb565-be';
-  const isRgb332 = format === 'rgb332' && encoding === 'rgb332';
-  if (animationData.schemaVersion !== 1 || (!isRgb565 && !isRgb332)) {
-    throw new Error('[tftscr_animation] CUSTOM_ANIMATION is not a compact TFT animation state');
-  }
-
-  const width = Number(animationData.width);
-  const height = Number(animationData.height);
-  const fps = Number(animationData.fps);
-  const frameCount = Number(animationData.frameCount);
-  if (!Number.isInteger(width) || width <= 0 || width > 65535 ||
-      !Number.isInteger(height) || height <= 0 || height > 65535) {
-    throw new Error('[tftscr_animation] Width and height must be positive 16-bit integers');
-  }
-  if (!Number.isFinite(fps) || fps <= 0) {
-    throw new Error('[tftscr_animation] FPS must be a positive number');
-  }
-  if (!Number.isInteger(frameCount) || frameCount < 0 || frameCount > 65535) {
-    throw new Error('[tftscr_animation] Animation frame count is invalid');
-  }
-  if (frameCount === 0 && !animationData.frames) {
+  const isRgb565 = format === 'rgb565' && encoding === 'rgb565-be-base64';
+  const isRgb332 = format === 'rgb332' && encoding === 'rgb332-base64';
+  if (animationData.version !== 1 || (!isRgb565 && !isRgb332)) {
+    console.error('[tftscr_animation] Unsupported animation version, format, or encoding');
     return null;
   }
-  if (frameCount === 0 || !animationData.frames) {
-    throw new Error('[tftscr_animation] Animation frame reference and frame count are inconsistent');
+
+  const width = animationData.width;
+  const height = animationData.height;
+  const fps = animationData.fps;
+  if (!Number.isInteger(width) || width <= 0 || width > 65535 ||
+      !Number.isInteger(height) || height <= 0 || height > 65535) {
+    console.error('[tftscr_animation] Width and height must be positive 16-bit integers');
+    return null;
+  }
+  if (!Number.isFinite(fps) || fps <= 0) {
+    console.error('[tftscr_animation] FPS must be a positive number');
+    return null;
+  }
+  if (!Array.isArray(animationData.frames)) {
+    console.error('[tftscr_animation] Animation frames must be an array');
+    return null;
+  }
+  // A newly dragged block intentionally starts empty until a GIF or MP4 is uploaded.
+  if (animationData.frames.length === 0) {
+    return null;
+  }
+  if (animationData.frames.length > 65535) {
+    console.error('[tftscr_animation] Animation cannot contain more than 65535 frames');
+    return null;
   }
 
-  const frameByteLength = width * height * (isRgb332 ? 1 : 2);
-  const expectedByteLength = frameByteLength * frameCount;
+  const expectedByteLength = width * height * (isRgb332 ? 1 : 2);
   if (!Number.isSafeInteger(expectedByteLength)) {
-    throw new Error('[tftscr_animation] Animation dimensions are too large');
-  }
-
-  const runtime = globalThis.ailyProjectData;
-  if (!runtime || typeof runtime.getPreparedFieldPayload !== 'function') {
-    throw new Error('[tftscr_animation] Project Data runtime is unavailable');
-  }
-  const packed = runtime.getPreparedFieldPayload(block, 'CUSTOM_ANIMATION');
-  if (!(packed instanceof Uint8Array) || packed.byteLength !== expectedByteLength) {
-    throw new Error('[tftscr_animation] Prepared animation payload length is invalid');
+    console.error('[tftscr_animation] Animation dimensions are too large');
+    return null;
   }
 
   const frames = [];
-  for (let index = 0; index < frameCount; index++) {
-    const offset = index * frameByteLength;
-    const binary = packed.subarray(offset, offset + frameByteLength);
+  for (let index = 0; index < animationData.frames.length; index++) {
+    const binary = tftScreenDecodeBase64Frame(animationData.frames[index], expectedByteLength, index);
+    if (binary === null) {
+      return null;
+    }
     frames.push(isRgb332 ? tftScreenFormatRgb332Frame(binary) : tftScreenFormatRgb565Frame(binary));
-  }
-  const resourceId = animationData.frames?.$ailyData?.id;
-  if (typeof resourceId !== 'string' || resourceId.length === 0) {
-    throw new Error('[tftscr_animation] Animation resource reference is invalid');
   }
 
   return {
@@ -725,7 +757,7 @@ function tftScreenGetAnimationData(block) {
     height,
     fps,
     format,
-    signature: tftScreenGetAnimationSignature(format, encoding, width, height, fps, [resourceId]),
+    signature: tftScreenGetAnimationSignature(format, encoding, width, height, fps, animationData.frames),
     frames
   };
 }
@@ -737,52 +769,46 @@ function tftScreenGetImageData(block) {
     try {
       imageData = JSON.parse(imageData);
     } catch (error) {
-      throw new Error(`[tftscr_image] Failed to parse CUSTOM_IMAGE: ${error}`);
+      console.error('[tftscr_image] Failed to parse image field value:', error);
+      return null;
     }
   }
 
-  if (!imageData) {
+  if (!imageData || typeof imageData !== 'object') {
+    console.error('[tftscr_image] Image data is missing');
     return null;
   }
 
   const format = imageData.format;
   const encoding = imageData.encoding;
-  const isRgb565 = format === 'rgb565' && encoding === 'rgb565-be';
-  const isRgb332 = format === 'rgb332' && encoding === 'rgb332';
-  if (imageData.schemaVersion !== 1 || (!isRgb565 && !isRgb332)) {
-    throw new Error('[tftscr_image] CUSTOM_IMAGE is not a compact TFT image state');
-  }
-
-  const width = Number(imageData.width);
-  const height = Number(imageData.height);
-  const frameCount = Number(imageData.frameCount);
-  if (!Number.isInteger(width) || width <= 0 || width > 65535 ||
-      !Number.isInteger(height) || height <= 0 || height > 65535) {
-    throw new Error('[tftscr_image] Width and height must be positive 16-bit integers');
-  }
-
-  if (frameCount === 0 && !imageData.frames) {
+  const isRgb565 = format === 'rgb565' && encoding === 'rgb565-be-base64';
+  const isRgb332 = format === 'rgb332' && encoding === 'rgb332-base64';
+  if (imageData.version !== 1 || (!isRgb565 && !isRgb332)) {
+    console.error('[tftscr_image] Unsupported image version, format, or encoding');
     return null;
   }
-  if (frameCount !== 1 || !imageData.frames) {
-    throw new Error('[tftscr_image] Static image must contain exactly one prepared frame');
+
+  const width = imageData.width;
+  const height = imageData.height;
+  if (!Number.isInteger(width) || width <= 0 || width > 65535 ||
+      !Number.isInteger(height) || height <= 0 || height > 65535) {
+    console.error('[tftscr_image] Width and height must be positive 16-bit integers');
+    return null;
+  }
+
+  // A newly dragged image block remains empty until an image is uploaded.
+  if (!imageData.data) {
+    return null;
   }
 
   const expectedByteLength = width * height * (isRgb332 ? 1 : 2);
   if (!Number.isSafeInteger(expectedByteLength)) {
-    throw new Error('[tftscr_image] Image dimensions are too large');
+    console.error('[tftscr_image] Image dimensions are too large');
+    return null;
   }
-  const runtime = globalThis.ailyProjectData;
-  if (!runtime || typeof runtime.getPreparedFieldPayload !== 'function') {
-    throw new Error('[tftscr_image] Project Data runtime is unavailable');
-  }
-  const bytes = runtime.getPreparedFieldPayload(block, 'CUSTOM_IMAGE');
-  if (!(bytes instanceof Uint8Array) || bytes.byteLength !== expectedByteLength) {
-    throw new Error('[tftscr_image] Prepared image payload length is invalid');
-  }
-  const resourceId = imageData.frames?.$ailyData?.id;
-  if (typeof resourceId !== 'string' || resourceId.length === 0) {
-    throw new Error('[tftscr_image] Image resource reference is invalid');
+  const bytes = tftScreenDecodeBase64Frame(imageData.data, expectedByteLength, 'image');
+  if (bytes === null) {
+    return null;
   }
 
   return {
@@ -795,7 +821,7 @@ function tftScreenGetImageData(block) {
       width,
       height,
       0,
-      [resourceId]
+      [imageData.data]
     ),
     pixels: isRgb332 ? tftScreenFormatRgb332Frame(bytes) : tftScreenFormatRgb565Frame(bytes)
   };
