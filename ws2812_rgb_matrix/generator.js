@@ -82,28 +82,60 @@ function ws2812MatrixHashText(text) {
   return hash.toString(36);
 }
 
-function ws2812MatrixNormalizeImage(value) {
-  let image = value;
+function ws2812MatrixNormalizeImage(block, fieldName) {
+  let image = block.getFieldValue(fieldName);
   if (typeof image === 'string') {
     try {
       image = JSON.parse(image);
     } catch (error) {
-      image = null;
+      throw new Error(`[ws2812_matrix_draw_image] Failed to parse ${fieldName}: ${error}`);
     }
   }
-  const width = ws2812MatrixSafeInteger(image && image.width, 8, 1, 128);
-  const height = ws2812MatrixSafeInteger(image && image.height, 8, 1, 128);
-  const sourcePixels = image && Array.isArray(image.pixels) ? image.pixels : [];
-  const pixels = [];
+  if (!image) {
+    return {
+      width: 8,
+      height: 8,
+      pixels: Array.from({ length: 8 }, () => Array(8).fill(null)),
+      resourceId: 'empty'
+    };
+  }
+  if (image.schemaVersion !== 1 || image.mode !== 'rgb' || image.encoding !== 'rgba8888-v1') {
+    throw new Error('[ws2812_matrix_draw_image] IMAGE is not a compact RGB LED matrix state');
+  }
+  const width = Number(image.width);
+  const height = Number(image.height);
+  if (!Number.isInteger(width) || width < 1 || width > 128 ||
+      !Number.isInteger(height) || height < 1 || height > 128) {
+    throw new Error('[ws2812_matrix_draw_image] Image dimensions are invalid');
+  }
+  const pixels = Array.from({ length: height }, () => Array(width).fill(null));
+  if (!image.pixels) {
+    return { width, height, pixels, resourceId: 'empty' };
+  }
+  const runtime = globalThis.ailyProjectData;
+  if (!runtime || typeof runtime.getPreparedFieldPayload !== 'function') {
+    throw new Error('[ws2812_matrix_draw_image] Project Data runtime is unavailable');
+  }
+  const bytes = runtime.getPreparedFieldPayload(block, fieldName);
+  const expectedByteLength = width * height * 4;
+  if (!(bytes instanceof Uint8Array) || bytes.byteLength !== expectedByteLength) {
+    throw new Error('[ws2812_matrix_draw_image] Prepared image payload length is invalid');
+  }
   for (let y = 0; y < height; y++) {
-    const sourceRow = Array.isArray(sourcePixels[y]) ? sourcePixels[y] : [];
-    const row = [];
     for (let x = 0; x < width; x++) {
-      row.push(sourceRow[x] === undefined ? null : sourceRow[x]);
+      const offset = (y * width + x) * 4;
+      if (bytes[offset + 3] !== 0) {
+        pixels[y][x] = '#' + bytes[offset].toString(16).padStart(2, '0')
+          + bytes[offset + 1].toString(16).padStart(2, '0')
+          + bytes[offset + 2].toString(16).padStart(2, '0');
+      }
     }
-    pixels.push(row);
   }
-  return { width, height, pixels };
+  const resourceId = image.pixels?.$ailyData?.id;
+  if (typeof resourceId !== 'string' || resourceId.length === 0) {
+    throw new Error('[ws2812_matrix_draw_image] Image resource reference is invalid');
+  }
+  return { width, height, pixels, resourceId };
 }
 
 function ws2812MatrixFormatArray(values) {
@@ -544,14 +576,19 @@ Arduino.forBlock['ws2812_matrix_draw_image'] = function(block, generator) {
   const x = ws2812MatrixValueToCode(block, generator, 'X', '0');
   const y = ws2812MatrixValueToCode(block, generator, 'Y', '0');
   const transparent = block.getFieldValue('TRANSPARENT') === 'true';
-  const image = ws2812MatrixNormalizeImage(block.getFieldValue('IMAGE'));
+  const image = ws2812MatrixNormalizeImage(block, 'IMAGE');
   const imageValues = [];
   for (let row = 0; row < image.height; row++) {
     for (let col = 0; col < image.width; col++) {
       imageValues.push(ws2812MatrixPixelToCode(image.pixels[row][col], transparent));
     }
   }
-  const imageKey = 'ws2812_matrix_image_' + ws2812MatrixHashText(JSON.stringify({ image, transparent }));
+  const imageKey = 'ws2812_matrix_image_' + ws2812MatrixHashText(JSON.stringify({
+    width: image.width,
+    height: image.height,
+    resourceId: image.resourceId,
+    transparent
+  }));
   generator.addObject(imageKey, 'const uint32_t ' + imageKey + '[] = {\n' + ws2812MatrixFormatArray(imageValues) + '\n};');
   ws2812MatrixEnsureBitmapHelper(generator);
   return 'ws2812MatrixDrawBitmap(' + varName + ', ' + x + ', ' + y + ', ' + varName + '_width, ' + varName + '_height, ' + varName + '_serpentine, ' + image.width + ', ' + image.height + ', ' + imageKey + ', ' + (transparent ? 'true' : 'false') + ');\n';

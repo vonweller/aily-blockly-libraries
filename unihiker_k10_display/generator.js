@@ -175,42 +175,6 @@ Arduino.forBlock['k10_clear_qrcode'] = function(block, generator) {
 };
 
 // ========== 动画 ==========
-function k10DecodeBase64AnimationFrame(frameValue, expectedByteLength, frameIndex) {
-  if (typeof frameValue !== 'string') {
-    console.error(`[k10_animation] Frame ${frameIndex} is not a Base64 string`);
-    return null;
-  }
-
-  const base64 = frameValue.trim();
-  const base64Pattern = /^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/;
-  if (!base64 || base64.length % 4 !== 0 || !base64Pattern.test(base64)) {
-    console.error(`[k10_animation] Frame ${frameIndex} contains invalid Base64 data`);
-    return null;
-  }
-
-  try {
-    let bytes;
-    if (typeof atob === 'function') {
-      const binary = atob(base64);
-      bytes = Uint8Array.from(binary, character => character.charCodeAt(0));
-    } else if (typeof Buffer !== 'undefined') {
-      bytes = Uint8Array.from(Buffer.from(base64, 'base64'));
-    } else {
-      console.error('[k10_animation] Base64 decoder is unavailable');
-      return null;
-    }
-
-    if (bytes.length !== expectedByteLength) {
-      console.error(`[k10_animation] Frame ${frameIndex} has ${bytes.length} bytes; expected ${expectedByteLength}`);
-      return null;
-    }
-    return bytes;
-  } catch (error) {
-    console.error(`[k10_animation] Failed to decode frame ${frameIndex}:`, error);
-    return null;
-  }
-}
-
 function k10Rgb332ToRgb565(value) {
   const red3 = (value >> 5) & 0x07;
   const green3 = (value >> 2) & 0x07;
@@ -277,65 +241,69 @@ function k10GetAnimationData(block) {
     try {
       animationData = JSON.parse(animationData);
     } catch (error) {
-      console.error('[k10_animation] Failed to parse animation field value:', error);
-      return null;
+      throw new Error(`[k10_animation] Failed to parse CUSTOM_ANIMATION: ${error}`);
     }
   }
 
-  if (!animationData || typeof animationData !== 'object') {
-    console.error('[k10_animation] Animation data is missing');
+  if (!animationData) {
     return null;
   }
 
   const format = animationData.format;
   const encoding = animationData.encoding;
-  const isRgb565 = format === 'rgb565' && encoding === 'rgb565-be-base64';
-  const isRgb332 = format === 'rgb332' && encoding === 'rgb332-base64';
-  if (animationData.version !== 1 || (!isRgb565 && !isRgb332)) {
-    console.error('[k10_animation] Unsupported animation version, format, or encoding');
-    return null;
+  const isRgb565 = format === 'rgb565' && encoding === 'rgb565-be';
+  const isRgb332 = format === 'rgb332' && encoding === 'rgb332';
+  if (animationData.schemaVersion !== 1 || (!isRgb565 && !isRgb332)) {
+    throw new Error('[k10_animation] CUSTOM_ANIMATION is not a compact TFT animation state');
   }
 
-  const width = animationData.width;
-  const height = animationData.height;
-  const fps = animationData.fps;
+  const width = Number(animationData.width);
+  const height = Number(animationData.height);
+  const fps = Number(animationData.fps);
+  const frameCount = Number(animationData.frameCount);
   if (!Number.isInteger(width) || width <= 0 || width > 65535 ||
       !Number.isInteger(height) || height <= 0 || height > 65535) {
-    console.error('[k10_animation] Width and height must be positive 16-bit integers');
-    return null;
+    throw new Error('[k10_animation] Width and height must be positive 16-bit integers');
   }
   if (!Number.isFinite(fps) || fps <= 0) {
-    console.error('[k10_animation] FPS must be a positive number');
+    throw new Error('[k10_animation] FPS must be a positive number');
+  }
+  if (!Number.isInteger(frameCount) || frameCount < 0 || frameCount > 65535) {
+    throw new Error('[k10_animation] Animation frame count is invalid');
+  }
+  if (frameCount === 0 && !animationData.frames) {
     return null;
   }
-  if (!Array.isArray(animationData.frames)) {
-    console.error('[k10_animation] Animation frames must be an array');
-    return null;
-  }
-  // A newly dragged block intentionally starts empty until media is uploaded.
-  if (animationData.frames.length === 0) {
-    return null;
-  }
-  if (animationData.frames.length > 65535) {
-    console.error('[k10_animation] Animation cannot contain more than 65535 frames');
-    return null;
+  if (frameCount === 0 || !animationData.frames) {
+    throw new Error('[k10_animation] Animation frame reference and frame count are inconsistent');
   }
 
-  const expectedByteLength = width * height * (isRgb332 ? 1 : 2);
+  const frameByteLength = width * height * (isRgb332 ? 1 : 2);
+  const expectedByteLength = frameByteLength * frameCount;
   if (!Number.isSafeInteger(expectedByteLength)) {
-    console.error('[k10_animation] Animation dimensions are too large');
-    return null;
+    throw new Error('[k10_animation] Animation dimensions are too large');
+  }
+
+  const runtime = globalThis.ailyProjectData;
+  if (!runtime || typeof runtime.getPreparedFieldPayload !== 'function') {
+    throw new Error('[k10_animation] Project Data runtime is unavailable');
+  }
+  const packed = runtime.getPreparedFieldPayload(block, 'CUSTOM_ANIMATION');
+  if (!(packed instanceof Uint8Array) || packed.byteLength !== expectedByteLength) {
+    throw new Error('[k10_animation] Prepared animation payload length is invalid');
   }
 
   const frames = [];
-  for (let index = 0; index < animationData.frames.length; index++) {
-    const bytes = k10DecodeBase64AnimationFrame(animationData.frames[index], expectedByteLength, index);
-    if (bytes === null) {
-      return null;
-    }
+  for (let index = 0; index < frameCount; index++) {
+    const offset = index * frameByteLength;
+    const bytes = packed.subarray(offset, offset + frameByteLength);
     // K10 canvas data uses big-endian RGB565 bytes, but its display path expects
     // the red and blue fields reversed. Apply that conversion to both source formats.
     frames.push(k10FormatAnimationFrame(bytes, isRgb332));
+  }
+  const resourceId = animationData.frames?.$ailyData?.id;
+  if (typeof resourceId !== 'string' || resourceId.length === 0) {
+    throw new Error('[k10_animation] Animation resource reference is invalid');
   }
 
   return {
@@ -343,7 +311,7 @@ function k10GetAnimationData(block) {
     height,
     fps,
     format,
-    signature: k10GetAnimationSignature(format, encoding, width, height, fps, animationData.frames),
+    signature: k10GetAnimationSignature(format, encoding, width, height, fps, [resourceId]),
     frames
   };
 }

@@ -382,85 +382,87 @@ Arduino.forBlock['tft_get_buffer'] = function(block, generator) {
 };
 
 // 位图数据块 - 处理图像数据并创建变量
-Arduino.forBlock['tft_bitmap_image'] = function(block, generator) {
-  // 获取位图数据字段
-  const imageData = block.getFieldValue('IMAGE_DATA');
-  console.log('Processing image data...');
-  
-  // 生成一个唯一的变量名
-  const bitmapVarName = `bitmap_${block.id.replace(/[^a-zA-Z0-9]/g, '')}`;
-  
-  try {
-    // 解析图像数据
-    let width, height, formattedData;
-    
-    if (imageData && imageData.trim()) {
-      // 尝试解析用户提供的图像数据
-      const result = convertImageToRGB565(imageData);
-      
-      if (!result) {
-        console.error('Failed to convert image data to RGB565 format');
-        // 使用一个小的默认图像数据，防止生成错误代码
-        width = 8;
-        height = 8;
-        formattedData = '0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF,\n' +
-                        '0xFFFF, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0xFFFF,\n' +
-                        '0xFFFF, 0x0000, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0x0000, 0xFFFF,\n' +
-                        '0xFFFF, 0x0000, 0xFFFF, 0x0000, 0x0000, 0xFFFF, 0x0000, 0xFFFF,\n' +
-                        '0xFFFF, 0x0000, 0xFFFF, 0x0000, 0x0000, 0xFFFF, 0x0000, 0xFFFF,\n' +
-                        '0xFFFF, 0x0000, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0x0000, 0xFFFF,\n' +
-                        '0xFFFF, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0xFFFF,\n' +
-                        '0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF';
-      } else {
-        ({ width, height, formattedData } = result);
-      }
-    } else {
-      // 如果没有提供图像数据，使用默认示例图像（一个简单的笑脸）
-      width = 16;
-      height = 16;
-      
-      // 简单的笑脸图像，16x16像素，RGB565格式
-      formattedData = 
-        '0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000,\n' +
-        '0x0000, 0x0000, 0x0000, 0xFFE0, 0xFFE0, 0xFFE0, 0xFFE0, 0xFFE0, 0xFFE0, 0xFFE0, 0xFFE0, 0xFFE0, 0xFFE0, 0x0000, 0x0000, 0x0000,\n' +
-        '0x0000, 0x0000, 0xFFE0, 0xFFE0, 0xFFE0, 0xFFE0, 0xFFE0, 0xFFE0, 0xFFE0, 0xFFE0, 0xFFE0, 0xFFE0, 0xFFE0, 0xFFE0, 0x0000, 0x0000,\n' +
-        '0x0000, 0xFFE0, 0xFFE0, 0xFFE0, 0xFFE0, 0xFFE0, 0xFFE0, 0xFFE0, 0xFFE0, 0xFFE0, 0xFFE0, 0xFFE0, 0xFFE0, 0xFFE0, 0xFFE0, 0x0000,\n' +
-        '0x0000, 0xFFE0, 0xFFE0, 0xFFE0, 0x0000, 0x0000, 0xFFE0, 0xFFE0, 0xFFE0, 0xFFE0, 0x0000, 0x0000, 0xFFE0, 0xFFE0, 0xFFE0, 0x0000,\n' +
-        '0x0000, 0xFFE0, 0xFFE0, 0xFFE0, 0x0000, 0x0000, 0xFFE0, 0xFFE0, 0xFFE0, 0xFFE0, 0x0000, 0x0000, 0xFFE0, 0xFFE0, 0xFFE0, 0x0000,\n' +
-        '0x0000, 0xFFE0, 0xFFE0, 0xFFE0, 0xFFE0, 0xFFE0, 0xFFE0, 0xFFE0, 0xFFE0, 0xFFE0, 0xFFE0, 0xFFE0, 0xFFE0, 0xFFE0, 0xFFE0, 0x0000,\n' +
-        '0x0000, 0xFFE0, 0xFFE0, 0xFFE0, 0xFFE0, 0xFFE0, 0xFFE0, 0xFFE0, 0xFFE0, 0xFFE0, 0xFFE0, 0xFFE0, 0xFFE0, 0xFFE0, 0xFFE0, 0x0000,\n' +
-        '0x0000, 0xFFE0, 0xFFE0, 0xFFE0, 0xFFE0, 0xFFE0, 0xFFE0, 0xFFE0, 0xFFE0, 0xFFE0, 0xFFE0, 0xFFE0, 0xFFE0, 0xFFE0, 0xFFE0, 0x0000,\n' +
-        '0x0000, 0xFFE0, 0xFFE0, 0xFFE0, 0xFFE0, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0xFFE0, 0xFFE0, 0xFFE0, 0xFFE0, 0x0000,\n' +
-        '0x0000, 0xFFE0, 0xFFE0, 0xFFE0, 0x0000, 0xFFE0, 0xFFE0, 0xFFE0, 0xFFE0, 0xFFE0, 0xFFE0, 0x0000, 0xFFE0, 0xFFE0, 0xFFE0, 0x0000,\n' +
-        '0x0000, 0xFFE0, 0xFFE0, 0xFFE0, 0x0000, 0x0000, 0xFFE0, 0xFFE0, 0xFFE0, 0xFFE0, 0x0000, 0x0000, 0xFFE0, 0xFFE0, 0xFFE0, 0x0000,\n' +
-        '0x0000, 0x0000, 0xFFE0, 0xFFE0, 0xFFE0, 0xFFE0, 0xFFE0, 0xFFE0, 0xFFE0, 0xFFE0, 0xFFE0, 0xFFE0, 0xFFE0, 0xFFE0, 0x0000, 0x0000,\n' +
-        '0x0000, 0x0000, 0x0000, 0xFFE0, 0xFFE0, 0xFFE0, 0xFFE0, 0xFFE0, 0xFFE0, 0xFFE0, 0xFFE0, 0xFFE0, 0xFFE0, 0x0000, 0x0000, 0x0000,\n' +
-        '0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000,\n' +
-        '0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000';
+function adafruitGfxGetBitmapImageData(block) {
+  let state = block.getFieldValue('IMAGE_DATA');
+  if (typeof state === 'string') {
+    try {
+      state = JSON.parse(state);
+    } catch (error) {
+      throw new Error(`[tft_bitmap_image] Failed to parse IMAGE_DATA: ${error}`);
     }
-    
-    // 添加位图数据到程序的全局变量部分
-    const bitmapDeclaration = `// 图像数据 (${width}x${height})
-static const uint16_t ${bitmapVarName}[] PROGMEM = {
-${formattedData}
-};
-const uint16_t ${bitmapVarName}_width = ${width};
-const uint16_t ${bitmapVarName}_height = ${height};`;
-
-    generator.addVariable(bitmapVarName, bitmapDeclaration);
-    
-    // 返回位图变量名，用于在drawRGBBitmap中引用
-    return [`${bitmapVarName}`, Arduino.ORDER_ATOMIC];
-  } catch (e) {
-    console.error('Error processing image data:', e);
-    return ['NULL', Arduino.ORDER_ATOMIC];
   }
+  if (!state) return null;
+
+  const isRgb565 = state.format === 'rgb565' && state.encoding === 'rgb565-be';
+  const isRgb332 = state.format === 'rgb332' && state.encoding === 'rgb332';
+  if (state.schemaVersion !== 1 || (!isRgb565 && !isRgb332)) {
+    throw new Error('[tft_bitmap_image] IMAGE_DATA is not a compact TFT image state');
+  }
+  const width = Number(state.width);
+  const height = Number(state.height);
+  const frameCount = Number(state.frameCount);
+  if (!Number.isInteger(width) || width < 1 || width > 65535 ||
+      !Number.isInteger(height) || height < 1 || height > 65535) {
+    throw new Error('[tft_bitmap_image] Image dimensions are invalid');
+  }
+  if (frameCount === 0 && !state.frames) return null;
+  if (frameCount !== 1 || !state.frames) {
+    throw new Error('[tft_bitmap_image] Static image must contain exactly one prepared frame');
+  }
+
+  const expectedByteLength = width * height * (isRgb332 ? 1 : 2);
+  const runtime = globalThis.ailyProjectData;
+  if (!runtime || typeof runtime.getPreparedFieldPayload !== 'function') {
+    throw new Error('[tft_bitmap_image] Project Data runtime is unavailable');
+  }
+  const bytes = runtime.getPreparedFieldPayload(block, 'IMAGE_DATA');
+  if (!(bytes instanceof Uint8Array) || bytes.byteLength !== expectedByteLength) {
+    throw new Error('[tft_bitmap_image] Prepared image payload length is invalid');
+  }
+  const resourceId = state.frames?.$ailyData?.id;
+  if (typeof resourceId !== 'string' || resourceId.length === 0) {
+    throw new Error('[tft_bitmap_image] Image resource reference is invalid');
+  }
+
+  const pixels = [];
+  if (isRgb565) {
+    for (let index = 0; index < bytes.length; index += 2) {
+      pixels.push((bytes[index] << 8) | bytes[index + 1]);
+    }
+  } else {
+    for (const value of bytes) {
+      const red = Math.round(((value >> 5) & 0x07) * 31 / 7);
+      const green = Math.round(((value >> 2) & 0x07) * 63 / 7);
+      const blue = Math.round((value & 0x03) * 31 / 3);
+      pixels.push((red << 11) | (green << 5) | blue);
+    }
+  }
+  const lines = [];
+  for (let index = 0; index < pixels.length; index += 12) {
+    lines.push('  ' + pixels.slice(index, index + 12)
+      .map(value => `0x${value.toString(16).padStart(4, '0').toUpperCase()}`)
+      .join(', '));
+  }
+  return { width, height, resourceId, formattedData: lines.join(',\n') };
+}
+
+Arduino.forBlock['tft_bitmap_image'] = function(block, generator) {
+  const preparedImage = adafruitGfxGetBitmapImageData(block);
+  if (!preparedImage) return ['NULL', Arduino.ORDER_ATOMIC];
+  const symbol = `bitmap_${block.id.replace(/[^a-zA-Z0-9]/g, '')}`;
+  generator.addVariable(symbol, `// Image data (${preparedImage.width}x${preparedImage.height})
+static const uint16_t ${symbol}[] PROGMEM = {
+${preparedImage.formattedData}
+};
+const uint16_t ${symbol}_width = ${preparedImage.width};
+const uint16_t ${symbol}_height = ${preparedImage.height};`);
+  return [symbol, Arduino.ORDER_ATOMIC];
 };
 
 // 图片文件处理块 - 使用新的图片预览字段
 Arduino.forBlock['tft_image_file'] = function(block, generator) {
   // 获取图片预览字段的值和坐标
-  const imagePreview = block.getFieldValue('IMAGE_PREVIEW');
+  let imagePreview = block.getFieldValue('IMAGE_PREVIEW');
   const x = block.getFieldValue('X') || '0';
   const y = block.getFieldValue('Y') || '0';
 
@@ -468,23 +470,40 @@ Arduino.forBlock['tft_image_file'] = function(block, generator) {
   let width = block.getFieldValue('WIDTH');
   let height = block.getFieldValue('HEIGHT');
 
-  // 解析图片预览字段的值
+  if (typeof imagePreview === 'string') {
+    try {
+      imagePreview = JSON.parse(imagePreview);
+    } catch (error) {
+      throw new Error(`[tft_image_file] Failed to parse IMAGE_PREVIEW: ${error}`);
+    }
+  }
+
+  // 解析图片预览字段的紧凑状态
   let filePath = '';
   let previewWidth = 32;
   let previewHeight = 32;
+  let resourceId = '';
 
-  if (imagePreview && typeof imagePreview === 'object') {
+  if (imagePreview) {
+    if (imagePreview.schemaVersion !== 1) {
+      throw new Error('[tft_image_file] IMAGE_PREVIEW is not a compact image state');
+    }
     filePath = imagePreview.filePath || '';
     previewWidth = imagePreview.width || 32;
     previewHeight = imagePreview.height || 32;
-  } else if (typeof imagePreview === 'string') {
-    try {
-      const parsed = JSON.parse(imagePreview);
-      filePath = parsed.filePath || '';
-      previewWidth = parsed.width || 32;
-      previewHeight = parsed.height || 32;
-    } catch (e) {
-      filePath = imagePreview;
+    if (imagePreview.image) {
+      const runtime = globalThis.ailyProjectData;
+      if (!runtime || typeof runtime.getPreparedFieldPayload !== 'function') {
+        throw new Error('[tft_image_file] Project Data runtime is unavailable');
+      }
+      const bytes = runtime.getPreparedFieldPayload(block, 'IMAGE_PREVIEW');
+      if (!(bytes instanceof Uint8Array) || bytes.byteLength !== imagePreview.image.$ailyData?.rawLength) {
+        throw new Error('[tft_image_file] Prepared image payload length is invalid');
+      }
+      resourceId = imagePreview.image.$ailyData?.id || '';
+      if (!resourceId) {
+        throw new Error('[tft_image_file] Image resource reference is invalid');
+      }
     }
   }
 
@@ -498,7 +517,7 @@ Arduino.forBlock['tft_image_file'] = function(block, generator) {
   console.log(`[图片文件] 处理文件: ${filePath}, 尺寸: ${width}x${height}, 位置: (${x}, ${y})`);
 
   // 检查是否已选择文件
-  if (!filePath || filePath.trim() === '') {
+  if (!resourceId) {
     console.log('使用默认占位图像');
     const defaultCode = processDefaultImage(bitmapVarName, width, height, generator);
     if (defaultCode && defaultCode[0] !== 'NULL') {
@@ -508,7 +527,7 @@ Arduino.forBlock['tft_image_file'] = function(block, generator) {
   }
 
   // 处理图片文件并生成显示代码
-  const imageCode = processImageFile(filePath, width, height, bitmapVarName, generator);
+  const imageCode = processImageFile(filePath, resourceId, width, height, bitmapVarName, generator);
   if (imageCode && imageCode[0] !== 'NULL') {
     return `tft.drawRGBBitmap(${x}, ${y}, ${bitmapVarName}, ${width}, ${height});\n`;
   }
@@ -770,29 +789,26 @@ const uint16_t ${bitmapVarName}_height = ${h};`;
 }
 
 // 处理图片文件
-function processImageFile(filePath, width, height, bitmapVarName, generator) {
+function processImageFile(filePath, resourceId, width, height, bitmapVarName, generator) {
   try {
     // 检查全局存储的图片数据
-    if (window.tftImageCache && window.tftImageCache[filePath]) {
+    const cache = window.tftImageCache || {};
+    const imageData = cache[resourceId]
+      || cache[filePath]
+      || cache[String(filePath).toLowerCase()]
+      || cache[String(filePath).replace(/\s+/g, '_')];
+    if (imageData) {
       // 使用缓存的图片数据
-      const imageData = window.tftImageCache[filePath];
-      console.log(`[图片处理] 命中缓存: ${filePath}`);
+      console.log(`[图片处理] 命中缓存: ${resourceId}`);
       const processedData = processImageToRGB565(imageData, width, height);
       const bitmapDeclaration = `// 从文件加载的图像: ${filePath} (${width}x${height})\nstatic const uint16_t ${bitmapVarName}[] PROGMEM = {\n  ${processedData}\n};\nconst uint16_t ${bitmapVarName}_width = ${width};\nconst uint16_t ${bitmapVarName}_height = ${height};`;
       generator.addVariable(bitmapVarName, bitmapDeclaration);
       return [`${bitmapVarName}`, Arduino.ORDER_ATOMIC];
     } else {
-      // 没有图片数据，使用占位图像但不阻止代码生成
-      console.warn(`[图片处理] 未命中缓存: ${filePath}，使用占位图像`);
-      // 显示警告信息（如果可能的话）
-      console.warn('图片未加载完成，已使用占位图像');
-      return processDefaultImage(bitmapVarName, width, height, generator);
+      throw new Error(`[tft_image_file] Prepared image cache is unavailable: ${resourceId}`);
     }
   } catch (e) {
-    console.error('处理图片文件时出错:', e);
-    // 显示错误信息
-    console.error('图片处理出错，已使用默认占位图像！');
-    return processDefaultImage(bitmapVarName, width, height, generator);
+    throw new Error(`[tft_image_file] Failed to generate image data: ${e}`);
   }
 }
 
@@ -803,7 +819,7 @@ function processImageToRGB565(imageData, targetWidth, targetHeight) {
     const height = parseInt(targetHeight);
     
     // 检查是否有预处理的数据
-    if (imageData.processedSizes) {
+    if (imageData.processedSizes && Object.keys(imageData.processedSizes).length > 0) {
       // 查找匹配的尺寸
       const exactMatch = imageData.processedSizes[width];
       if (exactMatch && width === height) {
@@ -829,13 +845,10 @@ function processImageToRGB565(imageData, targetWidth, targetHeight) {
       return processImageRealTime(imageData.imageElement, width, height);
     }
     
-    // 都没有，返回更友好的占位图像
-    console.warn('没有可用的图片数据，使用占位图像');
-    return generatePlaceholderData(width, height, '0x8410'); // 灰色占位，避免纯绿色
+    throw new Error('Prepared image cache does not contain decodable pixels');
     
   } catch (e) {
-    console.error('处理图片数据时出错:', e);
-    return generatePlaceholderData(targetWidth, targetHeight, '0xF800'); // 红色错误
+    throw new Error(`[tft_image_file] Failed to convert image pixels to RGB565: ${e}`);
   }
 }
 
@@ -970,115 +983,6 @@ Arduino.forBlock['tft_draw_image'] = function(block, generator) {
   return `tft.drawRGBBitmap(${x}, ${y}, ${bitmap}, ${bitmap}_width, ${bitmap}_height);\n`;
 };
 
-// 辅助函数：将图像数据转换为RGB565格式
-function convertImageToRGB565(imageData) {
-  try {
-    // 尝试解析图像数据，支持多种格式
-    let parsedData;
-    
-    // 首先尝试作为JSON解析
-    try {
-      parsedData = JSON.parse(imageData);
-    } catch(e) {
-      // 如果JSON解析失败，尝试作为字符串表达的二维数组解析
-      try {
-        parsedData = eval(`(${imageData})`);
-      } catch(e2) {
-        console.error('Failed to parse image data', e2);
-        return null;
-      }
-    }
-    
-    // 处理数据，提取宽度、高度和像素数据
-    let width, height, pixels;
-    
-    // 检查数据格式
-    if (Array.isArray(parsedData)) {
-      // 如果是数组，假设它是二维像素数组 [rows][cols]
-      height = parsedData.length;
-      width = height > 0 ? parsedData[0].length : 0;
-      
-      // 将二维数组转为一维数组
-      pixels = [];
-      for (let y = 0; y < height; y++) {
-        for (let x = 0; x < width; x++) {
-          pixels.push(parsedData[y][x]);
-        }
-      }
-    } else if (parsedData && typeof parsedData === 'object') {
-      // 如果是对象，查找width、height和pixels属性
-      ({ width, height, pixels } = parsedData);
-    }
-    
-    if (!width || !height || !pixels || !Array.isArray(pixels)) {
-      console.error('Invalid image data format');
-      return null;
-    }
-    
-    // 将像素数据转换为RGB565格式字符串
-    let formattedData = '';
-    let lineCount = 0;
-    
-    for (let i = 0; i < pixels.length; i++) {
-      const pixel = pixels[i];
-      let r, g, b;
-      
-      // 处理不同格式的像素
-      if (Array.isArray(pixel)) {
-        // 像素是[r,g,b]或[r,g,b,a]格式
-        [r, g, b] = pixel;
-      } else if (typeof pixel === 'number') {
-        // 像素是数值格式 (0xRRGGBB)
-        r = (pixel >> 16) & 0xFF;
-        g = (pixel >> 8) & 0xFF;
-        b = pixel & 0xFF;
-      } else if (typeof pixel === 'string' && pixel.startsWith('#')) {
-        // 像素是HTML颜色格式 (#RRGGBB)
-        const hex = pixel.substring(1);
-        r = parseInt(hex.substring(0, 2), 16);
-        g = parseInt(hex.substring(2, 4), 16);
-        b = parseInt(hex.substring(4, 6), 16);
-      } else if (typeof pixel === 'string' && pixel.startsWith('0x')) {
-        // 像素是十六进制字符串 (0xRRGGBB)
-        const val = parseInt(pixel.substring(2), 16);
-        r = (val >> 16) & 0xFF;
-        g = (val >> 8) & 0xFF;
-        b = val & 0xFF;
-      } else {
-        // 未知格式，使用黑色
-        r = g = b = 0;
-      }
-      
-      // 转换为RGB565格式
-      const r5 = (r >> 3) & 0x1F;  // 5位红色
-      const g6 = (g >> 2) & 0x3F;  // 6位绿色
-      const b5 = (b >> 3) & 0x1F;  // 5位蓝色
-      const rgb565 = (r5 << 11) | (g6 << 5) | b5;
-      
-      formattedData += `0x${rgb565.toString(16).padStart(4, '0')}`;
-      
-      // 添加分隔符和换行
-      if (i < pixels.length - 1) {
-        formattedData += ', ';
-        lineCount++;
-        
-        if (lineCount >= width) {
-          formattedData += '\n';
-          lineCount = 0;
-        }
-      }
-    }
-    
-    return {
-      width,
-      height,
-      formattedData
-    };
-  } catch (e) {
-    console.error('Error converting image data:', e);
-    return null;
-  }
-}
 
 
 // 下载URL图片并显示到TFT屏幕

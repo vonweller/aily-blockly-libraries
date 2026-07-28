@@ -1201,20 +1201,48 @@ function formatXBMData(xbmBytes, bytesPerRow) {
 
 // 通用位图处理函数
 function processBitmapBlock(block, generator, blockType) {
-  // 获取bitmap字段
-  const bitmapData = block.getFieldValue('CUSTOM_BITMAP');
-  console.log(`[${blockType}] Original bitmap data:`, bitmapData);
-
-  // 转换为XBM格式
-  const xbmResult = convertBitmapToXBM(bitmapData);
-  console.log(`[${blockType}] Converted XBM result:`, xbmResult);
-
-  if (!xbmResult) {
-    console.error(`[${blockType}] Failed to convert bitmap to XBM format`);
+  let state = block.getFieldValue('CUSTOM_BITMAP');
+  if (typeof state === 'string') {
+    try {
+      state = JSON.parse(state);
+    } catch (error) {
+      throw new Error(`[${blockType}] Failed to parse CUSTOM_BITMAP: ${error}`);
+    }
+  }
+  if (!state) {
     return ['', Arduino.ORDER_ATOMIC];
   }
+  if (state.schemaVersion !== 1 || state.encoding !== 'xbm-lsb-row-v1') {
+    throw new Error(`[${blockType}] CUSTOM_BITMAP is not a compact U8G2 bitmap state`);
+  }
 
-  const { formattedXbmData, width, height } = xbmResult;
+  const width = Number(state.width);
+  const height = Number(state.height);
+  if (!Number.isInteger(width) || width <= 0 ||
+      !Number.isInteger(height) || height <= 0) {
+    throw new Error(`[${blockType}] CUSTOM_BITMAP dimensions are invalid`);
+  }
+  const bytesPerRow = Math.ceil(width / 8);
+  const expectedByteLength = bytesPerRow * height;
+  if (!Number.isSafeInteger(expectedByteLength)) {
+    throw new Error(`[${blockType}] CUSTOM_BITMAP dimensions are too large`);
+  }
+
+  let packed = new Uint8Array(expectedByteLength);
+  if (state.bitmap) {
+    const runtime = globalThis.ailyProjectData;
+    if (!runtime || typeof runtime.getPreparedFieldPayload !== 'function') {
+      throw new Error(`[${blockType}] Project Data runtime is unavailable`);
+    }
+    packed = runtime.getPreparedFieldPayload(block, 'CUSTOM_BITMAP');
+    if (!(packed instanceof Uint8Array) || packed.byteLength !== expectedByteLength) {
+      throw new Error(`[${blockType}] Prepared bitmap payload length is invalid`);
+    }
+  }
+  const formattedXbmData = formatXBMData(
+    Array.from(packed, byte => `0x${byte.toString(16).padStart(2, '0').toUpperCase()}`),
+    bytesPerRow
+  );
 
   // 生成一个唯一的变量名
   const bitmapVarName = `${blockType}_${block.id.replace(/[^a-zA-Z0-9]/g, '')}`;
@@ -1282,27 +1310,61 @@ function getU8g2AnimationData(block) {
     try {
       animationData = JSON.parse(animationData);
     } catch (error) {
-      console.error('[u8g2_animation] Failed to parse animation field value:', error);
-      return null;
+      throw new Error(`[u8g2_animation] Failed to parse CUSTOM_ANIMATION: ${error}`);
     }
   }
 
-  if (!animationData || !Array.isArray(animationData.frames) || animationData.frames.length === 0) {
+  if (!animationData) {
     return null;
+  }
+  if (animationData.schemaVersion !== 1 || animationData.encoding !== 'xbm-lsb-row-v1') {
+    throw new Error('[u8g2_animation] CUSTOM_ANIMATION is not a compact U8G2 animation state');
   }
 
   const width = Number(animationData.width);
   const height = Number(animationData.height);
   const fps = Number(animationData.fps);
-  if (!Number.isFinite(width) || !Number.isFinite(height) || width <= 0 || height <= 0) {
+  const frameCount = Number(animationData.frameCount);
+  if (!Number.isInteger(width) || !Number.isInteger(height) || width <= 0 || height <= 0) {
+    throw new Error('[u8g2_animation] Animation dimensions are invalid');
+  }
+  if (!Number.isInteger(frameCount) || frameCount < 0 || frameCount > 65535) {
+    throw new Error('[u8g2_animation] Animation frame count is invalid');
+  }
+  if (frameCount === 0 && !animationData.frames) {
     return null;
+  }
+  if (frameCount === 0 || !animationData.frames) {
+    throw new Error('[u8g2_animation] Animation frame reference and frame count are inconsistent');
+  }
+
+  const bytesPerRow = Math.ceil(width / 8);
+  const frameByteLength = bytesPerRow * height;
+  const expectedByteLength = frameByteLength * frameCount;
+  if (!Number.isSafeInteger(expectedByteLength)) {
+    throw new Error('[u8g2_animation] Animation dimensions are too large');
+  }
+  const runtime = globalThis.ailyProjectData;
+  if (!runtime || typeof runtime.getPreparedFieldPayload !== 'function') {
+    throw new Error('[u8g2_animation] Project Data runtime is unavailable');
+  }
+  const packed = runtime.getPreparedFieldPayload(block, 'CUSTOM_ANIMATION');
+  if (!(packed instanceof Uint8Array) || packed.byteLength !== expectedByteLength) {
+    throw new Error('[u8g2_animation] Prepared animation payload length is invalid');
+  }
+
+  const frames = [];
+  for (let index = 0; index < frameCount; index++) {
+    const offset = index * frameByteLength;
+    frames.push(packed.subarray(offset, offset + frameByteLength));
   }
 
   return {
-    width: Math.floor(width),
-    height: Math.floor(height),
+    width,
+    height,
     fps: Number.isFinite(fps) && fps > 0 ? Math.floor(fps) : 10,
-    frames: animationData.frames
+    bytesPerRow,
+    frames
   };
 }
 
@@ -1313,22 +1375,19 @@ Arduino.forBlock['u8g2_animation'] = function (block, generator) {
     return ['', Arduino.ORDER_ATOMIC];
   }
 
-  const { width, height, fps, frames } = animationData;
+  const { width, height, fps, bytesPerRow, frames } = animationData;
   const animationVarName = `animation_${block.id.replace(/[^a-zA-Z0-9]/g, '')}`;
   const frameNames = [];
   const frameDeclarations = [];
 
   for (let i = 0; i < frames.length; i++) {
-    const xbmResult = convertBitmapToXBM(frames[i]);
-    if (!xbmResult) {
-      console.error(`[u8g2_animation] Failed to convert frame ${i}`);
-      continue;
-    }
-
     const frameName = `${animationVarName}_frame_${i}`;
     frameNames.push(frameName);
     frameDeclarations.push(`static const unsigned char ${frameName}[] PROGMEM = {
-${xbmResult.formattedXbmData}
+${formatXBMData(
+  Array.from(frames[i], byte => `0x${byte.toString(16).padStart(2, '0').toUpperCase()}`),
+  bytesPerRow
+)}
 };`);
   }
 
