@@ -33,7 +33,7 @@ TFT_eSPI - Arduino library, graphics and font library supporting multiple TFT di
 | `tftespi_set_text_size` | Statement | VAR(field_variable), SIZE(dropdown) | `tftespi_set_text_size(variables_get($tft), "1")` | Dynamic code |
 | `tftespi_set_text_font` | Statement | VAR(field_variable), FONT(dropdown) | `tftespi_set_text_font(variables_get($tft), "1")` | Dynamic code |
 | `tftespi_image` | Value (TFTImage) | CUSTOM_IMAGE(field_tftespi_image) | `tftespi_image()` | RGB565 or RGB332 `PROGMEM` pixel array |
-| `tftespi_draw_image` | Statement | VAR(field_variable), IMAGE(input_value), X(input_value), Y(input_value) | `tftespi_draw_image(variables_get($tft), tftespi_image(), math_number(0), math_number(0))` | Draw image with matching `pushImage()` overload |
+| `tftespi_draw_image` | Statement | VAR(field_variable), X(input_value), Y(input_value), IMAGE(input_value) | `tftespi_draw_image(variables_get($tft), math_number(0), math_number(0), tftespi_image())` | Draw image with matching `pushImage()` overload |
 | `tftespi_animation` | Value | CUSTOM_ANIMATION(field_tftespi_animation) | `tftespi_animation()` | RGB565 or RGB332 `PROGMEM` frame arrays |
 | `tftespi_play_animation` | Statement | VAR(field_variable), X(input_value), Y(input_value), ANIMATION(input_value), PLAY_MODE(dropdown), LOOP(field_checkbox) | `tftespi_play_animation(variables_get($tft), math_number(0), math_number(0), tftespi_animation(), NON_BLOCKING, TRUE)` | Dynamic code |
 | `tftespi_draw_animation_frame` | Statement | VAR(field_variable), X(input_value), Y(input_value), ANIMATION(input_value), FRAME(input_value) | `tftespi_draw_animation_frame(variables_get($tft), math_number(0), math_number(0), tftespi_animation(), variables_get(frame))` | Dynamic code |
