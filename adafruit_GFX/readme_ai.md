@@ -4,7 +4,7 @@ The color display driver library based on Adafruit GFX supports common driver ch
 
 ## Library Info
 - **Name**: @aily-project/lib-adafruit-gfx
-- **Version**: 1.0.2
+- **Version**: 1.0.3
 
 ## Block Definitions
 
