@@ -1,6 +1,6 @@
 # Wio Terminal Display
 
-Screen driver library designed for Wio Terminal's built-in 2.4-inch 320×240 TFT LCD, with graphics, text, animation, and SD-card video support.
+Screen driver library designed for Wio Terminal's built-in 2.4-inch 320×240 TFT LCD, with graphics, text, static images, animation, and SD-card video support.
 
 ## Library Info
 - **Name**: @aily-project/lib-seeed-wio-gfx
@@ -40,6 +40,8 @@ Screen driver library designed for Wio Terminal's built-in 2.4-inch 320×240 TFT
 | `seeed_gfx_set_cursor` | Statement | VAR(field_variable), X(input_value), Y(input_value) | `seeed_gfx_set_cursor(variables_get($tft), math_number(0), math_number(0))` | Dynamic code |
 | `seeed_gfx_print` | Statement | VAR(field_variable), TEXT(input_value) | `seeed_gfx_print(variables_get($tft), text("value"))` | Dynamic code |
 | `seeed_gfx_draw_string` | Statement | VAR(field_variable), TEXT(input_value), X(input_value), Y(input_value), FONT(dropdown) | `seeed_gfx_draw_string(variables_get($tft), text("value"), math_number(0), math_number(0), "1")` | Dynamic code |
+| `seeed_gfx_image` | Value (SeeedGfxImage) | CUSTOM_IMAGE(field_tftespi_image) | `seeed_gfx_image()` | `seeed_gfx_image_..._data` |
+| `seeed_gfx_draw_image` | Statement | VAR(field_variable), X(input_value), Y(input_value), IMAGE(input_value) | `seeed_gfx_draw_image(variables_get($tft), math_number(0), math_number(0), seeed_gfx_image())` | Draw converted RGB565/RGB332 image data |
 | `seeed_gfx_animation` | Value | CUSTOM_ANIMATION(field_tftespi_animation) | `seeed_gfx_animation()` | ..._frames |
 | `seeed_gfx_play_animation` | Statement | VAR(field_variable), X(input_value), Y(input_value), ANIMATION(input_value), PLAY_MODE(dropdown), LOOP(field_checkbox) | `seeed_gfx_play_animation(variables_get($tft), math_number(0), math_number(0), math_number(0), BLOCKING, FALSE)` | // No Seeed GFX animation data\n |
 | `seeed_gfx_play_sd_video` | Statement | VAR(field_variable), FILENAME(input_value), BUFFER_KB(input_value) | `seeed_gfx_play_sd_video(variables_get($tft), text("value"), math_number(0))` | RGB565 uses two payload buffers and LCD DMA when available; other formats use the synchronous path |
@@ -52,7 +54,6 @@ Screen driver library designed for Wio Terminal's built-in 2.4-inch 320×240 TFT
 - `seeedGfxWaitVideoFrame` still enforces the FPS stored in the AILY header and only waits when DMA playback finishes early.
 | `seeed_gfx_draw_animation_frame` | Statement | VAR(field_variable), X(input_value), Y(input_value), ANIMATION(input_value), FRAME(input_value) | `seeed_gfx_draw_animation_frame(variables_get($tft), math_number(0), math_number(0), math_number(0), math_number(0))` | seeedGfxDrawAnimationFrameByIndex(..., ..., ..., ..._width, ..._height, ..._frames, ..._fr |
 | `seeed_gfx_animation_frame_count` | Value | ANIMATION(input_value) | `seeed_gfx_animation_frame_count(math_number(0))` | ..._frame_count |
-| `seeed_gfx_step_animation_frame` | Statement | FRAME_VAR(field_variable), TARGET(input_value), FRAME_COUNT(input_value), DIRECTION(dropdown) | `seeed_gfx_step_animation_frame(variables_get($seeedGfxAnimationFrame), math_number(0), math_number(0), AUTO)` | int32_t ... = (int32_t)(...);\n |
 | `seeed_gfx_create_sprite` | Statement | WIDTH(input_value), HEIGHT(input_value), VAR(field_input) | `seeed_gfx_create_sprite(math_number(0), math_number(0), "sprite")` | Dynamic code |
 | `seeed_gfx_color` | Value | COLOR(dropdown) | `seeed_gfx_color(TFT_WHITE)` | Dynamic code |
 | `seeed_gfx_get_width` | Value | VAR(field_variable) | `seeed_gfx_get_width(variables_get($tft))` | Dynamic code |
@@ -67,7 +68,6 @@ Screen driver library designed for Wio Terminal's built-in 2.4-inch 320×240 TFT
 | SIZE | 1, 2, 3, 4, 5, 6, 7 | seeed_gfx_set_text_size |
 | FONT | 1, 2, 4, 6, 7 | seeed_gfx_draw_string |
 | PLAY_MODE | BLOCKING, NON_BLOCKING | seeed_gfx_play_animation |
-| DIRECTION | AUTO, FORWARD, BACKWARD | seeed_gfx_step_animation_frame |
 | COLOR | TFT_WHITE, TFT_BLACK, TFT_RED, TFT_GREEN, TFT_BLUE, TFT_YELLOW, TFT_MAGENTA, TFT_CYAN, TFT_ORANGE, TFT_PINK, TFT_PURPLE, TFT_BROWN, TFT_DARKGREY, TFT_LIGHTGREY, TFT_GOLD, TFT_SILVER, TFT_SKYBLUE, TFT_VIOLET, TFT_OLIVE... | seeed_gfx_color |
 
 ## ABS Examples
@@ -90,3 +90,4 @@ arduino_loop()
 2. **Parameter order**: ABS parameters follow `block.json` args order.
 3. **Input values**: use `math_number(n)`, `text("s")`, `logic_boolean(TRUE/FALSE)`, variables, or nested value blocks.
 4. **Dynamic fields**: `seeed_gfx_play_animation` may add fields at runtime through Blockly extensions.
+5. **Static images**: `seeed_gfx_image` accepts PNG/JPEG/WebP/BMP through `field_tftespi_image`, defaults to 320×240, and supports RGB565 or lower-memory RGB332 data. Connect it directly to `seeed_gfx_draw_image`.
