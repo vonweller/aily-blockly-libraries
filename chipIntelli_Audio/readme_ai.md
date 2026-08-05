@@ -13,11 +13,8 @@
 | `chipintelli_audio_init` | 语句 | 无 | `chipintelli_audio_init()` | `ChipIntelliAudio.begin()` |
 | `chipintelli_audio_end` | 语句 | 无 | `chipintelli_audio_end()` | `ChipIntelliAudio.end()` |
 | `chipintelli_audio_voice` | 值(Number) | TEXT(field_input) | `chipintelli_audio_voice("你好")` | `VOICE1`，并添加 `#define VOICE1 1 //你好` |
-| `chipintelli_audio_local_audio` | 值(Number) | AUDIO(field_audio) | 由 Blockly 字段保存音频工程数据 | `MP3500`，并添加 `#define MP3500 500 //outpath/[500]audio.mp3` |
+| `chipintelli_audio_local_audio` | 值(Number) | AUDIO(field_audio) | 由 Blockly 字段保存音频工程数据 | `VOICEMP3500`，并添加 `#define VOICEMP3500 500 //audio/<内容哈希>.mp3` |
 | `chipintelli_audio_play_voice` | 语句 | VOICE_ID(value), MODE(dropdown) | `chipintelli_audio_play_voice(math_number(1), true)` | `playVoice(id, interrupt)` |
-| `chipintelli_audio_play_command_id` | 语句 | COMMAND_ID(value), OPTION(value), MODE(dropdown) | `chipintelli_audio_play_command_id(math_number(1), math_number(-1), true)` | `playCommand(id, option, interrupt)` |
-| `chipintelli_audio_play_command_text` | 语句 | COMMAND_TEXT(value), OPTION(value), MODE(dropdown) | `chipintelli_audio_play_command_text(text("命令"), math_number(-1), true)` | `playCommand(text, option, interrupt)` |
-| `chipintelli_audio_play_semantic` | 语句 | SEMANTIC_ID(value), OPTION(value), MODE(dropdown) | `chipintelli_audio_play_semantic(math_number(1), math_number(-1), true)` | `playSemantic(...)` |
 | `chipintelli_audio_stop` | 语句 | 无 | `chipintelli_audio_stop()` | `stop()` |
 | `chipintelli_audio_set_volume` | 语句 | VOLUME(value) | `chipintelli_audio_set_volume(math_number(70))` | `setVolume(...)` |
 | `chipintelli_audio_set_muted` | 语句 | MUTED(value) | `chipintelli_audio_set_muted(logic_boolean(TRUE))` | `setMuted(...)` |
@@ -30,9 +27,8 @@
 ## Parameter Options
 
 - `MODE=true`：中断当前提示音；`MODE=false`：加入 SDK 播放队列。
-- `OPTION=-1`：使用资源中配置的默认提示音选项。
 - 本地音频默认转换为 16 kHz、单声道、16 kbps MP3；可在音频编辑器中调整转换参数和裁剪区间。
-- 本地音频 ID 从 500 开始。源文件内容及转换参数相同时复用同一个 ID 和宏。
+- 本地音频 ID 从 500 开始。宏注释使用裁剪压缩后 MP3 相对项目目录的 `audioPath`；路径相同时复用同一个 ID 和宏。
 
 ## ABS 示例
 

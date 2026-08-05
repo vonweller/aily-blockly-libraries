@@ -19,7 +19,6 @@
 | `chipintelli_asr_on_timeout` | 事件 | HANDLER(statement) | `chipintelli_asr_on_timeout() @HANDLER: ...` | `attachTimeout(callback)`；自动 `tick()` |
 | `chipintelli_asr_on_result` | 事件 | HANDLER(statement) | `chipintelli_asr_on_result() @HANDLER: ...` | `onResult(callback)`；自动 `tick()` |
 | `chipintelli_asr_on_command` | 事件 | COMMAND(value), HANDLER(statement) | `chipintelli_asr_on_command(chipintelli_asr_command("打开灯")) @HANDLER: ...` | `attachCommand(id, callback)`；自动 `tick()` |
-| `chipintelli_asr_on_semantic` | 事件 | SEMANTIC_ID(value), HANDLER(statement) | `chipintelli_asr_on_semantic(math_number(31725955)) @HANDLER: ...` | `attachSemantic(id, callback)`；自动 `tick()` |
 | `chipintelli_asr_command` | 值(Number) | TEXT(field) | `chipintelli_asr_command("打开灯")` | `#define COMMAND2 2 //打开灯`；返回 `COMMAND2` |
 | `chipintelli_asr_detach_lifecycle` | 语句 | EVENT(dropdown) | `chipintelli_asr_detach_lifecycle(STARTUP)` | `detachStartup/Wakeup/Timeout()` |
 | `chipintelli_asr_detach_command` | 语句 | COMMAND(value) | `chipintelli_asr_detach_command(math_number(2))` | `detachCommand(id)` |
@@ -74,8 +73,8 @@ chipintelli_asr_on_command(chipintelli_asr_command("打开灯"))
 
 ## 注意事项
 
-1. 当前结果 Getter 应放在 `on_result`、`on_command`、`on_semantic` 或 `read_results` 的 HANDLER 内。
-2. `onResult()` 先观察每个结果；随后优先匹配命令 ID，没有精确命令处理函数时才匹配语义 ID。
+1. 当前结果 Getter 应放在 `on_result`、`on_command` 或 `read_results` 的 HANDLER 内。
+2. `onResult()` 观察每个识别结果；命令处理函数按命令 ID 精确匹配。
 3. 事件积木使用 `tick()`，轮询积木使用 `read()`；二者消费同一结果队列，通常不要混用。
 4. 唤醒词固定使用命令 ID 1；普通命令按文本去重，并从 ID 2 开始按首次使用顺序编号。
 5. 结果文本缓冲区容量为 64 字节；用 `result_text_truncated` 检查截断。
