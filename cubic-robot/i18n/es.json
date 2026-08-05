@@ -1,0 +1,284 @@
+{
+  "toolbox_name": "Robot competencia Cubic",
+  "toolbox_labels": {
+    "初始化": "Inicio",
+    "编码电机控制": "Motor encoder",
+    "状态查询": "Estado",
+    "舵机 / 按键 / 灯": "Servo/Botón/LED"
+  },
+  "cubic_robot_init": {
+    "message0": "Inicializar el robot cúbico %1",
+    "tooltip": "Crear e inicializar el Cubic CoreV2+Motor, con una biblioteca interna multiplexada encoder-motor (lib-encoder-motor) que controla MA/MB"
+  },
+  "cubic_robot_set_motor_pins": {
+    "message0": "%1 Ajustar los pinos del motor %2 drivers IN1 %3 IN2 %4 Codificador A %5 B %6",
+    "tooltip": "Cubre los pines del motor/codificador antes de inicializarlo. Por defecto: MA=14/15/34/35, MB=12/17/36/39",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "A(MA)",
+            "MOTOR_A"
+          ],
+          [
+            "B(MB)",
+            "MOTOR_B"
+          ]
+        ]
+      },
+      null,
+      null,
+      null,
+      null
+    ]
+  },
+  "cubic_robot_set_pid": {
+    "message0": "%1 Motor %2 PID P %3 I %4 D %5",
+    "tooltip": "Configurar el PID del bucle de velocidad del motor codificado (multiplexando EncoderMotor::SetSpeedPid)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "A(MA)",
+            "MOTOR_A"
+          ],
+          [
+            "B(MB)",
+            "MOTOR_B"
+          ]
+        ]
+      },
+      null,
+      null,
+      null
+    ]
+  },
+  "cubic_robot_run_pwm": {
+    "message0": "%1 motor %2 funciona por energía (PWM) %3 (-1023~1023)",
+    "tooltip": "Unidad PWM directa (EncoderMotor::RunPwmDuty)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "A(MA)",
+            "MOTOR_A"
+          ],
+          [
+            "B(MB)",
+            "MOTOR_B"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "cubic_robot_run_speed": {
+    "message0": "%1 Motor %2 funciona a %3 RPM (-300~300)",
+    "tooltip": "Control de bucle de velocidad (EncoderMotor::RunSpeed)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "A(MA)",
+            "MOTOR_A"
+          ],
+          [
+            "B(MB)",
+            "MOTOR_B"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "cubic_robot_drive": {
+    "message0": "%1 diferencial que avanza %2 %3",
+    "tooltip": "Chasis diferencial, rango de proa/dirección -1023~1023, transmisión PWM interna MA/MB"
+  },
+  "cubic_robot_move": {
+    "message0": "%1 Coche Pequeño %2 Potencia %3",
+    "tooltip": "Quick Sport, potencia recomendada 0~1023",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Adelante",
+            "FORWARD"
+          ],
+          [
+            "Atrás",
+            "BACKWARD"
+          ],
+          [
+            "Girar a la izquierda",
+            "LEFT"
+          ],
+          [
+            "Girar a la derecha",
+            "RIGHT"
+          ],
+          [
+            "Detener",
+            "STOP"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "cubic_robot_stop": {
+    "message0": "%1 Detener todos los motores",
+    "tooltip": "Stop MA/MB"
+  },
+  "cubic_robot_get_speed": {
+    "message0": "%1 Motor %2 Velocidad de la corriente (RPM)",
+    "tooltip": "Lee la velocidad actual del motor en el código",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "A(MA)",
+            "MOTOR_A"
+          ],
+          [
+            "B(MB)",
+            "MOTOR_B"
+          ]
+        ]
+      }
+    ]
+  },
+  "cubic_robot_get_pulse": {
+    "message0": "%1 Motor %2 codifica el conteo de pulsos",
+    "tooltip": "Lee el recuento de pulsos codificado",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "A(MA)",
+            "MOTOR_A"
+          ],
+          [
+            "B(MB)",
+            "MOTOR_B"
+          ]
+        ]
+      }
+    ]
+  },
+  "cubic_robot_get_revolutions": {
+    "message0": "%1 Número de rotaciones del motor %2",
+    "tooltip": "Lee el número de revoluciones de los motores",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "A(MA)",
+            "MOTOR_A"
+          ],
+          [
+            "B(MB)",
+            "MOTOR_B"
+          ]
+        ]
+      }
+    ]
+  },
+  "cubic_robot_reset_pulse": {
+    "message0": "%1 Reiniciar el recuento de pulsos %2 motor",
+    "tooltip": "Reiniciar el recuento de pulsos codificados",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "A(MA)",
+            "MOTOR_A"
+          ],
+          [
+            "B(MB)",
+            "MOTOR_B"
+          ]
+        ]
+      }
+    ]
+  },
+  "cubic_robot_servo": {
+    "message0": "%1 Servo %2 Ángulo %3",
+    "tooltip": "Ángulo de control del servo 0~180 (ESP32Servo incorporado)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "1(IO2)",
+            "SERVO_1"
+          ],
+          [
+            "2(IO25)",
+            "SERVO_2"
+          ],
+          [
+            "3(IO16)",
+            "SERVO_3"
+          ],
+          [
+            "4(IO23)",
+            "SERVO_4"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "cubic_robot_button": {
+    "message0": "%1 Botón %2 pulsado",
+    "tooltip": "Botones de lectura, activo de bajo nivel",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "A(IO0)",
+            "0"
+          ],
+          [
+            "B(IO13)",
+            "1"
+          ]
+        ]
+      }
+    ]
+  },
+  "cubic_robot_rgb": {
+    "message0": "%1 RGB LED %2",
+    "tooltip": "RGB LED",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Encender",
+            "true"
+          ],
+          [
+            "Desactivado",
+            "false"
+          ]
+        ]
+      }
+    ]
+  },
+  "cubic_robot_pin_info": {
+    "message0": "Descripción de pin predeterminado cúbico",
+    "tooltip": "MA=14/15 ENC34/35; MB=12/17 ENC36/39; servo 2/25; I2C21/22"
+  }
+}

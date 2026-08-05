@@ -1,0 +1,44 @@
+{
+  "name": "@aily-project/lib-chipintelli-audio",
+  "nickname": "CI13XX 提示音播放",
+  "nickname_zh_cn": "CI13XX 提示音播放",
+  "nickname_en": "CI13XX Prompt Audio",
+  "nickname_zh_hk": "CI13XX 提示音播放",
+  "nickname_ja": "CI13XX プロンプト音声",
+  "nickname_ko": "CI13XX 프롬프트 오디오",
+  "nickname_de": "CI13XX-Audiohinweise",
+  "nickname_fr": "Audio d'invite CI13XX",
+  "nickname_es": "Audio de indicaciones CI13XX",
+  "nickname_pt": "Áudio de prompt CI13XX",
+  "nickname_ru": "Аудиоподсказки CI13XX",
+  "nickname_ar": "صوت المطالبات CI13XX",
+  "author": "ChipIntelli Arduino contributors / ailyProject",
+  "description": "播放 CI13XX 固件 voice.bin 中已配置的语音、命令和语义提示音，支持队列、音量、静音与完成事件。",
+  "description_zh_cn": "播放 CI13XX 固件 voice.bin 中已配置的语音、命令和语义提示音，支持队列、音量、静音与完成事件。",
+  "description_en": "Play voice, command and semantic prompts provisioned in CI13XX voice.bin, with queueing, volume, mute and completion events.",
+  "version": "1.0.1",
+  "spec": true,
+  "license": "LGPL-2.1-or-later",
+  "url": "https://document.chipintelli.com/",
+  "compatibility": {
+    "core": ["chipintelli:ci13xx:ci1302", "chipintelli:ci13xx:ci1303", "chipintelli:ci13xx:ci1306"],
+    "voltage": [3.3]
+  },
+  "keywords": ["aily", "blockly", "chipintelli", "ci13xx", "ci1302", "ci1303", "ci1306", "audio", "prompt", "voice"],
+  "dependencies": {},
+  "devDependencies": {},
+  "tested": false,
+  "tester": "",
+  "tags": ["audio", "speech"],
+  "bundledSources": [
+    {
+      "name": "ChipIntelliAudio",
+      "version": "1.0.1",
+      "author": "ChipIntelli Arduino contributors",
+      "url": "https://document.chipintelli.com/",
+      "license": "LGPL-2.1-or-later",
+      "path": "src/ChipIntelliAudio/ChipIntelliAudio.h",
+      "reason": "Bundles the exact prompt-player wrapper used by these blocks instead of relying on a possibly older platform copy."
+    }
+  ]
+}

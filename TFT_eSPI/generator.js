@@ -36,6 +36,73 @@ function cleanValue(value) {
   return value;
 }
 
+// Apply the board's built-in display settings once, while keeping later manual edits.
+function applyBoardDisplayConfig(block) {
+  const config = typeof window !== 'undefined' && window['boardConfig']
+    ? window['boardConfig'].displayConfig
+    : null;
+  if (!config || (config.interface && String(config.interface).toLowerCase() !== 'spi')) return true;
+
+  const pins = config.pins || {};
+  const signature = JSON.stringify([config.controller, config.width, config.height, config.frequency, pins]);
+  if (block._tftespiDisplayConfig === signature) return true;
+
+  let ready = true;
+
+  if (config.controller) {
+    let model = String(config.controller).trim().toUpperCase().replace(/[\s-]+/g, '_');
+    if (!model.endsWith('_DRIVER')) model += '_DRIVER';
+    const modelField = block.getField && block.getField('MODEL');
+    if (modelField) modelField.setValue(model);
+    else ready = false;
+  }
+  if (config.frequency != null) {
+    const frequencyField = block.getField && block.getField('FREQUENCY');
+    if (frequencyField) frequencyField.setValue(String(config.frequency));
+    else ready = false;
+  }
+
+  const fieldValues = {
+    WIDTH: config.width,
+    HEIGHT: config.height,
+    MISO: pins.miso,
+    MOSI: pins.mosi,
+    SCLK: pins.sclk,
+    CS: pins.cs,
+    DC: pins.dc,
+    RST: pins.rst,
+    BL: pins.bl
+  };
+  Object.keys(fieldValues).forEach(name => {
+    if (fieldValues[name] == null) return;
+    const field = block.getField && block.getField(name);
+    if (field) field.setValue(String(fieldValues[name]));
+    else ready = false;
+  });
+
+  if (ready) block._tftespiDisplayConfig = signature;
+  return ready;
+}
+
+if (Blockly.Extensions.isRegistered('tftespi_board_display_config')) {
+  Blockly.Extensions.unregister('tftespi_board_display_config');
+}
+
+Blockly.Extensions.register('tftespi_board_display_config', function() {
+  const block = this;
+  let retries = 0;
+  const updateConfig = () => {
+    if (!block.workspace) return;
+    if (!applyBoardDisplayConfig(block) && retries++ < 3) {
+      setTimeout(updateConfig, 0);
+      return;
+    }
+    if (block.rendered) block.render();
+  };
+  // Toolbox fields are initialized just after the extension is attached.
+  setTimeout(updateConfig, 0);
+});
+
 if (!Arduino.tft_espi) {
   Arduino.tft_espi = true;
   Arduino.tft_espi_type = '';
@@ -160,6 +227,8 @@ if (typeof Blockly !== 'undefined' && Blockly.getMainWorkspace) {
 }
 
 Arduino.forBlock['tftespi_setup'] = function(block, generator) {
+  applyBoardDisplayConfig(block);
+
   if (!block._tftespiVarMonitorAttached) {
     block._tftespiVarMonitorAttached = true;
     block._tftespiVarLastName = block.getFieldValue('VAR') || 'tft';
@@ -185,15 +254,15 @@ Arduino.forBlock['tftespi_setup'] = function(block, generator) {
   const varName = block.getFieldValue('VAR') || 'tft';
   const model = block.getFieldValue('MODEL') || 'ILI9341_DRIVER';
   const frequency = block.getFieldValue('FREQUENCY') || '40000000';
-  const width = cleanValue(generator.valueToCode(block, 'WIDTH', generator.ORDER_ATOMIC) || '240');
-  const height = cleanValue(generator.valueToCode(block, 'HEIGHT', generator.ORDER_ATOMIC) || '320');
-  const miso = cleanValue(generator.valueToCode(block, 'MISO', generator.ORDER_ATOMIC) || '-1');
-  const mosi = cleanValue(generator.valueToCode(block, 'MOSI', generator.ORDER_ATOMIC) || '-1');
-  const sclk = cleanValue(generator.valueToCode(block, 'SCLK', generator.ORDER_ATOMIC) || '-1');
-  const cs = cleanValue(generator.valueToCode(block, 'CS', generator.ORDER_ATOMIC) || '-1');
-  const dc = cleanValue(generator.valueToCode(block, 'DC', generator.ORDER_ATOMIC) || '-1');
-  const rst = cleanValue(generator.valueToCode(block, 'RST', generator.ORDER_ATOMIC) || '-1');
-  const bl = cleanValue(generator.valueToCode(block, 'BL', generator.ORDER_ATOMIC) || '-1');
+  const width = block.getFieldValue('WIDTH') || '240';
+  const height = block.getFieldValue('HEIGHT') || '320';
+  const miso = block.getFieldValue('MISO') || '-1';
+  const mosi = block.getFieldValue('MOSI') || '-1';
+  const sclk = block.getFieldValue('SCLK') || '-1';
+  const cs = block.getFieldValue('CS') || '-1';
+  const dc = block.getFieldValue('DC') || '-1';
+  const rst = block.getFieldValue('RST') || '-1';
+  const bl = block.getFieldValue('BL') || '-1';
   const blLevel = block.getFieldValue('BL_LEVEL') || 'HIGH';
   const colorMode = block.getFieldValue('COLOR_MODE') || 'TFT_RGB';
   // const rotation = block.getFieldValue('ROTATION') || '0';
@@ -355,6 +424,72 @@ Arduino.forBlock['tftespi_invert_display'] = function(block, generator) {
   return code;
 }
 
+Arduino.forBlock['tftespi_get_dimension'] = function(block, generator) {
+  const varField = block.getField('VAR');
+  const varName = varField ? varField.getText() : 'tft';
+  const method = block.getFieldValue('DIMENSION') === 'HEIGHT' ? 'height' : 'width';
+
+  return [varName + '.' + method + '()', generator.ORDER_FUNCTION_CALL];
+};
+
+Arduino.forBlock['tftespi_sprite_create'] = function(block, generator) {
+  if (!block._tftespiSpriteVarMonitorAttached) {
+    block._tftespiSpriteVarMonitorAttached = true;
+    block._tftespiSpriteVarLastName = block.getFieldValue('VAR') || 'sprite';
+    registerVariableToBlockly(block._tftespiSpriteVarLastName, 'TFT_eSprite');
+    const varField = block.getField('VAR');
+    if (varField) {
+      const originalFinishEditing = varField.onFinishEditing_;
+      varField.onFinishEditing_ = function(newName) {
+        if (typeof originalFinishEditing === 'function') {
+          originalFinishEditing.call(this, newName);
+        }
+        const workspace = block.workspace || (typeof Blockly !== 'undefined' && Blockly.getMainWorkspace && Blockly.getMainWorkspace());
+        const oldName = block._tftespiSpriteVarLastName;
+        if (workspace && newName && newName !== oldName) {
+          renameVariableInBlockly(block, oldName, newName, 'TFT_eSprite');
+          block._tftespiSpriteVarLastName = newName;
+        }
+      };
+    }
+  }
+
+  ensureTftEspiLibraries(generator);
+  const varName = block.getFieldValue('VAR') || 'sprite';
+  const tftName = tftespiGetVariableCodeName(block, 'TFT', 'tft');
+  const width = generator.valueToCode(block, 'WIDTH', generator.ORDER_ATOMIC) || '160';
+  const height = generator.valueToCode(block, 'HEIGHT', generator.ORDER_ATOMIC) || '120';
+  const colorDepth = block.getFieldValue('COLOR_DEPTH') || '16';
+
+  // Keep the parent display declaration ahead of the Sprite even if blocks are reordered.
+  generator.addVariable(tftName, 'TFT_eSPI ' + tftName + ' = TFT_eSPI();');
+  generator.addVariable('tftespi_sprite_' + varName, 'TFT_eSprite ' + varName + ' = TFT_eSprite(&' + tftName + ');');
+  return varName + '.setColorDepth(' + colorDepth + ');\n' +
+    varName + '.createSprite(' + width + ', ' + height + ');\n';
+};
+
+Arduino.forBlock['tftespi_sprite_push'] = function(block, generator) {
+  const spriteName = tftespiGetVariableCodeName(block, 'SPRITE', 'sprite');
+  const x = generator.valueToCode(block, 'X', generator.ORDER_ATOMIC) || '0';
+  const y = generator.valueToCode(block, 'Y', generator.ORDER_ATOMIC) || '0';
+
+  return spriteName + '.pushSprite(' + x + ', ' + y + ');\n';
+};
+
+Arduino.forBlock['tftespi_sprite_push_transparent'] = function(block, generator) {
+  const spriteName = tftespiGetVariableCodeName(block, 'SPRITE', 'sprite');
+  const x = generator.valueToCode(block, 'X', generator.ORDER_ATOMIC) || '0';
+  const y = generator.valueToCode(block, 'Y', generator.ORDER_ATOMIC) || '0';
+  const transparentColor = generator.valueToCode(block, 'TRANSPARENT_COLOR', generator.ORDER_ATOMIC) || 'TFT_TRANSPARENT';
+
+  return spriteName + '.pushSprite(' + x + ', ' + y + ', ' + transparentColor + ');\n';
+};
+
+Arduino.forBlock['tftespi_sprite_delete'] = function(block) {
+  const spriteName = tftespiGetVariableCodeName(block, 'SPRITE', 'sprite');
+  return spriteName + '.deleteSprite();\n';
+};
+
 Arduino.forBlock['tftespi_fill_screen'] = function(block, generator) {
   const varField = block.getField('VAR');
   const varName = varField ? varField.getText() : 'tft';
@@ -505,6 +640,22 @@ Arduino.forBlock['tftespi_fill_circle'] = function(block, generator) {
   return code;
 };
 
+Arduino.forBlock['tftespi_draw_arc'] = function(block, generator) {
+  const varField = block.getField('VAR');
+  const varName = varField ? varField.getText() : 'tft';
+  const x = generator.valueToCode(block, 'X', generator.ORDER_ATOMIC) || '0';
+  const y = generator.valueToCode(block, 'Y', generator.ORDER_ATOMIC) || '0';
+  const radius = generator.valueToCode(block, 'RADIUS', generator.ORDER_ATOMIC) || '0';
+  const innerRadius = generator.valueToCode(block, 'INNER_RADIUS', generator.ORDER_ATOMIC) || '0';
+  const startAngle = generator.valueToCode(block, 'START_ANGLE', generator.ORDER_ATOMIC) || '0';
+  const endAngle = generator.valueToCode(block, 'END_ANGLE', generator.ORDER_ATOMIC) || '0';
+  const color = generator.valueToCode(block, 'COLOR', generator.ORDER_ATOMIC) || '0';
+  const backgroundColor = generator.valueToCode(block, 'BG_COLOR', generator.ORDER_ATOMIC) || '0';
+  const roundEnds = block.getFieldValue('ROUND_ENDS') || 'true';
+
+  return varName + '.drawSmoothArc(' + x + ', ' + y + ', ' + radius + ', ' + innerRadius + ', ' + startAngle + ', ' + endAngle + ', ' + color + ', ' + backgroundColor + ', ' + roundEnds + ');\n';
+};
+
 Arduino.forBlock['tftespi_draw_ellipse'] = function(block, generator) {
   const varField = block.getField('VAR');
   const varName = varField ? varField.getText() : 'tft';
@@ -572,7 +723,7 @@ Arduino.forBlock['tftespi_draw_string'] = function(block, generator) {
   const y = generator.valueToCode(block, 'Y', generator.ORDER_ATOMIC) || '0';
   const text = generator.valueToCode(block, 'TEXT', generator.ORDER_ATOMIC) || '""';
 
-  let code = varName + '.drawString(' + text + ', ' + x + ', ' + y + ');\n';
+  let code = varName + '.drawString(String(' + text + '), ' + x + ', ' + y + ');\n';
 
   return code;
 };
@@ -585,6 +736,31 @@ Arduino.forBlock['tftespi_set_text_color'] = function(block, generator) {
   let code = varName + '.setTextColor(' + color + ');\n';
 
   return code;
+};
+
+Arduino.forBlock['tftespi_set_text_colors'] = function(block, generator) {
+  const varField = block.getField('VAR');
+  const varName = varField ? varField.getText() : 'tft';
+  const color = generator.valueToCode(block, 'COLOR', generator.ORDER_ATOMIC) || '0';
+  const backgroundColor = generator.valueToCode(block, 'BG_COLOR', generator.ORDER_ATOMIC) || '0';
+
+  return varName + '.setTextColor(' + color + ', ' + backgroundColor + ');\n';
+};
+
+Arduino.forBlock['tftespi_set_text_datum'] = function(block, generator) {
+  const varField = block.getField('VAR');
+  const varName = varField ? varField.getText() : 'tft';
+  const datum = block.getFieldValue('DATUM') || 'TL_DATUM';
+
+  return varName + '.setTextDatum(' + datum + ');\n';
+};
+
+Arduino.forBlock['tftespi_set_text_padding'] = function(block, generator) {
+  const varField = block.getField('VAR');
+  const varName = varField ? varField.getText() : 'tft';
+  const width = generator.valueToCode(block, 'WIDTH', generator.ORDER_ATOMIC) || '0';
+
+  return varName + '.setTextPadding(' + width + ');\n';
 };
 
 Arduino.forBlock['tftespi_set_text_size'] = function(block, generator) {
@@ -628,3 +804,597 @@ Arduino.forBlock['tftespi_color'] = function(block, generator) {
   
   return [code, generator.ORDER_ATOMIC];
 };
+
+function tftespiDecodeBase64Frame(frameValue, expectedByteLength, frameIndex) {
+  if (typeof frameValue !== 'string') {
+    console.error(`[tftespi_animation] Frame ${frameIndex} is not a Base64 string`);
+    return null;
+  }
+
+  const base64 = frameValue.trim();
+  const base64Pattern = /^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/;
+  if (!base64 || base64.length % 4 !== 0 || !base64Pattern.test(base64)) {
+    console.error(`[tftespi_animation] Frame ${frameIndex} contains invalid Base64 data`);
+    return null;
+  }
+
+  try {
+    let bytes;
+    if (typeof atob === 'function') {
+      const binary = atob(base64);
+      bytes = Uint8Array.from(binary, character => character.charCodeAt(0));
+    } else if (typeof Buffer !== 'undefined') {
+      bytes = Uint8Array.from(Buffer.from(base64, 'base64'));
+    } else {
+      console.error('[tftespi_animation] Base64 decoder is unavailable');
+      return null;
+    }
+
+    if (bytes.length !== expectedByteLength) {
+      console.error(`[tftespi_animation] Frame ${frameIndex} has ${bytes.length} bytes; expected ${expectedByteLength}`);
+      return null;
+    }
+    return bytes;
+  } catch (error) {
+    console.error(`[tftespi_animation] Failed to decode frame ${frameIndex}:`, error);
+    return null;
+  }
+}
+
+function tftespiSwapRgb565RedBlue(value) {
+  const red5 = (value >> 11) & 0x1F;
+  const green6 = (value >> 5) & 0x3F;
+  const blue5 = value & 0x1F;
+  return (blue5 << 11) | (green6 << 5) | red5;
+}
+
+function tftespiSwapRgb332RedBlue(value) {
+  const red3 = (value >> 5) & 0x07;
+  const green3 = (value >> 2) & 0x07;
+  const blue2 = value & 0x03;
+  const swappedRed3 = (blue2 << 1) | (blue2 >> 1);
+  const swappedBlue2 = red3 >> 1;
+  return (swappedRed3 << 5) | (green3 << 2) | swappedBlue2;
+}
+
+function tftespiAnimationNeedsRedBlueSwap(block) {
+  const needsRedBlueSwap = model => [
+    'ILI9341_DRIVER',
+    'ILI9341_2_DRIVER',
+    'ST7735_DRIVER',
+    'ST7789_DRIVER',
+    'ST7789_2_DRIVER'
+  ].includes(model);
+  if (Arduino.tft_espi_type) {
+    return needsRedBlueSwap(Arduino.tft_espi_type);
+  }
+
+  const workspace = block && block.workspace;
+  if (workspace && typeof workspace.getBlocksByType === 'function') {
+    const setupBlocks = workspace.getBlocksByType('tftespi_setup', false);
+    return setupBlocks.some(setupBlock => needsRedBlueSwap(setupBlock.getFieldValue('MODEL')));
+  }
+
+  return false;
+}
+
+function tftespiFormatRgb565Frame(bytes, swapRedBlue) {
+  const values = [];
+  for (let offset = 0; offset < bytes.length; offset += 2) {
+    const sourceValue = (bytes[offset] << 8) | bytes[offset + 1];
+    const value = swapRedBlue ? tftespiSwapRgb565RedBlue(sourceValue) : sourceValue;
+    values.push(`0x${value.toString(16).padStart(4, '0').toUpperCase()}`);
+  }
+
+  const lines = [];
+  for (let index = 0; index < values.length; index += 12) {
+    lines.push(`  ${values.slice(index, index + 12).join(', ')}`);
+  }
+  return lines.join(',\n');
+}
+
+function tftespiFormatRgb332Frame(bytes, swapRedBlue) {
+  const values = Array.from(bytes, sourceValue => {
+    const value = swapRedBlue ? tftespiSwapRgb332RedBlue(sourceValue) : sourceValue;
+    return `0x${value.toString(16).padStart(2, '0').toUpperCase()}`;
+  });
+  const lines = [];
+  for (let index = 0; index < values.length; index += 16) {
+    lines.push(`  ${values.slice(index, index + 16).join(', ')}`);
+  }
+  return lines.join(',\n');
+}
+
+function tftespiGetAnimationSignature(format, encoding, width, height, fps, encodedFrames, swapRedBlue) {
+  let hash1 = 0x811C9DC5;
+  let hash2 = 0x9E3779B9;
+  const updateHash = (value) => {
+    const text = String(value);
+    for (let index = 0; index < text.length; index++) {
+      const code = text.charCodeAt(index);
+      hash1 = Math.imul(hash1 ^ code, 0x01000193);
+      hash2 = Math.imul(hash2 ^ code, 0x85EBCA77);
+    }
+  };
+
+  updateHash(`${format}:${encoding}:${width}:${height}:${fps}:${swapRedBlue ? 'display-rb-swap' : 'native'}:${encodedFrames.length}|`);
+  for (const encodedFrame of encodedFrames) {
+    updateHash(encodedFrame);
+    updateHash('|');
+  }
+  return `${(hash1 >>> 0).toString(16).padStart(8, '0')}${(hash2 >>> 0).toString(16).padStart(8, '0')}`;
+}
+
+function tftespiGetAnimationData(block) {
+  let animationData = block.getFieldValue('CUSTOM_ANIMATION');
+
+  if (typeof animationData === 'string') {
+    try {
+      animationData = JSON.parse(animationData);
+    } catch (error) {
+      console.error('[tftespi_animation] Failed to parse animation field value:', error);
+      return null;
+    }
+  }
+
+  if (!animationData || typeof animationData !== 'object') {
+    console.error('[tftespi_animation] Animation data is missing');
+    return null;
+  }
+  const format = animationData.format;
+  const encoding = animationData.encoding;
+  const isRgb565 = format === 'rgb565' && encoding === 'rgb565-be-base64';
+  const isRgb332 = format === 'rgb332' && encoding === 'rgb332-base64';
+  if (animationData.version !== 1 || (!isRgb565 && !isRgb332)) {
+    console.error('[tftespi_animation] Unsupported animation version, format, or encoding');
+    return null;
+  }
+
+  const width = animationData.width;
+  const height = animationData.height;
+  const fps = animationData.fps;
+  if (!Number.isInteger(width) || width <= 0 || width > 65535 ||
+      !Number.isInteger(height) || height <= 0 || height > 65535) {
+    console.error('[tftespi_animation] Width and height must be positive 16-bit integers');
+    return null;
+  }
+  if (!Number.isFinite(fps) || fps <= 0) {
+    console.error('[tftespi_animation] FPS must be a positive number');
+    return null;
+  }
+  if (!Array.isArray(animationData.frames)) {
+    console.error('[tftespi_animation] Animation frames must be an array');
+    return null;
+  }
+  // A newly dragged block intentionally starts empty until a GIF or MP4 is uploaded.
+  if (animationData.frames.length === 0) {
+    return null;
+  }
+  if (animationData.frames.length > 65535) {
+    console.error('[tftespi_animation] Animation cannot contain more than 65535 frames');
+    return null;
+  }
+
+  const expectedByteLength = width * height * (isRgb332 ? 1 : 2);
+  if (!Number.isSafeInteger(expectedByteLength)) {
+    console.error('[tftespi_animation] Animation dimensions are too large');
+    return null;
+  }
+
+  const swapRedBlue = tftespiAnimationNeedsRedBlueSwap(block);
+  const frames = [];
+  for (let index = 0; index < animationData.frames.length; index++) {
+    const binary = tftespiDecodeBase64Frame(animationData.frames[index], expectedByteLength, index);
+    if (binary === null) {
+      return null;
+    }
+    frames.push(isRgb332
+      ? tftespiFormatRgb332Frame(binary, swapRedBlue)
+      : tftespiFormatRgb565Frame(binary, swapRedBlue));
+  }
+
+  return {
+    width,
+    height,
+    fps,
+    format,
+    swapRedBlue,
+    signature: tftespiGetAnimationSignature(format, encoding, width, height, fps, animationData.frames, swapRedBlue),
+    frames
+  };
+}
+
+function tftespiGetImageData(block) {
+  let imageData = block.getFieldValue('CUSTOM_IMAGE');
+
+  if (typeof imageData === 'string') {
+    try {
+      imageData = JSON.parse(imageData);
+    } catch (error) {
+      console.error('[tftespi_image] Failed to parse image field value:', error);
+      return null;
+    }
+  }
+
+  if (!imageData || typeof imageData !== 'object') {
+    console.error('[tftespi_image] Image data is missing');
+    return null;
+  }
+
+  const format = imageData.format;
+  const encoding = imageData.encoding;
+  const isRgb565 = format === 'rgb565' && encoding === 'rgb565-be-base64';
+  const isRgb332 = format === 'rgb332' && encoding === 'rgb332-base64';
+  if (imageData.version !== 1 || (!isRgb565 && !isRgb332)) {
+    console.error('[tftespi_image] Unsupported image version, format, or encoding');
+    return null;
+  }
+
+  const width = imageData.width;
+  const height = imageData.height;
+  if (!Number.isInteger(width) || width <= 0 || width > 65535 ||
+      !Number.isInteger(height) || height <= 0 || height > 65535) {
+    console.error('[tftespi_image] Width and height must be positive 16-bit integers');
+    return null;
+  }
+
+  // A newly dragged image block remains empty until an image is uploaded.
+  if (!imageData.data) {
+    return null;
+  }
+
+  const expectedByteLength = width * height * (isRgb332 ? 1 : 2);
+  if (!Number.isSafeInteger(expectedByteLength)) {
+    console.error('[tftespi_image] Image dimensions are too large');
+    return null;
+  }
+  const bytes = tftespiDecodeBase64Frame(imageData.data, expectedByteLength, 'image');
+  if (bytes === null) {
+    return null;
+  }
+
+  const swapRedBlue = tftespiAnimationNeedsRedBlueSwap(block);
+  return {
+    width,
+    height,
+    format,
+    signature: tftespiGetAnimationSignature(
+      format,
+      encoding,
+      width,
+      height,
+      0,
+      [imageData.data],
+      swapRedBlue
+    ),
+    pixels: isRgb332
+      ? tftespiFormatRgb332Frame(bytes, swapRedBlue)
+      : tftespiFormatRgb565Frame(bytes, swapRedBlue)
+  };
+}
+
+Arduino.forBlock['tftespi_image'] = function(block, generator) {
+  ensureTftEspiLibraries(generator);
+  const imageData = tftespiGetImageData(block);
+  if (!imageData) {
+    return ['', generator.ORDER_ATOMIC];
+  }
+
+  const { width, height, format, signature, pixels } = imageData;
+  const symbolPrefix = `tftespi_image_${signature}`;
+  const pixelType = format === 'rgb332' ? 'uint8_t' : 'uint16_t';
+  const imageDeclaration = `// TFT_eSPI image (${width}x${height}, ${format.toUpperCase()})
+static const ${pixelType} ${symbolPrefix}_data[] PROGMEM = {
+${pixels}
+};
+static const uint16_t ${symbolPrefix}_width = ${width};
+static const uint16_t ${symbolPrefix}_height = ${height};`;
+
+  generator.addVariable(symbolPrefix, imageDeclaration);
+  return [`${symbolPrefix}_data`, generator.ORDER_ATOMIC];
+};
+
+function tftespiGetImagePrefix(block, generator) {
+  if (typeof block.getInputTargetBlock === 'function') {
+    const imageBlock = block.getInputTargetBlock('IMAGE');
+    if (!imageBlock || imageBlock.type !== 'tftespi_image') {
+      console.error('[TFT_eSPI image] The image input must be connected directly to a TFT_eSPI image data block');
+      return null;
+    }
+  }
+
+  const imageCode = generator.valueToCode(block, 'IMAGE', generator.ORDER_ATOMIC);
+  if (!imageCode) {
+    return null;
+  }
+
+  const match = String(imageCode).trim().match(/^(tftespi_image_[0-9a-f]{16})_data$/);
+  if (!match) {
+    console.error('[TFT_eSPI image] The image input must be connected directly to a TFT_eSPI image data block');
+    return null;
+  }
+  return match[1];
+}
+
+function tftespiAddImageRenderHelper(generator) {
+  generator.addFunction('tftespi_draw_image', `void tftespiDrawImage(TFT_eSPI &display, int32_t x, int32_t y, uint16_t width, uint16_t height, const uint16_t *image) {
+  bool previousSwapBytes = display.getSwapBytes();
+  // RGB565 constants are native-endian uint16_t values; swap bytes for TFT transport.
+  display.setSwapBytes(true);
+  display.pushImage(x, y, width, height, image);
+  display.setSwapBytes(previousSwapBytes);
+}
+
+void tftespiDrawImage(TFT_eSPI &display, int32_t x, int32_t y, uint16_t width, uint16_t height, const uint8_t *image) {
+  display.pushImage(x, y, width, height, image, true);
+}`);
+}
+
+Arduino.forBlock['tftespi_draw_image'] = function(block, generator) {
+  ensureTftEspiLibraries(generator);
+  const display = tftespiGetVariableCodeName(block, 'VAR', 'tft');
+  const x = generator.valueToCode(block, 'X', generator.ORDER_ATOMIC) || '0';
+  const y = generator.valueToCode(block, 'Y', generator.ORDER_ATOMIC) || '0';
+  const imagePrefix = tftespiGetImagePrefix(block, generator);
+  if (!imagePrefix) {
+    return '// No TFT_eSPI image data\n';
+  }
+
+  tftespiAddImageRenderHelper(generator);
+  return `tftespiDrawImage(${display}, ${x}, ${y}, ${imagePrefix}_width, ${imagePrefix}_height, ${imagePrefix}_data);\n`;
+};
+
+function tftespiGetBlockSymbolSuffix(block) {
+  const suffix = String(block.id || 'block').replace(/[^a-zA-Z0-9]/g, '');
+  return suffix || 'block';
+}
+
+function tftespiGetVariableCodeName(block, fieldName, fallbackName) {
+  const field = block.getField(fieldName);
+  if (field && typeof field.getText === 'function') {
+    const fieldText = field.getText();
+    if (fieldText) {
+      return fieldText;
+    }
+  }
+
+  const fieldValue = block.getFieldValue(fieldName);
+  const variable = block.workspace && typeof block.workspace.getVariableById === 'function'
+    ? block.workspace.getVariableById(fieldValue)
+    : null;
+  return variable && variable.name ? variable.name : fallbackName;
+}
+
+function tftespiGetAnimationPrefix(block, generator) {
+  if (typeof block.getInputTargetBlock === 'function') {
+    const animationBlock = block.getInputTargetBlock('ANIMATION');
+    if (!animationBlock || animationBlock.type !== 'tftespi_animation') {
+      console.error('[TFT_eSPI animation] The animation input must be connected directly to an animation data block');
+      return null;
+    }
+  }
+
+  const animationCode = generator.valueToCode(block, 'ANIMATION', generator.ORDER_ATOMIC);
+  if (!animationCode) {
+    return null;
+  }
+
+  const match = String(animationCode).trim().match(/^(tftespi_animation_[0-9a-f]{16})_frames$/);
+  if (!match) {
+    console.error('[TFT_eSPI animation] The animation input must be connected directly to an animation data block');
+    return null;
+  }
+  return match[1];
+}
+
+Arduino.forBlock['tftespi_animation'] = function(block, generator) {
+  ensureTftEspiLibraries(generator);
+  const animationData = tftespiGetAnimationData(block);
+  if (!animationData) {
+    return ['', generator.ORDER_ATOMIC];
+  }
+
+  const { width, height, fps, format, swapRedBlue, signature, frames } = animationData;
+  const symbolPrefix = `tftespi_animation_${signature}`;
+  const frameType = format === 'rgb332' ? 'uint8_t' : 'uint16_t';
+  const formatLabel = format.toUpperCase();
+  const frameNames = [];
+  const frameDeclarations = [];
+  const frameNameByData = new Map();
+
+  for (let index = 0; index < frames.length; index++) {
+    const existingFrameName = frameNameByData.get(frames[index]);
+    if (existingFrameName) {
+      frameNames.push(existingFrameName);
+      continue;
+    }
+
+    const frameName = `${symbolPrefix}_frame_${index}`;
+    frameNameByData.set(frames[index], frameName);
+    frameNames.push(frameName);
+    frameDeclarations.push(`static const ${frameType} ${frameName}[] PROGMEM = {
+${frames[index]}
+};`);
+  }
+
+  const frameDelay = Math.max(1, Math.round(1000 / fps));
+  const colorConversionLabel = swapRedBlue ? ', display R/B corrected' : '';
+  const animationDeclaration = `// TFT_eSPI animation (${width}x${height}, ${frameNames.length} frames, ${frameDeclarations.length} unique, ${fps} FPS, ${formatLabel}${colorConversionLabel})
+${frameDeclarations.join('\n\n')}
+static const ${frameType}* const ${symbolPrefix}_frames[] = {
+  ${frameNames.join(',\n  ')}
+};
+static const uint16_t ${symbolPrefix}_width = ${width};
+static const uint16_t ${symbolPrefix}_height = ${height};
+static const uint16_t ${symbolPrefix}_frame_count = ${frameNames.length};
+static const uint32_t ${symbolPrefix}_frame_delay = ${frameDelay};`;
+
+  generator.addVariable(symbolPrefix, animationDeclaration);
+  return [`${symbolPrefix}_frames`, generator.ORDER_ATOMIC];
+};
+
+function tftespiAddAnimationRenderHelper(generator) {
+  generator.addFunction('tftespi_draw_animation_frame', `void tftespiDrawAnimationFrame(TFT_eSPI &tftespiDisplay, int32_t tftespiX, int32_t tftespiY, uint16_t tftespiWidth, uint16_t tftespiHeight, const uint16_t *tftespiFrame) {
+  bool tftespiPreviousSwapBytes = tftespiDisplay.getSwapBytes();
+  // RGB565 constants are native-endian uint16_t values; swap bytes for TFT transport.
+  tftespiDisplay.setSwapBytes(true);
+  tftespiDisplay.pushImage(tftespiX, tftespiY, tftespiWidth, tftespiHeight, tftespiFrame);
+  tftespiDisplay.setSwapBytes(tftespiPreviousSwapBytes);
+}
+
+void tftespiDrawAnimationFrame(TFT_eSPI &tftespiDisplay, int32_t tftespiX, int32_t tftespiY, uint16_t tftespiWidth, uint16_t tftespiHeight, const uint8_t *tftespiFrame) {
+  tftespiDisplay.pushImage(tftespiX, tftespiY, tftespiWidth, tftespiHeight, tftespiFrame, true);
+}`);
+}
+
+function tftespiAddAnimationFrameByIndexHelper(generator) {
+  tftespiAddAnimationRenderHelper(generator);
+  generator.addFunction('tftespi_draw_animation_frame_by_index', `void tftespiDrawAnimationFrameByIndex(TFT_eSPI &tftespiDisplay, int32_t tftespiX, int32_t tftespiY, uint16_t tftespiWidth, uint16_t tftespiHeight, const uint16_t * const tftespiFrames[], uint16_t tftespiFrameCount, int32_t tftespiFrameIndex) {
+  if (tftespiFrameCount == 0) {
+    return;
+  }
+  if (tftespiFrameIndex < 0) {
+    tftespiFrameIndex = 0;
+  }
+  if (tftespiFrameIndex >= (int32_t)tftespiFrameCount) {
+    tftespiFrameIndex = tftespiFrameCount - 1;
+  }
+  tftespiDrawAnimationFrame(tftespiDisplay, tftespiX, tftespiY, tftespiWidth, tftespiHeight, tftespiFrames[tftespiFrameIndex]);
+}
+
+void tftespiDrawAnimationFrameByIndex(TFT_eSPI &tftespiDisplay, int32_t tftespiX, int32_t tftespiY, uint16_t tftespiWidth, uint16_t tftespiHeight, const uint8_t * const tftespiFrames[], uint16_t tftespiFrameCount, int32_t tftespiFrameIndex) {
+  if (tftespiFrameCount == 0) {
+    return;
+  }
+  if (tftespiFrameIndex < 0) {
+    tftespiFrameIndex = 0;
+  }
+  if (tftespiFrameIndex >= (int32_t)tftespiFrameCount) {
+    tftespiFrameIndex = tftespiFrameCount - 1;
+  }
+  tftespiDrawAnimationFrame(tftespiDisplay, tftespiX, tftespiY, tftespiWidth, tftespiHeight, tftespiFrames[tftespiFrameIndex]);
+}`);
+}
+
+Arduino.forBlock['tftespi_play_animation'] = function(block, generator) {
+  ensureTftEspiLibraries(generator);
+  const display = tftespiGetVariableCodeName(block, 'VAR', 'tft');
+  const x = generator.valueToCode(block, 'X', generator.ORDER_ATOMIC) || '0';
+  const y = generator.valueToCode(block, 'Y', generator.ORDER_ATOMIC) || '0';
+  const animationPrefix = tftespiGetAnimationPrefix(block, generator);
+  if (!animationPrefix) {
+    return '// No TFT_eSPI animation data\n';
+  }
+
+  tftespiAddAnimationRenderHelper(generator);
+  const playMode = block.getFieldValue('PLAY_MODE') || 'BLOCKING';
+  const loop = block.getFieldValue('LOOP') === 'TRUE';
+
+  if (playMode === 'NON_BLOCKING') {
+    const statePrefix = `tftespi_animation_state_${tftespiGetBlockSymbolSuffix(block)}`;
+    generator.addVariable(`${statePrefix}_frame`, `uint16_t ${statePrefix}_frame = 0;`);
+    generator.addVariable(`${statePrefix}_last_ms`, `uint32_t ${statePrefix}_last_ms = 0;`);
+    generator.addVariable(`${statePrefix}_started`, `bool ${statePrefix}_started = false;`);
+    generator.addVariable(`${statePrefix}_done`, `bool ${statePrefix}_done = false;`);
+
+    let code = `if (!${statePrefix}_done) {\n`;
+    code += `  uint32_t ${statePrefix}_now = millis();\n`;
+    code += `  if (!${statePrefix}_started || ${statePrefix}_now - ${statePrefix}_last_ms >= ${animationPrefix}_frame_delay) {\n`;
+    code += `    tftespiDrawAnimationFrame(${display}, ${x}, ${y}, ${animationPrefix}_width, ${animationPrefix}_height, ${animationPrefix}_frames[${statePrefix}_frame]);\n`;
+    code += `    ${statePrefix}_last_ms = ${statePrefix}_now;\n`;
+    code += `    ${statePrefix}_started = true;\n`;
+    code += `    ${statePrefix}_frame++;\n`;
+    code += `    if (${statePrefix}_frame >= ${animationPrefix}_frame_count) {\n`;
+    if (loop) {
+      code += `      ${statePrefix}_frame = 0;\n`;
+    } else {
+      code += `      ${statePrefix}_frame = ${animationPrefix}_frame_count - 1;\n`;
+      code += `      ${statePrefix}_done = true;\n`;
+    }
+    code += '    }\n';
+    code += '  }\n';
+    code += '}\n';
+    return code;
+  }
+
+  let code = `for (uint16_t tftespiFrameIndex = 0; tftespiFrameIndex < ${animationPrefix}_frame_count; tftespiFrameIndex++) {\n`;
+  code += '  uint32_t tftespiFrameStartedAt = millis();\n';
+  code += `  tftespiDrawAnimationFrame(${display}, ${x}, ${y}, ${animationPrefix}_width, ${animationPrefix}_height, ${animationPrefix}_frames[tftespiFrameIndex]);\n`;
+  code += '  uint32_t tftespiFrameRenderTime = millis() - tftespiFrameStartedAt;\n';
+  code += `  if (tftespiFrameRenderTime < ${animationPrefix}_frame_delay) {\n`;
+  code += `    delay(${animationPrefix}_frame_delay - tftespiFrameRenderTime);\n`;
+  code += '  }\n';
+  code += '}\n';
+  return code;
+};
+
+Arduino.forBlock['tftespi_draw_animation_frame'] = function(block, generator) {
+  ensureTftEspiLibraries(generator);
+  const display = tftespiGetVariableCodeName(block, 'VAR', 'tft');
+  const x = generator.valueToCode(block, 'X', generator.ORDER_ATOMIC) || '0';
+  const y = generator.valueToCode(block, 'Y', generator.ORDER_ATOMIC) || '0';
+  const frame = generator.valueToCode(block, 'FRAME', generator.ORDER_ATOMIC) || '0';
+  const animationPrefix = tftespiGetAnimationPrefix(block, generator);
+  if (!animationPrefix) {
+    return '// No TFT_eSPI animation data\n';
+  }
+
+  tftespiAddAnimationFrameByIndexHelper(generator);
+  return `tftespiDrawAnimationFrameByIndex(${display}, ${x}, ${y}, ${animationPrefix}_width, ${animationPrefix}_height, ${animationPrefix}_frames, ${animationPrefix}_frame_count, ${frame});\n`;
+};
+
+Arduino.forBlock['tftespi_animation_frame_count'] = function(block, generator) {
+  ensureTftEspiLibraries(generator);
+  const animationPrefix = tftespiGetAnimationPrefix(block, generator);
+  if (!animationPrefix) {
+    return ['0', generator.ORDER_ATOMIC];
+  }
+
+  return [`${animationPrefix}_frame_count`, generator.ORDER_ATOMIC];
+};
+
+if (Blockly.Extensions.isRegistered('tftespi_animation_play_dynamic_inputs')) {
+  Blockly.Extensions.unregister('tftespi_animation_play_dynamic_inputs');
+}
+
+Blockly.Extensions.register('tftespi_animation_play_dynamic_inputs', function() {
+  let renderScheduled = false;
+
+  const getLoopInput = () => {
+    return this.inputList.find(input => input.fieldRow && input.fieldRow.some(field => field.name === 'LOOP'));
+  };
+
+  const scheduleRender = () => {
+    if (!this.rendered || renderScheduled) {
+      return;
+    }
+    renderScheduled = true;
+    Promise.resolve().then(() => {
+      renderScheduled = false;
+      const rootBlock = typeof this.getRootBlock === 'function' ? this.getRootBlock() : this;
+      if (rootBlock && rootBlock.rendered) {
+        rootBlock.render();
+      } else if (this.rendered) {
+        this.render();
+      }
+    });
+  };
+
+  const updatePlaybackMode = modeValue => {
+    const loopInput = getLoopInput();
+    if (loopInput) {
+      loopInput.setVisible(modeValue === 'NON_BLOCKING');
+    }
+    scheduleRender();
+  };
+
+  const playModeField = this.getField('PLAY_MODE');
+  if (playModeField) {
+    playModeField.setValidator(option => {
+      updatePlaybackMode(option);
+      return option;
+    });
+  }
+
+  updatePlaybackMode(this.getFieldValue('PLAY_MODE'));
+});

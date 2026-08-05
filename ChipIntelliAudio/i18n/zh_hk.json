@@ -1,0 +1,66 @@
+{
+  "toolbox_name": "CI13XX 提示音",
+  "toolbox_labels": {
+    "初始化": "初始化",
+    "播放": "播放",
+    "音量与状态": "音量与状态",
+    "事件": "事件"
+  },
+  "chipintelli_audio_init": {
+    "message0": "初始化 CI13XX 提示音播放器",
+    "tooltip": "启动共享 SDK，并等待音频资源、Codec、功放和播放任务就绪"
+  },
+  "chipintelli_audio_end": {
+    "message0": "结束 CI13XX 提示音播放器",
+    "tooltip": "清除完成回调并停止当前提示音；共享 SDK 仍保持运行"
+  },
+  "chipintelli_audio_play_voice": {
+    "message0": "播放语音 ID %1 方式 %2",
+    "tooltip": "播放 voice.bin 中已配置的 16 位语音 ID"
+  },
+  "chipintelli_audio_play_command_id": {
+    "message0": "播放命令 ID %1 选项 %2 方式 %3",
+    "tooltip": "按命令 ID 播放资源中关联的提示音；选项 -1 使用资源默认项"
+  },
+  "chipintelli_audio_play_command_text": {
+    "message0": "播放命令文本 %1 选项 %2 方式 %3",
+    "tooltip": "按资源中已有的命令文本查找提示音；此功能不是任意文本转语音"
+  },
+  "chipintelli_audio_play_semantic": {
+    "message0": "播放语义 ID %1 选项 %2 方式 %3",
+    "tooltip": "按 32 位语义 ID 播放资源中关联的提示音"
+  },
+  "chipintelli_audio_stop": {
+    "message0": "停止当前提示音",
+    "tooltip": "向 SDK 提交停止播放请求"
+  },
+  "chipintelli_audio_set_volume": {
+    "message0": "设置提示音音量 %1 %",
+    "tooltip": "设置音量百分比，超出 0～100 的值会被限制"
+  },
+  "chipintelli_audio_set_muted": {
+    "message0": "设置提示音静音 %1",
+    "tooltip": "静音时保留请求音量，取消静音后恢复"
+  },
+  "chipintelli_audio_is_ready": {
+    "message0": "提示音播放器已就绪",
+    "tooltip": "检查初始化是否已成功完成"
+  },
+  "chipintelli_audio_is_playing": {
+    "message0": "提示音正在播放",
+    "tooltip": "检查当前是否有提示音正在播放"
+  },
+  "chipintelli_audio_volume": {
+    "message0": "当前提示音音量",
+    "tooltip": "返回当前请求音量 0～100"
+  },
+  "chipintelli_audio_is_muted": {
+    "message0": "提示音已静音",
+    "tooltip": "检查可靠静音状态"
+  },
+  "chipintelli_audio_on_finished": {
+    "message0": "当提示音请求完成时",
+    "message1": "执行 %1",
+    "tooltip": "SDK 回调只设置标志，积木中的代码会安全地在 Arduino loop 中执行"
+  }
+}

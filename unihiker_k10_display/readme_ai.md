@@ -1,10 +1,10 @@
 # K10 Screen Display
 
-UNIHIKER K10 screen display library, supports drawing points, lines, circles, rectangles, text, images and QR codes
+UNIHIKER K10 screen display library with drawing, text, image, animation, and QR code blocks
 
 ## Library Info
 - **Name**: @aily-project/lib-unihiker-k10-display
-- **Version**: 0.1.0
+- **Version**: 0.4.1
 
 ## Block Definitions
 
@@ -24,6 +24,12 @@ UNIHIKER K10 screen display library, supports drawing points, lines, circles, re
 | `k10_draw_qrcode` | Statement | CONTENT(input_value) | `k10_draw_qrcode(text("value"))` | k10.canvasDrawCode( |
 | `k10_update_canvas` | Statement | (none) | `k10_update_canvas()` | k10.canvas->updateCanvas();\n |
 | `k10_clear_canvas` | Statement | MODE(dropdown) | `k10_clear_canvas("0")` | k10.canvas->canvasClear();\n |
+| `k10_clear_canvas_row` | Statement | LINE(input_value) | `k10_clear_canvas_row(math_number(1))` | `k10.canvas->canvasClear(1);` |
+| `k10_clear_qrcode` | Statement | (none) | `k10_clear_qrcode()` | `k10.clearCode();` |
+| `k10_animation` | Value (K10Animation) | CUSTOM_ANIMATION(field_tftespi_animation) | `k10_animation()` | RGB565 `PROGMEM` frame arrays |
+| `k10_play_animation` | Statement | X, Y, ANIMATION(input_value), PLAY_MODE(dropdown), LOOP(field_checkbox) | `k10_play_animation(math_number(0), math_number(0), k10_animation(), BLOCKING, FALSE)` | Blocking or non-blocking playback with automatic canvas refresh |
+| `k10_draw_animation_frame` | Statement | X, Y, ANIMATION, FRAME(input_value) | `k10_draw_animation_frame(math_number(0), math_number(0), k10_animation(), math_number(0))` | Draw and refresh one clamped animation frame |
+| `k10_animation_frame_count` | Value (Number) | ANIMATION(input_value) | `k10_animation_frame_count(k10_animation())` | Animation frame count |
 | `k10_screen_size` | Value | WHICH(dropdown) | `k10_screen_size(W)` | Dynamic code |
 
 ## Parameter Options
@@ -32,7 +38,8 @@ UNIHIKER K10 screen display library, supports drawing points, lines, circles, re
 |-----------|--------|-------------|
 | DIR | 2, 0, 1, 3 | k10_init_screen |
 | FONT | eCNAndENFont16, eCNAndENFont24 | k10_draw_text |
-| MODE | 0, 1 | k10_clear_canvas |
+| MODE | 0, 1 | Clear all rows or clear row 1; saved value `1` remains compatible |
+| PLAY_MODE | BLOCKING, NON_BLOCKING | Play the whole animation at once or advance it from repeated loop execution |
 | WHICH | W, H | k10_screen_size |
 
 ## ABS Examples
@@ -52,3 +59,9 @@ arduino_loop()
 
 1. **Parameter order**: ABS parameters follow `block.json` args order.
 2. **Input values**: use `math_number(n)`, `text("s")`, `logic_boolean(TRUE/FALSE)`, variables, or nested value blocks.
+3. Both text blocks accept `String` and `Number` values because the K10 SDK provides overloads for both types.
+4. `k10_clear_canvas_row` accepts rows 1 through 7. Refresh the canvas after clearing when the updated display is not immediately visible.
+5. `k10_clear_qrcode` removes the QR-code object created by `k10_draw_qrcode`; clearing the canvas alone does not replace this action.
+6. Connect `ANIMATION` inputs directly to `k10_animation`; indirect variables or other value blocks are not supported because the generator resolves the frame symbols at compile time.
+7. New `k10_animation` blocks may remain empty until media is uploaded. RGB565 input has its red and blue fields exchanged for the K10 display path; RGB332 input is expanded and converted in the same way.
+8. Blocking playback waits for all frames. Non-blocking playback should run repeatedly in `arduino_loop()` and can optionally loop after the last frame.

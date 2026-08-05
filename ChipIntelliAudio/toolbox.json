@@ -1,0 +1,26 @@
+{
+  "kind": "category",
+  "name": "CI13XX 提示音",
+  "icon": "fa-light fa-volume-high",
+  "colour": "#7B1FA2",
+  "contents": [
+    {"kind": "label", "text": "初始化"},
+    {"kind": "block", "type": "chipintelli_audio_init"},
+    {"kind": "block", "type": "chipintelli_audio_end"},
+    {"kind": "label", "text": "播放"},
+    {"kind": "block", "type": "chipintelli_audio_play_voice", "inputs": {"VOICE_ID": {"shadow": {"type": "math_number", "fields": {"NUM": 1}}}}},
+    {"kind": "block", "type": "chipintelli_audio_play_command_id", "inputs": {"COMMAND_ID": {"shadow": {"type": "math_number", "fields": {"NUM": 1}}}, "OPTION": {"shadow": {"type": "math_number", "fields": {"NUM": -1}}}}},
+    {"kind": "block", "type": "chipintelli_audio_play_command_text", "inputs": {"COMMAND_TEXT": {"shadow": {"type": "text", "fields": {"TEXT": "已配置的命令词"}}}, "OPTION": {"shadow": {"type": "math_number", "fields": {"NUM": -1}}}}},
+    {"kind": "block", "type": "chipintelli_audio_play_semantic", "inputs": {"SEMANTIC_ID": {"shadow": {"type": "math_number", "fields": {"NUM": 1}}}, "OPTION": {"shadow": {"type": "math_number", "fields": {"NUM": -1}}}}},
+    {"kind": "block", "type": "chipintelli_audio_stop"},
+    {"kind": "label", "text": "音量与状态"},
+    {"kind": "block", "type": "chipintelli_audio_set_volume", "inputs": {"VOLUME": {"shadow": {"type": "math_number", "fields": {"NUM": 70}}}}},
+    {"kind": "block", "type": "chipintelli_audio_set_muted", "inputs": {"MUTED": {"shadow": {"type": "logic_boolean", "fields": {"BOOL": "TRUE"}}}}},
+    {"kind": "block", "type": "chipintelli_audio_is_ready"},
+    {"kind": "block", "type": "chipintelli_audio_is_playing"},
+    {"kind": "block", "type": "chipintelli_audio_volume"},
+    {"kind": "block", "type": "chipintelli_audio_is_muted"},
+    {"kind": "label", "text": "事件"},
+    {"kind": "block", "type": "chipintelli_audio_on_finished"}
+  ]
+}

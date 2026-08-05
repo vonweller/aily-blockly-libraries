@@ -1,5 +1,5 @@
 {
-  "toolbox_name": "K10 Sensor",
+  "toolbox_name": "K10-Sensor",
   "k10_get_accelerometer": {
     "message0": "Beschleunigungsmesser %1 Achse lesen",
     "tooltip": "K10 onboard Beschleunigungsmesser Achsendaten lesen",
@@ -8,15 +8,15 @@
         "options": [
           [
             "X",
-            "x"
+            "X"
           ],
           [
             "Y",
-            "y"
+            "Y"
           ],
           [
             "Z",
-            "z"
+            "Z"
           ]
         ]
       }
@@ -32,26 +32,38 @@
     "args0": [
       {
         "options": [
-          ["an", "true"],
-          ["aus", "false"]
+          [
+            "an",
+            "true"
+          ],
+          [
+            "aus",
+            "false"
+          ]
         ]
       }
     ]
   },
   "k10_aht20_get_temperature": {
     "message0": "AHT20 Temperatur lesen %1",
-    "tooltip": "Temperatur vom AHT20-Sensor lesen (zuerst Messung starten)",
+    "tooltip": "Erfassen Sie die AHT20-Temperatur; Die Messung beginnt automatisch",
     "args0": [
       {
         "options": [
-          ["Celsius(℃)", "C"],
-          ["Fahrenheit(℉)", "F"]
+          [
+            "Celsius(℃)",
+            "C"
+          ],
+          [
+            "Fahrenheit(℉)",
+            "F"
+          ]
         ]
       }
     ]
   },
   "k10_aht20_get_humidity": {
     "message0": "AHT20 relative Luftfeuchte lesen(%RH)",
-    "tooltip": "Relative Luftfeuchte vom AHT20-Sensor lesen (zuerst Messung starten)"
+    "tooltip": "Ermittle die relative Luftfeuchtigkeit von AHT20; Die Messung beginnt automatisch"
   }
 }

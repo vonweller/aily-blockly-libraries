@@ -1,13 +1,13 @@
 # K10 Camera & AI Recognition
 
-UNIHIKER K10 camera and AI recognition library, supports photo, face detection/recognition, pet detection, motion detection, QR code scanning
+UNIHIKER K10 camera and AI vision blocks for photos, Base64 capture, face/pet/motion detection, face recognition, and QR codes.
 
 ## Library Info
 
 | Field | Value |
 |-------|-------|
 | Package | @aily-project/lib-unihiker-k10-camera-ai |
-| Version | 0.1.0 |
+| Version | 0.1.14 |
 | Author | DFRobot |
 | Source | N/A |
 | License | Original license |
@@ -18,9 +18,8 @@ UNIHIKER:esp32:k10
 
 ## Description
 
-UNIHIKER K10 camera and AI recognition library, supports photo, face detection/recognition, pet detection, motion detection, QR code scanning
+AI initializes the shared queues, starts the camera with preview hidden, waits for the first frame, and then starts the selected AI mode once. Face detection and identity recognition share one Face mode; use face actions to learn, recognize, or clear learned faces.
 
 ## Quick Start
 
-1. Enable `@aily-project/lib-unihiker-k10-camera-ai` in Aily Blockly.
-2. Add the library blocks, initialize hardware in `arduino_setup()`, then use read/write blocks in `arduino_loop()`.
+Initialize camera/AI in `arduino_setup()`. Add the show block only when live preview is required.

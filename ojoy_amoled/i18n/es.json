@@ -1,0 +1,1031 @@
+{
+  "toolbox_name": "OJoy Pantalla + Táctil",
+  "toolbox_categories": [
+    "Config. y panel",
+    "Dibujo",
+    "Texto",
+    "Color",
+    "Render/Mezcla",
+    "Efectos",
+    "Mapa de bits",
+    "Iconos",
+    "Controles",
+    "Redondo/Medidores",
+    "Táctil"
+  ],
+  "chamoled_setup": {
+    "message0": "[① Inicializar pantalla (necesario, el primero)] pantalla AMOLED %1 frec. QSPI %2 rotación %3 brillo %4",
+    "tooltip": "Inicializar la pantalla AMOLED de OJoy (pines fijos para esta placa; requiere ESP32-S3 con PSRAM)"
+  },
+  "chamoled_panel": {
+    "message0": "[Control del panel] pantalla %1 hacer %2 valor %3",
+    "tooltip": "Control del panel: brillo / suspensión / pantalla on-off / inversión",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "fijar brillo (0-255)",
+            "setBrightness"
+          ],
+          [
+            "suspender (1=sí/0=no)",
+            "sleep"
+          ],
+          [
+            "pantalla (1=on/0=off)",
+            "displayOn"
+          ],
+          [
+            "invertir (1=on/0=off)",
+            "invertDisplay"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "chamoled_set_rotation": {
+    "message0": "[Fijar rotación de pantalla] pantalla %1 rotación %2",
+    "tooltip": "Fijar el sentido de rotación de la pantalla"
+  },
+  "chamoled_refresh": {
+    "message0": "[② Refrescar en pantalla (necesario tras dibujar)] pantalla %1 modo %2",
+    "tooltip": "Enviar el búfer de imagen a la pantalla (necesario tras dibujar)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "parcial (área sucia, rápido)",
+            "update"
+          ],
+          [
+            "pantalla completa",
+            "display"
+          ]
+        ]
+      }
+    ]
+  },
+  "chamoled_dimension": {
+    "message0": "[Leer tamaño de pantalla] pantalla %1 %2",
+    "tooltip": "Obtener ancho / alto / rotación de la pantalla",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "ancho",
+            "width"
+          ],
+          [
+            "alto",
+            "height"
+          ],
+          [
+            "rotación",
+            "getRotation"
+          ]
+        ]
+      }
+    ]
+  },
+  "chamoled_fill_screen": {
+    "message0": "[Borrar / rellenar pantalla] pantalla %1 color de relleno %2",
+    "tooltip": "Rellenar toda la pantalla con un color"
+  },
+  "chamoled_draw_pixel": {
+    "message0": "[Dibujar píxel] pantalla %1 X %2 Y %3 color %4",
+    "tooltip": "Dibujar un píxel"
+  },
+  "chamoled_draw_line": {
+    "message0": "[Dibujar línea] pantalla %1 estilo %2 desde X %3 desde Y %4 hasta X %5 hasta Y %6 color %7",
+    "tooltip": "Dibujar una línea recta (estilo a elegir)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "continua",
+            "drawLine"
+          ],
+          [
+            "discontinua",
+            "drawDashedLine"
+          ],
+          [
+            "punteada",
+            "drawDottedLine"
+          ],
+          [
+            "suavizada",
+            "drawLineAA"
+          ],
+          [
+            "flecha",
+            "drawArrow"
+          ]
+        ]
+      },
+      null,
+      null,
+      null,
+      null,
+      null
+    ]
+  },
+  "chamoled_rect": {
+    "message0": "[Dibujar rectángulo] pantalla %1 modo %2 X %3 Y %4 ancho %5 alto %6 color %7",
+    "tooltip": "Rectángulo (contorno/relleno)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "contorno",
+            "drawRect"
+          ],
+          [
+            "relleno",
+            "fillRect"
+          ]
+        ]
+      },
+      null,
+      null,
+      null,
+      null,
+      null
+    ]
+  },
+  "chamoled_round_rect": {
+    "message0": "[Dibujar rectángulo redondeado] pantalla %1 modo %2 X %3 Y %4 ancho %5 alto %6 esquina %7 color %8",
+    "tooltip": "Rectángulo redondeado (contorno/relleno)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "contorno",
+            "drawRoundRect"
+          ],
+          [
+            "relleno",
+            "fillRoundRect"
+          ]
+        ]
+      },
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ]
+  },
+  "chamoled_circle": {
+    "message0": "[Dibujar círculo] pantalla %1 modo %2 centro X %3 centro Y %4 radio %5 color %6",
+    "tooltip": "Círculo (contorno/relleno/suavizado)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "contorno",
+            "drawCircle"
+          ],
+          [
+            "relleno",
+            "fillCircle"
+          ],
+          [
+            "contorno (AA)",
+            "drawCircleAA"
+          ],
+          [
+            "relleno (AA)",
+            "fillCircleAA"
+          ]
+        ]
+      },
+      null,
+      null,
+      null,
+      null
+    ]
+  },
+  "chamoled_ellipse": {
+    "message0": "[Dibujar elipse] pantalla %1 modo %2 centro X %3 centro Y %4 radio X %5 radio Y %6 color %7",
+    "tooltip": "Elipse (contorno/relleno)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "contorno",
+            "drawEllipse"
+          ],
+          [
+            "relleno",
+            "fillEllipse"
+          ]
+        ]
+      },
+      null,
+      null,
+      null,
+      null,
+      null
+    ]
+  },
+  "chamoled_triangle": {
+    "message0": "[Dibujar triángulo] pantalla %1 modo %2 p1 X %3 p1 Y %4 p2 X %5 p2 Y %6 p3 X %7 p3 Y %8 color %9",
+    "tooltip": "Triángulo (contorno/relleno)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "contorno",
+            "drawTriangle"
+          ],
+          [
+            "relleno",
+            "fillTriangle"
+          ]
+        ]
+      },
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ]
+  },
+  "chamoled_arc": {
+    "message0": "[Dibujar arco] pantalla %1 modo %2 centro X %3 centro Y %4 radio interior %5 radio exterior %6 ángulo inicial %7 ángulo final %8 color %9",
+    "tooltip": "Arco / segmento de anillo (contorno/relleno); 0° = las 12, sentido horario",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "contorno",
+            "drawArc"
+          ],
+          [
+            "relleno",
+            "fillArc"
+          ]
+        ]
+      },
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ]
+  },
+  "chamoled_sector": {
+    "message0": "[Dibujar sector] pantalla %1 modo %2 centro X %3 centro Y %4 radio %5 ángulo inicial %6 ángulo final %7 color %8",
+    "tooltip": "Sector (contorno/relleno)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "contorno",
+            "drawSector"
+          ],
+          [
+            "relleno",
+            "fillSector"
+          ]
+        ]
+      },
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ]
+  },
+  "chamoled_star": {
+    "message0": "[Dibujar estrella] pantalla %1 centro X %2 centro Y %3 radio exterior %4 radio interior %5 puntas %6 color %7 relleno %8",
+    "tooltip": "Estrella"
+  },
+  "chamoled_rect_gradient": {
+    "message0": "[Rectángulo con degradado] pantalla %1 dirección %2 X %3 Y %4 ancho %5 alto %6 color inicial %7 color final %8",
+    "tooltip": "Rellenar un rectángulo con degradado (horizontal/vertical)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "vertical",
+            "true"
+          ],
+          [
+            "horizontal",
+            "false"
+          ]
+        ]
+      },
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ]
+  },
+  "chamoled_radial_gradient": {
+    "message0": "[Círculo con degradado radial] pantalla %1 centro X %2 centro Y %3 radio %4 color interior %5 color exterior %6",
+    "tooltip": "Rellenar un círculo con degradado radial"
+  },
+  "chamoled_set_text_color": {
+    "message0": "[Fijar color del texto] pantalla %1 color del texto %2",
+    "tooltip": "Fijar el color del texto"
+  },
+  "chamoled_set_text_size": {
+    "message0": "[Fijar tamaño del texto] pantalla %1 escala %2",
+    "tooltip": "Fijar el factor de ampliación del texto"
+  },
+  "chamoled_set_text_align": {
+    "message0": "[Fijar alineación del texto] pantalla %1 horizontal %2 vertical %3",
+    "tooltip": "Fijar la alineación del texto (respecto al punto de anclaje)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "izquierda",
+            "CH_ALIGN_LEFT"
+          ],
+          [
+            "centro",
+            "CH_ALIGN_CENTER"
+          ],
+          [
+            "derecha",
+            "CH_ALIGN_RIGHT"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "arriba",
+            "CH_ALIGN_TOP"
+          ],
+          [
+            "medio",
+            "CH_ALIGN_MIDDLE"
+          ],
+          [
+            "abajo",
+            "CH_ALIGN_BOTTOM"
+          ]
+        ]
+      }
+    ]
+  },
+  "chamoled_set_cursor": {
+    "message0": "[Fijar cursor] pantalla %1 X %2 Y %3",
+    "tooltip": "Fijar la posición del cursor"
+  },
+  "chamoled_draw_text": {
+    "message0": "[Mostrar texto] pantalla %1 X %2 Y %3 etiqueta %4",
+    "tooltip": "Dibujar el texto con la alineación actual"
+  },
+  "chamoled_text_effect": {
+    "message0": "[Texto con efecto (sombra/contorno)] pantalla %1 efecto %2 X %3 Y %4 etiqueta %5 color principal %6 color secundario %7",
+    "tooltip": "Texto con sombra o contorno",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "sombra",
+            "drawTextShadow"
+          ],
+          [
+            "contorno",
+            "drawTextOutline"
+          ]
+        ]
+      },
+      null,
+      null,
+      null,
+      null,
+      null
+    ]
+  },
+  "chamoled_seg_text": {
+    "message0": "[Dígitos de 7 segmentos (reloj)] pantalla %1 X %2 Y %3 alto %4 etiqueta %5 color %6 fondo %7",
+    "tooltip": "Dígitos vectoriales grandes de 7 segmentos (reloj/medidor); admite 0-9 A-F : . -"
+  },
+  "chamoled_print": {
+    "message0": "[Imprimir texto (admite CJK)] pantalla %1 X %2 Y %3 etiqueta %4",
+    "tooltip": "Imprimir en el cursor (UTF-8/CJK, úsalo junto al bloque de fuente CJK)"
+  },
+  "chamoled_set_cn_font": {
+    "message0": "[Elegir fuente CJK] pantalla %1 fuente CJK %2",
+    "tooltip": "Cambiar la fuente de mapa de bits CJK (requiere una partición APP grande)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "desactivada",
+            "0"
+          ],
+          [
+            "16px",
+            "16"
+          ],
+          [
+            "24px",
+            "24"
+          ],
+          [
+            "32px",
+            "32"
+          ]
+        ]
+      }
+    ]
+  },
+  "chamoled_color": {
+    "message0": "[Elegir color] Color %1",
+    "tooltip": "Color predefinido",
+    "args0": [
+      {
+        "options": [
+          [
+            "negro",
+            "CH_BLACK"
+          ],
+          [
+            "blanco",
+            "CH_WHITE"
+          ],
+          [
+            "rojo",
+            "CH_RED"
+          ],
+          [
+            "verde",
+            "CH_GREEN"
+          ],
+          [
+            "azul",
+            "CH_BLUE"
+          ],
+          [
+            "amarillo",
+            "CH_YELLOW"
+          ],
+          [
+            "cian",
+            "CH_CYAN"
+          ],
+          [
+            "magenta",
+            "CH_MAGENTA"
+          ],
+          [
+            "naranja",
+            "CH_ORANGE"
+          ],
+          [
+            "rosa",
+            "CH_PINK"
+          ],
+          [
+            "morado",
+            "CH_PURPLE"
+          ],
+          [
+            "violeta",
+            "CH_VIOLET"
+          ],
+          [
+            "dorado",
+            "CH_GOLD"
+          ],
+          [
+            "azul cielo",
+            "CH_SKYBLUE"
+          ],
+          [
+            "azul marino",
+            "CH_NAVY"
+          ],
+          [
+            "cian oscuro",
+            "CH_DARKCYAN"
+          ],
+          [
+            "verde oscuro",
+            "CH_DARKGREEN"
+          ],
+          [
+            "gris oscuro",
+            "CH_DARKGREY"
+          ],
+          [
+            "gris claro",
+            "CH_LIGHTGREY"
+          ],
+          [
+            "plata",
+            "CH_SILVER"
+          ],
+          [
+            "oliva",
+            "CH_OLIVE"
+          ],
+          [
+            "granate",
+            "CH_MAROON"
+          ],
+          [
+            "verde amarillo",
+            "CH_GREENYELLOW"
+          ]
+        ]
+      }
+    ]
+  },
+  "chamoled_color_rgb": {
+    "message0": "[Color RGB] rojo %1 verde %2 azul %3",
+    "tooltip": "Convertir RGB a color 565"
+  },
+  "chamoled_palette": {
+    "message0": "[Color de paleta] paleta %1 posición %2",
+    "tooltip": "Tomar un color de una paleta (t = 0-255)",
+    "args0": [
+      {
+        "options": [
+          [
+            "arcoíris",
+            "rainbow"
+          ],
+          [
+            "calor",
+            "heat"
+          ],
+          [
+            "Jet",
+            "jet"
+          ],
+          [
+            "Turbo",
+            "turbo"
+          ],
+          [
+            "Viridis",
+            "viridis"
+          ],
+          [
+            "escala de grises",
+            "grayscale"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "chamoled_set_blend": {
+    "message0": "[Fijar modo de mezcla] pantalla %1 modo %2",
+    "tooltip": "Fijar el modo de mezcla (afecta a los dibujos siguientes)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "normal",
+            "CH_BLEND_NORMAL"
+          ],
+          [
+            "añadir",
+            "CH_BLEND_ADD"
+          ],
+          [
+            "multiplicar",
+            "CH_BLEND_MULTIPLY"
+          ],
+          [
+            "trama",
+            "CH_BLEND_SCREEN"
+          ],
+          [
+            "oscurecer",
+            "CH_BLEND_DARKEN"
+          ],
+          [
+            "aclarar",
+            "CH_BLEND_LIGHTEN"
+          ],
+          [
+            "superponer",
+            "CH_BLEND_OVERLAY"
+          ],
+          [
+            "restar",
+            "CH_BLEND_SUBTRACT"
+          ]
+        ]
+      }
+    ]
+  },
+  "chamoled_set_alpha": {
+    "message0": "[Fijar alfa] pantalla %1 alfa %2",
+    "tooltip": "Fijar el alfa global (0-255)"
+  },
+  "chamoled_clip": {
+    "message0": "[Fijar región de recorte] pantalla %1 modo %2 X / centro X %3 Y / centro Y %4 ancho / radio %5",
+    "tooltip": "Región de recorte (los dibujos siguientes quedan dentro)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "recorte rectangular",
+            "rect"
+          ],
+          [
+            "recorte circular",
+            "circle"
+          ],
+          [
+            "quitar recorte",
+            "clear"
+          ]
+        ]
+      },
+      null,
+      null,
+      null
+    ]
+  },
+  "chamoled_color_filter": {
+    "message0": "[Filtro de color (región)] pantalla %1 filtro %2 X %3 Y %4 ancho %5 alto %6 intensidad %7",
+    "tooltip": "Aplicar un filtro de color a una región",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "escala de grises",
+            "CH_FILTER_GRAY"
+          ],
+          [
+            "sepia",
+            "CH_FILTER_SEPIA"
+          ],
+          [
+            "invertir",
+            "CH_FILTER_INVERT"
+          ],
+          [
+            "brillo",
+            "CH_FILTER_BRIGHTNESS"
+          ],
+          [
+            "contraste",
+            "CH_FILTER_CONTRAST"
+          ],
+          [
+            "saturación",
+            "CH_FILTER_SATURATION"
+          ],
+          [
+            "tinte",
+            "CH_FILTER_TINT"
+          ]
+        ]
+      },
+      null,
+      null,
+      null,
+      null,
+      null
+    ]
+  },
+  "chamoled_effect_rect": {
+    "message0": "[Efecto de región (oscurecer/desenfocar/sombra interior)] pantalla %1 efecto %2 X %3 Y %4 ancho %5 alto %6 intensidad %7",
+    "tooltip": "Efecto de región: oscurecer / desenfocar / sombra interior",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "oscurecer",
+            "dimRect"
+          ],
+          [
+            "desenfocar",
+            "blurRect"
+          ],
+          [
+            "sombra interior",
+            "innerShadowRect"
+          ]
+        ]
+      },
+      null,
+      null,
+      null,
+      null,
+      null
+    ]
+  },
+  "chamoled_vignette": {
+    "message0": "[Viñeta] pantalla %1 intensidad %2",
+    "tooltip": "Viñeta a pantalla completa"
+  },
+  "chamoled_spotlight": {
+    "message0": "[Foco] pantalla %1 centro X %2 centro Y %3 radio %4 oscurecer fuera %5",
+    "tooltip": "Foco (oscurece todo lo de fuera)"
+  },
+  "chamoled_glow_circle": {
+    "message0": "[Círculo brillante] pantalla %1 centro X %2 centro Y %3 radio %4 color %5 ancho del brillo %6",
+    "tooltip": "Círculo brillante"
+  },
+  "chamoled_draw_bitmap": {
+    "message0": "[Mostrar mapa de bits] pantalla %1 mapa de bits %2 X %3 Y %4 datos %5 ancho %6 alto %7 color mono %8",
+    "tooltip": "Dibujar un mapa de bits (array RGB565 o array monocromo)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "color (RGB565)",
+            "rgb"
+          ],
+          [
+            "mono",
+            "mono"
+          ]
+        ]
+      },
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ]
+  },
+  "chamoled_draw_icon": {
+    "message0": "[Mostrar icono] pantalla %1 icono %2 X %3 Y %4 tamaño %5 color %6",
+    "tooltip": "Dibujar un icono vectorial integrado",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "batería",
+            "CH_ICON_BATTERY"
+          ],
+          [
+            "batería cargando",
+            "CH_ICON_BATTERY_CHARGE"
+          ],
+          [
+            "WiFi",
+            "CH_ICON_WIFI"
+          ],
+          [
+            "WiFi apagado",
+            "CH_ICON_WIFI_OFF"
+          ],
+          [
+            "Bluetooth",
+            "CH_ICON_BLUETOOTH"
+          ],
+          [
+            "GPS",
+            "CH_ICON_GPS"
+          ],
+          [
+            "USB",
+            "CH_ICON_USB"
+          ],
+          [
+            "volumen",
+            "CH_ICON_VOLUME"
+          ],
+          [
+            "silencio",
+            "CH_ICON_MUTE"
+          ],
+          [
+            "reproducir",
+            "CH_ICON_PLAY"
+          ],
+          [
+            "pausa",
+            "CH_ICON_PAUSE"
+          ],
+          [
+            "detener",
+            "CH_ICON_STOP"
+          ],
+          [
+            "campana",
+            "CH_ICON_BELL"
+          ],
+          [
+            "corazón",
+            "CH_ICON_HEART"
+          ],
+          [
+            "reloj",
+            "CH_ICON_CLOCK"
+          ],
+          [
+            "ajustes",
+            "CH_ICON_SETTINGS"
+          ],
+          [
+            "carpeta",
+            "CH_ICON_FOLDER"
+          ],
+          [
+            "cámara",
+            "CH_ICON_CAMERA"
+          ],
+          [
+            "sol",
+            "CH_ICON_SUN"
+          ],
+          [
+            "luna",
+            "CH_ICON_MOON"
+          ],
+          [
+            "nube",
+            "CH_ICON_CLOUD"
+          ],
+          [
+            "lluvia",
+            "CH_ICON_RAIN"
+          ],
+          [
+            "éxito",
+            "CH_ICON_SUCCESS"
+          ],
+          [
+            "advertencia",
+            "CH_ICON_WARNING"
+          ],
+          [
+            "error",
+            "CH_ICON_ERROR"
+          ]
+        ]
+      },
+      null,
+      null,
+      null,
+      null
+    ]
+  },
+  "chamoled_progress_bar": {
+    "message0": "[Barra de progreso] pantalla %1 X %2 Y %3 ancho %4 alto %5 porcentaje %6 primer plano %7 fondo %8",
+    "tooltip": "Barra de progreso"
+  },
+  "chamoled_button": {
+    "message0": "[Botón] pantalla %1 X %2 Y %3 ancho %4 alto %5 etiqueta %6 color del texto %7 color de relleno %8 color del borde %9 esquina %10",
+    "tooltip": "Botón"
+  },
+  "chamoled_toggle": {
+    "message0": "[Interruptor] pantalla %1 X %2 Y %3 ancho %4 alto %5 activado %6 color encendido %7 color apagado %8",
+    "tooltip": "Interruptor de palanca"
+  },
+  "chamoled_checkbox": {
+    "message0": "[Casilla] pantalla %1 X %2 Y %3 tamaño %4 marcado %5 color %6",
+    "tooltip": "Casilla de verificación"
+  },
+  "chamoled_slider": {
+    "message0": "[Deslizador] pantalla %1 X %2 Y %3 ancho %4 porcentaje %5 guía %6 activo %7 mando %8",
+    "tooltip": "Deslizador"
+  },
+  "chamoled_battery": {
+    "message0": "[Icono de batería] pantalla %1 X %2 Y %3 ancho %4 alto %5 carga %6 color %7 cargando %8",
+    "tooltip": "Icono de batería"
+  },
+  "chamoled_signal": {
+    "message0": "[Barras de señal] pantalla %1 X %2 Y %3 barras %4 nivel %5 color encendido %6 color apagado %7",
+    "tooltip": "Barras de señal"
+  },
+  "chamoled_spinner": {
+    "message0": "[Círculo de carga] pantalla %1 centro X %2 centro Y %3 radio %4 ángulo de fase %5 color %6",
+    "tooltip": "Círculo de carga (aumenta la fase en cada fotograma para animar)"
+  },
+  "chamoled_gauge": {
+    "message0": "[Medidor] pantalla %1 centro X %2 centro Y %3 radio %4 grosor %5 valor %6 mín %7 máx %8 ángulo inicial %9 ángulo final %10 primer plano %11 fondo %12",
+    "tooltip": "Medidor (asigna un valor a un arco)"
+  },
+  "chamoled_ring_progress": {
+    "message0": "[Progreso en anillo] pantalla %1 centro X %2 centro Y %3 radio exterior %4 grosor %5 porcentaje %6 primer plano %7 fondo %8",
+    "tooltip": "Progreso en anillo (extremos redondeados)"
+  },
+  "chamoled_clock_face": {
+    "message0": "[Esfera de reloj] pantalla %1 centro X %2 centro Y %3 radio %4 h %5 min %6 s %7 esfera %8 marcas %9 aguja horaria %10 minutero %11 segundero %12",
+    "tooltip": "Esfera de reloj"
+  },
+  "chamoled_needle": {
+    "message0": "[Aguja] pantalla %1 centro X %2 centro Y %3 longitud %4 ángulo %5 ancho de base %6 color %7",
+    "tooltip": "Aguja (0° = las 12, sentido horario)"
+  },
+  "chamoled_ticks": {
+    "message0": "[Anillo de marcas] pantalla %1 centro X %2 centro Y %3 radio exterior %4 cantidad %5 longitud %6 color %7",
+    "tooltip": "Anillo de marcas"
+  },
+  "chamoled_speedometer": {
+    "message0": "[Velocímetro] pantalla %1 centro X %2 centro Y %3 radio %4 valor %5 máx %6 primer plano %7 fondo %8 aguja %9",
+    "tooltip": "Velocímetro"
+  },
+  "chamoled_compass": {
+    "message0": "[Brújula] pantalla %1 centro X %2 centro Y %3 radio %4 rumbo %5 anillo %6 aguja %7",
+    "tooltip": "Brújula"
+  },
+  "chtouch_setup": {
+    "message0": "[① Inicializar táctil] táctil %1 rotación (según pantalla) %2",
+    "tooltip": "Inicializar el táctil CHSC6417 (pines fijos: SCL47/SDA21/RST48/INT10, en el bus separado Wire1)"
+  },
+  "chtouch_read": {
+    "message0": "[Leer táctil (¿hay contacto?)] táctil %1",
+    "tooltip": "Tomar una muestra táctil; devuelve si hay contacto (actualiza las coordenadas)"
+  },
+  "chtouch_touched": {
+    "message0": "[Tocando ahora] táctil %1",
+    "tooltip": "Si hay un toque ahora mismo (usa la última muestra)"
+  },
+  "chtouch_x": {
+    "message0": "[X del toque] táctil %1",
+    "tooltip": "Coordenada X del toque"
+  },
+  "chtouch_y": {
+    "message0": "[Y del toque] táctil %1",
+    "tooltip": "Coordenada Y del toque"
+  },
+  "chtouch_points": {
+    "message0": "[Número de puntos] táctil %1",
+    "tooltip": "Número de puntos de contacto"
+  },
+  "chtouch_gesture_is": {
+    "message0": "[El gesto es] táctil %1 el gesto es %2",
+    "tooltip": "Comprobación de gesto (llamar tras soltar): deslizar izquierda/derecha/arriba/abajo o tocar",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "deslizar a la izquierda",
+            "1"
+          ],
+          [
+            "deslizar a la derecha",
+            "2"
+          ],
+          [
+            "deslizar arriba",
+            "3"
+          ],
+          [
+            "deslizar abajo",
+            "4"
+          ],
+          [
+            "tocar",
+            "5"
+          ]
+        ]
+      }
+    ]
+  },
+  "chtouch_present": {
+    "message0": "[¿Chip táctil presente?] táctil %1",
+    "tooltip": "Comprobar por I2C si el chip táctil responde (0x2E)"
+  },
+  "chtouch_set_rotation": {
+    "message0": "[Fijar rotación táctil] táctil %1 rotación %2",
+    "tooltip": "Fijar la rotación de las coordenadas táctiles (igual que la pantalla)"
+  },
+  "chtouch_calibrate": {
+    "message0": "[Calibrar orientación táctil] táctil %1 espejo X %2 espejo Y %3 intercambiar XY %4",
+    "tooltip": "Calibración de orientación: intercambiar XY / espejo si la posición del dedo no coincide con la pantalla"
+  }
+}

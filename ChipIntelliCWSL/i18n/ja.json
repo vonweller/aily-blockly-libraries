@@ -1,0 +1,276 @@
+{
+  "toolbox_name": "CI13XX コマンド語自己学習",
+  "toolbox_labels": {
+    "初始化": "Initialization",
+    "学习与删除": "Learning and deletion",
+    "状态与容量": "State and capacity",
+    "异步事件": "Asynchronous events"
+  },
+  "chipintelli_cwsl_init": {
+    "message0": "initialize CI13XX command-word self-learning timeout %1 ms",
+    "tooltip": "Initialize CWSL; select a command-word self-learning algorithm profile before compiling."
+  },
+  "chipintelli_cwsl_end": {
+    "message0": "end command-word self-learning listener",
+    "tooltip": "Stop receiving CWSL events and clear the event queue."
+  },
+  "chipintelli_cwsl_learn": {
+    "message0": "learn %1 command ID %2 group ID %3",
+    "tooltip": "Start asynchronous learning; the command ID must exist in the active cmd_info resource.",
+    "args0": [
+      {
+        "options": [
+          [
+            "COMMAND",
+            "COMMAND"
+          ],
+          [
+            "WAKE",
+            "WAKE"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "chipintelli_cwsl_cancel_learning": {
+    "message0": "cancel learning before recording starts",
+    "tooltip": "Cancellation is accepted only before the LearningStarted event."
+  },
+  "chipintelli_cwsl_erase_template": {
+    "message0": "erase learned %1 command ID %2 group ID %3",
+    "tooltip": "Submit deletion of a specific learned template.",
+    "args0": [
+      {
+        "options": [
+          [
+            "COMMAND",
+            "COMMAND"
+          ],
+          [
+            "WAKE",
+            "WAKE"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "chipintelli_cwsl_erase_templates": {
+    "message0": "erase learned templates in %1",
+    "tooltip": "Submit a bulk learned-template deletion request.",
+    "args0": [
+      {
+        "options": [
+          [
+            "COMMANDS",
+            "COMMANDS"
+          ],
+          [
+            "WAKE_WORDS",
+            "WAKE_WORDS"
+          ],
+          [
+            "ALL",
+            "ALL"
+          ]
+        ]
+      }
+    ]
+  },
+  "chipintelli_cwsl_read_events": {
+    "message0": "read all pending self-learning events",
+    "message1": "for each event run %1",
+    "tooltip": "Poll learning, deletion and recognition events in the current Arduino task."
+  },
+  "chipintelli_cwsl_profile_enabled": {
+    "message0": "current algorithm supports self-learning",
+    "tooltip": "Check whether a CWSL algorithm profile was selected at compile time."
+  },
+  "chipintelli_cwsl_available": {
+    "message0": "a self-learning event is pending",
+    "tooltip": "Check whether the CWSL event queue is non-empty."
+  },
+  "chipintelli_cwsl_state": {
+    "message0": "current self-learning state",
+    "tooltip": "Return 0 idle, 1 recognizing, 2 learning, 3 deleting, or 255 unavailable."
+  },
+  "chipintelli_cwsl_state_value": {
+    "message0": "self-learning state %1",
+    "tooltip": "A constant for comparison with the current CWSL state.",
+    "args0": [
+      {
+        "options": [
+          [
+            "0",
+            "0"
+          ],
+          [
+            "1",
+            "1"
+          ],
+          [
+            "2",
+            "2"
+          ],
+          [
+            "3",
+            "3"
+          ],
+          [
+            "255",
+            "255"
+          ]
+        ]
+      }
+    ]
+  },
+  "chipintelli_cwsl_count": {
+    "message0": "%1 count",
+    "tooltip": "Query learned-template usage and capacity.",
+    "args0": [
+      {
+        "options": [
+          [
+            "COMMAND",
+            "COMMAND"
+          ],
+          [
+            "WAKE",
+            "WAKE"
+          ],
+          [
+            "TEMPLATE",
+            "TEMPLATE"
+          ],
+          [
+            "REMAINING",
+            "REMAINING"
+          ],
+          [
+            "MAX",
+            "MAX"
+          ]
+        ]
+      }
+    ]
+  },
+  "chipintelli_cwsl_dropped_events": {
+    "message0": "number of dropped self-learning events",
+    "tooltip": "Return the accumulated event-queue overflow count."
+  },
+  "chipintelli_cwsl_event_type": {
+    "message0": "current self-learning event type",
+    "tooltip": "Return the current event type code."
+  },
+  "chipintelli_cwsl_event_word_type": {
+    "message0": "current self-learning event word type",
+    "tooltip": "Return 0 command word, 1 wake word, or 2 all words."
+  },
+  "chipintelli_cwsl_event_attempt": {
+    "message0": "current self-learning event attempt",
+    "tooltip": "Return the learning attempt number."
+  },
+  "chipintelli_cwsl_event_result": {
+    "message0": "current self-learning event attempt result",
+    "tooltip": "Return the attempt result code from 0 to 6."
+  },
+  "chipintelli_cwsl_event_command_id": {
+    "message0": "current self-learning event command ID",
+    "tooltip": "Return the command ID associated with the current event."
+  },
+  "chipintelli_cwsl_event_group_id": {
+    "message0": "current self-learning event group ID",
+    "tooltip": "Recognition events return 65535 because the SDK does not report a group."
+  },
+  "chipintelli_cwsl_event_distance": {
+    "message0": "current self-learning event match distance",
+    "tooltip": "Return the learned-template match distance."
+  },
+  "chipintelli_cwsl_event_type_value": {
+    "message0": "self-learning event type %1",
+    "tooltip": "A constant from 1 to 9 for event-type comparisons.",
+    "args0": [
+      {
+        "options": [
+          [
+            "1",
+            "1"
+          ],
+          [
+            "2",
+            "2"
+          ],
+          [
+            "3",
+            "3"
+          ],
+          [
+            "4",
+            "4"
+          ],
+          [
+            "5",
+            "5"
+          ],
+          [
+            "6",
+            "6"
+          ],
+          [
+            "7",
+            "7"
+          ],
+          [
+            "8",
+            "8"
+          ],
+          [
+            "9",
+            "9"
+          ]
+        ]
+      }
+    ]
+  },
+  "chipintelli_cwsl_learn_result_value": {
+    "message0": "learning attempt result %1",
+    "tooltip": "A constant from 0 to 6 for attempt-result comparisons.",
+    "args0": [
+      {
+        "options": [
+          [
+            "0",
+            "0"
+          ],
+          [
+            "1",
+            "1"
+          ],
+          [
+            "2",
+            "2"
+          ],
+          [
+            "3",
+            "3"
+          ],
+          [
+            "4",
+            "4"
+          ],
+          [
+            "5",
+            "5"
+          ],
+          [
+            "6",
+            "6"
+          ]
+        ]
+      }
+    ]
+  }
+}
