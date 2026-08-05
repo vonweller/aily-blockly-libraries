@@ -8,6 +8,29 @@ function chipIntelliAudioValue(block, generator, name, fallback) {
   return generator.valueToCode(block, name, generator.ORDER_ATOMIC) || fallback;
 }
 
+function chipIntelliAudioVoiceId(generator, text) {
+  const macros = generator.codeDict && generator.codeDict['macros'];
+
+  if (macros && macros[text] !== undefined) {
+    const existingId = String(macros[text]).match(/^#define\s+VOICE(\d+)\s+/);
+    if (existingId) {
+      return Number(existingId[1]);
+    }
+  }
+
+  let voiceId = 1;
+  if (macros) {
+    Object.keys(macros).forEach(function(tag) {
+      const code = String(macros[tag]);
+      const id = code.match(/^#define\s+VOICE(\d+)\s+/);
+      if (id) voiceId = Math.max(voiceId, Number(id[1]) + 1);
+    });
+  }
+
+  generator.addMacro(text, '#define VOICE' + voiceId + ' ' + voiceId + ' //' + text);
+  return voiceId;
+}
+
 Arduino.forBlock['chipintelli_audio_init'] = function(block, generator) {
   ensureChipIntelliAudio(generator);
   return 'ChipIntelliAudio.begin();\n';
@@ -16,6 +39,12 @@ Arduino.forBlock['chipintelli_audio_init'] = function(block, generator) {
 Arduino.forBlock['chipintelli_audio_end'] = function(block, generator) {
   ensureChipIntelliAudio(generator);
   return 'ChipIntelliAudio.end();\n';
+};
+
+Arduino.forBlock['chipintelli_audio_voice'] = function(block, generator) {
+  const text = block.getFieldValue('TEXT') || '';
+  const voiceId = chipIntelliAudioVoiceId(generator, text);
+  return ['VOICE' + voiceId, generator.ORDER_ATOMIC];
 };
 
 Arduino.forBlock['chipintelli_audio_play_voice'] = function(block, generator) {

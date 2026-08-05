@@ -1,7 +1,7 @@
 [
   {
     "type": "chipintelli_audio_init",
-    "message0": "初始化 CI13XX 提示音播放器",
+    "message0": "初始化 CI13XX 播放器",
     "previousStatement": null,
     "nextStatement": null,
     "colour": "#7B1FA2",
@@ -9,21 +9,31 @@
   },
   {
     "type": "chipintelli_audio_end",
-    "message0": "结束 CI13XX 提示音播放器",
+    "message0": "结束 CI13XX 播放器",
     "previousStatement": null,
     "nextStatement": null,
     "colour": "#7B1FA2",
     "tooltip": "清除完成回调并停止当前提示音；共享 SDK 仍保持运行"
   },
   {
+    "type": "chipintelli_audio_voice",
+    "message0": "提示音 %1",
+    "args0": [
+      {"type": "field_input", "name": "TEXT", "text": "你好"}
+    ],
+    "output": "Number",
+    "colour": "#FF9800",
+    "tooltip": "输入提示音文本，并按首次使用顺序生成从 1 开始的语音 ID"
+  },
+  {
     "type": "chipintelli_audio_play_voice",
-    "message0": "播放语音 ID %1 方式 %2",
+    "message0": "播放 %1 方式 %2",
     "args0": [
       {"type": "input_value", "name": "VOICE_ID", "check": ["Number"]},
       {
         "type": "field_dropdown",
         "name": "MODE",
-        "options": [["中断当前提示音", "true"], ["加入播放队列", "false"]]
+        "options": [["立即播放", "true"], ["加入播放队列", "false"]]
       }
     ],
     "previousStatement": null,
@@ -84,7 +94,7 @@
   },
   {
     "type": "chipintelli_audio_stop",
-    "message0": "停止当前提示音",
+    "message0": "停止播放",
     "previousStatement": null,
     "nextStatement": null,
     "colour": "#7B1FA2",
@@ -92,7 +102,7 @@
   },
   {
     "type": "chipintelli_audio_set_volume",
-    "message0": "设置提示音音量 %1 %",
+    "message0": "设置播放音量 %1 %",
     "args0": [{"type": "input_value", "name": "VOLUME", "check": ["Number"]}],
     "previousStatement": null,
     "nextStatement": null,
@@ -101,7 +111,7 @@
   },
   {
     "type": "chipintelli_audio_set_muted",
-    "message0": "设置提示音静音 %1",
+    "message0": "设置播放静音 %1",
     "args0": [{"type": "input_value", "name": "MUTED", "check": ["Boolean"]}],
     "previousStatement": null,
     "nextStatement": null,
@@ -110,35 +120,35 @@
   },
   {
     "type": "chipintelli_audio_is_ready",
-    "message0": "提示音播放器已就绪",
+    "message0": "播放器已就绪",
     "output": "Boolean",
     "colour": "#7B1FA2",
     "tooltip": "检查初始化是否已成功完成"
   },
   {
     "type": "chipintelli_audio_is_playing",
-    "message0": "提示音正在播放",
+    "message0": "正在播放",
     "output": "Boolean",
     "colour": "#7B1FA2",
     "tooltip": "检查当前是否有提示音正在播放"
   },
   {
     "type": "chipintelli_audio_volume",
-    "message0": "当前提示音音量",
+    "message0": "当前播放音量",
     "output": "Number",
     "colour": "#7B1FA2",
     "tooltip": "返回当前请求音量 0～100"
   },
   {
     "type": "chipintelli_audio_is_muted",
-    "message0": "提示音已静音",
+    "message0": "播放已静音",
     "output": "Boolean",
     "colour": "#7B1FA2",
     "tooltip": "检查可靠静音状态"
   },
   {
     "type": "chipintelli_audio_on_finished",
-    "message0": "当提示音请求完成时",
+    "message0": "当播放请求完成时",
     "message1": "执行 %1",
     "args1": [{"type": "input_statement", "name": "HANDLER"}],
     "colour": "#9C27B0",

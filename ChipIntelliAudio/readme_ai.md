@@ -12,6 +12,7 @@
 |---|---|---|---|---|
 | `chipintelli_audio_init` | 语句 | 无 | `chipintelli_audio_init()` | `ChipIntelliAudio.begin()` |
 | `chipintelli_audio_end` | 语句 | 无 | `chipintelli_audio_end()` | `ChipIntelliAudio.end()` |
+| `chipintelli_audio_voice` | 值(Number) | TEXT(field_input) | `chipintelli_audio_voice("你好")` | `VOICE1`，并添加 `#define VOICE1 1 //你好` |
 | `chipintelli_audio_play_voice` | 语句 | VOICE_ID(value), MODE(dropdown) | `chipintelli_audio_play_voice(math_number(1), true)` | `playVoice(id, interrupt)` |
 | `chipintelli_audio_play_command_id` | 语句 | COMMAND_ID(value), OPTION(value), MODE(dropdown) | `chipintelli_audio_play_command_id(math_number(1), math_number(-1), true)` | `playCommand(id, option, interrupt)` |
 | `chipintelli_audio_play_command_text` | 语句 | COMMAND_TEXT(value), OPTION(value), MODE(dropdown) | `chipintelli_audio_play_command_text(text("命令"), math_number(-1), true)` | `playCommand(text, option, interrupt)` |
