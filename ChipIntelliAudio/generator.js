@@ -31,6 +31,72 @@ function chipIntelliAudioVoiceId(generator, text) {
   return voiceId;
 }
 
+function chipIntelliAudioAudioValue(block) {
+  let value = block.getFieldValue('AUDIO');
+  if (typeof value === 'string') {
+    try {
+      value = JSON.parse(value);
+    } catch (error) {
+      return null;
+    }
+  }
+  return value && typeof value === 'object' ? value : null;
+}
+
+function chipIntelliAudioDataId(ref) {
+  return ref && ref.$ailyData && typeof ref.$ailyData.id === 'string'
+    ? ref.$ailyData.id
+    : '';
+}
+
+function chipIntelliAudioLocalAudioTag(value) {
+  const sourceId = chipIntelliAudioDataId(value && value.source);
+  const audioId = chipIntelliAudioDataId(value && value.audio);
+  if (!sourceId || !audioId) return '';
+
+  // The source content and every setting that can affect the converted MP3
+  // form a stable addMacro tag. Blockly then reuses the first matching macro.
+  return 'chipintelli_audio_mp3:' + JSON.stringify([
+    sourceId,
+    value.encoding || 'mp3-cbr-v1',
+    Number(value.sampleRate) || 0,
+    Number(value.channels) || 0,
+    Number(value.bitRate) || 0,
+    Number(value.trimStart) || 0,
+    Number(value.trimEnd) || 0
+  ]);
+}
+
+function chipIntelliAudioMp3FileName(sourceName) {
+  let name = typeof sourceName === 'string' ? sourceName.trim() : '';
+  name = name.split(/[\\/]/).pop() || 'audio';
+  name = name.replace(/[\\/:*?"<>|\u0000-\u001f]/g, '_');
+  name = name.replace(/\.[^.]*$/, '') || 'audio';
+  return name + '.mp3';
+}
+
+function chipIntelliAudioMp3Id(generator, tag, fileName) {
+  const macros = generator.codeDict && generator.codeDict['macros'];
+  if (macros && macros[tag] !== undefined) {
+    const existingId = String(macros[tag]).match(/^#define\s+MP3(\d+)\s+/);
+    if (existingId) return Number(existingId[1]);
+  }
+
+  let mp3Id = 500;
+  if (macros) {
+    Object.keys(macros).forEach(function(macroTag) {
+      const id = String(macros[macroTag]).match(/^#define\s+MP3(\d+)\s+/);
+      if (id) mp3Id = Math.max(mp3Id, Number(id[1]) + 1);
+    });
+  }
+
+  generator.addMacro(
+    tag,
+    '#define MP3' + mp3Id + ' ' + mp3Id + ' //outpath/[' + mp3Id + ']' + fileName
+  );
+  return mp3Id;
+}
+
 Arduino.forBlock['chipintelli_audio_init'] = function(block, generator) {
   ensureChipIntelliAudio(generator);
   return 'ChipIntelliAudio.begin();\n';
@@ -45,6 +111,18 @@ Arduino.forBlock['chipintelli_audio_voice'] = function(block, generator) {
   const text = block.getFieldValue('TEXT') || '';
   const voiceId = chipIntelliAudioVoiceId(generator, text);
   return ['VOICE' + voiceId, generator.ORDER_ATOMIC];
+};
+
+Arduino.forBlock['chipintelli_audio_local_audio'] = function(block, generator) {
+  const value = chipIntelliAudioAudioValue(block);
+  const tag = chipIntelliAudioLocalAudioTag(value);
+  if (!tag) return ['0', generator.ORDER_ATOMIC];
+  const mp3Id = chipIntelliAudioMp3Id(
+    generator,
+    tag,
+    chipIntelliAudioMp3FileName(value.sourceName)
+  );
+  return ['MP3' + mp3Id, generator.ORDER_ATOMIC];
 };
 
 Arduino.forBlock['chipintelli_audio_play_voice'] = function(block, generator) {

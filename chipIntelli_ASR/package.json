@@ -13,10 +13,10 @@
   "nickname_ru": "Офлайн-распознавание речи CI13XX",
   "nickname_ar": "التعرف على الكلام دون اتصال CI13XX",
   "author": "ChipIntelli Arduino contributors / ailyProject",
-  "description": "读取 CI13XX SDK 离线语音识别结果，并查询 AEC 与语音打断算法配置。",
-  "description_zh_cn": "读取 CI13XX SDK 离线语音识别结果，并查询 AEC 与语音打断算法配置。",
-  "description_en": "Read CI13XX SDK offline speech-recognition results and inspect AEC and voice-interruption profiles.",
-  "version": "1.1.0",
+  "description": "使用 attach 事件与 tick 处理 CI13XX 离线语音命令、语义、唤醒状态和诊断信息。",
+  "description_zh_cn": "使用 attach 事件与 tick 处理 CI13XX 离线语音命令、语义、唤醒状态和诊断信息。",
+  "description_en": "Handle CI13XX offline speech commands, semantics, wake state and diagnostics with attach events and tick.",
+  "version": "2.2.0",
   "spec": true,
   "license": "LGPL-2.1-or-later",
   "url": "https://document.chipintelli.com/",
@@ -24,21 +24,10 @@
     "core": ["chipintelli:ci13xx:ci1302", "chipintelli:ci13xx:ci1303", "chipintelli:ci13xx:ci1306"],
     "voltage": [3.3]
   },
-  "keywords": ["aily", "blockly", "chipintelli", "ci13xx", "asr", "offline", "speech", "aec", "barge-in"],
+  "keywords": ["aily", "blockly", "chipintelli", "ci13xx", "asr", "offline", "speech", "aec", "barge-in", "events", "tick", "semantic"],
   "dependencies": {},
   "devDependencies": {},
   "tested": false,
   "tester": "",
-  "tags": ["speech", "ai*"],
-  "bundledSources": [
-    {
-      "name": "ChipIntelliASR",
-      "version": "1.1.0",
-      "author": "ChipIntelli Arduino contributors",
-      "url": "https://document.chipintelli.com/",
-      "license": "LGPL-2.1-or-later",
-      "path": "src/ChipIntelliASR/ChipIntelliASR.h",
-      "reason": "Bundles ASR 1.1.0 so AEC and voice-interruption diagnostics remain available with older CI13XX platform library copies."
-    }
-  ]
+  "tags": ["speech", "ai*"]
 }

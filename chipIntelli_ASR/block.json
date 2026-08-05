@@ -1,0 +1,295 @@
+[
+  {
+    "type": "chipintelli_asr_init",
+    "message0": "初始化 CI13XX 离线语音识别\n 唤醒词 %1 超时设置 %2 秒",
+    "args0": [
+      {"type": "field_input", "name": "WAKE_WORD", "text": "智能管家"},
+      {"type": "field_input", "name": "TIMEOUT", "text": "10"}
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#1565C0",
+    "tooltip": "定义 ID 为 1 的唤醒词，启动共享 SDK，并等待麦克风和离线识别任务就绪"
+  },
+  {
+    "type": "chipintelli_asr_end",
+    "message0": "结束 CI13XX 识别结果监听",
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#1565C0",
+    "tooltip": "清空识别队列并停止本库监听；共享 SDK 仍保持运行"
+  },
+  {
+    "type": "chipintelli_asr_on_startup",
+    "message0": "语音识别启动后",
+    "message1": "执行 %1",
+    "args1": [{"type": "input_statement", "name": "HANDLER"}],
+    "colour": "#1976D2",
+    "tooltip": "SDK 启动完成后由 tick() 在 Arduino loop 任务中执行内部积木"
+  },
+  {
+    "type": "chipintelli_asr_on_wakeup",
+    "message0": "识别到唤醒词时",
+    "message1": "执行 %1",
+    "args1": [{"type": "input_statement", "name": "HANDLER"}],
+    "colour": "#1976D2",
+    "tooltip": "进入命令会话时由 tick() 在 Arduino loop 任务中执行内部积木"
+  },
+  {
+    "type": "chipintelli_asr_on_timeout",
+    "message0": "唤醒窗口超时时",
+    "message1": "执行 %1",
+    "args1": [{"type": "input_statement", "name": "HANDLER"}],
+    "colour": "#1976D2",
+    "tooltip": "命令会话超时并返回仅监听唤醒词状态后执行内部积木"
+  },
+  {
+    "type": "chipintelli_asr_on_result",
+    "message0": "识别到任意结果时",
+    "message1": "执行 %1",
+    "args1": [{"type": "input_statement", "name": "HANDLER"}],
+    "colour": "#1976D2",
+    "tooltip": "观察每个识别结果；可在内部使用当前识别结果积木"
+  },
+  {
+    "type": "chipintelli_asr_on_command",
+    "message0": "识别到命令 %1 时",
+    "args0": [{"type": "input_value", "name": "COMMAND", "check": ["Number"]}],
+    "message1": "执行 %1",
+    "args1": [{"type": "input_statement", "name": "HANDLER"}],
+    "colour": "#1976D2",
+    "tooltip": "为指定命令 ID 注册处理函数；可在内部使用当前识别结果积木"
+  },
+  {
+    "type": "chipintelli_asr_on_semantic",
+    "message0": "识别到语义 ID %1 时",
+    "args0": [{"type": "input_value", "name": "SEMANTIC_ID", "check": ["Number"]}],
+    "message1": "执行 %1",
+    "args1": [{"type": "input_statement", "name": "HANDLER"}],
+    "colour": "#1976D2",
+    "tooltip": "没有精确命令处理函数时，按 32 位语义 ID 执行内部积木"
+  },
+  {
+    "type": "chipintelli_asr_command",
+    "message0": "命令词 %1",
+    "args0": [{"type": "field_input", "name": "TEXT", "text": "打开灯"}],
+    "output": "Number",
+    "colour": "#FB8C00",
+    "tooltip": "定义语音命令词并返回其 ID；ID 从 2 开始，相同文本自动复用"
+  },
+  {
+    "type": "chipintelli_asr_detach_lifecycle",
+    "message0": "移除 %1 事件处理函数",
+    "args0": [{
+      "type": "field_dropdown",
+      "name": "EVENT",
+      "options": [["启动完成", "STARTUP"], ["唤醒", "WAKEUP"], ["唤醒超时", "TIMEOUT"]]
+    }],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#5C6BC0",
+    "tooltip": "移除指定的生命周期事件处理函数"
+  },
+  {
+    "type": "chipintelli_asr_detach_command",
+    "message0": "移除命令 %1 的处理函数",
+    "args0": [{"type": "input_value", "name": "COMMAND", "check": ["Number"]}],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#5C6BC0",
+    "tooltip": "移除指定命令 ID 的处理函数"
+  },
+  {
+    "type": "chipintelli_asr_detach_semantic",
+    "message0": "移除语义 ID %1 的处理函数",
+    "args0": [{"type": "input_value", "name": "SEMANTIC_ID", "check": ["Number"]}],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#5C6BC0",
+    "tooltip": "移除指定语义 ID 的处理函数"
+  },
+  {
+    "type": "chipintelli_asr_detach_handlers",
+    "message0": "移除全部 %1 处理函数",
+    "args0": [{
+      "type": "field_dropdown",
+      "name": "HANDLERS",
+      "options": [["命令", "COMMANDS"], ["语义", "SEMANTICS"], ["命令和语义", "ALL"]]
+    }],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#5C6BC0",
+    "tooltip": "批量移除已注册的命令或语义处理函数"
+  },
+  {
+    "type": "chipintelli_asr_keep_awake_for",
+    "message0": "刷新唤醒窗口 %1 秒",
+    "args0": [{"type": "input_value", "name": "TIMEOUT", "check": ["Number"]}],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#00838F",
+    "tooltip": "仅在已经唤醒时，按输入秒数重置命令会话剩余时间"
+  },
+  {
+    "type": "chipintelli_asr_is_awake",
+    "message0": "当前处于唤醒命令会话",
+    "output": "Boolean",
+    "colour": "#00838F",
+    "tooltip": "检查识别器是否已唤醒并正在等待普通命令"
+  },
+  {
+    "type": "chipintelli_asr_read_results",
+    "message0": "读取所有待处理的识别结果",
+    "message1": "每个结果执行 %1",
+    "args1": [{"type": "input_statement", "name": "HANDLER"}],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#1976D2",
+    "tooltip": "兼容轮询接口；不要与自动调用 tick() 的事件积木混用"
+  },
+  {
+    "type": "chipintelli_asr_available",
+    "message0": "有待处理的识别结果",
+    "output": "Boolean",
+    "colour": "#1565C0",
+    "tooltip": "检查结果队列是否非空"
+  },
+  {
+    "type": "chipintelli_asr_result_command_id",
+    "message0": "当前识别结果 命令 ID",
+    "output": "Number",
+    "colour": "#1976D2",
+    "tooltip": "返回当前事件或轮询结果的 16 位命令 ID"
+  },
+  {
+    "type": "chipintelli_asr_result_semantic_id",
+    "message0": "当前识别结果 语义 ID",
+    "output": "Number",
+    "colour": "#1976D2",
+    "tooltip": "返回当前结果的 32 位语义 ID"
+  },
+  {
+    "type": "chipintelli_asr_result_score",
+    "message0": "当前识别结果 得分",
+    "output": "Number",
+    "colour": "#1976D2",
+    "tooltip": "返回当前结果的识别得分；CWSL 结果为 0"
+  },
+  {
+    "type": "chipintelli_asr_result_frames",
+    "message0": "当前识别结果 帧数",
+    "output": "Number",
+    "colour": "#1976D2",
+    "tooltip": "返回当前结果的帧数；唤醒词和 CWSL 结果可能为 0"
+  },
+  {
+    "type": "chipintelli_asr_result_is_wake_word",
+    "message0": "当前识别结果是唤醒词",
+    "output": "Boolean",
+    "colour": "#1976D2",
+    "tooltip": "检查当前结果是否来自唤醒词"
+  },
+  {
+    "type": "chipintelli_asr_result_text",
+    "message0": "当前识别结果 文本",
+    "output": "String",
+    "colour": "#1976D2",
+    "tooltip": "返回当前结果复制后的命令文本，最大容量为 64 字节"
+  },
+  {
+    "type": "chipintelli_asr_result_text_truncated",
+    "message0": "当前识别结果 文本被截断",
+    "output": "Boolean",
+    "colour": "#1976D2",
+    "tooltip": "检查命令文本是否超出 64 字节结果缓冲区"
+  },
+  {
+    "type": "chipintelli_asr_pending_results",
+    "message0": "待处理的识别结果数",
+    "output": "Number",
+    "colour": "#1565C0",
+    "tooltip": "返回当前结果队列深度"
+  },
+  {
+    "type": "chipintelli_asr_pending_events",
+    "message0": "待处理的生命周期事件数",
+    "output": "Number",
+    "colour": "#1565C0",
+    "tooltip": "返回启动、唤醒和超时事件队列深度"
+  },
+  {
+    "type": "chipintelli_asr_dropped_results",
+    "message0": "已丢弃的识别结果数",
+    "output": "Number",
+    "colour": "#1565C0",
+    "tooltip": "返回结果队列溢出后累计丢弃的结果数量"
+  },
+  {
+    "type": "chipintelli_asr_dropped_events",
+    "message0": "已丢弃的生命周期事件数",
+    "output": "Number",
+    "colour": "#1565C0",
+    "tooltip": "返回生命周期事件队列溢出后累计丢弃的事件数量"
+  },
+  {
+    "type": "chipintelli_asr_handler_count",
+    "message0": "已注册的命令和语义处理函数数",
+    "output": "Number",
+    "colour": "#5C6BC0",
+    "tooltip": "返回命令与语义共享处理表中已使用的条目数"
+  },
+  {
+    "type": "chipintelli_asr_handler_capacity",
+    "message0": "命令和语义处理函数容量",
+    "output": "Number",
+    "colour": "#5C6BC0",
+    "tooltip": "返回共享处理表的最大容量"
+  },
+  {
+    "type": "chipintelli_asr_last_error",
+    "message0": "最近一次语音识别错误码",
+    "output": "Number",
+    "colour": "#C62828",
+    "tooltip": "返回 begin、attach 或 tick 最近一次失败的错误枚举值"
+  },
+  {
+    "type": "chipintelli_asr_last_error_text",
+    "message0": "最近一次语音识别错误说明",
+    "output": "String",
+    "colour": "#C62828",
+    "tooltip": "返回最近一次错误的可打印静态说明"
+  },
+  {
+    "type": "chipintelli_asr_aec_enabled",
+    "message0": "当前算法已启用 AEC",
+    "output": "Boolean",
+    "colour": "#00838F",
+    "tooltip": "检查编译时选择的算法配置是否启用回声消除"
+  },
+  {
+    "type": "chipintelli_asr_barge_in_enabled",
+    "message0": "当前算法支持语音打断",
+    "output": "Boolean",
+    "colour": "#00838F",
+    "tooltip": "检查提示音播放期间是否允许唤醒词或命令词打断"
+  },
+  {
+    "type": "chipintelli_asr_barge_in_mode",
+    "message0": "当前语音打断模式",
+    "output": "Number",
+    "colour": "#00838F",
+    "tooltip": "返回打断模式：0 禁用，1 仅唤醒词，2 仅命令词，3 唤醒词和命令词"
+  },
+  {
+    "type": "chipintelli_asr_barge_in_mode_value",
+    "message0": "语音打断模式 %1",
+    "args0": [{
+      "type": "field_dropdown",
+      "name": "MODE",
+      "options": [["禁用", "0"], ["仅唤醒词", "1"], ["仅命令词", "2"], ["唤醒词和命令词", "3"]]
+    }],
+    "output": "Number",
+    "colour": "#00838F",
+    "tooltip": "用于与当前语音打断模式进行比较"
+  }
+]

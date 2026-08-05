@@ -1,6 +1,6 @@
 # ChipIntelliAudio
 
-Prompt-audio playback blocks for ChipIntelli CI1302, CI1303 and CI1306.
+Prompt and local-audio playback blocks for ChipIntelli CI1302, CI1303 and CI1306.
 
 ## Library Info
 
@@ -18,8 +18,8 @@ CI1302, CI1303 and CI1306 (`chipintelli:ci13xx`).
 
 ## Description
 
-Plays voice, command and semantic prompts provisioned in firmware `voice.bin`, with queueing, volume, mute and completion events.
+Plays voice, command and semantic prompts provisioned in firmware `voice.bin`, or an uploaded local MP3 prepared with the built-in audio editor. Supports queueing, volume, mute and completion events.
 
 ## Quick Start
 
-Initialize the player, set volume, then play a configured voice, command or semantic ID. Command-text lookup is not TTS; IDs and text must exist in project resources.
+Initialize the player, set volume, then play a configured voice, command, semantic ID or local-audio value. Local-audio IDs start at 500 and identical source/encoding settings are deduplicated. Command-text lookup is not TTS; IDs and text must exist in project resources.
