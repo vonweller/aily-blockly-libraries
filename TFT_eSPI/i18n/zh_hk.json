@@ -1,20 +1,24 @@
 {
   "toolbox_name": "TFT_eSPI",
   "toolbox_labels": {
-    "初始化": "初始化",
-    "基本图形": "基本圖形",
-    "矩形": "長方形",
-    "圆形": "圓形",
-    "椭圆": "橢圓",
-    "三角形": "三角",
-    "文字": "正文",
+    "屏幕控制": "螢幕控制",
     "颜色": "顏色",
-    "图片": "圖片",
-    "动画": "動畫"
+    "基础图形": "基礎圖形",
+    "矩形": "矩形",
+    "圆形与椭圆": "圓形與橢圓",
+    "三角形": "三角形",
+    "图像": "圖像",
+    "动画": "動畫",
+    "Sprite 画布": "Sprite 畫布"
   },
+  "toolbox_categories": [
+    "基礎設定",
+    "圖形繪製",
+    "文字",
+    "圖像與動畫"
+  ],
   "tftespi_setup": {
-    "message0": "初始化TFT螢幕 %1 型號 %2 SPI頻率 %3 寬度 %4 高度 %5\n MISO %6 MOSI %7 SCLK %8 CS %9 DC %10\nRST %11 BL %12 背光 %13 顏色模式 %14",
-    "tooltip": "建立並初始化TFT對象",
+    "message0": "初始化TFT螢幕 %1\n基礎設定：型號 %2 寬度 %3 高度 %4\n 引腳連接：MISO %5 MOSI %6 SCLK %7 CS %8 DC %9 RST %10 BL %11\n其他設定：背光模式 %12 顏色模式 %13 SPI頻率 %14",
     "args0": [
       null,
       {
@@ -109,34 +113,6 @@
           ]
         ]
       },
-      {
-        "options": [
-          [
-            "10MHz",
-            "10000000"
-          ],
-          [
-            "20MHz",
-            "20000000"
-          ],
-          [
-            "27MHz",
-            "27000000"
-          ],
-          [
-            "40MHz",
-            "40000000"
-          ],
-          [
-            "55MHz",
-            "55000000"
-          ],
-          [
-            "80MHz",
-            "80000000"
-          ]
-        ]
-      },
       null,
       null,
       null,
@@ -169,12 +145,40 @@
             "TFT_BGR"
           ]
         ]
+      },
+      {
+        "options": [
+          [
+            "10MHz",
+            "10000000"
+          ],
+          [
+            "20MHz",
+            "20000000"
+          ],
+          [
+            "27MHz",
+            "27000000"
+          ],
+          [
+            "40MHz",
+            "40000000"
+          ],
+          [
+            "55MHz",
+            "55000000"
+          ],
+          [
+            "80MHz",
+            "80000000"
+          ]
+        ]
       }
-    ]
+    ],
+    "tooltip": "建立並初始化TFT物件"
   },
   "tftespi_set_rotation": {
     "message0": "設定TFT螢幕 %1 旋轉 %2",
-    "tooltip": "設定螢幕旋轉方向",
     "args0": [
       null,
       {
@@ -213,11 +217,11 @@
           ]
         ]
       }
-    ]
+    ],
+    "tooltip": "設定螢幕旋轉方向"
   },
   "tftespi_invert_display": {
     "message0": "TFT螢幕 %1 反轉顯示 %2",
-    "tooltip": "反轉螢幕顯示顏色",
     "args0": [
       null,
       {
@@ -232,7 +236,27 @@
           ]
         ]
       }
-    ]
+    ],
+    "tooltip": "反轉螢幕顯示顏色"
+  },
+  "tftespi_get_dimension": {
+    "message0": "取得螢幕 %1 的 %2",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "寬度",
+            "WIDTH"
+          ],
+          [
+            "高度",
+            "HEIGHT"
+          ]
+        ]
+      }
+    ],
+    "tooltip": "取得目前旋轉方向下的螢幕寬度或高度"
   },
   "tftespi_fill_screen": {
     "message0": "TFT %1 填滿螢幕顏色 %2",
@@ -278,6 +302,29 @@
     "message0": "在螢幕 %1 填圓 中心X:%2 Y:%3 半徑:%4 顏色:%5",
     "tooltip": "填充一個圓形區域"
   },
+  "tftespi_draw_arc": {
+    "message0": "在螢幕 %1 繪製抗鋸齒圓弧 中心X:%2 Y:%3 外半徑:%4 內半徑:%5",
+    "message1": "起始角:%1 結束角:%2 前景色:%3 背景色:%4 端點:%5",
+    "args1": [
+      null,
+      null,
+      null,
+      null,
+      {
+        "options": [
+          [
+            "圓形",
+            "true"
+          ],
+          [
+            "方形",
+            "false"
+          ]
+        ]
+      }
+    ],
+    "tooltip": "繪製抗鋸齒圓弧或儀表環；0度位於6點鐘方向，角度沿順時針增加"
+  },
   "tftespi_draw_ellipse": {
     "message0": "在 screen %1 上畫一個橢圓，中心 X：%2 Y：%3 半徑 X：%4 半徑 Y：%5 顏色：%6",
     "tooltip": "畫一個橢圓邊框"
@@ -295,16 +342,82 @@
     "tooltip": "填滿一個三角形區域"
   },
   "tftespi_draw_string": {
-    "message0": "在螢幕 %1 位置 X:%2 Y:%3 顯示文字 %4",
-    "tooltip": "在指定位置顯示文字"
+    "message0": "在螢幕 %1 位置 X:%2 Y:%3 顯示內容 %4",
+    "tooltip": "在指定位置顯示文字、整數或小數，數值會自動轉換為文字"
   },
   "tftespi_set_text_color": {
     "message0": "設定畫面 %1 文字顏色 %2",
     "tooltip": "設定文字顏色"
   },
+  "tftespi_set_text_colors": {
+    "message0": "設定螢幕 %1 文字顏色 %2 背景顏色 %3",
+    "tooltip": "同時設定文字前景色和用於覆蓋字元區域的背景色"
+  },
+  "tftespi_set_text_datum": {
+    "message0": "設定螢幕 %1 文字對齊 %2",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "左上",
+            "TL_DATUM"
+          ],
+          [
+            "頂部置中",
+            "TC_DATUM"
+          ],
+          [
+            "右上",
+            "TR_DATUM"
+          ],
+          [
+            "左側置中",
+            "ML_DATUM"
+          ],
+          [
+            "中心",
+            "MC_DATUM"
+          ],
+          [
+            "右側置中",
+            "MR_DATUM"
+          ],
+          [
+            "左下",
+            "BL_DATUM"
+          ],
+          [
+            "底部置中",
+            "BC_DATUM"
+          ],
+          [
+            "右下",
+            "BR_DATUM"
+          ],
+          [
+            "左基線",
+            "L_BASELINE"
+          ],
+          [
+            "置中基線",
+            "C_BASELINE"
+          ],
+          [
+            "右基線",
+            "R_BASELINE"
+          ]
+        ]
+      }
+    ],
+    "tooltip": "設定繪製文字時座標對應的對齊基準點"
+  },
+  "tftespi_set_text_padding": {
+    "message0": "設定螢幕 %1 文字覆蓋寬度 %2 像素",
+    "tooltip": "設定文字背景覆蓋寬度，重複顯示較短內容時可清除殘留字元；0表示關閉"
+  },
   "tftespi_set_text_size": {
     "message0": "設定畫面 %1 文字大小 %2",
-    "tooltip": "設定文字大小(1-7)",
     "args0": [
       null,
       {
@@ -339,11 +452,11 @@
           ]
         ]
       }
-    ]
+    ],
+    "tooltip": "設定文字大小(1-7)"
   },
   "tftespi_set_text_font": {
     "message0": "設定畫面 %1 字型 %2",
-    "tooltip": "設定字體類型",
     "args0": [
       null,
       {
@@ -374,7 +487,16 @@
           ]
         ]
       }
-    ]
+    ],
+    "tooltip": "設定字體類型"
+  },
+  "tftespi_image": {
+    "message0": "TFT 圖片 %1",
+    "tooltip": "上傳 PNG、JPEG、WebP 或 BMP 圖片並轉換為 RGB565/RGB332 像素資料"
+  },
+  "tftespi_draw_image": {
+    "message0": "TFT螢幕 %1 座標 X:%2 Y:%3 顯示圖片 %4",
+    "tooltip": "在指定座標顯示已取模的 RGB565/RGB332 圖片"
   },
   "tftespi_animation": {
     "message0": "TFT 動畫 %1",
@@ -382,8 +504,6 @@
   },
   "tftespi_play_animation": {
     "message0": "TFT屏幕 %1 播放動畫 座標 X:%2 Y:%3 動畫 %4 模式 %5",
-    "message1": "循環播放 %1",
-    "tooltip": "播放 TFT_eSPI 動畫；非阻塞模式會在每次 loop 到達影格間隔時顯示下一影格",
     "args0": [
       null,
       null,
@@ -401,7 +521,9 @@
           ]
         ]
       }
-    ]
+    ],
+    "message1": "循環播放 %1",
+    "tooltip": "播放 TFT_eSPI 動畫；非阻塞模式會在每次 loop 到達影格間隔時顯示下一影格"
   },
   "tftespi_draw_animation_frame": {
     "message0": "TFT屏幕 %1 顯示動畫影格 座標 X:%2 Y:%3 動畫 %4 影格 %5",
@@ -411,15 +533,46 @@
     "message0": "取得 TFT 動畫 %1 總影格數",
     "tooltip": "取得 TFT_eSPI 動畫的總影格數"
   },
-  "tftespi_image": {
-    "message0": "TFT 圖片 %1",
-    "tooltip": "上傳 PNG、JPEG、WebP 或 BMP 圖片並轉換為 RGB565/RGB332 像素資料",
-    "args0": [null]
+  "tftespi_sprite_create": {
+    "message0": "建立 Sprite %1 關聯螢幕 %2",
+    "message1": "寬度 %1 高度 %2 色深 %3",
+    "args1": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "16 位",
+            "16"
+          ],
+          [
+            "8 位",
+            "8"
+          ],
+          [
+            "4 位",
+            "4"
+          ],
+          [
+            "1 位",
+            "1"
+          ]
+        ]
+      }
+    ],
+    "tooltip": "建立記憶體 Sprite；色深越低，佔用的記憶體越少"
   },
-  "tftespi_draw_image": {
-    "message0": "TFT螢幕 %1 座標 X:%2 Y:%3 顯示圖片 %4",
-    "tooltip": "在指定座標顯示已取模的 RGB565/RGB332 圖片",
-    "args0": [null, null, null, null]
+  "tftespi_sprite_push": {
+    "message0": "將 Sprite %1 顯示到螢幕 X:%2 Y:%3",
+    "tooltip": "將 Sprite 的完整內容一次推送到關聯螢幕"
+  },
+  "tftespi_sprite_push_transparent": {
+    "message0": "將 Sprite %1 透明顯示到螢幕 X:%2 Y:%3 透明色:%4",
+    "tooltip": "推送 Sprite 時略過指定顏色的像素"
+  },
+  "tftespi_sprite_delete": {
+    "message0": "釋放 Sprite %1",
+    "tooltip": "刪除 Sprite 並釋放其佔用的記憶體"
   },
   "tftespi_color_rgb565": {
     "message0": "%1 顏色轉換 %2",
@@ -427,7 +580,6 @@
   },
   "tftespi_color": {
     "message0": "色彩%1",
-    "tooltip": "預設顏色",
     "args0": [
       {
         "options": [
@@ -477,6 +629,11 @@
           ]
         ]
       }
-    ]
+    ],
+    "tooltip": "預設顏色"
+  },
+  "extensions": {
+    "tftespi_board_display_config": {},
+    "tftespi_animation_play_dynamic_inputs": {}
   }
 }

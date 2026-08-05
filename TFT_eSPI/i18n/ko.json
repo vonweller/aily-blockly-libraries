@@ -1,20 +1,24 @@
 {
   "toolbox_name": "TFT_eSPI",
   "toolbox_labels": {
-    "初始化": "초기화",
-    "基本图形": "기본 그래픽",
-    "矩形": "직사각형",
-    "圆形": "둥근",
-    "椭圆": "타원",
+    "屏幕控制": "디스플레이 제어",
+    "颜色": "색상",
+    "基础图形": "기본 도형",
+    "矩形": "사각형",
+    "圆形与椭圆": "원 및 타원",
     "三角形": "삼각형",
-    "文字": "텍스트",
-    "颜色": "색깔",
-    "图片": "이미지",
-    "动画": "애니메이션"
+    "图像": "이미지",
+    "动画": "애니메이션",
+    "Sprite 画布": "Sprite 캔버스"
   },
+  "toolbox_categories": [
+    "기본 설정",
+    "그래픽 그리기",
+    "텍스트",
+    "이미지 및 애니메이션"
+  ],
   "tftespi_setup": {
-    "message0": "모델 %2 %1 TFT 화면을 초기화하세요 SPI 주파수 %3 너비 %4 높이 %5\n MISO %6 MOSI %7 SCLK %8 CS %9 DC %10 \nRST %11 BL %12 백라이트 %13 컬러 모드 %14",
-    "tooltip": "TFT 객체를 생성하고 초기화하세요",
+    "message0": "TFT 디스플레이 %1 초기화\n기본 설정: 드라이버 %2 너비 %3 높이 %4\n 핀 연결: MISO %5 MOSI %6 SCLK %7 CS %8 DC %9 RST %10 BL %11\n기타 설정: 백라이트 모드 %12 색상 순서 %13 SPI 주파수 %14",
     "args0": [
       null,
       {
@@ -109,34 +113,6 @@
           ]
         ]
       },
-      {
-        "options": [
-          [
-            "10MHz",
-            "10000000"
-          ],
-          [
-            "20MHz",
-            "20000000"
-          ],
-          [
-            "27MHz",
-            "27000000"
-          ],
-          [
-            "40MHz",
-            "40000000"
-          ],
-          [
-            "55MHz",
-            "55000000"
-          ],
-          [
-            "80MHz",
-            "80000000"
-          ]
-        ]
-      },
       null,
       null,
       null,
@@ -169,12 +145,40 @@
             "TFT_BGR"
           ]
         ]
+      },
+      {
+        "options": [
+          [
+            "10MHz",
+            "10000000"
+          ],
+          [
+            "20MHz",
+            "20000000"
+          ],
+          [
+            "27MHz",
+            "27000000"
+          ],
+          [
+            "40MHz",
+            "40000000"
+          ],
+          [
+            "55MHz",
+            "55000000"
+          ],
+          [
+            "80MHz",
+            "80000000"
+          ]
+        ]
       }
-    ]
+    ],
+    "tooltip": "TFT 디스플레이 객체를 만들고 초기화합니다"
   },
   "tftespi_set_rotation": {
     "message0": "TFT 화면을 설정%1 회전시키%2",
-    "tooltip": "화면 회전 방향 설정",
     "args0": [
       null,
       {
@@ -213,11 +217,11 @@
           ]
         ]
       }
-    ]
+    ],
+    "tooltip": "화면 회전 방향 설정"
   },
   "tftespi_invert_display": {
     "message0": "TFT 화면%1 플립업 디스플레이 %2",
-    "tooltip": "화면을 뒤집어 색상을 표시하세요",
     "args0": [
       null,
       {
@@ -232,7 +236,27 @@
           ]
         ]
       }
-    ]
+    ],
+    "tooltip": "화면을 뒤집어 색상을 표시하세요"
+  },
+  "tftespi_get_dimension": {
+    "message0": "%1의 %2 가져오기",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "너비",
+            "WIDTH"
+          ],
+          [
+            "높이",
+            "HEIGHT"
+          ]
+        ]
+      }
+    ],
+    "tooltip": "현재 디스플레이 방향의 너비 또는 높이를 가져옵니다"
   },
   "tftespi_fill_screen": {
     "message0": "TFT %1 화면 채우기 컬러 %2",
@@ -278,6 +302,29 @@
     "message0": "screen%1 채우기 원에서 중심 X:%2 y:%3 반경: %4 색상: %5",
     "tooltip": "원형 영역을 채우세요"
   },
+  "tftespi_draw_arc": {
+    "message0": "%1에 앤티앨리어싱 호 그리기 중심X:%2 Y:%3 바깥 반지름:%4 안쪽 반지름:%5",
+    "message1": "시작 각도:%1 끝 각도:%2 전경색:%3 배경색:%4 끝 모양:%5",
+    "args1": [
+      null,
+      null,
+      null,
+      null,
+      {
+        "options": [
+          [
+            "둥글게",
+            "true"
+          ],
+          [
+            "각지게",
+            "false"
+          ]
+        ]
+      }
+    ],
+    "tooltip": "앤티앨리어싱 호 또는 게이지 링을 그립니다. 0도는 6시 방향이며 각도는 시계 방향으로 증가합니다"
+  },
   "tftespi_draw_ellipse": {
     "message0": "screen%1 타원을 그리세요. 중심은 X:%2 Y:%3 반지름 X:%4 반지름 Y:%5 색상:%6",
     "tooltip": "타원형 테두리를 그리세요"
@@ -295,16 +342,82 @@
     "tooltip": "삼각형 영역을 채우세요"
   },
   "tftespi_draw_string": {
-    "message0": "화면에 텍스트를 표시하기 X:%2 Y:%1 위치: %3 %4",
-    "tooltip": "지정된 위치에 텍스트를 표시하세요"
+    "message0": "%1의 X:%2 Y:%3에 내용 %4 표시",
+    "tooltip": "지정한 위치에 텍스트, 정수 또는 소수를 표시합니다"
   },
   "tftespi_set_text_color": {
     "message0": "화면 %1 텍스트 색상 설정%2",
     "tooltip": "글자 색 설정"
   },
+  "tftespi_set_text_colors": {
+    "message0": "%1 텍스트 색상 %2 배경색 %3 설정",
+    "tooltip": "텍스트 전경색과 문자 영역을 덮어쓸 배경색을 함께 설정합니다"
+  },
+  "tftespi_set_text_datum": {
+    "message0": "%1 텍스트 정렬 %2 설정",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "왼쪽 위",
+            "TL_DATUM"
+          ],
+          [
+            "위쪽 가운데",
+            "TC_DATUM"
+          ],
+          [
+            "오른쪽 위",
+            "TR_DATUM"
+          ],
+          [
+            "왼쪽 가운데",
+            "ML_DATUM"
+          ],
+          [
+            "가운데",
+            "MC_DATUM"
+          ],
+          [
+            "오른쪽 가운데",
+            "MR_DATUM"
+          ],
+          [
+            "왼쪽 아래",
+            "BL_DATUM"
+          ],
+          [
+            "아래쪽 가운데",
+            "BC_DATUM"
+          ],
+          [
+            "오른쪽 아래",
+            "BR_DATUM"
+          ],
+          [
+            "왼쪽 기준선",
+            "L_BASELINE"
+          ],
+          [
+            "가운데 기준선",
+            "C_BASELINE"
+          ],
+          [
+            "오른쪽 기준선",
+            "R_BASELINE"
+          ]
+        ]
+      }
+    ],
+    "tooltip": "텍스트를 그릴 때 사용할 정렬 기준점을 설정합니다"
+  },
+  "tftespi_set_text_padding": {
+    "message0": "%1 텍스트 덮어쓰기 너비를 %2 픽셀로 설정",
+    "tooltip": "이전의 더 긴 값이 남지 않도록 텍스트 배경 덮어쓰기 너비를 설정합니다. 0이면 비활성화됩니다"
+  },
   "tftespi_set_text_size": {
     "message0": "화면 %1 텍스트 크기 설정%2",
-    "tooltip": "세트 텍스트 크기 (1-7)",
     "args0": [
       null,
       {
@@ -339,11 +452,11 @@
           ]
         ]
       }
-    ]
+    ],
+    "tooltip": "세트 텍스트 크기 (1-7)"
   },
   "tftespi_set_text_font": {
     "message0": "화면 %1 글꼴 설정%2",
-    "tooltip": "폰트 타입 설정",
     "args0": [
       null,
       {
@@ -374,7 +487,16 @@
           ]
         ]
       }
-    ]
+    ],
+    "tooltip": "폰트 타입 설정"
+  },
+  "tftespi_image": {
+    "message0": "TFT 이미지 %1",
+    "tooltip": "PNG, JPEG, WebP 또는 BMP 이미지를 RGB565/RGB332 픽셀 데이터로 변환합니다"
+  },
+  "tftespi_draw_image": {
+    "message0": "TFT 화면 %1의 X:%2 Y:%3에 이미지 %4 표시",
+    "tooltip": "지정한 좌표에 변환된 RGB565/RGB332 이미지를 표시합니다"
   },
   "tftespi_animation": {
     "message0": "TFT 애니메이션 %1",
@@ -382,8 +504,6 @@
   },
   "tftespi_play_animation": {
     "message0": "TFT 화면 %1 애니메이션 재생 x%2 y%3 애니메이션 %4 모드 %5",
-    "message1": "반복 재생 %1",
-    "tooltip": "TFT_eSPI 애니메이션을 재생합니다. 비차단 모드에서는 프레임 간격마다 다음 프레임을 표시합니다",
     "args0": [
       null,
       null,
@@ -401,7 +521,9 @@
           ]
         ]
       }
-    ]
+    ],
+    "message1": "반복 재생 %1",
+    "tooltip": "TFT_eSPI 애니메이션을 재생합니다. 비차단 모드에서는 프레임 간격마다 다음 프레임을 표시합니다"
   },
   "tftespi_draw_animation_frame": {
     "message0": "TFT 화면 %1 애니메이션 프레임 표시 x%2 y%3 애니메이션 %4 프레임 %5",
@@ -411,15 +533,46 @@
     "message0": "TFT 애니메이션 %1의 전체 프레임 수 가져오기",
     "tooltip": "TFT_eSPI 애니메이션의 전체 프레임 수를 가져옵니다"
   },
-  "tftespi_image": {
-    "message0": "TFT 이미지 %1",
-    "tooltip": "PNG, JPEG, WebP 또는 BMP 이미지를 RGB565/RGB332 픽셀 데이터로 변환합니다",
-    "args0": [null]
+  "tftespi_sprite_create": {
+    "message0": "디스플레이 %2용 Sprite %1 만들기",
+    "message1": "너비 %1 높이 %2 색상 깊이 %3",
+    "args1": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "16비트",
+            "16"
+          ],
+          [
+            "8비트",
+            "8"
+          ],
+          [
+            "4비트",
+            "4"
+          ],
+          [
+            "1비트",
+            "1"
+          ]
+        ]
+      }
+    ],
+    "tooltip": "메모리에 Sprite를 만듭니다. 색상 깊이가 낮을수록 메모리를 적게 사용합니다"
   },
-  "tftespi_draw_image": {
-    "message0": "TFT 화면 %1의 X:%2 Y:%3에 이미지 %4 표시",
-    "tooltip": "지정한 좌표에 변환된 RGB565/RGB332 이미지를 표시합니다",
-    "args0": [null, null, null, null]
+  "tftespi_sprite_push": {
+    "message0": "Sprite %1을 디스플레이 X:%2 Y:%3에 표시",
+    "tooltip": "Sprite 전체를 연결된 디스플레이로 전송합니다"
+  },
+  "tftespi_sprite_push_transparent": {
+    "message0": "Sprite %1을 디스플레이 X:%2 Y:%3에 투명하게 표시 투명색:%4",
+    "tooltip": "투명색과 일치하는 픽셀을 건너뛰고 Sprite를 전송합니다"
+  },
+  "tftespi_sprite_delete": {
+    "message0": "Sprite %1 삭제",
+    "tooltip": "Sprite를 삭제하고 사용 중인 메모리를 해제합니다"
   },
   "tftespi_color_rgb565": {
     "message0": "%1 색상 변환 %2",
@@ -427,7 +580,6 @@
   },
   "tftespi_color": {
     "message0": "색상 %1",
-    "tooltip": "기본 색",
     "args0": [
       {
         "options": [
@@ -477,6 +629,11 @@
           ]
         ]
       }
-    ]
+    ],
+    "tooltip": "기본 색"
+  },
+  "extensions": {
+    "tftespi_board_display_config": {},
+    "tftespi_animation_play_dynamic_inputs": {}
   }
 }

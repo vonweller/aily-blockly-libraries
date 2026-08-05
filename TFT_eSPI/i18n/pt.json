@@ -1,20 +1,24 @@
 {
   "toolbox_name": "TFT_eSPI",
   "toolbox_labels": {
-    "初始化": "inicialização",
-    "基本图形": "gráficos básicos",
-    "矩形": "Retângulo",
-    "圆形": "redondo",
-    "椭圆": "elipse",
-    "三角形": "triângulo",
-    "文字": "texto",
-    "颜色": "cor",
-    "图片": "imagem",
-    "动画": "animação"
+    "屏幕控制": "Controle da tela",
+    "颜色": "Cores",
+    "基础图形": "Formas básicas",
+    "矩形": "Retângulos",
+    "圆形与椭圆": "Círculos e elipses",
+    "三角形": "Triângulos",
+    "图像": "Imagens",
+    "动画": "Animação",
+    "Sprite 画布": "Tela Sprite"
   },
+  "toolbox_categories": [
+    "Configurações básicas",
+    "Desenho gráfico",
+    "Texto",
+    "Imagens e animação"
+  ],
   "tftespi_setup": {
-    "message0": "Inicializar a tela TFT %1 Modelo %2 SPI frequência %3 Largura %4 Altura %5\n MISO %6 MOSI %7 SCLK %8 CS %9 DC %10 \nRST %11 BL %12 Backlight %13 Modo de Cor %14",
-    "tooltip": "Criar e inicializar objetos TFT",
+    "message0": "Inicializar tela TFT %1\nConfigurações básicas: driver %2 largura %3 altura %4\n Conexões: MISO %5 MOSI %6 SCLK %7 CS %8 DC %9 RST %10 BL %11\nOutras configurações: modo da luz de fundo %12 ordem de cores %13 frequência SPI %14",
     "args0": [
       null,
       {
@@ -109,34 +113,6 @@
           ]
         ]
       },
-      {
-        "options": [
-          [
-            "10MHz",
-            "10000000"
-          ],
-          [
-            "20MHz",
-            "20000000"
-          ],
-          [
-            "27MHz",
-            "27000000"
-          ],
-          [
-            "40MHz",
-            "40000000"
-          ],
-          [
-            "55MHz",
-            "55000000"
-          ],
-          [
-            "80MHz",
-            "80000000"
-          ]
-        ]
-      },
       null,
       null,
       null,
@@ -169,12 +145,40 @@
             "TFT_BGR"
           ]
         ]
+      },
+      {
+        "options": [
+          [
+            "10MHz",
+            "10000000"
+          ],
+          [
+            "20MHz",
+            "20000000"
+          ],
+          [
+            "27MHz",
+            "27000000"
+          ],
+          [
+            "40MHz",
+            "40000000"
+          ],
+          [
+            "55MHz",
+            "55000000"
+          ],
+          [
+            "80MHz",
+            "80000000"
+          ]
+        ]
       }
-    ]
+    ],
+    "tooltip": "Criar e inicializar um objeto de tela TFT"
   },
   "tftespi_set_rotation": {
     "message0": "Defina a tela TFT %1 gire %2",
-    "tooltip": "Definir o sentido de rotação do ecrã",
     "args0": [
       null,
       {
@@ -213,11 +217,11 @@
           ]
         ]
       }
-    ]
+    ],
+    "tooltip": "Definir o sentido de rotação do ecrã"
   },
   "tftespi_invert_display": {
     "message0": "Tela TFT %1 tela rebatível %2",
-    "tooltip": "Vire a tela para exibir as cores",
     "args0": [
       null,
       {
@@ -232,7 +236,27 @@
           ]
         ]
       }
-    ]
+    ],
+    "tooltip": "Vire a tela para exibir as cores"
+  },
+  "tftespi_get_dimension": {
+    "message0": "Obter %2 de %1",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Largura",
+            "WIDTH"
+          ],
+          [
+            "Altura",
+            "HEIGHT"
+          ]
+        ]
+      }
+    ],
+    "tooltip": "Obter a largura ou altura para a orientação atual da tela"
   },
   "tftespi_fill_screen": {
     "message0": "TFT %1 Preenchendo a cor da tela %2",
@@ -278,6 +302,29 @@
     "message0": "No screen%1 Círculo de preenchimento Centro X:%2 Y:%3 Raio: %4 Cor: %5",
     "tooltip": "Preencha uma área circular"
   },
+  "tftespi_draw_arc": {
+    "message0": "Em %1 desenhar arco suavizado centro X:%2 Y:%3 raio externo:%4 raio interno:%5",
+    "message1": "ângulo inicial:%1 ângulo final:%2 primeiro plano:%3 fundo:%4 extremidades:%5",
+    "args1": [
+      null,
+      null,
+      null,
+      null,
+      {
+        "options": [
+          [
+            "Arredondadas",
+            "true"
+          ],
+          [
+            "Quadradas",
+            "false"
+          ]
+        ]
+      }
+    ],
+    "tooltip": "Desenhar um arco suavizado ou anel de medidor; 0 grau fica às 6 horas e os ângulos aumentam no sentido horário"
+  },
   "tftespi_draw_ellipse": {
     "message0": "No screen%1 Desenhe uma elipse, centro X:%2 Y:%3 Raio X:%4 Raio Y:%5 Cor:%6",
     "tooltip": "Desenhe uma borda oval"
@@ -295,16 +342,82 @@
     "tooltip": "Preencha uma área triangular"
   },
   "tftespi_draw_string": {
-    "message0": "Exiba texto na tela %1 posições X:%2 Y:%3 %4",
-    "tooltip": "Exibir texto em locais designados"
+    "message0": "Em %1 em X:%2 Y:%3 exibir %4",
+    "tooltip": "Exibir texto, um inteiro ou um decimal na posição especificada"
   },
   "tftespi_set_text_color": {
     "message0": "Definir a cor da tela %1 texto %2",
     "tooltip": "Definir a cor do texto"
   },
+  "tftespi_set_text_colors": {
+    "message0": "Definir em %1 cor do texto %2 cor de fundo %3",
+    "tooltip": "Definir a cor do texto e a cor de fundo usada para cobrir a área dos caracteres"
+  },
+  "tftespi_set_text_datum": {
+    "message0": "Definir alinhamento do texto de %1 como %2",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Superior esquerdo",
+            "TL_DATUM"
+          ],
+          [
+            "Superior central",
+            "TC_DATUM"
+          ],
+          [
+            "Superior direito",
+            "TR_DATUM"
+          ],
+          [
+            "Centro esquerdo",
+            "ML_DATUM"
+          ],
+          [
+            "Centro",
+            "MC_DATUM"
+          ],
+          [
+            "Centro direito",
+            "MR_DATUM"
+          ],
+          [
+            "Inferior esquerdo",
+            "BL_DATUM"
+          ],
+          [
+            "Inferior central",
+            "BC_DATUM"
+          ],
+          [
+            "Inferior direito",
+            "BR_DATUM"
+          ],
+          [
+            "Linha de base esquerda",
+            "L_BASELINE"
+          ],
+          [
+            "Linha de base central",
+            "C_BASELINE"
+          ],
+          [
+            "Linha de base direita",
+            "R_BASELINE"
+          ]
+        ]
+      }
+    ],
+    "tooltip": "Definir o ponto de referência usado para alinhar o texto"
+  },
+  "tftespi_set_text_padding": {
+    "message0": "Definir largura de cobertura do texto de %1 como %2 pixels",
+    "tooltip": "Definir a largura do fundo para apagar restos de um valor anterior mais longo; 0 desativa a função"
+  },
   "tftespi_set_text_size": {
     "message0": "Defina o tamanho da tela %1 texto %2",
-    "tooltip": "Definir o Tamanho do Texto (1-7)",
     "args0": [
       null,
       {
@@ -339,11 +452,11 @@
           ]
         ]
       }
-    ]
+    ],
+    "tooltip": "Definir o Tamanho do Texto (1-7)"
   },
   "tftespi_set_text_font": {
     "message0": "Definir a tela %1 fonte %2",
-    "tooltip": "Defina o tipo de fonte",
     "args0": [
       null,
       {
@@ -374,7 +487,16 @@
           ]
         ]
       }
-    ]
+    ],
+    "tooltip": "Defina o tipo de fonte"
+  },
+  "tftespi_image": {
+    "message0": "Imagem TFT %1",
+    "tooltip": "Converter uma imagem PNG, JPEG, WebP ou BMP em dados de pixels RGB565/RGB332"
+  },
+  "tftespi_draw_image": {
+    "message0": "Na tela TFT %1 em X:%2 Y:%3 mostrar imagem %4",
+    "tooltip": "Mostrar os dados de imagem RGB565/RGB332 convertidos nas coordenadas indicadas"
   },
   "tftespi_animation": {
     "message0": "Animação TFT %1",
@@ -382,8 +504,6 @@
   },
   "tftespi_play_animation": {
     "message0": "Tela TFT %1 reproduzir animação x%2 y%3 animação %4 modo %5",
-    "message1": "Reprodução em loop %1",
-    "tooltip": "Reproduz uma animação TFT_eSPI; no modo sem bloqueio, o próximo quadro é renderizado no intervalo",
     "args0": [
       null,
       null,
@@ -401,7 +521,9 @@
           ]
         ]
       }
-    ]
+    ],
+    "message1": "Reprodução em loop %1",
+    "tooltip": "Reproduz uma animação TFT_eSPI; no modo sem bloqueio, o próximo quadro é renderizado no intervalo"
   },
   "tftespi_draw_animation_frame": {
     "message0": "Tela TFT %1 desenhar quadro x%2 y%3 animação %4 quadro %5",
@@ -411,15 +533,46 @@
     "message0": "Obter o número total de quadros da animação TFT %1",
     "tooltip": "Obter o número total de quadros de uma animação TFT_eSPI"
   },
-  "tftespi_image": {
-    "message0": "Imagem TFT %1",
-    "tooltip": "Converter uma imagem PNG, JPEG, WebP ou BMP em dados de pixels RGB565/RGB332",
-    "args0": [null]
+  "tftespi_sprite_create": {
+    "message0": "Criar Sprite %1 para a tela %2",
+    "message1": "largura %1 altura %2 profundidade de cor %3",
+    "args1": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "16 bits",
+            "16"
+          ],
+          [
+            "8 bits",
+            "8"
+          ],
+          [
+            "4 bits",
+            "4"
+          ],
+          [
+            "1 bit",
+            "1"
+          ]
+        ]
+      }
+    ],
+    "tooltip": "Criar um Sprite na memória; profundidades de cor menores usam menos memória"
   },
-  "tftespi_draw_image": {
-    "message0": "Na tela TFT %1 em X:%2 Y:%3 mostrar imagem %4",
-    "tooltip": "Mostrar os dados de imagem RGB565/RGB332 convertidos nas coordenadas indicadas",
-    "args0": [null, null, null, null]
+  "tftespi_sprite_push": {
+    "message0": "Exibir Sprite %1 na tela em X:%2 Y:%3",
+    "tooltip": "Enviar o Sprite completo para a tela associada"
+  },
+  "tftespi_sprite_push_transparent": {
+    "message0": "Exibir Sprite %1 com transparência em X:%2 Y:%3 cor transparente:%4",
+    "tooltip": "Enviar o Sprite ignorando pixels que correspondem à cor transparente"
+  },
+  "tftespi_sprite_delete": {
+    "message0": "Excluir Sprite %1",
+    "tooltip": "Excluir o Sprite e liberar a memória ocupada"
   },
   "tftespi_color_rgb565": {
     "message0": "%1 Conversão de Cor %2",
@@ -427,7 +580,6 @@
   },
   "tftespi_color": {
     "message0": "Cor %1",
-    "tooltip": "Cor predefinida",
     "args0": [
       {
         "options": [
@@ -477,6 +629,11 @@
           ]
         ]
       }
-    ]
+    ],
+    "tooltip": "Cor predefinida"
+  },
+  "extensions": {
+    "tftespi_board_display_config": {},
+    "tftespi_animation_play_dynamic_inputs": {}
   }
 }
