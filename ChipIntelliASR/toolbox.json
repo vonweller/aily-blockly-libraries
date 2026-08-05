@@ -1,0 +1,26 @@
+{
+  "kind": "category",
+  "name": "CI13XX 离线语音识别",
+  "icon": "fa-light fa-waveform-lines",
+  "colour": "#1565C0",
+  "contents": [
+    {"kind": "label", "text": "初始化"},
+    {"kind": "block", "type": "chipintelli_asr_init", "inputs": {"TIMEOUT": {"shadow": {"type": "math_number", "fields": {"NUM": 10000}}}}},
+    {"kind": "block", "type": "chipintelli_asr_end"},
+    {"kind": "label", "text": "识别结果"},
+    {"kind": "block", "type": "chipintelli_asr_read_results"},
+    {"kind": "block", "type": "chipintelli_asr_available"},
+    {"kind": "block", "type": "chipintelli_asr_result_command_id"},
+    {"kind": "block", "type": "chipintelli_asr_result_semantic_id"},
+    {"kind": "block", "type": "chipintelli_asr_result_score"},
+    {"kind": "block", "type": "chipintelli_asr_result_frames"},
+    {"kind": "block", "type": "chipintelli_asr_result_text"},
+    {"kind": "block", "type": "chipintelli_asr_result_text_truncated"},
+    {"kind": "block", "type": "chipintelli_asr_dropped_results"},
+    {"kind": "label", "text": "算法配置"},
+    {"kind": "block", "type": "chipintelli_asr_aec_enabled"},
+    {"kind": "block", "type": "chipintelli_asr_barge_in_enabled"},
+    {"kind": "block", "type": "chipintelli_asr_barge_in_mode"},
+    {"kind": "block", "type": "chipintelli_asr_barge_in_mode_value"}
+  ]
+}
