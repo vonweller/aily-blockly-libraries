@@ -4,7 +4,7 @@ Low power management library for nRF54L15, supporting System OFF with timed/butt
 
 ## Library Info
 - **Name**: @aily-project/lib-nrf54-lowpower
-- **Version**: 0.6.7
+- **Version**: 0.6.81
 
 ## Block Definitions
 
