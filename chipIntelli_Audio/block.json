@@ -168,57 +168,6 @@
     "tooltip": "播放 voice.bin 中已配置的 16 位语音 ID"
   },
   {
-    "type": "chipintelli_audio_play_command_id",
-    "message0": "播放命令 ID %1 选项 %2 方式 %3",
-    "args0": [
-      {"type": "input_value", "name": "COMMAND_ID", "check": ["Number"]},
-      {"type": "input_value", "name": "OPTION", "check": ["Number"]},
-      {
-        "type": "field_dropdown",
-        "name": "MODE",
-        "options": [["中断当前提示音", "true"], ["加入播放队列", "false"]]
-      }
-    ],
-    "previousStatement": null,
-    "nextStatement": null,
-    "colour": "#7B1FA2",
-    "tooltip": "按命令 ID 播放资源中关联的提示音；选项 -1 使用资源默认项"
-  },
-  {
-    "type": "chipintelli_audio_play_command_text",
-    "message0": "播放命令文本 %1 选项 %2 方式 %3",
-    "args0": [
-      {"type": "input_value", "name": "COMMAND_TEXT", "check": ["String"]},
-      {"type": "input_value", "name": "OPTION", "check": ["Number"]},
-      {
-        "type": "field_dropdown",
-        "name": "MODE",
-        "options": [["中断当前提示音", "true"], ["加入播放队列", "false"]]
-      }
-    ],
-    "previousStatement": null,
-    "nextStatement": null,
-    "colour": "#7B1FA2",
-    "tooltip": "按资源中已有的命令文本查找提示音；此功能不是任意文本转语音"
-  },
-  {
-    "type": "chipintelli_audio_play_semantic",
-    "message0": "播放语义 ID %1 选项 %2 方式 %3",
-    "args0": [
-      {"type": "input_value", "name": "SEMANTIC_ID", "check": ["Number"]},
-      {"type": "input_value", "name": "OPTION", "check": ["Number"]},
-      {
-        "type": "field_dropdown",
-        "name": "MODE",
-        "options": [["中断当前提示音", "true"], ["加入播放队列", "false"]]
-      }
-    ],
-    "previousStatement": null,
-    "nextStatement": null,
-    "colour": "#7B1FA2",
-    "tooltip": "按 32 位语义 ID 播放资源中关联的提示音"
-  },
-  {
     "type": "chipintelli_audio_stop",
     "message0": "停止播放",
     "previousStatement": null,

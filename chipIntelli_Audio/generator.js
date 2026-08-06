@@ -129,30 +129,6 @@ Arduino.forBlock['chipintelli_audio_play_voice'] = function(block, generator) {
   return 'ChipIntelliAudio.playVoice((uint16_t)(' + voiceId + '), ' + interruptCurrent + ');\n';
 };
 
-Arduino.forBlock['chipintelli_audio_play_command_id'] = function(block, generator) {
-  ensureChipIntelliAudio(generator);
-  const commandId = chipIntelliAudioValue(block, generator, 'COMMAND_ID', '1');
-  const option = chipIntelliAudioValue(block, generator, 'OPTION', '-1');
-  const interruptCurrent = block.getFieldValue('MODE') === 'false' ? 'false' : 'true';
-  return 'ChipIntelliAudio.playCommand((unsigned long)(' + commandId + '), (int)(' + option + '), ' + interruptCurrent + ');\n';
-};
-
-Arduino.forBlock['chipintelli_audio_play_command_text'] = function(block, generator) {
-  ensureChipIntelliAudio(generator);
-  const commandText = chipIntelliAudioValue(block, generator, 'COMMAND_TEXT', '""');
-  const option = chipIntelliAudioValue(block, generator, 'OPTION', '-1');
-  const interruptCurrent = block.getFieldValue('MODE') === 'false' ? 'false' : 'true';
-  return 'ChipIntelliAudio.playCommand(String(' + commandText + ').c_str(), (int)(' + option + '), ' + interruptCurrent + ');\n';
-};
-
-Arduino.forBlock['chipintelli_audio_play_semantic'] = function(block, generator) {
-  ensureChipIntelliAudio(generator);
-  const semanticId = chipIntelliAudioValue(block, generator, 'SEMANTIC_ID', '1');
-  const option = chipIntelliAudioValue(block, generator, 'OPTION', '-1');
-  const interruptCurrent = block.getFieldValue('MODE') === 'false' ? 'false' : 'true';
-  return 'ChipIntelliAudio.playSemantic((uint32_t)(' + semanticId + '), (int)(' + option + '), ' + interruptCurrent + ');\n';
-};
-
 Arduino.forBlock['chipintelli_audio_stop'] = function(block, generator) {
   ensureChipIntelliAudio(generator);
   return 'ChipIntelliAudio.stop();\n';

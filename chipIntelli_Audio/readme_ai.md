@@ -1,6 +1,6 @@
 # ChipIntelliAudio
 
-播放 CI13XX `voice.bin` 中已配置的提示音，或上传并编辑本地音频。
+为 CI13XX 播放文本提示音或本地音频。需要播放文本时，直接使用 `chipintelli_audio_play_voice`，并将 `chipintelli_audio_voice` 作为其提示音输入。
 
 ## Library Info
 - **名称**: `@aily-project/lib-chipintelli-audio`
@@ -14,7 +14,7 @@
 | `chipintelli_audio_end` | 语句 | 无 | `chipintelli_audio_end()` | `ChipIntelliAudio.end()` |
 | `chipintelli_audio_voice` | 值(Number) | TEXT(field_input) | `chipintelli_audio_voice("你好")` | `VOICE1`，并添加 `#define VOICE1 1 //你好` |
 | `chipintelli_audio_local_audio` | 值(Number) | AUDIO(field_audio) | 由 Blockly 字段保存音频工程数据 | `VOICEMP3500`，并添加 `#define VOICEMP3500 500 //audio/<内容哈希>.mp3` |
-| `chipintelli_audio_play_voice` | 语句 | VOICE_ID(value), MODE(dropdown) | `chipintelli_audio_play_voice(math_number(1), true)` | `playVoice(id, interrupt)` |
+| `chipintelli_audio_play_voice` | 语句 | VOICE_ID(value), MODE(dropdown) | `chipintelli_audio_play_voice(chipintelli_audio_voice("你好"), true)` | `playVoice(id, interrupt)` |
 | `chipintelli_audio_stop` | 语句 | 无 | `chipintelli_audio_stop()` | `stop()` |
 | `chipintelli_audio_set_volume` | 语句 | VOLUME(value) | `chipintelli_audio_set_volume(math_number(70))` | `setVolume(...)` |
 | `chipintelli_audio_set_muted` | 语句 | MUTED(value) | `chipintelli_audio_set_muted(logic_boolean(TRUE))` | `setMuted(...)` |
@@ -36,7 +36,7 @@
 arduino_setup()
     chipintelli_audio_init()
     chipintelli_audio_set_volume(math_number(70))
-    chipintelli_audio_play_voice(math_number(1), true)
+    chipintelli_audio_play_voice(chipintelli_audio_voice("你好"), true)
 
 chipintelli_audio_on_finished()
     @HANDLER:
@@ -45,6 +45,6 @@ chipintelli_audio_on_finished()
 
 ## 注意事项
 
-1. “提示音”块只能引用固件资源中已有的提示音；“本地音频”块可上传音频并生成固件打包所需的 MP3 宏。
+1. 播放文本提示音时，直接将 `chipintelli_audio_voice("文本")` 接入 `chipintelli_audio_play_voice`；播放本地音频时，将 `chipintelli_audio_local_audio` 接入同一个播放块。
 2. 完成事件表示 SDK 已处理完请求，不保证资源查找或实际播放成功。
 3. 先在 `arduino_setup()` 中初始化；事件处理代码在主 `loop()` 中执行。
