@@ -4,7 +4,7 @@ TFT_eSPI - Arduino library, graphics and font library supporting multiple TFT di
 
 ## Library Info
 - **Name**: @aily-project/lib-tft-espi
-- **Version**: 2.5.47
+- **Version**: 2.5.48
 
 ## Block Definitions
 
