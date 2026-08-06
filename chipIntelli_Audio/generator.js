@@ -94,6 +94,19 @@ Arduino.forBlock['chipintelli_audio_end'] = function(block, generator) {
   return 'ChipIntelliAudio.end();\n';
 };
 
+Arduino.forBlock['chipintelli_audio_voice_settings'] = function(block, generator) {
+  const voiceRole = String(block.getFieldValue('VOICE_ROLE') || '').replace(/[\r\n]/g, ' ');
+  const voiceVolume = block.getFieldValue('VOICE_VOLUME');
+  const voiceSpeed = block.getFieldValue('VOICE_SPEED');
+  generator.addMacro(
+    'chipintelli_audio_voice_settings',
+    '//VOICE_ROLE:"' + voiceRole + '";VOICE_VOLUME:' +
+      (voiceVolume === null ? '10' : voiceVolume) + ';VOICE_SPEED:' +
+      (voiceSpeed === null ? '10' : voiceSpeed) + ';'
+  );
+  return '';
+};
+
 Arduino.forBlock['chipintelli_audio_voice'] = function(block, generator) {
   const text = block.getFieldValue('TEXT') || '';
   const voiceId = chipIntelliAudioVoiceId(generator, text);
