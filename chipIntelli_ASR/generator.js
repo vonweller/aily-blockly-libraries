@@ -1,5 +1,68 @@
 'use strict';
 
+var chipIntelliASREntryBlockTypes = [
+  'chipintelli_asr_on_startup',
+  'chipintelli_asr_on_wakeup',
+  'chipintelli_asr_on_timeout',
+  'chipintelli_asr_on_result',
+  'chipintelli_asr_on_command',
+  'chipintelli_asr_on_semantic'
+];
+
+function chipIntelliASRRegisterEntryBlocks() {
+  if (typeof registerHatBlock === 'function') {
+    registerHatBlock(chipIntelliASREntryBlockTypes);
+    return;
+  }
+
+  var scope = typeof globalThis !== 'undefined' ? globalThis : null;
+  if (!scope) return;
+  if (!Array.isArray(scope.ENTRY_BLOCK_TYPES)) {
+    scope.ENTRY_BLOCK_TYPES = ['arduino_setup', 'arduino_loop'];
+  }
+  chipIntelliASREntryBlockTypes.forEach(function(blockType) {
+    if (scope.ENTRY_BLOCK_TYPES.indexOf(blockType) < 0) {
+      scope.ENTRY_BLOCK_TYPES.push(blockType);
+    }
+  });
+}
+
+function chipIntelliASRIsBlockConnected(block) {
+  if (!block || block.isInFlyout) return false;
+  if (typeof isBlockConnected === 'function') {
+    return isBlockConnected(block);
+  }
+
+  var entryTypes = ['arduino_setup', 'arduino_loop'].concat(
+    chipIntelliASREntryBlockTypes
+  );
+  var visited = Object.create(null);
+  var current = block;
+  while (current && !visited[current.id]) {
+    visited[current.id] = true;
+    if (entryTypes.indexOf(current.type) >= 0) return true;
+
+    var parent = typeof current.getSurroundParent === 'function'
+      ? current.getSurroundParent()
+      : null;
+    if (!parent && current.previousConnection &&
+        current.previousConnection.isConnected()) {
+      parent = current.previousConnection.targetBlock();
+    }
+    if (!parent && current.outputConnection &&
+        current.outputConnection.isConnected()) {
+      parent = current.outputConnection.targetBlock();
+    }
+    if (!parent && typeof current.getParent === 'function') {
+      parent = current.getParent();
+    }
+    current = parent;
+  }
+  return false;
+}
+
+chipIntelliASRRegisterEntryBlocks();
+
 function ensureChipIntelliASR(generator) {
   generator.addLibrary('chipintelli_asr', '#include <ChipIntelliASR.h>');
 }
@@ -378,3 +441,20 @@ Arduino.forBlock['chipintelli_asr_barge_in_mode_value'] = function(block, genera
   const mode = ['0', '1', '2', '3'].indexOf(selected) >= 0 ? selected : '0';
   return [mode, generator.ORDER_ATOMIC];
 };
+
+// Blockly may ask generators for every top-level block, including blocks that
+// are still floating in the workspace. Guard before the original generator so
+// disconnected blocks cannot contribute includes, macros, globals, callbacks,
+// setup/loop fragments, or body code.
+Object.keys(Arduino.forBlock).forEach(function(blockType) {
+  if (blockType.indexOf('chipintelli_asr_') !== 0) return;
+  const generate = Arduino.forBlock[blockType];
+  Arduino.forBlock[blockType] = function(block, generator) {
+    if (!chipIntelliASRIsBlockConnected(block)) {
+      return block && block.outputConnection
+        ? ['', generator.ORDER_ATOMIC]
+        : '';
+    }
+    return generate(block, generator);
+  };
+});
