@@ -85,4 +85,3 @@ chipintelli_asr_on_command(chipintelli_asr_command("打开灯"))
 6. `keep_awake_for` 设置的是唤醒后的命令响应窗口，只在已经唤醒时生效；工具箱默认 15 秒，用户可修改。
 7. 结果文本缓冲区容量为 64 字节；用 `result_text_truncated` 检查截断。
 8. AEC 与语音打断能力由 Arduino 的编译时算法配置决定。
-9. 只有连接到 `arduino_setup`、`arduino_loop` 或本库事件 Hat 执行链的积木才会贡献头文件、宏、变量、回调以及 setup/loop 片段；孤立积木和工具箱 flyout 积木不参与代码生成。
