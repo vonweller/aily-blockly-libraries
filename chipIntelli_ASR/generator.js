@@ -31,7 +31,9 @@ function chipIntelliASRState(generator) {
   if (!generator._chipIntelliASRState || generator._chipIntelliASRState.macros !== macros) {
     generator._chipIntelliASRState = {
       macros: macros,
-      nextCommandId: 2,
+      nextResourceId: 2,
+      hasExplicitWakeWord: false,
+      wakeWordIds: Object.create(null),
       commandIds: Object.create(null),
       callbackIndexes: Object.create(null),
       nextCallbackIndex: 1
@@ -40,11 +42,26 @@ function chipIntelliASRState(generator) {
   return generator._chipIntelliASRState;
 }
 
-function chipIntelliASRAddWakeWord(block, generator) {
+function chipIntelliASRSetWakeWord(block, generator) {
   const text = chipIntelliASRText(block, 'WAKE_WORD', '智能管家');
+  const state = chipIntelliASRState(generator);
+  const blockKey = String(block.id || 'text:' + text);
+  let wakeWordId = state.wakeWordIds[blockKey];
+
+  if (wakeWordId === undefined) {
+    if (!state.hasExplicitWakeWord) {
+      wakeWordId = 1;
+      state.hasExplicitWakeWord = true;
+    } else {
+      wakeWordId = state.nextResourceId++;
+    }
+    state.wakeWordIds[blockKey] = wakeWordId;
+  }
+
   generator.addMacro(
-    'chipintelli_asr_wake',
-    '#define ' + chipIntelliASRMacroName(1) + ' 1 //' + text
+    wakeWordId === 1 ? 'chipintelli_asr_wake' : 'chipintelli_asr_wake:' + blockKey,
+    '#define WAKEWORD' + wakeWordId + ' ' + wakeWordId + ' //' + text,
+    true
   );
 }
 
@@ -53,7 +70,7 @@ function chipIntelliASRAddCommandMacro(block, generator) {
   const state = chipIntelliASRState(generator);
 
   if (!Object.prototype.hasOwnProperty.call(state.commandIds, text)) {
-    const commandId = state.nextCommandId++;
+    const commandId = state.nextResourceId++;
     state.commandIds[text] = commandId;
     generator.addMacro(
       'chipintelli_asr_command:' + text,
@@ -116,14 +133,23 @@ function chipIntelliASRAddResultEvent(block, generator, eventName, setupCode) {
 
 Arduino.forBlock['chipintelli_asr_init'] = function(block, generator) {
   ensureChipIntelliASR(generator);
-  chipIntelliASRAddWakeWord(block, generator);
-  const timeoutSeconds = chipIntelliASRText(block, 'TIMEOUT', '10');
-  return 'ChipIntelliASR.begin((uint32_t)max(0L, (long)(' + timeoutSeconds + ')) * 1000UL);\n';
+  generator.addSetupBegin(
+    'chipintelli_asr_init',
+    'ChipIntelliASR.begin();',
+    true
+  );
+  return '';
 };
 
 Arduino.forBlock['chipintelli_asr_end'] = function(block, generator) {
   ensureChipIntelliASR(generator);
   return 'ChipIntelliASR.end();\n';
+};
+
+Arduino.forBlock['chipintelli_asr_set_wake_word'] = function(block, generator) {
+  ensureChipIntelliASR(generator);
+  chipIntelliASRSetWakeWord(block, generator);
+  return 'ChipIntelliASR.setWakeWordEnabled(true);\n';
 };
 
 Arduino.forBlock['chipintelli_asr_on_startup'] = function(block, generator) {
@@ -228,7 +254,7 @@ Arduino.forBlock['chipintelli_asr_detach_handlers'] = function(block, generator)
 
 Arduino.forBlock['chipintelli_asr_keep_awake_for'] = function(block, generator) {
   ensureChipIntelliASR(generator);
-  const timeoutSeconds = chipIntelliASRValue(block, generator, 'TIMEOUT', '10');
+  const timeoutSeconds = chipIntelliASRValue(block, generator, 'TIMEOUT', '15');
   return 'ChipIntelliASR.keepAwakeFor((uint32_t)max(0L, (long)(' + timeoutSeconds + ')) * 1000UL);\n';
 };
 
