@@ -1,0 +1,289 @@
+[
+  {
+    "type": "chipintelli_ir_init_raw",
+    "message0": "初始化 CI13XX 红外原始模式 TX %1 RX %2 定时器 %3",
+    "args0": [
+      {"type": "input_value", "name": "TX_PIN", "check": ["Number"]},
+      {"type": "input_value", "name": "RX_PIN", "check": ["Number"]},
+      {"type": "field_dropdown", "name": "TIMER", "options": [["TIMER0", "0"], ["TIMER1", "1"], ["TIMER2（默认）", "2"]]}
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#C62828",
+    "tooltip": "初始化固定 38 kHz 的原始波形/NEC 收发；TX 需支持 PWM，RX 需支持中断"
+  },
+  {
+    "type": "chipintelli_ir_init_air",
+    "message0": "初始化 CI13XX 空调红外 TX %1 RX %2 定时器 %3 数据库资源 ID %4",
+    "args0": [
+      {"type": "input_value", "name": "TX_PIN", "check": ["Number"]},
+      {"type": "input_value", "name": "RX_PIN", "check": ["Number"]},
+      {"type": "field_dropdown", "name": "TIMER", "options": [["TIMER0", "0"], ["TIMER1", "1"], ["TIMER2（默认）", "2"]]},
+      {"type": "input_value", "name": "RESOURCE_ID", "check": ["Number"]}
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#AD1457",
+    "tooltip": "初始化原厂 36 品牌空调数据库模式；默认资源 ID 为 50000"
+  },
+  {
+    "type": "chipintelli_ir_send_raw",
+    "message0": "发送原始红外波形 %1",
+    "args0": [{"type": "input_value", "name": "DURATIONS", "check": ["String"]}],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#C62828",
+    "tooltip": "发送以逗号、分号或空白分隔的微秒时长；mark/space 交替且从 mark 开始，最多 1024 项"
+  },
+  {
+    "type": "chipintelli_ir_send_nec",
+    "message0": "发送 NEC 地址 %1 命令 %2 重复 %3 次",
+    "args0": [
+      {"type": "input_value", "name": "ADDRESS", "check": ["Number"]},
+      {"type": "input_value", "name": "COMMAND", "check": ["Number"]},
+      {"type": "input_value", "name": "REPEATS", "check": ["Number"]}
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#C62828",
+    "tooltip": "发送 8 位地址、8 位命令的标准 NEC 帧"
+  },
+  {
+    "type": "chipintelli_ir_send_extended_nec",
+    "message0": "发送扩展 NEC 地址 %1 命令 %2 重复 %3 次",
+    "args0": [
+      {"type": "input_value", "name": "ADDRESS", "check": ["Number"]},
+      {"type": "input_value", "name": "COMMAND", "check": ["Number"]},
+      {"type": "input_value", "name": "REPEATS", "check": ["Number"]}
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#C62828",
+    "tooltip": "发送 16 位地址、8 位命令的扩展 NEC 帧"
+  },
+  {
+    "type": "chipintelli_ir_start_receive",
+    "message0": "开始接收原始红外 超时 %1 ms",
+    "args0": [{"type": "input_value", "name": "TIMEOUT", "check": ["Number"]}],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#D32F2F",
+    "tooltip": "启动非阻塞红外接收状态机"
+  },
+  {
+    "type": "chipintelli_ir_stop_receive",
+    "message0": "停止接收原始红外",
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#D32F2F",
+    "tooltip": "停止当前红外接收操作"
+  },
+  {
+    "type": "chipintelli_ir_read_received",
+    "message0": "当收到原始红外波形",
+    "message1": "执行 %1",
+    "args1": [{"type": "input_statement", "name": "HANDLER"}],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#D32F2F",
+    "tooltip": "状态就绪时读入最近波形，再执行内部积木"
+  },
+  {
+    "type": "chipintelli_ir_replay_received",
+    "message0": "回放最近收到的原始红外波形",
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#D32F2F",
+    "tooltip": "回放最近成功读取或解析的波形；没有数据时不会发送"
+  },
+  {
+    "type": "chipintelli_ir_received_count",
+    "message0": "最近原始红外波形 项数",
+    "output": "Number",
+    "colour": "#D32F2F",
+    "tooltip": "返回最近波形的 mark/space 时长项数"
+  },
+  {
+    "type": "chipintelli_ir_received_text",
+    "message0": "最近原始红外波形 文本",
+    "output": "String",
+    "colour": "#D32F2F",
+    "tooltip": "返回逗号分隔的微秒时长文本"
+  },
+  {
+    "type": "chipintelli_ir_receive_status",
+    "message0": "红外接收状态",
+    "output": "Number",
+    "colour": "#D32F2F",
+    "tooltip": "返回 0 空闲、1 接收中、2 就绪、3 超时、4 错误"
+  },
+  {
+    "type": "chipintelli_ir_receive_status_value",
+    "message0": "红外接收状态 %1",
+    "args0": [{"type": "field_dropdown", "name": "STATUS", "options": [["空闲", "0"], ["接收中", "1"], ["已就绪", "2"], ["超时", "3"], ["错误", "4"]]}],
+    "output": "Number",
+    "colour": "#D32F2F",
+    "tooltip": "用于与红外接收状态比较"
+  },
+  {
+    "type": "chipintelli_ir_is_busy",
+    "message0": "红外驱动忙碌",
+    "output": "Boolean",
+    "colour": "#C62828",
+    "tooltip": "检查红外驱动当前是否正在发送、接收或搜索"
+  },
+  {
+    "type": "chipintelli_ir_select_air_brand",
+    "message0": "选择空调品牌 %1",
+    "args0": [{
+      "type": "field_dropdown",
+      "name": "BRAND",
+      "options": [
+        ["LG", "LG"], ["格力", "Gree"], ["美的", "Midea"], ["奥克斯", "Aux"], ["海尔", "Haier"],
+        ["长虹", "Changhong"], ["志高", "Chigo"], ["TCL", "TCL"], ["海信", "Hisense"], ["松下", "Panasonic"],
+        ["格力/美的/奥克斯/海尔/长虹", "GreeMideaAuxHaierChanghong"], ["日立", "Hitachi"], ["大金", "Daikin"],
+        ["三菱", "Mitsubishi"], ["小米", "Xiaomi"], ["惠而浦", "Whirlpool"], ["格兰仕", "Galanz"],
+        ["富士通", "Fujitsu"], ["三水", "Sanshui"], ["约克", "York"], ["创维", "Skyworth"], ["新科", "Shinco"],
+        ["春兰", "Chunlan"], ["Cheblo", "Cheblo"], ["三星", "Samsung"], ["澳柯玛", "Aucma"], ["新飞", "Xinfei"],
+        ["东芝", "Toshiba"], ["声宝", "Sampo"], ["月兔", "Yuetu"], ["扬子", "Yair"], ["夏新", "Amoi"],
+        ["夏普", "Sharp"], ["康佳", "Konka"], ["荣事达", "Rongshida"], ["东洋", "Toyo"]
+      ]
+    }],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#AD1457",
+    "tooltip": "选择品牌首个空调码并重置空调状态"
+  },
+  {
+    "type": "chipintelli_ir_select_air_code",
+    "message0": "选择空调码 ID %1",
+    "args0": [{"type": "input_value", "name": "CODE_ID", "check": ["Number"]}],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#AD1457",
+    "tooltip": "恢复空调搜索得到的不透明 32 位码 ID"
+  },
+  {
+    "type": "chipintelli_ir_air_code",
+    "message0": "当前空调码 ID",
+    "output": "Number",
+    "colour": "#AD1457",
+    "tooltip": "返回当前选中的 32 位空调码 ID"
+  },
+  {
+    "type": "chipintelli_ir_send_air_command",
+    "message0": "发送空调命令 %1",
+    "args0": [{
+      "type": "field_dropdown",
+      "name": "COMMAND",
+      "options": [
+        ["开机", "PowerOn"], ["关机", "PowerOff"], ["高风", "FanHigh"], ["中风", "FanMedium"], ["低风", "FanLow"], ["自动风", "FanAuto"],
+        ["开始摆风", "SwingStart"], ["停止摆风", "SwingStop"], ["上下摆风", "SwingVertical"], ["左右摆风", "SwingHorizontal"],
+        ["停止上下摆风", "SwingVerticalStop"], ["停止左右摆风", "SwingHorizontalStop"], ["升温", "TemperatureUp"], ["降温", "TemperatureDown"],
+        ["增大风量", "FanUp"], ["减小风量", "FanDown"], ["制冷", "ModeCool"], ["制热", "ModeHeat"], ["送风", "ModeFan"], ["除湿", "ModeDry"], ["自动模式", "ModeAuto"],
+        ["辅热开", "ElectricHeatOn"], ["辅热关", "ElectricHeatOff"], ["节能开", "EnergySavingOn"], ["节能关", "EnergySavingOff"],
+        ["睡眠关", "SleepOff"], ["睡眠模式 1", "SleepMode1"], ["睡眠模式 2", "SleepMode2"], ["睡眠模式 3", "SleepMode3"],
+        ["空气净化开", "AirCleanOn"], ["空气净化关", "AirCleanOff"], ["健康开", "HealthOn"], ["健康关", "HealthOff"],
+        ["显示开", "DisplayOn"], ["显示关", "DisplayOff"], ["静音开", "MuteOn"], ["静音关", "MuteOff"],
+        ["强力开", "PowerfulOn"], ["强力关", "PowerfulOff"], ["随身感开", "FollowMeOn"], ["随身感关", "FollowMeOff"],
+        ["新风开", "FreshAirOn"], ["新风关", "FreshAirOff"], ["风吹人开", "WindToPersonOn"], ["风吹人关", "WindToPersonOff"]
+      ]
+    }],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#AD1457",
+    "tooltip": "使用当前选中的空调码异步发送状态命令"
+  },
+  {
+    "type": "chipintelli_ir_set_air_temperature",
+    "message0": "设置空调温度 %1 ℃",
+    "args0": [{"type": "input_value", "name": "TEMPERATURE", "check": ["Number"]}],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#AD1457",
+    "tooltip": "设置空调温度，输入值会限制在 16～30 ℃"
+  },
+  {
+    "type": "chipintelli_ir_air_power",
+    "message0": "设置空调电源 %1",
+    "args0": [{"type": "field_dropdown", "name": "POWER", "options": [["开", "true"], ["关", "false"]]}],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#AD1457",
+    "tooltip": "发送空调开机或关机命令"
+  },
+  {
+    "type": "chipintelli_ir_start_air_search",
+    "message0": "开始搜索空调码 范围 %1 每码发送 %2 次 间隔 %3 ms",
+    "args0": [
+      {"type": "field_dropdown", "name": "SEARCH_TYPE", "options": [["所有品牌", "AllBrands"], ["当前品牌型号", "CurrentBrandModels"]]},
+      {"type": "input_value", "name": "SEND_COUNT", "check": ["Number"]},
+      {"type": "input_value", "name": "INTERVAL", "check": ["Number"]}
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#880E4F",
+    "tooltip": "异步依次发送候选空调码，并把搜索事件转发到主循环"
+  },
+  {
+    "type": "chipintelli_ir_stop_air_search",
+    "message0": "停止搜索空调码",
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#880E4F",
+    "tooltip": "请求停止当前空调码搜索"
+  },
+  {
+    "type": "chipintelli_ir_read_air_search_event",
+    "message0": "当有空调码搜索事件",
+    "message1": "执行 %1",
+    "args1": [{"type": "input_statement", "name": "HANDLER"}],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#880E4F",
+    "tooltip": "在主循环中处理最近的码已发送、搜索完成或停止事件"
+  },
+  {
+    "type": "chipintelli_ir_air_search_event",
+    "message0": "当前空调搜索事件 类型",
+    "output": "Number",
+    "colour": "#880E4F",
+    "tooltip": "返回 0 已发送候选码、1 搜索完成、2 搜索停止"
+  },
+  {
+    "type": "chipintelli_ir_air_search_code",
+    "message0": "当前空调搜索事件 码 ID",
+    "output": "Number",
+    "colour": "#880E4F",
+    "tooltip": "返回当前搜索事件关联的候选码 ID"
+  },
+  {
+    "type": "chipintelli_ir_air_search_event_value",
+    "message0": "空调搜索事件 %1",
+    "args0": [{"type": "field_dropdown", "name": "EVENT", "options": [["候选码已发送", "0"], ["搜索完成", "1"], ["搜索停止", "2"]]}],
+    "output": "Number",
+    "colour": "#880E4F",
+    "tooltip": "用于与当前空调搜索事件类型比较"
+  },
+  {
+    "type": "chipintelli_ir_mode",
+    "message0": "当前红外模式",
+    "output": "Number",
+    "colour": "#6D4C41",
+    "tooltip": "返回 0 未初始化、1 原始模式、2 空调数据库模式"
+  },
+  {
+    "type": "chipintelli_ir_last_error",
+    "message0": "红外最后错误代码",
+    "output": "Number",
+    "colour": "#6D4C41",
+    "tooltip": "返回最近一次红外操作的错误枚举值，0 表示无错误"
+  },
+  {
+    "type": "chipintelli_ir_error_string",
+    "message0": "红外最后错误信息",
+    "output": "String",
+    "colour": "#6D4C41",
+    "tooltip": "返回最近错误的英文说明"
+  }
+]

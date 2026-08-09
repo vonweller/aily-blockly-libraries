@@ -7,7 +7,7 @@ TFT_eSPI - Arduino library, graphics and font library supporting multiple TFT di
 | Field | Value |
 |-------|-------|
 | Package | @aily-project/lib-tft-espi |
-| Version | 2.5.46 |
+| Version | 2.5.48 |
 | Author | ailyProject |
 | Source | https://github.com/Bodmer/TFT_eSPI |
 | License | Original license |

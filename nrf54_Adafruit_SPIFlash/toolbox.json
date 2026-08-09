@@ -1,0 +1,182 @@
+{
+  "kind": "category",
+  "name": "nRF54 SPI Flash",
+  "colour": "#00897B",
+  "icon": "fa-regular fa-microchip",
+  "contents": [
+    {
+      "kind": "label",
+      "text": "配置"
+    },
+    {
+      "kind": "block",
+      "type": "nrf54_spiflash_begin_qspi"
+    },
+    {
+      "kind": "block",
+      "type": "nrf54_spiflash_begin_spi"
+    },
+    {
+      "kind": "block",
+      "type": "nrf54_spiflash_end"
+    },
+    {
+      "kind": "label",
+      "text": "信息"
+    },
+    {
+      "kind": "block",
+      "type": "nrf54_spiflash_size"
+    },
+    {
+      "kind": "block",
+      "type": "nrf54_spiflash_jedec_id"
+    },
+    {
+      "kind": "block",
+      "type": "nrf54_spiflash_jedec_part"
+    },
+    {
+      "kind": "label",
+      "text": "读写"
+    },
+    {
+      "kind": "block",
+      "type": "nrf54_spiflash_read_byte",
+      "inputs": {
+        "ADDRESS": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 0
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "nrf54_spiflash_write_byte",
+      "inputs": {
+        "ADDRESS": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 0
+            }
+          }
+        },
+        "VALUE": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 0
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "nrf54_spiflash_read_text",
+      "inputs": {
+        "ADDRESS": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 0
+            }
+          }
+        },
+        "LENGTH": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 16
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "nrf54_spiflash_write_text",
+      "inputs": {
+        "ADDRESS": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 0
+            }
+          }
+        },
+        "DATA": {
+          "shadow": {
+            "type": "text",
+            "fields": {
+              "TEXT": "hello"
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "label",
+      "text": "擦除与状态"
+    },
+    {
+      "kind": "block",
+      "type": "nrf54_spiflash_erase_sector",
+      "inputs": {
+        "ADDRESS": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 0
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "nrf54_spiflash_erase_chip"
+    },
+    {
+      "kind": "block",
+      "type": "nrf54_spiflash_wait_ready",
+      "inputs": {
+        "TIMEOUT": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 100
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "nrf54_spiflash_is_busy"
+    },
+    {
+      "kind": "block",
+      "type": "nrf54_spiflash_sector_count"
+    },
+    {
+      "kind": "block",
+      "type": "nrf54_spiflash_run_command",
+      "inputs": {
+        "COMMAND": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 159
+            }
+          }
+        }
+      }
+    }
+  ]
+}

@@ -36,6 +36,73 @@ function cleanValue(value) {
   return value;
 }
 
+// Apply the board's built-in display settings once, while keeping later manual edits.
+function applyBoardDisplayConfig(block) {
+  const config = typeof window !== 'undefined' && window['boardConfig']
+    ? window['boardConfig'].displayConfig
+    : null;
+  if (!config || (config.interface && String(config.interface).toLowerCase() !== 'spi')) return true;
+
+  const pins = config.pins || {};
+  const signature = JSON.stringify([config.controller, config.width, config.height, config.frequency, pins]);
+  if (block._tftespiDisplayConfig === signature) return true;
+
+  let ready = true;
+
+  if (config.controller) {
+    let model = String(config.controller).trim().toUpperCase().replace(/[\s-]+/g, '_');
+    if (!model.endsWith('_DRIVER')) model += '_DRIVER';
+    const modelField = block.getField && block.getField('MODEL');
+    if (modelField) modelField.setValue(model);
+    else ready = false;
+  }
+  if (config.frequency != null) {
+    const frequencyField = block.getField && block.getField('FREQUENCY');
+    if (frequencyField) frequencyField.setValue(String(config.frequency));
+    else ready = false;
+  }
+
+  const fieldValues = {
+    WIDTH: config.width,
+    HEIGHT: config.height,
+    MISO: pins.miso,
+    MOSI: pins.mosi,
+    SCLK: pins.sclk,
+    CS: pins.cs,
+    DC: pins.dc,
+    RST: pins.rst,
+    BL: pins.bl
+  };
+  Object.keys(fieldValues).forEach(name => {
+    if (fieldValues[name] == null) return;
+    const field = block.getField && block.getField(name);
+    if (field) field.setValue(String(fieldValues[name]));
+    else ready = false;
+  });
+
+  if (ready) block._tftespiDisplayConfig = signature;
+  return ready;
+}
+
+if (Blockly.Extensions.isRegistered('tftespi_board_display_config')) {
+  Blockly.Extensions.unregister('tftespi_board_display_config');
+}
+
+Blockly.Extensions.register('tftespi_board_display_config', function() {
+  const block = this;
+  let retries = 0;
+  const updateConfig = () => {
+    if (!block.workspace) return;
+    if (!applyBoardDisplayConfig(block) && retries++ < 3) {
+      setTimeout(updateConfig, 0);
+      return;
+    }
+    if (block.rendered) block.render();
+  };
+  // Toolbox fields are initialized just after the extension is attached.
+  setTimeout(updateConfig, 0);
+});
+
 if (!Arduino.tft_espi) {
   Arduino.tft_espi = true;
   Arduino.tft_espi_type = '';
@@ -160,6 +227,8 @@ if (typeof Blockly !== 'undefined' && Blockly.getMainWorkspace) {
 }
 
 Arduino.forBlock['tftespi_setup'] = function(block, generator) {
+  applyBoardDisplayConfig(block);
+
   if (!block._tftespiVarMonitorAttached) {
     block._tftespiVarMonitorAttached = true;
     block._tftespiVarLastName = block.getFieldValue('VAR') || 'tft';
@@ -185,15 +254,15 @@ Arduino.forBlock['tftespi_setup'] = function(block, generator) {
   const varName = block.getFieldValue('VAR') || 'tft';
   const model = block.getFieldValue('MODEL') || 'ILI9341_DRIVER';
   const frequency = block.getFieldValue('FREQUENCY') || '40000000';
-  const width = cleanValue(generator.valueToCode(block, 'WIDTH', generator.ORDER_ATOMIC) || '240');
-  const height = cleanValue(generator.valueToCode(block, 'HEIGHT', generator.ORDER_ATOMIC) || '320');
-  const miso = cleanValue(generator.valueToCode(block, 'MISO', generator.ORDER_ATOMIC) || '-1');
-  const mosi = cleanValue(generator.valueToCode(block, 'MOSI', generator.ORDER_ATOMIC) || '-1');
-  const sclk = cleanValue(generator.valueToCode(block, 'SCLK', generator.ORDER_ATOMIC) || '-1');
-  const cs = cleanValue(generator.valueToCode(block, 'CS', generator.ORDER_ATOMIC) || '-1');
-  const dc = cleanValue(generator.valueToCode(block, 'DC', generator.ORDER_ATOMIC) || '-1');
-  const rst = cleanValue(generator.valueToCode(block, 'RST', generator.ORDER_ATOMIC) || '-1');
-  const bl = cleanValue(generator.valueToCode(block, 'BL', generator.ORDER_ATOMIC) || '-1');
+  const width = block.getFieldValue('WIDTH') || '240';
+  const height = block.getFieldValue('HEIGHT') || '320';
+  const miso = block.getFieldValue('MISO') || '-1';
+  const mosi = block.getFieldValue('MOSI') || '-1';
+  const sclk = block.getFieldValue('SCLK') || '-1';
+  const cs = block.getFieldValue('CS') || '-1';
+  const dc = block.getFieldValue('DC') || '-1';
+  const rst = block.getFieldValue('RST') || '-1';
+  const bl = block.getFieldValue('BL') || '-1';
   const blLevel = block.getFieldValue('BL_LEVEL') || 'HIGH';
   const colorMode = block.getFieldValue('COLOR_MODE') || 'TFT_RGB';
   // const rotation = block.getFieldValue('ROTATION') || '0';
@@ -355,6 +424,72 @@ Arduino.forBlock['tftespi_invert_display'] = function(block, generator) {
   return code;
 }
 
+Arduino.forBlock['tftespi_get_dimension'] = function(block, generator) {
+  const varField = block.getField('VAR');
+  const varName = varField ? varField.getText() : 'tft';
+  const method = block.getFieldValue('DIMENSION') === 'HEIGHT' ? 'height' : 'width';
+
+  return [varName + '.' + method + '()', generator.ORDER_FUNCTION_CALL];
+};
+
+Arduino.forBlock['tftespi_sprite_create'] = function(block, generator) {
+  if (!block._tftespiSpriteVarMonitorAttached) {
+    block._tftespiSpriteVarMonitorAttached = true;
+    block._tftespiSpriteVarLastName = block.getFieldValue('VAR') || 'sprite';
+    registerVariableToBlockly(block._tftespiSpriteVarLastName, 'TFT_eSprite');
+    const varField = block.getField('VAR');
+    if (varField) {
+      const originalFinishEditing = varField.onFinishEditing_;
+      varField.onFinishEditing_ = function(newName) {
+        if (typeof originalFinishEditing === 'function') {
+          originalFinishEditing.call(this, newName);
+        }
+        const workspace = block.workspace || (typeof Blockly !== 'undefined' && Blockly.getMainWorkspace && Blockly.getMainWorkspace());
+        const oldName = block._tftespiSpriteVarLastName;
+        if (workspace && newName && newName !== oldName) {
+          renameVariableInBlockly(block, oldName, newName, 'TFT_eSprite');
+          block._tftespiSpriteVarLastName = newName;
+        }
+      };
+    }
+  }
+
+  ensureTftEspiLibraries(generator);
+  const varName = block.getFieldValue('VAR') || 'sprite';
+  const tftName = tftespiGetVariableCodeName(block, 'TFT', 'tft');
+  const width = generator.valueToCode(block, 'WIDTH', generator.ORDER_ATOMIC) || '160';
+  const height = generator.valueToCode(block, 'HEIGHT', generator.ORDER_ATOMIC) || '120';
+  const colorDepth = block.getFieldValue('COLOR_DEPTH') || '16';
+
+  // Keep the parent display declaration ahead of the Sprite even if blocks are reordered.
+  generator.addVariable(tftName, 'TFT_eSPI ' + tftName + ' = TFT_eSPI();');
+  generator.addVariable('tftespi_sprite_' + varName, 'TFT_eSprite ' + varName + ' = TFT_eSprite(&' + tftName + ');');
+  return varName + '.setColorDepth(' + colorDepth + ');\n' +
+    varName + '.createSprite(' + width + ', ' + height + ');\n';
+};
+
+Arduino.forBlock['tftespi_sprite_push'] = function(block, generator) {
+  const spriteName = tftespiGetVariableCodeName(block, 'SPRITE', 'sprite');
+  const x = generator.valueToCode(block, 'X', generator.ORDER_ATOMIC) || '0';
+  const y = generator.valueToCode(block, 'Y', generator.ORDER_ATOMIC) || '0';
+
+  return spriteName + '.pushSprite(' + x + ', ' + y + ');\n';
+};
+
+Arduino.forBlock['tftespi_sprite_push_transparent'] = function(block, generator) {
+  const spriteName = tftespiGetVariableCodeName(block, 'SPRITE', 'sprite');
+  const x = generator.valueToCode(block, 'X', generator.ORDER_ATOMIC) || '0';
+  const y = generator.valueToCode(block, 'Y', generator.ORDER_ATOMIC) || '0';
+  const transparentColor = generator.valueToCode(block, 'TRANSPARENT_COLOR', generator.ORDER_ATOMIC) || 'TFT_TRANSPARENT';
+
+  return spriteName + '.pushSprite(' + x + ', ' + y + ', ' + transparentColor + ');\n';
+};
+
+Arduino.forBlock['tftespi_sprite_delete'] = function(block) {
+  const spriteName = tftespiGetVariableCodeName(block, 'SPRITE', 'sprite');
+  return spriteName + '.deleteSprite();\n';
+};
+
 Arduino.forBlock['tftespi_fill_screen'] = function(block, generator) {
   const varField = block.getField('VAR');
   const varName = varField ? varField.getText() : 'tft';
@@ -505,6 +640,22 @@ Arduino.forBlock['tftespi_fill_circle'] = function(block, generator) {
   return code;
 };
 
+Arduino.forBlock['tftespi_draw_arc'] = function(block, generator) {
+  const varField = block.getField('VAR');
+  const varName = varField ? varField.getText() : 'tft';
+  const x = generator.valueToCode(block, 'X', generator.ORDER_ATOMIC) || '0';
+  const y = generator.valueToCode(block, 'Y', generator.ORDER_ATOMIC) || '0';
+  const radius = generator.valueToCode(block, 'RADIUS', generator.ORDER_ATOMIC) || '0';
+  const innerRadius = generator.valueToCode(block, 'INNER_RADIUS', generator.ORDER_ATOMIC) || '0';
+  const startAngle = generator.valueToCode(block, 'START_ANGLE', generator.ORDER_ATOMIC) || '0';
+  const endAngle = generator.valueToCode(block, 'END_ANGLE', generator.ORDER_ATOMIC) || '0';
+  const color = generator.valueToCode(block, 'COLOR', generator.ORDER_ATOMIC) || '0';
+  const backgroundColor = generator.valueToCode(block, 'BG_COLOR', generator.ORDER_ATOMIC) || '0';
+  const roundEnds = block.getFieldValue('ROUND_ENDS') || 'true';
+
+  return varName + '.drawSmoothArc(' + x + ', ' + y + ', ' + radius + ', ' + innerRadius + ', ' + startAngle + ', ' + endAngle + ', ' + color + ', ' + backgroundColor + ', ' + roundEnds + ');\n';
+};
+
 Arduino.forBlock['tftespi_draw_ellipse'] = function(block, generator) {
   const varField = block.getField('VAR');
   const varName = varField ? varField.getText() : 'tft';
@@ -572,7 +723,7 @@ Arduino.forBlock['tftespi_draw_string'] = function(block, generator) {
   const y = generator.valueToCode(block, 'Y', generator.ORDER_ATOMIC) || '0';
   const text = generator.valueToCode(block, 'TEXT', generator.ORDER_ATOMIC) || '""';
 
-  let code = varName + '.drawString(' + text + ', ' + x + ', ' + y + ');\n';
+  let code = varName + '.drawString(String(' + text + '), ' + x + ', ' + y + ');\n';
 
   return code;
 };
@@ -585,6 +736,31 @@ Arduino.forBlock['tftespi_set_text_color'] = function(block, generator) {
   let code = varName + '.setTextColor(' + color + ');\n';
 
   return code;
+};
+
+Arduino.forBlock['tftespi_set_text_colors'] = function(block, generator) {
+  const varField = block.getField('VAR');
+  const varName = varField ? varField.getText() : 'tft';
+  const color = generator.valueToCode(block, 'COLOR', generator.ORDER_ATOMIC) || '0';
+  const backgroundColor = generator.valueToCode(block, 'BG_COLOR', generator.ORDER_ATOMIC) || '0';
+
+  return varName + '.setTextColor(' + color + ', ' + backgroundColor + ');\n';
+};
+
+Arduino.forBlock['tftespi_set_text_datum'] = function(block, generator) {
+  const varField = block.getField('VAR');
+  const varName = varField ? varField.getText() : 'tft';
+  const datum = block.getFieldValue('DATUM') || 'TL_DATUM';
+
+  return varName + '.setTextDatum(' + datum + ');\n';
+};
+
+Arduino.forBlock['tftespi_set_text_padding'] = function(block, generator) {
+  const varField = block.getField('VAR');
+  const varName = varField ? varField.getText() : 'tft';
+  const width = generator.valueToCode(block, 'WIDTH', generator.ORDER_ATOMIC) || '0';
+
+  return varName + '.setTextPadding(' + width + ');\n';
 };
 
 Arduino.forBlock['tftespi_set_text_size'] = function(block, generator) {

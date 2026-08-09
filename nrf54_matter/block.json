@@ -1,0 +1,427 @@
+[
+  {
+    "type": "nrf54_matter_begin",
+    "message0": "启动Matter灯 使用演示Thread网络 %1 清除Thread设置 %2 自动请求路由器 %3 自动开放配网 %4 配网时长(秒) %5",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "DEMO",
+        "options": [
+          [
+            "是",
+            "true"
+          ],
+          [
+            "否",
+            "false"
+          ]
+        ]
+      },
+      {
+        "type": "field_dropdown",
+        "name": "WIPE",
+        "options": [
+          [
+            "否",
+            "false"
+          ],
+          [
+            "是",
+            "true"
+          ]
+        ]
+      },
+      {
+        "type": "field_dropdown",
+        "name": "ROUTER",
+        "options": [
+          [
+            "否",
+            "false"
+          ],
+          [
+            "是",
+            "true"
+          ]
+        ]
+      },
+      {
+        "type": "field_dropdown",
+        "name": "AUTO_WINDOW",
+        "options": [
+          [
+            "是",
+            "true"
+          ],
+          [
+            "否",
+            "false"
+          ]
+        ]
+      },
+      {
+        "type": "input_value",
+        "name": "SECONDS",
+        "check": "Number"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#EF6C00",
+    "tooltip": "启动Matter On/Off Light节点并自动处理主循环。"
+  },
+  {
+    "type": "nrf54_matter_end",
+    "message0": "停止Matter节点",
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#EF6C00",
+    "tooltip": "停止Matter节点及其Thread网络。"
+  },
+  {
+    "type": "nrf54_matter_use_demo_dataset",
+    "message0": "Matter使用演示Thread网络",
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#EF6C00",
+    "tooltip": "切换到内置演示Thread数据集。"
+  },
+  {
+    "type": "nrf54_matter_set_dataset_hex",
+    "message0": "Matter设置Thread数据集TLV十六进制 %1 持久化 %2",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "DATASET",
+        "check": "String"
+      },
+      {
+        "type": "field_dropdown",
+        "name": "PERSIST",
+        "options": [
+          [
+            "是",
+            "true"
+          ],
+          [
+            "否",
+            "false"
+          ]
+        ]
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#EF6C00",
+    "tooltip": "导入并可选保存Thread数据集。"
+  },
+  {
+    "type": "nrf54_matter_factory_reset",
+    "message0": "Matter恢复出厂设置",
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#EF6C00",
+    "tooltip": "清除Matter身份、灯状态和Thread网络数据。"
+  },
+  {
+    "type": "nrf54_matter_ready",
+    "message0": "Matter可进行网络配网?",
+    "output": "Boolean",
+    "colour": "#EF6C00",
+    "tooltip": "返回Matter节点是否已准备好配网。"
+  },
+  {
+    "type": "nrf54_matter_open_window",
+    "message0": "开放Matter配网窗口(秒) %1",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "SECONDS",
+        "check": "Number"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#EF6C00",
+    "tooltip": "开放指定时长的配网窗口。"
+  },
+  {
+    "type": "nrf54_matter_close_window",
+    "message0": "关闭Matter配网窗口",
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#EF6C00",
+    "tooltip": "立即关闭配网窗口。"
+  },
+  {
+    "type": "nrf54_matter_window_open",
+    "message0": "Matter配网窗口已开放?",
+    "output": "Boolean",
+    "colour": "#EF6C00",
+    "tooltip": "返回配网窗口状态。"
+  },
+  {
+    "type": "nrf54_matter_window_remaining",
+    "message0": "Matter配网剩余秒数",
+    "output": "Number",
+    "colour": "#EF6C00",
+    "tooltip": "返回配网窗口剩余时间。"
+  },
+  {
+    "type": "nrf54_matter_manual_code",
+    "message0": "Matter手动配网码",
+    "output": "String",
+    "colour": "#EF6C00",
+    "tooltip": "返回手动配网码。"
+  },
+  {
+    "type": "nrf54_matter_qr_code",
+    "message0": "Matter二维码文本",
+    "output": "String",
+    "colour": "#EF6C00",
+    "tooltip": "返回MT:开头的二维码载荷文本。"
+  },
+  {
+    "type": "nrf54_matter_light_set",
+    "message0": "设置Matter灯 %1 持久化 %2",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "ON",
+        "options": [
+          [
+            "开",
+            "true"
+          ],
+          [
+            "关",
+            "false"
+          ]
+        ]
+      },
+      {
+        "type": "field_dropdown",
+        "name": "PERSIST",
+        "options": [
+          [
+            "是",
+            "true"
+          ],
+          [
+            "否",
+            "false"
+          ]
+        ]
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#EF6C00",
+    "tooltip": "设置On/Off Light状态。"
+  },
+  {
+    "type": "nrf54_matter_light_toggle",
+    "message0": "切换Matter灯 持久化 %1",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "PERSIST",
+        "options": [
+          [
+            "是",
+            "true"
+          ],
+          [
+            "否",
+            "false"
+          ]
+        ]
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#EF6C00",
+    "tooltip": "切换灯状态。"
+  },
+  {
+    "type": "nrf54_matter_light_is_on",
+    "message0": "Matter灯已打开?",
+    "output": "Boolean",
+    "colour": "#EF6C00",
+    "tooltip": "返回灯当前开关状态。"
+  },
+  {
+    "type": "nrf54_matter_light_set_level",
+    "message0": "设置Matter灯亮度 %1 持久化 %2",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "LEVEL",
+        "check": "Number"
+      },
+      {
+        "type": "field_dropdown",
+        "name": "PERSIST",
+        "options": [
+          [
+            "是",
+            "true"
+          ],
+          [
+            "否",
+            "false"
+          ]
+        ]
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#EF6C00",
+    "tooltip": "设置1到254的亮度。"
+  },
+  {
+    "type": "nrf54_matter_light_move_level",
+    "message0": "渐变Matter灯亮度 %1 时长(ms) %2",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "LEVEL",
+        "check": "Number"
+      },
+      {
+        "type": "input_value",
+        "name": "TRANSITION_MS",
+        "check": "Number"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#EF6C00",
+    "tooltip": "在指定时间内渐变到目标亮度。"
+  },
+  {
+    "type": "nrf54_matter_light_level",
+    "message0": "Matter灯当前亮度",
+    "output": "Number",
+    "colour": "#EF6C00",
+    "tooltip": "返回当前亮度。"
+  },
+  {
+    "type": "nrf54_matter_identify",
+    "message0": "Matter灯识别时长(秒) %1",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "IDENTIFY_SECONDS",
+        "check": "Number"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#EF6C00",
+    "tooltip": "启动Identify状态。"
+  },
+  {
+    "type": "nrf54_matter_stop_identify",
+    "message0": "停止Matter灯识别",
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#EF6C00",
+    "tooltip": "停止Identify状态。"
+  },
+  {
+    "type": "nrf54_matter_identifying",
+    "message0": "Matter灯正在识别?",
+    "output": "Boolean",
+    "colour": "#EF6C00",
+    "tooltip": "返回Identify状态。"
+  },
+  {
+    "type": "nrf54_matter_startup_behavior",
+    "message0": "Matter灯上电行为 %1 持久化 %2",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "BEHAVIOR",
+        "options": [
+          [
+            "强制关闭",
+            "kForceOff"
+          ],
+          [
+            "强制打开",
+            "kForceOn"
+          ],
+          [
+            "切换上次状态",
+            "kTogglePrevious"
+          ],
+          [
+            "恢复上次状态",
+            "kRestorePrevious"
+          ]
+        ]
+      },
+      {
+        "type": "field_dropdown",
+        "name": "PERSIST",
+        "options": [
+          [
+            "是",
+            "true"
+          ],
+          [
+            "否",
+            "false"
+          ]
+        ]
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#EF6C00",
+    "tooltip": "设置设备上电后的灯状态策略。"
+  },
+  {
+    "type": "nrf54_matter_save_state",
+    "message0": "保存Matter灯状态",
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#EF6C00",
+    "tooltip": "立即保存灯状态。"
+  },
+  {
+    "type": "nrf54_matter_clear_state",
+    "message0": "清除Matter灯持久化状态",
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#EF6C00",
+    "tooltip": "删除已保存的灯状态。"
+  },
+  {
+    "type": "nrf54_matter_on_light_change",
+    "message0": "当Matter灯开关状态变化时",
+    "message1": "执行 %1",
+    "args1": [
+      {
+        "type": "input_statement",
+        "name": "HANDLER"
+      }
+    ],
+    "colour": "#EF6C00",
+    "tooltip": "注册灯状态变化回调。"
+  },
+  {
+    "type": "nrf54_matter_on_identify_change",
+    "message0": "当Matter灯识别状态变化时",
+    "message1": "执行 %1",
+    "args1": [
+      {
+        "type": "input_statement",
+        "name": "HANDLER"
+      }
+    ],
+    "colour": "#EF6C00",
+    "tooltip": "注册Identify状态变化回调。"
+  }
+]
