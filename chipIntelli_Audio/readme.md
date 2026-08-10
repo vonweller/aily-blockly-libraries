@@ -22,4 +22,4 @@ Plays prompts provisioned in firmware `voice.bin`, or an uploaded local MP3 prep
 
 ## Quick Start
 
-Initialize the player, set volume, then use the play block with a configured prompt, local-audio value or numeric variable. Prompt and local-audio inputs call the 16-bit voice-ID overload; numeric variables call the localized-number `String` overload. Local-audio IDs start at 500 and identical source/encoding settings are deduplicated.
+Initialize the player with the desired numeric-speech language, set volume, then use the play block with a configured prompt, local-audio value or numeric variable. The initialization block emits `#define CHIPINTELLI_LANGUAGE CHIPINTELLI_LANGUAGE_<code>` before the audio-library include. Prompt and local-audio inputs call the 16-bit voice-ID overload; numeric variables call the localized-number `String` overload. Local-audio IDs start at 500 and identical source/encoding settings are deduplicated.

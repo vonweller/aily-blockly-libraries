@@ -1,11 +1,35 @@
 [
   {
     "type": "chipintelli_audio_init",
-    "message0": "初始化 CI13XX 播放器",
+    "message0": "初始化 CI13XX 播放器 数字播报语言 %1",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "LANGUAGE",
+        "options": [
+          ["中文", "CHIPINTELLI_LANGUAGE_ZH"],
+          ["英语", "CHIPINTELLI_LANGUAGE_EN"],
+          ["日语", "CHIPINTELLI_LANGUAGE_JA"],
+          ["韩语", "CHIPINTELLI_LANGUAGE_KO"],
+          ["俄语", "CHIPINTELLI_LANGUAGE_RU"],
+          ["西班牙语", "CHIPINTELLI_LANGUAGE_ES"],
+          ["泰语", "CHIPINTELLI_LANGUAGE_TH"],
+          ["德语", "CHIPINTELLI_LANGUAGE_DE"],
+          ["印度尼西亚语", "CHIPINTELLI_LANGUAGE_ID"],
+          ["越南语", "CHIPINTELLI_LANGUAGE_VI"],
+          ["法语", "CHIPINTELLI_LANGUAGE_FR"],
+          ["葡萄牙语（巴西）", "CHIPINTELLI_LANGUAGE_PT"],
+          ["波斯语", "CHIPINTELLI_LANGUAGE_FA"],
+          ["土耳其语", "CHIPINTELLI_LANGUAGE_TR"],
+          ["阿拉伯语（现代标准语）", "CHIPINTELLI_LANGUAGE_AR"]
+        ]
+      }
+    ],
+    "inputsInline": true,
     "previousStatement": null,
     "nextStatement": null,
     "colour": "#7B1FA2",
-    "tooltip": "启动共享 SDK，并等待音频资源、Codec、功放和播放任务就绪"
+    "tooltip": "选择运行时数字播报使用的语言词表，启动共享 SDK，并等待音频资源、Codec、功放和播放任务就绪"
   },
   {
     "type": "chipintelli_audio_end",
