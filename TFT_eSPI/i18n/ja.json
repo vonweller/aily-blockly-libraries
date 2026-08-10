@@ -1,20 +1,24 @@
 {
   "toolbox_name": "TFT_eSPI",
   "toolbox_labels": {
-    "初始化": "初期化",
-    "基本图形": "基本的なグラフィックス",
-    "矩形": "長方形",
-    "圆形": "丸い",
-    "椭圆": "楕円",
-    "三角形": "トライアングル",
-    "文字": "テキスト",
+    "屏幕控制": "ディスプレイ制御",
     "颜色": "色",
-    "图片": "画像",
-    "动画": "アニメーション"
+    "基础图形": "基本図形",
+    "矩形": "長方形",
+    "圆形与椭圆": "円と楕円",
+    "三角形": "三角形",
+    "图像": "画像",
+    "动画": "アニメーション",
+    "Sprite 画布": "Sprite キャンバス"
   },
+  "toolbox_categories": [
+    "基本設定",
+    "グラフィック描画",
+    "テキスト",
+    "画像とアニメーション"
+  ],
   "tftespi_setup": {
-    "message0": "初期化 TFT 画面 %1 モデル %2 SPI 周波数 %3 幅 %4 高さ %5\n MISO %6 MOSI %7 SCLK %8 CS %9 DC %10\nRST %11 BL %12 バックライト %13 カラーモード %14",
-    "tooltip": "TFT オブジェクトの作成と初期化",
+    "message0": "TFTディスプレイ %1 を初期化\n基本設定：ドライバー %2 幅 %3 高さ %4\n ピン接続：MISO %5 MOSI %6 SCLK %7 CS %8 DC %9 RST %10 BL %11\nその他の設定：バックライトモード %12 カラー順序 %13 SPI周波数 %14",
     "args0": [
       null,
       {
@@ -26,6 +30,10 @@
           [
             "ILI9341_2",
             "ILI9341_2_DRIVER"
+          ],
+          [
+            "ILI9342",
+            "ILI9342_DRIVER"
           ],
           [
             "ST7735",
@@ -42,6 +50,14 @@
           [
             "RPI_ILI9486",
             "RPI_ILI9486_DRIVER"
+          ],
+          [
+            "HX8357B",
+            "HX8357B_DRIVER"
+          ],
+          [
+            "HX8357C",
+            "HX8357C_DRIVER"
           ],
           [
             "HX8357D",
@@ -72,6 +88,10 @@
             "R61581_DRIVER"
           ],
           [
+            "RM68120",
+            "RM68120_DRIVER"
+          ],
+          [
             "RM68140",
             "RM68140_DRIVER"
           ],
@@ -82,6 +102,10 @@
           [
             "SSD1351",
             "SSD1351_DRIVER"
+          ],
+          [
+            "SSD1331",
+            "SSD1331_DRIVER"
           ],
           [
             "SSD1963 480",
@@ -104,36 +128,144 @@
             "GC9A01_DRIVER"
           ],
           [
+            "GC9107",
+            "GC9107_DRIVER"
+          ],
+          [
             "GC9D01",
             "GC9D01_DRIVER"
-          ]
-        ]
-      },
-      {
-        "options": [
-          [
-            "10MHz",
-            "10000000"
           ],
           [
-            "20MHz",
-            "20000000"
+            "AXS15231B",
+            "AXS15231B_DRIVER"
           ],
           [
-            "27MHz",
-            "27000000"
+            "CO5300",
+            "CO5300_DRIVER"
           ],
           [
-            "40MHz",
-            "40000000"
+            "GC9106",
+            "GC9106_DRIVER"
           ],
           [
-            "55MHz",
-            "55000000"
+            "GC9C01",
+            "GC9C01_DRIVER"
           ],
           [
-            "80MHz",
-            "80000000"
+            "HX8347C",
+            "HX8347C_DRIVER"
+          ],
+          [
+            "HX8347D",
+            "HX8347D_DRIVER"
+          ],
+          [
+            "HX8352C",
+            "HX8352C_DRIVER"
+          ],
+          [
+            "HX8357A",
+            "HX8357A_DRIVER"
+          ],
+          [
+            "HX8369A",
+            "HX8369A_DRIVER"
+          ],
+          [
+            "ILI9331",
+            "ILI9331_DRIVER"
+          ],
+          [
+            "ILI9806",
+            "ILI9806_DRIVER"
+          ],
+          [
+            "JBT6K71",
+            "JBT6K71_DRIVER"
+          ],
+          [
+            "JD9613",
+            "JD9613_DRIVER"
+          ],
+          [
+            "NT35310",
+            "NT35310_DRIVER"
+          ],
+          [
+            "NT35510",
+            "NT35510_DRIVER"
+          ],
+          [
+            "NT39125",
+            "NT39125_DRIVER"
+          ],
+          [
+            "NV3001B",
+            "NV3001B_DRIVER"
+          ],
+          [
+            "NV3007",
+            "NV3007_DRIVER"
+          ],
+          [
+            "NV3023",
+            "NV3023_DRIVER"
+          ],
+          [
+            "NV3041A",
+            "NV3041A_DRIVER"
+          ],
+          [
+            "OTM8009A",
+            "OTM8009A_DRIVER"
+          ],
+          [
+            "R61529",
+            "R61529_DRIVER"
+          ],
+          [
+            "RM67162",
+            "RM67162_DRIVER"
+          ],
+          [
+            "RM690B0",
+            "RM690B0_DRIVER"
+          ],
+          [
+            "SEPS525",
+            "SEPS525_DRIVER"
+          ],
+          [
+            "SH1106",
+            "SH1106_DRIVER"
+          ],
+          [
+            "SH8601",
+            "SH8601_DRIVER"
+          ],
+          [
+            "SPD2010",
+            "SPD2010_DRIVER"
+          ],
+          [
+            "SSD1283A",
+            "SSD1283A_DRIVER"
+          ],
+          [
+            "SSD1306",
+            "SSD1306_DRIVER"
+          ],
+          [
+            "SSD1357",
+            "SSD1357_DRIVER"
+          ],
+          [
+            "ST77916",
+            "ST77916_DRIVER"
+          ],
+          [
+            "WEA2012",
+            "WEA2012_DRIVER"
           ]
         ]
       },
@@ -169,12 +301,40 @@
             "TFT_BGR"
           ]
         ]
+      },
+      {
+        "options": [
+          [
+            "10MHz",
+            "10000000"
+          ],
+          [
+            "20MHz",
+            "20000000"
+          ],
+          [
+            "27MHz",
+            "27000000"
+          ],
+          [
+            "40MHz",
+            "40000000"
+          ],
+          [
+            "55MHz",
+            "55000000"
+          ],
+          [
+            "80MHz",
+            "80000000"
+          ]
+        ]
       }
-    ]
+    ],
+    "tooltip": "TFTディスプレイオブジェクトを作成して初期化します"
   },
   "tftespi_set_rotation": {
     "message0": "TFT画面設定 %1 回転 %2",
-    "tooltip": "画面の回転方向を設定する",
     "args0": [
       null,
       {
@@ -213,11 +373,11 @@
           ]
         ]
       }
-    ]
+    ],
+    "tooltip": "画面の回転方向を設定する"
   },
   "tftespi_invert_display": {
     "message0": "TFT画面 %1 反転表示 %2",
-    "tooltip": "画面表示色を反転する",
     "args0": [
       null,
       {
@@ -232,7 +392,27 @@
           ]
         ]
       }
-    ]
+    ],
+    "tooltip": "画面表示色を反転する"
+  },
+  "tftespi_get_dimension": {
+    "message0": "%1 の %2 を取得",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "幅",
+            "WIDTH"
+          ],
+          [
+            "高さ",
+            "HEIGHT"
+          ]
+        ]
+      }
+    ],
+    "tooltip": "現在の表示方向での幅または高さを取得します"
   },
   "tftespi_fill_screen": {
     "message0": "TFT %1 画面全体の色 %2",
@@ -278,6 +458,29 @@
     "message0": "画面上で %1 塗りつぶす円 中心 X:%2 Y:%3 半径:%4 色:%5",
     "tooltip": "円形の領域を埋める"
   },
+  "tftespi_draw_arc": {
+    "message0": "%1 にアンチエイリアス円弧を描画 中心X:%2 Y:%3 外半径:%4 内半径:%5",
+    "message1": "開始角度:%1 終了角度:%2 前景色:%3 背景色:%4 端点:%5",
+    "args1": [
+      null,
+      null,
+      null,
+      null,
+      {
+        "options": [
+          [
+            "丸型",
+            "true"
+          ],
+          [
+            "角型",
+            "false"
+          ]
+        ]
+      }
+    ],
+    "tooltip": "アンチエイリアス円弧またはメーターリングを描画します。0度は6時方向で、角度は時計回りに増加します"
+  },
   "tftespi_draw_ellipse": {
     "message0": "screen %1 上で楕円を描きます。中心はX:%2 Y:%3 半径X:%4 半径Y:%5 色:%6",
     "tooltip": "楕円形の境界線を描く"
@@ -295,16 +498,82 @@
     "tooltip": "三角形の領域を塗りつぶす"
   },
   "tftespi_draw_string": {
-    "message0": "%1画面にテキストを表示する位置 X:%2 Y:%3 %4",
-    "tooltip": "指定した位置にテキストを表示する"
+    "message0": "%1 の X:%2 Y:%3 に内容 %4 を表示",
+    "tooltip": "指定位置にテキスト、整数、または小数を表示します"
   },
   "tftespi_set_text_color": {
     "message0": "設定画面 %1 文字色 %2",
     "tooltip": "文字色の設定"
   },
+  "tftespi_set_text_colors": {
+    "message0": "%1 の文字色 %2 背景色 %3 を設定",
+    "tooltip": "文字の前景色と文字領域を上書きする背景色を設定します"
+  },
+  "tftespi_set_text_datum": {
+    "message0": "%1 の文字揃えを %2 に設定",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "左上",
+            "TL_DATUM"
+          ],
+          [
+            "上中央",
+            "TC_DATUM"
+          ],
+          [
+            "右上",
+            "TR_DATUM"
+          ],
+          [
+            "左中央",
+            "ML_DATUM"
+          ],
+          [
+            "中央",
+            "MC_DATUM"
+          ],
+          [
+            "右中央",
+            "MR_DATUM"
+          ],
+          [
+            "左下",
+            "BL_DATUM"
+          ],
+          [
+            "下中央",
+            "BC_DATUM"
+          ],
+          [
+            "右下",
+            "BR_DATUM"
+          ],
+          [
+            "左ベースライン",
+            "L_BASELINE"
+          ],
+          [
+            "中央ベースライン",
+            "C_BASELINE"
+          ],
+          [
+            "右ベースライン",
+            "R_BASELINE"
+          ]
+        ]
+      }
+    ],
+    "tooltip": "文字描画で使用する配置基準点を設定します"
+  },
+  "tftespi_set_text_padding": {
+    "message0": "%1 の文字上書き幅を %2 ピクセルに設定",
+    "tooltip": "以前の長い値の残りを消す文字背景の上書き幅を設定します。0で無効になります"
+  },
   "tftespi_set_text_size": {
     "message0": "設定画面 %1 文字サイズ %2",
-    "tooltip": "文字サイズの設定 (1 ～ 7)",
     "args0": [
       null,
       {
@@ -339,11 +608,11 @@
           ]
         ]
       }
-    ]
+    ],
+    "tooltip": "文字サイズの設定 (1 ～ 7)"
   },
   "tftespi_set_text_font": {
     "message0": "設定画面 %1 フォント %2",
-    "tooltip": "フォントの種類を設定する",
     "args0": [
       null,
       {
@@ -374,7 +643,16 @@
           ]
         ]
       }
-    ]
+    ],
+    "tooltip": "フォントの種類を設定する"
+  },
+  "tftespi_image": {
+    "message0": "TFT 画像 %1",
+    "tooltip": "PNG、JPEG、WebP、BMP 画像を RGB565/RGB332 ピクセルデータに変換します"
+  },
+  "tftespi_draw_image": {
+    "message0": "TFT 画面 %1 の X:%2 Y:%3 に画像 %4 を表示",
+    "tooltip": "指定した座標に変換済みの RGB565/RGB332 画像を表示します"
   },
   "tftespi_animation": {
     "message0": "TFTアニメーション %1",
@@ -382,8 +660,6 @@
   },
   "tftespi_play_animation": {
     "message0": "TFT画面 %1 アニメーションを再生 x%2 y%3 アニメーション %4 モード %5",
-    "message1": "ループ再生 %1",
-    "tooltip": "TFT_eSPIアニメーションを再生します。非ブロッキングモードではフレーム間隔ごとに次のフレームを表示します",
     "args0": [
       null,
       null,
@@ -401,7 +677,9 @@
           ]
         ]
       }
-    ]
+    ],
+    "message1": "ループ再生 %1",
+    "tooltip": "TFT_eSPIアニメーションを再生します。非ブロッキングモードではフレーム間隔ごとに次のフレームを表示します"
   },
   "tftespi_draw_animation_frame": {
     "message0": "TFT画面 %1 アニメーションフレームを表示 x%2 y%3 アニメーション %4 フレーム %5",
@@ -411,15 +689,46 @@
     "message0": "TFTアニメーション %1 の総フレーム数を取得",
     "tooltip": "TFT_eSPIアニメーションの総フレーム数を取得します"
   },
-  "tftespi_image": {
-    "message0": "TFT 画像 %1",
-    "tooltip": "PNG、JPEG、WebP、BMP 画像を RGB565/RGB332 ピクセルデータに変換します",
-    "args0": [null]
+  "tftespi_sprite_create": {
+    "message0": "ディスプレイ %2 用の Sprite %1 を作成",
+    "message1": "幅 %1 高さ %2 色深度 %3",
+    "args1": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "16ビット",
+            "16"
+          ],
+          [
+            "8ビット",
+            "8"
+          ],
+          [
+            "4ビット",
+            "4"
+          ],
+          [
+            "1ビット",
+            "1"
+          ]
+        ]
+      }
+    ],
+    "tooltip": "メモリ内にSpriteを作成します。色深度を下げるとメモリ使用量が減ります"
   },
-  "tftespi_draw_image": {
-    "message0": "TFT 画面 %1 の X:%2 Y:%3 に画像 %4 を表示",
-    "tooltip": "指定した座標に変換済みの RGB565/RGB332 画像を表示します",
-    "args0": [null, null, null, null]
+  "tftespi_sprite_push": {
+    "message0": "Sprite %1 をディスプレイの X:%2 Y:%3 に表示",
+    "tooltip": "Sprite全体を関連付けられたディスプレイへ転送します"
+  },
+  "tftespi_sprite_push_transparent": {
+    "message0": "Sprite %1 を透過してディスプレイの X:%2 Y:%3 に表示 透明色:%4",
+    "tooltip": "透明色と一致するピクセルを除外してSpriteを転送します"
+  },
+  "tftespi_sprite_delete": {
+    "message0": "Sprite %1 を削除",
+    "tooltip": "Spriteを削除して使用中のメモリを解放します"
   },
   "tftespi_color_rgb565": {
     "message0": "%1 カラー変換 %2",
@@ -427,7 +736,6 @@
   },
   "tftespi_color": {
     "message0": "色 %1",
-    "tooltip": "デフォルトの色",
     "args0": [
       {
         "options": [
@@ -477,6 +785,11 @@
           ]
         ]
       }
-    ]
+    ],
+    "tooltip": "デフォルトの色"
+  },
+  "extensions": {
+    "tftespi_board_display_config": {},
+    "tftespi_animation_play_dynamic_inputs": {}
   }
 }

@@ -1,0 +1,214 @@
+[
+  {
+    "type": "nrf54_eeprom_init",
+    "message0": "初始化EEPROM 大小 %1 字节",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "SIZE",
+        "check": "Number"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#546E7A",
+    "tooltip": "初始化最多1024字节的EEPROM模拟区。"
+  },
+  {
+    "type": "nrf54_eeprom_end",
+    "message0": "关闭EEPROM",
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#546E7A",
+    "tooltip": "提交更改并关闭EEPROM。"
+  },
+  {
+    "type": "nrf54_eeprom_commit",
+    "message0": "提交EEPROM更改",
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#546E7A",
+    "tooltip": "将缓存写入片上非易失存储。"
+  },
+  {
+    "type": "nrf54_eeprom_read",
+    "message0": "读取EEPROM地址 %1",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "ADDRESS",
+        "check": "Number"
+      }
+    ],
+    "output": "Number",
+    "colour": "#546E7A",
+    "tooltip": "读取一个字节。"
+  },
+  {
+    "type": "nrf54_eeprom_write",
+    "message0": "写入EEPROM 地址 %1 值 %2",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "ADDRESS",
+        "check": "Number"
+      },
+      {
+        "type": "input_value",
+        "name": "VALUE",
+        "check": "Number"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#546E7A",
+    "tooltip": "写入一个字节到缓存。"
+  },
+  {
+    "type": "nrf54_eeprom_update",
+    "message0": "更新EEPROM 地址 %1 值 %2",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "ADDRESS",
+        "check": "Number"
+      },
+      {
+        "type": "input_value",
+        "name": "VALUE",
+        "check": "Number"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#546E7A",
+    "tooltip": "仅在值变化时写入一个字节。"
+  },
+  {
+    "type": "nrf54_eeprom_length",
+    "message0": "EEPROM大小",
+    "output": "Number",
+    "colour": "#546E7A",
+    "tooltip": "返回当前EEPROM大小。"
+  },
+  {
+    "type": "nrf54_eeprom_get",
+    "message0": "读取EEPROM 地址 %1 类型 %2",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "ADDRESS",
+        "check": "Number"
+      },
+      {
+        "type": "field_dropdown",
+        "name": "TYPE",
+        "options": [
+          [
+            "uint8",
+            "uint8_t"
+          ],
+          [
+            "int8",
+            "int8_t"
+          ],
+          [
+            "uint16",
+            "uint16_t"
+          ],
+          [
+            "int16",
+            "int16_t"
+          ],
+          [
+            "uint32",
+            "uint32_t"
+          ],
+          [
+            "int32",
+            "int32_t"
+          ],
+          [
+            "float",
+            "float"
+          ],
+          [
+            "double",
+            "double"
+          ],
+          [
+            "布尔值",
+            "bool"
+          ]
+        ]
+      }
+    ],
+    "output": [
+      "Number",
+      "Boolean"
+    ],
+    "colour": "#546E7A",
+    "tooltip": "按选择的数据类型读取。"
+  },
+  {
+    "type": "nrf54_eeprom_put",
+    "message0": "写入EEPROM 地址 %1 类型 %2 值 %3",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "ADDRESS",
+        "check": "Number"
+      },
+      {
+        "type": "field_dropdown",
+        "name": "TYPE",
+        "options": [
+          [
+            "uint8",
+            "uint8_t"
+          ],
+          [
+            "int8",
+            "int8_t"
+          ],
+          [
+            "uint16",
+            "uint16_t"
+          ],
+          [
+            "int16",
+            "int16_t"
+          ],
+          [
+            "uint32",
+            "uint32_t"
+          ],
+          [
+            "int32",
+            "int32_t"
+          ],
+          [
+            "float",
+            "float"
+          ],
+          [
+            "double",
+            "double"
+          ],
+          [
+            "布尔值",
+            "bool"
+          ]
+        ]
+      },
+      {
+        "type": "input_value",
+        "name": "VALUE"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#546E7A",
+    "tooltip": "按选择的数据类型写入。"
+  }
+]

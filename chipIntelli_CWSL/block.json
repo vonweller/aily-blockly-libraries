@@ -1,0 +1,208 @@
+[
+  {
+    "type": "chipintelli_cwsl_init",
+    "message0": "初始化 CI13XX 命令词自学习 超时 %1 ms",
+    "args0": [{"type": "input_value", "name": "TIMEOUT", "check": ["Number"]}],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#2E7D32",
+    "tooltip": "初始化 CWSL；必须在 Arduino 工具菜单选择命令词自学习算法配置"
+  },
+  {
+    "type": "chipintelli_cwsl_end",
+    "message0": "结束命令词自学习监听",
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#2E7D32",
+    "tooltip": "停止接收 CWSL 事件并清空事件队列"
+  },
+  {
+    "type": "chipintelli_cwsl_learn",
+    "message0": "学习 %1 命令 ID %2 分组 ID %3",
+    "args0": [
+      {"type": "field_dropdown", "name": "WORD_TYPE", "options": [["普通命令词", "COMMAND"], ["唤醒词", "WAKE"]]},
+      {"type": "input_value", "name": "COMMAND_ID", "check": ["Number"]},
+      {"type": "input_value", "name": "GROUP_ID", "check": ["Number"]}
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#388E3C",
+    "tooltip": "异步开始学习；命令 ID 必须已存在于当前 cmd_info 资源中"
+  },
+  {
+    "type": "chipintelli_cwsl_cancel_learning",
+    "message0": "取消尚未开始录音的学习",
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#388E3C",
+    "tooltip": "只可在 LearningStarted 事件之前取消；录音开始后当前尝试会继续"
+  },
+  {
+    "type": "chipintelli_cwsl_erase_template",
+    "message0": "删除已学习的 %1 命令 ID %2 分组 ID %3",
+    "args0": [
+      {"type": "field_dropdown", "name": "WORD_TYPE", "options": [["普通命令词", "COMMAND"], ["唤醒词", "WAKE"]]},
+      {"type": "input_value", "name": "COMMAND_ID", "check": ["Number"]},
+      {"type": "input_value", "name": "GROUP_ID", "check": ["Number"]}
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#C62828",
+    "tooltip": "提交指定命令与分组的模板删除请求"
+  },
+  {
+    "type": "chipintelli_cwsl_erase_templates",
+    "message0": "删除 %1 已学习模板",
+    "args0": [{
+      "type": "field_dropdown",
+      "name": "SCOPE",
+      "options": [["全部普通命令词", "COMMANDS"], ["全部唤醒词", "WAKE_WORDS"], ["全部", "ALL"]]
+    }],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#C62828",
+    "tooltip": "提交批量模板删除请求"
+  },
+  {
+    "type": "chipintelli_cwsl_read_events",
+    "message0": "读取所有待处理的自学习事件",
+    "message1": "每个事件执行 %1",
+    "args1": [{"type": "input_statement", "name": "HANDLER"}],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#43A047",
+    "tooltip": "从事件队列逐个读取学习、删除和识别事件，并在当前 Arduino 任务中处理"
+  },
+  {
+    "type": "chipintelli_cwsl_profile_enabled",
+    "message0": "当前算法配置支持自学习",
+    "output": "Boolean",
+    "colour": "#2E7D32",
+    "tooltip": "检查编译时是否选择了 CWSL 算法配置"
+  },
+  {
+    "type": "chipintelli_cwsl_available",
+    "message0": "有待处理的自学习事件",
+    "output": "Boolean",
+    "colour": "#2E7D32",
+    "tooltip": "检查 CWSL 事件队列是否非空"
+  },
+  {
+    "type": "chipintelli_cwsl_state",
+    "message0": "当前自学习状态",
+    "output": "Number",
+    "colour": "#2E7D32",
+    "tooltip": "返回状态：0 空闲、1 识别、2 学习、3 删除、255 不可用"
+  },
+  {
+    "type": "chipintelli_cwsl_state_value",
+    "message0": "自学习状态 %1",
+    "args0": [{
+      "type": "field_dropdown",
+      "name": "STATE",
+      "options": [["空闲", "0"], ["识别中", "1"], ["学习中", "2"], ["删除中", "3"], ["不可用", "255"]]
+    }],
+    "output": "Number",
+    "colour": "#2E7D32",
+    "tooltip": "用于与当前自学习状态比较"
+  },
+  {
+    "type": "chipintelli_cwsl_count",
+    "message0": "%1 数量",
+    "args0": [{
+      "type": "field_dropdown",
+      "name": "COUNT_TYPE",
+      "options": [["已学习普通命令词", "COMMAND"], ["已学习唤醒词", "WAKE"], ["全部已用模板", "TEMPLATE"], ["剩余模板", "REMAINING"], ["最大模板容量", "MAX"]]
+    }],
+    "output": "Number",
+    "colour": "#2E7D32",
+    "tooltip": "查询已学习模板数量和容量"
+  },
+  {
+    "type": "chipintelli_cwsl_dropped_events",
+    "message0": "已丢弃的自学习事件数",
+    "output": "Number",
+    "colour": "#2E7D32",
+    "tooltip": "返回事件队列溢出后累计丢弃的事件数量"
+  },
+  {
+    "type": "chipintelli_cwsl_event_type",
+    "message0": "当前自学习事件 类型",
+    "output": "Number",
+    "colour": "#43A047",
+    "tooltip": "返回当前读取事件的类型代码"
+  },
+  {
+    "type": "chipintelli_cwsl_event_word_type",
+    "message0": "当前自学习事件 词类型",
+    "output": "Number",
+    "colour": "#43A047",
+    "tooltip": "返回当前事件的词类型：0 命令词，1 唤醒词，2 全部"
+  },
+  {
+    "type": "chipintelli_cwsl_event_attempt",
+    "message0": "当前自学习事件 尝试次数",
+    "output": "Number",
+    "colour": "#43A047",
+    "tooltip": "返回当前学习尝试的序号"
+  },
+  {
+    "type": "chipintelli_cwsl_event_result",
+    "message0": "当前自学习事件 尝试结果",
+    "output": "Number",
+    "colour": "#43A047",
+    "tooltip": "返回当前尝试结果代码 0～6"
+  },
+  {
+    "type": "chipintelli_cwsl_event_command_id",
+    "message0": "当前自学习事件 命令 ID",
+    "output": "Number",
+    "colour": "#43A047",
+    "tooltip": "返回当前事件关联的命令 ID"
+  },
+  {
+    "type": "chipintelli_cwsl_event_group_id",
+    "message0": "当前自学习事件 分组 ID",
+    "output": "Number",
+    "colour": "#43A047",
+    "tooltip": "返回分组 ID；识别事件因 SDK 不提供分组而返回 65535"
+  },
+  {
+    "type": "chipintelli_cwsl_event_distance",
+    "message0": "当前自学习事件 匹配距离",
+    "output": "Number",
+    "colour": "#43A047",
+    "tooltip": "返回已学习模板识别事件的匹配距离"
+  },
+  {
+    "type": "chipintelli_cwsl_event_type_value",
+    "message0": "自学习事件类型 %1",
+    "args0": [{
+      "type": "field_dropdown",
+      "name": "EVENT_TYPE",
+      "options": [
+        ["学习已开始", "1"], ["录音请求已提交", "2"], ["单次尝试结果", "3"],
+        ["学习成功", "4"], ["学习失败", "5"], ["学习已取消", "6"],
+        ["删除成功", "7"], ["识别到已学习词", "8"], ["删除失败", "9"]
+      ]
+    }],
+    "output": "Number",
+    "colour": "#43A047",
+    "tooltip": "用于与当前自学习事件类型比较，事件代码为 1～9"
+  },
+  {
+    "type": "chipintelli_cwsl_learn_result_value",
+    "message0": "学习尝试结果 %1",
+    "args0": [{
+      "type": "field_dropdown",
+      "name": "RESULT",
+      "options": [
+        ["录音成功", "0"], ["录音失败", "1"], ["注册完成", "2"], ["注册中止", "3"],
+        ["有效帧不足", "4"], ["数据无效", "5"], ["与默认命令冲突", "6"]
+      ]
+    }],
+    "output": "Number",
+    "colour": "#43A047",
+    "tooltip": "用于与当前尝试结果比较"
+  }
+]

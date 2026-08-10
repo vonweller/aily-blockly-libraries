@@ -1,0 +1,208 @@
+[
+  {
+    "type": "nrf54_spiflash_begin_qspi",
+    "message0": "初始化板载QSPI Flash",
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#00897B",
+    "tooltip": "使用LM20A板载QSPI传输初始化Flash。"
+  },
+  {
+    "type": "nrf54_spiflash_begin_spi",
+    "message0": "初始化SPI Flash CS引脚 %1",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "CS",
+        "options": "${board.digitalPins}"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#00897B",
+    "tooltip": "使用SPI和指定片选引脚初始化Flash。"
+  },
+  {
+    "type": "nrf54_spiflash_end",
+    "message0": "关闭SPI Flash",
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#00897B",
+    "tooltip": "同步并关闭Flash。"
+  },
+  {
+    "type": "nrf54_spiflash_size",
+    "message0": "SPI Flash容量(字节)",
+    "output": "Number",
+    "colour": "#00897B",
+    "tooltip": "返回Flash总容量。"
+  },
+  {
+    "type": "nrf54_spiflash_jedec_id",
+    "message0": "SPI Flash JEDEC ID",
+    "output": "Number",
+    "colour": "#00897B",
+    "tooltip": "读取24位JEDEC标识。"
+  },
+  {
+    "type": "nrf54_spiflash_jedec_part",
+    "message0": "SPI Flash JEDEC %1",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "PART",
+        "options": [
+          [
+            "厂商",
+            "0"
+          ],
+          [
+            "存储类型",
+            "1"
+          ],
+          [
+            "容量代码",
+            "2"
+          ]
+        ]
+      }
+    ],
+    "output": "读取JEDEC标识中的一个字节。",
+    "tooltip": "Read one byte of the JEDEC identifier."
+  },
+  {
+    "type": "nrf54_spiflash_read_byte",
+    "message0": "读取SPI Flash 地址 %1",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "ADDRESS",
+        "check": "Number"
+      }
+    ],
+    "output": "Number",
+    "colour": "#00897B",
+    "tooltip": "从指定地址读取一个字节。"
+  },
+  {
+    "type": "nrf54_spiflash_write_byte",
+    "message0": "写入SPI Flash 地址 %1 值 %2",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "ADDRESS",
+        "check": "Number"
+      },
+      {
+        "type": "input_value",
+        "name": "VALUE",
+        "check": "Number"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#00897B",
+    "tooltip": "向指定地址写入一个字节。"
+  },
+  {
+    "type": "nrf54_spiflash_read_text",
+    "message0": "读取SPI Flash文本 地址 %1 长度 %2",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "ADDRESS",
+        "check": "Number"
+      },
+      {
+        "type": "input_value",
+        "name": "LENGTH",
+        "check": "Number"
+      }
+    ],
+    "output": "String",
+    "colour": "#00897B",
+    "tooltip": "读取指定长度并转换为文本，遇到零字节停止。"
+  },
+  {
+    "type": "nrf54_spiflash_write_text",
+    "message0": "写入SPI Flash文本 地址 %1 文本 %2",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "ADDRESS",
+        "check": "Number"
+      },
+      {
+        "type": "input_value",
+        "name": "DATA",
+        "check": "String"
+      }
+    ],
+    "output": "Boolean",
+    "colour": "#00897B",
+    "tooltip": "写入String内容，不自动擦除扇区。"
+  },
+  {
+    "type": "nrf54_spiflash_erase_sector",
+    "message0": "擦除SPI Flash扇区 地址 %1",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "ADDRESS",
+        "check": "Number"
+      }
+    ],
+    "output": "Boolean",
+    "colour": "#00897B",
+    "tooltip": "擦除包含该地址的4KB扇区。"
+  },
+  {
+    "type": "nrf54_spiflash_erase_chip",
+    "message0": "擦除整个SPI Flash",
+    "output": "Boolean",
+    "colour": "#00897B",
+    "tooltip": "擦除整个Flash芯片。"
+  },
+  {
+    "type": "nrf54_spiflash_wait_ready",
+    "message0": "等待SPI Flash就绪 超时(ms) %1",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "TIMEOUT",
+        "check": "Number"
+      }
+    ],
+    "output": "Boolean",
+    "colour": "#00897B",
+    "tooltip": "等待Flash结束忙状态。"
+  },
+  {
+    "type": "nrf54_spiflash_is_busy",
+    "message0": "SPI Flash正忙?",
+    "output": "Boolean",
+    "colour": "#00897B",
+    "tooltip": "返回Flash当前忙状态。"
+  },
+  {
+    "type": "nrf54_spiflash_sector_count",
+    "message0": "SPI Flash 512字节扇区数",
+    "output": "Number",
+    "colour": "#00897B",
+    "tooltip": "返回块设备扇区数量。"
+  },
+  {
+    "type": "nrf54_spiflash_run_command",
+    "message0": "执行SPI Flash命令 %1",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "COMMAND",
+        "check": "Number"
+      }
+    ],
+    "output": "Boolean",
+    "colour": "#00897B",
+    "tooltip": "执行一个无参数Flash命令。"
+  }
+]

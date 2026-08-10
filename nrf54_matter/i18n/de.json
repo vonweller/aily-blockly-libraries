@@ -1,0 +1,270 @@
+{
+  "toolbox_name": "nRF54 Matter",
+  "toolbox_labels": {
+    "节点配置": "Node setup",
+    "配网": "Commissioning",
+    "灯光控制": "Light control",
+    "事件": "Events"
+  },
+  "nrf54_matter_begin": {
+    "message0": "start Matter light use demo Thread network %1 wipe Thread settings %2 request router %3 auto-open commissioning %4 window seconds %5",
+    "tooltip": "Start a Matter On/Off Light node and process it automatically in loop.",
+    "args0": [
+      {
+        "options": [
+          [
+            "Yes",
+            "true"
+          ],
+          [
+            "No",
+            "false"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "No",
+            "false"
+          ],
+          [
+            "Yes",
+            "true"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "No",
+            "false"
+          ],
+          [
+            "Yes",
+            "true"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "Yes",
+            "true"
+          ],
+          [
+            "No",
+            "false"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "nrf54_matter_end": {
+    "message0": "stop Matter node",
+    "tooltip": "Stop the Matter node and its Thread network."
+  },
+  "nrf54_matter_use_demo_dataset": {
+    "message0": "Matter use demo Thread network",
+    "tooltip": "Switch to the built-in demo Thread dataset."
+  },
+  "nrf54_matter_set_dataset_hex": {
+    "message0": "Matter set Thread dataset TLV hex %1 persist %2",
+    "tooltip": "Import and optionally persist a Thread dataset.",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Yes",
+            "true"
+          ],
+          [
+            "No",
+            "false"
+          ]
+        ]
+      }
+    ]
+  },
+  "nrf54_matter_factory_reset": {
+    "message0": "factory-reset Matter",
+    "tooltip": "Clear Matter identity, light state, and Thread network data."
+  },
+  "nrf54_matter_ready": {
+    "message0": "Matter ready for on-network commissioning",
+    "tooltip": "Return whether the Matter node is ready for commissioning."
+  },
+  "nrf54_matter_open_window": {
+    "message0": "open Matter commissioning window (s) %1",
+    "tooltip": "Open a commissioning window for the given duration."
+  },
+  "nrf54_matter_close_window": {
+    "message0": "close Matter commissioning window",
+    "tooltip": "Close the commissioning window immediately."
+  },
+  "nrf54_matter_window_open": {
+    "message0": "Matter commissioning window open",
+    "tooltip": "Return the commissioning-window state."
+  },
+  "nrf54_matter_window_remaining": {
+    "message0": "Matter commissioning seconds remaining",
+    "tooltip": "Return remaining commissioning-window time."
+  },
+  "nrf54_matter_manual_code": {
+    "message0": "Matter manual pairing code",
+    "tooltip": "Return the manual pairing code."
+  },
+  "nrf54_matter_qr_code": {
+    "message0": "Matter QR code text",
+    "tooltip": "Return the MT: QR payload text."
+  },
+  "nrf54_matter_light_set": {
+    "message0": "set Matter light %1 persist %2",
+    "tooltip": "Set the On/Off Light state.",
+    "args0": [
+      {
+        "options": [
+          [
+            "Yes",
+            "true"
+          ],
+          [
+            "No",
+            "false"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "Yes",
+            "true"
+          ],
+          [
+            "No",
+            "false"
+          ]
+        ]
+      }
+    ]
+  },
+  "nrf54_matter_light_toggle": {
+    "message0": "toggle Matter light persist %1",
+    "tooltip": "Toggle the light state.",
+    "args0": [
+      {
+        "options": [
+          [
+            "Yes",
+            "true"
+          ],
+          [
+            "No",
+            "false"
+          ]
+        ]
+      }
+    ]
+  },
+  "nrf54_matter_light_is_on": {
+    "message0": "Matter light is on",
+    "tooltip": "Return the current light state."
+  },
+  "nrf54_matter_light_set_level": {
+    "message0": "set Matter light level %1 persist %2",
+    "tooltip": "Set brightness from 1 to 254.",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Yes",
+            "true"
+          ],
+          [
+            "No",
+            "false"
+          ]
+        ]
+      }
+    ]
+  },
+  "nrf54_matter_light_move_level": {
+    "message0": "move Matter light level to %1 duration (ms) %2",
+    "tooltip": "Transition to a target brightness over time."
+  },
+  "nrf54_matter_light_level": {
+    "message0": "current Matter light level",
+    "tooltip": "Return the current brightness."
+  },
+  "nrf54_matter_identify": {
+    "message0": "Matter light identify duration (s) %1",
+    "tooltip": "Start the Identify state."
+  },
+  "nrf54_matter_stop_identify": {
+    "message0": "stop Matter light identify",
+    "tooltip": "Stop the Identify state."
+  },
+  "nrf54_matter_identifying": {
+    "message0": "Matter light identifying",
+    "tooltip": "Return the Identify state."
+  },
+  "nrf54_matter_startup_behavior": {
+    "message0": "Matter light startup behavior %1 persist %2",
+    "tooltip": "Set the light startup policy.",
+    "args0": [
+      {
+        "options": [
+          [
+            "Force off",
+            "kForceOff"
+          ],
+          [
+            "Force on",
+            "kForceOn"
+          ],
+          [
+            "Toggle previous",
+            "kTogglePrevious"
+          ],
+          [
+            "Restore previous",
+            "kRestorePrevious"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "Yes",
+            "true"
+          ],
+          [
+            "No",
+            "false"
+          ]
+        ]
+      }
+    ]
+  },
+  "nrf54_matter_save_state": {
+    "message0": "save Matter light state",
+    "tooltip": "Persist the light state now."
+  },
+  "nrf54_matter_clear_state": {
+    "message0": "clear persistent Matter light state",
+    "tooltip": "Delete the persisted light state."
+  },
+  "nrf54_matter_on_light_change": {
+    "message0": "when Matter light state changes",
+    "message1": "do %1",
+    "tooltip": "Register a light state-change callback."
+  },
+  "nrf54_matter_on_identify_change": {
+    "message0": "when Matter light identify state changes",
+    "message1": "do %1",
+    "tooltip": "Register an Identify state-change callback."
+  }
+}
