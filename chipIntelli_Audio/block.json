@@ -1,11 +1,35 @@
 [
   {
     "type": "chipintelli_audio_init",
-    "message0": "初始化 CI13XX 播放器",
+    "message0": "初始化 CI13XX 播放器 语言设置 %1",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "LANGUAGE",
+        "options": [
+          ["汉语", "CHIPINTELLI_LANGUAGE_ZH"],
+          ["英语", "CHIPINTELLI_LANGUAGE_EN"],
+          ["日语", "CHIPINTELLI_LANGUAGE_JA"],
+          ["韩语", "CHIPINTELLI_LANGUAGE_KO"],
+          ["俄语", "CHIPINTELLI_LANGUAGE_RU"],
+          ["西班牙语", "CHIPINTELLI_LANGUAGE_ES"],
+          ["泰语", "CHIPINTELLI_LANGUAGE_TH"],
+          ["德语", "CHIPINTELLI_LANGUAGE_DE"],
+          ["印度尼西亚语", "CHIPINTELLI_LANGUAGE_ID"],
+          ["越南语", "CHIPINTELLI_LANGUAGE_VI"],
+          ["法语", "CHIPINTELLI_LANGUAGE_FR"],
+          ["葡萄牙语", "CHIPINTELLI_LANGUAGE_PT"],
+          ["波斯语", "CHIPINTELLI_LANGUAGE_FA"],
+          ["土耳其语", "CHIPINTELLI_LANGUAGE_TR"],
+          ["阿拉伯语", "CHIPINTELLI_LANGUAGE_AR"]
+        ]
+      }
+    ],
+    "inputsInline": true,
     "previousStatement": null,
     "nextStatement": null,
     "colour": "#7B1FA2",
-    "tooltip": "启动共享 SDK，并等待音频资源、Codec、功放和播放任务就绪"
+    "tooltip": "选择运行时数字播报使用的语言词表，启动共享 SDK，并等待音频资源、Codec、功放和播放任务就绪"
   },
   {
     "type": "chipintelli_audio_end",
@@ -38,6 +62,7 @@
           ["姗姗-温柔女声", "姗姗-温柔女声"],
           ["阿文-温和男声", "阿文-温和男声"],
           ["晓君-川话男声", "晓君-川话男声"],
+          ["阿月-粤语女声", "阿月-粤语女声"],
           ["阿栋-浑厚男声", "阿栋-浑厚男声"],
           ["可可-欢快女童", "可可-欢快女童"],
           ["小萌-可爱女童", "小萌-可爱女童"],
@@ -91,7 +116,6 @@
           ["Gabriel-法语男声", "Gabriel-法语男声"],
           ["Beatriz-葡萄牙女声", "Beatriz-葡萄牙女声"],
           ["Rodrigo-葡萄牙男声", "Rodrigo-葡萄牙男声"],
-          ["阿月-粤语女声", "阿月-粤语女声"],
           ["Farzaneh-波斯女声", "Farzaneh-波斯女声"],
           ["Ali-波斯男声", "Ali-波斯男声"],
           ["Mustafa-土耳其男声", "Mustafa-土耳其男声"],

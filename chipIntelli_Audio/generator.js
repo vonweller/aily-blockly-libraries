@@ -1,5 +1,23 @@
 'use strict';
 
+const CHIPINTELLI_AUDIO_LANGUAGES = [
+  'CHIPINTELLI_LANGUAGE_ZH',
+  'CHIPINTELLI_LANGUAGE_EN',
+  'CHIPINTELLI_LANGUAGE_JA',
+  'CHIPINTELLI_LANGUAGE_KO',
+  'CHIPINTELLI_LANGUAGE_RU',
+  'CHIPINTELLI_LANGUAGE_ES',
+  'CHIPINTELLI_LANGUAGE_TH',
+  'CHIPINTELLI_LANGUAGE_DE',
+  'CHIPINTELLI_LANGUAGE_ID',
+  'CHIPINTELLI_LANGUAGE_VI',
+  'CHIPINTELLI_LANGUAGE_FR',
+  'CHIPINTELLI_LANGUAGE_PT',
+  'CHIPINTELLI_LANGUAGE_FA',
+  'CHIPINTELLI_LANGUAGE_TR',
+  'CHIPINTELLI_LANGUAGE_AR'
+];
+
 function ensureChipIntelliAudio(generator) {
   generator.addLibrary('chipintelli_audio', '#include <ChipIntelliAudio.h>');
 }
@@ -96,6 +114,14 @@ function chipIntelliAudioMp3Id(generator, tag, audioPath) {
 }
 
 Arduino.forBlock['chipintelli_audio_init'] = function(block, generator) {
+  const selectedLanguage = block.getFieldValue('LANGUAGE');
+  const language = CHIPINTELLI_AUDIO_LANGUAGES.indexOf(selectedLanguage) === -1
+    ? 'CHIPINTELLI_LANGUAGE_ZH'
+    : selectedLanguage;
+  generator.addMacro(
+    'chipintelli_audio_language',
+    '#define CHIPINTELLI_LANGUAGE ' + language
+  );
   ensureChipIntelliAudio(generator);
   return 'ChipIntelliAudio.begin();\n';
 };

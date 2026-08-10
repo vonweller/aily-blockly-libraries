@@ -861,6 +861,7 @@ function tftespiAnimationNeedsRedBlueSwap(block) {
   const needsRedBlueSwap = model => [
     'ILI9341_DRIVER',
     'ILI9341_2_DRIVER',
+    'ILI9342_DRIVER',
     'ST7735_DRIVER',
     'ST7789_DRIVER',
     'ST7789_2_DRIVER'
