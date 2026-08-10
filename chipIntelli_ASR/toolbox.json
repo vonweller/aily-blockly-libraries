@@ -6,6 +6,7 @@
   "contents": [
     {"kind": "label", "text": "初始化"},
     {"kind": "block", "type": "chipintelli_asr_init"},
+    {"kind": "block", "type": "chipintelli_asr_set_wake_word"},
     {"kind": "block", "type": "chipintelli_asr_end"},
     {"kind": "label", "text": "识别事件"},
     {"kind": "block", "type": "chipintelli_asr_on_startup"},
@@ -55,7 +56,7 @@
       "type": "chipintelli_asr_keep_awake_for",
       "inputs": {
         "TIMEOUT": {
-          "shadow": {"type": "math_number", "fields": {"NUM": 10}}
+          "shadow": {"type": "math_number", "fields": {"NUM": 15}}
         }
       }
     },

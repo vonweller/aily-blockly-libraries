@@ -1,15 +1,22 @@
 [
   {
     "type": "chipintelli_asr_init",
-    "message0": "初始化 CI13XX 离线语音识别\n 唤醒词 %1 超时设置 %2 秒",
+    "message0": "初始化 CI13XX 离线语音识别",
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#1565C0",
+    "tooltip": "启动共享 SDK，并等待麦克风和离线识别任务就绪"
+  },
+  {
+    "type": "chipintelli_asr_set_wake_word",
+    "message0": "设置 CI13XX 唤醒词 %1",
     "args0": [
-      {"type": "field_input", "name": "WAKE_WORD", "text": "智能管家"},
-      {"type": "field_input", "name": "TIMEOUT", "text": "10"}
+      {"type": "field_input", "name": "WAKE_WORD", "text": "智能管家"}
     ],
     "previousStatement": null,
     "nextStatement": null,
     "colour": "#1565C0",
-    "tooltip": "定义 ID 为 1 的唤醒词，启动共享 SDK，并等待麦克风和离线识别任务就绪"
+    "tooltip": "添加一个离线 ASR 固定唤醒词并启用唤醒词模式；应放在初始化积木之后，可使用多个此积木"
   },
   {
     "type": "chipintelli_asr_end",
@@ -123,12 +130,12 @@
   },
   {
     "type": "chipintelli_asr_keep_awake_for",
-    "message0": "刷新唤醒窗口 %1 秒",
+    "message0": "设置唤醒后可响应时间 %1 秒",
     "args0": [{"type": "input_value", "name": "TIMEOUT", "check": ["Number"]}],
     "previousStatement": null,
     "nextStatement": null,
     "colour": "#00838F",
-    "tooltip": "仅在已经唤醒时，按输入秒数重置命令会话剩余时间"
+    "tooltip": "仅在已经唤醒时调用 keepAwakeFor()，按输入秒数重置命令会话剩余时间"
   },
   {
     "type": "chipintelli_asr_is_awake",
