@@ -4,7 +4,7 @@ Bluefruit-compatible BLE library for nrf54l15 with advertising, BLE UART, GATT s
 
 ## Library Info
 - **Name**: @aily-project/lib-bluefruit52lib
-- **Version**: 0.6.48
+- **Version**: 0.6.81
 
 ## Block Definitions
 

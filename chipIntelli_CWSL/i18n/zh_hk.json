@@ -1,0 +1,98 @@
+{
+  "toolbox_name": "CI13XX 命令詞自學習",
+  "toolbox_labels": {
+    "初始化": "初始化",
+    "学习与删除": "学习与删除",
+    "状态与容量": "状态与容量",
+    "异步事件": "异步事件"
+  },
+  "chipintelli_cwsl_init": {
+    "message0": "初始化 CI13XX 命令词自学习 超时 %1 ms",
+    "tooltip": "初始化 CWSL；必须在 Arduino 工具菜单选择命令词自学习算法配置"
+  },
+  "chipintelli_cwsl_end": {
+    "message0": "结束命令词自学习监听",
+    "tooltip": "停止接收 CWSL 事件并清空事件队列"
+  },
+  "chipintelli_cwsl_learn": {
+    "message0": "学习 %1 命令 ID %2 分组 ID %3",
+    "tooltip": "异步开始学习；命令 ID 必须已存在于当前 cmd_info 资源中"
+  },
+  "chipintelli_cwsl_cancel_learning": {
+    "message0": "取消尚未开始录音的学习",
+    "tooltip": "只可在 LearningStarted 事件之前取消；录音开始后当前尝试会继续"
+  },
+  "chipintelli_cwsl_erase_template": {
+    "message0": "删除已学习的 %1 命令 ID %2 分组 ID %3",
+    "tooltip": "提交指定命令与分组的模板删除请求"
+  },
+  "chipintelli_cwsl_erase_templates": {
+    "message0": "删除 %1 已学习模板",
+    "tooltip": "提交批量模板删除请求"
+  },
+  "chipintelli_cwsl_read_events": {
+    "message0": "读取所有待处理的自学习事件",
+    "message1": "每个事件执行 %1",
+    "tooltip": "从事件队列逐个读取学习、删除和识别事件，并在当前 Arduino 任务中处理"
+  },
+  "chipintelli_cwsl_profile_enabled": {
+    "message0": "当前算法配置支持自学习",
+    "tooltip": "检查编译时是否选择了 CWSL 算法配置"
+  },
+  "chipintelli_cwsl_available": {
+    "message0": "有待处理的自学习事件",
+    "tooltip": "检查 CWSL 事件队列是否非空"
+  },
+  "chipintelli_cwsl_state": {
+    "message0": "当前自学习状态",
+    "tooltip": "返回状态：0 空闲、1 识别、2 学习、3 删除、255 不可用"
+  },
+  "chipintelli_cwsl_state_value": {
+    "message0": "自学习状态 %1",
+    "tooltip": "用于与当前自学习状态比较"
+  },
+  "chipintelli_cwsl_count": {
+    "message0": "%1 数量",
+    "tooltip": "查询已学习模板数量和容量"
+  },
+  "chipintelli_cwsl_dropped_events": {
+    "message0": "已丢弃的自学习事件数",
+    "tooltip": "返回事件队列溢出后累计丢弃的事件数量"
+  },
+  "chipintelli_cwsl_event_type": {
+    "message0": "当前自学习事件 类型",
+    "tooltip": "返回当前读取事件的类型代码"
+  },
+  "chipintelli_cwsl_event_word_type": {
+    "message0": "当前自学习事件 词类型",
+    "tooltip": "返回当前事件的词类型：0 命令词，1 唤醒词，2 全部"
+  },
+  "chipintelli_cwsl_event_attempt": {
+    "message0": "当前自学习事件 尝试次数",
+    "tooltip": "返回当前学习尝试的序号"
+  },
+  "chipintelli_cwsl_event_result": {
+    "message0": "当前自学习事件 尝试结果",
+    "tooltip": "返回当前尝试结果代码 0～6"
+  },
+  "chipintelli_cwsl_event_command_id": {
+    "message0": "当前自学习事件 命令 ID",
+    "tooltip": "返回当前事件关联的命令 ID"
+  },
+  "chipintelli_cwsl_event_group_id": {
+    "message0": "当前自学习事件 分组 ID",
+    "tooltip": "返回分组 ID；识别事件因 SDK 不提供分组而返回 65535"
+  },
+  "chipintelli_cwsl_event_distance": {
+    "message0": "当前自学习事件 匹配距离",
+    "tooltip": "返回已学习模板识别事件的匹配距离"
+  },
+  "chipintelli_cwsl_event_type_value": {
+    "message0": "自学习事件类型 %1",
+    "tooltip": "用于与当前自学习事件类型比较，事件代码为 1～9"
+  },
+  "chipintelli_cwsl_learn_result_value": {
+    "message0": "学习尝试结果 %1",
+    "tooltip": "用于与当前尝试结果比较"
+  }
+}

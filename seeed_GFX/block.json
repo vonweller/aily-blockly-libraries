@@ -985,7 +985,7 @@
   },
   {
     "type": "seeed_gfx_draw_image",
-    "message0": "在屏幕 %1 显示图片 %2 X:%3 Y:%4",
+    "message0": "在屏幕 %1 坐标 X:%2 Y:%3 显示图片 %4",
     "args0": [
       {
         "type": "field_variable",
@@ -999,11 +999,6 @@
       },
       {
         "type": "input_value",
-        "name": "IMAGE",
-        "check": "SeeedGfxImage"
-      },
-      {
-        "type": "input_value",
         "name": "X",
         "check": ["Number"]
       },
@@ -1011,6 +1006,11 @@
         "type": "input_value",
         "name": "Y",
         "check": ["Number"]
+      },
+      {
+        "type": "input_value",
+        "name": "IMAGE",
+        "check": "SeeedGfxImage"
       }
     ],
     "inputsInline": true,

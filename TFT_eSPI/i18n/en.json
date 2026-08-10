@@ -1,20 +1,24 @@
 {
   "toolbox_name": "TFT_eSPI",
   "toolbox_labels": {
-    "初始化": "initialization",
-    "基本图形": "basic graphics",
-    "矩形": "Rectangle",
-    "圆形": "round",
-    "椭圆": "ellipse",
-    "三角形": "triangle",
-    "文字": "text",
-    "颜色": "color",
-    "图片": "image",
-    "动画": "animation"
+    "屏幕控制": "Display Control",
+    "颜色": "Colors",
+    "基础图形": "Basic Shapes",
+    "矩形": "Rectangles",
+    "圆形与椭圆": "Circles & Ellipses",
+    "三角形": "Triangles",
+    "图像": "Images",
+    "动画": "Animation",
+    "Sprite 画布": "Sprite Canvas"
   },
+  "toolbox_categories": [
+    "Basic Settings",
+    "Graphics",
+    "Text",
+    "Images & Animation"
+  ],
   "tftespi_setup": {
-    "message0": "Initialization TFT screen %1 Model %2 SPI frequency %3 Width %4 Height %5\n MISO %6 MOSI %7 SCLK %8 CS %9 DC %10\nRST %11 BL %12 Backlight %13 Color Mode %14",
-    "tooltip": "Create and initialize the TFT object",
+    "message0": "Initialize TFT display %1\nBasic settings: driver %2 width %3 height %4\n Pin connections: MISO %5 MOSI %6 SCLK %7 CS %8 DC %9 RST %10 BL %11\nOther settings: backlight mode %12 color order %13 SPI frequency %14",
     "args0": [
       null,
       {
@@ -26,6 +30,10 @@
           [
             "ILI9341_2",
             "ILI9341_2_DRIVER"
+          ],
+          [
+            "ILI9342",
+            "ILI9342_DRIVER"
           ],
           [
             "ST7735",
@@ -42,6 +50,14 @@
           [
             "RPI_ILI9486",
             "RPI_ILI9486_DRIVER"
+          ],
+          [
+            "HX8357B",
+            "HX8357B_DRIVER"
+          ],
+          [
+            "HX8357C",
+            "HX8357C_DRIVER"
           ],
           [
             "HX8357D",
@@ -72,6 +88,10 @@
             "R61581_DRIVER"
           ],
           [
+            "RM68120",
+            "RM68120_DRIVER"
+          ],
+          [
             "RM68140",
             "RM68140_DRIVER"
           ],
@@ -82,6 +102,10 @@
           [
             "SSD1351",
             "SSD1351_DRIVER"
+          ],
+          [
+            "SSD1331",
+            "SSD1331_DRIVER"
           ],
           [
             "SSD1963 480",
@@ -104,36 +128,144 @@
             "GC9A01_DRIVER"
           ],
           [
+            "GC9107",
+            "GC9107_DRIVER"
+          ],
+          [
             "GC9D01",
             "GC9D01_DRIVER"
-          ]
-        ]
-      },
-      {
-        "options": [
-          [
-            "10MHz",
-            "10000000"
           ],
           [
-            "20MHz",
-            "20000000"
+            "AXS15231B",
+            "AXS15231B_DRIVER"
           ],
           [
-            "27MHz",
-            "27000000"
+            "CO5300",
+            "CO5300_DRIVER"
           ],
           [
-            "40MHz",
-            "40000000"
+            "GC9106",
+            "GC9106_DRIVER"
           ],
           [
-            "55MHz",
-            "55000000"
+            "GC9C01",
+            "GC9C01_DRIVER"
           ],
           [
-            "80MHz",
-            "80000000"
+            "HX8347C",
+            "HX8347C_DRIVER"
+          ],
+          [
+            "HX8347D",
+            "HX8347D_DRIVER"
+          ],
+          [
+            "HX8352C",
+            "HX8352C_DRIVER"
+          ],
+          [
+            "HX8357A",
+            "HX8357A_DRIVER"
+          ],
+          [
+            "HX8369A",
+            "HX8369A_DRIVER"
+          ],
+          [
+            "ILI9331",
+            "ILI9331_DRIVER"
+          ],
+          [
+            "ILI9806",
+            "ILI9806_DRIVER"
+          ],
+          [
+            "JBT6K71",
+            "JBT6K71_DRIVER"
+          ],
+          [
+            "JD9613",
+            "JD9613_DRIVER"
+          ],
+          [
+            "NT35310",
+            "NT35310_DRIVER"
+          ],
+          [
+            "NT35510",
+            "NT35510_DRIVER"
+          ],
+          [
+            "NT39125",
+            "NT39125_DRIVER"
+          ],
+          [
+            "NV3001B",
+            "NV3001B_DRIVER"
+          ],
+          [
+            "NV3007",
+            "NV3007_DRIVER"
+          ],
+          [
+            "NV3023",
+            "NV3023_DRIVER"
+          ],
+          [
+            "NV3041A",
+            "NV3041A_DRIVER"
+          ],
+          [
+            "OTM8009A",
+            "OTM8009A_DRIVER"
+          ],
+          [
+            "R61529",
+            "R61529_DRIVER"
+          ],
+          [
+            "RM67162",
+            "RM67162_DRIVER"
+          ],
+          [
+            "RM690B0",
+            "RM690B0_DRIVER"
+          ],
+          [
+            "SEPS525",
+            "SEPS525_DRIVER"
+          ],
+          [
+            "SH1106",
+            "SH1106_DRIVER"
+          ],
+          [
+            "SH8601",
+            "SH8601_DRIVER"
+          ],
+          [
+            "SPD2010",
+            "SPD2010_DRIVER"
+          ],
+          [
+            "SSD1283A",
+            "SSD1283A_DRIVER"
+          ],
+          [
+            "SSD1306",
+            "SSD1306_DRIVER"
+          ],
+          [
+            "SSD1357",
+            "SSD1357_DRIVER"
+          ],
+          [
+            "ST77916",
+            "ST77916_DRIVER"
+          ],
+          [
+            "WEA2012",
+            "WEA2012_DRIVER"
           ]
         ]
       },
@@ -169,12 +301,40 @@
             "TFT_BGR"
           ]
         ]
+      },
+      {
+        "options": [
+          [
+            "10MHz",
+            "10000000"
+          ],
+          [
+            "20MHz",
+            "20000000"
+          ],
+          [
+            "27MHz",
+            "27000000"
+          ],
+          [
+            "40MHz",
+            "40000000"
+          ],
+          [
+            "55MHz",
+            "55000000"
+          ],
+          [
+            "80MHz",
+            "80000000"
+          ]
+        ]
       }
-    ]
+    ],
+    "tooltip": "Create and initialize a TFT display object"
   },
   "tftespi_set_rotation": {
     "message0": "Set TFT screen %1 Rotate %2",
-    "tooltip": "Set screen rotation direction",
     "args0": [
       null,
       {
@@ -213,11 +373,11 @@
           ]
         ]
       }
-    ]
+    ],
+    "tooltip": "Set screen rotation direction"
   },
   "tftespi_invert_display": {
     "message0": "TFT screen %1 Reverse display %2",
-    "tooltip": "Invert screen display colors",
     "args0": [
       null,
       {
@@ -232,7 +392,27 @@
           ]
         ]
       }
-    ]
+    ],
+    "tooltip": "Invert screen display colors"
+  },
+  "tftespi_get_dimension": {
+    "message0": "Get %1 %2",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Width",
+            "WIDTH"
+          ],
+          [
+            "Height",
+            "HEIGHT"
+          ]
+        ]
+      }
+    ],
+    "tooltip": "Get the width or height for the current display orientation"
   },
   "tftespi_fill_screen": {
     "message0": "TFT %1 fill screen color %2",
@@ -278,6 +458,29 @@
     "message0": "On the screen %1 Fill circle Center X:%2 Y:%3 Radius:%4 Color:%5",
     "tooltip": "fill a circular area"
   },
+  "tftespi_draw_arc": {
+    "message0": "On %1 draw anti-aliased arc center X:%2 Y:%3 outer radius:%4 inner radius:%5",
+    "message1": "start angle:%1 end angle:%2 foreground:%3 background:%4 ends:%5",
+    "args1": [
+      null,
+      null,
+      null,
+      null,
+      {
+        "options": [
+          [
+            "Rounded",
+            "true"
+          ],
+          [
+            "Square",
+            "false"
+          ]
+        ]
+      }
+    ],
+    "tooltip": "Draw an anti-aliased arc or gauge ring; 0 degrees is at 6 o’clock and angles increase clockwise"
+  },
   "tftespi_draw_ellipse": {
     "message0": "On the screen %1 draw an ellipse, center X:%2 Y:%3 radius X:%4 radius Y:%5 Color:%6",
     "tooltip": "Draw an elliptical border"
@@ -295,16 +498,82 @@
     "tooltip": "Fill a triangular area"
   },
   "tftespi_draw_string": {
-    "message0": "Display text at screen %1 positions X:%2 Y:%3 %4",
-    "tooltip": "Display text at specified location"
+    "message0": "On %1 at X:%2 Y:%3 display %4",
+    "tooltip": "Display text, an integer, or a decimal value at the specified position"
   },
   "tftespi_set_text_color": {
     "message0": "Settings screen %1 Text color %2",
     "tooltip": "Set text color"
   },
+  "tftespi_set_text_colors": {
+    "message0": "Set %1 text color %2 background color %3",
+    "tooltip": "Set both the text foreground color and the background color used to overwrite the character area"
+  },
+  "tftespi_set_text_datum": {
+    "message0": "Set %1 text alignment %2",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Top left",
+            "TL_DATUM"
+          ],
+          [
+            "Top center",
+            "TC_DATUM"
+          ],
+          [
+            "Top right",
+            "TR_DATUM"
+          ],
+          [
+            "Middle left",
+            "ML_DATUM"
+          ],
+          [
+            "Center",
+            "MC_DATUM"
+          ],
+          [
+            "Middle right",
+            "MR_DATUM"
+          ],
+          [
+            "Bottom left",
+            "BL_DATUM"
+          ],
+          [
+            "Bottom center",
+            "BC_DATUM"
+          ],
+          [
+            "Bottom right",
+            "BR_DATUM"
+          ],
+          [
+            "Left baseline",
+            "L_BASELINE"
+          ],
+          [
+            "Center baseline",
+            "C_BASELINE"
+          ],
+          [
+            "Right baseline",
+            "R_BASELINE"
+          ]
+        ]
+      }
+    ],
+    "tooltip": "Set the alignment reference point used by text drawing operations"
+  },
+  "tftespi_set_text_padding": {
+    "message0": "Set %1 text overwrite width to %2 pixels",
+    "tooltip": "Set the text background overwrite width to clear remnants of longer previous values; use 0 to disable"
+  },
   "tftespi_set_text_size": {
     "message0": "Settings screen %1 Text size %2",
-    "tooltip": "Set text size (1-7)",
     "args0": [
       null,
       {
@@ -339,11 +608,11 @@
           ]
         ]
       }
-    ]
+    ],
+    "tooltip": "Set text size (1-7)"
   },
   "tftespi_set_text_font": {
     "message0": "Settings screen %1 Font %2",
-    "tooltip": "Set font type",
     "args0": [
       null,
       {
@@ -374,7 +643,16 @@
           ]
         ]
       }
-    ]
+    ],
+    "tooltip": "Set font type"
+  },
+  "tftespi_image": {
+    "message0": "TFT image %1",
+    "tooltip": "Upload a PNG, JPEG, WebP, or BMP image and convert it to RGB565/RGB332 pixel data"
+  },
+  "tftespi_draw_image": {
+    "message0": "On TFT display %1 at X:%2 Y:%3 draw image %4",
+    "tooltip": "Draw converted RGB565/RGB332 image data at the specified coordinates"
   },
   "tftespi_animation": {
     "message0": "TFT animation %1",
@@ -382,8 +660,6 @@
   },
   "tftespi_play_animation": {
     "message0": "TFT display %1 play animation x%2 y%3 animation %4 mode %5",
-    "message1": "Loop playback %1",
-    "tooltip": "Play a TFT_eSPI animation; in non-blocking mode, the next frame is rendered when loop reaches the frame interval",
     "args0": [
       null,
       null,
@@ -401,7 +677,9 @@
           ]
         ]
       }
-    ]
+    ],
+    "message1": "Loop playback %1",
+    "tooltip": "Play a TFT_eSPI animation; in non-blocking mode, the next frame is rendered when loop reaches the frame interval"
   },
   "tftespi_draw_animation_frame": {
     "message0": "TFT display %1 draw animation frame x%2 y%3 animation %4 frame %5",
@@ -411,15 +689,46 @@
     "message0": "Get total frame count of TFT animation %1",
     "tooltip": "Get the total frame count of a TFT_eSPI animation"
   },
-  "tftespi_image": {
-    "message0": "TFT image %1",
-    "tooltip": "Upload a PNG, JPEG, WebP, or BMP image and convert it to RGB565/RGB332 pixel data",
-    "args0": [null]
+  "tftespi_sprite_create": {
+    "message0": "Create Sprite %1 for display %2",
+    "message1": "width %1 height %2 color depth %3",
+    "args1": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "16-bit",
+            "16"
+          ],
+          [
+            "8-bit",
+            "8"
+          ],
+          [
+            "4-bit",
+            "4"
+          ],
+          [
+            "1-bit",
+            "1"
+          ]
+        ]
+      }
+    ],
+    "tooltip": "Create an in-memory Sprite; lower color depths use less memory"
   },
-  "tftespi_draw_image": {
-    "message0": "On TFT display %1 draw image %2 X:%3 Y:%4",
-    "tooltip": "Draw converted RGB565/RGB332 image data at the specified coordinates",
-    "args0": [null, null, null, null]
+  "tftespi_sprite_push": {
+    "message0": "Show Sprite %1 on display at X:%2 Y:%3",
+    "tooltip": "Push the complete Sprite to its associated display"
+  },
+  "tftespi_sprite_push_transparent": {
+    "message0": "Show Sprite %1 transparently on display at X:%2 Y:%3 transparent color:%4",
+    "tooltip": "Push the Sprite while skipping pixels that match the transparent color"
+  },
+  "tftespi_sprite_delete": {
+    "message0": "Delete Sprite %1",
+    "tooltip": "Delete the Sprite and release its allocated memory"
   },
   "tftespi_color_rgb565": {
     "message0": "%1 Color conversion %2",
@@ -427,7 +736,6 @@
   },
   "tftespi_color": {
     "message0": "Color %1",
-    "tooltip": "Default color",
     "args0": [
       {
         "options": [
@@ -477,6 +785,11 @@
           ]
         ]
       }
-    ]
+    ],
+    "tooltip": "Default color"
+  },
+  "extensions": {
+    "tftespi_board_display_config": {},
+    "tftespi_animation_play_dynamic_inputs": {}
   }
 }
