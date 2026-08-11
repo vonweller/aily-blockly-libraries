@@ -8,18 +8,39 @@ EPUB电子书阅读器库，支持ZIP解压、HTML解析、自动分页，配合
 
 ## Block Definitions
 
-| Block Type | Connection | Parameters (args0 order) | ABS Format | Generated Code |
+| Block Type | Connection | Parameters (block.json order) | ABS Format | Generated Code |
 |------------|------------|--------------------------|------------|----------------|
-| `epub_reader_open` | Statement | PATH(input_value), CHARS_PER_LINE(input_value), LINES_PER_PAGE(input_value) | `epub_reader_open(text("/book.epub"), math_number(25), math_number(13))` | `epubReader.open(path, cpl, lpp);` |
-| `epub_reader_is_open` | Value | (无) | `epub_reader_is_open()` | `epubReader.isOpen()` |
-| `epub_reader_get_page` | Value | (无) | `epub_reader_get_page()` | `epubReader.getCurrentPage()` |
-| `epub_reader_get_page_num` | Value | (无) | `epub_reader_get_page_num()` | `epubReader.getPageNum()` |
-| `epub_reader_next` | Statement | (无) | `epub_reader_next()` | `epubReader.nextPage();` |
-| `epub_reader_prev` | Statement | (无) | `epub_reader_prev()` | `epubReader.prevPage();` |
-| `epub_reader_has_next` | Value | (无) | `epub_reader_has_next()` | `epubReader.hasNext()` |
-| `epub_reader_has_prev` | Value | (无) | `epub_reader_has_prev()` | `epubReader.hasPrev()` |
-| `epub_reader_render_page` | Statement | X(input_value), Y(input_value) | `epub_reader_render_page(math_number(2), math_number(20))` | `epubRenderPage(x, y);` |
-| `epub_reader_close` | Statement | (无) | `epub_reader_close()` | `epubReader.close();` |
+| `epub_reader_open` | Statement | PATH(input_value), CHARS_PER_LINE(input_value), LINES_PER_PAGE(input_value) | `epub_reader_open(text("/book.epub"), math_number(25), math_number(13))` | `epubReader.open("value", 1, 1);` |
+| `epub_reader_is_open` | Value | (none) | `epub_reader_is_open()` | `epubReader.isOpen()` |
+| `epub_reader_get_page` | Value | (none) | `epub_reader_get_page()` | `(epubReader.getPageText(epubPageBuf, sizeof(epubPageBuf)), String(epubPageBuf))` |
+| `epub_reader_get_page_num` | Value | (none) | `epub_reader_get_page_num()` | `epubReader.getPageNum()` |
+| `epub_reader_next` | Statement | (none) | `epub_reader_next()` | `epubReader.nextPage();` |
+| `epub_reader_prev` | Statement | (none) | `epub_reader_prev()` | `epubReader.prevPage();` |
+| `epub_reader_has_next` | Value | (none) | `epub_reader_has_next()` | `epubReader.hasNext()` |
+| `epub_reader_has_prev` | Value | (none) | `epub_reader_has_prev()` | `epubReader.hasPrev()` |
+| `epub_reader_render_page` | Statement | X(input_value), Y(input_value) | `epub_reader_render_page(math_number(2), math_number(20))` | `epubRenderPage(1, 1);` |
+| `epub_reader_close` | Statement | (none) | `epub_reader_close()` | `epubReader.close();` |
+| `epub_reader_load_font_size` | Statement | SIZE(dropdown) | `epub_reader_load_font_size(16)` | `epubFontSize = 16; ↵ tft.loadFont(cnfont16_data);` |
+| `epub_reader_font_height` | Value | (none) | `epub_reader_font_height()` | `tft.fontHeight()` |
+| `epub_reader_get_chapter` | Value | (none) | `epub_reader_get_chapter()` | `epubReader.getChapter()` |
+| `epub_reader_get_chapter_count` | Value | (none) | `epub_reader_get_chapter_count()` | `epubReader.getChapterCount()` |
+| `epub_reader_scan_books` | Statement | DIR(input_value) | `epub_reader_scan_books(text("value"))` | `epubScanBooks("value");` |
+| `epub_reader_book_count` | Value | (none) | `epub_reader_book_count()` | `epubBookCount` |
+| `epub_reader_book_name` | Value | INDEX(input_value) | `epub_reader_book_name(math_number(0))` | `epubBookNames[1]` |
+| `epub_reader_book_path` | Value | INDEX(input_value) | `epub_reader_book_path(math_number(0))` | `epubBookPaths[1]` |
+| `epub_reader_show_bookshelf` | Statement | SEL(input_value) | `epub_reader_show_bookshelf(math_number(0))` | `epubShowBookshelf(1);` |
+| `epub_reader_show_page` | Statement | (none) | `epub_reader_show_page()` | `epubShowPage();` |
+| `epub_reader_goto_chapter` | Value | INDEX(input_value) | `epub_reader_goto_chapter(math_number(0))` | `epubReader.gotoChapter(1)` |
+| `epub_reader_chapter_title_at` | Value | INDEX(input_value) | `epub_reader_chapter_title_at(math_number(0))` | `String(epubReader.getChapterTitleByIndex(1))` |
+| `epub_reader_save_pos` | Statement | PATH(input_value) | `epub_reader_save_pos(text("value"))` | `epubReader.savePosition("value");` |
+| `epub_reader_load_pos` | Value | PATH(input_value) | `epub_reader_load_pos(text("value"))` | `epubReader.loadPosition("value")` |
+| `epub_reader_show_toc` | Statement | SEL(input_value) | `epub_reader_show_toc(math_number(0))` | `epubShowToc(1);` |
+
+## Parameter Options
+
+| Parameter | Values | Description |
+|-----------|--------|-------------|
+| SIZE | 16, 24, 32 | epub_reader_load_font_size |
 
 ## ABS Examples
 

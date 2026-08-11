@@ -68,14 +68,12 @@ function buildABSFormat(block, args0) {
   if (!args0 || args0.length === 0) return `\`${block.type}()\``;
   
   const params = [];
-  const stmtSlots = [];
   
   for (const arg of args0) {
     if (!arg.name) continue;
     if (arg.type === 'input_dummy' || arg.type === 'field_image' || arg.type === 'field_label' || arg.type === 'field_label_serializable') continue;
 
     if (arg.type === 'input_statement') {
-      stmtSlots.push(arg.name);
       continue;
     }
 
@@ -94,7 +92,7 @@ function buildABSFormat(block, args0) {
         }
         break;
       case 'field_variable':
-        params.push(`variables_get($${arg.variable || arg.name.toLowerCase()})`);
+        params.push(`$${arg.variable || arg.name.toLowerCase()}`);
         break;
       case 'field_checkbox':
         params.push(arg.checked !== false ? 'TRUE' : 'FALSE');
@@ -137,14 +135,10 @@ function buildABSFormat(block, args0) {
     }
   }
 
-  let abs = `\`${block.type}(${params.join(', ')})\``;
-  
-  // Append statement slots
-  for (const slot of stmtSlots) {
-    abs += ` @${slot}: ...`;
-  }
-  
-  return abs;
+  // The table contains a single-line executable call. Statement slot names
+  // remain documented in the Parameters column; children belong on following
+  // indented lines and must never be represented by an ellipsis placeholder.
+  return `\`${block.type}(${params.join(', ')})\``;
 }
 
 /**
@@ -376,7 +370,7 @@ function generateReadmeAI(pkg, blocks, generatorContent, libName) {
   // Notes
   md += `\n## Notes\n\n`;
   if (varCreators.length > 0) {
-    md += `1. **Variable Creation**: \`${varCreators[0].block.type}("varName", ...)\` creates variable \`$varName\`; reference with \`variables_get($varName)\`\n`;
+    md += `1. **Variable Creation**: \`${varCreators[0].block.type}\` creates \`$varName\`. Use \`$varName\` in field_variable slots; input_value slots also accept the explicit \`variables_get($varName)\` block.\n`;
     md += `2. **Initialization**: Place init blocks inside \`arduino_setup()\`\n`;
   } else {
     md += `1. **Initialization**: Place init/setup blocks inside \`arduino_setup()\`\n`;
@@ -436,7 +430,7 @@ function processLibrary(libDir, libName) {
   return true;
 }
 
-function main() {
+function legacyMain() {
   const dirs = fs.readdirSync(ROOT, { withFileTypes: true })
     .filter(d => d.isDirectory() && !d.name.startsWith('.') && !SKIP.has(d.name));
   
@@ -465,4 +459,17 @@ function main() {
   console.log(`Generated: ${generated}, Skipped: ${skipped}`);
 }
 
-main();
+if (require.main === module) {
+  console.error(
+    'gen-readme-ai.js is disabled because its heuristic output is not an executable ABS contract. ' +
+    'Run npm run readme:check and use a reviewed candidate workflow instead.'
+  );
+  process.exitCode = 2;
+}
+
+module.exports = {
+  buildABSFormat,
+  generateReadme,
+  generateReadmeAI,
+  legacyMain
+};

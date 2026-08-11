@@ -9,21 +9,21 @@ Use one serial initializer first, then `tjc_clear_startup`. Add screen-control b
 
 ## Block Definitions
 
-| Block Type | Connection | Parameters (args0 order) | ABS Format | Generated Code / Use |
+| Block Type | Connection | Parameters (block.json order) | ABS Format | Generated Code |
 |---|---|---|---|---|
-| `tjc_begin_hardware` | Statement | SERIAL(dropdown), SPEED(dropdown) | `tjc_begin_hardware(Serial, 115200)` | Adds `Serial.begin(115200)` in setup. Use a spare hardware UART on Mega/ESP boards when USB serial is needed for debugging. |
-| `tjc_begin_software` | Statement | VAR(field_input), SPEED(dropdown), RX(dropdown), TX(dropdown) | `tjc_begin_software("TJCSerial", 9600, 8, 9)` | Adds `SoftwareSerial TJCSerial(8, 9)` and `TJCSerial.begin(9600)`. Recommended for UNO/Nano; keep the speed conservative. |
-| `tjc_clear_startup` | Statement | SERIAL(dropdown) | `tjc_clear_startup(Serial)` | Drains currently buffered bytes. Place immediately after initialization to discard the normal `88 FF FF FF` startup frame. |
-| `tjc_set_brightness` | Statement | SERIAL(dropdown), VALUE(input_value) | `tjc_set_brightness(Serial, math_number(80))` | Sends `dim=80`. Runtime range is normally 0-100; it does not persist to flash. |
-| `tjc_page` | Statement | SERIAL(dropdown), PAGE(input_value) | `tjc_page(Serial, text("main"))` | Sends `page main`. PAGE may be a page name or numeric page ID. |
-| `tjc_set_variable` | Statement | TARGET(field_input), VALUE(input_value) | `tjc_set_variable("sys0", math_number(1))` | Sends `sys0=1`; text becomes `name="text"` automatically. TARGET is a TJC variable name, not an Arduino variable. |
-| `tjc_set_property` | Statement | SERIAL(dropdown), COMPONENT(field_input), PROPERTY(dropdown), VALUE(input_value) | `tjc_set_property(Serial, "p0", pic, math_number(2))` | Sends `p0.pic=2`. The serial selector is first to make the target UART explicit. Common choices: `txt` text, `val` numeric value, `pic` picture ID, `vis` visibility, `tsw` touch enable, `bco/pco` colors, `font`, `x/y/w/h`. |
-| `tjc_send_command` | Statement | COMMAND(input_value), SERIAL(dropdown) | `tjc_send_command(text("ref t0"), Serial)` | Sends any raw TJC command and appends three `0xFF` bytes. Do not append terminators yourself. |
-| `tjc_set_bkcmd` | Statement | SERIAL(dropdown), MODE(dropdown) | `tjc_set_bkcmd(Serial, 2)` | Sends `bkcmd=2`: 0 none, 1 success+error, 2 errors only, 3 all. Parsing replies requires the parser block too. |
-| `tjc_enable_frame_parser` | Statement | SERIAL(dropdown) | `tjc_enable_frame_parser(Serial)` | Adds a loop reader that splits frames at `FF FF FF`; required before frame events/type/available. |
-| `tjc_frame_event` | Hat | TYPE(dropdown), SERIAL(dropdown), HANDLER(statement) | `tjc_frame_event(65, Serial) @HANDLER:` | Runs HANDLER when a matching frame arrives. Types: 65 touch, 66 page ID, 67 coordinates, 70 string, 71 number, 88 startup, `ANY`. |
-| `tjc_frame_type` | Value (Number) | SERIAL(dropdown) | `tjc_frame_type(Serial)` | Returns the first byte of the last complete frame, for example 65 or 71. Returns 0 before the first frame. |
-| `tjc_frame_available` | Value (Boolean) | SERIAL(dropdown) | `tjc_frame_available(Serial)` | True after a complete terminated frame is received. Use in an `if` condition before consuming frame-dependent logic. |
+| `tjc_begin_hardware` | Statement | SERIAL(dropdown), SPEED(dropdown) | `tjc_begin_hardware(Serial, 115200)` | `SERIAL.begin(SPEED);` |
+| `tjc_begin_software` | Statement | VAR(field_input), SPEED(dropdown), RX(dropdown), TX(dropdown) | `tjc_begin_software("TJCSerial", 9600, 8, 9)` | `SoftwareSerial 淘晶驰Serial(RX, TX); ↵ 淘晶驰Serial.begin(SPEED);` |
+| `tjc_clear_startup` | Statement | SERIAL(dropdown) | `tjc_clear_startup(Serial)` | `while (SERIAL.available() > 0) { SERIAL.read(); }` |
+| `tjc_set_brightness` | Statement | SERIAL(dropdown), VALUE(input_value) | `tjc_set_brightness(Serial, math_number(80))` | `tjc_send_command(SERIAL, String(String("dim=") + String(1)));` |
+| `tjc_page` | Statement | SERIAL(dropdown), PAGE(input_value) | `tjc_page(Serial, text("main"))` | `tjc_send_command(SERIAL, String(String("page ") + String("value")));` |
+| `tjc_set_variable` | Statement | TARGET(field_input), VALUE(input_value) | `tjc_set_variable("sys0", math_number(1))` | `tjc_send_command(Serial, String(String("sys0=\"") + String("value") + String("\"")));` |
+| `tjc_set_property` | Statement | SERIAL(dropdown), COMPONENT(field_input), PROPERTY(dropdown), VALUE(input_value) | `tjc_set_property(Serial, "p0", pic, math_number(2))` | `tjc_send_command(SERIAL, String(String("p0.txt=\"") + String("value") + String("\"")));` |
+| `tjc_send_command` | Statement | COMMAND(input_value), SERIAL(dropdown) | `tjc_send_command(text("ref t0"), Serial)` | `tjc_send_command(SERIAL, String("value"));` |
+| `tjc_set_bkcmd` | Statement | SERIAL(dropdown), MODE(dropdown) | `tjc_set_bkcmd(Serial, 2)` | `tjc_send_command(SERIAL, String(String("bkcmd=") + String(0)));` |
+| `tjc_enable_frame_parser` | Statement | SERIAL(dropdown) | `tjc_enable_frame_parser(Serial)` | `SERIAL.begin(9600); ↵ bool tjc_SERIAL_frame_ready = false; ↵ uint8_t tjc_SERIAL_frame_type = 0; ↵ uint8_t tjc_SERIAL_frame_payload[64]; ↵ size_t tjc_SERIAL_frame_len = 0; ↵ String tjc_SERIAL_rx_buffer; ↵ tjc_parser_SERIAL` |
+| `tjc_frame_event` | Hat | TYPE(dropdown), SERIAL(dropdown), HANDLER(input_statement) | `tjc_frame_event(65, Serial)` | `SERIAL.begin(9600); ↵ bool tjc_SERIAL_frame_ready = false; ↵ uint8_t tjc_SERIAL_frame_type = 0; ↵ uint8_t tjc_SERIAL_frame_payload[64]; ↵ size_t tjc_SERIAL_frame_len = 0; ↵ String tjc_SERIAL_rx_buffer; ↵ tjc_parser_SERIAL ↵ tjc_event_SERIAL_65_generator-coverage-tjc_frame_event` |
+| `tjc_frame_type` | Value (Number) | SERIAL(dropdown) | `tjc_frame_type(Serial)` | `tjc_SERIAL_frame_type` |
+| `tjc_frame_available` | Value (Boolean) | SERIAL(dropdown) | `tjc_frame_available(Serial)` | `tjc_SERIAL_frame_ready` |
 
 ## Parameter Options
 
@@ -63,4 +63,11 @@ arduino_loop()
 - `tjc_clear_startup` must run before parsing, and parser blocks must follow serial initialization.
 - Frequent brightness changes should use `dim`; persistent `dims` writes can wear flash.
 - For Chinese text, use a UTF-8 project and a screen font containing the required glyphs.
+## ABS Examples
 
+### Minimal Executable Usage
+
+```abs
+arduino_setup()
+    tjc_begin_hardware(Serial, 115200)
+```

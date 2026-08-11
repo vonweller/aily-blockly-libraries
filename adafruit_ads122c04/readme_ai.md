@@ -11,12 +11,12 @@ Blocks for the ADS122C04 24-bit delta-sigma I2C ADC.
 
 ## Block Definitions
 
-| Block Type | Connection | Parameters (args0 order) | ABS Format | Generated Code |
+| Block Type | Connection | Parameters (block.json order) | ABS Format | Generated Code |
 |------------|------------|--------------------------|------------|----------------|
-| `adafruit_ads122c04_init` | Statement | VAR(field_input), WIRE(field_dropdown), ADDR(field_dropdown) | `adafruit_ads122c04_init(VAR, WIRE, ADDR)` | Dynamic code |
-| `adafruit_ads122c04_read` | Value | VAR(field_variable), DATA(field_dropdown) | `adafruit_ads122c04_read(VAR, DATA)` | Dynamic code |
-| `adafruit_ads122c04_action` | Statement | VAR(field_variable), ACTION(field_dropdown) | `adafruit_ads122c04_action(VAR, ACTION)` | Dynamic code |
-| `adafruit_ads122c04_set` | Statement | VAR(field_variable), SETTING(field_dropdown), VALUE(input_value) | `adafruit_ads122c04_set(VAR, SETTING, VALUE)` | Dynamic code |
+| `adafruit_ads122c04_init` | Statement | VAR(field_input), WIRE(dropdown), ADDR(dropdown) | `adafruit_ads122c04_init("ads122c04", WIRE, "0x40")` | `Adafruit_ADS122C04 ads122c04; ↵ WIRE.begin(); ↵ while (!(ads122c04.begin(0x40, &WIRE))) { delay(100); }` |
+| `adafruit_ads122c04_read` | Value | VAR(field_variable), DATA(dropdown) | `adafruit_ads122c04_read($ads122c04, raw)` | `ads122c04.readData()` |
+| `adafruit_ads122c04_action` | Statement | VAR(field_variable), ACTION(dropdown) | `adafruit_ads122c04_action($ads122c04, start)` | `ads122c04.startSync();` |
+| `adafruit_ads122c04_set` | Statement | VAR(field_variable), SETTING(dropdown), VALUE(input_value) | `adafruit_ads122c04_set($ads122c04, gain, math_number(0))` | `ads122c04.setGain((ads122c04_gain_t)constrain((int)1, 0, 7));` |
 
 ## Parameter Options
 
@@ -34,7 +34,7 @@ Blocks for the ADS122C04 24-bit delta-sigma I2C ADC.
 
 ```
 arduino_setup()
-    adafruit_ads122c04_init("ads122c04")
+    adafruit_ads122c04_init("ads122c04", WIRE, "0x40")
 ```
 
 ## Notes

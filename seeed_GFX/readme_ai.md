@@ -17,45 +17,45 @@ The Seeed GFX animation blocks are an explicit exception for short, self-contain
 
 ## Block Definitions
 
-| Block Type | Connection | Parameters (args0 order) | ABS Format | Generated Code |
+| Block Type | Connection | Parameters (block.json order) | ABS Format | Generated Code |
 |------------|------------|--------------------------|------------|----------------|
 | `seeed_gfx_create_tft` | Statement | VAR(field_input) | `seeed_gfx_create_tft("tft")` | `TFT_eSPI tft = TFT_eSPI();` |
-| `seeed_gfx_init` | Statement | VAR(field_input), MODEL(dropdown), FREQUENCY(dropdown) | `seeed_gfx_init("tft", 501, 20000000)` | `#define BOARD_SCREEN_COMBO ...; TFT_eSPI tft = TFT_eSPI(); tft.init();` |
-| `seeed_gfx_fill_screen` | Statement | VAR(field_variable), COLOR(input_value) | `seeed_gfx_fill_screen($tft, seeed_gfx_color(TFT_BLACK))` | `tft.fillScreen(...);` |
-| `seeed_gfx_set_rotation` | Statement | VAR(field_variable), ROTATION(dropdown) | `seeed_gfx_set_rotation($tft, 3)` | `tft.setRotation(...);` |
-| `seeed_gfx_draw_pixel` | Statement | VAR(field_variable), X(input_value), Y(input_value), COLOR(input_value) | `seeed_gfx_draw_pixel($tft, math_number(10), math_number(10), seeed_gfx_color(TFT_WHITE))` | `tft.drawPixel(...);` |
-| `seeed_gfx_draw_line` | Statement | VAR(field_variable), X1(input_value), Y1(input_value), X2(input_value), Y2(input_value), COLOR(input_value) | `seeed_gfx_draw_line($tft, math_number(0), math_number(0), math_number(50), math_number(50), seeed_gfx_color(TFT_RED))` | `tft.drawLine(...);` |
-| `seeed_gfx_draw_rect` | Statement | VAR(field_variable), X(input_value), Y(input_value), WIDTH(input_value), HEIGHT(input_value), COLOR(input_value) | `seeed_gfx_draw_rect($tft, math_number(20), math_number(20), math_number(80), math_number(40), seeed_gfx_color(TFT_GREEN))` | `tft.drawRect(...);` |
-| `seeed_gfx_fill_rect` | Statement | VAR(field_variable), X(input_value), Y(input_value), WIDTH(input_value), HEIGHT(input_value), COLOR(input_value) | `seeed_gfx_fill_rect($tft, math_number(20), math_number(20), math_number(80), math_number(40), seeed_gfx_color(TFT_BLUE))` | `tft.fillRect(...);` |
-| `seeed_gfx_fill_rect_v_gradient` | Statement | VAR(field_variable), X(input_value), Y(input_value), WIDTH(input_value), HEIGHT(input_value), COLOR1(input_value), COLOR2(input_value) | `seeed_gfx_fill_rect_v_gradient($tft, math_number(20), math_number(20), math_number(80), math_number(40), seeed_gfx_color(TFT_RED), seeed_gfx_color(TFT_BLUE))` | `tft.fillRectVGradient(...);` |
-| `seeed_gfx_fill_rect_h_gradient` | Statement | VAR(field_variable), X(input_value), Y(input_value), WIDTH(input_value), HEIGHT(input_value), COLOR1(input_value), COLOR2(input_value) | `seeed_gfx_fill_rect_h_gradient($tft, math_number(20), math_number(20), math_number(80), math_number(40), seeed_gfx_color(TFT_GREEN), seeed_gfx_color(TFT_YELLOW))` | `tft.fillRectHGradient(...);` |
-| `seeed_gfx_draw_round_rect` | Statement | VAR(field_variable), X(input_value), Y(input_value), WIDTH(input_value), HEIGHT(input_value), RADIUS(input_value), COLOR(input_value) | `seeed_gfx_draw_round_rect($tft, math_number(10), math_number(10), math_number(100), math_number(50), math_number(8), seeed_gfx_color(TFT_ORANGE))` | `tft.drawRoundRect(...);` |
-| `seeed_gfx_fill_round_rect` | Statement | VAR(field_variable), X(input_value), Y(input_value), WIDTH(input_value), HEIGHT(input_value), RADIUS(input_value), COLOR(input_value) | `seeed_gfx_fill_round_rect($tft, math_number(10), math_number(10), math_number(100), math_number(50), math_number(8), seeed_gfx_color(TFT_CYAN))` | `tft.fillRoundRect(...);` |
-| `seeed_gfx_draw_circle` | Statement | VAR(field_variable), X(input_value), Y(input_value), RADIUS(input_value), COLOR(input_value) | `seeed_gfx_draw_circle($tft, math_number(60), math_number(60), math_number(20), seeed_gfx_color(TFT_YELLOW))` | `tft.drawCircle(...);` |
-| `seeed_gfx_fill_circle` | Statement | VAR(field_variable), X(input_value), Y(input_value), RADIUS(input_value), COLOR(input_value) | `seeed_gfx_fill_circle($tft, math_number(60), math_number(60), math_number(20), seeed_gfx_color(TFT_MAGENTA))` | `tft.fillCircle(...);` |
-| `seeed_gfx_draw_triangle` | Statement | VAR(field_variable), X1(input_value), Y1(input_value), X2(input_value), Y2(input_value), X3(input_value), Y3(input_value), COLOR(input_value) | `seeed_gfx_draw_triangle($tft, math_number(160), math_number(70), math_number(110), math_number(170), math_number(210), math_number(170), seeed_gfx_color(TFT_RED))` | `tft.drawTriangle(...);` |
-| `seeed_gfx_fill_triangle` | Statement | VAR(field_variable), X1(input_value), Y1(input_value), X2(input_value), Y2(input_value), X3(input_value), Y3(input_value), COLOR(input_value) | `seeed_gfx_fill_triangle($tft, math_number(160), math_number(70), math_number(110), math_number(170), math_number(210), math_number(170), seeed_gfx_color(TFT_CYAN))` | `tft.fillTriangle(...);` |
-| `seeed_gfx_draw_ellipse` | Statement | VAR(field_variable), X(input_value), Y(input_value), RX(input_value), RY(input_value), COLOR(input_value) | `seeed_gfx_draw_ellipse($tft, math_number(120), math_number(80), math_number(50), math_number(30), seeed_gfx_color(TFT_WHITE))` | `tft.drawEllipse(...);` |
-| `seeed_gfx_fill_ellipse` | Statement | VAR(field_variable), X(input_value), Y(input_value), RX(input_value), RY(input_value), COLOR(input_value) | `seeed_gfx_fill_ellipse($tft, math_number(120), math_number(80), math_number(40), math_number(24), seeed_gfx_color(TFT_ORANGE))` | `tft.fillEllipse(...);` |
-| `seeed_gfx_set_text_color` | Statement | VAR(field_variable), COLOR(input_value), BGCOLOR(input_value) | `seeed_gfx_set_text_color($tft, seeed_gfx_color(TFT_WHITE), seeed_gfx_color(TFT_BLACK))` | `tft.setTextColor(...);` |
-| `seeed_gfx_set_text_size` | Statement | VAR(field_variable), SIZE(dropdown) | `seeed_gfx_set_text_size($tft, 2)` | `tft.setTextSize(...);` |
-| `seeed_gfx_set_cursor` | Statement | VAR(field_variable), X(input_value), Y(input_value) | `seeed_gfx_set_cursor($tft, math_number(0), math_number(0))` | `tft.setCursor(...);` |
-| `seeed_gfx_print` | Statement | VAR(field_variable), TEXT(input_value) | `seeed_gfx_print($tft, text("hello"))` | `tft.print(...);` |
-| `seeed_gfx_draw_string` | Statement | VAR(field_variable), TEXT(input_value), X(input_value), Y(input_value), FONT(dropdown) | `seeed_gfx_draw_string($tft, text("hello"), math_number(10), math_number(10), 2)` | `tft.drawString(...);` |
-| `seeed_gfx_image` | Value (SeeedGfxImage) | CUSTOM_IMAGE(field_tftespi_image) | `seeed_gfx_image()` | RGB565 or RGB332 `PROGMEM` pixel array |
-| `seeed_gfx_draw_image` | Statement | VAR(field_variable), X(input_value), Y(input_value), IMAGE(input_value) | `seeed_gfx_draw_image($tft, math_number(0), math_number(0), seeed_gfx_image())` | Draw image with matching `pushImage()` overload |
-| `seeed_gfx_animation` | Value | CUSTOM_ANIMATION(field_tftespi_animation) | `seeed_gfx_animation()` | RGB565 or RGB332 `PROGMEM` frame arrays |
-| `seeed_gfx_play_animation` | Statement | VAR(field_variable), X(input_value), Y(input_value), ANIMATION(input_value), PLAY_MODE(dropdown), LOOP(field_checkbox) | `seeed_gfx_play_animation($tft, math_number(0), math_number(0), seeed_gfx_animation(), NON_BLOCKING, TRUE)` | Timed `pushImage()` playback |
-| `seeed_gfx_play_sd_video` | Statement | VAR(field_variable), FILENAME(input_value String), BUFFER_KB(input_value Number) | `seeed_gfx_play_sd_video($tft, text("/video.rgb565v"), math_number(15))` | Validated AILY playback; Wio Terminal RGB565 uses two payload buffers for DMA when available |
-| `seeed_gfx_draw_animation_frame` | Statement | VAR(field_variable), X(input_value), Y(input_value), ANIMATION(input_value), FRAME(input_value) | `seeed_gfx_draw_animation_frame($tft, math_number(0), math_number(0), seeed_gfx_animation(), variables_get(frame))` | Clamped selected-frame drawing |
-| `seeed_gfx_animation_frame_count` | Value | ANIMATION(input_value) | `seeed_gfx_animation_frame_count(seeed_gfx_animation())` | Generated frame-count constant |
-| `seeed_gfx_create_sprite` | Statement | WIDTH(input_value), HEIGHT(input_value), VAR(field_input) | `seeed_gfx_create_sprite(math_number(80), math_number(40), "sprite")` | `TFT_eSprite sprite(&tft); sprite.createSprite(...);` |
-| `seeed_gfx_epaper_begin` | Statement | VAR(field_input), MODEL(dropdown) | `seeed_gfx_epaper_begin("epaper", 502)` | `#define BOARD_SCREEN_COMBO ...; EPaper epaper; epaper.begin();` |
+| `seeed_gfx_init` | Statement | VAR(field_input), MODEL(dropdown), FREQUENCY(dropdown) | `seeed_gfx_init("tft", 501, 20000000)` | `tft.init();` |
+| `seeed_gfx_fill_screen` | Statement | VAR(field_variable), COLOR(input_value) | `seeed_gfx_fill_screen($tft, seeed_gfx_color(TFT_BLACK))` | `tft.fillScreen(1);` |
+| `seeed_gfx_set_rotation` | Statement | VAR(field_variable), ROTATION(dropdown) | `seeed_gfx_set_rotation($tft, 3)` | `tft.setRotation(0);` |
+| `seeed_gfx_draw_pixel` | Statement | VAR(field_variable), X(input_value), Y(input_value), COLOR(input_value) | `seeed_gfx_draw_pixel($tft, math_number(10), math_number(10), seeed_gfx_color(TFT_WHITE))` | `tft.drawPixel(1, 1, 1);` |
+| `seeed_gfx_draw_line` | Statement | VAR(field_variable), X1(input_value), Y1(input_value), X2(input_value), Y2(input_value), COLOR(input_value) | `seeed_gfx_draw_line($tft, math_number(0), math_number(0), math_number(50), math_number(50), seeed_gfx_color(TFT_RED))` | `tft.drawLine(1, 1, 1, 1, 1);` |
+| `seeed_gfx_draw_rect` | Statement | VAR(field_variable), X(input_value), Y(input_value), WIDTH(input_value), HEIGHT(input_value), COLOR(input_value) | `seeed_gfx_draw_rect($tft, math_number(20), math_number(20), math_number(80), math_number(40), seeed_gfx_color(TFT_GREEN))` | `tft.drawRect(1, 1, 1, 1, 1);` |
+| `seeed_gfx_fill_rect` | Statement | VAR(field_variable), X(input_value), Y(input_value), WIDTH(input_value), HEIGHT(input_value), COLOR(input_value) | `seeed_gfx_fill_rect($tft, math_number(20), math_number(20), math_number(80), math_number(40), seeed_gfx_color(TFT_BLUE))` | `tft.fillRect(1, 1, 1, 1, 1);` |
+| `seeed_gfx_fill_rect_v_gradient` | Statement | VAR(field_variable), X(input_value), Y(input_value), WIDTH(input_value), HEIGHT(input_value), COLOR1(input_value), COLOR2(input_value) | `seeed_gfx_fill_rect_v_gradient($tft, math_number(20), math_number(20), math_number(80), math_number(40), seeed_gfx_color(TFT_RED), seeed_gfx_color(TFT_BLUE))` | `tft.fillRectVGradient(1, 1, 1, 1, 1, 1);` |
+| `seeed_gfx_fill_rect_h_gradient` | Statement | VAR(field_variable), X(input_value), Y(input_value), WIDTH(input_value), HEIGHT(input_value), COLOR1(input_value), COLOR2(input_value) | `seeed_gfx_fill_rect_h_gradient($tft, math_number(20), math_number(20), math_number(80), math_number(40), seeed_gfx_color(TFT_GREEN), seeed_gfx_color(TFT_YELLOW))` | `tft.fillRectHGradient(1, 1, 1, 1, 1, 1);` |
+| `seeed_gfx_draw_round_rect` | Statement | VAR(field_variable), X(input_value), Y(input_value), WIDTH(input_value), HEIGHT(input_value), RADIUS(input_value), COLOR(input_value) | `seeed_gfx_draw_round_rect($tft, math_number(10), math_number(10), math_number(100), math_number(50), math_number(8), seeed_gfx_color(TFT_ORANGE))` | `tft.drawRoundRect(1, 1, 1, 1, 1, 1);` |
+| `seeed_gfx_fill_round_rect` | Statement | VAR(field_variable), X(input_value), Y(input_value), WIDTH(input_value), HEIGHT(input_value), RADIUS(input_value), COLOR(input_value) | `seeed_gfx_fill_round_rect($tft, math_number(10), math_number(10), math_number(100), math_number(50), math_number(8), seeed_gfx_color(TFT_CYAN))` | `tft.fillRoundRect(1, 1, 1, 1, 1, 1);` |
+| `seeed_gfx_draw_circle` | Statement | VAR(field_variable), X(input_value), Y(input_value), RADIUS(input_value), COLOR(input_value) | `seeed_gfx_draw_circle($tft, math_number(60), math_number(60), math_number(20), seeed_gfx_color(TFT_YELLOW))` | `tft.drawCircle(1, 1, 1, 1);` |
+| `seeed_gfx_fill_circle` | Statement | VAR(field_variable), X(input_value), Y(input_value), RADIUS(input_value), COLOR(input_value) | `seeed_gfx_fill_circle($tft, math_number(60), math_number(60), math_number(20), seeed_gfx_color(TFT_MAGENTA))` | `tft.fillCircle(1, 1, 1, 1);` |
+| `seeed_gfx_draw_triangle` | Statement | VAR(field_variable), X1(input_value), Y1(input_value), X2(input_value), Y2(input_value), X3(input_value), Y3(input_value), COLOR(input_value) | `seeed_gfx_draw_triangle($tft, math_number(160), math_number(70), math_number(110), math_number(170), math_number(210), math_number(170), seeed_gfx_color(TFT_RED))` | `tft.drawTriangle(1, 1, 1, 1, 1, 1, 1);` |
+| `seeed_gfx_fill_triangle` | Statement | VAR(field_variable), X1(input_value), Y1(input_value), X2(input_value), Y2(input_value), X3(input_value), Y3(input_value), COLOR(input_value) | `seeed_gfx_fill_triangle($tft, math_number(160), math_number(70), math_number(110), math_number(170), math_number(210), math_number(170), seeed_gfx_color(TFT_CYAN))` | `tft.fillTriangle(1, 1, 1, 1, 1, 1, 1);` |
+| `seeed_gfx_draw_ellipse` | Statement | VAR(field_variable), X(input_value), Y(input_value), RX(input_value), RY(input_value), COLOR(input_value) | `seeed_gfx_draw_ellipse($tft, math_number(120), math_number(80), math_number(50), math_number(30), seeed_gfx_color(TFT_WHITE))` | `tft.drawEllipse(1, 1, 1, 1, 1);` |
+| `seeed_gfx_fill_ellipse` | Statement | VAR(field_variable), X(input_value), Y(input_value), RX(input_value), RY(input_value), COLOR(input_value) | `seeed_gfx_fill_ellipse($tft, math_number(120), math_number(80), math_number(40), math_number(24), seeed_gfx_color(TFT_ORANGE))` | `tft.fillEllipse(1, 1, 1, 1, 1);` |
+| `seeed_gfx_set_text_color` | Statement | VAR(field_variable), COLOR(input_value), BGCOLOR(input_value) | `seeed_gfx_set_text_color($tft, seeed_gfx_color(TFT_WHITE), seeed_gfx_color(TFT_BLACK))` | `tft.setTextColor(1, 1);` |
+| `seeed_gfx_set_text_size` | Statement | VAR(field_variable), SIZE(dropdown) | `seeed_gfx_set_text_size($tft, 2)` | `tft.setTextSize(1);` |
+| `seeed_gfx_set_cursor` | Statement | VAR(field_variable), X(input_value), Y(input_value) | `seeed_gfx_set_cursor($tft, math_number(0), math_number(0))` | `tft.setCursor(1, 1);` |
+| `seeed_gfx_print` | Statement | VAR(field_variable), TEXT(input_value) | `seeed_gfx_print($tft, text("hello"))` | `tft.print("value");` |
+| `seeed_gfx_draw_string` | Statement | VAR(field_variable), TEXT(input_value), X(input_value), Y(input_value), FONT(dropdown) | `seeed_gfx_draw_string($tft, text("hello"), math_number(10), math_number(10), 2)` | `tft.drawString("value", 1, 1, 1);` |
+| `seeed_gfx_image` | Value (SeeedGfxImage) | CUSTOM_IMAGE(field_tftespi_image) | `seeed_gfx_image({"schemaVersion":1,"format":"rgb565","encoding":"rgb565-be","width":160,"height":120,"fps":10,"maxFrames":1,"frameCount":0,"frames":null})` | `#include <TFT_eSPI.h> ↵ #include <SPI.h>` |
+| `seeed_gfx_draw_image` | Statement | VAR(field_variable), X(input_value), Y(input_value), IMAGE(input_value) | `seeed_gfx_draw_image($tft, math_number(0), math_number(0), seeed_gfx_image())` | `// No Seeed GFX image data` |
+| `seeed_gfx_animation` | Value | CUSTOM_ANIMATION(field_tftespi_animation) | `seeed_gfx_animation({"schemaVersion":1,"format":"rgb565","encoding":"rgb565-be","width":160,"height":120,"fps":10,"maxFrames":10,"frameCount":0,"frames":null})` | `#include <TFT_eSPI.h> ↵ #include <SPI.h>` |
+| `seeed_gfx_play_animation` | Statement | VAR(field_variable), X(input_value), Y(input_value), ANIMATION(input_value), PLAY_MODE(dropdown), LOOP(field_checkbox) | `seeed_gfx_play_animation($tft, math_number(0), math_number(0), seeed_gfx_animation(), NON_BLOCKING, TRUE)` | `// No Seeed GFX animation data` |
+| `seeed_gfx_play_sd_video` | Statement | VAR(field_variable), FILENAME(input_value), BUFFER_KB(input_value) | `seeed_gfx_play_sd_video($tft, text("/video.rgb565v"), math_number(15))` | `seeedGfxPlaySdVideo(tft, String("value"), (int32_t)(1));` |
+| `seeed_gfx_draw_animation_frame` | Statement | VAR(field_variable), X(input_value), Y(input_value), ANIMATION(input_value), FRAME(input_value) | `seeed_gfx_draw_animation_frame($tft, math_number(0), math_number(0), seeed_gfx_animation(), variables_get(frame))` | `// No Seeed GFX animation data` |
+| `seeed_gfx_animation_frame_count` | Value | ANIMATION(input_value) | `seeed_gfx_animation_frame_count(seeed_gfx_animation())` | `0` |
+| `seeed_gfx_create_sprite` | Statement | WIDTH(input_value), HEIGHT(input_value), VAR(field_input) | `seeed_gfx_create_sprite(math_number(80), math_number(40), "sprite")` | `sprite.createSprite(1, 1);` |
+| `seeed_gfx_epaper_begin` | Statement | VAR(field_input), MODEL(dropdown) | `seeed_gfx_epaper_begin("epaper", 502)` | `epaper.begin();` |
 | `seeed_gfx_epaper_update` | Statement | VAR(field_variable) | `seeed_gfx_epaper_update($epaper)` | `epaper.update();` |
 | `seeed_gfx_epaper_sleep` | Statement | VAR(field_variable) | `seeed_gfx_epaper_sleep($epaper)` | `epaper.sleep();` |
 | `seeed_gfx_color` | Value | COLOR(dropdown) | `seeed_gfx_color(TFT_WHITE)` | `TFT_WHITE` |
 | `seeed_gfx_epaper_wake` | Statement | VAR(field_variable) | `seeed_gfx_epaper_wake($epaper)` | `epaper.wake();` |
-| `seeed_gfx_rgb565` | Value | VAR(field_variable), COLOR(field_colour_hsv_sliders) | `seeed_gfx_rgb565($tft, #00FF88)` | `tft.color565(r, g, b)` |
+| `seeed_gfx_rgb565` | Value | VAR(field_variable), COLOR(field_colour_hsv_sliders) | `seeed_gfx_rgb565($tft, #00FF88)` | `tft.color565(255, 255, 255)` |
 | `seeed_gfx_get_width` | Value | VAR(field_variable) | `seeed_gfx_get_width($tft)` | `tft.width()` |
 | `seeed_gfx_get_height` | Value | VAR(field_variable) | `seeed_gfx_get_height($tft)` | `tft.height()` |
 
@@ -131,7 +131,7 @@ The Seeed GFX animation blocks are an explicit exception for short, self-contain
 ### Recipe 1: Seeed XIAO Round Display 纯绘图
 ```
 arduino_setup()
-    seeed_gfx_init("tft", 501)
+    seeed_gfx_init("tft", 500, 10000000)
     seeed_gfx_set_rotation($tft, 3)
     seeed_gfx_fill_screen($tft, seeed_gfx_color(TFT_BLACK))
     seeed_gfx_set_text_color($tft, seeed_gfx_color(TFT_WHITE), seeed_gfx_color(TFT_BLACK))
@@ -147,7 +147,7 @@ arduino_setup()
     seeed_gfx_init("tft", 501, 20000000)
 
 arduino_loop()
-    seeed_gfx_play_animation($tft, math_number(0), math_number(0), seeed_gfx_animation(), NON_BLOCKING, TRUE)
+    seeed_gfx_play_animation($tft, math_number(0), math_number(0), seeed_gfx_animation({"schemaVersion":1,"format":"rgb565","encoding":"rgb565-be","width":160,"height":120,"fps":10,"maxFrames":10,"frameCount":0,"frames":null}), NON_BLOCKING, TRUE)
 ```
 
 ### Recipe 3: 从 SD 卡播放 AILY 取模视频
@@ -162,7 +162,7 @@ arduino_loop()
 ### Recipe 4: Seeed GFX + LVGL 触摸界面
 ```
 arduino_setup()
-    seeed_gfx_init("tft", 501)
+    seeed_gfx_init("tft", 500, 10000000)
     chsc6x_setup("touch", Wire, math_number(46), io_pin_digi(D7), math_number(240), math_number(240), 3)
     lvgl_init(TFT_eSPI, math_number(240), math_number(240), LV_DISPLAY_ROTATION_270)
     lvgl_indev_create(global, "indev", LV_INDEV_TYPE_POINTER)
@@ -180,7 +180,7 @@ arduino_setup()
     lvgl_button_create(global, "btn", $screen)
     lvgl_obj_align($btn, LV_ALIGN_CENTER, math_number(0), math_number(15))
     lvgl_event_add_cb($btn, LV_EVENT_CLICKED)
-        variable_define_advanced(static, , "count", uint8_t)
+        variable_define_advanced(static, "", "count", uint8_t, math_number(0))
         variables_set($count, math_arithmetic(variables_get($count), ADD, math_number(1)))
         lvgl_obj_get_child("label", $btn, math_number(0))
         lvgl_label_set_text($label, text_join(text("Button: "), variables_get($count)))

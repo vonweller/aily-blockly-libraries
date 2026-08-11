@@ -48,7 +48,6 @@ Arduino.forBlock['adafruit_sgp40_read'] = function(block, generator) {
   var varName = adafruit_sgp40Variable(block);
   adafruit_sgp40EnsureExtras(generator, varName);
   var data = block.getFieldValue('DATA') || "raw";
-  var index = generator.valueToCode(block, 'INDEX', generator.ORDER_ATOMIC) || '0';
   var expressions = {
     "raw": String(varName) + ".measureRaw()",
     "voc_index": String(varName) + ".measureVocIndex()",

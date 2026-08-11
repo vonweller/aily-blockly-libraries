@@ -10,16 +10,16 @@ Attach ENC28J60, W5100 or W5500 Ethernet to the ESP8266 native lwIP stack.
 
 ## Block Definitions
 
-| Block Type | Connection | Parameters (args0 order) | ABS Format | Generated Code |
+| Block Type | Connection | Parameters (block.json order) | ABS Format | Generated Code |
 |---|---|---|---|---|
-| `esp8266_lwip_ethernet_create` | Statement | VAR(field_input), DRIVER(field_dropdown), CS(field_dropdown) | `esp8266_lwip_ethernet_create(VAR, DRIVER, CS)` | Dynamic code |
-| `esp8266_lwip_ethernet_begin_dhcp` | Value | VAR(field_variable) | `esp8266_lwip_ethernet_begin_dhcp(VAR)` | Dynamic code |
-| `esp8266_lwip_ethernet_begin_static` | Value | VAR(field_variable), IP(input_value), GATEWAY(input_value), MASK(input_value), DNS(input_value) | `esp8266_lwip_ethernet_begin_static(VAR, IP, GATEWAY, MASK, DNS)` | Dynamic code |
-| `esp8266_lwip_ethernet_connected` | Value | VAR(field_variable) | `esp8266_lwip_ethernet_connected(VAR)` | Dynamic code |
-| `esp8266_lwip_ethernet_local_ip` | Value | VAR(field_variable) | `esp8266_lwip_ethernet_local_ip(VAR)` | Dynamic code |
-| `esp8266_lwip_ethernet_linked` | Value | VAR(field_variable) | `esp8266_lwip_ethernet_linked(VAR)` | Dynamic code |
-| `esp8266_lwip_ethernet_link_detectable` | Value | VAR(field_variable) | `esp8266_lwip_ethernet_link_detectable(VAR)` | Dynamic code |
-| `esp8266_lwip_ethernet_set_default` | Statement | VAR(field_variable), ENABLE(field_dropdown) | `esp8266_lwip_ethernet_set_default(VAR, ENABLE)` | Dynamic code |
+| `esp8266_lwip_ethernet_create` | Statement | VAR(field_input), DRIVER(dropdown), CS(dropdown) | `esp8266_lwip_ethernet_create("eth", Wiznet5500lwIP, CS)` | `Wiznet5500lwIP eth(CS);` |
+| `esp8266_lwip_ethernet_begin_dhcp` | Value | VAR(field_variable) | `esp8266_lwip_ethernet_begin_dhcp($eth)` | `ethInitDHCP(eth)` |
+| `esp8266_lwip_ethernet_begin_static` | Value | VAR(field_variable), IP(input_value), GATEWAY(input_value), MASK(input_value), DNS(input_value) | `esp8266_lwip_ethernet_begin_static($eth, IP, GATEWAY, MASK, DNS)` | `ethInitStatic(eth, esp8266LwipParseIP(String("value")), esp8266LwipParseIP(String("value")), esp8266LwipParseIP(String("value")), esp8266LwipParseIP(String("value")))` |
+| `esp8266_lwip_ethernet_connected` | Value | VAR(field_variable) | `esp8266_lwip_ethernet_connected($eth)` | `eth.connected()` |
+| `esp8266_lwip_ethernet_local_ip` | Value | VAR(field_variable) | `esp8266_lwip_ethernet_local_ip($eth)` | `eth.localIP().toString()` |
+| `esp8266_lwip_ethernet_linked` | Value | VAR(field_variable) | `esp8266_lwip_ethernet_linked($eth)` | `eth.isLinked()` |
+| `esp8266_lwip_ethernet_link_detectable` | Value | VAR(field_variable) | `esp8266_lwip_ethernet_link_detectable($eth)` | `eth.isLinkDetectable()` |
+| `esp8266_lwip_ethernet_set_default` | Statement | VAR(field_variable), ENABLE(dropdown) | `esp8266_lwip_ethernet_set_default($eth, true)` | `eth.setDefault(true);` |
 
 ## Parameter Options
 
@@ -36,3 +36,11 @@ Use the initialization block first when one is provided.
 ## Notes
 
 All types use the `esp8266_` prefix. SDK sources are used directly; no `src.7z` is bundled.
+## ABS Examples
+
+### Minimal Executable Usage
+
+```abs
+arduino_setup()
+    esp8266_lwip_ethernet_create("eth", Wiznet5500lwIP, CS)
+```

@@ -11,12 +11,12 @@ Blocks for the PCF8574 quasi-bidirectional 8-bit I2C GPIO expander.
 
 ## Block Definitions
 
-| Block Type | Connection | Parameters (args0 order) | ABS Format | Generated Code |
+| Block Type | Connection | Parameters (block.json order) | ABS Format | Generated Code |
 |------------|------------|--------------------------|------------|----------------|
-| `adafruit_pcf8574_init` | Statement | VAR(field_input), WIRE(field_dropdown), ADDR(field_dropdown) | `adafruit_pcf8574_init(VAR, WIRE, ADDR)` | Dynamic code |
-| `adafruit_pcf8574_read` | Value | VAR(field_variable), DATA(field_dropdown), INDEX(input_value) | `adafruit_pcf8574_read(VAR, DATA, INDEX)` | Dynamic code |
-| `adafruit_pcf8574_action` | Statement | VAR(field_variable), ACTION(field_dropdown) | `adafruit_pcf8574_action(VAR, ACTION)` | Dynamic code |
-| `adafruit_pcf8574_write` | Statement | VAR(field_variable), INDEX(input_value), VALUE(input_value) | `adafruit_pcf8574_write(VAR, INDEX, VALUE)` | Dynamic code |
+| `adafruit_pcf8574_init` | Statement | VAR(field_input), WIRE(dropdown), ADDR(dropdown) | `adafruit_pcf8574_init("pcf8574", WIRE, "0x20")` | `Adafruit_PCF8574 pcf8574; ↵ WIRE.begin(); ↵ while (!(pcf8574.begin(0x20, &WIRE))) { delay(100); }` |
+| `adafruit_pcf8574_read` | Value | VAR(field_variable), DATA(dropdown), INDEX(input_value) | `adafruit_pcf8574_read($pcf8574, pin, math_number(0))` | `(pcf8574.pinMode((uint8_t)1, INPUT_PULLUP), pcf8574.digitalRead((uint8_t)1))` |
+| `adafruit_pcf8574_action` | Statement | VAR(field_variable), ACTION(dropdown) | `adafruit_pcf8574_action($pcf8574, all_low)` | `pcf8574.digitalWriteByte(0x00);` |
+| `adafruit_pcf8574_write` | Statement | VAR(field_variable), INDEX(input_value), VALUE(input_value) | `adafruit_pcf8574_write($pcf8574, INDEX, VALUE)` | `pcf8574.pinMode((uint8_t)1, OUTPUT); pcf8574.digitalWrite((uint8_t)1, (bool)1);` |
 
 ## Parameter Options
 
@@ -33,7 +33,7 @@ Blocks for the PCF8574 quasi-bidirectional 8-bit I2C GPIO expander.
 
 ```
 arduino_setup()
-    adafruit_pcf8574_init("pcf8574")
+    adafruit_pcf8574_init("pcf8574", WIRE, "0x20")
 ```
 
 ## Notes

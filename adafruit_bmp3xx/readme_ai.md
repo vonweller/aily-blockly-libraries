@@ -11,11 +11,11 @@ Blocks for BMP388/BMP390 temperature and barometric pressure sensors.
 
 ## Block Definitions
 
-| Block Type | Connection | Parameters (args0 order) | ABS Format | Generated Code |
+| Block Type | Connection | Parameters (block.json order) | ABS Format | Generated Code |
 |------------|------------|--------------------------|------------|----------------|
-| `adafruit_bmp3xx_init` | Statement | VAR(field_input), WIRE(field_dropdown), ADDR(field_dropdown) | `adafruit_bmp3xx_init(VAR, WIRE, ADDR)` | Dynamic code |
-| `adafruit_bmp3xx_read` | Value | VAR(field_variable), DATA(field_dropdown) | `adafruit_bmp3xx_read(VAR, DATA)` | Dynamic code |
-| `adafruit_bmp3xx_set` | Statement | VAR(field_variable), SETTING(field_dropdown), VALUE(input_value) | `adafruit_bmp3xx_set(VAR, SETTING, VALUE)` | Dynamic code |
+| `adafruit_bmp3xx_init` | Statement | VAR(field_input), WIRE(dropdown), ADDR(dropdown) | `adafruit_bmp3xx_init("bmp3xx", WIRE, "0x77")` | `Adafruit_BMP3XX bmp3xx; ↵ WIRE.begin(); ↵ while (!(bmp3xx.begin_I2C(0x77, &WIRE))) { delay(100); } ↵ bmp3xx.setTemperatureOversampling(BMP3_OVERSAMPLING_8X); ↵ bmp3xx.setPressureOversampling(BMP3_OVERSAMPLING_4X); ↵ bmp3xx.setIIRFilterCoeff(BMP3_IIR_FILTER_COEFF_3); ↵ bmp3xx.setOutputDataRate(BMP3_ODR_50_HZ);` |
+| `adafruit_bmp3xx_read` | Value | VAR(field_variable), DATA(dropdown) | `adafruit_bmp3xx_read($bmp3xx, temperature)` | `bmp3xx.readTemperature()` |
+| `adafruit_bmp3xx_set` | Statement | VAR(field_variable), SETTING(dropdown), VALUE(input_value) | `adafruit_bmp3xx_set($bmp3xx, sea_level, math_number(0))` | `(void)bmp3xx.readAltitude((float)1);` |
 
 ## Parameter Options
 
@@ -32,7 +32,7 @@ Blocks for BMP388/BMP390 temperature and barometric pressure sensors.
 
 ```
 arduino_setup()
-    adafruit_bmp3xx_init("bmp3xx")
+    adafruit_bmp3xx_init("bmp3xx", WIRE, "0x77")
 ```
 
 ## Notes

@@ -10,18 +10,18 @@ Software serial communication blocks for ESP8266.
 
 ## Block Definitions
 
-| Block Type | Connection | Parameters (args0 order) | ABS Format | Generated Code |
+| Block Type | Connection | Parameters (block.json order) | ABS Format | Generated Code |
 |---|---|---|---|---|
-| `esp8266_softwareserial_init` | Statement | VAR(field_input), RX_PIN(field_dropdown), TX_PIN(field_dropdown), BAUD(field_dropdown) | `esp8266_softwareserial_init(VAR, RX_PIN, TX_PIN, BAUD)` | Dynamic code |
-| `esp8266_softwareserial_available` | Value | VAR(field_variable) | `esp8266_softwareserial_available(VAR)` | Dynamic code |
-| `esp8266_softwareserial_read` | Value | VAR(field_variable), TYPE(field_dropdown) | `esp8266_softwareserial_read(VAR, TYPE)` | Dynamic code |
-| `esp8266_softwareserial_print` | Statement | VAR(field_variable), DATA(input_value) | `esp8266_softwareserial_print(VAR, DATA)` | Dynamic code |
-| `esp8266_softwareserial_println` | Statement | VAR(field_variable), DATA(input_value) | `esp8266_softwareserial_println(VAR, DATA)` | Dynamic code |
-| `esp8266_softwareserial_write` | Statement | VAR(field_variable), DATA(input_value) | `esp8266_softwareserial_write(VAR, DATA)` | Dynamic code |
-| `esp8266_softwareserial_listen` | Statement | VAR(field_variable) | `esp8266_softwareserial_listen(VAR)` | Dynamic code |
-| `esp8266_softwareserial_islistening` | Value | VAR(field_variable) | `esp8266_softwareserial_islistening(VAR)` | Dynamic code |
-| `esp8266_softwareserial_overflow` | Value | VAR(field_variable) | `esp8266_softwareserial_overflow(VAR)` | Dynamic code |
-| `esp8266_softwareserial_end` | Statement | VAR(field_variable) | `esp8266_softwareserial_end(VAR)` | Dynamic code |
+| `esp8266_softwareserial_init` | Statement | VAR(field_input), RX_PIN(dropdown), TX_PIN(dropdown), BAUD(dropdown) | `esp8266_softwareserial_init("mySerial", RX_PIN, TX_PIN, 300)` | `mySerial.begin(300);` |
+| `esp8266_softwareserial_available` | Value | VAR(field_variable) | `esp8266_softwareserial_available($mySerial)` | `mySerial.available()` |
+| `esp8266_softwareserial_read` | Value | VAR(field_variable), TYPE(dropdown) | `esp8266_softwareserial_read($mySerial, "read()")` | `mySerial.read()` |
+| `esp8266_softwareserial_print` | Statement | VAR(field_variable), DATA(input_value) | `esp8266_softwareserial_print($mySerial, DATA)` | `mySerial.print(1);` |
+| `esp8266_softwareserial_println` | Statement | VAR(field_variable), DATA(input_value) | `esp8266_softwareserial_println($mySerial, DATA)` | `mySerial.println(1);` |
+| `esp8266_softwareserial_write` | Statement | VAR(field_variable), DATA(input_value) | `esp8266_softwareserial_write($mySerial, DATA)` | `mySerial.write(1);` |
+| `esp8266_softwareserial_listen` | Statement | VAR(field_variable) | `esp8266_softwareserial_listen($mySerial)` | `mySerial.listen();` |
+| `esp8266_softwareserial_islistening` | Value | VAR(field_variable) | `esp8266_softwareserial_islistening($mySerial)` | `mySerial.isListening()` |
+| `esp8266_softwareserial_overflow` | Value | VAR(field_variable) | `esp8266_softwareserial_overflow($mySerial)` | `mySerial.overflow()` |
+| `esp8266_softwareserial_end` | Statement | VAR(field_variable) | `esp8266_softwareserial_end($mySerial)` | `mySerial.end();` |
 
 ## Parameter Options
 
@@ -39,3 +39,11 @@ Use the initialization block first when one is provided.
 ## Notes
 
 All types use the `esp8266_` prefix. SDK sources are used directly; no `src.7z` is bundled.
+## ABS Examples
+
+### Minimal Executable Usage
+
+```abs
+arduino_setup()
+    esp8266_softwareserial_init("mySerial", RX_PIN, TX_PIN, 300)
+```

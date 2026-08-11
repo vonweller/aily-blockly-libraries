@@ -8,15 +8,15 @@ Fast FAT16, FAT32, and exFAT SD card access.
 
 ## Block Definitions
 
-| Block Type | Connection | Parameters (args0 order) | ABS Format | Generated Code |
+| Block Type | Connection | Parameters (block.json order) | ABS Format | Generated Code |
 |------------|------------|--------------------------|------------|----------------|
-| `sdfat_init` | Statement | VAR(field_input), CS(dropdown), MHZ(input_value) | `sdfat_init("sd", CS, math_number(0))` | Dynamic code |
-| `sdfat_file_open` | Statement | FILE(field_input), SD(field_variable), PATH(input_value), MODE(dropdown) | `sdfat_file_open("sdFile", variables_get($sd), text("value"), O_RDONLY)` | Dynamic code |
-| `sdfat_file_write` | Statement | FILE(field_variable), OP(dropdown), DATA(input_value) | `sdfat_file_write(variables_get($sdFile), print, math_number(0))` | Dynamic code |
-| `sdfat_file_control` | Statement | FILE(field_variable), OP(dropdown), VALUE(input_value) | `sdfat_file_control(variables_get($sdFile), seek, math_number(0))` | Dynamic code |
-| `sdfat_file_read` | Value | FILE(field_variable), DATA(dropdown) | `sdfat_file_read(variables_get($sdFile), read)` | Dynamic code |
-| `sdfat_fs_operation` | Statement | SD(field_variable), OP(dropdown), PATH(input_value) | `sdfat_fs_operation(variables_get($sd), mkdir, text("value"))` | Dynamic code |
-| `sdfat_exists` | Value | SD(field_variable), PATH(input_value) | `sdfat_exists(variables_get($sd), text("value"))` | Dynamic code |
+| `sdfat_init` | Statement | VAR(field_input), CS(dropdown), MHZ(input_value) | `sdfat_init("sd", CS, math_number(0))` | `SdFs sd; ↵ while (!sd.begin(CS, SD_SCK_MHZ(1))) { delay(100); }` |
+| `sdfat_file_open` | Statement | FILE(field_input), SD(field_variable), PATH(input_value), MODE(dropdown) | `sdfat_file_open("sdFile", $sd, text("value"), O_RDONLY)` | `sdFile = sd.open("value", O_RDONLY);` |
+| `sdfat_file_write` | Statement | FILE(field_variable), OP(dropdown), DATA(input_value) | `sdfat_file_write($sdFile, print, math_number(0))` | `sdFile.print(1);` |
+| `sdfat_file_control` | Statement | FILE(field_variable), OP(dropdown), VALUE(input_value) | `sdfat_file_control($sdFile, seek, math_number(0))` | `sdFile.seek(1);` |
+| `sdfat_file_read` | Value | FILE(field_variable), DATA(dropdown) | `sdfat_file_read($sdFile, read)` | `sdFile.read()` |
+| `sdfat_fs_operation` | Statement | SD(field_variable), OP(dropdown), PATH(input_value) | `sdfat_fs_operation($sd, mkdir, text("value"))` | `sd.mkdir("value");` |
+| `sdfat_exists` | Value | SD(field_variable), PATH(input_value) | `sdfat_exists($sd, text("value"))` | `sd.exists("value")` |
 
 ## Parameter Options
 
@@ -37,12 +37,12 @@ arduino_setup()
     serial_begin(Serial, 9600)
 
 arduino_loop()
-    serial_println(Serial, sdfat_file_read(variables_get($sdFile), read))
+    serial_println(Serial, sdfat_file_read($sdFile, read))
     time_delay(math_number(1000))
 ```
 
 ## Notes
 
-1. **Variable**: `sdfat_init("varName", ...)` creates variable `$varName`; reference it later with `variables_get($varName)`.
+1. **Variable**: `sdfat_init("varName", ...)` creates variable `$varName`; pass `$varName` directly to `field_variable` slots; use `variables_get($varName)` only for `input_value` slots.
 2. **Parameter order**: ABS parameters follow `block.json` args order.
 3. **Input values**: use `math_number(n)`, `text("s")`, `logic_boolean(TRUE/FALSE)`, variables, or nested value blocks.

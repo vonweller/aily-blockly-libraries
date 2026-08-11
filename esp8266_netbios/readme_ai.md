@@ -10,10 +10,10 @@ Publish an ESP8266 hostname through NetBIOS name service.
 
 ## Block Definitions
 
-| Block Type | Connection | Parameters (args0 order) | ABS Format | Generated Code |
+| Block Type | Connection | Parameters (block.json order) | ABS Format | Generated Code |
 |---|---|---|---|---|
-| `esp8266_netbios_begin` | Value | NAME(input_value) | `esp8266_netbios_begin(NAME)` | Dynamic code |
-| `esp8266_netbios_end` | Statement | None | `esp8266_netbios_end()` | Dynamic code |
+| `esp8266_netbios_begin` | Value | NAME(input_value) | `esp8266_netbios_begin(NAME)` | `NBNS.begin(String("value").c_str())` |
+| `esp8266_netbios_end` | Statement | (none) | `esp8266_netbios_end()` | `NBNS.end();` |
 
 ## Parameter Options
 
@@ -28,3 +28,11 @@ Use the initialization block first when one is provided.
 ## Notes
 
 All types use the `esp8266_` prefix. SDK sources are used directly; no `src.7z` is bundled.
+## ABS Examples
+
+### Minimal Executable Usage
+
+```abs
+arduino_loop()
+    serial_println(Serial, esp8266_netbios_begin(NAME))
+```

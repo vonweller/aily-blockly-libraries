@@ -49,7 +49,6 @@ Arduino.forBlock['adafruit_ads122c04_read'] = function(block, generator) {
   var varName = adafruit_ads122c04Variable(block);
   adafruit_ads122c04EnsureExtras(generator, varName);
   var data = block.getFieldValue('DATA') || "raw";
-  var index = generator.valueToCode(block, 'INDEX', generator.ORDER_ATOMIC) || '0';
   var expressions = {
     "raw": String(varName) + ".readData()",
     "voltage": String(varName) + ".readVoltage()",

@@ -1,5 +1,9 @@
 # ESP32 OpenThread - AI 使用说明
 
+## Library Info
+- **Name**: @aily-project/lib-esp32-openthread
+- **Version**: 0.0.1
+
 ## 适用范围
 
 ESP32 OpenThread 网络积木，支持数据集、Thread 网络启动、角色与地址查询。
@@ -24,3 +28,33 @@ ESP32 OpenThread 网络积木，支持数据集、Thread 网络启动、角色�
 - `esp32_openthread_dataset`：创建新的活动数据集并提交。
 - `esp32_openthread_network_number`：读取 Thread 网络数值。
 - `esp32_openthread_network_text`：读取网络名称或 IPv6 地址。
+
+## Block Definitions
+
+| Block Type | Connection | Parameters (block.json order) | ABS Format | Generated Code |
+|------------|------------|-------------------------|------------|----------------|
+| `esp32_openthread_begin` | Statement | AUTO(input_value) | `esp32_openthread_begin(logic_boolean(TRUE))` | `OThread.begin(true);` |
+| `esp32_openthread_end` | Statement | (none) | `esp32_openthread_end()` | `OThread.end();` |
+| `esp32_openthread_control` | Statement | ACTION(dropdown) | `esp32_openthread_control(start)` | `OThread.start();` |
+| `esp32_openthread_running` | Value | (none) | `esp32_openthread_running()` | `(bool)OThread` |
+| `esp32_openthread_role` | Value | (none) | `esp32_openthread_role()` | `String(OThread.otGetStringDeviceRole())` |
+| `esp32_openthread_has_dataset` | Value | (none) | `esp32_openthread_has_dataset()` | `OThread.hasActiveDataset()` |
+| `esp32_openthread_dataset` | Statement | DATASET(field_variable), NAME(input_value), CHANNEL(input_value), PANID(input_value) | `esp32_openthread_dataset($threadDataset, text("value"), math_number(0), math_number(0))` | `threadDataset.initNew(); ↵ threadDataset.setNetworkName("value"); ↵ threadDataset.setChannel(1); ↵ threadDataset.setPanId(1); ↵ OThread.commitDataSet(threadDataset);` |
+| `esp32_openthread_network_number` | Value | INFO(dropdown) | `esp32_openthread_network_number(getChannel)` | `OThread.getChannel()` |
+| `esp32_openthread_network_text` | Value | INFO(dropdown) | `esp32_openthread_network_text(getNetworkName)` | `OThread.getNetworkName()` |
+## Parameter Options
+
+| Parameter | Values | Description |
+|-----------|--------|-------------|
+| ACTION | start, stop, networkInterfaceUp, networkInterfaceDown | esp32_openthread_control |
+| INFO | getChannel, getPanId, getRloc16, getUnicastAddressCount, getMulticastAddressCount | esp32_openthread_network_number |
+| INFO | getNetworkName, getMeshLocalEid, getLeaderRloc, getRloc | esp32_openthread_network_text |
+
+## ABS Examples
+
+### Minimal Executable Usage
+
+```abs
+arduino_setup()
+    esp32_openthread_begin(logic_boolean(TRUE))
+```

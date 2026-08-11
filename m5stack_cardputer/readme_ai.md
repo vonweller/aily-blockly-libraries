@@ -8,15 +8,15 @@ Blockly bindings for the official M5Cardputer keyboard API. Matrix pins and scan
 
 ## Block Definitions
 
-| Block Type | Connection | Parameters (args0 order) | ABS Format | Generated Code |
+| Block Type | Connection | Parameters (block.json order) | ABS Format | Generated Code |
 |------------|------------|--------------------------|------------|----------------|
-| `m5cardputer_keyboard_init` | Statement | (none) | `m5cardputer_keyboard_init()` | Dynamic code |
-| `m5cardputer_keyboard_any` | Value | (none) | `m5cardputer_keyboard_any()` | (M5Cardputer.Keyboard.isPressed() > 0) |
-| `m5cardputer_keyboard_changed` | Value | (none) | `m5cardputer_keyboard_changed()` | ailyM5CardputerKeyboardChanged() |
-| `m5cardputer_keyboard_key` | Value | KEY(input_value) | `m5cardputer_keyboard_key(text("value"))` | ailyM5CardputerKeyPressed(String( |
-| `m5cardputer_keyboard_special` | Value | KEY(dropdown) | `m5cardputer_keyboard_special(tab)` | M5Cardputer.Keyboard.keysState(). |
-| `m5cardputer_keyboard_text` | Value | (none) | `m5cardputer_keyboard_text()` | ailyM5CardputerText() |
-| `m5cardputer_keyboard_caps` | Value | (none) | `m5cardputer_keyboard_caps()` | M5Cardputer.Keyboard.capslocked() |
+| `m5cardputer_keyboard_init` | Statement | (none) | `m5cardputer_keyboard_init()` | `auto ailyM5Config = M5.config(); ↵ M5Cardputer.begin(ailyM5Config, true); ↵ M5Cardputer.update();` |
+| `m5cardputer_keyboard_any` | Value | (none) | `m5cardputer_keyboard_any()` | `(M5Cardputer.Keyboard.isPressed() > 0)` |
+| `m5cardputer_keyboard_changed` | Value | (none) | `m5cardputer_keyboard_changed()` | `ailyM5CardputerKeyboardChanged()` |
+| `m5cardputer_keyboard_key` | Value | KEY(input_value) | `m5cardputer_keyboard_key(text("value"))` | `ailyM5CardputerKeyPressed(String("value"))` |
+| `m5cardputer_keyboard_special` | Value | KEY(dropdown) | `m5cardputer_keyboard_special(tab)` | `M5Cardputer.Keyboard.keysState().tab` |
+| `m5cardputer_keyboard_text` | Value | (none) | `m5cardputer_keyboard_text()` | `ailyM5CardputerText()` |
+| `m5cardputer_keyboard_caps` | Value | (none) | `m5cardputer_keyboard_caps()` | `M5Cardputer.Keyboard.capslocked()` |
 
 ## Parameter Options
 

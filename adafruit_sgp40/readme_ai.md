@@ -11,12 +11,12 @@ Blocks for the Sensirion SGP40 VOC gas sensor with humidity and temperature comp
 
 ## Block Definitions
 
-| Block Type | Connection | Parameters (args0 order) | ABS Format | Generated Code |
+| Block Type | Connection | Parameters (block.json order) | ABS Format | Generated Code |
 |------------|------------|--------------------------|------------|----------------|
-| `adafruit_sgp40_init` | Statement | VAR(field_input), WIRE(field_dropdown) | `adafruit_sgp40_init(VAR, WIRE)` | Dynamic code |
-| `adafruit_sgp40_read` | Value | VAR(field_variable), DATA(field_dropdown) | `adafruit_sgp40_read(VAR, DATA)` | Dynamic code |
-| `adafruit_sgp40_measure` | Value | VAR(field_variable), VALUE1(input_value), VALUE2(input_value) | `adafruit_sgp40_measure(VAR, VALUE1, VALUE2)` | Dynamic code |
-| `adafruit_sgp40_action` | Statement | VAR(field_variable), ACTION(field_dropdown) | `adafruit_sgp40_action(VAR, ACTION)` | Dynamic code |
+| `adafruit_sgp40_init` | Statement | VAR(field_input), WIRE(dropdown) | `adafruit_sgp40_init(VAR, WIRE)` | `Adafruit_SGP40 sgp40; ↵ WIRE.begin(); ↵ while (!(sgp40.begin(&WIRE))) { delay(100); }` |
+| `adafruit_sgp40_read` | Value | VAR(field_variable), DATA(dropdown) | `adafruit_sgp40_read($sgp40, raw)` | `sgp40.measureRaw()` |
+| `adafruit_sgp40_measure` | Value | VAR(field_variable), VALUE1(input_value), VALUE2(input_value) | `adafruit_sgp40_measure($sgp40, VALUE1, VALUE2)` | `sgp40.measureVocIndex(1, 1)` |
+| `adafruit_sgp40_action` | Statement | VAR(field_variable), ACTION(dropdown) | `adafruit_sgp40_action($sgp40, reset)` | `sgp40.softReset();` |
 
 ## Parameter Options
 
@@ -32,7 +32,7 @@ Blocks for the Sensirion SGP40 VOC gas sensor with humidity and temperature comp
 
 ```
 arduino_setup()
-    adafruit_sgp40_init("sgp40")
+    adafruit_sgp40_init("sgp40", WIRE)
 ```
 
 ## Notes

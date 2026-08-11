@@ -11,11 +11,11 @@ Blocks for INA237 and INA238 current, voltage and power monitors.
 
 ## Block Definitions
 
-| Block Type | Connection | Parameters (args0 order) | ABS Format | Generated Code |
+| Block Type | Connection | Parameters (block.json order) | ABS Format | Generated Code |
 |------------|------------|--------------------------|------------|----------------|
-| `adafruit_ina237_ina238_init` | Statement | VAR(field_input), WIRE(field_dropdown), MODEL(field_dropdown), ADDR(field_dropdown) | `adafruit_ina237_ina238_init(VAR, WIRE, MODEL, ADDR)` | Dynamic code |
-| `adafruit_ina237_ina238_read` | Value | VAR(field_variable), DATA(field_dropdown) | `adafruit_ina237_ina238_read(VAR, DATA)` | Dynamic code |
-| `adafruit_ina237_ina238_adjust` | Statement | VAR(field_variable), VALUE1(input_value), VALUE2(input_value) | `adafruit_ina237_ina238_adjust(VAR, VALUE1, VALUE2)` | Dynamic code |
+| `adafruit_ina237_ina238_init` | Statement | VAR(field_input), WIRE(dropdown), MODEL(dropdown), ADDR(dropdown) | `adafruit_ina237_ina238_init("ina23x", WIRE, INA237, "0x40")` | `Adafruit_INA237 ina23x; ↵ WIRE.begin(); ↵ while (!(ina23x.begin(0x40, &WIRE))) { delay(100); }` |
+| `adafruit_ina237_ina238_read` | Value | VAR(field_variable), DATA(dropdown) | `adafruit_ina237_ina238_read($ina23x, bus_voltage)` | `ina23x.getBusVoltage_V()` |
+| `adafruit_ina237_ina238_adjust` | Statement | VAR(field_variable), VALUE1(input_value), VALUE2(input_value) | `adafruit_ina237_ina238_adjust($ina23x, VALUE1, VALUE2)` | `ina23x.setShunt((float)1, (float)1);` |
 
 ## Parameter Options
 
@@ -32,7 +32,7 @@ Blocks for INA237 and INA238 current, voltage and power monitors.
 
 ```
 arduino_setup()
-    adafruit_ina237_ina238_init("ina23x")
+    adafruit_ina237_ina238_init("ina23x", WIRE, INA237, "0x40")
 ```
 
 ## Notes

@@ -11,12 +11,12 @@ Blocks for the ENS160 digital air-quality sensor.
 
 ## Block Definitions
 
-| Block Type | Connection | Parameters (args0 order) | ABS Format | Generated Code |
+| Block Type | Connection | Parameters (block.json order) | ABS Format | Generated Code |
 |------------|------------|--------------------------|------------|----------------|
-| `dfrobot_ens160_init` | Statement | VAR(field_input), WIRE(field_dropdown), ADDR(field_dropdown) | `dfrobot_ens160_init(VAR, WIRE, ADDR)` | Dynamic code |
-| `dfrobot_ens160_read` | Value | VAR(field_variable), DATA(field_dropdown) | `dfrobot_ens160_read(VAR, DATA)` | Dynamic code |
-| `dfrobot_ens160_action` | Statement | VAR(field_variable), ACTION(field_dropdown) | `dfrobot_ens160_action(VAR, ACTION)` | Dynamic code |
-| `dfrobot_ens160_adjust` | Statement | VAR(field_variable), VALUE1(input_value), VALUE2(input_value) | `dfrobot_ens160_adjust(VAR, VALUE1, VALUE2)` | Dynamic code |
+| `dfrobot_ens160_init` | Statement | VAR(field_input), WIRE(dropdown), ADDR(dropdown) | `dfrobot_ens160_init("ens160", WIRE, "0x53")` | `DFRobot_ENS160_I2C ens160(&WIRE, 0x53); ↵ WIRE.begin(); ↵ while ((ens160.begin()) != 0) { delay(100); } ↵ ens160.setPWRMode(ENS160_STANDARD_MODE);` |
+| `dfrobot_ens160_read` | Value | VAR(field_variable), DATA(dropdown) | `dfrobot_ens160_read($ens160, aqi)` | `ens160.getAQI()` |
+| `dfrobot_ens160_action` | Statement | VAR(field_variable), ACTION(dropdown) | `dfrobot_ens160_action($ens160, standard)` | `ens160.setPWRMode(ENS160_STANDARD_MODE);` |
+| `dfrobot_ens160_adjust` | Statement | VAR(field_variable), VALUE1(input_value), VALUE2(input_value) | `dfrobot_ens160_adjust($ens160, VALUE1, VALUE2)` | `ens160.setTempAndHum(1, 1);` |
 
 ## Parameter Options
 
@@ -33,7 +33,7 @@ Blocks for the ENS160 digital air-quality sensor.
 
 ```
 arduino_setup()
-    dfrobot_ens160_init("ens160")
+    dfrobot_ens160_init("ens160", WIRE, "0x53")
 ```
 
 ## Notes

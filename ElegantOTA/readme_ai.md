@@ -8,14 +8,14 @@ Authenticated OTA web portal for ESP8266, ESP32, RP2040W, and RP2350W.
 
 ## Block Definitions
 
-| Block Type | Connection | Parameters (args0 order) | ABS Format | Generated Code |
+| Block Type | Connection | Parameters (block.json order) | ABS Format | Generated Code |
 |------------|------------|--------------------------|------------|----------------|
-| `elegant_ota_init` | Statement | VAR(field_input), MODE(dropdown), PORT(input_value), USERNAME(input_value), PASSWORD(input_value), REBOOT(field_checkbox) | `elegant_ota_init("otaServer", sync, math_number(0), text("value"), text("value"), TRUE)` | Dynamic code |
-| `elegant_ota_auth` | Statement | USERNAME(input_value), PASSWORD(input_value) | `elegant_ota_auth(text("value"), text("value"))` | ElegantOTA.setAuth(String( |
-| `elegant_ota_on_start` | Statement | DO(input_statement) | `elegant_ota_on_start() @DO: child_block()` | Dynamic code |
-| `elegant_ota_on_progress` | Statement | DO(input_statement) | `elegant_ota_on_progress() @DO: child_block()` | Dynamic code |
-| `elegant_ota_on_end` | Statement | DO(input_statement) | `elegant_ota_on_end() @DO: child_block()` | Dynamic code |
-| `elegant_ota_callback_value` | Value | VALUE(dropdown) | `elegant_ota_callback_value(_ailyOtaCurrent)` | (_ailyOtaFinal ? (100.0 * _ailyOtaCurrent / _ailyOtaFinal) : 0) |
+| `elegant_ota_init` | Statement | VAR(field_input), MODE(dropdown), PORT(input_value), USERNAME(input_value), PASSWORD(input_value), REBOOT(field_checkbox) | `elegant_ota_init("otaServer", sync, math_number(0), text("value"), text("value"), TRUE)` | `WebServer otaServer(1); ↵ ElegantOTA.setAutoReboot(true); ↵ ElegantOTA.begin(&otaServer, String("value").c_str(), String("value").c_str()); ↵ otaServer.begin(); ↵ otaServer.handleClient(); ↵ ElegantOTA.loop();` |
+| `elegant_ota_auth` | Statement | USERNAME(input_value), PASSWORD(input_value) | `elegant_ota_auth(text("value"), text("value"))` | `ElegantOTA.setAuth(String("value").c_str(), String("value").c_str());` |
+| `elegant_ota_on_start` | Statement | DO(input_statement) | `elegant_ota_on_start()` | `ElegantOTA.onStart([]() { ↵ });` |
+| `elegant_ota_on_progress` | Statement | DO(input_statement) | `elegant_ota_on_progress()` | `ElegantOTA.onProgress([](size_t _ailyOtaCurrent, size_t _ailyOtaFinal) { ↵ });` |
+| `elegant_ota_on_end` | Statement | DO(input_statement) | `elegant_ota_on_end()` | `ElegantOTA.onEnd([](bool _ailyOtaSuccess) { ↵ });` |
+| `elegant_ota_callback_value` | Value | VALUE(dropdown) | `elegant_ota_callback_value(_ailyOtaCurrent)` | `_ailyOtaCurrent` |
 
 ## Parameter Options
 
@@ -39,6 +39,6 @@ arduino_loop()
 
 ## Notes
 
-1. **Variable**: `elegant_ota_init("varName", ...)` creates variable `$varName`; reference it later with `variables_get($varName)`.
+1. **Variable**: `elegant_ota_init("varName", ...)` creates variable `$varName`; pass `$varName` directly to `field_variable` slots; use `variables_get($varName)` only for `input_value` slots.
 2. **Parameter order**: ABS parameters follow `block.json` args order.
 3. **Input values**: use `math_number(n)`, `text("s")`, `logic_boolean(TRUE/FALSE)`, variables, or nested value blocks.

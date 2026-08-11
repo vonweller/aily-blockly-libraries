@@ -49,7 +49,6 @@ Arduino.forBlock['adafruit_ina260_read'] = function(block, generator) {
   var varName = adafruit_ina260Variable(block);
   adafruit_ina260EnsureExtras(generator, varName);
   var data = block.getFieldValue('DATA') || "current";
-  var index = generator.valueToCode(block, 'INDEX', generator.ORDER_ATOMIC) || '0';
   var expressions = {
     "current": String(varName) + ".readCurrent()",
     "voltage": String(varName) + ".readBusVoltage()",

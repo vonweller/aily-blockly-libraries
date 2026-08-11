@@ -10,34 +10,34 @@ HTTP and HTTPS client blocks for ESP8266.
 
 ## Block Definitions
 
-| Block Type | Connection | Parameters (args0 order) | ABS Format | Generated Code |
+| Block Type | Connection | Parameters (block.json order) | ABS Format | Generated Code |
 |---|---|---|---|---|
-| `esp8266_httpclient_create` | Statement | VAR(field_input) | `esp8266_httpclient_create(VAR)` | Dynamic code |
-| `esp8266_httpclient_begin_url` | Statement | VAR(field_variable), URL(input_value) | `esp8266_httpclient_begin_url(VAR, URL)` | Dynamic code |
-| `esp8266_httpclient_begin_host` | Statement | VAR(field_variable), HOST(input_value), PORT(input_value), URI(input_value) | `esp8266_httpclient_begin_host(VAR, HOST, PORT, URI)` | Dynamic code |
-| `esp8266_httpclient_begin_secure` | Statement | VAR(field_variable), URL(input_value) | `esp8266_httpclient_begin_secure(VAR, URL)` | Dynamic code |
-| `esp8266_httpclient_end` | Statement | VAR(field_variable) | `esp8266_httpclient_end(VAR)` | Dynamic code |
-| `esp8266_httpclient_set_user_agent` | Statement | VAR(field_variable), USER_AGENT(input_value) | `esp8266_httpclient_set_user_agent(VAR, USER_AGENT)` | Dynamic code |
-| `esp8266_httpclient_set_authorization` | Statement | VAR(field_variable), USER(input_value), PASSWORD(input_value) | `esp8266_httpclient_set_authorization(VAR, USER, PASSWORD)` | Dynamic code |
-| `esp8266_httpclient_set_authorization_token` | Statement | VAR(field_variable), TOKEN(input_value) | `esp8266_httpclient_set_authorization_token(VAR, TOKEN)` | Dynamic code |
-| `esp8266_httpclient_set_timeout` | Statement | VAR(field_variable), TIMEOUT(input_value) | `esp8266_httpclient_set_timeout(VAR, TIMEOUT)` | Dynamic code |
-| `esp8266_httpclient_set_reuse` | Statement | VAR(field_variable), REUSE(field_dropdown) | `esp8266_httpclient_set_reuse(VAR, REUSE)` | Dynamic code |
-| `esp8266_httpclient_set_follow_redirects` | Statement | VAR(field_variable), FOLLOW(field_dropdown) | `esp8266_httpclient_set_follow_redirects(VAR, FOLLOW)` | Dynamic code |
-| `esp8266_httpclient_set_redirect_limit` | Statement | VAR(field_variable), LIMIT(input_value) | `esp8266_httpclient_set_redirect_limit(VAR, LIMIT)` | Dynamic code |
-| `esp8266_httpclient_add_header` | Statement | VAR(field_variable), NAME(input_value), VALUE(input_value) | `esp8266_httpclient_add_header(VAR, NAME, VALUE)` | Dynamic code |
-| `esp8266_httpclient_get` | Statement | VAR(field_variable) | `esp8266_httpclient_get(VAR)` | Dynamic code |
-| `esp8266_httpclient_post` | Statement | VAR(field_variable), DATA(input_value) | `esp8266_httpclient_post(VAR, DATA)` | Dynamic code |
-| `esp8266_httpclient_put` | Statement | VAR(field_variable), DATA(input_value) | `esp8266_httpclient_put(VAR, DATA)` | Dynamic code |
-| `esp8266_httpclient_patch` | Statement | VAR(field_variable), DATA(input_value) | `esp8266_httpclient_patch(VAR, DATA)` | Dynamic code |
-| `esp8266_httpclient_get_response_code` | Value | None | `esp8266_httpclient_get_response_code()` | Dynamic code |
-| `esp8266_httpclient_code_list` | Value | CODE(field_dropdown) | `esp8266_httpclient_code_list(CODE)` | Dynamic code |
-| `esp8266_httpclient_get_size` | Value | VAR(field_variable) | `esp8266_httpclient_get_size(VAR)` | Dynamic code |
-| `esp8266_httpclient_get_string` | Value | VAR(field_variable) | `esp8266_httpclient_get_string(VAR)` | Dynamic code |
-| `esp8266_httpclient_get_header` | Value | VAR(field_variable), NAME(input_value) | `esp8266_httpclient_get_header(VAR, NAME)` | Dynamic code |
-| `esp8266_httpclient_get_location` | Value | VAR(field_variable) | `esp8266_httpclient_get_location(VAR)` | Dynamic code |
-| `esp8266_httpclient_get_stream` | Value | VAR(field_variable) | `esp8266_httpclient_get_stream(VAR)` | Dynamic code |
-| `esp8266_httpclient_connected` | Value | VAR(field_variable) | `esp8266_httpclient_connected(VAR)` | Dynamic code |
-| `esp8266_httpclient_error_to_string` | Value | VAR(field_variable), ERROR_CODE(input_value) | `esp8266_httpclient_error_to_string(VAR, ERROR_CODE)` | Dynamic code |
+| `esp8266_httpclient_create` | Statement | VAR(field_input) | `esp8266_httpclient_create(VAR)` | `HTTPClient http;` |
+| `esp8266_httpclient_begin_url` | Statement | VAR(field_variable), URL(input_value) | `esp8266_httpclient_begin_url($http, URL)` | `http.begin(http_net, "value");` |
+| `esp8266_httpclient_begin_host` | Statement | VAR(field_variable), HOST(input_value), PORT(input_value), URI(input_value) | `esp8266_httpclient_begin_host($http, HOST, PORT, URI)` | `http.begin(http_net, "value", 1, "value");` |
+| `esp8266_httpclient_begin_secure` | Statement | VAR(field_variable), URL(input_value) | `esp8266_httpclient_begin_secure($http, URL)` | `http.begin(http_secure, "value");` |
+| `esp8266_httpclient_end` | Statement | VAR(field_variable) | `esp8266_httpclient_end($http)` | `http.end();` |
+| `esp8266_httpclient_set_user_agent` | Statement | VAR(field_variable), USER_AGENT(input_value) | `esp8266_httpclient_set_user_agent($http, USER_AGENT)` | `http.setUserAgent("value");` |
+| `esp8266_httpclient_set_authorization` | Statement | VAR(field_variable), USER(input_value), PASSWORD(input_value) | `esp8266_httpclient_set_authorization($http, USER, PASSWORD)` | `http.setAuthorization("value", "value");` |
+| `esp8266_httpclient_set_authorization_token` | Statement | VAR(field_variable), TOKEN(input_value) | `esp8266_httpclient_set_authorization_token($http, TOKEN)` | `http.setAuthorization("value");` |
+| `esp8266_httpclient_set_timeout` | Statement | VAR(field_variable), TIMEOUT(input_value) | `esp8266_httpclient_set_timeout($http, TIMEOUT)` | `http.setTimeout(1);` |
+| `esp8266_httpclient_set_reuse` | Statement | VAR(field_variable), REUSE(dropdown) | `esp8266_httpclient_set_reuse($http, true)` | `http.setReuse(true);` |
+| `esp8266_httpclient_set_follow_redirects` | Statement | VAR(field_variable), FOLLOW(dropdown) | `esp8266_httpclient_set_follow_redirects($http, HTTPC_DISABLE_FOLLOW_REDIRECTS)` | `http.setFollowRedirects(HTTPC_DISABLE_FOLLOW_REDIRECTS);` |
+| `esp8266_httpclient_set_redirect_limit` | Statement | VAR(field_variable), LIMIT(input_value) | `esp8266_httpclient_set_redirect_limit($http, LIMIT)` | `http.setRedirectLimit(1);` |
+| `esp8266_httpclient_add_header` | Statement | VAR(field_variable), NAME(input_value), VALUE(input_value) | `esp8266_httpclient_add_header($http, NAME, VALUE)` | `http.addHeader("value", "value");` |
+| `esp8266_httpclient_get` | Statement | VAR(field_variable) | `esp8266_httpclient_get($http)` | `httpCode = http.GET();` |
+| `esp8266_httpclient_post` | Statement | VAR(field_variable), DATA(input_value) | `esp8266_httpclient_post($http, DATA)` | `httpCode = http.POST("value");` |
+| `esp8266_httpclient_put` | Statement | VAR(field_variable), DATA(input_value) | `esp8266_httpclient_put($http, DATA)` | `httpCode = http.PUT("value");` |
+| `esp8266_httpclient_patch` | Statement | VAR(field_variable), DATA(input_value) | `esp8266_httpclient_patch($http, DATA)` | `httpCode = http.PATCH("value");` |
+| `esp8266_httpclient_get_response_code` | Value | (none) | `esp8266_httpclient_get_response_code()` | `httpCode` |
+| `esp8266_httpclient_code_list` | Value | CODE(dropdown) | `esp8266_httpclient_code_list(HTTP_CODE_CONTINUE)` | `HTTP_CODE_CONTINUE` |
+| `esp8266_httpclient_get_size` | Value | VAR(field_variable) | `esp8266_httpclient_get_size($http)` | `http.getSize()` |
+| `esp8266_httpclient_get_string` | Value | VAR(field_variable) | `esp8266_httpclient_get_string($http)` | `http.getString()` |
+| `esp8266_httpclient_get_header` | Value | VAR(field_variable), NAME(input_value) | `esp8266_httpclient_get_header($http, NAME)` | `http.header("value".c_str())` |
+| `esp8266_httpclient_get_location` | Value | VAR(field_variable) | `esp8266_httpclient_get_location($http)` | `http.getLocation()` |
+| `esp8266_httpclient_get_stream` | Value | VAR(field_variable) | `esp8266_httpclient_get_stream($http)` | `http.getStream()` |
+| `esp8266_httpclient_connected` | Value | VAR(field_variable) | `esp8266_httpclient_connected($http)` | `http.connected()` |
+| `esp8266_httpclient_error_to_string` | Value | VAR(field_variable), ERROR_CODE(input_value) | `esp8266_httpclient_error_to_string($http, ERROR_CODE)` | `http.errorToString(1)` |
 
 ## Parameter Options
 
@@ -54,3 +54,11 @@ Use the initialization block first when one is provided.
 ## Notes
 
 All types use the `esp8266_` prefix. SDK sources are used directly; no `src.7z` is bundled.
+## ABS Examples
+
+### Minimal Executable Usage
+
+```abs
+arduino_setup()
+    esp8266_httpclient_create(VAR)
+```

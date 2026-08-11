@@ -49,7 +49,6 @@ Arduino.forBlock['sensirion_sen5x_read'] = function(block, generator) {
   var varName = sensirion_sen5xVariable(block);
   sensirion_sen5xEnsureExtras(generator, varName);
   var data = block.getFieldValue('DATA') || "pm1";
-  var index = generator.valueToCode(block, 'INDEX', generator.ORDER_ATOMIC) || '0';
   var expressions = {
     "pm1": "(" + String(varName) + ".read(), " + String(varName) + ".pm1())",
     "pm25": "(" + String(varName) + ".read(), " + String(varName) + ".pm25())",

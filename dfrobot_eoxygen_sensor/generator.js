@@ -49,7 +49,6 @@ Arduino.forBlock['dfrobot_eoxygen_sensor_read'] = function(block, generator) {
   var varName = dfrobot_eoxygen_sensorVariable(block);
   dfrobot_eoxygen_sensorEnsureExtras(generator, varName);
   var data = block.getFieldValue('DATA') || "oxygen";
-  var index = generator.valueToCode(block, 'INDEX', generator.ORDER_ATOMIC) || '0';
   var expressions = {
     "oxygen": String(varName) + ".readOxygenConcentration()",
     "calibration": String(varName) + ".readCalibrationState()"

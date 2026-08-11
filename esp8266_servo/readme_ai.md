@@ -10,11 +10,11 @@ Servo control using the ESP8266 built-in Servo implementation.
 
 ## Block Definitions
 
-| Block Type | Connection | Parameters (args0 order) | ABS Format | Generated Code |
+| Block Type | Connection | Parameters (block.json order) | ABS Format | Generated Code |
 |---|---|---|---|---|
-| `esp8266_servo_write` | Statement | PIN(field_dropdown), ANGLE(input_value) | `esp8266_servo_write(PIN, ANGLE)` | Dynamic code |
-| `esp8266_servo_read` | Value | PIN(field_dropdown) | `esp8266_servo_read(PIN)` | Dynamic code |
-| `esp8266_servo_angle` | Value | ANGLE(field_angle180) | `esp8266_servo_angle(ANGLE)` | Dynamic code |
+| `esp8266_servo_write` | Statement | PIN(dropdown), ANGLE(input_value) | `esp8266_servo_write(PIN, ANGLE)` | `esp8266_servo_PIN.write(1);` |
+| `esp8266_servo_read` | Value | PIN(dropdown) | `esp8266_servo_read(PIN)` | `esp8266_servo_PIN.read()` |
+| `esp8266_servo_angle` | Value | ANGLE(field_angle180) | `esp8266_servo_angle(0)` | `0` |
 
 ## Parameter Options
 
@@ -30,3 +30,11 @@ Use the initialization block first when one is provided.
 ## Notes
 
 All types use the `esp8266_` prefix. SDK sources are used directly; no `src.7z` is bundled.
+## ABS Examples
+
+### Minimal Executable Usage
+
+```abs
+arduino_loop()
+    esp8266_servo_write(PIN, ANGLE)
+```

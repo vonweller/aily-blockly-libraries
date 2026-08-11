@@ -784,6 +784,7 @@ Arduino.forBlock['tftespi_set_text_font'] = function(block, generator) {
 };
 
 Arduino.forBlock['tftespi_color_rgb565'] = function(block, generator) {
+  const varField = block.getField('VAR');
   const varName = varField ? varField.getText() : 'tft';
   const color = block.getFieldValue('COLOR');
   
