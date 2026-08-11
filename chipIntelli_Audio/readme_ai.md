@@ -45,7 +45,7 @@ arduino_setup()
     chipintelli_audio_play_voice(chipintelli_audio_voice("System ready"), true)
 
     variable_define("number", int, math_number(300))
-    chipintelli_audio_play_voice($number, true)
+    chipintelli_audio_play_voice(variables_get($number), true)
 
 chipintelli_audio_on_finished()
     @HANDLER:

@@ -370,7 +370,7 @@ function generateReadmeAI(pkg, blocks, generatorContent, libName) {
   // Notes
   md += `\n## Notes\n\n`;
   if (varCreators.length > 0) {
-    md += `1. **Variable Creation**: \`${varCreators[0].block.type}\` creates \`$varName\`. Use \`$varName\` in field_variable slots; input_value slots also accept the explicit \`variables_get($varName)\` block.\n`;
+    md += `1. **Variable Creation**: \`${varCreators[0].block.type}\` creates \`$varName\`. Use \`$varName\` only in field_variable slots; input_value slots must use \`variables_get($varName)\`.\n`;
     md += `2. **Initialization**: Place init blocks inside \`arduino_setup()\`\n`;
   } else {
     md += `1. **Initialization**: Place init/setup blocks inside \`arduino_setup()\`\n`;

@@ -747,7 +747,7 @@ function generateAiReadme(
   const creator = blocks.find((block) => blockVarName(block));
   let note = 1;
   if (creator) {
-    md += `${note++}. **Variable**: \`${creator.type}\` creates a Blockly variable. A field_variable slot must use \`$varName\`; an input_value slot accepts \`$varName\` shorthand or the explicit \`variables_get($varName)\` block.\n`;
+    md += `${note++}. **Variable**: \`${creator.type}\` creates a Blockly variable. Use \`$varName\` only for field_variable slots; input_value slots must use the explicit \`variables_get($varName)\` block.\n`;
   }
   md += `${note++}. **Parameter order**: ABS parameters follow \`block.json\` args order.\n`;
   md += `${note++}. **Input values**: use \`math_number(n)\`, \`text("s")\`, \`logic_boolean(TRUE/FALSE)\`, variables, or nested value blocks.\n`;
@@ -1095,6 +1095,8 @@ function validateAbsCallAgainstSlots(parsed, slots, when, location, requireCompl
       } else if (!isFieldVariableReference(value)) {
         messages.push(`${location}: ${slot.name} is field_variable and must be a $name reference`);
       }
+    } else if (slot.type === 'input_value' && isFieldVariableReference(value)) {
+      messages.push(`${location}: ${slot.name} is input_value and must use variables_get($name), not bare $name`);
     } else if (slot.type !== 'input_value'
       && !matchesDropdown
       && /^[A-Za-z_][A-Za-z0-9_]*\s*\(/.test(value)) {

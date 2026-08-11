@@ -11,7 +11,7 @@ Defines typed Arduino functions and calls them with dynamically generated call b
 
 | Block Type | Connection | Parameters (block.json order) | ABS Format | Generated Code |
 |------------|------------|--------------------------|------------|----------------|
-| `custom_function_def` | Hat | FUNC_NAME(field_input), RETURN_TYPE(dropdown), STACK(input_statement); runtime variants: returning-two-parameters: PARAM_TYPE0(dropdown), PARAM_NAME0(field_input), PARAM_TYPE1(dropdown), PARAM_NAME1(field_input), RETURN(input_value); void-one-parameter: PARAM_TYPE0(dropdown), PARAM_NAME0(field_input) | `custom_function_def("addTwo", int, int, "left", int, "right", math_arithmetic($left, ADD, $right))` | `void 0() { ↵ }` |
+| `custom_function_def` | Hat | FUNC_NAME(field_input), RETURN_TYPE(dropdown), STACK(input_statement); runtime variants: returning-two-parameters: PARAM_TYPE0(dropdown), PARAM_NAME0(field_input), PARAM_TYPE1(dropdown), PARAM_NAME1(field_input), RETURN(input_value); void-one-parameter: PARAM_TYPE0(dropdown), PARAM_NAME0(field_input) | `custom_function_def("addTwo", int, int, "left", int, "right", math_arithmetic(variables_get($left), ADD, variables_get($right)))` | `void 0() { ↵ }` |
 | `custom_function_return` | Statement | VALUE(input_value) | `custom_function_return(math_number(0))` | `return 1;` |
 | `custom_function_return_void` | Statement | (none) | `custom_function_return_void()` | `return;` |
 | `custom_function_call_advance` | Statement | FUNC_NAME(field_variable); variadic: INPUT{0...}(input_value) | `custom_function_call_advance(FUNC_NAME=$printValue, INPUT0=math_number(7))` | `myFunction();` |
@@ -42,7 +42,7 @@ The two call blocks are defined by `generator.js` at runtime rather than by `blo
 ### Function with a return value
 
 ```abs
-custom_function_def("addTwo", int, int, "left", int, "right", math_arithmetic($left, ADD, $right))
+custom_function_def("addTwo", int, int, "left", int, "right", math_arithmetic(variables_get($left), ADD, variables_get($right)))
 
 arduino_setup()
     serial_begin(Serial, 9600)
@@ -58,7 +58,7 @@ This defines `int addTwo(int left, int right)` and prints `addTwo(2, 3)` from `l
 
 ```abs
 custom_function_def("printValue", void, int, "value")
-    serial_println(Serial, $value)
+    serial_println(Serial, variables_get($value))
 
 arduino_setup()
     serial_begin(Serial, 9600)

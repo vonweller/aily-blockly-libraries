@@ -128,13 +128,19 @@ function rewriteCall(callText, block, options = {}) {
   const openIndex = callText.indexOf('(');
   const closeIndex = findMatchingParen(callText, openIndex);
   if (openIndex < 0 || closeIndex < 0) {
-    return { text: callText, replacements: 0, defaultFieldReplacements: 0 };
+    return {
+      text: callText,
+      replacements: 0,
+      inputValueReplacements: 0,
+      defaultFieldReplacements: 0,
+    };
   }
   const slots = absSlots(block);
   const slotByName = new Map(slots.map(slot => [slot.name, slot]));
   const assigned = new Set();
   let positionalIndex = 0;
   let replacements = 0;
+  let inputValueReplacements = 0;
   let defaultFieldReplacements = 0;
   const args = splitTopLevel(callText.slice(openIndex + 1, closeIndex), ',').map(token => {
     const equalsIndex = topLevelEquals(token);
@@ -152,22 +158,33 @@ function rewriteCall(callText, block, options = {}) {
       slot = slots[positionalIndex++];
       if (slot) assigned.add(slot.name);
     }
-    if (slot?.type !== 'field_variable') return token;
-    let variable = unwrapVariablesGet(value);
-    if (variable) replacements++;
-    else if (options.repairInvalidField && !isFieldVariableReference(value)) {
-      variable = `$${slot.variable || String(slot.name).toLowerCase()}`;
-      defaultFieldReplacements++;
+    if (slot?.type === 'input_value' && isFieldVariableReference(value)) {
+      inputValueReplacements++;
+      return `${prefix}variables_get(${value})`;
     }
-    if (!variable) return token;
-    return `${prefix}${variable}`;
+    if (slot?.type === 'field_variable') {
+      let variable = unwrapVariablesGet(value);
+      if (variable) replacements++;
+      else if (options.repairInvalidField && !isFieldVariableReference(value)) {
+        variable = `$${slot.variable || String(slot.name).toLowerCase()}`;
+        defaultFieldReplacements++;
+      }
+      if (variable) return `${prefix}${variable}`;
+    }
+    return token;
   });
-  if (replacements === 0 && defaultFieldReplacements === 0) {
-    return { text: callText, replacements: 0, defaultFieldReplacements: 0 };
+  if (replacements === 0 && inputValueReplacements === 0 && defaultFieldReplacements === 0) {
+    return {
+      text: callText,
+      replacements: 0,
+      inputValueReplacements: 0,
+      defaultFieldReplacements: 0,
+    };
   }
   return {
     text: `${callText.slice(0, openIndex + 1)}${args.join(', ')}${callText.slice(closeIndex)}`,
     replacements,
+    inputValueReplacements,
     defaultFieldReplacements,
   };
 }
@@ -183,6 +200,7 @@ function rewriteCallsForBlock(text, block, options = {}) {
   let cursor = 0;
   let output = '';
   let replacements = 0;
+  let inputValueReplacements = 0;
   let defaultFieldReplacements = 0;
   while (cursor < text.length) {
     const index = text.indexOf(type, cursor);
@@ -204,24 +222,32 @@ function rewriteCallsForBlock(text, block, options = {}) {
     const rewritten = rewriteCall(text.slice(index, closeIndex + 1), block, options);
     output += text.slice(cursor, index) + rewritten.text;
     replacements += rewritten.replacements;
+    inputValueReplacements += rewritten.inputValueReplacements || 0;
     defaultFieldReplacements += rewritten.defaultFieldReplacements || 0;
     cursor = closeIndex + 1;
   }
-  return { text: output + text.slice(cursor), replacements, defaultFieldReplacements };
+  return {
+    text: output + text.slice(cursor),
+    replacements,
+    inputValueReplacements,
+    defaultFieldReplacements,
+  };
 }
 
 function rewriteRegion(text, blocks, options = {}) {
   let current = text;
   let replacements = 0;
+  let inputValueReplacements = 0;
   let defaultFieldReplacements = 0;
   for (const block of blocks) {
-    if (!absSlots(block).some(slot => slot.type === 'field_variable')) continue;
+    if (!absSlots(block).some(slot => slot.type === 'field_variable' || slot.type === 'input_value')) continue;
     const rewritten = rewriteCallsForBlock(current, block, options);
     current = rewritten.text;
     replacements += rewritten.replacements;
+    inputValueReplacements += rewritten.inputValueReplacements;
     defaultFieldReplacements += rewritten.defaultFieldReplacements;
   }
-  return { text: current, replacements, defaultFieldReplacements };
+  return { text: current, replacements, inputValueReplacements, defaultFieldReplacements };
 }
 
 function rewriteReadme(content, blocks, contract = null) {
@@ -230,6 +256,7 @@ function rewriteReadme(content, blocks, contract = null) {
   let fenceLanguage = null;
   let inAbsExamples = false;
   let replacements = 0;
+  let inputValueReplacements = 0;
   let defaultFieldReplacements = 0;
   const output = lines.map(line => {
     if (fenceLanguage === null) {
@@ -249,6 +276,7 @@ function rewriteReadme(content, blocks, contract = null) {
     if (!inExecutableFence && !isBlockTableRow) return line;
     const rewritten = rewriteRegion(line, blocks, { repairInvalidField: isBlockTableRow });
     replacements += rewritten.replacements;
+    inputValueReplacements += rewritten.inputValueReplacements;
     defaultFieldReplacements += rewritten.defaultFieldReplacements;
     return rewritten.text;
   });
@@ -261,7 +289,13 @@ function rewriteReadme(content, blocks, contract = null) {
       return 'pass `$varName` directly to `field_variable` slots; use `variables_get($varName)` only for `input_value` slots.';
     },
   );
-  return { content: rewrittenContent, replacements, defaultFieldReplacements, noteReplacements };
+  return {
+    content: rewrittenContent,
+    replacements,
+    inputValueReplacements,
+    defaultFieldReplacements,
+    noteReplacements,
+  };
 }
 
 function gitLines(args) {
@@ -311,6 +345,7 @@ function migrate(options) {
     scanned: 0,
     changed: 0,
     replacements: 0,
+    inputValueReplacements: 0,
     defaultFieldCorrections: 0,
     noteCorrections: 0,
     skippedDirty: [],
@@ -338,6 +373,7 @@ function migrate(options) {
     const rewritten = rewriteReadme(before, blocks, contract);
     if (
       rewritten.replacements === 0
+      && rewritten.inputValueReplacements === 0
       && rewritten.defaultFieldReplacements === 0
       && rewritten.noteReplacements === 0
     ) continue;
@@ -361,12 +397,14 @@ function migrate(options) {
     if (options.apply) fs.writeFileSync(readmePath, rewritten.content, 'utf8');
     report.changed++;
     report.replacements += rewritten.replacements;
+    report.inputValueReplacements += rewritten.inputValueReplacements;
     report.defaultFieldCorrections += rewritten.defaultFieldReplacements;
     report.noteCorrections += rewritten.noteReplacements;
     report.changes.push({
       library: path.basename(libraryDir),
       file: normalized,
       replacements: rewritten.replacements,
+      inputValueReplacements: rewritten.inputValueReplacements,
       defaultFieldCorrections: rewritten.defaultFieldReplacements,
       noteCorrections: rewritten.noteReplacements,
     });
@@ -407,6 +445,7 @@ function main() {
       console.log(`Scanned clean README files: ${report.scanned}`);
       console.log(`Changed README files: ${report.changed}`);
       console.log(`Removed field_variable wrappers: ${report.replacements}`);
+      console.log(`Canonicalized input_value variable reads: ${report.inputValueReplacements}`);
       console.log(`Corrected invalid table field variables: ${report.defaultFieldCorrections}`);
       console.log(`Corrected stale variable notes: ${report.noteCorrections}`);
       console.log(`Skipped dirty README files: ${report.skippedDirty.length}`);
