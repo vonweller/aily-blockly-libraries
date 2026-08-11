@@ -1,94 +1,113 @@
 # Blockly Library README Writing Specification
 
-## 1. Document Responsibilities
+## 1. Objective
 
-Every library provides two documents:
+For one provided Blockly library directory, create or revise these files:
 
-| File | Audience | Size | Purpose |
-|---|---|---:|---|
-| `readme.md` | Humans | Target: no more than 1KB | Introduction, source, compatibility, and quick start |
-| `readme_ai.md` | Agents | Target: no more than 5KB; hard limit: 64KB | Executable ABS contracts, representative workflows, complete representative generated code, and library constraints |
-
-The 5KB target controls prompt cost. Never meet it by truncating parameters or generated code, inserting `...`, or deleting required contracts. Complex libraries may retain complete information up to the 64KB hard limit; files above the target still produce an informational review note.
-
-## 2. ABS Parameter Rules
-
-Merge every parameter group from `block.json` in order: `args0`, `args1`, and so on. Preserve the original order. The following elements do not become parenthesized arguments: `input_dummy`, `field_image`, `field_label`, `field_label_serializable`, and `input_statement`.
-
-| Slot type | ABS form | Example |
+| File | Audience | Content |
 |---|---|---|
-| `field_input` | String | `"sensor"` |
-| `field_number` / angle / slider | Bare number | `13`, `90` |
-| `field_dropdown` | The actual value from `block.json` | `HIGH`, `Serial`, `read()`, `""` |
-| `field_checkbox` | `TRUE` / `FALSE` | `TRUE` |
-| `field_variable` | Bare variable reference | `$sensor` |
-| Numeric `input_value` | Value block | `math_number(10)` |
-| Text `input_value` | Value block | `text("hello")` |
-| Boolean `input_value` | Value block | `logic_boolean(TRUE)` |
-| Variable `input_value` | Explicit variable-read value block | `variables_get($value)` |
-| `input_statement` | Named input on the following line or an indented body | `@DO0:` followed by child blocks |
-| Structured custom field | Compact JSON | Follow the field's runtime definition |
+| `readme.md` | Humans | Introduction, source, supported environments, and quick start |
+| `readme_ai.md` | Agents | Importable ABS contracts, complete representative generated code, workflows, and usage constraints |
 
-Do not confuse `field_variable` with `input_value`:
+Writing principles: self-contained, ABS-first, table-driven, fact-verifiable, and practical.
 
-```abs
-# Correct: VAR is field_variable.
-dht_read_temperature($dht)
+Use the exact lowercase filenames. Do not change block definitions or generators merely to make the documentation easier to write.
 
-# Correct: VALUE is input_value and must use an explicit variable-read block.
-serial_println(Serial, variables_get($temperature))
+Read the available facts in the current library before writing:
+
+1. `package.json`: package name, version, description, author, license, and dependencies;
+2. `block.json`: block types, parameters, connections, and defaults;
+3. `generator.js`: actual generated code and generator side effects;
+4. `toolbox.json`: recommended entry points and common composition, but toolbox absence alone does not make a block private;
+5. `readme_ai.contract.json`, when present: runtime variants, dynamic blocks, locally hidden blocks, and compatibility-only inputs;
+6. local extensions, mutators, examples, and existing README files: preserve only knowledge that the sources above can verify.
+
+Do not assume access to Blockly application source code, another repository, or repository scripts. Never invent behavior that cannot be established from the current library.
+
+### Recommended Writing Order
+
+1. extract library metadata from `package.json`;
+2. inventory every Agent-visible block and its complete parameter order;
+3. derive complete representative Generated Code from `generator.js`;
+4. collect real enum values and dynamic shapes;
+5. write at least one complete ABS example and the necessary Notes;
+6. apply the final checklist instead of treating an old README as code truth.
+
+## 2. `readme.md`
+
+Keep the human-facing document concise, preferably no more than 1KB. Include at least:
+
+```markdown
+# [Library Name]
+
+[One-sentence purpose]
+
+## Library Info
+
+| Field | Value |
+|---|---|
+| Package | @aily-project/lib-xxx |
+| Version | x.x.x |
+| Author | ... |
+| Source | ... |
+| License | ... |
+
+## Supported Boards
+
+[Supported boards or environments]
+
+## Description
+
+[Two to four sentences covering purpose, supported hardware, and main capabilities]
+
+## Quick Start
+
+[Minimal wiring, initialization, or usage instructions]
 ```
 
-README files describe and generate only the canonical forms above. Recovery syntax accepted by the runtime parser for legacy content is outside the Agent documentation contract and must not appear in Block Definitions, ABS Examples, or generation prompts.
+Do not guess an author, license, board, or wiring rule when no reliable local source provides it.
 
-## 3. Statement Inputs and Named Value Inputs
+## 3. Required `readme_ai.md` Structure
 
-Never put statement children on the same line as the parent call. Do not use placeholders such as `child_block()` or `action()`.
+Target no more than 5KB, with a hard limit of 64KB. Never meet the size target by dropping parameters, truncating code, or inserting `...`.
 
-```abs
-controls_if()
-    @IF0: logic_compare($temperature, GT, math_number(30))
-    @DO0:
-        serial_println(Serial, text("hot"))
-    @ELSE:
-        serial_println(Serial, text("normal"))
+### 3.1 Title and Library Info
+
+```markdown
+# [Library Name]
+
+[One-sentence capability description]
+
+## Library Info
+- **Name**: @aily-project/lib-xxx
+- **Version**: x.x.x
 ```
 
-The current ABS implementation uses real input names such as `@IF0:`, `@DO0:`, and `@ELSE:` for dynamic blocks including `controls_if` and `controls_switch`. A value on a named line can satisfy an `input_value`; it is not a missing positional argument. Ordinary value blocks still place their parameters inside parentheses.
+### 3.2 Block Definitions
 
-## 4. Required `readme_ai.md` Structure
+Every Agent-visible block must have exactly one row inside `## Block Definitions`. Do not invent `xxxN_*` summary types or any block absent from the current library's factual sources.
 
-### 4.1 Library Info
-
-Include at least the package name and version. Author, source, license, and supported boards may also be documented.
-
-### 4.2 Block Definitions
-
-Every Agent-visible `block.json` block must have exactly one row inside the `## Block Definitions` section. A table-like row placed in a later notes section does not satisfy this requirement. Use this header:
+Use this header:
 
 ```markdown
 | Block Type | Connection | Parameters (block.json order) | ABS Format | Generated Code |
 |---|---|---|---|---|
-| `dht_read_temperature` | Value | VAR(field_variable) | `dht_read_temperature($dht)` | `dht.readTemperature()` |
-| `xxx_write` | Statement | VAR(field_variable), VALUE(input_value) | `xxx_write($device, math_number(100))` | `device.write(100);` |
-| `xxx_if_ready` | Statement | VAR(field_variable), DO(input_statement) | `xxx_if_ready($device)` | `if (device.ready()) { runReadyHandler(); }` |
 ```
 
-Every ABS call in the table must be complete and importable. List `input_statement` slots in Parameters, but do not append their children to the single-line ABS Format cell.
+Derive Connection from the real block shape:
 
-Generated Code must be the complete result of executing the real generator handler with representative default inputs. Capture both the return value and side effects such as `addObject`, `addFunction`, setup, loop, and macro entries. Use `↵` for multiple lines inside one Markdown cell, but never truncate the result. The following are forbidden: `Dynamic code`, `See generator`, a bare `generator` placeholder, synthetic `undefined` output, and invented summary types such as `xxxN_*` that are not real blocks.
+- an `output` property means `Value`, optionally with its return type, such as `Value (Number)`;
+- `previousStatement` or `nextStatement` means `Statement`;
+- a top-level event or entry block without ordinary connections is `Hat`;
+- for special dynamic connections, state the real shape rather than guessing from the block name.
 
-If an Agent-visible block legitimately has no direct output in its representative default state, first classify it in the versioned `.scripts/contracts/readme-generated-code-no-direct.v1.json`. Each entry must provide a category, a precise Agent-facing preview, and a reason. An unclassified empty result, a stale classification, or a generic escape phrase such as “No inline code” fails validation.
+### 3.3 Parameter Options
 
-An internal helper or confirmed legacy block may be omitted only when its `readme_ai.contract.json` entry sets `agentVisible: false` with a non-empty reason. Such blocks must not appear in ABS examples. Absence from the current toolbox does not prove invisibility, and `agentVisible: false` must never hide a missing generator for a public block.
+When static dropdowns exist, add `## Parameter Options`. List the actual values from `block.json`, not display labels. An empty string is a real value and is written as `""`.
 
-### 4.3 Parameter Options
+### 3.4 ABS Examples
 
-For static enums, list the actual values rather than display labels. An empty string is a valid enum value and must be written as `""`.
-
-### 4.4 ABS Examples
-
-Include at least one complete executable example that calls a block from the current library. Complex libraries should cover initialization, reading or writing, callbacks, or multiple runtime signatures. Core or external-library calls are allowed, but must satisfy the current contracts of their owning libraries.
+Include at least one complete program that calls a block from the current library. Complex libraries should also show initialization order, reading or writing, callbacks, runtime variants, or required resource configuration.
 
 ```abs
 arduino_setup()
@@ -100,63 +119,166 @@ arduino_loop()
     time_delay(math_number(2000))
 ```
 
-### 4.5 Notes
+Every block, parameter, and enum in an example must be real. Never use `action()`, `child_block()`, `value`, or `...` as executable content.
 
-Document knowledge that cannot be inferred from static definitions: initialization order, object lifetime, callback context, minimum sampling intervals, mutually exclusive routes, board restrictions, and external dependencies.
+### 3.5 Notes
 
-## 5. Dynamic Block Contracts
+Record verified facts that a table alone cannot express, including:
 
-Add a sibling `readme_ai.contract.json` whenever an extension, mutator, or runtime initializer changes the real parameter shape, or when an Agent-visible block is created only in JavaScript and is absent from `block.json`. The contract records facts that static `block.json` cannot express:
+- required initialization blocks;
+- auto-created variables and their types;
+- object lifetime and valid call locations;
+- callback context;
+- minimum sampling intervals;
+- board, pin, bus, or external dependency restrictions;
+- mutually exclusive initialization routes;
+- which field selects a dynamic parameter shape.
 
-- `variants`: additional parameters and their order for each discriminator value;
-- `variadic`: indexed named inputs such as `ADD0...` or `INPUT1...`; examples use stable real names rather than fragile positions;
-- `staticShape: true`: an explicit, reasoned assertion that the extension does not change parameter shape;
-- `excludedRuntimeArgs`: hidden inputs retained only to load old projects and omitted from new Agent ABS;
-- `agentVisible: false`: an internal helper, legacy block, or hidden implementation outside the Agent API; it requires a reason and cannot be mixed with dynamic-shape metadata;
-- `document: false`: a real runtime variant intentionally excluded from Agent documentation, with a reason; it does not replace `excludedRuntimeArgs`;
-- `named: true`: runtime parameters map by name rather than position;
-- `runtimeBlocks`: blocks created by this library through `Blockly.Blocks[type]` and exposed to Agents; each item requires a reason, a complete static `definition`, any dynamic-shape declaration, and matching runtime block and generator registrations.
+Do not document parser compatibility syntax. Agent documentation exposes only the canonical forms in this specification.
 
-Dynamic `input_statement` children use their real names, such as `@DO1:`, `@ELSE:`, or `@CODE_BLOCK:`. If an extension only changes a tooltip, validator, dropdown contents, default value, or board metadata, use `staticShape: true`; do not describe it as “possibly adding dynamic fields.”
+Use this pattern when an initialization block creates a variable:
 
-A passing metadata contract does not prove runtime behavior. High-risk dynamic blocks also need versioned headless fixtures covering ABS → workspace → ABI → ABS/codegen. Independently compilable minimal cases must additionally pass aily-builder compilation.
-
-## 6. Generation and Migration Principles
-
-- Automatic generation writes candidate files only; it does not overwrite manually maintained README files.
-- Bulk migrations must be slot-aware, previewable, and limited to validated call regions.
-- Never infer a dynamic signature with a regular expression over `generator.js` and write it back directly.
-- The presence of an extension or mutator does not allow arbitrary extra arguments.
-- Do not infer invisibility from toolbox absence or use `agentVisible: false` to avoid fixing a public generator defect.
-- Classify generator-only types first. Public JavaScript-defined blocks from the same library belong in `runtimeBlocks` and receive normal Block Definitions and examples. Cross-library implementations, built-in overrides, legacy registrations, and internal runtime helpers belong in the versioned repository contract and must not impersonate Agent APIs.
-- Never truncate a real signature to meet a size target.
-- Do not truncate or regex-guess Generated Code. Execute isolated handlers, capture returns and code-area side effects, and reject unknown blocks, duplicate rows, synthetic artifacts, and unclassified empty output.
-- Use the exact lowercase filename `readme_ai.md`. The Git-index path is authoritative even on case-insensitive filesystems.
-- Do not change the relaxed `aily-blockly` import behavior merely to satisfy README validation.
-
-## 7. Pre-commit Validation
-
-```bash
-npm run readme:test
-npm run readme:dynamic-shapes
-npm run readme:generator-coverage
-npm run readme:candidate-check
-npm run readme:runtime-contract
-npm run readme:cross-check
-npm run readme:contract
+```markdown
+1. **Variable**: `xxx_init("device", ...)` creates `$device`; pass `$device` to this library's field_variable slots. If a different block expects an input_value, use `variables_get($device)`.
 ```
 
-Preview a bulk Generated Code refresh before explicitly applying it:
+A dynamic-shape note must name the discriminator and parameters, for example, “TYPE_A appends PIN(field_number), while TYPE_B appends WIRE(dropdown).” Do not merely say that dynamic parameters may appear.
 
-```bash
-npm run readme:migrate-generated-code
-npm run readme:migrate-generated-code -- --apply
+## 4. ABS Parameters
+
+Merge all parameter groups in order: `args0`, `args1`, `args2`, and so on. Fields and inputs may interleave; never move all fields before all inputs.
+
+These elements do not become parenthesized parameters:
+
+- `input_dummy`
+- `input_statement`
+- `field_image`
+- `field_label`
+- `field_label_serializable`
+
+Use these canonical forms for every other parameter:
+
+| Slot type | ABS form | Example |
+|---|---|---|
+| `field_input` | String | `"sensor"` |
+| `field_number` / angle / slider | Bare number | `13`, `90` |
+| `field_dropdown` | Actual value | `HIGH`, `Serial`, `read()`, `""` |
+| `field_checkbox` | `TRUE` / `FALSE` | `TRUE` |
+| `field_variable` | Bare variable-field reference | `$sensor` |
+| Numeric `input_value` | Number value block | `math_number(10)` |
+| Text `input_value` | Text value block | `text("hello")` |
+| Boolean `input_value` | Boolean value block | `logic_boolean(TRUE)` |
+| Variable `input_value` | Explicit variable-read block | `variables_get($value)` |
+| Other `input_value` | The real matching value block | `sensor_read($sensor)` |
+| Structured custom field | Compact JSON | Follow the field definition and verified existing data |
+
+A variable field and a variable value input are not interchangeable:
+
+```abs
+# VAR is field_variable.
+dht_read_temperature($dht)
+
+# VALUE is input_value.
+serial_println(Serial, variables_get($temperature))
 ```
 
-When `D:\codes\aily-builder` is available, also run:
+Do not put `variables_get(...)` in a `field_variable`, and do not put bare `$temperature` in an `input_value`.
 
-```bash
-npm run readme:runtime-compile
+## 5. Statement Inputs
+
+List an `input_statement` in Parameters, but omit it from the single-line ABS Format cell.
+
+In complete examples, put statement children below their parent. Multi-branch blocks use their real input names:
+
+```abs
+controls_if()
+    @IF0: logic_compare(variables_get($temperature), GT, math_number(30))
+    @DO0:
+        serial_println(Serial, text("hot"))
+    @ELSE:
+        serial_println(Serial, text("normal"))
 ```
 
-`readme:dynamic-shapes` checks whether every extension, mutator, `runtimeBlocks` entry, and dynamic generator slot has a `variants`, `variadic`, `staticShape`, or `excludedRuntimeArgs` declaration. `readme:generator-coverage` executes every generator registration in isolation and checks public generator coverage, classified invisible blocks, real runtime block definitions, generator-only provenance, duplicate assignments, slot reads, handler probes, exact Generated Code parity, and no-direct-output classifications. `readme:candidate-check` regenerates candidates for all 559 tracked libraries and cross-validates them without overwriting source README files. `readme:contract` validates local tables and examples, including unknown, duplicate, missing, or misplaced block rows. `readme:cross-check` validates every external call and rejects calls that ambiguously match multiple incompatible owners. `readme:runtime-contract` validates the real Blockly initialization and conversion chain. `readme:runtime-compile` verifies compilation of generated minimal cases. These evidence layers do not replace one another.
+- named lines such as `@IF0:` may represent a dynamic `input_value`, whose value stays on that line;
+- `input_statement` entries such as `@DO0:` and `@ELSE:` contain indented child blocks;
+- ordinary value blocks always keep their arguments in parentheses and never use `@NAME:`;
+- indent ordinary single-body loops directly according to their actual form.
+
+```abs
+controls_repeat_ext(math_number(10))
+    serial_println(Serial, text("loop"))
+```
+
+Never append `@DO0:` or a statement child to the parent call's line.
+
+## 6. Dynamic Blocks
+
+When a local extension, mutator, or `readme_ai.contract.json` changes the parameter shape:
+
+1. write static parameters first and append dynamic parameters in their real order;
+2. provide a complete ABS call for every selectable real shape;
+3. use real names for indexed inputs, such as `ADD0`, `INPUT1`, and `@DO1:`;
+4. do not claim new ABS parameters when an extension only changes a tooltip, validator, dropdown contents, or default value;
+5. omit hidden inputs retained only to load old projects from new ABS;
+6. include real Agent-facing blocks created in JavaScript in Block Definitions.
+
+If the library references an external extension whose implementation is unavailable and no local contract defines its shape, do not guess dynamic arguments. State the exact missing fact in Notes and request a local definition or contract from the maintainer.
+
+## 7. Generated Code
+
+Generated Code is not a summary. It is the complete output for the representative inputs shown in ABS Format.
+
+For every block:
+
+1. use default fields from `block.json` and representative value inputs from ABS Format;
+2. find the matching real handler in `generator.js`;
+3. expand the handler's returned code;
+4. also collect library includes, globals, objects, functions, macros, setup code, and loop code written as side effects;
+5. represent multiple lines with `↵` inside one Markdown cell without dropping content;
+6. escape `|` inside a cell as `&#124;`.
+
+Example:
+
+```markdown
+| `emakefun_md_init` | Statement | VAR(field_input), ADDR(dropdown), FREQ(dropdown) | `emakefun_md_init("mMotor", "0x60", "50")` | `Emakefun_MotorDriver mMotor = Emakefun_MotorDriver(0x60); ↵ mMotor.begin(50);` |
+```
+
+Never use:
+
+- `Dynamic code`
+- `See generator`
+- a bare `generator` placeholder
+- truncated code such as `esp_sleep_enable_ext0_wakeup(GPIO_NUM_`
+- `undefined` or `[object Object]`
+- `...` to replace omitted content
+- only the handler return while omitting setup, object, or function side effects
+
+When the default state genuinely emits no direct code, describe the exact reason, for example “the custom animation field emits no code when it has no frame data” or “an empty statement body does not register a callback.” Do not use a generic “No inline code.”
+
+If complete output cannot be determined from the current `generator.js`, do not invent it. Identify the exact missing fact and ask the maintainer for the local implementation or contract.
+
+## 8. Final Checklist
+
+Before delivery, verify that:
+
+- filenames are lowercase `readme.md` and `readme_ai.md`;
+- package name and version match `package.json`;
+- every Agent-visible block has exactly one Block Definitions row;
+- there are no unknown blocks, duplicates, or block rows outside that section;
+- parameters include `args0..argsN` in the original order;
+- `field_variable` uses `$var`;
+- a variable `input_value` uses `variables_get($var)`;
+- statement children are not on the parent call's line;
+- enums use actual values;
+- Generated Code is complete and contains no placeholders or truncation;
+- at least one complete example calls the current library;
+- Notes contain only verified library knowledge;
+- no required contract was deleted merely to reduce file size.
+
+## 9. Updating Existing Documentation
+
+- Treat an existing README as a draft to verify, not as code truth.
+- When a block is added, removed, or changed, update Block Definitions, Parameter Options, ABS Examples, and Notes together.
+- Preserve wiring, initialization order, lifecycle, and hardware constraints that the current library verifies.
+- Remove stale block names, old parameter orders, pseudocode, and unverifiable claims.
+- Prioritize correct, complete calls before reducing document length.
