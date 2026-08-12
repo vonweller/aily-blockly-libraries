@@ -11,6 +11,7 @@ const {
   allDocumentedBlocks,
   blockContractFor,
 } = require('./check-readme-compliance');
+const { loadLibraryContract } = require('./readme-library-contracts');
 
 const ROOT = path.resolve(__dirname, '..');
 
@@ -45,7 +46,7 @@ function visibleArgs(block) {
 }
 
 function loadContract(libDir) {
-  return readJson(path.join(libDir, 'readme_ai.contract.json')) || {};
+  return loadLibraryContract(path.basename(libDir)) || {};
 }
 
 function runtimeShapeIsDocumentable(block, contractForBlock) {

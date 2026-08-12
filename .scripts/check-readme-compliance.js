@@ -3,11 +3,14 @@
 const fs = require('fs');
 const path = require('path');
 const { execFileSync } = require('child_process');
+const {
+  loadLibraryContract,
+  validateLibraryContractInventory,
+} = require('./readme-library-contracts');
 
 const ROOT = path.resolve(__dirname, '..');
 const HUMAN_README = 'readme.md';
 const AI_README = 'readme_ai.md';
-const AI_CONTRACT = 'readme_ai.contract.json';
 const HUMAN_MAX_BYTES = 1024;
 const AI_MAX_BYTES = 5 * 1024;
 // A complete block contract is more important than shaving a large library
@@ -1344,13 +1347,14 @@ function validateAbsExampleShape(example, exampleIndex) {
 
 function validateAiContract(contract, blocks) {
   if (contract == null) return [];
+  const contractLabel = 'README library contract';
   const messages = [];
   if (!contract || typeof contract !== 'object' || Array.isArray(contract)) {
-    return ['readme_ai.contract.json must contain a JSON object'];
+    return [`${contractLabel} must contain a JSON object`];
   }
-  if (contract.schemaVersion !== 1) messages.push('readme_ai.contract.json schemaVersion must be 1');
+  if (contract.schemaVersion !== 1) messages.push(`${contractLabel} schemaVersion must be 1`);
   if (!contract.blocks || typeof contract.blocks !== 'object' || Array.isArray(contract.blocks)) {
-    messages.push('readme_ai.contract.json blocks must be an object');
+    messages.push(`${contractLabel} blocks must be an object`);
     return messages;
   }
   const staticBlocks = new Map((blocks || []).filter(Boolean).map(block => [block.type, block]));
@@ -1358,10 +1362,10 @@ function validateAiContract(contract, blocks) {
   const runtimeContracts = [];
   if (contract.runtimeBlocks !== undefined
     && (!contract.runtimeBlocks || typeof contract.runtimeBlocks !== 'object' || Array.isArray(contract.runtimeBlocks))) {
-    messages.push('readme_ai.contract.json runtimeBlocks must be an object');
+    messages.push(`${contractLabel} runtimeBlocks must be an object`);
   } else {
     for (const [blockType, blockContract] of Object.entries(contract.runtimeBlocks || {})) {
-      const label = `readme_ai.contract.json runtimeBlocks ${blockType}`;
+      const label = `${contractLabel} runtimeBlocks ${blockType}`;
       if (!/^[A-Za-z0-9_]+$/.test(blockType)) messages.push(`${label} key must be a block type identifier`);
       if (!blockContract || typeof blockContract !== 'object' || Array.isArray(blockContract)) {
         messages.push(`${label} must be an object`);
@@ -1417,7 +1421,7 @@ function validateAiContract(contract, blocks) {
   ];
   for (const [blockType, blockContract, runtimeDefined] of contractEntries) {
     if (!knownBlocks.has(blockType)) {
-      messages.push(`readme_ai.contract.json declares unknown block ${blockType}`);
+      messages.push(`${contractLabel} declares unknown block ${blockType}`);
       continue;
     }
     const variants = Array.isArray(blockContract?.variants) ? blockContract.variants : [];
@@ -1428,35 +1432,35 @@ function validateAiContract(contract, blocks) {
       ? blockContract.excludedRuntimeArgs
       : [];
     if (blockContract?.agentVisible !== undefined && typeof blockContract.agentVisible !== 'boolean') {
-      messages.push(`readme_ai.contract.json ${blockType} agentVisible must be boolean`);
+      messages.push(`${contractLabel} ${blockType} agentVisible must be boolean`);
     }
     if (runtimeDefined && blockContract?.agentVisible === false) continue;
     if (blockContract?.agentVisible === false) {
       if (typeof blockContract.reason !== 'string' || !blockContract.reason.trim()) {
-        messages.push(`readme_ai.contract.json ${blockType} agentVisible false requires a non-empty reason`);
+        messages.push(`${contractLabel} ${blockType} agentVisible false requires a non-empty reason`);
       }
       if (blockContract?.staticShape === true || variants.length > 0 || variadics.length > 0 || excludedRuntimeArgs.length > 0) {
-        messages.push(`readme_ai.contract.json ${blockType} agentVisible false cannot declare runtime-shape metadata`);
+        messages.push(`${contractLabel} ${blockType} agentVisible false cannot declare runtime-shape metadata`);
       }
       continue;
     }
     if (blockContract?.staticShape === true) {
       if (variants.length > 0 || variadics.length > 0 || excludedRuntimeArgs.length > 0) {
-        messages.push(`readme_ai.contract.json ${blockType} cannot declare staticShape with runtime variants, variadic inputs, or excluded runtime arguments`);
+        messages.push(`${contractLabel} ${blockType} cannot declare staticShape with runtime variants, variadic inputs, or excluded runtime arguments`);
       }
       if (typeof blockContract.reason !== 'string' || !blockContract.reason.trim()) {
-        messages.push(`readme_ai.contract.json ${blockType} staticShape requires a non-empty reason`);
+        messages.push(`${contractLabel} ${blockType} staticShape requires a non-empty reason`);
       }
       continue;
     }
     if (variants.length === 0 && variadics.length === 0 && excludedRuntimeArgs.length === 0) {
-      messages.push(`readme_ai.contract.json ${blockType} must declare at least one runtime variant, variadic input, or excluded runtime argument`);
+      messages.push(`${contractLabel} ${blockType} must declare at least one runtime variant, variadic input, or excluded runtime argument`);
       continue;
     }
     const staticNames = new Set(visibleArgs(knownBlocks.get(blockType)).map(arg => arg.name).filter(Boolean));
     const excludedNames = new Set();
     for (const [index, arg] of excludedRuntimeArgs.entries()) {
-      const label = `readme_ai.contract.json ${blockType} excludedRuntimeArgs ${index + 1}`;
+      const label = `${contractLabel} ${blockType} excludedRuntimeArgs ${index + 1}`;
       if (!arg || typeof arg !== 'object' || Array.isArray(arg)) {
         messages.push(`${label} must be an object`);
         continue;
@@ -1475,7 +1479,7 @@ function validateAiContract(contract, blocks) {
     }
     const variadicPrefixes = new Set();
     for (const [index, variadic] of variadics.entries()) {
-      const label = `readme_ai.contract.json ${blockType} variadic ${index + 1}`;
+      const label = `${contractLabel} ${blockType} variadic ${index + 1}`;
       if (!variadic || typeof variadic !== 'object' || Array.isArray(variadic)) {
         messages.push(`${label} must be an object`);
         continue;
@@ -1509,29 +1513,29 @@ function validateAiContract(contract, blocks) {
         ...staticNames,
         ...appendArgs.map(arg => arg?.name).filter(Boolean),
       ]);
-      if (!id) messages.push(`readme_ai.contract.json ${blockType} variant ${index + 1} is missing id`);
-      else if (ids.has(id)) messages.push(`readme_ai.contract.json ${blockType} has duplicate variant id ${id}`);
+      if (!id) messages.push(`${contractLabel} ${blockType} variant ${index + 1} is missing id`);
+      else if (ids.has(id)) messages.push(`${contractLabel} ${blockType} has duplicate variant id ${id}`);
       else ids.add(id);
       if (!variant?.when || typeof variant.when !== 'object' || Array.isArray(variant.when)) {
-        messages.push(`readme_ai.contract.json ${blockType}/${id || index + 1} when must be an object`);
+        messages.push(`${contractLabel} ${blockType}/${id || index + 1} when must be an object`);
       } else {
         for (const [slotName, values] of Object.entries(variant.when)) {
-          if (!variantNames.has(slotName)) messages.push(`readme_ai.contract.json ${blockType}/${id || index + 1} when references unknown slot ${slotName}`);
-          if (!Array.isArray(values) || values.length === 0) messages.push(`readme_ai.contract.json ${blockType}/${id || index + 1} when.${slotName} must be a non-empty array`);
+          if (!variantNames.has(slotName)) messages.push(`${contractLabel} ${blockType}/${id || index + 1} when references unknown slot ${slotName}`);
+          if (!Array.isArray(values) || values.length === 0) messages.push(`${contractLabel} ${blockType}/${id || index + 1} when.${slotName} must be a non-empty array`);
         }
       }
       if (variant?.document === false && (typeof variant.reason !== 'string' || !variant.reason.trim())) {
-        messages.push(`readme_ai.contract.json ${blockType}/${id || index + 1} document=false requires a non-empty reason`);
+        messages.push(`${contractLabel} ${blockType}/${id || index + 1} document=false requires a non-empty reason`);
       }
       const names = new Set(staticNames);
       for (const arg of appendArgs) {
         if (!arg?.name || !arg?.type) {
-          messages.push(`readme_ai.contract.json ${blockType}/${id || index + 1} appendArgs require name and type`);
+          messages.push(`${contractLabel} ${blockType}/${id || index + 1} appendArgs require name and type`);
           continue;
         }
-        if (names.has(arg.name)) messages.push(`readme_ai.contract.json ${blockType}/${id || index + 1} duplicates slot ${arg.name}`);
+        if (names.has(arg.name)) messages.push(`${contractLabel} ${blockType}/${id || index + 1} duplicates slot ${arg.name}`);
         if (arg.example == null || String(arg.example).trim() === '') {
-          messages.push(`readme_ai.contract.json ${blockType}/${id || index + 1} ${arg.name} requires an executable example`);
+          messages.push(`${contractLabel} ${blockType}/${id || index + 1} ${arg.name} requires an executable example`);
         }
         names.add(arg.name);
       }
@@ -1751,13 +1755,15 @@ function validateAiReadme(libDir, pkg, blocks, options = {}) {
   }
   if (actual !== AI_README) issues.push(issue('error', `AI README file must be named ${AI_README}`));
 
-  let contract = options.contract || null;
-  const contractActual = findFileCaseInsensitive(libDir, AI_CONTRACT);
-  if (contractActual) {
-    if (contractActual !== AI_CONTRACT) issues.push(issue('error', `AI contract file must be named ${AI_CONTRACT}`));
-    const contractResult = readJson(path.join(libDir, contractActual));
-    if (!contractResult.ok) issues.push(issue('error', `${AI_CONTRACT} invalid: ${contractResult.error}`));
-    else contract = contractResult.value;
+  let contract = Object.prototype.hasOwnProperty.call(options, 'contract')
+    ? options.contract
+    : null;
+  if (!Object.prototype.hasOwnProperty.call(options, 'contract')) {
+    try {
+      contract = loadLibraryContract(path.basename(libDir));
+    } catch (error) {
+      issues.push(issue('error', error.message));
+    }
   }
 
   const content = readText(path.join(libDir, actual)) || '';
@@ -1828,6 +1834,14 @@ function processLibrary(libDir, options) {
   if (!blockResult.ok) result.issues.push(issue('error', `block.json invalid: ${blockResult.error}`));
   if (blockResult.ok && !Array.isArray(blockResult.value)) result.issues.push(issue('error', 'block.json must be an array'));
 
+  const localContract = findFileCaseInsensitive(libDir, 'readme_ai.contract.json');
+  if (localContract) {
+    result.issues.push(issue(
+      'error',
+      `${localContract} is a repository-maintenance artifact; move it to .scripts/contracts/readme-library-contracts/${libName}.json`,
+    ));
+  }
+
   if (options.fix) {
     result.issues.push(issue(
       'error',
@@ -1884,6 +1898,17 @@ function main() {
 
   const dirs = getLibraryDirs(options.all ? [] : options.targets, options.tracked);
   const results = dirs.map((dir) => processLibrary(dir, options));
+  if (options.all) {
+    const inventoryErrors = validateLibraryContractInventory(dirs.map(dir => path.basename(dir)));
+    if (inventoryErrors.length > 0) {
+      results.push({
+        libName: '.scripts/contracts/readme-library-contracts',
+        issues: inventoryErrors.map(message => issue('error', message)),
+        fixed: [],
+        skipped: false,
+      });
+    }
+  }
   const issueResults = results.filter((result) => result.issues.some((item) => item.level !== 'info'));
   const infoCount = results.reduce((sum, result) => sum + result.issues.filter((item) => item.level === 'info').length, 0);
   const fixedCount = results.reduce((sum, result) => sum + result.fixed.length, 0);

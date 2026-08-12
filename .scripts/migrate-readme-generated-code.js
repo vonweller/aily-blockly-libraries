@@ -9,6 +9,7 @@ const {
   blockContractFor,
 } = require('./check-readme-compliance');
 const { buildGeneratedCodePreviews } = require('./check-library-generator-coverage');
+const { loadLibraryContract } = require('./readme-library-contracts');
 
 const ROOT = path.resolve(__dirname, '..');
 
@@ -81,8 +82,7 @@ function migrate({ apply = false, targets = [] } = {}) {
     const readmePath = path.join(directory, 'readme_ai.md');
     if (!fs.existsSync(readmePath)) throw new Error(`${library}: missing lowercase readme_ai.md`);
     const blocks = readJson(path.join(directory, 'block.json'));
-    const contractPath = path.join(directory, 'readme_ai.contract.json');
-    const contract = fs.existsSync(contractPath) ? readJson(contractPath) : null;
+    const contract = loadLibraryContract(library);
     const generatorPath = path.join(directory, 'generator.js');
     const source = fs.existsSync(generatorPath) ? fs.readFileSync(generatorPath, 'utf8') : '';
     const previewResult = buildGeneratedCodePreviews(library, source, blocks, contract);

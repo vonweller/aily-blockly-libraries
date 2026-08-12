@@ -26,6 +26,13 @@ const { appendMissingRuntimeVariantExamples } = require('./migrate-readme-runtim
 const { rewriteReadmeStructure } = require('./migrate-readme-structure');
 const { callWithNamedValueInputs } = require('./check-readme-cross-library-examples');
 const { buildGeneratedCodePreviews } = require('./check-library-generator-coverage');
+const { loadLibraryContract } = require('./readme-library-contracts');
+const {
+  contractPathForLibrary,
+  contractRepositoryPathForLibrary,
+  libraryFromContractRepositoryPath,
+  validateLibraryContractInventory,
+} = require('./readme-library-contracts');
 const {
   readFixture: readRuntimeFixture,
   verifyFixtureExpectations,
@@ -80,6 +87,25 @@ const dhtRuntimeContract = {
     },
   },
 };
+
+test('library README contracts live outside downloadable library folders', () => {
+  assert.equal(
+    contractRepositoryPathForLibrary('adafruit_DHT'),
+    '.scripts/contracts/readme-library-contracts/adafruit_DHT.json',
+  );
+  assert.equal(
+    libraryFromContractRepositoryPath('.scripts/contracts/readme-library-contracts/adafruit_DHT.json'),
+    'adafruit_DHT',
+  );
+  assert.equal(path.basename(contractPathForLibrary('adafruit_DHT')), 'adafruit_DHT.json');
+  assert.deepEqual(loadLibraryContract('adafruit_DHT'), dhtRuntimeContract);
+  assert.equal(fs.existsSync(path.resolve(__dirname, '..', 'adafruit_DHT', 'readme_ai.contract.json')), false);
+  const root = path.resolve(__dirname, '..');
+  const libraryNames = fs.readdirSync(root, { withFileTypes: true })
+    .filter(entry => entry.isDirectory() && fs.existsSync(path.join(root, entry.name, 'block.json')))
+    .map(entry => entry.name);
+  assert.deepEqual(validateLibraryContractInventory(libraryNames), []);
+});
 
 test('runtime-variant migration adds only missing contract examples and is idempotent', () => {
   const parameters = paramsDescriptionForBlock(dhtInit, dhtRuntimeContract.blocks.dht_init);
@@ -571,10 +597,7 @@ test('generated-code previews remain complete beyond the old table-cell limit', 
 test('generated-code probing uses real variable names, wrapper connectivity, and side effects', () => {
   const build = (library) => {
     const libraryPath = path.resolve(__dirname, '..', library);
-    const contractPath = path.join(libraryPath, 'readme_ai.contract.json');
-    const contract = fs.existsSync(contractPath)
-      ? JSON.parse(fs.readFileSync(contractPath, 'utf8'))
-      : null;
+    const contract = loadLibraryContract(library);
     return buildGeneratedCodePreviews(
       library,
       fs.readFileSync(path.join(libraryPath, 'generator.js'), 'utf8'),
@@ -602,7 +625,7 @@ test('no-direct generated code requires a versioned classification with an expli
     'u8g2',
     fs.readFileSync(path.join(u8g2Path, 'generator.js'), 'utf8'),
     JSON.parse(fs.readFileSync(path.join(u8g2Path, 'block.json'), 'utf8')),
-    JSON.parse(fs.readFileSync(path.join(u8g2Path, 'readme_ai.contract.json'), 'utf8')),
+    loadLibraryContract('u8g2'),
   );
   assert.deepEqual(u8g2.errors, []);
   assert.match(u8g2.previews.get('u8g2_bitmap'), /custom bitmap\/animation field has no frame data/);
@@ -1124,6 +1147,12 @@ test('changed-library gate records ABS regressions independently of legacy score
     readFileAtRevision(ref, relativePath) {
       return relativePath.endsWith('block.json') ? JSON.stringify([dhtRead]) : valid;
     }
+    readReadmeContractAtRevision() {
+      return null;
+    }
+    readCurrentReadmeContract() {
+      return null;
+    }
     readCurrentFileCaseInsensitive(libraryPath, expectedName) {
       if (expectedName === 'block.json') return JSON.stringify([dhtRead]);
       if (expectedName === 'readme_ai.contract.json') return null;
@@ -1131,19 +1160,38 @@ test('changed-library gate records ABS regressions independently of legacy score
     }
   }
 
+  const originalLog = console.log;
+  console.log = () => {};
   const validator = new StubValidator();
-  const comparison = validator.checkAiReadmeAbsRegression('fixture', '0123456789abcdef');
+  let comparison;
+  let shaComparison;
+  try {
+    comparison = validator.checkAiReadmeAbsRegression('fixture', '0123456789abcdef');
+
+    const shaValidator = new StubValidator();
+    shaComparison = shaValidator.checkAiReadmeAbsRegression(
+      'fixture',
+      '0123456789abcdef',
+      'fedcba9876543210',
+    );
+  } finally {
+    console.log = originalLog;
+  }
   assert.ok(comparison.added.length >= 2);
   assert.equal(validator.absContractRegressions, comparison.added.length);
   assert.ok(validator.issues.every((entry) => entry.category === 'README ABS 回归'));
 
-  const shaValidator = new StubValidator();
-  const shaComparison = shaValidator.checkAiReadmeAbsRegression(
-    'fixture',
-    '0123456789abcdef',
-    'fedcba9876543210',
-  );
   assert.deepEqual(shaComparison.added, [], 'explicit head must be read from Git, not the merge checkout');
+});
+
+test('changed-library discovery maps centralized README contracts back to their library', () => {
+  const validator = new LibraryValidator();
+  assert.deepEqual(
+    validator.extractLibrariesFromChangedFiles([
+      '.scripts/contracts/readme-library-contracts/adafruit_DHT.json',
+    ]),
+    ['adafruit_DHT'],
+  );
 });
 
 test('changed-library command fails on ABS regressions even when legacy score is 100%', async () => {
@@ -1171,11 +1219,14 @@ test('changed-library command fails on ABS regressions even when legacy score is
   }
 
   const previousExitCode = process.exitCode;
+  const originalLog = console.log;
   process.exitCode = undefined;
+  console.log = () => {};
   try {
     await new ChangedValidator().validateChangedLibraries({ base: 'base', head: 'head' });
     assert.equal(process.exitCode, 1);
   } finally {
+    console.log = originalLog;
     process.exitCode = previousExitCode;
   }
 });
