@@ -1,0 +1,89 @@
+{
+  "kind": "category",
+  "name": "语音识别",
+  "icon": "fa-light fa-waveform-lines",
+  "colour": "#1565C0",
+  "contents": [
+    {"kind": "label", "text": "初始化"},
+    {"kind": "block", "type": "chipintelli_asr_init"},
+    {"kind": "block", "type": "chipintelli_asr_set_wake_word"},
+    {"kind": "block", "type": "chipintelli_asr_end"},
+    {"kind": "label", "text": "识别事件"},
+    {"kind": "block", "type": "chipintelli_asr_on_startup"},
+    {"kind": "block", "type": "chipintelli_asr_on_wakeup"},
+    {"kind": "block", "type": "chipintelli_asr_on_timeout"},
+    {"kind": "block", "type": "chipintelli_asr_on_result"},
+    {
+      "kind": "block",
+      "type": "chipintelli_asr_on_command",
+      "inputs": {
+        "COMMAND": {
+          "shadow": {
+            "type": "chipintelli_asr_command",
+            "fields": {"TEXT": "打开灯"}
+          }
+        }
+      }
+    },
+    {"kind": "block", "type": "chipintelli_asr_command"},
+    {"kind": "label", "text": "事件管理"},
+    {"kind": "block", "type": "chipintelli_asr_detach_lifecycle"},
+    {
+      "kind": "block",
+      "type": "chipintelli_asr_detach_command",
+      "inputs": {
+        "COMMAND": {
+          "shadow": {
+            "type": "chipintelli_asr_command",
+            "fields": {"TEXT": "打开灯"}
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "chipintelli_asr_detach_semantic",
+      "inputs": {
+        "SEMANTIC_ID": {
+          "shadow": {"type": "math_number", "fields": {"NUM": 0}}
+        }
+      }
+    },
+    {"kind": "block", "type": "chipintelli_asr_detach_handlers"},
+    {"kind": "label", "text": "唤醒状态"},
+    {
+      "kind": "block",
+      "type": "chipintelli_asr_keep_awake_for",
+      "inputs": {
+        "TIMEOUT": {
+          "shadow": {"type": "math_number", "fields": {"NUM": 15}}
+        }
+      }
+    },
+    {"kind": "block", "type": "chipintelli_asr_is_awake"},
+    {"kind": "label", "text": "识别结果"},
+    {"kind": "block", "type": "chipintelli_asr_read_results"},
+    {"kind": "block", "type": "chipintelli_asr_available"},
+    {"kind": "block", "type": "chipintelli_asr_result_command_id"},
+    {"kind": "block", "type": "chipintelli_asr_result_semantic_id"},
+    {"kind": "block", "type": "chipintelli_asr_result_score"},
+    {"kind": "block", "type": "chipintelli_asr_result_frames"},
+    {"kind": "block", "type": "chipintelli_asr_result_is_wake_word"},
+    {"kind": "block", "type": "chipintelli_asr_result_text"},
+    {"kind": "block", "type": "chipintelli_asr_result_text_truncated"},
+    {"kind": "label", "text": "队列与诊断"},
+    {"kind": "block", "type": "chipintelli_asr_pending_results"},
+    {"kind": "block", "type": "chipintelli_asr_pending_events"},
+    {"kind": "block", "type": "chipintelli_asr_dropped_results"},
+    {"kind": "block", "type": "chipintelli_asr_dropped_events"},
+    {"kind": "block", "type": "chipintelli_asr_handler_count"},
+    {"kind": "block", "type": "chipintelli_asr_handler_capacity"},
+    {"kind": "block", "type": "chipintelli_asr_last_error"},
+    {"kind": "block", "type": "chipintelli_asr_last_error_text"},
+    {"kind": "label", "text": "算法配置"},
+    {"kind": "block", "type": "chipintelli_asr_aec_enabled"},
+    {"kind": "block", "type": "chipintelli_asr_barge_in_enabled"},
+    {"kind": "block", "type": "chipintelli_asr_barge_in_mode"},
+    {"kind": "block", "type": "chipintelli_asr_barge_in_mode_value"}
+  ]
+}

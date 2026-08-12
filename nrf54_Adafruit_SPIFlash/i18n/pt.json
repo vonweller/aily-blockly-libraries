@@ -1,0 +1,91 @@
+{
+  "toolbox_name": "nRF54 SPI Flash",
+  "toolbox_labels": {
+    "配置": "Setup",
+    "信息": "Information",
+    "读写": "Read and write",
+    "擦除与状态": "Erase and status"
+  },
+  "nrf54_spiflash_begin_qspi": {
+    "message0": "initialize onboard QSPI flash",
+    "tooltip": "Initialize flash through the LM20A onboard QSPI transport."
+  },
+  "nrf54_spiflash_begin_spi": {
+    "message0": "initialize SPI flash CS pin %1",
+    "tooltip": "Initialize flash over SPI with the selected chip-select pin."
+  },
+  "nrf54_spiflash_end": {
+    "message0": "close SPI flash",
+    "tooltip": "Synchronize and close the flash device."
+  },
+  "nrf54_spiflash_size": {
+    "message0": "SPI flash size in bytes",
+    "tooltip": "Return total flash capacity."
+  },
+  "nrf54_spiflash_jedec_id": {
+    "message0": "SPI flash JEDEC ID",
+    "tooltip": "Read the 24-bit JEDEC identifier."
+  },
+  "nrf54_spiflash_jedec_part": {
+    "message0": "SPI flash JEDEC %1",
+    "tooltip": "#00897B",
+    "args0": [
+      {
+        "options": [
+          [
+            "厂商",
+            "0"
+          ],
+          [
+            "存储类型",
+            "1"
+          ],
+          [
+            "容量代码",
+            "2"
+          ]
+        ]
+      }
+    ]
+  },
+  "nrf54_spiflash_read_byte": {
+    "message0": "read SPI flash address %1",
+    "tooltip": "Read one byte from an address."
+  },
+  "nrf54_spiflash_write_byte": {
+    "message0": "write SPI flash address %1 value %2",
+    "tooltip": "Write one byte to an address."
+  },
+  "nrf54_spiflash_read_text": {
+    "message0": "read SPI flash text address %1 length %2",
+    "tooltip": "Read bytes as text, stopping at a zero byte."
+  },
+  "nrf54_spiflash_write_text": {
+    "message0": "write SPI flash text address %1 text %2",
+    "tooltip": "Write String content without automatically erasing a sector."
+  },
+  "nrf54_spiflash_erase_sector": {
+    "message0": "erase SPI flash sector at %1",
+    "tooltip": "Erase the 4 KB sector containing the address."
+  },
+  "nrf54_spiflash_erase_chip": {
+    "message0": "erase entire SPI flash",
+    "tooltip": "Erase the entire flash chip."
+  },
+  "nrf54_spiflash_wait_ready": {
+    "message0": "wait for SPI flash ready timeout (ms) %1",
+    "tooltip": "Wait for the flash device to become ready."
+  },
+  "nrf54_spiflash_is_busy": {
+    "message0": "SPI flash is busy",
+    "tooltip": "Return the current busy state."
+  },
+  "nrf54_spiflash_sector_count": {
+    "message0": "SPI flash 512-byte sector count",
+    "tooltip": "Return the block-device sector count."
+  },
+  "nrf54_spiflash_run_command": {
+    "message0": "run SPI flash command %1",
+    "tooltip": "Run a no-argument flash command."
+  }
+}

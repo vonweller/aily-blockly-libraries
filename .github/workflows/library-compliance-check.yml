@@ -12,6 +12,11 @@ on:
       - '*/README.md'
       - '*/readme_ai.md'
       - '*/README_AI.md'
+      - '*/readme_ai.contract.json'
+      - '.scripts/**'
+      - '.scripts_git_action/**'
+      - '.github/workflows/library-compliance-check.yml'
+      - 'package.json'
   push:
     branches: [ main, develop ]
     paths:
@@ -23,6 +28,11 @@ on:
       - '*/README.md'
       - '*/readme_ai.md'
       - '*/README_AI.md'
+      - '*/readme_ai.contract.json'
+      - '.scripts/**'
+      - '.scripts_git_action/**'
+      - '.github/workflows/library-compliance-check.yml'
+      - 'package.json'
 
 # GitHub Actions权限配置
 permissions:
@@ -56,6 +66,15 @@ jobs:
 
     - name: Install dependencies
       run: npm install js-yaml
+
+    - name: Test README generation and ABS contracts
+      run: |
+        npm run readme:test
+        npm run readme:contract
+        npm run readme:dynamic-shapes
+        npm run readme:generator-coverage
+        npm run readme:candidate-check
+        npm run readme:cross-check
 
     - name: Validate changed libraries
       id: validation

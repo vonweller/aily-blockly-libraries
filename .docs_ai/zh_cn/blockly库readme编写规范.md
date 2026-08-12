@@ -1,223 +1,284 @@
-# Blockly库README编写规范
+# Blockly 库 README 编写规范
 
-## 概述
+## 1. 任务目标
 
-本规范定义了Blockly库文档的标准格式。每个库必须提供**两个文件**：
+针对当前给定的一个 Blockly 库目录，编写或修订以下两个文件：
 
-| 文件 | 读者 | 大小上限 | 用途 |
-|------|------|----------|------|
-| `readme.md` | 人类 | ≤1KB | 库介绍、作者/来源信息、快速入门 |
-| `readme_ai.md` | 大模型 | ≤5KB（必要时≤15KB） | 用于代码生成的ABS块参考 |
+| 文件 | 读者 | 内容 |
+|---|---|---|
+| `readme.md` | 人类 | 简介、来源、支持环境和快速入门 |
+| `readme_ai.md` | Agent | 可直接用于生成程序的 ABS 调用契约、完整代表性生成代码和使用约束 |
 
-**设计原则**：自包含、ABS优先、表格驱动、实用导向
+编写原则：自包含、ABS 优先、表格驱动、事实可验证、实用导向。
 
----
+文件名必须精确使用小写。不要修改库的块定义或 generator 来迁就文档。
 
-## ABS语法参考
+编写前读取当前库中能够获得的事实来源：
 
-### 块连接类型
+1. `package.json`：包名、版本、说明、作者、许可证和依赖；
+2. `block.json`：块类型、参数、连接形态和默认值；
+3. `generator.js`：每个块实际生成的代码及其副作用；
+4. `toolbox.json`：推荐入口和常用组合，但不能仅凭 toolbox 缺席认定块不可见；
+5. `readme_ai.contract.json`（如果存在）：运行时参数变体、动态块、本地隐藏块和兼容输入；
+6. 当前库内的 extension、mutator、示例和已有 README：只保留能够由上述事实验证的知识。
 
-| 类型 | 角色 | 语法 |
-|------|------|------|
-| **Value（值块）** | 返回一个值，作为参数嵌入其他块中 | `block(p1, p2, ...)` — 所有参数放在括号内 |
-| **Statement（语句块）** | 独立的可执行语句行 | 参数放在括号内；`input_statement` 插槽使用 `@NAME:` |
-| **Hat（帽块）** | 程序入口点（`arduino_setup`、`arduino_loop` 等） | 与语句块相同 |
+不要假设能够读取 Blockly 主程序源码、其他仓库或运行仓库脚本。无法从当前库确认的行为不得编造。
 
-### ABS中的参数类型
+### 建议编写顺序
 
-| 参数来源 | ABS语法 | 示例 |
-|---------|---------|------|
-| `field_input`（文本） | `"字符串"` | `"dht"`、`"sensor"` |
-| `field_number` | 裸数字 | `9600`、`13` |
-| `field_dropdown` / 枚举 | `ENUM_VALUE`（大写） | `HIGH`、`EQ`、`Serial` |
-| `field_variable` | `$varName` | `$count`、`$temp` |
-| `input_value` — 数字 | `math_number(n)` | `math_number(1000)` |
-| `input_value` — 文本 | `text("s")` | `text("Hello")` |
-| `input_value` — 布尔 | `logic_boolean(TRUE\|FALSE)` | `logic_boolean(TRUE)` |
-| `input_value` — 变量读取 | `variables_get($varName)` 或 `$varName` | `variables_get($x)` |
-| `input_value` — 嵌套块 | `block(args)` | `logic_compare($a, EQ, $b)` |
-| `input_statement` | `@NAME:` + 缩进的子块 | `@DO0:\n    action()` |
+1. 从 `package.json` 提取库信息；
+2. 逐个整理所有 Agent 可见块及其完整参数顺序；
+3. 根据 `generator.js` 填写完整代表性 Generated Code；
+4. 汇总真实枚举和动态形态；
+5. 编写至少一个完整 ABS 示例和必要 Notes；
+6. 使用文末清单逐项复核，不以旧 README 代替代码事实。
 
-> `$varName` 用于 `input_value` 插槽时是 `variables_get($varName)` 的简写。两种形式均可接受；在ABS格式示例中推荐使用 `variables_get($varName)` 以保持清晰。
+## 2. `readme.md`
 
-### ⚠️ 参数顺序规则
-
-参数遵循 **`block.json` `args0` 定义的顺序** —— 字段和值输入可能交错排列。务必按此顺序记录和调用。
-
-```
-# args0: [A(input_value), OP(field_dropdown), B(input_value)]
-✅ logic_compare(variables_get($a), EQ, math_number(10))
-❌ logic_compare(EQ, variables_get($a), math_number(10))  — OP在前是错误的
-```
-
-### `input_statement` 与带 `@NAME:` 的 `input_value`
-
-- **`input_statement`** 插槽始终使用 `@NAME:` + 缩进的子块。
-- **部分块的某些 `input_value` 插槽**（例如 `controls_if` 的条件输入）也使用 `@NAME:`——需查看该块的 args0 结构。
-- **值块**从不使用 `@NAME:`——所有参数直接写在括号内。
-
-```
-# controls_if: @IFn: 是 input_value（条件），@DOn: 和 @ELSE: 是 input_statement
-controls_if()
-    @IF0: logic_compare(variables_get($temp), GT, math_number(30))
-    @DO0:
-        serial_println(Serial, text("Hot"))
-    @IF1: logic_compare(variables_get($temp), GT, math_number(20))
-    @DO1:
-        serial_println(Serial, text("Warm"))
-    @ELSE:
-        serial_println(Serial, text("Cool"))
-
-# 循环块：语句体直接缩进（body不使用 @NAME:）
-controls_repeat_ext(math_number(10))
-    serial_println(Serial, text("Loop"))
-
-controls_for($i, math_number(0), math_number(10), math_number(1))
-    serial_println(Serial, variables_get($i))
-```
-
----
-
-## 文件一：`readme.md` 结构（≤1KB）
-
-面向人类的介绍文档，保持简洁。
+面向人的文档应简洁，建议不超过 1KB，并至少包含：
 
 ```markdown
-# [库名]
+# [Library Name]
 
-[一句话描述该库的功能]
+[一句话说明库的用途]
 
-## 库信息
+## Library Info
 
-| 字段 | 值 |
-|------|----|
-| 包名 | @aily-project/lib-xxx |
-| 版本 | x.x.x |
-| 作者 | [作者或组织] |
-| 来源 | [原始 Arduino/GitHub 库链接] |
-| 许可证 | MIT / Apache-2.0 / ... |
+| Field | Value |
+|---|---|
+| Package | @aily-project/lib-xxx |
+| Version | x.x.x |
+| Author | ... |
+| Source | ... |
+| License | ... |
 
-## 支持的板卡
+## Supported Boards
 
-[列出兼容的板卡，例如 Arduino UNO、ESP32 等]
+[支持的板卡或运行环境]
 
-## 描述
+## Description
 
-[2–4句话：该库的功能、支持的硬件、主要特性]
+[2–4 句话说明功能、支持的硬件和主要能力]
 
-## 快速入门
+## Quick Start
 
-[1–3个步骤，或关键的接线/代码说明]
+[最短的接线、初始化或使用说明]
 ```
 
----
+没有可靠来源时不要猜测作者、许可证、板卡或接线。
 
-## 文件二：`readme_ai.md` 结构（≤5KB，复杂库可达15KB）
+## 3. `readme_ai.md` 必需结构
 
-面向大模型的ABS参考文档。以下每个小节均对应此文件的内容。
+`readme_ai.md` 的目标体积不超过 5KB，硬上限为 64KB。不得为了缩短文件而省略参数、截断代码或插入 `...`。
 
-### 必需章节
+### 3.1 标题和 Library Info
 
-#### 1. 标题与库信息
 ```markdown
-# [库名]
+# [Library Name]
 
-[一句话描述]
+[一句话说明该库提供什么能力]
 
-## 库信息
-- **名称**: @aily-project/lib-xxx
-- **版本**: x.x.x
+## Library Info
+- **Name**: @aily-project/lib-xxx
+- **Version**: x.x.x
 ```
 
-#### 2. 块定义（必需）
+### 3.2 Block Definitions
 
-记录库中的**每一个块**。"参数（args0顺序）"列必须按 `block.json` args0 的精确顺序列出参数——这决定了ABS调用顺序。
+每个 Agent 可见块必须在 `## Block Definitions` 章节中恰好出现一行。不要创建 `xxxN_*`、汇总块或其他不存在于当前库事实来源中的伪块。
+
+使用以下表头：
 
 ```markdown
-## 块定义
-
-| 块类型 | 连接 | 参数（args0顺序） | ABS格式 | 生成代码 |
-|--------|------|-----------------|---------|----------|
-| `xxx_init` | 语句块 | VAR(field_input), TYPE(dropdown), PIN(field_number) | `xxx_init("name", TYPE_A, 2)` | `Xxx var(pin);` |
-| `xxx_read` | 值块 | VAR(field_variable) | `xxx_read(variables_get($name))` | `var.read()` |
-| `xxx_write` | 语句块 | VAR(field_variable), VALUE(input_value) | `xxx_write(variables_get($name), math_number(100))` | `var.write(val);` |
-| `xxx_if_ready` | 语句块 | VAR(field_variable), DO(input_statement) | `xxx_if_ready(variables_get($name)) @DO0: action()` | `if (var.ready()) { action(); }` |
+| Block Type | Connection | Parameters (block.json order) | ABS Format | Generated Code |
+|---|---|---|---|---|
 ```
 
-#### 3. 参数选项（存在枚举时必需）
-```markdown
-## 参数选项
+Connection 根据真实连接形态填写：
 
-| 参数 | 可选值 | 说明 |
-|------|--------|------|
-| TYPE | TYPE_A, TYPE_B | 传感器类型 |
-| OP | EQ, NE, LT, LTE, GT, GTE | 比较运算符 |
-```
+- 存在 `output`：`Value`，可附返回类型，例如 `Value (Number)`；
+- 存在 `previousStatement` 或 `nextStatement`：`Statement`；
+- 作为顶层事件或入口且没有普通上下连接：`Hat`；
+- 动态形态同时具有特殊连接时，写清真实类型，不要按块名猜测。
 
-### 可选章节
+### 3.3 Parameter Options
 
-#### 4. ABS示例（复杂库必须包含）
+存在下拉枚举时增加 `## Parameter Options`，列出 `block.json` 中的真实 value，而不是界面显示文本。空字符串是合法值，写成 `""`。
 
-当库需要多块组合、初始化模式或非显而易见的用法时包含此节。推荐提供完整的程序框架。
+### 3.4 ABS Examples
 
-```markdown
-## ABS示例
+至少提供一个调用当前库块的完整程序。复杂库还应展示初始化顺序、读取或写入、回调、多种运行时形态或必要的资源配置。
 
-### 基本用法
+```abs
 arduino_setup()
-    xxx_init("sensor", TYPE_A, 2)
+    dht_init("dht", DHT22, 2)
     serial_begin(Serial, 9600)
 
 arduino_loop()
-    controls_if()
-        @IF0: xxx_is_ready(variables_get($sensor))
-        @DO0:
-            serial_println(Serial, xxx_read(variables_get($sensor)))
-    time_delay(math_number(1000))
+    serial_println(Serial, dht_read_temperature($dht))
+    time_delay(math_number(2000))
 ```
 
-#### 5. 注意事项（存在非显而易见的约束时包含）
+示例中的每个块、参数和枚举都必须真实存在。不要使用 `action()`、`child_block()`、`value` 或 `...` 充当可执行内容。
+
+### 3.5 Notes
+
+记录无法仅从表格表达但会影响正确使用的事实，例如：
+
+- 必须先调用的初始化块；
+- 自动创建的变量及其类型；
+- 对象生命周期和调用位置；
+- 回调上下文；
+- 最小采样间隔；
+- 板卡、引脚、总线或外部依赖限制；
+- 互斥的初始化路线；
+- 动态参数由哪个字段决定。
+
+不要在 Notes 中介绍 parser 的兼容写法。Agent 文档只提供本规范定义的唯一写法。
+
+自动创建变量时，可使用以下形式说明：
+
 ```markdown
-## 注意事项
-
-1. **初始化**: 在 `arduino_setup()` 内调用 `xxx_init`
-2. **变量引用**: 在值插槽中使用 `variables_get($name)` 读取变量
-3. **参数顺序**: 遵循 `block.json` args0 顺序——字段和输入可能交错排列
-4. **常见错误**: ❌ 在 input_value 插槽中使用裸数字（应使用 `math_number(n)`）
+1. **Variable**: `xxx_init("device", ...)` creates `$device`; pass `$device` to this library's field_variable slots. If a different block expects an input_value, use `variables_get($device)`.
 ```
 
----
+动态形态说明必须具体指出判别条件和参数，例如“选择 TYPE_A 时追加 PIN(field_number)，选择 TYPE_B 时追加 WIRE(dropdown)”，不要只写“可能出现动态参数”。
 
-## 特殊模式
+## 4. ABS 参数写法
 
-### 自动创建变量
-当一个块自动创建变量时（例如 `xxx_init("name", ...)`），应记录如下：
+按顺序合并 `block.json` 的 `args0`、`args1`、`args2`……全部参数组。字段和输入可以交错，不能先列完字段再列输入。
+
+以下元素不进入括号参数：
+
+- `input_dummy`
+- `input_statement`
+- `field_image`
+- `field_label`
+- `field_label_serializable`
+
+其他参数使用以下唯一规范形式：
+
+| 槽位类型 | ABS 写法 | 示例 |
+|---|---|---|
+| `field_input` | 字符串 | `"sensor"` |
+| `field_number` / angle / slider | 裸数值 | `13`、`90` |
+| `field_dropdown` | 真实 value | `HIGH`、`Serial`、`read()`、`""` |
+| `field_checkbox` | `TRUE` / `FALSE` | `TRUE` |
+| `field_variable` | 裸变量字段引用 | `$sensor` |
+| 数字 `input_value` | 数字值块 | `math_number(10)` |
+| 文本 `input_value` | 文本值块 | `text("hello")` |
+| 布尔 `input_value` | 布尔值块 | `logic_boolean(TRUE)` |
+| 变量 `input_value` | 显式变量读取块 | `variables_get($value)` |
+| 其他 `input_value` | 对应的真实值块 | `sensor_read($sensor)` |
+| 结构化自定义字段 | 紧凑 JSON | 以字段定义和已有有效数据为准 |
+
+变量字段与变量值输入不可互换：
+
+```abs
+# VAR 是 field_variable
+dht_read_temperature($dht)
+
+# VALUE 是 input_value
+serial_println(Serial, variables_get($temperature))
 ```
-**变量**: `xxx_init("varName", ...)` 创建变量 `$varName`；之后通过 `variables_get($varName)` 引用它。
+
+不要在 `field_variable` 中写 `variables_get(...)`，也不要在 `input_value` 中直接写 `$temperature`。
+
+## 5. Statement 输入
+
+`input_statement` 只在 Parameters 列中列出，不进入表格的单行 ABS Format。
+
+在完整示例中，statement 子块写在父调用的下一行。多分支块使用真实输入名：
+
+```abs
+controls_if()
+    @IF0: logic_compare(variables_get($temperature), GT, math_number(30))
+    @DO0:
+        serial_println(Serial, text("hot"))
+    @ELSE:
+        serial_println(Serial, text("normal"))
 ```
 
-### 动态字段
-当块根据下拉选项动态改变其输入时：
+- `@IF0:` 等命名行可以对应动态块的 `input_value`，值写在同一行；
+- `@DO0:`、`@ELSE:` 等 `input_statement` 后跟缩进的子块；
+- 普通值块的参数始终放在括号内，不使用 `@NAME:`；
+- 普通循环等单一 body 块按照该块的实际形式直接缩进。
+
+```abs
+controls_repeat_ext(math_number(10))
+    serial_println(Serial, text("loop"))
 ```
-**动态字段**: `dht_init` 在选择 DHT11/DHT22 时显示 PIN 字段，选择其他类型时显示 WIRE 字段。
+
+不要把 `@DO0:` 或 statement 子块追加在父调用同一行。
+
+## 6. 动态块
+
+如果当前库的 extension、mutator 或 `readme_ai.contract.json` 会改变参数形态：
+
+1. 先写静态参数，再按实际顺序追加动态参数；
+2. 为每个可选择的真实形态给出完整 ABS 调用；
+3. 索引型参数使用真实名称，例如 `ADD0`、`INPUT1`、`@DO1:`；
+4. 仅改变 tooltip、校验、下拉内容或默认值时，不得声称增加了 ABS 参数；
+5. 只为加载旧工程保留的隐藏输入不得出现在新 ABS 中；
+6. JavaScript 创建且面向 Agent 的真实块同样必须进入 Block Definitions。
+
+如果当前库只引用了一个无法查看实现的外部 extension，且没有本地 contract 说明其形态，不要猜测动态参数。在 Notes 中明确写出需要维护者补充的具体事实。
+
+## 7. Generated Code
+
+Generated Code 不是概括说明，而是该块在 ABS Format 所示代表性输入下的完整生成结果。
+
+对每个块执行以下推导：
+
+1. 使用 `block.json` 默认字段和 ABS Format 中的代表性值输入；
+2. 找到 `generator.js` 中对应的真实 handler；
+3. 展开 handler 返回的代码；
+4. 同时收集它写入的库引用、全局变量、对象、函数、宏、setup 和 loop 代码；
+5. 多行代码在 Markdown 单元格中用 `↵` 表示，并保留完整内容；
+6. 单元格中的 `|` 转义为 `&#124;`。
+
+示例：
+
+```markdown
+| `emakefun_md_init` | Statement | VAR(field_input), ADDR(dropdown), FREQ(dropdown) | `emakefun_md_init("mMotor", "0x60", "50")` | `Emakefun_MotorDriver mMotor = Emakefun_MotorDriver(0x60); ↵ mMotor.begin(50);` |
 ```
 
-## 模板应用指南
+禁止使用：
 
-1. **复制标准结构**: 使用固定的6个部分
-2. **填写核心表格**: 重点完成块定义表格
-3. **提供典型示例**: 1-2个.abi示例即可
-4. **突出特殊规则**: 库特有的重要限制
-5. **控制篇幅**: 总体积不超过5KB
+- `Dynamic code`
+- `See generator`
+- 裸 `generator`
+- 截断代码，如 `esp_sleep_enable_ext0_wakeup(GPIO_NUM_`
+- `undefined`、`[object Object]`
+- 用 `...` 代替省略部分
+- 只写 handler 的返回值而漏掉 setup、对象或函数等副作用
 
-## 维护原则
+如果默认状态确实不直接输出代码，写出具体原因，例如“自定义动画字段没有帧数据时不输出代码”或“空 statement body 时不注册回调”。不要使用通用的“No inline code”。
 
-- **与代码同步**: README与block.json、toolbox.json保持一致
-- **版本更新**: 新增块时及时更新表格
-- **简洁原则**: 新增内容前考虑是否真正必要
-- **实用导向**: 优先保证大模型能正确使用
+无法从当前 `generator.js` 确定完整输出时，不要编造。应标记具体待确认项并请求维护者提供缺失的本地实现或 contract。
 
----
+## 8. 最终自检
 
-此规范确保README文档既简洁又完整，让大模型能够快速理解库功能并生成正确的.abi文件。
-可参考DHT库的README作为示例。
+交付前逐项检查：
+
+- 文件名是小写 `readme.md` 和 `readme_ai.md`；
+- 包名和版本与 `package.json` 一致；
+- 每个 Agent 可见块在 Block Definitions 中恰好一行；
+- 没有未知块、重复块或放在其他章节的块行；
+- 参数包含 `args0..argsN`，顺序与定义一致；
+- `field_variable` 使用 `$var`；
+- 变量 `input_value` 使用 `variables_get($var)`；
+- statement 子块没有写在父调用同一行；
+- 枚举使用真实 value；
+- Generated Code 完整且没有占位符或截断；
+- 至少一个完整示例真实调用当前库；
+- Notes 只包含可验证的库知识；
+- 文档没有为了控制体积而删除必要契约。
+
+## 9. 更新已有文档
+
+- 把已有 README 当作待核对的草稿，不把其中的示例当作代码事实；
+- 新增、删除或修改块时，同步更新 Block Definitions、Parameter Options、ABS Examples 和 Notes；
+- 保留已有文档中经当前库验证的接线、初始化顺序、生命周期和硬件限制；
+- 删除过期块名、旧参数顺序、伪代码和无法验证的结论；
+- 优先保证调用正确和信息完整，再考虑压缩篇幅。

@@ -1398,7 +1398,10 @@ Arduino.forBlock['aivox_update_mcp_control_state_new'] = function(block, generat
     const paramName = paramField ? paramField.getText() : 'led';
     const param = getMcpControlParam(paramName);
     console.log("aivox_update_mcp_control_state_new ====: ", param);
-    let type = param.type;
+    // A stale or partially restored workspace may reference a parameter before
+    // its registration block has run. Keep the existing Boolean fallback rather
+    // than crashing code generation while reading missing metadata.
+    const type = param ? param.type : 'Boolean';
     let state = generator.valueToCode(block, 'STATE', generator.ORDER_ATOMIC) || '""';
     // 验证服务是否存在
     const service = getAivoxControlService(varName);

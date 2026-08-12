@@ -8,6 +8,7 @@ const defaultKeysToExtract = [
   'version',
   'description',
   'author',
+  'spec',
   'compatibility',
   'keywords',
   'tested',
@@ -27,6 +28,13 @@ function filterPackageJson(packageJson, keysToExtract) {
   const filteredJson = {};
 
   keysToExtract.forEach(key => {
+    if (key === 'spec') {
+      if (packageJson.spec === true) {
+        filteredJson.spec = true;
+      }
+      return;
+    }
+
     if (packageJson.hasOwnProperty(key)) {
       filteredJson[key] = packageJson[key];
     } else {
