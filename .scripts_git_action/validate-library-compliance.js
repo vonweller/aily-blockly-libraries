@@ -17,6 +17,12 @@ const path = require('path');
 const { execFileSync } = require('child_process');
 const yaml = require('js-yaml');
 const readmeCompliance = require('../.scripts/check-readme-compliance.js');
+const {
+  contractRepositoryPathForLibrary,
+  libraryFromContractRepositoryPath,
+} = require('../.scripts/readme-library-contracts.js');
+
+const REPOSITORY_ROOT = path.resolve(__dirname, '..');
 
 class LibraryValidator {
   constructor(configPath = null) {
@@ -1139,6 +1145,28 @@ class LibraryValidator {
     }).replace(/^\uFEFF/, '');
   }
 
+  readOptionalFileAtRevision(ref, relativePath) {
+    try {
+      execFileSync('git', ['cat-file', '-e', `${ref}:${relativePath}`], {
+        stdio: 'ignore'
+      });
+      return this.readFileAtRevision(ref, relativePath);
+    } catch {
+      return null;
+    }
+  }
+
+  readReadmeContractAtRevision(ref, libraryName) {
+    return this.readOptionalFileAtRevision(ref, contractRepositoryPathForLibrary(libraryName));
+  }
+
+  readCurrentReadmeContract(libraryName) {
+    const contractPath = path.join(REPOSITORY_ROOT, contractRepositoryPathForLibrary(libraryName));
+    return fs.existsSync(contractPath)
+      ? fs.readFileSync(contractPath, 'utf8').replace(/^\uFEFF/, '')
+      : null;
+  }
+
   findLibraryFile(files, libraryName, expectedName) {
     const expected = `${libraryName}/${expectedName}`.replace(/\\/g, '/').toLowerCase();
     return files.find(file => file.replace(/\\/g, '/').toLowerCase() === expected) || null;
@@ -1183,16 +1211,17 @@ class LibraryValidator {
     const baselineFiles = this.listLibraryFilesAtRevision(baselineRef, libraryName);
     const baselineReadmePath = this.findLibraryFile(baselineFiles, libraryName, 'readme_ai.md');
     const baselineBlockPath = this.findLibraryFile(baselineFiles, libraryName, 'block.json');
-    const baselineContractPath = this.findLibraryFile(baselineFiles, libraryName, 'readme_ai.contract.json');
     const beforeContent = baselineReadmePath
       ? this.readFileAtRevision(baselineRef, baselineReadmePath)
       : null;
     const beforeBlocks = baselineBlockPath
       ? this.parseBlockArray(this.readFileAtRevision(baselineRef, baselineBlockPath), `${baselineRef}:${baselineBlockPath}`)
       : [];
-    const beforeContract = baselineContractPath
-      ? this.parseOptionalJsonObject(this.readFileAtRevision(baselineRef, baselineContractPath), `${baselineRef}:${baselineContractPath}`)
-      : null;
+    const beforeContractPath = contractRepositoryPathForLibrary(libraryName);
+    const beforeContract = this.parseOptionalJsonObject(
+      this.readReadmeContractAtRevision(baselineRef, libraryName),
+      `${baselineRef}:${beforeContractPath}`,
+    );
     let afterContent;
     let afterBlockContent;
     let afterContractContent;
@@ -1200,19 +1229,18 @@ class LibraryValidator {
       const headFiles = this.listLibraryFilesAtRevision(headRef, libraryName);
       const headReadmePath = this.findLibraryFile(headFiles, libraryName, 'readme_ai.md');
       const headBlockPath = this.findLibraryFile(headFiles, libraryName, 'block.json');
-      const headContractPath = this.findLibraryFile(headFiles, libraryName, 'readme_ai.contract.json');
       afterContent = headReadmePath ? this.readFileAtRevision(headRef, headReadmePath) : '';
       afterBlockContent = headBlockPath ? this.readFileAtRevision(headRef, headBlockPath) : null;
-      afterContractContent = headContractPath ? this.readFileAtRevision(headRef, headContractPath) : null;
+      afterContractContent = this.readReadmeContractAtRevision(headRef, libraryName);
     } else {
       afterContent = this.readCurrentFileCaseInsensitive(libraryPath, 'readme_ai.md') || '';
       afterBlockContent = this.readCurrentFileCaseInsensitive(libraryPath, 'block.json');
-      afterContractContent = this.readCurrentFileCaseInsensitive(libraryPath, 'readme_ai.contract.json');
+      afterContractContent = this.readCurrentReadmeContract(libraryName);
     }
     const afterBlocks = this.parseBlockArray(afterBlockContent, `${headRef ? `${headRef}:` : ''}${libraryName}/block.json`);
     const afterContract = this.parseOptionalJsonObject(
       afterContractContent,
-      `${headRef ? `${headRef}:` : ''}${libraryName}/readme_ai.contract.json`
+      `${headRef ? `${headRef}:` : ''}${contractRepositoryPathForLibrary(libraryName)}`
     );
     const comparison = readmeCompliance.compareAiAbsContracts(
       beforeContent,
@@ -1247,6 +1275,11 @@ class LibraryValidator {
     const currentDir = process.cwd();
     
     for (const file of changedFiles) {
+      const contractedLibrary = libraryFromContractRepositoryPath(file);
+      if (contractedLibrary) {
+        libraries.add(contractedLibrary);
+        continue;
+      }
       // 跳过根目录文件
       if (!file.includes('/') && !file.includes('\\')) {
         continue;

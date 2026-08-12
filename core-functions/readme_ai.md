@@ -17,7 +17,7 @@ Defines typed Arduino functions and calls them with dynamically generated call b
 | `custom_function_call_advance` | Statement | FUNC_NAME(field_variable); variadic: INPUT{0...}(input_value) | `custom_function_call_advance(FUNC_NAME=$printValue, INPUT0=math_number(7))` | `myFunction();` |
 | `custom_function_call_return_advance` | Value | FUNC_NAME(field_variable); variadic: INPUT{0...}(input_value) | `custom_function_call_return_advance(FUNC_NAME=$addTwo, INPUT0=math_number(2), INPUT1=math_number(3))` | `myFunction()` |
 
-The two call blocks are defined by `generator.js` at runtime rather than by `block.json`; their serializable ABI is locked by `readme_ai.contract.json` and follows the same table rules.
+The two call blocks are defined by `generator.js` at runtime rather than by `block.json`; their serializable ABS signatures are documented in the table below and follow the same parameter rules.
 
 ## Parameter Options
 

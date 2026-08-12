@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "blocks": {
+    "rtc_init": {
+      "variants": [
+        {
+          "id": "fixed-i2c-pins",
+          "when": { "CHIP_TYPE": ["DS3231", "DS1307", "PCF8563"] },
+          "appendArgs": []
+        },
+        {
+          "id": "ds1302-three-wire",
+          "when": { "CHIP_TYPE": ["DS1302"] },
+          "appendArgs": [
+            { "name": "DAT_PIN", "type": "field_dropdown", "example": "4", "required": true },
+            { "name": "CLK_PIN", "type": "field_dropdown", "example": "5", "required": true },
+            { "name": "RST_PIN", "type": "field_dropdown", "example": "2", "required": true }
+          ]
+        },
+        {
+          "id": "esp32-custom-i2c-pins",
+          "when": { "CHIP_TYPE": ["DS3231", "DS1307", "PCF8563"] },
+          "appendArgs": [
+            { "name": "SDA_PIN", "type": "field_dropdown", "example": "21", "required": true },
+            { "name": "SCL_PIN", "type": "field_dropdown", "example": "22", "required": true }
+          ]
+        }
+      ]
+    }
+  }
+}
