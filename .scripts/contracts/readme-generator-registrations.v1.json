@@ -1,0 +1,119 @@
+{
+  "schemaVersion": 1,
+  "allow": [
+    {
+      "library": "seeed_wio_gfx",
+      "classification": "cross-library",
+      "types": ["seeed_gfx_epaper_begin", "seeed_gfx_epaper_sleep", "seeed_gfx_epaper_update", "seeed_gfx_epaper_wake"],
+      "reason": "The Wio generator supplies board-specific implementations for block types owned by the tracked seeed_GFX library."
+    },
+    {
+      "library": "core-functions",
+      "classification": "builtin-override",
+      "types": ["procedures_callnoreturn", "procedures_callreturn", "procedures_defnoreturn", "procedures_defreturn", "procedures_ifreturn"],
+      "reason": "These are canonical Blockly procedure block types whose JSON definitions are provided by the Blockly runtime."
+    },
+    {
+      "library": "core-logic",
+      "classification": "builtin-override",
+      "types": ["logic_null"],
+      "reason": "This is a canonical Blockly logic block whose JSON definition is provided by the Blockly runtime."
+    },
+    {
+      "library": "core-text",
+      "classification": "builtin-override",
+      "types": ["text_print", "text_prompt", "text_prompt_ext"],
+      "reason": "These are canonical Blockly text block types whose JSON definitions are provided by the Blockly runtime."
+    },
+    {
+      "library": "core-variables",
+      "classification": "builtin-override",
+      "types": ["variables_get_dynamic", "variables_set_dynamic"],
+      "reason": "These are canonical Blockly dynamic-variable block types whose JSON definitions are provided by the Blockly runtime."
+    },
+    {
+      "library": "QuickESPNow",
+      "classification": "legacy-registration",
+      "types": ["quickespnow_begin_channel", "quickespnow_begin_current"],
+      "reason": "Legacy generator registrations are not exposed by the current block.json, toolbox, or Agent README and are retained pending separate compatibility cleanup."
+    },
+    {
+      "library": "adafruit_GFX",
+      "classification": "legacy-registration",
+      "types": ["tft_draw_bitmap", "tft_draw_rgb_bitmap", "tft_set_cursor", "tft_set_text_color_bg"],
+      "reason": "Legacy/shared GFX registrations are not exposed by the current block.json, toolbox, or Agent README and are retained pending separate compatibility cleanup."
+    },
+    {
+      "library": "adafruit_SGP30",
+      "classification": "legacy-registration",
+      "types": ["sgp30_simple_measure"],
+      "reason": "This legacy registration is not exposed by the current block.json, toolbox, or Agent README and is retained pending separate compatibility cleanup."
+    },
+    {
+      "library": "adafruit_SHTC3",
+      "classification": "legacy-registration",
+      "types": ["shtc3_get_stored_humidity", "shtc3_get_stored_temperature"],
+      "reason": "These legacy registrations are not exposed by the current block.json, toolbox, or Agent README and are retained pending separate compatibility cleanup."
+    },
+    {
+      "library": "core-serial",
+      "classification": "legacy-registration",
+      "types": ["serial_flush", "serial_parseint"],
+      "reason": "These legacy registrations are not exposed by the current block.json, toolbox, or Agent README and are retained pending separate compatibility cleanup."
+    },
+    {
+      "library": "core-variables",
+      "classification": "legacy-registration",
+      "types": ["type_cast_dynamic"],
+      "reason": "This legacy registration is not exposed by the current block.json, toolbox, or Agent README and is retained pending separate compatibility cleanup."
+    },
+    {
+      "library": "esp32_ble_keyboard",
+      "classification": "legacy-registration",
+      "types": ["ble_keyboard_modifier_press", "ble_keyboard_modifier_release"],
+      "reason": "These legacy registrations are not exposed by the current block.json, toolbox, or Agent README and are retained pending separate compatibility cleanup."
+    },
+    {
+      "library": "pid",
+      "classification": "legacy-registration",
+      "types": ["pid_set_proportional_mode"],
+      "reason": "This legacy registration is not exposed by the current block.json, toolbox, or Agent README and is retained pending separate compatibility cleanup."
+    },
+    {
+      "library": "qwen-omni",
+      "classification": "legacy-registration",
+      "types": ["qwen_omni_omni_voice_chat_dual_i2s"],
+      "reason": "This legacy registration is not exposed by the current block.json, toolbox, or Agent README and is retained pending separate compatibility cleanup."
+    },
+    {
+      "library": "seeed_GFX",
+      "classification": "legacy-registration",
+      "types": ["seeed_gfx_color_black", "seeed_gfx_color_blue", "seeed_gfx_color_cyan", "seeed_gfx_color_green", "seeed_gfx_color_magenta", "seeed_gfx_color_red", "seeed_gfx_color_white", "seeed_gfx_color_yellow", "seeed_gfx_create_epaper", "seeed_gfx_push_sprite"],
+      "reason": "Legacy/shared GFX registrations are not exposed by the current block.json, toolbox, or Agent README and are retained pending separate compatibility cleanup."
+    },
+    {
+      "library": "seeed_SSCMA_Core",
+      "classification": "legacy-registration",
+      "types": ["sscma_core_box_info", "sscma_core_class_info", "sscma_core_create", "sscma_core_create_video_capture", "sscma_core_perf_info", "sscma_core_point_info", "sscma_core_video_capture_begin"],
+      "reason": "These legacy SSCMA Core registrations are not exposed by the current block.json, toolbox, or Agent README and are retained pending separate compatibility cleanup."
+    },
+    {
+      "library": "seeed_wio_gfx",
+      "classification": "legacy-registration",
+      "types": ["seeed_gfx_color_black", "seeed_gfx_color_blue", "seeed_gfx_color_cyan", "seeed_gfx_color_green", "seeed_gfx_color_magenta", "seeed_gfx_color_red", "seeed_gfx_color_white", "seeed_gfx_color_yellow", "seeed_gfx_create_epaper", "seeed_gfx_push_sprite"],
+      "reason": "Legacy/shared Wio GFX registrations are not exposed by the current block.json, toolbox, or Agent README and are retained pending separate compatibility cleanup."
+    },
+    {
+      "library": "sentry",
+      "classification": "legacy-registration",
+      "types": ["sentry1_camera_zoom", "sentry1_get_string", "sentry1_image_cols", "sentry1_image_rows", "sentry1_screen_config", "sentry1_screen_fill", "sentry1_set_apriltag_mode", "sentry1_set_barcode_mode", "sentry1_set_coordinate", "sentry1_set_face_mode", "sentry1_set_label_param", "sentry1_set_level", "sentry1_set_mode", "sentry1_set_ocr_mode", "sentry1_set_param_num", "sentry1_snapshot", "sentry2_get_string", "sentry2_set_barcode_mode", "sentry2_set_face_mode", "sentry2_set_ocr_mode", "sentry3_get_qrcode"],
+      "reason": "These legacy Sentry registrations are not exposed by the current block.json, toolbox, or Agent README and are retained pending separate compatibility cleanup."
+    },
+    {
+      "library": "ws2812fx",
+      "classification": "legacy-registration",
+      "types": ["ws2812fx_set_color", "ws2812fx_set_effect", "ws2812fx_set_speed", "ws2812fx_show"],
+      "reason": "These legacy registrations are not exposed by the current block.json, toolbox, or Agent README and are retained pending separate compatibility cleanup."
+    }
+  ]
+}

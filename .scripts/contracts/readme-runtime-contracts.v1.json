@@ -1,0 +1,377 @@
+{
+  "schemaVersion": 1,
+  "name": "readme-runtime-golden",
+  "libraries": [
+    "core-variables",
+    "core-math",
+    "core-text",
+    "core-logic",
+    "core-loop",
+    "core-serial",
+    "core-functions",
+    "adafruit_DHT",
+    "Blynk",
+    "aily_iic",
+    "u8g2"
+  ],
+  "boardConfig": {
+    "serialPort": [["Serial", "Serial"]],
+    "serialSpeed": [["9600", "9600"], ["115200", "115200"]],
+    "digitalPins": [["D2", "2"], ["D3", "3"], ["D13", "13"]],
+    "analogPins": [["A0", "A0"]],
+    "i2c": [["Wire", "Wire"]]
+  },
+  "runtimeInitializers": [
+    "src/app/editors/blockly-editor/components/blockly/plugins/block-plus-minus/src/index.js",
+    "src/app/editors/blockly-editor/components/blockly/custom-field/field-u8g2-bitmap.ts"
+  ],
+  "runtimeSourcePaths": [
+    "package.json",
+    "package-lock.json",
+    "src/app/tools/aily-chat/services/block-definition.service.ts",
+    "src/app/tools/aily-chat/tools/abiAbsConverter.ts",
+    "src/app/tools/aily-chat/tools/absParser.ts",
+    "src/app/tools/aily-chat/tools/blockFieldValue.ts",
+    "src/app/tools/aily-chat/tools/editBlockTool.ts",
+    "src/app/tools/aily-chat/tools/syncAbsFileTool.ts",
+    "src/app/editors/blockly-editor/components/blockly/abf.ts",
+    "src/app/editors/blockly-editor/components/blockly/custom-field/field-u8g2-bitmap.ts",
+    "src/app/editors/blockly-editor/components/blockly/custom-field/field-media-editor-style.ts",
+    "src/app/editors/blockly-editor/components/blockly/generators/arduino/arduino.ts",
+    "src/app/editors/blockly-editor/components/blockly/plugins/block-plus-minus/src/index.js",
+    "src/app/editors/blockly-editor/components/blockly/plugins/block-plus-minus/src/if.js",
+    "src/app/editors/blockly-editor/components/blockly/plugins/block-plus-minus/src/list_create.js",
+    "src/app/editors/blockly-editor/components/blockly/plugins/block-plus-minus/src/procedures.js",
+    "src/app/editors/blockly-editor/components/blockly/plugins/block-plus-minus/src/text_join.js",
+    "src/app/editors/blockly-editor/components/blockly/plugins/block-plus-minus/src/dynamic-inputs.js",
+    "src/app/editors/blockly-editor/components/blockly/plugins/block-plus-minus/src/switch-case.js",
+    "src/app/editors/blockly-editor/components/blockly/plugins/block-plus-minus/src/field_minus.js",
+    "src/app/editors/blockly-editor/components/blockly/plugins/block-plus-minus/src/field_plus.js",
+    "src/app/editors/blockly-editor/components/blockly/plugins/block-plus-minus/src/serialization_helper.js",
+    "src/app/editors/blockly-editor/services/bitmap-upload.service.ts",
+    "src/app/editors/blockly-editor/services/blockly-generator-runtime.service.ts",
+    "src/app/services/project-data/blockly-project-data-adapter.ts",
+    "src/app/services/project-data/project-data-codec.registry.ts",
+    "src/app/services/project-data/project-data-container.ts",
+    "src/app/services/project-data/project-data-file-system.ts",
+    "src/app/services/project-data/project-data-runtime.ts",
+    "src/app/services/project-data/project-data-store.ts",
+    "src/app/services/project-data/project-data.types.ts"
+  ],
+  "cases": [
+    {
+      "id": "dht-field-variable",
+      "abs": "dht_read_temperature($dht)",
+      "expect": {
+        "blockCounts": { "dht_read_temperature": 1 },
+        "paths": [
+          { "block": { "type": "dht_read_temperature" }, "path": "inputs.VAR", "absent": true }
+        ],
+        "variableBindings": [
+          { "block": { "type": "dht_read_temperature" }, "field": "VAR", "name": "dht", "type": "DHT" }
+        ]
+      }
+    },
+    {
+      "id": "core-logic-statement-body",
+      "abs": "arduino_loop()\n    controls_if(logic_boolean(TRUE))\n        serial_println(Serial, text(\"ok\"))",
+      "compile": {
+        "board": "arduino:avr:uno",
+        "artifacts": [".elf", ".hex"]
+      },
+      "expect": {
+        "paths": [
+          { "block": { "type": "controls_if" }, "path": "inputs.IF0.block.type", "equals": "logic_boolean" },
+          { "block": { "type": "controls_if" }, "path": "inputs.DO0.block.type", "equals": "serial_println" }
+        ],
+        "codeIncludes": ["if (true)", "Serial.println(\"ok\")"]
+      }
+    },
+    {
+      "id": "core-loop-field-and-values",
+      "abs": "arduino_loop()\n    controls_for($i, math_number(0), math_number(2), math_number(1))\n        serial_println(Serial, $i)",
+      "expect": {
+        "paths": [
+          { "block": { "type": "controls_for" }, "path": "inputs.FROM.block.type", "equals": "math_number" },
+          { "block": { "type": "controls_for" }, "path": "inputs.TO.block.type", "equals": "math_number" },
+          { "block": { "type": "controls_for" }, "path": "inputs.BY.block.type", "equals": "math_number" },
+          { "block": { "type": "controls_for" }, "path": "inputs.DO.block.type", "equals": "serial_println" }
+        ],
+        "variableBindings": [
+          { "block": { "type": "controls_for" }, "field": "VAR", "name": "i" }
+        ],
+        "codeIncludes": ["for (", "Serial.println(i)"]
+      }
+    },
+    {
+      "id": "dht11-dynamic-pin-and-codegen",
+      "abs": "arduino_setup()\n    serial_begin(Serial, 9600)\n    dht_init(\"dht\", DHT11, 2)\narduino_loop()\n    serial_println(Serial, dht_read_temperature($dht))",
+      "expect": {
+        "paths": [
+          { "block": { "type": "dht_init" }, "path": "fields.TYPE", "equals": "DHT11" },
+          { "block": { "type": "dht_init" }, "path": "fields.PIN", "equals": "2" },
+          { "block": { "type": "dht_init" }, "path": "fields.WIRE", "absent": true }
+        ],
+        "variableBindings": [
+          { "block": { "type": "dht_read_temperature" }, "field": "VAR", "name": "dht", "type": "DHT" }
+        ],
+        "codeIncludes": ["DHT dht(2, DHT11);", "dht.begin();", "Serial.println(dht.readTemperature())"]
+      }
+    },
+    {
+      "id": "dht20-dynamic-wire-and-codegen",
+      "abs": "arduino_setup()\n    dht_init(\"dht\", DHT20, Wire)\narduino_loop()\n    serial_println(Serial, dht_read_temperature($dht))",
+      "expect": {
+        "paths": [
+          { "block": { "type": "dht_init" }, "path": "fields.TYPE", "equals": "DHT20" },
+          { "block": { "type": "dht_init" }, "path": "fields.WIRE", "equals": "Wire" },
+          { "block": { "type": "dht_init" }, "path": "fields.PIN", "absent": true }
+        ],
+        "variableBindings": [
+          { "block": { "type": "dht_read_temperature" }, "field": "VAR", "name": "dht", "type": "DHT" }
+        ],
+        "codeIncludes": ["DHT20 dht(&Wire);", "Wire.begin();", "dht.getTemperature()"]
+      }
+    },
+    {
+      "id": "dht20-custom-variable-binding",
+      "abs": "arduino_setup()\n    dht_init(\"dht20\", DHT20, Wire)\narduino_loop()\n    serial_println(Serial, dht_read_temperature($dht20))",
+      "expect": {
+        "variableBindings": [
+          { "block": { "type": "dht_read_temperature" }, "field": "VAR", "name": "dht20", "type": "DHT" }
+        ],
+        "codeIncludes": ["DHT20 dht20(&Wire);", "dht20.getTemperature()"]
+      }
+    },
+    {
+      "id": "dht-multiple-custom-variables",
+      "abs": "arduino_setup()\n    dht_init(\"indoor\", DHT11, 2)\n    dht_init(\"outdoor\", DHT20, Wire)\narduino_loop()\n    serial_println(Serial, dht_read_temperature($indoor))\n    serial_println(Serial, dht_read_temperature($outdoor))",
+      "expect": {
+        "blockCounts": { "dht_init": 2, "dht_read_temperature": 2 },
+        "variableBindings": [
+          { "block": { "type": "dht_read_temperature", "index": 0 }, "field": "VAR", "name": "indoor", "type": "DHT" },
+          { "block": { "type": "dht_read_temperature", "index": 1 }, "field": "VAR", "name": "outdoor", "type": "DHT" }
+        ],
+        "codeIncludes": ["DHT indoor(2, DHT11);", "DHT20 outdoor(&Wire);", "indoor.readTemperature()", "outdoor.getTemperature()"]
+      }
+    },
+    {
+      "id": "dht20-read-root-before-init-root",
+      "abs": "arduino_loop()\n    serial_println(Serial, dht_read_temperature($lateDht))\narduino_setup()\n    dht_init(\"lateDht\", DHT20, Wire)",
+      "expect": {
+        "variableBindings": [
+          { "block": { "type": "dht_read_temperature" }, "field": "VAR", "name": "lateDht", "type": "DHT" }
+        ],
+        "codeIncludes": ["DHT20 lateDht(&Wire);", "Wire.begin();", "lateDht.getTemperature()"]
+      }
+    },
+    {
+      "id": "core-text-join-mutator",
+      "abs": "arduino_loop()\n    serial_println(Serial, text_join(text(\"a\"), text(\"b\"), text(\"c\")))",
+      "expect": {
+        "paths": [
+          { "block": { "type": "text_join" }, "path": "extraState.itemCount", "equals": 3 },
+          { "block": { "type": "text_join" }, "path": "inputs.ADD0.block.type", "equals": "text" },
+          { "block": { "type": "text_join" }, "path": "inputs.ADD1.block.type", "equals": "text" },
+          { "block": { "type": "text_join" }, "path": "inputs.ADD2.block.type", "equals": "text" }
+        ],
+        "codeIncludes": ["String(\"a\") + String(\"b\") + String(\"c\")"]
+      }
+    },
+    {
+      "id": "core-text-join-named-mutator-inputs",
+      "abs": "arduino_loop()\n    serial_println(Serial, text_join(ADD0=text(\"a\"), ADD1=text(\"b\"), ADD2=text(\"c\")))",
+      "expect": {
+        "paths": [
+          { "block": { "type": "text_join" }, "path": "extraState.itemCount", "equals": 3 },
+          { "block": { "type": "text_join" }, "path": "inputs.ADD0.block.fields.TEXT", "equals": "a" },
+          { "block": { "type": "text_join" }, "path": "inputs.ADD1.block.fields.TEXT", "equals": "b" },
+          { "block": { "type": "text_join" }, "path": "inputs.ADD2.block.fields.TEXT", "equals": "c" }
+        ],
+        "codeIncludes": ["String(\"a\") + String(\"b\") + String(\"c\")"]
+      }
+    },
+    {
+      "id": "core-math-divisible-by-runtime-input",
+      "abs": "arduino_loop()\n    serial_println(Serial, math_number_property(math_number(6), DIVISIBLE_BY, math_number(3)))",
+      "expect": {
+        "paths": [
+          { "block": { "type": "math_number_property" }, "path": "fields.PROPERTY", "equals": "DIVISIBLE_BY" },
+          { "block": { "type": "math_number_property" }, "path": "inputs.DIVISOR.block.type", "equals": "math_number" }
+        ],
+        "codeIncludes": ["fmod(6, 3) == 0"]
+      }
+    },
+    {
+      "id": "core-text-char-at-runtime-input",
+      "abs": "arduino_loop()\n    serial_println(Serial, text_charAt(text(\"abcd\"), FROM_END, math_number(1)))",
+      "expect": {
+        "paths": [
+          { "block": { "type": "text_charAt" }, "path": "fields.WHERE", "equals": "FROM_END" },
+          { "block": { "type": "text_charAt" }, "path": "inputs.AT.block.type", "equals": "math_number" }
+        ],
+        "codeIncludes": ["String(\"abcd\").charAt(String(\"abcd\").length()-1-1)"]
+      }
+    },
+    {
+      "id": "core-text-substring-second-runtime-input-only",
+      "abs": "arduino_loop()\n    serial_println(Serial, tt_getSubstring(text(\"abcd\"), FIRST, FROM_START, math_number(2)))",
+      "expect": {
+        "paths": [
+          { "block": { "type": "tt_getSubstring" }, "path": "fields.WHERE1", "equals": "FIRST" },
+          { "block": { "type": "tt_getSubstring" }, "path": "fields.WHERE2", "equals": "FROM_START" },
+          { "block": { "type": "tt_getSubstring" }, "path": "inputs.AT1_VALUE", "absent": true },
+          { "block": { "type": "tt_getSubstring" }, "path": "inputs.AT2_VALUE.block.type", "equals": "math_number" }
+        ],
+        "codeIncludes": ["String(\"abcd\").substring(0, 2)"]
+      }
+    },
+    {
+      "id": "aily-iic-slave-address-runtime-input",
+      "abs": "arduino_setup()\n    wire_begin(Wire, SLAVE, math_number(8))",
+      "expect": {
+        "paths": [
+          { "block": { "type": "wire_begin" }, "path": "fields.WIRE", "equals": "Wire" },
+          { "block": { "type": "wire_begin" }, "path": "fields.MODE", "equals": "SLAVE" },
+          { "block": { "type": "wire_begin" }, "path": "inputs.ADDRESS.block.type", "equals": "math_number" }
+        ],
+        "codeIncludes": ["Wire.begin(8)"]
+      }
+    },
+    {
+      "id": "core-logic-elseif-else-mutator",
+      "abs": "arduino_loop()\n    controls_if()\n        @IF0: logic_boolean(TRUE)\n        @DO0:\n            serial_println(Serial, text(\"if\"))\n        @IF1: logic_boolean(FALSE)\n        @DO1:\n            serial_println(Serial, text(\"elseif\"))\n        @ELSE:\n            serial_println(Serial, text(\"else\"))",
+      "expect": {
+        "paths": [
+          { "block": { "type": "controls_if" }, "path": "extraState.elseIfCount", "equals": 1 },
+          { "block": { "type": "controls_if" }, "path": "extraState.hasElse", "equals": true },
+          { "block": { "type": "controls_if" }, "path": "inputs.IF0.block.type", "equals": "logic_boolean" },
+          { "block": { "type": "controls_if" }, "path": "inputs.DO0.block.type", "equals": "serial_println" },
+          { "block": { "type": "controls_if" }, "path": "inputs.IF1.block.type", "equals": "logic_boolean" },
+          { "block": { "type": "controls_if" }, "path": "inputs.DO1.block.type", "equals": "serial_println" },
+          { "block": { "type": "controls_if" }, "path": "inputs.ELSE.block.type", "equals": "serial_println" }
+        ],
+        "codeIncludes": ["if (true)", "else if (false)", "else {", "Serial.println(\"elseif\")", "Serial.println(\"else\")"]
+      }
+    },
+    {
+      "id": "core-logic-ifelse-mutator",
+      "abs": "arduino_loop()\n    controls_ifelse()\n        @IF0: logic_boolean(TRUE)\n        @DO0:\n            serial_println(Serial, text(\"if\"))\n        @IF1: logic_boolean(FALSE)\n        @DO1:\n            serial_println(Serial, text(\"elseif\"))\n        @ELSE:\n            serial_println(Serial, text(\"else\"))",
+      "expect": {
+        "paths": [
+          { "block": { "type": "controls_ifelse" }, "path": "extraState.elseIfCount", "equals": 1 },
+          { "block": { "type": "controls_ifelse" }, "path": "inputs.IF1.block.type", "equals": "logic_boolean" },
+          { "block": { "type": "controls_ifelse" }, "path": "inputs.DO1.block.type", "equals": "serial_println" },
+          { "block": { "type": "controls_ifelse" }, "path": "inputs.ELSE.block.type", "equals": "serial_println" }
+        ],
+        "codeIncludes": ["if (true)", "else if (false)", "else {", "Serial.println(\"elseif\")", "Serial.println(\"else\")"]
+      }
+    },
+    {
+      "id": "core-logic-switch-mutator",
+      "abs": "arduino_loop()\n    controls_switch()\n        @SWITCH: math_number(2)\n        @CASE0: math_number(1)\n        @DO0:\n            serial_println(Serial, text(\"one\"))\n        @CASE1: math_number(2)\n        @DO1:\n            serial_println(Serial, text(\"two\"))\n        @DEFAULT:\n            serial_println(Serial, text(\"other\"))",
+      "expect": {
+        "paths": [
+          { "block": { "type": "controls_switch" }, "path": "extraState.caseCount", "equals": 1 },
+          { "block": { "type": "controls_switch" }, "path": "extraState.hasDefault", "equals": true },
+          { "block": { "type": "controls_switch" }, "path": "inputs.SWITCH.block.type", "equals": "math_number" },
+          { "block": { "type": "controls_switch" }, "path": "inputs.CASE1.block.type", "equals": "math_number" },
+          { "block": { "type": "controls_switch" }, "path": "inputs.DO1.block.type", "equals": "serial_println" },
+          { "block": { "type": "controls_switch" }, "path": "inputs.DEFAULT.block.type", "equals": "serial_println" }
+        ],
+        "codeIncludes": ["switch (2)", "case 1:", "case 2:", "default:", "Serial.println(\"two\")", "Serial.println(\"other\")"]
+      }
+    },
+    {
+      "id": "blynk-callback-and-timer-hooks",
+      "abs": "blynk_on_virtual_write(5, INT, \"incoming\")\n    serial_println(Serial, text(\"event\"))\nblynk_timer_every(math_number(1000))\n    serial_println(Serial, text(\"tick\"))",
+      "expect": {
+        "blockCounts": { "blynk_on_virtual_write": 1, "blynk_timer_every": 1 },
+        "paths": [
+          { "block": { "type": "blynk_on_virtual_write" }, "path": "fields.VPIN", "equals": 5 },
+          { "block": { "type": "blynk_on_virtual_write" }, "path": "fields.VALUE_TYPE", "equals": "INT" },
+          { "block": { "type": "blynk_on_virtual_write" }, "path": "fields.VAR", "equals": "incoming" },
+          { "block": { "type": "blynk_on_virtual_write" }, "path": "inputs.DO.block.type", "equals": "serial_println" },
+          { "block": { "type": "blynk_timer_every" }, "path": "inputs.INTERVAL.block.type", "equals": "math_number" },
+          { "block": { "type": "blynk_timer_every" }, "path": "inputs.DO.block.type", "equals": "serial_println" }
+        ],
+        "codeIncludes": [
+          "BLYNK_WRITE(V5)",
+          "int incoming = param.asInt();",
+          "Serial.println(\"event\")",
+          "BlynkTimer blynkTimer;",
+          "blynkTimer.run();",
+          "blynkTimer.setInterval(1000, _blynk_timer_",
+          "Serial.println(\"tick\")"
+        ]
+      }
+    },
+    {
+      "id": "custom-function-dynamic-parameters",
+      "abs": "custom_function_def(\"addTwo\", int, int, \"left\", int, \"right\", math_arithmetic($left, ADD, $right))\narduino_loop()\n    serial_println(Serial, custom_function_call_return_advance(FUNC_NAME=$addTwo, INPUT0=math_number(2), INPUT1=math_number(3)))",
+      "expect": {
+        "blockCounts": { "custom_function_def": 1, "custom_function_call_return_advance": 1 },
+        "paths": [
+          { "block": { "type": "custom_function_def" }, "path": "extraState.paramCount", "equals": 2 },
+          { "block": { "type": "custom_function_def" }, "path": "extraState.params", "equals": [{ "type": "int", "name": "left" }, { "type": "int", "name": "right" }] },
+          { "block": { "type": "custom_function_def" }, "path": "inputs.RETURN.block.type", "equals": "math_arithmetic" },
+          { "block": { "type": "custom_function_call_return_advance" }, "path": "extraState.extraCount", "equals": 2 },
+          { "block": { "type": "custom_function_call_return_advance" }, "path": "inputs.INPUT0.block.type", "equals": "math_number" },
+          { "block": { "type": "custom_function_call_return_advance" }, "path": "inputs.INPUT1.block.type", "equals": "math_number" }
+        ],
+        "variableBindings": [
+          { "block": { "type": "custom_function_call_return_advance" }, "field": "FUNC_NAME", "name": "addTwo", "type": "FUNC" }
+        ],
+        "codeIncludes": ["int addTwo(int left, int right)", "return left + right;", "Serial.println((addTwo(2, 3)))"]
+      }
+    },
+    {
+      "id": "custom-function-void-body-and-call",
+      "abs": "custom_function_def(\"printValue\", void, int, \"value\")\n    serial_println(Serial, $value)\narduino_loop()\n    custom_function_call_advance(FUNC_NAME=$printValue, INPUT0=math_number(7))",
+      "expect": {
+        "blockCounts": { "custom_function_def": 1, "custom_function_call_advance": 1 },
+        "paths": [
+          { "block": { "type": "custom_function_def" }, "path": "extraState.paramCount", "equals": 1 },
+          { "block": { "type": "custom_function_def" }, "path": "extraState.params", "equals": [{ "type": "int", "name": "value" }] },
+          { "block": { "type": "custom_function_def" }, "path": "inputs.STACK.block.type", "equals": "serial_println" },
+          { "block": { "type": "custom_function_def" }, "path": "inputs.RETURN", "absent": true },
+          { "block": { "type": "custom_function_call_advance" }, "path": "extraState.extraCount", "equals": 1 },
+          { "block": { "type": "custom_function_call_advance" }, "path": "inputs.INPUT0.block.type", "equals": "math_number" }
+        ],
+        "variableBindings": [
+          { "block": { "type": "custom_function_call_advance" }, "field": "FUNC_NAME", "name": "printValue", "type": "FUNC" }
+        ],
+        "codeIncludes": ["void printValue(int value)", "Serial.println(value);", "printValue(7);"]
+      }
+    },
+    {
+      "id": "u8g2-external-project-data-bitmap",
+      "projectDataSeeds": [
+        {
+          "name": "icon16",
+          "codec": "u8g2-xbm-v1",
+          "storage": "raw-v1",
+          "bytes": [1, 128, 2, 64, 4, 32, 8, 16, 16, 8, 32, 4, 64, 2, 128, 1, 255, 0, 0, 255, 170, 85, 85, 170, 15, 240, 240, 15, 51, 204, 204, 51]
+        }
+      ],
+      "abs": "arduino_loop()\n    u8g2_draw_bitmap(math_number(0), math_number(0), u8g2_icon_16x16({\"schemaVersion\":1,\"encoding\":\"xbm-lsb-row-v1\",\"width\":16,\"height\":16,\"bitmap\":{{projectData.icon16}}}))",
+      "expect": {
+        "blockCounts": { "u8g2_icon_16x16": 1, "u8g2_draw_bitmap": 1 },
+        "paths": [
+          { "block": { "type": "u8g2_icon_16x16" }, "path": "fields.CUSTOM_BITMAP.width", "equals": 16 },
+          { "block": { "type": "u8g2_icon_16x16" }, "path": "fields.CUSTOM_BITMAP.height", "equals": 16 },
+          { "block": { "type": "u8g2_draw_bitmap" }, "path": "inputs.BITMAP.block.type", "equals": "u8g2_icon_16x16" }
+        ],
+        "projectDataBindings": [
+          { "block": { "type": "u8g2_icon_16x16" }, "field": "CUSTOM_BITMAP", "valuePath": "bitmap", "seed": "icon16" }
+        ],
+        "codeIncludes": [
+          "// XBM format bitmap data (16x16)",
+          "0x01, 0x80",
+          "0xFF, 0x00",
+          "u8g2.drawXBMP(0, 0, icon16_"
+        ]
+      }
+    }
+  ]
+}
