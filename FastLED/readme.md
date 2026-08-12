@@ -7,7 +7,7 @@ The GRB light strip driver library based on FastLed supports the control of vari
 | Field | Value |
 |-------|-------|
 | Package | @aily-project/lib-fastled |
-| Version | 1.0.2 |
+| Version | 1.0.3 |
 | Author | 奈何col |
 | Source | N/A |
 | License | Original license |
