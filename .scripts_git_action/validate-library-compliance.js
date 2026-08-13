@@ -1313,14 +1313,28 @@ class LibraryValidator {
     return parts.length >= 3 && parts[1] === 'i18n' && /\.json$/i.test(parts[parts.length - 1]);
   }
 
-  validateI18nFiles(currentDir) {
-    console.log('🌐 检测到多语言文件变更，运行 npm run i18n:check...\n');
+  isI18nContractFile(file) {
+    if (this.isI18nFile(file)) return true;
+    const parts = file.split(/[\\/]/);
+    return parts.length === 2 && ['block.json', 'toolbox.json'].includes(parts[1].toLowerCase());
+  }
+
+  validateI18nFiles(currentDir, libraries) {
+    if (!Array.isArray(libraries) || libraries.length === 0) {
+      console.log('🌐 多语言变更没有对应的现存库，跳过 i18n 内容校验。\n');
+      return;
+    }
+
+    console.log(`🌐 检测到多语言文件变更，校验 ${libraries.length} 个变更库的完整多语言契约:\n`);
+    libraries.forEach(library => console.log(`   - ${library}`));
+    console.log('');
     try {
-      const command = process.platform === 'win32' ? (process.env.ComSpec || 'cmd.exe') : 'npm';
-      const args = process.platform === 'win32'
-        ? ['/d', '/s', '/c', 'npm run i18n:check']
-        : ['run', 'i18n:check'];
-      execFileSync(command, args, {
+      const checker = path.join(currentDir, '.scripts', 'check-i18n-compliance.js');
+      const args = [checker];
+      for (const library of libraries) {
+        args.push('--library', library);
+      }
+      execFileSync(process.execPath, args, {
         cwd: currentDir,
         stdio: 'inherit'
       });
@@ -1346,13 +1360,15 @@ class LibraryValidator {
 
     const i18nFiles = changedFiles.filter(file => this.isI18nFile(file));
     const nonI18nFiles = changedFiles.filter(file => !this.isI18nFile(file));
+    const i18nContractFiles = changedFiles.filter(file => this.isI18nContractFile(file));
+    const i18nLibraries = this.extractLibrariesFromChangedFiles(i18nContractFiles);
     const allChangedLibraries = this.extractLibrariesFromChangedFiles(changedFiles);
     const changedLibraries = this.extractLibrariesFromChangedFiles(nonI18nFiles);
     const changedLibrarySet = new Set(changedLibraries);
     const i18nOnlyLibraries = allChangedLibraries.filter(library => !changedLibrarySet.has(library));
 
-    if (i18nFiles.length > 0) {
-      this.validateI18nFiles(currentDir);
+    if (i18nContractFiles.length > 0) {
+      this.validateI18nFiles(currentDir, i18nLibraries);
     }
 
     if (i18nOnlyLibraries.length > 0) {

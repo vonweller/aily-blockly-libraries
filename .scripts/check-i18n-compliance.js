@@ -23,6 +23,33 @@ function getLibraries() {
     .sort();
 }
 
+function getRequestedLibraries(args) {
+  const libraries = [];
+
+  for (let index = 0; index < args.length; index += 1) {
+    const argument = args[index];
+    if (argument === '--help') {
+      console.log(`Usage: node .scripts/check-i18n-compliance.js [--library <name>]...
+
+Without --library, all libraries are validated. Repeat --library to validate only
+the named libraries, including all required locale files for each library.`);
+      process.exit(0);
+    }
+    if (argument !== '--library') {
+      throw new Error(`unknown argument: ${argument}`);
+    }
+
+    const library = args[index + 1];
+    if (!library || library.startsWith('--')) {
+      throw new Error('--library requires a library name');
+    }
+    libraries.push(library);
+    index += 1;
+  }
+
+  return [...new Set(libraries)];
+}
+
 function collectToolbox(node, isRoot = true, output = { categories: [], labels: [] }) {
   if (!node || typeof node !== 'object') return output;
   if (!isRoot && node.kind === 'category' && typeof node.name === 'string') {
@@ -106,7 +133,27 @@ function findMarker(value, currentPath = '') {
 }
 
 const errors = [];
-const libraries = getLibraries();
+const availableLibraries = getLibraries();
+let requestedLibraries = [];
+let hasArgumentError = false;
+try {
+  requestedLibraries = getRequestedLibraries(process.argv.slice(2));
+} catch (error) {
+  errors.push(`arguments: ${error.message}`);
+  hasArgumentError = true;
+}
+
+const availableLibrarySet = new Set(availableLibraries);
+for (const library of requestedLibraries) {
+  if (!availableLibrarySet.has(library)) {
+    errors.push(`${library}: library does not exist or is missing block.json, toolbox.json, or package.json`);
+  }
+}
+const libraries = hasArgumentError
+  ? []
+  : (requestedLibraries.length
+    ? requestedLibraries.filter(library => availableLibrarySet.has(library))
+    : availableLibraries);
 let localeFiles = 0;
 
 for (const library of libraries) {
