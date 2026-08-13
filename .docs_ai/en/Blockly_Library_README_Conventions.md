@@ -19,8 +19,7 @@ Read the available facts in the current library before writing:
 2. `block.json`: block types, parameters, connections, and defaults;
 3. `generator.js`: actual generated code and generator side effects;
 4. `toolbox.json`: recommended entry points and common composition, but toolbox absence alone does not make a block private;
-5. `readme_ai.contract.json`, when present: runtime variants, dynamic blocks, locally hidden blocks, and compatibility-only inputs;
-6. local extensions, mutators, examples, and existing README files: preserve only knowledge that the sources above can verify.
+5. local extensions, mutators, examples, and existing README files: preserve only knowledge that the sources above can verify.
 
 Do not assume access to Blockly application source code, another repository, or repository scripts. Never invent behavior that cannot be established from the current library.
 
@@ -213,7 +212,7 @@ Never append `@DO0:` or a statement child to the parent call's line.
 
 ## 6. Dynamic Blocks
 
-When a local extension, mutator, or `readme_ai.contract.json` changes the parameter shape:
+When a local extension or mutator changes the parameter shape:
 
 1. write static parameters first and append dynamic parameters in their real order;
 2. provide a complete ABS call for every selectable real shape;

@@ -1,0 +1,78 @@
+{
+  "schemaVersion": 1,
+  "blocks": {
+    "text_create_join_container": {
+      "agentVisible": false,
+      "reason": "Internal text_join mutator container; it is UI state and has no callable generator."
+    },
+    "text_create_join_item": {
+      "agentVisible": false,
+      "reason": "Internal text_join mutator item; it is UI state and has no callable generator."
+    },
+    "char": {
+      "staticShape": true,
+      "reason": "The quote, validator, and inline-tooltip extensions decorate or validate the existing CHAR field only."
+    },
+    "text": {
+      "staticShape": true,
+      "reason": "The quote and inline-tooltip extensions decorate the existing TEXT field only."
+    },
+    "text_join": {
+      "variadic": {
+        "prefix": "ADD",
+        "startIndex": 0,
+        "type": "input_value",
+        "sampleCount": 2,
+        "example": "text(\"part\")",
+        "reason": "text_join_mutator creates ADD0, ADD1, and later inputs; named ADDn arguments keep the intended item indexes stable on ABS import."
+      }
+    },
+    "text_charAt": {
+      "variants": [
+        {
+          "id": "indexed",
+          "when": { "WHERE": ["FROM_START", "FROM_END"] },
+          "appendArgs": [
+            { "name": "AT", "type": "input_value", "example": "math_number(0)", "required": true }
+          ]
+        },
+        {
+          "id": "implicit-position",
+          "when": { "WHERE": ["FIRST", "LAST", "RANDOM"] },
+          "appendArgs": []
+        }
+      ]
+    },
+    "tt_getSubstring": {
+      "variants": [
+        {
+          "id": "indexed-to-indexed",
+          "when": { "WHERE1": ["FROM_START", "FROM_END"], "WHERE2": ["FROM_START", "FROM_END"] },
+          "appendArgs": [
+            { "name": "AT1_VALUE", "type": "input_value", "example": "math_number(0)", "required": true },
+            { "name": "AT2_VALUE", "type": "input_value", "example": "math_number(3)", "required": true }
+          ]
+        },
+        {
+          "id": "indexed-to-last",
+          "when": { "WHERE1": ["FROM_START", "FROM_END"], "WHERE2": ["LAST"] },
+          "appendArgs": [
+            { "name": "AT1_VALUE", "type": "input_value", "example": "math_number(0)", "required": true }
+          ]
+        },
+        {
+          "id": "first-to-indexed",
+          "when": { "WHERE1": ["FIRST"], "WHERE2": ["FROM_START", "FROM_END"] },
+          "appendArgs": [
+            { "name": "AT2_VALUE", "type": "input_value", "example": "math_number(3)", "required": true }
+          ]
+        },
+        {
+          "id": "first-to-last",
+          "when": { "WHERE1": ["FIRST"], "WHERE2": ["LAST"] },
+          "appendArgs": []
+        }
+      ]
+    }
+  }
+}

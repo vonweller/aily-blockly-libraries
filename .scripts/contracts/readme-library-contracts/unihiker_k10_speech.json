@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "blocks": {
+    "k10_asr_speak": {
+      "excludedRuntimeArgs": [
+        {
+          "name": "INTERVAL",
+          "type": "input_value",
+          "reason": "The invisible value input exists only to deserialize projects from versions <=0.3.0. Current blocks and the generator use the visible INTERVAL field_number, so agents must not target the hidden legacy connection."
+        }
+      ]
+    }
+  }
+}

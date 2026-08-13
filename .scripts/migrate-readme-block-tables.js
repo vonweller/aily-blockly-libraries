@@ -12,6 +12,7 @@ const {
   blockContractFor,
   AI_HARD_MAX_BYTES,
 } = require('./check-readme-compliance');
+const { loadLibraryContract } = require('./readme-library-contracts');
 
 const ROOT = path.resolve(__dirname, '..');
 const README_NAME = 'readme_ai.md';
@@ -262,8 +263,7 @@ function migrate(options) {
     if (!fs.existsSync(blockPath)) continue;
     const blocks = readJson(blockPath);
     if (!Array.isArray(blocks)) continue;
-    const contractPath = path.join(libraryDir, 'readme_ai.contract.json');
-    const contract = fs.existsSync(contractPath) ? readJson(contractPath) : null;
+    const contract = loadLibraryContract(path.basename(libraryDir));
     const generatorPath = path.join(libraryDir, 'generator.js');
     const generatorContent = fs.existsSync(generatorPath) ? fs.readFileSync(generatorPath, 'utf8') : '';
     const readmePath = path.join(ROOT, relativePath);

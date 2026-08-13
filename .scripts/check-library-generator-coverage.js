@@ -9,6 +9,7 @@ const {
   blockContractFor,
   runtimeBlockDefinitions,
 } = require('./check-readme-compliance');
+const { loadLibraryContract } = require('./readme-library-contracts');
 
 const ROOT = path.resolve(__dirname, '..');
 const GENERATOR_REGISTRATION_CONTRACT = path.join(
@@ -738,8 +739,7 @@ function audit() {
   for (const library of libraries) {
     const directory = path.join(ROOT, library);
     const staticBlocks = readJson(path.join(directory, 'block.json'));
-    const contractPath = path.join(directory, 'readme_ai.contract.json');
-    const contract = fs.existsSync(contractPath) ? readJson(contractPath) : null;
+    const contract = loadLibraryContract(library);
     const blocks = allDocumentedBlocks(staticBlocks, contract);
     for (const block of blocks) {
       globalBlockTypes.add(block.type);

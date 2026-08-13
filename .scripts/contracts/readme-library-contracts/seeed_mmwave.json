@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "blocks": {
+    "mmwave_init": {
+      "variants": [
+        {
+          "id": "software-serial-pins",
+          "when": { "SERIAL_TYPE": ["SOFTWARE"] },
+          "appendArgs": [
+            { "name": "RX_PIN", "type": "field_dropdown", "example": "2", "required": true },
+            { "name": "TX_PIN", "type": "field_dropdown", "example": "3", "required": true }
+          ]
+        },
+        {
+          "id": "hardware-serial",
+          "when": { "SERIAL_TYPE": ["SERIAL1", "SERIAL2"] },
+          "appendArgs": []
+        }
+      ]
+    }
+  }
+}

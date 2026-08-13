@@ -1,0 +1,247 @@
+{
+  "schemaVersion": 1,
+  "blocks": {
+    "aivox_get_iot_message_event_name": {
+      "agentVisible": false,
+      "reason": "This legacy event block is absent from the toolbox and has no registered generator."
+    },
+    "aivox_response_mcp_control_result": {
+      "agentVisible": false,
+      "reason": "This legacy MCP response block is absent from the toolbox and has no registered generator."
+    },
+    "aivox_state_control_message_event_fuction": {
+      "agentVisible": false,
+      "reason": "This legacy state-event block is absent from the toolbox and has no registered generator."
+    },
+    "esp32ai_init_wifi": {
+      "variants": [
+        {
+          "id": "manual-credentials",
+          "when": { "MODE": ["Manual"] },
+          "appendArgs": [
+            { "name": "SSID", "type": "input_value", "example": "text(\"Your WiFi SSID\")", "required": true },
+            { "name": "PSWD", "type": "input_value", "example": "text(\"Your WiFi Password\")", "required": true }
+          ]
+        }
+      ]
+    },
+    "esp32_i2s_mic_setup": {
+      "variants": [
+        {
+          "id": "standard-i2s",
+          "when": { "MIC_TYPE": ["AUDIO_INPUT_DEVICE_TYPE_I2S_STD"] },
+          "appendArgs": [
+            { "name": "SCK_PIN_INPUT", "type": "field_number", "example": "13", "required": true },
+            { "name": "SD_PIN_INPUT", "type": "field_number", "example": "11", "required": true },
+            { "name": "WS_PIN_INPUT", "type": "field_number", "example": "12", "required": true }
+          ]
+        },
+        {
+          "id": "pdm",
+          "when": { "MIC_TYPE": ["AUDIO_INPUT_DEVICE_TYPE_PDM"] },
+          "appendArgs": [
+            { "name": "SCK_PIN_INPUT", "type": "field_number", "example": "13", "required": true },
+            { "name": "SD_PIN_INPUT", "type": "field_number", "example": "11", "required": true }
+          ]
+        }
+      ]
+    },
+    "esp32ai_init_display": {
+      "variants": [
+        {
+          "id": "st7789-spi",
+          "when": { "DISPLAY_TYPE": ["ST7789"] },
+          "appendArgs": [
+            { "name": "DC_PIN", "type": "field_number", "example": "27", "required": true },
+            { "name": "MOSI_PIN", "type": "field_number", "example": "13", "required": true },
+            { "name": "CLK_PIN", "type": "field_number", "example": "14", "required": true },
+            { "name": "RST_PIN", "type": "field_number", "example": "33", "required": true },
+            { "name": "BACKLIGHT_PIN", "type": "field_number", "example": "2", "required": true },
+            { "name": "CS_PIN", "type": "field_number", "example": "5", "required": true }
+          ]
+        },
+        {
+          "id": "ssd1306-i2c",
+          "when": { "DISPLAY_TYPE": ["SSD1306"] },
+          "appendArgs": [
+            { "name": "SCL_PIN", "type": "field_number", "example": "22", "required": true },
+            { "name": "SDA_PIN", "type": "field_number", "example": "21", "required": true }
+          ]
+        }
+      ]
+    },
+    "esp32ai_init_nlvgl_display": {
+      "variants": [
+        {
+          "id": "st7789-spi-lvgl",
+          "when": { "DISPLAY_TYPE": ["nST7789"] },
+          "appendArgs": [
+            { "name": "WIDTH", "type": "field_number", "example": "240", "required": true },
+            { "name": "HEIGHT", "type": "field_number", "example": "240", "required": true },
+            { "name": "FREQUENCY", "type": "field_dropdown", "example": "40000000", "required": true },
+            { "name": "BACKLIGHT_PIN", "type": "field_number", "example": "46", "required": true },
+            { "name": "MOSI_PIN", "type": "field_number", "example": "16", "required": true },
+            { "name": "CLK_PIN", "type": "field_number", "example": "15", "required": true },
+            { "name": "DC_PIN", "type": "field_number", "example": "8", "required": true },
+            { "name": "RST_PIN", "type": "field_number", "example": "17", "required": true },
+            { "name": "CS_PIN", "type": "field_number", "example": "3", "required": true },
+            { "name": "TASK_PRIORITY", "type": "field_number", "example": "1", "required": true },
+            { "name": "TASK_STACK", "type": "field_number", "example": "7168", "required": true },
+            { "name": "TASK_AFFINITY", "type": "field_dropdown", "example": "-1", "required": true },
+            { "name": "TASK_MAX_SLEEP", "type": "field_number", "example": "500", "required": true },
+            { "name": "TIMER_PERIOD", "type": "field_number", "example": "50", "required": true }
+          ]
+        },
+        {
+          "id": "ssd1306-i2c-lvgl",
+          "when": { "DISPLAY_TYPE": ["nSSD1306"] },
+          "appendArgs": [
+            { "name": "WIDTH", "type": "field_number", "example": "128", "required": true },
+            { "name": "HEIGHT", "type": "field_number", "example": "64", "required": true },
+            { "name": "SCL_PIN", "type": "field_number", "example": "22", "required": true },
+            { "name": "SDA_PIN", "type": "field_number", "example": "21", "required": true },
+            { "name": "TASK_PRIORITY", "type": "field_number", "example": "1", "required": true },
+            { "name": "TASK_STACK", "type": "field_number", "example": "7168", "required": true },
+            { "name": "TASK_AFFINITY", "type": "field_dropdown", "example": "-1", "required": true },
+            { "name": "TASK_MAX_SLEEP", "type": "field_number", "example": "500", "required": true },
+            { "name": "TIMER_PERIOD", "type": "field_number", "example": "50", "required": true }
+          ]
+        }
+      ]
+    },
+    "aivox_mcp_register_control_command": {
+      "variadic": {
+        "prefix": "INPUT",
+        "startIndex": 1,
+        "type": "input_value",
+        "sampleCount": 1,
+        "example": "aivox_mcp_control_param(\"level\", Number, math_number(0), math_number(100))",
+        "reason": "The dynamic_inputs_mutator appends INPUT1, INPUT2, and later MCP parameter inputs; named inputs preserve their identities during ABS import."
+      }
+    },
+    "aivox_mcp_control_param": {
+      "variants": [
+        { "id": "boolean-parameter", "when": { "TYPE": ["Boolean"] }, "appendArgs": [] },
+        {
+          "id": "number-parameter",
+          "when": { "TYPE": ["Number"] },
+          "appendArgs": [
+            { "name": "MIN", "type": "input_value", "example": "math_number(0)", "required": true },
+            { "name": "MAX", "type": "input_value", "example": "math_number(100)", "required": true }
+          ]
+        },
+        { "id": "string-parameter", "when": { "TYPE": ["String"] }, "appendArgs": [] }
+      ]
+    },
+    "esp32ai_mcp_control_param": {
+      "variants": [
+        { "id": "boolean-parameter", "when": { "TYPE": ["Boolean"] }, "appendArgs": [] },
+        {
+          "id": "number-parameter",
+          "when": { "TYPE": ["Number"] },
+          "appendArgs": [
+            { "name": "MIN", "type": "input_value", "example": "math_number(0)", "required": true },
+            { "name": "MAX", "type": "input_value", "example": "math_number(100)", "required": true }
+          ]
+        },
+        { "id": "string-parameter", "when": { "TYPE": ["String"] }, "appendArgs": [] }
+      ]
+    },
+    "esp32ai_loop_mcp_new": {
+      "variants": [
+        {
+          "id": "regular-set-and-report",
+          "when": { "MODE": ["regular"] },
+          "appendArgs": [
+            { "name": "setCODE_BLOCK", "type": "input_statement", "example": "serial_println(Serial, text(\"set\"))", "required": true },
+            { "name": "CODE_BLOCK", "type": "input_statement", "example": "serial_println(Serial, text(\"report\"))", "required": true }
+          ]
+        },
+        {
+          "id": "set-only",
+          "when": { "MODE": ["set_only"] },
+          "appendArgs": [
+            { "name": "setCODE_BLOCK", "type": "input_statement", "example": "serial_println(Serial, text(\"set\"))", "required": true }
+          ]
+        },
+        {
+          "id": "report-only",
+          "when": { "MODE": ["report_only"] },
+          "appendArgs": [
+            { "name": "CODE_BLOCK", "type": "input_statement", "example": "serial_println(Serial, text(\"report\"))", "required": true }
+          ]
+        }
+      ]
+    },
+    "esp32ai_selget_mcp_control": {
+      "variants": [
+        {
+          "id": "set-and-report-handlers",
+          "when": {},
+          "appendArgs": [
+            { "name": "setCODE_BLOCK", "type": "input_statement", "example": "serial_println(Serial, text(\"set\"))", "required": true },
+            { "name": "CODE_BLOCK", "type": "input_statement", "example": "serial_println(Serial, text(\"report\"))", "required": true }
+          ]
+        }
+      ]
+    },
+    "esp32ai_emotion_select": {
+      "variants": [
+        {
+          "id": "emoji-icon",
+          "when": { "CATEGORY": ["EMOJI"] },
+          "appendArgs": [
+            { "name": "ICON", "type": "field_dropdown", "example": "FONT_AWESOME_EMOJI_HAPPY", "required": true }
+          ]
+        },
+        {
+          "id": "battery-icon",
+          "when": { "CATEGORY": ["BATTERY"] },
+          "appendArgs": [
+            { "name": "ICON", "type": "field_dropdown", "example": "FONT_AWESOME_BATTERY_FULL", "required": true }
+          ]
+        }
+      ]
+    },
+    "aivox3_init_es8311": {
+      "variants": [
+        {
+          "id": "es8311-pins-and-bus",
+          "when": {},
+          "appendArgs": [
+            { "name": "ES8311_SDA", "type": "field_dropdown", "example": "41", "required": true },
+            { "name": "ES8311_SCL", "type": "field_dropdown", "example": "42", "required": true },
+            { "name": "ES8311_MCLK", "type": "field_dropdown", "example": "46", "required": true },
+            { "name": "ES8311_SCLK", "type": "field_dropdown", "example": "39", "required": true },
+            { "name": "ES8311_LRCK", "type": "field_dropdown", "example": "2", "required": true },
+            { "name": "ES8311_DSDIN", "type": "field_dropdown", "example": "38", "required": true },
+            { "name": "ES8311_DSDOUT", "type": "field_dropdown", "example": "40", "required": true },
+            { "name": "ES8311_I2C_ADDRESS", "type": "input_value", "example": "math_number(48)", "required": true },
+            { "name": "ES8311_RATE", "type": "input_value", "example": "math_number(16000)", "required": true },
+            { "name": "ES8311_IIC_PORT", "type": "field_dropdown", "example": "I2C_NUM_0", "required": true }
+          ]
+        }
+      ]
+    },
+    "esp32ai_init_es8388": {
+      "variants": [
+        {
+          "id": "es8388-pins-and-bus",
+          "when": {},
+          "appendArgs": [
+            { "name": "ES8388_SDA", "type": "field_dropdown", "example": "41", "required": true },
+            { "name": "ES8388_SCL", "type": "field_dropdown", "example": "42", "required": true },
+            { "name": "ES8388_MCLK", "type": "field_dropdown", "example": "46", "required": true },
+            { "name": "ES8388_SCLK", "type": "field_dropdown", "example": "39", "required": true },
+            { "name": "ES8388_LRCK", "type": "field_dropdown", "example": "2", "required": true },
+            { "name": "ES8388_DSDIN", "type": "field_dropdown", "example": "38", "required": true },
+            { "name": "ES8388_DSDOUT", "type": "field_dropdown", "example": "40", "required": true },
+            { "name": "ES8388_I2C_ADDRESS", "type": "input_value", "example": "math_number(16)", "required": true },
+            { "name": "ES8388_RATE", "type": "input_value", "example": "math_number(44100)", "required": true },
+            { "name": "ES8388_IIC_PORT", "type": "field_dropdown", "example": "I2C_NUM_0", "required": true }
+          ]
+        }
+      ]
+    }
+  }
+}

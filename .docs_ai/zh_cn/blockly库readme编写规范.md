@@ -19,8 +19,7 @@
 2. `block.json`：块类型、参数、连接形态和默认值；
 3. `generator.js`：每个块实际生成的代码及其副作用；
 4. `toolbox.json`：推荐入口和常用组合，但不能仅凭 toolbox 缺席认定块不可见；
-5. `readme_ai.contract.json`（如果存在）：运行时参数变体、动态块、本地隐藏块和兼容输入；
-6. 当前库内的 extension、mutator、示例和已有 README：只保留能够由上述事实验证的知识。
+5. 当前库内的 extension、mutator、示例和已有 README：只保留能够由上述事实验证的知识。
 
 不要假设能够读取 Blockly 主程序源码、其他仓库或运行仓库脚本。无法从当前库确认的行为不得编造。
 
@@ -213,7 +212,7 @@ controls_repeat_ext(math_number(10))
 
 ## 6. 动态块
 
-如果当前库的 extension、mutator 或 `readme_ai.contract.json` 会改变参数形态：
+如果当前库的 extension 或 mutator 会改变参数形态：
 
 1. 先写静态参数，再按实际顺序追加动态参数；
 2. 为每个可选择的真实形态给出完整 ABS 调用；

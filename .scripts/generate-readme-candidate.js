@@ -10,6 +10,7 @@ const {
   AI_HARD_MAX_BYTES,
 } = require('./check-readme-compliance');
 const { buildGeneratedCodePreviews } = require('./check-library-generator-coverage');
+const { loadLibraryContract } = require('./readme-library-contracts');
 
 const ROOT = path.resolve(__dirname, '..');
 const DEFAULT_OUTPUT = path.join(ROOT, '.temp', 'readme-candidates');
@@ -40,8 +41,7 @@ function generateCandidate(target, outputRoot = DEFAULT_OUTPUT) {
   if (!Array.isArray(blocks)) throw new Error(`${libraryName}/block.json must be an array`);
   const generatorPath = path.join(libraryDir, 'generator.js');
   const generatorContent = fs.existsSync(generatorPath) ? fs.readFileSync(generatorPath, 'utf8') : '';
-  const contractPath = path.join(libraryDir, 'readme_ai.contract.json');
-  const contract = fs.existsSync(contractPath) ? readJson(contractPath) : null;
+  const contract = loadLibraryContract(libraryName);
   const codePreviewResult = buildGeneratedCodePreviews(libraryName, generatorContent, blocks, contract);
   if (codePreviewResult.loadError || codePreviewResult.errors.length > 0) {
     const details = codePreviewResult.loadError
