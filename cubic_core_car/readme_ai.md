@@ -18,8 +18,8 @@ OLED (SSD1306) and the I2C motor board share SDA=21/SCL=22. Motor-priority polic
 | `cubic_init` | Statement | PPR(input_value), RED(input_value), M0PH(dropdown), M1PH(dropdown) | `cubic_init(value, value, "em::EncoderMotor::kAPhaseLeads", "em::EncoderMotor::kAPhaseLeads")` | Dynamic code |
 | `cubic_ps3_begin` | Statement | MAC(input_value) | `cubic_ps3_begin(value)` | Dynamic code |
 | `cubic_ps3_connected` | Value | (none) | `cubic_ps3_connected()` | Dynamic code |
-| `cubic_on_connect` | Statement | DO(statement) | `cubic_on_connect({...})` | Dynamic code |
-| `cubic_on_disconnect` | Statement | DO(statement) | `cubic_on_disconnect({...})` | Dynamic code |
+| `cubic_on_connect` | Statement | DO(input_statement) | `cubic_on_connect()` | Dynamic code |
+| `cubic_on_disconnect` | Statement | DO(input_statement) | `cubic_on_disconnect()` | Dynamic code |
 | `cubic_stick` | Value | STICK(dropdown), AXIS(dropdown) | `cubic_stick("l", "y")` | Dynamic code |
 | `cubic_button` | Value | BTN(dropdown) | `cubic_button("cross")` | Dynamic code |
 | `cubic_button_pressed` | Value | BTN(dropdown) | `cubic_button_pressed("cross")` | Dynamic code |
@@ -91,4 +91,17 @@ OLED (SSD1306) and the I2C motor board share SDA=21/SCL=22. Motor-priority polic
 | MODE | 1, 0 | cubic_oled_flip |
 | KEY | 1, 2, 3 | cubic_key |
 | KEY | 1, 2, 3 | cubic_key_pressed |
+
+## ABS Examples
+
+### Basic drive
+
+```
+arduino_setup()
+  cubic_ps3_begin(text("auto"))
+
+arduino_loop()
+  cubic_i2c_all("0", math_number(150))
+  cubic_oled_refresh_stream()
+```
 
