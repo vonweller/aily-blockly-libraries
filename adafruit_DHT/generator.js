@@ -32,62 +32,6 @@ Blockly.Extensions.register('dht_init_dynamic', function () {
   });
   // 初始化形状
   this.updateShape_(this.getFieldValue('TYPE'));
-
-  // ABS import resolves field_variable references while blocks are being
-  // created, before Arduino code generation runs. Register the sensor
-  // variable at extension time so a later dht_read_* block can bind to its ID.
-  const dhtBlock = this;
-  const varField = this.getField('VAR');
-  const getWorkspace = () => dhtBlock.workspace
-    || (typeof Blockly !== 'undefined' && Blockly.getMainWorkspace && Blockly.getMainWorkspace());
-  const ensureVariable = name => {
-    const workspace = getWorkspace();
-    if (!workspace || !name) return { model: null, created: false };
-    const existing = workspace.getVariable(name);
-    if (existing) return { model: existing, created: false };
-    return { model: workspace.createVariable(name, 'DHT'), created: true };
-  };
-
-  dhtBlock._dhtVarLastName = this.getFieldValue('VAR') || 'dht';
-  const initialVariable = ensureVariable(dhtBlock._dhtVarLastName);
-  dhtBlock._dhtOwnedVariableId = initialVariable.created && initialVariable.model
-    ? initialVariable.model.getId()
-    : null;
-  dhtBlock._dhtVarMonitorAttached = true;
-
-  if (varField && typeof varField.setValidator === 'function') {
-    const originalValidator = typeof varField.getValidator === 'function'
-      ? varField.getValidator()
-      : null;
-    varField.setValidator(function (newName) {
-      const originalResult = typeof originalValidator === 'function'
-        ? originalValidator.call(this, newName)
-        : newName;
-      if (originalResult === null) return null;
-      const resolvedName = String(originalResult === undefined ? newName : originalResult).trim();
-      if (!resolvedName) return null;
-
-      const workspace = getWorkspace();
-      const oldName = dhtBlock._dhtVarLastName;
-      if (workspace && resolvedName !== oldName) {
-        const existingTarget = workspace.getVariable(resolvedName);
-        const ownedVariable = dhtBlock._dhtOwnedVariableId
-          ? workspace.getVariableById(dhtBlock._dhtOwnedVariableId)
-          : null;
-        if (existingTarget) {
-          // Never rename a variable that predated this init block.
-          dhtBlock._dhtOwnedVariableId = null;
-        } else if (ownedVariable && ownedVariable.name === oldName) {
-          workspace.renameVariableById(ownedVariable.getId(), resolvedName);
-        } else {
-          const created = workspace.createVariable(resolvedName, 'DHT');
-          dhtBlock._dhtOwnedVariableId = created.getId();
-        }
-        dhtBlock._dhtVarLastName = resolvedName;
-      }
-      return resolvedName;
-    });
-  }
 });
 
 // 通用库管理函数，确保不重复添加库
@@ -112,21 +56,6 @@ function ensureDHT20Library(generator) {
 // 初始化类型映射表
 if (!Arduino.dhtTypeMap) {
   Arduino.dhtTypeMap = {};
-}
-
-// Code generation may visit root blocks in a different order from their
-// visual/layout order. Resolve the sensor type from the workspace first so a
-// read block never depends on dht_init having already populated dhtTypeMap in
-// the same generation pass.
-function getDHTTypeForVariable(block, varName) {
-  const workspace = block && block.workspace;
-  if (workspace && typeof workspace.getBlocksByType === 'function') {
-    const initBlocks = workspace.getBlocksByType('dht_init', false) || [];
-    const initBlock = initBlocks.find(candidate => candidate.getFieldValue('VAR') === varName);
-    const configuredType = initBlock && initBlock.getFieldValue('TYPE');
-    if (configuredType) return configuredType;
-  }
-  return Arduino.dhtTypeMap[varName] || 'DHT11';
 }
 
 Arduino.forBlock['dht_init'] = function (block, generator) {
@@ -242,7 +171,7 @@ Arduino.forBlock['dht_read_temperature'] = function (block, generator) {
   const varName = varField ? varField.getText() : 'dht';
   
   // 通过类型映射表检查是否为DHT20
-  const dhtType = getDHTTypeForVariable(block, varName);
+  const dhtType = Arduino.dhtTypeMap[varName] || 'DHT11';
   
   // DHT20 需要先调用read()再获取数据
   if (dhtType === 'DHT20') {
@@ -257,7 +186,7 @@ Arduino.forBlock['dht_read_humidity'] = function (block, generator) {
   const varName = varField ? varField.getText() : 'dht';
   
   // 通过类型映射表检查是否为DHT20
-  const dhtType = getDHTTypeForVariable(block, varName);
+  const dhtType = Arduino.dhtTypeMap[varName] || 'DHT11';
   
   // DHT20 需要先调用read()再获取数据
   if (dhtType === 'DHT20') {
@@ -272,7 +201,7 @@ Arduino.forBlock['dht_read_success'] = function (block, generator) {
   const varName = varField ? varField.getText() : 'dht';
   
   // 通过类型映射表检查是否为DHT20
-  const dhtType = getDHTTypeForVariable(block, varName);
+  const dhtType = Arduino.dhtTypeMap[varName] || 'DHT11';
   
   // DHT20 的成功判断方式不同
   if (dhtType === 'DHT20') {
