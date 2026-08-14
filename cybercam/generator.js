@@ -41,6 +41,27 @@
     if (PYTHON_KEYWORDS.has(result)) result += '_';
     return result || fallback;
   };
+  const nameScopes = new WeakMap();
+  const withNameScope = (generator, entries, generate) => {
+    const scopes = nameScopes.get(generator) || [];
+    const scope = new Map(entries.map(([name, alias]) => [String(name), alias]));
+    scopes.push(scope);
+    nameScopes.set(generator, scopes);
+    try {
+      return generate();
+    } finally {
+      scopes.pop();
+      if (!scopes.length) nameScopes.delete(generator);
+    }
+  };
+  const resolveName = (generator, name, fallback) => {
+    const rawName = String(name || fallback);
+    const scopes = nameScopes.get(generator) || [];
+    for (let index = scopes.length - 1; index >= 0; index--) {
+      if (scopes[index].has(rawName)) return scopes[index].get(rawName);
+    }
+    return safeName(rawName, fallback);
+  };
   const uniqueName = (name, used) => {
     let result = name;
     let suffix = 2;
@@ -80,8 +101,8 @@
     return output(items ? `(${items},)` : '()', ORDER_ATOMIC);
   });
   define('cybercam_list', (block, generator) => output(`[${value(generator, block, 'ITEMS', '')}]`, ORDER_ATOMIC));
-  define('cybercam_set_variable', (block, generator) => `${safeName(field(block, 'NAME', 'value'), 'value')} = ${value(generator, block, 'VALUE')}\n`);
-  define('cybercam_get_variable', (block) => output(safeName(field(block, 'NAME', 'value'), 'value'), ORDER_ATOMIC));
+  define('cybercam_set_variable', (block, generator) => `${resolveName(generator, field(block, 'NAME', 'value'), 'value')} = ${value(generator, block, 'VALUE')}\n`);
+  define('cybercam_get_variable', (block, generator) => output(resolveName(generator, field(block, 'NAME', 'value'), 'value'), ORDER_ATOMIC));
   define('cybercam_if', (block, generator) => {
     const body = statement(generator, block, 'DO') || 'pass';
     return `if ${value(generator, block, 'CONDITION', 'False')}:\n${body.split('\n').map(line => line ? `    ${line}` : '').join('\n')}\n`;
@@ -321,16 +342,22 @@
   define('cybercam_mqtt_subscribe', (block, generator) => `${nameOf(block, 'client')}.subscribe(${value(generator, block, 'TOPIC', "''")})\n`);
   define('cybercam_mqtt_on_message', (block, generator) => {
     const client = nameOf(block, 'client');
+    const rawTopic = field(block, 'TOPIC_NAME', 'topic');
+    const rawPayload = field(block, 'PAYLOAD_NAME', 'payload');
     const usedNames = new Set();
-    const topic = uniqueName(safeName(field(block, 'TOPIC_NAME', 'topic'), 'topic'), usedNames);
-    const payload = uniqueName(safeName(field(block, 'PAYLOAD_NAME', 'payload'), 'payload'), usedNames);
+    const topic = uniqueName(safeName(rawTopic, 'topic'), usedNames);
+    const payload = uniqueName(safeName(rawPayload, 'payload'), usedNames);
     const callbackClient = uniqueName('client', usedNames);
     const callbackUserdata = uniqueName('userdata', usedNames);
     const callbackMessage = uniqueName('message', usedNames);
     const functionBase = `mqtt_on_message_${client}`;
+    const body = withNameScope(
+      generator,
+      [[rawTopic, topic], [rawPayload, payload]],
+      () => statement(generator, block, 'DO'),
+    );
     const functionKey = uniqueFunctionKey(generator, functionBase);
     const handler = `_cybercam_${functionKey}`;
-    const body = statement(generator, block, 'DO');
     const lines = [
       `def ${handler}(${callbackClient}, ${callbackUserdata}, ${callbackMessage}):`,
       `    ${topic} = ${callbackMessage}.topic`,

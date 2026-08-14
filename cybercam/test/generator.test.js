@@ -181,6 +181,68 @@ test('multiple MQTT message handlers for one client keep every function body', (
   assert.equal(parsed.status, 0, parsed.stderr || source);
 });
 
+test('MQTT handler chooses its function key after generating a body that adds functions', () => {
+  const py = loadGenerator();
+  py.statementToCode = () => {
+    py.addFunction(
+      'mqtt_on_message_client',
+      'def _cybercam_mqtt_on_message_client():\n    return "occupied"\n',
+    );
+    return '    print("outer")\n';
+  };
+
+  const assignment = py.forBlock.cybercam_mqtt_on_message(block(
+    { NAME: 'client', TOPIC_NAME: 'topic', PAYLOAD_NAME: 'payload' },
+  ), py);
+
+  assert.equal(assignment, 'client.on_message = _cybercam_mqtt_on_message_client_2\n');
+  assert.match(py.codeDict.functions.mqtt_on_message_client, /return "occupied"/);
+  assert.match(py.codeDict.functions.mqtt_on_message_client_2, /print\("outer"\)/);
+});
+
+test('nested MQTT handlers for one client retain both deterministic function bodies', () => {
+  const py = loadGenerator();
+  let nested = false;
+  py.statementToCode = () => {
+    if (nested) return '    print("inner")\n';
+    nested = true;
+    const innerAssignment = py.forBlock.cybercam_mqtt_on_message(block(
+      { NAME: 'client', TOPIC_NAME: 'inner_topic', PAYLOAD_NAME: 'inner_payload' },
+    ), py);
+    return `    ${innerAssignment}    print("outer")\n`;
+  };
+
+  const outerAssignment = py.forBlock.cybercam_mqtt_on_message(block(
+    { NAME: 'client', TOPIC_NAME: 'outer_topic', PAYLOAD_NAME: 'outer_payload' },
+  ), py);
+
+  assert.equal(outerAssignment, 'client.on_message = _cybercam_mqtt_on_message_client_2\n');
+  assert.match(py.codeDict.functions.mqtt_on_message_client, /print\("inner"\)/);
+  assert.match(py.codeDict.functions.mqtt_on_message_client_2, /print\("outer"\)/);
+});
+
+test('MQTT body variable reads use the allocated callback-local aliases', () => {
+  const py = loadGenerator();
+  py.statementToCode = () => {
+    const topic = py.forBlock.cybercam_get_variable(block({ NAME: 'topic-name' }), py)[0];
+    const payload = py.forBlock.cybercam_get_variable(block({ NAME: 'topic name' }), py)[0];
+    return `    print(${topic})\n    print(${payload})\n`;
+  };
+
+  py.forBlock.cybercam_mqtt_on_message(block(
+    { NAME: 'client', TOPIC_NAME: 'topic-name', PAYLOAD_NAME: 'topic name' },
+  ), py);
+
+  assert.equal(
+    py.codeDict.functions.mqtt_on_message_client,
+    'def _cybercam_mqtt_on_message_client(client, userdata, message):\n'
+      + '    topic_name = message.topic\n'
+      + '    topic_name_2 = message.payload\n'
+      + '    print(topic_name)\n'
+      + '    print(topic_name_2)\n',
+  );
+});
+
 test('vision and every KPU constructor emit documented imports and calls', () => {
   const py = loadGenerator();
   const simple = py.forBlock.cybercam_ai_init_simple(block(
