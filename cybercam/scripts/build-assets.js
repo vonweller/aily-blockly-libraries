@@ -37,6 +37,7 @@ add(
   block('cybercam_gpio_init', 'initialize GPIO %1 pin %2 direction %3 pull %4', [text('NAME', 'pin'), dropdown('PIN', pins), dropdown('DIRECTION', [['input', 'INPUT'], ['output', 'OUTPUT']]), dropdown('PULL', [['none', 'NONE'], ['up', 'UP'], ['down', 'DOWN']])], C.io, 'statement', 'Create a digital IO object using the official board and digitalio modules.'),
   block('cybercam_gpio_write', 'set GPIO %1 to %2', [text('NAME', 'pin'), input('VALUE', 'Boolean')], C.io),
   block('cybercam_gpio_read', 'GPIO %1 value', [text('NAME', 'pin')], C.io, 'output'),
+  block('cybercam_gpio_deinit', 'deinitialize GPIO %1', [text('NAME', 'pin')], C.io),
   block('cybercam_led_write', 'set onboard LED to %1', [input('VALUE', 'Boolean')], C.io),
   block('cybercam_key_pressed', 'onboard key is pressed', [], C.io, 'output'),
   block('cybercam_pwm_init', 'initialize PWM %1 target %2', [text('NAME', 'pwm'), dropdown('TARGET', [['GPIO60 / PWM0', '0,0'], ['GPIO61 / PWM1', '0,1'], ['fill light / PWM2', '0,2'], ['buzzer / PWM3', '1,0'], ['backlight / PWM5', '1,2']])], C.io),
@@ -48,6 +49,7 @@ add(
   block('cybercam_uart_read', 'UART %1 read %2 bytes', [text('NAME', 'uart'), input('SIZE', 'Number')], C.io, 'output'),
   block('cybercam_uart_write', 'UART %1 write %2', [text('NAME', 'uart'), input('DATA')], C.io),
   block('cybercam_uart_flush', 'flush UART %1 input', [text('NAME', 'uart')], C.io),
+  block('cybercam_uart_close', 'close UART %1', [text('NAME', 'uart')], C.io),
 );
 
 add(
@@ -107,6 +109,7 @@ add(
   block('cybercam_mqtt_connect', 'MQTT %1 connect host %2 port %3 keepalive %4', [text('NAME', 'client'), input('HOST', 'String'), input('PORT', 'Number'), input('KEEPALIVE', 'Number')], C.network),
   block('cybercam_mqtt_publish', 'MQTT %1 publish topic %2 message %3', [text('NAME', 'client'), input('TOPIC', 'String'), input('MESSAGE')], C.network),
   block('cybercam_mqtt_subscribe', 'MQTT %1 subscribe topic %2', [text('NAME', 'client'), input('TOPIC', 'String')], C.network),
+  block('cybercam_mqtt_on_message', 'when MQTT %1 receives message set topic %2 payload %3 do %4 %5', [text('NAME', 'client'), text('TOPIC_NAME', 'topic'), text('PAYLOAD_NAME', 'payload'), statements('DO'), { type: 'input_dummy' }], C.network),
   block('cybercam_mqtt_loop', 'MQTT %1 loop forever', [text('NAME', 'client')], C.network),
   block('cybercam_mqtt_disconnect', 'disconnect MQTT %1', [text('NAME', 'client')], C.network),
   block('cybercam_http_request', 'HTTP %1 URL %2 data %3', [dropdown('METHOD', [['GET', 'GET'], ['POST', 'POST'], ['PUT', 'PUT'], ['DELETE', 'DELETE']]), input('URL', 'String'), input('DATA')], C.network, 'output'),
@@ -126,6 +129,7 @@ add(
   block('cybercam_imu_read', 'IMU %1 six-axis values', [text('NAME', 'imu')], C.system, 'output'),
   block('cybercam_imu_axis', 'IMU %1 axis %2', [text('NAME', 'imu'), dropdown('AXIS', [['acceleration X (g)', '0'], ['acceleration Y (g)', '1'], ['acceleration Z (g)', '2'], ['gyro X (dps)', '3'], ['gyro Y (dps)', '4'], ['gyro Z (dps)', '5']])], C.system, 'output'),
   block('cybercam_imu_calibrate', 'calibrate IMU %1 samples %2', [text('NAME', 'imu'), input('SAMPLES', 'Number')], C.system),
+  block('cybercam_imu_close', 'close IMU %1', [text('NAME', 'imu')], C.system),
   block('cybercam_cpu_temperature', 'K230 CPU temperature °C', [], C.system, 'output'),
   block('cybercam_chip_id', 'K230 unique chip ID', [], C.system, 'output'),
 );
@@ -155,17 +159,17 @@ const toolboxItem = (type) => {
 const toolbox = { kind: 'category', name: 'CyberCAM', colour: C.lifecycle, contents: categoryGroups.map(([name, colour, types]) => ({ kind: 'category', name, colour, contents: types.map(toolboxItem) })) };
 
 const languageMeta = {
-  zh_cn: ['CyberCAM 完整能力', ['程序', 'IO 与外设', '摄像头与屏幕', 'OpenCV 与码识别', 'KPU 人工智能', '网络', '文件与图像', '音频、IMU 与系统']],
-  en: ['CyberCAM Complete', categoryGroups.map((group) => group[0])],
-  zh_hk: ['CyberCAM 完整能力', ['程式', 'IO 與周邊', '相機與螢幕', 'OpenCV 與碼識別', 'KPU 人工智能', '網絡', '檔案與圖像', '音訊、IMU 與系統']],
-  ja: ['CyberCAM 完全機能', ['プログラム', 'IO と周辺機器', 'カメラと画面', 'OpenCV とコード認識', 'KPU AI', 'ネットワーク', 'ファイルと画像', '音声・IMU・システム']],
-  ko: ['CyberCAM 전체 기능', ['프로그램', 'IO 및 주변 장치', '카메라 및 화면', 'OpenCV 및 코드 인식', 'KPU AI', '네트워크', '파일 및 이미지', '오디오·IMU·시스템']],
-  de: ['CyberCAM komplett', ['Programm', 'E/A und Peripherie', 'Kamera und Anzeige', 'OpenCV und Codes', 'KPU-KI', 'Netzwerk', 'Dateien und Bilder', 'Audio, IMU und System']],
-  fr: ['CyberCAM complet', ['Programme', 'E/S et périphériques', 'Caméra et écran', 'OpenCV et codes', 'IA KPU', 'Réseau', 'Fichiers et images', 'Audio, IMU et système']],
-  es: ['CyberCAM completo', ['Programa', 'E/S y periféricos', 'Cámara y pantalla', 'OpenCV y códigos', 'IA KPU', 'Red', 'Archivos e imágenes', 'Audio, IMU y sistema']],
-  pt: ['CyberCAM completo', ['Programa', 'E/S e periféricos', 'Câmera e tela', 'OpenCV e códigos', 'IA KPU', 'Rede', 'Arquivos e imagens', 'Áudio, IMU e sistema']],
-  ru: ['CyberCAM: все функции', ['Программа', 'Ввод-вывод', 'Камера и экран', 'OpenCV и коды', 'ИИ KPU', 'Сеть', 'Файлы и изображения', 'Аудио, IMU и система']],
-  ar: ['قدرات CyberCAM الكاملة', ['البرنامج', 'الإدخال والإخراج', 'الكاميرا والشاشة', 'OpenCV والرموز', 'ذكاء KPU', 'الشبكة', 'الملفات والصور', 'الصوت وIMU والنظام']],
+  zh_cn: ['CyberCAM Python', ['程序', 'IO 与外设', '摄像头与屏幕', 'OpenCV 与码识别', 'KPU 人工智能', '网络', '文件与图像', '音频、IMU 与系统']],
+  en: ['CyberCAM Python', categoryGroups.map((group) => group[0])],
+  zh_hk: ['CyberCAM Python', ['程式', 'IO 與周邊', '相機與螢幕', 'OpenCV 與碼識別', 'KPU 人工智能', '網絡', '檔案與圖像', '音訊、IMU 與系統']],
+  ja: ['CyberCAM Python', ['プログラム', 'IO と周辺機器', 'カメラと画面', 'OpenCV とコード認識', 'KPU AI', 'ネットワーク', 'ファイルと画像', '音声・IMU・システム']],
+  ko: ['CyberCAM Python', ['프로그램', 'IO 및 주변 장치', '카메라 및 화면', 'OpenCV 및 코드 인식', 'KPU AI', '네트워크', '파일 및 이미지', '오디오·IMU·시스템']],
+  de: ['CyberCAM Python', ['Programm', 'E/A und Peripherie', 'Kamera und Anzeige', 'OpenCV und Codes', 'KPU-KI', 'Netzwerk', 'Dateien und Bilder', 'Audio, IMU und System']],
+  fr: ['CyberCAM Python', ['Programme', 'E/S et périphériques', 'Caméra et écran', 'OpenCV et codes', 'IA KPU', 'Réseau', 'Fichiers et images', 'Audio, IMU et système']],
+  es: ['CyberCAM Python', ['Programa', 'E/S y periféricos', 'Cámara y pantalla', 'OpenCV y códigos', 'IA KPU', 'Red', 'Archivos e imágenes', 'Audio, IMU y sistema']],
+  pt: ['CyberCAM Python', ['Programa', 'E/S e periféricos', 'Câmera e tela', 'OpenCV e códigos', 'IA KPU', 'Rede', 'Arquivos e imagens', 'Áudio, IMU e sistema']],
+  ru: ['CyberCAM Python', ['Программа', 'Ввод-вывод', 'Камера и экран', 'OpenCV и коды', 'ИИ KPU', 'Сеть', 'Файлы и изображения', 'Аудио, IMU и система']],
+  ar: ['CyberCAM Python', ['البرنامج', 'الإدخال والإخراج', 'الكاميرا والشاشة', 'OpenCV والرموز', 'ذكاء KPU', 'الشبكة', 'الملفات والصور', 'الصوت وIMU والنظام']],
 };
 const placeholders = (text) => String(text).match(/%\d+/g) || [];
 const standaloneTooltips = {

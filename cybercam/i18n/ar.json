@@ -1,5 +1,5 @@
 {
-  "toolbox_name": "قدرات CyberCAM الكاملة",
+  "toolbox_name": "CyberCAM Python",
   "toolbox_categories": [
     "البرنامج",
     "الإدخال والإخراج",
@@ -181,6 +181,13 @@
       null
     ]
   },
+  "cybercam_gpio_deinit": {
+    "message0": "إلغاء تهيئة GPIO %1",
+    "tooltip": "إلغاء تهيئة GPIO %1",
+    "args0": [
+      null
+    ]
+  },
   "cybercam_led_write": {
     "message0": "ضبط LED المدمج على %1",
     "tooltip": "ضبط LED المدمج على %1",
@@ -317,6 +324,13 @@
   "cybercam_uart_flush": {
     "message0": "مسح مخزن إدخال UART %1",
     "tooltip": "مسح مخزن إدخال UART %1",
+    "args0": [
+      null
+    ]
+  },
+  "cybercam_uart_close": {
+    "message0": "إغلاق UART %1",
+    "tooltip": "إغلاق UART %1",
     "args0": [
       null
     ]
@@ -800,6 +814,66 @@
           [
             "الزوايا",
             "corners"
+          ],
+          [
+            "العين اليسرى",
+            "left_eye"
+          ],
+          [
+            "العين اليسرى x",
+            "left_eye.x"
+          ],
+          [
+            "العين اليسرى y",
+            "left_eye.y"
+          ],
+          [
+            "العين اليمنى",
+            "right_eye"
+          ],
+          [
+            "العين اليمنى x",
+            "right_eye.x"
+          ],
+          [
+            "العين اليمنى y",
+            "right_eye.y"
+          ],
+          [
+            "الأنف",
+            "nose"
+          ],
+          [
+            "الأنف x",
+            "nose.x"
+          ],
+          [
+            "الأنف y",
+            "nose.y"
+          ],
+          [
+            "زاوية الفم اليسرى",
+            "left_mouth"
+          ],
+          [
+            "زاوية الفم اليسرى x",
+            "left_mouth.x"
+          ],
+          [
+            "زاوية الفم اليسرى y",
+            "left_mouth.y"
+          ],
+          [
+            "زاوية الفم اليمنى",
+            "right_mouth"
+          ],
+          [
+            "زاوية الفم اليمنى x",
+            "right_mouth.x"
+          ],
+          [
+            "زاوية الفم اليمنى y",
+            "right_mouth.y"
           ]
         ]
       }
@@ -928,6 +1002,17 @@
     "message0": "اشتراك MQTT %1 في الموضوع %2",
     "tooltip": "اشتراك MQTT %1 في الموضوع %2",
     "args0": [
+      null,
+      null
+    ]
+  },
+  "cybercam_mqtt_on_message": {
+    "message0": "عند استلام MQTT %1 رسالة، خزّن الموضوع في %2 والحمولة في %3 ثم نفّذ %4 %5",
+    "tooltip": "عند استلام MQTT %1 رسالة، خزّن الموضوع في %2 والحمولة في %3 ثم نفّذ %4 %5",
+    "args0": [
+      null,
+      null,
+      null,
       null,
       null
     ]
@@ -1125,6 +1210,13 @@
     "tooltip": "معايرة IMU %1: عدد العينات %2",
     "args0": [
       null,
+      null
+    ]
+  },
+  "cybercam_imu_close": {
+    "message0": "إغلاق IMU %1",
+    "tooltip": "إغلاق IMU %1",
+    "args0": [
       null
     ]
   },

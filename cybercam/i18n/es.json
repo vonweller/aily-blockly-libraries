@@ -1,5 +1,5 @@
 {
-  "toolbox_name": "CyberCAM completo",
+  "toolbox_name": "CyberCAM Python",
   "toolbox_categories": [
     "Programa",
     "E/S y periféricos",
@@ -181,6 +181,13 @@
       null
     ]
   },
+  "cybercam_gpio_deinit": {
+    "message0": "desinicializar GPIO %1",
+    "tooltip": "desinicializar GPIO %1",
+    "args0": [
+      null
+    ]
+  },
   "cybercam_led_write": {
     "message0": "Establecer el LED integrado en %1",
     "tooltip": "Establecer el LED integrado en %1",
@@ -317,6 +324,13 @@
   "cybercam_uart_flush": {
     "message0": "Vaciar el búfer de entrada de UART %1",
     "tooltip": "Vaciar el búfer de entrada de UART %1",
+    "args0": [
+      null
+    ]
+  },
+  "cybercam_uart_close": {
+    "message0": "cerrar UART %1",
+    "tooltip": "cerrar UART %1",
     "args0": [
       null
     ]
@@ -800,6 +814,66 @@
           [
             "esquinas",
             "corners"
+          ],
+          [
+            "ojo izquierdo",
+            "left_eye"
+          ],
+          [
+            "ojo izquierdo x",
+            "left_eye.x"
+          ],
+          [
+            "ojo izquierdo y",
+            "left_eye.y"
+          ],
+          [
+            "ojo derecho",
+            "right_eye"
+          ],
+          [
+            "ojo derecho x",
+            "right_eye.x"
+          ],
+          [
+            "ojo derecho y",
+            "right_eye.y"
+          ],
+          [
+            "nariz",
+            "nose"
+          ],
+          [
+            "nariz x",
+            "nose.x"
+          ],
+          [
+            "nariz y",
+            "nose.y"
+          ],
+          [
+            "comisura izquierda",
+            "left_mouth"
+          ],
+          [
+            "comisura izquierda x",
+            "left_mouth.x"
+          ],
+          [
+            "comisura izquierda y",
+            "left_mouth.y"
+          ],
+          [
+            "comisura derecha",
+            "right_mouth"
+          ],
+          [
+            "comisura derecha x",
+            "right_mouth.x"
+          ],
+          [
+            "comisura derecha y",
+            "right_mouth.y"
           ]
         ]
       }
@@ -928,6 +1002,17 @@
     "message0": "Suscribir MQTT %1 al tema %2",
     "tooltip": "Suscribir MQTT %1 al tema %2",
     "args0": [
+      null,
+      null
+    ]
+  },
+  "cybercam_mqtt_on_message": {
+    "message0": "cuando MQTT %1 reciba un mensaje, guardar tema %2 y carga %3 y ejecutar %4 %5",
+    "tooltip": "cuando MQTT %1 reciba un mensaje, guardar tema %2 y carga %3 y ejecutar %4 %5",
+    "args0": [
+      null,
+      null,
+      null,
       null,
       null
     ]
@@ -1125,6 +1210,13 @@
     "tooltip": "Calibrar la IMU %1: %2 muestras",
     "args0": [
       null,
+      null
+    ]
+  },
+  "cybercam_imu_close": {
+    "message0": "cerrar IMU %1",
+    "tooltip": "cerrar IMU %1",
+    "args0": [
       null
     ]
   },

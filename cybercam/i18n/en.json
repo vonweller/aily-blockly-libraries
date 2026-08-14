@@ -1,5 +1,5 @@
 {
-  "toolbox_name": "CyberCAM Complete",
+  "toolbox_name": "CyberCAM Python",
   "toolbox_categories": [
     "Lifecycle",
     "IO and peripherals",
@@ -181,6 +181,13 @@
       null
     ]
   },
+  "cybercam_gpio_deinit": {
+    "message0": "deinitialize GPIO %1",
+    "tooltip": "deinitialize GPIO %1",
+    "args0": [
+      null
+    ]
+  },
   "cybercam_led_write": {
     "message0": "set onboard LED to %1",
     "tooltip": "set onboard LED to %1",
@@ -317,6 +324,13 @@
   "cybercam_uart_flush": {
     "message0": "flush UART %1 input",
     "tooltip": "flush UART %1 input",
+    "args0": [
+      null
+    ]
+  },
+  "cybercam_uart_close": {
+    "message0": "close UART %1",
+    "tooltip": "close UART %1",
     "args0": [
       null
     ]
@@ -800,6 +814,66 @@
           [
             "corners",
             "corners"
+          ],
+          [
+            "left eye",
+            "left_eye"
+          ],
+          [
+            "left eye x",
+            "left_eye.x"
+          ],
+          [
+            "left eye y",
+            "left_eye.y"
+          ],
+          [
+            "right eye",
+            "right_eye"
+          ],
+          [
+            "right eye x",
+            "right_eye.x"
+          ],
+          [
+            "right eye y",
+            "right_eye.y"
+          ],
+          [
+            "nose",
+            "nose"
+          ],
+          [
+            "nose x",
+            "nose.x"
+          ],
+          [
+            "nose y",
+            "nose.y"
+          ],
+          [
+            "left mouth",
+            "left_mouth"
+          ],
+          [
+            "left mouth x",
+            "left_mouth.x"
+          ],
+          [
+            "left mouth y",
+            "left_mouth.y"
+          ],
+          [
+            "right mouth",
+            "right_mouth"
+          ],
+          [
+            "right mouth x",
+            "right_mouth.x"
+          ],
+          [
+            "right mouth y",
+            "right_mouth.y"
           ]
         ]
       }
@@ -928,6 +1002,17 @@
     "message0": "MQTT %1 subscribe topic %2",
     "tooltip": "MQTT %1 subscribe topic %2",
     "args0": [
+      null,
+      null
+    ]
+  },
+  "cybercam_mqtt_on_message": {
+    "message0": "when MQTT %1 receives message set topic %2 payload %3 do %4 %5",
+    "tooltip": "when MQTT %1 receives message set topic %2 payload %3 do %4 %5",
+    "args0": [
+      null,
+      null,
+      null,
       null,
       null
     ]
@@ -1125,6 +1210,13 @@
     "tooltip": "calibrate IMU %1 samples %2",
     "args0": [
       null,
+      null
+    ]
+  },
+  "cybercam_imu_close": {
+    "message0": "close IMU %1",
+    "tooltip": "close IMU %1",
+    "args0": [
       null
     ]
   },

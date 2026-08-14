@@ -319,6 +319,22 @@
     "output": "Any"
   },
   {
+    "type": "cybercam_gpio_deinit",
+    "message0": "deinitialize GPIO %1",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "NAME",
+        "text": "pin"
+      }
+    ],
+    "colour": "#00897B",
+    "tooltip": "deinitialize GPIO %1",
+    "icon": "settings",
+    "previousStatement": null,
+    "nextStatement": null
+  },
+  {
     "type": "cybercam_led_write",
     "message0": "set onboard LED to %1",
     "args0": [
@@ -583,6 +599,22 @@
     ],
     "colour": "#00897B",
     "tooltip": "flush UART %1 input",
+    "icon": "settings",
+    "previousStatement": null,
+    "nextStatement": null
+  },
+  {
+    "type": "cybercam_uart_close",
+    "message0": "close UART %1",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "NAME",
+        "text": "uart"
+      }
+    ],
+    "colour": "#00897B",
+    "tooltip": "close UART %1",
     "icon": "settings",
     "previousStatement": null,
     "nextStatement": null
@@ -1610,6 +1642,66 @@
           [
             "corners",
             "corners"
+          ],
+          [
+            "left eye",
+            "left_eye"
+          ],
+          [
+            "left eye x",
+            "left_eye.x"
+          ],
+          [
+            "left eye y",
+            "left_eye.y"
+          ],
+          [
+            "right eye",
+            "right_eye"
+          ],
+          [
+            "right eye x",
+            "right_eye.x"
+          ],
+          [
+            "right eye y",
+            "right_eye.y"
+          ],
+          [
+            "nose",
+            "nose"
+          ],
+          [
+            "nose x",
+            "nose.x"
+          ],
+          [
+            "nose y",
+            "nose.y"
+          ],
+          [
+            "left mouth",
+            "left_mouth"
+          ],
+          [
+            "left mouth x",
+            "left_mouth.x"
+          ],
+          [
+            "left mouth y",
+            "left_mouth.y"
+          ],
+          [
+            "right mouth",
+            "right_mouth"
+          ],
+          [
+            "right mouth x",
+            "right_mouth.x"
+          ],
+          [
+            "right mouth y",
+            "right_mouth.y"
           ]
         ]
       }
@@ -1904,6 +1996,39 @@
     ],
     "colour": "#0288D1",
     "tooltip": "MQTT %1 subscribe topic %2",
+    "icon": "settings",
+    "previousStatement": null,
+    "nextStatement": null
+  },
+  {
+    "type": "cybercam_mqtt_on_message",
+    "message0": "when MQTT %1 receives message set topic %2 payload %3 do %4 %5",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "NAME",
+        "text": "client"
+      },
+      {
+        "type": "field_input",
+        "name": "TOPIC_NAME",
+        "text": "topic"
+      },
+      {
+        "type": "field_input",
+        "name": "PAYLOAD_NAME",
+        "text": "payload"
+      },
+      {
+        "type": "input_statement",
+        "name": "DO"
+      },
+      {
+        "type": "input_dummy"
+      }
+    ],
+    "colour": "#0288D1",
+    "tooltip": "when MQTT %1 receives message set topic %2 payload %3 do %4 %5",
     "icon": "settings",
     "previousStatement": null,
     "nextStatement": null
@@ -2273,6 +2398,22 @@
     ],
     "colour": "#EF6C00",
     "tooltip": "calibrate IMU %1 samples %2",
+    "icon": "settings",
+    "previousStatement": null,
+    "nextStatement": null
+  },
+  {
+    "type": "cybercam_imu_close",
+    "message0": "close IMU %1",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "NAME",
+        "text": "imu"
+      }
+    ],
+    "colour": "#EF6C00",
+    "tooltip": "close IMU %1",
     "icon": "settings",
     "previousStatement": null,
     "nextStatement": null

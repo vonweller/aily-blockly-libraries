@@ -1,5 +1,5 @@
 {
-  "toolbox_name": "CyberCAM komplett",
+  "toolbox_name": "CyberCAM Python",
   "toolbox_categories": [
     "Programm",
     "E/A und Peripherie",
@@ -181,6 +181,13 @@
       null
     ]
   },
+  "cybercam_gpio_deinit": {
+    "message0": "GPIO %1 deinitialisieren",
+    "tooltip": "GPIO %1 deinitialisieren",
+    "args0": [
+      null
+    ]
+  },
   "cybercam_led_write": {
     "message0": "Onboard-LED auf %1 setzen",
     "tooltip": "Onboard-LED auf %1 setzen",
@@ -317,6 +324,13 @@
   "cybercam_uart_flush": {
     "message0": "Eingabepuffer von UART %1 leeren",
     "tooltip": "Eingabepuffer von UART %1 leeren",
+    "args0": [
+      null
+    ]
+  },
+  "cybercam_uart_close": {
+    "message0": "UART %1 schließen",
+    "tooltip": "UART %1 schließen",
     "args0": [
       null
     ]
@@ -800,6 +814,66 @@
           [
             "Ecken",
             "corners"
+          ],
+          [
+            "linkes Auge",
+            "left_eye"
+          ],
+          [
+            "linkes Auge x",
+            "left_eye.x"
+          ],
+          [
+            "linkes Auge y",
+            "left_eye.y"
+          ],
+          [
+            "rechtes Auge",
+            "right_eye"
+          ],
+          [
+            "rechtes Auge x",
+            "right_eye.x"
+          ],
+          [
+            "rechtes Auge y",
+            "right_eye.y"
+          ],
+          [
+            "Nase",
+            "nose"
+          ],
+          [
+            "Nase x",
+            "nose.x"
+          ],
+          [
+            "Nase y",
+            "nose.y"
+          ],
+          [
+            "linker Mundwinkel",
+            "left_mouth"
+          ],
+          [
+            "linker Mundwinkel x",
+            "left_mouth.x"
+          ],
+          [
+            "linker Mundwinkel y",
+            "left_mouth.y"
+          ],
+          [
+            "rechter Mundwinkel",
+            "right_mouth"
+          ],
+          [
+            "rechter Mundwinkel x",
+            "right_mouth.x"
+          ],
+          [
+            "rechter Mundwinkel y",
+            "right_mouth.y"
           ]
         ]
       }
@@ -928,6 +1002,17 @@
     "message0": "Mit MQTT %1 Thema %2 abonnieren",
     "tooltip": "Mit MQTT %1 Thema %2 abonnieren",
     "args0": [
+      null,
+      null
+    ]
+  },
+  "cybercam_mqtt_on_message": {
+    "message0": "wenn MQTT %1 eine Nachricht empfängt, Thema %2 und Nutzlast %3 setzen, dann %4 %5",
+    "tooltip": "wenn MQTT %1 eine Nachricht empfängt, Thema %2 und Nutzlast %3 setzen, dann %4 %5",
+    "args0": [
+      null,
+      null,
+      null,
       null,
       null
     ]
@@ -1125,6 +1210,13 @@
     "tooltip": "IMU %1 kalibrieren: %2 Abtastwerte",
     "args0": [
       null,
+      null
+    ]
+  },
+  "cybercam_imu_close": {
+    "message0": "IMU %1 schließen",
+    "tooltip": "IMU %1 schließen",
+    "args0": [
       null
     ]
   },

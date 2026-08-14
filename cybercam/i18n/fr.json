@@ -1,5 +1,5 @@
 {
-  "toolbox_name": "CyberCAM complet",
+  "toolbox_name": "CyberCAM Python",
   "toolbox_categories": [
     "Programme",
     "E/S et périphériques",
@@ -181,6 +181,13 @@
       null
     ]
   },
+  "cybercam_gpio_deinit": {
+    "message0": "désinitialiser le GPIO %1",
+    "tooltip": "désinitialiser le GPIO %1",
+    "args0": [
+      null
+    ]
+  },
   "cybercam_led_write": {
     "message0": "Définir la LED intégrée sur %1",
     "tooltip": "Définir la LED intégrée sur %1",
@@ -317,6 +324,13 @@
   "cybercam_uart_flush": {
     "message0": "Vider le tampon d’entrée de UART %1",
     "tooltip": "Vider le tampon d’entrée de UART %1",
+    "args0": [
+      null
+    ]
+  },
+  "cybercam_uart_close": {
+    "message0": "fermer l’UART %1",
+    "tooltip": "fermer l’UART %1",
     "args0": [
       null
     ]
@@ -800,6 +814,66 @@
           [
             "coins",
             "corners"
+          ],
+          [
+            "œil gauche",
+            "left_eye"
+          ],
+          [
+            "œil gauche x",
+            "left_eye.x"
+          ],
+          [
+            "œil gauche y",
+            "left_eye.y"
+          ],
+          [
+            "œil droit",
+            "right_eye"
+          ],
+          [
+            "œil droit x",
+            "right_eye.x"
+          ],
+          [
+            "œil droit y",
+            "right_eye.y"
+          ],
+          [
+            "nez",
+            "nose"
+          ],
+          [
+            "nez x",
+            "nose.x"
+          ],
+          [
+            "nez y",
+            "nose.y"
+          ],
+          [
+            "coin gauche de la bouche",
+            "left_mouth"
+          ],
+          [
+            "coin gauche de la bouche x",
+            "left_mouth.x"
+          ],
+          [
+            "coin gauche de la bouche y",
+            "left_mouth.y"
+          ],
+          [
+            "coin droit de la bouche",
+            "right_mouth"
+          ],
+          [
+            "coin droit de la bouche x",
+            "right_mouth.x"
+          ],
+          [
+            "coin droit de la bouche y",
+            "right_mouth.y"
           ]
         ]
       }
@@ -928,6 +1002,17 @@
     "message0": "Abonner MQTT %1 au sujet %2",
     "tooltip": "Abonner MQTT %1 au sujet %2",
     "args0": [
+      null,
+      null
+    ]
+  },
+  "cybercam_mqtt_on_message": {
+    "message0": "quand MQTT %1 reçoit un message, définir le sujet %2 et la charge %3 puis faire %4 %5",
+    "tooltip": "quand MQTT %1 reçoit un message, définir le sujet %2 et la charge %3 puis faire %4 %5",
+    "args0": [
+      null,
+      null,
+      null,
       null,
       null
     ]
@@ -1125,6 +1210,13 @@
     "tooltip": "Étalonner l’IMU %1 : %2 échantillons",
     "args0": [
       null,
+      null
+    ]
+  },
+  "cybercam_imu_close": {
+    "message0": "fermer l’IMU %1",
+    "tooltip": "fermer l’IMU %1",
+    "args0": [
       null
     ]
   },

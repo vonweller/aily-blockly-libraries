@@ -1,5 +1,5 @@
 {
-  "toolbox_name": "CyberCAM 전체 기능",
+  "toolbox_name": "CyberCAM Python",
   "toolbox_categories": [
     "프로그램",
     "IO 및 주변 장치",
@@ -181,6 +181,13 @@
       null
     ]
   },
+  "cybercam_gpio_deinit": {
+    "message0": "GPIO %1 초기화 해제",
+    "tooltip": "GPIO %1 초기화 해제",
+    "args0": [
+      null
+    ]
+  },
   "cybercam_led_write": {
     "message0": "온보드 LED를 %1로 설정",
     "tooltip": "온보드 LED를 %1로 설정",
@@ -317,6 +324,13 @@
   "cybercam_uart_flush": {
     "message0": "UART %1 입력 버퍼 비우기",
     "tooltip": "UART %1 입력 버퍼 비우기",
+    "args0": [
+      null
+    ]
+  },
+  "cybercam_uart_close": {
+    "message0": "UART %1 닫기",
+    "tooltip": "UART %1 닫기",
     "args0": [
       null
     ]
@@ -800,6 +814,66 @@
           [
             "모서리",
             "corners"
+          ],
+          [
+            "왼쪽 눈",
+            "left_eye"
+          ],
+          [
+            "왼쪽 눈 x",
+            "left_eye.x"
+          ],
+          [
+            "왼쪽 눈 y",
+            "left_eye.y"
+          ],
+          [
+            "오른쪽 눈",
+            "right_eye"
+          ],
+          [
+            "오른쪽 눈 x",
+            "right_eye.x"
+          ],
+          [
+            "오른쪽 눈 y",
+            "right_eye.y"
+          ],
+          [
+            "코",
+            "nose"
+          ],
+          [
+            "코 x",
+            "nose.x"
+          ],
+          [
+            "코 y",
+            "nose.y"
+          ],
+          [
+            "왼쪽 입꼬리",
+            "left_mouth"
+          ],
+          [
+            "왼쪽 입꼬리 x",
+            "left_mouth.x"
+          ],
+          [
+            "왼쪽 입꼬리 y",
+            "left_mouth.y"
+          ],
+          [
+            "오른쪽 입꼬리",
+            "right_mouth"
+          ],
+          [
+            "오른쪽 입꼬리 x",
+            "right_mouth.x"
+          ],
+          [
+            "오른쪽 입꼬리 y",
+            "right_mouth.y"
           ]
         ]
       }
@@ -928,6 +1002,17 @@
     "message0": "MQTT %1로 토픽 %2 구독",
     "tooltip": "MQTT %1로 토픽 %2 구독",
     "args0": [
+      null,
+      null
+    ]
+  },
+  "cybercam_mqtt_on_message": {
+    "message0": "MQTT %1 메시지 수신 시 주제를 %2, 페이로드를 %3에 저장하고 실행 %4 %5",
+    "tooltip": "MQTT %1 메시지 수신 시 주제를 %2, 페이로드를 %3에 저장하고 실행 %4 %5",
+    "args0": [
+      null,
+      null,
+      null,
       null,
       null
     ]
@@ -1125,6 +1210,13 @@
     "tooltip": "IMU %1 보정: 샘플 수 %2",
     "args0": [
       null,
+      null
+    ]
+  },
+  "cybercam_imu_close": {
+    "message0": "IMU %1 닫기",
+    "tooltip": "IMU %1 닫기",
+    "args0": [
       null
     ]
   },

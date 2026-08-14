@@ -2,6 +2,37 @@
 
 const lines = (text) => text.trim().split('\n');
 
+const faceLandmarkOptions = [
+  ['left eye', 'left_eye'],
+  ['left eye x', 'left_eye.x'],
+  ['left eye y', 'left_eye.y'],
+  ['right eye', 'right_eye'],
+  ['right eye x', 'right_eye.x'],
+  ['right eye y', 'right_eye.y'],
+  ['nose', 'nose'],
+  ['nose x', 'nose.x'],
+  ['nose y', 'nose.y'],
+  ['left mouth', 'left_mouth'],
+  ['left mouth x', 'left_mouth.x'],
+  ['left mouth y', 'left_mouth.y'],
+  ['right mouth', 'right_mouth'],
+  ['right mouth x', 'right_mouth.x'],
+  ['right mouth y', 'right_mouth.y'],
+];
+
+const faceLandmarkLabels = {
+  zh_cn: ['左眼', '左眼 x', '左眼 y', '右眼', '右眼 x', '右眼 y', '鼻子', '鼻子 x', '鼻子 y', '左嘴角', '左嘴角 x', '左嘴角 y', '右嘴角', '右嘴角 x', '右嘴角 y'],
+  zh_hk: ['左眼', '左眼 x', '左眼 y', '右眼', '右眼 x', '右眼 y', '鼻子', '鼻子 x', '鼻子 y', '左嘴角', '左嘴角 x', '左嘴角 y', '右嘴角', '右嘴角 x', '右嘴角 y'],
+  ja: ['左目', '左目 x', '左目 y', '右目', '右目 x', '右目 y', '鼻', '鼻 x', '鼻 y', '左口角', '左口角 x', '左口角 y', '右口角', '右口角 x', '右口角 y'],
+  ko: ['왼쪽 눈', '왼쪽 눈 x', '왼쪽 눈 y', '오른쪽 눈', '오른쪽 눈 x', '오른쪽 눈 y', '코', '코 x', '코 y', '왼쪽 입꼬리', '왼쪽 입꼬리 x', '왼쪽 입꼬리 y', '오른쪽 입꼬리', '오른쪽 입꼬리 x', '오른쪽 입꼬리 y'],
+  de: ['linkes Auge', 'linkes Auge x', 'linkes Auge y', 'rechtes Auge', 'rechtes Auge x', 'rechtes Auge y', 'Nase', 'Nase x', 'Nase y', 'linker Mundwinkel', 'linker Mundwinkel x', 'linker Mundwinkel y', 'rechter Mundwinkel', 'rechter Mundwinkel x', 'rechter Mundwinkel y'],
+  fr: ['œil gauche', 'œil gauche x', 'œil gauche y', 'œil droit', 'œil droit x', 'œil droit y', 'nez', 'nez x', 'nez y', 'coin gauche de la bouche', 'coin gauche de la bouche x', 'coin gauche de la bouche y', 'coin droit de la bouche', 'coin droit de la bouche x', 'coin droit de la bouche y'],
+  es: ['ojo izquierdo', 'ojo izquierdo x', 'ojo izquierdo y', 'ojo derecho', 'ojo derecho x', 'ojo derecho y', 'nariz', 'nariz x', 'nariz y', 'comisura izquierda', 'comisura izquierda x', 'comisura izquierda y', 'comisura derecha', 'comisura derecha x', 'comisura derecha y'],
+  pt: ['olho esquerdo', 'olho esquerdo x', 'olho esquerdo y', 'olho direito', 'olho direito x', 'olho direito y', 'nariz', 'nariz x', 'nariz y', 'canto esquerdo da boca', 'canto esquerdo da boca x', 'canto esquerdo da boca y', 'canto direito da boca', 'canto direito da boca x', 'canto direito da boca y'],
+  ru: ['левый глаз', 'левый глаз x', 'левый глаз y', 'правый глаз', 'правый глаз x', 'правый глаз y', 'нос', 'нос x', 'нос y', 'левый угол рта', 'левый угол рта x', 'левый угол рта y', 'правый угол рта', 'правый угол рта x', 'правый угол рта y'],
+  ar: ['العين اليسرى', 'العين اليسرى x', 'العين اليسرى y', 'العين اليمنى', 'العين اليمنى x', 'العين اليمنى y', 'الأنف', 'الأنف x', 'الأنف y', 'زاوية الفم اليسرى', 'زاوية الفم اليسرى x', 'زاوية الفم اليسرى y', 'زاوية الفم اليمنى', 'زاوية الفم اليمنى x', 'زاوية الفم اليمنى y'],
+};
+
 // Entries follow the block declaration order in build-assets.js. Technical names and
 // acronyms remain unchanged; every surrounding label is written for the target locale.
 const messages = {
@@ -987,6 +1018,69 @@ HTTP %1: الرابط %2، البيانات %3
 معرّف شريحة K230 الفريد`),
 };
 
+const additionalMessages = {
+  zh_cn: {
+    cybercam_gpio_deinit: '反初始化 GPIO %1',
+    cybercam_uart_close: '关闭 UART %1',
+    cybercam_mqtt_on_message: '当 MQTT %1 收到消息，将主题存入 %2、载荷存入 %3，执行 %4 %5',
+    cybercam_imu_close: '关闭 IMU %1',
+  },
+  zh_hk: {
+    cybercam_gpio_deinit: '解除初始化 GPIO %1',
+    cybercam_uart_close: '關閉 UART %1',
+    cybercam_mqtt_on_message: '當 MQTT %1 收到訊息，將主題存入 %2、酬載存入 %3，執行 %4 %5',
+    cybercam_imu_close: '關閉 IMU %1',
+  },
+  ja: {
+    cybercam_gpio_deinit: 'GPIO %1 を初期化解除',
+    cybercam_uart_close: 'UART %1 を閉じる',
+    cybercam_mqtt_on_message: 'MQTT %1 がメッセージを受信したらトピックを %2、ペイロードを %3 にして実行 %4 %5',
+    cybercam_imu_close: 'IMU %1 を閉じる',
+  },
+  ko: {
+    cybercam_gpio_deinit: 'GPIO %1 초기화 해제',
+    cybercam_uart_close: 'UART %1 닫기',
+    cybercam_mqtt_on_message: 'MQTT %1 메시지 수신 시 주제를 %2, 페이로드를 %3에 저장하고 실행 %4 %5',
+    cybercam_imu_close: 'IMU %1 닫기',
+  },
+  de: {
+    cybercam_gpio_deinit: 'GPIO %1 deinitialisieren',
+    cybercam_uart_close: 'UART %1 schließen',
+    cybercam_mqtt_on_message: 'wenn MQTT %1 eine Nachricht empfängt, Thema %2 und Nutzlast %3 setzen, dann %4 %5',
+    cybercam_imu_close: 'IMU %1 schließen',
+  },
+  fr: {
+    cybercam_gpio_deinit: 'désinitialiser le GPIO %1',
+    cybercam_uart_close: 'fermer l’UART %1',
+    cybercam_mqtt_on_message: 'quand MQTT %1 reçoit un message, définir le sujet %2 et la charge %3 puis faire %4 %5',
+    cybercam_imu_close: 'fermer l’IMU %1',
+  },
+  es: {
+    cybercam_gpio_deinit: 'desinicializar GPIO %1',
+    cybercam_uart_close: 'cerrar UART %1',
+    cybercam_mqtt_on_message: 'cuando MQTT %1 reciba un mensaje, guardar tema %2 y carga %3 y ejecutar %4 %5',
+    cybercam_imu_close: 'cerrar IMU %1',
+  },
+  pt: {
+    cybercam_gpio_deinit: 'desinicializar GPIO %1',
+    cybercam_uart_close: 'fechar UART %1',
+    cybercam_mqtt_on_message: 'quando MQTT %1 receber mensagem, definir tópico %2 e carga %3 e executar %4 %5',
+    cybercam_imu_close: 'fechar IMU %1',
+  },
+  ru: {
+    cybercam_gpio_deinit: 'деинициализировать GPIO %1',
+    cybercam_uart_close: 'закрыть UART %1',
+    cybercam_mqtt_on_message: 'когда MQTT %1 получает сообщение, записать тему в %2, данные в %3 и выполнить %4 %5',
+    cybercam_imu_close: 'закрыть IMU %1',
+  },
+  ar: {
+    cybercam_gpio_deinit: 'إلغاء تهيئة GPIO %1',
+    cybercam_uart_close: 'إغلاق UART %1',
+    cybercam_mqtt_on_message: 'عند استلام MQTT %1 رسالة، خزّن الموضوع في %2 والحمولة في %3 ثم نفّذ %4 %5',
+    cybercam_imu_close: 'إغلاق IMU %1',
+  },
+};
+
 const dropdownLabels = {
   zh_cn: { true: '真', false: '假', input: '输入', output: '输出', none: '无', up: '上拉', down: '下拉', 'fill light / PWM2': '补光灯 / PWM2', 'buzzer / PWM3': '蜂鸣器 / PWM3', 'backlight / PWM5': '背光 / PWM5', 'onboard CSI2': '板载 CSI2', default: '默认', 'BGR to gray': 'BGR 转灰度', 'BGR to LAB': 'BGR 转 LAB', 'BGR to RGB': 'BGR 转 RGB', 'gray to BGR': '灰度转 BGR', 'Fall detection': '跌倒检测', 'Hand detection': '手部检测', 'Person detection': '人员检测', 'Person keypoints': '人体关键点', 'Smoke detection': '烟雾检测', 'Traffic light': '交通灯检测', 'YOLO11 classification': 'YOLO11 分类', 'YOLO11 detection': 'YOLO11 检测', keypoints: '关键点', 'gesture classification': '手势分类', confidence: '置信度', width: '宽度', height: '高度', label: '标签', text: '文本', corners: '角点', 'status code': '状态码', write: '写入', append: '追加', 'acceleration X (g)': '加速度 X（g）', 'acceleration Y (g)': '加速度 Y（g）', 'acceleration Z (g)': '加速度 Z（g）', 'gyro X (dps)': '陀螺仪 X（dps）', 'gyro Y (dps)': '陀螺仪 Y（dps）', 'gyro Z (dps)': '陀螺仪 Z（dps）' },
   zh_hk: { true: '真', false: '假', input: '輸入', output: '輸出', none: '無', up: '上拉', down: '下拉', 'fill light / PWM2': '補光燈 / PWM2', 'buzzer / PWM3': '蜂鳴器 / PWM3', 'backlight / PWM5': '背光 / PWM5', 'onboard CSI2': '板載 CSI2', default: '預設', 'BGR to gray': 'BGR 轉灰階', 'BGR to LAB': 'BGR 轉 LAB', 'BGR to RGB': 'BGR 轉 RGB', 'gray to BGR': '灰階轉 BGR', 'Fall detection': '跌倒偵測', 'Hand detection': '手部偵測', 'Person detection': '人員偵測', 'Person keypoints': '人體關鍵點', 'Smoke detection': '煙霧偵測', 'Traffic light': '交通燈偵測', 'YOLO11 classification': 'YOLO11 分類', 'YOLO11 detection': 'YOLO11 偵測', keypoints: '關鍵點', 'gesture classification': '手勢分類', confidence: '信心度', width: '寬度', height: '高度', label: '標籤', text: '文字', corners: '角點', 'status code': '狀態碼', write: '寫入', append: '附加', 'acceleration X (g)': '加速度 X（g）', 'acceleration Y (g)': '加速度 Y（g）', 'acceleration Z (g)': '加速度 Z（g）', 'gyro X (dps)': '陀螺儀 X（dps）', 'gyro Y (dps)': '陀螺儀 Y（dps）', 'gyro Z (dps)': '陀螺儀 Z（dps）' },
@@ -1018,10 +1112,29 @@ function buildWesternDropdownMap(locale) {
 
 function localizedMessages(locale, blocks) {
   if (!messages[locale]) throw new Error(`Missing message catalog for ${locale}`);
-  return messages[locale];
+  const resultProperty = blocks.find((block) => block.type === 'cybercam_result_property');
+  const propertyField = resultProperty?.args0?.find((arg) => arg.name === 'PROPERTY');
+  if (!propertyField || !Array.isArray(propertyField.options)) {
+    throw new Error('Missing cybercam_result_property PROPERTY dropdown');
+  }
+  const existingValues = new Set(propertyField.options.map((option) => option[1]));
+  for (const option of faceLandmarkOptions) {
+    if (!existingValues.has(option[1])) propertyField.options.push(option);
+  }
+  let legacyIndex = 0;
+  const translated = blocks.map((block) => {
+    const added = additionalMessages[locale]?.[block.type];
+    return added || messages[locale][legacyIndex++];
+  });
+  if (legacyIndex !== messages[locale].length) {
+    throw new Error(`${locale} used ${legacyIndex} legacy messages; expected ${messages[locale].length}`);
+  }
+  return translated;
 }
 
 function localizeDropdown(locale, label) {
+  const landmarkIndex = faceLandmarkOptions.findIndex((option) => option[0] === label);
+  if (landmarkIndex >= 0) return faceLandmarkLabels[locale]?.[landmarkIndex] || label;
   const map = dropdownLabels[locale] || buildWesternDropdownMap(locale);
   return map[label] || label;
 }

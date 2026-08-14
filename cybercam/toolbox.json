@@ -153,6 +153,10 @@
         },
         {
           "kind": "block",
+          "type": "cybercam_gpio_deinit"
+        },
+        {
+          "kind": "block",
           "type": "cybercam_led_write",
           "inputs": {
             "VALUE": {
@@ -252,6 +256,10 @@
         {
           "kind": "block",
           "type": "cybercam_uart_flush"
+        },
+        {
+          "kind": "block",
+          "type": "cybercam_uart_close"
         }
       ]
     },
@@ -1313,6 +1321,10 @@
         },
         {
           "kind": "block",
+          "type": "cybercam_mqtt_on_message"
+        },
+        {
+          "kind": "block",
           "type": "cybercam_mqtt_loop"
         },
         {
@@ -1556,6 +1568,10 @@
               }
             }
           }
+        },
+        {
+          "kind": "block",
+          "type": "cybercam_imu_close"
         },
         {
           "kind": "block",

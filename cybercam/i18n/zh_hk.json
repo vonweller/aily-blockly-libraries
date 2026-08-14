@@ -1,5 +1,5 @@
 {
-  "toolbox_name": "CyberCAM 完整能力",
+  "toolbox_name": "CyberCAM Python",
   "toolbox_categories": [
     "程式",
     "IO 與周邊",
@@ -181,6 +181,13 @@
       null
     ]
   },
+  "cybercam_gpio_deinit": {
+    "message0": "解除初始化 GPIO %1",
+    "tooltip": "解除初始化 GPIO %1",
+    "args0": [
+      null
+    ]
+  },
   "cybercam_led_write": {
     "message0": "將板載 LED 設為 %1",
     "tooltip": "將板載 LED 設為 %1",
@@ -317,6 +324,13 @@
   "cybercam_uart_flush": {
     "message0": "清空 UART %1 的輸入緩衝區",
     "tooltip": "清空 UART %1 的輸入緩衝區",
+    "args0": [
+      null
+    ]
+  },
+  "cybercam_uart_close": {
+    "message0": "關閉 UART %1",
+    "tooltip": "關閉 UART %1",
     "args0": [
       null
     ]
@@ -800,6 +814,66 @@
           [
             "角點",
             "corners"
+          ],
+          [
+            "左眼",
+            "left_eye"
+          ],
+          [
+            "左眼 x",
+            "left_eye.x"
+          ],
+          [
+            "左眼 y",
+            "left_eye.y"
+          ],
+          [
+            "右眼",
+            "right_eye"
+          ],
+          [
+            "右眼 x",
+            "right_eye.x"
+          ],
+          [
+            "右眼 y",
+            "right_eye.y"
+          ],
+          [
+            "鼻子",
+            "nose"
+          ],
+          [
+            "鼻子 x",
+            "nose.x"
+          ],
+          [
+            "鼻子 y",
+            "nose.y"
+          ],
+          [
+            "左嘴角",
+            "left_mouth"
+          ],
+          [
+            "左嘴角 x",
+            "left_mouth.x"
+          ],
+          [
+            "左嘴角 y",
+            "left_mouth.y"
+          ],
+          [
+            "右嘴角",
+            "right_mouth"
+          ],
+          [
+            "右嘴角 x",
+            "right_mouth.x"
+          ],
+          [
+            "右嘴角 y",
+            "right_mouth.y"
           ]
         ]
       }
@@ -928,6 +1002,17 @@
     "message0": "MQTT %1 訂閱主題 %2",
     "tooltip": "MQTT %1 訂閱主題 %2",
     "args0": [
+      null,
+      null
+    ]
+  },
+  "cybercam_mqtt_on_message": {
+    "message0": "當 MQTT %1 收到訊息，將主題存入 %2、酬載存入 %3，執行 %4 %5",
+    "tooltip": "當 MQTT %1 收到訊息，將主題存入 %2、酬載存入 %3，執行 %4 %5",
+    "args0": [
+      null,
+      null,
+      null,
       null,
       null
     ]
@@ -1125,6 +1210,13 @@
     "tooltip": "校準 IMU %1，取樣數 %2",
     "args0": [
       null,
+      null
+    ]
+  },
+  "cybercam_imu_close": {
+    "message0": "關閉 IMU %1",
+    "tooltip": "關閉 IMU %1",
+    "args0": [
       null
     ]
   },

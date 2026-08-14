@@ -1,5 +1,5 @@
 {
-  "toolbox_name": "CyberCAM 完全機能",
+  "toolbox_name": "CyberCAM Python",
   "toolbox_categories": [
     "プログラム",
     "IO と周辺機器",
@@ -181,6 +181,13 @@
       null
     ]
   },
+  "cybercam_gpio_deinit": {
+    "message0": "GPIO %1 を初期化解除",
+    "tooltip": "GPIO %1 を初期化解除",
+    "args0": [
+      null
+    ]
+  },
   "cybercam_led_write": {
     "message0": "オンボード LED を %1 に設定",
     "tooltip": "オンボード LED を %1 に設定",
@@ -317,6 +324,13 @@
   "cybercam_uart_flush": {
     "message0": "UART %1 の入力バッファを消去",
     "tooltip": "UART %1 の入力バッファを消去",
+    "args0": [
+      null
+    ]
+  },
+  "cybercam_uart_close": {
+    "message0": "UART %1 を閉じる",
+    "tooltip": "UART %1 を閉じる",
     "args0": [
       null
     ]
@@ -800,6 +814,66 @@
           [
             "頂点",
             "corners"
+          ],
+          [
+            "左目",
+            "left_eye"
+          ],
+          [
+            "左目 x",
+            "left_eye.x"
+          ],
+          [
+            "左目 y",
+            "left_eye.y"
+          ],
+          [
+            "右目",
+            "right_eye"
+          ],
+          [
+            "右目 x",
+            "right_eye.x"
+          ],
+          [
+            "右目 y",
+            "right_eye.y"
+          ],
+          [
+            "鼻",
+            "nose"
+          ],
+          [
+            "鼻 x",
+            "nose.x"
+          ],
+          [
+            "鼻 y",
+            "nose.y"
+          ],
+          [
+            "左口角",
+            "left_mouth"
+          ],
+          [
+            "左口角 x",
+            "left_mouth.x"
+          ],
+          [
+            "左口角 y",
+            "left_mouth.y"
+          ],
+          [
+            "右口角",
+            "right_mouth"
+          ],
+          [
+            "右口角 x",
+            "right_mouth.x"
+          ],
+          [
+            "右口角 y",
+            "right_mouth.y"
           ]
         ]
       }
@@ -928,6 +1002,17 @@
     "message0": "MQTT %1 でトピック %2 を購読",
     "tooltip": "MQTT %1 でトピック %2 を購読",
     "args0": [
+      null,
+      null
+    ]
+  },
+  "cybercam_mqtt_on_message": {
+    "message0": "MQTT %1 がメッセージを受信したらトピックを %2、ペイロードを %3 にして実行 %4 %5",
+    "tooltip": "MQTT %1 がメッセージを受信したらトピックを %2、ペイロードを %3 にして実行 %4 %5",
+    "args0": [
+      null,
+      null,
+      null,
       null,
       null
     ]
@@ -1125,6 +1210,13 @@
     "tooltip": "IMU %1 を校正：サンプル数 %2",
     "args0": [
       null,
+      null
+    ]
+  },
+  "cybercam_imu_close": {
+    "message0": "IMU %1 を閉じる",
+    "tooltip": "IMU %1 を閉じる",
+    "args0": [
       null
     ]
   },

@@ -11,12 +11,12 @@ const REQUIRED_BLOCKS = [
   'cybercam_number', 'cybercam_text', 'cybercam_boolean', 'cybercam_tuple',
   'cybercam_list', 'cybercam_set_variable', 'cybercam_get_variable',
   'cybercam_if', 'cybercam_for_each',
-  'cybercam_gpio_init', 'cybercam_gpio_write', 'cybercam_gpio_read',
+  'cybercam_gpio_init', 'cybercam_gpio_write', 'cybercam_gpio_read', 'cybercam_gpio_deinit',
   'cybercam_led_write', 'cybercam_key_pressed',
   'cybercam_pwm_init', 'cybercam_pwm_frequency', 'cybercam_pwm_duty',
   'cybercam_pwm_enable', 'cybercam_pwm_disable', 'cybercam_pwm_close',
   'cybercam_uart_init', 'cybercam_uart_available', 'cybercam_uart_read',
-  'cybercam_uart_write', 'cybercam_uart_flush',
+  'cybercam_uart_write', 'cybercam_uart_flush', 'cybercam_uart_close',
   'cybercam_camera_init', 'cybercam_camera_opened', 'cybercam_camera_read',
   'cybercam_camera_hmirror', 'cybercam_camera_vflip', 'cybercam_camera_release',
   'cybercam_display_init', 'cybercam_display_rotation', 'cybercam_display_show',
@@ -36,13 +36,15 @@ const REQUIRED_BLOCKS = [
   'cybercam_socket_bind', 'cybercam_socket_listen', 'cybercam_socket_accept',
   'cybercam_socket_send', 'cybercam_socket_receive', 'cybercam_socket_close',
   'cybercam_mqtt_init', 'cybercam_mqtt_connect', 'cybercam_mqtt_publish',
-  'cybercam_mqtt_subscribe', 'cybercam_mqtt_loop', 'cybercam_mqtt_disconnect',
+  'cybercam_mqtt_subscribe', 'cybercam_mqtt_on_message',
+  'cybercam_mqtt_loop', 'cybercam_mqtt_disconnect',
   'cybercam_http_request', 'cybercam_http_response', 'cybercam_http_server',
   'cybercam_file_read', 'cybercam_file_write', 'cybercam_file_exists',
   'cybercam_file_list', 'cybercam_command',
   'cybercam_audio_play', 'cybercam_audio_record',
   'cybercam_imu_init', 'cybercam_imu_read', 'cybercam_imu_axis',
-  'cybercam_imu_calibrate', 'cybercam_cpu_temperature', 'cybercam_chip_id',
+  'cybercam_imu_calibrate', 'cybercam_imu_close',
+  'cybercam_cpu_temperature', 'cybercam_chip_id',
 ];
 
 const KPU_CLASSES = [
@@ -67,17 +69,62 @@ test('package exposes the complete CyberCAM block contract', () => {
 
   assert.equal(pkg.name, '@aily-project/lib-cybercam');
   assert.deepEqual(pkg.compatibility.mode, ['python']);
+  assert.equal(blocks.length, 101, 'Task 2 should add four blocks to the existing 97-block surface');
   assert.equal(new Set(types).size, blocks.length, 'block types must be unique');
   for (const type of REQUIRED_BLOCKS) {
     assert.ok(types.has(type), `missing block ${type}`);
     assert.ok(toolboxTypes.has(type) || type === 'cybercam_start' || type === 'cybercam_forever', `missing toolbox block ${type}`);
   }
+  for (const type of types) {
+    assert.ok(toolboxTypes.has(type) || type === 'cybercam_start' || type === 'cybercam_forever', `declared block missing from toolbox ${type}`);
+  }
+});
+
+test('MQTT message block exposes client and message variable fields plus a statement body', () => {
+  const blocks = readJson('block.json');
+  const mqttHandler = blocks.find((block) => block.type === 'cybercam_mqtt_on_message');
+
+  assert.ok(mqttHandler, 'missing cybercam_mqtt_on_message');
+  assert.deepEqual(
+    mqttHandler.args0.map(({ type, name }) => ({ type, name })),
+    [
+      { type: 'field_input', name: 'NAME' },
+      { type: 'field_input', name: 'TOPIC_NAME' },
+      { type: 'field_input', name: 'PAYLOAD_NAME' },
+      { type: 'input_statement', name: 'DO' },
+      { type: 'input_dummy', name: undefined },
+    ],
+  );
+  assert.equal(mqttHandler.previousStatement, null);
+  assert.equal(mqttHandler.nextStatement, null);
 });
 
 test('all confirmed walnutpi KPU classes are represented', () => {
   const text = fs.readFileSync(path.join(ROOT, 'block.json'), 'utf8')
     + fs.readFileSync(path.join(ROOT, 'generator.js'), 'utf8');
   for (const className of KPU_CLASSES) assert.match(text, new RegExp(`\\b${className}\\b`));
+});
+
+test('FACE_DETECT and FACE_MASK expose landmark points and nested x/y paths', () => {
+  const blocks = readJson('block.json');
+  const localeNames = ['zh_cn', 'en', 'zh_hk', 'ja', 'ko', 'de', 'fr', 'es', 'pt', 'ru', 'ar'];
+  const landmarks = ['left_eye', 'right_eye', 'nose', 'left_mouth', 'right_mouth'];
+  const expectedValues = landmarks.flatMap((landmark) => [landmark, `${landmark}.x`, `${landmark}.y`]);
+  const resultProperty = blocks.find((block) => block.type === 'cybercam_result_property');
+  const propertyField = resultProperty?.args0?.find((arg) => arg.name === 'PROPERTY');
+  const machineValues = propertyField?.options?.map((option) => option[1]) || [];
+
+  for (const value of expectedValues) {
+    assert.ok(machineValues.includes(value), `missing FACE_DETECT/FACE_MASK result path ${value}`);
+  }
+
+  for (const localeName of localeNames) {
+    const locale = readJson(path.join('i18n', `${localeName}.json`));
+    const localizedValues = locale.cybercam_result_property.args0[1].options.map((option) => option[1]);
+    for (const value of expectedValues) {
+      assert.ok(localizedValues.includes(value), `${localeName} missing result path ${value}`);
+    }
+  }
 });
 
 test('all 11 locales cover every block and toolbox label', () => {
@@ -140,4 +187,25 @@ test('API coverage documents every official lesson area and exactly 14 confirmed
   assert.equal(rows.length, 14, 'coverage must contain exactly 14 confirmed KPU class rows');
   for (const className of KPU_CLASSES) assert.ok(coverage.includes(`| \`kpu.${className}\` |`), `missing KPU class ${className}`);
   assert.match(coverage, /Evidence-based exclusions/);
+});
+
+test('public descriptions state the evidence boundary and configured-network requirement', () => {
+  const coverage = fs.readFileSync(path.join(ROOT, 'API-COVERAGE.md'), 'utf8');
+  const readme = fs.readFileSync(path.join(ROOT, 'readme.md'), 'utf8');
+  const readmeAi = fs.readFileSync(path.join(ROOT, 'readme_ai.md'), 'utf8');
+  const pkg = readJson('package.json');
+  const combinedDocs = `${coverage}\n${readme}\n${readmeAi}`;
+
+  for (const capability of ['touch', 'Wi-Fi management', 'Bluetooth', 'generic I2C', 'SPI', 'GPIO interrupts', 'ADC']) {
+    assert.match(coverage, new RegExp(capability.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'i'), `missing exclusion for ${capability}`);
+  }
+  assert.match(combinedDocs, /already configured network/i);
+  assert.doesNotMatch(pkg.description_en, /\bcomplete\b/i);
+  assert.doesNotMatch(readme, /\bComplete Python blocks\b/i);
+  assert.doesNotMatch(readmeAi, /\bComplete Python blocks\b/i);
+});
+
+test('readme_ai keeps at least 1 KiB below the 15360-byte UTF-8 limit', () => {
+  const bytes = fs.readFileSync(path.join(ROOT, 'readme_ai.md')).byteLength;
+  assert.ok(bytes <= 15360 - 1024, `readme_ai.md is ${bytes} bytes; expected at most 14336`);
 });

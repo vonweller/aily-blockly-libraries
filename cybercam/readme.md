@@ -1,6 +1,6 @@
-# CyberCAM Complete
+# CyberCAM Python
 
-Complete Python blocks for the 01Studio CyberCAM K230 camera, display, AI, GPIO, PWM, UART, networking, files, audio, IMU, and system features.
+Evidence-backed Python blocks for documented 01Studio CyberCAM K230 camera, display, AI, GPIO, PWM, UART, networking, files, audio, IMU, and system APIs.
 
 ## Library Info
 
@@ -18,7 +18,7 @@ Complete Python blocks for the 01Studio CyberCAM K230 camera, display, AI, GPIO,
 
 ## Description
 
-Complete Python blocks for the 01Studio CyberCAM K230 camera, display, AI, GPIO, PWM, UART, networking, files, audio, IMU, and system features.
+Library covers verified Python contracts rather than every physical hardware feature. Network protocol blocks operate over an already configured network. Touch, Wi-Fi management, Bluetooth, generic I2C, SPI, GPIO interrupts, and ADC remain excluded pending verified executable CyberCAM Python APIs.
 
 ## Quick Start
 

@@ -12,8 +12,23 @@
   const field = (block, name, fallback = '') => block.getFieldValue(name) ?? fallback;
   const value = (generator, block, name, fallback = 'None', order = ORDER_NONE) =>
     generator.valueToCode(block, name, order) || fallback;
-  const statement = (generator, block, name) =>
-    (generator.statementToCode(block, name) || '').replace(/^\s+|\s+$/g, '');
+  const statement = (generator, block, name) => {
+    const indent = generator.INDENT || '    ';
+    const lines = (generator.statementToCode(block, name) || '')
+      .replace(/\r\n/g, '\n')
+      .split('\n');
+    while (lines.length && !lines[0].trim()) lines.shift();
+    while (lines.length && !lines[lines.length - 1].trim()) lines.pop();
+    return lines
+      .map(line => line.startsWith(indent) ? line.slice(indent.length) : line)
+      .join('\n');
+  };
+  const declareResource = (generator, tag, name, cleanup) => {
+    generator.addVariable(tag, `${name} = None`);
+    if (cleanup && typeof generator.addCleanup === 'function') {
+      generator.addCleanup(tag, `if ${name} is not None:\n    ${name}.${cleanup}()`);
+    }
+  };
   const PYTHON_KEYWORDS = new Set([
     'False', 'None', 'True', 'and', 'as', 'assert', 'async', 'await', 'break',
     'class', 'continue', 'def', 'del', 'elif', 'else', 'except', 'finally',
@@ -25,6 +40,20 @@
     if (!/^[A-Za-z_]/.test(result)) result = `_${result}`;
     if (PYTHON_KEYWORDS.has(result)) result += '_';
     return result || fallback;
+  };
+  const uniqueName = (name, used) => {
+    let result = name;
+    let suffix = 2;
+    while (used.has(result)) result = `${name}_${suffix++}`;
+    used.add(result);
+    return result;
+  };
+  const uniqueFunctionKey = (generator, base) => {
+    const functions = generator.codeDict?.functions || {};
+    let result = base;
+    let suffix = 2;
+    while (Object.prototype.hasOwnProperty.call(functions, result)) result = `${base}_${suffix++}`;
+    return result;
   };
   const nameOf = (block, fallback) => safeName(field(block, 'NAME', fallback), fallback);
   const pinExpression = (pin) => pin === '52' ? 'board.LED' : pin === '21' ? 'board.KEY' : `board.IO${pin}`;
@@ -69,23 +98,26 @@
     const pull = field(block, 'PULL', 'NONE');
     generator.addImport('board', 'import board');
     generator.addImport('digitalio', 'from digitalio import DigitalInOut, Direction, Pull');
-    generator.addVariable(`gpio_${name}`, `${name} = DigitalInOut(${pinExpression(pin)})`);
-    let setup = `${name}.direction = Direction.${direction}`;
-    if (direction === 'INPUT' && pull !== 'NONE') setup += `\n${name}.pull = Pull.${pull}`;
-    generator.addSetup(`gpio_${name}`, setup);
-    return '';
+    declareResource(generator, `gpio_${name}`, name, 'deinit');
+    let code = `${name} = DigitalInOut(${pinExpression(pin)})\n${name}.direction = Direction.${direction}\n`;
+    if (direction === 'INPUT' && pull !== 'NONE') code += `${name}.pull = Pull.${pull}\n`;
+    return code;
   });
   define('cybercam_gpio_write', (block, generator) => {
     const name = nameOf(block, 'pin');
     return `${name}.value = bool(${value(generator, block, 'VALUE', 'False')})\n`;
   });
   define('cybercam_gpio_read', (block) => output(`${nameOf(block, 'pin')}.value`, ORDER_MEMBER));
+  define('cybercam_gpio_deinit', (block) => `${nameOf(block, 'pin')}.deinit()\n`);
   define('cybercam_led_write', (block, generator) => {
     const state = value(generator, block, 'VALUE', 'True');
     generator.addImport('board', 'import board');
     generator.addImport('digitalio', 'from digitalio import DigitalInOut, Direction, Pull');
     generator.addVariable('gpio_cybercam_led', '_cybercam_led = DigitalInOut(board.LED)');
     generator.addSetup('gpio_cybercam_led', '_cybercam_led.direction = Direction.OUTPUT');
+    if (typeof generator.addCleanup === 'function') {
+      generator.addCleanup('gpio_cybercam_led', 'if _cybercam_led is not None:\n    _cybercam_led.deinit()');
+    }
     return `_cybercam_led.value = bool(${state})\n`;
   });
   define('cybercam_key_pressed', (_block, generator) => {
@@ -93,6 +125,9 @@
     generator.addImport('digitalio', 'from digitalio import DigitalInOut, Direction, Pull');
     generator.addVariable('gpio_cybercam_key', '_cybercam_key = DigitalInOut(board.KEY)');
     generator.addSetup('gpio_cybercam_key', '_cybercam_key.direction = Direction.INPUT\n_cybercam_key.pull = Pull.UP');
+    if (typeof generator.addCleanup === 'function') {
+      generator.addCleanup('gpio_cybercam_key', 'if _cybercam_key is not None:\n    _cybercam_key.deinit()');
+    }
     return output('not _cybercam_key.value', ORDER_NONE);
   });
 
@@ -100,8 +135,8 @@
     const name = nameOf(block, 'pwm');
     const target = String(field(block, 'TARGET', '0,2')).split(',');
     generator.addImport('periphery_pwm', 'from periphery import PWM');
-    generator.addVariable(`pwm_${name}`, `${name} = PWM(${target[0]}, ${target[1]})`);
-    return '';
+    declareResource(generator, `pwm_${name}`, name, 'close');
+    return `${name} = PWM(${target[0]}, ${target[1]})\n`;
   });
   define('cybercam_pwm_frequency', (block, generator) => `${nameOf(block, 'pwm')}.frequency = ${value(generator, block, 'FREQUENCY', '1000')}\n`);
   define('cybercam_pwm_duty', (block, generator) => `${nameOf(block, 'pwm')}.duty_cycle = max(0.0, min(1.0, float(${value(generator, block, 'DUTY', '0.5')})))\n`);
@@ -112,13 +147,14 @@
   define('cybercam_uart_init', (block, generator) => {
     const name = nameOf(block, 'uart');
     generator.addImport('serial', 'import serial');
-    generator.addVariable(`uart_${name}`, `${name} = serial.Serial("/dev/ttyS2", ${field(block, 'BAUD', '115200')})`);
-    return '';
+    declareResource(generator, `uart_${name}`, name, 'close');
+    return `${name} = serial.Serial("/dev/ttyS2", ${field(block, 'BAUD', '115200')})\n`;
   });
   define('cybercam_uart_available', (block) => output(`${nameOf(block, 'uart')}.inWaiting()`, ORDER_CALL));
   define('cybercam_uart_read', (block, generator) => output(`${nameOf(block, 'uart')}.read(${value(generator, block, 'SIZE', '1')})`, ORDER_CALL));
   define('cybercam_uart_write', (block, generator) => `${nameOf(block, 'uart')}.write(${value(generator, block, 'DATA', "b''")})\n`);
   define('cybercam_uart_flush', (block) => `${nameOf(block, 'uart')}.flushInput()\n`);
+  define('cybercam_uart_close', (block) => `${nameOf(block, 'uart')}.close()\n`);
 
   define('cybercam_camera_init', (block, generator) => {
     const name = nameOf(block, 'camera');
@@ -126,8 +162,8 @@
     const height = value(generator, block, 'HEIGHT', '480');
     const sensorId = field(block, 'SENSOR_ID', '2');
     generator.addImport('walnutpi_sensor', 'from walnutpi import Sensor');
-    generator.addVariable(`camera_${name}`, `${name} = Sensor.Sensor(${width}, ${height}, id=${sensorId})`);
-    return '';
+    declareResource(generator, `camera_${name}`, name, 'release');
+    return `${name} = Sensor.Sensor(${width}, ${height}, id=${sensorId})\n`;
   });
   define('cybercam_camera_opened', (block) => output(`${nameOf(block, 'camera')}.isOpened()`, ORDER_CALL));
   define('cybercam_camera_read', (block) => output(`${nameOf(block, 'camera')}.read()[1]`, ORDER_MEMBER));
@@ -209,8 +245,8 @@
   define('cybercam_apriltag_init', (block, generator) => {
     const name = nameOf(block, 'tags');
     generator.addImport('pupil_apriltags', 'from pupil_apriltags import Detector');
-    generator.addVariable(`apriltag_${name}`, `${name} = Detector(families=${generator.quote_(field(block, 'FAMILY', 'tag36h11'))}, nthreads=1, quad_decimate=2, quad_sigma=0.0, refine_edges=0, decode_sharpening=0, debug=0)`);
-    return '';
+    generator.addVariable(`apriltag_${name}`, `${name} = None`);
+    return `${name} = Detector(families=${generator.quote_(field(block, 'FAMILY', 'tag36h11'))}, nthreads=1, quad_decimate=2, quad_sigma=0.0, refine_edges=0, decode_sharpening=0, debug=0)\n`;
   });
   define('cybercam_apriltag_detect', (block, generator) => output(`${nameOf(block, 'tags')}.detect(${value(generator, block, 'IMAGE')})`));
 
@@ -223,28 +259,33 @@
     const name = nameOf(block, 'detector');
     const modelClass = field(block, 'MODEL', 'YOLO11_DET');
     addKpu(generator);
-    generator.addVariable(`ai_${name}`, `${name} = kpu.${modelClass}(${value(generator, block, 'MODEL_PATH', "'/data/model.kmodel'")}, ${value(generator, block, 'MODEL_SIZE', '640')})`);
-    return '';
+    generator.addVariable(`ai_${name}`, `${name} = None`);
+    return `${name} = kpu.${modelClass}(${value(generator, block, 'MODEL_PATH', "'/data/model.kmodel'")}, ${value(generator, block, 'MODEL_SIZE', '640')})\n`;
   });
   define('cybercam_ai_init_face', (block, generator) => {
     const name = nameOf(block, 'detector'); addKpu(generator);
-    generator.addVariable(`ai_${name}`, `${name} = kpu.FACE_DETECT(${value(generator, block, 'MODEL_PATH')}, ${value(generator, block, 'ANCHORS_PATH')}, ${value(generator, block, 'MODEL_SIZE', '320')})`); return '';
+    generator.addVariable(`ai_${name}`, `${name} = None`);
+    return `${name} = kpu.FACE_DETECT(${value(generator, block, 'MODEL_PATH')}, ${value(generator, block, 'ANCHORS_PATH')}, ${value(generator, block, 'MODEL_SIZE', '320')})\n`;
   });
   define('cybercam_ai_init_mask', (block, generator) => {
     const name = nameOf(block, 'detector'); addKpu(generator);
-    generator.addVariable(`ai_${name}`, `${name} = kpu.FACE_MASK(${value(generator, block, 'DETECT_MODEL')}, ${value(generator, block, 'ANCHORS_PATH')}, ${value(generator, block, 'MODEL_SIZE', '320')}, ${value(generator, block, 'MASK_MODEL')})`); return '';
+    generator.addVariable(`ai_${name}`, `${name} = None`);
+    return `${name} = kpu.FACE_MASK(${value(generator, block, 'DETECT_MODEL')}, ${value(generator, block, 'ANCHORS_PATH')}, ${value(generator, block, 'MODEL_SIZE', '320')}, ${value(generator, block, 'MASK_MODEL')})\n`;
   });
   define('cybercam_ai_init_hand_keypoint', (block, generator) => {
     const name = nameOf(block, 'detector'); addKpu(generator);
-    generator.addVariable(`ai_${name}`, `${name} = kpu.${field(block, 'MODEL', 'HAND_KEYPOINT')}(hand_det_kmodel=${value(generator, block, 'DETECT_MODEL')}, hand_kp_kmodel=${value(generator, block, 'KEYPOINT_MODEL')})`); return '';
+    generator.addVariable(`ai_${name}`, `${name} = None`);
+    return `${name} = kpu.${field(block, 'MODEL', 'HAND_KEYPOINT')}(hand_det_kmodel=${value(generator, block, 'DETECT_MODEL')}, hand_kp_kmodel=${value(generator, block, 'KEYPOINT_MODEL')})\n`;
   });
   define('cybercam_ai_init_ocr', (block, generator) => {
     const name = nameOf(block, 'ocr'); addKpu(generator);
-    generator.addVariable(`ai_${name}`, `${name} = kpu.OCR(${value(generator, block, 'DETECT_MODEL')}, ${value(generator, block, 'RECOGNITION_MODEL')}, ${value(generator, block, 'DICTIONARY')}, ${value(generator, block, 'DETECT_SIZE', '640')}, (${value(generator, block, 'RECOGNITION_WIDTH', '512')}, ${value(generator, block, 'RECOGNITION_HEIGHT', '32')}))`); return '';
+    generator.addVariable(`ai_${name}`, `${name} = None`);
+    return `${name} = kpu.OCR(${value(generator, block, 'DETECT_MODEL')}, ${value(generator, block, 'RECOGNITION_MODEL')}, ${value(generator, block, 'DICTIONARY')}, ${value(generator, block, 'DETECT_SIZE', '640')}, (${value(generator, block, 'RECOGNITION_WIDTH', '512')}, ${value(generator, block, 'RECOGNITION_HEIGHT', '32')}))\n`;
   });
   define('cybercam_ai_init_licence', (block, generator) => {
     const name = nameOf(block, 'licence'); addKpu(generator);
-    generator.addVariable(`ai_${name}`, `${name} = kpu.LICENCE_DETECT(${value(generator, block, 'DETECT_MODEL')}, ${value(generator, block, 'RECOGNITION_MODEL')}, ${value(generator, block, 'ANCHORS_PATH')}, ${value(generator, block, 'LABELS', '[]')}, ${value(generator, block, 'DETECT_SIZE', '640')}, (${value(generator, block, 'RECOGNITION_WIDTH', '220')}, ${value(generator, block, 'RECOGNITION_HEIGHT', '32')}))`); return '';
+    generator.addVariable(`ai_${name}`, `${name} = None`);
+    return `${name} = kpu.LICENCE_DETECT(${value(generator, block, 'DETECT_MODEL')}, ${value(generator, block, 'RECOGNITION_MODEL')}, ${value(generator, block, 'ANCHORS_PATH')}, ${value(generator, block, 'LABELS', '[]')}, ${value(generator, block, 'DETECT_SIZE', '640')}, (${value(generator, block, 'RECOGNITION_WIDTH', '220')}, ${value(generator, block, 'RECOGNITION_HEIGHT', '32')}))\n`;
   });
   define('cybercam_ai_run', (block, generator) => output(`${nameOf(block, 'detector')}.run(${value(generator, block, 'IMAGE')})`));
   define('cybercam_ai_run_confidence', (block, generator) => output(`${nameOf(block, 'detector')}.run(${value(generator, block, 'IMAGE')}, ${value(generator, block, 'CONFIDENCE', '0.6')})`));
@@ -255,7 +296,8 @@
 
   define('cybercam_socket_init', (block, generator) => {
     const name = nameOf(block, 'sock'); generator.addImport('socket', 'import socket');
-    generator.addVariable(`socket_${name}`, `${name} = socket.socket(socket.${field(block, 'FAMILY', 'AF_INET')}, socket.${field(block, 'TYPE', 'SOCK_STREAM')})`); return '';
+    declareResource(generator, `socket_${name}`, name, 'close');
+    return `${name} = socket.socket(socket.${field(block, 'FAMILY', 'AF_INET')}, socket.${field(block, 'TYPE', 'SOCK_STREAM')})\n`;
   });
   define('cybercam_socket_address', (block, generator) => {
     generator.addImport('socket', 'import socket');
@@ -271,11 +313,33 @@
 
   define('cybercam_mqtt_init', (block, generator) => {
     const name = nameOf(block, 'client'); generator.addImport('mqtt', 'import paho.mqtt.client as mqtt');
-    generator.addVariable(`mqtt_${name}`, `${name} = mqtt.Client()`); return '';
+    declareResource(generator, `mqtt_${name}`, name, 'disconnect');
+    return `${name} = mqtt.Client()\n`;
   });
   define('cybercam_mqtt_connect', (block, generator) => `${nameOf(block, 'client')}.connect(${value(generator, block, 'HOST', "'localhost'")}, ${value(generator, block, 'PORT', '1883')}, ${value(generator, block, 'KEEPALIVE', '60')})\n`);
   define('cybercam_mqtt_publish', (block, generator) => `${nameOf(block, 'client')}.publish(${value(generator, block, 'TOPIC', "''")}, ${value(generator, block, 'MESSAGE', "''")})\n`);
   define('cybercam_mqtt_subscribe', (block, generator) => `${nameOf(block, 'client')}.subscribe(${value(generator, block, 'TOPIC', "''")})\n`);
+  define('cybercam_mqtt_on_message', (block, generator) => {
+    const client = nameOf(block, 'client');
+    const usedNames = new Set();
+    const topic = uniqueName(safeName(field(block, 'TOPIC_NAME', 'topic'), 'topic'), usedNames);
+    const payload = uniqueName(safeName(field(block, 'PAYLOAD_NAME', 'payload'), 'payload'), usedNames);
+    const callbackClient = uniqueName('client', usedNames);
+    const callbackUserdata = uniqueName('userdata', usedNames);
+    const callbackMessage = uniqueName('message', usedNames);
+    const functionBase = `mqtt_on_message_${client}`;
+    const functionKey = uniqueFunctionKey(generator, functionBase);
+    const handler = `_cybercam_${functionKey}`;
+    const body = statement(generator, block, 'DO');
+    const lines = [
+      `def ${handler}(${callbackClient}, ${callbackUserdata}, ${callbackMessage}):`,
+      `    ${topic} = ${callbackMessage}.topic`,
+      `    ${payload} = ${callbackMessage}.payload`,
+      ...(body ? body.split('\n').map((line) => `    ${line}`) : []),
+    ];
+    generator.addFunction(functionKey, `${lines.join('\n')}\n`);
+    return `${client}.on_message = ${handler}\n`;
+  });
   define('cybercam_mqtt_loop', (block) => `${nameOf(block, 'client')}.loop_forever()\n`);
   define('cybercam_mqtt_disconnect', (block) => `${nameOf(block, 'client')}.disconnect()\n`);
 
@@ -312,15 +376,69 @@
   const addImuDriver = (generator) => {
     generator.addImport('fcntl', 'import fcntl'); generator.addImport('os', 'import os');
     generator.addImport('struct', 'import struct'); generator.addImport('time', 'import time');
-    generator.addFunction('cybercam_qmi8658', "class _CyberCamQMI8658:\n    I2C_SLAVE = 0x0703\n    def __init__(self, bus=1, address=0x6a):\n        self.address = address\n        self.fd = os.open('/dev/i2c-{}'.format(bus), os.O_RDWR)\n        fcntl.ioctl(self.fd, self.I2C_SLAVE, address)\n        if self._read(0x00, 1) != b'\\x05':\n            raise OSError('QMI8658A WHO_AM_I mismatch')\n        for register, data in ((0x02, 0x60), (0x03, 0x23), (0x04, 0x43), (0x08, 0x03)):\n            self._write(register, data)\n        self.bias = (0.0, 0.0, 0.0)\n        time.sleep(0.05)\n    def _select(self):\n        fcntl.ioctl(self.fd, self.I2C_SLAVE, self.address)\n    def _write(self, register, data):\n        self._select(); os.write(self.fd, bytes((register & 255, data & 255)))\n    def _read(self, register, size):\n        self._select(); os.write(self.fd, bytes((register & 255,))); return os.read(self.fd, size)\n    def read(self):\n        raw = self._read(0x35, 12)\n        values = struct.unpack('<hhhhhh', raw)\n        accel = tuple(item / 4096.0 for item in values[:3])\n        gyro = tuple(values[index + 3] / 64.0 - self.bias[index] for index in range(3))\n        return accel + gyro\n    def calibrate(self, samples=100):\n        sums = [0.0, 0.0, 0.0]\n        for _ in range(int(samples)):\n            values = self.read()[3:]\n            sums = [sums[i] + values[i] for i in range(3)]\n            time.sleep(0.005)\n        self.bias = tuple(value / int(samples) for value in sums)\n\ndef _cybercam_open_imu(bus=1, address=0x6a):\n    return _CyberCamQMI8658(bus, address)");
+    generator.addFunction('cybercam_qmi8658', [
+      'class _CyberCamQMI8658:',
+      '    I2C_SLAVE = 0x0703',
+      '    def __init__(self, bus=1, address=0x6a):',
+      '        self.address = address',
+      '        self.fd = None',
+      '        try:',
+      "            self.fd = os.open('/dev/i2c-{}'.format(bus), os.O_RDWR)",
+      '            fcntl.ioctl(self.fd, self.I2C_SLAVE, address)',
+      "            if self._read(0x00, 1) != b'\\x05':",
+      "                raise OSError('QMI8658A WHO_AM_I mismatch')",
+      '            for register, data in ((0x02, 0x60), (0x03, 0x23), (0x04, 0x43), (0x08, 0x03)):',
+      '                self._write(register, data)',
+      '            self.bias = (0.0, 0.0, 0.0)',
+      '            time.sleep(0.05)',
+      '        except:',
+      '            self.close()',
+      '            raise',
+      '    def _select(self):',
+      '        if self.fd is None:',
+      "            raise OSError('QMI8658A is closed')",
+      '        fcntl.ioctl(self.fd, self.I2C_SLAVE, self.address)',
+      '    def _write(self, register, data):',
+      '        self._select()',
+      '        os.write(self.fd, bytes((register & 255, data & 255)))',
+      '    def _read(self, register, size):',
+      '        self._select()',
+      '        os.write(self.fd, bytes((register & 255,)))',
+      '        data = os.read(self.fd, size)',
+      '        if len(data) != size:',
+      "            raise OSError('QMI8658A short read')",
+      '        return data',
+      '    def read(self):',
+      '        raw = self._read(0x35, 12)',
+      "        values = struct.unpack('<hhhhhh', raw)",
+      '        accel = tuple(item / 4096.0 for item in values[:3])',
+      '        gyro = tuple(values[index + 3] / 64.0 - self.bias[index] for index in range(3))',
+      '        return accel + gyro',
+      '    def calibrate(self, samples=100):',
+      '        sums = [0.0, 0.0, 0.0]',
+      '        for _ in range(int(samples)):',
+      '            values = self.read()[3:]',
+      '            sums = [sums[i] + values[i] for i in range(3)]',
+      '            time.sleep(0.005)',
+      '        self.bias = tuple(value / int(samples) for value in sums)',
+      '    def close(self):',
+      '        if self.fd is not None:',
+      '            os.close(self.fd)',
+      '            self.fd = None',
+      '',
+      'def _cybercam_open_imu(bus=1, address=0x6a):',
+      '    return _CyberCamQMI8658(bus, address)',
+    ].join('\n'));
   };
   define('cybercam_imu_init', (block, generator) => {
     const name = nameOf(block, 'imu'); addImuDriver(generator);
-    generator.addVariable(`imu_${name}`, `${name} = _cybercam_open_imu(${value(generator, block, 'BUS', '1')}, ${value(generator, block, 'ADDRESS', '0x6a')})`); return '';
+    declareResource(generator, `imu_${name}`, name, 'close');
+    return `${name} = _cybercam_open_imu(${value(generator, block, 'BUS', '1')}, ${value(generator, block, 'ADDRESS', '0x6a')})\n`;
   });
   define('cybercam_imu_read', (block) => output(`${nameOf(block, 'imu')}.read()`));
   define('cybercam_imu_axis', (block) => output(`${nameOf(block, 'imu')}.read()[${field(block, 'AXIS', '0')}]`, ORDER_MEMBER));
   define('cybercam_imu_calibrate', (block, generator) => `${nameOf(block, 'imu')}.calibrate(${value(generator, block, 'SAMPLES', '100')})\n`);
+  define('cybercam_imu_close', (block) => `${nameOf(block, 'imu')}.close()\n`);
   define('cybercam_cpu_temperature', (_block, generator) => { generator.addImport('os', 'import os'); return output("int(os.popen('cat /sys/class/thermal/thermal_zone0/temp').read()) / 1000", ORDER_NONE); });
   define('cybercam_chip_id', (_block, generator) => { generator.addImport('os', 'import os'); return output("os.popen('cat /sys/class/chip_id/chip_id').read().strip()", ORDER_CALL); });
 })(typeof Python !== 'undefined' ? Python : (typeof MPY !== 'undefined' ? MPY : MicropPython));

@@ -1,5 +1,5 @@
 {
-  "toolbox_name": "CyberCAM: все функции",
+  "toolbox_name": "CyberCAM Python",
   "toolbox_categories": [
     "Программа",
     "Ввод-вывод",
@@ -181,6 +181,13 @@
       null
     ]
   },
+  "cybercam_gpio_deinit": {
+    "message0": "деинициализировать GPIO %1",
+    "tooltip": "деинициализировать GPIO %1",
+    "args0": [
+      null
+    ]
+  },
   "cybercam_led_write": {
     "message0": "Задать встроенному светодиоду значение %1",
     "tooltip": "Задать встроенному светодиоду значение %1",
@@ -317,6 +324,13 @@
   "cybercam_uart_flush": {
     "message0": "Очистить входной буфер UART %1",
     "tooltip": "Очистить входной буфер UART %1",
+    "args0": [
+      null
+    ]
+  },
+  "cybercam_uart_close": {
+    "message0": "закрыть UART %1",
+    "tooltip": "закрыть UART %1",
     "args0": [
       null
     ]
@@ -800,6 +814,66 @@
           [
             "углы",
             "corners"
+          ],
+          [
+            "левый глаз",
+            "left_eye"
+          ],
+          [
+            "левый глаз x",
+            "left_eye.x"
+          ],
+          [
+            "левый глаз y",
+            "left_eye.y"
+          ],
+          [
+            "правый глаз",
+            "right_eye"
+          ],
+          [
+            "правый глаз x",
+            "right_eye.x"
+          ],
+          [
+            "правый глаз y",
+            "right_eye.y"
+          ],
+          [
+            "нос",
+            "nose"
+          ],
+          [
+            "нос x",
+            "nose.x"
+          ],
+          [
+            "нос y",
+            "nose.y"
+          ],
+          [
+            "левый угол рта",
+            "left_mouth"
+          ],
+          [
+            "левый угол рта x",
+            "left_mouth.x"
+          ],
+          [
+            "левый угол рта y",
+            "left_mouth.y"
+          ],
+          [
+            "правый угол рта",
+            "right_mouth"
+          ],
+          [
+            "правый угол рта x",
+            "right_mouth.x"
+          ],
+          [
+            "правый угол рта y",
+            "right_mouth.y"
           ]
         ]
       }
@@ -928,6 +1002,17 @@
     "message0": "Подписать MQTT %1 на тему %2",
     "tooltip": "Подписать MQTT %1 на тему %2",
     "args0": [
+      null,
+      null
+    ]
+  },
+  "cybercam_mqtt_on_message": {
+    "message0": "когда MQTT %1 получает сообщение, записать тему в %2, данные в %3 и выполнить %4 %5",
+    "tooltip": "когда MQTT %1 получает сообщение, записать тему в %2, данные в %3 и выполнить %4 %5",
+    "args0": [
+      null,
+      null,
+      null,
       null,
       null
     ]
@@ -1125,6 +1210,13 @@
     "tooltip": "Калибровать IMU %1: %2 отсчётов",
     "args0": [
       null,
+      null
+    ]
+  },
+  "cybercam_imu_close": {
+    "message0": "закрыть IMU %1",
+    "tooltip": "закрыть IMU %1",
+    "args0": [
       null
     ]
   },
