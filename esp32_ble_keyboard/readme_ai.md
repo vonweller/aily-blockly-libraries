@@ -1,10 +1,10 @@
-# BLE bluetooth keyboard
+# BLE bluetooth keyboard (ESP32 SDK)
 
 Simulate ESP32 into a Bluetooth keyboard, supporting keyboard input, key simulation, media control and other functions
 
 ## Library Info
 - **Name**: @aily-project/lib-esp32-ble-keyboard
-- **Version**: 1.0.0
+- **Version**: 2.0.0
 
 ## Block Definitions
 
@@ -48,3 +48,4 @@ arduino_loop()
 
 1. **Parameter order**: ABS parameters follow `block.json` args order.
 2. **Input values**: use `math_number(n)`, `text("s")`, `logic_boolean(TRUE/FALSE)`, variables, or nested value blocks.
+3. **BLE backend**: uses ESP32 Arduino SDK 3.3.11 `BLEDevice`/`BLEHIDDevice` and does not bundle NimBLE-Arduino.

@@ -1,10 +1,10 @@
-# ESP32 Bluetooth controller
+# ESP32 Bluetooth controller (ESP32 SDK)
 
 ESP32 Bluetooth game controller library supports buttons, joysticks, special buttons and other functions
 
 ## Library Info
 - **Name**: @aily-project/lib-esp32-ble-gamepad
-- **Version**: 1.0.0
+- **Version**: 2.0.0
 
 ## Block Definitions
 
@@ -49,3 +49,4 @@ arduino_loop()
 
 1. **Parameter order**: ABS parameters follow `block.json` args order.
 2. **Input values**: use `math_number(n)`, `text("s")`, `logic_boolean(TRUE/FALSE)`, variables, or nested value blocks.
+3. **BLE backend**: uses ESP32 Arduino SDK 3.3.11 `BLEDevice`/`BLEHIDDevice` and does not bundle NimBLE-Arduino.

@@ -37,7 +37,7 @@ ESP32 Bluetooth Low Energy (BLE) library supports server and client modes
 | `nimble_scan_device_rssi` | Value | (none) | `nimble_scan_device_rssi()` | `scanDevice->getRSSI()` |
 | `nimble_scan_device_has_service` | Value | UUID(input_value) | `nimble_scan_device_has_service(text("value"))` | `scanDevice->isAdvertisingService(NimBLEUUID("value"))` |
 | `nimble_create_client` | Statement | VAR(field_input) | `nimble_create_client("pClient")` | `pClient = NimBLEDevice::createClient();` |
-| `nimble_client_connect_address` | Value | CLIENT(field_variable), ADDRESS(input_value) | `nimble_client_connect_address($pClient, text("value"))` | `pClient->connect(NimBLEAddress("value"))` |
+| `nimble_client_connect_address` | Value | CLIENT(field_variable), ADDRESS(input_value) | `nimble_client_connect_address($pClient, text("value"))` | `pClient->connect(NimBLEAddress("value", BLE_ADDR_PUBLIC))` |
 | `nimble_client_connect_device` | Value | CLIENT(field_variable) | `nimble_client_connect_device($pClient)` | `pClient->connect(scanDevice)` |
 | `nimble_client_disconnect` | Statement | CLIENT(field_variable) | `nimble_client_disconnect($pClient)` | `pClient->disconnect();` |
 | `nimble_client_is_connected` | Value | CLIENT(field_variable) | `nimble_client_is_connected($pClient)` | `pClient->isConnected()` |
