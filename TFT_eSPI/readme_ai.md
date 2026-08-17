@@ -10,7 +10,7 @@ TFT_eSPI - Arduino library, graphics and font library supporting multiple TFT di
 
 | Block Type | Connection | Parameters (block.json order) | ABS Format | Generated Code |
 |------------|------------|--------------------------|------------|----------------|
-| `tftespi_setup` | Statement | VAR(field_input), MODEL(dropdown), WIDTH(field_input), HEIGHT(field_input), MISO(field_input), MOSI(field_input), SCLK(field_input), CS(field_input), DC(field_input), RST(field_input), BL(field_input), BL_LEVEL(dropdown), COLOR_MODE(dropdown), FREQUENCY(dropdown) | `tftespi_setup("tft", ILI9341_DRIVER, "240", "320", "-1", "-1", "-1", "-1", "-1", "-1", "-1", HIGH, TFT_RGB, 10000000)` | `tft.init();` |
+| `tftespi_setup` | Statement | VAR(field_input), MODEL(dropdown), WIDTH(field_input), HEIGHT(field_input), MISO(field_input), MOSI(field_input), SCLK(field_input), CS(field_input), DC(field_input), RST(field_input), BL(field_input), BL_LEVEL(dropdown), COLOR_MODE(dropdown), FREQUENCY(dropdown), QSPI_CS(field_input), QSPI_SCLK(field_input), D0(field_input), D1(field_input), D2(field_input), D3(field_input), QSPI_RST(field_input), TE(field_input) | `tftespi_setup("tft", ILI9341_DRIVER, "240", "320", "-1", "-1", "-1", "-1", "-1", "-1", "-1", HIGH, TFT_RGB, 10000000, "-1", "-1", "-1", "-1", "-1", "-1", "-1", "-1")` | `tft.init();` |
 | `tftespi_set_rotation` | Statement | VAR(field_variable), ROTATION(dropdown) | `tftespi_set_rotation($tft, "0")` | `tft.setRotation(0);` |
 | `tftespi_invert_display` | Statement | VAR(field_variable), INVERT(dropdown) | `tftespi_invert_display($tft, true)` | `tft.invertDisplay(true);` |
 | `tftespi_get_dimension` | Value (Number) | VAR(field_variable), DIMENSION(dropdown) | `tftespi_get_dimension($tft, WIDTH)` | `tft.width()` |
@@ -75,7 +75,7 @@ TFT_eSPI - Arduino library, graphics and font library supporting multiple TFT di
 ### Basic Usage
 ```
 arduino_setup()
-    tftespi_setup("tft", ILI9341_DRIVER, "240", "320", "-1", "-1", "-1", "-1", "-1", "-1", "-1", HIGH, TFT_RGB, 10000000)
+    tftespi_setup("tft", ILI9341_DRIVER, "240", "320", "-1", "-1", "-1", "-1", "-1", "-1", "-1", HIGH, TFT_RGB, 10000000, "-1", "-1", "-1", "-1", "-1", "-1", "-1", "-1")
     serial_begin(Serial, 9600)
 
 arduino_loop()
@@ -86,16 +86,25 @@ arduino_loop()
 ### Non-blocking GIF or MP4 Animation
 ```
 arduino_setup()
-    tftespi_setup("tft", ILI9341_DRIVER, "240", "320", "-1", "23", "18", "5", "2", "4", "15", HIGH, TFT_RGB, 40000000)
+    tftespi_setup("tft", ILI9341_DRIVER, "240", "320", "-1", "23", "18", "5", "2", "4", "15", HIGH, TFT_RGB, 40000000, "-1", "-1", "-1", "-1", "-1", "-1", "-1", "-1")
 
 arduino_loop()
     tftespi_play_animation($tft, math_number(0), math_number(0), tftespi_animation({"schemaVersion":1,"format":"rgb565","encoding":"rgb565-be","width":160,"height":120,"fps":10,"maxFrames":10,"frameCount":0,"frames":null}), NON_BLOCKING, TRUE)
 ```
 
+### CH13613 QSPI
+```
+arduino_setup()
+    tftespi_setup("tft", CH13613_DRIVER, "480", "480", "-1", "-1", "-1", "-1", "-1", "-1", "-1", HIGH, TFT_RGB, 40000000, "45", "17", "8", "16", "15", "18", "7", "38")
+
+arduino_loop()
+    tftespi_fill_screen($tft, tftespi_color(TFT_BLACK))
+```
+
 ### Sprite Usage
 ```
 arduino_setup()
-    tftespi_setup("tft", ILI9341_DRIVER, "240", "320", "-1", "23", "18", "5", "2", "4", "15", HIGH, TFT_RGB, 40000000)
+    tftespi_setup("tft", ILI9341_DRIVER, "240", "320", "-1", "23", "18", "5", "2", "4", "15", HIGH, TFT_RGB, 40000000, "-1", "-1", "-1", "-1", "-1", "-1", "-1", "-1")
     tftespi_sprite_create("sprite", $tft, math_number(160), math_number(120), 16)
     tftespi_fill_screen($sprite, tftespi_color(TFT_BLACK))
     tftespi_draw_string($sprite, math_number(10), math_number(10), text("Hello"))
@@ -117,3 +126,5 @@ arduino_setup()
 11. **Long video**: this block is for short self-contained animations. Long videos should use a separate SD/MJPEG streaming workflow rather than embedding raw frames.
 12. **One-shot playback**: non-blocking playback with `LOOP=FALSE` runs once after startup; use controlled-frame blocks when application logic must restart or seek an animation.
 13. **Display throughput**: requested FPS is a target. Large frames may play more slowly when conversion and display transfer time exceed the selected frame interval.
+14. **CH13613 QSPI**: selecting `CH13613_DRIVER` hides the standard SPI pin row and shows only QSPI CS, SCLK, D0, D1, D2, D3, RST, and TE. Every QSPI pin defaults to `-1`. CH13613 QSPI is supported on ESP32-S3 and uses its default SPI2 host.
+15. **Generated TFT_eSPI configuration**: the setup block defines `USER_SETUP_LOADED` so the bundled default ILI9341 setup cannot override the selected driver. Its frequency field generates TFT_eSPI's `SPI_FREQUENCY` macro.

@@ -18,7 +18,7 @@
     "이미지 및 애니메이션"
   ],
   "tftespi_setup": {
-    "message0": "TFT 디스플레이 %1 초기화\n기본 설정: 드라이버 %2 너비 %3 높이 %4\n 핀 연결: MISO %5 MOSI %6 SCLK %7 CS %8 DC %9 RST %10 BL %11\n기타 설정: 백라이트 모드 %12 색상 순서 %13 SPI 주파수 %14",
+    "message0": "TFT 디스플레이 %1 초기화\n기본 설정: 드라이버 %2 너비 %3 높이 %4\n SPI 핀: MISO %5 MOSI %6 SCLK %7 CS %8 DC %9 RST %10 BL %11\n기타 설정: 백라이트 모드 %12 색상 순서 %13 SPI 주파수 %14\nCH13613 QSPI: CS %15 SCLK %16 D0 %17 D1 %18 D2 %19 D3 %20 RST %21 TE %22",
     "args0": [
       null,
       {
@@ -138,6 +138,10 @@
           [
             "AXS15231B",
             "AXS15231B_DRIVER"
+          ],
+          [
+            "CH13613",
+            "CH13613_DRIVER"
           ],
           [
             "CO5300",
@@ -329,7 +333,15 @@
             "80000000"
           ]
         ]
-      }
+      },
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
     ],
     "tooltip": "TFT 디스플레이 객체를 만들고 초기화합니다"
   },
