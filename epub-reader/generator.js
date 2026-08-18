@@ -1,5 +1,103 @@
-Arduino.forBlock['epub_reader_sd_init'] = function(block, generator) {
+function addEpubReaderCore(generator) {
+  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
+  generator.addObject('epubReader', 'EpubReader epubReader;');
+}
+
+function addSdFatSupport(generator) {
   generator.addLibrary('SdFatHelper', '#include "SdFatHelper.h"');
+}
+
+function addTftSupport(generator) {
+  generator.addLibrary('TFT_eSPI', '#include <TFT_eSPI.h>');
+  generator.addMacro('SMOOTH_FONT', '#define SMOOTH_FONT');
+}
+
+function addFontState(generator) {
+  generator.addObject('sdFont', 'SdFont sdFont;');
+  generator.addObject('uiFont', 'SdFont uiFont;');
+  generator.addObject('uiFontShared', 'bool uiFontShared = false;');
+}
+
+function addBookState(generator) {
+  generator.addObject('epubBookCount', 'int epubBookCount = 0;');
+  generator.addObject('epubBookNames', 'String epubBookNames[32];');
+  generator.addObject('epubBookPaths', 'String epubBookPaths[32];');
+}
+
+function addBrowserState(generator) {
+  generator.addObject('brEntryCount', 'int brEntryCount = 0;');
+  generator.addObject('brNames', 'String brNames[64];');
+  generator.addObject('brPaths', 'String brPaths[64];');
+  generator.addObject('brIsDir', 'bool brIsDir[64];');
+  generator.addObject('brIsEpub', 'bool brIsEpub[64];');
+  generator.addObject('brCurDir', 'String brCurDir = "/";');
+  generator.addObject('brPrevSel', 'int brPrevSel = 0;');
+}
+
+function addJpegDecodeSupport(generator) {
+  generator.addLibrary('tjpgd', '#include "tjpgd.h"');
+  generator.addLibrary('ProgJpegFull', '#include "ProgJpegFull.h"');
+
+  let fn = '';
+  fn += 'struct EpubJpegDevice {\n';
+  fn += '  const uint8_t* data; size_t length; size_t position;\n';
+  fn += '  uint16_t* pixels; int width; int height;\n';
+  fn += '};\n';
+  fn += 'static size_t epubJpegInput(JDEC* decoder, uint8_t* buffer, size_t count) {\n';
+  fn += '  EpubJpegDevice* device = (EpubJpegDevice*)decoder->device;\n';
+  fn += '  size_t available = device->length - device->position;\n';
+  fn += '  if (count > available) count = available;\n';
+  fn += '  if (buffer && count) memcpy(buffer, device->data + device->position, count);\n';
+  fn += '  device->position += count;\n';
+  fn += '  return count;\n';
+  fn += '}\n';
+  fn += 'static int epubJpegOutput(JDEC* decoder, void* bitmap, JRECT* rect) {\n';
+  fn += '  EpubJpegDevice* device = (EpubJpegDevice*)decoder->device;\n';
+  fn += '  const int sourceWidth = rect->right - rect->left + 1;\n';
+  fn += '  const int sourceHeight = rect->bottom - rect->top + 1;\n';
+  fn += '  int copyWidth = sourceWidth;\n';
+  fn += '  if (rect->left >= device->width || rect->top >= device->height) return 1;\n';
+  fn += '  if (rect->left + copyWidth > device->width) copyWidth = device->width - rect->left;\n';
+  fn += '  const uint16_t* source = (const uint16_t*)bitmap;\n';
+  fn += '  for (int row = 0; row < sourceHeight && rect->top + row < device->height; row++) {\n';
+  fn += '    memcpy(device->pixels + (rect->top + row) * device->width + rect->left, source + row * sourceWidth, copyWidth * sizeof(uint16_t));\n';
+  fn += '  }\n';
+  fn += '  return 1;\n';
+  fn += '}\n';
+  fn += 'static bool espJpegDecode565(const uint8_t* data, uint32_t length, int maxWidth, uint16_t*& output, int& outputWidth, int& outputHeight) {\n';
+  fn += '  output = nullptr; outputWidth = 0; outputHeight = 0;\n';
+  fn += '  if (!data || length < 4 || maxWidth < 1) return false;\n';
+  fn += '  EpubJpegDevice device = { data, length, 0, nullptr, 0, 0 };\n';
+  fn += '  JDEC decoder = {}; decoder.swap = 1;\n';
+  fn += '  void* workspace = ps_malloc(TJPGD_WORKSPACE_SIZE);\n';
+  fn += '  if (workspace) {\n';
+  fn += '    JRESULT prepared = jd_prepare(&decoder, epubJpegInput, workspace, TJPGD_WORKSPACE_SIZE, &device);\n';
+  fn += '    if (prepared == JDR_OK) {\n';
+  fn += '      uint8_t scale = 0;\n';
+  fn += '      while (scale < 3 && ((decoder.width + (1U << scale) - 1) >> scale) > maxWidth) scale++;\n';
+  fn += '      outputWidth = (decoder.width + (1U << scale) - 1) >> scale;\n';
+  fn += '      outputHeight = (decoder.height + (1U << scale) - 1) >> scale;\n';
+  fn += '      size_t pixelCount = (size_t)outputWidth * outputHeight;\n';
+  fn += '      output = (uint16_t*)ps_malloc(pixelCount * sizeof(uint16_t));\n';
+  fn += '      if (output) {\n';
+  fn += '        device.pixels = output; device.width = outputWidth; device.height = outputHeight;\n';
+  fn += '        if (jd_decomp(&decoder, epubJpegOutput, scale) == JDR_OK) { free(workspace); return true; }\n';
+  fn += '        free(output); output = nullptr; outputWidth = 0; outputHeight = 0;\n';
+  fn += '      }\n';
+  fn += '    }\n';
+  fn += '    free(workspace);\n';
+  fn += '  }\n';
+  fn += '  uint16_t* progressive = nullptr; int progressiveWidth = 0, progressiveHeight = 0;\n';
+  fn += '  if (decodeProgJpegFull((uint8_t*)data, (int)length, maxWidth, &progressive, &progressiveWidth, &progressiveHeight)) {\n';
+  fn += '    output = progressive; outputWidth = progressiveWidth; outputHeight = progressiveHeight; return true;\n';
+  fn += '  }\n';
+  fn += '  return false;\n';
+  fn += '}\n';
+  generator.addFunction('espJpegDecode565', fn);
+}
+
+Arduino.forBlock['epub_reader_sd_init'] = function(block, generator) {
+  addSdFatSupport(generator);
   return 'sdfatBegin();\n';
 };
 
@@ -8,46 +106,59 @@ Arduino.forBlock['epub_reader_open'] = function(block, generator) {
   const charsPerLine = generator.valueToCode(block, 'CHARS_PER_LINE', generator.ORDER_ATOMIC) || '25';
   const linesPerPage = generator.valueToCode(block, 'LINES_PER_PAGE', generator.ORDER_ATOMIC) || '13';
 
-  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
-  generator.addLibrary('SdFatHelper', '#include "SdFatHelper.h"');
-  generator.addObject('epubReader', 'EpubReader epubReader;');
+  addEpubReaderCore(generator);
+  addSdFatSupport(generator);
+  addTftSupport(generator);
+  addFontState(generator);
 
-  return 'epubReader.open(' + path + ', tft.width(), ' + linesPerPage + ', sdFont.isLoaded() ? (sdFont.getCharWidth() * 11 + 8) / 16 : 7, sdFont.isLoaded() ? sdFont.getCharWidth() : 16);\n';
+  let openFn = '';
+  openFn += 'static bool epubOpenWithLayout(const String& path, int charsPerLine, int linesPerPage) {\n';
+  openFn += '  if (charsPerLine < 1) charsPerLine = 1;\n';
+  openFn += '  if (linesPerPage < 1) linesPerPage = 1;\n';
+  openFn += '  int cjkWidth = sdFont.isLoaded() ? sdFont.getCharWidth() : tft.width() / charsPerLine;\n';
+  openFn += '  if (cjkWidth < 1) cjkWidth = 1;\n';
+  openFn += '  int asciiWidth = (cjkWidth * 11 + 8) / 16;\n';
+  openFn += '  if (asciiWidth < 1) asciiWidth = 1;\n';
+  openFn += '  return epubReader.open(path, tft.width(), linesPerPage, asciiWidth, cjkWidth);\n';
+  openFn += '}\n';
+  generator.addFunction('epubOpenWithLayout', openFn);
+
+  return 'epubOpenWithLayout(String(' + path + '), (int)(' + charsPerLine + '), (int)(' + linesPerPage + '));\n';
 };
 
 Arduino.forBlock['epub_reader_is_open'] = function(block, generator) {
-  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
+  addEpubReaderCore(generator);
   return ['epubReader.isOpen()', generator.ORDER_ATOMIC];
 };
 
 Arduino.forBlock['epub_reader_get_page'] = function(block, generator) {
-  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
+  addEpubReaderCore(generator);
   generator.addObject('epubPageBuf', 'static char epubPageBuf[4096];');
   return ['(epubReader.getPageText(epubPageBuf, sizeof(epubPageBuf)), String(epubPageBuf))', generator.ORDER_ATOMIC];
 };
 
 Arduino.forBlock['epub_reader_get_page_num'] = function(block, generator) {
-  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
+  addEpubReaderCore(generator);
   return ['epubReader.getPageNum()', generator.ORDER_ATOMIC];
 };
 
 Arduino.forBlock['epub_reader_next'] = function(block, generator) {
-  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
+  addEpubReaderCore(generator);
   return 'epubReader.nextPage();\n';
 };
 
 Arduino.forBlock['epub_reader_prev'] = function(block, generator) {
-  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
+  addEpubReaderCore(generator);
   return 'epubReader.prevPage();\n';
 };
 
 Arduino.forBlock['epub_reader_has_next'] = function(block, generator) {
-  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
+  addEpubReaderCore(generator);
   return ['epubReader.hasNext()', generator.ORDER_ATOMIC];
 };
 
 Arduino.forBlock['epub_reader_has_prev'] = function(block, generator) {
-  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
+  addEpubReaderCore(generator);
   return ['epubReader.hasPrev()', generator.ORDER_ATOMIC];
 };
 
@@ -55,9 +166,8 @@ Arduino.forBlock['epub_reader_render_page'] = function(block, generator) {
   const x = generator.valueToCode(block, 'X', generator.ORDER_ATOMIC) || '0';
   const y = generator.valueToCode(block, 'Y', generator.ORDER_ATOMIC) || '0';
 
-  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
-  generator.addLibrary('TFT_eSPI', '#include <TFT_eSPI.h>');
-  generator.addObject('epubReader', 'EpubReader epubReader;');
+  addEpubReaderCore(generator);
+  addTftSupport(generator);
 
   let renderFn = '';
   renderFn += 'void epubRenderPage(int startX, int startY) {\n';
@@ -100,83 +210,78 @@ Arduino.forBlock['epub_reader_render_page'] = function(block, generator) {
 };
 
 Arduino.forBlock['epub_reader_close'] = function(block, generator) {
-  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
+  addEpubReaderCore(generator);
   generator.addObject('brDrawnSel', 'int brDrawnSel = -1;');
   return 'epubReader.close(); brDrawnSel=-1;\n';
 };
 
 Arduino.forBlock['epub_reader_load_sd_font'] = function(block, generator) {
   const path = generator.valueToCode(block, 'PATH', generator.ORDER_ATOMIC) || '"/fonts/cjk.bin"';
-  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
-  generator.addLibrary('SdFatHelper', '#include "SdFatHelper.h"');
-  generator.addObject('sdFont', 'SdFont sdFont;');
-  return 'sdFont.load(' + path + ');\n';
+  addEpubReaderCore(generator);
+  addSdFatSupport(generator);
+  addFontState(generator);
+  return 'sdFont.load(String(' + path + ').c_str());\n';
 };
 
 Arduino.forBlock['epub_reader_sd_font_loaded'] = function(block, generator) {
-  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
-  generator.addObject('sdFont', 'SdFont sdFont;');
+  addEpubReaderCore(generator);
+  addFontState(generator);
   return ['sdFont.isLoaded()', generator.ORDER_ATOMIC];
 };
 
 Arduino.forBlock['epub_reader_unload_sd_font'] = function(block, generator) {
-  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
-  generator.addObject('sdFont', 'SdFont sdFont;');
+  addEpubReaderCore(generator);
+  addFontState(generator);
   return 'sdFont.unload();\n';
 };
 
 Arduino.forBlock['epub_reader_load_ui_font'] = function(block, generator) {
   const path = generator.valueToCode(block, 'PATH', generator.ORDER_ATOMIC) || '"/fonts/ui.bin"';
-  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
-  generator.addLibrary('SdFatHelper', '#include "SdFatHelper.h"');
-  generator.addObject('uiFont', 'SdFont uiFont;');
-  generator.addObject('uiFontShared', 'bool uiFontShared = false;');
-  return 'uiFontShared = false; uiFont.load(' + path + ');\n';
+  addEpubReaderCore(generator);
+  addSdFatSupport(generator);
+  addFontState(generator);
+  return 'uiFontShared = false; uiFont.load(String(' + path + ').c_str());\n';
 };
 
 Arduino.forBlock['epub_reader_unload_ui_font'] = function(block, generator) {
-  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
-  generator.addObject('uiFont', 'SdFont uiFont;');
-  generator.addObject('uiFontShared', 'bool uiFontShared = false;');
+  addEpubReaderCore(generator);
+  addFontState(generator);
   return 'uiFontShared = false; uiFont.unload();\n';
 };
 
 Arduino.forBlock['epub_reader_ui_font_loaded'] = function(block, generator) {
-  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
-  generator.addObject('sdFont', 'SdFont sdFont;');
-  generator.addObject('uiFont', 'SdFont uiFont;');
-  generator.addObject('uiFontShared', 'bool uiFontShared = false;');
+  addEpubReaderCore(generator);
+  addFontState(generator);
   return ['(uiFontShared ? sdFont.isLoaded() : uiFont.isLoaded())', generator.ORDER_ATOMIC];
 };
 
 Arduino.forBlock['epub_reader_share_reading_font'] = function(block, generator) {
-  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
-  generator.addObject('sdFont', 'SdFont sdFont;');
-  generator.addObject('uiFont', 'SdFont uiFont;');
-  generator.addObject('uiFontShared', 'bool uiFontShared = false;');
+  addEpubReaderCore(generator);
+  addFontState(generator);
   return 'uiFontShared = true;\n';
 };
 
 Arduino.forBlock['epub_reader_font_height'] = function(block, generator) {
-  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
-  generator.addLibrary('TFT_eSPI', '#include <TFT_eSPI.h>');
-  generator.addMacro('SMOOTH_FONT', '#define SMOOTH_FONT');
+  addEpubReaderCore(generator);
+  addTftSupport(generator);
   return ['tft.fontHeight()', generator.ORDER_ATOMIC];
 };
 
 Arduino.forBlock['epub_reader_get_chapter'] = function(block, generator) {
-  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
+  addEpubReaderCore(generator);
   return ['epubReader.getChapter()', generator.ORDER_ATOMIC];
 };
 
 Arduino.forBlock['epub_reader_get_chapter_count'] = function(block, generator) {
-  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
+  addEpubReaderCore(generator);
   return ['epubReader.getChapterCount()', generator.ORDER_ATOMIC];
 };
 
 Arduino.forBlock['epub_reader_scan_books'] = function(block, generator) {
   const dir = generator.valueToCode(block, 'DIR', generator.ORDER_ATOMIC) || '"/books"';
-  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
+  addEpubReaderCore(generator);
+  addSdFatSupport(generator);
+  addBookState(generator);
   let scanFn = '';
   scanFn += 'void epubScanDir(const String& dirPath) {\n';
   scanFn += '  FsFile root = SD.open(dirPath);\n';
@@ -211,7 +316,7 @@ Arduino.forBlock['epub_reader_scan_books'] = function(block, generator) {
   scanFn += '  }\n';
   scanFn += '  root.close();\n';
   scanFn += '}\n';
-scanFn += 'void epubScanBooks(const char* dir) {\n';
+  scanFn += 'void epubScanBooks(const String& dir) {\n';
   scanFn += '  epubBookCount = 0;\n';
   scanFn += '  for (int attempt = 0; attempt < 3 && epubBookCount == 0; attempt++) {\n';
   scanFn += '    if (attempt > 0) { Serial.println("[EPUB] Retrying scan..."); delay(300); }\n';
@@ -224,39 +329,35 @@ scanFn += 'void epubScanBooks(const char* dir) {\n';
   scanFn += '  Serial.printf("[EPUB] Total found: %d\\n", epubBookCount);\n';
   scanFn += '}\n';
   generator.addFunction('epubScanBooks', scanFn);
-  return 'epubScanBooks(' + dir + ');\n';
+  return 'epubScanBooks(String(' + dir + '));\n';
 };
 
 Arduino.forBlock['epub_reader_book_count'] = function(block, generator) {
-  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
-  generator.addObject('epubBookCount', 'int epubBookCount = 0;');
+  addEpubReaderCore(generator);
+  addBookState(generator);
   return ['epubBookCount', generator.ORDER_ATOMIC];
 };
 
 Arduino.forBlock['epub_reader_book_name'] = function(block, generator) {
   const idx = generator.valueToCode(block, 'INDEX', generator.ORDER_ATOMIC) || '0';
-  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
-  generator.addObject('epubBookNames', 'String epubBookNames[32];');
-  return ['epubBookNames[' + idx + ']', generator.ORDER_ATOMIC];
+  addEpubReaderCore(generator);
+  addBookState(generator);
+  return ['([&]{ int _i = (int)(' + idx + '); return (_i >= 0 && _i < epubBookCount) ? epubBookNames[_i] : String(); })()', generator.ORDER_ATOMIC];
 };
 
 Arduino.forBlock['epub_reader_book_path'] = function(block, generator) {
   const idx = generator.valueToCode(block, 'INDEX', generator.ORDER_ATOMIC) || '0';
-  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
-  generator.addObject('epubBookPaths', 'String epubBookPaths[32];');
-  return ['epubBookPaths[' + idx + ']', generator.ORDER_ATOMIC];
+  addEpubReaderCore(generator);
+  addBookState(generator);
+  return ['([&]{ int _i = (int)(' + idx + '); return (_i >= 0 && _i < epubBookCount) ? epubBookPaths[_i] : String(); })()', generator.ORDER_ATOMIC];
 };
 
 Arduino.forBlock['epub_reader_show_bookshelf'] = function(block, generator) {
   const sel = generator.valueToCode(block, 'SEL', generator.ORDER_ATOMIC) || '0';
-  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
-  generator.addLibrary('TFT_eSPI', '#include <TFT_eSPI.h>');
-  generator.addMacro('SMOOTH_FONT', '#define SMOOTH_FONT');
-  generator.addObject('epubBookCount', 'int epubBookCount = 0;');
-  generator.addObject('epubBookNames', 'String epubBookNames[32];');
-  generator.addObject('sdFont', 'SdFont sdFont;');
-  generator.addObject('uiFont', 'SdFont uiFont;');
-  generator.addObject('uiFontShared', 'bool uiFontShared = false;');
+  addEpubReaderCore(generator);
+  addTftSupport(generator);
+  addBookState(generator);
+  addFontState(generator);
   generator.addFunction('getActiveUiFont', 'static SdFont* getActiveUiFont() {\n  if (uiFontShared && sdFont.isLoaded()) return &sdFont;\n  if (uiFont.isLoaded()) return &uiFont;\n  if (sdFont.isLoaded()) return &sdFont;\n  return nullptr;\n}\n');
 
   let fn = '';
@@ -352,40 +453,32 @@ Arduino.forBlock['epub_reader_show_bookshelf'] = function(block, generator) {
 
 Arduino.forBlock['epub_reader_goto_chapter'] = function(block, generator) {
   const idx = generator.valueToCode(block, 'INDEX', generator.ORDER_ATOMIC) || '0';
-  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
-  generator.addObject('epubReader', 'EpubReader epubReader;');
+  addEpubReaderCore(generator);
   return ['epubReader.gotoChapter(' + idx + ')', generator.ORDER_ATOMIC];
 };
 
 Arduino.forBlock['epub_reader_chapter_title_at'] = function(block, generator) {
   const idx = generator.valueToCode(block, 'INDEX', generator.ORDER_ATOMIC) || '0';
-  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
+  addEpubReaderCore(generator);
   return ['String(epubReader.getChapterTitleByIndex(' + idx + '))', generator.ORDER_ATOMIC];
 };
 
 Arduino.forBlock['epub_reader_save_pos'] = function(block, generator) {
   const path = generator.valueToCode(block, 'PATH', generator.ORDER_ATOMIC) || '""';
-  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
-  generator.addObject('epubReader', 'EpubReader epubReader;');
+  addEpubReaderCore(generator);
   return 'epubReader.savePosition(' + path + ');\n';
 };
 
 Arduino.forBlock['epub_reader_load_pos'] = function(block, generator) {
   const path = generator.valueToCode(block, 'PATH', generator.ORDER_ATOMIC) || '""';
-  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
-  generator.addObject('epubReader', 'EpubReader epubReader;');
+  addEpubReaderCore(generator);
   return ['epubReader.loadPosition(' + path + ')', generator.ORDER_ATOMIC];
 };
 
-Arduino.forBlock['epub_reader_show_toc'] = function(block, generator) {
-  const sel = generator.valueToCode(block, 'SEL', generator.ORDER_ATOMIC) || '0';
-  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
-  generator.addLibrary('TFT_eSPI', '#include <TFT_eSPI.h>');
-  generator.addMacro('SMOOTH_FONT', '#define SMOOTH_FONT');
-  generator.addObject('epubReader', 'EpubReader epubReader;');
-  generator.addObject('sdFont', 'SdFont sdFont;');
-  generator.addObject('uiFont', 'SdFont uiFont;');
-  generator.addObject('uiFontShared', 'bool uiFontShared = false;');
+function addTocFunctions(generator) {
+  addEpubReaderCore(generator);
+  addTftSupport(generator);
+  addFontState(generator);
   generator.addFunction('getActiveUiFont', 'static SdFont* getActiveUiFont() {\n  if (uiFontShared && sdFont.isLoaded()) return &sdFont;\n  if (uiFont.isLoaded()) return &uiFont;\n  if (sdFont.isLoaded()) return &sdFont;\n  return nullptr;\n}\n');
 
   let fn = '';
@@ -499,36 +592,34 @@ Arduino.forBlock['epub_reader_show_toc'] = function(block, generator) {
   tfn += '}\n';
   generator.addFunction('epubTocNav', tfn);
 
+}
+
+Arduino.forBlock['epub_reader_show_toc'] = function(block, generator) {
+  const sel = generator.valueToCode(block, 'SEL', generator.ORDER_ATOMIC) || '0';
+  addTocFunctions(generator);
   return 'epubShowToc(' + sel + ');\n';
 };
 
 Arduino.forBlock['epub_reader_toc_page_next'] = function(block, generator) {
   const sel = generator.valueToCode(block, 'SEL', generator.ORDER_ATOMIC) || '0';
-  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
-  generator.addLibrary('TFT_eSPI', '#include <TFT_eSPI.h>');
-  generator.addObject('epubReader', 'EpubReader epubReader;');
+  addTocFunctions(generator);
   return ['epubTocPageNext(' + sel + ')', generator.ORDER_ATOMIC];
 };
 
 Arduino.forBlock['epub_reader_toc_page_prev'] = function(block, generator) {
   const sel = generator.valueToCode(block, 'SEL', generator.ORDER_ATOMIC) || '0';
-  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
-  generator.addLibrary('TFT_eSPI', '#include <TFT_eSPI.h>');
-  generator.addObject('epubReader', 'EpubReader epubReader;');
+  addTocFunctions(generator);
   return ['epubTocPagePrev(' + sel + ')', generator.ORDER_ATOMIC];
 };
 
-Arduino.forBlock['epub_reader_show_page'] = function(block, generator) {
-  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
-  generator.addLibrary('TFT_eSPI', '#include <TFT_eSPI.h>');
-  generator.addLibrary('tjpgd', '#include "tjpgd.h"');
-  generator.addMacro('SMOOTH_FONT', '#define SMOOTH_FONT');
-  generator.addObject('epubReader', 'EpubReader epubReader;');
-  generator.addObject('sdFont', 'SdFont sdFont;');
+function addReadingViewFunctions(generator) {
+  addEpubReaderCore(generator);
+  addTftSupport(generator);
+  addJpegDecodeSupport(generator);
+  addFontState(generator);
   generator.addObject('sdFontBgColor', 'uint16_t sdFontBgColor = 0x0000;');
 
   let fn = '';
-  fn += 'extern bool espJpegDecode565(const uint8_t*, uint32_t, int, uint16_t*&, int&, int&);\n';
   fn += 'void sdFontDrawBitmap(int16_t x, int16_t y, uint8_t w, uint8_t h, uint8_t rowStride, const uint8_t* bmp, uint16_t fg) {\n';
   fn += '  for (int row = 0; row < h; row++) {\n';
   fn += '    int col = 0;\n';
@@ -696,20 +787,6 @@ Arduino.forBlock['epub_reader_show_page'] = function(block, generator) {
   fn += 'static int fullImgDecW = 0;\n';
   fn += 'static int fullImgDecH = 0;\n';
   fn += 'static int fullImgScaledW = 0;\n';
-  fn += 'static int fullImgStoreOutFunc(JDEC*, void* bitmap, JRECT* rect) {\n';
-  fn += '  int16_t rw = rect->right - rect->left + 1;\n';
-  fn += '  int16_t rh = rect->bottom - rect->top + 1;\n';
-  fn += '  uint16_t* bmp = (uint16_t*)bitmap;\n';
-  fn += '  int16_t left = rect->left;\n';
-  fn += '  if (left >= fullImgDecW) return 1;\n';
-  fn += '  if (left + rw > fullImgDecW) rw = fullImgDecW - left;\n';
-  fn += '  for (int y = 0; y < rh; y++) {\n';
-  fn += '    int dy = rect->top + y;\n';
-  fn += '    if (dy >= fullImgDecH) continue;\n';
-  fn += '    memcpy(&fullImgDecBuf[dy * fullImgDecW + left], &bmp[y * rw], rw * 2);\n';
-  fn += '  }\n';
-  fn += '  return 1;\n';
-  fn += '}\n';
   fn += 'static uint8_t* epubGetImgJpeg(int idx, int* outLen) {\n';
   fn += '  if (idx < 0 || idx >= pageImgCount) return nullptr;\n';
   fn += '  if (fullImgJpgCache && fullImgJpgCacheIdx == idx) { *outLen = fullImgJpgCacheLen; return fullImgJpgCache; }\n';
@@ -1051,15 +1128,19 @@ Arduino.forBlock['epub_reader_show_page'] = function(block, generator) {
   fn += '}\n';
   generator.addFunction('epubShowPage', fn);
 
+}
+
+Arduino.forBlock['epub_reader_show_page'] = function(block, generator) {
+  addReadingViewFunctions(generator);
   return 'epubShowPage();\n';
 };
 
 // ==================== File Browser ====================
 
-Arduino.forBlock['epub_reader_browser_open'] = function(block, generator) {
-  const dir = generator.valueToCode(block, 'DIR', generator.ORDER_ATOMIC) || '"/"';
-  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
-  generator.addLibrary('SdFatHelper', '#include "SdFatHelper.h"');
+function addBrowserFunctions(generator) {
+  addEpubReaderCore(generator);
+  addSdFatSupport(generator);
+  addBrowserState(generator);
 
   let fn = '';
   fn += 'int brNaturalCmp(const char* s1, const char* s2) {\n';
@@ -1097,6 +1178,7 @@ Arduino.forBlock['epub_reader_browser_open'] = function(block, generator) {
   fn += '        String tn = brNames[i]; brNames[i] = brNames[j]; brNames[j] = tn;\n';
   fn += '        String tp = brPaths[i]; brPaths[i] = brPaths[j]; brPaths[j] = tp;\n';
   fn += '        bool td = brIsDir[i]; brIsDir[i] = brIsDir[j]; brIsDir[j] = td;\n';
+  fn += '        bool te = brIsEpub[i]; brIsEpub[i] = brIsEpub[j]; brIsEpub[j] = te;\n';
   fn += '      }\n';
   fn += '    }\n';
   fn += '  }\n';
@@ -1122,8 +1204,8 @@ Arduino.forBlock['epub_reader_browser_open'] = function(block, generator) {
   fn += '    entry.close();\n';
   fn += '    if (name.startsWith(".")) continue;\n';
   fn += '    if (name == "System Volume Information" || name == "LOST.DIR") continue;\n';
+  fn += '    String lower = name; lower.toLowerCase();\n';
   fn += '    if (!isDir) {\n';
-  fn += '      String lower = name; lower.toLowerCase();\n';
   fn += '      if (!lower.endsWith(".epub") && !lower.endsWith(".jpg") && !lower.endsWith(".jpeg")) continue;\n';
   fn += '    }\n';
   fn += '    brNames[brEntryCount] = name;\n';
@@ -1137,46 +1219,40 @@ Arduino.forBlock['epub_reader_browser_open'] = function(block, generator) {
   fn += '  Serial.printf("[BR] Loaded %s (%d entries)\\n", brCurDir.c_str(), brEntryCount);\n';
   fn += '}\n';
   generator.addFunction('brLoadDir', fn);
-  generator.addObject('brEntryCount', 'int brEntryCount = 0;');
-  generator.addObject('brNames', 'String brNames[64];');
-  generator.addObject('brPaths', 'String brPaths[64];');
-  generator.addObject('brIsDir', 'bool brIsDir[64];');
-  generator.addObject('brIsEpub', 'bool brIsEpub[64];');
-  generator.addObject('brCurDir', 'String brCurDir = "/";');
+}
+
+Arduino.forBlock['epub_reader_browser_open'] = function(block, generator) {
+  const dir = generator.valueToCode(block, 'DIR', generator.ORDER_ATOMIC) || '"/"';
+  addBrowserFunctions(generator);
   return 'brLoadDir(String(' + dir + '));\n';
 };
 
 Arduino.forBlock['epub_reader_browser_count'] = function(block, generator) {
-  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
-  generator.addObject('brEntryCount', 'int brEntryCount = 0;');
+  addBrowserState(generator);
   return ['brEntryCount', generator.ORDER_ATOMIC];
 };
 
 Arduino.forBlock['epub_reader_browser_is_dir'] = function(block, generator) {
   const idx = generator.valueToCode(block, 'INDEX', generator.ORDER_ATOMIC) || '0';
-  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
-  generator.addObject('brIsDir', 'bool brIsDir[64];');
-  return ['(' + idx + ' >= 0 && ' + idx + ' < brEntryCount && brIsDir[' + idx + '])', generator.ORDER_ATOMIC];
+  addBrowserState(generator);
+  return ['([&]{ int _i = (int)(' + idx + '); return _i >= 0 && _i < brEntryCount && brIsDir[_i]; })()', generator.ORDER_ATOMIC];
 };
 
 Arduino.forBlock['epub_reader_browser_name'] = function(block, generator) {
   const idx = generator.valueToCode(block, 'INDEX', generator.ORDER_ATOMIC) || '0';
-  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
-  generator.addObject('brNames', 'String brNames[64];');
-  return ['brNames[' + idx + ']', generator.ORDER_ATOMIC];
+  addBrowserState(generator);
+  return ['([&]{ int _i = (int)(' + idx + '); return (_i >= 0 && _i < brEntryCount) ? brNames[_i] : String(); })()', generator.ORDER_ATOMIC];
 };
 
 Arduino.forBlock['epub_reader_browser_path'] = function(block, generator) {
   const idx = generator.valueToCode(block, 'INDEX', generator.ORDER_ATOMIC) || '0';
-  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
-  generator.addObject('brPaths', 'String brPaths[64];');
-  return ['brPaths[' + idx + ']', generator.ORDER_ATOMIC];
+  addBrowserState(generator);
+  return ['([&]{ int _i = (int)(' + idx + '); return (_i >= 0 && _i < brEntryCount) ? brPaths[_i] : String(); })()', generator.ORDER_ATOMIC];
 };
 
 Arduino.forBlock['epub_reader_browser_enter'] = function(block, generator) {
   const idx = generator.valueToCode(block, 'INDEX', generator.ORDER_ATOMIC) || '0';
-  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
-  generator.addLibrary('SdFatHelper', '#include "SdFatHelper.h"');
+  addBrowserFunctions(generator);
   let fn = 'void brEnter(int idx) {\n';
   fn += '  if (idx < 0 || idx >= brEntryCount || !brIsDir[idx]) return;\n';
   fn += '  brLoadDir(brPaths[idx]);\n';
@@ -1186,8 +1262,7 @@ Arduino.forBlock['epub_reader_browser_enter'] = function(block, generator) {
 };
 
 Arduino.forBlock['epub_reader_browser_up'] = function(block, generator) {
-  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
-  generator.addLibrary('SdFatHelper', '#include "SdFatHelper.h"');
+  addBrowserFunctions(generator);
   let fn = 'void brGoUp() {\n';
   fn += '  if (brCurDir == "/" || brCurDir == "") return;\n';
   fn += '  String child = brCurDir;\n';
@@ -1204,40 +1279,35 @@ Arduino.forBlock['epub_reader_browser_up'] = function(block, generator) {
   fn += '    if (brNames[i] == childName) { brPrevSel = i; break; }\n';
   fn += '  }\n';
   fn += '}\n';
-  generator.addObject('brPrevSel', 'int brPrevSel = 0;');
   generator.addFunction('brGoUp', fn);
   return 'brGoUp();\n';
 };
 
 Arduino.forBlock['epub_reader_browser_up_sel'] = function(block, generator) {
-  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
-  generator.addObject('brPrevSel', 'int brPrevSel = 0;');
+  addBrowserState(generator);
   return ['brPrevSel', generator.ORDER_ATOMIC];
 };
 
 Arduino.forBlock['epub_reader_browser_is_root'] = function(block, generator) {
-  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
-  generator.addObject('brCurDir', 'String brCurDir = "/";');
+  addBrowserState(generator);
   return ['(brCurDir == "/" || brCurDir == "")', generator.ORDER_ATOMIC];
 };
 
 Arduino.forBlock['epub_reader_browser_curdir'] = function(block, generator) {
-  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
-  generator.addObject('brCurDir', 'String brCurDir = "/";');
+  addBrowserState(generator);
   return ['brCurDir', generator.ORDER_ATOMIC];
 };
 
 // ==================== Cover Thumbnail Generation ====================
 
 function addCoverFunctions(generator) {
-  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
-  generator.addLibrary('SdFatHelper', '#include "SdFatHelper.h"');
-  generator.addLibrary('tjpgd', '#include "tjpgd.h"');
-  generator.addLibrary('TFT_eSPI', '#include <TFT_eSPI.h>');
-  generator.addMacro('SMOOTH_FONT', '#define SMOOTH_FONT');
+  addEpubReaderCore(generator);
+  addSdFatSupport(generator);
+  addJpegDecodeSupport(generator);
+  addTftSupport(generator);
+  addFontState(generator);
   generator.addMacro('COV_THUMB_W', '#define COV_THUMB_W 72');
   generator.addMacro('COV_THUMB_H', '#define COV_THUMB_H 96');
-  generator.addObject('epubReader', 'EpubReader epubReader;');
 
   let chfn = 'static uint32_t coverHash(const char* s) {\n';
   chfn += '  uint32_t h = 2166136261u;\n';
@@ -1246,40 +1316,11 @@ function addCoverFunctions(generator) {
   chfn += '}\n';
   generator.addFunction('coverHash', chfn);
 
-  let jfn = '';
-  jfn += 'static const uint8_t* covJpgData;\n';
-  jfn += 'static int covJpgPos;\n';
-  jfn += 'static int covJpgLen;\n';
-  jfn += 'static uint16_t* covDecodedBuf;\n';
-  jfn += 'static int covDecodedW;\n';
-  jfn += 'static int covDecodedH;\n';
-  jfn += 'static size_t covJpgInFunc(JDEC*, uint8_t* buf, size_t n) {\n';
-  jfn += '  size_t avail = covJpgLen - covJpgPos;\n';
-  jfn += '  if (n > avail) n = avail;\n';
-  jfn += '  if (buf) memcpy(buf, covJpgData + covJpgPos, n);\n';
-  jfn += '  covJpgPos += n;\n';
-  jfn += '  return n;\n';
-  jfn += '}\n';
-  jfn += 'static int covJpgOutFunc(JDEC*, void* bitmap, JRECT* rect) {\n';
-  jfn += '  int16_t rw = rect->right - rect->left + 1;\n';
-  jfn += '  int16_t rh = rect->bottom - rect->top + 1;\n';
-  jfn += '  uint16_t* bmp = (uint16_t*)bitmap;\n';
-  jfn += '  for (int y = 0; y < rh; y++) {\n';
-  jfn += '    for (int x = 0; x < rw; x++) {\n';
-  jfn += '      int px = rect->left + x;\n';
-  jfn += '      int py = rect->top + y;\n';
-  jfn += '      if (px < covDecodedW && py < covDecodedH)\n';
-  jfn += '        covDecodedBuf[py * covDecodedW + px] = bmp[y * rw + x];\n';
-  jfn += '    }\n';
-  jfn += '  }\n';
-  jfn += '  return 1;\n';
-  jfn += '}\n';
-  generator.addFunction('covJpgHelpers', jfn);
-
   let fn = '';
   fn += 'static uint8_t* covGenBuf = nullptr;\n';
   fn += 'static int covGenBufSize = 1048576;\n';
   fn += 'void epubGenCover(const String& bookPath) {\n';
+  fn += '  uint16_t* covDecodedBuf = nullptr; int covDecodedW = 0, covDecodedH = 0;\n';
   fn += '  uint32_t h = coverHash(bookPath.c_str());\n';
   fn += '  char cachePath[48];\n';
   fn += '  snprintf(cachePath, sizeof(cachePath), "/epub_cov/%08X.raw", h);\n';
@@ -1455,67 +1496,43 @@ function addCoverFunctions(generator) {
 
 Arduino.forBlock['epub_reader_show_full_image'] = function(block, generator) {
   const idx = generator.valueToCode(block, 'INDEX', generator.ORDER_ATOMIC) || '0';
-  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
-  generator.addLibrary('TFT_eSPI', '#include <TFT_eSPI.h>');
-  generator.addLibrary('tjpgd', '#include "tjpgd.h"');
-  generator.addObject('epubReader', 'EpubReader epubReader;');
+  addReadingViewFunctions(generator);
   return '(void)epubShowFullImage(' + idx + ');\n';
 };
 
 Arduino.forBlock['epub_reader_page_img_count'] = function(block, generator) {
-  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
-  generator.addLibrary('TFT_eSPI', '#include <TFT_eSPI.h>');
-  generator.addLibrary('tjpgd', '#include "tjpgd.h"');
-  generator.addObject('epubReader', 'EpubReader epubReader;');
+  addReadingViewFunctions(generator);
   return ['pageImgCount', generator.ORDER_ATOMIC];
 };
 
 Arduino.forBlock['epub_reader_full_img_next'] = function(block, generator) {
-  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
-  generator.addLibrary('TFT_eSPI', '#include <TFT_eSPI.h>');
-  generator.addLibrary('tjpgd', '#include "tjpgd.h"');
-  generator.addObject('epubReader', 'EpubReader epubReader;');
+  addReadingViewFunctions(generator);
   return ['epubFullImgNext()', generator.ORDER_ATOMIC];
 };
 
 Arduino.forBlock['epub_reader_full_img_prev'] = function(block, generator) {
-  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
-  generator.addLibrary('TFT_eSPI', '#include <TFT_eSPI.h>');
-  generator.addLibrary('tjpgd', '#include "tjpgd.h"');
-  generator.addObject('epubReader', 'EpubReader epubReader;');
+  addReadingViewFunctions(generator);
   return ['epubFullImgPrev()', generator.ORDER_ATOMIC];
 };
 
 Arduino.forBlock['epub_reader_full_img_exit'] = function(block, generator) {
-  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
-  generator.addLibrary('TFT_eSPI', '#include <TFT_eSPI.h>');
-  generator.addLibrary('tjpgd', '#include "tjpgd.h"');
-  generator.addObject('epubReader', 'EpubReader epubReader;');
+  addReadingViewFunctions(generator);
   return 'epubFreeFullImg();\n';
 };
 
 Arduino.forBlock['epub_reader_show_fit_image'] = function(block, generator) {
   const idx = generator.valueToCode(block, 'INDEX', generator.ORDER_ATOMIC) || '0';
-  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
-  generator.addLibrary('TFT_eSPI', '#include <TFT_eSPI.h>');
-  generator.addLibrary('tjpgd', '#include "tjpgd.h"');
-  generator.addObject('epubReader', 'EpubReader epubReader;');
+  addReadingViewFunctions(generator);
   return '(void)epubShowFitImage(' + idx + ');\n';
 };
 
 Arduino.forBlock['epub_reader_fit_img_next'] = function(block, generator) {
-  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
-  generator.addLibrary('TFT_eSPI', '#include <TFT_eSPI.h>');
-  generator.addLibrary('tjpgd', '#include "tjpgd.h"');
-  generator.addObject('epubReader', 'EpubReader epubReader;');
+  addReadingViewFunctions(generator);
   return ['epubFitImgNext()', generator.ORDER_ATOMIC];
 };
 
 Arduino.forBlock['epub_reader_fit_img_prev'] = function(block, generator) {
-  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
-  generator.addLibrary('TFT_eSPI', '#include <TFT_eSPI.h>');
-  generator.addLibrary('tjpgd', '#include "tjpgd.h"');
-  generator.addObject('epubReader', 'EpubReader epubReader;');
+  addReadingViewFunctions(generator);
   return ['epubFitImgPrev()', generator.ORDER_ATOMIC];
 };
 
@@ -1527,19 +1544,12 @@ Arduino.forBlock['epub_reader_gen_cover'] = function(block, generator) {
 
 Arduino.forBlock['epub_reader_show_browser'] = function(block, generator) {
   const sel = generator.valueToCode(block, 'SEL', generator.ORDER_ATOMIC) || '0';
-  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
-  generator.addLibrary('TFT_eSPI', '#include <TFT_eSPI.h>');
-  generator.addMacro('SMOOTH_FONT', '#define SMOOTH_FONT');
+  addBrowserFunctions(generator);
+  addTftSupport(generator);
   generator.addMacro('COV_THUMB_W', '#define COV_THUMB_W 72');
   generator.addMacro('COV_THUMB_H', '#define COV_THUMB_H 96');
-  generator.addObject('brEntryCount', 'int brEntryCount = 0;');
-  generator.addObject('brNames', 'String brNames[64];');
-  generator.addObject('brIsDir', 'bool brIsDir[64];');
-  generator.addObject('brCurDir', 'String brCurDir = "/";');
   generator.addObject('brTopItem', 'int brTopItem = 0;');
-  generator.addObject('sdFont', 'SdFont sdFont;');
-  generator.addObject('uiFont', 'SdFont uiFont;');
-  generator.addObject('uiFontShared', 'bool uiFontShared = false;');
+  addFontState(generator);
   generator.addObject('sdFontBgColor', 'uint16_t sdFontBgColor = 0x0000;');
   generator.addFunction('getActiveUiFont', 'static SdFont* getActiveUiFont() {\n  if (uiFontShared && sdFont.isLoaded()) return &sdFont;\n  if (uiFont.isLoaded()) return &uiFont;\n  if (sdFont.isLoaded()) return &sdFont;\n  return nullptr;\n}\n');
   addCoverFunctions(generator);
@@ -1790,6 +1800,8 @@ Arduino.forBlock['epub_reader_show_browser'] = function(block, generator) {
 };
 
 function addJpegViewerFunctions(generator) {
+  addReadingViewFunctions(generator);
+  addSdFatSupport(generator);
   let jfn = '';
   jfn += 'static String jpgViewerPath;\n';
   jfn += 'static int jpgViewerScrollY = 0;\n';
@@ -1929,48 +1941,27 @@ function addJpegViewerFunctions(generator) {
 
 Arduino.forBlock['epub_reader_jpg_viewer_open'] = function(block, generator) {
   const path = generator.valueToCode(block, 'PATH', generator.ORDER_ATOMIC) || '""';
-  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
-  generator.addLibrary('TFT_eSPI', '#include <TFT_eSPI.h>');
-  generator.addLibrary('tjpgd', '#include "tjpgd.h"');
-  generator.addLibrary('SdFatHelper', '#include "SdFatHelper.h"');
-  generator.addObject('epubReader', 'EpubReader epubReader;');
   addJpegViewerFunctions(generator);
   return ['jpgViewerShow(String(' + path + '))', generator.ORDER_ATOMIC];
 };
 
 Arduino.forBlock['epub_reader_jpg_viewer_next'] = function(block, generator) {
-  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
-  generator.addLibrary('TFT_eSPI', '#include <TFT_eSPI.h>');
-  generator.addLibrary('tjpgd', '#include "tjpgd.h"');
-  generator.addObject('epubReader', 'EpubReader epubReader;');
   addJpegViewerFunctions(generator);
   return ['jpgViewerNext()', generator.ORDER_ATOMIC];
 };
 
 Arduino.forBlock['epub_reader_jpg_viewer_prev'] = function(block, generator) {
-  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
-  generator.addLibrary('TFT_eSPI', '#include <TFT_eSPI.h>');
-  generator.addLibrary('tjpgd', '#include "tjpgd.h"');
-  generator.addObject('epubReader', 'EpubReader epubReader;');
   addJpegViewerFunctions(generator);
   return ['jpgViewerPrev()', generator.ORDER_ATOMIC];
 };
 
 Arduino.forBlock['epub_reader_jpg_viewer_exit'] = function(block, generator) {
-  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
-  generator.addLibrary('TFT_eSPI', '#include <TFT_eSPI.h>');
-  generator.addLibrary('tjpgd', '#include "tjpgd.h"');
-  generator.addObject('epubReader', 'EpubReader epubReader;');
   addJpegViewerFunctions(generator);
   return 'jpgViewerExit();\n';
 };
 
 Arduino.forBlock['epub_reader_browser_is_jpg'] = function(block, generator) {
   const idx = generator.valueToCode(block, 'INDEX', generator.ORDER_ATOMIC) || '0';
-  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
-  generator.addLibrary('SdFatHelper', '#include "SdFatHelper.h"');
-  generator.addObject('brEntryCount', 'int brEntryCount = 0;');
-  generator.addObject('brNames', 'String brNames[64];');
-  generator.addObject('brIsDir', 'bool brIsDir[64];');
-  return ['([&]{ int _bi=' + idx + '; if(_bi<0||_bi>=brEntryCount||brIsDir[_bi]) return false; String l=brNames[_bi]; l.toLowerCase(); return (l.endsWith(".jpg")||l.endsWith(".jpeg")); })()', generator.ORDER_ATOMIC];
+  addBrowserState(generator);
+  return ['([&]{ int _bi=(int)(' + idx + '); if(_bi<0||_bi>=brEntryCount||brIsDir[_bi]) return false; String l=brNames[_bi]; l.toLowerCase(); return (l.endsWith(".jpg")||l.endsWith(".jpeg")); })()', generator.ORDER_ATOMIC];
 };

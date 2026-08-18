@@ -1,7 +1,11 @@
 {
   "toolbox_name": "Lector EPUB",
   "toolbox_labels": {
-    "EPUB阅读器": "Lector EPUB"
+    "EPUB阅读器": "Lector EPUB",
+    "章节目录扩展": "Navegación de capítulos",
+    "UI字体": "Fuentes de interfaz",
+    "文件浏览器": "Explorador de archivos",
+    "JPEG查看器": "Visor JPEG"
   },
   "epub_reader_sd_init": {
     "message0": "EPUB initialize SD card (SdFat)",
@@ -174,5 +178,69 @@
   "epub_reader_fit_img_prev": {
     "message0": "EPUB previous fitted image",
     "tooltip": "Show the previous fitted full-page image and return whether another image remains"
+  },
+  "epub_reader_browser_open": {
+    "message0": "EPUB browse directory %1",
+    "tooltip": "Load folders, EPUB files, and JPEG files from the specified SD card directory, up to 64 items"
+  },
+  "epub_reader_browser_count": {
+    "message0": "EPUB browser item count",
+    "tooltip": "Get the number of items in the current browser directory"
+  },
+  "epub_reader_browser_is_dir": {
+    "message0": "EPUB browser item %1 is a directory",
+    "tooltip": "Check whether the browser item at the specified index is a directory; false when out of range"
+  },
+  "epub_reader_browser_name": {
+    "message0": "EPUB browser item %1 name",
+    "tooltip": "Get the file or directory name at the specified index; empty text when out of range"
+  },
+  "epub_reader_browser_path": {
+    "message0": "EPUB browser item %1 path",
+    "tooltip": "Get the full SD card path at the specified index; empty text when out of range"
+  },
+  "epub_reader_browser_enter": {
+    "message0": "EPUB enter browser directory item %1",
+    "tooltip": "Enter the item when it is a directory, then reload the browser list"
+  },
+  "epub_reader_browser_up": {
+    "message0": "EPUB browser go to parent directory",
+    "tooltip": "Go to the parent directory and remember the child index for restoring the selection"
+  },
+  "epub_reader_browser_up_sel": {
+    "message0": "EPUB browser selection after going up",
+    "tooltip": "Get the item index that should be selected after returning to the parent directory"
+  },
+  "epub_reader_browser_is_root": {
+    "message0": "EPUB browser is at root directory",
+    "tooltip": "Check whether the file browser is at the SD card root directory"
+  },
+  "epub_reader_browser_curdir": {
+    "message0": "EPUB browser current directory",
+    "tooltip": "Get the full path of the current file browser directory"
+  },
+  "epub_reader_show_browser": {
+    "message0": "EPUB show file browser select item %1",
+    "tooltip": "Render the current directory on the TFT screen, highlight an item, and preview EPUB covers"
+  },
+  "epub_reader_jpg_viewer_open": {
+    "message0": "EPUB JPEG viewer open %1",
+    "tooltip": "Open a JPEG file from the SD card and scale it to the screen width; true on success"
+  },
+  "epub_reader_jpg_viewer_next": {
+    "message0": "EPUB JPEG viewer next screen",
+    "tooltip": "Scroll to the next screen, then try the next sequentially numbered image at the end"
+  },
+  "epub_reader_jpg_viewer_prev": {
+    "message0": "EPUB JPEG viewer previous screen",
+    "tooltip": "Scroll to the previous screen, then try the previous sequentially numbered image at the beginning"
+  },
+  "epub_reader_jpg_viewer_exit": {
+    "message0": "EPUB exit JPEG viewer",
+    "tooltip": "Exit the standalone JPEG viewer and release its image cache"
+  },
+  "epub_reader_browser_is_jpg": {
+    "message0": "EPUB browser item %1 is JPEG",
+    "tooltip": "Check whether the item at the specified index is a .jpg or .jpeg file; false when out of range"
   }
 }
