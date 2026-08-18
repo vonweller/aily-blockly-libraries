@@ -4,7 +4,7 @@ TFT_eSPI - Arduino library, graphics and font library supporting multiple TFT di
 
 ## Library Info
 - **Name**: @aily-project/lib-tft-espi
-- **Version**: 2.5.48
+- **Version**: 2.5.53
 
 ## Block Definitions
 
@@ -117,7 +117,7 @@ arduino_setup()
 2. **Parameter order**: ABS parameters follow `block.json` args order.
 3. **Input values**: use `math_number(n)`, `text("s")`, `logic_boolean(TRUE/FALSE)`, variables, or nested value blocks.
 4. **Image conversion**: PNG, JPEG, WebP, and BMP files are converted by `field_tftespi_image` to selectable RGB565 or RGB332 Base64 data. Changing W, H, or format reconverts from the saved original file instead of resampling the previous pixel data. The image field renders at 50 px high in Blockly.
-5. **Animation conversion**: GIF and MP4 are decoded in the Blockly editor as selectable RGB565 or RGB332 Base64 frames; generated firmware uses matching `uint16_t` or `uint8_t` `PROGMEM` arrays and automatically calls the matching `pushImage()` overload. For `ILI9341_DRIVER`, `ILI9341_2_DRIVER`, `ILI9342_DRIVER`, `ST7735_DRIVER`, `ST7789_DRIVER`, and `ST7789_2_DRIVER`, image and animation generation exchanges the red and blue fields to match the display path; other models keep the source layout.
+5. **Colour consistency**: Static images and animation frames keep the standard RGB565/RGB332 channel layout used by TFT_eSPI drawing primitives. Select `TFT_RGB` or `TFT_BGR` in `tftespi_setup` to match the panel; the generated `TFT_RGB_ORDER` setting then applies consistently to fills, text, images, and animations. RGB565 render helpers still enable byte swapping for 16-bit transport, which does not exchange the red and blue channels.
 6. **Resource budget**: image and animation data are embedded in firmware. The editor defaults to 160x120 and animation defaults to 10 frames with an 8 MiB serialized payload cap. RGB332 uses one byte per pixel and therefore needs roughly half the storage of RGB565. Reduce width, height, FPS, or frame count if compilation reports that the program is too large. Identical converted resources share generated `PROGMEM` arrays.
 7. **MP4 codec and audio**: MP4 decoding depends on the Electron/Chromium WebCodecs codec support. Audio tracks are ignored.
 8. **Automatic value text**: `tftespi_draw_string` wraps its input in Arduino `String(...)`, so text, integer, and decimal expressions can use the same display block.
@@ -128,3 +128,4 @@ arduino_setup()
 13. **Display throughput**: requested FPS is a target. Large frames may play more slowly when conversion and display transfer time exceed the selected frame interval.
 14. **CH13613 QSPI**: selecting `CH13613_DRIVER` hides the standard SPI pin row and shows only QSPI CS, SCLK, D0, D1, D2, D3, RST, and TE. Every QSPI pin defaults to `-1`. CH13613 QSPI is supported on ESP32-S3 and uses its default SPI2 host.
 15. **Generated TFT_eSPI configuration**: the setup block defines `USER_SETUP_LOADED` so the bundled default ILI9341 setup cannot override the selected driver. Its frequency field generates TFT_eSPI's `SPI_FREQUENCY` macro.
+16. **Red/blue diagnosis**: If drawing primitives and images both exchange red and blue, select the other `COLOR_MODE` value. Display inversion changes all channel intensities and RGB565 byte swapping changes transport byte order; neither should be used to correct RGB/BGR panel order.
