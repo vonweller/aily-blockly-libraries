@@ -731,8 +731,16 @@ function buildGeneratedCodePreviews(library, source, blocks, contract = null) {
   return { previews, errors, loadError: loaded.error };
 }
 
-function audit() {
+function audit(targetLibraries = null) {
   const libraries = trackedLibraries();
+  const trackedSet = new Set(libraries);
+  const targetSet = targetLibraries == null ? null : new Set(targetLibraries);
+  const unknownLibraries = targetSet == null
+    ? []
+    : [...targetSet].filter(library => !trackedSet.has(library));
+  if (unknownLibraries.length > 0) {
+    throw new Error(`Unknown or untracked libraries: ${unknownLibraries.join(', ')}`);
+  }
   const globalBlockTypes = new Set();
   const globalBlockOwners = new Map();
   const libraryData = [];
@@ -768,6 +776,7 @@ function audit() {
   const generatedCodeContractErrors = [...noDirectContract.errors];
   const details = [];
   for (const data of libraryData) {
+    if (targetSet && !targetSet.has(data.library)) continue;
     const generatorPath = path.join(data.directory, 'generator.js');
     const source = fs.existsSync(generatorPath) ? fs.readFileSync(generatorPath, 'utf8') : '';
     const loaded = loadGenerator(data.library, source);
@@ -927,14 +936,16 @@ function audit() {
   }
 
   for (const [key] of registrationContract.allowed) {
+    const [library, type] = key.split('\0');
+    if (targetSet && !targetSet.has(library)) continue;
     if (!usedRegistrationContracts.has(key)) {
-      const [library, type] = key.split('\0');
       registrationContractErrors.push(`stale generator-only allowance ${library}/${type}`);
     }
   }
   for (const [key] of noDirectContract.allowed) {
+    const [library, type] = key.split('\0');
+    if (targetSet && !targetSet.has(library)) continue;
     if (!usedNoDirectContracts.has(key)) {
-      const [library, type] = key.split('\0');
       generatedCodeContractErrors.push(`stale generated-code no-direct allowance ${library}/${type}`);
     }
   }
@@ -968,10 +979,38 @@ function audit() {
   };
 }
 
+function parseCliArgs(argv) {
+  const options = { json: false, strict: false, libraries: [] };
+  for (let index = 0; index < argv.length; index++) {
+    const arg = argv[index];
+    if (arg === '--json') options.json = true;
+    else if (arg === '--strict') options.strict = true;
+    else if (arg === '--library') {
+      if (!argv[index + 1]) throw new Error('--library requires a library name');
+      options.libraries.push(argv[++index]);
+    } else throw new Error(`Unknown option: ${arg}`);
+  }
+  return options;
+}
+
 function main() {
-  const options = new Set(process.argv.slice(2));
-  const report = audit();
-  if (options.has('--json')) console.log(JSON.stringify(report, null, 2));
+  let options;
+  try {
+    options = parseCliArgs(process.argv.slice(2));
+  } catch (error) {
+    console.error(`[generator-coverage:error] ${error.message}`);
+    process.exitCode = 1;
+    return;
+  }
+  let report;
+  try {
+    report = audit(options.libraries.length > 0 ? options.libraries : null);
+  } catch (error) {
+    console.error(`[generator-coverage:error] ${error.message}`);
+    process.exitCode = 1;
+    return;
+  }
+  if (options.json) console.log(JSON.stringify(report, null, 2));
   else {
     console.log(`Tracked libraries: ${report.libraries}`);
     console.log(`Generator load errors: ${report.generatorLoadErrors}`);
@@ -1015,7 +1054,7 @@ function main() {
     + report.unknownSlotReads
     + report.handlerProbeErrors
     + report.generatedCodeMismatches;
-  if (options.has('--strict') && strictFailures > 0) process.exitCode = 1;
+  if (options.strict && strictFailures > 0) process.exitCode = 1;
 }
 
 if (require.main === module) main();
@@ -1029,4 +1068,5 @@ module.exports = {
   normalizeGeneratedCodePreview,
   generatedCodePreviewArtifact,
   probeGeneratorHandler,
+  parseCliArgs,
 };
