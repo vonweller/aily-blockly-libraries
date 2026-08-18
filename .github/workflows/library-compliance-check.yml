@@ -16,6 +16,7 @@ on:
       - '.scripts/**'
       - '.scripts_git_action/**'
       - '.github/workflows/library-compliance-check.yml'
+      - '.github/workflows/library-full-audit.yml'
       - 'package.json'
   push:
     branches: [ main, develop ]
@@ -32,6 +33,7 @@ on:
       - '.scripts/**'
       - '.scripts_git_action/**'
       - '.github/workflows/library-compliance-check.yml'
+      - '.github/workflows/library-full-audit.yml'
       - 'package.json'
 
 # GitHub Actions权限配置
@@ -67,14 +69,20 @@ jobs:
     - name: Install dependencies
       run: npm install js-yaml
 
-    - name: Test README generation and ABS contracts
+    - name: Test README governance unit tests
+      run: npm run readme:test
+
+    - name: Validate changed README and ABS contracts
       run: |
-        npm run readme:test
-        npm run readme:contract
-        npm run readme:dynamic-shapes
-        npm run readme:generator-coverage
-        npm run readme:candidate-check
-        npm run readme:cross-check
+        if [ "${{ github.event_name }}" = "pull_request" ]; then
+          README_CMD=(node .scripts/check-changed-readme-governance.js --base "${{ github.event.pull_request.base.sha }}" --head "${{ github.event.pull_request.head.sha }}")
+        elif [ "${{ github.event.before }}" != "0000000000000000000000000000000000000000" ]; then
+          README_CMD=(node .scripts/check-changed-readme-governance.js --base "${{ github.event.before }}" --head "${{ github.sha }}")
+        else
+          README_CMD=(node .scripts/check-changed-readme-governance.js --head "${{ github.sha }}")
+        fi
+
+        "${README_CMD[@]}"
 
     - name: Validate changed libraries
       id: validation

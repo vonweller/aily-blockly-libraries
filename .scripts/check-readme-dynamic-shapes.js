@@ -205,9 +205,19 @@ function auditLibrary(library) {
   return results;
 }
 
-function auditAll() {
-  const libraries = gitOutput(['ls-files', '-z', '*/block.json']).split('\0').filter(Boolean)
+function auditAll(targetLibraries = null) {
+  const tracked = gitOutput(['ls-files', '-z', '*/block.json']).split('\0').filter(Boolean)
     .map(filePath => filePath.replace(/\\/g, '/').split('/')[0]);
+  const trackedSet = new Set(tracked);
+  const libraries = targetLibraries == null
+    ? tracked
+    : [...new Set(targetLibraries)].filter(library => trackedSet.has(library));
+  const unknownLibraries = targetLibraries == null
+    ? []
+    : [...new Set(targetLibraries)].filter(library => !trackedSet.has(library));
+  if (unknownLibraries.length > 0) {
+    throw new Error(`Unknown or untracked libraries: ${unknownLibraries.join(', ')}`);
+  }
   const details = [];
   for (const library of libraries) {
     for (const result of auditLibrary(library)) details.push({ library, ...result });
@@ -229,10 +239,38 @@ function auditAll() {
   };
 }
 
+function parseCliArgs(argv) {
+  const options = { json: false, strict: false, libraries: [] };
+  for (let index = 0; index < argv.length; index++) {
+    const arg = argv[index];
+    if (arg === '--json') options.json = true;
+    else if (arg === '--strict') options.strict = true;
+    else if (arg === '--library') {
+      if (!argv[index + 1]) throw new Error('--library requires a library name');
+      options.libraries.push(argv[++index]);
+    } else throw new Error(`Unknown option: ${arg}`);
+  }
+  return options;
+}
+
 function main() {
-  const options = new Set(process.argv.slice(2));
-  const report = auditAll();
-  if (options.has('--json')) console.log(JSON.stringify(report, null, 2));
+  let options;
+  try {
+    options = parseCliArgs(process.argv.slice(2));
+  } catch (error) {
+    console.error(`[dynamic-shapes:error] ${error.message}`);
+    process.exitCode = 1;
+    return;
+  }
+  let report;
+  try {
+    report = auditAll(options.libraries.length > 0 ? options.libraries : null);
+  } catch (error) {
+    console.error(`[dynamic-shapes:error] ${error.message}`);
+    process.exitCode = 1;
+    return;
+  }
+  if (options.json) console.log(JSON.stringify(report, null, 2));
   else {
     console.log(`Tracked libraries: ${report.libraries}`);
     console.log(`Dynamic blocks: ${report.dynamicBlocks}`);
@@ -248,7 +286,7 @@ function main() {
       console.log(`- ${finding.library}/${finding.blockType}: ${reasons.join('; ')}`);
     }
   }
-  if (options.has('--strict') && report.findings.length > 0) process.exitCode = 1;
+  if (options.strict && report.findings.length > 0) process.exitCode = 1;
 }
 
 if (require.main === module) main();
@@ -260,4 +298,5 @@ module.exports = {
   generatorFunction,
   generatorReads,
   stripJsComments,
+  parseCliArgs,
 };

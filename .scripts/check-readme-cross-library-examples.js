@@ -163,16 +163,31 @@ function callWithNamedValueInputs(region, call, candidate) {
   return call;
 }
 
+function parseCliArgs(argv) {
+  const options = { readmeRoot: ROOT, libraries: [] };
+  for (let index = 0; index < argv.length; index++) {
+    const arg = argv[index];
+    if (arg === '--readme-root') {
+      if (!argv[index + 1]) throw new Error('--readme-root requires a directory');
+      options.readmeRoot = path.resolve(ROOT, argv[++index]);
+    } else if (arg === '--library') {
+      if (!argv[index + 1]) throw new Error('--library requires a library name');
+      options.libraries.push(argv[++index]);
+    } else throw new Error(`Unknown option: ${arg}`);
+  }
+  return options;
+}
+
 function main(argv = process.argv.slice(2)) {
-  const rootIndex = argv.indexOf('--readme-root');
-  if (rootIndex >= 0 && !argv[rootIndex + 1]) {
-    console.error('[error] --readme-root requires a directory');
+  let options;
+  try {
+    options = parseCliArgs(argv);
+  } catch (error) {
+    console.error(`[cross-check:error] ${error.message}`);
     process.exitCode = 1;
     return;
   }
-  const readmeRoot = rootIndex >= 0
-    ? path.resolve(ROOT, argv[rootIndex + 1])
-    : ROOT;
+  const readmeRoot = options.readmeRoot;
   const libraries = trackedLibraries();
   const catalog = new Map();
   const libraryData = new Map();
@@ -203,8 +218,18 @@ function main(argv = process.argv.slice(2)) {
   let checkedCalls = 0;
   let checkedLibraries = 0;
   let ambiguousExternalCalls = 0;
+  const targetSet = options.libraries.length > 0 ? new Set(options.libraries) : null;
+  const unknownLibraries = targetSet == null
+    ? []
+    : [...targetSet].filter(library => !libraryData.has(library));
+  if (unknownLibraries.length > 0) {
+    console.error(`[cross-check:error] Unknown or untracked libraries: ${unknownLibraries.join(', ')}`);
+    process.exitCode = 1;
+    return;
+  }
 
   for (const [libName, data] of libraryData) {
+    if (targetSet && !targetSet.has(libName)) continue;
     const readmePath = path.join(readmeRoot, libName, 'readme_ai.md');
     if (!fs.existsSync(readmePath)) continue;
     const content = fs.readFileSync(readmePath, 'utf8').replace(/^\uFEFF/, '');
@@ -257,6 +282,9 @@ function main(argv = process.argv.slice(2)) {
 if (require.main === module) main();
 
 module.exports = {
+  calledTypes,
   callWithNamedValueInputs,
+  exampleRegions,
+  parseCliArgs,
   runtimeShapeIsDocumentable,
 };
