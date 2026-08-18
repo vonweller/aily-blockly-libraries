@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "blocks": {
+    "mfrc522_setup": {
+      "variants": [
+        {
+          "id": "fixed-board-i2c-pins",
+          "when": {},
+          "appendArgs": []
+        },
+        {
+          "id": "esp32-custom-i2c-pins",
+          "when": {},
+          "appendArgs": [
+            { "name": "SDA_PIN", "type": "field_dropdown", "example": "21", "required": true },
+            { "name": "SCL_PIN", "type": "field_dropdown", "example": "22", "required": true }
+          ]
+        }
+      ]
+    }
+  }
+}

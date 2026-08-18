@@ -1,0 +1,235 @@
+{
+  "schemaVersion": 1,
+  "blocks": {
+    "u8g2_begin": {
+      "variants": [
+        {
+          "id": "hardware-i2c-fixed-board",
+          "when": { "TYPE": ["SSD1306"], "PROTOCOL": ["_HW_I2C"] },
+          "appendArgs": [
+            { "name": "RESOLUTION", "type": "field_dropdown", "example": "128X64_NONAME", "required": true },
+            { "name": "PROTOCOL", "type": "field_dropdown", "example": "_HW_I2C", "required": true },
+            { "name": "RESET_PIN", "type": "field_input", "example": "U8X8_PIN_NONE", "required": true }
+          ]
+        },
+        {
+          "id": "hardware-i2c-esp32",
+          "when": { "TYPE": ["SSD1306"], "PROTOCOL": ["_HW_I2C"] },
+          "appendArgs": [
+            { "name": "RESOLUTION", "type": "field_dropdown", "example": "128X64_NONAME", "required": true },
+            { "name": "PROTOCOL", "type": "field_dropdown", "example": "_HW_I2C", "required": true },
+            { "name": "SCL_PIN", "type": "field_input", "example": "SCL", "required": true },
+            { "name": "SDA_PIN", "type": "field_input", "example": "SDA", "required": true },
+            { "name": "RESET_PIN", "type": "field_input", "example": "U8X8_PIN_NONE", "required": true }
+          ]
+        },
+        {
+          "id": "software-i2c",
+          "when": { "TYPE": ["SSD1306"], "PROTOCOL": ["_SW_I2C"] },
+          "appendArgs": [
+            { "name": "RESOLUTION", "type": "field_dropdown", "example": "128X64_NONAME", "required": true },
+            { "name": "PROTOCOL", "type": "field_dropdown", "example": "_SW_I2C", "required": true },
+            { "name": "CLOCK_PIN", "type": "field_input", "example": "13", "required": true },
+            { "name": "DATA_PIN", "type": "field_input", "example": "11", "required": true },
+            { "name": "RESET_PIN", "type": "field_input", "example": "8", "required": true }
+          ]
+        },
+        {
+          "id": "three-wire-hardware-spi",
+          "when": { "TYPE": ["SSD1306"], "PROTOCOL": ["_3W_HW_SPI"] },
+          "appendArgs": [
+            { "name": "RESOLUTION", "type": "field_dropdown", "example": "128X64_NONAME", "required": true },
+            { "name": "PROTOCOL", "type": "field_dropdown", "example": "_3W_HW_SPI", "required": true },
+            { "name": "CS_PIN", "type": "field_input", "example": "10", "required": true },
+            { "name": "RESET_PIN", "type": "field_input", "example": "8", "required": true }
+          ]
+        },
+        {
+          "id": "three-wire-software-spi",
+          "when": { "TYPE": ["SSD1306"], "PROTOCOL": ["_3W_SW_SPI"] },
+          "appendArgs": [
+            { "name": "RESOLUTION", "type": "field_dropdown", "example": "128X64_NONAME", "required": true },
+            { "name": "PROTOCOL", "type": "field_dropdown", "example": "_3W_SW_SPI", "required": true },
+            { "name": "CLOCK_PIN", "type": "field_input", "example": "13", "required": true },
+            { "name": "DATA_PIN", "type": "field_input", "example": "11", "required": true },
+            { "name": "CS_PIN", "type": "field_input", "example": "10", "required": true },
+            { "name": "RESET_PIN", "type": "field_input", "example": "8", "required": true }
+          ]
+        },
+        {
+          "id": "four-wire-hardware-spi",
+          "when": { "TYPE": ["SSD1306"], "PROTOCOL": ["_4W_HW_SPI"] },
+          "appendArgs": [
+            { "name": "RESOLUTION", "type": "field_dropdown", "example": "128X64_NONAME", "required": true },
+            { "name": "PROTOCOL", "type": "field_dropdown", "example": "_4W_HW_SPI", "required": true },
+            { "name": "CS_PIN", "type": "field_input", "example": "10", "required": true },
+            { "name": "DC_PIN", "type": "field_input", "example": "9", "required": true },
+            { "name": "RESET_PIN", "type": "field_input", "example": "8", "required": true }
+          ]
+        },
+        {
+          "id": "four-wire-software-spi",
+          "when": { "TYPE": ["SSD1306"], "PROTOCOL": ["_4W_SW_SPI"] },
+          "appendArgs": [
+            { "name": "RESOLUTION", "type": "field_dropdown", "example": "128X64_NONAME", "required": true },
+            { "name": "PROTOCOL", "type": "field_dropdown", "example": "_4W_SW_SPI", "required": true },
+            { "name": "CLOCK_PIN", "type": "field_input", "example": "13", "required": true },
+            { "name": "DATA_PIN", "type": "field_input", "example": "11", "required": true },
+            { "name": "CS_PIN", "type": "field_input", "example": "10", "required": true },
+            { "name": "DC_PIN", "type": "field_input", "example": "9", "required": true },
+            { "name": "RESET_PIN", "type": "field_input", "example": "8", "required": true }
+          ]
+        },
+        {
+          "id": "st7920-hardware-spi",
+          "when": { "TYPE": ["ST7920"], "PROTOCOL": ["_HW_SPI"] },
+          "appendArgs": [
+            { "name": "RESOLUTION", "type": "field_dropdown", "example": "128X64", "required": true },
+            { "name": "PROTOCOL", "type": "field_dropdown", "example": "_HW_SPI", "required": true },
+            { "name": "CS_PIN", "type": "field_input", "example": "17", "required": true },
+            { "name": "RESET_PIN", "type": "field_input", "example": "U8X8_PIN_NONE", "required": true }
+          ]
+        },
+        {
+          "id": "st7920-software-spi",
+          "when": { "TYPE": ["ST7920"], "PROTOCOL": ["_SW_SPI"] },
+          "appendArgs": [
+            { "name": "RESOLUTION", "type": "field_dropdown", "example": "128X64", "required": true },
+            { "name": "PROTOCOL", "type": "field_dropdown", "example": "_SW_SPI", "required": true },
+            { "name": "CLOCK_PIN", "type": "field_input", "example": "18", "required": true },
+            { "name": "DATA_PIN", "type": "field_input", "example": "16", "required": true },
+            { "name": "CS_PIN", "type": "field_input", "example": "17", "required": true },
+            { "name": "RESET_PIN", "type": "field_input", "example": "U8X8_PIN_NONE", "required": true }
+          ]
+        }
+      ]
+    },
+    "u8x8_begin": {
+      "variants": [
+        {
+          "id": "hardware-i2c-fixed-board",
+          "when": { "TYPE": ["SSD1306"], "PROTOCOL": ["_HW_I2C"] },
+          "appendArgs": [
+            { "name": "RESOLUTION", "type": "field_dropdown", "example": "128X64_NONAME", "required": true },
+            { "name": "PROTOCOL", "type": "field_dropdown", "example": "_HW_I2C", "required": true },
+            { "name": "RESET_PIN", "type": "field_input", "example": "U8X8_PIN_NONE", "required": true }
+          ]
+        },
+        {
+          "id": "hardware-i2c-esp32",
+          "when": { "TYPE": ["SSD1306"], "PROTOCOL": ["_HW_I2C"] },
+          "appendArgs": [
+            { "name": "RESOLUTION", "type": "field_dropdown", "example": "128X64_NONAME", "required": true },
+            { "name": "PROTOCOL", "type": "field_dropdown", "example": "_HW_I2C", "required": true },
+            { "name": "SCL_PIN", "type": "field_input", "example": "SCL", "required": true },
+            { "name": "SDA_PIN", "type": "field_input", "example": "SDA", "required": true },
+            { "name": "RESET_PIN", "type": "field_input", "example": "U8X8_PIN_NONE", "required": true }
+          ]
+        },
+        {
+          "id": "software-i2c",
+          "when": { "TYPE": ["SSD1306"], "PROTOCOL": ["_SW_I2C"] },
+          "appendArgs": [
+            { "name": "RESOLUTION", "type": "field_dropdown", "example": "128X64_NONAME", "required": true },
+            { "name": "PROTOCOL", "type": "field_dropdown", "example": "_SW_I2C", "required": true },
+            { "name": "CLOCK_PIN", "type": "field_input", "example": "13", "required": true },
+            { "name": "DATA_PIN", "type": "field_input", "example": "11", "required": true },
+            { "name": "RESET_PIN", "type": "field_input", "example": "8", "required": true }
+          ]
+        },
+        {
+          "id": "three-wire-hardware-spi",
+          "when": { "TYPE": ["SSD1306"], "PROTOCOL": ["_3W_HW_SPI"] },
+          "appendArgs": [
+            { "name": "RESOLUTION", "type": "field_dropdown", "example": "128X64_NONAME", "required": true },
+            { "name": "PROTOCOL", "type": "field_dropdown", "example": "_3W_HW_SPI", "required": true },
+            { "name": "CS_PIN", "type": "field_input", "example": "10", "required": true },
+            { "name": "RESET_PIN", "type": "field_input", "example": "8", "required": true }
+          ]
+        },
+        {
+          "id": "three-wire-software-spi",
+          "when": { "TYPE": ["SSD1306"], "PROTOCOL": ["_3W_SW_SPI"] },
+          "appendArgs": [
+            { "name": "RESOLUTION", "type": "field_dropdown", "example": "128X64_NONAME", "required": true },
+            { "name": "PROTOCOL", "type": "field_dropdown", "example": "_3W_SW_SPI", "required": true },
+            { "name": "CLOCK_PIN", "type": "field_input", "example": "13", "required": true },
+            { "name": "DATA_PIN", "type": "field_input", "example": "11", "required": true },
+            { "name": "CS_PIN", "type": "field_input", "example": "10", "required": true },
+            { "name": "RESET_PIN", "type": "field_input", "example": "8", "required": true }
+          ]
+        },
+        {
+          "id": "four-wire-hardware-spi",
+          "when": { "TYPE": ["SSD1306"], "PROTOCOL": ["_4W_HW_SPI"] },
+          "appendArgs": [
+            { "name": "RESOLUTION", "type": "field_dropdown", "example": "128X64_NONAME", "required": true },
+            { "name": "PROTOCOL", "type": "field_dropdown", "example": "_4W_HW_SPI", "required": true },
+            { "name": "CS_PIN", "type": "field_input", "example": "10", "required": true },
+            { "name": "DC_PIN", "type": "field_input", "example": "9", "required": true },
+            { "name": "RESET_PIN", "type": "field_input", "example": "8", "required": true }
+          ]
+        },
+        {
+          "id": "four-wire-software-spi",
+          "when": { "TYPE": ["SSD1306"], "PROTOCOL": ["_4W_SW_SPI"] },
+          "appendArgs": [
+            { "name": "RESOLUTION", "type": "field_dropdown", "example": "128X64_NONAME", "required": true },
+            { "name": "PROTOCOL", "type": "field_dropdown", "example": "_4W_SW_SPI", "required": true },
+            { "name": "CLOCK_PIN", "type": "field_input", "example": "13", "required": true },
+            { "name": "DATA_PIN", "type": "field_input", "example": "11", "required": true },
+            { "name": "CS_PIN", "type": "field_input", "example": "10", "required": true },
+            { "name": "DC_PIN", "type": "field_input", "example": "9", "required": true },
+            { "name": "RESET_PIN", "type": "field_input", "example": "8", "required": true }
+          ]
+        },
+        {
+          "id": "st7920-hardware-spi",
+          "when": { "TYPE": ["ST7920"], "PROTOCOL": ["_HW_SPI"] },
+          "appendArgs": [
+            { "name": "RESOLUTION", "type": "field_dropdown", "example": "128X64", "required": true },
+            { "name": "PROTOCOL", "type": "field_dropdown", "example": "_HW_SPI", "required": true },
+            { "name": "CS_PIN", "type": "field_input", "example": "17", "required": true },
+            { "name": "RESET_PIN", "type": "field_input", "example": "U8X8_PIN_NONE", "required": true }
+          ]
+        },
+        {
+          "id": "st7920-software-spi",
+          "when": { "TYPE": ["ST7920"], "PROTOCOL": ["_SW_SPI"] },
+          "appendArgs": [
+            { "name": "RESOLUTION", "type": "field_dropdown", "example": "128X64", "required": true },
+            { "name": "PROTOCOL", "type": "field_dropdown", "example": "_SW_SPI", "required": true },
+            { "name": "CLOCK_PIN", "type": "field_input", "example": "18", "required": true },
+            { "name": "DATA_PIN", "type": "field_input", "example": "16", "required": true },
+            { "name": "CS_PIN", "type": "field_input", "example": "17", "required": true },
+            { "name": "RESET_PIN", "type": "field_input", "example": "U8X8_PIN_NONE", "required": true }
+          ]
+        }
+      ]
+    },
+    "u8g2_set_font": {
+      "variants": [
+        {
+          "id": "8px-chinese",
+          "when": { "SIZE": ["8"] },
+          "appendArgs": [
+            { "name": "FONT_TYPE", "type": "field_dropdown", "example": "CHINESE", "required": true },
+            { "name": "FONT", "type": "field_dropdown", "example": "u8g2_font_wqy12_t_chinese1", "required": true }
+          ]
+        },
+        {
+          "id": "25px-helvetica",
+          "when": { "SIZE": ["25"] },
+          "appendArgs": [
+            { "name": "FONT_TYPE", "type": "field_dropdown", "example": "HELV_B", "required": true },
+            { "name": "FONT", "type": "field_dropdown", "example": "u8g2_font_helvB24_tr", "required": true }
+          ]
+        }
+      ]
+    },
+    "u8g2_play_animation": {
+      "staticShape": true,
+      "reason": "The playback extension only toggles visibility of the existing LOOP field; the serialized slot remains in its block.json position."
+    }
+  }
+}

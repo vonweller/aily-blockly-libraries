@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "blocks": {
+    "esp32_i2c_write_to_device": {
+      "variants": [
+        {
+          "id": "preset-address",
+          "when": { "ADDRESS": ["0x3C", "0x48", "0x68", "0x76", "0x77"] },
+          "appendArgs": []
+        },
+        {
+          "id": "custom-address",
+          "when": { "ADDRESS": ["CUSTOM"] },
+          "appendArgs": [
+            { "name": "CUSTOM_ADDRESS", "type": "input_value", "example": "math_number(60)", "required": true }
+          ]
+        }
+      ]
+    },
+    "esp32_i2c_read_from_device": {
+      "variants": [
+        {
+          "id": "preset-address",
+          "when": { "ADDRESS": ["0x3C", "0x48", "0x68", "0x76", "0x77"] },
+          "appendArgs": []
+        },
+        {
+          "id": "custom-address",
+          "when": { "ADDRESS": ["CUSTOM"] },
+          "appendArgs": [
+            { "name": "CUSTOM_ADDRESS", "type": "input_value", "example": "math_number(60)", "required": true }
+          ]
+        }
+      ]
+    }
+  }
+}

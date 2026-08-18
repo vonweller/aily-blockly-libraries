@@ -1,0 +1,178 @@
+{
+  "toolbox_name": "EPUB Reader",
+  "toolbox_labels": {
+    "EPUB阅读器": "EPUB Reader"
+  },
+  "epub_reader_sd_init": {
+    "message0": "EPUB initialize SD card (SdFat)",
+    "tooltip": "Initialize the SD card with SdFat, including support for UTF-8 Chinese filenames"
+  },
+  "epub_reader_open": {
+    "message0": "EPUB open file %1 characters per line %2 lines per page %3",
+    "tooltip": "Open an EPUB file on the SD card and parse its contents"
+  },
+  "epub_reader_is_open": {
+    "message0": "EPUB is open",
+    "tooltip": "Check whether the EPUB file opened successfully"
+  },
+  "epub_reader_get_page": {
+    "message0": "EPUB current page content",
+    "tooltip": "Get the text content of the current page"
+  },
+  "epub_reader_get_page_num": {
+    "message0": "EPUB current page number",
+    "tooltip": "Get the current page number"
+  },
+  "epub_reader_next": {
+    "message0": "EPUB next page",
+    "tooltip": "Go to the next page"
+  },
+  "epub_reader_prev": {
+    "message0": "EPUB previous page",
+    "tooltip": "Go to the previous page"
+  },
+  "epub_reader_has_next": {
+    "message0": "EPUB has next page",
+    "tooltip": "Check whether another page follows"
+  },
+  "epub_reader_has_prev": {
+    "message0": "EPUB has previous page",
+    "tooltip": "Check whether a previous page exists"
+  },
+  "epub_reader_render_page": {
+    "message0": "EPUB render to screen start X %1 start Y %2",
+    "tooltip": "Render the current EPUB page on the TFT screen"
+  },
+  "epub_reader_close": {
+    "message0": "EPUB close",
+    "tooltip": "Close the EPUB file and release its memory"
+  },
+  "epub_reader_font_height": {
+    "message0": "EPUB current font line height",
+    "tooltip": "Get the line height, in pixels, of the currently loaded font"
+  },
+  "epub_reader_get_chapter": {
+    "message0": "EPUB current chapter",
+    "tooltip": "Get the current chapter number, starting from 1"
+  },
+  "epub_reader_get_chapter_count": {
+    "message0": "EPUB total chapter count",
+    "tooltip": "Get the total number of chapters"
+  },
+  "epub_reader_scan_books": {
+    "message0": "Scan EPUB books in directory %1",
+    "tooltip": "Scan the specified directory for .epub files and store the results in the global list"
+  },
+  "epub_reader_book_count": {
+    "message0": "Book count",
+    "tooltip": "Get the total number of scanned EPUB books"
+  },
+  "epub_reader_book_name": {
+    "message0": "Filename of book %1",
+    "tooltip": "Get the filename of the book at the specified index"
+  },
+  "epub_reader_book_path": {
+    "message0": "Full path of book %1",
+    "tooltip": "Get the full SD card path of the book at the specified index"
+  },
+  "epub_reader_show_bookshelf": {
+    "message0": "EPUB show bookshelf (select book %1)",
+    "tooltip": "Render the bookshelf and highlight the selected book"
+  },
+  "epub_reader_show_page": {
+    "message0": "EPUB show reading page",
+    "tooltip": "Render the current reading page, including chapter information"
+  },
+  "epub_reader_goto_chapter": {
+    "message0": "EPUB go to chapter %1",
+    "tooltip": "Go to the specified zero-based chapter and return whether it succeeded"
+  },
+  "epub_reader_chapter_title_at": {
+    "message0": "EPUB title of chapter %1",
+    "tooltip": "Get the title of the specified chapter"
+  },
+  "epub_reader_save_pos": {
+    "message0": "EPUB save progress %1",
+    "tooltip": "Save the current reading progress, chapter and page, to NVS"
+  },
+  "epub_reader_load_pos": {
+    "message0": "EPUB load progress %1",
+    "tooltip": "Load and restore reading progress from NVS and return whether saved progress exists"
+  },
+  "epub_reader_show_toc": {
+    "message0": "EPUB show table of contents (select item %1)",
+    "tooltip": "Render the chapter list and highlight the selected item"
+  },
+  "epub_reader_toc_page_next": {
+    "message0": "EPUB next contents page (current %1)",
+    "tooltip": "Return the selected item number on the next contents page"
+  },
+  "epub_reader_toc_page_prev": {
+    "message0": "EPUB previous contents page (current %1)",
+    "tooltip": "Return the selected item number on the previous contents page"
+  },
+  "epub_reader_load_sd_font": {
+    "message0": "EPUB load SD card font %1",
+    "tooltip": "Load a CJK font in .bin format from the SD card"
+  },
+  "epub_reader_sd_font_loaded": {
+    "message0": "EPUB SD card font is loaded",
+    "tooltip": "Check whether the SD card font is loaded"
+  },
+  "epub_reader_unload_sd_font": {
+    "message0": "EPUB unload SD card font",
+    "tooltip": "Unload the SD card font and release cache memory"
+  },
+  "epub_reader_load_ui_font": {
+    "message0": "EPUB load UI font %1",
+    "tooltip": "Load an independent UI font for menus, titles, and screens from the SD card"
+  },
+  "epub_reader_unload_ui_font": {
+    "message0": "EPUB unload UI font",
+    "tooltip": "Unload the UI font and release its memory"
+  },
+  "epub_reader_ui_font_loaded": {
+    "message0": "EPUB UI font is loaded",
+    "tooltip": "Check whether the UI font is loaded, including a shared reading font"
+  },
+  "epub_reader_share_reading_font": {
+    "message0": "EPUB share reading font as UI font",
+    "tooltip": "Use the current reading font as the UI font to save memory"
+  },
+  "epub_reader_gen_cover": {
+    "message0": "EPUB generate cover thumbnail %1",
+    "tooltip": "Extract the EPUB cover and cache a 48x64 thumbnail on the SD card"
+  },
+  "epub_reader_show_full_image": {
+    "message0": "EPUB show full-screen image %1",
+    "tooltip": "Scale image N to screen width and display it with screen-by-screen scrolling"
+  },
+  "epub_reader_page_img_count": {
+    "message0": "EPUB current page image count",
+    "tooltip": "Get the number of images on the current page"
+  },
+  "epub_reader_full_img_next": {
+    "message0": "EPUB image next screen",
+    "tooltip": "Scroll to the next screen, loading the next image at the end, and return whether content remains"
+  },
+  "epub_reader_full_img_prev": {
+    "message0": "EPUB image previous screen",
+    "tooltip": "Scroll to the previous screen, loading the previous image at the beginning, and return whether content remains"
+  },
+  "epub_reader_full_img_exit": {
+    "message0": "EPUB exit full-screen image (release memory)",
+    "tooltip": "Release the full-screen image cache"
+  },
+  "epub_reader_show_fit_image": {
+    "message0": "EPUB fit image to page %1",
+    "tooltip": "Scale image N to fit the screen and display it as a full page"
+  },
+  "epub_reader_fit_img_next": {
+    "message0": "EPUB next fitted image",
+    "tooltip": "Show the next fitted full-page image and return whether another image remains"
+  },
+  "epub_reader_fit_img_prev": {
+    "message0": "EPUB previous fitted image",
+    "tooltip": "Show the previous fitted full-page image and return whether another image remains"
+  }
+}

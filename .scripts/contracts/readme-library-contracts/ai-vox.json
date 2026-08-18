@@ -1,0 +1,126 @@
+{
+  "schemaVersion": 1,
+  "blocks": {
+    "aivox3_get_wifi_state": {
+      "agentVisible": false,
+      "reason": "This legacy block is absent from the toolbox and has no registered generator."
+    },
+    "aivox_get_iot_message_event_name": {
+      "agentVisible": false,
+      "reason": "This legacy event block is absent from the toolbox and has no registered generator."
+    },
+    "aivox_lcd_show_chat_message": {
+      "agentVisible": false,
+      "reason": "This removed LCD compatibility block is absent from the toolbox and has no registered generator."
+    },
+    "aivox_lcd_show_emotion": {
+      "agentVisible": false,
+      "reason": "This removed LCD compatibility block is absent from the toolbox and has no registered generator."
+    },
+    "aivox_mcp_register_state_control_command": {
+      "agentVisible": false,
+      "reason": "This legacy MCP block is absent from the toolbox and has no registered generator."
+    },
+    "aivox_mcp_register_value_control_command": {
+      "agentVisible": false,
+      "reason": "This legacy MCP block is absent from the toolbox and has no registered generator."
+    },
+    "aivox_response_mcp_control_result": {
+      "agentVisible": false,
+      "reason": "This legacy MCP response block is absent from the toolbox and has no registered generator."
+    },
+    "aivox_state": {
+      "agentVisible": false,
+      "reason": "This legacy state block is absent from the toolbox and has no registered generator."
+    },
+    "aivox_state_control_message_event_fuction": {
+      "agentVisible": false,
+      "reason": "This legacy state-event block is absent from the toolbox and has no registered generator."
+    },
+    "aivox3_init_wifi": {
+      "variants": [
+        {
+          "id": "manual-credentials",
+          "when": { "MODE": ["Manual"] },
+          "appendArgs": [
+            { "name": "SSID", "type": "input_value", "example": "text(\"Your WiFi SSID\")", "required": true },
+            { "name": "PSWD", "type": "input_value", "example": "text(\"Your WiFi Password\")", "required": true }
+          ]
+        }
+      ]
+    },
+    "aivox_init_mic": {
+      "variants": [
+        {
+          "id": "standard-i2s-microphone",
+          "when": {},
+          "appendArgs": [
+            { "name": "MIC_BCLK", "type": "field_dropdown", "example": "4", "required": true },
+            { "name": "MIC_WS", "type": "field_dropdown", "example": "5", "required": true },
+            { "name": "MIC_DIN", "type": "field_dropdown", "example": "6", "required": true }
+          ]
+        }
+      ]
+    },
+    "aivox_init_audio": {
+      "variants": [
+        {
+          "id": "standard-i2s-speaker",
+          "when": {},
+          "appendArgs": [
+            { "name": "SPK_BCLK", "type": "field_dropdown", "example": "13", "required": true },
+            { "name": "SPK_WS", "type": "field_dropdown", "example": "14", "required": true },
+            { "name": "SPK_DOUT", "type": "field_dropdown", "example": "1", "required": true }
+          ]
+        }
+      ]
+    },
+    "aivox3_init_es8311": {
+      "variants": [
+        {
+          "id": "es8311-pins-and-bus",
+          "when": {},
+          "appendArgs": [
+            { "name": "ES8311_SDA", "type": "field_dropdown", "example": "0", "required": true },
+            { "name": "ES8311_SCL", "type": "field_dropdown", "example": "1", "required": true },
+            { "name": "ES8311_MCLK", "type": "field_dropdown", "example": "2", "required": true },
+            { "name": "ES8311_SCLK", "type": "field_dropdown", "example": "3", "required": true },
+            { "name": "ES8311_LRCK", "type": "field_dropdown", "example": "8", "required": true },
+            { "name": "ES8311_DSDIN", "type": "field_dropdown", "example": "7", "required": true },
+            { "name": "ES8311_DSDOUT", "type": "field_dropdown", "example": "9", "required": true },
+            { "name": "ES8311_I2C_ADDRESS", "type": "input_value", "example": "math_number(48)", "required": true },
+            { "name": "ES8311_RATE", "type": "input_value", "example": "math_number(16000)", "required": true },
+            { "name": "ES8311_IIC_PORT", "type": "field_dropdown", "example": "0", "required": true }
+          ]
+        }
+      ]
+    },
+    "aivox_mcp_register_control_command": {
+      "variadic": {
+        "prefix": "INPUT",
+        "startIndex": 1,
+        "type": "input_value",
+        "sampleCount": 1,
+        "example": "aivox_mcp_control_param(\"level\", Number, math_number(0), math_number(100))",
+        "reason": "The dynamic_inputs_mutator appends INPUT1, INPUT2, and later MCP parameter inputs; named inputs preserve their identities during ABS import."
+      }
+    },
+    "aivox_mcp_control_param": {
+      "variants": [
+        {
+          "id": "boolean-parameter",
+          "when": { "TYPE": ["Boolean"] },
+          "appendArgs": []
+        },
+        {
+          "id": "number-parameter",
+          "when": { "TYPE": ["Number"] },
+          "appendArgs": [
+            { "name": "MIN", "type": "input_value", "example": "math_number(0)", "required": true },
+            { "name": "MAX", "type": "input_value", "example": "math_number(100)", "required": true }
+          ]
+        }
+      ]
+    }
+  }
+}

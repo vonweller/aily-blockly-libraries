@@ -7,7 +7,7 @@
   },
   "k10_camera_init": {
     "message0": "inicializar câmera",
-    "tooltip": "Inicializar câmera K10"
+    "tooltip": "Inicializar a câmera K10 com a pré-visualização oculta"
   },
   "k10_camera_show": {
     "message0": "exibir visão da câmera",
@@ -17,14 +17,18 @@
     "message0": "salvar foto no cartão TF nome %1",
     "tooltip": "Tirar foto e salvar no cartão TF"
   },
+  "k10_photo_base64": {
+    "message0": "tirar foto e converter para Base64",
+    "tooltip": "Tira uma foto e retorna uma string JPEG Base64 pronta para a entrada de imagem Base64 do Qwen"
+  },
   "k10_ai_init": {
     "message0": "inicializar IA modo %1",
-    "tooltip": "Inicializar visão IA",
+    "tooltip": "Inicializar a visão IA com a pré-visualização da câmera oculta",
     "args0": [
       {
         "options": [
           [
-            "Detecção facial",
+            "Detecção/reconhecimento facial",
             "Face"
           ],
           [
@@ -38,10 +42,6 @@
           [
             "Leitura QR",
             "Code"
-          ],
-          [
-            "Reconhecimento facial",
-            "Face"
           ]
         ]
       }
@@ -54,7 +54,7 @@
       {
         "options": [
           [
-            "Detecção facial",
+            "Detecção/reconhecimento facial",
             "Face"
           ],
           [
@@ -68,10 +68,6 @@
           [
             "Leitura QR",
             "Code"
-          ],
-          [
-            "Reconhecimento facial",
-            "Face"
           ]
         ]
       }
@@ -124,6 +120,46 @@
           [
             "Altura",
             "Width"
+          ],
+          [
+            "Olho esquerdo X",
+            "LeftEyeX"
+          ],
+          [
+            "Olho esquerdo Y",
+            "LeftEyeY"
+          ],
+          [
+            "Olho direito X",
+            "RightEyeX"
+          ],
+          [
+            "Olho direito Y",
+            "RightEyeY"
+          ],
+          [
+            "Nariz X",
+            "NoseX"
+          ],
+          [
+            "Nariz Y",
+            "NoseY"
+          ],
+          [
+            "Canto esquerdo da boca X",
+            "LeftMouthX"
+          ],
+          [
+            "Canto esquerdo da boca Y",
+            "LeftMouthY"
+          ],
+          [
+            "Canto direito da boca X",
+            "RightMouthX"
+          ],
+          [
+            "Canto direito da boca Y",
+            "RightMouthY"
           ]
         ]
       }
@@ -164,30 +200,37 @@
     "tooltip": "Definir limiar de sensibilidade de detecção de movimento"
   },
   "k10_ai_face_recognized": {
-    "message0": "rosto reconhecido",
-    "tooltip": "Retorna se um rosto foi reconhecido"
+    "message0": "reconhecimento facial concluído",
+    "tooltip": "Retorna se um comando de reconhecimento facial terminou com resultado"
   },
   "k10_ai_get_face_id": {
     "message0": "obter ID do rosto reconhecido",
     "tooltip": "Obter ID do rosto reconhecido"
   },
   "k10_ai_face_cmd": {
-    "message0": "reconhecimento facial %1 ID %2",
-    "tooltip": "Adicionar ou remover rosto",
+    "message0": "ação facial %1",
+    "tooltip": "Aprender um rosto, reconhecer uma vez ou limpar todos os rostos aprendidos",
     "args0": [
       {
         "options": [
           [
-            "Adicionar rosto",
+            "Aprender rosto",
             "ENROLL"
           ],
           [
-            "Remover rosto",
-            "DELETE"
+            "Reconhecer rosto",
+            "RECOGNIZE"
+          ],
+          [
+            "Limpar rostos aprendidos",
+            "DELETEALL"
           ]
         ]
-      },
-      null
+      }
     ]
+  },
+  "k10_camera_hide": {
+    "message0": "Esconda as imagens da câmera",
+    "tooltip": "A prévia oculta em tempo real da câmera K10 reduz tarefas de atualização da tela e exibição da câmera que afetam a reprodução de voz"
   }
 }

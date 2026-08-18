@@ -362,3 +362,70 @@ XIAO ESP32S3，左侧 7 引脚 + 右侧 7 引脚：
 }
 ```
 
+## 7. 仿真外观扩展（可选）
+
+Pinmap 仍是元件静态外观、逻辑尺寸和引脚的唯一主数据源。支持仿真的元件可以增加
+`appearance` 与 `simulation`，但不得复制一份独立的“仿真元件配置”。
+
+- `images[].id`：同一外观版本内稳定且唯一。
+- `images[].appearanceLayer`：`background` 或 `foreground`；未填写时按历史数据作为背景层。
+- `appearance.source`：固定为 `pinmap`，表示 Manifest 从本文件的 `images/pins/width/height` 生成。
+- `appearance.slots`：只定义动态显示或交互区域，不包含运行时状态。
+- `simulation`：只引用精确的 Device Model 和 View Adapter 身份，不包含实现代码。
+- Blockly、连线图和 Simulator 不得根据元件名称、图片文件名或引脚位置猜测仿真类型。
+
+```json
+{
+  "images": [
+    {
+      "id": "body",
+      "url": "/appearance/v1/gpio-led-body.svg",
+      "version": "v1",
+      "x": 48,
+      "y": 56,
+      "width": 96,
+      "height": 112,
+      "appearanceLayer": "background"
+    }
+  ],
+  "appearance": {
+    "schemaVersion": 1,
+    "source": "pinmap",
+    "id": "aily.appearance.gpio-led",
+    "version": "1.0.0",
+    "overflow": "visible",
+    "slots": [
+      {
+        "id": "emitter",
+        "role": "led-emitter",
+        "layer": "dynamic",
+        "x": 28,
+        "y": 18,
+        "width": 40,
+        "height": 40,
+        "shape": "circle",
+        "clip": false
+      }
+    ]
+  },
+  "simulation": {
+    "schemaVersion": 1,
+    "model": {
+      "id": "aily.gpio-led",
+      "version": "0.1.0"
+    },
+    "viewAdapter": {
+      "id": "aily.view.gpio-led",
+      "version": "1.0.0"
+    }
+  }
+}
+```
+
+`lib-core-io:led:generic` 与 `lib-core-io:button:generic` 是默认 IO 基础组件。
+它们使用 Aily 自有 SVG/交互规范，不依赖 Wokwi 外观资产。普通 `digitalWrite` /
+`digitalRead` 块不会自动创建这些元件；只有场景中显式选择该 pinmap 时才参与连线与仿真。
+
+旧 pinmap 无需迁移即可继续作为静态元件渲染；没有 `simulation` 时，Simulator 必须将其视为
+“仅静态显示”，而不是通过名称进行推断。
+

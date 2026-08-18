@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "blocks": {
+    "qwen_omni_omni_voice_chat": {
+      "excludedRuntimeArgs": [
+        {
+          "name": "VAR",
+          "type": "field",
+          "reason": "The generator retains the former single-I2S object field as a compatibility fallback; current blocks use MIC_VAR and SPK_VAR and new ABS must not emit VAR."
+        }
+      ]
+    }
+  }
+}

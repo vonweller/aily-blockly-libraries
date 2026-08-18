@@ -14,9 +14,15 @@
 
 const fs = require('fs');
 const path = require('path');
-const { execSync } = require('child_process');
+const { execFileSync } = require('child_process');
 const yaml = require('js-yaml');
 const readmeCompliance = require('../.scripts/check-readme-compliance.js');
+const {
+  contractRepositoryPathForLibrary,
+  libraryFromContractRepositoryPath,
+} = require('../.scripts/readme-library-contracts.js');
+
+const REPOSITORY_ROOT = path.resolve(__dirname, '..');
 
 class LibraryValidator {
   constructor(configPath = null) {
@@ -100,7 +106,7 @@ class LibraryValidator {
   }
 
   // 检测单个库
-  async validateLibrary(libraryPath) {
+  async validateLibrary(libraryPath, options = {}) {
     const libraryName = path.basename(libraryPath);
     console.log(`\n🔍 检测库: ${libraryName}`);
     console.log('='.repeat(50));
@@ -108,6 +114,7 @@ class LibraryValidator {
     this.issues = [];
     this.score = 0;
     this.maxScore = 0;
+    this.absContractRegressions = 0;
 
     // 1. 基础文件结构检测
     await this.checkFileStructure(libraryPath);
@@ -129,6 +136,11 @@ class LibraryValidator {
     
     // 7. generator.js最佳实践检测
     await this.checkGeneratorBestPractices(libraryPath);
+
+    // 8. 变更门禁：仅阻断相对 Git 基线新增的 ABS 契约问题。
+    if (options.absBaselineRef) {
+      this.checkAiReadmeAbsRegression(libraryPath, options.absBaselineRef, options.absHeadRef);
+    }
 
     return this.generateReport(libraryName);
   }
@@ -863,13 +875,16 @@ class LibraryValidator {
       } else {
         this.addFailure(errors.length);
         for (const issue of errors) {
-          this.addIssue('warning', 'README', issue.message, '运行 npm run readme:fix 自动修复README文档');
+          this.addIssue('warning', 'README', issue.message, '运行 npm run readme:check 审计，并仅替换通过ABS契约校验和人工复核的候选文档');
           console.log(`  ⚠️  ${issue.message}`);
         }
       }
 
       for (const info of infos) {
-        this.addIssue('info', 'README', info.message, '复杂库允许 readme_ai.md 最大15KB');
+        const suggestion = info.message.startsWith('[ABS contract]')
+          ? '这是迁移期语义债务；运行 npm run readme:audit 查看严格报告，修复后再替换文档'
+          : '复杂库允许 readme_ai.md 最大15KB';
+        this.addIssue('info', 'README', info.message, suggestion);
         console.log(`  💡 ${info.message}`);
       }
     } catch (error) {
@@ -966,7 +981,8 @@ class LibraryValidator {
       score: this.score,
       maxScore: this.maxScore,
       percentage: scorePercentage,
-      issues: this.issues
+      issues: this.issues,
+      absContractRegressions: this.absContractRegressions || 0
     };
   }
 
@@ -1036,34 +1052,234 @@ class LibraryValidator {
   }
 
   // 获取 git 变更的文件列表
-  getChangedFiles() {
+  getChangedFiles(options = {}) {
     try {
-      // 尝试获取与 main 分支的差异（适用于 PR）
-      let changedFiles;
-      try {
-        changedFiles = execSync('git diff --name-only origin/main...HEAD', { encoding: 'utf8' });
-      } catch (e) {
-        // 如果没有 origin/main，尝试与本地 main 比较
+      const runGitDiff = (range) => execFileSync('git', ['diff', '--name-only', range], { encoding: 'utf8' });
+
+      let changedFiles = '';
+      if (options.base && options.head) {
+        const range = `${options.base}...${options.head}`;
+        console.log(`📌 使用指定变更范围: ${range}`);
         try {
-          changedFiles = execSync('git diff --name-only main...HEAD', { encoding: 'utf8' });
-        } catch (e2) {
-          // 如果都失败，获取最近一次提交的变更
-          changedFiles = execSync('git diff --name-only HEAD~1 HEAD', { encoding: 'utf8' });
+          changedFiles = runGitDiff(range);
+        } catch (error) {
+          throw new Error(`无法获取指定范围的 git 变更: ${range}\n${error.message}`);
+        }
+      } else {
+        // 尝试获取与 main 分支的差异（适用于本地或 push fallback）
+        try {
+          changedFiles = runGitDiff('origin/main...HEAD');
+        } catch (e) {
+          // 如果没有 origin/main，尝试与本地 main 比较
+          try {
+            changedFiles = runGitDiff('main...HEAD');
+          } catch (e2) {
+            // 如果都失败，获取最近一次提交的变更
+            changedFiles = execFileSync('git', ['diff', '--name-only', 'HEAD~1', 'HEAD'], { encoding: 'utf8' });
+          }
         }
       }
       return changedFiles.trim().split('\n').filter(f => f);
     } catch (error) {
+      if (options.base && options.head) {
+        throw error;
+      }
+
       console.error('⚠️  无法获取 git 变更信息:', error.message);
       console.error('   请确保在 git 仓库中运行此命令');
       return [];
     }
   }
 
+  // --changed 使用三点 diff，因此语义基线也必须取 merge-base，而不是基分支尖端。
+  resolveAbsBaselineRef(options = {}) {
+    const headRef = options.head || 'HEAD';
+    const mergeBase = (baseRef) => execFileSync(
+      'git',
+      ['merge-base', baseRef, headRef],
+      { encoding: 'utf8' }
+    ).trim();
+
+    if (options.base) {
+      try {
+        return mergeBase(options.base) || options.base;
+      } catch (error) {
+        // Push 的 before SHA 在极端历史重写下可能没有共同祖先；仍可直接作为比较基线。
+        try {
+          return execFileSync('git', ['rev-parse', '--verify', `${options.base}^{commit}`], { encoding: 'utf8' }).trim();
+        } catch {
+          throw new Error(`无法解析 ABS 契约比较基线 ${options.base}: ${error.message}`);
+        }
+      }
+    }
+
+    for (const candidate of ['origin/main', 'main']) {
+      try {
+        const resolved = mergeBase(candidate);
+        if (resolved) return resolved;
+      } catch {
+        // 尝试下一个本地可用基线。
+      }
+    }
+
+    try {
+      return execFileSync('git', ['rev-parse', '--verify', 'HEAD~1^{commit}'], { encoding: 'utf8' }).trim();
+    } catch (error) {
+      throw new Error(`无法确定 ABS 契约比较基线: ${error.message}`);
+    }
+  }
+
+  listLibraryFilesAtRevision(ref, libraryName) {
+    const output = execFileSync(
+      'git',
+      ['ls-tree', '-r', '--name-only', ref, '--', libraryName],
+      { encoding: 'utf8' }
+    );
+    return output.split(/\r?\n/).map(file => file.trim()).filter(Boolean);
+  }
+
+  readFileAtRevision(ref, relativePath) {
+    return execFileSync('git', ['show', `${ref}:${relativePath}`], {
+      encoding: 'utf8',
+      maxBuffer: 10 * 1024 * 1024
+    }).replace(/^\uFEFF/, '');
+  }
+
+  readOptionalFileAtRevision(ref, relativePath) {
+    try {
+      execFileSync('git', ['cat-file', '-e', `${ref}:${relativePath}`], {
+        stdio: 'ignore'
+      });
+      return this.readFileAtRevision(ref, relativePath);
+    } catch {
+      return null;
+    }
+  }
+
+  readReadmeContractAtRevision(ref, libraryName) {
+    return this.readOptionalFileAtRevision(ref, contractRepositoryPathForLibrary(libraryName));
+  }
+
+  readCurrentReadmeContract(libraryName) {
+    const contractPath = path.join(REPOSITORY_ROOT, contractRepositoryPathForLibrary(libraryName));
+    return fs.existsSync(contractPath)
+      ? fs.readFileSync(contractPath, 'utf8').replace(/^\uFEFF/, '')
+      : null;
+  }
+
+  findLibraryFile(files, libraryName, expectedName) {
+    const expected = `${libraryName}/${expectedName}`.replace(/\\/g, '/').toLowerCase();
+    return files.find(file => file.replace(/\\/g, '/').toLowerCase() === expected) || null;
+  }
+
+  readCurrentFileCaseInsensitive(libraryPath, expectedName) {
+    if (!fs.existsSync(libraryPath)) return null;
+    const actual = fs.readdirSync(libraryPath).find(name => name.toLowerCase() === expectedName.toLowerCase());
+    return actual ? fs.readFileSync(path.join(libraryPath, actual), 'utf8').replace(/^\uFEFF/, '') : null;
+  }
+
+  parseBlockArray(content, label) {
+    if (content == null) return [];
+    let value;
+    try {
+      value = JSON.parse(content);
+    } catch (error) {
+      throw new Error(`${label} 不是有效 JSON: ${error.message}`);
+    }
+    if (!Array.isArray(value)) throw new Error(`${label} 必须是块定义数组`);
+    return value;
+  }
+
+  parseOptionalJsonObject(content, label) {
+    if (content == null) return null;
+    let value;
+    try {
+      value = JSON.parse(content);
+    } catch (error) {
+      throw new Error(`${label} 不是有效 JSON: ${error.message}`);
+    }
+    if (!value || typeof value !== 'object' || Array.isArray(value)) {
+      throw new Error(`${label} 必须是 JSON 对象`);
+    }
+    return value;
+  }
+
+  checkAiReadmeAbsRegression(libraryPath, baselineRef, headRef = null) {
+    const libraryName = path.basename(libraryPath);
+    console.log(`\n🧭 检测 ABS 契约回归（基线 ${baselineRef.slice(0, 12)}）...`);
+
+    const baselineFiles = this.listLibraryFilesAtRevision(baselineRef, libraryName);
+    const baselineReadmePath = this.findLibraryFile(baselineFiles, libraryName, 'readme_ai.md');
+    const baselineBlockPath = this.findLibraryFile(baselineFiles, libraryName, 'block.json');
+    const beforeContent = baselineReadmePath
+      ? this.readFileAtRevision(baselineRef, baselineReadmePath)
+      : null;
+    const beforeBlocks = baselineBlockPath
+      ? this.parseBlockArray(this.readFileAtRevision(baselineRef, baselineBlockPath), `${baselineRef}:${baselineBlockPath}`)
+      : [];
+    const beforeContractPath = contractRepositoryPathForLibrary(libraryName);
+    const beforeContract = this.parseOptionalJsonObject(
+      this.readReadmeContractAtRevision(baselineRef, libraryName),
+      `${baselineRef}:${beforeContractPath}`,
+    );
+    let afterContent;
+    let afterBlockContent;
+    let afterContractContent;
+    if (headRef) {
+      const headFiles = this.listLibraryFilesAtRevision(headRef, libraryName);
+      const headReadmePath = this.findLibraryFile(headFiles, libraryName, 'readme_ai.md');
+      const headBlockPath = this.findLibraryFile(headFiles, libraryName, 'block.json');
+      afterContent = headReadmePath ? this.readFileAtRevision(headRef, headReadmePath) : '';
+      afterBlockContent = headBlockPath ? this.readFileAtRevision(headRef, headBlockPath) : null;
+      afterContractContent = this.readReadmeContractAtRevision(headRef, libraryName);
+    } else {
+      afterContent = this.readCurrentFileCaseInsensitive(libraryPath, 'readme_ai.md') || '';
+      afterBlockContent = this.readCurrentFileCaseInsensitive(libraryPath, 'block.json');
+      afterContractContent = this.readCurrentReadmeContract(libraryName);
+    }
+    const afterBlocks = this.parseBlockArray(afterBlockContent, `${headRef ? `${headRef}:` : ''}${libraryName}/block.json`);
+    const afterContract = this.parseOptionalJsonObject(
+      afterContractContent,
+      `${headRef ? `${headRef}:` : ''}${contractRepositoryPathForLibrary(libraryName)}`
+    );
+    const comparison = readmeCompliance.compareAiAbsContracts(
+      beforeContent,
+      beforeBlocks,
+      afterContent,
+      afterBlocks,
+      beforeContract,
+      afterContract
+    );
+
+    this.absContractRegressions = comparison.added.length;
+    if (comparison.added.length === 0) {
+      console.log(`  ✅ 未新增 ABS 契约问题${comparison.removed.length > 0 ? `，并修复 ${comparison.removed.length} 项历史问题` : ''}`);
+      return comparison;
+    }
+
+    for (const finding of comparison.added) {
+      this.addIssue(
+        'error',
+        'README ABS 回归',
+        `[ABS contract regression] ${finding}`,
+        '修复新增问题；历史存量问题不会被该门禁阻断'
+      );
+      console.log(`  ❌ 新增: ${finding}`);
+    }
+    return comparison;
+  }
+
   // 从变更文件中提取库目录
   extractLibrariesFromChangedFiles(changedFiles) {
     const libraries = new Set();
+    const currentDir = process.cwd();
     
     for (const file of changedFiles) {
+      const contractedLibrary = libraryFromContractRepositoryPath(file);
+      if (contractedLibrary) {
+        libraries.add(contractedLibrary);
+        continue;
+      }
       // 跳过根目录文件
       if (!file.includes('/') && !file.includes('\\')) {
         continue;
@@ -1077,6 +1293,13 @@ class LibraryValidator {
       if (libraryName.startsWith('.') || libraryName === 'node_modules') {
         continue;
       }
+
+      const libraryPath = path.join(currentDir, libraryName);
+      const hasPackageJson = fs.existsSync(path.join(libraryPath, 'package.json'));
+      const hasBlockJson = fs.existsSync(path.join(libraryPath, 'block.json'));
+      if (!hasPackageJson && !hasBlockJson) {
+        continue;
+      }
       
       libraries.add(libraryName);
     }
@@ -1084,13 +1307,49 @@ class LibraryValidator {
     return Array.from(libraries);
   }
 
+  // 多语言文件由专用校验器负责，避免纯翻译变更触发整个旧库的规范评分。
+  isI18nFile(file) {
+    const parts = file.split(/[\\/]/);
+    return parts.length >= 3 && parts[1] === 'i18n' && /\.json$/i.test(parts[parts.length - 1]);
+  }
+
+  isI18nContractFile(file) {
+    if (this.isI18nFile(file)) return true;
+    const parts = file.split(/[\\/]/);
+    return parts.length === 2 && ['block.json', 'toolbox.json'].includes(parts[1].toLowerCase());
+  }
+
+  validateI18nFiles(currentDir, libraries) {
+    if (!Array.isArray(libraries) || libraries.length === 0) {
+      console.log('🌐 多语言变更没有对应的现存库，跳过 i18n 内容校验。\n');
+      return;
+    }
+
+    console.log(`🌐 检测到多语言文件变更，校验 ${libraries.length} 个变更库的完整多语言契约:\n`);
+    libraries.forEach(library => console.log(`   - ${library}`));
+    console.log('');
+    try {
+      const checker = path.join(currentDir, '.scripts', 'check-i18n-compliance.js');
+      const args = [checker];
+      for (const library of libraries) {
+        args.push('--library', library);
+      }
+      execFileSync(process.execPath, args, {
+        cwd: currentDir,
+        stdio: 'inherit'
+      });
+    } catch (error) {
+      throw new Error('多语言文件校验失败，请查看上方 i18n:check 报告');
+    }
+  }
+
   // 验证 PR 中变更的库
-  async validateChangedLibraries() {
+  async validateChangedLibraries(options = {}) {
     const currentDir = process.cwd();
     
     console.log('🔍 检测 PR 中的变更文件...\n');
     
-    const changedFiles = this.getChangedFiles();
+    const changedFiles = this.getChangedFiles(options);
     
     if (changedFiles.length === 0) {
       console.log('ℹ️  未检测到文件变更');
@@ -1098,17 +1357,37 @@ class LibraryValidator {
     }
     
     console.log(`📝 发现 ${changedFiles.length} 个变更文件`);
-    
-    const changedLibraries = this.extractLibrariesFromChangedFiles(changedFiles);
+
+    const i18nFiles = changedFiles.filter(file => this.isI18nFile(file));
+    const nonI18nFiles = changedFiles.filter(file => !this.isI18nFile(file));
+    const i18nContractFiles = changedFiles.filter(file => this.isI18nContractFile(file));
+    const i18nLibraries = this.extractLibrariesFromChangedFiles(i18nContractFiles);
+    const allChangedLibraries = this.extractLibrariesFromChangedFiles(changedFiles);
+    const changedLibraries = this.extractLibrariesFromChangedFiles(nonI18nFiles);
+    const changedLibrarySet = new Set(changedLibraries);
+    const i18nOnlyLibraries = allChangedLibraries.filter(library => !changedLibrarySet.has(library));
+
+    if (i18nContractFiles.length > 0) {
+      this.validateI18nFiles(currentDir, i18nLibraries);
+    }
+
+    if (i18nOnlyLibraries.length > 0) {
+      console.log(`\n🌐 跳过 ${i18nOnlyLibraries.length} 个仅修改 i18n/ 的库的通用规范评分:`);
+      i18nOnlyLibraries.forEach(lib => console.log(`   - ${lib}`));
+      console.log('   这些变更已由 npm run i18n:check 校验。');
+    }
     
     if (changedLibraries.length === 0) {
-      console.log('\n✅ 本次变更未涉及库目录\n');
+      console.log('\n✅ 本次变更没有需要运行通用规范评分的库\n');
       return [];
     }
     
     console.log(`\n📦 本次变更涉及 ${changedLibraries.length} 个库:`);
     changedLibraries.forEach(lib => console.log(`   - ${lib}`));
     console.log('');
+
+    const absBaselineRef = this.resolveAbsBaselineRef(options);
+    console.log(`🧭 ABS 契约回归比较基线: ${absBaselineRef}\n`);
     
     const results = [];
     let passCount = 0;
@@ -1133,7 +1412,10 @@ class LibraryValidator {
         continue;
       }
 
-      const result = await this.validateLibrary(libPath);
+      const result = await this.validateLibrary(libPath, {
+        absBaselineRef,
+        absHeadRef: options.head || 'HEAD'
+      });
       results.push(result);
 
       if (result.percentage >= 90) {
@@ -1160,17 +1442,31 @@ class LibraryValidator {
       console.log(`✅ 完全合规 (≥90%): ${passCount} 个`);
       console.log(`⚠️  部分合规 (60-89%): ${partialCount} 个`);
       console.log(`❌ 需要修改 (<60%): ${failCount} 个`);
+      const absRegressionLibraries = results.filter(result => result.absContractRegressions > 0);
+      const absRegressionCount = absRegressionLibraries.reduce(
+        (sum, result) => sum + result.absContractRegressions,
+        0
+      );
+      console.log(`🧭 新增 ABS 契约问题: ${absRegressionCount} 项 / ${absRegressionLibraries.length} 个库`);
 
       // 按评分排序显示
       results.sort((a, b) => b.percentage - a.percentage);
       console.log('\n📋 库评分:');
       for (const result of results) {
-        const icon = result.percentage >= 90 ? '✅' : result.percentage >= 60 ? '⚠️' : '❌';
-        console.log(`  ${icon} ${result.libraryName}: ${result.percentage}%`);
+        const icon = result.absContractRegressions > 0
+          ? '❌'
+          : result.percentage >= 90 ? '✅' : result.percentage >= 60 ? '⚠️' : '❌';
+        const regressionNote = result.absContractRegressions > 0
+          ? `，新增 ABS 契约问题 ${result.absContractRegressions} 项`
+          : '';
+        console.log(`  ${icon} ${result.libraryName}: ${result.percentage}%${regressionNote}`);
       }
       
-      // 如果有不合规的库，返回错误码
-      if (failCount > 0) {
+      // ABS 回归是独立门禁，不依赖旧评分是否跌破 60%。
+      if (absRegressionCount > 0) {
+        console.log('\n❌ 检测失败: 本次变更新增了 ABS 契约问题');
+        process.exitCode = 1;
+      } else if (failCount > 0) {
         console.log('\n❌ 检测失败: 存在不合规的库');
         process.exitCode = 1;
       } else if (partialCount > 0) {
@@ -1185,6 +1481,12 @@ class LibraryValidator {
 }
 
 // 主函数
+function getOptionValue(args, name) {
+  const index = args.indexOf(name);
+  if (index === -1) return null;
+  return args[index + 1] || null;
+}
+
 async function main() {
   const args = process.argv.slice(2);
   const validator = new LibraryValidator();
@@ -1197,6 +1499,7 @@ Arduino库转Blockly库规范检测工具
   node validate-library-compliance.js [库名]       检测指定库
   node validate-library-compliance.js --all        检测所有库
   node validate-library-compliance.js --changed    检测PR中变更的库 (推荐用于CI/CD)
+  node validate-library-compliance.js --changed --base <sha> --head <sha>
   node validate-library-compliance.js --help       显示帮助
 
 检测范围:
@@ -1219,7 +1522,10 @@ CI/CD 集成:
   if (args[0] === '--all') {
     await validator.validateAllLibraries();
   } else if (args[0] === '--changed') {
-    await validator.validateChangedLibraries();
+    await validator.validateChangedLibraries({
+      base: getOptionValue(args, '--base'),
+      head: getOptionValue(args, '--head')
+    });
   } else {
     const libraryName = args[0];
     const libraryPath = path.resolve(libraryName);
@@ -1251,7 +1557,10 @@ CI/CD 集成:
 
 // 运行主函数
 if (require.main === module) {
-  main().catch(console.error);
+  main().catch(error => {
+    console.error(error.message || error);
+    process.exitCode = 1;
+  });
 }
 
 module.exports = LibraryValidator;

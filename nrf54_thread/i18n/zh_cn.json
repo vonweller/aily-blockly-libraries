@@ -1,0 +1,214 @@
+{
+  "toolbox_name": "nRF54 Thread",
+  "toolbox_labels": {
+    "网络配置": "网络配置",
+    "网络状态": "网络状态",
+    "Commissioner与Joiner": "Commissioner与Joiner",
+    "UDP通信": "UDP通信",
+    "事件": "事件"
+  },
+  "nrf54_thread_begin": {
+    "message0": "启动Thread 模式 %1 清除旧设置 %2",
+    "tooltip": "启动OpenThread实验栈并自动在主循环中处理任务。",
+    "args0": [
+      {
+        "options": [
+          [
+            "自动",
+            "begin"
+          ],
+          [
+            "仅子设备",
+            "beginAsChild"
+          ],
+          [
+            "可成为路由器",
+            "beginAsRouter"
+          ],
+          [
+            "优先子设备",
+            "beginChildFirst"
+          ],
+          [
+            "仅Joiner",
+            "beginJoinerOnly"
+          ],
+          [
+            "低功耗子设备",
+            "beginAsSleepyChild"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "否",
+            "false"
+          ],
+          [
+            "是",
+            "true"
+          ]
+        ]
+      }
+    ]
+  },
+  "nrf54_thread_stop": {
+    "message0": "停止Thread",
+    "tooltip": "停止Thread网络接口。"
+  },
+  "nrf54_thread_restart": {
+    "message0": "重启Thread 清除旧设置 %1",
+    "tooltip": "按当前策略重启Thread。",
+    "args0": [
+      {
+        "options": [
+          [
+            "否",
+            "false"
+          ],
+          [
+            "是",
+            "true"
+          ]
+        ]
+      }
+    ]
+  },
+  "nrf54_thread_wipe_settings": {
+    "message0": "清除Thread持久化设置",
+    "tooltip": "清除已保存的Thread网络设置。"
+  },
+  "nrf54_thread_use_demo_dataset": {
+    "message0": "使用Thread演示网络参数",
+    "tooltip": "生成并应用库内置的演示数据集。"
+  },
+  "nrf54_thread_set_dataset_hex": {
+    "message0": "设置Thread数据集TLV十六进制 %1",
+    "tooltip": "导入OpenThread数据集TLV十六进制文本。"
+  },
+  "nrf54_thread_set_router_eligible": {
+    "message0": "允许成为Thread路由器 %1",
+    "tooltip": "设置设备是否可升级为路由器。",
+    "args0": [
+      {
+        "options": [
+          [
+            "是",
+            "true"
+          ],
+          [
+            "否",
+            "false"
+          ]
+        ]
+      }
+    ]
+  },
+  "nrf54_thread_request_router": {
+    "message0": "请求成为Thread路由器",
+    "tooltip": "请求切换到路由器角色。"
+  },
+  "nrf54_thread_set_poll_period": {
+    "message0": "设置低功耗子设备轮询周期(ms) %1",
+    "tooltip": "设置Sleepy Child轮询周期。"
+  },
+  "nrf54_thread_started": {
+    "message0": "Thread已启动?",
+    "tooltip": "返回Thread栈是否已启动。"
+  },
+  "nrf54_thread_attached": {
+    "message0": "Thread已接入网络?",
+    "tooltip": "返回设备是否已接入Thread网络。"
+  },
+  "nrf54_thread_role_name": {
+    "message0": "Thread当前角色",
+    "tooltip": "返回disabled、detached、child、router或leader。"
+  },
+  "nrf54_thread_rloc16": {
+    "message0": "Thread RLOC16地址",
+    "tooltip": "返回当前RLOC16短地址。"
+  },
+  "nrf54_thread_partition_id": {
+    "message0": "Thread分区ID",
+    "tooltip": "返回当前Thread分区ID。"
+  },
+  "nrf54_thread_dataset_configured": {
+    "message0": "Thread数据集已配置?",
+    "tooltip": "返回是否已有活动数据集。"
+  },
+  "nrf54_thread_last_error": {
+    "message0": "Thread最后错误码",
+    "tooltip": "返回最近一次OpenThread错误码。"
+  },
+  "nrf54_thread_commissioner_start": {
+    "message0": "启动Thread Commissioner",
+    "tooltip": "启动Commissioner以允许Joiner加入。"
+  },
+  "nrf54_thread_commissioner_stop": {
+    "message0": "停止Thread Commissioner",
+    "tooltip": "停止Commissioner。"
+  },
+  "nrf54_thread_commissioner_add_joiner": {
+    "message0": "允许Joiner PSKd %1 超时(秒) %2",
+    "tooltip": "在限定时间内允许使用指定PSKd的Joiner。"
+  },
+  "nrf54_thread_commissioner_active": {
+    "message0": "Thread Commissioner活动中?",
+    "tooltip": "返回Commissioner是否活动。"
+  },
+  "nrf54_thread_joiner_start": {
+    "message0": "作为Joiner加入 PSKd %1",
+    "tooltip": "使用PSKd启动MeshCoP Joiner。"
+  },
+  "nrf54_thread_joiner_stop": {
+    "message0": "停止Thread Joiner",
+    "tooltip": "停止Joiner流程。"
+  },
+  "nrf54_thread_joiner_active": {
+    "message0": "Thread Joiner活动中?",
+    "tooltip": "返回Joiner流程是否活动。"
+  },
+  "nrf54_thread_joiner_state": {
+    "message0": "Thread Joiner状态",
+    "tooltip": "返回Joiner状态名称。"
+  },
+  "nrf54_thread_open_udp": {
+    "message0": "监听Thread UDP端口 %1 收到数据时",
+    "message1": "执行 %1",
+    "tooltip": "打开UDP端口并在收到数据时执行积木。"
+  },
+  "nrf54_thread_close_udp": {
+    "message0": "关闭Thread UDP端口 %1",
+    "tooltip": "关闭指定UDP端口。"
+  },
+  "nrf54_thread_send_udp": {
+    "message0": "发送Thread UDP 本地端口 %1 目标地址 %2 端口 %3 数据 %4",
+    "tooltip": "发送字符串UDP数据报。"
+  },
+  "nrf54_thread_udp_data": {
+    "message0": "当前Thread UDP数据",
+    "tooltip": "在UDP回调中读取数据。"
+  },
+  "nrf54_thread_udp_peer_address": {
+    "message0": "当前Thread UDP来源地址",
+    "tooltip": "在UDP回调中读取来源IPv6地址。"
+  },
+  "nrf54_thread_udp_peer_port": {
+    "message0": "当前Thread UDP来源端口",
+    "tooltip": "在UDP回调中读取来源端口。"
+  },
+  "nrf54_thread_on_state_changed": {
+    "message0": "当Thread网络状态变化时",
+    "message1": "执行 %1",
+    "tooltip": "注册Thread状态变化回调。"
+  },
+  "nrf54_thread_callback_role": {
+    "message0": "Thread回调中的角色",
+    "tooltip": "在状态变化回调中读取角色名称。"
+  },
+  "nrf54_thread_callback_flags": {
+    "message0": "Thread回调变化标志",
+    "tooltip": "在状态变化回调中读取OpenThread变化标志。"
+  }
+}

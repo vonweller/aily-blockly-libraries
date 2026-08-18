@@ -1,0 +1,284 @@
+{
+  "toolbox_name": "Cubic 대회 로봇",
+  "toolbox_labels": {
+    "初始化": "초기화",
+    "编码电机控制": "인코더 모터",
+    "状态查询": "상태",
+    "舵机 / 按键 / 灯": "서보/버튼/LED"
+  },
+  "cubic_robot_init": {
+    "message0": "큐빅 로봇 초기화 %1",
+    "tooltip": "내부 다중화된 인코더-모터 라이브러리(lib-encoder-motor)가 MA/MB를 제어하여 큐빅 코어V2+모터를 생성하고 초기화합니다"
+  },
+  "cubic_robot_set_motor_pins": {
+    "message0": "%1 모터 %2 드라이버 핀 IN1 %3 IN2 %4 인코더 A %5 B %6 설정하세요",
+    "tooltip": "초기화 전에 모터/인코더 핀을 덮으세요. 기본값: MA=14/15/34/35, MB=12/17/36/39",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "A(MA)",
+            "MOTOR_A"
+          ],
+          [
+            "B(MB)",
+            "MOTOR_B"
+          ]
+        ]
+      },
+      null,
+      null,
+      null,
+      null
+    ]
+  },
+  "cubic_robot_set_pid": {
+    "message0": "%1 모터 %2 PID P 설정 %3 %4 D %5",
+    "tooltip": "인코딩된 모터 속도 루프 PID 설정(다중화 EncoderMotor::SetSpeedPid)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "A(MA)",
+            "MOTOR_A"
+          ],
+          [
+            "B(MB)",
+            "MOTOR_B"
+          ]
+        ]
+      },
+      null,
+      null,
+      null
+    ]
+  },
+  "cubic_robot_run_pwm": {
+    "message0": "%1 모터 %2 파워(PWM) %3 (-1023~1023)",
+    "tooltip": "직접 PWM 드라이브 (인코더모터::RunPwmDuty)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "A(MA)",
+            "MOTOR_A"
+          ],
+          [
+            "B(MB)",
+            "MOTOR_B"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "cubic_robot_run_speed": {
+    "message0": "%1 모터 %2은 %3 RPM(-300~300)에서 작동합니다.",
+    "tooltip": "속도 루프 제어 (인코더모터::런스피드)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "A(MA)",
+            "MOTOR_A"
+          ],
+          [
+            "B(MB)",
+            "MOTOR_B"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "cubic_robot_drive": {
+    "message0": "%1 디퍼렌셜 드라이브 %2 스티어링 %3",
+    "tooltip": "디퍼렌셜 섀시, 전진/조향 범위 -1023~1023, 내부 PWM 드라이브 MA/MB"
+  },
+  "cubic_robot_move": {
+    "message0": "%1 소형 자동차 %2 동력 %3",
+    "tooltip": "퀵 스포츠, 권장 전력 0~1023",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "앞으로",
+            "FORWARD"
+          ],
+          [
+            "뒤로",
+            "BACKWARD"
+          ],
+          [
+            "좌회전",
+            "LEFT"
+          ],
+          [
+            "우회전",
+            "RIGHT"
+          ],
+          [
+            "중지",
+            "STOP"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "cubic_robot_stop": {
+    "message0": "%1 모든 모터를 멈춰라",
+    "tooltip": "MA/MB 멈춰"
+  },
+  "cubic_robot_get_speed": {
+    "message0": "%1 모터 %2 전류 속도(RPM)",
+    "tooltip": "코드에서 모터의 현재 속도를 읽으세요",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "A(MA)",
+            "MOTOR_A"
+          ],
+          [
+            "B(MB)",
+            "MOTOR_B"
+          ]
+        ]
+      }
+    ]
+  },
+  "cubic_robot_get_pulse": {
+    "message0": "%1 모터 %2는 펄스 카운팅을 인코딩합니다",
+    "tooltip": "인코딩된 펄스 카운트를 읽으세요",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "A(MA)",
+            "MOTOR_A"
+          ],
+          [
+            "B(MB)",
+            "MOTOR_B"
+          ]
+        ]
+      }
+    ]
+  },
+  "cubic_robot_get_revolutions": {
+    "message0": "%1 모터 %2의 회전 횟수",
+    "tooltip": "모터 회전 수를 읽어보세요",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "A(MA)",
+            "MOTOR_A"
+          ],
+          [
+            "B(MB)",
+            "MOTOR_B"
+          ]
+        ]
+      }
+    ]
+  },
+  "cubic_robot_reset_pulse": {
+    "message0": "%1 모터%2 펄스 카운트 재설정",
+    "tooltip": "부호화 펄스 카운트를 재설정하세요",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "A(MA)",
+            "MOTOR_A"
+          ],
+          [
+            "B(MB)",
+            "MOTOR_B"
+          ]
+        ]
+      }
+    ]
+  },
+  "cubic_robot_servo": {
+    "message0": "%1 서보 %2 각도 %3",
+    "tooltip": "서보 제어 각도 0~180 (내장된 ESP32서보)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "1(IO2)",
+            "SERVO_1"
+          ],
+          [
+            "2(IO25)",
+            "SERVO_2"
+          ],
+          [
+            "3(IO16)",
+            "SERVO_3"
+          ],
+          [
+            "4(IO23)",
+            "SERVO_4"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "cubic_robot_button": {
+    "message0": "%1 버튼 %2 눌림",
+    "tooltip": "읽기 버튼, 낮은 레벨 활성",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "A(IO0)",
+            "0"
+          ],
+          [
+            "B(IO13)",
+            "1"
+          ]
+        ]
+      }
+    ]
+  },
+  "cubic_robot_rgb": {
+    "message0": "%1 RGB LED %2",
+    "tooltip": "RGB LED",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "켜기",
+            "true"
+          ],
+          [
+            "끄기",
+            "false"
+          ]
+        ]
+      }
+    ]
+  },
+  "cubic_robot_pin_info": {
+    "message0": "입방체 기본 핀 설명",
+    "tooltip": "MA=14/15 ENC34/35; MB=12/17 ENC36/39; 서보 2/25; I2C21/22"
+  }
+}

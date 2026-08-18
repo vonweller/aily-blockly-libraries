@@ -1,0 +1,128 @@
+{
+  "schemaVersion": 1,
+  "blocks": {
+    "custom_function_def": {
+      "variants": [
+        {
+          "id": "returning-two-parameters",
+          "when": {
+            "RETURN_TYPE": [
+              "int"
+            ]
+          },
+          "appendArgs": [
+            {
+              "name": "PARAM_TYPE0",
+              "type": "field_dropdown",
+              "example": "int",
+              "required": true
+            },
+            {
+              "name": "PARAM_NAME0",
+              "type": "field_input",
+              "example": "\"left\"",
+              "required": true
+            },
+            {
+              "name": "PARAM_TYPE1",
+              "type": "field_dropdown",
+              "example": "int",
+              "required": true
+            },
+            {
+              "name": "PARAM_NAME1",
+              "type": "field_input",
+              "example": "\"right\"",
+              "required": true
+            },
+            {
+              "name": "RETURN",
+              "type": "input_value",
+              "example": "math_arithmetic(variables_get($left), ADD, variables_get($right))",
+              "required": true
+            }
+          ]
+        },
+        {
+          "id": "void-one-parameter",
+          "when": {
+            "RETURN_TYPE": [
+              "void"
+            ]
+          },
+          "appendArgs": [
+            {
+              "name": "PARAM_TYPE0",
+              "type": "field_dropdown",
+              "example": "int",
+              "required": true
+            },
+            {
+              "name": "PARAM_NAME0",
+              "type": "field_input",
+              "example": "\"value\"",
+              "required": true
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "runtimeBlocks": {
+    "custom_function_call_advance": {
+      "reason": "The library defines this call block programmatically after loading the custom-function registry, so it has no static block.json entry.",
+      "definition": {
+        "type": "custom_function_call_advance",
+        "args0": [
+          {
+            "type": "field_variable",
+            "name": "FUNC_NAME",
+            "variable": "myFunction",
+            "variableTypes": [
+              "FUNC"
+            ],
+            "defaultType": "FUNC",
+            "named": true
+          }
+        ],
+        "previousStatement": null,
+        "nextStatement": null
+      },
+      "variadic": {
+        "prefix": "INPUT",
+        "startIndex": 0,
+        "type": "input_value",
+        "sampleCount": 1,
+        "example": "math_number(7)",
+        "reason": "The call-block mutator creates INPUT0 and later indexed value inputs from the selected function's parameter list."
+      }
+    },
+    "custom_function_call_return_advance": {
+      "reason": "The library defines this value-returning call block programmatically after loading the custom-function registry, so it has no static block.json entry.",
+      "definition": {
+        "type": "custom_function_call_return_advance",
+        "args0": [
+          {
+            "type": "field_variable",
+            "name": "FUNC_NAME",
+            "variable": "myFunction",
+            "variableTypes": [
+              "FUNC"
+            ],
+            "defaultType": "FUNC",
+            "named": true
+          }
+        ],
+        "output": null
+      },
+      "variadic": {
+        "prefix": "INPUT",
+        "startIndex": 0,
+        "type": "input_value",
+        "sampleCount": 2,
+        "example": "math_number(2)",
+        "reason": "The call-block mutator creates INPUT0 and later indexed value inputs from the selected function's parameter list."
+      }
+    }
+  }
+}

@@ -1,0 +1,321 @@
+{
+  "toolbox_name": "Cubic PS3-Pad",
+  "toolbox_labels": {
+    "初始化": "Initialisierung",
+    "连接状态": "Verbindung",
+    "按键": "Tasten",
+    "摇杆": "Sticks",
+    "反馈 / 信息": "Feedback"
+  },
+  "cubic_ps3_init": {
+    "message0": "Initialisieren Sie den Cubic PS3-Controller %1",
+    "tooltip": "Initialisiere den PS3-Bluetooth-Controller, koppele automatisch mit dem lokalen Bluetooth-MAC und aktualisiere automatisch in einer Schleife"
+  },
+  "cubic_ps3_init_mac": {
+    "message0": "Initialisieren Sie den Cubic PS3-Controller %1 MAC-Adresse %2",
+    "tooltip": "Initialisiere den PS3-Controller mit der angegebenen MAC"
+  },
+  "cubic_ps3_set_deadzone": {
+    "message0": "%1 Joystick-Totzonen %2",
+    "tooltip": "Joystick-Totzone 0~127 setzen, Standard 30 (entspricht dem Event-Beispiel)"
+  },
+  "cubic_ps3_connected": {
+    "message0": "%1 Der Griff ist verbunden",
+    "tooltip": "Connected?"
+  },
+  "cubic_ps3_just_connected": {
+    "message0": "%1 Steck einfach den Griff an",
+    "tooltip": "Ist dieser Zyklus nur einmalig verbunden?"
+  },
+  "cubic_ps3_just_disconnected": {
+    "message0": "%1 Der Griff wurde gerade gelöst",
+    "tooltip": "Ist dieser Zyklus einfach getrennt (einmal, kann für sicheres Anhalten verwendet werden)?"
+  },
+  "cubic_ps3_button": {
+    "message0": "%1 Knopf %2 in der Mitte gedrückt",
+    "tooltip": "Überprüfe, ob der Knopf in der Drücken-Position ist",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "× Cross",
+            "BTN_CROSS"
+          ],
+          [
+            "○ Circle",
+            "BTN_CIRCLE"
+          ],
+          [
+            "△ Triangle",
+            "BTN_TRIANGLE"
+          ],
+          [
+            "□ Square",
+            "BTN_SQUARE"
+          ],
+          [
+            "↑",
+            "BTN_UP"
+          ],
+          [
+            "↓",
+            "BTN_DOWN"
+          ],
+          [
+            "←",
+            "BTN_LEFT"
+          ],
+          [
+            "→",
+            "BTN_RIGHT"
+          ],
+          [
+            "L1",
+            "BTN_L1"
+          ],
+          [
+            "L2",
+            "BTN_L2"
+          ],
+          [
+            "R1",
+            "BTN_R1"
+          ],
+          [
+            "R2",
+            "BTN_R2"
+          ],
+          [
+            "Select",
+            "BTN_SELECT"
+          ],
+          [
+            "Start",
+            "BTN_START"
+          ],
+          [
+            "PS",
+            "BTN_PS"
+          ],
+          [
+            "L3",
+            "BTN_L3"
+          ],
+          [
+            "R3",
+            "BTN_R3"
+          ]
+        ]
+      }
+    ]
+  },
+  "cubic_ps3_button_pressed": {
+    "message0": "%1 Knopf %2 Drücken (steigende Kante)",
+    "tooltip": "Die Knopfkante (im Moment des Drückens) eignet sich zum Schalten von Lichtern/Servos in Einmalbetrieben",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "× Cross",
+            "BTN_CROSS"
+          ],
+          [
+            "○ Circle",
+            "BTN_CIRCLE"
+          ],
+          [
+            "△ Triangle",
+            "BTN_TRIANGLE"
+          ],
+          [
+            "□ Square",
+            "BTN_SQUARE"
+          ],
+          [
+            "↑",
+            "BTN_UP"
+          ],
+          [
+            "↓",
+            "BTN_DOWN"
+          ],
+          [
+            "←",
+            "BTN_LEFT"
+          ],
+          [
+            "→",
+            "BTN_RIGHT"
+          ],
+          [
+            "L1",
+            "BTN_L1"
+          ],
+          [
+            "L2",
+            "BTN_L2"
+          ],
+          [
+            "R1",
+            "BTN_R1"
+          ],
+          [
+            "R2",
+            "BTN_R2"
+          ],
+          [
+            "Select",
+            "BTN_SELECT"
+          ],
+          [
+            "Start",
+            "BTN_START"
+          ],
+          [
+            "PS",
+            "BTN_PS"
+          ],
+          [
+            "L3",
+            "BTN_L3"
+          ],
+          [
+            "R3",
+            "BTN_R3"
+          ]
+        ]
+      }
+    ]
+  },
+  "cubic_ps3_stick": {
+    "message0": "%1 Joystick-%2 %3 (nach der Verarbeitung der Totzone)",
+    "tooltip": "Nach der Verarbeitung beträgt der Joystick-Wert -127~127, inklusive toter Zonen, und die Y-Achse ist umgekehrt (nach oben drücken ist positiv).",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Linker Joystick",
+            "STICK_L"
+          ],
+          [
+            "Rechter Joystick",
+            "STICK_R"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "X",
+            "AXIS_X"
+          ],
+          [
+            "Y",
+            "AXIS_Y"
+          ]
+        ]
+      }
+    ]
+  },
+  "cubic_ps3_stick_raw": {
+    "message0": "%1 Joystick %2 %3 Rohwert",
+    "tooltip": "Original-Joystick -128~127, Median etwa 0",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Linker Joystick",
+            "STICK_L"
+          ],
+          [
+            "Rechter Joystick",
+            "STICK_R"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "X",
+            "AXIS_X"
+          ],
+          [
+            "Y",
+            "AXIS_Y"
+          ]
+        ]
+      }
+    ]
+  },
+  "cubic_ps3_stick_mapped": {
+    "message0": "%1 Stick %2 %3 auf ± %4",
+    "tooltip": "Mappe den bearbeiteten hinteren Rocker auf -max~max, was das direkte Antreiben des Motors erleichtert",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Linker Joystick",
+            "STICK_L"
+          ],
+          [
+            "Rechter Joystick",
+            "STICK_R"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "X",
+            "AXIS_X"
+          ],
+          [
+            "Y",
+            "AXIS_Y"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "cubic_ps3_set_player": {
+    "message0": "%1 Spieler-ID %2",
+    "tooltip": "Player LED",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "1",
+            "1"
+          ],
+          [
+            "2",
+            "2"
+          ],
+          [
+            "3",
+            "3"
+          ],
+          [
+            "4",
+            "4"
+          ]
+        ]
+      }
+    ]
+  },
+  "cubic_ps3_rumble": {
+    "message0": "%1 Schwingungsintensität %2 %3 Millisekunden anhält",
+    "tooltip": "Rumble"
+  },
+  "cubic_ps3_address": {
+    "message0": "%1 pair MAC",
+    "tooltip": "Geben Sie den lokal für das Pairing verwendeten Bluetooth-MAC-String zurück"
+  }
+}

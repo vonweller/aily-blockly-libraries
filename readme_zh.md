@@ -61,7 +61,7 @@ library-name/
 | 文档 | 说明 |
 |------|------|
 | [Blockly 库代码规范](./.docs_ai/en/Blockly_Library_CODE_Conventions.md) | Blockly 库代码规范 |
-| [Blockly 库 README 规范](./.docs_ai/en/Blockly_Library_README_Conventions.md) | README 文档规范 |
+| [Blockly 库 README 规范](./.docs_ai/zh_cn/blockly库readme编写规范.md) | README 文档规范 |
 | [多语言文件规范](./.docs_ai/en/Blockly_Library_i18n_Conventions.md) | i18n 详细规范 |
 
 ## 贡献

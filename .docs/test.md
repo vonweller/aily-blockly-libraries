@@ -54,9 +54,9 @@
 | 52 | 点灯物联网 | [@aily-project/lib-blinker](diandeng_blinker) | 1.0.0 | ✓ | i3water |
 | 53 | Dallas温度传感器 | [@aily-project/lib-ds18b20](DS18B20) | 1.0.0 | ✗ | - |
 | 54 | Arduino旋转编码器库 | [@aily-project/lib-encoder](encoder) | 0.0.1 | ✓ | openjumper |
-| 55 | ESP32蓝牙手柄 | [@aily-project/lib-esp32-ble-gamepad](esp32_ble_gamepad) | 1.0.0 | ✗ | - |
-| 56 | BLE蓝牙键盘 | [@aily-project/lib-esp32-ble-keyboard](esp32_ble_keyboard) | 1.0.0 | ✗ | - |
-| 57 | BLE蓝牙鼠标 | [@aily-project/lib-esp32-ble-mouse](esp32_ble_mouse) | 1.0.0 | ✗ | - |
+| 55 | ESP32蓝牙手柄 (NimBLE) | [@aily-project/lib-esp32-ble-gamepad-nimble](esp32_ble_gamepad_nimble) | 1.1.0 | ✗ | - |
+| 56 | BLE蓝牙键盘 (NimBLE) | [@aily-project/lib-esp32-ble-keyboard-nimble](esp32_ble_keyboard_nimble) | 1.1.0 | ✗ | - |
+| 57 | BLE蓝牙鼠标 (NimBLE) | [@aily-project/lib-esp32-ble-mouse-nimble](esp32_ble_mouse_nimble) | 1.1.0 | ✗ | - |
 | 58 | ESP32 CAN总线 | [@aily-project/lib-esp32-twai](esp32_CAN) | 0.0.1 | ✗ | - |
 | 59 | ESP32旋转编码器库 | [@aily-project/lib-esp32_encoder](esp32_encoder) | 0.0.1 | ✓ | openjumper |
 | 60 | ESP-NOW通信 | [@aily-project/lib-esp32-espnow](esp32_espnow) | 1.0.0 | ✗ | - |
@@ -106,3 +106,6 @@
 | 104 | U8G2显示屏库 | [@aily-project/lib-u8g2](u8g2) | 1.0.0 | ✓ | mango |
 | 105 | 超声波传感器 | [@aily-project/lib-ultrasonic](Ultrasonic) | 0.0.1 | ✓ | K2L |
 | 106 | WS2812 LED灯带库 | [@aily-project/lib-ws2812fx](ws2812fx) | 0.0.1 | ✗ | - |
+| 107 | ESP32蓝牙手柄 (ESP32 SDK) | [@aily-project/lib-esp32-ble-gamepad](esp32_ble_gamepad) | 2.0.0 | ✗ | - |
+| 108 | BLE蓝牙键盘 (ESP32 SDK) | [@aily-project/lib-esp32-ble-keyboard](esp32_ble_keyboard) | 2.0.0 | ✓ | openjumper |
+| 109 | BLE蓝牙鼠标 (ESP32 SDK) | [@aily-project/lib-esp32-ble-mouse](esp32_ble_mouse) | 2.0.0 | ✗ | - |
