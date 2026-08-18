@@ -1,5 +1,13 @@
 [
   {
+    "type": "epub_reader_sd_init",
+    "message0": "EPUB 初始化SD卡(SdFat)",
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#9C27B0",
+    "tooltip": "使用SdFat库初始化SD卡，支持UTF-8中文文件名"
+  },
+  {
     "type": "epub_reader_open",
     "message0": "EPUB 打开文件 %1 每行字数 %2 每页行数 %3",
     "args0": [
@@ -122,34 +130,6 @@
     "nextStatement": null,
     "colour": "#9C27B0",
     "tooltip": "关闭EPUB文件并释放内存"
-  },
-  {
-    "type": "epub_reader_load_font_size",
-    "message0": "EPUB 加载字体 %1",
-    "args0": [
-      {
-        "type": "field_dropdown",
-        "name": "SIZE",
-        "options": [
-          [
-            "16px",
-            "16"
-          ],
-          [
-            "24px",
-            "24"
-          ],
-          [
-            "32px",
-            "32"
-          ]
-        ]
-      }
-    ],
-    "previousStatement": null,
-    "nextStatement": null,
-    "colour": "#9C27B0",
-    "tooltip": "加载内置中文字体到TFT屏幕"
   },
   {
     "type": "epub_reader_font_height",
@@ -352,5 +332,432 @@
     "nextStatement": null,
     "colour": "#9C27B0",
     "tooltip": "渲染章节目录界面，高亮选中项"
+  },
+  {
+    "type": "epub_reader_toc_page_next",
+    "message0": "EPUB 目录下翻页 (当前 %1)",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "SEL",
+        "check": [
+          "Number"
+        ]
+      }
+    ],
+    "output": [
+      "Number"
+    ],
+    "colour": "#9C27B0",
+    "tooltip": "返回目录下一页的选中项序号"
+  },
+  {
+    "type": "epub_reader_toc_page_prev",
+    "message0": "EPUB 目录上翻页 (当前 %1)",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "SEL",
+        "check": [
+          "Number"
+        ]
+      }
+    ],
+    "output": [
+      "Number"
+    ],
+    "colour": "#9C27B0",
+    "tooltip": "返回目录上一页的选中项序号"
+  },
+  {
+    "type": "epub_reader_load_sd_font",
+    "message0": "EPUB 加载SD卡字体 %1",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "PATH",
+        "check": [
+          "String"
+        ]
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#9C27B0",
+    "tooltip": "从SD卡加载.bin格式的CJK字体文件"
+  },
+  {
+    "type": "epub_reader_sd_font_loaded",
+    "message0": "EPUB SD字体已加载",
+    "output": [
+      "Boolean"
+    ],
+    "colour": "#9C27B0",
+    "tooltip": "检查SD卡字体是否已加载"
+  },
+  {
+    "type": "epub_reader_unload_sd_font",
+    "message0": "EPUB 卸载SD字体",
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#9C27B0",
+    "tooltip": "卸载SD卡字体，释放缓存内存"
+  },
+  {
+    "type": "epub_reader_load_ui_font",
+    "message0": "EPUB 加载UI字体 %1",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "PATH",
+        "check": [
+          "String"
+        ]
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#9C27B0",
+    "tooltip": "从SD卡加载UI字体(用于菜单/标题/界面)，与阅读字体独立"
+  },
+  {
+    "type": "epub_reader_unload_ui_font",
+    "message0": "EPUB 卸载UI字体",
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#9C27B0",
+    "tooltip": "卸载UI字体，释放内存"
+  },
+  {
+    "type": "epub_reader_ui_font_loaded",
+    "message0": "EPUB UI字体已加载",
+    "output": [
+      "Boolean"
+    ],
+    "colour": "#9C27B0",
+    "tooltip": "检查UI字体是否已加载(含共享阅读字体的情况)"
+  },
+  {
+    "type": "epub_reader_share_reading_font",
+    "message0": "EPUB 共享阅读字体为UI字体",
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#9C27B0",
+    "tooltip": "将当前阅读字体同时用作UI字体，节省内存"
+  },
+  {
+    "type": "epub_reader_gen_cover",
+    "message0": "EPUB 生成封面缩略图 %1",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "PATH",
+        "check": [
+          "String"
+        ]
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#9C27B0",
+    "tooltip": "从EPUB提取封面并生成48x64缩略图缓存到SD卡"
+  },
+  {
+    "type": "epub_reader_show_full_image",
+    "message0": "EPUB 显示全屏图片 %1",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "INDEX",
+        "check": [
+          "Number"
+        ]
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#9C27B0",
+    "tooltip": "缩放显示第N张图片(宽度=屏幕宽,逐屏滚动)"
+  },
+  {
+    "type": "epub_reader_page_img_count",
+    "message0": "EPUB 当前页图片数",
+    "output": [
+      "Number"
+    ],
+    "colour": "#9C27B0",
+    "tooltip": "获取当前页面包含的图片数量"
+  },
+  {
+    "type": "epub_reader_full_img_next",
+    "message0": "EPUB 图片下一屏",
+    "output": [
+      "Number"
+    ],
+    "colour": "#9C27B0",
+    "tooltip": "滚动到下一屏(到末尾则加载下一张图)，返回是否还有内容"
+  },
+  {
+    "type": "epub_reader_full_img_prev",
+    "message0": "EPUB 图片上一屏",
+    "output": [
+      "Number"
+    ],
+    "colour": "#9C27B0",
+    "tooltip": "滚动到上一屏(到开头则加载上一张图)，返回是否还有内容"
+  },
+  {
+    "type": "epub_reader_full_img_exit",
+    "message0": "EPUB 退出全屏图片(释放内存)",
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#9C27B0",
+    "tooltip": "释放全屏图片缓存内存"
+  },
+  {
+    "type": "epub_reader_show_fit_image",
+    "message0": "EPUB 整页缩放图片 %1",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "INDEX",
+        "check": [
+          "Number"
+        ]
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#9C27B0",
+    "tooltip": "整页缩放显示第N张图片(适应屏幕)"
+  },
+  {
+    "type": "epub_reader_fit_img_next",
+    "message0": "EPUB 整页缩放下一张",
+    "output": [
+      "Number"
+    ],
+    "colour": "#9C27B0",
+    "tooltip": "下一张整页缩放图片，返回是否还有"
+  },
+  {
+    "type": "epub_reader_fit_img_prev",
+    "message0": "EPUB 整页缩放上一张",
+    "output": [
+      "Number"
+    ],
+    "colour": "#9C27B0",
+    "tooltip": "上一张整页缩放图片，返回是否还有"
+  },
+  {
+    "type": "epub_reader_browser_open",
+    "message0": "EPUB 浏览目录 %1",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "DIR",
+        "check": [
+          "String"
+        ]
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#9C27B0",
+    "tooltip": "加载指定SD卡目录中的文件夹、EPUB和JPEG文件，最多64项"
+  },
+  {
+    "type": "epub_reader_browser_count",
+    "message0": "EPUB 浏览器项目数",
+    "output": [
+      "Number"
+    ],
+    "colour": "#9C27B0",
+    "tooltip": "获取当前浏览目录中的项目数量"
+  },
+  {
+    "type": "epub_reader_browser_is_dir",
+    "message0": "EPUB 浏览器第 %1 项是目录",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "INDEX",
+        "check": [
+          "Number"
+        ]
+      }
+    ],
+    "output": [
+      "Boolean"
+    ],
+    "colour": "#9C27B0",
+    "tooltip": "检查指定索引的浏览项目是否为目录，越界时返回假"
+  },
+  {
+    "type": "epub_reader_browser_name",
+    "message0": "EPUB 浏览器第 %1 项名称",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "INDEX",
+        "check": [
+          "Number"
+        ]
+      }
+    ],
+    "output": [
+      "String"
+    ],
+    "colour": "#9C27B0",
+    "tooltip": "获取指定索引的文件或目录名称，越界时返回空文本"
+  },
+  {
+    "type": "epub_reader_browser_path",
+    "message0": "EPUB 浏览器第 %1 项路径",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "INDEX",
+        "check": [
+          "Number"
+        ]
+      }
+    ],
+    "output": [
+      "String"
+    ],
+    "colour": "#9C27B0",
+    "tooltip": "获取指定索引项目的完整SD卡路径，越界时返回空文本"
+  },
+  {
+    "type": "epub_reader_browser_enter",
+    "message0": "EPUB 进入浏览器第 %1 项目录",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "INDEX",
+        "check": [
+          "Number"
+        ]
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#9C27B0",
+    "tooltip": "如果指定项目是目录，则进入该目录并重新加载列表"
+  },
+  {
+    "type": "epub_reader_browser_up",
+    "message0": "EPUB 浏览器返回上级目录",
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#9C27B0",
+    "tooltip": "返回上级目录，并记录离开目录在父目录中的索引"
+  },
+  {
+    "type": "epub_reader_browser_up_sel",
+    "message0": "EPUB 浏览器返回上级后的选中项",
+    "output": [
+      "Number"
+    ],
+    "colour": "#9C27B0",
+    "tooltip": "获取返回上级目录后应恢复选择的项目索引"
+  },
+  {
+    "type": "epub_reader_browser_is_root",
+    "message0": "EPUB 浏览器位于根目录",
+    "output": [
+      "Boolean"
+    ],
+    "colour": "#9C27B0",
+    "tooltip": "检查文件浏览器当前是否位于SD卡根目录"
+  },
+  {
+    "type": "epub_reader_browser_curdir",
+    "message0": "EPUB 浏览器当前目录",
+    "output": [
+      "String"
+    ],
+    "colour": "#9C27B0",
+    "tooltip": "获取文件浏览器当前目录的完整路径"
+  },
+  {
+    "type": "epub_reader_show_browser",
+    "message0": "EPUB 显示文件浏览器 选中第 %1 项",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "SEL",
+        "check": [
+          "Number"
+        ]
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#9C27B0",
+    "tooltip": "在TFT屏幕显示当前目录并高亮指定项目，同时预览EPUB封面"
+  },
+  {
+    "type": "epub_reader_jpg_viewer_open",
+    "message0": "EPUB JPEG查看器打开 %1",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "PATH",
+        "check": [
+          "String"
+        ]
+      }
+    ],
+    "output": [
+      "Boolean"
+    ],
+    "colour": "#9C27B0",
+    "tooltip": "打开并按屏幕宽度显示SD卡上的JPEG文件，成功时返回真"
+  },
+  {
+    "type": "epub_reader_jpg_viewer_next",
+    "message0": "EPUB JPEG查看器下一屏",
+    "output": [
+      "Boolean"
+    ],
+    "colour": "#9C27B0",
+    "tooltip": "滚动到下一屏；到达末尾时尝试打开连续编号的下一张图片"
+  },
+  {
+    "type": "epub_reader_jpg_viewer_prev",
+    "message0": "EPUB JPEG查看器上一屏",
+    "output": [
+      "Boolean"
+    ],
+    "colour": "#9C27B0",
+    "tooltip": "滚动到上一屏；到达开头时尝试打开连续编号的上一张图片"
+  },
+  {
+    "type": "epub_reader_jpg_viewer_exit",
+    "message0": "EPUB 退出JPEG查看器",
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#9C27B0",
+    "tooltip": "退出独立JPEG查看器并释放图片缓存内存"
+  },
+  {
+    "type": "epub_reader_browser_is_jpg",
+    "message0": "EPUB 浏览器第 %1 项是JPEG",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "INDEX",
+        "check": [
+          "Number"
+        ]
+      }
+    ],
+    "output": [
+      "Boolean"
+    ],
+    "colour": "#9C27B0",
+    "tooltip": "检查指定索引项目是否为.jpg或.jpeg文件，越界时返回假"
   }
 ]

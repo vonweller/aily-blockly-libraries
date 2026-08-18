@@ -1,24 +1,24 @@
-# EPUB阅读器
+# EPUB Reader
 
-EPUB电子书阅读器库，支持ZIP解压、HTML解析、自动分页，配合TFT屏幕显示。
+## Description
+
+ESP32 Blockly library for reading EPUB ebooks from an SD card on a TFT display. It provides EPUB/ZIP parsing, pagination, chapters, saved positions, SD fonts, bookshelf and file-browser UIs, covers, inline images, and progressive JPEG viewing.
 
 ## Library Info
 
-| Field | Value |
-|-------|-------|
-| Package | @aily-project/lib-epub-reader |
-| Version | 1.0.0 |
-| Author | ailyProject |
-| Source | Based on miniz (public domain) |
+| Package | Version | Author |
+| --- | --- | --- |
+| `@aily-project/lib-epub-reader` | 1.0.1 | Bryan |
 
 ## Supported Boards
 
-ESP32系列（需PSRAM支持）
+ESP32 (`esp32:esp32`). PSRAM is strongly recommended for covers and image decoding. The project must provide an initialized TFT_eSPI-compatible `tft` object and a configured SD card.
 
 ## Quick Start
 
-1. SD卡根目录放 `.epub` 文件
-2. 初始化TFT屏幕和SD卡
-3. 使用 `EPUB 打开文件` 积木打开epub
-4. 使用 `EPUB 渲染到屏幕` 积木显示内容
-5. 用按键配合 `EPUB 下一页` / `EPUB 上一页` 翻页
+1. Put `.epub` files on the SD card, such as under `/books`.
+2. Initialize the TFT, then use `EPUB initialize SD card (SdFat)`.
+3. Scan the directory or open a known path with the desired columns and rows.
+4. Show the reading page and connect input events to page, chapter, TOC, browser, or image blocks.
+
+Close the reader or JPEG viewer when leaving its screen to release temporary image buffers.
