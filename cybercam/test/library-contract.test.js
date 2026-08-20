@@ -68,7 +68,10 @@ test('package exposes the complete CyberCAM block contract', () => {
   visit(toolbox);
 
   assert.equal(pkg.name, '@aily-project/lib-cybercam');
+  assert.equal(pkg.spec, true);
   assert.deepEqual(pkg.compatibility.mode, ['python']);
+  assert.deepEqual(pkg.compatibility.core, ['python:k230:cybercam']);
+  assert.deepEqual(pkg.compatibility.boards, ['CyberCAM']);
   assert.equal(blocks.length, 101, 'Task 2 should add four blocks to the existing 97-block surface');
   assert.equal(new Set(types).size, blocks.length, 'block types must be unique');
   for (const type of REQUIRED_BLOCKS) {

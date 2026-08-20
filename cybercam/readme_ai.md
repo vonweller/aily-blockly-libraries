@@ -1,6 +1,6 @@
 # CyberCAM Python
 
-Evidence-backed Python blocks for documented 01Studio CyberCAM K230 camera, display, AI, GPIO, PWM, UART, networking, files, audio, IMU, and system APIs. Networking protocols require an already configured network; unverified hardware-management APIs are intentionally excluded.
+01Studio CyberCAM K230-only Python blocks. Camera, display, KPU, GPIO, PWM, UART, audio, and IMU use CanMV/walnutpi APIs, not generic CPython. Portable language, OpenCV, network, and file blocks stay here so CyberCAM projects remain self-contained. Networking protocols require an already configured network.
 
 ## Library Info
 - **Name**: @aily-project/lib-cybercam
