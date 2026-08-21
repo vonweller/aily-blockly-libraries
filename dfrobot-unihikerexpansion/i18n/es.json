@@ -1,0 +1,49 @@
+{
+  "toolbox_name": "Placa de expansión UNIHIKER DFR1231",
+  "dfr1231_init": {
+    "message0": "Inicializar placa de expansión DFR1231",
+    "tooltip": "Inicializa la placa de expansión IO DFR1231 del UNIHIKER K10: dirección I2C 0x33, usa SDA/SCL del conector lateral, se bloquea hasta que el dispositivo esté listo"
+  },
+  "dfr1231_set_io_mode": {
+    "message0": "Establecer puerto C %1 de la placa en modo %2",
+    "tooltip": "Establece un puerto multifunción C0-C3 como salida digital o entrada digital",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Salida digital",
+            "eWriteGpio"
+          ],
+          [
+            "Entrada digital",
+            "eReadGpio"
+          ]
+        ]
+      }
+    ]
+  },
+  "dfr1231_gpio_write": {
+    "message0": "Establecer nivel del puerto C %1 en %2",
+    "tooltip": "Establece el nivel de salida digital de un puerto C: HIGH=1, LOW=0 (configurar antes el modo salida digital)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Nivel alto",
+            "eHIGH"
+          ],
+          [
+            "Nivel bajo",
+            "eLOW"
+          ]
+        ]
+      }
+    ]
+  },
+  "dfr1231_gpio_read": {
+    "message0": "Leer nivel del puerto C %1",
+    "tooltip": "Lee el nivel de un puerto C (configurar antes el modo entrada digital); devuelve 0 o 1, o 255 en caso de fallo"
+  }
+}

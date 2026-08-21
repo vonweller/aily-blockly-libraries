@@ -1,0 +1,49 @@
+{
+  "toolbox_name": "Carte d'extension UNIHIKER DFR1231",
+  "dfr1231_init": {
+    "message0": "Initialiser la carte d'extension DFR1231",
+    "tooltip": "Initialise la carte d'extension IO DFR1231 du UNIHIKER K10 : adresse I2C 0x33, utilise SDA/SCL du connecteur edge, bloque jusqu'à ce que l'appareil soit prêt"
+  },
+  "dfr1231_set_io_mode": {
+    "message0": "Définir le port C %1 de la carte en mode %2",
+    "tooltip": "Définit un port multifonction C0-C3 en sortie numérique ou entrée numérique",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Sortie numérique",
+            "eWriteGpio"
+          ],
+          [
+            "Entrée numérique",
+            "eReadGpio"
+          ]
+        ]
+      }
+    ]
+  },
+  "dfr1231_gpio_write": {
+    "message0": "Définir le niveau du port C %1 à %2",
+    "tooltip": "Définit le niveau de sortie numérique d'un port C : HIGH=1, LOW=0 (définir d'abord le mode sortie numérique)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Niveau haut",
+            "eHIGH"
+          ],
+          [
+            "Niveau bas",
+            "eLOW"
+          ]
+        ]
+      }
+    ]
+  },
+  "dfr1231_gpio_read": {
+    "message0": "Lire le niveau du port C %1",
+    "tooltip": "Lit le niveau d'un port C (définir d'abord le mode entrée numérique) ; renvoie 0 ou 1, 255 en cas d'échec"
+  }
+}
