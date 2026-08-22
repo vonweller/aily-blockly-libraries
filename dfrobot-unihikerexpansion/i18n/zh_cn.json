@@ -1,0 +1,49 @@
+{
+  "toolbox_name": "行空板扩展板DFR1231",
+  "dfr1231_init": {
+    "message0": "初始化 DFR1231 行空板扩展板",
+    "tooltip": "初始化行空板K10 DFR1231 IO扩展板：I2C地址0x33，占用边缘连接器SDA/SCL，配置成功前阻塞等待"
+  },
+  "dfr1231_set_io_mode": {
+    "message0": "设置扩展板 C口 %1 模式为 %2",
+    "tooltip": "把扩展板C0-C3多功能口设为数字输出或数字输入模式",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "数字输出",
+            "eWriteGpio"
+          ],
+          [
+            "数字输入",
+            "eReadGpio"
+          ]
+        ]
+      }
+    ]
+  },
+  "dfr1231_gpio_write": {
+    "message0": "设置扩展板 C口 %1 电平为 %2",
+    "tooltip": "设置C口数字输出电平：高电平=1，低电平=0（需先设置为数字输出模式）",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "高电平",
+            "eHIGH"
+          ],
+          [
+            "低电平",
+            "eLOW"
+          ]
+        ]
+      }
+    ]
+  },
+  "dfr1231_gpio_read": {
+    "message0": "读取扩展板 C口 %1 电平",
+    "tooltip": "读取C口电平（需先设置为数字输入模式），返回0或1，读取失败返回255"
+  }
+}

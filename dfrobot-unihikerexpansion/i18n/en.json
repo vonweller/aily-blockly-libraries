@@ -1,0 +1,49 @@
+{
+  "toolbox_name": "UNIHIKER Extender DFR1231",
+  "dfr1231_init": {
+    "message0": "Initialize DFR1231 UNIHIKER expansion board",
+    "tooltip": "Initialize the UNIHIKER K10 DFR1231 IO extender: I2C address 0x33, uses edge SDA/SCL, blocks until the device is ready"
+  },
+  "dfr1231_set_io_mode": {
+    "message0": "Set extender port %1 mode to %2",
+    "tooltip": "Set a C0-C3 multi-function port to digital output or digital input mode",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Digital output",
+            "eWriteGpio"
+          ],
+          [
+            "Digital input",
+            "eReadGpio"
+          ]
+        ]
+      }
+    ]
+  },
+  "dfr1231_gpio_write": {
+    "message0": "Set extender port %1 level to %2",
+    "tooltip": "Set the digital output level of a C port: HIGH=1, LOW=0 (set digital output mode first)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "HIGH",
+            "eHIGH"
+          ],
+          [
+            "LOW",
+            "eLOW"
+          ]
+        ]
+      }
+    ]
+  },
+  "dfr1231_gpio_read": {
+    "message0": "Read extender port %1 level",
+    "tooltip": "Read the level of a C port (set digital input mode first); returns 0 or 1, or 255 on failure"
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "toolbox_name": "UNIHIKER Erweiterungsboard DFR1231",
+  "dfr1231_init": {
+    "message0": "DFR1231 Erweiterungsboard initialisieren",
+    "tooltip": "Initialisiert das UNIHIKER K10 DFR1231 IO-Erweiterungsboard: I2C-Adresse 0x33, belegt SDA/SCL des Edge-Connectors, blockiert bis bereit"
+  },
+  "dfr1231_set_io_mode": {
+    "message0": "Erweiterungsboard C-Port %1 Modus auf %2 setzen",
+    "tooltip": "Setzt einen C0-C3 Multifunktionsport auf Digitalausgang oder Digitaleingang",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Digitalausgang",
+            "eWriteGpio"
+          ],
+          [
+            "Digitaleingang",
+            "eReadGpio"
+          ]
+        ]
+      }
+    ]
+  },
+  "dfr1231_gpio_write": {
+    "message0": "Erweiterungsboard C-Port %1 Pegel auf %2 setzen",
+    "tooltip": "Setzt den Digitalausgangspegel eines C-Ports: HIGH=1, LOW=0 (zuerst Digitalausgangsmodus setzen)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "HIGH-Pegel",
+            "eHIGH"
+          ],
+          [
+            "LOW-Pegel",
+            "eLOW"
+          ]
+        ]
+      }
+    ]
+  },
+  "dfr1231_gpio_read": {
+    "message0": "Erweiterungsboard C-Port %1 Pegel lesen",
+    "tooltip": "Liest den Pegel eines C-Ports (zuerst Digitaleingangsmodus setzen); gibt 0 oder 1 zurück, bei Fehler 255"
+  }
+}
