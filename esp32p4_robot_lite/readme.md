@@ -11,7 +11,7 @@
 
 ## Supported Boards
 
-ESP32P4 Robot-Lite V1.1 using `esp32:esp32:esp32p4`.
+ESP32P4 Robot-Lite using `esp32:esp32:esp32p4`.
 
 ## Description
 
