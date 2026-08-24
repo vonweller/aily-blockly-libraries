@@ -12,10 +12,31 @@
 
 | Block Type | Connection | Parameters (args0 order) | ABS Format | Generated Code |
 |------------|------------|--------------------------|------------|----------------|
-| `esp32p4_robot_lite_begin` | Statement | None | `esp32p4_robot_lite_begin()` | Acquire VO1–VO4 and configure Hosted SDIO. |
-| `esp32p4_robot_lite_wifi_connect` | Statement | `SSID(input_value)`, `PASSWORD(input_value)` | `esp32p4_robot_lite_wifi_connect(text("ssid"), text("password"))` | Initialize board support and call `WiFi.begin()`. |
-| `esp32p4_robot_lite_wifi_connected` | Value Boolean | None | `esp32p4_robot_lite_wifi_connected()` | Compare `WiFi.status()` with `WL_CONNECTED`. |
-| `esp32p4_robot_lite_ble_init` | Statement | `NAME(input_value)` | `esp32p4_robot_lite_ble_init(text("Robot-Lite"))` | Initialize board support and call `BLEDevice::init()`. |
+| `esp32p4_robot_lite_begin` | Statement | (none) | `esp32p4_robot_lite_begin()` | Acquire VO1–VO4 and configure Hosted SDIO. |
+| `esp32p4_robot_lite_wifi_connect` | Statement | SSID(input_value), PASSWORD(input_value) | `esp32p4_robot_lite_wifi_connect(text("ssid"), text("password"))` | Initialize board support and call `WiFi.begin()`. |
+| `esp32p4_robot_lite_wifi_connected` | Value Boolean | (none) | `esp32p4_robot_lite_wifi_connected()` | Compare `WiFi.status()` with `WL_CONNECTED`. |
+| `esp32p4_robot_lite_ble_init` | Statement | NAME(input_value) | `esp32p4_robot_lite_ble_init(text("Robot-Lite"))` | Initialize board support and call `BLEDevice::init()`. |
+
+## ABS Examples
+
+### WiFi Connection
+
+```abs
+arduino_setup()
+    esp32p4_robot_lite_begin()
+    esp32p4_robot_lite_wifi_connect(text("WiFi name"), text("WiFi password"))
+
+arduino_loop()
+    serial_println(Serial, esp32p4_robot_lite_wifi_connected())
+    time_delay(math_number(1000))
+```
+
+### BLE Initialization
+
+```abs
+arduino_setup()
+    esp32p4_robot_lite_ble_init(text("Robot-Lite"))
+```
 
 ## Generated board configuration
 
