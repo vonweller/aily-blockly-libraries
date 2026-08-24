@@ -16,10 +16,20 @@ function cubicEnsureCore(generator) {
   generator.addLibrary('ESP32Servo', '#include <ESP32Servo.h>');
   generator.addLibrary('U8g2lib', '#include <U8g2lib.h>');
 
+  generator.addLibrary('esp_log', '#include "esp_log.h"');
+
   generator.addObject('cubic_servos', 'Servo cubicServo1, cubicServo2, cubicServo3, cubicServo4;');
   generator.addObject('cubic_u8g2', 'U8G2_SSD1306_128X64_NONAME_F_HW_I2C cubic_u8g2(U8G2_R0, U8X8_PIN_NONE);');
 
   generator.addFunction('cubic_core_defs', CUBIC_DEFS);
+
+  // I2C 总线总是最先初始化: PS3 断连回调会调用 cubicStopAll()->cubicMotor(),
+  // 若未 Wire.begin() 会空指针崩溃(即使用户没放"小车初始化"积木)
+  generator.addSetupBegin('cubic_bus',
+    'esp_log_level_set("i2c.master", ESP_LOG_NONE);  // 偶发NACK有重试兜底, 关掉刷屏日志\n' +
+    'cubicI2CRecover();\n' +
+    'Wire.begin(CUBIC_SDA, CUBIC_SCL, CUBIC_I2C_FREQ);\n' +
+    'cubicWireReady = true;');
 }
 
 // ADC(板载按键 + 电池电压): 惰性配置 ADC 分辨率与衰减
@@ -40,10 +50,8 @@ function cubicEnsureServo(generator) {
 
 // 开环编码电机(LEDC PWM, 不碰 I2C): 惰性建立 LEDC, 被开环块调用
 function cubicEnsureEncLedc(generator) {
+  // LEDC attach 现由 cubicSetEnc 首次调用时惰性完成(见 CUBIC_DEFS), 此处仅确保核心注入
   cubicEnsureCore(generator);
-  generator.addSetup('cubic_enc_ledc',
-    'ledcAttach(CUBIC_ENC_M0_IN1, 1000, 8); ledcAttach(CUBIC_ENC_M0_IN2, 1000, 8);\n' +
-    'ledcAttach(CUBIC_ENC_M1_IN1, 1000, 8); ledcAttach(CUBIC_ENC_M1_IN2, 1000, 8);');
 }
 
 // 闭环编码电机(em::EncoderMotor, 会占用中断/后台线程, 与 I2C 冲突): 惰性建立, 被闭环块调用
@@ -56,6 +64,7 @@ function cubicEnsureEncClosed(generator) {
   generator.addObject('cubic_encM0', 'em::EncoderMotor cubicEncM0(GPIO_NUM_14, GPIO_NUM_15, GPIO_NUM_34, GPIO_NUM_39, ' + c.ppr + ', ' + c.red + ', ' + c.m0 + ');');
   generator.addObject('cubic_encM1', 'em::EncoderMotor cubicEncM1(GPIO_NUM_17, GPIO_NUM_12, GPIO_NUM_35, GPIO_NUM_36, ' + c.ppr + ', ' + c.red + ', ' + c.m1 + ');');
   generator.addSetupBegin('cubic_enc_closed_init',
+    'cubicClosedMode = true;  // 闭环: cubicSetEnc/cubicStopAll 跳过 LEDC, 由 em 接管这些脚\n' +
     'cubicEncM0.Init(); cubicEncM1.Init(); cubicEncM0.SetSpeedPid(3, 2, 1); cubicEncM1.SetSpeedPid(3, 2, 1);');
 }
 
@@ -82,8 +91,9 @@ const CUBIC_DEFS = [
   'static int cubic_invLY = -1, cubic_invLX = 1, cubic_invRY = -1, cubic_invRX = 1;',
   '',
   '// ===== I2C 马达(裸协议, 3字节) =====',
+  'bool cubicWireReady = false;   // Wire.begin() 完成前禁止发包(否则空指针崩溃)',
   'bool cubicMotor(uint8_t id, uint8_t dir, uint8_t spd) {',
-  '  if (id > 3) return false;',
+  '  if (id > 3 || !cubicWireReady) return false;',
   '  uint8_t cmd[3] = {id, dir, spd};',
   '  for (uint8_t t = 0; t < 3; t++) {           // 失败重试2次, 兜底偶发 NACK(马达电噪声)',
   '    Wire.beginTransmission(CUBIC_I2C_ADDR);',
@@ -96,14 +106,27 @@ const CUBIC_DEFS = [
   '}',
   '',
   '// ===== 开环编码电机(LEDC PWM), 速度 -255~255 =====',
+  '// 闭环模式(em::EncoderMotor 接管这些脚)下置 true; cubicSetEnc 会跳过 LEDC',
+  'bool cubicClosedMode = false;',
   'void cubicSetEnc(uint8_t in1, uint8_t in2, int spd) {',
+  '  if (cubicClosedMode) return;                       // 闭环: em 接管这些脚, 不走 LEDC',
+  '  static bool cubicEncLedcReady = false;             // 首次调用惰性 attach 四个驱动脚',
+  '  if (!cubicEncLedcReady) {                          // (否则对未 attach 脚 ledcWrite 会崩溃)',
+  '    // 固定用 LEDC 通道 8~11: ESP32Servo 从通道0往上分配(4个舵机=0~3),',
+  '    // 用 ledcAttach 自动分配会和舵机抢同一个定时器 -> 谁后 attach 谁失效。',
+  '    ledcAttachChannel(CUBIC_ENC_M0_IN1, 1000, 8,  8);',
+  '    ledcAttachChannel(CUBIC_ENC_M0_IN2, 1000, 8,  9);',
+  '    ledcAttachChannel(CUBIC_ENC_M1_IN1, 1000, 8, 10);',
+  '    ledcAttachChannel(CUBIC_ENC_M1_IN2, 1000, 8, 11);',
+  '    cubicEncLedcReady = true;',
+  '  }',
   '  spd = constrain(spd, -255, 255);',
   '  if (spd > 0)      { ledcWrite(in1, spd);  ledcWrite(in2, 0); }',
   '  else if (spd < 0) { ledcWrite(in1, 0);    ledcWrite(in2, -spd); }',
   '  else              { ledcWrite(in1, 0);    ledcWrite(in2, 0); }',
   '}',
   '',
-  '// ===== 全部停车: I2C四马达 + 开环编码电机(闭环模式下 ledcWrite 对未挂载脚是空操作, 无害) =====',
+  '// ===== 全部停车: I2C四马达 + 开环编码电机(cubicSetEnc 首次调用自动 attach; 闭环模式跳过) =====',
   'void cubicStopAll() {',
   '  for (uint8_t i = 0; i < 4; i++) cubicMotor(i, 1, 0);',
   '  cubicSetEnc(CUBIC_ENC_M0_IN1, CUBIC_ENC_M0_IN2, 0);',
@@ -202,10 +225,7 @@ Arduino.forBlock['cubic_init'] = function(block, generator) {
   };
 
   const setup = [
-    '// ---- Cubic Core 小车初始化 ----',
-    'esp_log_level_set("i2c.master", ESP_LOG_NONE);  // 偶发NACK有重试兜底, 关掉刷屏日志',
-    'cubicI2CRecover();',
-    'Wire.begin(CUBIC_SDA, CUBIC_SCL, CUBIC_I2C_FREQ);',
+    '// ---- Cubic Core 小车初始化 ---- (I2C总线已在 setup 开头初始化)',
     'cubic_u8g2.setBusClock(100000);  // I2C 100kHz: 马达板+OLED共用总线, 400k易NACK, 100k稳',
     'cubic_u8g2.begin();',
     'cubic_u8g2.setFont(u8g2_font_6x13_tf);',
@@ -220,19 +240,27 @@ Arduino.forBlock['cubic_init'] = function(block, generator) {
 Arduino.forBlock['cubic_ps3_begin'] = function(block, generator) {
   cubicEnsureCore(generator);
   generator.addLibrary('Ps3Controller', '#include <Ps3Controller.h>');
+  generator.addLibrary('esp_mac', '#include "esp_mac.h"');
   ensureSerialBegin('Serial', generator);
   const mac = generator.valueToCode(block, 'MAC', Arduino.ORDER_ATOMIC) || '"auto"';
 
   // cubicOnConnect/cubicOnDisconnect 定义在 CUBIC_DEFS 中(总是注入)，此处仅挂载
   const setup = [
-    'String cubicMac = String(' + mac + ');',
-    'if (cubicMac == "auto") {',
-    '  Ps3.begin(); cubicMac = Ps3.getAddress(); Ps3.end();',
-    '  Serial.print("PS3 pair to this MAC: "); Serial.println(cubicMac);',
-    '}',
+    'delay(500);',
+    '// ---------- PS3 蓝牙主机 ----------',
+    '// 用本机蓝牙MAC作为配对地址, 避免每次烧录都要重新配对',
+    'Ps3.begin();',
+    'String cubicMac = Ps3.getAddress();',
+    'Ps3.end();',
+    'String cubicUserMac = String(' + mac + ');',
+    'if (cubicUserMac != "auto") cubicMac = cubicUserMac;   // 积木里填了具体MAC则用它',
+    '',
     'Ps3.attachOnConnect(cubicOnConnect);',
     'Ps3.attachOnDisconnect(cubicOnDisconnect);',
     'Ps3.begin(cubicMac.c_str());',
+    '',
+    'Serial.print("PS3 pair to this MAC: ");',
+    'Serial.println(cubicMac);',
     'Serial.println("Waiting for PS3 controller...");'
   ].join('\n');
   generator.addSetup('cubic_ps3_begin', setup);

@@ -3,10 +3,44 @@
     "type": "cubic_init",
     "message0": "初始化 Cubic Core 小车 编码器脉冲 %1 减速比 %2 M0相位 %3 M1相位 %4",
     "args0": [
-      { "type": "input_value", "name": "PPR", "check": "Number" },
-      { "type": "input_value", "name": "RED", "check": "Number" },
-      { "type": "field_dropdown", "name": "M0PH", "options": [["A相领先", "em::EncoderMotor::kAPhaseLeads"], ["B相领先", "em::EncoderMotor::kBPhaseLeads"]] },
-      { "type": "field_dropdown", "name": "M1PH", "options": [["A相领先", "em::EncoderMotor::kAPhaseLeads"], ["B相领先", "em::EncoderMotor::kBPhaseLeads"]] }
+      {
+        "type": "input_value",
+        "name": "PPR",
+        "check": "Number"
+      },
+      {
+        "type": "input_value",
+        "name": "RED",
+        "check": "Number"
+      },
+      {
+        "type": "field_dropdown",
+        "name": "M0PH",
+        "options": [
+          [
+            "A相领先",
+            "em::EncoderMotor::kAPhaseLeads"
+          ],
+          [
+            "B相领先",
+            "em::EncoderMotor::kBPhaseLeads"
+          ]
+        ]
+      },
+      {
+        "type": "field_dropdown",
+        "name": "M1PH",
+        "options": [
+          [
+            "A相领先",
+            "em::EncoderMotor::kAPhaseLeads"
+          ],
+          [
+            "B相领先",
+            "em::EncoderMotor::kBPhaseLeads"
+          ]
+        ]
+      }
     ],
     "inputsInline": true,
     "previousStatement": null,
@@ -18,7 +52,11 @@
     "type": "cubic_ps3_begin",
     "message0": "连接 PS3 手柄 MAC地址 %1",
     "args0": [
-      { "type": "input_value", "name": "MAC", "check": "String" }
+      {
+        "type": "input_value",
+        "name": "MAC",
+        "check": "String"
+      }
     ],
     "previousStatement": null,
     "nextStatement": null,
@@ -36,8 +74,13 @@
     "type": "cubic_on_connect",
     "message0": "当手柄连接时 %1 %2",
     "args0": [
-      { "type": "input_dummy" },
-      { "type": "input_statement", "name": "DO" }
+      {
+        "type": "input_dummy"
+      },
+      {
+        "type": "input_statement",
+        "name": "DO"
+      }
     ],
     "previousStatement": null,
     "nextStatement": null,
@@ -48,8 +91,13 @@
     "type": "cubic_on_disconnect",
     "message0": "当手柄断开时 %1 %2",
     "args0": [
-      { "type": "input_dummy" },
-      { "type": "input_statement", "name": "DO" }
+      {
+        "type": "input_dummy"
+      },
+      {
+        "type": "input_statement",
+        "name": "DO"
+      }
     ],
     "previousStatement": null,
     "nextStatement": null,
@@ -60,8 +108,34 @@
     "type": "cubic_stick",
     "message0": "摇杆 %1 %2 值",
     "args0": [
-      { "type": "field_dropdown", "name": "STICK", "options": [["左", "l"], ["右", "r"]] },
-      { "type": "field_dropdown", "name": "AXIS", "options": [["前后(Y)", "y"], ["转向(X)", "x"]] }
+      {
+        "type": "field_dropdown",
+        "name": "STICK",
+        "options": [
+          [
+            "左",
+            "l"
+          ],
+          [
+            "右",
+            "r"
+          ]
+        ]
+      },
+      {
+        "type": "field_dropdown",
+        "name": "AXIS",
+        "options": [
+          [
+            "前后(Y)",
+            "y"
+          ],
+          [
+            "转向(X)",
+            "x"
+          ]
+        ]
+      }
     ],
     "output": "Number",
     "colour": "#607D8B",
@@ -71,12 +145,72 @@
     "type": "cubic_button",
     "message0": "按键 %1 正被按住",
     "args0": [
-      { "type": "field_dropdown", "name": "BTN", "options": [
-        ["× 叉", "cross"], ["○ 圈", "circle"], ["△ 三角", "triangle"], ["□ 方块", "square"],
-        ["L1", "l1"], ["R1", "r1"], ["L2", "l2"], ["R2", "r2"],
-        ["上", "up"], ["下", "down"], ["左", "left"], ["右", "right"],
-        ["Select", "select"], ["Start", "start"], ["PS", "ps"]
-      ]}
+      {
+        "type": "field_dropdown",
+        "name": "BTN",
+        "options": [
+          [
+            "× 叉",
+            "cross"
+          ],
+          [
+            "○ 圈",
+            "circle"
+          ],
+          [
+            "△ 三角",
+            "triangle"
+          ],
+          [
+            "□ 方块",
+            "square"
+          ],
+          [
+            "L1",
+            "l1"
+          ],
+          [
+            "R1",
+            "r1"
+          ],
+          [
+            "L2",
+            "l2"
+          ],
+          [
+            "R2",
+            "r2"
+          ],
+          [
+            "上",
+            "up"
+          ],
+          [
+            "下",
+            "down"
+          ],
+          [
+            "左",
+            "left"
+          ],
+          [
+            "右",
+            "right"
+          ],
+          [
+            "Select",
+            "select"
+          ],
+          [
+            "Start",
+            "start"
+          ],
+          [
+            "PS",
+            "ps"
+          ]
+        ]
+      }
     ],
     "output": "Boolean",
     "colour": "#607D8B",
@@ -86,12 +220,72 @@
     "type": "cubic_button_pressed",
     "message0": "按键 %1 刚按下",
     "args0": [
-      { "type": "field_dropdown", "name": "BTN", "options": [
-        ["× 叉", "cross"], ["○ 圈", "circle"], ["△ 三角", "triangle"], ["□ 方块", "square"],
-        ["L1", "l1"], ["R1", "r1"], ["L2", "l2"], ["R2", "r2"],
-        ["上", "up"], ["下", "down"], ["左", "left"], ["右", "right"],
-        ["Select", "select"], ["Start", "start"], ["PS", "ps"]
-      ]}
+      {
+        "type": "field_dropdown",
+        "name": "BTN",
+        "options": [
+          [
+            "× 叉",
+            "cross"
+          ],
+          [
+            "○ 圈",
+            "circle"
+          ],
+          [
+            "△ 三角",
+            "triangle"
+          ],
+          [
+            "□ 方块",
+            "square"
+          ],
+          [
+            "L1",
+            "l1"
+          ],
+          [
+            "R1",
+            "r1"
+          ],
+          [
+            "L2",
+            "l2"
+          ],
+          [
+            "R2",
+            "r2"
+          ],
+          [
+            "上",
+            "up"
+          ],
+          [
+            "下",
+            "down"
+          ],
+          [
+            "左",
+            "left"
+          ],
+          [
+            "右",
+            "right"
+          ],
+          [
+            "Select",
+            "select"
+          ],
+          [
+            "Start",
+            "start"
+          ],
+          [
+            "PS",
+            "ps"
+          ]
+        ]
+      }
     ],
     "output": "Boolean",
     "colour": "#607D8B",
@@ -101,8 +295,16 @@
     "type": "cubic_rumble",
     "message0": "手柄震动 强度 %1 时长 %2 毫秒",
     "args0": [
-      { "type": "input_value", "name": "POWER", "check": "Number" },
-      { "type": "input_value", "name": "MS", "check": "Number" }
+      {
+        "type": "input_value",
+        "name": "POWER",
+        "check": "Number"
+      },
+      {
+        "type": "input_value",
+        "name": "MS",
+        "check": "Number"
+      }
     ],
     "previousStatement": null,
     "nextStatement": null,
@@ -113,9 +315,47 @@
     "type": "cubic_i2c_motor",
     "message0": "I2C马达 %1 方向 %2 速度 %3",
     "args0": [
-      { "type": "field_dropdown", "name": "M", "options": [["M0", "0"], ["M1", "1"], ["M2", "2"], ["M3", "3"]] },
-      { "type": "field_dropdown", "name": "DIR", "options": [["正转", "0"], ["反转", "1"]] },
-      { "type": "input_value", "name": "SPD", "check": "Number" }
+      {
+        "type": "field_dropdown",
+        "name": "M",
+        "options": [
+          [
+            "Mr2",
+            "0"
+          ],
+          [
+            "Mr1",
+            "1"
+          ],
+          [
+            "Ml1",
+            "2"
+          ],
+          [
+            "Ml2",
+            "3"
+          ]
+        ]
+      },
+      {
+        "type": "field_dropdown",
+        "name": "DIR",
+        "options": [
+          [
+            "正转",
+            "0"
+          ],
+          [
+            "反转",
+            "1"
+          ]
+        ]
+      },
+      {
+        "type": "input_value",
+        "name": "SPD",
+        "check": "Number"
+      }
     ],
     "previousStatement": null,
     "nextStatement": null,
@@ -126,8 +366,25 @@
     "type": "cubic_i2c_all",
     "message0": "I2C四马达 全部 方向 %1 速度 %2",
     "args0": [
-      { "type": "field_dropdown", "name": "DIR", "options": [["正转", "0"], ["反转", "1"]] },
-      { "type": "input_value", "name": "SPD", "check": "Number" }
+      {
+        "type": "field_dropdown",
+        "name": "DIR",
+        "options": [
+          [
+            "正转",
+            "0"
+          ],
+          [
+            "反转",
+            "1"
+          ]
+        ]
+      },
+      {
+        "type": "input_value",
+        "name": "SPD",
+        "check": "Number"
+      }
     ],
     "previousStatement": null,
     "nextStatement": null,
@@ -146,8 +403,25 @@
     "type": "cubic_enc_run_pwm",
     "message0": "编码电机 %1 以动力 %2 运转",
     "args0": [
-      { "type": "field_dropdown", "name": "M", "options": [["M0", "0"], ["M1", "1"]] },
-      { "type": "input_value", "name": "PWM", "check": "Number" }
+      {
+        "type": "field_dropdown",
+        "name": "M",
+        "options": [
+          [
+            "EMR",
+            "0"
+          ],
+          [
+            "EML",
+            "1"
+          ]
+        ]
+      },
+      {
+        "type": "input_value",
+        "name": "PWM",
+        "check": "Number"
+      }
     ],
     "previousStatement": null,
     "nextStatement": null,
@@ -158,8 +432,25 @@
     "type": "cubic_enc_run_speed",
     "message0": "编码电机 %1 以转速 %2 RPM 运转",
     "args0": [
-      { "type": "field_dropdown", "name": "M", "options": [["M0", "0"], ["M1", "1"]] },
-      { "type": "input_value", "name": "RPM", "check": "Number" }
+      {
+        "type": "field_dropdown",
+        "name": "M",
+        "options": [
+          [
+            "EMR",
+            "0"
+          ],
+          [
+            "EML",
+            "1"
+          ]
+        ]
+      },
+      {
+        "type": "input_value",
+        "name": "RPM",
+        "check": "Number"
+      }
     ],
     "previousStatement": null,
     "nextStatement": null,
@@ -170,7 +461,20 @@
     "type": "cubic_enc_stop",
     "message0": "编码电机 %1 停止",
     "args0": [
-      { "type": "field_dropdown", "name": "M", "options": [["M0", "0"], ["M1", "1"]] }
+      {
+        "type": "field_dropdown",
+        "name": "M",
+        "options": [
+          [
+            "EMR",
+            "0"
+          ],
+          [
+            "EML",
+            "1"
+          ]
+        ]
+      }
     ],
     "previousStatement": null,
     "nextStatement": null,
@@ -181,7 +485,20 @@
     "type": "cubic_enc_speed",
     "message0": "编码电机 %1 当前转速(RPM)",
     "args0": [
-      { "type": "field_dropdown", "name": "M", "options": [["M0", "0"], ["M1", "1"]] }
+      {
+        "type": "field_dropdown",
+        "name": "M",
+        "options": [
+          [
+            "EMR",
+            "0"
+          ],
+          [
+            "EML",
+            "1"
+          ]
+        ]
+      }
     ],
     "output": "Number",
     "colour": "#EF6C00",
@@ -191,7 +508,20 @@
     "type": "cubic_enc_pulse",
     "message0": "编码电机 %1 脉冲计数",
     "args0": [
-      { "type": "field_dropdown", "name": "M", "options": [["M0", "0"], ["M1", "1"]] }
+      {
+        "type": "field_dropdown",
+        "name": "M",
+        "options": [
+          [
+            "EMR",
+            "0"
+          ],
+          [
+            "EML",
+            "1"
+          ]
+        ]
+      }
     ],
     "output": "Number",
     "colour": "#EF6C00",
@@ -201,7 +531,20 @@
     "type": "cubic_enc_revolutions",
     "message0": "编码电机 %1 转动圈数",
     "args0": [
-      { "type": "field_dropdown", "name": "M", "options": [["M0", "0"], ["M1", "1"]] }
+      {
+        "type": "field_dropdown",
+        "name": "M",
+        "options": [
+          [
+            "EMR",
+            "0"
+          ],
+          [
+            "EML",
+            "1"
+          ]
+        ]
+      }
     ],
     "output": "Number",
     "colour": "#EF6C00",
@@ -211,7 +554,20 @@
     "type": "cubic_enc_reset",
     "message0": "编码电机 %1 重置脉冲计数",
     "args0": [
-      { "type": "field_dropdown", "name": "M", "options": [["M0", "0"], ["M1", "1"]] }
+      {
+        "type": "field_dropdown",
+        "name": "M",
+        "options": [
+          [
+            "EMR",
+            "0"
+          ],
+          [
+            "EML",
+            "1"
+          ]
+        ]
+      }
     ],
     "previousStatement": null,
     "nextStatement": null,
@@ -222,10 +578,35 @@
     "type": "cubic_enc_pid",
     "message0": "编码电机 %1 设置PID P %2 I %3 D %4",
     "args0": [
-      { "type": "field_dropdown", "name": "M", "options": [["M0", "0"], ["M1", "1"]] },
-      { "type": "input_value", "name": "P", "check": "Number" },
-      { "type": "input_value", "name": "I", "check": "Number" },
-      { "type": "input_value", "name": "D", "check": "Number" }
+      {
+        "type": "field_dropdown",
+        "name": "M",
+        "options": [
+          [
+            "EMR",
+            "0"
+          ],
+          [
+            "EML",
+            "1"
+          ]
+        ]
+      },
+      {
+        "type": "input_value",
+        "name": "P",
+        "check": "Number"
+      },
+      {
+        "type": "input_value",
+        "name": "I",
+        "check": "Number"
+      },
+      {
+        "type": "input_value",
+        "name": "D",
+        "check": "Number"
+      }
     ],
     "previousStatement": null,
     "nextStatement": null,
@@ -236,8 +617,33 @@
     "type": "cubic_servo",
     "message0": "舵机 %1 转到 %2 °",
     "args0": [
-      { "type": "field_dropdown", "name": "S", "options": [["1", "1"], ["2", "2"], ["3", "3"], ["4", "4"]] },
-      { "type": "input_value", "name": "ANGLE", "check": "Number" }
+      {
+        "type": "field_dropdown",
+        "name": "S",
+        "options": [
+          [
+            "25",
+            "1"
+          ],
+          [
+            "19",
+            "2"
+          ],
+          [
+            "2",
+            "3"
+          ],
+          [
+            "18",
+            "4"
+          ]
+        ]
+      },
+      {
+        "type": "input_value",
+        "name": "ANGLE",
+        "check": "Number"
+      }
     ],
     "previousStatement": null,
     "nextStatement": null,
@@ -248,7 +654,11 @@
     "type": "cubic_servo_all",
     "message0": "全部舵机 转到 %1 °",
     "args0": [
-      { "type": "input_value", "name": "ANGLE", "check": "Number" }
+      {
+        "type": "input_value",
+        "name": "ANGLE",
+        "check": "Number"
+      }
     ],
     "previousStatement": null,
     "nextStatement": null,
@@ -275,9 +685,21 @@
     "type": "cubic_oled_text",
     "message0": "OLED 写文字 X %1 Y %2 内容 %3",
     "args0": [
-      { "type": "input_value", "name": "X", "check": "Number" },
-      { "type": "input_value", "name": "Y", "check": "Number" },
-      { "type": "input_value", "name": "TEXT", "check": "String" }
+      {
+        "type": "input_value",
+        "name": "X",
+        "check": "Number"
+      },
+      {
+        "type": "input_value",
+        "name": "Y",
+        "check": "Number"
+      },
+      {
+        "type": "input_value",
+        "name": "TEXT",
+        "check": "String"
+      }
     ],
     "previousStatement": null,
     "nextStatement": null,
@@ -312,7 +734,11 @@
     "type": "cubic_set_deadzone",
     "message0": "设置摇杆死区 %1",
     "args0": [
-      { "type": "input_value", "name": "VAL", "check": "Number" }
+      {
+        "type": "input_value",
+        "name": "VAL",
+        "check": "Number"
+      }
     ],
     "previousStatement": null,
     "nextStatement": null,
@@ -323,8 +749,42 @@
     "type": "cubic_invert_axis",
     "message0": "摇杆 %1 方向 %2",
     "args0": [
-      { "type": "field_dropdown", "name": "AXIS", "options": [["左Y(前后)", "LY"], ["左X(转向)", "LX"], ["右Y(前后)", "RY"], ["右X(转向)", "RX"]] },
-      { "type": "field_dropdown", "name": "MODE", "options": [["取反", "-1"], ["正常", "1"]] }
+      {
+        "type": "field_dropdown",
+        "name": "AXIS",
+        "options": [
+          [
+            "左Y(前后)",
+            "LY"
+          ],
+          [
+            "左X(转向)",
+            "LX"
+          ],
+          [
+            "右Y(前后)",
+            "RY"
+          ],
+          [
+            "右X(转向)",
+            "RX"
+          ]
+        ]
+      },
+      {
+        "type": "field_dropdown",
+        "name": "MODE",
+        "options": [
+          [
+            "取反",
+            "-1"
+          ],
+          [
+            "正常",
+            "1"
+          ]
+        ]
+      }
     ],
     "previousStatement": null,
     "nextStatement": null,
@@ -335,8 +795,16 @@
     "type": "cubic_oled_pixel",
     "message0": "OLED 画点 X %1 Y %2",
     "args0": [
-      { "type": "input_value", "name": "X", "check": "Number" },
-      { "type": "input_value", "name": "Y", "check": "Number" }
+      {
+        "type": "input_value",
+        "name": "X",
+        "check": "Number"
+      },
+      {
+        "type": "input_value",
+        "name": "Y",
+        "check": "Number"
+      }
     ],
     "previousStatement": null,
     "nextStatement": null,
@@ -347,10 +815,26 @@
     "type": "cubic_oled_line",
     "message0": "OLED 画线 从 X %1 Y %2 到 X %3 Y %4",
     "args0": [
-      { "type": "input_value", "name": "X1", "check": "Number" },
-      { "type": "input_value", "name": "Y1", "check": "Number" },
-      { "type": "input_value", "name": "X2", "check": "Number" },
-      { "type": "input_value", "name": "Y2", "check": "Number" }
+      {
+        "type": "input_value",
+        "name": "X1",
+        "check": "Number"
+      },
+      {
+        "type": "input_value",
+        "name": "Y1",
+        "check": "Number"
+      },
+      {
+        "type": "input_value",
+        "name": "X2",
+        "check": "Number"
+      },
+      {
+        "type": "input_value",
+        "name": "Y2",
+        "check": "Number"
+      }
     ],
     "previousStatement": null,
     "nextStatement": null,
@@ -361,11 +845,40 @@
     "type": "cubic_oled_rect",
     "message0": "OLED 矩形 X %1 Y %2 宽 %3 高 %4 %5",
     "args0": [
-      { "type": "input_value", "name": "X", "check": "Number" },
-      { "type": "input_value", "name": "Y", "check": "Number" },
-      { "type": "input_value", "name": "W", "check": "Number" },
-      { "type": "input_value", "name": "H", "check": "Number" },
-      { "type": "field_dropdown", "name": "FILL", "options": [["空心", "0"], ["实心", "1"]] }
+      {
+        "type": "input_value",
+        "name": "X",
+        "check": "Number"
+      },
+      {
+        "type": "input_value",
+        "name": "Y",
+        "check": "Number"
+      },
+      {
+        "type": "input_value",
+        "name": "W",
+        "check": "Number"
+      },
+      {
+        "type": "input_value",
+        "name": "H",
+        "check": "Number"
+      },
+      {
+        "type": "field_dropdown",
+        "name": "FILL",
+        "options": [
+          [
+            "空心",
+            "0"
+          ],
+          [
+            "实心",
+            "1"
+          ]
+        ]
+      }
     ],
     "previousStatement": null,
     "nextStatement": null,
@@ -376,10 +889,35 @@
     "type": "cubic_oled_circle",
     "message0": "OLED 圆 X %1 Y %2 半径 %3 %4",
     "args0": [
-      { "type": "input_value", "name": "X", "check": "Number" },
-      { "type": "input_value", "name": "Y", "check": "Number" },
-      { "type": "input_value", "name": "R", "check": "Number" },
-      { "type": "field_dropdown", "name": "FILL", "options": [["空心", "0"], ["实心", "1"]] }
+      {
+        "type": "input_value",
+        "name": "X",
+        "check": "Number"
+      },
+      {
+        "type": "input_value",
+        "name": "Y",
+        "check": "Number"
+      },
+      {
+        "type": "input_value",
+        "name": "R",
+        "check": "Number"
+      },
+      {
+        "type": "field_dropdown",
+        "name": "FILL",
+        "options": [
+          [
+            "空心",
+            "0"
+          ],
+          [
+            "实心",
+            "1"
+          ]
+        ]
+      }
     ],
     "previousStatement": null,
     "nextStatement": null,
@@ -390,9 +928,21 @@
     "type": "cubic_oled_num",
     "message0": "OLED 写数值 X %1 Y %2 数值 %3",
     "args0": [
-      { "type": "input_value", "name": "X", "check": "Number" },
-      { "type": "input_value", "name": "Y", "check": "Number" },
-      { "type": "input_value", "name": "NUM", "check": "Number" }
+      {
+        "type": "input_value",
+        "name": "X",
+        "check": "Number"
+      },
+      {
+        "type": "input_value",
+        "name": "Y",
+        "check": "Number"
+      },
+      {
+        "type": "input_value",
+        "name": "NUM",
+        "check": "Number"
+      }
     ],
     "previousStatement": null,
     "nextStatement": null,
@@ -403,7 +953,24 @@
     "type": "cubic_oled_font",
     "message0": "OLED 字体 %1",
     "args0": [
-      { "type": "field_dropdown", "name": "SIZE", "options": [["小", "s"], ["中", "m"], ["大", "l"]] }
+      {
+        "type": "field_dropdown",
+        "name": "SIZE",
+        "options": [
+          [
+            "小",
+            "s"
+          ],
+          [
+            "中",
+            "m"
+          ],
+          [
+            "大",
+            "l"
+          ]
+        ]
+      }
     ],
     "previousStatement": null,
     "nextStatement": null,
@@ -414,7 +981,24 @@
     "type": "cubic_oled_color",
     "message0": "OLED 绘图颜色 %1",
     "args0": [
-      { "type": "field_dropdown", "name": "COLOR", "options": [["亮(画)", "1"], ["灭(擦)", "0"], ["反色", "2"]] }
+      {
+        "type": "field_dropdown",
+        "name": "COLOR",
+        "options": [
+          [
+            "亮(画)",
+            "1"
+          ],
+          [
+            "灭(擦)",
+            "0"
+          ],
+          [
+            "反色",
+            "2"
+          ]
+        ]
+      }
     ],
     "previousStatement": null,
     "nextStatement": null,
@@ -425,7 +1009,11 @@
     "type": "cubic_oled_contrast",
     "message0": "OLED 亮度 %1",
     "args0": [
-      { "type": "input_value", "name": "VAL", "check": "Number" }
+      {
+        "type": "input_value",
+        "name": "VAL",
+        "check": "Number"
+      }
     ],
     "previousStatement": null,
     "nextStatement": null,
@@ -436,7 +1024,20 @@
     "type": "cubic_oled_power",
     "message0": "OLED 屏幕 %1",
     "args0": [
-      { "type": "field_dropdown", "name": "MODE", "options": [["开", "0"], ["省电(关显示)", "1"]] }
+      {
+        "type": "field_dropdown",
+        "name": "MODE",
+        "options": [
+          [
+            "开",
+            "0"
+          ],
+          [
+            "省电(关显示)",
+            "1"
+          ]
+        ]
+      }
     ],
     "previousStatement": null,
     "nextStatement": null,
@@ -447,7 +1048,20 @@
     "type": "cubic_oled_flip",
     "message0": "OLED 翻转180° %1",
     "args0": [
-      { "type": "field_dropdown", "name": "MODE", "options": [["开", "1"], ["关", "0"]] }
+      {
+        "type": "field_dropdown",
+        "name": "MODE",
+        "options": [
+          [
+            "开",
+            "1"
+          ],
+          [
+            "关",
+            "0"
+          ]
+        ]
+      }
     ],
     "previousStatement": null,
     "nextStatement": null,
@@ -458,7 +1072,24 @@
     "type": "cubic_key",
     "message0": "按键 %1 按下",
     "args0": [
-      { "type": "field_dropdown", "name": "KEY", "options": [["A", "1"], ["B", "2"], ["C", "3"]] }
+      {
+        "type": "field_dropdown",
+        "name": "KEY",
+        "options": [
+          [
+            "A",
+            "1"
+          ],
+          [
+            "B",
+            "2"
+          ],
+          [
+            "C",
+            "3"
+          ]
+        ]
+      }
     ],
     "output": "Boolean",
     "colour": "#795548",
@@ -468,7 +1099,24 @@
     "type": "cubic_key_pressed",
     "message0": "按键 %1 刚按下",
     "args0": [
-      { "type": "field_dropdown", "name": "KEY", "options": [["A", "1"], ["B", "2"], ["C", "3"]] }
+      {
+        "type": "field_dropdown",
+        "name": "KEY",
+        "options": [
+          [
+            "A",
+            "1"
+          ],
+          [
+            "B",
+            "2"
+          ],
+          [
+            "C",
+            "3"
+          ]
+        ]
+      }
     ],
     "output": "Boolean",
     "colour": "#795548",
