@@ -1,11 +1,11 @@
 {
   "toolbox_name": "AS3935",
   "as3935_init_i2c": {
-    "message0": "Inicializar AS3935 %1 I2C endereço %2 pino interrupção %3",
+    "message0": "Inicializar AS3935 I2C %1 endereço %2",
     "tooltip": "Inicializar o sensor de relâmpago SparkFun AS3935 via I2C"
   },
   "as3935_init_spi": {
-    "message0": "Inicializar AS3935 %1 SPI CS %2 pino interrupção %3",
+    "message0": "Inicializar AS3935 SPI %1 CS %2",
     "tooltip": "Inicializar AS3935 via SPI"
   },
   "as3935_is_ready": {
@@ -20,12 +20,12 @@
       {
         "options": [
           [
-            "Interior",
-            "AS3935_INDOOR"
+            "Home",
+            "INDOOR"
           ],
           [
-            "Exterior",
-            "AS3935_OUTDOOR"
+            "Atividades ao ar livre",
+            "OUTDOOR"
           ]
         ]
       }
@@ -63,15 +63,16 @@
     "message0": "AS3935 %1 mascarar perturbador %2",
     "tooltip": "Ativar/desativar a máscara de perturbador AS3935",
     "args0": [
+      null,
       {
         "options": [
           [
-            "Ligar",
-            "ON"
+            "Ligado",
+            "true"
           ],
           [
-            "Desligar",
-            "OFF"
+            "Desligado",
+            "false"
           ]
         ]
       }

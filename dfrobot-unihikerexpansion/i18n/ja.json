@@ -1,0 +1,49 @@
+{
+  "toolbox_name": "UNIHIKER 拡張ボード DFR1231",
+  "dfr1231_init": {
+    "message0": "DFR1231 拡張ボードを初期化",
+    "tooltip": "UNIHIKER K10 DFR1231 IO拡張ボードを初期化：I2Cアドレス0x33、エッジコネクタのSDA/SCLを使用、準備完了まで待機"
+  },
+  "dfr1231_set_io_mode": {
+    "message0": "拡張ボード Cポート %1 のモードを %2 に設定",
+    "tooltip": "C0-C3マルチファンクションポートをデジタル出力またはデジタル入力に設定",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "デジタル出力",
+            "eWriteGpio"
+          ],
+          [
+            "デジタル入力",
+            "eReadGpio"
+          ]
+        ]
+      }
+    ]
+  },
+  "dfr1231_gpio_write": {
+    "message0": "拡張ボード Cポート %1 のレベルを %2 に設定",
+    "tooltip": "Cポートのデジタル出力レベルを設定：HIGH=1、LOW=0（先にデジタル出力モードに設定）",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "ハイレベル",
+            "eHIGH"
+          ],
+          [
+            "ローレベル",
+            "eLOW"
+          ]
+        ]
+      }
+    ]
+  },
+  "dfr1231_gpio_read": {
+    "message0": "拡張ボード Cポート %1 のレベルを読み取る",
+    "tooltip": "Cポートのレベルを読み取り（先にデジタル入力モードに設定）、0または1を返し、失敗時は255"
+  }
+}

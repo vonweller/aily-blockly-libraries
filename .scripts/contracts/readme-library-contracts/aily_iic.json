@@ -1,0 +1,81 @@
+{
+  "schemaVersion": 1,
+  "blocks": {
+    "wire_begin": {
+      "variants": [
+        {
+          "id": "master",
+          "when": { "MODE": ["MASTER"] },
+          "appendArgs": []
+        },
+        {
+          "id": "slave-address",
+          "when": { "MODE": ["SLAVE"] },
+          "appendArgs": [
+            { "name": "ADDRESS", "type": "input_value", "example": "math_number(8)", "required": true }
+          ]
+        }
+      ]
+    },
+    "wire_begin_with_settings": {
+      "variants": [
+        {
+          "id": "master-custom-pins",
+          "when": { "MODE": ["MASTER"] },
+          "appendArgs": []
+        },
+        {
+          "id": "slave-custom-pins-and-address",
+          "when": { "MODE": ["SLAVE"] },
+          "appendArgs": [
+            { "name": "ADDRESS", "type": "input_value", "example": "math_number(8)", "required": true }
+          ]
+        }
+      ]
+    },
+    "wire_set_clock": {
+      "staticShape": true,
+      "reason": "The pin-info extension only decorates the existing WIRE dropdown options and does not change argument shape."
+    },
+    "wire_begin_transmission": {
+      "staticShape": true,
+      "reason": "The pin-info extension only decorates the existing WIRE dropdown options and does not change argument shape."
+    },
+    "wire_write": {
+      "staticShape": true,
+      "reason": "The pin-info extension only decorates the existing WIRE dropdown options and does not change argument shape."
+    },
+    "wire_end_transmission": {
+      "staticShape": true,
+      "reason": "The pin-info extension only decorates the existing WIRE dropdown options and does not change argument shape."
+    },
+    "wire_request_from": {
+      "staticShape": true,
+      "reason": "The pin-info extension only decorates the existing WIRE dropdown options and does not change argument shape."
+    },
+    "wire_available": {
+      "staticShape": true,
+      "reason": "The pin-info extension only decorates the existing WIRE dropdown options and does not change argument shape."
+    },
+    "wire_read": {
+      "staticShape": true,
+      "reason": "The pin-info extension only decorates the existing WIRE dropdown options and does not change argument shape."
+    },
+    "wire_variables": {
+      "staticShape": true,
+      "reason": "The pin-info extension only decorates the existing WIRE dropdown options and does not change argument shape."
+    },
+    "wire_on_receive": {
+      "staticShape": true,
+      "reason": "The pin-info extension only decorates the existing WIRE dropdown options and does not change argument shape."
+    },
+    "wire_on_request": {
+      "staticShape": true,
+      "reason": "The pin-info extension only decorates the existing WIRE dropdown options and does not change argument shape."
+    },
+    "wire_scan": {
+      "staticShape": true,
+      "reason": "The pin-info extension only decorates the existing WIRE dropdown options and does not change argument shape."
+    }
+  }
+}

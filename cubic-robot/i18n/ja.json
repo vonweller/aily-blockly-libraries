@@ -1,0 +1,284 @@
+{
+  "toolbox_name": "Cubic競技ロボット",
+  "toolbox_labels": {
+    "初始化": "初期化",
+    "编码电机控制": "エンコーダモータ",
+    "状态查询": "状態",
+    "舵机 / 按键 / 灯": "サーボ/ボタン/LED"
+  },
+  "cubic_robot_init": {
+    "message0": "キュービックロボットの初期化%1",
+    "tooltip": "Cubic CoreV2+Motorの作成・初期化。内部の多重エンコーダモーターライブラリ(lib-encoder-motor)でMA/MBを制御します"
+  },
+  "cubic_robot_set_motor_pins": {
+    "message0": "%1 モーターをドライバーピンIN1%3IN2%2、エンコーダA%5B%4設定%6",
+    "tooltip": "初期化前にモーター/エンコーダのピンを覆いましょう。 デフォルト:MA=14/15/34/35、MB=12/17/36/39",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "A(MA)",
+            "MOTOR_A"
+          ],
+          [
+            "B(MB)",
+            "MOTOR_B"
+          ]
+        ]
+      },
+      null,
+      null,
+      null,
+      null
+    ]
+  },
+  "cubic_robot_set_pid": {
+    "message0": "%1モーター%2設定PID P%3 %4 D %5",
+    "tooltip": "符号化されたモーター速度ループPIDを設定します(多重化EncoderMotor::SetSpeedPid)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "A(MA)",
+            "MOTOR_A"
+          ],
+          [
+            "B(MB)",
+            "MOTOR_B"
+          ]
+        ]
+      },
+      null,
+      null,
+      null
+    ]
+  },
+  "cubic_robot_run_pwm": {
+    "message0": "%1 モーター %2 パワー(PWM)%3(-1023~1023)",
+    "tooltip": "ダイレクトPWMドライブ(エンコーダーモーター::RunPwmDuty)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "A(MA)",
+            "MOTOR_A"
+          ],
+          [
+            "B(MB)",
+            "MOTOR_B"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "cubic_robot_run_speed": {
+    "message0": "%1モーター%2は%3回転数(-300~300)で動作します。",
+    "tooltip": "スピードループ制御(エンコーダーモーター::RunSpeed)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "A(MA)",
+            "MOTOR_A"
+          ],
+          [
+            "B(MB)",
+            "MOTOR_B"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "cubic_robot_drive": {
+    "message0": "%1 デファレンシャル前方駆動%2ステアリング%3",
+    "tooltip": "ディファレンシャルシャーシ、前進/ステアリング範囲 -1023~1023、内部PWMドライブMA/MB"
+  },
+  "cubic_robot_move": {
+    "message0": "%1 小型車%2動力%3",
+    "tooltip": "クイックスポーツ、推奨出力0~1023",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "前進する",
+            "FORWARD"
+          ],
+          [
+            "戻る",
+            "BACKWARD"
+          ],
+          [
+            "左回転",
+            "LEFT"
+          ],
+          [
+            "右回転",
+            "RIGHT"
+          ],
+          [
+            "やめて",
+            "STOP"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "cubic_robot_stop": {
+    "message0": "%1 すべてのモーターを停止",
+    "tooltip": "マサマ/マッキーを止めて"
+  },
+  "cubic_robot_get_speed": {
+    "message0": "%1 モーター%2電流回転数(RPM)",
+    "tooltip": "コードでモーターの現在の回転数を読み取ってください",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "A(MA)",
+            "MOTOR_A"
+          ],
+          [
+            "B(MB)",
+            "MOTOR_B"
+          ]
+        ]
+      }
+    ]
+  },
+  "cubic_robot_get_pulse": {
+    "message0": "%1 モーター%2パルスカウントを符号化します",
+    "tooltip": "符号化されたパルスカウントを読み取ってください",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "A(MA)",
+            "MOTOR_A"
+          ],
+          [
+            "B(MB)",
+            "MOTOR_B"
+          ]
+        ]
+      }
+    ]
+  },
+  "cubic_robot_get_revolutions": {
+    "message0": "%1 モーター%2の回転数",
+    "tooltip": "モーター回転数を読んでください",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "A(MA)",
+            "MOTOR_A"
+          ],
+          [
+            "B(MB)",
+            "MOTOR_B"
+          ]
+        ]
+      }
+    ]
+  },
+  "cubic_robot_reset_pulse": {
+    "message0": "%1 モーター%2パルスカウントをリセット",
+    "tooltip": "符号化パルスカウントをリセットする",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "A(MA)",
+            "MOTOR_A"
+          ],
+          [
+            "B(MB)",
+            "MOTOR_B"
+          ]
+        ]
+      }
+    ]
+  },
+  "cubic_robot_servo": {
+    "message0": "%1 サーボ%2角度 %3",
+    "tooltip": "サーボ制御角度 0~180(内蔵ESP32サーボ)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "1(IO2)",
+            "SERVO_1"
+          ],
+          [
+            "2(IO25)",
+            "SERVO_2"
+          ],
+          [
+            "3(IO16)",
+            "SERVO_3"
+          ],
+          [
+            "4(IO23)",
+            "SERVO_4"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "cubic_robot_button": {
+    "message0": "%1 ボタン%2押される",
+    "tooltip": "読み取りボタン、低レベルアクティブ",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "A(IO0)",
+            "0"
+          ],
+          [
+            "B(IO13)",
+            "1"
+          ]
+        ]
+      }
+    ]
+  },
+  "cubic_robot_rgb": {
+    "message0": "%1 RGB LED %2",
+    "tooltip": "RGB LED",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "開く",
+            "true"
+          ],
+          [
+            "閉じる",
+            "false"
+          ]
+        ]
+      }
+    ]
+  },
+  "cubic_robot_pin_info": {
+    "message0": "立方体デフォルトピンの記述",
+    "tooltip": "MA=14/15 ENC34/35; MB=12/17 ENC36/39; サーボ 2/25; I2C21/22"
+  }
+}

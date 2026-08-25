@@ -1,0 +1,214 @@
+{
+  "toolbox_name": "nRF54 Thread",
+  "toolbox_labels": {
+    "网络配置": "Network setup",
+    "网络状态": "Network status",
+    "Commissioner与Joiner": "Commissioner and Joiner",
+    "UDP通信": "UDP communication",
+    "事件": "Events"
+  },
+  "nrf54_thread_begin": {
+    "message0": "start Thread mode %1 wipe old settings %2",
+    "tooltip": "Start the experimental OpenThread stack and process it automatically in loop.",
+    "args0": [
+      {
+        "options": [
+          [
+            "Automatic",
+            "begin"
+          ],
+          [
+            "Child only",
+            "beginAsChild"
+          ],
+          [
+            "Router eligible",
+            "beginAsRouter"
+          ],
+          [
+            "Child first",
+            "beginChildFirst"
+          ],
+          [
+            "Joiner only",
+            "beginJoinerOnly"
+          ],
+          [
+            "Sleepy child",
+            "beginAsSleepyChild"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "No",
+            "false"
+          ],
+          [
+            "Yes",
+            "true"
+          ]
+        ]
+      }
+    ]
+  },
+  "nrf54_thread_stop": {
+    "message0": "stop Thread",
+    "tooltip": "Stop the Thread network interface."
+  },
+  "nrf54_thread_restart": {
+    "message0": "restart Thread wipe old settings %1",
+    "tooltip": "Restart Thread using the current policy.",
+    "args0": [
+      {
+        "options": [
+          [
+            "No",
+            "false"
+          ],
+          [
+            "Yes",
+            "true"
+          ]
+        ]
+      }
+    ]
+  },
+  "nrf54_thread_wipe_settings": {
+    "message0": "wipe persistent Thread settings",
+    "tooltip": "Erase saved Thread network settings."
+  },
+  "nrf54_thread_use_demo_dataset": {
+    "message0": "use demo Thread dataset",
+    "tooltip": "Generate and apply the built-in demo dataset."
+  },
+  "nrf54_thread_set_dataset_hex": {
+    "message0": "set Thread dataset TLV hex %1",
+    "tooltip": "Import an OpenThread dataset TLV hex string."
+  },
+  "nrf54_thread_set_router_eligible": {
+    "message0": "allow Thread router role %1",
+    "tooltip": "Set whether the device may become a router.",
+    "args0": [
+      {
+        "options": [
+          [
+            "Yes",
+            "true"
+          ],
+          [
+            "No",
+            "false"
+          ]
+        ]
+      }
+    ]
+  },
+  "nrf54_thread_request_router": {
+    "message0": "request Thread router role",
+    "tooltip": "Request promotion to the router role."
+  },
+  "nrf54_thread_set_poll_period": {
+    "message0": "set sleepy-child poll period (ms) %1",
+    "tooltip": "Set the sleepy-child polling period."
+  },
+  "nrf54_thread_started": {
+    "message0": "Thread started",
+    "tooltip": "Return whether the Thread stack is started."
+  },
+  "nrf54_thread_attached": {
+    "message0": "Thread attached",
+    "tooltip": "Return whether the device is attached to a Thread network."
+  },
+  "nrf54_thread_role_name": {
+    "message0": "current Thread role",
+    "tooltip": "Return disabled, detached, child, router, or leader."
+  },
+  "nrf54_thread_rloc16": {
+    "message0": "Thread RLOC16 address",
+    "tooltip": "Return the current RLOC16 short address."
+  },
+  "nrf54_thread_partition_id": {
+    "message0": "Thread partition ID",
+    "tooltip": "Return the current Thread partition ID."
+  },
+  "nrf54_thread_dataset_configured": {
+    "message0": "Thread dataset configured",
+    "tooltip": "Return whether an active dataset is configured."
+  },
+  "nrf54_thread_last_error": {
+    "message0": "last Thread error code",
+    "tooltip": "Return the most recent OpenThread error code."
+  },
+  "nrf54_thread_commissioner_start": {
+    "message0": "start Thread Commissioner",
+    "tooltip": "Start the Commissioner to admit joiners."
+  },
+  "nrf54_thread_commissioner_stop": {
+    "message0": "stop Thread Commissioner",
+    "tooltip": "Stop the Commissioner."
+  },
+  "nrf54_thread_commissioner_add_joiner": {
+    "message0": "allow joiner PSKd %1 timeout (s) %2",
+    "tooltip": "Allow a joiner with the specified PSKd for a limited time."
+  },
+  "nrf54_thread_commissioner_active": {
+    "message0": "Thread Commissioner active",
+    "tooltip": "Return whether the Commissioner is active."
+  },
+  "nrf54_thread_joiner_start": {
+    "message0": "join as Joiner with PSKd %1",
+    "tooltip": "Start the MeshCoP Joiner using a PSKd."
+  },
+  "nrf54_thread_joiner_stop": {
+    "message0": "stop Thread Joiner",
+    "tooltip": "Stop the Joiner operation."
+  },
+  "nrf54_thread_joiner_active": {
+    "message0": "Thread Joiner active",
+    "tooltip": "Return whether the Joiner operation is active."
+  },
+  "nrf54_thread_joiner_state": {
+    "message0": "Thread Joiner state",
+    "tooltip": "Return the Joiner state name."
+  },
+  "nrf54_thread_open_udp": {
+    "message0": "when Thread UDP port %1 receives data",
+    "message1": "do %1",
+    "tooltip": "Open a UDP port and run blocks when a datagram arrives."
+  },
+  "nrf54_thread_close_udp": {
+    "message0": "close Thread UDP port %1",
+    "tooltip": "Close a UDP port."
+  },
+  "nrf54_thread_send_udp": {
+    "message0": "send Thread UDP local port %1 peer address %2 port %3 data %4",
+    "tooltip": "Send a String as a UDP datagram."
+  },
+  "nrf54_thread_udp_data": {
+    "message0": "current Thread UDP data",
+    "tooltip": "Read data inside the UDP callback."
+  },
+  "nrf54_thread_udp_peer_address": {
+    "message0": "current Thread UDP peer address",
+    "tooltip": "Read the peer IPv6 address inside the UDP callback."
+  },
+  "nrf54_thread_udp_peer_port": {
+    "message0": "current Thread UDP peer port",
+    "tooltip": "Read the peer port inside the UDP callback."
+  },
+  "nrf54_thread_on_state_changed": {
+    "message0": "when Thread network state changes",
+    "message1": "do %1",
+    "tooltip": "Register a Thread state-change callback."
+  },
+  "nrf54_thread_callback_role": {
+    "message0": "Thread callback role",
+    "tooltip": "Read the role name inside the state-change callback."
+  },
+  "nrf54_thread_callback_flags": {
+    "message0": "Thread callback changed flags",
+    "tooltip": "Read OpenThread changed flags inside the callback."
+  }
+}

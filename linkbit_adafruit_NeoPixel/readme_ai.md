@@ -1,0 +1,47 @@
+# NeoPixel LED strip
+
+Control programmable RGB LED strips, supporting various colors and animation effects
+
+## Library Info
+- **Name**: @aily-project/lib-linkbit_neopixel
+- **Version**: 0.1.0
+
+## Block Definitions
+
+| Block Type | Connection | Parameters (block.json order) | ABS Format | Generated Code |
+|------------|------------|--------------------------|------------|----------------|
+| `neopixel_init` | Statement | (none) | `neopixel_init()` | `Adafruit_NeoPixel strip(1, 4, NEO_GRB + NEO_KHZ800);` |
+| `neopixel_begin` | Statement | (none) | `neopixel_begin()` | `strip.begin();` |
+| `neopixel_show` | Statement | (none) | `neopixel_show()` | `strip.show();` |
+| `neopixel_set_brightness` | Statement | BRIGHTNESS(field_number) | `neopixel_set_brightness(50)` | `strip.setBrightness(50);` |
+| `neopixel_set_pixel_color` | Statement | PIXEL(field_number), RED(field_number), GREEN(field_number), BLUE(field_number) | `neopixel_set_pixel_color(0, 255, 0, 0)` | `strip.setPixelColor(0, strip.Color(255, 0, 0));` |
+| `neopixel_fill` | Statement | RED(field_number), GREEN(field_number), BLUE(field_number) | `neopixel_fill(255, 0, 0)` | `strip.fill(strip.Color(255, 0, 0));` |
+| `neopixel_clear` | Statement | (none) | `neopixel_clear()` | `strip.clear();` |
+| `neopixel_rainbow` | Statement | DELAY(field_number) | `neopixel_rainbow(20)` | `rainbow(20);` |
+| `neopixel_color_wipe` | Statement | RED(field_number), GREEN(field_number), BLUE(field_number), DELAY(field_number) | `neopixel_color_wipe(255, 0, 0, 50)` | `colorWipe(strip.Color(255, 0, 0), 50);` |
+| `neopixel_theater_chase` | Statement | RED(field_number), GREEN(field_number), BLUE(field_number), DELAY(field_number) | `neopixel_theater_chase(255, 0, 0, 50)` | `theaterChase(strip.Color(255, 0, 0), 50);` |
+| `neopixel_theater_chase_rainbow` | Statement | DELAY(field_number) | `neopixel_theater_chase_rainbow(50)` | `theaterChaseRainbow(50);` |
+
+## Parameter Options
+
+| Parameter | Values | Description |
+|-----------|--------|-------------|
+| TYPE | NEO_GRB + NEO_KHZ800, NEO_RGB + NEO_KHZ800, NEO_RGBW + NEO_KHZ800, NEO_GRB + NEO_KHZ400 | neopixel_init |
+
+## ABS Examples
+
+### Basic Usage
+```
+arduino_setup()
+    neopixel_init()
+    serial_begin(Serial, 9600)
+
+arduino_loop()
+    neopixel_begin()
+    time_delay(math_number(1000))
+```
+
+## Notes
+
+1. **Parameter order**: ABS parameters follow `block.json` args order.
+2. **Input values**: use `math_number(n)`, `text("s")`, `logic_boolean(TRUE/FALSE)`, variables, or nested value blocks.

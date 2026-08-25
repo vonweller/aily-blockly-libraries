@@ -1,0 +1,134 @@
+[
+  {
+    "type": "dfr1231_init",
+    "message0": "初始化 DFR1231 行空板扩展板",
+    "args0": [],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#00C48C",
+    "tooltip": "初始化行空板K10 DFR1231 IO扩展板：I2C地址0x33，占用边缘连接器SDA/SCL，配置成功前阻塞等待"
+  },
+  {
+    "type": "dfr1231_set_io_mode",
+    "message0": "设置扩展板 C口 %1 模式为 %2",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "C",
+        "options": [
+          [
+            "C0",
+            "eC0"
+          ],
+          [
+            "C1",
+            "eC1"
+          ],
+          [
+            "C2",
+            "eC2"
+          ],
+          [
+            "C3",
+            "eC3"
+          ]
+        ]
+      },
+      {
+        "type": "field_dropdown",
+        "name": "MODE",
+        "options": [
+          [
+            "数字输出",
+            "eWriteGpio"
+          ],
+          [
+            "数字输入",
+            "eReadGpio"
+          ]
+        ]
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#00C48C",
+    "tooltip": "把扩展板C0-C3多功能口设为数字输出或数字输入模式"
+  },
+  {
+    "type": "dfr1231_gpio_write",
+    "message0": "设置扩展板 C口 %1 电平为 %2",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "C",
+        "options": [
+          [
+            "C0",
+            "eC0"
+          ],
+          [
+            "C1",
+            "eC1"
+          ],
+          [
+            "C2",
+            "eC2"
+          ],
+          [
+            "C3",
+            "eC3"
+          ]
+        ]
+      },
+      {
+        "type": "field_dropdown",
+        "name": "STATE",
+        "options": [
+          [
+            "高电平",
+            "eHIGH"
+          ],
+          [
+            "低电平",
+            "eLOW"
+          ]
+        ]
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#00C48C",
+    "tooltip": "设置C口数字输出电平：高电平=1，低电平=0（需先设置为数字输出模式）"
+  },
+  {
+    "type": "dfr1231_gpio_read",
+    "message0": "读取扩展板 C口 %1 电平",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "C",
+        "options": [
+          [
+            "C0",
+            "eC0"
+          ],
+          [
+            "C1",
+            "eC1"
+          ],
+          [
+            "C2",
+            "eC2"
+          ],
+          [
+            "C3",
+            "eC3"
+          ]
+        ]
+      }
+    ],
+    "output": "Number",
+    "colour": "#00C48C",
+    "tooltip": "读取C口电平（需先设置为数字输入模式），返回0或1，读取失败返回255"
+  }
+]

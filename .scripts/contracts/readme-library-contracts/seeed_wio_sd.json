@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "blocks": {
+    "seeed_fs_sd_begin": {
+      "variants": [
+        {
+          "id": "current",
+          "when": {},
+          "appendArgs": []
+        },
+        {
+          "id": "legacy-frequency",
+          "when": {},
+          "appendArgs": [
+            { "name": "FREQUENCY", "type": "input_value", "example": "math_number(24000000)", "required": false, "named": true }
+          ],
+          "document": false,
+          "reason": "This hidden input only restores projects created with library versions <=1.0.1; the generator intentionally ignores it and agents must not emit it."
+        }
+      ]
+    }
+  }
+}

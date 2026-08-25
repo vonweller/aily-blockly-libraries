@@ -1,0 +1,196 @@
+{
+  "kind": "category",
+  "name": "nRF54 Matter",
+  "colour": "#EF6C00",
+  "icon": "fa-regular fa-lightbulb",
+  "contents": [
+    {
+      "kind": "label",
+      "text": "节点配置"
+    },
+    {
+      "kind": "block",
+      "type": "nrf54_matter_begin",
+      "inputs": {
+        "SECONDS": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 900
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "nrf54_matter_end"
+    },
+    {
+      "kind": "block",
+      "type": "nrf54_matter_use_demo_dataset"
+    },
+    {
+      "kind": "block",
+      "type": "nrf54_matter_set_dataset_hex",
+      "inputs": {
+        "DATASET": {
+          "shadow": {
+            "type": "text",
+            "fields": {
+              "TEXT": ""
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "nrf54_matter_factory_reset"
+    },
+    {
+      "kind": "block",
+      "type": "nrf54_matter_ready"
+    },
+    {
+      "kind": "label",
+      "text": "配网"
+    },
+    {
+      "kind": "block",
+      "type": "nrf54_matter_open_window",
+      "inputs": {
+        "SECONDS": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 900
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "nrf54_matter_close_window"
+    },
+    {
+      "kind": "block",
+      "type": "nrf54_matter_window_open"
+    },
+    {
+      "kind": "block",
+      "type": "nrf54_matter_window_remaining"
+    },
+    {
+      "kind": "block",
+      "type": "nrf54_matter_manual_code"
+    },
+    {
+      "kind": "block",
+      "type": "nrf54_matter_qr_code"
+    },
+    {
+      "kind": "label",
+      "text": "灯光控制"
+    },
+    {
+      "kind": "block",
+      "type": "nrf54_matter_light_set"
+    },
+    {
+      "kind": "block",
+      "type": "nrf54_matter_light_toggle"
+    },
+    {
+      "kind": "block",
+      "type": "nrf54_matter_light_is_on"
+    },
+    {
+      "kind": "block",
+      "type": "nrf54_matter_light_set_level",
+      "inputs": {
+        "LEVEL": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 254
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "nrf54_matter_light_move_level",
+      "inputs": {
+        "LEVEL": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 254
+            }
+          }
+        },
+        "TRANSITION_MS": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 500
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "nrf54_matter_light_level"
+    },
+    {
+      "kind": "block",
+      "type": "nrf54_matter_identify",
+      "inputs": {
+        "IDENTIFY_SECONDS": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 30
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "nrf54_matter_stop_identify"
+    },
+    {
+      "kind": "block",
+      "type": "nrf54_matter_identifying"
+    },
+    {
+      "kind": "block",
+      "type": "nrf54_matter_startup_behavior"
+    },
+    {
+      "kind": "block",
+      "type": "nrf54_matter_save_state"
+    },
+    {
+      "kind": "block",
+      "type": "nrf54_matter_clear_state"
+    },
+    {
+      "kind": "label",
+      "text": "事件"
+    },
+    {
+      "kind": "block",
+      "type": "nrf54_matter_on_light_change"
+    },
+    {
+      "kind": "block",
+      "type": "nrf54_matter_on_identify_change"
+    }
+  ]
+}

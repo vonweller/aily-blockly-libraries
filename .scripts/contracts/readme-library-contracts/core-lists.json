@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "blocks": {
+    "list_values": {
+      "variadic": {
+        "prefix": "INPUT",
+        "startIndex": 1,
+        "type": "input_value",
+        "sampleCount": 1,
+        "example": "math_number(2)",
+        "reason": "The dynamic_inputs_mutator appends INPUT1, INPUT2, and later list elements; named inputs preserve their identities during ABS import."
+      }
+    },
+    "list2d_create_with_values": {
+      "variadic": {
+        "prefix": "INPUT",
+        "startIndex": 1,
+        "type": "input_value",
+        "sampleCount": 1,
+        "example": "list_values(math_number(3), INPUT1=math_number(4))",
+        "reason": "The dynamic_inputs_mutator appends INPUT1, INPUT2, and later matrix rows; named inputs preserve their identities during ABS import."
+      }
+    }
+  }
+}

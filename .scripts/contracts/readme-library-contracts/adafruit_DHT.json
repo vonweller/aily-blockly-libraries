@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "blocks": {
+    "dht_init": {
+      "variants": [
+        {
+          "id": "single-wire-pin",
+          "when": {
+            "TYPE": [
+              "DHT11",
+              "DHT21",
+              "DHT22"
+            ]
+          },
+          "appendArgs": [
+            {
+              "name": "PIN",
+              "type": "field_dropdown",
+              "example": "2",
+              "required": true
+            }
+          ]
+        },
+        {
+          "id": "dht20-i2c",
+          "when": {
+            "TYPE": [
+              "DHT20"
+            ]
+          },
+          "appendArgs": [
+            {
+              "name": "WIRE",
+              "type": "field_dropdown",
+              "example": "Wire",
+              "required": true
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

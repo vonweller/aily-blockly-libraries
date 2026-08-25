@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "blocks": {
+    "max31865_init": {
+      "variants": [
+        {
+          "id": "hardware-spi",
+          "when": { "SPI_MODE": ["HW"] },
+          "appendArgs": []
+        },
+        {
+          "id": "software-spi",
+          "when": { "SPI_MODE": ["SW"] },
+          "appendArgs": [
+            { "name": "SW_SCK_PIN", "type": "field_dropdown", "example": "18", "required": true, "named": true },
+            { "name": "SW_MOSI_PIN", "type": "field_dropdown", "example": "23", "required": true, "named": true },
+            { "name": "SW_MISO_PIN", "type": "field_dropdown", "example": "19", "required": true, "named": true }
+          ]
+        }
+      ]
+    }
+  }
+}

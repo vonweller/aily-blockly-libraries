@@ -1,0 +1,125 @@
+{
+  "toolbox_name": "Medidor de combustível BQ27220",
+  "toolbox_labels": {
+    "初始化": "inicialização",
+    "基础读取": "Leitura básica",
+    "时间预估": "estimativa de tempo",
+    "容量信息": "Informações de capacidade",
+    "配置": "Configuração",
+    "4pin座子模式切换": "Modo do conector de 4 pinos"
+  },
+  "bq27220_init": {
+    "message0": "Inicializar BQ27220 %1 endereço %2",
+    "tooltip": "Inicializar medidor de combustível de íon de lítio de célula única BQ27220",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "0x55 (padrão)",
+            "0x55"
+          ]
+        ]
+      }
+    ]
+  },
+  "bq27220_basic_read": {
+    "message0": "%1 %2",
+    "tooltip": "Ler dados básicos da bateria",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Tensão(mV)",
+            "voltage"
+          ],
+          [
+            "Corrente(mA)",
+            "current"
+          ],
+          [
+            "Corrente média(mA)",
+            "avg_current"
+          ],
+          [
+            "Temperatura(°C)",
+            "temperature"
+          ],
+          [
+            "Estado de carga(%)",
+            "soc"
+          ]
+        ]
+      }
+    ]
+  },
+  "bq27220_time_read": {
+    "message0": "%1 %2",
+    "tooltip": "Ler estimativa de tempo da bateria",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Tempo até vazio(minutos)",
+            "tte"
+          ],
+          [
+            "Tempo até cheio(minutos)",
+            "ttf"
+          ]
+        ]
+      }
+    ]
+  },
+  "bq27220_capacity_read": {
+    "message0": "%1 %2",
+    "tooltip": "Ler capacidade e informações de saúde da bateria",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Capacidade restante(mAh)",
+            "remaining_capacity"
+          ],
+          [
+            "Capacidade de carga completa(mAh)",
+            "full_charge_capacity"
+          ],
+          [
+            "Número de ciclos",
+            "cycle_count"
+          ],
+          [
+            "Estado de saúde(%)",
+            "soh"
+          ]
+        ]
+      }
+    ]
+  },
+  "bq27220_set_design_capacity": {
+    "message0": "%1 definir capacidade de projeto %2 mAh",
+    "tooltip": "Definir capacidade de projeto da bateria(mAh)"
+  },
+  "bq27220_i2c_select": {
+    "message0": "mudar para %1",
+    "tooltip": "linkbit V2: o comutador analógico (GPIO9) encaminha GPIO20/21 para o medidor BQ27220 (modo I2C) ou para o conector de expansão CN2 (modo IO normal, utilizável como IO geral ou para dispositivos I2C externos). Inicializar o medidor seleciona o modo I2C automaticamente.",
+    "args0": [
+      {
+        "options": [
+          [
+            "modo I2C",
+            "1"
+          ],
+          [
+            "modo IO normal",
+            "0"
+          ]
+        ]
+      }
+    ]
+  }
+}
