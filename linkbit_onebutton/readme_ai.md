@@ -10,7 +10,7 @@ Single button event detection library, supporting multiple events such as single
 
 | Block Type | Connection | Parameters (block.json order) | ABS Format | Generated Code |
 |------------|------------|--------------------------|------------|----------------|
-| `onebutton_setup` | Statement | VAR(field_input), PIN(dropdown) | `onebutton_setup("button", 2)` | `button.setup(2, INPUT_PULLUP, true);` |
+| `onebutton_setup` | Statement | VAR(field_input), PIN(dropdown) | `onebutton_setup("button", 10)` | `button.setup(10, INPUT_PULLUP, true);` |
 | `onebutton_attach_click` | Hat | VAR(field_variable), HANDLER(input_statement) | `onebutton_attach_click($button)` | `void onebutton_click_button() { ↵ } ↵ button.attachClick(onebutton_click_button); ↵ button.tick();` |
 | `onebutton_attach_double_click` | Hat | VAR(field_variable), HANDLER(input_statement) | `onebutton_attach_double_click($button)` | `void onebutton_double_click_button() { ↵ } ↵ button.attachDoubleClick(onebutton_double_click_button); ↵ button.tick();` |
 | `onebutton_attach_multi_click` | Hat | VAR(field_variable), HANDLER(input_statement) | `onebutton_attach_multi_click($button)` | `void onebutton_multi_click_button() { ↵ } ↵ button.attachMultiClick(onebutton_multi_click_button); ↵ button.tick();` |
@@ -39,7 +39,7 @@ Single button event detection library, supporting multiple events such as single
 ### Basic Usage
 ```
 arduino_setup()
-    onebutton_setup("button", 2)
+    onebutton_setup("button", 10)
     serial_begin(Serial, 9600)
 
 arduino_loop()

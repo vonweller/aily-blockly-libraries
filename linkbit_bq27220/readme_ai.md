@@ -15,6 +15,7 @@ TI BQ27220 single-cell Li-Ion battery fuel gauge, reads battery voltage, current
 | `bq27220_time_read` | Value | VAR(field_variable), TYPE(dropdown) | `bq27220_time_read($gauge, tte)` | `gauge.getTimeToEmpty()` |
 | `bq27220_capacity_read` | Value | VAR(field_variable), TYPE(dropdown) | `bq27220_capacity_read($gauge, remaining_capacity)` | `gauge.getRemainingCapacity()` |
 | `bq27220_set_design_capacity` | Statement | VAR(field_variable), CAPACITY(input_value) | `bq27220_set_design_capacity($gauge, math_number(3000))` | `gauge.setDesignCapacity((uint16_t)(1));` |
+| `bq27220_i2c_select` | Statement | TARGET(dropdown) | `bq27220_i2c_select("1")` | `linkbitI2CSel(1);` |
 
 ## Parameter Options
 
@@ -24,6 +25,7 @@ TI BQ27220 single-cell Li-Ion battery fuel gauge, reads battery voltage, current
 | TYPE (basic_read) | voltage, current, avg_current, temperature, soc | Basic read types |
 | TYPE (time_read) | tte, ttf | Time estimation types |
 | TYPE (capacity_read) | remaining_capacity, full_charge_capacity, cycle_count, soh | Capacity info types |
+| TARGET (i2c_select) | 1, 0 | 1 = on-board BQ27220 (I2C mode), 0 = CN2 4-pin header (plain IO mode) |
 
 ## ABS Examples
 

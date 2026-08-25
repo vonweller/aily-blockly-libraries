@@ -5,7 +5,8 @@
     "基础读取": "Lectura básica",
     "时间预估": "estimación de tiempo",
     "容量信息": "Información de capacidad",
-    "配置": "Configuración"
+    "配置": "Configuración",
+    "4pin座子模式切换": "Modo del conector de 4 pines"
   },
   "bq27220_init": {
     "message0": "Inicializar BQ27220 %1 dirección %2",
@@ -102,5 +103,23 @@
   "bq27220_set_design_capacity": {
     "message0": "%1 establecer capacidad de diseño %2 mAh",
     "tooltip": "Establecer capacidad de diseño de batería(mAh)"
+  },
+  "bq27220_i2c_select": {
+    "message0": "cambiar a %1",
+    "tooltip": "linkbit V2: el conmutador analógico (GPIO9) dirige GPIO20/21 al medidor BQ27220 (modo I2C) o al conector de expansión CN2 (modo IO normal, utilizable como IO general o para dispositivos I2C externos). Al inicializar el medidor se selecciona el modo I2C automáticamente.",
+    "args0": [
+      {
+        "options": [
+          [
+            "modo I2C",
+            "1"
+          ],
+          [
+            "modo IO normal",
+            "0"
+          ]
+        ]
+      }
+    ]
   }
 }
