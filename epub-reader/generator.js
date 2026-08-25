@@ -1568,6 +1568,11 @@ Arduino.forBlock['epub_reader_show_page'] = function(block, generator) {
 
 // ==================== File Browser ====================
 
+const hasLegacyEpubBrowserBlocks = typeof Blockly !== 'undefined'
+  && Blockly.Blocks
+  && (Blockly.Blocks['epub_reader_browser_open'] || Blockly.Blocks['epub_reader_show_browser']);
+
+if (hasLegacyEpubBrowserBlocks) {
 Arduino.forBlock['epub_reader_browser_open'] = function(block, generator) {
   const dir = generator.valueToCode(block, 'DIR', generator.ORDER_ATOMIC) || '"/"';
   generator.addLibrary('EpubReader', '#include <EpubReader.h>');
@@ -1738,6 +1743,7 @@ Arduino.forBlock['epub_reader_browser_curdir'] = function(block, generator) {
   generator.addObject('brCurDir', 'String brCurDir = "/";');
   return ['brCurDir', generator.ORDER_ATOMIC];
 };
+}
 
 // ==================== Cover Thumbnail Generation ====================
 
@@ -2168,6 +2174,7 @@ Arduino.forBlock['epub_reader_gen_cover'] = function(block, generator) {
   return 'epubGenCover(' + path + ');\n';
 };
 
+if (hasLegacyEpubBrowserBlocks) {
 Arduino.forBlock['epub_reader_show_browser'] = function(block, generator) {
   const sel = generator.valueToCode(block, 'SEL', generator.ORDER_ATOMIC) || '0';
   generator.addLibrary('EpubReader', '#include <EpubReader.h>');
@@ -2431,6 +2438,7 @@ Arduino.forBlock['epub_reader_show_browser'] = function(block, generator) {
 
   return 'epubShowBrowser(' + sel + ');\n';
 };
+}
 
 function addJpegViewerFunctions(generator) {
   let jfn = '';
@@ -2570,6 +2578,11 @@ function addJpegViewerFunctions(generator) {
   generator.addFunction('jpegViewerFuncs', jfn);
 }
 
+const hasLegacyEpubJpegViewerBlocks = typeof Blockly !== 'undefined'
+  && Blockly.Blocks
+  && Blockly.Blocks['epub_reader_jpg_viewer_open'];
+
+if (hasLegacyEpubJpegViewerBlocks) {
 Arduino.forBlock['epub_reader_jpg_viewer_open'] = function(block, generator) {
   const path = generator.valueToCode(block, 'PATH', generator.ORDER_ATOMIC) || '""';
   generator.addLibrary('EpubReader', '#include <EpubReader.h>');
@@ -2607,7 +2620,9 @@ Arduino.forBlock['epub_reader_jpg_viewer_exit'] = function(block, generator) {
   addJpegViewerFunctions(generator);
   return 'jpgViewerExit();\n';
 };
+}
 
+if (hasLegacyEpubBrowserBlocks) {
 Arduino.forBlock['epub_reader_browser_is_jpg'] = function(block, generator) {
   const idx = generator.valueToCode(block, 'INDEX', generator.ORDER_ATOMIC) || '0';
   generator.addLibrary('EpubReader', '#include <EpubReader.h>');
@@ -2617,3 +2632,4 @@ Arduino.forBlock['epub_reader_browser_is_jpg'] = function(block, generator) {
   generator.addObject('brIsDir', 'bool brIsDir[64];');
   return ['([&]{ int _bi=' + idx + '; if(_bi<0||_bi>=brEntryCount||brIsDir[_bi]) return false; String l=brNames[_bi]; l.toLowerCase(); return (l.endsWith(".jpg")||l.endsWith(".jpeg")); })()', generator.ORDER_ATOMIC];
 };
+}
