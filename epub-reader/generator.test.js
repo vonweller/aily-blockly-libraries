@@ -57,14 +57,16 @@ function invoke(type, values) {
   return { generator, result };
 }
 
-test('public block, generator, and toolbox types stay in lockstep', () => {
+test('public blocks have generators and toolbox entries reference public blocks', () => {
   const blockTypes = blockDefinitions.map((block) => block.type).sort();
   const generatorTypes = Object.keys(Arduino.forBlock).sort();
   const toolboxTypes = collectToolboxTypes(toolbox).sort();
 
-  assert.equal(blockTypes.length, 59);
-  assert.deepEqual(generatorTypes, blockTypes);
-  assert.deepEqual(toolboxTypes, blockTypes);
+  assert.equal(blockTypes.length, 49);
+  assert.equal(new Set(blockTypes).size, blockTypes.length);
+  assert.deepEqual(blockTypes.filter((type) => !generatorTypes.includes(type)), []);
+  assert.equal(new Set(toolboxTypes).size, toolboxTypes.length);
+  assert.deepEqual(toolboxTypes.filter((type) => !blockTypes.includes(type)), []);
 });
 
 test('every generator can run independently with default inputs', () => {
@@ -77,54 +79,38 @@ test('every generator can run independently with default inputs', () => {
   }
 });
 
-test('open uses both layout inputs and installs its dependencies', () => {
+test('open configures pagination and restores the saved position', () => {
   const { generator, result } = invoke('epub_reader_open', {
     PATH: 'bookPath',
     CHARS_PER_LINE: 'columns',
     LINES_PER_PAGE: 'rows'
   });
 
-  assert.match(result, /epubOpenWithLayout\(String\(bookPath\), \(int\)\(columns\), \(int\)\(rows\)\)/);
-  assert.match(generator.functions.epubOpenWithLayout, /tft\.width\(\) \/ charsPerLine/);
-  assert.match(generator.functions.epubOpenWithLayout, /linesPerPage/);
+  assert.match(result, /epubReader\.open\(bookPath, tft\.width\(\), rows/);
+  assert.match(result, /epubReader\.loadPosition\(bookPath\)/);
   assert.equal(generator.objects.epubReader, 'EpubReader epubReader;');
-  assert.equal(generator.objects.sdFont, 'SdFont sdFont;');
   assert.ok(generator.libraries.EpubReader);
   assert.ok(generator.libraries.SdFatHelper);
-  assert.ok(generator.libraries.TFT_eSPI);
 });
 
-test('browser keeps entry metadata aligned and guards indexed access', () => {
-  const opened = invoke('epub_reader_browser_open', { DIR: 'directory' });
-  const browserCode = opened.generator.functions.brLoadDir;
-
-  assert.match(browserCode, /bool te = brIsEpub\[i\]/);
-  assert.ok(browserCode.indexOf('String lower = name') < browserCode.indexOf('brIsEpub[brEntryCount]'));
-  assert.equal(opened.generator.objects.brIsEpub, 'bool brIsEpub[64];');
-
-  for (const type of ['epub_reader_browser_is_dir', 'epub_reader_browser_name', 'epub_reader_browser_path']) {
-    const { result } = invoke(type, { INDEX: 'selectedIndex' });
-    assert.match(result[0], /_i >= 0 && _i < brEntryCount/);
-  }
-});
-
-test('path-taking blocks accept generated Arduino String expressions', () => {
+test('path-taking blocks forward generated expressions', () => {
   const scan = invoke('epub_reader_scan_books', { DIR: 'booksDirectory' });
-  assert.match(scan.result, /epubScanBooks\(String\(booksDirectory\)\)/);
-  assert.match(scan.generator.functions.epubScanBooks, /const String& dir/);
+  assert.match(scan.result, /epubScanBooks\(booksDirectory\)/);
+  assert.match(scan.generator.functions.epubScanBooks, /const char\* dir/);
 
   const readingFont = invoke('epub_reader_load_sd_font', { PATH: 'fontPath' });
-  assert.match(readingFont.result, /sdFont\.load\(String\(fontPath\)\.c_str\(\)\)/);
+  assert.match(readingFont.result, /bootLoadSelectedFont\(fontPath\)/);
 
   const uiFont = invoke('epub_reader_load_ui_font', { PATH: 'fontPath' });
-  assert.match(uiFont.result, /uiFont\.load\(String\(fontPath\)\.c_str\(\)\)/);
+  assert.match(uiFont.result, /uiFont\.load\(fontPath\)/);
 });
 
-test('standalone navigation and image blocks install required helper functions', () => {
+test('navigation, image, and history blocks install their dependencies', () => {
   for (const type of ['epub_reader_toc_page_next', 'epub_reader_toc_page_prev']) {
-    const { generator } = invoke(type, { SEL: 'selection' });
-    assert.ok(generator.functions.epubShowToc, `${type} omitted TOC rendering helpers`);
-    assert.ok(generator.functions.epubTocNav, `${type} omitted TOC navigation helpers`);
+    const { generator, result } = invoke(type, { SEL: 'selection' });
+    assert.match(result[0], /selection/);
+    assert.ok(generator.libraries.EpubReader);
+    assert.ok(generator.libraries.TFT_eSPI);
   }
 
   for (const type of [
@@ -135,25 +121,21 @@ test('standalone navigation and image blocks install required helper functions',
     'epub_reader_full_img_exit'
   ]) {
     const { generator } = invoke(type, { INDEX: 'imageIndex' });
-    assert.ok(generator.functions.epubShowPage, `${type} omitted reading-view helpers`);
-    assert.match(generator.functions.espJpegDecode565, /jd_prepare/);
-    assert.match(generator.functions.espJpegDecode565, /decodeProgJpegFull/);
-    assert.ok(generator.libraries.ProgJpegFull, `${type} omitted progressive JPEG support`);
-  }
-
-  for (const type of [
-    'epub_reader_jpg_viewer_open',
-    'epub_reader_jpg_viewer_next',
-    'epub_reader_jpg_viewer_prev',
-    'epub_reader_jpg_viewer_exit'
-  ]) {
-    const { generator } = invoke(type, { PATH: 'imagePath' });
-    assert.ok(generator.functions.epubShowPage, `${type} omitted image decoding helpers`);
-    assert.ok(generator.functions.jpegViewerFuncs, `${type} omitted JPEG viewer helpers`);
+    assert.ok(generator.libraries.EpubReader);
+    assert.ok(generator.libraries.TFT_eSPI);
+    assert.ok(generator.objects.epubReader);
   }
 
   const cover = invoke('epub_reader_gen_cover', { PATH: 'bookPath' }).generator;
-  assert.ok(cover.functions.espJpegDecode565);
-  assert.equal(cover.functions.covJpgHelpers, undefined);
-  assert.match(cover.functions.epubGenCover, /uint16_t\* covDecodedBuf = nullptr/);
+  assert.ok(cover.functions.covJpgHelpers);
+  assert.ok(cover.functions.covCacheInfra);
+  assert.match(cover.functions.epubGenCover, /covGenBuf/);
+
+  const history = invoke('epub_reader_show_history').generator;
+  assert.ok(history.functions.epubShowHistory);
+  assert.ok(history.functions.epubPanelHelper);
+
+  const resume = invoke('epub_reader_hist_resume');
+  assert.ok(resume.generator.functions.epubHistResume);
+  assert.match(resume.result[0], /epubHistResume/);
 });

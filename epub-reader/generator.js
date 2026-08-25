@@ -1,164 +1,48 @@
-function addEpubReaderCore(generator) {
-  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
-  generator.addObject('epubReader', 'EpubReader epubReader;');
-}
-
-function addSdFatSupport(generator) {
-  generator.addLibrary('SdFatHelper', '#include "SdFatHelper.h"');
-}
-
-function addTftSupport(generator) {
-  generator.addLibrary('TFT_eSPI', '#include <TFT_eSPI.h>');
-  generator.addMacro('SMOOTH_FONT', '#define SMOOTH_FONT');
-}
-
-function addFontState(generator) {
-  generator.addObject('sdFont', 'SdFont sdFont;');
-  generator.addObject('uiFont', 'SdFont uiFont;');
-  generator.addObject('uiFontShared', 'bool uiFontShared = false;');
-}
-
-function addBookState(generator) {
-  generator.addObject('epubBookCount', 'int epubBookCount = 0;');
-  generator.addObject('epubBookNames', 'String epubBookNames[32];');
-  generator.addObject('epubBookPaths', 'String epubBookPaths[32];');
-}
-
-function addBrowserState(generator) {
-  generator.addObject('brEntryCount', 'int brEntryCount = 0;');
-  generator.addObject('brNames', 'String brNames[64];');
-  generator.addObject('brPaths', 'String brPaths[64];');
-  generator.addObject('brIsDir', 'bool brIsDir[64];');
-  generator.addObject('brIsEpub', 'bool brIsEpub[64];');
-  generator.addObject('brCurDir', 'String brCurDir = "/";');
-  generator.addObject('brPrevSel', 'int brPrevSel = 0;');
-}
-
-function addJpegDecodeSupport(generator) {
-  generator.addLibrary('tjpgd', '#include "tjpgd.h"');
-  generator.addLibrary('ProgJpegFull', '#include "ProgJpegFull.h"');
-
-  let fn = '';
-  fn += 'struct EpubJpegDevice {\n';
-  fn += '  const uint8_t* data; size_t length; size_t position;\n';
-  fn += '  uint16_t* pixels; int width; int height;\n';
-  fn += '};\n';
-  fn += 'static size_t epubJpegInput(JDEC* decoder, uint8_t* buffer, size_t count) {\n';
-  fn += '  EpubJpegDevice* device = (EpubJpegDevice*)decoder->device;\n';
-  fn += '  size_t available = device->length - device->position;\n';
-  fn += '  if (count > available) count = available;\n';
-  fn += '  if (buffer && count) memcpy(buffer, device->data + device->position, count);\n';
-  fn += '  device->position += count;\n';
-  fn += '  return count;\n';
-  fn += '}\n';
-  fn += 'static int epubJpegOutput(JDEC* decoder, void* bitmap, JRECT* rect) {\n';
-  fn += '  EpubJpegDevice* device = (EpubJpegDevice*)decoder->device;\n';
-  fn += '  const int sourceWidth = rect->right - rect->left + 1;\n';
-  fn += '  const int sourceHeight = rect->bottom - rect->top + 1;\n';
-  fn += '  int copyWidth = sourceWidth;\n';
-  fn += '  if (rect->left >= device->width || rect->top >= device->height) return 1;\n';
-  fn += '  if (rect->left + copyWidth > device->width) copyWidth = device->width - rect->left;\n';
-  fn += '  const uint16_t* source = (const uint16_t*)bitmap;\n';
-  fn += '  for (int row = 0; row < sourceHeight && rect->top + row < device->height; row++) {\n';
-  fn += '    memcpy(device->pixels + (rect->top + row) * device->width + rect->left, source + row * sourceWidth, copyWidth * sizeof(uint16_t));\n';
-  fn += '  }\n';
-  fn += '  return 1;\n';
-  fn += '}\n';
-  fn += 'static bool espJpegDecode565(const uint8_t* data, uint32_t length, int maxWidth, uint16_t*& output, int& outputWidth, int& outputHeight) {\n';
-  fn += '  output = nullptr; outputWidth = 0; outputHeight = 0;\n';
-  fn += '  if (!data || length < 4 || maxWidth < 1) return false;\n';
-  fn += '  EpubJpegDevice device = { data, length, 0, nullptr, 0, 0 };\n';
-  fn += '  JDEC decoder = {}; decoder.swap = 1;\n';
-  fn += '  void* workspace = ps_malloc(TJPGD_WORKSPACE_SIZE);\n';
-  fn += '  if (workspace) {\n';
-  fn += '    JRESULT prepared = jd_prepare(&decoder, epubJpegInput, workspace, TJPGD_WORKSPACE_SIZE, &device);\n';
-  fn += '    if (prepared == JDR_OK) {\n';
-  fn += '      uint8_t scale = 0;\n';
-  fn += '      while (scale < 3 && ((decoder.width + (1U << scale) - 1) >> scale) > maxWidth) scale++;\n';
-  fn += '      outputWidth = (decoder.width + (1U << scale) - 1) >> scale;\n';
-  fn += '      outputHeight = (decoder.height + (1U << scale) - 1) >> scale;\n';
-  fn += '      size_t pixelCount = (size_t)outputWidth * outputHeight;\n';
-  fn += '      output = (uint16_t*)ps_malloc(pixelCount * sizeof(uint16_t));\n';
-  fn += '      if (output) {\n';
-  fn += '        device.pixels = output; device.width = outputWidth; device.height = outputHeight;\n';
-  fn += '        if (jd_decomp(&decoder, epubJpegOutput, scale) == JDR_OK) { free(workspace); return true; }\n';
-  fn += '        free(output); output = nullptr; outputWidth = 0; outputHeight = 0;\n';
-  fn += '      }\n';
-  fn += '    }\n';
-  fn += '    free(workspace);\n';
-  fn += '  }\n';
-  fn += '  uint16_t* progressive = nullptr; int progressiveWidth = 0, progressiveHeight = 0;\n';
-  fn += '  if (decodeProgJpegFull((uint8_t*)data, (int)length, maxWidth, &progressive, &progressiveWidth, &progressiveHeight)) {\n';
-  fn += '    output = progressive; outputWidth = progressiveWidth; outputHeight = progressiveHeight; return true;\n';
-  fn += '  }\n';
-  fn += '  return false;\n';
-  fn += '}\n';
-  generator.addFunction('espJpegDecode565', fn);
-}
-
-Arduino.forBlock['epub_reader_sd_init'] = function(block, generator) {
-  addSdFatSupport(generator);
-  return 'sdfatBegin();\n';
-};
-
 Arduino.forBlock['epub_reader_open'] = function(block, generator) {
   const path = generator.valueToCode(block, 'PATH', generator.ORDER_ATOMIC) || '"/book.epub"';
   const charsPerLine = generator.valueToCode(block, 'CHARS_PER_LINE', generator.ORDER_ATOMIC) || '25';
   const linesPerPage = generator.valueToCode(block, 'LINES_PER_PAGE', generator.ORDER_ATOMIC) || '13';
 
-  addEpubReaderCore(generator);
-  addSdFatSupport(generator);
-  addTftSupport(generator);
-  addFontState(generator);
+  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
+  generator.addLibrary('SdFatHelper', '#include "SdFatHelper.h"');
+  generator.addObject('epubReader', 'EpubReader epubReader;');
 
-  let openFn = '';
-  openFn += 'static bool epubOpenWithLayout(const String& path, int charsPerLine, int linesPerPage) {\n';
-  openFn += '  if (charsPerLine < 1) charsPerLine = 1;\n';
-  openFn += '  if (linesPerPage < 1) linesPerPage = 1;\n';
-  openFn += '  int cjkWidth = sdFont.isLoaded() ? sdFont.getCharWidth() : tft.width() / charsPerLine;\n';
-  openFn += '  if (cjkWidth < 1) cjkWidth = 1;\n';
-  openFn += '  int asciiWidth = (cjkWidth * 11 + 8) / 16;\n';
-  openFn += '  if (asciiWidth < 1) asciiWidth = 1;\n';
-  openFn += '  return epubReader.open(path, tft.width(), linesPerPage, asciiWidth, cjkWidth);\n';
-  openFn += '}\n';
-  generator.addFunction('epubOpenWithLayout', openFn);
-
-  return 'epubOpenWithLayout(String(' + path + '), (int)(' + charsPerLine + '), (int)(' + linesPerPage + '));\n';
+  return 'covCacheFree(); if (covGenBuf) { free(covGenBuf); covGenBuf = nullptr; } epubReader.open(' + path + ', tft.width(), ' + linesPerPage + ', sdFont.isLoaded() ? (sdFont.getCharWidth() * 11 + 8) / 16 : 7, sdFont.isLoaded() ? sdFont.getCharWidth() : 16); if (epubReader.isOpen()) epubReader.loadPosition(' + path + ');\n';
 };
 
 Arduino.forBlock['epub_reader_is_open'] = function(block, generator) {
-  addEpubReaderCore(generator);
+  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
   return ['epubReader.isOpen()', generator.ORDER_ATOMIC];
 };
 
 Arduino.forBlock['epub_reader_get_page'] = function(block, generator) {
-  addEpubReaderCore(generator);
+  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
   generator.addObject('epubPageBuf', 'static char epubPageBuf[4096];');
   return ['(epubReader.getPageText(epubPageBuf, sizeof(epubPageBuf)), String(epubPageBuf))', generator.ORDER_ATOMIC];
 };
 
 Arduino.forBlock['epub_reader_get_page_num'] = function(block, generator) {
-  addEpubReaderCore(generator);
+  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
   return ['epubReader.getPageNum()', generator.ORDER_ATOMIC];
 };
 
 Arduino.forBlock['epub_reader_next'] = function(block, generator) {
-  addEpubReaderCore(generator);
+  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
   return 'epubReader.nextPage();\n';
 };
 
 Arduino.forBlock['epub_reader_prev'] = function(block, generator) {
-  addEpubReaderCore(generator);
+  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
   return 'epubReader.prevPage();\n';
 };
 
 Arduino.forBlock['epub_reader_has_next'] = function(block, generator) {
-  addEpubReaderCore(generator);
+  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
   return ['epubReader.hasNext()', generator.ORDER_ATOMIC];
 };
 
 Arduino.forBlock['epub_reader_has_prev'] = function(block, generator) {
-  addEpubReaderCore(generator);
+  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
   return ['epubReader.hasPrev()', generator.ORDER_ATOMIC];
 };
 
@@ -166,8 +50,9 @@ Arduino.forBlock['epub_reader_render_page'] = function(block, generator) {
   const x = generator.valueToCode(block, 'X', generator.ORDER_ATOMIC) || '0';
   const y = generator.valueToCode(block, 'Y', generator.ORDER_ATOMIC) || '0';
 
-  addEpubReaderCore(generator);
-  addTftSupport(generator);
+  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
+  generator.addLibrary('TFT_eSPI', '#include <TFT_eSPI.h>');
+  generator.addObject('epubReader', 'EpubReader epubReader;');
 
   let renderFn = '';
   renderFn += 'void epubRenderPage(int startX, int startY) {\n';
@@ -210,78 +95,156 @@ Arduino.forBlock['epub_reader_render_page'] = function(block, generator) {
 };
 
 Arduino.forBlock['epub_reader_close'] = function(block, generator) {
-  addEpubReaderCore(generator);
+  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
   generator.addObject('brDrawnSel', 'int brDrawnSel = -1;');
   return 'epubReader.close(); brDrawnSel=-1;\n';
 };
 
 Arduino.forBlock['epub_reader_load_sd_font'] = function(block, generator) {
   const path = generator.valueToCode(block, 'PATH', generator.ORDER_ATOMIC) || '"/fonts/cjk.bin"';
-  addEpubReaderCore(generator);
-  addSdFatSupport(generator);
-  addFontState(generator);
-  return 'sdFont.load(String(' + path + ').c_str());\n';
+  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
+  generator.addLibrary('SdFatHelper', '#include "SdFatHelper.h"');
+  generator.addLibrary('TFT_eSPI', '#include <TFT_eSPI.h>');
+  generator.addObject('sdFont', 'SdFont sdFont;');
+  let bootFn = '';
+  bootFn += 'static void bootDrawLoading(int pct, uint16_t color, const char* msg) {\n';
+  bootFn += '  int pw = tft.width(), ph = tft.height();\n';
+  bootFn += '  int panW = pw - 48; if (panW > 220) panW = 220; if (panW < 120) panW = 120;\n';
+  bootFn += '  int panH = 64;\n';
+  bootFn += '  int panX = (pw - panW) / 2, panY = (ph - panH) / 2 + 10;\n';
+  bootFn += '  uint16_t border = (color == 0xF800) ? 0xF800 : 0x2AE5;\n';
+  bootFn += '  tft.fillRoundRect(panX, panY, panW, panH, 6, 0x0000);\n';
+  bootFn += '  tft.drawRoundRect(panX, panY, panW, panH, 6, border);\n';
+  bootFn += '  tft.drawFastHLine(panX + 5, panY + 1, panW - 10, 0x3CE7);\n';
+  bootFn += '  tft.drawFastHLine(panX + 5, panY + panH - 2, panW - 10, 0x0102);\n';
+  bootFn += '  tft.setTextDatum(4);\n';
+  bootFn += '  tft.setTextColor(color, 0x0000);\n';
+  bootFn += '  tft.drawString(msg, pw / 2, panY + 22);\n';
+  bootFn += '  tft.setTextDatum(0);\n';
+  bootFn += '  int barW = panW - 28, barH = 10;\n';
+  bootFn += '  int barX = panX + 14, barY = panY + panH - 20;\n';
+  bootFn += '  tft.fillRoundRect(barX, barY, barW, barH, 3, 0x0180);\n';
+  bootFn += '  int fillW = (barW - 4) * pct / 100; if (fillW < 0) fillW = 0;\n';
+  bootFn += '  if (fillW > 2) tft.fillRoundRect(barX + 2, barY + 2, fillW, barH - 4, 2, color);\n';
+  bootFn += '}\n';
+  generator.addFunction('bootAll', bootFn);
+  let fontFn = '';
+  fontFn += 'extern void sdbr_loadDir(const String&);\n';
+  fontFn += 'extern int sdbr_entryCount;\n';
+  fontFn += 'static void bootLoadFont(const String& fontPath) {\n';
+  fontFn += '  for (int fontAttempt = 0; fontAttempt < 3; fontAttempt++) {\n';
+  fontFn += '    bootDrawLoading(30, 0x07E0, "Loading Font...");\n';
+  fontFn += '    sdFont.load(fontPath.c_str());\n';
+  fontFn += '    if (sdFont.isLoaded()) {\n';
+  fontFn += '      bootDrawLoading(50, 0x07E0, "Font OK");\n';
+  fontFn += '      bootDrawLoading(50, 0x07E0, "Checking SD...");\n';
+  fontFn += '      for (int attempt = 0; attempt < 3; attempt++) {\n';
+  fontFn += '        sdbr_loadDir(String("/"));\n';
+  fontFn += '        if (sdbr_entryCount > 0) { bootDrawLoading(70, 0x07E0, "SD Ready"); return; }\n';
+  fontFn += '        bootDrawLoading(50, 0xF800, "SD Retry...");\n';
+  fontFn += '        sdfatReinit();\n';
+  fontFn += '      }\n';
+  fontFn += '    }\n';
+  fontFn += '    bootDrawLoading(30, 0xF800, "Font Retry...");\n';
+  fontFn += '    sdfatReinit();\n';
+  fontFn += '  }\n';
+  fontFn += '}\n';
+  fontFn += 'static String currentFontPath = "";\n';
+  fontFn += 'static void bootLoadSelectedFont(const String& defaultPath) {\n';
+  fontFn += '  String fontPath = defaultPath;\n';
+  fontFn += '  FsFile sf = SD.open("/fonts/.selected", FILE_READ);\n';
+  fontFn += '  if (sf && !sf.isDirectory()) { char buf[80]; int n = sf.readBytes(buf, sizeof(buf)-1); sf.close(); if (n > 0) { buf[n] = 0; while (n > 0 && (buf[n-1] == \'\\n\' || buf[n-1] == \'\\r\' || buf[n-1] == \' \')) buf[--n] = 0; if (SD.exists(buf)) fontPath = String(buf); } }\n';
+  fontFn += '  if (sf) sf.close();\n';
+  fontFn += '  currentFontPath = fontPath;\n';
+  fontFn += '  Serial.printf("[FONT] loading: %s\\n", fontPath.c_str());\n';
+  fontFn += '  bootLoadFont(fontPath);\n';
+  fontFn += '}\n';
+  fontFn += 'static void selectFont(const String& path) {\n';
+  fontFn += '  sdFont.unload();\n';
+  fontFn += '  sdFont.load(path.c_str());\n';
+  fontFn += '  if (sdFont.isLoaded()) {\n';
+  fontFn += '    currentFontPath = path;\n';
+  fontFn += '    FsFile sf = SD.open("/fonts/.selected", FILE_WRITE);\n';
+  fontFn += '    if (sf) { sf.print(path); sf.close(); }\n';
+  fontFn += '    Serial.printf("[FONT] selected: %s\\n", path.c_str());\n';
+  fontFn += '  }\n';
+  fontFn += '}\n';
+  generator.addFunction('bootLoadFont', fontFn);
+  return 'bootLoadSelectedFont(' + path + ');\n';
+};
+
+Arduino.forBlock['epub_reader_select_font'] = function(block, generator) {
+  const path = generator.valueToCode(block, 'PATH', generator.ORDER_ATOMIC) || '"/fonts/cjk.bin"';
+  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
+  generator.addLibrary('SdFatHelper', '#include "SdFatHelper.h"');
+  generator.addObject('sdFont', 'SdFont sdFont;');
+  return 'selectFont(' + path + ');\n';
 };
 
 Arduino.forBlock['epub_reader_sd_font_loaded'] = function(block, generator) {
-  addEpubReaderCore(generator);
-  addFontState(generator);
+  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
+  generator.addObject('sdFont', 'SdFont sdFont;');
   return ['sdFont.isLoaded()', generator.ORDER_ATOMIC];
 };
 
 Arduino.forBlock['epub_reader_unload_sd_font'] = function(block, generator) {
-  addEpubReaderCore(generator);
-  addFontState(generator);
+  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
+  generator.addObject('sdFont', 'SdFont sdFont;');
   return 'sdFont.unload();\n';
 };
 
 Arduino.forBlock['epub_reader_load_ui_font'] = function(block, generator) {
   const path = generator.valueToCode(block, 'PATH', generator.ORDER_ATOMIC) || '"/fonts/ui.bin"';
-  addEpubReaderCore(generator);
-  addSdFatSupport(generator);
-  addFontState(generator);
-  return 'uiFontShared = false; uiFont.load(String(' + path + ').c_str());\n';
+  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
+  generator.addLibrary('SdFatHelper', '#include "SdFatHelper.h"');
+  generator.addObject('uiFont', 'SdFont uiFont;');
+  generator.addObject('uiFontShared', 'bool uiFontShared = false;');
+  return 'uiFontShared = false; uiFont.load(' + path + ');\n';
 };
 
 Arduino.forBlock['epub_reader_unload_ui_font'] = function(block, generator) {
-  addEpubReaderCore(generator);
-  addFontState(generator);
+  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
+  generator.addObject('uiFont', 'SdFont uiFont;');
+  generator.addObject('uiFontShared', 'bool uiFontShared = false;');
   return 'uiFontShared = false; uiFont.unload();\n';
 };
 
 Arduino.forBlock['epub_reader_ui_font_loaded'] = function(block, generator) {
-  addEpubReaderCore(generator);
-  addFontState(generator);
+  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
+  generator.addObject('sdFont', 'SdFont sdFont;');
+  generator.addObject('uiFont', 'SdFont uiFont;');
+  generator.addObject('uiFontShared', 'bool uiFontShared = false;');
   return ['(uiFontShared ? sdFont.isLoaded() : uiFont.isLoaded())', generator.ORDER_ATOMIC];
 };
 
 Arduino.forBlock['epub_reader_share_reading_font'] = function(block, generator) {
-  addEpubReaderCore(generator);
-  addFontState(generator);
+  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
+  generator.addObject('sdFont', 'SdFont sdFont;');
+  generator.addObject('uiFont', 'SdFont uiFont;');
+  generator.addObject('uiFontShared', 'bool uiFontShared = false;');
   return 'uiFontShared = true;\n';
 };
 
 Arduino.forBlock['epub_reader_font_height'] = function(block, generator) {
-  addEpubReaderCore(generator);
-  addTftSupport(generator);
+  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
+  generator.addLibrary('TFT_eSPI', '#include <TFT_eSPI.h>');
+  generator.addMacro('SMOOTH_FONT', '#define SMOOTH_FONT');
   return ['tft.fontHeight()', generator.ORDER_ATOMIC];
 };
 
 Arduino.forBlock['epub_reader_get_chapter'] = function(block, generator) {
-  addEpubReaderCore(generator);
+  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
   return ['epubReader.getChapter()', generator.ORDER_ATOMIC];
 };
 
 Arduino.forBlock['epub_reader_get_chapter_count'] = function(block, generator) {
-  addEpubReaderCore(generator);
+  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
   return ['epubReader.getChapterCount()', generator.ORDER_ATOMIC];
 };
 
 Arduino.forBlock['epub_reader_scan_books'] = function(block, generator) {
   const dir = generator.valueToCode(block, 'DIR', generator.ORDER_ATOMIC) || '"/books"';
-  addEpubReaderCore(generator);
-  addSdFatSupport(generator);
-  addBookState(generator);
+  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
   let scanFn = '';
   scanFn += 'void epubScanDir(const String& dirPath) {\n';
   scanFn += '  FsFile root = SD.open(dirPath);\n';
@@ -316,7 +279,7 @@ Arduino.forBlock['epub_reader_scan_books'] = function(block, generator) {
   scanFn += '  }\n';
   scanFn += '  root.close();\n';
   scanFn += '}\n';
-  scanFn += 'void epubScanBooks(const String& dir) {\n';
+scanFn += 'void epubScanBooks(const char* dir) {\n';
   scanFn += '  epubBookCount = 0;\n';
   scanFn += '  for (int attempt = 0; attempt < 3 && epubBookCount == 0; attempt++) {\n';
   scanFn += '    if (attempt > 0) { Serial.println("[EPUB] Retrying scan..."); delay(300); }\n';
@@ -329,35 +292,39 @@ Arduino.forBlock['epub_reader_scan_books'] = function(block, generator) {
   scanFn += '  Serial.printf("[EPUB] Total found: %d\\n", epubBookCount);\n';
   scanFn += '}\n';
   generator.addFunction('epubScanBooks', scanFn);
-  return 'epubScanBooks(String(' + dir + '));\n';
+  return 'epubScanBooks(' + dir + ');\n';
 };
 
 Arduino.forBlock['epub_reader_book_count'] = function(block, generator) {
-  addEpubReaderCore(generator);
-  addBookState(generator);
+  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
+  generator.addObject('epubBookCount', 'int epubBookCount = 0;');
   return ['epubBookCount', generator.ORDER_ATOMIC];
 };
 
 Arduino.forBlock['epub_reader_book_name'] = function(block, generator) {
   const idx = generator.valueToCode(block, 'INDEX', generator.ORDER_ATOMIC) || '0';
-  addEpubReaderCore(generator);
-  addBookState(generator);
-  return ['([&]{ int _i = (int)(' + idx + '); return (_i >= 0 && _i < epubBookCount) ? epubBookNames[_i] : String(); })()', generator.ORDER_ATOMIC];
+  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
+  generator.addObject('epubBookNames', 'String epubBookNames[32];');
+  return ['epubBookNames[' + idx + ']', generator.ORDER_ATOMIC];
 };
 
 Arduino.forBlock['epub_reader_book_path'] = function(block, generator) {
   const idx = generator.valueToCode(block, 'INDEX', generator.ORDER_ATOMIC) || '0';
-  addEpubReaderCore(generator);
-  addBookState(generator);
-  return ['([&]{ int _i = (int)(' + idx + '); return (_i >= 0 && _i < epubBookCount) ? epubBookPaths[_i] : String(); })()', generator.ORDER_ATOMIC];
+  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
+  generator.addObject('epubBookPaths', 'String epubBookPaths[32];');
+  return ['epubBookPaths[' + idx + ']', generator.ORDER_ATOMIC];
 };
 
 Arduino.forBlock['epub_reader_show_bookshelf'] = function(block, generator) {
   const sel = generator.valueToCode(block, 'SEL', generator.ORDER_ATOMIC) || '0';
-  addEpubReaderCore(generator);
-  addTftSupport(generator);
-  addBookState(generator);
-  addFontState(generator);
+  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
+  generator.addLibrary('TFT_eSPI', '#include <TFT_eSPI.h>');
+  generator.addMacro('SMOOTH_FONT', '#define SMOOTH_FONT');
+  generator.addObject('epubBookCount', 'int epubBookCount = 0;');
+  generator.addObject('epubBookNames', 'String epubBookNames[32];');
+  generator.addObject('sdFont', 'SdFont sdFont;');
+  generator.addObject('uiFont', 'SdFont uiFont;');
+  generator.addObject('uiFontShared', 'bool uiFontShared = false;');
   generator.addFunction('getActiveUiFont', 'static SdFont* getActiveUiFont() {\n  if (uiFontShared && sdFont.isLoaded()) return &sdFont;\n  if (uiFont.isLoaded()) return &uiFont;\n  if (sdFont.isLoaded()) return &sdFont;\n  return nullptr;\n}\n');
 
   let fn = '';
@@ -373,8 +340,13 @@ Arduino.forBlock['epub_reader_show_bookshelf'] = function(block, generator) {
   fn += '  int ftrY = pageH - lh;\n';
   fn += '  int maxShow = (ftrY - hdrH - 2) / lh;\n';
   fn += '  if (epubBookCount == 0) {\n';
-  fn += '    if (useSdf) uiF->drawString(0, 0, "No books found", TFT_RED);\n';
-  fn += '    else { tft.setTextColor(TFT_RED); tft.setCursor(0, 0); tft.print("No books found"); }\n';
+  fn += '    int ew = pageW / 3, ex = (pageW - ew) / 2, ey = (pageH - ew) / 2 - fh;\n';
+  fn += '    tft.drawRoundRect(ex, ey, ew, ew * 4 / 3, 4, 0x2AE5);\n';
+  fn += '    tft.drawFastVLine(ex + ew / 5, ey + 6, ew * 4 / 3 - 12, 0x2AE5);\n';
+  fn += '    const char* es = useSdf ? "书架还空着" : "No books";\n';
+  fn += '    int tw2 = useSdf ? uiF->measureString(es) : tft.textWidth(es);\n';
+  fn += '    if (useSdf) uiF->drawString((pageW - tw2) / 2, ey + ew * 4 / 3 + 8, es, 0x35A6);\n';
+  fn += '    else { tft.setTextColor(0x35A6); tft.setCursor((pageW - tw2) / 2, ey + ew * 4 / 3 + 8); tft.print(es); }\n';
   fn += '    return;\n';
   fn += '  }\n';
   fn += '  if (maxShow < 1) maxShow = 1;\n';
@@ -385,11 +357,14 @@ Arduino.forBlock['epub_reader_show_bookshelf'] = function(block, generator) {
   fn += '  int topItem = (sel / maxShow) * maxShow;\n';
   fn += '  if (topItem < 0) topItem = 0;\n';
   fn += '  int hdrY = 0;\n';
+  fn += '  epubPanel(&tft, 2, 1, pageW - 4, hdrH - 3);\n';
+  fn += '  int hdrTy = 1 + (hdrH - 3 - fh) / 2;\n';
   fn += '  const char* hdr = "\\xe4\\xb9\\xa6\\xe6\\x9e\\xb6";\n';
-  fn += '  String hdrStr = String(hdr) + " (" + String(epubBookCount) + ")";\n';
-  fn += '  if (useSdf) uiF->drawString(0, hdrY, hdrStr.c_str(), TFT_CYAN);\n';
-  fn += '  else { tft.setTextColor(TFT_CYAN); tft.setCursor(0, hdrY); tft.print(hdrStr); }\n';
-  fn += '  tft.drawFastHLine(0, hdrH, pageW, 0x4208);\n';
+  fn += '  String hdrStr = String(hdr);\n';
+  fn += '  String cntStr = " (" + String(epubBookCount) + ")";\n';
+  fn += '  int hdrW = useSdf ? uiF->measureString(hdr) : tft.textWidth(hdr);\n';
+  fn += '  if (useSdf) { uiF->drawString(6, hdrTy, hdrStr.c_str(), 0x07E0); uiF->drawString(6 + hdrW, hdrTy, cntStr.c_str(), 0x35A6); }\n';
+  fn += '  else { tft.setTextColor(0x07E0); tft.setCursor(6, hdrTy); tft.print(hdrStr); tft.setTextColor(0x35A6); tft.setCursor(6 + hdrW, hdrTy); tft.print(cntStr); }\n';
   fn += '  int pad = 2;\n';
   fn += '  int dotsW = useSdf ? uiF->measureString("...") : tft.textWidth("...");\n';
   fn += '  int numW = useSdf ? uiF->measureString("99.") : tft.textWidth("99.");\n';
@@ -400,12 +375,15 @@ Arduino.forBlock['epub_reader_show_bookshelf'] = function(block, generator) {
   fn += '    if (idx >= epubBookCount) break;\n';
   fn += '    int y = hdrH + 2 + i * lh;\n';
   fn += '    bool isSel = (idx == sel);\n';
+  fn += '    tft.fillRect(0, y - 1, pageW, lh, TFT_BLACK);\n';
   fn += '    if (isSel) {\n';
-  fn += '      tft.fillRoundRect(0, y - 1, pageW, lh, 3, 0x2104);\n';
-  fn += '      tft.drawFastVLine(0, y - 1, lh, TFT_CYAN);\n';
+  fn += '      tft.fillRoundRect(1, y - 1, pageW - 6, lh - 2, 4, 0x0180);\n';
+  fn += '      tft.fillRect(5, y - 1, pageW - 14, (lh - 2) / 2, 0x02C0);\n';
+  fn += '      tft.fillRoundRect(1, y - 1, 3, lh - 2, 1, 0x07E0);\n';
+  fn += '      tft.drawFastVLine(pageW - 7, y + 1, lh - 4, 0x07E0);\n';
   fn += '    }\n';
   fn += '    char numStr[8]; snprintf(numStr, 8, "%d.", idx + 1);\n';
-  fn += '    uint16_t numColor = isSel ? TFT_YELLOW : 0x8410;\n';
+  fn += '    uint16_t numColor = isSel ? 0x07E0 : 0x35A6;\n';
   fn += '    if (useSdf) uiF->drawString(pad, y, numStr, numColor);\n';
   fn += '    else { tft.setTextColor(numColor); tft.setCursor(pad, y); tft.print(numStr); }\n';
   fn += '    String name = epubBookNames[idx];\n';
@@ -417,14 +395,14 @@ Arduino.forBlock['epub_reader_show_bookshelf'] = function(block, generator) {
   fn += '    if (nw > maxPx) {\n';
   fn += '      int extW = useSdf ? uiF->measureString(ext.c_str()) : tft.textWidth(ext);\n';
   fn += '      while (baseName.length() > 0) {\n';
-  fn += '        baseName.remove(baseName.length() - 1);\n';
+  fn += '        baseName.remove(baseName.length() - 1); while (baseName.length() > 0 && ((uint8_t)baseName[baseName.length() - 1] & 0xC0) == 0x80) baseName.remove(baseName.length() - 1); if (baseName.length() > 0 && ((((uint8_t)baseName[baseName.length() - 1]) & 0xE0) == 0xC0 || (((uint8_t)baseName[baseName.length() - 1]) & 0xF0) == 0xE0 || (((uint8_t)baseName[baseName.length() - 1]) & 0xF8) == 0xF0)) baseName.remove(baseName.length() - 1);\n';
   fn += '        String tn = baseName + ext;\n';
   fn += '        int tw = useSdf ? uiF->measureString(tn.c_str()) : tft.textWidth(tn);\n';
   fn += '        if (tw <= maxPx) break;\n';
   fn += '      }\n';
   fn += '      name = baseName + ext;\n';
   fn += '    }\n';
-  fn += '    uint16_t fg = isSel ? TFT_YELLOW : TFT_WHITE;\n';
+  fn += '    uint16_t fg = isSel ? 0xD7FA : 0x57EA;\n';
   fn += '    if (useSdf) uiF->drawString(pad + numW, y, name.c_str(), fg);\n';
   fn += '    else { tft.setTextColor(fg); tft.setCursor(pad + numW, y); tft.print(name); }\n';
   fn += '  }\n';
@@ -439,49 +417,222 @@ Arduino.forBlock['epub_reader_show_bookshelf'] = function(block, generator) {
   fn += '    int thumbH = barAreaFullH / totalBookPages;\n';
   fn += '    if (thumbH < 4) thumbH = 4;\n';
   fn += '    int thumbY = barAreaY + curBookPage * (barAreaFullH - thumbH) / (totalBookPages - 1);\n';
-  fn += '    tft.fillRoundRect(barX, thumbY, 3, thumbH, 1, TFT_CYAN);\n';
+  fn += '    tft.fillRoundRect(barX - 1, barAreaY, 2, barAreaFullH, 1, 0x2AE5);\n';
+  fn += '    tft.fillRoundRect(barX - 2, thumbY, 4, thumbH, 2, 0x07E0);\n';
   fn += '  }\n';
-  fn += '  tft.drawFastHLine(0, ftrY - 1, pageW, 0x4208);\n';
+  fn += '  epubPanel(&tft, 2, ftrY + 1, pageW - 4, lh - 3);\n';
+  fn += '  int ftrTy = ftrY + 1 + (lh - 3 - fh) / 2;\n';
   fn += '  const char* ftr = "A:\\xe7\\xa1\\xae\\xe8\\xae\\xa4 B:\\xe9\\x80\\x80\\xe5\\x87\\xba";\n';
-  fn += '  if (useSdf) uiF->drawString(0, ftrY, ftr, TFT_YELLOW);\n';
-  fn += '  else { tft.setTextColor(TFT_YELLOW); tft.setCursor(0, ftrY); tft.print(ftr); }\n';
+  fn += '  const char* bsFp[4] = {"A:", "确认 ", "B:", "退出"};\n';
+  fn += '  uint16_t bsFc[4] = {0x07E0, 0x35A6, 0x07E0, 0x35A6};\n';
+  fn += '  epubFooterSeg(&tft, useSdf, uiF, 6, ftrTy, bsFp, bsFc, 4);\n';
   fn += '}\n';
   generator.addFunction('epubShowBookshelf', fn);
+  generator.addFunction('epubFooterSegHelper', 'static void epubFooterSeg(TFT_eSPI* d, bool useSdf, SdFont* uiF, int x, int y, const char* const* parts, const uint16_t* cols, int n) {\n  for (int i = 0; i < n; i++) {\n    if (useSdf) { uiF->drawString(x, y, parts[i], cols[i]); x += uiF->measureString(parts[i]); }\n    else { d->setTextColor(cols[i]); d->setCursor(x, y); d->print(parts[i]); x += d->textWidth(parts[i]); }\n  }\n}\n');
+  generator.addFunction('epubPanelHelper', 'static void epubPanel(TFT_eSPI* d, int x, int y, int w, int h) {\n  d->fillRoundRect(x, y, w, h, 6, 0x0000);\n  d->drawRoundRect(x, y, w, h, 6, 0x2AE5);\n  d->drawFastHLine(x + 5, y + 1, w - 10, 0x3CE7);\n  d->drawFastHLine(x + 5, y + h - 2, w - 10, 0x0102);\n}\n');
 
   return 'epubShowBookshelf(' + sel + ');\n';
 };
 
 Arduino.forBlock['epub_reader_goto_chapter'] = function(block, generator) {
   const idx = generator.valueToCode(block, 'INDEX', generator.ORDER_ATOMIC) || '0';
-  addEpubReaderCore(generator);
+  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
+  generator.addObject('epubReader', 'EpubReader epubReader;');
   return ['epubReader.gotoChapter(' + idx + ')', generator.ORDER_ATOMIC];
 };
 
 Arduino.forBlock['epub_reader_chapter_title_at'] = function(block, generator) {
   const idx = generator.valueToCode(block, 'INDEX', generator.ORDER_ATOMIC) || '0';
-  addEpubReaderCore(generator);
+  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
   return ['String(epubReader.getChapterTitleByIndex(' + idx + '))', generator.ORDER_ATOMIC];
 };
 
 Arduino.forBlock['epub_reader_save_pos'] = function(block, generator) {
   const path = generator.valueToCode(block, 'PATH', generator.ORDER_ATOMIC) || '""';
-  addEpubReaderCore(generator);
+  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
+  generator.addObject('epubReader', 'EpubReader epubReader;');
   return 'epubReader.savePosition(' + path + ');\n';
 };
 
 Arduino.forBlock['epub_reader_load_pos'] = function(block, generator) {
   const path = generator.valueToCode(block, 'PATH', generator.ORDER_ATOMIC) || '""';
-  addEpubReaderCore(generator);
+  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
+  generator.addObject('epubReader', 'EpubReader epubReader;');
   return ['epubReader.loadPosition(' + path + ')', generator.ORDER_ATOMIC];
 };
 
-function addTocFunctions(generator) {
-  addEpubReaderCore(generator);
-  addTftSupport(generator);
-  addFontState(generator);
+Arduino.forBlock['epub_reader_cur_path'] = function(block, generator) {
+  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
+  generator.addObject('epubReader', 'EpubReader epubReader;');
+  return ['String(epubReader.getPath())', generator.ORDER_ATOMIC];
+};
+
+// ---- 阅读记录 (recent books, resume where you left off) ----
+Arduino.forBlock['epub_reader_hist_count'] = function(block, generator) {
+  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
+  generator.addObject('epubReader', 'EpubReader epubReader;');
+  return ['epubReader.histCount()', generator.ORDER_ATOMIC];
+};
+
+Arduino.forBlock['epub_reader_show_history'] = function(block, generator) {
+  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
+  generator.addLibrary('TFT_eSPI', '#include <TFT_eSPI.h>');
+  generator.addMacro('SMOOTH_FONT', '#define SMOOTH_FONT');
+  generator.addObject('epubReader', 'EpubReader epubReader;');
+  generator.addObject('sdFont', 'SdFont sdFont;');
+  generator.addObject('uiFont', 'SdFont uiFont;');
+  generator.addObject('uiFontShared', 'bool uiFontShared = false;');
+  generator.addFunction('getActiveUiFont', 'static SdFont* getActiveUiFont() {\n  if (uiFontShared && sdFont.isLoaded()) return &sdFont;\n  if (uiFont.isLoaded()) return &uiFont;\n  if (sdFont.isLoaded()) return &sdFont;\n  return nullptr;\n}\n');
+  generator.addFunction('epubFooterSegHelper', 'static void epubFooterSeg(TFT_eSPI* d, bool useSdf, SdFont* uiF, int x, int y, const char* const* parts, const uint16_t* cols, int n) {\n  for (int i = 0; i < n; i++) {\n    if (useSdf) { uiF->drawString(x, y, parts[i], cols[i]); x += uiF->measureString(parts[i]); }\n    else { d->setTextColor(cols[i]); d->setCursor(x, y); d->print(parts[i]); x += d->textWidth(parts[i]); }\n  }\n}\n');
+  generator.addFunction('epubPanelHelper', 'static void epubPanel(TFT_eSPI* d, int x, int y, int w, int h) {\n  d->fillRoundRect(x, y, w, h, 6, 0x0000);\n  d->drawRoundRect(x, y, w, h, 6, 0x2AE5);\n  d->drawFastHLine(x + 5, y + 1, w - 10, 0x3CE7);\n  d->drawFastHLine(x + 5, y + h - 2, w - 10, 0x0102);\n}\n');
+
+  let fn = '';
+  generator.addFunction('epubHistSelVar', 'static int s_histSel = 0;\n');
+  fn += 'extern TFT_eSprite* g_sdFontTargetSpr;\n';
+  fn += 'extern int g_sdFontSprYOff;\n';
+  fn += 'static void epubShowHistory() {\n';
+  fn += '  SdFont* uiF = getActiveUiFont(); bool useSdf = (uiF != nullptr);\n';
+  fn += '  int fh = useSdf ? uiF->getCharHeight() : tft.fontHeight();\n';
+  fn += '  if (fh < 8) fh = 16;\n';
+  fn += '  int lh = fh + 4;\n';
+  fn += '  int pageW = tft.width();\n';
+  fn += '  int pageH = tft.height();\n';
+  fn += '  int hdrH = lh;\n';
+  fn += '  int ftrY = pageH - lh;\n';
+  fn += '  int maxShow = (ftrY - hdrH - 2) / lh;\n';
+  fn += '  if (maxShow < 1) maxShow = 1;\n';
+  fn += '  int total = epubReader.histCount();\n';
+  fn += '  if (s_histSel >= total) s_histSel = total - 1;\n';
+  fn += '  if (s_histSel < 0) s_histSel = 0;\n';
+  fn += '  int topItem = (s_histSel / maxShow) * maxShow;\n';
+  fn += '  int pad = 2;\n';
+  fn += '  int progW = useSdf ? uiF->measureString("999/999") : tft.textWidth("999/999");\n';
+  fn += '  int maxPx = pageW - pad * 2 - progW - 6;\n';
+  fn += '  if (maxPx < 20) maxPx = 20;\n';
+  fn += '  static TFT_eSprite* __histSpr = nullptr;\n';
+  fn += '  if (!__histSpr) __histSpr = new TFT_eSprite(&tft);\n';
+  fn += '  __histSpr->createSprite(pageW, pageH);\n';
+  fn += '  bool __useSpr = __histSpr->created();\n';
+  fn += '  TFT_eSPI* d = __useSpr ? (TFT_eSPI*)__histSpr : (TFT_eSPI*)&tft;\n';
+  fn += '  if (__useSpr) { __histSpr->fillSprite(TFT_BLACK); g_sdFontTargetSpr = __histSpr; g_sdFontSprYOff = 0; }\n';
+  fn += '  else { tft.fillRect(0, 0, pageW, pageH, TFT_BLACK); }\n';
+  fn += '  const char* hdrT = "\\xe9\\x98\\x85\\xe8\\xaf\\xbb\\xe8\\xae\\xb0\\xe5\\xbd\\x95";\n';
+  fn += '  String pageStr = " " + String(total);\n';
+  fn += '  epubPanel(d, 2, 1, pageW - 4, hdrH - 3);\n';
+  fn += '  int hdrTy = 1 + (hdrH - 3 - fh) / 2;\n';
+  fn += '  int hdrTW = useSdf ? uiF->measureString(hdrT) : tft.textWidth(hdrT);\n';
+  fn += '  if (useSdf) { uiF->drawString(6, hdrTy, hdrT, 0x07E0); uiF->drawString(6 + hdrTW, hdrTy, pageStr.c_str(), 0x35A6); }\n';
+  fn += '  else { d->setTextColor(0x07E0); d->setCursor(6, hdrTy); d->print(hdrT); d->setTextColor(0x35A6); d->setCursor(6 + hdrTW, hdrTy); d->print(pageStr); }\n';
+  fn += '  if (total <= 0) {\n';
+  fn += '    const char* es = "\\xe6\\x9a\\x82\\xe6\\x97\\xa0\\xe9\\x98\\x85\\xe8\\xaf\\xbb\\xe8\\xae\\xb0\\xe5\\xbd\\x95";\n';
+  fn += '    int ew = useSdf ? uiF->measureString(es) : tft.textWidth(es);\n';
+  fn += '    int ey = (hdrH + ftrY) / 2;\n';
+  fn += '    if (useSdf) uiF->drawString((pageW - ew) / 2, ey, es, 0x35A6);\n';
+  fn += '    else { d->setTextColor(0x35A6); d->setCursor((pageW - ew) / 2, ey); d->print(es); }\n';
+  fn += '  }\n';
+  fn += '  for (int i = 0; i < maxShow; i++) {\n';
+  fn += '    int idx = topItem + i;\n';
+  fn += '    int y = hdrH + 2 + i * lh;\n';
+  fn += '    if (idx >= total) break;\n';
+  fn += '    bool isSel = (idx == s_histSel);\n';
+  fn += '    d->fillRect(0, y - 1, pageW, lh, TFT_BLACK);\n';
+  fn += '    if (isSel) { d->fillRoundRect(1, y - 1, pageW - 6, lh - 2, 4, 0x0180); d->fillRect(5, y - 1, pageW - 14, (lh - 2) / 2, 0x02C0); d->fillRoundRect(1, y - 1, 3, lh - 2, 1, 0x07E0); d->drawFastVLine(pageW - 7, y + 1, lh - 4, 0x07E0); }\n';
+  fn += '    String p = epubReader.histPath(idx);\n';
+  fn += '    int sl = p.lastIndexOf("/");\n';
+  fn += '    String entry = (sl >= 0) ? p.substring(sl + 1) : p;\n';
+  fn += '    if (entry.length() > 5 && entry.endsWith(".epub")) entry.remove(entry.length() - 5);\n';
+  fn += '    int ew = useSdf ? uiF->measureString(entry.c_str()) : tft.textWidth(entry);\n';
+  fn += '    if (ew > maxPx) {\n';
+  fn += '      while (entry.length() > 0) { entry.remove(entry.length() - 1); while (entry.length() > 0 && ((uint8_t)entry[entry.length() - 1] & 0xC0) == 0x80) entry.remove(entry.length() - 1); if (entry.length() > 0 && ((((uint8_t)entry[entry.length() - 1]) & 0xE0) == 0xC0 || (((uint8_t)entry[entry.length() - 1]) & 0xF0) == 0xE0 || (((uint8_t)entry[entry.length() - 1]) & 0xF8) == 0xF0)) entry.remove(entry.length() - 1); String te = entry + "..."; int tw = useSdf ? uiF->measureString(te.c_str()) : tft.textWidth(te); if (tw <= maxPx) break; }\n';
+  fn += '      entry += "...";\n';
+  fn += '    }\n';
+  fn += '    int tot = epubReader.histChapterTotal(idx);\n';
+  fn += '    String prog = (tot > 0) ? (String(epubReader.histChapter(idx) + 1) + "/" + String(tot)) : String("-");\n';
+  fn += '    uint16_t fg = isSel ? 0xD7FA : 0x57EA;\n';
+  fn += '    uint16_t pc = isSel ? 0x07E0 : 0x35A6;\n';
+  fn += '    if (useSdf) { uiF->drawString(pad, y, entry.c_str(), fg); uiF->drawString(pageW - pad - progW, y, prog.c_str(), pc); }\n';
+  fn += '    else { d->setTextColor(fg); d->setCursor(pad, y); d->print(entry); d->setTextColor(pc); d->setCursor(pageW - pad - progW, y); d->print(prog); }\n';
+  fn += '  }\n';
+  fn += '  int totalPages = (total + maxShow - 1) / maxShow;\n';
+  fn += '  if (total > 0 && totalPages > 1) {\n';
+  fn += '    int curPage = s_histSel / maxShow;\n';
+  fn += '    int barAreaY = hdrH + 2; int barAreaBot = ftrY - 2; int barAreaFullH = barAreaBot - barAreaY;\n';
+  fn += '    int thumbH = barAreaFullH / totalPages; if (thumbH < 4) thumbH = 4;\n';
+  fn += '    int thumbY = barAreaY + curPage * (barAreaFullH - thumbH) / (totalPages - 1);\n';
+  fn += '    d->fillRoundRect(pageW - 5, barAreaY, 2, barAreaFullH, 1, 0x2AE5);\n';
+  fn += '    d->fillRoundRect(pageW - 6, thumbY, 4, thumbH, 2, 0x07E0);\n';
+  fn += '  }\n';
+  fn += '  epubPanel(d, 2, ftrY + 1, pageW - 4, lh - 3);\n';
+  fn += '  int ftrTy = ftrY + 1 + (lh - 3 - fh) / 2;\n';
+  fn += '  const char* hFp[6] = {"\\xe4\\xb8\\x8a\\xe4\\xb8\\x8b:", "\\xe9\\x80\\x89\\xe6\\x8b\\xa9 ", "A:", "\\xe7\\xbb\\xad\\xe8\\xaf\\xbb ", "B:", "\\xe8\\xbf\\x94\\xe5\\x9b\\x9e "};\n';
+  fn += '  uint16_t hFc[6] = {0x07E0, 0x35A6, 0x07E0, 0x35A6, 0x07E0, 0x35A6};\n';
+  fn += '  epubFooterSeg(d, useSdf, uiF, 6, ftrTy, hFp, hFc, 6);\n';
+  fn += '  if (__useSpr) { __histSpr->pushSprite(0, 0); g_sdFontTargetSpr = nullptr; g_sdFontSprYOff = 0; __histSpr->deleteSprite(); }\n';
+  fn += '}\n';
+  fn += 'static bool epubHistMove(int dir) {\n';
+  fn += '  int n = epubReader.histCount();\n';
+  fn += '  if (n <= 0) return false;\n';
+  fn += '  int s = s_histSel + dir;\n';
+  fn += '  if (s < 0) s = 0;\n';
+  fn += '  if (s > n - 1) s = n - 1;\n';
+  fn += '  if (s == s_histSel) return false;\n';
+  fn += '  s_histSel = s;\n';
+  fn += '  epubShowHistory();\n';
+  fn += '  return true;\n';
+  fn += '}\n';
+  generator.addFunction('epubShowHistory', fn);
+  return 'epubShowHistory();\n';
+};
+
+Arduino.forBlock['epub_reader_hist_next'] = function(block, generator) {
+  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
+  generator.addObject('epubReader', 'EpubReader epubReader;');
+  return 'epubHistMove(1);\n';
+};
+
+Arduino.forBlock['epub_reader_hist_prev'] = function(block, generator) {
+  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
+  generator.addObject('epubReader', 'EpubReader epubReader;');
+  return 'epubHistMove(-1);\n';
+};
+
+Arduino.forBlock['epub_reader_hist_resume'] = function(block, generator) {
+  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
+  generator.addLibrary('TFT_eSPI', '#include <TFT_eSPI.h>');
+  generator.addMacro('SMOOTH_FONT', '#define SMOOTH_FONT');
+  generator.addObject('epubReader', 'EpubReader epubReader;');
+  generator.addObject('sdFont', 'SdFont sdFont;');
+  generator.addFunction('epubHistSelVar', 'static int s_histSel = 0;\n');
+  let rfn = '';
+  rfn += 'static bool epubHistResume() {\n';
+  rfn += '  int n = epubReader.histCount();\n';
+  rfn += '  if (n <= 0 || s_histSel < 0 || s_histSel >= n) return false;\n';
+  rfn += '  String p = epubReader.histPath(s_histSel);\n';
+  rfn += '  if (p.length() == 0) return false;\n';
+  rfn += '  epubReader.open(p, tft.width(), 13, sdFont.isLoaded() ? (sdFont.getCharWidth() * 11 + 8) / 16 : 7, sdFont.isLoaded() ? sdFont.getCharWidth() : 16);\n';
+  rfn += '  if (!epubReader.isOpen()) return false;\n';
+  rfn += '  epubReader.loadPosition(p);\n';
+  rfn += '  extern void epubShowPage();\n';
+  rfn += '  epubShowPage();\n';
+  rfn += '  return true;\n';
+  rfn += '}\n';
+  generator.addFunction('epubHistResume', rfn);
+  return ['epubHistResume()', generator.ORDER_ATOMIC];
+};;
+
+Arduino.forBlock['epub_reader_show_toc'] = function(block, generator) {
+  const sel = generator.valueToCode(block, 'SEL', generator.ORDER_ATOMIC) || '0';
+  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
+  generator.addLibrary('TFT_eSPI', '#include <TFT_eSPI.h>');
+  generator.addMacro('SMOOTH_FONT', '#define SMOOTH_FONT');
+  generator.addObject('epubReader', 'EpubReader epubReader;');
+  generator.addObject('sdFont', 'SdFont sdFont;');
+  generator.addObject('uiFont', 'SdFont uiFont;');
+  generator.addObject('uiFontShared', 'bool uiFontShared = false;');
   generator.addFunction('getActiveUiFont', 'static SdFont* getActiveUiFont() {\n  if (uiFontShared && sdFont.isLoaded()) return &sdFont;\n  if (uiFont.isLoaded()) return &uiFont;\n  if (sdFont.isLoaded()) return &sdFont;\n  return nullptr;\n}\n');
 
   let fn = '';
+  fn += 'extern int g_sdFontSprYOff;\n';
   fn += 'void epubShowToc(int sel) {\n';
   fn += '  SdFont* uiF = getActiveUiFont(); bool useSdf = (uiF != nullptr);\n';
   fn += '  int fh = useSdf ? uiF->getCharHeight() : tft.fontHeight();\n';
@@ -503,61 +654,67 @@ function addTocFunctions(generator) {
   fn += '  if (sel >= totalChapters) sel = totalChapters - 1;\n';
   fn += '  int topItem = (sel / maxShow) * maxShow;\n';
   fn += '  int pad = 2;\n';
-  fn += '  int dotsW = useSdf ? uiF->measureString("...") : tft.textWidth("...");\n';
-  fn += '  int numW = useSdf ? uiF->measureString("99.") : tft.textWidth("99.");\n';
+  fn += '  int dotsW = useSdf ? uiF->measureString(\"...\") : tft.textWidth(\"...\");\n';
+  fn += '  int numW = useSdf ? uiF->measureString(\"99.\") : tft.textWidth(\"99.\");\n';
   fn += '  int maxPx = pageW - pad * 2 - numW - dotsW;\n';
   fn += '  if (maxPx < 20) maxPx = 20;\n';
-  fn += '  tft.fillScreen(TFT_BLACK);\n';
+  fn += '  static TFT_eSprite* __tocSpr = nullptr;\n';
+  fn += '  if (!__tocSpr) __tocSpr = new TFT_eSprite(&tft);\n';
+  fn += '  __tocSpr->createSprite(pageW, pageH);\n';
+  fn += '  bool __useSpr = __tocSpr->created();\n';
+  fn += '  TFT_eSPI* d = __useSpr ? (TFT_eSPI*)__tocSpr : (TFT_eSPI*)&tft;\n';
+  fn += '  if (__useSpr) { __tocSpr->fillSprite(TFT_BLACK); g_sdFontTargetSpr = __tocSpr; g_sdFontSprYOff = 0; }\n';
+  fn += '  else { tft.fillRect(0, 0, pageW, pageH, TFT_BLACK); }\n';
   fn += '  int totalPages = (totalChapters + maxShow - 1) / maxShow;\n';
   fn += '  int curPage = sel / maxShow;\n';
-  fn += '  String hdr = "\\xe7\\x9b\\xae\\xe5\\xbd\\x95 " + String(curPage + 1) + "/" + String(totalPages);\n';
-  fn += '  if (useSdf) uiF->drawString(0, 0, hdr.c_str(), TFT_CYAN);\n';
-  fn += '  else { tft.setTextColor(TFT_CYAN); tft.setCursor(0, 0); tft.print(hdr); }\n';
-  fn += '  tft.drawFastHLine(0, hdrH, pageW, 0x4208);\n';
+  fn += '  const char* hdrT = \"\\xe7\\x9b\\xae\\xe5\\xbd\\x95\";\n';
+  fn += '  String pageStr = " " + String(curPage + 1) + "/" + String(totalPages);\n';
+  fn += '  epubPanel(d, 2, 1, pageW - 4, hdrH - 3);\n';
+  fn += '  int hdrTy = 1 + (hdrH - 3 - fh) / 2;\n';
+  fn += '  int hdrTW = useSdf ? uiF->measureString(hdrT) : tft.textWidth(hdrT);\n';
+  fn += '  if (useSdf) { uiF->drawString(6, hdrTy, hdrT, 0x07E0); uiF->drawString(6 + hdrTW, hdrTy, pageStr.c_str(), 0x35A6); }\n';
+  fn += '  else { d->setTextColor(0x07E0); d->setCursor(6, hdrTy); d->print(hdrT); d->setTextColor(0x35A6); d->setCursor(6 + hdrTW, hdrTy); d->print(pageStr); }\n';
   fn += '  for (int i = 0; i < maxShow; i++) {\n';
   fn += '    int idx = topItem + i;\n';
   fn += '    int y = hdrH + 2 + i * lh;\n';
   fn += '    if (idx >= totalChapters) break;\n';
   fn += '    bool isSel = (idx == sel);\n';
-  fn += '    if (isSel) {\n';
-  fn += '      tft.fillRoundRect(0, y - 1, pageW, lh, 3, 0x2104);\n';
-  fn += '      tft.drawFastVLine(0, y - 1, lh, TFT_CYAN);\n';
-  fn += '    }\n';
-  fn += '    char numStr[8]; snprintf(numStr, 8, "%d.", idx + 1);\n';
-  fn += '    uint16_t numColor = isSel ? TFT_YELLOW : 0x8410;\n';
+  fn += '    d->fillRect(0, y - 1, pageW, lh, TFT_BLACK);\n';
+  fn += '    if (isSel) { d->fillRoundRect(1, y - 1, pageW - 6, lh - 2, 4, 0x0180); d->fillRect(5, y - 1, pageW - 14, (lh - 2) / 2, 0x02C0); d->fillRoundRect(1, y - 1, 3, lh - 2, 1, 0x07E0); d->drawFastVLine(pageW - 7, y + 1, lh - 4, 0x07E0); }\n';
+  fn += '    char numStr[8]; snprintf(numStr, 8, \"%d.\", idx + 1);\n';
+  fn += '    uint16_t numColor = isSel ? 0x07E0 : 0x35A6;\n';
   fn += '    if (useSdf) uiF->drawString(pad, y, numStr, numColor);\n';
-  fn += '    else { tft.setTextColor(numColor); tft.setCursor(pad, y); tft.print(numStr); }\n';
+  fn += '    else { d->setTextColor(numColor); d->setCursor(pad, y); d->print(numStr); }\n';
   fn += '    const char* ttl = epubReader.getChapterTitleByIndex(idx);\n';
-  fn += '    String entry = String(ttl ? ttl : "");\n';
+  fn += '    String entry = String(ttl ? ttl : \"\");\n';
   fn += '    int ew = useSdf ? uiF->measureString(entry.c_str()) : tft.textWidth(entry);\n';
   fn += '    if (ew > maxPx) {\n';
-  fn += '      while (entry.length() > 0) {\n';
-  fn += '        entry.remove(entry.length() - 1);\n';
-  fn += '        String te = entry + "...";\n';
-  fn += '        int tw = useSdf ? uiF->measureString(te.c_str()) : tft.textWidth(te);\n';
-  fn += '        if (tw <= maxPx) break;\n';
-  fn += '      }\n';
-  fn += '      entry += "...";\n';
+  fn += '      while (entry.length() > 0) { entry.remove(entry.length() - 1); while (entry.length() > 0 && ((uint8_t)entry[entry.length() - 1] & 0xC0) == 0x80) entry.remove(entry.length() - 1); if (entry.length() > 0 && ((((uint8_t)entry[entry.length() - 1]) & 0xE0) == 0xC0 || (((uint8_t)entry[entry.length() - 1]) & 0xF0) == 0xE0 || (((uint8_t)entry[entry.length() - 1]) & 0xF8) == 0xF0)) entry.remove(entry.length() - 1); String te = entry + \"...\"; int tw = useSdf ? uiF->measureString(te.c_str()) : tft.textWidth(te); if (tw <= maxPx) break; }\n';
+  fn += '      entry += \"...\";\n';
   fn += '    }\n';
-  fn += '    uint16_t fg = isSel ? TFT_YELLOW : TFT_WHITE;\n';
+  fn += '    uint16_t fg = isSel ? 0xD7FA : 0x57EA;\n';
   fn += '    if (useSdf) uiF->drawString(pad + numW, y, entry.c_str(), fg);\n';
-  fn += '    else { tft.setTextColor(fg); tft.setCursor(pad + numW, y); tft.print(entry); }\n';
+  fn += '    else { d->setTextColor(fg); d->setCursor(pad + numW, y); d->print(entry); }\n';
   fn += '  }\n';
   fn += '  if (totalPages > 1) {\n';
-  fn += '    int barAreaY = hdrH + 2;\n';
-  fn += '    int barAreaBot = ftrY - 2;\n';
-  fn += '    int barAreaFullH = barAreaBot - barAreaY;\n';
-  fn += '    int thumbH = barAreaFullH / totalPages;\n';
-  fn += '    if (thumbH < 4) thumbH = 4;\n';
+  fn += '    int barAreaY = hdrH + 2; int barAreaBot = ftrY - 2; int barAreaFullH = barAreaBot - barAreaY;\n';
+  fn += '    int thumbH = barAreaFullH / totalPages; if (thumbH < 4) thumbH = 4;\n';
   fn += '    int thumbY = barAreaY + curPage * (barAreaFullH - thumbH) / (totalPages - 1);\n';
-  fn += '    tft.fillRoundRect(pageW - 4, thumbY, 3, thumbH, 1, TFT_CYAN);\n';
+  fn += '    d->fillRoundRect(pageW - 5, barAreaY, 2, barAreaFullH, 1, 0x2AE5);\n';
+  fn += '    d->fillRoundRect(pageW - 6, thumbY, 4, thumbH, 2, 0x07E0);\n';
   fn += '  }\n';
-  fn += '  tft.drawFastHLine(0, ftrY - 1, pageW, 0x4208);\n';
-  fn += '  const char* footer = "\\xe2\\x86\\x91\\xe2\\x86\\x93:sel \\xe2\\x86\\x90\\xe2\\x86\\x92:pg A:jump B:back";\n';
-  fn += '  if (useSdf) uiF->drawString(0, ftrY, footer, TFT_YELLOW);\n';
-  fn += '  else { tft.setTextColor(TFT_YELLOW); tft.setCursor(0, ftrY); tft.print(footer); }\n';
+  fn += '  epubPanel(d, 2, ftrY + 1, pageW - 4, lh - 3);\n';
+  fn += '  int ftrTy = ftrY + 1 + (lh - 3 - fh) / 2;\n';
+  fn += '  const char* tocFp[8] = {"上下:", "选择 ", "左右:", "翻页 ", "A:", "跳转 ", "B:", "返回"};\n';
+  fn += '  uint16_t tocFc[8] = {0x07E0, 0x35A6, 0x07E0, 0x35A6, 0x07E0, 0x35A6, 0x07E0, 0x35A6};\n';
+  fn += '  epubFooterSeg(d, useSdf, uiF, 6, ftrTy, tocFp, tocFc, 8);\n';
+  fn += '  if (__useSpr) { __tocSpr->pushSprite(0, 0); g_sdFontTargetSpr = nullptr; g_sdFontSprYOff = 0; __tocSpr->deleteSprite(); }\n';
+  fn += '  s_lastTocSel = sel;\n';
   fn += '}\n';
   generator.addFunction('epubShowToc', fn);
+  generator.addFunction('epubFooterSegHelper', 'static void epubFooterSeg(TFT_eSPI* d, bool useSdf, SdFont* uiF, int x, int y, const char* const* parts, const uint16_t* cols, int n) {\n  for (int i = 0; i < n; i++) {\n    if (useSdf) { uiF->drawString(x, y, parts[i], cols[i]); x += uiF->measureString(parts[i]); }\n    else { d->setTextColor(cols[i]); d->setCursor(x, y); d->print(parts[i]); x += d->textWidth(parts[i]); }\n  }\n}\n');
+  generator.addFunction('epubPanelHelper', 'static void epubPanel(TFT_eSPI* d, int x, int y, int w, int h) {\n  d->fillRoundRect(x, y, w, h, 6, 0x0000);\n  d->drawRoundRect(x, y, w, h, 6, 0x2AE5);\n  d->drawFastHLine(x + 5, y + 1, w - 10, 0x3CE7);\n  d->drawFastHLine(x + 5, y + h - 2, w - 10, 0x0102);\n}\n');
+
 
   // TOC page navigation helpers
   let tfn = '';
@@ -592,35 +749,42 @@ function addTocFunctions(generator) {
   tfn += '}\n';
   generator.addFunction('epubTocNav', tfn);
 
-}
-
-Arduino.forBlock['epub_reader_show_toc'] = function(block, generator) {
-  const sel = generator.valueToCode(block, 'SEL', generator.ORDER_ATOMIC) || '0';
-  addTocFunctions(generator);
   return 'epubShowToc(' + sel + ');\n';
 };
 
 Arduino.forBlock['epub_reader_toc_page_next'] = function(block, generator) {
   const sel = generator.valueToCode(block, 'SEL', generator.ORDER_ATOMIC) || '0';
-  addTocFunctions(generator);
+  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
+  generator.addLibrary('TFT_eSPI', '#include <TFT_eSPI.h>');
+  generator.addObject('epubReader', 'EpubReader epubReader;');
   return ['epubTocPageNext(' + sel + ')', generator.ORDER_ATOMIC];
 };
 
 Arduino.forBlock['epub_reader_toc_page_prev'] = function(block, generator) {
   const sel = generator.valueToCode(block, 'SEL', generator.ORDER_ATOMIC) || '0';
-  addTocFunctions(generator);
+  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
+  generator.addLibrary('TFT_eSPI', '#include <TFT_eSPI.h>');
+  generator.addObject('epubReader', 'EpubReader epubReader;');
   return ['epubTocPagePrev(' + sel + ')', generator.ORDER_ATOMIC];
 };
 
-function addReadingViewFunctions(generator) {
-  addEpubReaderCore(generator);
-  addTftSupport(generator);
-  addJpegDecodeSupport(generator);
-  addFontState(generator);
+Arduino.forBlock['epub_reader_show_page'] = function(block, generator) {
+  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
+  generator.addLibrary('TFT_eSPI', '#include <TFT_eSPI.h>');
+  generator.addLibrary('tjpgd', '#include "tjpgd.h"');
+  generator.addMacro('SMOOTH_FONT', '#define SMOOTH_FONT');
+  generator.addObject('epubReader', 'EpubReader epubReader;');
+  generator.addObject('sdFont', 'SdFont sdFont;');
   generator.addObject('sdFontBgColor', 'uint16_t sdFontBgColor = 0x0000;');
 
   let fn = '';
+  fn += 'extern bool espJpegDecode565(const uint8_t*, uint32_t, int, uint16_t*&, int&, int&, uint8_t _swap = 1);\n';
+  fn += 'extern bool jpgvLastDecodeDegraded;\n';
+  fn += 'TFT_eSprite* g_sdFontTargetSpr = nullptr;\n';
+  fn += 'int g_sdFontSprYOff = 0;\n';
   fn += 'void sdFontDrawBitmap(int16_t x, int16_t y, uint8_t w, uint8_t h, uint8_t rowStride, const uint8_t* bmp, uint16_t fg) {\n';
+  fn += '  TFT_eSprite* dst = g_sdFontTargetSpr;\n';
+  fn += '  int16_t yy = y - g_sdFontSprYOff;\n';
   fn += '  for (int row = 0; row < h; row++) {\n';
   fn += '    int col = 0;\n';
   fn += '    while (col < w) {\n';
@@ -632,13 +796,39 @@ function addReadingViewFunctions(generator) {
   fn += '        if (!(bmp[bi / 8] & (1 << (7 - (bi % 8))))) break;\n';
   fn += '        col++;\n';
   fn += '      }\n';
-  fn += '      tft.drawFastHLine(x + runStart, y + row, col - runStart, fg);\n';
+  fn += '      if (dst) dst->drawFastHLine(x + runStart, yy + row, col - runStart, fg); else tft.drawFastHLine(x + runStart, y + row, col - runStart, fg);\n';
+  fn += '    }\n';
+  fn += '  }\n';
+  fn += '}\n';
+  fn += 'void sdFontDrawBitmap2bit(int16_t x, int16_t y, uint8_t w, uint8_t h, uint8_t bmpW, const uint8_t* bmp, uint16_t fg) {\n';
+  fn += '  TFT_eSprite* dst = g_sdFontTargetSpr;\n';
+  fn += '  int16_t yy = y - g_sdFontSprYOff;\n';
+  fn += '  int rowBytes = (bmpW * 2 + 7) / 8;\n';
+  fn += '  uint16_t r = (fg >> 11) & 0x1F, g = (fg >> 5) & 0x3F, b = fg & 0x1F;\n';
+  fn += '  uint16_t c50 = ((r >> 1) << 11) | ((g >> 1) << 5) | (b >> 1);\n';
+  fn += '  uint16_t c25 = ((r >> 2) << 11) | ((g >> 2) << 5) | (b >> 2);\n';
+  fn += '  for (int row = 0; row < h; row++) {\n';
+  fn += '    int col = 0;\n';
+  fn += '    while (col < w) {\n';
+  fn += '      int bi = row * rowBytes + col / 4;\n';
+  fn += '      int sh = (3 - col % 4) * 2;\n';
+  fn += '      uint8_t lvl = (bmp[bi] >> sh) & 0x03;\n';
+  fn += '      if (lvl == 0) { col++; continue; }\n';
+  fn += '      uint16_t c = (lvl == 3) ? fg : (lvl == 2) ? c50 : c25;\n';
+  fn += '      int runStart = col;\n';
+  fn += '      while (col < w) {\n';
+  fn += '        int bi2 = row * rowBytes + col / 4;\n';
+  fn += '        int sh2 = (3 - col % 4) * 2;\n';
+  fn += '        if (((bmp[bi2] >> sh2) & 0x03) != lvl) break;\n';
+  fn += '        col++;\n';
+  fn += '      }\n';
+  fn += '      if (dst) dst->drawFastHLine(x + runStart, yy + row, col - runStart, c); else tft.drawFastHLine(x + runStart, y + row, col - runStart, c);\n';
   fn += '    }\n';
   fn += '  }\n';
   fn += '}\n';
   fn += 'static void epubDrawTextLine(int x, int y, const char* str, uint16_t fg, bool useSdf) {\n';
   fn += '  if (useSdf) sdFont.drawString(x, y, str, fg);\n';
-  fn += '  else { tft.setTextColor(fg); tft.setCursor(x, y); tft.print(str); }\n';
+  fn += '  else { TFT_eSprite* d2 = g_sdFontTargetSpr; if (d2) { d2->setTextColor(fg); d2->setCursor(x, y - g_sdFontSprYOff); d2->print(str); } else { tft.setTextColor(fg); tft.setCursor(x, y); tft.print(str); } }\n';
   fn += '}\n';
   fn += 'static int epubMeasureChar(const char* c, int cb, bool useSdf, int cjkW) {\n';
   fn += '  if (useSdf) {\n';
@@ -697,8 +887,109 @@ function addReadingViewFunctions(generator) {
   fn += '  out[outPos] = 0;\n';
   fn += '  strcpy(path, out);\n';
   fn += '}\n';
+  fn += 'static uint32_t epubImgHash(const char* s) {\n';
+  fn += '  uint32_t h = 2166136261u;\n';
+  fn += '  while (*s) { h ^= (uint8_t)*s++; h *= 16777619u; }\n';
+  fn += '  return h;\n';
+  fn += '}\n';
+  fn += 'static void epubImgCachePath(char* out, size_t n, const char* innerPath, int maxW) {\n';
+  fn += '  const char* bp = epubReader.getPath();\n';
+  fn += '  char key[640];\n';
+  fn += '  snprintf(key, sizeof(key), "%s|%s|%d", bp ? bp : "", innerPath, maxW);\n';
+  fn += '  snprintf(out, n, "/epub_img/%08X.eic", (unsigned)epubImgHash(key));\n';
+  fn += '}\n';
+  fn += 'static bool epubImgCacheLoad(const char* path, uint16_t*& buf, int& w, int& h) {\n';
+  fn += '  buf = nullptr; w = 0; h = 0;\n';
+  fn += '  if (!SD.exists(path)) return false;\n';
+  fn += '  FsFile f = SD.open(path, FILE_READ);\n';
+  fn += '  if (!f || f.isDirectory()) { if (f) f.close(); return false; }\n';
+  fn += '  bool ok = false;\n';
+  fn += '  do {\n';
+  fn += '    if (f.size() < 22) break;\n';
+  fn += '    uint8_t hdr[20];\n';
+  fn += '    if (f.read(hdr, 20) != 20) break;\n';
+  fn += '    if (hdr[0] != \'E\' || hdr[1] != \'I\' || hdr[2] != \'C\' || hdr[3] != 2) break;\n';
+  fn += '    int type = hdr[4];\n';
+  fn += '    w = hdr[8] | (hdr[9] << 8);\n';
+  fn += '    h = hdr[10] | (hdr[11] << 8);\n';
+  fn += '    uint32_t len = (uint32_t)hdr[12] | ((uint32_t)hdr[13] << 8) | ((uint32_t)hdr[14] << 16) | ((uint32_t)hdr[15] << 24);\n';
+  fn += '    uint32_t csum = (uint32_t)hdr[16] | ((uint32_t)hdr[17] << 8) | ((uint32_t)hdr[18] << 16) | ((uint32_t)hdr[19] << 24);\n';
+  fn += '    if (w < 1 || h < 1 || w > 480 || h > 1600) break;\n';
+  fn += '    size_t pxBytes = (size_t)w * h * 2;\n';
+  fn += '    buf = (uint16_t*)ps_malloc(pxBytes);\n';
+  fn += '    if (!buf) break;\n';
+  fn += '    if (type == 0) {\n';
+  fn += '      if (len != pxBytes) break;\n';
+  fn += '      size_t got = 0; while (got < len) { int r = f.read((uint8_t*)buf + got, len - got); if (r <= 0) break; got += r; }\n';
+  fn += '      if (got != len) break;\n';
+  fn += '    } else {\n';
+  fn += '      if (len < 3 || len > pxBytes * 3) break;\n';
+  fn += '      uint8_t* rb = (uint8_t*)ps_malloc(len);\n';
+  fn += '      if (!rb) break;\n';
+  fn += '      size_t got = 0; while (got < len) { int r = f.read(rb + got, len - got); if (r <= 0) break; got += r; }\n';
+  fn += '      if (got != len) { free(rb); break; }\n';
+  fn += '      long totalPx = (long)w * h; int pi = 0;\n';
+  fn += '      uint32_t ri = 0;\n';
+  fn += '      while (ri + 3 <= len && pi < totalPx) {\n';
+  fn += '        int cnt = rb[ri++];\n';
+  fn += '        uint16_t px = (uint16_t)rb[ri++] | ((uint16_t)rb[ri++] << 8);\n';
+  fn += '        for (int k = 0; k < cnt && pi < totalPx; k++) buf[pi++] = px;\n';
+  fn += '      }\n';
+  fn += '      free(rb);\n';
+  fn += '      if (pi != totalPx) break;\n';
+  fn += '    }\n';
+  fn += '    uint32_t sum = 0;\n';
+  fn += '    const uint8_t* pb = (const uint8_t*)buf;\n';
+  fn += '    for (size_t i = 0; i < pxBytes; i++) sum = (sum << 1 | sum >> 31) ^ pb[i];\n';
+  fn += '    if (sum != csum) { Serial.printf("[EPUB-IMG-CACHE] bad checksum %s\\n", path); break; }\n';
+  fn += '    ok = true;\n';
+  fn += '  } while (0);\n';
+  fn += '  f.close();\n';
+  fn += '  if (!ok) { if (buf) { free(buf); buf = nullptr; } w = 0; h = 0; SD.remove(path); return false; }\n';
+  fn += '  return true;\n';
+  fn += '}\n';
+  fn += 'static void epubImgCacheStore(const char* path, const uint16_t* buf, int w, int h) {\n';
+  fn += '  if (!buf || w < 1 || h < 1) return;\n';
+  fn += '  if (!SD.exists("/epub_img")) SD.mkdir("/epub_img");\n';
+  fn += '  if (SD.exists(path)) SD.remove(path);\n';
+  fn += '  size_t totalPx = (size_t)w * h;\n';
+  fn += '  size_t rawLen = totalPx * 2;\n';
+  fn += '  size_t rleLen = 0;\n';
+  fn += '  for (size_t i = 0; i < totalPx; ) {\n';
+  fn += '    uint16_t px = buf[i]; size_t run = 1;\n';
+  fn += '    while (i + run < totalPx && buf[i + run] == px && run < 255) run++;\n';
+  fn += '    rleLen += 3; i += run;\n';
+  fn += '  }\n';
+  fn += '  bool useRle = (rleLen < rawLen);\n';
+  fn += '  FsFile f = SD.open(path, FILE_WRITE);\n';
+  fn += '  if (!f) { Serial.printf("[EPUB-IMG-CACHE] store open fail\\n"); return; }\n';
+  fn += '  uint32_t dataLen = useRle ? (uint32_t)rleLen : (uint32_t)rawLen;\n';
+  fn += '  uint32_t sum = 0;\n';
+  fn += '  const uint8_t* pb = (const uint8_t*)buf;\n';
+  fn += '  for (size_t i = 0; i < rawLen; i++) sum = (sum << 1 | sum >> 31) ^ pb[i];\n';
+  fn += '  uint8_t hdr[20];\n';
+  fn += '  hdr[0]=\'E\'; hdr[1]=\'I\'; hdr[2]=\'C\'; hdr[3]=2; hdr[4]=useRle?1:0;\n';
+  fn += '  hdr[5]=0; hdr[6]=0; hdr[7]=0;\n';
+  fn += '  hdr[8]=w & 0xFF; hdr[9]=(w >> 8) & 0xFF; hdr[10]=h & 0xFF; hdr[11]=(h >> 8) & 0xFF;\n';
+  fn += '  hdr[12]=dataLen & 0xFF; hdr[13]=(dataLen>>8)&0xFF; hdr[14]=(dataLen>>16)&0xFF; hdr[15]=(dataLen>>24)&0xFF;\n';
+  fn += '  hdr[16]=sum & 0xFF; hdr[17]=(sum>>8)&0xFF; hdr[18]=(sum>>16)&0xFF; hdr[19]=(sum>>24)&0xFF;\n';
+  fn += '  f.write(hdr, 20);\n';
+  fn += '  if (useRle) {\n';
+  fn += '    static uint8_t rleTrip[3];\n';
+  fn += '    for (size_t i = 0; i < totalPx; ) {\n';
+  fn += '      uint16_t px = buf[i]; size_t run = 1;\n';
+  fn += '      while (i + run < totalPx && buf[i + run] == px && run < 255) run++;\n';
+  fn += '      rleTrip[0] = (uint8_t)run; rleTrip[1] = px & 0xFF; rleTrip[2] = px >> 8;\n';
+  fn += '      f.write(rleTrip, 3);\n';
+  fn += '      i += run;\n';
+  fn += '    }\n';
+  fn += '  } else {\n';
+  fn += '    f.write(pb, rawLen);\n';
+  fn += '  }\n';
+  fn += '  f.close();\n';
+  fn += '}\n';
   fn += 'static uint8_t* epubDrawJpgBuf = nullptr;\n';
-  fn += 'static int epubDrawJpgBufSize = 524288;\n';
+  fn += 'static int epubDrawJpgBufSize = 0;\n';
   fn += 'static int epubDrawJpeg(const char* imgPath, int maxW, int yPos, int maxY) {\n';
   fn += '  Serial.printf("[EPUB-DRAW] drawJpeg: path=%s", imgPath);\n';
   fn += '  { char tmp[256]; int rdx=0,wrx=0; while (imgPath[rdx] && wrx<255) { char ch=imgPath[rdx]; if (ch!=\'\\n\' && ch!=\'\\r\' && ch!=\'\\t\' && ch!=\' \') tmp[wrx++]=ch; rdx++; } tmp[wrx]=0; strcpy((char*)imgPath, tmp); }\n';
@@ -720,8 +1011,12 @@ function addReadingViewFunctions(generator) {
   fn += '  }\n';
   fn += '  if (zipIdx < 0) { Serial.printf("[EPUB-DRAW] file not found: %s", fullPath); return 0; }\n';
   fn += '  Serial.printf("[EPUB-DRAW] zipIdx=%d", zipIdx);\n';
-  fn += '  if (!epubDrawJpgBuf) epubDrawJpgBuf = (uint8_t*)ps_malloc(epubDrawJpgBufSize);\n';
-  fn += '  if (!epubDrawJpgBuf) { Serial.printf("[EPUB-DRAW] alloc failed"); return 0; }\n';
+  fn += '  int entrySz = (int)epubReader.getImageFileSize(zipIdx);\n';
+  fn += '  if (entrySz < 16) entrySz = 16;\n';
+  fn += '  if (entrySz > 1048576) entrySz = 1048576;\n';
+  fn += '  if (epubDrawJpgBuf && epubDrawJpgBufSize != entrySz + 16) { free(epubDrawJpgBuf); epubDrawJpgBuf = nullptr; epubDrawJpgBufSize = 0; }\n';
+  fn += '  if (!epubDrawJpgBuf) { epubDrawJpgBuf = (uint8_t*)ps_malloc((size_t)entrySz + 16); if (epubDrawJpgBuf) epubDrawJpgBufSize = entrySz + 16; }\n';
+  fn += '  if (!epubDrawJpgBuf) { Serial.printf("[EPUB-DRAW] alloc failed (need %d)\\n", entrySz); return 0; }\n';
   fn += '  int jpgLen = 0;\n';
   fn += '  if (!epubReader.extractImageFile(zipIdx, epubDrawJpgBuf, epubDrawJpgBufSize, &jpgLen)) { Serial.printf("[EPUB-DRAW] extract failed"); return 0; }\n';
   fn += '  Serial.printf("[EPUB-DRAW] jpgLen=%d", jpgLen);\n';
@@ -736,6 +1031,19 @@ function addReadingViewFunctions(generator) {
   fn += '      Serial.printf("[EPUB-DRAW] FF%02x len=%d@%d", m, sl, ii);\n';
   fn += '      ii += 2 + sl;\n';
   fn += '    }\n';
+  fn += '  }\n';
+  fn += '  if (jpgLen >= 4 && epubDrawJpgBuf[0] == 0x89 && epubDrawJpgBuf[1] == 0x50 && epubDrawJpgBuf[2] == 0x4E && epubDrawJpgBuf[3] == 0x47) {\n';
+  fn += '    Serial.printf("[EPUB-DRAW] PNG not supported");\n';
+  fn += '    int ph3 = maxY - yPos;\n';
+  fn += '    if (ph3 > 44) ph3 = 44;\n';
+  fn += '    if (ph3 > 12) {\n';
+  fn += '      tft.drawRoundRect(2, yPos + 2, maxW - 4, ph3 - 4, 4, 0x2AE5);\n';
+  fn += '      tft.drawLine(4, yPos + 4, maxW - 6, yPos + ph3 - 4, 0x0102);\n';
+  fn += '      tft.drawLine(maxW - 6, yPos + 4, 4, yPos + ph3 - 4, 0x0102);\n';
+  fn += '      if (sdFont.isLoaded()) { const char* pl = "暂不支持PNG"; int pw2 = sdFont.measureString(pl); sdFont.drawString((maxW - pw2) / 2, yPos + ph3 / 2 - sdFont.getCharHeight() / 2, pl, 0x35A6); }\n';
+  fn += '      else { tft.setTextColor(0x35A6); tft.setTextSize(1); tft.setCursor((maxW - 96) / 2, yPos + ph3 / 2 - 4); tft.print("PNG unsupported"); }\n';
+  fn += '    }\n';
+  fn += '    return ph3;\n';
   fn += '  }\n';
   fn += '  uint16_t* drawBuf = nullptr;\n';
   fn += '  int drawW = 0, drawH = 0;\n';
@@ -761,7 +1069,22 @@ function addReadingViewFunctions(generator) {
   fn += '      if (decMaxW < 8) decMaxW = 8;\n';
   fn += '    }\n';
   fn += '  }\n';
-  fn += '  if (!espJpegDecode565(epubDrawJpgBuf, jpgLen, decMaxW, drawBuf, drawW, drawH)) { Serial.printf("[EPUB-DRAW] decode failed"); return 0; }\n';
+  fn += '  char icPath[40]; epubImgCachePath(icPath, sizeof(icPath), fullPath, decMaxW);\n';
+  fn += '  if (!epubImgCacheLoad(icPath, drawBuf, drawW, drawH)) {\n';
+  fn += '    int ph2 = maxY - yPos;\n';
+  fn += '    if (ph2 > 12) {\n';
+  fn += '      tft.drawRoundRect(2, yPos + 2, maxW - 4, ph2 - 4, 4, 0x2AE5);\n';
+  fn += '      tft.drawLine(4, yPos + 4, maxW - 6, yPos + ph2 - 4, 0x0102);\n';
+  fn += '      tft.drawLine(maxW - 6, yPos + 4, 4, yPos + ph2 - 4, 0x0102);\n';
+  fn += '      if (sdFont.isLoaded()) { const char* pl = "加载中"; int pw2 = sdFont.measureString(pl); sdFont.drawString((maxW - pw2) / 2, yPos + ph2 / 2 - sdFont.getCharHeight() / 2, pl, 0x35A6); }\n';
+  fn += '      else { tft.setTextColor(0x35A6); tft.setTextSize(1); tft.setCursor((maxW - 42) / 2, yPos + ph2 / 2 - 4); tft.print("Loading"); }\n';
+  fn += '    }\n';
+  fn += '    epubReader.releaseHtmlBufForDecode();\n';
+  fn += '    bool __decOk = espJpegDecode565(epubDrawJpgBuf, jpgLen, decMaxW, drawBuf, drawW, drawH);\n';
+  fn += '    epubReader.restoreHtmlBuf();\n';
+  fn += '    if (!__decOk) { Serial.printf("[EPUB-DRAW] decode failed"); return 0; }\n';
+  fn += '    if (!jpgvLastDecodeDegraded) epubImgCacheStore(icPath, drawBuf, drawW, drawH);\n';
+  fn += '  } else Serial.printf("[EPUB-DRAW] cache hit %dx%d", drawW, drawH);\n';
   fn += '  int dispH = (drawH < maxImgH) ? drawH : maxImgH;\n';
   fn += '  int jpgXPos2 = (maxW - drawW) / 2;\n';
   fn += '  if (jpgXPos2 < 0) jpgXPos2 = 0;\n';
@@ -784,9 +1107,26 @@ function addReadingViewFunctions(generator) {
   fn += 'static int epubImgStopCount = 0;\n';
   fn += 'static int epubImgStopIdx = 0;\n';
   fn += 'static uint16_t* fullImgDecBuf = nullptr;\n';
+  fn += 'static uint16_t* epubImgRowBuf = nullptr;\n';
+  fn += 'static uint16_t* epubNarrowRow = nullptr;\n';
+  fn += 'static uint16_t* fitRow = nullptr;\n';
   fn += 'static int fullImgDecW = 0;\n';
   fn += 'static int fullImgDecH = 0;\n';
   fn += 'static int fullImgScaledW = 0;\n';
+  fn += 'static int fullImgStoreOutFunc(JDEC*, void* bitmap, JRECT* rect) {\n';
+  fn += '  int16_t rw = rect->right - rect->left + 1;\n';
+  fn += '  int16_t rh = rect->bottom - rect->top + 1;\n';
+  fn += '  uint16_t* bmp = (uint16_t*)bitmap;\n';
+  fn += '  int16_t left = rect->left;\n';
+  fn += '  if (left >= fullImgDecW) return 1;\n';
+  fn += '  if (left + rw > fullImgDecW) rw = fullImgDecW - left;\n';
+  fn += '  for (int y = 0; y < rh; y++) {\n';
+  fn += '    int dy = rect->top + y;\n';
+  fn += '    if (dy >= fullImgDecH) continue;\n';
+  fn += '    memcpy(&fullImgDecBuf[dy * fullImgDecW + left], &bmp[y * rw], rw * 2);\n';
+  fn += '  }\n';
+  fn += '  return 1;\n';
+  fn += '}\n';
   fn += 'static uint8_t* epubGetImgJpeg(int idx, int* outLen) {\n';
   fn += '  if (idx < 0 || idx >= pageImgCount) return nullptr;\n';
   fn += '  if (fullImgJpgCache && fullImgJpgCacheIdx == idx) { *outLen = fullImgJpgCacheLen; return fullImgJpgCache; }\n';
@@ -799,18 +1139,28 @@ function addReadingViewFunctions(generator) {
   fn += '  else snprintf(fullPath, 256, "%s%s", dir, imgPath);\n';
   fn += '  fullPath[255] = 0;\n';
   fn += '  normalizePath(fullPath);\n';
-  fn += '  epubReader.reopenForChapter();\n';
-  fn += '  int zipIdx = epubReader.findImageFile(fullPath);\n';
-  fn += '  if (zipIdx < 0) { const char* base = strrchr(fullPath, \'/\'); zipIdx = epubReader.findImageFile(base ? base + 1 : fullPath); }\n';
-  fn += '  if (zipIdx < 0) return nullptr;\n';
-  fn += '  fullImgJpgCache = (uint8_t*)ps_malloc(524288);\n';
-  fn += '  if (!fullImgJpgCache) return nullptr;\n';
-  fn += '  int jpgLen = 0;\n';
-  fn += '  if (!epubReader.extractImageFile(zipIdx, fullImgJpgCache, 524288, &jpgLen)) { free(fullImgJpgCache); fullImgJpgCache = nullptr; return nullptr; }\n';
-  fn += '  fullImgJpgCacheIdx = idx;\n';
-  fn += '  fullImgJpgCacheLen = jpgLen;\n';
-  fn += '  *outLen = jpgLen;\n';
-  fn += '  return fullImgJpgCache;\n';
+  fn += '  for (int att = 0; att < 3; att++) {\n';
+  fn += '    if (att > 0) delay(80);\n';
+  fn += '    epubReader.reopenForChapter();\n';
+  fn += '    int zipIdx = epubReader.findImageFile(fullPath);\n';
+  fn += '    if (zipIdx < 0) { const char* base = strrchr(fullPath, \'/\'); zipIdx = epubReader.findImageFile(base ? base + 1 : fullPath); }\n';
+  fn += '    if (zipIdx < 0) { Serial.printf("[EPUB-IMG] find fail att=%d: %s\\n", att, fullPath); continue; }\n';
+  fn += '    int entrySz = (int)epubReader.getImageFileSize(zipIdx);\n';
+  fn += '    if (entrySz < 16 || entrySz > 524288) entrySz = 524288;\n';
+  fn += '    if (!fullImgJpgCache) fullImgJpgCache = (uint8_t*)ps_malloc((size_t)entrySz + 16);\n';
+  fn += '    if (!fullImgJpgCache) { Serial.printf("[EPUB-IMG] alloc fail %d\\n", entrySz); return nullptr; }\n';
+  fn += '    int jpgLen = 0;\n';
+  fn += '    if (epubReader.extractImageFile(zipIdx, fullImgJpgCache, entrySz + 16, &jpgLen)) {\n';
+  fn += '      fullImgJpgCacheIdx = idx;\n';
+  fn += '      fullImgJpgCacheLen = jpgLen;\n';
+  fn += '      *outLen = jpgLen;\n';
+  fn += '      if (att > 0) Serial.printf("[EPUB-IMG] extract OK on retry %d, len=%d\\n", att, jpgLen);\n';
+  fn += '      return fullImgJpgCache;\n';
+  fn += '    }\n';
+  fn += '    Serial.printf("[EPUB-IMG] extract fail att=%d\\n", att);\n';
+  fn += '    free(fullImgJpgCache); fullImgJpgCache = nullptr; fullImgJpgCacheIdx = -1;\n';
+  fn += '  }\n';
+  fn += '  return nullptr;\n';
   fn += '}\n';
   fn += 'static void epubRenderFullImgView() {\n';
   fn += '  int scrW = tft.width();\n';
@@ -821,8 +1171,7 @@ function addReadingViewFunctions(generator) {
   fn += '  int dx = (bufW - scrW) / 2; if (dx < 0) dx = 0;\n';
   fn += '  if (bufW == scrW) {\n';
   fn += '    if (rowsToShow > 0) tft.pushImage(0, 0, scrW, rowsToShow, &fullImgScaledBuf[fullImgViewY * scrW]);\n';
-  fn += '  } else {\n';
-  fn += '    static uint16_t* epubImgRowBuf = nullptr;\n';
+  fn += '  } else if (bufW > scrW) {\n';
   fn += '    if (!epubImgRowBuf) epubImgRowBuf = (uint16_t*)ps_malloc(scrW * scrH * 2);\n';
   fn += '    if (epubImgRowBuf) {\n';
   fn += '      for (int y = 0; y < rowsToShow; y++)\n';
@@ -832,26 +1181,61 @@ function addReadingViewFunctions(generator) {
   fn += '      for (int y = 0; y < rowsToShow; y++)\n';
   fn += '        tft.pushImage(0, y, scrW, 1, &fullImgScaledBuf[(fullImgViewY + y) * bufW + dx]);\n';
   fn += '    }\n';
+  fn += '  } else {\n';
+  fn += '    if (!epubNarrowRow) epubNarrowRow = (uint16_t*)ps_malloc((size_t)scrW * 2);\n';
+  fn += '    if (epubNarrowRow) {\n';
+  fn += '      for (int y = 0; y < rowsToShow; y++) {\n';
+  fn += '        const uint16_t* srcRow = &fullImgScaledBuf[(size_t)(fullImgViewY + y) * bufW];\n';
+  fn += '        for (int x = 0; x < scrW; x++) {\n';
+  fn += '          int sx = (int)((long)x * bufW / scrW);\n';
+  fn += '          if (sx >= bufW) sx = bufW - 1;\n';
+  fn += '          epubNarrowRow[x] = srcRow[sx];\n';
+  fn += '        }\n';
+  fn += '        tft.pushImage(0, y, scrW, 1, epubNarrowRow);\n';
+  fn += '      }\n';
+  fn += '    } else {\n';
+  fn += '      for (int y = 0; y < rowsToShow; y++) {\n';
+  fn += '        const uint16_t* srcRow = &fullImgScaledBuf[(size_t)(fullImgViewY + y) * bufW];\n';
+  fn += '        for (int x = 0; x < scrW; x++) {\n';
+  fn += '          int sx = (int)((long)x * bufW / scrW);\n';
+  fn += '          if (sx >= bufW) sx = bufW - 1;\n';
+  fn += '          tft.drawPixel(x, y, srcRow[sx]);\n';
+  fn += '        }\n';
+  fn += '      }\n';
+  fn += '    }\n';
   fn += '  }\n';
   fn += '  if (rowsToShow < scrH) tft.fillRect(0, rowsToShow, scrW, scrH - rowsToShow, TFT_BLACK);\n';
   fn += '}\n';
   fn += 'static int epubShowFullImage(int idx) {\n';
   fn += '  if (idx < 0 || idx >= pageImgCount) return 0;\n';
   fn += '  if (fullImgScaledBuf) { free(fullImgScaledBuf); fullImgScaledBuf = nullptr; }\n';
-  fn += '  int jpgLen = 0;\n';
-  fn += '  uint8_t* jpgBuf = epubGetImgJpeg(idx, &jpgLen);\n';
-  fn += '  if (!jpgBuf) return 0;\n';
   fn += '  int scrW = tft.width();\n';
   fn += '  int scrH = tft.height();\n';
+  fn += '  char icPath[40]; epubImgCachePath(icPath, sizeof(icPath), pageImgPaths[idx], scrW);\n';
+  fn += '  if (!epubImgCacheLoad(icPath, fullImgDecBuf, fullImgDecW, fullImgDecH)) {\n';
+  fn += '    int jpgLen = 0;\n';
+  fn += '    uint8_t* jpgBuf = epubGetImgJpeg(idx, &jpgLen);\n';
+  fn += '    if (!jpgBuf) return 0;\n';
+  fn += '    epubReader.releaseHtmlBufForDecode();\n';
+  fn += '    bool __decOk = espJpegDecode565(jpgBuf, jpgLen, scrW, fullImgDecBuf, fullImgDecW, fullImgDecH);\n';
+  fn += '    epubReader.restoreHtmlBuf();\n';
+  fn += '    if (!__decOk) { Serial.printf("[EPUB-IMG] full decode fail len=%d\\n", jpgLen); return 0; }\n';
+  fn += '    if (!jpgvLastDecodeDegraded) epubImgCacheStore(icPath, fullImgDecBuf, fullImgDecW, fullImgDecH);\n';
+  fn += '  }\n';
   fn += '  int targetW = scrW;\n';
-  fn += '  if (!espJpegDecode565(jpgBuf, jpgLen, scrW, fullImgDecBuf, fullImgDecW, fullImgDecH)) return 0;\n';
   fn += '  int decW = fullImgDecW, decH = fullImgDecH;\n';
   fn += '  if (decH > scrH * 3 / 2 && decW > scrW) targetW = scrW * 2;\n';
   fn += '  if (targetW > decW) targetW = decW;\n';
-  fn += '  int scaledH = (int)((long)decH * targetW / decW);\n';
-  fn += '  if (scaledH < 1) scaledH = 1;\n';
+  fn += '  int scaledH = 1;\n';
+  fn += '  fullImgScaledBuf = nullptr;\n';
+  fn += '  while (targetW >= 8) {\n';
+  fn += '    scaledH = (int)((long)decH * targetW / decW);\n';
+  fn += '    if (scaledH < 1) scaledH = 1;\n';
+  fn += '    fullImgScaledBuf = (uint16_t*)ps_malloc((size_t)targetW * scaledH * 2);\n';
+  fn += '    if (fullImgScaledBuf) break;\n';
+  fn += '    targetW = targetW * 3 / 4;\n';
+  fn += '  }\n';
   fn += '  fullImgScaledW = targetW;\n';
-  fn += '  fullImgScaledBuf = (uint16_t*)ps_malloc((size_t)targetW * scaledH * 2);\n';
   fn += '  if (!fullImgScaledBuf) { free(fullImgDecBuf); fullImgDecBuf = nullptr; return 0; }\n';
   fn += '  int* sxMap = (int*)ps_malloc(targetW * sizeof(int));\n';
   fn += '  if (sxMap) { for (int x = 0; x < targetW; x++) { int sx = (int)((long)x * decW / targetW); if (sx >= decW) sx = decW - 1; sxMap[x] = sx; } }\n';
@@ -914,16 +1298,35 @@ function addReadingViewFunctions(generator) {
   fn += '  fullImgJpgCacheIdx = -1;\n';
   fn += '  epubImgStopCount = 0; epubImgStopIdx = 0;\n';
   fn += '}\n';
+  fn += 'void epubImgRelease() {\n';
+  fn += '  if (epubDrawJpgBuf) { free(epubDrawJpgBuf); epubDrawJpgBuf = nullptr; epubDrawJpgBufSize = 0; }\n';
+  fn += '  if (epubImgRowBuf) { free(epubImgRowBuf); epubImgRowBuf = nullptr; }\n';
+  fn += '  if (epubNarrowRow) { free(epubNarrowRow); epubNarrowRow = nullptr; }\n';
+  fn += '  if (fitRow) { free(fitRow); fitRow = nullptr; }\n';
+  fn += '  if (fullImgJpgCache) { free(fullImgJpgCache); fullImgJpgCache = nullptr; fullImgJpgCacheIdx = -1; fullImgJpgCacheLen = 0; }\n';
+  fn += '  if (fullImgDecBuf) { free(fullImgDecBuf); fullImgDecBuf = nullptr; fullImgDecW = 0; fullImgDecH = 0; }\n';
+  fn += '  if (fullImgScaledBuf) { free(fullImgScaledBuf); fullImgScaledBuf = nullptr; fullImgScaledW = 0; fullImgScaledH = 0; }\n';
+  fn += '  fullImgCurIdx = -1;\n';
+  fn += '  fullImgViewY = 0;\n';
+  fn += '  epubImgStopCount = 0; epubImgStopIdx = 0;\n';
+  fn += '}\n';
   fn += 'static int epubFitImgCurIdx = -1;\n';
   fn += 'static int epubShowFitImage(int idx) {\n';
   fn += '  if (idx < 0 || idx >= pageImgCount) return 0;\n';
   fn += '  if (fullImgScaledBuf) { free(fullImgScaledBuf); fullImgScaledBuf = nullptr; }\n';
-  fn += '  int jpgLen = 0;\n';
-  fn += '  uint8_t* jpgBuf = epubGetImgJpeg(idx, &jpgLen);\n';
-  fn += '  if (!jpgBuf) return 0;\n';
   fn += '  int scrW = tft.width();\n';
   fn += '  int scrH = tft.height();\n';
-  fn += '  if (!espJpegDecode565(jpgBuf, jpgLen, scrW, fullImgDecBuf, fullImgDecW, fullImgDecH)) return 0;\n';
+  fn += '  char icPath[40]; epubImgCachePath(icPath, sizeof(icPath), pageImgPaths[idx], scrW);\n';
+  fn += '  if (!epubImgCacheLoad(icPath, fullImgDecBuf, fullImgDecW, fullImgDecH)) {\n';
+  fn += '    int jpgLen = 0;\n';
+  fn += '    uint8_t* jpgBuf = epubGetImgJpeg(idx, &jpgLen);\n';
+  fn += '    if (!jpgBuf) return 0;\n';
+  fn += '    epubReader.releaseHtmlBufForDecode();\n';
+  fn += '    bool __decOk = espJpegDecode565(jpgBuf, jpgLen, scrW, fullImgDecBuf, fullImgDecW, fullImgDecH);\n';
+  fn += '    epubReader.restoreHtmlBuf();\n';
+  fn += '    if (!__decOk) { Serial.printf("[EPUB-IMG] fit decode fail len=%d\\n", jpgLen); return 0; }\n';
+  fn += '    if (!jpgvLastDecodeDegraded) epubImgCacheStore(icPath, fullImgDecBuf, fullImgDecW, fullImgDecH);\n';
+  fn += '  }\n';
   fn += '  int decW = fullImgDecW, decH = fullImgDecH;\n';
   fn += '  int fitW, fitH;\n';
   fn += '  if ((long)decW * scrH <= (long)decH * scrW) { fitH = scrH; fitW = (int)((long)decW * scrH / decH); }\n';
@@ -932,26 +1335,24 @@ function addReadingViewFunctions(generator) {
   fn += '  if (fitH < 1) fitH = 1;\n';
   fn += '  if (fitW > scrW) fitW = scrW;\n';
   fn += '  if (fitH > scrH) fitH = scrH;\n';
-  fn += '  fullImgScaledBuf = (uint16_t*)ps_malloc((size_t)fitW * fitH * 2);\n';
-  fn += '  if (!fullImgScaledBuf) { free(fullImgDecBuf); fullImgDecBuf = nullptr; return 0; }\n';
+  fn += '  if (!fitRow) fitRow = (uint16_t*)ps_malloc((size_t)scrW * 2);\n';
+  fn += '  if (!fitRow) { free(fullImgDecBuf); fullImgDecBuf = nullptr; return 0; }\n';
   fn += '  int* sxMap2 = (int*)ps_malloc(fitW * sizeof(int));\n';
   fn += '  if (sxMap2) { for (int x = 0; x < fitW; x++) { int sx = (int)((long)x * decW / fitW); if (sx >= decW) sx = decW - 1; sxMap2[x] = sx; } }\n';
+  fn += '  int dx = (scrW - fitW) / 2;\n';
+  fn += '  int dy = (scrH - fitH) / 2;\n';
+  fn += '  tft.fillScreen(TFT_BLACK);\n';
   fn += '  for (int y = 0; y < fitH; y++) {\n';
   fn += '    int sy = (int)((long)y * decH / fitH);\n';
   fn += '    if (sy >= decH) sy = decH - 1;\n';
   fn += '    int rowBase = sy * decW;\n';
-  fn += '    uint16_t* outRow = &fullImgScaledBuf[y * fitW];\n';
   fn += '    for (int x = 0; x < fitW; x++) {\n';
-  fn += '      outRow[x] = fullImgDecBuf[rowBase + (sxMap2 ? sxMap2[x] : x)];\n';
+  fn += '      fitRow[x] = fullImgDecBuf[rowBase + (sxMap2 ? sxMap2[x] : x)];\n';
   fn += '    }\n';
+  fn += '    tft.pushImage(dx, dy + y, fitW, 1, fitRow);\n';
   fn += '  }\n';
   fn += '  if (sxMap2) free(sxMap2);\n';
   fn += '  free(fullImgDecBuf); fullImgDecBuf = nullptr;\n';
-  fn += '  int dx = (scrW - fitW) / 2;\n';
-  fn += '  int dy = (scrH - fitH) / 2;\n';
-  fn += '  tft.fillScreen(TFT_BLACK);\n';
-  fn += '  tft.pushImage(dx, dy, fitW, fitH, fullImgScaledBuf);\n';
-  fn += '  free(fullImgScaledBuf); fullImgScaledBuf = nullptr;\n';
   fn += '  epubFitImgCurIdx = idx;\n';
   fn += '  return 1;\n';
   fn += '}\n';
@@ -963,13 +1364,18 @@ function addReadingViewFunctions(generator) {
   fn += '  if (epubFitImgCurIdx > 0) return epubShowFitImage(epubFitImgCurIdx - 1);\n';
   fn += '  return 0;\n';
   fn += '}\n';
+  fn += 'static int epubSdFontCharWidth(uint32_t cp) {\n';
+  fn += '  if (!sdFont.isLoaded()) return -1;\n';
+  fn += '  uint32_t c = cp;\n';
+  fn += '  return sdFont.measureCharWidth(c);\n';
+  fn += '}\n';
   fn += 'void epubShowPage() {\n';
   fn += '  pageImgCount = 0;\n';
   fn += '  bool useSdFont = sdFont.isLoaded();\n';
-  fn += '  tft.fillScreen(TFT_BLACK);\n';
+  fn += '  epubReader.setCharWidthFn(useSdFont ? epubSdFontCharWidth : nullptr);\n';
   fn += '  int fh = useSdFont ? sdFont.getCharHeight() : tft.fontHeight();\n';
   fn += '  if (fh < 8) fh = 16;\n';
-  fn += '  int lh = fh + 2;\n';
+  fn += '  int lh = fh + 4;\n';
   fn += '  int pageW = tft.width();\n';
   fn += '  int cjkW = useSdFont ? sdFont.getCharWidth() : (tft.textWidth("\\xe4\\xb8\\x80\\xe4\\xba\\x8c\\xe4\\xb8\\x89\\xe5\\x9b\\x9b\\xe4\\xba\\x94\\xe5\\x85\\xad\\xe4\\xb8\\x83\\xe5\\x85\\xab\\xe4\\xb9\\x9d\\xe5\\x8d\\x81") + 5) / 10;\n';
   fn += '  if (cjkW < 4) cjkW = 16;\n';
@@ -986,26 +1392,33 @@ function addReadingViewFunctions(generator) {
   fn += '  if (lpp < 1) lpp = 1;\n';
   fn += '  epubReader.recalcLayout(pageW, lpp, asciiW, cjkW);\n';
   fn += '  const char* title = epubReader.getChapterTitle();\n';
-  fn += '  String header = String(epubReader.getChapter()) + "/" + String(epubReader.getChapterCount());\n';
+  fn += '  String chapStr = String(epubReader.getChapter()) + "/" + String(epubReader.getChapterCount());\n';
+  fn += '  String titleStr = "";\n';
   fn += '  if (title && title[0]) {\n';
-  fn += '    int hdrW = useSdFont ? sdFont.measureString((header + " ").c_str()) : tft.textWidth(header + " ");\n';
+  fn += '    int hdrW = useSdFont ? sdFont.measureString((chapStr + " ").c_str()) : tft.textWidth(chapStr + " ");\n';
   fn += '    int maxTitleW = pageW - hdrW - 4;\n';
   fn += '    String tStr = String(title);\n';
   fn += '    int tw = useSdFont ? sdFont.measureString(tStr.c_str()) : tft.textWidth(tStr);\n';
   fn += '    if (tw > maxTitleW) {\n';
   fn += '      int dotsW = useSdFont ? sdFont.measureString("...") : tft.textWidth("...");\n';
   fn += '      while (tStr.length() > 0) {\n';
-  fn += '        tStr.remove(tStr.length() - 1);\n';
+  fn += '        tStr.remove(tStr.length() - 1); while (tStr.length() > 0 && ((uint8_t)tStr[tStr.length() - 1] & 0xC0) == 0x80) tStr.remove(tStr.length() - 1); if (tStr.length() > 0 && ((((uint8_t)tStr[tStr.length() - 1]) & 0xE0) == 0xC0 || (((uint8_t)tStr[tStr.length() - 1]) & 0xF0) == 0xE0 || (((uint8_t)tStr[tStr.length() - 1]) & 0xF8) == 0xF0)) tStr.remove(tStr.length() - 1);\n';
   fn += '        String tt = tStr + "...";\n';
   fn += '        int ttw = useSdFont ? sdFont.measureString(tt.c_str()) : tft.textWidth(tt);\n';
   fn += '        if (ttw <= maxTitleW) break;\n';
   fn += '      }\n';
   fn += '      tStr += "...";\n';
   fn += '    }\n';
-  fn += '    header += " " + tStr;\n';
+  fn += '    titleStr = tStr;\n';
   fn += '  }\n';
-  fn += '  epubDrawTextLine(0, hdrY, header.c_str(), TFT_CYAN, useSdFont);\n';
-  fn += '  tft.drawFastHLine(0, hdrY + hdrH, pageW, 0x4208);\n';
+  fn += '  tft.fillRect(0, 0, pageW, tft.height(), TFT_BLACK);\n';
+  fn += '  epubPanel(&tft, 2, 1, pageW - 4, hdrH - 3);\n';
+  fn += '  int hdrTy = 1 + (hdrH - 3 - fh) / 2;\n';
+  fn += '  epubDrawTextLine(8, hdrTy, chapStr.c_str(), 0x07E0, useSdFont);\n';
+  fn += '  if (titleStr.length() > 0) {\n';
+  fn += '    int chapW = useSdFont ? sdFont.measureString(chapStr.c_str()) : tft.textWidth(chapStr);\n';
+  fn += '    epubDrawTextLine(8 + chapW, hdrTy, (String(" ") + titleStr).c_str(), 0x57EA, useSdFont);\n';
+  fn += '  }\n';
   fn += '  int totalChapters = epubReader.getChapterCount();\n';
   fn += '  int curChapter = epubReader.getChapter() - 1;\n';
   fn += '  int totalPages = epubReader.getNumPages();\n';
@@ -1015,13 +1428,24 @@ function addReadingViewFunctions(generator) {
   fn += '  if (!pageBuf) return;\n';
   fn += '  int pageLen = epubReader.getPageTextWrapped(pageBuf, 8192);\n';
   fn += '  if (useSdFont) sdFont.preloadString(pageBuf);\n';
+  fn += '  bool __hasImg = false; { for (int __p = 0; __p < pageLen; __p++) { if ((unsigned char)pageBuf[__p] == 0x03) { __hasImg = true; break; } } }\n';
+  fn += '  static TFT_eSprite* __bodySpr = nullptr;\n';
+  fn += '  bool __useSpr = false;\n';
+  fn += '  if (!__hasImg) {\n';
+  fn += '    if (!__bodySpr) __bodySpr = new TFT_eSprite(&tft);\n';
+  fn += '    __bodySpr->createSprite(pageW, maxBodyY - bodyY + 1);\n';
+  fn += '    if (__bodySpr->created()) { __bodySpr->fillSprite(TFT_BLACK); g_sdFontTargetSpr = __bodySpr; g_sdFontSprYOff = bodyY; __useSpr = true; }\n';
+  fn += '    else { tft.fillRect(0, bodyY, pageW, maxBodyY - bodyY + 1, TFT_BLACK); }\n';
+  fn += '  } else {\n';
+  fn += '    tft.fillRect(0, bodyY, pageW, maxBodyY - bodyY + 1, TFT_BLACK);\n';
+  fn += '  }\n';
   fn += '  int yPos = bodyY;\n';
   fn += '  static char lineBuf[512];\n';
   fn += '  int lineLen = 0;\n';
   fn += '  bool newPara = false;\n';
   fn += '  int lineAlign = 0;\n';
   fn += '  int pos = 0;\n';
-  fn += '  uint16_t txtColor = TFT_WHITE;\n';
+  fn += '  uint16_t txtColor = 0x57EA;\n';
   fn += '  while (pos < pageLen && yPos <= maxBodyY - lh) {\n';
   fn += '    char c = pageBuf[pos];\n';
   fn += "    if (c == 0x02) { pos++; newPara = true; lineAlign = 0; continue; }\n";
@@ -1078,6 +1502,7 @@ function addReadingViewFunctions(generator) {
   fn += '      int imgMaxH = maxBodyY - yPos;\n';
   fn += '      if (imgMaxH > lh * 2) {\n';
   fn += '        Serial.printf("[EPUB-RENDER] draw img: %s (y=%d)", imgPath, yPos);\n';
+  fn += '        tft.fillRect(0, yPos, pageW, imgMaxH, TFT_BLACK);\n';
   fn += '        int drawnH = epubDrawJpeg(imgPath, pageW, yPos, maxBodyY);\n';
   fn += '        Serial.printf("[EPUB-RENDER] drawnH=%d", drawnH);\n';
   fn += '        yPos += drawnH + lh;\n';
@@ -1102,45 +1527,56 @@ function addReadingViewFunctions(generator) {
   fn += '    }\n';
   fn += '    epubDrawTextLine(xi, yPos, lineBuf, txtColor, useSdFont);\n';
   fn += '  }\n';
-  fn += '  tft.drawFastHLine(0, ftrY - 1, pageW, 0x4208);\n';
-  fn += '  int barY = ftrY + fh / 3;\n';
+  fn += '  if (__useSpr) {\n';
+  fn += '    __bodySpr->pushSprite(0, bodyY);\n';
+  fn += '    g_sdFontTargetSpr = nullptr; g_sdFontSprYOff = 0;\n';
+  fn += '    __bodySpr->deleteSprite();\n';
+  fn += '  }\n';
+  fn += '  tft.fillRect(0, ftrY, pageW, tft.height() - ftrY, TFT_BLACK);\n';
+  fn += '  epubPanel(&tft, 2, ftrY + 1, pageW - 4, lh - 3);\n';
+  fn += '  int ftrTy = ftrY + 1 + (lh - 3 - fh) / 2;\n';
   fn += '  int barH = fh / 4;\n';
   fn += '  if (barH < 2) barH = 2;\n';
+  fn += '  int barY = ftrY + 1 + (lh - 3 - barH) / 2;\n';
   fn += '  int barW = pageW * 3 / 10;\n';
-  fn += '  int barX = 2;\n';
+  fn += '  int barX = 8;\n';
   fn += '  float chapterProgress = 0;\n';
   fn += '  if (totalPages > 1) chapterProgress = (float)(curPage - 1) / (totalPages - 1);\n';
-  fn += '  tft.drawRoundRect(barX, barY, barW, barH, barH / 2, 0x4208);\n';
+  fn += '  tft.drawRoundRect(barX, barY, barW, barH, barH / 2, 0x2AE5);\n';
   fn += '  if (chapterProgress > 0) {\n';
   fn += '    int fillW = (int)((barW - 2) * chapterProgress);\n';
   fn += '    if (fillW < 1) fillW = 1;\n';
-  fn += '    tft.fillRoundRect(barX + 1, barY + 1, fillW, barH - 2, (barH - 2) / 2, TFT_CYAN);\n';
+  fn += '    tft.fillRoundRect(barX + 1, barY + 1, fillW, barH - 2, (barH - 2) / 2, 0x07E0);\n';
+  fn += '    if (fillW > 4) tft.drawFastHLine(barX + 2, barY + 1, fillW - 3, 0x3CE7);\n';
   fn += '  }\n';
   fn += '  String footer = String(curPage) + "/" + String(totalPages);\n';
   fn += '  int fw = useSdFont ? sdFont.measureString(footer.c_str()) : tft.textWidth(footer);\n';
-  fn += '  epubDrawTextLine(pageW - fw, ftrY, footer.c_str(), TFT_YELLOW, useSdFont);\n';
+  fn += '  epubDrawTextLine(pageW - fw, ftrTy, footer.c_str(), 0x07E0, useSdFont);\n';
   fn += '  int pctX = barX + barW + 4;\n';
   fn += '  int pctVal = (int)(chapterProgress * 100);\n';
   fn += '  char pctStr[8]; snprintf(pctStr, 8, "%d%%", pctVal);\n';
   fn += '  if (pctX + (useSdFont ? sdFont.measureString(pctStr) : tft.textWidth(pctStr)) < pageW - fw - 2) {\n';
-  fn += '    epubDrawTextLine(pctX, ftrY, pctStr, 0x8410, useSdFont);\n';
+  fn += '    epubDrawTextLine(pctX, ftrTy, pctStr, 0x35A6, useSdFont);\n';
   fn += '  }\n';
   fn += '}\n';
   generator.addFunction('epubShowPage', fn);
+  generator.addFunction('epubFooterSegHelper', 'static void epubFooterSeg(TFT_eSPI* d, bool useSdf, SdFont* uiF, int x, int y, const char* const* parts, const uint16_t* cols, int n) {\n  for (int i = 0; i < n; i++) {\n    if (useSdf) { uiF->drawString(x, y, parts[i], cols[i]); x += uiF->measureString(parts[i]); }\n    else { d->setTextColor(cols[i]); d->setCursor(x, y); d->print(parts[i]); x += d->textWidth(parts[i]); }\n  }\n}\n');
+  generator.addFunction('epubPanelHelper', 'static void epubPanel(TFT_eSPI* d, int x, int y, int w, int h) {\n  d->fillRoundRect(x, y, w, h, 6, 0x0000);\n  d->drawRoundRect(x, y, w, h, 6, 0x2AE5);\n  d->drawFastHLine(x + 5, y + 1, w - 10, 0x3CE7);\n  d->drawFastHLine(x + 5, y + h - 2, w - 10, 0x0102);\n}\n');
 
-}
-
-Arduino.forBlock['epub_reader_show_page'] = function(block, generator) {
-  addReadingViewFunctions(generator);
   return 'epubShowPage();\n';
 };
 
 // ==================== File Browser ====================
 
-function addBrowserFunctions(generator) {
-  addEpubReaderCore(generator);
-  addSdFatSupport(generator);
-  addBrowserState(generator);
+const hasLegacyEpubBrowserBlocks = typeof Blockly !== 'undefined'
+  && Blockly.Blocks
+  && (Blockly.Blocks['epub_reader_browser_open'] || Blockly.Blocks['epub_reader_show_browser']);
+
+if (hasLegacyEpubBrowserBlocks) {
+Arduino.forBlock['epub_reader_browser_open'] = function(block, generator) {
+  const dir = generator.valueToCode(block, 'DIR', generator.ORDER_ATOMIC) || '"/"';
+  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
+  generator.addLibrary('SdFatHelper', '#include "SdFatHelper.h"');
 
   let fn = '';
   fn += 'int brNaturalCmp(const char* s1, const char* s2) {\n';
@@ -1178,7 +1614,6 @@ function addBrowserFunctions(generator) {
   fn += '        String tn = brNames[i]; brNames[i] = brNames[j]; brNames[j] = tn;\n';
   fn += '        String tp = brPaths[i]; brPaths[i] = brPaths[j]; brPaths[j] = tp;\n';
   fn += '        bool td = brIsDir[i]; brIsDir[i] = brIsDir[j]; brIsDir[j] = td;\n';
-  fn += '        bool te = brIsEpub[i]; brIsEpub[i] = brIsEpub[j]; brIsEpub[j] = te;\n';
   fn += '      }\n';
   fn += '    }\n';
   fn += '  }\n';
@@ -1204,8 +1639,8 @@ function addBrowserFunctions(generator) {
   fn += '    entry.close();\n';
   fn += '    if (name.startsWith(".")) continue;\n';
   fn += '    if (name == "System Volume Information" || name == "LOST.DIR") continue;\n';
-  fn += '    String lower = name; lower.toLowerCase();\n';
   fn += '    if (!isDir) {\n';
+  fn += '      String lower = name; lower.toLowerCase();\n';
   fn += '      if (!lower.endsWith(".epub") && !lower.endsWith(".jpg") && !lower.endsWith(".jpeg")) continue;\n';
   fn += '    }\n';
   fn += '    brNames[brEntryCount] = name;\n';
@@ -1219,40 +1654,46 @@ function addBrowserFunctions(generator) {
   fn += '  Serial.printf("[BR] Loaded %s (%d entries)\\n", brCurDir.c_str(), brEntryCount);\n';
   fn += '}\n';
   generator.addFunction('brLoadDir', fn);
-}
-
-Arduino.forBlock['epub_reader_browser_open'] = function(block, generator) {
-  const dir = generator.valueToCode(block, 'DIR', generator.ORDER_ATOMIC) || '"/"';
-  addBrowserFunctions(generator);
+  generator.addObject('brEntryCount', 'int brEntryCount = 0;');
+  generator.addObject('brNames', 'String brNames[64];');
+  generator.addObject('brPaths', 'String brPaths[64];');
+  generator.addObject('brIsDir', 'bool brIsDir[64];');
+  generator.addObject('brIsEpub', 'bool brIsEpub[64];');
+  generator.addObject('brCurDir', 'String brCurDir = "/";');
   return 'brLoadDir(String(' + dir + '));\n';
 };
 
 Arduino.forBlock['epub_reader_browser_count'] = function(block, generator) {
-  addBrowserState(generator);
+  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
+  generator.addObject('brEntryCount', 'int brEntryCount = 0;');
   return ['brEntryCount', generator.ORDER_ATOMIC];
 };
 
 Arduino.forBlock['epub_reader_browser_is_dir'] = function(block, generator) {
   const idx = generator.valueToCode(block, 'INDEX', generator.ORDER_ATOMIC) || '0';
-  addBrowserState(generator);
-  return ['([&]{ int _i = (int)(' + idx + '); return _i >= 0 && _i < brEntryCount && brIsDir[_i]; })()', generator.ORDER_ATOMIC];
+  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
+  generator.addObject('brIsDir', 'bool brIsDir[64];');
+  return ['(' + idx + ' >= 0 && ' + idx + ' < brEntryCount && brIsDir[' + idx + '])', generator.ORDER_ATOMIC];
 };
 
 Arduino.forBlock['epub_reader_browser_name'] = function(block, generator) {
   const idx = generator.valueToCode(block, 'INDEX', generator.ORDER_ATOMIC) || '0';
-  addBrowserState(generator);
-  return ['([&]{ int _i = (int)(' + idx + '); return (_i >= 0 && _i < brEntryCount) ? brNames[_i] : String(); })()', generator.ORDER_ATOMIC];
+  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
+  generator.addObject('brNames', 'String brNames[64];');
+  return ['brNames[' + idx + ']', generator.ORDER_ATOMIC];
 };
 
 Arduino.forBlock['epub_reader_browser_path'] = function(block, generator) {
   const idx = generator.valueToCode(block, 'INDEX', generator.ORDER_ATOMIC) || '0';
-  addBrowserState(generator);
-  return ['([&]{ int _i = (int)(' + idx + '); return (_i >= 0 && _i < brEntryCount) ? brPaths[_i] : String(); })()', generator.ORDER_ATOMIC];
+  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
+  generator.addObject('brPaths', 'String brPaths[64];');
+  return ['brPaths[' + idx + ']', generator.ORDER_ATOMIC];
 };
 
 Arduino.forBlock['epub_reader_browser_enter'] = function(block, generator) {
   const idx = generator.valueToCode(block, 'INDEX', generator.ORDER_ATOMIC) || '0';
-  addBrowserFunctions(generator);
+  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
+  generator.addLibrary('SdFatHelper', '#include "SdFatHelper.h"');
   let fn = 'void brEnter(int idx) {\n';
   fn += '  if (idx < 0 || idx >= brEntryCount || !brIsDir[idx]) return;\n';
   fn += '  brLoadDir(brPaths[idx]);\n';
@@ -1262,7 +1703,8 @@ Arduino.forBlock['epub_reader_browser_enter'] = function(block, generator) {
 };
 
 Arduino.forBlock['epub_reader_browser_up'] = function(block, generator) {
-  addBrowserFunctions(generator);
+  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
+  generator.addLibrary('SdFatHelper', '#include "SdFatHelper.h"');
   let fn = 'void brGoUp() {\n';
   fn += '  if (brCurDir == "/" || brCurDir == "") return;\n';
   fn += '  String child = brCurDir;\n';
@@ -1279,35 +1721,41 @@ Arduino.forBlock['epub_reader_browser_up'] = function(block, generator) {
   fn += '    if (brNames[i] == childName) { brPrevSel = i; break; }\n';
   fn += '  }\n';
   fn += '}\n';
+  generator.addObject('brPrevSel', 'int brPrevSel = 0;');
   generator.addFunction('brGoUp', fn);
   return 'brGoUp();\n';
 };
 
 Arduino.forBlock['epub_reader_browser_up_sel'] = function(block, generator) {
-  addBrowserState(generator);
+  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
+  generator.addObject('brPrevSel', 'int brPrevSel = 0;');
   return ['brPrevSel', generator.ORDER_ATOMIC];
 };
 
 Arduino.forBlock['epub_reader_browser_is_root'] = function(block, generator) {
-  addBrowserState(generator);
+  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
+  generator.addObject('brCurDir', 'String brCurDir = "/";');
   return ['(brCurDir == "/" || brCurDir == "")', generator.ORDER_ATOMIC];
 };
 
 Arduino.forBlock['epub_reader_browser_curdir'] = function(block, generator) {
-  addBrowserState(generator);
+  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
+  generator.addObject('brCurDir', 'String brCurDir = "/";');
   return ['brCurDir', generator.ORDER_ATOMIC];
 };
+}
 
 // ==================== Cover Thumbnail Generation ====================
 
 function addCoverFunctions(generator) {
-  addEpubReaderCore(generator);
-  addSdFatSupport(generator);
-  addJpegDecodeSupport(generator);
-  addTftSupport(generator);
-  addFontState(generator);
+  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
+  generator.addLibrary('SdFatHelper', '#include "SdFatHelper.h"');
+  generator.addLibrary('tjpgd', '#include "tjpgd.h"');
+  generator.addLibrary('TFT_eSPI', '#include <TFT_eSPI.h>');
+  generator.addMacro('SMOOTH_FONT', '#define SMOOTH_FONT');
   generator.addMacro('COV_THUMB_W', '#define COV_THUMB_W 72');
   generator.addMacro('COV_THUMB_H', '#define COV_THUMB_H 96');
+  generator.addObject('epubReader', 'EpubReader epubReader;');
 
   let chfn = 'static uint32_t coverHash(const char* s) {\n';
   chfn += '  uint32_t h = 2166136261u;\n';
@@ -1316,11 +1764,42 @@ function addCoverFunctions(generator) {
   chfn += '}\n';
   generator.addFunction('coverHash', chfn);
 
+  let jfn = '';
+  jfn += 'static const uint8_t* covJpgData;\n';
+  jfn += 'static int covJpgPos;\n';
+  jfn += 'static int covJpgLen;\n';
+  jfn += 'static uint16_t* covDecodedBuf;\n';
+  jfn += 'static int covDecodedW;\n';
+  jfn += 'static int covDecodedH;\n';
+  jfn += 'static size_t covJpgInFunc(JDEC*, uint8_t* buf, size_t n) {\n';
+  jfn += '  size_t avail = covJpgLen - covJpgPos;\n';
+  jfn += '  if (n > avail) n = avail;\n';
+  jfn += '  if (buf) memcpy(buf, covJpgData + covJpgPos, n);\n';
+  jfn += '  covJpgPos += n;\n';
+  jfn += '  return n;\n';
+  jfn += '}\n';
+  jfn += 'static int covJpgOutFunc(JDEC*, void* bitmap, JRECT* rect) {\n';
+  jfn += '  int16_t rw = rect->right - rect->left + 1;\n';
+  jfn += '  int16_t rh = rect->bottom - rect->top + 1;\n';
+  jfn += '  uint16_t* bmp = (uint16_t*)bitmap;\n';
+  jfn += '  for (int y = 0; y < rh; y++) {\n';
+  jfn += '    for (int x = 0; x < rw; x++) {\n';
+  jfn += '      int px = rect->left + x;\n';
+  jfn += '      int py = rect->top + y;\n';
+  jfn += '      if (px < covDecodedW && py < covDecodedH)\n';
+  jfn += '        covDecodedBuf[py * covDecodedW + px] = bmp[y * rw + x];\n';
+  jfn += '    }\n';
+  jfn += '  }\n';
+  jfn += '  return 1;\n';
+  jfn += '}\n';
+  generator.addFunction('covJpgHelpers', jfn);
+
   let fn = '';
   fn += 'static uint8_t* covGenBuf = nullptr;\n';
   fn += 'static int covGenBufSize = 1048576;\n';
-  fn += 'void epubGenCover(const String& bookPath) {\n';
-  fn += '  uint16_t* covDecodedBuf = nullptr; int covDecodedW = 0, covDecodedH = 0;\n';
+  fn += 'static String covQueue[64];\n';
+  fn += 'static int covQueueHead = 0, covQueueTail = 0;\n';
+  fn += 'static void epubGenCoverDoWork(const String& bookPath) {\n';
   fn += '  uint32_t h = coverHash(bookPath.c_str());\n';
   fn += '  char cachePath[48];\n';
   fn += '  snprintf(cachePath, sizeof(cachePath), "/epub_cov/%08X.raw", h);\n';
@@ -1339,13 +1818,14 @@ function addCoverFunctions(generator) {
   fn += '  if (!covGenBuf) covGenBuf = (uint8_t*)ps_malloc(covGenBufSize);\n';
   fn += '  bool coverSaved = false;\n';
   fn += '  bool needReinit = false;\n';
+  fn += '  bool noCover = false;\n';
   fn += '  for (int attempt = 0; attempt < 3; attempt++) {\n';
   fn += '    if (attempt > 0) { delay(200); needReinit = true; }\n';
   fn += '    sdFont.closeFile();\n';
   fn += '    if (needReinit) sdfatReinit();\n';
   fn += '    if (!epubReader.findCoverOnly(bookPath)) { epubReader.close(); needReinit = true; continue; }\n';
   fn += '    int coverIdx = epubReader.getCoverZipIdx();\n';
-  fn += '    if (coverIdx < 0) { epubReader.close(); break; }\n';
+  fn += '    if (coverIdx < 0) { epubReader.close(); noCover = true; break; }\n';
   fn += '    if (!covGenBuf) { epubReader.close(); break; }\n';
   fn += '    int jpgLen = 0;\n';
   fn += '    if (!epubReader.extractImageFile(coverIdx, covGenBuf, covGenBufSize, &jpgLen)) { epubReader.close(); needReinit = true; continue; }\n';
@@ -1385,11 +1865,117 @@ function addCoverFunctions(generator) {
   fn += '    break;\n';
   fn += '  }\n';
   fn += '  sdFont.closeFile();\n';
-  fn += '  if (!coverSaved) { FsFile ncof = SD.open(ncoPath, FILE_WRITE); if (ncof) { uint8_t one = 1; ncof.write(&one, 1); ncof.close(); } }\n';
+  fn += '  if (!coverSaved) { FsFile ncof = SD.open(ncoPath, FILE_WRITE); if (ncof) { uint8_t one = 1; ncof.write(&one, 1); ncof.close(); Serial.printf("[COVER] marked no-cover (failed), skip next time\\n"); } }\n';
+  fn += '}\n';
+  fn += 'void epubGenCover(const String& bookPath) {\n';
+  fn += '  int next = (covQueueTail + 1) % 64;\n';
+  fn += '  if (next != covQueueHead) { covQueue[covQueueTail] = bookPath; covQueueTail = next; }\n';
+  fn += '}\n';
+  fn += 'bool epubGenCoverProcessOne() {\n';
+  fn += '  if (covQueueHead == covQueueTail) return false;\n';
+  fn += '  int total = 0;\n';
+  fn += '  while (covQueueHead != covQueueTail) {\n';
+  fn += '    String path = covQueue[covQueueHead];\n';
+  fn += '    covQueueHead = (covQueueHead + 1) % 64;\n';
+  fn += '    epubGenCoverDoWork(path);\n';
+  fn += '    total++;\n';
+  fn += '    if (total % 3 == 0) { epubDrawCoverPanel(); epubDrawCoverBar(total, 0); }\n';
+  fn += '  }\n';
+  fn += '  epubCoverProgressClear();\n';
+  fn += '  return total > 0;\n';
+  fn += '}\n';
+  fn += 'extern String sdbr_names[]; extern String sdbr_paths[]; extern bool sdbr_isDir[]; extern int sdbr_entryCount;\n';
+  fn += 'static int g_covPx = -1, g_covPy = 0, g_covPw = 0, g_covPh = 0, g_covTitleW = 0, g_covTx = 0, g_covTitleH = 0;\n';
+  fn += 'static void epubDrawCoverPanel() {\n';
+  fn += '  int scrW = tft.width(); int scrH = tft.height();\n';
+  fn += '  bool useSdf = sdFont.isLoaded();\n';
+  fn += '  const char* zh = "\\xe5\\xb0\\x81\\xe9\\x9d\\xa2\\xe7\\x94\\x9f\\xe6\\x88\\x90\\xe4\\xb8\\xad\\xe8\\xaf\\xb7\\xe7\\xa8\\x8d\\xe5\\x80\\x99";\n';
+  fn += '  int titleH = useSdf ? sdFont.getCharHeight() : 8;\n';
+  fn += '  if (titleH < 8) titleH = 8;\n';
+  fn += '  int titleW = useSdf ? sdFont.measureString(zh) : tft.textWidth("Cover");\n';
+  fn += '  int pw = titleW + 76; if (pw < 150) pw = 150; if (pw > scrW - 8) pw = scrW - 8;\n';
+  fn += '  int ph = titleH + 30;\n';
+  fn += '  int px = (scrW - pw) / 2, py = (scrH - ph) / 2;\n';
+  fn += '  g_covPx = px; g_covPy = py; g_covPw = pw; g_covPh = ph; g_covTitleW = titleW; g_covTitleH = titleH;\n';
+  fn += '  int tx = px + (pw - titleW - 40) / 2; if (tx < px + 8) tx = px + 8;\n';
+  fn += '  g_covTx = tx;\n';
+  fn += '  tft.fillRoundRect(px + 3, py + 3, pw, ph, 6, 0x0102);\n';
+  fn += '  tft.fillRoundRect(px, py, pw, ph, 6, 0x0000);\n';
+  fn += '  tft.drawRoundRect(px, py, pw, ph, 6, 0x2AE5);\n';
+  fn += '  tft.drawFastHLine(px + 5, py + 1, pw - 10, 0x3CE7);\n';
+  fn += '  tft.drawFastHLine(px + 5, py + ph - 2, pw - 10, 0x0102);\n';
+  fn += '  if (useSdf) sdFont.drawString(tx, py + 6, zh, 0xD7FA);\n';
+  fn += '  else { tft.setTextColor(0xD7FA, 0x0000); tft.setTextSize(1); tft.setCursor(tx, py + 6 + (titleH - 8) / 2); tft.print("Cover"); }\n';
+  fn += '  tft.drawFastHLine(px + 8, py + 6 + titleH + 3, pw - 16, 0x2AE5);\n';
+  fn += '}\n';
+  fn += 'static void epubDrawCoverBar(int n, int m) {\n';
+  fn += '  if (g_covPx < 0) return;\n';
+  fn += '  char t2[12];\n';
+  fn += '  if (m > 0) snprintf(t2, sizeof(t2), "%d/%d", n, m);\n';
+  fn += '  else snprintf(t2, sizeof(t2), "%d", n);\n';
+  fn += '  tft.setTextColor(0x35A6, 0x0000); tft.setTextSize(1);\n';
+  fn += '  int dy = g_covPy + 6 + (g_covTitleH - 8) / 2;\n';
+  fn += '  tft.fillRect(g_covTx + g_covTitleW, dy, 40, 10, 0x0000);\n';
+  fn += '  tft.setCursor(g_covTx + g_covTitleW + 4, dy); tft.print(t2);\n';
+  fn += '  int barX = g_covPx + 12, barY = g_covPy + g_covPh - 17, barW = g_covPw - 24, barH = 9;\n';
+  fn += '  tft.fillRoundRect(barX, barY, barW, barH, 4, 0x0180);\n';
+  fn += '  tft.drawRoundRect(barX, barY, barW, barH, 4, 0x35A6);\n';
+  fn += '  int fillW = (m > 0) ? (int)((long)barW * n / m) : 0;\n';
+  fn += '  if (n > 0 && fillW < 4) fillW = 4;\n';
+  fn += '  if (fillW > barW) fillW = barW;\n';
+  fn += '  if (fillW > 0) tft.fillRoundRect(barX + 1, barY + 1, fillW - 2, barH - 2, 3, 0xF800);\n';
+  fn += '  if (fillW > 4) tft.drawFastHLine(barX + 2, barY + 1, fillW - 3, 0x07E0);\n';
+  fn += '}\n';
+  fn += 'static void epubCoverProgressClear() {\n';
+  fn += '  if (g_covPx < 0) return;\n';
+  fn += '  tft.fillRect(g_covPx - 4, g_covPy - 4, g_covPw + 10, g_covPh + 10, 0x0000);\n';
+  fn += '  g_covPx = -1;\n';
+  fn += '}\n';
+  fn += 'void epubGenCoverAll() {\n';
+  fn += '  bool glyphsFreed = false;\n';
+  fn += '  bool needCover = false;\n';
+  fn += '  for (int i = 0; i < sdbr_entryCount; i++) {\n';
+  fn += '    if (sdbr_isDir[i]) continue;\n';
+  fn += '    String l = sdbr_names[i]; l.toLowerCase();\n';
+  fn += '    if (!l.endsWith(".epub")) continue;\n';
+  fn += '    uint32_t h = coverHash(sdbr_paths[i].c_str());\n';
+  fn += '    char ncoPath[48]; snprintf(ncoPath, sizeof(ncoPath), "/epub_cov/%08X.nco", h);\n';
+  fn += '    char cp[48]; snprintf(cp, sizeof(cp), "/epub_cov/%08X.raw", h);\n';
+  fn += '    if (SD.exists(ncoPath)) continue;\n';
+  fn += '    if (SD.exists(cp)) { FsFile cf = SD.open(cp, FILE_READ); int csz = cf ? (int)cf.size() : -1; uint8_t ver = 0; if (cf) { cf.seek(csz-1); cf.read(&ver, 1); cf.close(); } if (csz > 0 && ver == 4) continue; }\n';
+  fn += '    needCover = true; break;\n';
+  fn += '  }\n';
+  fn += '  if (!needCover) return;\n';
+  fn += '  sdFont.closeFile();\n';
+  fn += '  epubDrawCoverPanel();\n';
+  fn += '  sdFont.freeGlyphs(); glyphsFreed = true;\n';
+  fn += '  int coverTotal = 0;\n';
+  fn += '  int coverEpubs = 0;\n';
+  fn += '  for (int i = 0; i < sdbr_entryCount; i++) {\n';
+  fn += '    if (sdbr_isDir[i]) continue;\n';
+  fn += '    String l = sdbr_names[i]; l.toLowerCase();\n';
+  fn += '    if (!l.endsWith(".epub")) continue;\n';
+  fn += '    coverEpubs++;\n';
+  fn += '  }\n';
+  fn += '  for (int i = 0; i < sdbr_entryCount; i++) {\n';
+  fn += '    if (sdbr_isDir[i]) continue;\n';
+  fn += '    String l = sdbr_names[i]; l.toLowerCase();\n';
+  fn += '    if (!l.endsWith(".epub")) continue;\n';
+  fn += '    coverTotal++;\n';
+  fn += '    uint32_t h = coverHash(sdbr_paths[i].c_str());\n';
+  fn += '    char cachePath[48]; snprintf(cachePath, sizeof(cachePath), "/epub_cov/%08X.raw", h);\n';
+  fn += '    char ncoPath[48]; snprintf(ncoPath, sizeof(ncoPath), "/epub_cov/%08X.nco", h);\n';
+  fn += '    if (SD.exists(ncoPath)) continue;\n';
+  fn += '    if (SD.exists(cachePath)) { FsFile cf = SD.open(cachePath, FILE_READ); int csz = cf ? (int)cf.size() : -1; uint8_t ver = 0; if (cf) { cf.seek(csz-1); cf.read(&ver, 1); cf.close(); } if (csz > 0 && ver == 4) continue; }\n';
+  fn += '    epubDrawCoverBar(coverTotal, coverEpubs);\n';
+  fn += '    epubGenCoverDoWork(sdbr_paths[i]);\n';
+  fn += '  }\n';
+  fn += '  epubCoverProgressClear();\n';
+  fn += '  if (glyphsFreed) sdFont.reloadGlyphs();\n';
   fn += '}\n';
   generator.addFunction('epubGenCover', fn);
 
-  generator.addMacro('COV_CACHE_SLOTS', '#define COV_CACHE_SLOTS 8');
+  generator.addMacro('COV_CACHE_SLOTS', '#define COV_CACHE_SLOTS 16');
   generator.addObject('brPaths', 'String brPaths[64];');
   generator.addObject('brIsDir', 'bool brIsDir[64];');
   generator.addObject('brEntryCount', 'int brEntryCount = 0;');
@@ -1406,6 +1992,16 @@ function addCoverFunctions(generator) {
   cinfra += '    if (!covCacheBuf[i]) covCacheBuf[i] = (uint16_t*)ps_malloc(COV_THUMB_W * COV_THUMB_H * 2);\n';
   cinfra += '  covCacheReady = true;\n';
   cinfra += '}\n';
+  cinfra += 'static void covCacheFree() {\n';
+  cinfra += '  for (int i = 0; i < COV_CACHE_SLOTS; i++) { if (covCacheBuf[i]) { free(covCacheBuf[i]); covCacheBuf[i] = nullptr; } covCacheHash[i] = 0; }\n';
+  cinfra += '  covCacheReady = false;\n';
+  cinfra += '}\n';
+  cinfra += 'void epubCovRelease() {\n';
+  cinfra += '  covCacheFree();\n';
+  cinfra += '  if (covGenBuf) { free(covGenBuf); covGenBuf = nullptr; }\n';
+  cinfra += '}\n';
+  cinfra += 'void epubFontRelease() { sdFont.freeGlyphs(); }\n';
+  cinfra += 'void epubFontRestore() { sdFont.reloadGlyphs(); }\n';
   cinfra += 'static int covCacheFindSlot(uint32_t h) {\n';
   cinfra += '  for (int i = 0; i < COV_CACHE_SLOTS; i++)\n';
   cinfra += '    if (covCacheBuf[i] && covCacheHash[i] == h) return i;\n';
@@ -1476,6 +2072,18 @@ function addCoverFunctions(generator) {
   dfn += '}\n';
   generator.addFunction('epubDrawCoverThumb', dfn);
 
+  let dfn2 = '';
+  dfn2 += 'bool epubDrawCoverThumbTo(const char* bookPath, TFT_eSprite* dst, int dx, int dy) {\n';
+  dfn2 += '  uint32_t h = coverHash(bookPath);\n';
+  dfn2 += '  covCacheInit();\n';
+  dfn2 += '  int slot = covCacheFindSlot(h);\n';
+  dfn2 += '  if (slot < 0) { if (!covCacheLoad(h)) return false; slot = covCacheFindSlot(h); if (slot < 0) return false; }\n';
+  dfn2 += '  covCacheLRU[slot] = ++covCacheAge;\n';
+  dfn2 += '  dst->pushImage(dx, dy, COV_THUMB_W, COV_THUMB_H, covCacheBuf[slot]);\n';
+  dfn2 += '  return true;\n';
+  dfn2 += '}\n';
+  generator.addFunction('epubDrawCoverThumbTo', dfn2);
+
   let pfn = '';
   pfn += 'void epubPreloadVisibleCovers(int topItem, int maxShow) {\n';
   pfn += '  covCacheInit();\n';
@@ -1496,43 +2104,67 @@ function addCoverFunctions(generator) {
 
 Arduino.forBlock['epub_reader_show_full_image'] = function(block, generator) {
   const idx = generator.valueToCode(block, 'INDEX', generator.ORDER_ATOMIC) || '0';
-  addReadingViewFunctions(generator);
+  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
+  generator.addLibrary('TFT_eSPI', '#include <TFT_eSPI.h>');
+  generator.addLibrary('tjpgd', '#include "tjpgd.h"');
+  generator.addObject('epubReader', 'EpubReader epubReader;');
   return '(void)epubShowFullImage(' + idx + ');\n';
 };
 
 Arduino.forBlock['epub_reader_page_img_count'] = function(block, generator) {
-  addReadingViewFunctions(generator);
+  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
+  generator.addLibrary('TFT_eSPI', '#include <TFT_eSPI.h>');
+  generator.addLibrary('tjpgd', '#include "tjpgd.h"');
+  generator.addObject('epubReader', 'EpubReader epubReader;');
   return ['pageImgCount', generator.ORDER_ATOMIC];
 };
 
 Arduino.forBlock['epub_reader_full_img_next'] = function(block, generator) {
-  addReadingViewFunctions(generator);
+  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
+  generator.addLibrary('TFT_eSPI', '#include <TFT_eSPI.h>');
+  generator.addLibrary('tjpgd', '#include "tjpgd.h"');
+  generator.addObject('epubReader', 'EpubReader epubReader;');
   return ['epubFullImgNext()', generator.ORDER_ATOMIC];
 };
 
 Arduino.forBlock['epub_reader_full_img_prev'] = function(block, generator) {
-  addReadingViewFunctions(generator);
+  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
+  generator.addLibrary('TFT_eSPI', '#include <TFT_eSPI.h>');
+  generator.addLibrary('tjpgd', '#include "tjpgd.h"');
+  generator.addObject('epubReader', 'EpubReader epubReader;');
   return ['epubFullImgPrev()', generator.ORDER_ATOMIC];
 };
 
 Arduino.forBlock['epub_reader_full_img_exit'] = function(block, generator) {
-  addReadingViewFunctions(generator);
+  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
+  generator.addLibrary('TFT_eSPI', '#include <TFT_eSPI.h>');
+  generator.addLibrary('tjpgd', '#include "tjpgd.h"');
+  generator.addObject('epubReader', 'EpubReader epubReader;');
   return 'epubFreeFullImg();\n';
 };
 
 Arduino.forBlock['epub_reader_show_fit_image'] = function(block, generator) {
   const idx = generator.valueToCode(block, 'INDEX', generator.ORDER_ATOMIC) || '0';
-  addReadingViewFunctions(generator);
+  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
+  generator.addLibrary('TFT_eSPI', '#include <TFT_eSPI.h>');
+  generator.addLibrary('tjpgd', '#include "tjpgd.h"');
+  generator.addObject('epubReader', 'EpubReader epubReader;');
   return '(void)epubShowFitImage(' + idx + ');\n';
 };
 
 Arduino.forBlock['epub_reader_fit_img_next'] = function(block, generator) {
-  addReadingViewFunctions(generator);
+  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
+  generator.addLibrary('TFT_eSPI', '#include <TFT_eSPI.h>');
+  generator.addLibrary('tjpgd', '#include "tjpgd.h"');
+  generator.addObject('epubReader', 'EpubReader epubReader;');
   return ['epubFitImgNext()', generator.ORDER_ATOMIC];
 };
 
 Arduino.forBlock['epub_reader_fit_img_prev'] = function(block, generator) {
-  addReadingViewFunctions(generator);
+  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
+  generator.addLibrary('TFT_eSPI', '#include <TFT_eSPI.h>');
+  generator.addLibrary('tjpgd', '#include "tjpgd.h"');
+  generator.addObject('epubReader', 'EpubReader epubReader;');
   return ['epubFitImgPrev()', generator.ORDER_ATOMIC];
 };
 
@@ -1542,14 +2174,22 @@ Arduino.forBlock['epub_reader_gen_cover'] = function(block, generator) {
   return 'epubGenCover(' + path + ');\n';
 };
 
+if (hasLegacyEpubBrowserBlocks) {
 Arduino.forBlock['epub_reader_show_browser'] = function(block, generator) {
   const sel = generator.valueToCode(block, 'SEL', generator.ORDER_ATOMIC) || '0';
-  addBrowserFunctions(generator);
-  addTftSupport(generator);
+  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
+  generator.addLibrary('TFT_eSPI', '#include <TFT_eSPI.h>');
+  generator.addMacro('SMOOTH_FONT', '#define SMOOTH_FONT');
   generator.addMacro('COV_THUMB_W', '#define COV_THUMB_W 72');
   generator.addMacro('COV_THUMB_H', '#define COV_THUMB_H 96');
+  generator.addObject('brEntryCount', 'int brEntryCount = 0;');
+  generator.addObject('brNames', 'String brNames[64];');
+  generator.addObject('brIsDir', 'bool brIsDir[64];');
+  generator.addObject('brCurDir', 'String brCurDir = "/";');
   generator.addObject('brTopItem', 'int brTopItem = 0;');
-  addFontState(generator);
+  generator.addObject('sdFont', 'SdFont sdFont;');
+  generator.addObject('uiFont', 'SdFont uiFont;');
+  generator.addObject('uiFontShared', 'bool uiFontShared = false;');
   generator.addObject('sdFontBgColor', 'uint16_t sdFontBgColor = 0x0000;');
   generator.addFunction('getActiveUiFont', 'static SdFont* getActiveUiFont() {\n  if (uiFontShared && sdFont.isLoaded()) return &sdFont;\n  if (uiFont.isLoaded()) return &uiFont;\n  if (sdFont.isLoaded()) return &sdFont;\n  return nullptr;\n}\n');
   addCoverFunctions(generator);
@@ -1567,16 +2207,16 @@ Arduino.forBlock['epub_reader_show_browser'] = function(block, generator) {
   rfn += '  bool isDir=brIsDir[idx];\n';
   rfn += '  int entryH=lh;\n';
   rfn += '  tft.fillRect(0,entryY-2,_brPageW,entryH+4,0x0000);\n';
-  rfn += '  if(isSel){tft.fillRoundRect(pad-3,entryY-2,listW-pad*2+6,entryH,4,0x2104);tft.fillRoundRect(pad-3,entryY-2,3,entryH,1,TFT_CYAN);}\n';
+  rfn += '  if(isSel){tft.fillRoundRect(pad-3,entryY-2,listW-pad*2+6,entryH,4,0x0180);tft.fillRoundRect(pad-3,entryY-2,3,entryH,1,0x07E0);}\n';
   rfn += '  int eIconX=pad,eIconY=entryY+(entryH-fh)/2,eIconS=fh;\n';
-  rfn += '  if(isDir){tft.fillRoundRect(eIconX,eIconY+2,eIconS,eIconS-2,2,isSel?0x2104:0x0000);tft.fillRoundRect(eIconX+2,eIconY,eIconS/3,4,1,isSel?0x2104:0x0000);tft.drawRoundRect(eIconX,eIconY+2,eIconS,eIconS-2,2,TFT_GREEN);}\n';
-  rfn += '  else{tft.fillRoundRect(eIconX,eIconY,eIconS,eIconS,2,isSel?0x2104:0x0000);tft.drawRoundRect(eIconX,eIconY,eIconS,eIconS,2,isSel?TFT_YELLOW:TFT_WHITE);tft.drawFastVLine(eIconX+eIconS/2,eIconY,eIconS,isSel?TFT_YELLOW:TFT_WHITE);}\n';
+  rfn += '  if(isDir){tft.fillRoundRect(eIconX,eIconY+2,eIconS,eIconS-2,2,isSel?0x0180:0x0000);tft.fillRoundRect(eIconX+2,eIconY,eIconS/3,4,1,isSel?0x0180:0x0000);tft.drawRoundRect(eIconX,eIconY+2,eIconS,eIconS-2,2,TFT_GREEN);}\n';
+  rfn += '  else{tft.fillRoundRect(eIconX,eIconY,eIconS,eIconS,2,isSel?0x0180:0x0000);tft.drawRoundRect(eIconX,eIconY,eIconS,eIconS,2,isSel?0xD7FA:0x57EA);tft.drawFastVLine(eIconX+eIconS/2,eIconY,eIconS,isSel?0xD7FA:0x57EA);}\n';
   rfn += '  int tx=eIconX+iconW;\n';
-  rfn += '  uint16_t fg=isSel?TFT_YELLOW:(isDir?TFT_GREEN:TFT_WHITE);\n';
-  rfn += '  sdFontBgColor=isSel?0x2104:0x0000;\n';
+  rfn += '  uint16_t fg=isSel?0xD7FA:(isDir?TFT_GREEN:0x57EA);\n';
+  rfn += '  sdFontBgColor=isSel?0x0180:0x0000;\n';
   rfn += '  int nw=useSdf?uiF->measureString(dn.c_str()):tft.textWidth(dn);\n';
   rfn += '  if(nw<=maxPx){int ty=entryY+(entryH-fh)/2;if(useSdf)uiF->drawString(tx,ty,dn.c_str(),fg);else{tft.setTextColor(fg);tft.setCursor(tx,ty);tft.print(dn);}}\n';
-  rfn += '  else{while(dn.length()>0){dn.remove(dn.length()-1);String td=dn+"...";int tw=useSdf?uiF->measureString(td.c_str()):tft.textWidth(td);if(tw<=maxPx)break;}dn+="...";int ty=entryY+(lh-fh)/2;if(useSdf)uiF->drawString(tx,ty,dn.c_str(),fg);else{tft.setTextColor(fg);tft.setCursor(tx,ty);tft.print(dn);}}\n';
+  rfn += '  else{while(dn.length()>0){dn.remove(dn.length()-1); while (dn.length()>0 && ((uint8_t)dn[dn.length()-1] & 0xC0)==0x80) dn.remove(dn.length()-1); if (dn.length()>0 && ((((uint8_t)dn[dn.length()-1]) & 0xE0)==0xC0 || (((uint8_t)dn[dn.length()-1]) & 0xF0)==0xE0 || (((uint8_t)dn[dn.length()-1]) & 0xF8)==0xF0)) dn.remove(dn.length()-1);String td=dn+"...";int tw=useSdf?uiF->measureString(td.c_str()):tft.textWidth(td);if(tw<=maxPx)break;}dn+="...";int ty=entryY+(lh-fh)/2;if(useSdf)uiF->drawString(tx,ty,dn.c_str(),fg);else{tft.setTextColor(fg);tft.setCursor(tx,ty);tft.print(dn);}}\n';
   rfn += '}\n';
   generator.addFunction('_brDrawRowHelper', rfn);
 
@@ -1620,10 +2260,10 @@ Arduino.forBlock['epub_reader_show_browser'] = function(block, generator) {
   fn += '    if(selIsEpubInc){\n';
   fn += '      if(!oldSelWasEpubInc){\n';
   fn += '        tft.fillRect(covX-3,covY-3,COV_THUMB_W+6,COV_THUMB_H+6,0x0000);\n';
-  fn += '        tft.drawRoundRect(covX-2,covY-2,COV_THUMB_W+4,COV_THUMB_H+4,3,0x4208);\n';
+  fn += '        tft.drawRoundRect(covX-2,covY-2,COV_THUMB_W+4,COV_THUMB_H+4,3,0x2AE5);\n';
   fn += '      }\n';
   fn += '      bool coverOk=epubDrawCoverThumb(brPaths[sel].c_str(),covX,covY);\n';
-  fn += '      if(!coverOk){tft.fillRect(covX,covY,COV_THUMB_W,COV_THUMB_H,0x0000);tft.fillRoundRect(covX,covY,COV_THUMB_W,COV_THUMB_H,2,0x2104);const char* noCov="N/A";int ncW=useSdf?uiF->measureString(noCov):tft.textWidth(noCov);int ncX=covX+(COV_THUMB_W-ncW)/2,ncY=covY+COV_THUMB_H/2-fh/2;if(useSdf)uiF->drawString(ncX,ncY,noCov,0x8410);else{tft.setTextColor(0x8410);tft.setCursor(ncX,ncY);tft.print(noCov);}}\n';
+  fn += '      if(!coverOk){tft.fillRect(covX,covY,COV_THUMB_W,COV_THUMB_H,0x0000);tft.fillRoundRect(covX,covY,COV_THUMB_W,COV_THUMB_H,2,0x0180);const char* noCov="N/A";int ncW=useSdf?uiF->measureString(noCov):tft.textWidth(noCov);int ncX=covX+(COV_THUMB_W-ncW)/2,ncY=covY+COV_THUMB_H/2-fh/2;if(useSdf)uiF->drawString(ncX,ncY,noCov,0x35A6);else{tft.setTextColor(0x35A6);tft.setCursor(ncX,ncY);tft.print(noCov);}}\n';
   fn += '    } else if(oldSelWasEpubInc){\n';
   fn += '      tft.fillRect(covX-3,covY-3,COV_THUMB_W+6,COV_THUMB_H+6,0x0000);\n';
   fn += '    }\n';
@@ -1632,8 +2272,8 @@ Arduino.forBlock['epub_reader_show_browser'] = function(block, generator) {
   fn += '    int posStrW=useSdf?uiF->measureString(posStrInc.c_str()):tft.textWidth(posStrInc);\n';
   fn += '    int posStrX=sbXInc-posStrW-4;if(posStrX<pad)posStrX=pad;\n';
   fn += '    tft.fillRect(posStrX-2,barAreaBotInc-fh-4,posStrW+8,fh+4,0x0000);\n';
-  fn += '    if(useSdf)uiF->drawString(posStrX,barAreaBotInc-fh-2,posStrInc.c_str(),0x8410);\n';
-  fn += '    else{tft.setTextColor(0x8410);tft.setCursor(posStrX,barAreaBotInc-fh-2);tft.print(posStrInc);}\n';
+  fn += '    if(useSdf)uiF->drawString(posStrX,barAreaBotInc-fh-2,posStrInc.c_str(),0x35A6);\n';
+  fn += '    else{tft.setTextColor(0x35A6);tft.setCursor(posStrX,barAreaBotInc-fh-2);tft.print(posStrInc);}\n';
   fn += '    brDrawnSel=sel;\n';
   fn += '    return;\n';
   fn += '  }}\n';
@@ -1649,15 +2289,15 @@ Arduino.forBlock['epub_reader_show_browser'] = function(block, generator) {
   fn += '  int iconX = pad;\n';
   fn += '  int iconY = (hdrH - iconSize) / 2;\n';
   // Folder icon: rounded rect with tab
-  fn += '  tft.fillRoundRect(iconX, iconY + 2, iconSize, iconSize - 2, 2, 0x2104);\n';
-  fn += '  tft.fillRoundRect(iconX + 2, iconY, iconSize / 3, 4, 1, 0x2104);\n';
-  fn += '  tft.drawRoundRect(iconX, iconY + 2, iconSize, iconSize - 2, 2, TFT_CYAN);\n';
+  fn += '  tft.fillRoundRect(iconX, iconY + 2, iconSize, iconSize - 2, 2, 0x0180);\n';
+  fn += '  tft.fillRoundRect(iconX + 2, iconY, iconSize / 3, 4, 1, 0x0180);\n';
+  fn += '  tft.drawRoundRect(iconX, iconY + 2, iconSize, iconSize - 2, 2, 0x07E0);\n';
   fn += '  int textX = iconX + iconSize + 6;\n';
   fn += '  String hdrStr = folder + " (" + String(brEntryCount) + ")";\n';
   fn += '  int hdrY = (hdrH - fh) / 2;\n';
-  fn += '  if (useSdf) uiF->drawString(textX, hdrY, hdrStr.c_str(), TFT_CYAN);\n';
-  fn += '  else { tft.setTextColor(TFT_CYAN); tft.setCursor(textX, hdrY); tft.print(hdrStr); }\n';
-  fn += '  tft.drawFastHLine(0, hdrH, pageW, 0x4208);\n';
+  fn += '  if (useSdf) uiF->drawString(textX, hdrY, hdrStr.c_str(), 0x07E0);\n';
+  fn += '  else { tft.setTextColor(0x07E0); tft.setCursor(textX, hdrY); tft.print(hdrStr); }\n';
+  fn += '  tft.drawFastHLine(0, hdrH, pageW, 0x2AE5);\n';
   fn += '  bool hasEpub = false;\n';
   fn += '  for (int ei = 0; ei < brEntryCount; ei++) { if (brIsEpub[ei]) { hasEpub = true; break; } }\n';
   fn += '  bool selIsEpub = (sel >= 0 && sel < brEntryCount) ? brIsEpub[sel] : false;\n';
@@ -1665,8 +2305,8 @@ Arduino.forBlock['epub_reader_show_browser'] = function(block, generator) {
   fn += '  if (brEntryCount == 0) {\n';
   fn += '    const char* emptyMsg = "\\xe7\\xa9\\xba\\xe7\\x9b\\xae\\xe5\\xbd\\x95";\n';
   fn += '    int msgY = hdrH + 30;\n';
-  fn += '    if (useSdf) uiF->drawString(pad, msgY, emptyMsg, 0x8410);\n';
-  fn += '    else { tft.setTextColor(0x8410); tft.setCursor(pad, msgY); tft.print(emptyMsg); }\n';
+  fn += '    if (useSdf) uiF->drawString(pad, msgY, emptyMsg, 0x35A6);\n';
+  fn += '    else { tft.setTextColor(0x35A6); tft.setCursor(pad, msgY); tft.print(emptyMsg); }\n';
   fn += '  } else {\n';
   // List entries
   fn += '  int sbAreaW = 14;\n';
@@ -1688,33 +2328,33 @@ Arduino.forBlock['epub_reader_show_browser'] = function(block, generator) {
   fn += '    int entryH = lh;\n';
   // Selection highlight: rounded rect with accent left bar
   fn += '    if (isSel) {\n';
-  fn += '      tft.fillRoundRect(pad - 3, entryY - 2, listW - pad * 2 + 6, entryH, 4, 0x2104);\n';
-  fn += '      tft.fillRoundRect(pad - 3, entryY - 2, 3, entryH, 1, TFT_CYAN);\n';
+  fn += '      tft.fillRoundRect(pad - 3, entryY - 2, listW - pad * 2 + 6, entryH, 4, 0x0180);\n';
+  fn += '      tft.fillRoundRect(pad - 3, entryY - 2, 3, entryH, 1, 0x07E0);\n';
   fn += '    }\n';
   // Entry icon
   fn += '    int eIconX = pad;\n';
   fn += '    int eIconY = entryY + (entryH - fh) / 2;\n';
   fn += '    int eIconS = fh;\n';
   fn += '    if (isDir) {\n';
-  fn += '      tft.fillRoundRect(eIconX, eIconY + 2, eIconS, eIconS - 2, 2, isSel ? 0x2104 : 0x0000);\n';
-  fn += '      tft.fillRoundRect(eIconX + 2, eIconY, eIconS / 3, 4, 1, isSel ? 0x2104 : 0x0000);\n';
+  fn += '      tft.fillRoundRect(eIconX, eIconY + 2, eIconS, eIconS - 2, 2, isSel ? 0x0180 : 0x0000);\n';
+  fn += '      tft.fillRoundRect(eIconX + 2, eIconY, eIconS / 3, 4, 1, isSel ? 0x0180 : 0x0000);\n';
   fn += '      tft.drawRoundRect(eIconX, eIconY + 2, eIconS, eIconS - 2, 2, TFT_GREEN);\n';
   fn += '    } else {\n';
-  fn += '      tft.fillRoundRect(eIconX, eIconY, eIconS, eIconS, 2, isSel ? 0x2104 : 0x0000);\n';
-  fn += '      tft.drawRoundRect(eIconX, eIconY, eIconS, eIconS, 2, isSel ? TFT_YELLOW : TFT_WHITE);\n';
-  fn += '      tft.drawFastVLine(eIconX + eIconS / 2, eIconY, eIconS, isSel ? TFT_YELLOW : TFT_WHITE);\n';
+  fn += '      tft.fillRoundRect(eIconX, eIconY, eIconS, eIconS, 2, isSel ? 0x0180 : 0x0000);\n';
+  fn += '      tft.drawRoundRect(eIconX, eIconY, eIconS, eIconS, 2, isSel ? 0xD7FA : 0x57EA);\n';
+  fn += '      tft.drawFastVLine(eIconX + eIconS / 2, eIconY, eIconS, isSel ? 0xD7FA : 0x57EA);\n';
   fn += '    }\n';
   // Entry text
   fn += '    int tx = eIconX + iconW;\n';
-  fn += '    uint16_t fg = isSel ? TFT_YELLOW : (isDir ? TFT_GREEN : TFT_WHITE);\n';
-  fn += '    sdFontBgColor = isSel ? 0x2104 : 0x0000;\n';
+  fn += '    uint16_t fg = isSel ? 0xD7FA : (isDir ? TFT_GREEN : 0x57EA);\n';
+  fn += '    sdFontBgColor = isSel ? 0x0180 : 0x0000;\n';
   fn += '    if (nw <= maxPx) {\n';
   fn += '      int ty = entryY + (entryH - fh) / 2;\n';
   fn += '      if (useSdf) uiF->drawString(tx, ty, dn.c_str(), fg);\n';
   fn += '      else { tft.setTextColor(fg); tft.setCursor(tx, ty); tft.print(dn); }\n';
   fn += '    } else {\n';
   fn += '      while (dn.length() > 0) {\n';
-  fn += '        dn.remove(dn.length() - 1);\n';
+  fn += '        dn.remove(dn.length() - 1); while (dn.length() > 0 && ((uint8_t)dn[dn.length() - 1] & 0xC0) == 0x80) dn.remove(dn.length() - 1); if (dn.length() > 0 && ((((uint8_t)dn[dn.length() - 1]) & 0xE0) == 0xC0 || (((uint8_t)dn[dn.length() - 1]) & 0xF0) == 0xE0 || (((uint8_t)dn[dn.length() - 1]) & 0xF8) == 0xF0)) dn.remove(dn.length() - 1);\n';
   fn += '        String td = dn + "...";\n';
   fn += '        int tw = useSdf ? uiF->measureString(td.c_str()) : tft.textWidth(td);\n';
   fn += '        if (tw <= maxPx) break;\n';
@@ -1732,16 +2372,16 @@ Arduino.forBlock['epub_reader_show_browser'] = function(block, generator) {
   fn += '  if (hasEpub && selIsEpub) {\n';
   fn += '    int covX = pageW - COV_THUMB_W - pad;\n';
   fn += '    int covY = ftrY - COV_THUMB_H - 4;\n';
-  fn += '    tft.drawRoundRect(covX - 2, covY - 2, COV_THUMB_W + 4, COV_THUMB_H + 4, 3, 0x4208);\n';
+  fn += '    tft.drawRoundRect(covX - 2, covY - 2, COV_THUMB_W + 4, COV_THUMB_H + 4, 3, 0x2AE5);\n';
   fn += '    bool coverOk = epubDrawCoverThumb(brPaths[sel].c_str(), covX, covY);\n';
   fn += '    if (!coverOk) {\n';
-  fn += '      tft.fillRoundRect(covX, covY, COV_THUMB_W, COV_THUMB_H, 2, 0x2104);\n';
+  fn += '      tft.fillRoundRect(covX, covY, COV_THUMB_W, COV_THUMB_H, 2, 0x0180);\n';
   fn += '      const char* noCov = "N/A";\n';
   fn += '      int ncW = useSdf ? uiF->measureString(noCov) : tft.textWidth(noCov);\n';
   fn += '      int ncX = covX + (COV_THUMB_W - ncW) / 2;\n';
   fn += '      int ncY = covY + COV_THUMB_H / 2 - fh / 2;\n';
-  fn += '      if (useSdf) uiF->drawString(ncX, ncY, noCov, 0x8410);\n';
-  fn += '      else { tft.setTextColor(0x8410); tft.setCursor(ncX, ncY); tft.print(noCov); }\n';
+  fn += '      if (useSdf) uiF->drawString(ncX, ncY, noCov, 0x35A6);\n';
+  fn += '      else { tft.setTextColor(0x35A6); tft.setCursor(ncX, ncY); tft.print(noCov); }\n';
   fn += '    }\n';
   fn += '  }\n';
   // Scroll bar (item-position based, always visible)
@@ -1751,27 +2391,27 @@ Arduino.forBlock['epub_reader_show_browser'] = function(block, generator) {
   fn += '  int barAreaY = hdrH + 4;\n';
   fn += '  int barAreaBot = ftrY - 2;\n';
   fn += '  int barAreaFullH = barAreaBot - barAreaY;\n';
-  fn += '  tft.fillRoundRect(sbX, barAreaY, sbW, barAreaFullH, 2, 0x4228);\n';
+  fn += '  tft.fillRoundRect(sbX, barAreaY, sbW, barAreaFullH, 2, 0x2AE5);\n';
   fn += '  if (total > maxShow) {\n';
   fn += '    int scrollRange = total - maxShow;\n';
   fn += '    int thumbH = barAreaFullH * maxShow / total;\n';
   fn += '    if (thumbH < 8) thumbH = 8;\n';
   fn += '    int thumbY = barAreaY + topItem * (barAreaFullH - thumbH) / scrollRange;\n';
-  fn += '    tft.fillRoundRect(sbX, thumbY, sbW, thumbH, 2, TFT_CYAN);\n';
+  fn += '    tft.fillRoundRect(sbX, thumbY, sbW, thumbH, 2, 0x07E0);\n';
   fn += '  } else {\n';
-  fn += '    tft.fillRoundRect(sbX, barAreaY, sbW, barAreaFullH, 2, TFT_CYAN);\n';
+  fn += '    tft.fillRoundRect(sbX, barAreaY, sbW, barAreaFullH, 2, 0x07E0);\n';
   fn += '  }\n';
   fn += '  String posStr = String(sel + 1) + "/" + String(total);\n';
   fn += '  int posStrW = useSdf ? uiF->measureString(posStr.c_str()) : tft.textWidth(posStr);\n';
   fn += '  int posStrX = sbX - posStrW - 4;\n';
   fn += '  if (posStrX < pad) posStrX = pad;\n';
-  fn += '  if (useSdf) uiF->drawString(posStrX, barAreaBot - fh - 2, posStr.c_str(), 0x8410);\n';
-  fn += '  else { tft.setTextColor(0x8410); tft.setCursor(posStrX, barAreaBot - fh - 2); tft.print(posStr); }\n';
+  fn += '  if (useSdf) uiF->drawString(posStrX, barAreaBot - fh - 2, posStr.c_str(), 0x35A6);\n';
+  fn += '  else { tft.setTextColor(0x35A6); tft.setCursor(posStrX, barAreaBot - fh - 2); tft.print(posStr); }\n';
   // Footer
-  fn += '  tft.drawFastHLine(0, ftrY - 1, pageW, 0x4208);\n';
+  fn += '  tft.drawFastHLine(0, ftrY - 1, pageW, 0x2AE5);\n';
   fn += '  const char* ftr = "A:\\xe7\\xa1\\xae\\xe8\\xae\\xa4 B:\\xe4\\xb8\\x8a\\xe7\\xba\\xa7";\n';
-  fn += '  if (useSdf) uiF->drawString(pad, ftrY, ftr, TFT_YELLOW);\n';
-  fn += '  else { tft.setTextColor(TFT_YELLOW); tft.setCursor(pad, ftrY); tft.print(ftr); }\n';
+  fn += '  if (useSdf) uiF->drawString(pad, ftrY, ftr, 0xD7FA);\n';
+  fn += '  else { tft.setTextColor(0xD7FA); tft.setCursor(pad, ftrY); tft.print(ftr); }\n';
   fn += '  String pathDisplay = brCurDir;\n';
   fn += '  int ftrW = useSdf ? uiF->measureString(ftr) : tft.textWidth(ftr);\n';
   fn += '  int pathMaxW = pageW - pad - ftrW - 8;\n';
@@ -1790,18 +2430,17 @@ Arduino.forBlock['epub_reader_show_browser'] = function(block, generator) {
   fn += '  int pdW = useSdf ? uiF->measureString(pathDisplay.c_str()) : tft.textWidth(pathDisplay);\n';
   fn += '  pathX -= pdW;\n';
   fn += '  if (pathX < ftrW + pad + 8) pathX = ftrW + pad + 8;\n';
-  fn += '  if (useSdf) uiF->drawString(pathX, ftrY, pathDisplay.c_str(), 0x8410);\n';
-  fn += '  else { tft.setTextColor(0x8410); tft.setCursor(pathX, ftrY); tft.print(pathDisplay); }\n';
+  fn += '  if (useSdf) uiF->drawString(pathX, ftrY, pathDisplay.c_str(), 0x35A6);\n';
+  fn += '  else { tft.setTextColor(0x35A6); tft.setCursor(pathX, ftrY); tft.print(pathDisplay); }\n';
   fn += '  brDrawnSel=sel;brDrawnTop=topItem;brDrawnDir=brCurDir;\n';
   fn += '}\n';
   generator.addFunction('epubShowBrowser', fn);
 
   return 'epubShowBrowser(' + sel + ');\n';
 };
+}
 
 function addJpegViewerFunctions(generator) {
-  addReadingViewFunctions(generator);
-  addSdFatSupport(generator);
   let jfn = '';
   jfn += 'static String jpgViewerPath;\n';
   jfn += 'static int jpgViewerScrollY = 0;\n';
@@ -1939,29 +2578,58 @@ function addJpegViewerFunctions(generator) {
   generator.addFunction('jpegViewerFuncs', jfn);
 }
 
+const hasLegacyEpubJpegViewerBlocks = typeof Blockly !== 'undefined'
+  && Blockly.Blocks
+  && Blockly.Blocks['epub_reader_jpg_viewer_open'];
+
+if (hasLegacyEpubJpegViewerBlocks) {
 Arduino.forBlock['epub_reader_jpg_viewer_open'] = function(block, generator) {
   const path = generator.valueToCode(block, 'PATH', generator.ORDER_ATOMIC) || '""';
+  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
+  generator.addLibrary('TFT_eSPI', '#include <TFT_eSPI.h>');
+  generator.addLibrary('tjpgd', '#include "tjpgd.h"');
+  generator.addLibrary('SdFatHelper', '#include "SdFatHelper.h"');
+  generator.addObject('epubReader', 'EpubReader epubReader;');
   addJpegViewerFunctions(generator);
   return ['jpgViewerShow(String(' + path + '))', generator.ORDER_ATOMIC];
 };
 
 Arduino.forBlock['epub_reader_jpg_viewer_next'] = function(block, generator) {
+  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
+  generator.addLibrary('TFT_eSPI', '#include <TFT_eSPI.h>');
+  generator.addLibrary('tjpgd', '#include "tjpgd.h"');
+  generator.addObject('epubReader', 'EpubReader epubReader;');
   addJpegViewerFunctions(generator);
   return ['jpgViewerNext()', generator.ORDER_ATOMIC];
 };
 
 Arduino.forBlock['epub_reader_jpg_viewer_prev'] = function(block, generator) {
+  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
+  generator.addLibrary('TFT_eSPI', '#include <TFT_eSPI.h>');
+  generator.addLibrary('tjpgd', '#include "tjpgd.h"');
+  generator.addObject('epubReader', 'EpubReader epubReader;');
   addJpegViewerFunctions(generator);
   return ['jpgViewerPrev()', generator.ORDER_ATOMIC];
 };
 
 Arduino.forBlock['epub_reader_jpg_viewer_exit'] = function(block, generator) {
+  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
+  generator.addLibrary('TFT_eSPI', '#include <TFT_eSPI.h>');
+  generator.addLibrary('tjpgd', '#include "tjpgd.h"');
+  generator.addObject('epubReader', 'EpubReader epubReader;');
   addJpegViewerFunctions(generator);
   return 'jpgViewerExit();\n';
 };
+}
 
+if (hasLegacyEpubBrowserBlocks) {
 Arduino.forBlock['epub_reader_browser_is_jpg'] = function(block, generator) {
   const idx = generator.valueToCode(block, 'INDEX', generator.ORDER_ATOMIC) || '0';
-  addBrowserState(generator);
-  return ['([&]{ int _bi=(int)(' + idx + '); if(_bi<0||_bi>=brEntryCount||brIsDir[_bi]) return false; String l=brNames[_bi]; l.toLowerCase(); return (l.endsWith(".jpg")||l.endsWith(".jpeg")); })()', generator.ORDER_ATOMIC];
+  generator.addLibrary('EpubReader', '#include <EpubReader.h>');
+  generator.addLibrary('SdFatHelper', '#include "SdFatHelper.h"');
+  generator.addObject('brEntryCount', 'int brEntryCount = 0;');
+  generator.addObject('brNames', 'String brNames[64];');
+  generator.addObject('brIsDir', 'bool brIsDir[64];');
+  return ['([&]{ int _bi=' + idx + '; if(_bi<0||_bi>=brEntryCount||brIsDir[_bi]) return false; String l=brNames[_bi]; l.toLowerCase(); return (l.endsWith(".jpg")||l.endsWith(".jpeg")); })()', generator.ORDER_ATOMIC];
 };
+}

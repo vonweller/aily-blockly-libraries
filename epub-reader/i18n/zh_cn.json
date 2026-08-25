@@ -1,15 +1,7 @@
 {
   "toolbox_name": "EPUB阅读器",
   "toolbox_labels": {
-    "EPUB阅读器": "EPUB阅读器",
-    "章节目录扩展": "章节目录扩展",
-    "UI字体": "UI字体",
-    "文件浏览器": "文件浏览器",
-    "JPEG查看器": "JPEG查看器"
-  },
-  "epub_reader_sd_init": {
-    "message0": "EPUB 初始化SD卡(SdFat)",
-    "tooltip": "使用SdFat库初始化SD卡，支持UTF-8中文文件名"
+    "EPUB阅读器": "EPUB阅读器"
   },
   "epub_reader_open": {
     "message0": "EPUB 打开文件 %1 每行字数 %2 每页行数 %3",
@@ -117,7 +109,11 @@
   },
   "epub_reader_load_sd_font": {
     "message0": "EPUB 加载SD卡字体 %1",
-    "tooltip": "从SD卡加载.bin格式的CJK字体文件"
+    "tooltip": "从SD卡加载.bin格式的CJK字体文件（默认路径为fallback，自动读取/fonts/.selected）"
+  },
+  "epub_reader_select_font": {
+    "message0": "EPUB 选择字体 %1",
+    "tooltip": "加载并保存选中的字体路径"
   },
   "epub_reader_sd_font_loaded": {
     "message0": "EPUB SD字体已加载",
@@ -179,68 +175,28 @@
     "message0": "EPUB 整页缩放上一张",
     "tooltip": "上一张整页缩放图片，返回是否还有"
   },
-  "epub_reader_browser_open": {
-    "message0": "EPUB 浏览目录 %1",
-    "tooltip": "加载指定SD卡目录中的文件夹、EPUB和JPEG文件，最多64项"
+  "epub_reader_show_history": {
+    "message0": "EPUB 显示阅读记录",
+    "tooltip": "渲染最近阅读列表(书名+章节进度)，高亮选中项"
   },
-  "epub_reader_browser_count": {
-    "message0": "EPUB 浏览器项目数",
-    "tooltip": "获取当前浏览目录中的项目数量"
+  "epub_reader_hist_count": {
+    "message0": "EPUB 阅读记录 数量",
+    "tooltip": "最近阅读列表条目数(0-20)"
   },
-  "epub_reader_browser_is_dir": {
-    "message0": "EPUB 浏览器第 %1 项是目录",
-    "tooltip": "检查指定索引的浏览项目是否为目录，越界时返回假"
+  "epub_reader_hist_next": {
+    "message0": "EPUB 阅读记录 下一本",
+    "tooltip": "选中下一本书并重绘列表"
   },
-  "epub_reader_browser_name": {
-    "message0": "EPUB 浏览器第 %1 项名称",
-    "tooltip": "获取指定索引的文件或目录名称，越界时返回空文本"
+  "epub_reader_hist_prev": {
+    "message0": "EPUB 阅读记录 上一本",
+    "tooltip": "选中上一本书并重绘列表"
   },
-  "epub_reader_browser_path": {
-    "message0": "EPUB 浏览器第 %1 项路径",
-    "tooltip": "获取指定索引项目的完整SD卡路径，越界时返回空文本"
+  "epub_reader_hist_resume": {
+    "message0": "EPUB 阅读记录 继续阅读",
+    "tooltip": "打开选中的书并恢复到上次阅读位置"
   },
-  "epub_reader_browser_enter": {
-    "message0": "EPUB 进入浏览器第 %1 项目录",
-    "tooltip": "如果指定项目是目录，则进入该目录并重新加载列表"
-  },
-  "epub_reader_browser_up": {
-    "message0": "EPUB 浏览器返回上级目录",
-    "tooltip": "返回上级目录，并记录离开目录在父目录中的索引"
-  },
-  "epub_reader_browser_up_sel": {
-    "message0": "EPUB 浏览器返回上级后的选中项",
-    "tooltip": "获取返回上级目录后应恢复选择的项目索引"
-  },
-  "epub_reader_browser_is_root": {
-    "message0": "EPUB 浏览器位于根目录",
-    "tooltip": "检查文件浏览器当前是否位于SD卡根目录"
-  },
-  "epub_reader_browser_curdir": {
-    "message0": "EPUB 浏览器当前目录",
-    "tooltip": "获取文件浏览器当前目录的完整路径"
-  },
-  "epub_reader_show_browser": {
-    "message0": "EPUB 显示文件浏览器 选中第 %1 项",
-    "tooltip": "在TFT屏幕显示当前目录并高亮指定项目，同时预览EPUB封面"
-  },
-  "epub_reader_jpg_viewer_open": {
-    "message0": "EPUB JPEG查看器打开 %1",
-    "tooltip": "打开并按屏幕宽度显示SD卡上的JPEG文件，成功时返回真"
-  },
-  "epub_reader_jpg_viewer_next": {
-    "message0": "EPUB JPEG查看器下一屏",
-    "tooltip": "滚动到下一屏；到达末尾时尝试打开连续编号的下一张图片"
-  },
-  "epub_reader_jpg_viewer_prev": {
-    "message0": "EPUB JPEG查看器上一屏",
-    "tooltip": "滚动到上一屏；到达开头时尝试打开连续编号的上一张图片"
-  },
-  "epub_reader_jpg_viewer_exit": {
-    "message0": "EPUB 退出JPEG查看器",
-    "tooltip": "退出独立JPEG查看器并释放图片缓存内存"
-  },
-  "epub_reader_browser_is_jpg": {
-    "message0": "EPUB 浏览器第 %1 项是JPEG",
-    "tooltip": "检查指定索引项目是否为.jpg或.jpeg文件，越界时返回假"
+  "epub_reader_cur_path": {
+    "message0": "EPUB 当前打开的书路径",
+    "tooltip": "返回当前打开书籍的完整SD卡路径(未打开时为空串)"
   }
 }

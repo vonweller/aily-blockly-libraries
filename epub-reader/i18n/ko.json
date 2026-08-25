@@ -1,246 +1,202 @@
 {
   "toolbox_name": "EPUB 리더",
   "toolbox_labels": {
-    "EPUB阅读器": "EPUB 리더",
-    "章节目录扩展": "장 탐색",
-    "UI字体": "UI 글꼴",
-    "文件浏览器": "파일 브라우저",
-    "JPEG查看器": "JPEG 뷰어"
-  },
-  "epub_reader_sd_init": {
-    "message0": "EPUB initialize SD card (SdFat)",
-    "tooltip": "Initialize the SD card with SdFat, including support for UTF-8 Chinese filenames"
+    "EPUB阅读器": "EPUB 리더"
   },
   "epub_reader_open": {
-    "message0": "EPUB open file %1 characters per line %2 lines per page %3",
-    "tooltip": "Open an EPUB file on the SD card and parse its contents"
+    "message0": "EPUB 파일 열기 %1 한 줄 글자 수 %2 한 페이지 줄 수 %3",
+    "tooltip": "SD 카드의 EPUB 파일을 열어 해석합니다"
   },
   "epub_reader_is_open": {
-    "message0": "EPUB is open",
-    "tooltip": "Check whether the EPUB file opened successfully"
+    "message0": "EPUB 열려 있음",
+    "tooltip": "EPUB 파일이 성공적으로 열렸는지 확인합니다"
   },
   "epub_reader_get_page": {
-    "message0": "EPUB current page content",
-    "tooltip": "Get the text content of the current page"
+    "message0": "EPUB 현재 페이지 내용",
+    "tooltip": "현재 페이지의 텍스트 내용을 가져옵니다"
   },
   "epub_reader_get_page_num": {
-    "message0": "EPUB current page number",
-    "tooltip": "Get the current page number"
+    "message0": "EPUB 현재 페이지 번호",
+    "tooltip": "현재 페이지 번호를 가져옵니다"
   },
   "epub_reader_next": {
-    "message0": "EPUB next page",
-    "tooltip": "Go to the next page"
+    "message0": "EPUB 다음 페이지",
+    "tooltip": "다음 페이지로 넘어갑니다"
   },
   "epub_reader_prev": {
-    "message0": "EPUB previous page",
-    "tooltip": "Go to the previous page"
+    "message0": "EPUB 이전 페이지",
+    "tooltip": "이전 페이지로 돌아갑니다"
   },
   "epub_reader_has_next": {
-    "message0": "EPUB has next page",
-    "tooltip": "Check whether another page follows"
+    "message0": "EPUB 다음 페이지 있음",
+    "tooltip": "다음 페이지가 있는지 확인합니다"
   },
   "epub_reader_has_prev": {
-    "message0": "EPUB has previous page",
-    "tooltip": "Check whether a previous page exists"
+    "message0": "EPUB 이전 페이지 있음",
+    "tooltip": "이전 페이지가 있는지 확인합니다"
   },
   "epub_reader_render_page": {
-    "message0": "EPUB render to screen start X %1 start Y %2",
-    "tooltip": "Render the current EPUB page on the TFT screen"
+    "message0": "EPUB 화면에 렌더링 시작X %1 시작Y %2",
+    "tooltip": "현재 EPUB 페이지를 TFT 화면에 렌더링합니다"
   },
   "epub_reader_close": {
-    "message0": "EPUB close",
-    "tooltip": "Close the EPUB file and release its memory"
+    "message0": "EPUB 닫기",
+    "tooltip": "EPUB 파일을 닫고 메모리를 해제합니다"
   },
   "epub_reader_font_height": {
-    "message0": "EPUB current font line height",
-    "tooltip": "Get the line height, in pixels, of the currently loaded font"
+    "message0": "EPUB 현재 글꼴 줄 높이",
+    "tooltip": "로드된 글꼴의 줄 높이(픽셀)를 가져옵니다"
   },
   "epub_reader_get_chapter": {
-    "message0": "EPUB current chapter",
-    "tooltip": "Get the current chapter number, starting from 1"
+    "message0": "EPUB 현재 챕터",
+    "tooltip": "현재 챕터 번호(1부터)를 가져옵니다"
   },
   "epub_reader_get_chapter_count": {
-    "message0": "EPUB total chapter count",
-    "tooltip": "Get the total number of chapters"
-  },
-  "epub_reader_scan_books": {
-    "message0": "Scan EPUB books in directory %1",
-    "tooltip": "Scan the specified directory for .epub files and store the results in the global list"
-  },
-  "epub_reader_book_count": {
-    "message0": "Book count",
-    "tooltip": "Get the total number of scanned EPUB books"
-  },
-  "epub_reader_book_name": {
-    "message0": "Filename of book %1",
-    "tooltip": "Get the filename of the book at the specified index"
-  },
-  "epub_reader_book_path": {
-    "message0": "Full path of book %1",
-    "tooltip": "Get the full SD card path of the book at the specified index"
-  },
-  "epub_reader_show_bookshelf": {
-    "message0": "EPUB show bookshelf (select book %1)",
-    "tooltip": "Render the bookshelf and highlight the selected book"
+    "message0": "EPUB 총 챕터 수",
+    "tooltip": "총 챕터 수를 가져옵니다"
   },
   "epub_reader_show_page": {
-    "message0": "EPUB show reading page",
-    "tooltip": "Render the current reading page, including chapter information"
+    "message0": "EPUB 읽기 페이지 표시",
+    "tooltip": "챕터 정보를 포함한 현재 읽기 페이지를 렌더링합니다"
   },
   "epub_reader_goto_chapter": {
-    "message0": "EPUB go to chapter %1",
-    "tooltip": "Go to the specified zero-based chapter and return whether it succeeded"
+    "message0": "EPUB 챕터로 이동 %1",
+    "tooltip": "지정한 챕터(0부터)로 이동하고 성공 여부를 반환합니다"
   },
   "epub_reader_chapter_title_at": {
-    "message0": "EPUB title of chapter %1",
-    "tooltip": "Get the title of the specified chapter"
-  },
-  "epub_reader_save_pos": {
-    "message0": "EPUB save progress %1",
-    "tooltip": "Save the current reading progress, chapter and page, to NVS"
-  },
-  "epub_reader_load_pos": {
-    "message0": "EPUB load progress %1",
-    "tooltip": "Load and restore reading progress from NVS and return whether saved progress exists"
+    "message0": "EPUB %1 챕터 제목",
+    "tooltip": "지정한 챕터의 제목을 가져옵니다"
   },
   "epub_reader_show_toc": {
-    "message0": "EPUB show table of contents (select item %1)",
-    "tooltip": "Render the chapter list and highlight the selected item"
+    "message0": "EPUB 목차 표시(선택 %1)",
+    "tooltip": "챕터 목차를 렌더링하고 선택 항목을 강조 표시합니다"
   },
   "epub_reader_toc_page_next": {
-    "message0": "EPUB next contents page (current %1)",
-    "tooltip": "Return the selected item number on the next contents page"
+    "message0": "EPUB 목차 다음 페이지(현재 %1)",
+    "tooltip": "목차 다음 페이지의 선택 항목 번호를 반환합니다"
   },
   "epub_reader_toc_page_prev": {
-    "message0": "EPUB previous contents page (current %1)",
-    "tooltip": "Return the selected item number on the previous contents page"
+    "message0": "EPUB 목차 이전 페이지(현재 %1)",
+    "tooltip": "목차 이전 페이지의 선택 항목 번호를 반환합니다"
+  },
+  "epub_reader_scan_books": {
+    "message0": "%1 디렉터리의 EPUB 책 스캔",
+    "tooltip": "지정 디렉터리에서 .epub 파일을 스캔하여 전역 목록에 저장합니다"
+  },
+  "epub_reader_book_count": {
+    "message0": "책 수량",
+    "tooltip": "스캔된 EPUB 책의 총 수를 가져옵니다"
+  },
+  "epub_reader_book_name": {
+    "message0": "%1 번째 책의 파일 이름",
+    "tooltip": "지정 인덱스의 책 파일 이름을 가져옵니다"
+  },
+  "epub_reader_book_path": {
+    "message0": "%1 번째 책의 전체 경로",
+    "tooltip": "지정 인덱스 책의 전체 SD 카드 경로를 가져옵니다"
+  },
+  "epub_reader_show_bookshelf": {
+    "message0": "EPUB 서가 표시(선택 %1)",
+    "tooltip": "서가 화면을 렌더링하고 선택한 책을 강조 표시합니다"
+  },
+  "epub_reader_save_pos": {
+    "message0": "EPUB 진행 상황 저장 %1",
+    "tooltip": "현재 읽기 위치(챕터+페이지)를 NVS에 저장합니다"
+  },
+  "epub_reader_load_pos": {
+    "message0": "EPUB 진행 상황 읽기 %1",
+    "tooltip": "NVS에서 읽기 위치를 복원하고 저장된 것이 있는지 반환합니다"
+  },
+  "epub_reader_show_history": {
+    "message0": "EPUB 읽기 기록 표시",
+    "tooltip": "최근 읽기 목록(책 이름+챕터 진행)을 렌더링하고 선택 항목을 강조 표시합니다"
+  },
+  "epub_reader_hist_count": {
+    "message0": "EPUB 기록 수량",
+    "tooltip": "최근 읽기 목록 항목 수(0-20)"
+  },
+  "epub_reader_hist_next": {
+    "message0": "EPUB 기록 다음 책",
+    "tooltip": "다음 책을 선택하고 목록을 다시 그립니다"
+  },
+  "epub_reader_hist_prev": {
+    "message0": "EPUB 기록 이전 책",
+    "tooltip": "이전 책을 선택하고 목록을 다시 그립니다"
+  },
+  "epub_reader_hist_resume": {
+    "message0": "EPUB 기록 이어 읽기",
+    "tooltip": "선택한 책을 열고 마지막 위치부터 이어 읽습니다"
+  },
+  "epub_reader_cur_path": {
+    "message0": "EPUB 현재 열린 책 경로",
+    "tooltip": "현재 열려 있는 책의 전체 SD 카드 경로를 반환합니다(닫혀 있으면 빈 문자열)"
   },
   "epub_reader_load_sd_font": {
-    "message0": "EPUB load SD card font %1",
-    "tooltip": "Load a CJK font in .bin format from the SD card"
+    "message0": "EPUB SD 글꼴 로드 %1",
+    "tooltip": "SD 카드에서 .bin 형식 CJK 글꼴 파일을 로드합니다(/fonts/.selected 자동 읽기)"
+  },
+  "epub_reader_select_font": {
+    "message0": "EPUB 글꼴 선택 %1",
+    "tooltip": "글꼴을 로드하고 선택한 경로를 저장합니다"
   },
   "epub_reader_sd_font_loaded": {
-    "message0": "EPUB SD card font is loaded",
-    "tooltip": "Check whether the SD card font is loaded"
+    "message0": "EPUB SD 글꼴 로드됨",
+    "tooltip": "SD 글꼴이 로드되었는지 확인합니다"
   },
   "epub_reader_unload_sd_font": {
-    "message0": "EPUB unload SD card font",
-    "tooltip": "Unload the SD card font and release cache memory"
+    "message0": "EPUB SD 글꼴 언로드",
+    "tooltip": "SD 글꼴을 언로드하고 캐시 메모리를 해제합니다"
   },
   "epub_reader_load_ui_font": {
-    "message0": "EPUB load UI font %1",
-    "tooltip": "Load an independent UI font for menus, titles, and screens from the SD card"
+    "message0": "EPUB UI 글꼴 로드 %1",
+    "tooltip": "SD 카드에서 UI 글꼴(메뉴/제목용)을 로드합니다. 읽기 글꼴과 독립적입니다"
   },
   "epub_reader_unload_ui_font": {
-    "message0": "EPUB unload UI font",
-    "tooltip": "Unload the UI font and release its memory"
+    "message0": "EPUB UI 글꼴 언로드",
+    "tooltip": "UI 글꼴을 언로드하고 메모리를 해제합니다"
   },
   "epub_reader_ui_font_loaded": {
-    "message0": "EPUB UI font is loaded",
-    "tooltip": "Check whether the UI font is loaded, including a shared reading font"
+    "message0": "EPUB UI 글꼴 로드됨",
+    "tooltip": "UI 글꼴이 로드되었는지 확인합니다(공유 읽기 글꼴 포함)"
   },
   "epub_reader_share_reading_font": {
-    "message0": "EPUB share reading font as UI font",
-    "tooltip": "Use the current reading font as the UI font to save memory"
+    "message0": "EPUB 읽기 글꼴을 UI 글꼴로 공유",
+    "tooltip": "현재 읽기 글꼴을 UI 글꼴로도 사용하여 메모리를 절약합니다"
   },
   "epub_reader_gen_cover": {
-    "message0": "EPUB generate cover thumbnail %1",
-    "tooltip": "Extract the EPUB cover and cache a 48x64 thumbnail on the SD card"
+    "message0": "EPUB 표지 썸네일 생성 %1",
+    "tooltip": "EPUB에서 표지를 추출하여 48x64 썸네일을 SD 카드에 캐시합니다"
   },
   "epub_reader_show_full_image": {
-    "message0": "EPUB show full-screen image %1",
-    "tooltip": "Scale image N to screen width and display it with screen-by-screen scrolling"
+    "message0": "EPUB 전체 화면 이미지 표시 %1",
+    "tooltip": "N번째 이미지를 화면 너비에 맞춰 확대하고 화면 단위로 스크롤합니다"
   },
   "epub_reader_page_img_count": {
-    "message0": "EPUB current page image count",
-    "tooltip": "Get the number of images on the current page"
+    "message0": "EPUB 현재 페이지 이미지 수",
+    "tooltip": "현재 페이지에 포함된 이미지 수를 가져옵니다"
   },
   "epub_reader_full_img_next": {
-    "message0": "EPUB image next screen",
-    "tooltip": "Scroll to the next screen, loading the next image at the end, and return whether content remains"
+    "message0": "EPUB 이미지 다음 화면",
+    "tooltip": "다음 화면으로 스크롤합니다(끝에서는 다음 이미지 로드). 남은 내용이 있는지 반환합니다"
   },
   "epub_reader_full_img_prev": {
-    "message0": "EPUB image previous screen",
-    "tooltip": "Scroll to the previous screen, loading the previous image at the beginning, and return whether content remains"
+    "message0": "EPUB 이미지 이전 화면",
+    "tooltip": "이전 화면으로 스크롤합니다(처음에서는 이전 이미지 로드). 남은 내용이 있는지 반환합니다"
   },
   "epub_reader_full_img_exit": {
-    "message0": "EPUB exit full-screen image (release memory)",
-    "tooltip": "Release the full-screen image cache"
+    "message0": "EPUB 전체 화면 이미지 종료(메모리 해제)",
+    "tooltip": "전체 화면 이미지 캐시 메모리를 해제합니다"
   },
   "epub_reader_show_fit_image": {
-    "message0": "EPUB fit image to page %1",
-    "tooltip": "Scale image N to fit the screen and display it as a full page"
+    "message0": "EPUB 맞춤 이미지 표시 %1",
+    "tooltip": "N번째 이미지를 화면에 맞게 축소하여 표시합니다"
   },
   "epub_reader_fit_img_next": {
-    "message0": "EPUB next fitted image",
-    "tooltip": "Show the next fitted full-page image and return whether another image remains"
+    "message0": "EPUB 맞춤 이미지 다음",
+    "tooltip": "다음 맞춤 이미지를 표시하고 남은 것이 있는지 반환합니다"
   },
   "epub_reader_fit_img_prev": {
-    "message0": "EPUB previous fitted image",
-    "tooltip": "Show the previous fitted full-page image and return whether another image remains"
-  },
-  "epub_reader_browser_open": {
-    "message0": "EPUB browse directory %1",
-    "tooltip": "Load folders, EPUB files, and JPEG files from the specified SD card directory, up to 64 items"
-  },
-  "epub_reader_browser_count": {
-    "message0": "EPUB browser item count",
-    "tooltip": "Get the number of items in the current browser directory"
-  },
-  "epub_reader_browser_is_dir": {
-    "message0": "EPUB browser item %1 is a directory",
-    "tooltip": "Check whether the browser item at the specified index is a directory; false when out of range"
-  },
-  "epub_reader_browser_name": {
-    "message0": "EPUB browser item %1 name",
-    "tooltip": "Get the file or directory name at the specified index; empty text when out of range"
-  },
-  "epub_reader_browser_path": {
-    "message0": "EPUB browser item %1 path",
-    "tooltip": "Get the full SD card path at the specified index; empty text when out of range"
-  },
-  "epub_reader_browser_enter": {
-    "message0": "EPUB enter browser directory item %1",
-    "tooltip": "Enter the item when it is a directory, then reload the browser list"
-  },
-  "epub_reader_browser_up": {
-    "message0": "EPUB browser go to parent directory",
-    "tooltip": "Go to the parent directory and remember the child index for restoring the selection"
-  },
-  "epub_reader_browser_up_sel": {
-    "message0": "EPUB browser selection after going up",
-    "tooltip": "Get the item index that should be selected after returning to the parent directory"
-  },
-  "epub_reader_browser_is_root": {
-    "message0": "EPUB browser is at root directory",
-    "tooltip": "Check whether the file browser is at the SD card root directory"
-  },
-  "epub_reader_browser_curdir": {
-    "message0": "EPUB browser current directory",
-    "tooltip": "Get the full path of the current file browser directory"
-  },
-  "epub_reader_show_browser": {
-    "message0": "EPUB show file browser select item %1",
-    "tooltip": "Render the current directory on the TFT screen, highlight an item, and preview EPUB covers"
-  },
-  "epub_reader_jpg_viewer_open": {
-    "message0": "EPUB JPEG viewer open %1",
-    "tooltip": "Open a JPEG file from the SD card and scale it to the screen width; true on success"
-  },
-  "epub_reader_jpg_viewer_next": {
-    "message0": "EPUB JPEG viewer next screen",
-    "tooltip": "Scroll to the next screen, then try the next sequentially numbered image at the end"
-  },
-  "epub_reader_jpg_viewer_prev": {
-    "message0": "EPUB JPEG viewer previous screen",
-    "tooltip": "Scroll to the previous screen, then try the previous sequentially numbered image at the beginning"
-  },
-  "epub_reader_jpg_viewer_exit": {
-    "message0": "EPUB exit JPEG viewer",
-    "tooltip": "Exit the standalone JPEG viewer and release its image cache"
-  },
-  "epub_reader_browser_is_jpg": {
-    "message0": "EPUB browser item %1 is JPEG",
-    "tooltip": "Check whether the item at the specified index is a .jpg or .jpeg file; false when out of range"
+    "message0": "EPUB 맞춤 이미지 이전",
+    "tooltip": "이전 맞춤 이미지를 표시하고 남은 것이 있는지 반환합니다"
   }
 }

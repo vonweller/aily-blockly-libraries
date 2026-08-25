@@ -1,246 +1,202 @@
 {
   "toolbox_name": "EPUBリーダー",
   "toolbox_labels": {
-    "EPUB阅读器": "EPUBリーダー",
-    "章节目录扩展": "章ナビゲーション",
-    "UI字体": "UIフォント",
-    "文件浏览器": "ファイルブラウザー",
-    "JPEG查看器": "JPEGビューア"
-  },
-  "epub_reader_sd_init": {
-    "message0": "EPUB initialize SD card (SdFat)",
-    "tooltip": "Initialize the SD card with SdFat, including support for UTF-8 Chinese filenames"
+    "EPUB阅读器": "EPUBリーダー"
   },
   "epub_reader_open": {
-    "message0": "EPUB open file %1 characters per line %2 lines per page %3",
-    "tooltip": "Open an EPUB file on the SD card and parse its contents"
+    "message0": "EPUB ファイルを開く %1 一行の文字数 %2 一ページの行数 %3",
+    "tooltip": "SDカード上のEPUBファイルを開いて解析します"
   },
   "epub_reader_is_open": {
-    "message0": "EPUB is open",
-    "tooltip": "Check whether the EPUB file opened successfully"
+    "message0": "EPUB 開いている",
+    "tooltip": "EPUBファイルが正常に開けたかを確認します"
   },
   "epub_reader_get_page": {
-    "message0": "EPUB current page content",
-    "tooltip": "Get the text content of the current page"
+    "message0": "EPUB 現在ページの内容",
+    "tooltip": "現在のページのテキスト内容を取得します"
   },
   "epub_reader_get_page_num": {
-    "message0": "EPUB current page number",
-    "tooltip": "Get the current page number"
+    "message0": "EPUB 現在のページ番号",
+    "tooltip": "現在のページ番号を取得します"
   },
   "epub_reader_next": {
-    "message0": "EPUB next page",
-    "tooltip": "Go to the next page"
+    "message0": "EPUB 次のページ",
+    "tooltip": "次のページへ移動します"
   },
   "epub_reader_prev": {
-    "message0": "EPUB previous page",
-    "tooltip": "Go to the previous page"
+    "message0": "EPUB 前のページ",
+    "tooltip": "前のページへ移動します"
   },
   "epub_reader_has_next": {
-    "message0": "EPUB has next page",
-    "tooltip": "Check whether another page follows"
+    "message0": "EPUB 次のページがある",
+    "tooltip": "次のページがあるかどうかを確認します"
   },
   "epub_reader_has_prev": {
-    "message0": "EPUB has previous page",
-    "tooltip": "Check whether a previous page exists"
+    "message0": "EPUB 前のページがある",
+    "tooltip": "前のページがあるかどうかを確認します"
   },
   "epub_reader_render_page": {
-    "message0": "EPUB render to screen start X %1 start Y %2",
-    "tooltip": "Render the current EPUB page on the TFT screen"
+    "message0": "EPUB 画面に描画 開始X %1 開始Y %2",
+    "tooltip": "現在のEPUBページをTFT画面に描画します"
   },
   "epub_reader_close": {
-    "message0": "EPUB close",
-    "tooltip": "Close the EPUB file and release its memory"
+    "message0": "EPUB 閉じる",
+    "tooltip": "EPUBファイルを閉じてメモリを解放します"
   },
   "epub_reader_font_height": {
-    "message0": "EPUB current font line height",
-    "tooltip": "Get the line height, in pixels, of the currently loaded font"
+    "message0": "EPUB 現在のフォント行高",
+    "tooltip": "読み込み済みフォントの行の高さ（ピクセル）を取得します"
   },
   "epub_reader_get_chapter": {
-    "message0": "EPUB current chapter",
-    "tooltip": "Get the current chapter number, starting from 1"
+    "message0": "EPUB 現在の章",
+    "tooltip": "現在の章番号（1始まり）を取得します"
   },
   "epub_reader_get_chapter_count": {
-    "message0": "EPUB total chapter count",
-    "tooltip": "Get the total number of chapters"
-  },
-  "epub_reader_scan_books": {
-    "message0": "Scan EPUB books in directory %1",
-    "tooltip": "Scan the specified directory for .epub files and store the results in the global list"
-  },
-  "epub_reader_book_count": {
-    "message0": "Book count",
-    "tooltip": "Get the total number of scanned EPUB books"
-  },
-  "epub_reader_book_name": {
-    "message0": "Filename of book %1",
-    "tooltip": "Get the filename of the book at the specified index"
-  },
-  "epub_reader_book_path": {
-    "message0": "Full path of book %1",
-    "tooltip": "Get the full SD card path of the book at the specified index"
-  },
-  "epub_reader_show_bookshelf": {
-    "message0": "EPUB show bookshelf (select book %1)",
-    "tooltip": "Render the bookshelf and highlight the selected book"
+    "message0": "EPUB 章の総数",
+    "tooltip": "章の総数を取得します"
   },
   "epub_reader_show_page": {
-    "message0": "EPUB show reading page",
-    "tooltip": "Render the current reading page, including chapter information"
+    "message0": "EPUB 閲覧ページを表示",
+    "tooltip": "章情報を含む現在の閲覧ページを描画します"
   },
   "epub_reader_goto_chapter": {
-    "message0": "EPUB go to chapter %1",
-    "tooltip": "Go to the specified zero-based chapter and return whether it succeeded"
+    "message0": "EPUB 章へ移動 %1",
+    "tooltip": "指定した章（0始まり）へ移動し、成否を返します"
   },
   "epub_reader_chapter_title_at": {
-    "message0": "EPUB title of chapter %1",
-    "tooltip": "Get the title of the specified chapter"
-  },
-  "epub_reader_save_pos": {
-    "message0": "EPUB save progress %1",
-    "tooltip": "Save the current reading progress, chapter and page, to NVS"
-  },
-  "epub_reader_load_pos": {
-    "message0": "EPUB load progress %1",
-    "tooltip": "Load and restore reading progress from NVS and return whether saved progress exists"
+    "message0": "EPUB 第 %1 章のタイトル",
+    "tooltip": "指定した章のタイトルを取得します"
   },
   "epub_reader_show_toc": {
-    "message0": "EPUB show table of contents (select item %1)",
-    "tooltip": "Render the chapter list and highlight the selected item"
+    "message0": "EPUB 目次を表示（選択 %1）",
+    "tooltip": "章目次を描画し、選択項目を強調表示します"
   },
   "epub_reader_toc_page_next": {
-    "message0": "EPUB next contents page (current %1)",
-    "tooltip": "Return the selected item number on the next contents page"
+    "message0": "EPUB 目次を次ページへ（現在 %1）",
+    "tooltip": "目次の次ページの選択項目番号を返します"
   },
   "epub_reader_toc_page_prev": {
-    "message0": "EPUB previous contents page (current %1)",
-    "tooltip": "Return the selected item number on the previous contents page"
+    "message0": "EPUB 目次を前ページへ（現在 %1）",
+    "tooltip": "目次の前ページの選択項目番号を返します"
+  },
+  "epub_reader_scan_books": {
+    "message0": "%1 内のEPUB書籍をスキャン",
+    "tooltip": "指定ディレクトリ内の.epubファイルをスキャンしてグローバルリストに保存します"
+  },
+  "epub_reader_book_count": {
+    "message0": "書籍数",
+    "tooltip": "スキャンされたEPUB書籍の総数を取得します"
+  },
+  "epub_reader_book_name": {
+    "message0": "%1 冊目のファイル名",
+    "tooltip": "指定インデックスの書籍ファイル名を取得します"
+  },
+  "epub_reader_book_path": {
+    "message0": "%1 冊目の完全パス",
+    "tooltip": "指定インデックスの書籍の完全なSDカードパスを取得します"
+  },
+  "epub_reader_show_bookshelf": {
+    "message0": "EPUB 本棚を表示（選択 %1）",
+    "tooltip": "本棚画面を描画し、選択書籍を強調表示します"
+  },
+  "epub_reader_save_pos": {
+    "message0": "EPUB 進行状況を保存 %1",
+    "tooltip": "現在の閲読位置（章+ページ）をNVSに保存します"
+  },
+  "epub_reader_load_pos": {
+    "message0": "EPUB 進行状況を読み込み %1",
+    "tooltip": "NVSから閲読位置を復元し、保存があったかどうかを返します"
+  },
+  "epub_reader_show_history": {
+    "message0": "EPUB 閲読履歴を表示",
+    "tooltip": "最近の閲読リスト（書名+章の進行状況）を描画し、選択項目を強調表示します"
+  },
+  "epub_reader_hist_count": {
+    "message0": "EPUB 履歴の件数",
+    "tooltip": "最近の閲読リストの件数（0-20）"
+  },
+  "epub_reader_hist_next": {
+    "message0": "EPUB 履歴 次の本",
+    "tooltip": "次の本を選択してリストを再描画します"
+  },
+  "epub_reader_hist_prev": {
+    "message0": "EPUB 履歴 前の本",
+    "tooltip": "前の本を選択してリストを再描画します"
+  },
+  "epub_reader_hist_resume": {
+    "message0": "EPUB 履歴 閲読を再開",
+    "tooltip": "選択した本を開き、前回の位置から再開します"
+  },
+  "epub_reader_cur_path": {
+    "message0": "EPUB 現在開いている本のパス",
+    "tooltip": "現在開いている書籍の完全なSDカードパスを返します（未開時は空文字列）"
   },
   "epub_reader_load_sd_font": {
-    "message0": "EPUB load SD card font %1",
-    "tooltip": "Load a CJK font in .bin format from the SD card"
+    "message0": "EPUB SDフォントを読み込む %1",
+    "tooltip": "SDカードから.bin形式のCJKフォントを読み込みます（/fonts/.selectedを自動読み取り）"
+  },
+  "epub_reader_select_font": {
+    "message0": "EPUB フォントを選択 %1",
+    "tooltip": "フォントを読み込んで選択パスを保存します"
   },
   "epub_reader_sd_font_loaded": {
-    "message0": "EPUB SD card font is loaded",
-    "tooltip": "Check whether the SD card font is loaded"
+    "message0": "EPUB SDフォント読み込み済み",
+    "tooltip": "SDフォントが読み込まれているかを確認します"
   },
   "epub_reader_unload_sd_font": {
-    "message0": "EPUB unload SD card font",
-    "tooltip": "Unload the SD card font and release cache memory"
+    "message0": "EPUB SDフォントを解除",
+    "tooltip": "SDフォントを解除し、キャッシュメモリを解放します"
   },
   "epub_reader_load_ui_font": {
-    "message0": "EPUB load UI font %1",
-    "tooltip": "Load an independent UI font for menus, titles, and screens from the SD card"
+    "message0": "EPUB UIフォントを読み込む %1",
+    "tooltip": "SDカードからUIフォント（メニュー/タイトル用）を読み込みます。閲読フォントとは独立です"
   },
   "epub_reader_unload_ui_font": {
-    "message0": "EPUB unload UI font",
-    "tooltip": "Unload the UI font and release its memory"
+    "message0": "EPUB UIフォントを解除",
+    "tooltip": "UIフォントを解除してメモリを解放します"
   },
   "epub_reader_ui_font_loaded": {
-    "message0": "EPUB UI font is loaded",
-    "tooltip": "Check whether the UI font is loaded, including a shared reading font"
+    "message0": "EPUB UIフォント読み込み済み",
+    "tooltip": "UIフォントが読み込まれているかを確認します（閲読フォント共有の場合を含む）"
   },
   "epub_reader_share_reading_font": {
-    "message0": "EPUB share reading font as UI font",
-    "tooltip": "Use the current reading font as the UI font to save memory"
+    "message0": "EPUB 閲読フォントをUIフォントとして共有",
+    "tooltip": "現在の閲読フォントをUIフォントとしても使い、メモリを節約します"
   },
   "epub_reader_gen_cover": {
-    "message0": "EPUB generate cover thumbnail %1",
-    "tooltip": "Extract the EPUB cover and cache a 48x64 thumbnail on the SD card"
+    "message0": "EPUB 表紙サムネイルを生成 %1",
+    "tooltip": "EPUBから表紙を抽出し、48x64のサムネイルをSDカードにキャッシュします"
   },
   "epub_reader_show_full_image": {
-    "message0": "EPUB show full-screen image %1",
-    "tooltip": "Scale image N to screen width and display it with screen-by-screen scrolling"
+    "message0": "EPUB 全画面画像を表示 %1",
+    "tooltip": "N番目の画像を画面幅に合わせて拡大し、画面単位でスクロール表示します"
   },
   "epub_reader_page_img_count": {
-    "message0": "EPUB current page image count",
-    "tooltip": "Get the number of images on the current page"
+    "message0": "EPUB 現在ページの画像数",
+    "tooltip": "現在のページに含まれる画像の数を取得します"
   },
   "epub_reader_full_img_next": {
-    "message0": "EPUB image next screen",
-    "tooltip": "Scroll to the next screen, loading the next image at the end, and return whether content remains"
+    "message0": "EPUB 画像 次の画面",
+    "tooltip": "次の画面へスクロールします（終端では次の画像を読み込み）。残りがあるかどうかを返します"
   },
   "epub_reader_full_img_prev": {
-    "message0": "EPUB image previous screen",
-    "tooltip": "Scroll to the previous screen, loading the previous image at the beginning, and return whether content remains"
+    "message0": "EPUB 画像 前の画面",
+    "tooltip": "前の画面へスクロールします（先頭では前の画像を読み込み）。残りがあるかどうかを返します"
   },
   "epub_reader_full_img_exit": {
-    "message0": "EPUB exit full-screen image (release memory)",
-    "tooltip": "Release the full-screen image cache"
+    "message0": "EPUB 全画面画像を終了（メモリ解放）",
+    "tooltip": "全画面画像のキャッシュメモリを解放します"
   },
   "epub_reader_show_fit_image": {
-    "message0": "EPUB fit image to page %1",
-    "tooltip": "Scale image N to fit the screen and display it as a full page"
+    "message0": "EPUB ページフィット画像を表示 %1",
+    "tooltip": "N番目の画像を画面に合わせて縮小表示します"
   },
   "epub_reader_fit_img_next": {
-    "message0": "EPUB next fitted image",
-    "tooltip": "Show the next fitted full-page image and return whether another image remains"
+    "message0": "EPUB フィット画像 次へ",
+    "tooltip": "次のページフィット画像を表示し、残りがあるかどうかを返します"
   },
   "epub_reader_fit_img_prev": {
-    "message0": "EPUB previous fitted image",
-    "tooltip": "Show the previous fitted full-page image and return whether another image remains"
-  },
-  "epub_reader_browser_open": {
-    "message0": "EPUB browse directory %1",
-    "tooltip": "Load folders, EPUB files, and JPEG files from the specified SD card directory, up to 64 items"
-  },
-  "epub_reader_browser_count": {
-    "message0": "EPUB browser item count",
-    "tooltip": "Get the number of items in the current browser directory"
-  },
-  "epub_reader_browser_is_dir": {
-    "message0": "EPUB browser item %1 is a directory",
-    "tooltip": "Check whether the browser item at the specified index is a directory; false when out of range"
-  },
-  "epub_reader_browser_name": {
-    "message0": "EPUB browser item %1 name",
-    "tooltip": "Get the file or directory name at the specified index; empty text when out of range"
-  },
-  "epub_reader_browser_path": {
-    "message0": "EPUB browser item %1 path",
-    "tooltip": "Get the full SD card path at the specified index; empty text when out of range"
-  },
-  "epub_reader_browser_enter": {
-    "message0": "EPUB enter browser directory item %1",
-    "tooltip": "Enter the item when it is a directory, then reload the browser list"
-  },
-  "epub_reader_browser_up": {
-    "message0": "EPUB browser go to parent directory",
-    "tooltip": "Go to the parent directory and remember the child index for restoring the selection"
-  },
-  "epub_reader_browser_up_sel": {
-    "message0": "EPUB browser selection after going up",
-    "tooltip": "Get the item index that should be selected after returning to the parent directory"
-  },
-  "epub_reader_browser_is_root": {
-    "message0": "EPUB browser is at root directory",
-    "tooltip": "Check whether the file browser is at the SD card root directory"
-  },
-  "epub_reader_browser_curdir": {
-    "message0": "EPUB browser current directory",
-    "tooltip": "Get the full path of the current file browser directory"
-  },
-  "epub_reader_show_browser": {
-    "message0": "EPUB show file browser select item %1",
-    "tooltip": "Render the current directory on the TFT screen, highlight an item, and preview EPUB covers"
-  },
-  "epub_reader_jpg_viewer_open": {
-    "message0": "EPUB JPEG viewer open %1",
-    "tooltip": "Open a JPEG file from the SD card and scale it to the screen width; true on success"
-  },
-  "epub_reader_jpg_viewer_next": {
-    "message0": "EPUB JPEG viewer next screen",
-    "tooltip": "Scroll to the next screen, then try the next sequentially numbered image at the end"
-  },
-  "epub_reader_jpg_viewer_prev": {
-    "message0": "EPUB JPEG viewer previous screen",
-    "tooltip": "Scroll to the previous screen, then try the previous sequentially numbered image at the beginning"
-  },
-  "epub_reader_jpg_viewer_exit": {
-    "message0": "EPUB exit JPEG viewer",
-    "tooltip": "Exit the standalone JPEG viewer and release its image cache"
-  },
-  "epub_reader_browser_is_jpg": {
-    "message0": "EPUB browser item %1 is JPEG",
-    "tooltip": "Check whether the item at the specified index is a .jpg or .jpeg file; false when out of range"
+    "message0": "EPUB フィット画像 前へ",
+    "tooltip": "前のページフィット画像を表示し、残りがあるかどうかを返します"
   }
 }
