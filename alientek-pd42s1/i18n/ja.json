@@ -1,0 +1,809 @@
+{
+  "toolbox_name": "PD42S1 ステッピングモーター",
+  "toolbox_labels": {
+    "初始化与应答": "初期化・応答",
+    "运动控制": "運動制御",
+    "立即控制": "即時制御",
+    "参数设置": "パラメータ設定",
+    "回零与限位": "原点復帰・リミット",
+    "系统维护": "システム",
+    "脉冲与IO输出": "パルス・IO出力"
+  },
+  "pd42s1_init": {
+    "message0": "PD42S1 初期化 TXピン %1 RXピン %2 ボーレート %3",
+    "tooltip": "PD42S1通信用シリアル1を初期化。既定ピン19/20（DNESP32S3配線）、他ボードは配線に合わせ変更。既定115200bps"
+  },
+  "pd42s1_read": {
+    "message0": "読み取り %1 モーター番号 %2 応答タイムアウト %3 ms",
+    "tooltip": "読み出しコマンドを送信して応答を待ち、解析結果をシリアル0へ出力。位置は51200で1回転",
+    "args0": [
+      {
+        "options": [
+          [
+            "ソフト/ハードバージョン",
+            "VER"
+          ],
+          [
+            "磁束リンケージ",
+            "PSI"
+          ],
+          [
+            "相抵抗・相インダクタンス",
+            "RES_IND"
+          ],
+          [
+            "相電流",
+            "PHASE_MA"
+          ],
+          [
+            "母線電圧",
+            "VOL"
+          ],
+          [
+            "電流ループPID",
+            "MA_PID"
+          ],
+          [
+            "速度ループPID",
+            "SPEED_PID"
+          ],
+          [
+            "位置ループPID",
+            "POS_PID"
+          ],
+          [
+            "累計パルス数",
+            "TOTAL_PULSE"
+          ],
+          [
+            "リアルタイム回転速度",
+            "RPM"
+          ],
+          [
+            "リアルタイム位置",
+            "POS"
+          ],
+          [
+            "位置誤差",
+            "POS_ERR"
+          ],
+          [
+            "運転状態",
+            "MOTOR_STA"
+          ],
+          [
+            "閉塞フラグ",
+            "CLOG_FLAG"
+          ],
+          [
+            "閉塞電流",
+            "CLOG_MA"
+          ],
+          [
+            "イネーブル状態",
+            "EN_STA"
+          ],
+          [
+            "位置到達状態",
+            "ARRIVED"
+          ],
+          [
+            "システムパラメータ",
+            "SYS_PARAMS"
+          ],
+          [
+            "ドライブパラメータ",
+            "DRIVE_PARAMS"
+          ],
+          [
+            "原点復帰パラメータ",
+            "HOME_PARAMS"
+          ],
+          [
+            "原点復帰状態",
+            "HOME_STA"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "pd42s1_handle_ack": {
+    "message0": "ドライバー応答を待機・処理 タイムアウト %1 ms",
+    "tooltip": "ドライバー応答フレームを待ち解析出力（タイムアウトで終了）。送信系コマンドと併用"
+  },
+  "pd42s1_torque_mode": {
+    "message0": "モーター番号 %1 トルクモード 方向 %2 電流 %3 mA",
+    "tooltip": "閉ループトルク制御：方向+目標電流0~3000mA。負荷時のみ電流が目標値へ上昇",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "時計回り CW",
+            "CW"
+          ],
+          [
+            "反時計回り CCW",
+            "CCW"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "pd42s1_speed_mode": {
+    "message0": "モーター番号 %1 速度モード 方向 %2 加速度 %3 速度 %4 RPM",
+    "tooltip": "閉ループ速度制御：方向+加速度0~200RPM/s（0で即起動）+速度0.1~3000RPM",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "時計回り CW",
+            "CW"
+          ],
+          [
+            "反時計回り CCW",
+            "CCW"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "pd42s1_pos_mode": {
+    "message0": "モーター番号 %1 絶対位置モード 方向 %2 加速度 %3 速度 %4 RPM パルス数 %5",
+    "tooltip": "閉ループ絶対位置：方向+加速度+最大速度0~3000RPM+目標パルス数（51200で1回転）",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "時計回り CW",
+            "CW"
+          ],
+          [
+            "反時計回り CCW",
+            "CCW"
+          ]
+        ]
+      },
+      null,
+      null,
+      null
+    ]
+  },
+  "pd42s1_pos_rel_mode": {
+    "message0": "モーター番号 %1 相対位置モード 方向 %2 加速度 %3 速度 %4 RPM パルス数 %5",
+    "tooltip": "閉ループ相対位置：現在位置から指定パルス数だけ移動（51200で1回転）、繰り返し可",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "時計回り CW",
+            "CW"
+          ],
+          [
+            "反時計回り CCW",
+            "CCW"
+          ]
+        ]
+      },
+      null,
+      null,
+      null
+    ]
+  },
+  "pd42s1_pulse_mode": {
+    "message0": "モーター番号 %1 パルスモード",
+    "tooltip": "パルスモードへ切替：EN/STP/DIRピンで制御（パルスは別途出力）"
+  },
+  "pd42s1_pw_pos_mode": {
+    "message0": "モーター番号 %1 パルス幅位置モード 最大パルス幅 %2 us 最小パルス幅 %3 us 最大パルス幅の位置 %4 最小パルス幅の位置 %5",
+    "tooltip": "パルス幅位置モード（サーボ風）：PWMハイ幅を位置へ線形マッピング。幅0は不可"
+  },
+  "pd42s1_pw_ma_mode": {
+    "message0": "モーター番号 %1 パルス幅トルクモード 最大パルス幅 %2 us 最小パルス幅 %3 us 最大パルス幅の電流 %4 mA 最小パルス幅の電流 %5 mA",
+    "tooltip": "パルス幅トルク（電流）モード：PWMハイ幅を電流0~3000mAへ線形マッピング。幅0は不可"
+  },
+  "pd42s1_pw_speed_mode": {
+    "message0": "モーター番号 %1 パルス幅速度モード 最大パルス幅 %2 us 最小パルス幅 %3 us 最大パルス幅の速度 %4 RPM 最小パルス幅の速度 %5 RPM",
+    "tooltip": "パルス幅速度モード：PWMハイ幅を速度へ線形マッピング。幅0は不可"
+  },
+  "pd42s1_ol_speed_mode": {
+    "message0": "モーター番号 %1 オープンループ速度モード 方向 %2 加速度 %3 速度 %4 RPM",
+    "tooltip": "開ループ速度制御（位置フィードバックなし）：方向+加速度+0.1~3000RPM",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "時計回り CW",
+            "CW"
+          ],
+          [
+            "反時計回り CCW",
+            "CCW"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "pd42s1_ol_pos_mode": {
+    "message0": "モーター番号 %1 オープンループ絶対位置モード 方向 %2 加速度 %3 速度 %4 RPM パルス数 %5",
+    "tooltip": "開ループ絶対位置：エンコーダなしでパルス数により目標まで運転",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "時計回り CW",
+            "CW"
+          ],
+          [
+            "反時計回り CCW",
+            "CCW"
+          ]
+        ]
+      },
+      null,
+      null,
+      null
+    ]
+  },
+  "pd42s1_ol_pos_rel_mode": {
+    "message0": "モーター番号 %1 オープンループ相対位置モード 方向 %2 加速度 %3 速度 %4 RPM パルス数 %5",
+    "tooltip": "開ループ相対位置：現在位置からパルス数で相対移動（エンコーダなし）",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "時計回り CW",
+            "CW"
+          ],
+          [
+            "反時計回り CCW",
+            "CCW"
+          ]
+        ]
+      },
+      null,
+      null,
+      null
+    ]
+  },
+  "pd42s1_ol_pulse_mode": {
+    "message0": "モーター番号 %1 オープンループパルスモード",
+    "tooltip": "開ループパルスモードへ切替：EN/STP/DIRピンで制御（パルスは別途出力）"
+  },
+  "pd42s1_io_run_ctrl": {
+    "message0": "モーター番号 %1 IO start-stop モード 方向 %2 加速度 %3 速度 %4 RPM",
+    "tooltip": "IO start-stopモード：設定した方向/加速度/速度で運転し、IOピンレベルで開始/停止（IO開始レベルを先に設定）",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "時計回り CW",
+            "CW"
+          ],
+          [
+            "反時計回り CCW",
+            "CCW"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "pd42s1_stop_now": {
+    "message0": "モーター番号 %1 即時停止（ブレーキ）",
+    "tooltip": "即時ブレーキ停止。停止後は速やかに状態をクリアしないとモーターが過熱する恐れ"
+  },
+  "pd42s1_clear_sta": {
+    "message0": "モーター番号 %1 モーター状態クリア（閉塞・無効・ブレーキ）",
+    "tooltip": "閉塞・無効・ブレーキ等の異常状態フラグをクリア"
+  },
+  "pd42s1_motor_enable": {
+    "message0": "モーター番号 %1 イネーブル制御 %2",
+    "tooltip": "モーターを有効/無効化。無効にするとシャフトはフリー回転",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "モーター有効",
+            "ENABLE"
+          ],
+          [
+            "モーター無効",
+            "DISABLE"
+          ]
+        ]
+      }
+    ]
+  },
+  "pd42s1_angle_zero": {
+    "message0": "モーター番号 %1 現在位置をゼロに",
+    "tooltip": "現在のリアルタイム位置をゼロに（停止後に実行推奨）"
+  },
+  "pd42s1_remove_clog": {
+    "message0": "モーター番号 %1 閉塞保護を解除",
+    "tooltip": "閉塞保護のロックを解除しモーター運転を回復"
+  },
+  "pd42s1_cal_encoder": {
+    "message0": "モーター番号 %1 エンコーダ校正",
+    "tooltip": "エンコーダ零点を校正。校正中にモーターがわずかに動くので電源を切らないこと"
+  },
+  "pd42s1_restart": {
+    "message0": "モーター番号 %1 再起動",
+    "tooltip": "ドライバーを再起動"
+  },
+  "pd42s1_reset_factory": {
+    "message0": "モーター番号 %1 出荷時設定に戻す",
+    "tooltip": "出荷時設定に戻す。完了後モーターが停止するまで待機（パラメータ再識別）"
+  },
+  "pd42s1_param_save": {
+    "message0": "モーター番号 %1 パラメータ保存（不揮発）",
+    "tooltip": "現在のパラメータを不揮発メモリへ保存（電源断でも保持）"
+  },
+  "pd42s1_set_slave_add": {
+    "message0": "モーター番号 %1 スレーブアドレス設定 %2",
+    "tooltip": "スレーブアドレス（1~255）を設定。以降は新アドレスで通信"
+  },
+  "pd42s1_set_group_add": {
+    "message0": "モーター番号 %1 グループアドレス設定 %2",
+    "tooltip": "グループアドレスを設定。1コマンドで複数モーター制御が可能"
+  },
+  "pd42s1_set_mode": {
+    "message0": "モーター番号 %1 動作モード設定 %2",
+    "tooltip": "ドライバーの動作モードを設定（通信/パルス/パルス幅/原点復帰/開環系）",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "通信位置モード",
+            "COMM_POS"
+          ],
+          [
+            "通信速度モード",
+            "COMM_SPEED"
+          ],
+          [
+            "通信トルクモード",
+            "COMM_TORQUE"
+          ],
+          [
+            "パルスモード",
+            "PULSE"
+          ],
+          [
+            "パルス幅位置モード",
+            "PW_POS"
+          ],
+          [
+            "パルス幅速度モード",
+            "PW_SPEED"
+          ],
+          [
+            "パルス幅トルクモード",
+            "PW_TORQUE"
+          ],
+          [
+            "原点復帰モード",
+            "HOME"
+          ],
+          [
+            "開環速度モード",
+            "OL_SPEED"
+          ],
+          [
+            "開環位置モード",
+            "OL_POS"
+          ],
+          [
+            "開環パルスモード",
+            "OL_PULSE"
+          ]
+        ]
+      }
+    ]
+  },
+  "pd42s1_set_pos_pid": {
+    "message0": "モーター番号 %1 位置ループPID設定 Kp %2 Ki %3 Kd %4",
+    "tooltip": "位置ループPIDゲイン設定（Kp/Ki/Kd、32ビット整数）"
+  },
+  "pd42s1_set_speed_pid": {
+    "message0": "モーター番号 %1 速度ループPID設定 Kp %2 Ki %3 Kd %4",
+    "tooltip": "速度ループPIDゲイン設定（Kp/Ki/Kd、32ビット整数）"
+  },
+  "pd42s1_set_pos_torque": {
+    "message0": "モーター番号 %1 位置ループ最大トルク %2 mA",
+    "tooltip": "位置ループの最大トルク制限（100~3000mA）"
+  },
+  "pd42s1_set_step": {
+    "message0": "モーター番号 %1 細分設定 %2",
+    "tooltip": "ドライバーの細分設定（1~256）。大きいほど滑らかだがトルク低下"
+  },
+  "pd42s1_set_ma": {
+    "message0": "モーター番号 %1 目標電流設定（トルクモード） %2 mA",
+    "tooltip": "目標電流設定（トルクモードのみ有効、0~3000mA）"
+  },
+  "pd42s1_set_uart_baud": {
+    "message0": "モーター番号 %1 ドライバーUARTボーレート設定 %2",
+    "tooltip": "ドライバーUARTボーレート設定。変更後は新ボーレートで再初期化"
+  },
+  "pd42s1_set_can_baud": {
+    "message0": "モーター番号 %1 CANボーレート設定 %2 Kbps",
+    "tooltip": "ドライバーCANボーレート設定（単位Kbps）"
+  },
+  "pd42s1_set_modbus": {
+    "message0": "モーター番号 %1 通信プロトコル %2",
+    "tooltip": "カスタムプロトコルまたはMODBUSを選択",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "カスタムプロトコル",
+            "CUSTOM"
+          ],
+          [
+            "MODBUSプロトコル",
+            "MODBUS"
+          ]
+        ]
+      }
+    ]
+  },
+  "pd42s1_set_clog_pro": {
+    "message0": "モーター番号 %1 閉塞保護 %2",
+    "tooltip": "閉塞保護機能のオン/オフ",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "オフ",
+            "OFF"
+          ],
+          [
+            "オン",
+            "ON"
+          ]
+        ]
+      }
+    ]
+  },
+  "pd42s1_set_clog_current": {
+    "message0": "モーター番号 %1 閉塞電流設定 %2 mA",
+    "tooltip": "閉塞電流設定（0~3000mA）"
+  },
+  "pd42s1_set_can_id": {
+    "message0": "モーター番号 %1 CAN ID設定 %2",
+    "tooltip": "CAN送信ID設定（29ビット拡張）"
+  },
+  "pd42s1_set_dir_level": {
+    "message0": "モーター番号 %1 DIR正転レベル %2",
+    "tooltip": "DIRピンの正転レベル設定（パルス/方向制御用）",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Highレベル正転",
+            "HIGH"
+          ],
+          [
+            "Lowレベル正転",
+            "LOW"
+          ]
+        ]
+      }
+    ]
+  },
+  "pd42s1_set_en_level": {
+    "message0": "モーター番号 %1 EN有効レベル %2",
+    "tooltip": "ENピンの有効レベル設定（Low/High/常時有効）",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Lowで有効",
+            "LOW"
+          ],
+          [
+            "Highで有効",
+            "HIGH"
+          ],
+          [
+            "常時有効",
+            "ALWAYS"
+          ]
+        ]
+      }
+    ]
+  },
+  "pd42s1_set_cmd_echo": {
+    "message0": "モーター番号 %1 指令応答 %2",
+    "tooltip": "シリアルコマンドの応答有無を設定",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "応答あり",
+            "ECHO"
+          ],
+          [
+            "応答なし",
+            "NO_ECHO"
+          ]
+        ]
+      }
+    ]
+  },
+  "pd42s1_set_key_lock": {
+    "message0": "モーター番号 %1 パネルキー %2",
+    "tooltip": "ドライバーパネルキーのロック/解除",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "ロック解除",
+            "UNLOCK"
+          ],
+          [
+            "ロック",
+            "LOCK"
+          ]
+        ]
+      }
+    ]
+  },
+  "pd42s1_set_auto_display": {
+    "message0": "モーター番号 %1 自動消灯 %2",
+    "tooltip": "ドライバー画面の自動消灯オン/オフ",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "オフ",
+            "OFF"
+          ],
+          [
+            "オン",
+            "ON"
+          ]
+        ]
+      }
+    ]
+  },
+  "pd42s1_set_io_start_level": {
+    "message0": "モーター番号 %1 IO開始レベル %2",
+    "tooltip": "IO start-stopモードの開始レベル設定（Low/Highで開始）",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Lowで起動",
+            "LOW"
+          ],
+          [
+            "Highで起動",
+            "HIGH"
+          ]
+        ]
+      }
+    ]
+  },
+  "pd42s1_origin_left_pos": {
+    "message0": "モーター番号 %1 左リミット原点設定 %2",
+    "tooltip": "左リミット原点位置設定（51200で1回転）"
+  },
+  "pd42s1_origin_right_pos": {
+    "message0": "モーター番号 %1 右リミット原点設定 %2",
+    "tooltip": "右リミット原点位置設定（51200で1回転）"
+  },
+  "pd42s1_origin_homing": {
+    "message0": "モーター番号 %1 原点探し %2 方向 %3 回転速度 %4 RPM 到達電流 %5 mA",
+    "tooltip": "原点探し：リミットなしは閉塞電流で判定（200~1000mA推奨）、ありはスイッチで判定。速度は100RPM以下推奨",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "リミットなし",
+            "NO_LIMIT"
+          ],
+          [
+            "リミットあり",
+            "WITH_LIMIT"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "時計回り CW",
+            "CW"
+          ],
+          [
+            "反時計回り CCW",
+            "CCW"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "pd42s1_origin_trig": {
+    "message0": "モーター番号 %1 原点復帰開始 %2",
+    "tooltip": "原点復帰動作を開始：単ターン/最寄り/マルチターンの3方式",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "単ターン原点",
+            "SINGLE"
+          ],
+          [
+            "最寄り原点",
+            "NEAREST"
+          ],
+          [
+            "マルチターン原点",
+            "MULTI"
+          ]
+        ]
+      }
+    ]
+  },
+  "pd42s1_origin_break": {
+    "message0": "モーター番号 %1 原点復帰中断",
+    "tooltip": "実行中原点復帰操作を強制中断・終了"
+  },
+  "pd42s1_origin_timeout": {
+    "message0": "モーター番号 %1 原点復帰タイムアウト設定 %2 ms",
+    "tooltip": "原点探しタイムアウト設定（単位ms）"
+  },
+  "pd42s1_origin_auto": {
+    "message0": "モーター番号 %1 電源投入時自動原点復帰 %2",
+    "tooltip": "ドライバー電源投入時に自動原点復帰するか設定",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "オフ",
+            "OFF"
+          ],
+          [
+            "オン",
+            "ON"
+          ]
+        ]
+      }
+    ]
+  },
+  "pd42s1_origin_switch": {
+    "message0": "モーター番号 %1 左右リミットスイッチ %2",
+    "tooltip": "開啟後、モーター可動範囲は左右リミット原点で制限",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "オフ",
+            "OFF"
+          ],
+          [
+            "オン",
+            "ON"
+          ]
+        ]
+      }
+    ]
+  },
+  "pd42s1_pulse_pin_init": {
+    "message0": "パルスピン初期化 EN %1 STEP %2 DIR %3",
+    "tooltip": "EN/STEP/DIR出力ピンを初期化（既定35/36/37はDNESP32S3配線、他ボードは変更）。パルスモード積木と併用"
+  },
+  "pd42s1_pulse_en": {
+    "message0": "ENレベル設定 %1",
+    "tooltip": "パルスモードENピンレベル設定（先にEN有効レベル設定のプロトコル積木が必要）",
+    "args0": [
+      {
+        "options": [
+          [
+            "High",
+            "HIGH"
+          ],
+          [
+            "Low",
+            "LOW"
+          ]
+        ]
+      }
+    ]
+  },
+  "pd42s1_pulse_en_toggle": {
+    "message0": "ENレベル反転",
+    "tooltip": "EN有効ピンレベルを反転"
+  },
+  "pd42s1_pulse_dir": {
+    "message0": "DIRレベル設定 %1",
+    "tooltip": "パルスモードDIRピンレベル設定（正転/反転はDIRレベル設定のプロトコル積木で定義）",
+    "args0": [
+      {
+        "options": [
+          [
+            "High",
+            "HIGH"
+          ],
+          [
+            "Low",
+            "LOW"
+          ]
+        ]
+      }
+    ]
+  },
+  "pd42s1_pulse_dir_toggle": {
+    "message0": "DIRレベル反転",
+    "tooltip": "DIRピンレベルを反転（方向切替）"
+  },
+  "pd42s1_pulse_output": {
+    "message0": "%1 パルス出力 半周期 %2 us",
+    "tooltip": "STEPピンに指定個数のパルスを出力（ソフト遅延、速度は不正確）。16細分で3200パルス=1回転"
+  },
+  "pd42s1_pulse_freq_from_rpm": {
+    "message0": "細分 %1 速度 %2 RPM のパルス周波数 Hz",
+    "tooltip": "目標速度に必要なパルス周波数：周波数=RPM×200×細分÷60（数値出力）"
+  },
+  "pd42s1_pulse_rpm_from_freq": {
+    "message0": "周波数 %1 Hz 細分 %2 の回転速度 RPM",
+    "tooltip": "パルス周波数に対応する実際の回転速度：RPM=周波数×60÷(200×細分)（数値出力）"
+  },
+  "pd42s1_io_pin_init": {
+    "message0": "IO start-stopピン初期化 ピン %1",
+    "tooltip": "IO start-stop出力ピンを初期化（既定39はDNESP32S3配線、他ボードは変更）。IO start-stopモード積木と併用"
+  },
+  "pd42s1_io_pin_set": {
+    "message0": "IO start-stop出力レベル %1",
+    "tooltip": "IO start-stopピンレベル設定（開始レベルはIO開始レベル設定のプロトコル積木で定義）",
+    "args0": [
+      {
+        "options": [
+          [
+            "High",
+            "HIGH"
+          ],
+          [
+            "Low",
+            "LOW"
+          ]
+        ]
+      }
+    ]
+  },
+  "pd42s1_io_pin_toggle": {
+    "message0": "IO start-stopレベル反転",
+    "tooltip": "IO start-stopピンレベルを反転（開始/停止切替）"
+  }
+}
