@@ -48,7 +48,7 @@ Arduino.forBlock['onebutton_setup'] = function(block, generator) {
   // 4. 自动添加tick()到主循环
   generator.addLoopBegin(varName + '.tick();', varName + '.tick();');
 
-  // 5. 生成设置代码 (按键现在在 IO2/IO5/IO4, 均非 UART0 脚, 无需释放 UART0)
+  // 5. 生成设置代码 (V2 按键在 IO10/IO5/IO8, 均非 UART0 脚, 无需释放 UART0)
   return varName + '.setup(' + pin + ', ' + pinMode + ', ' + activeLow + ');\n';
 };
 

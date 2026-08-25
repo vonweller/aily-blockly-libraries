@@ -10,7 +10,7 @@ Control programmable RGB LED strips, supporting various colors and animation eff
 
 | Block Type | Connection | Parameters (block.json order) | ABS Format | Generated Code |
 |------------|------------|--------------------------|------------|----------------|
-| `neopixel_init` | Statement | (none) | `neopixel_init()` | `Adafruit_NeoPixel strip(1, 8, NEO_GRB + NEO_KHZ800);` |
+| `neopixel_init` | Statement | (none) | `neopixel_init()` | `Adafruit_NeoPixel strip(1, 4, NEO_GRB + NEO_KHZ800);` |
 | `neopixel_begin` | Statement | (none) | `neopixel_begin()` | `strip.begin();` |
 | `neopixel_show` | Statement | (none) | `neopixel_show()` | `strip.show();` |
 | `neopixel_set_brightness` | Statement | BRIGHTNESS(field_number) | `neopixel_set_brightness(50)` | `strip.setBrightness(50);` |

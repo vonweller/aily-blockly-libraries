@@ -10,7 +10,7 @@ GxEPD2 Blockly blocks for SPI e-paper displays from Good Display and Waveshare.
 
 | Block Type | Connection | Parameters (block.json order) | ABS Format | Generated Code |
 |------------|------------|--------------------------|------------|----------------|
-| `gxepd2_setup` | Statement | VAR(field_input), BAUD(dropdown), RESET_DURATION(dropdown), INITIAL(dropdown), PULLDOWN(dropdown) | `gxepd2_setup("display", 0, 2, TRUE, FALSE)` | `display.init(0, true, 2, false); ↵ SPI.end(); ↵ SPI.begin(6, -1, 7, 10); // linkbit e-Paper SPI: SCK=6 MISO=-1(墨水屏只写) MOSI=7 CS=10` |
+| `gxepd2_setup` | Statement | VAR(field_input), BAUD(dropdown), RESET_DURATION(dropdown), INITIAL(dropdown), PULLDOWN(dropdown) | `gxepd2_setup("display", 0, 2, TRUE, FALSE)` | `display.init(0, true, 2, false); ↵ SPI.end(); ↵ SPI.begin(6, -1, 7, 2); // linkbit e-Paper SPI: SCK=6 MISO=-1(墨水屏只写) MOSI=7 CS=2` |
 | `gxepd2_page_update` | Statement | VAR(field_variable), WINDOW(dropdown), DRAW(input_statement) | `gxepd2_page_update($display, FULL)` | `display.setFullWindow(); ↵ display.firstPage(); ↵ do { ↵ } while (display.nextPage());` |
 | `gxepd2_clear_display` | Statement | VAR(field_variable), COLOR(input_value) | `gxepd2_clear_display($display, gxepd2_color(GxEPD_WHITE))` | `display.setFullWindow(); ↵ display.firstPage(); ↵ do { ↵ display.fillScreen(1); ↵ } while (display.nextPage());` |
 | `gxepd2_set_partial_window` | Statement | VAR(field_variable), X(input_value), Y(input_value), W(input_value), H(input_value) | `gxepd2_set_partial_window($display, math_number(0), math_number(0), math_number(128), math_number(64))` | `display.setPartialWindow(1, 1, 1, 1);` |

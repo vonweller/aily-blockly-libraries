@@ -5,7 +5,8 @@
     "基础读取": "Lecture de base",
     "时间预估": "estimation du temps",
     "容量信息": "Informations sur la capacité",
-    "配置": "Configuration"
+    "配置": "Configuration",
+    "4pin座子模式切换": "Mode du connecteur 4 broches"
   },
   "bq27220_init": {
     "message0": "Initialiser BQ27220 %1 adresse %2",
@@ -102,5 +103,23 @@
   "bq27220_set_design_capacity": {
     "message0": "%1 définir la capacité de conception %2 mAh",
     "tooltip": "Définir la capacité de conception de la batterie(mAh)"
+  },
+  "bq27220_i2c_select": {
+    "message0": "basculer en %1",
+    "tooltip": "linkbit V2 : le commutateur analogique (GPIO9) dirige GPIO20/21 soit vers la jauge BQ27220 (mode I2C), soit vers le connecteur d'extension CN2 (mode IO normal, utilisable en IO général ou pour des périphériques I2C externes). L'initialisation de la jauge choisit le mode I2C automatiquement.",
+    "args0": [
+      {
+        "options": [
+          [
+            "mode I2C",
+            "1"
+          ],
+          [
+            "mode IO normal",
+            "0"
+          ]
+        ]
+      }
+    ]
   }
 }
