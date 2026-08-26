@@ -15,7 +15,6 @@ const {
   absFormat,
   allDocumentedBlocks,
 } = require('./check-readme-compliance');
-const { buildABSFormat } = require('./gen-readme-ai');
 const { generateCandidate } = require('./generate-readme-candidate');
 const { rewriteReadme } = require('./migrate-readme-field-variables');
 const { rewriteReadmeTables } = require('./migrate-readme-table-statements');
@@ -37,7 +36,7 @@ const {
   readFixture: readRuntimeFixture,
   verifyFixtureExpectations,
 } = require('./check-readme-runtime-contract');
-const LibraryValidator = require('../.scripts_git_action/validate-library-compliance');
+const LibraryValidator = require('./validate-library-compliance');
 
 const dhtRead = {
   type: 'dht_read_temperature',
@@ -317,7 +316,7 @@ test('runtime-defined block contracts reject collisions and incomplete definitio
   assert.ok(messages.some(message => message.includes('missing_definition definition must be a block JSON object')));
 });
 
-test('both README renderers use a bare variable reference for field_variable', () => {
+test('README generation and its canonical formatter use a bare variable reference for field_variable', () => {
   const readme = generateAiReadme(
     { name: '@aily-project/lib-test', version: '1.0.0' },
     [dhtRead],
@@ -326,7 +325,7 @@ test('both README renderers use a bare variable reference for field_variable', (
   );
   assert.match(readme, /dht_read_temperature\(\$dht\)/);
   assert.doesNotMatch(readme, /dht_read_temperature\(variables_get\(\$dht\)\)/);
-  assert.equal(buildABSFormat(dhtRead, dhtRead.args0), '`dht_read_temperature($dht)`');
+  assert.equal(absFormat(dhtRead), 'dht_read_temperature($dht)');
 });
 
 test('compact rendering never inserts executable-looking placeholders', () => {

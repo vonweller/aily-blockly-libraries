@@ -16,11 +16,11 @@ const fs = require('fs');
 const path = require('path');
 const { execFileSync } = require('child_process');
 const yaml = require('js-yaml');
-const readmeCompliance = require('../.scripts/check-readme-compliance.js');
+const readmeCompliance = require('./check-readme-compliance.js');
 const {
   contractRepositoryPathForLibrary,
   libraryFromContractRepositoryPath,
-} = require('../.scripts/readme-library-contracts.js');
+} = require('./readme-library-contracts.js');
 
 const REPOSITORY_ROOT = path.resolve(__dirname, '..');
 

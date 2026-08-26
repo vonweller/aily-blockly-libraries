@@ -43,7 +43,7 @@
 
 - `aily-blockly-libraries` 当前 560 个含 `block.json` 的库、7214 个块和对应 `readme_ai.md`；
 - `core-logic/readme_ai.md` 在 `49c0ac17`、`db67f4fa` 和当前 HEAD 的差异；
-- `.scripts/gen-readme-ai.js`、`.scripts/check-readme-compliance.js`、`.scripts_git_action/validate-library-compliance.js`、CI workflow 和 README 编写规范；
+- `.scripts/generate-readme-candidate.js`、`.scripts/check-readme-compliance.js`、`.scripts/validate-library-compliance.js`、CI workflow 和 README 编写规范；
 - `aily-blockly` 中 `abiAbsConverter.ts`、`absParser.ts`、`block-definition.service.ts`、`editBlockTool.ts`、`syncAbsFileTool.ts`，以及 README 消费路径、主 Agent prompt、`abs-syntax-reference` 与 `library-migration-guide`；
 - `core-loop`、`adafruit_DHT`、`ArduinoJson` 等不同模式的横向样本。
 
@@ -709,7 +709,7 @@ CI 对 README 变更输出机器可读差异：
 
 - 两套 README 生成器的 `field_variable` 示例统一改为裸 `$var`；
 - 删除生成器 ABS 单元中的 `...`、`child_block()` 和同行 statement 占位表达；
-- `readme:fix` 与旧 `.scripts/gen-readme-ai.js` CLI 均已设置为拒绝写入；
+- `readme:fix` 已设置为拒绝写入，旧 `.scripts/gen-readme-ai.js` 已删除；
 - 新增 `readme:candidate <lib>`，只写入 `.temp/readme-candidates/<lib>/readme_ai.md`，写入前执行槽位感知的 ABS 静态契约校验；
 - 新增 `--strict-abs`、`readme:audit`、`readme:contract`；默认合规路径把历史 ABS 债务作为 info 报告，严格路径作为迁移门禁；
 - CI validator 不再建议运行覆盖式 `readme:fix`；
@@ -746,7 +746,7 @@ CI 对 README 变更输出机器可读差异：
 - 新增 `core-logic/controls_if`、`core-loop/controls_for`、`adafruit_DHT/dht_read_temperature` 三类静态黄金契约片段，分别覆盖值输入加缩进 statement body、`field_variable` 位置参数和嵌套 value 调用；
 - 使用真实仓库 `HEAD` 对当前 DHT 修复做基线比较，结果为新增 0 项、修复 4 项，门禁允许通过；反向注入 wrapper 的测试能稳定产生 2 项新增回归并记录独立失败信号；
 - fenced example 改为在去除字符串和注释后检查整行，能发现右括号后的同行 statement 和独立伪块，又不会把 `text("Waiting...")` 之类合法字符串误判为占位符；
-- `npm run readme:test` 当前 16/16 通过，`npm run test:actions` 当前 6/6 通过。
+- `npm run readme:test` 当前 51/51 通过。
 
 第二批实现进展（2026-08-10）：
 
