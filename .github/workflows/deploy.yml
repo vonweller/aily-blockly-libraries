@@ -641,19 +641,19 @@ jobs:
           registry-url: ${{ secrets.REGISTRY_URL }}
       
       - name: Generate JSON
-        run: node .scripts_git_action/genjson.js
+        run: node .scripts/genjson.js
 
       - name: Generate AI libraries JSON
         run: node .scripts/genjson-ai.js
 
       - name: Generate library info files
-        run: node .scripts_git_action/generate-info.js --all
+        run: node .scripts/generate-info.js --all
       
       - name: Generate libraries index
-        run: node .scripts_git_action/generate-libraries-index.js
+        run: node .scripts/generate-libraries-index.js
 
       - name: Generate package folder map
-        run: node .scripts_git_action/generate-package-folder-map.js
+        run: node .scripts/generate-package-folder-map.js
       
       - name: Check if JSON file exists
         run: |

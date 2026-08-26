@@ -3,7 +3,7 @@ const path = require('path');
 
 async function main() {
   try {
-    // 脚本位于 .scripts_git_action/ 下，库目录和输出文件都在仓库根目录
+    // 脚本位于 .scripts/ 下，库目录和输出文件都在仓库根目录
     const currentDir = path.join(__dirname, '..');
     const dirents = await fs.readdir(currentDir, { withFileTypes: true });
     const packageFolderMap = {};

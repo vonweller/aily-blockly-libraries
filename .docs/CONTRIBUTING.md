@@ -42,7 +42,7 @@ git checkout -b fix/修复问题描述
 # 开发您的库...
 
 # 运行规范检测
-node validate-library-compliance.js 您的库名称
+npm run validate -- 您的库名称
 ```
 
 ### 4. 提交与推送
@@ -271,10 +271,10 @@ git rebase upstream/main
 
 ```bash
 # 运行规范检测脚本
-node validate-library-compliance.js 您的库名称
+npm run validate -- 您的库名称
 
 # 检测所有变更的库
-node github-actions-validator.js --changed
+npm run validate:changed
 ```
 
 **确保检测分数达到80分以上才能通过自动审核！**
@@ -330,16 +330,13 @@ git push origin feature/新库名称
 
 ```bash
 # 检测单个库
-node validate-library-compliance.js DHT
-
-# 检测多个库
-node validate-library-compliance.js DHT FastLED servo
+npm run validate -- DHT
 
 # 检测所有库
-node validate-library-compliance.js --all
+npm run validate:all
 
 # GitHub Actions模式（检测git变更的库）
-node github-actions-validator.js --changed
+npm run validate:changed
 ```
 
 ---
@@ -417,7 +414,7 @@ git commit -m "docs(servo): 更新README添加使用示例"
 - [ ] ⚠️ **本PR只涉及一个库的变更**（重要！）
 - [ ] ⚠️ **Commit信息清晰且数量精简**
 - [ ] 已阅读 [库规范.md](./库规范.md)
-- [ ] 已运行 `node validate-library-compliance.js 库名称` 且分数>=80
+- [ ] 已运行 `npm run validate -- 库名称` 且分数>=80
 - [ ] 库包含所有必需文件（package.json, block.json, generator.js, toolbox.json）
 - [ ] package.json 中的 name 以 `@aily-project/lib-` 开头
 - [ ] 已添加 readme.md 说明文档

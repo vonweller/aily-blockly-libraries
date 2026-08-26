@@ -7,16 +7,16 @@
  * 基于: Arduino库转Blockly库规范.md
  * 
  * 使用方法:
- *   node validate-library-compliance.js [库名]      检测指定库
- *   node validate-library-compliance.js --all        检测所有库
- *   node validate-library-compliance.js --changed    检测PR中变更的库
+ *   node .scripts/validate-library-compliance.js [库名]      检测指定库
+ *   node .scripts/validate-library-compliance.js --all        检测所有库
+ *   node .scripts/validate-library-compliance.js --changed    检测PR中变更的库
  */
 
 const fs = require('fs');
 const path = require('path');
 const { execFileSync } = require('child_process');
 const yaml = require('js-yaml');
-const readmeCompliance = require('../.scripts/check-readme-compliance.js');
+const readmeCompliance = require('./check-readme-compliance.js');
 
 class LibraryValidator {
   constructor(configPath = null) {
@@ -1261,11 +1261,11 @@ async function main() {
 Arduino库转Blockly库规范检测工具
 
 使用方法:
-  node validate-library-compliance.js [库名]       检测指定库
-  node validate-library-compliance.js --all        检测所有库
-  node validate-library-compliance.js --changed    检测PR中变更的库 (推荐用于CI/CD)
-  node validate-library-compliance.js --changed --base <sha> --head <sha>
-  node validate-library-compliance.js --help       显示帮助
+  node .scripts/validate-library-compliance.js [库名]       检测指定库
+  node .scripts/validate-library-compliance.js --all        检测所有库
+  node .scripts/validate-library-compliance.js --changed    检测PR中变更的库 (推荐用于CI/CD)
+  node .scripts/validate-library-compliance.js --changed --base <sha> --head <sha>
+  node .scripts/validate-library-compliance.js --help       显示帮助
 
 检测范围:
   ✅ 文件结构完整性

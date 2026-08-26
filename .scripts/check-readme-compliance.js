@@ -13,7 +13,6 @@ const SKIP_DIRS = new Set([
   '.git',
   '.github',
   '.scripts',
-  '.scripts_git_action',
   '.docs',
   '.docs_ai',
   '.vscode',

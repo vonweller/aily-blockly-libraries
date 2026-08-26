@@ -30,10 +30,12 @@
 ├── workflows/
 │   └── library-compliance-check.yml    # 主要的GitHub Actions工作流
 ├── compliance-config.yml               # 检测规则配置文件
-└── COMPLIANCE.md                      # 本文档
+└── COMPLIANCE.md                       # 本文档
 
-validate-library-compliance.js          # 核心检测脚本
-github-actions-validator.js             # GitHub Actions优化版本
+.scripts/
+├── validate-library-compliance.js      # 统一检测入口
+├── check-readme-compliance.js          # README 检测依赖
+└── check-i18n-compliance.js             # i18n 检测依赖
 ```
 
 ## 🔧 本地使用
@@ -41,22 +43,19 @@ github-actions-validator.js             # GitHub Actions优化版本
 ### 基础用法
 ```bash
 # 检测单个库
-node validate-library-compliance.js 74HC595
+npm run validate -- 74HC595
 
-# 检测多个库  
-node validate-library-compliance.js DHT FastLED servo
+# 检测另一个库
+npm run validate -- DHT
 
 # 检测所有库
-node validate-library-compliance.js --all
+npm run validate:all
 ```
 
 ### GitHub Actions模式
 ```bash
 # 检测Git变更的库
-node github-actions-validator.js --changed
-
-# 检测指定库（GitHub Actions优化）
-node github-actions-validator.js 74HC595 DHT
+npm run validate:changed
 ```
 
 ## 📊 评分标准
@@ -159,7 +158,7 @@ compliance:
 
 ```bash
 # 启用详细日志
-DEBUG=1 node validate-library-compliance.js mylib
+DEBUG=1 npm run validate -- mylib
 
 # GitHub Actions调试
 # 在工作流中添加:
@@ -183,9 +182,9 @@ DEBUG=1 node validate-library-compliance.js mylib
 
 ## 🔗 相关资源
 
-- 📖 [Arduino库转Blockly库规范](./Arduino库转Blockly库规范.md)
-- 📋 [Blockly库README编写规范](./blockly库readme编写规范.md)
-- 🏗️ [库开发指南](./库开发.md)
+- 📖 [Arduino库转Blockly库规范](../.docs_ai/zh_cn/Arduino库转Blockly库规范.md)
+- 📋 [Blockly库README编写规范](../.docs_ai/zh_cn/blockly库readme编写规范.md)
+- 🏗️ [库开发指南](../.docs/库开发.md)
 - 🎯 [最佳实践示例](./adafruit_DHT/) - 参考DHT库实现
 
 ## 🤝 贡献指南
