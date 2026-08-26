@@ -1,0 +1,809 @@
+{
+  "toolbox_name": "PD42S1 stepper motor",
+  "toolbox_labels": {
+    "初始化与应答": "Init & ACK",
+    "运动控制": "Motion",
+    "立即控制": "Instant",
+    "参数设置": "Settings",
+    "回零与限位": "Homing & Limits",
+    "系统维护": "System",
+    "脉冲与IO输出": "Pulse & IO output"
+  },
+  "pd42s1_init": {
+    "message0": "PD42S1 init TX pin %1 RX pin %2 baud %3",
+    "tooltip": "Initialize Serial1 for the PD42S1 bus; default pins 19/20 (DNESP32S3 wiring), change for other boards; default baud 115200"
+  },
+  "pd42s1_read": {
+    "message0": "read %1 motor addr %2 ack timeout %3 ms",
+    "tooltip": "Send the read command, wait for the reply and print the parsed result on Serial; positions count 51200 per turn",
+    "args0": [
+      {
+        "options": [
+          [
+            "soft/hard version",
+            "VER"
+          ],
+          [
+            "motor flux linkage",
+            "PSI"
+          ],
+          [
+            "phase R & L",
+            "RES_IND"
+          ],
+          [
+            "phase current",
+            "PHASE_MA"
+          ],
+          [
+            "bus voltage",
+            "VOL"
+          ],
+          [
+            "current-loop PID",
+            "MA_PID"
+          ],
+          [
+            "speed-loop PID",
+            "SPEED_PID"
+          ],
+          [
+            "position-loop PID",
+            "POS_PID"
+          ],
+          [
+            "total pulses",
+            "TOTAL_PULSE"
+          ],
+          [
+            "realtime speed",
+            "RPM"
+          ],
+          [
+            "realtime position",
+            "POS"
+          ],
+          [
+            "position error",
+            "POS_ERR"
+          ],
+          [
+            "run status",
+            "MOTOR_STA"
+          ],
+          [
+            "stall flag",
+            "CLOG_FLAG"
+          ],
+          [
+            "stall current",
+            "CLOG_MA"
+          ],
+          [
+            "enable status",
+            "EN_STA"
+          ],
+          [
+            "in-position status",
+            "ARRIVED"
+          ],
+          [
+            "system params",
+            "SYS_PARAMS"
+          ],
+          [
+            "drive params",
+            "DRIVE_PARAMS"
+          ],
+          [
+            "homing params",
+            "HOME_PARAMS"
+          ],
+          [
+            "homing status",
+            "HOME_STA"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "pd42s1_handle_ack": {
+    "message0": "wait & process driver ack timeout %1 ms",
+    "tooltip": "Wait for the driver ack frame, parse and print it (ends after timeout); use after send commands"
+  },
+  "pd42s1_torque_mode": {
+    "message0": "motor addr %1 torque mode dir %2 current %3 mA",
+    "tooltip": "Closed-loop torque: direction + target current 0-3000 mA; current rises to target only under load",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "CW clockwise",
+            "CW"
+          ],
+          [
+            "CCW counter-clockwise",
+            "CCW"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "pd42s1_speed_mode": {
+    "message0": "motor addr %1 speed mode dir %2 acc %3 speed %4 RPM",
+    "tooltip": "Closed-loop speed: direction + accel 0-200 RPM/s (0 = instant start) + speed 0.1-3000 RPM",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "CW clockwise",
+            "CW"
+          ],
+          [
+            "CCW counter-clockwise",
+            "CCW"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "pd42s1_pos_mode": {
+    "message0": "motor addr %1 absolute position mode dir %2 acc %3 speed %4 RPM pulses %5",
+    "tooltip": "Closed-loop absolute position: dir + acc + max speed 0-3000 RPM + target pulses (51200 per turn)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "CW clockwise",
+            "CW"
+          ],
+          [
+            "CCW counter-clockwise",
+            "CCW"
+          ]
+        ]
+      },
+      null,
+      null,
+      null
+    ]
+  },
+  "pd42s1_pos_rel_mode": {
+    "message0": "motor addr %1 relative position mode dir %2 acc %3 speed %4 RPM pulses %5",
+    "tooltip": "Closed-loop relative position: move the given pulses from the current position (51200 per turn), repeatable",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "CW clockwise",
+            "CW"
+          ],
+          [
+            "CCW counter-clockwise",
+            "CCW"
+          ]
+        ]
+      },
+      null,
+      null,
+      null
+    ]
+  },
+  "pd42s1_pulse_mode": {
+    "message0": "motor addr %1 pulse mode",
+    "tooltip": "Switch to pulse mode: controlled by EN/STP/DIR pins (you must output pulses separately)"
+  },
+  "pd42s1_pw_pos_mode": {
+    "message0": "motor addr %1 pulse-width position mode max pulse width %2 us min pulse width %3 us pos at max width %4 pos at min width %5",
+    "tooltip": "Pulse-width position (servo-like): PWM high width maps linearly to position; widths must not be 0"
+  },
+  "pd42s1_pw_ma_mode": {
+    "message0": "motor addr %1 pulse-width torque mode max pulse width %2 us min pulse width %3 us current at max width %4 mA current at min width %5 mA",
+    "tooltip": "Pulse-width torque mode: PWM high width maps linearly to current 0-3000 mA; widths must not be 0"
+  },
+  "pd42s1_pw_speed_mode": {
+    "message0": "motor addr %1 pulse-width speed mode max pulse width %2 us min pulse width %3 us speed at max width %4 RPM speed at min width %5 RPM",
+    "tooltip": "Pulse-width speed mode: PWM high width maps linearly to speed; widths must not be 0"
+  },
+  "pd42s1_ol_speed_mode": {
+    "message0": "motor addr %1 open-loop speed mode dir %2 acc %3 speed %4 RPM",
+    "tooltip": "Open-loop speed (no position feedback): dir + acc + speed 0.1-3000 RPM",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "CW clockwise",
+            "CW"
+          ],
+          [
+            "CCW counter-clockwise",
+            "CCW"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "pd42s1_ol_pos_mode": {
+    "message0": "motor addr %1 open-loop absolute position mode dir %2 acc %3 speed %4 RPM pulses %5",
+    "tooltip": "Open-loop absolute position: runs to the target by pulses without encoder feedback",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "CW clockwise",
+            "CW"
+          ],
+          [
+            "CCW counter-clockwise",
+            "CCW"
+          ]
+        ]
+      },
+      null,
+      null,
+      null
+    ]
+  },
+  "pd42s1_ol_pos_rel_mode": {
+    "message0": "motor addr %1 open-loop relative position mode dir %2 acc %3 speed %4 RPM pulses %5",
+    "tooltip": "Open-loop relative position: relative move by pulses from current position, no encoder feedback",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "CW clockwise",
+            "CW"
+          ],
+          [
+            "CCW counter-clockwise",
+            "CCW"
+          ]
+        ]
+      },
+      null,
+      null,
+      null
+    ]
+  },
+  "pd42s1_ol_pulse_mode": {
+    "message0": "motor addr %1 open-loop pulse mode",
+    "tooltip": "Switch to open-loop pulse mode: controlled by EN/STP/DIR pins (output pulses separately)"
+  },
+  "pd42s1_io_run_ctrl": {
+    "message0": "motor addr %1 IO start-stop mode dir %2 acc %3 speed %4 RPM",
+    "tooltip": "IO start-stop mode: run with dir/acc/speed, started by the driver IO pin level (set IO start level first)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "CW clockwise",
+            "CW"
+          ],
+          [
+            "CCW counter-clockwise",
+            "CCW"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "pd42s1_stop_now": {
+    "message0": "motor addr %1 stop now (brake)",
+    "tooltip": "Stop immediately with braking; clear the motor state soon after braking or the motor may overheat"
+  },
+  "pd42s1_clear_sta": {
+    "message0": "motor addr %1 clear motor state (stall/disable/brake)",
+    "tooltip": "Clear stall, disable and brake state flags"
+  },
+  "pd42s1_motor_enable": {
+    "message0": "motor addr %1 enable control %2",
+    "tooltip": "Enable or disable the motor; when disabled the shaft spins freely",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "enable motor",
+            "ENABLE"
+          ],
+          [
+            "disable motor",
+            "DISABLE"
+          ]
+        ]
+      }
+    ]
+  },
+  "pd42s1_angle_zero": {
+    "message0": "motor addr %1 zero current position",
+    "tooltip": "Zero the current position (best done when the motor is stopped)"
+  },
+  "pd42s1_remove_clog": {
+    "message0": "motor addr %1 release stall protection",
+    "tooltip": "Release the stall-protection lock and restore motor operation"
+  },
+  "pd42s1_cal_encoder": {
+    "message0": "motor addr %1 calibrate encoder",
+    "tooltip": "Calibrate the encoder zero; the motor moves slightly during calibration, keep power on"
+  },
+  "pd42s1_restart": {
+    "message0": "motor addr %1 restart",
+    "tooltip": "Restart the driver"
+  },
+  "pd42s1_reset_factory": {
+    "message0": "motor addr %1 factory reset",
+    "tooltip": "Factory reset; wait for the motor to stop afterwards (parameters re-identified)"
+  },
+  "pd42s1_param_save": {
+    "message0": "motor addr %1 save params (non-volatile)",
+    "tooltip": "Save current parameters to the driver's non-volatile memory"
+  },
+  "pd42s1_set_slave_add": {
+    "message0": "motor addr %1 set slave addr to %2",
+    "tooltip": "Set the motor slave address (1-255); use the new address afterwards"
+  },
+  "pd42s1_set_group_add": {
+    "message0": "motor addr %1 set group addr to %2",
+    "tooltip": "Set the group address to control multiple motors with one command"
+  },
+  "pd42s1_set_mode": {
+    "message0": "motor addr %1 set work mode %2",
+    "tooltip": "Set the driver work mode (comm / pulse / pulse-width / homing / open-loop series)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "comm position mode",
+            "COMM_POS"
+          ],
+          [
+            "comm speed mode",
+            "COMM_SPEED"
+          ],
+          [
+            "comm torque mode",
+            "COMM_TORQUE"
+          ],
+          [
+            "pulse mode",
+            "PULSE"
+          ],
+          [
+            "pw position mode",
+            "PW_POS"
+          ],
+          [
+            "pw speed mode",
+            "PW_SPEED"
+          ],
+          [
+            "pw torque mode",
+            "PW_TORQUE"
+          ],
+          [
+            "homing mode",
+            "HOME"
+          ],
+          [
+            "OL speed mode",
+            "OL_SPEED"
+          ],
+          [
+            "OL position mode",
+            "OL_POS"
+          ],
+          [
+            "OL pulse mode",
+            "OL_PULSE"
+          ]
+        ]
+      }
+    ]
+  },
+  "pd42s1_set_pos_pid": {
+    "message0": "motor addr %1 set position PID Kp %2 Ki %3 Kd %4",
+    "tooltip": "Set position-loop PID gains (Kp/Ki/Kd, 32-bit integers)"
+  },
+  "pd42s1_set_speed_pid": {
+    "message0": "motor addr %1 set speed PID Kp %2 Ki %3 Kd %4",
+    "tooltip": "Set speed-loop PID gains (Kp/Ki/Kd, 32-bit integers)"
+  },
+  "pd42s1_set_pos_torque": {
+    "message0": "motor addr %1 set position max torque %2 mA",
+    "tooltip": "Set the position-loop torque limit (100-3000 mA)"
+  },
+  "pd42s1_set_step": {
+    "message0": "motor addr %1 set microstep %2",
+    "tooltip": "Set microstepping (1-256); finer = smoother but less torque"
+  },
+  "pd42s1_set_ma": {
+    "message0": "motor addr %1 set target current (torque mode) %2 mA",
+    "tooltip": "Set target current (effective in torque mode only, 0-3000 mA)"
+  },
+  "pd42s1_set_uart_baud": {
+    "message0": "motor addr %1 set driver UART baud %2",
+    "tooltip": "Set the driver UART baud; re-init with the new baud afterwards"
+  },
+  "pd42s1_set_can_baud": {
+    "message0": "motor addr %1 set CAN baud %2 Kbps",
+    "tooltip": "Set the driver CAN baud rate (in Kbps)"
+  },
+  "pd42s1_set_modbus": {
+    "message0": "motor addr %1 protocol %2",
+    "tooltip": "Choose the custom protocol or MODBUS",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "custom protocol",
+            "CUSTOM"
+          ],
+          [
+            "MODBUS protocol",
+            "MODBUS"
+          ]
+        ]
+      }
+    ]
+  },
+  "pd42s1_set_clog_pro": {
+    "message0": "motor addr %1 stall protection %2",
+    "tooltip": "Enable or disable the stall protection",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "off",
+            "OFF"
+          ],
+          [
+            "on",
+            "ON"
+          ]
+        ]
+      }
+    ]
+  },
+  "pd42s1_set_clog_current": {
+    "message0": "motor addr %1 set stall current %2 mA",
+    "tooltip": "Set the stall current (0-3000 mA)"
+  },
+  "pd42s1_set_can_id": {
+    "message0": "motor addr %1 set CAN ID %2",
+    "tooltip": "Set the CAN transmit ID (29-bit extended)"
+  },
+  "pd42s1_set_dir_level": {
+    "message0": "motor addr %1 DIR CW level %2",
+    "tooltip": "Set the DIR-pin level that means CW (for pulse/dir control)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "HIGH level = CW",
+            "HIGH"
+          ],
+          [
+            "LOW level = CW",
+            "LOW"
+          ]
+        ]
+      }
+    ]
+  },
+  "pd42s1_set_en_level": {
+    "message0": "motor addr %1 EN active level %2",
+    "tooltip": "Set the EN pin active level (low / high / always active)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "active LOW",
+            "LOW"
+          ],
+          [
+            "active HIGH",
+            "HIGH"
+          ],
+          [
+            "always active",
+            "ALWAYS"
+          ]
+        ]
+      }
+    ]
+  },
+  "pd42s1_set_cmd_echo": {
+    "message0": "motor addr %1 command echo %2",
+    "tooltip": "Set whether the driver replies with ack frames",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "echo",
+            "ECHO"
+          ],
+          [
+            "no echo",
+            "NO_ECHO"
+          ]
+        ]
+      }
+    ]
+  },
+  "pd42s1_set_key_lock": {
+    "message0": "motor addr %1 panel keys %2",
+    "tooltip": "Lock or unlock the driver panel keys",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "unlock",
+            "UNLOCK"
+          ],
+          [
+            "lock",
+            "LOCK"
+          ]
+        ]
+      }
+    ]
+  },
+  "pd42s1_set_auto_display": {
+    "message0": "motor addr %1 auto screen off %2",
+    "tooltip": "Enable or disable the driver screen auto-off",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "off",
+            "OFF"
+          ],
+          [
+            "on",
+            "ON"
+          ]
+        ]
+      }
+    ]
+  },
+  "pd42s1_set_io_start_level": {
+    "message0": "motor addr %1 IO start level %2",
+    "tooltip": "Set the IO start-stop trigger level (start on LOW or HIGH)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "start on LOW",
+            "LOW"
+          ],
+          [
+            "start on HIGH",
+            "HIGH"
+          ]
+        ]
+      }
+    ]
+  },
+  "pd42s1_origin_left_pos": {
+    "message0": "motor addr %1 set left limit origin %2",
+    "tooltip": "Set the left limit origin position (51200 per turn)"
+  },
+  "pd42s1_origin_right_pos": {
+    "message0": "motor addr %1 set right limit origin %2",
+    "tooltip": "Set the right limit origin position (51200 per turn)"
+  },
+  "pd42s1_origin_homing": {
+    "message0": "motor addr %1 find zero %2 dir %3 speed %4 RPM reach current %5 mA",
+    "tooltip": "Find zero: without limit switch by stall current (200-1000 mA recommended), with limit switch by the switch; keep speed under 100 RPM",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "no limit switch",
+            "NO_LIMIT"
+          ],
+          [
+            "with limit switch",
+            "WITH_LIMIT"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "CW clockwise",
+            "CW"
+          ],
+          [
+            "CCW counter-clockwise",
+            "CCW"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "pd42s1_origin_trig": {
+    "message0": "motor addr %1 trigger homing %2",
+    "tooltip": "Trigger the homing action: single-turn / nearest / multi-turn",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "single-turn homing",
+            "SINGLE"
+          ],
+          [
+            "nearest homing",
+            "NEAREST"
+          ],
+          [
+            "multi-turn homing",
+            "MULTI"
+          ]
+        ]
+      }
+    ]
+  },
+  "pd42s1_origin_break": {
+    "message0": "motor addr %1 abort homing",
+    "tooltip": "Force-abort an ongoing homing operation"
+  },
+  "pd42s1_origin_timeout": {
+    "message0": "motor addr %1 set homing timeout %2 ms",
+    "tooltip": "Set the homing timeout (in ms)"
+  },
+  "pd42s1_origin_auto": {
+    "message0": "motor addr %1 auto homing on power-up %2",
+    "tooltip": "Set whether the driver homes automatically on power-up",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "off",
+            "OFF"
+          ],
+          [
+            "on",
+            "ON"
+          ]
+        ]
+      }
+    ]
+  },
+  "pd42s1_origin_switch": {
+    "message0": "motor addr %1 L/R limit switch %2",
+    "tooltip": "When enabled, the motion range is limited by the L/R limit origins",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "off",
+            "OFF"
+          ],
+          [
+            "on",
+            "ON"
+          ]
+        ]
+      }
+    ]
+  },
+  "pd42s1_pulse_pin_init": {
+    "message0": "pulse pin init EN %1 STEP %2 DIR %3",
+    "tooltip": "Init the EN/STEP/DIR output pins (default 35/36/37 for DNESP32S3 wiring, change for other boards); use with the pulse-mode block"
+  },
+  "pd42s1_pulse_en": {
+    "message0": "set EN level %1",
+    "tooltip": "Set the pulse-mode EN pin level (configure the EN active level protocol block first)",
+    "args0": [
+      {
+        "options": [
+          [
+            "HIGH",
+            "HIGH"
+          ],
+          [
+            "LOW",
+            "LOW"
+          ]
+        ]
+      }
+    ]
+  },
+  "pd42s1_pulse_en_toggle": {
+    "message0": "toggle EN level",
+    "tooltip": "Toggle the EN enable pin level"
+  },
+  "pd42s1_pulse_dir": {
+    "message0": "set DIR level %1",
+    "tooltip": "Set the pulse-mode DIR pin level (CW/CCW meaning is defined by the DIR-level protocol block)",
+    "args0": [
+      {
+        "options": [
+          [
+            "HIGH",
+            "HIGH"
+          ],
+          [
+            "LOW",
+            "LOW"
+          ]
+        ]
+      }
+    ]
+  },
+  "pd42s1_pulse_dir_toggle": {
+    "message0": "toggle DIR level",
+    "tooltip": "Toggle the DIR pin level (reverses direction)"
+  },
+  "pd42s1_pulse_output": {
+    "message0": "output %1 pulses half-period %2 us",
+    "tooltip": "Output the given pulse count on the STEP pin (software timing, speed not precise); 3200 pulses = 1 turn at 16 microsteps"
+  },
+  "pd42s1_pulse_freq_from_rpm": {
+    "message0": "pulse freq Hz for microstep %1 speed %2 RPM",
+    "tooltip": "Compute the pulse frequency for a target speed: freq = RPM×200×microstep÷60 (number output)"
+  },
+  "pd42s1_pulse_rpm_from_freq": {
+    "message0": "speed RPM for freq %1 Hz microstep %2",
+    "tooltip": "Compute the actual speed for a pulse frequency: RPM = freq×60÷(200×microstep) (number output)"
+  },
+  "pd42s1_io_pin_init": {
+    "message0": "IO start-stop pin init pin %1",
+    "tooltip": "Init the IO start-stop output pin (default 39 for DNESP32S3 wiring, change for other boards); use with the IO start-stop mode block"
+  },
+  "pd42s1_io_pin_set": {
+    "message0": "IO start-stop output level %1",
+    "tooltip": "Set the IO start-stop pin level (the start level is defined by the IO-level protocol block)",
+    "args0": [
+      {
+        "options": [
+          [
+            "HIGH",
+            "HIGH"
+          ],
+          [
+            "LOW",
+            "LOW"
+          ]
+        ]
+      }
+    ]
+  },
+  "pd42s1_io_pin_toggle": {
+    "message0": "toggle IO start-stop level",
+    "tooltip": "Toggle the IO start-stop pin level (start/stop)"
+  }
+}

@@ -1,0 +1,809 @@
+{
+  "toolbox_name": "motor paso a paso PD42S1",
+  "toolbox_labels": {
+    "初始化与应答": "Init y ACK",
+    "运动控制": "Movimiento",
+    "立即控制": "Inmediato",
+    "参数设置": "Ajustes",
+    "回零与限位": "Retorno y límites",
+    "系统维护": "Sistema",
+    "脉冲与IO输出": "Salida pulso e IO"
+  },
+  "pd42s1_init": {
+    "message0": "Iniciar PD42S1 pin TX %1 pin RX %2 baudios %3",
+    "tooltip": "Inicializa Serial1 para el bus PD42S1; pines 19/20 por defecto (cableado DNESP32S3), cámbialos en otras placas; 115200 por defecto"
+  },
+  "pd42s1_read": {
+    "message0": "leer %1 dir. motor %2 tiempo ack %3 ms",
+    "tooltip": "Envía el comando de lectura, espera la respuesta e imprime el resultado por Serial; posiciones: 51200 por vuelta",
+    "args0": [
+      {
+        "options": [
+          [
+            "versión soft/hard",
+            "VER"
+          ],
+          [
+            "flujo del motor",
+            "PSI"
+          ],
+          [
+            "R y L de fase",
+            "RES_IND"
+          ],
+          [
+            "corriente de fase",
+            "PHASE_MA"
+          ],
+          [
+            "tensión de bus",
+            "VOL"
+          ],
+          [
+            "PID lazo corriente",
+            "MA_PID"
+          ],
+          [
+            "PID lazo velocidad",
+            "SPEED_PID"
+          ],
+          [
+            "PID lazo posición",
+            "POS_PID"
+          ],
+          [
+            "pulsos totales",
+            "TOTAL_PULSE"
+          ],
+          [
+            "velocidad en tiempo real",
+            "RPM"
+          ],
+          [
+            "posición en tiempo real",
+            "POS"
+          ],
+          [
+            "error de posición",
+            "POS_ERR"
+          ],
+          [
+            "estado de marcha",
+            "MOTOR_STA"
+          ],
+          [
+            "indicador de bloqueo",
+            "CLOG_FLAG"
+          ],
+          [
+            "corriente de bloqueo",
+            "CLOG_MA"
+          ],
+          [
+            "estado habilitación",
+            "EN_STA"
+          ],
+          [
+            "en posición",
+            "ARRIVED"
+          ],
+          [
+            "parámetros del sistema",
+            "SYS_PARAMS"
+          ],
+          [
+            "parámetros del controlador",
+            "DRIVE_PARAMS"
+          ],
+          [
+            "parámetros retorno",
+            "HOME_PARAMS"
+          ],
+          [
+            "estado retorno",
+            "HOME_STA"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "pd42s1_handle_ack": {
+    "message0": "esperar y procesar respuesta tiempo %1 ms",
+    "tooltip": "Espera la trama de respuesta del driver, la analiza e imprime (termina tras el tiempo); usar tras comandos de envío"
+  },
+  "pd42s1_torque_mode": {
+    "message0": "dir. motor %1 modo par dirección %2 corriente %3 mA",
+    "tooltip": "Par en lazo cerrado: dirección + corriente objetivo 0-3000 mA; la corriente solo sube con carga",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "horario CW",
+            "CW"
+          ],
+          [
+            "antihorario CCW",
+            "CCW"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "pd42s1_speed_mode": {
+    "message0": "dir. motor %1 modo velocidad dirección %2 acel. %3 velocidad %4 RPM",
+    "tooltip": "Velocidad en lazo cerrado: dirección + aceleración 0-200 RPM/s (0 = arranque inmediato) + 0,1-3000 RPM",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "horario CW",
+            "CW"
+          ],
+          [
+            "antihorario CCW",
+            "CCW"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "pd42s1_pos_mode": {
+    "message0": "dir. motor %1 modo posición absoluta dirección %2 acel. %3 velocidad %4 RPM pulsos %5",
+    "tooltip": "Posición absoluta en lazo cerrado: dirección + aceleración + velocidad máx 0-3000 RPM + pulsos objetivo (51200 por vuelta)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "horario CW",
+            "CW"
+          ],
+          [
+            "antihorario CCW",
+            "CCW"
+          ]
+        ]
+      },
+      null,
+      null,
+      null
+    ]
+  },
+  "pd42s1_pos_rel_mode": {
+    "message0": "dir. motor %1 modo posición relativa dirección %2 acel. %3 velocidad %4 RPM pulsos %5",
+    "tooltip": "Posición relativa en lazo cerrado: mueve los pulsos dados desde la posición actual (51200 por vuelta), repetible",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "horario CW",
+            "CW"
+          ],
+          [
+            "antihorario CCW",
+            "CCW"
+          ]
+        ]
+      },
+      null,
+      null,
+      null
+    ]
+  },
+  "pd42s1_pulse_mode": {
+    "message0": "dir. motor %1 modo pulso",
+    "tooltip": "Cambiar a modo pulso: control por pines EN/STP/DIR (los pulsos se generan aparte)"
+  },
+  "pd42s1_pw_pos_mode": {
+    "message0": "dir. motor %1 modo posición por ancho de pulso ancho máx %2 us ancho mín %3 us posición con ancho máx %4 posición con ancho mín %5",
+    "tooltip": "Posición por ancho de pulso (tipo servo): el ancho PWM se mapea linealmente; nunca 0"
+  },
+  "pd42s1_pw_ma_mode": {
+    "message0": "dir. motor %1 modo par por ancho de pulso ancho máx %2 us ancho mín %3 us corriente con ancho máx %4 mA corriente con ancho mín %5 mA",
+    "tooltip": "Modo par por ancho de pulso: el ancho PWM se mapea linealmente a 0-3000 mA; nunca 0"
+  },
+  "pd42s1_pw_speed_mode": {
+    "message0": "dir. motor %1 modo velocidad por ancho de pulso ancho máx %2 us ancho mín %3 us velocidad con ancho máx %4 RPM velocidad con ancho mín %5 RPM",
+    "tooltip": "Modo velocidad por ancho de pulso: el ancho PWM se mapea linealmente; nunca 0"
+  },
+  "pd42s1_ol_speed_mode": {
+    "message0": "dir. motor %1 modo velocidad lazo abierto dirección %2 acel. %3 velocidad %4 RPM",
+    "tooltip": "Velocidad en lazo abierto (sin retorno): dirección + aceleración + 0,1-3000 RPM",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "horario CW",
+            "CW"
+          ],
+          [
+            "antihorario CCW",
+            "CCW"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "pd42s1_ol_pos_mode": {
+    "message0": "dir. motor %1 modo posición absoluta lazo abierto dirección %2 acel. %3 velocidad %4 RPM pulsos %5",
+    "tooltip": "Posición absoluta en lazo abierto: alcanza el objetivo por pulsos sin retorno del encoder",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "horario CW",
+            "CW"
+          ],
+          [
+            "antihorario CCW",
+            "CCW"
+          ]
+        ]
+      },
+      null,
+      null,
+      null
+    ]
+  },
+  "pd42s1_ol_pos_rel_mode": {
+    "message0": "dir. motor %1 modo posición relativa lazo abierto dirección %2 acel. %3 velocidad %4 RPM pulsos %5",
+    "tooltip": "Posición relativa en lazo abierto: movimiento relativo por pulsos, sin encoder",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "horario CW",
+            "CW"
+          ],
+          [
+            "antihorario CCW",
+            "CCW"
+          ]
+        ]
+      },
+      null,
+      null,
+      null
+    ]
+  },
+  "pd42s1_ol_pulse_mode": {
+    "message0": "dir. motor %1 modo pulso lazo abierto",
+    "tooltip": "Cambiar a modo pulso en lazo abierto: pines EN/STP/DIR (pulsos aparte)"
+  },
+  "pd42s1_io_run_ctrl": {
+    "message0": "dir. motor %1 modo marcha/paro IO dirección %2 acel. %3 velocidad %4 RPM",
+    "tooltip": "Modo marcha/paro IO: gira según dirección/aceleración/velocidad, controlado por el nivel IO (configura antes el nivel IO)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "horario CW",
+            "CW"
+          ],
+          [
+            "antihorario CCW",
+            "CCW"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "pd42s1_stop_now": {
+    "message0": "dir. motor %1 parar ya (freno)",
+    "tooltip": "Parada inmediata con freno; borra pronto el estado del motor tras frenar o puede sobrecalentarse"
+  },
+  "pd42s1_clear_sta": {
+    "message0": "dir. motor %1 borrar estado motor (bloqueo/deshab./freno)",
+    "tooltip": "Borra los indicadores de estado bloqueo, deshabilitación, frenado"
+  },
+  "pd42s1_motor_enable": {
+    "message0": "dir. motor %1 control de habilitación %2",
+    "tooltip": "Habilita o deshabilita el motor; deshabilitado el eje gira libre",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "habilitar motor",
+            "ENABLE"
+          ],
+          [
+            "deshabilitar motor",
+            "DISABLE"
+          ]
+        ]
+      }
+    ]
+  },
+  "pd42s1_angle_zero": {
+    "message0": "dir. motor %1 poner posición a cero",
+    "tooltip": "Poner la posición actual a cero (mejor con el motor parado)"
+  },
+  "pd42s1_remove_clog": {
+    "message0": "dir. motor %1 liberar protección bloqueo",
+    "tooltip": "Libera el bloqueo de protección y restaura el funcionamiento del motor"
+  },
+  "pd42s1_cal_encoder": {
+    "message0": "dir. motor %1 calibrar encoder",
+    "tooltip": "Calibra el cero del encoder; el motor se mueve un poco, no cortes la alimentación"
+  },
+  "pd42s1_restart": {
+    "message0": "dir. motor %1 reiniciar",
+    "tooltip": "Reiniciar el driver"
+  },
+  "pd42s1_reset_factory": {
+    "message0": "dir. motor %1 restablecer fábrica",
+    "tooltip": "Restablecer fábrica; espera después a que el motor se detenga (parámetros reidentificados)"
+  },
+  "pd42s1_param_save": {
+    "message0": "dir. motor %1 guardar parámetros (persistente)",
+    "tooltip": "Guarda los parámetros actuales en la memoria no volátil del driver"
+  },
+  "pd42s1_set_slave_add": {
+    "message0": "dir. motor %1 poner dirección esclavo %2",
+    "tooltip": "Pone la dirección esclavo (1-255); usa después la nueva dirección"
+  },
+  "pd42s1_set_group_add": {
+    "message0": "dir. motor %1 poner dirección grupo %2",
+    "tooltip": "Pone la dirección de grupo para controlar varios motores con un comando"
+  },
+  "pd42s1_set_mode": {
+    "message0": "dir. motor %1 poner modo de trabajo %2",
+    "tooltip": "Pone el modo de trabajo (comunicación / pulso / ancho / retorno / lazo abierto)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "modo posición com.",
+            "COMM_POS"
+          ],
+          [
+            "modo velocidad com.",
+            "COMM_SPEED"
+          ],
+          [
+            "modo par com.",
+            "COMM_TORQUE"
+          ],
+          [
+            "modo pulso",
+            "PULSE"
+          ],
+          [
+            "modo posición ancho",
+            "PW_POS"
+          ],
+          [
+            "modo velocidad ancho",
+            "PW_SPEED"
+          ],
+          [
+            "modo par ancho",
+            "PW_TORQUE"
+          ],
+          [
+            "modo retorno a cero",
+            "HOME"
+          ],
+          [
+            "modo velocidad LA",
+            "OL_SPEED"
+          ],
+          [
+            "modo posición LA",
+            "OL_POS"
+          ],
+          [
+            "modo pulso LA",
+            "OL_PULSE"
+          ]
+        ]
+      }
+    ]
+  },
+  "pd42s1_set_pos_pid": {
+    "message0": "dir. motor %1 poner PID de posición Kp %2 Ki %3 Kd %4",
+    "tooltip": "Pone el PID del lazo de posición (Kp/Ki/Kd, enteros de 32 bits)"
+  },
+  "pd42s1_set_speed_pid": {
+    "message0": "dir. motor %1 poner PID de velocidad Kp %2 Ki %3 Kd %4",
+    "tooltip": "Pone el PID del lazo de velocidad (Kp/Ki/Kd, enteros de 32 bits)"
+  },
+  "pd42s1_set_pos_torque": {
+    "message0": "dir. motor %1 poner par máx. posición %2 mA",
+    "tooltip": "Límite de par del lazo de posición (100-3000 mA)"
+  },
+  "pd42s1_set_step": {
+    "message0": "dir. motor %1 poner micro-paso %2",
+    "tooltip": "Pone el micro-paso (1-256); más fino = más suave pero menos par"
+  },
+  "pd42s1_set_ma": {
+    "message0": "dir. motor %1 poner corriente objetivo (modo par) %2 mA",
+    "tooltip": "Pone la corriente objetivo (solo modo par, 0-3000 mA)"
+  },
+  "pd42s1_set_uart_baud": {
+    "message0": "dir. motor %1 poner baudios UART del driver %2",
+    "tooltip": "Pone los baudios UART del driver; reinicia después con la nueva velocidad"
+  },
+  "pd42s1_set_can_baud": {
+    "message0": "dir. motor %1 poner baudios CAN %2 Kbps",
+    "tooltip": "Pone los baudios CAN del driver (en Kbps)"
+  },
+  "pd42s1_set_modbus": {
+    "message0": "dir. motor %1 protocolo %2",
+    "tooltip": "Elegir protocolo propio o MODBUS",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "protocolo propio",
+            "CUSTOM"
+          ],
+          [
+            "protocolo MODBUS",
+            "MODBUS"
+          ]
+        ]
+      }
+    ]
+  },
+  "pd42s1_set_clog_pro": {
+    "message0": "dir. motor %1 protección de bloqueo %2",
+    "tooltip": "Activar o desactivar la protección de bloqueo",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "desactivado",
+            "OFF"
+          ],
+          [
+            "activado",
+            "ON"
+          ]
+        ]
+      }
+    ]
+  },
+  "pd42s1_set_clog_current": {
+    "message0": "dir. motor %1 poner corriente de bloqueo %2 mA",
+    "tooltip": "Pone la corriente de bloqueo (0-3000 mA)"
+  },
+  "pd42s1_set_can_id": {
+    "message0": "dir. motor %1 poner ID CAN %2",
+    "tooltip": "Pone el ID de transmisión CAN (29 bits extendido)"
+  },
+  "pd42s1_set_dir_level": {
+    "message0": "dir. motor %1 nivel DIR giro horario %2",
+    "tooltip": "Pone el nivel DIR que significa giro horario (control pulso/dirección)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "HIGH = giro horario",
+            "HIGH"
+          ],
+          [
+            "LOW = giro horario",
+            "LOW"
+          ]
+        ]
+      }
+    ]
+  },
+  "pd42s1_set_en_level": {
+    "message0": "dir. motor %1 nivel activo EN %2",
+    "tooltip": "Pone el nivel activo de EN (bajo / alto / siempre activo)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "activo bajo",
+            "LOW"
+          ],
+          [
+            "activo alto",
+            "HIGH"
+          ],
+          [
+            "siempre activo",
+            "ALWAYS"
+          ]
+        ]
+      }
+    ]
+  },
+  "pd42s1_set_cmd_echo": {
+    "message0": "dir. motor %1 eco de comandos %2",
+    "tooltip": "Configura si el driver responde con tramas de confirmación",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "con eco",
+            "ECHO"
+          ],
+          [
+            "sin eco",
+            "NO_ECHO"
+          ]
+        ]
+      }
+    ]
+  },
+  "pd42s1_set_key_lock": {
+    "message0": "dir. motor %1 teclas del panel %2",
+    "tooltip": "Bloquear o desbloquear las teclas del driver",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "desbloquear",
+            "UNLOCK"
+          ],
+          [
+            "bloquear",
+            "LOCK"
+          ]
+        ]
+      }
+    ]
+  },
+  "pd42s1_set_auto_display": {
+    "message0": "dir. motor %1 apagado auto pantalla %2",
+    "tooltip": "Activa o desactiva el apagado automático de la pantalla",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "desactivado",
+            "OFF"
+          ],
+          [
+            "activado",
+            "ON"
+          ]
+        ]
+      }
+    ]
+  },
+  "pd42s1_set_io_start_level": {
+    "message0": "dir. motor %1 nivel arranque IO %2",
+    "tooltip": "Pone el nivel de arranque del modo IO (arranque en bajo o alto)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "arranque en bajo",
+            "LOW"
+          ],
+          [
+            "arranque en alto",
+            "HIGH"
+          ]
+        ]
+      }
+    ]
+  },
+  "pd42s1_origin_left_pos": {
+    "message0": "dir. motor %1 poner origen izquierdo %2",
+    "tooltip": "Pone el origen del límite izquierdo (51200 por vuelta)"
+  },
+  "pd42s1_origin_right_pos": {
+    "message0": "dir. motor %1 poner origen derecho %2",
+    "tooltip": "Pone el origen del límite derecho (51200 por vuelta)"
+  },
+  "pd42s1_origin_homing": {
+    "message0": "dir. motor %1 buscar cero %2 dirección %3 velocidad %4 RPM corriente de llegada %5 mA",
+    "tooltip": "Búsqueda de cero: sin fin de carrera por corriente de bloqueo (200-1000 mA), con fin de carrera por el interruptor; bajo 100 RPM",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "sin fin de carrera",
+            "NO_LIMIT"
+          ],
+          [
+            "con fin de carrera",
+            "WITH_LIMIT"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "horario CW",
+            "CW"
+          ],
+          [
+            "antihorario CCW",
+            "CCW"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "pd42s1_origin_trig": {
+    "message0": "dir. motor %1 iniciar retorno a cero %2",
+    "tooltip": "Dispara el retorno a cero: una vuelta / más cercano / multi-vuelta",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "una vuelta",
+            "SINGLE"
+          ],
+          [
+            "más cercano",
+            "NEAREST"
+          ],
+          [
+            "multi-vuelta",
+            "MULTI"
+          ]
+        ]
+      }
+    ]
+  },
+  "pd42s1_origin_break": {
+    "message0": "dir. motor %1 abortar retorno a cero",
+    "tooltip": "Interrumpe por la fuerza el retorno a cero en curso"
+  },
+  "pd42s1_origin_timeout": {
+    "message0": "dir. motor %1 poner tiempo retorno %2 ms",
+    "tooltip": "Pone el tiempo de espera del retorno (en ms)"
+  },
+  "pd42s1_origin_auto": {
+    "message0": "dir. motor %1 retorno auto al encender %2",
+    "tooltip": "Configura si el driver retorna a cero automáticamente al encender",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "desactivado",
+            "OFF"
+          ],
+          [
+            "activado",
+            "ON"
+          ]
+        ]
+      }
+    ]
+  },
+  "pd42s1_origin_switch": {
+    "message0": "dir. motor %1 interruptor límite I/D %2",
+    "tooltip": "Activado, el rango de movimiento queda limitado por los orígenes I/D",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "desactivado",
+            "OFF"
+          ],
+          [
+            "activado",
+            "ON"
+          ]
+        ]
+      }
+    ]
+  },
+  "pd42s1_pulse_pin_init": {
+    "message0": "iniciar pines de pulso EN %1 STEP %2 DIR %3",
+    "tooltip": "Inicializa los pines EN/STEP/DIR (35/36/37 por defecto, cableado DNESP32S3; cámbialos en otras placas); usar con el bloque de modo pulso"
+  },
+  "pd42s1_pulse_en": {
+    "message0": "nivel EN %1",
+    "tooltip": "Pone el nivel del pin EN en modo pulso (configura antes el nivel activo EN)",
+    "args0": [
+      {
+        "options": [
+          [
+            "alto",
+            "HIGH"
+          ],
+          [
+            "bajo",
+            "LOW"
+          ]
+        ]
+      }
+    ]
+  },
+  "pd42s1_pulse_en_toggle": {
+    "message0": "alternar nivel EN",
+    "tooltip": "Alternar el nivel del pin EN"
+  },
+  "pd42s1_pulse_dir": {
+    "message0": "nivel DIR %1",
+    "tooltip": "Pone el nivel del pin DIR (el sentido lo define el bloque protocolo DIR)",
+    "args0": [
+      {
+        "options": [
+          [
+            "alto",
+            "HIGH"
+          ],
+          [
+            "bajo",
+            "LOW"
+          ]
+        ]
+      }
+    ]
+  },
+  "pd42s1_pulse_dir_toggle": {
+    "message0": "alternar nivel DIR",
+    "tooltip": "Alternar el nivel de DIR (invertir sentido)"
+  },
+  "pd42s1_pulse_output": {
+    "message0": "emitir %1 pulsos semiperíodo %2 us",
+    "tooltip": "Emite el número de pulsos en STEP (temporización por software, velocidad imprecisa); 3200 pulsos = 1 vuelta con 16 micro-pasos"
+  },
+  "pd42s1_pulse_freq_from_rpm": {
+    "message0": "frecuencia de pulso Hz para micro-paso %1 velocidad %2 RPM",
+    "tooltip": "Calcula la frecuencia: frec = RPM×200×micro-paso÷60 (salida numérica)"
+  },
+  "pd42s1_pulse_rpm_from_freq": {
+    "message0": "velocidad RPM para frecuencia %1 Hz micro-paso %2",
+    "tooltip": "Calcula la velocidad real: RPM = frec×60÷(200×micro-paso) (salida numérica)"
+  },
+  "pd42s1_io_pin_init": {
+    "message0": "iniciar pin marcha/paro IO pin %1",
+    "tooltip": "Inicializa el pin de salida marcha/paro IO (39 por defecto, cableado DNESP32S3); usar con el bloque de modo IO"
+  },
+  "pd42s1_io_pin_set": {
+    "message0": "nivel salida IO %1",
+    "tooltip": "Pone el nivel del pin IO (el nivel de arranque lo define el bloque protocolo)",
+    "args0": [
+      {
+        "options": [
+          [
+            "alto",
+            "HIGH"
+          ],
+          [
+            "bajo",
+            "LOW"
+          ]
+        ]
+      }
+    ]
+  },
+  "pd42s1_io_pin_toggle": {
+    "message0": "alternar nivel IO",
+    "tooltip": "Alternar el nivel IO (arranque/paro)"
+  }
+}
