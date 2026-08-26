@@ -1,0 +1,809 @@
+{
+  "toolbox_name": "moteur pas à pas PD42S1",
+  "toolbox_labels": {
+    "初始化与应答": "Init & ACK",
+    "运动控制": "Mouvement",
+    "立即控制": "Immédiat",
+    "参数设置": "Réglages",
+    "回零与限位": "Retour origine",
+    "系统维护": "Système",
+    "脉冲与IO输出": "Sortie impulsion & IO"
+  },
+  "pd42s1_init": {
+    "message0": "Init PD42S1 broche TX %1 broche RX %2 débit %3",
+    "tooltip": "Initialise Serial1 pour le bus PD42S1 ; broches 19/20 par défaut (câblage DNESP32S3), à adapter sur d'autres cartes ; 115200 par défaut"
+  },
+  "pd42s1_read": {
+    "message0": "lire %1 adr. moteur %2 délai ack %3 ms",
+    "tooltip": "Envoie la commande de lecture, attend la réponse et affiche le résultat sur Serial ; position : 51200 par tour",
+    "args0": [
+      {
+        "options": [
+          [
+            "version soft/hard",
+            "VER"
+          ],
+          [
+            "flux moteur",
+            "PSI"
+          ],
+          [
+            "R & L de phase",
+            "RES_IND"
+          ],
+          [
+            "courant de phase",
+            "PHASE_MA"
+          ],
+          [
+            "tension bus",
+            "VOL"
+          ],
+          [
+            "PID boucle courant",
+            "MA_PID"
+          ],
+          [
+            "PID boucle vitesse",
+            "SPEED_PID"
+          ],
+          [
+            "PID boucle position",
+            "POS_PID"
+          ],
+          [
+            "impulsions totales",
+            "TOTAL_PULSE"
+          ],
+          [
+            "vitesse temps réel",
+            "RPM"
+          ],
+          [
+            "position temps réel",
+            "POS"
+          ],
+          [
+            "erreur position",
+            "POS_ERR"
+          ],
+          [
+            "état de marche",
+            "MOTOR_STA"
+          ],
+          [
+            "indicateur blocage",
+            "CLOG_FLAG"
+          ],
+          [
+            "courant blocage",
+            "CLOG_MA"
+          ],
+          [
+            "état enable",
+            "EN_STA"
+          ],
+          [
+            "position atteinte",
+            "ARRIVED"
+          ],
+          [
+            "paramètres système",
+            "SYS_PARAMS"
+          ],
+          [
+            "paramètres pilotage",
+            "DRIVE_PARAMS"
+          ],
+          [
+            "paramètres retour",
+            "HOME_PARAMS"
+          ],
+          [
+            "statut retour",
+            "HOME_STA"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "pd42s1_handle_ack": {
+    "message0": "attendre et traiter la réponse délai %1 ms",
+    "tooltip": "Attend la trame d'accusé du variateur, l'analyse et l'affiche (fin après délai) ; à utiliser après les commandes d'envoi"
+  },
+  "pd42s1_torque_mode": {
+    "message0": "adr. moteur %1 mode couple sens %2 courant %3 mA",
+    "tooltip": "Couple en boucle fermée : sens + courant cible 0-3000 mA ; le courant ne monte que sous charge",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "horaire CW",
+            "CW"
+          ],
+          [
+            "antihoraire CCW",
+            "CCW"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "pd42s1_speed_mode": {
+    "message0": "adr. moteur %1 mode vitesse sens %2 accél. %3 vitesse %4 tr/min",
+    "tooltip": "Vitesse en boucle fermée : sens + accélération 0-200 tr/min:s (0 = départ immédiat) + 0,1-3000 tr/min",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "horaire CW",
+            "CW"
+          ],
+          [
+            "antihoraire CCW",
+            "CCW"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "pd42s1_pos_mode": {
+    "message0": "adr. moteur %1 mode position absolue sens %2 accél. %3 vitesse %4 tr/min impulsions %5",
+    "tooltip": "Position absolue en boucle fermée : sens + accélération + vitesse max 0-3000 tr/min + impulsions cible (51200 par tour)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "horaire CW",
+            "CW"
+          ],
+          [
+            "antihoraire CCW",
+            "CCW"
+          ]
+        ]
+      },
+      null,
+      null,
+      null
+    ]
+  },
+  "pd42s1_pos_rel_mode": {
+    "message0": "adr. moteur %1 mode position relative sens %2 accél. %3 vitesse %4 tr/min impulsions %5",
+    "tooltip": "Position relative en boucle fermée : déplace le nombre d'impulsions donné depuis la position actuelle (51200 par tour), répétable",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "horaire CW",
+            "CW"
+          ],
+          [
+            "antihoraire CCW",
+            "CCW"
+          ]
+        ]
+      },
+      null,
+      null,
+      null
+    ]
+  },
+  "pd42s1_pulse_mode": {
+    "message0": "adr. moteur %1 mode impulsion",
+    "tooltip": "Passer en mode impulsion : contrôle par les broches EN/STP/DIR (impulsions à fournir séparément)"
+  },
+  "pd42s1_pw_pos_mode": {
+    "message0": "adr. moteur %1 mode position largeur impulsion largeur max %2 us largeur min %3 us position à largeur max %4 position à largeur min %5",
+    "tooltip": "Position par largeur d'impulsion (type servo) : la largeur PWM est mappée linéairement ; jamais 0"
+  },
+  "pd42s1_pw_ma_mode": {
+    "message0": "adr. moteur %1 mode couple largeur impulsion largeur max %2 us largeur min %3 us courant à largeur max %4 mA courant à largeur min %5 mA",
+    "tooltip": "Mode couple par largeur d'impulsion : largeur PWM mappée linéairement sur 0-3000 mA ; jamais 0"
+  },
+  "pd42s1_pw_speed_mode": {
+    "message0": "adr. moteur %1 mode vitesse largeur impulsion largeur max %2 us largeur min %3 us vitesse à largeur max %4 tr/min vitesse à largeur min %5 tr/min",
+    "tooltip": "Mode vitesse par largeur d'impulsion : largeur PWM mappée linéairement sur la vitesse ; jamais 0"
+  },
+  "pd42s1_ol_speed_mode": {
+    "message0": "adr. moteur %1 mode vitesse boucle ouverte sens %2 accél. %3 vitesse %4 tr/min",
+    "tooltip": "Vitesse en boucle ouverte (sans retour) : sens + accélération + 0,1-3000 tr/min",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "horaire CW",
+            "CW"
+          ],
+          [
+            "antihoraire CCW",
+            "CCW"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "pd42s1_ol_pos_mode": {
+    "message0": "adr. moteur %1 mode position absolue boucle ouverte sens %2 accél. %3 vitesse %4 tr/min impulsions %5",
+    "tooltip": "Position absolue en boucle ouverte : atteint la cible par impulsions sans retour d'encodeur",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "horaire CW",
+            "CW"
+          ],
+          [
+            "antihoraire CCW",
+            "CCW"
+          ]
+        ]
+      },
+      null,
+      null,
+      null
+    ]
+  },
+  "pd42s1_ol_pos_rel_mode": {
+    "message0": "adr. moteur %1 mode position relative boucle ouverte sens %2 accél. %3 vitesse %4 tr/min impulsions %5",
+    "tooltip": "Position relative en boucle ouverte : déplacement relatif par impulsions, sans encodeur",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "horaire CW",
+            "CW"
+          ],
+          [
+            "antihoraire CCW",
+            "CCW"
+          ]
+        ]
+      },
+      null,
+      null,
+      null
+    ]
+  },
+  "pd42s1_ol_pulse_mode": {
+    "message0": "adr. moteur %1 mode impulsion boucle ouverte",
+    "tooltip": "Passer en mode impulsion en boucle ouverte : broches EN/STP/DIR (impulsions à part)"
+  },
+  "pd42s1_io_run_ctrl": {
+    "message0": "adr. moteur %1 mode marche/arrêt IO sens %2 accél. %3 vitesse %4 tr/min",
+    "tooltip": "Mode marche/arrêt IO : tourne selon sens/accélération/vitesse, piloté par le niveau IO (définir d'abord le niveau IO)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "horaire CW",
+            "CW"
+          ],
+          [
+            "antihoraire CCW",
+            "CCW"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "pd42s1_stop_now": {
+    "message0": "adr. moteur %1 arrêt immédiat (frein)",
+    "tooltip": "Arrêt immédiat par freinage ; effacez vite l'état du moteur après le freinage, sinon surchauffe"
+  },
+  "pd42s1_clear_sta": {
+    "message0": "adr. moteur %1 effacer état moteur (blocage/désact./frein)",
+    "tooltip": "Efface les indicateurs d'état blocage, désactivation, freinage"
+  },
+  "pd42s1_motor_enable": {
+    "message0": "adr. moteur %1 contrôle enable %2",
+    "tooltip": "Active ou désactive le moteur ; désactivé, l'axe tourne librement",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "activer moteur",
+            "ENABLE"
+          ],
+          [
+            "désactiver moteur",
+            "DISABLE"
+          ]
+        ]
+      }
+    ]
+  },
+  "pd42s1_angle_zero": {
+    "message0": "adr. moteur %1 mettre position à zéro",
+    "tooltip": "Mettre la position actuelle à zéro (moteur à l'arrêt de préférence)"
+  },
+  "pd42s1_remove_clog": {
+    "message0": "adr. moteur %1 libérer protection blocage",
+    "tooltip": "Libère le verrou de protection anti-blocage et rétablit le moteur"
+  },
+  "pd42s1_cal_encoder": {
+    "message0": "adr. moteur %1 calibrer encodeur",
+    "tooltip": "Calibre le zéro de l'encodeur ; le moteur bouge légèrement, ne pas couper l'alimentation"
+  },
+  "pd42s1_restart": {
+    "message0": "adr. moteur %1 redémarrer",
+    "tooltip": "Redémarrer le variateur"
+  },
+  "pd42s1_reset_factory": {
+    "message0": "adr. moteur %1 réinitialisation usine",
+    "tooltip": "Réinitialisation d'usine ; attendez ensuite l'arrêt du moteur (paramètres réidentifiés)"
+  },
+  "pd42s1_param_save": {
+    "message0": "adr. moteur %1 sauver paramètres (persistant)",
+    "tooltip": "Enregistre les paramètres actuels dans la mémoire non volatile du variateur"
+  },
+  "pd42s1_set_slave_add": {
+    "message0": "adr. moteur %1 définir adresse esclave %2",
+    "tooltip": "Définit l'adresse esclave (1-255) ; communiquez ensuite avec la nouvelle adresse"
+  },
+  "pd42s1_set_group_add": {
+    "message0": "adr. moteur %1 définir adresse groupe %2",
+    "tooltip": "Définit l'adresse de groupe pour piloter plusieurs moteurs d'une commande"
+  },
+  "pd42s1_set_mode": {
+    "message0": "adr. moteur %1 définir mode travail %2",
+    "tooltip": "Définit le mode de travail (communication / impulsion / largeur / retour origine / boucle ouverte)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "mode position comm.",
+            "COMM_POS"
+          ],
+          [
+            "mode vitesse comm.",
+            "COMM_SPEED"
+          ],
+          [
+            "mode couple comm.",
+            "COMM_TORQUE"
+          ],
+          [
+            "mode impulsion",
+            "PULSE"
+          ],
+          [
+            "mode position impuls.",
+            "PW_POS"
+          ],
+          [
+            "mode vitesse impuls.",
+            "PW_SPEED"
+          ],
+          [
+            "mode couple impuls.",
+            "PW_TORQUE"
+          ],
+          [
+            "mode retour origine",
+            "HOME"
+          ],
+          [
+            "mode vitesse OL",
+            "OL_SPEED"
+          ],
+          [
+            "mode position OL",
+            "OL_POS"
+          ],
+          [
+            "mode impulsion OL",
+            "OL_PULSE"
+          ]
+        ]
+      }
+    ]
+  },
+  "pd42s1_set_pos_pid": {
+    "message0": "adr. moteur %1 définir PID position Kp %2 Ki %3 Kd %4",
+    "tooltip": "Définit le PID de boucle de position (Kp/Ki/Kd, entiers 32 bits)"
+  },
+  "pd42s1_set_speed_pid": {
+    "message0": "adr. moteur %1 définir PID vitesse Kp %2 Ki %3 Kd %4",
+    "tooltip": "Définit le PID de boucle de vitesse (Kp/Ki/Kd, entiers 32 bits)"
+  },
+  "pd42s1_set_pos_torque": {
+    "message0": "adr. moteur %1 définir couple max position %2 mA",
+    "tooltip": "Limite de couple de la boucle de position (100-3000 mA)"
+  },
+  "pd42s1_set_step": {
+    "message0": "adr. moteur %1 définir micro-pas %2",
+    "tooltip": "Définit le micro-pas (1-256) ; plus fin = plus doux mais moins de couple"
+  },
+  "pd42s1_set_ma": {
+    "message0": "adr. moteur %1 définir courant cible (mode couple) %2 mA",
+    "tooltip": "Définit le courant cible (mode couple uniquement, 0-3000 mA)"
+  },
+  "pd42s1_set_uart_baud": {
+    "message0": "adr. moteur %1 définir débit UART pilote %2",
+    "tooltip": "Définit le débit UART du variateur ; réinitialisez ensuite avec le nouveau débit"
+  },
+  "pd42s1_set_can_baud": {
+    "message0": "adr. moteur %1 définir débit CAN %2 Kbps",
+    "tooltip": "Définit le débit CAN du variateur (en Kbit/s)"
+  },
+  "pd42s1_set_modbus": {
+    "message0": "adr. moteur %1 protocole %2",
+    "tooltip": "Choisir le protocole personnalisé ou MODBUS",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "protocole personnalisé",
+            "CUSTOM"
+          ],
+          [
+            "protocole MODBUS",
+            "MODBUS"
+          ]
+        ]
+      }
+    ]
+  },
+  "pd42s1_set_clog_pro": {
+    "message0": "adr. moteur %1 protection blocage %2",
+    "tooltip": "Activer ou désactiver la protection anti-blocage",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "désactivé",
+            "OFF"
+          ],
+          [
+            "activé",
+            "ON"
+          ]
+        ]
+      }
+    ]
+  },
+  "pd42s1_set_clog_current": {
+    "message0": "adr. moteur %1 définir courant blocage %2 mA",
+    "tooltip": "Définit le courant de blocage (0-3000 mA)"
+  },
+  "pd42s1_set_can_id": {
+    "message0": "adr. moteur %1 définir ID CAN %2",
+    "tooltip": "Définit l'ID CAN d'émission (29 bits étendu)"
+  },
+  "pd42s1_set_dir_level": {
+    "message0": "adr. moteur %1 niveau DIR horaire %2",
+    "tooltip": "Définit le niveau DIR correspondant au sens horaire (contrôle impulsion/direction)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "HIGH = sens horaire",
+            "HIGH"
+          ],
+          [
+            "LOW = sens horaire",
+            "LOW"
+          ]
+        ]
+      }
+    ]
+  },
+  "pd42s1_set_en_level": {
+    "message0": "adr. moteur %1 niveau actif EN %2",
+    "tooltip": "Définit le niveau actif de EN (bas / haut / toujours actif)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "actif bas",
+            "LOW"
+          ],
+          [
+            "actif haut",
+            "HIGH"
+          ],
+          [
+            "toujours actif",
+            "ALWAYS"
+          ]
+        ]
+      }
+    ]
+  },
+  "pd42s1_set_cmd_echo": {
+    "message0": "adr. moteur %1 écho commande %2",
+    "tooltip": "Définit si le variateur répond par des trames d'accusé",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "avec écho",
+            "ECHO"
+          ],
+          [
+            "sans écho",
+            "NO_ECHO"
+          ]
+        ]
+      }
+    ]
+  },
+  "pd42s1_set_key_lock": {
+    "message0": "adr. moteur %1 touches panneau %2",
+    "tooltip": "Verrouiller ou déverrouiller les touches du variateur",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "déverrouiller",
+            "UNLOCK"
+          ],
+          [
+            "verrouiller",
+            "LOCK"
+          ]
+        ]
+      }
+    ]
+  },
+  "pd42s1_set_auto_display": {
+    "message0": "adr. moteur %1 extinction auto écran %2",
+    "tooltip": "Active ou désactive l'extinction auto de l'écran",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "désactivé",
+            "OFF"
+          ],
+          [
+            "activé",
+            "ON"
+          ]
+        ]
+      }
+    ]
+  },
+  "pd42s1_set_io_start_level": {
+    "message0": "adr. moteur %1 niveau départ IO %2",
+    "tooltip": "Définit le niveau de déclenchement IO (départ sur niveau bas ou haut)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "départ niveau bas",
+            "LOW"
+          ],
+          [
+            "départ niveau haut",
+            "HIGH"
+          ]
+        ]
+      }
+    ]
+  },
+  "pd42s1_origin_left_pos": {
+    "message0": "adr. moteur %1 définir origine gauche %2",
+    "tooltip": "Définit l'origine de la butée gauche (51200 par tour)"
+  },
+  "pd42s1_origin_right_pos": {
+    "message0": "adr. moteur %1 définir origine droite %2",
+    "tooltip": "Définit l'origine de la butée droite (51200 par tour)"
+  },
+  "pd42s1_origin_homing": {
+    "message0": "adr. moteur %1 recherche du zéro %2 sens %3 vitesse %4 tr/min courant d'atteinte %5 mA",
+    "tooltip": "Recherche du zéro : sans fin de course par courant de blocage (200-1000 mA conseillé), avec par le contact ; moins de 100 tr/min",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "sans fin de course",
+            "NO_LIMIT"
+          ],
+          [
+            "avec fin de course",
+            "WITH_LIMIT"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "horaire CW",
+            "CW"
+          ],
+          [
+            "antihoraire CCW",
+            "CCW"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "pd42s1_origin_trig": {
+    "message0": "adr. moteur %1 déclencher retour origine %2",
+    "tooltip": "Déclenche le retour à l'origine : un tour / le plus proche / multi-tours",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "un tour",
+            "SINGLE"
+          ],
+          [
+            "le plus proche",
+            "NEAREST"
+          ],
+          [
+            "multi-tours",
+            "MULTI"
+          ]
+        ]
+      }
+    ]
+  },
+  "pd42s1_origin_break": {
+    "message0": "adr. moteur %1 interrompre retour origine",
+    "tooltip": "Interrompt de force le retour à l'origine en cours"
+  },
+  "pd42s1_origin_timeout": {
+    "message0": "adr. moteur %1 définir délai retour %2 ms",
+    "tooltip": "Définit le délai du retour à l'origine (en ms)"
+  },
+  "pd42s1_origin_auto": {
+    "message0": "adr. moteur %1 retour auto à la mise sous tension %2",
+    "tooltip": "Définit si le variateur retourne à l'origine automatiquement à la mise sous tension",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "désactivé",
+            "OFF"
+          ],
+          [
+            "activé",
+            "ON"
+          ]
+        ]
+      }
+    ]
+  },
+  "pd42s1_origin_switch": {
+    "message0": "adr. moteur %1 fin de course G/D %2",
+    "tooltip": "Activé, la course est limitée par les origines gauche/droite",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "désactivé",
+            "OFF"
+          ],
+          [
+            "activé",
+            "ON"
+          ]
+        ]
+      }
+    ]
+  },
+  "pd42s1_pulse_pin_init": {
+    "message0": "init broches impulsion EN %1 STEP %2 DIR %3",
+    "tooltip": "Initialise les broches EN/STEP/DIR (35/36/37 par défaut, câblage DNESP32S3 ; à adapter ailleurs) ; à utiliser avec le bloc mode impulsion"
+  },
+  "pd42s1_pulse_en": {
+    "message0": "niveau EN %1",
+    "tooltip": "Définit le niveau de la broche EN en mode impulsion (configurer d'abord le niveau actif EN)",
+    "args0": [
+      {
+        "options": [
+          [
+            "haut",
+            "HIGH"
+          ],
+          [
+            "bas",
+            "LOW"
+          ]
+        ]
+      }
+    ]
+  },
+  "pd42s1_pulse_en_toggle": {
+    "message0": "basculer niveau EN",
+    "tooltip": "Basculer le niveau de la broche EN"
+  },
+  "pd42s1_pulse_dir": {
+    "message0": "niveau DIR %1",
+    "tooltip": "Définit le niveau de la broche DIR (le sens est défini par le bloc protocole DIR)",
+    "args0": [
+      {
+        "options": [
+          [
+            "haut",
+            "HIGH"
+          ],
+          [
+            "bas",
+            "LOW"
+          ]
+        ]
+      }
+    ]
+  },
+  "pd42s1_pulse_dir_toggle": {
+    "message0": "basculer niveau DIR",
+    "tooltip": "Basculer le niveau de DIR (inverser le sens)"
+  },
+  "pd42s1_pulse_output": {
+    "message0": "émettre %1 impulsions demi-période %2 us",
+    "tooltip": "Émet le nombre d'impulsions sur STEP (temporisation logicielle, vitesse imprécise) ; 3200 impulsions = 1 tour à 16 micro-pas"
+  },
+  "pd42s1_pulse_freq_from_rpm": {
+    "message0": "fréquence impulsion Hz pour micro-pas %1 vitesse %2 tr/min",
+    "tooltip": "Calcule la fréquence : fréq = tr/min×200×micro-pas÷60 (sortie numérique)"
+  },
+  "pd42s1_pulse_rpm_from_freq": {
+    "message0": "vitesse tr/min pour fréquence %1 Hz micro-pas %2",
+    "tooltip": "Calcule la vitesse réelle : tr/min = fréq×60÷(200×micro-pas) (sortie numérique)"
+  },
+  "pd42s1_io_pin_init": {
+    "message0": "init broche marche/arrêt IO broche %1",
+    "tooltip": "Initialise la broche de sortie marche/arrêt IO (39 par défaut, câblage DNESP32S3) ; à utiliser avec le bloc mode IO"
+  },
+  "pd42s1_io_pin_set": {
+    "message0": "niveau sortie IO %1",
+    "tooltip": "Définit le niveau de la broche IO (le niveau de départ est défini par le bloc protocole)",
+    "args0": [
+      {
+        "options": [
+          [
+            "haut",
+            "HIGH"
+          ],
+          [
+            "bas",
+            "LOW"
+          ]
+        ]
+      }
+    ]
+  },
+  "pd42s1_io_pin_toggle": {
+    "message0": "basculer niveau IO",
+    "tooltip": "Basculer le niveau IO (marche/arrêt)"
+  }
+}

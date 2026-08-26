@@ -1,0 +1,809 @@
+{
+  "toolbox_name": "PD42S1 步進電機",
+  "toolbox_labels": {
+    "初始化与应答": "初始化與應答",
+    "运动控制": "運動控制",
+    "立即控制": "立即控制",
+    "参数设置": "參數設置",
+    "回零与限位": "回零與限位",
+    "系统维护": "系統維護",
+    "脉冲与IO输出": "脈衝與IO輸出"
+  },
+  "pd42s1_init": {
+    "message0": "PD42S1 初始化 TX引腳 %1 RX引腳 %2 波特率 %3",
+    "tooltip": "初始化與PD42S1通信的串口1；引腳默認19/20（DNESP32S3接線），其他板卡按實際接線修改；波特率默認115200"
+  },
+  "pd42s1_read": {
+    "message0": "讀取 %1 電機地址 %2 應答超時 %3 ms",
+    "tooltip": "發送讀取指令並等待應答，解析結果打印到串口0調試口；位置類數據51200為一圈",
+    "args0": [
+      {
+        "options": [
+          [
+            "軟硬件版本",
+            "VER"
+          ],
+          [
+            "電機磁鏈",
+            "PSI"
+          ],
+          [
+            "相電阻和相電感",
+            "RES_IND"
+          ],
+          [
+            "相電流",
+            "PHASE_MA"
+          ],
+          [
+            "總線電壓",
+            "VOL"
+          ],
+          [
+            "電流環PID參數",
+            "MA_PID"
+          ],
+          [
+            "速度環PID參數",
+            "SPEED_PID"
+          ],
+          [
+            "位置環PID參數",
+            "POS_PID"
+          ],
+          [
+            "累計脈衝數",
+            "TOTAL_PULSE"
+          ],
+          [
+            "實時轉速",
+            "RPM"
+          ],
+          [
+            "實時位置",
+            "POS"
+          ],
+          [
+            "位置誤差",
+            "POS_ERR"
+          ],
+          [
+            "運行狀態",
+            "MOTOR_STA"
+          ],
+          [
+            "堵轉標誌",
+            "CLOG_FLAG"
+          ],
+          [
+            "堵轉電流",
+            "CLOG_MA"
+          ],
+          [
+            "使能狀態",
+            "EN_STA"
+          ],
+          [
+            "到位狀態",
+            "ARRIVED"
+          ],
+          [
+            "系統參數",
+            "SYS_PARAMS"
+          ],
+          [
+            "驅動參數",
+            "DRIVE_PARAMS"
+          ],
+          [
+            "回零參數",
+            "HOME_PARAMS"
+          ],
+          [
+            "回零狀態",
+            "HOME_STA"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "pd42s1_handle_ack": {
+    "message0": "等待並處理驅動器應答 超時 %1 ms",
+    "tooltip": "等待驅動器應答幀並解析打印（超時ms內無數據即結束）；配合發送類指令使用"
+  },
+  "pd42s1_torque_mode": {
+    "message0": "電機地址 %1 力矩模式 方向 %2 電流 %3 mA",
+    "tooltip": "閉環力矩控制：方向+目標電流0~3000mA；需帶負載電流才逐步上升到目標值",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "順時針 CW",
+            "CW"
+          ],
+          [
+            "逆時針 CCW",
+            "CCW"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "pd42s1_speed_mode": {
+    "message0": "電機地址 %1 速度模式 方向 %2 加速度 %3 速度 %4 RPM",
+    "tooltip": "閉環速度控制：方向+加速度0~200 RPM/s（0為直接啟動）+速度0.1~3000RPM",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "順時針 CW",
+            "CW"
+          ],
+          [
+            "逆時針 CCW",
+            "CCW"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "pd42s1_pos_mode": {
+    "message0": "電機地址 %1 絕對位置模式 方向 %2 加速度 %3 速度 %4 RPM 脈衝數 %5",
+    "tooltip": "閉環絕對位置：方向+加速度+最大速度0~3000RPM+目標脈衝數（絕對位置，51200為一圈）",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "順時針 CW",
+            "CW"
+          ],
+          [
+            "逆時針 CCW",
+            "CCW"
+          ]
+        ]
+      },
+      null,
+      null,
+      null
+    ]
+  },
+  "pd42s1_pos_rel_mode": {
+    "message0": "電機地址 %1 相對位置模式 方向 %2 加速度 %3 速度 %4 RPM 脈衝數 %5",
+    "tooltip": "閉環相對位置：在當前位置基礎上移動指定脈衝數（51200為一圈），可重複觸發",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "順時針 CW",
+            "CW"
+          ],
+          [
+            "逆時針 CCW",
+            "CCW"
+          ]
+        ]
+      },
+      null,
+      null,
+      null
+    ]
+  },
+  "pd42s1_pulse_mode": {
+    "message0": "電機地址 %1 脈衝模式",
+    "tooltip": "切換到脈衝模式：由EN/STP/DIR引腳控制（需另行輸出脈衝信號）"
+  },
+  "pd42s1_pw_pos_mode": {
+    "message0": "電機地址 %1 脈寬位置模式 最大脈寬 %2 us 最小脈寬 %3 us 最大脈寬對應位置 %4 最小脈寬對應位置 %5",
+    "tooltip": "脈寬位置模式（類舵機）：PWM高電平脈寬線性映射到位置；脈寬範圍不可為0"
+  },
+  "pd42s1_pw_ma_mode": {
+    "message0": "電機地址 %1 脈寬力矩模式 最大脈寬 %2 us 最小脈寬 %3 us 最大脈寬對應電流 %4 mA 最小脈寬對應電流 %5 mA",
+    "tooltip": "脈寬力矩（電流）模式：PWM高電平脈寬線性映射到電流0~3000mA；脈寬範圍不可為0"
+  },
+  "pd42s1_pw_speed_mode": {
+    "message0": "電機地址 %1 脈寬速度模式 最大脈寬 %2 us 最小脈寬 %3 us 最大脈寬對應速度 %4 RPM 最小脈寬對應速度 %5 RPM",
+    "tooltip": "脈寬速度模式：PWM高電平脈寬線性映射到速度；脈寬範圍不可為0"
+  },
+  "pd42s1_ol_speed_mode": {
+    "message0": "電機地址 %1 開環速度模式 方向 %2 加速度 %3 速度 %4 RPM",
+    "tooltip": "開環速度控制（無位置反饋）：方向+加速度+速度0.1~3000RPM",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "順時針 CW",
+            "CW"
+          ],
+          [
+            "逆時針 CCW",
+            "CCW"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "pd42s1_ol_pos_mode": {
+    "message0": "電機地址 %1 開環絕對位置模式 方向 %2 加速度 %3 速度 %4 RPM 脈衝數 %5",
+    "tooltip": "開環絕對位置：無編碼器反饋，按脈衝數開環運行到目標",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "順時針 CW",
+            "CW"
+          ],
+          [
+            "逆時針 CCW",
+            "CCW"
+          ]
+        ]
+      },
+      null,
+      null,
+      null
+    ]
+  },
+  "pd42s1_ol_pos_rel_mode": {
+    "message0": "電機地址 %1 開環相對位置模式 方向 %2 加速度 %3 速度 %4 RPM 脈衝數 %5",
+    "tooltip": "開環相對位置：無編碼器反饋，從當前位置按脈衝數相對移動",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "順時針 CW",
+            "CW"
+          ],
+          [
+            "逆時針 CCW",
+            "CCW"
+          ]
+        ]
+      },
+      null,
+      null,
+      null
+    ]
+  },
+  "pd42s1_ol_pulse_mode": {
+    "message0": "電機地址 %1 開環脈衝模式",
+    "tooltip": "切換到開環脈衝模式：由EN/STP/DIR引腳控制（需另行輸出脈衝信號）"
+  },
+  "pd42s1_io_run_ctrl": {
+    "message0": "電機地址 %1 IO啟停模式 方向 %2 加速度 %3 速度 %4 RPM",
+    "tooltip": "IO啟停模式：按設定方向/加速度/速度運轉，由驅動器IO引腳電平啟停（先設置IO啟動電平）",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "順時針 CW",
+            "CW"
+          ],
+          [
+            "逆時針 CCW",
+            "CCW"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "pd42s1_stop_now": {
+    "message0": "電機地址 %1 立即停止（剎車）",
+    "tooltip": "立即剎車停止；剎停後請及時清除電機狀態，否則電機可能嚴重發燙"
+  },
+  "pd42s1_clear_sta": {
+    "message0": "電機地址 %1 清除電機狀態（堵轉/失能/剎車）",
+    "tooltip": "清除堵轉、失能、剎車等異常狀態標誌"
+  },
+  "pd42s1_motor_enable": {
+    "message0": "電機地址 %1 使能控制 %2",
+    "tooltip": "使能或失能電機；失能後電機軸自由轉動",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "使能電機",
+            "ENABLE"
+          ],
+          [
+            "失能電機",
+            "DISABLE"
+          ]
+        ]
+      }
+    ]
+  },
+  "pd42s1_angle_zero": {
+    "message0": "電機地址 %1 當前位置角度清零",
+    "tooltip": "將當前實時位置清零（建議電機停止後再清零）"
+  },
+  "pd42s1_remove_clog": {
+    "message0": "電機地址 %1 解除堵轉保護",
+    "tooltip": "解除堵轉保護鎖定狀態，恢復電機運行能力"
+  },
+  "pd42s1_cal_encoder": {
+    "message0": "電機地址 %1 校準編碼器",
+    "tooltip": "校準編碼器零位；校準過程中電機會有輕微動作，請勿斷電"
+  },
+  "pd42s1_restart": {
+    "message0": "電機地址 %1 復位重啟",
+    "tooltip": "復位重啟驅動器"
+  },
+  "pd42s1_reset_factory": {
+    "message0": "電機地址 %1 恢復出廠設置",
+    "tooltip": "恢復出廠設置；完成後需等待電機停止（參數重新識別）"
+  },
+  "pd42s1_param_save": {
+    "message0": "電機地址 %1 參數保存（掉電不丟失）",
+    "tooltip": "將當前參數保存到驅動器非易失存儲（掉電不丟失）"
+  },
+  "pd42s1_set_slave_add": {
+    "message0": "電機地址 %1 設置從機地址為 %2",
+    "tooltip": "設置電機從機地址（1~255），修改後需用新地址通信"
+  },
+  "pd42s1_set_group_add": {
+    "message0": "電機地址 %1 設置分組地址為 %2",
+    "tooltip": "設置分組地址，可實現一條指令同時控制多台電機"
+  },
+  "pd42s1_set_mode": {
+    "message0": "電機地址 %1 設置工作模式 %2",
+    "tooltip": "設置驅動器工作模式（通信/脈衝/脈寬/回零/開環系列）",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "通信位置模式",
+            "COMM_POS"
+          ],
+          [
+            "通信速度模式",
+            "COMM_SPEED"
+          ],
+          [
+            "通信力矩模式",
+            "COMM_TORQUE"
+          ],
+          [
+            "脈衝模式",
+            "PULSE"
+          ],
+          [
+            "脈寬位置模式",
+            "PW_POS"
+          ],
+          [
+            "脈寬速度模式",
+            "PW_SPEED"
+          ],
+          [
+            "脈寬力矩模式",
+            "PW_TORQUE"
+          ],
+          [
+            "回零模式",
+            "HOME"
+          ],
+          [
+            "開環速度模式",
+            "OL_SPEED"
+          ],
+          [
+            "開環位置模式",
+            "OL_POS"
+          ],
+          [
+            "開環脈衝模式",
+            "OL_PULSE"
+          ]
+        ]
+      }
+    ]
+  },
+  "pd42s1_set_pos_pid": {
+    "message0": "電機地址 %1 設置位置環PID Kp %2 Ki %3 Kd %4",
+    "tooltip": "設置位置環PID參數（Kp/Ki/Kd，32位整數）"
+  },
+  "pd42s1_set_speed_pid": {
+    "message0": "電機地址 %1 設置速度環PID Kp %2 Ki %3 Kd %4",
+    "tooltip": "設置速度環PID參數（Kp/Ki/Kd，32位整數）"
+  },
+  "pd42s1_set_pos_torque": {
+    "message0": "電機地址 %1 設置位置環最大力矩 %2 mA",
+    "tooltip": "設置位置環最大力矩限制（100~3000mA）"
+  },
+  "pd42s1_set_step": {
+    "message0": "電機地址 %1 設置細分 %2",
+    "tooltip": "設置驅動器細分（1~256）；細分越大越平滑，力矩相應下降"
+  },
+  "pd42s1_set_ma": {
+    "message0": "電機地址 %1 設置目標電流（力矩模式） %2 mA",
+    "tooltip": "設置目標電流（僅力矩模式下有效，0~3000mA）"
+  },
+  "pd42s1_set_uart_baud": {
+    "message0": "電機地址 %1 設置驅動器串口波特率 %2",
+    "tooltip": "設置驅動器串口波特率；修改後需用新波特率重新初始化"
+  },
+  "pd42s1_set_can_baud": {
+    "message0": "電機地址 %1 設置CAN波特率 %2 Kbps",
+    "tooltip": "設置驅動器CAN通信波特率（單位Kbps）"
+  },
+  "pd42s1_set_modbus": {
+    "message0": "電機地址 %1 通信協議 %2",
+    "tooltip": "選擇使用自定義協議或MODBUS協議",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "自定義協議",
+            "CUSTOM"
+          ],
+          [
+            "MODBUS協議",
+            "MODBUS"
+          ]
+        ]
+      }
+    ]
+  },
+  "pd42s1_set_clog_pro": {
+    "message0": "電機地址 %1 堵轉保護 %2",
+    "tooltip": "開啟或關閉堵轉保護功能",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "關閉",
+            "OFF"
+          ],
+          [
+            "開啟",
+            "ON"
+          ]
+        ]
+      }
+    ]
+  },
+  "pd42s1_set_clog_current": {
+    "message0": "電機地址 %1 設置堵轉電流 %2 mA",
+    "tooltip": "設置堵轉電流（0~3000mA）"
+  },
+  "pd42s1_set_can_id": {
+    "message0": "電機地址 %1 設置CAN ID %2",
+    "tooltip": "設置CAN發送ID（29位擴展幀ID）"
+  },
+  "pd42s1_set_dir_level": {
+    "message0": "電機地址 %1 DIR正轉電平 %2",
+    "tooltip": "設置DIR引腳正轉對應電平（用於脈衝/方向控制）",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "高電平正轉",
+            "HIGH"
+          ],
+          [
+            "低電平正轉",
+            "LOW"
+          ]
+        ]
+      }
+    ]
+  },
+  "pd42s1_set_en_level": {
+    "message0": "電機地址 %1 EN有效電平 %2",
+    "tooltip": "設置EN使能引腳有效電平（低/高/保持有效）",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "低電平有效",
+            "LOW"
+          ],
+          [
+            "高電平有效",
+            "HIGH"
+          ],
+          [
+            "保持有效",
+            "ALWAYS"
+          ]
+        ]
+      }
+    ]
+  },
+  "pd42s1_set_cmd_echo": {
+    "message0": "電機地址 %1 指令應答 %2",
+    "tooltip": "設置串口指令是否回響應答幀",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "應答",
+            "ECHO"
+          ],
+          [
+            "不應答",
+            "NO_ECHO"
+          ]
+        ]
+      }
+    ]
+  },
+  "pd42s1_set_key_lock": {
+    "message0": "電機地址 %1 面板按鍵 %2",
+    "tooltip": "鎖定或解鎖驅動器面板按鍵",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "解鎖",
+            "UNLOCK"
+          ],
+          [
+            "上鎖",
+            "LOCK"
+          ]
+        ]
+      }
+    ]
+  },
+  "pd42s1_set_auto_display": {
+    "message0": "電機地址 %1 自動熄屏 %2",
+    "tooltip": "開啟或關閉驅動器屏幕自動熄屏",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "關閉",
+            "OFF"
+          ],
+          [
+            "開啟",
+            "ON"
+          ]
+        ]
+      }
+    ]
+  },
+  "pd42s1_set_io_start_level": {
+    "message0": "電機地址 %1 IO啟動電平 %2",
+    "tooltip": "設置IO啟停模式的啟動電平（低或高電平啟動）",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "低電平啟動",
+            "LOW"
+          ],
+          [
+            "高電平啟動",
+            "HIGH"
+          ]
+        ]
+      }
+    ]
+  },
+  "pd42s1_origin_left_pos": {
+    "message0": "電機地址 %1 設置左限位原點位置 %2",
+    "tooltip": "設置左限位原點位置（51200為一圈）"
+  },
+  "pd42s1_origin_right_pos": {
+    "message0": "電機地址 %1 設置右限位原點位置 %2",
+    "tooltip": "設置右限位原點位置（51200為一圈）"
+  },
+  "pd42s1_origin_homing": {
+    "message0": "電機地址 %1 找零點 %2 方向 %3 轉速 %4 RPM 到位電流 %5 mA",
+    "tooltip": "找零點：無限位靠堵轉電流判斷（到位電流建議200~1000mA），有限位靠限位開關；轉速建議100RPM以內",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "無限位",
+            "NO_LIMIT"
+          ],
+          [
+            "有限位",
+            "WITH_LIMIT"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "順時針 CW",
+            "CW"
+          ],
+          [
+            "逆時針 CCW",
+            "CCW"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "pd42s1_origin_trig": {
+    "message0": "電機地址 %1 觸發回零 %2",
+    "tooltip": "觸發回零動作：單圈/就近/多圈三種方式",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "單圈回零",
+            "SINGLE"
+          ],
+          [
+            "就近回零",
+            "NEAREST"
+          ],
+          [
+            "多圈回零",
+            "MULTI"
+          ]
+        ]
+      }
+    ]
+  },
+  "pd42s1_origin_break": {
+    "message0": "電機地址 %1 強制中斷回零",
+    "tooltip": "強制中斷並退出正在進行的回零操作"
+  },
+  "pd42s1_origin_timeout": {
+    "message0": "電機地址 %1 設置回零超時 %2 ms",
+    "tooltip": "設置找零點超時時間（單位ms）"
+  },
+  "pd42s1_origin_auto": {
+    "message0": "電機地址 %1 上電自動回零 %2",
+    "tooltip": "設置驅動器上電後是否自動執行回零",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "關閉",
+            "OFF"
+          ],
+          [
+            "開啟",
+            "ON"
+          ]
+        ]
+      }
+    ]
+  },
+  "pd42s1_origin_switch": {
+    "message0": "電機地址 %1 左右限位開關 %2",
+    "tooltip": "開啟後電機運動範圍受左右限位原點位置限制",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "關閉",
+            "OFF"
+          ],
+          [
+            "開啟",
+            "ON"
+          ]
+        ]
+      }
+    ]
+  },
+  "pd42s1_pulse_pin_init": {
+    "message0": "脈衝引腳初始化 EN %1 STEP %2 DIR %3",
+    "tooltip": "初始化EN/STEP/DIR輸出引腳（默認35/36/37為DNESP32S3接線，其他板卡按實際接線修改）；配合「脈衝模式」積木使用"
+  },
+  "pd42s1_pulse_en": {
+    "message0": "設置EN電平 %1",
+    "tooltip": "設置脈衝模式EN使能引腳電平（需先用「設置EN腳有效電平」協議積木配置）",
+    "args0": [
+      {
+        "options": [
+          [
+            "高電平",
+            "HIGH"
+          ],
+          [
+            "低電平",
+            "LOW"
+          ]
+        ]
+      }
+    ]
+  },
+  "pd42s1_pulse_en_toggle": {
+    "message0": "翻轉EN電平",
+    "tooltip": "翻轉EN使能引腳電平（使能/失能切換）"
+  },
+  "pd42s1_pulse_dir": {
+    "message0": "設置DIR電平 %1",
+    "tooltip": "設置脈衝模式DIR方向引腳電平（正轉/反轉由「設置DIR正轉電平」協議積木定義）",
+    "args0": [
+      {
+        "options": [
+          [
+            "高電平",
+            "HIGH"
+          ],
+          [
+            "低電平",
+            "LOW"
+          ]
+        ]
+      }
+    ]
+  },
+  "pd42s1_pulse_dir_toggle": {
+    "message0": "翻轉DIR電平",
+    "tooltip": "翻轉DIR方向引腳電平（電機換向）"
+  },
+  "pd42s1_pulse_output": {
+    "message0": "輸出 %1 個脈衝 半週期 %2 us",
+    "tooltip": "在STEP引腳輸出指定數量脈衝（軟件延時方式，速度不精准）；16細分下3200脈衝=1圈"
+  },
+  "pd42s1_pulse_freq_from_rpm": {
+    "message0": "細分 %1 轉速 %2 RPM 對應脈衝頻率 Hz",
+    "tooltip": "計算目標轉速所需脈衝頻率：頻率=轉速×200×細分÷60（輸出數值）"
+  },
+  "pd42s1_pulse_rpm_from_freq": {
+    "message0": "頻率 %1 Hz 細分 %2 對應轉速 RPM",
+    "tooltip": "計算脈衝頻率對應的實際轉速：轉速=頻率×60÷(200×細分)（輸出數值）"
+  },
+  "pd42s1_io_pin_init": {
+    "message0": "IO啟停引腳初始化 引腳 %1",
+    "tooltip": "初始化IO啟停輸出引腳（默認39為DNESP32S3接線，其他板卡按實際接線修改）；配合「IO啟停模式」積木使用"
+  },
+  "pd42s1_io_pin_set": {
+    "message0": "IO啟停輸出電平 %1",
+    "tooltip": "設置IO啟停引腳電平（啟動電平由「設置IO啟動電平」協議積木定義）",
+    "args0": [
+      {
+        "options": [
+          [
+            "高電平",
+            "HIGH"
+          ],
+          [
+            "低電平",
+            "LOW"
+          ]
+        ]
+      }
+    ]
+  },
+  "pd42s1_io_pin_toggle": {
+    "message0": "翻轉IO啟停電平",
+    "tooltip": "翻轉IO啟停引腳電平（啟動/停止切換）"
+  }
+}
