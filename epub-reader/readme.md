@@ -7,8 +7,8 @@ EPUB电子书阅读器库，支持ZIP解压、HTML解析、自动分页，配合
 | Field | Value |
 |-------|-------|
 | Package | @aily-project/lib-epub-reader |
-| Version | 1.0.0 |
-| Author | ailyProject |
+| Version | 1.2.7 |
+| Author | Bryan |
 | Source | Based on miniz (public domain) |
 
 ## Supported Boards

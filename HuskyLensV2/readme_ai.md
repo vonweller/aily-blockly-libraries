@@ -2,7 +2,7 @@
 
 DFRobot HuskylensV2 Blockly 库，对齐官方 v1.0.9 API。
 
-## 库信息
+## Library Info
 - **名称**: @aily-project/lib-huskylensv2
 - **版本**: 1.0.9
 - **源码**: https://gitee.com/dfrobot/DFRobot_HuskylensV2
@@ -12,16 +12,15 @@ DFRobot HuskylensV2 Blockly 库，对齐官方 v1.0.9 API。
 ```
 arduino_setup()
     huskylensv2_init_i2c_until("huskylens", Wire)
-    huskylensv2_set_algorithm_until(variables_get($huskylens), ALGORITHM_FACE_RECOGNITION)
+    huskylensv2_set_algorithm_until($huskylens, ALGORITHM_FACE_RECOGNITION)
 
 arduino_loop()
-    huskylensv2_get_result_until(variables_get($huskylens), ALGORITHM_ANY)
+    huskylensv2_get_result_until($huskylens, ALGORITHM_ANY)
     controls_whileUntil(WHILE)
-        @BOOL: huskylensv2_available(variables_get($huskylens), ALGORITHM_ANY)
+        @BOOL: huskylensv2_available($huskylens, ALGORITHM_ANY)
         @DO:
-            // 弹出结果后读取字段
-            // result = huskylensv2_pop_result(...)
-            // huskylensv2_result_id(result)
+            variables_set($result, huskylensv2_pop_result($huskylens, ALGORITHM_ANY))
+            serial_println(Serial, huskylensv2_result_id(variables_get($result)))
 ```
 
 ## 关键规则
@@ -32,88 +31,88 @@ arduino_loop()
 4. 官方推荐消费：`getResult` → `available` → `pop_result`
 5. 多算法 / Face/Hand/Pose 关键点需要 LARGE_MEMORY（ESP32 等）
 
-## 块定义
+## Block Definitions
 
-| 块类型 | 连接 | 参数（args0顺序） | ABS格式 | 生成代码 |
+| Block Type | Connection | Parameters (block.json order) | ABS Format | Generated Code |
 |--------|------|-----------------|---------|----------|
-| `huskylensv2_init_i2c_until` | 语句块 | VAR(field_input), WIRE(field_dropdown) | `huskylensv2_init_i2c_until("huskylens", WIRE)` | 见官方API |
-| `huskylensv2_init_i2c` | 语句块 | VAR(field_input), WIRE(field_dropdown) | `huskylensv2_init_i2c("huskylens", WIRE)` | 见官方API |
-| `huskylensv2_init_serial` | 语句块 | VAR(field_input), SERIAL(field_dropdown) | `huskylensv2_init_serial("huskylens", SERIAL)` | 见官方API |
-| `huskylensv2_set_algorithm` | 语句块 | VAR(field_variable), ALGORITHM(field_dropdown) | `huskylensv2_set_algorithm(variables_get($huskylens), ALGORITHM_ANY)` | 见官方API |
-| `huskylensv2_set_algorithm_until` | 语句块 | VAR(field_variable), ALGORITHM(field_dropdown) | `huskylensv2_set_algorithm_until(variables_get($huskylens), ALGORITHM_ANY)` | 见官方API |
-| `huskylensv2_get_result` | 语句块 | VAR(field_variable), ALGORITHM(field_dropdown) | `huskylensv2_get_result(variables_get($huskylens), ALGORITHM_ANY)` | 见官方API |
-| `huskylensv2_get_result_until` | 语句块 | VAR(field_variable), ALGORITHM(field_dropdown) | `huskylensv2_get_result_until(variables_get($huskylens), ALGORITHM_ANY)` | 见官方API |
-| `huskylensv2_available` | 值块 | VAR(field_variable), ALGORITHM(field_dropdown) | `huskylensv2_available(variables_get($huskylens), ALGORITHM_ANY)` | 见官方API |
-| `huskylensv2_result_count` | 值块 | VAR(field_variable), ALGORITHM(field_dropdown) | `huskylensv2_result_count(variables_get($huskylens), ALGORITHM_ANY)` | 见官方API |
-| `huskylensv2_count_learned` | 值块 | VAR(field_variable), ALGORITHM(field_dropdown) | `huskylensv2_count_learned(variables_get($huskylens), ALGORITHM_ANY)` | 见官方API |
-| `huskylensv2_count_id` | 值块 | VAR(field_variable), ALGORITHM(field_dropdown), ID(input_value) | `huskylensv2_count_id(variables_get($huskylens), ALGORITHM_ANY, math_number(0))` | 见官方API |
-| `huskylensv2_max_id` | 值块 | VAR(field_variable), ALGORITHM(field_dropdown) | `huskylensv2_max_id(variables_get($huskylens), ALGORITHM_ANY)` | 见官方API |
-| `huskylensv2_pop_result` | 值块 | VAR(field_variable), ALGORITHM(field_dropdown) | `huskylensv2_pop_result(variables_get($huskylens), ALGORITHM_ANY)` | 见官方API |
-| `huskylensv2_get_center` | 值块 | VAR(field_variable), ALGORITHM(field_dropdown) | `huskylensv2_get_center(variables_get($huskylens), ALGORITHM_ANY)` | 见官方API |
-| `huskylensv2_get_by_index` | 值块 | VAR(field_variable), ALGORITHM(field_dropdown), INDEX(input_value) | `huskylensv2_get_by_index(variables_get($huskylens), ALGORITHM_ANY, math_number(0))` | 见官方API |
-| `huskylensv2_get_by_id` | 值块 | VAR(field_variable), ALGORITHM(field_dropdown), ID(input_value) | `huskylensv2_get_by_id(variables_get($huskylens), ALGORITHM_ANY, math_number(0))` | 见官方API |
-| `huskylensv2_get_by_id_index` | 值块 | VAR(field_variable), ALGORITHM(field_dropdown), ID(input_value), INDEX(input_value) | `huskylensv2_get_by_id_index(variables_get($huskylens), ALGORITHM_ANY, math_number(0), math_number(0))` | 见官方API |
-| `huskylensv2_current_branch` | 值块 | VAR(field_variable), ALGORITHM(field_dropdown) | `huskylensv2_current_branch(variables_get($huskylens), ALGORITHM_ANY)` | 见官方API |
-| `huskylensv2_upcoming_branch_count` | 值块 | VAR(field_variable), ALGORITHM(field_dropdown) | `huskylensv2_upcoming_branch_count(variables_get($huskylens), ALGORITHM_ANY)` | 见官方API |
-| `huskylensv2_get_branch` | 值块 | VAR(field_variable), ALGORITHM(field_dropdown), INDEX(input_value) | `huskylensv2_get_branch(variables_get($huskylens), ALGORITHM_ANY, math_number(0))` | 见官方API |
-| `huskylensv2_learn` | 语句块 | VAR(field_variable), ALGORITHM(field_dropdown) | `huskylensv2_learn(variables_get($huskylens), ALGORITHM_ANY)` | 见官方API |
-| `huskylensv2_learn_value` | 值块 | VAR(field_variable), ALGORITHM(field_dropdown) | `huskylensv2_learn_value(variables_get($huskylens), ALGORITHM_ANY)` | 见官方API |
-| `huskylensv2_learn_block` | 语句块 | VAR(field_variable), ALGORITHM(field_dropdown), X(input_value), Y(input_value), WIDTH(input_value), HEIGHT(input_value) | `huskylensv2_learn_block(variables_get($huskylens), ALGORITHM_ANY, math_number(0), math_number(0), math_number(0), math_number(0))` | 见官方API |
-| `huskylensv2_learn_block_value` | 值块 | VAR(field_variable), ALGORITHM(field_dropdown), X(input_value), Y(input_value), WIDTH(input_value), HEIGHT(input_value) | `huskylensv2_learn_block_value(variables_get($huskylens), ALGORITHM_ANY, math_number(0), math_number(0), math_number(0), math_number(0))` | 见官方API |
-| `huskylensv2_forget` | 语句块 | VAR(field_variable), ALGORITHM(field_dropdown) | `huskylensv2_forget(variables_get($huskylens), ALGORITHM_ANY)` | 见官方API |
-| `huskylensv2_take_photo` | 值块 | VAR(field_variable), RESOLUTION(field_dropdown) | `huskylensv2_take_photo(variables_get($huskylens), RESOLUTION_DEFAULT)` | 见官方API |
-| `huskylensv2_take_screenshot` | 值块 | VAR(field_variable) | `huskylensv2_take_screenshot(variables_get($huskylens))` | 见官方API |
-| `huskylensv2_draw_rect` | 语句块 | VAR(field_variable), COLOR(field_dropdown), LINEWIDTH(input_value), X(input_value), Y(input_value), WIDTH(input_value), HEIGHT(input_value) | `huskylensv2_draw_rect(variables_get($huskylens), COLOR_WHITE, math_number(0), math_number(0), math_number(0), math_number(0), math_number(0))` | 见官方API |
-| `huskylensv2_draw_unique_rect` | 语句块 | VAR(field_variable), COLOR(field_dropdown), LINEWIDTH(input_value), X(input_value), Y(input_value), WIDTH(input_value), HEIGHT(input_value) | `huskylensv2_draw_unique_rect(variables_get($huskylens), COLOR_WHITE, math_number(0), math_number(0), math_number(0), math_number(0), math_number(0))` | 见官方API |
-| `huskylensv2_clear_rect` | 语句块 | VAR(field_variable) | `huskylensv2_clear_rect(variables_get($huskylens))` | 见官方API |
-| `huskylensv2_draw_text` | 语句块 | VAR(field_variable), COLOR(field_dropdown), FONTSIZE(input_value), X(input_value), Y(input_value), TEXT(input_value) | `huskylensv2_draw_text(variables_get($huskylens), COLOR_WHITE, math_number(0), math_number(0), math_number(0), text(""))` | 见官方API |
-| `huskylensv2_clear_text` | 语句块 | VAR(field_variable) | `huskylensv2_clear_text(variables_get($huskylens))` | 见官方API |
-| `huskylensv2_save_knowledge` | 语句块 | VAR(field_variable), ALGORITHM(field_dropdown), ID(input_value) | `huskylensv2_save_knowledge(variables_get($huskylens), ALGORITHM_ANY, math_number(0))` | 见官方API |
-| `huskylensv2_load_knowledge` | 语句块 | VAR(field_variable), ALGORITHM(field_dropdown), ID(input_value) | `huskylensv2_load_knowledge(variables_get($huskylens), ALGORITHM_ANY, math_number(0))` | 见官方API |
-| `huskylensv2_play_music` | 语句块 | VAR(field_variable), NAME(input_value), VOLUME(input_value) | `huskylensv2_play_music(variables_get($huskylens), text(""), math_number(0))` | 见官方API |
-| `huskylensv2_set_name` | 语句块 | VAR(field_variable), ALGORITHM(field_dropdown), ID(input_value), NAME(input_value) | `huskylensv2_set_name(variables_get($huskylens), ALGORITHM_ANY, math_number(0), text(""))` | 见官方API |
-| `huskylensv2_get_algo_param_bool` | 值块 | VAR(field_variable), ALGORITHM(field_dropdown), KEY(input_value) | `huskylensv2_get_algo_param_bool(variables_get($huskylens), ALGORITHM_ANY, text(""))` | 见官方API |
-| `huskylensv2_get_algo_param_float` | 值块 | VAR(field_variable), ALGORITHM(field_dropdown), KEY(input_value) | `huskylensv2_get_algo_param_float(variables_get($huskylens), ALGORITHM_ANY, text(""))` | 见官方API |
-| `huskylensv2_get_algo_param_string` | 值块 | VAR(field_variable), ALGORITHM(field_dropdown), KEY(input_value) | `huskylensv2_get_algo_param_string(variables_get($huskylens), ALGORITHM_ANY, text(""))` | 见官方API |
-| `huskylensv2_set_algo_param_bool` | 语句块 | VAR(field_variable), ALGORITHM(field_dropdown), KEY(input_value), VALUE(input_value) | `huskylensv2_set_algo_param_bool(variables_get($huskylens), ALGORITHM_ANY, text(""), logic_boolean(TRUE))` | 见官方API |
-| `huskylensv2_set_algo_param_float` | 语句块 | VAR(field_variable), ALGORITHM(field_dropdown), KEY(input_value), VALUE(input_value) | `huskylensv2_set_algo_param_float(variables_get($huskylens), ALGORITHM_ANY, text(""), math_number(0))` | 见官方API |
-| `huskylensv2_set_algo_param_string` | 语句块 | VAR(field_variable), ALGORITHM(field_dropdown), KEY(input_value), VALUE(input_value) | `huskylensv2_set_algo_param_string(variables_get($huskylens), ALGORITHM_ANY, text(""), text(""))` | 见官方API |
-| `huskylensv2_update_algo_params` | 语句块 | VAR(field_variable), ALGORITHM(field_dropdown) | `huskylensv2_update_algo_params(variables_get($huskylens), ALGORITHM_ANY)` | 见官方API |
-| `huskylensv2_result_id` | 值块 | RESULT(input_value) | `huskylensv2_result_id(huskylensv2_pop_result(variables_get($huskylens), ALGORITHM_ANY))` | 见官方API |
-| `huskylensv2_result_x` | 值块 | RESULT(input_value) | `huskylensv2_result_x(huskylensv2_pop_result(variables_get($huskylens), ALGORITHM_ANY))` | 见官方API |
-| `huskylensv2_result_y` | 值块 | RESULT(input_value) | `huskylensv2_result_y(huskylensv2_pop_result(variables_get($huskylens), ALGORITHM_ANY))` | 见官方API |
-| `huskylensv2_result_width` | 值块 | RESULT(input_value) | `huskylensv2_result_width(huskylensv2_pop_result(variables_get($huskylens), ALGORITHM_ANY))` | 见官方API |
-| `huskylensv2_result_height` | 值块 | RESULT(input_value) | `huskylensv2_result_height(huskylensv2_pop_result(variables_get($huskylens), ALGORITHM_ANY))` | 见官方API |
-| `huskylensv2_result_name` | 值块 | RESULT(input_value) | `huskylensv2_result_name(huskylensv2_pop_result(variables_get($huskylens), ALGORITHM_ANY))` | 见官方API |
-| `huskylensv2_result_content` | 值块 | RESULT(input_value) | `huskylensv2_result_content(huskylensv2_pop_result(variables_get($huskylens), ALGORITHM_ANY))` | 见官方API |
-| `huskylensv2_result_confidence` | 值块 | RESULT(input_value) | `huskylensv2_result_confidence(huskylensv2_pop_result(variables_get($huskylens), ALGORITHM_ANY))` | 见官方API |
-| `huskylensv2_result_type` | 值块 | RESULT(input_value) | `huskylensv2_result_type(huskylensv2_pop_result(variables_get($huskylens), ALGORITHM_ANY))` | 见官方API |
-| `huskylensv2_result_pitch` | 值块 | RESULT(input_value) | `huskylensv2_result_pitch(huskylensv2_pop_result(variables_get($huskylens), ALGORITHM_ANY))` | 见官方API |
-| `huskylensv2_result_yaw` | 值块 | RESULT(input_value) | `huskylensv2_result_yaw(huskylensv2_pop_result(variables_get($huskylens), ALGORITHM_ANY))` | 见官方API |
-| `huskylensv2_result_roll` | 值块 | RESULT(input_value) | `huskylensv2_result_roll(huskylensv2_pop_result(variables_get($huskylens), ALGORITHM_ANY))` | 见官方API |
-| `huskylensv2_result_azimuth` | 值块 | RESULT(input_value) | `huskylensv2_result_azimuth(huskylensv2_pop_result(variables_get($huskylens), ALGORITHM_ANY))` | 见官方API |
-| `huskylensv2_result_classid` | 值块 | RESULT(input_value) | `huskylensv2_result_classid(huskylensv2_pop_result(variables_get($huskylens), ALGORITHM_ANY))` | 见官方API |
-| `huskylensv2_result_xtarget` | 值块 | RESULT(input_value) | `huskylensv2_result_xtarget(huskylensv2_pop_result(variables_get($huskylens), ALGORITHM_ANY))` | 见官方API |
-| `huskylensv2_result_ytarget` | 值块 | RESULT(input_value) | `huskylensv2_result_ytarget(huskylensv2_pop_result(variables_get($huskylens), ALGORITHM_ANY))` | 见官方API |
-| `huskylensv2_result_angle` | 值块 | RESULT(input_value) | `huskylensv2_result_angle(huskylensv2_pop_result(variables_get($huskylens), ALGORITHM_ANY))` | 见官方API |
-| `huskylensv2_result_length` | 值块 | RESULT(input_value) | `huskylensv2_result_length(huskylensv2_pop_result(variables_get($huskylens), ALGORITHM_ANY))` | 见官方API |
-| `huskylensv2_result_level` | 值块 | RESULT(input_value) | `huskylensv2_result_level(huskylensv2_pop_result(variables_get($huskylens), ALGORITHM_ANY))` | 见官方API |
-| `huskylensv2_result_steering` | 值块 | RESULT(input_value) | `huskylensv2_result_steering(huskylensv2_pop_result(variables_get($huskylens), ALGORITHM_ANY))` | 见官方API |
-| `huskylensv2_result_throttle` | 值块 | RESULT(input_value) | `huskylensv2_result_throttle(huskylensv2_pop_result(variables_get($huskylens), ALGORITHM_ANY))` | 见官方API |
-| `huskylensv2_is_valid` | 值块 | RESULT(input_value) | `huskylensv2_is_valid(huskylensv2_pop_result(variables_get($huskylens), ALGORITHM_ANY))` | 见官方API |
-| `huskylensv2_face_leye` | 值块 | RESULT(input_value), AXIS(field_dropdown) | `huskylensv2_face_leye(huskylensv2_pop_result(variables_get($huskylens), ALGORITHM_ANY), x)` | 见官方API |
-| `huskylensv2_face_reye` | 值块 | RESULT(input_value), AXIS(field_dropdown) | `huskylensv2_face_reye(huskylensv2_pop_result(variables_get($huskylens), ALGORITHM_ANY), x)` | 见官方API |
-| `huskylensv2_face_nose` | 值块 | RESULT(input_value), AXIS(field_dropdown) | `huskylensv2_face_nose(huskylensv2_pop_result(variables_get($huskylens), ALGORITHM_ANY), x)` | 见官方API |
-| `huskylensv2_face_lmouth` | 值块 | RESULT(input_value), AXIS(field_dropdown) | `huskylensv2_face_lmouth(huskylensv2_pop_result(variables_get($huskylens), ALGORITHM_ANY), x)` | 见官方API |
-| `huskylensv2_face_rmouth` | 值块 | RESULT(input_value), AXIS(field_dropdown) | `huskylensv2_face_rmouth(huskylensv2_pop_result(variables_get($huskylens), ALGORITHM_ANY), x)` | 见官方API |
-| `huskylensv2_hand_point` | 值块 | RESULT(input_value), POINT(field_dropdown), AXIS(field_dropdown) | `huskylensv2_hand_point(huskylensv2_pop_result(variables_get($huskylens), ALGORITHM_ANY), wrist, x)` | 见官方API |
-| `huskylensv2_pose_point` | 值块 | RESULT(input_value), POINT(field_dropdown), AXIS(field_dropdown) | `huskylensv2_pose_point(huskylensv2_pop_result(variables_get($huskylens), ALGORITHM_ANY), nose, x)` | 见官方API |
-| `huskylensv2_set_multi_algorithm` | 语句块 | VAR(field_variable), ALGORITHM1(field_dropdown), ALGORITHM2(field_dropdown), ALGORITHM3(field_dropdown) | `huskylensv2_set_multi_algorithm(variables_get($huskylens), ALGORITHM_ANY, ALGORITHM_ANY, ALGORITHM_ANY)` | 见官方API |
-| `huskylensv2_set_multi_algorithm_ratio` | 语句块 | VAR(field_variable), RATIO1(input_value), RATIO2(input_value), RATIO3(input_value) | `huskylensv2_set_multi_algorithm_ratio(variables_get($huskylens), math_number(0), math_number(0), math_number(0))` | 见官方API |
-| `huskylensv2_start_recording` | 语句块 | VAR(field_variable), TYPE(field_dropdown), DURATION(input_value), FILENAME(input_value), RESOLUTION(field_dropdown) | `huskylensv2_start_recording(variables_get($huskylens), MEDIA_TYPE_VIDEO, math_number(0), text(""), RESOLUTION_DEFAULT)` | 见官方API |
-| `huskylensv2_stop_recording` | 语句块 | VAR(field_variable), TYPE(field_dropdown) | `huskylensv2_stop_recording(variables_get($huskylens), MEDIA_TYPE_VIDEO)` | 见官方API |
+| `huskylensv2_init_i2c_until` | 语句块 | VAR(field_input), WIRE(dropdown) | `huskylensv2_init_i2c_until("huskylens", WIRE)` | `HuskylensV2 huskylens; ↵ WIRE.begin(); ↵ while (!huskylens.begin(WIRE)) { ↵ delay(100); ↵ }` |
+| `huskylensv2_init_i2c` | 语句块 | VAR(field_input), WIRE(dropdown) | `huskylensv2_init_i2c("huskylens", WIRE)` | `HuskylensV2 huskylens; ↵ WIRE.begin(); ↵ huskylens.begin(WIRE);` |
+| `huskylensv2_init_serial` | 语句块 | VAR(field_input), SERIAL(dropdown) | `huskylensv2_init_serial("huskylens", SERIAL)` | `HuskylensV2 huskylens; ↵ SERIAL.begin(115200); ↵ while (!huskylens.begin(SERIAL)) { ↵ delay(100); ↵ }` |
+| `huskylensv2_set_algorithm` | 语句块 | VAR(field_variable), ALGORITHM(dropdown) | `huskylensv2_set_algorithm($huskylens, ALGORITHM_ANY)` | `huskylens.switchAlgorithm(ALGORITHM_ANY);` |
+| `huskylensv2_set_algorithm_until` | 语句块 | VAR(field_variable), ALGORITHM(dropdown) | `huskylensv2_set_algorithm_until($huskylens, ALGORITHM_ANY)` | `while (!huskylens.switchAlgorithm(ALGORITHM_ANY)) { ↵ delay(100); ↵ }` |
+| `huskylensv2_get_result` | 语句块 | VAR(field_variable), ALGORITHM(dropdown) | `huskylensv2_get_result($huskylens, ALGORITHM_ANY)` | `huskylens.getResult(ALGORITHM_ANY);` |
+| `huskylensv2_get_result_until` | 语句块 | VAR(field_variable), ALGORITHM(dropdown) | `huskylensv2_get_result_until($huskylens, ALGORITHM_ANY)` | `while (!huskylens.getResult(ALGORITHM_ANY)) { ↵ delay(100); ↵ }` |
+| `huskylensv2_available` | 值块 | VAR(field_variable), ALGORITHM(dropdown) | `huskylensv2_available($huskylens, ALGORITHM_ANY)` | `huskylens.available(ALGORITHM_ANY)` |
+| `huskylensv2_result_count` | 值块 | VAR(field_variable), ALGORITHM(dropdown) | `huskylensv2_result_count($huskylens, ALGORITHM_ANY)` | `huskylens.getCachedResultNum(ALGORITHM_ANY)` |
+| `huskylensv2_count_learned` | 值块 | VAR(field_variable), ALGORITHM(dropdown) | `huskylensv2_count_learned($huskylens, ALGORITHM_ANY)` | `huskylens.getCachedResultLearnedNum(ALGORITHM_ANY)` |
+| `huskylensv2_count_id` | 值块 | VAR(field_variable), ALGORITHM(dropdown), ID(input_value) | `huskylensv2_count_id($huskylens, ALGORITHM_ANY, math_number(0))` | `huskylens.getCachedResultNumByID(ALGORITHM_ANY, 1)` |
+| `huskylensv2_max_id` | 值块 | VAR(field_variable), ALGORITHM(dropdown) | `huskylensv2_max_id($huskylens, ALGORITHM_ANY)` | `huskylens.getCachedResultMaxID(ALGORITHM_ANY)` |
+| `huskylensv2_pop_result` | 值块 | VAR(field_variable), ALGORITHM(dropdown) | `huskylensv2_pop_result($huskylens, ALGORITHM_ANY)` | `huskylens.popCachedResult(ALGORITHM_ANY)` |
+| `huskylensv2_get_center` | 值块 | VAR(field_variable), ALGORITHM(dropdown) | `huskylensv2_get_center($huskylens, ALGORITHM_ANY)` | `huskylens.getCachedCenterResult(ALGORITHM_ANY)` |
+| `huskylensv2_get_by_index` | 值块 | VAR(field_variable), ALGORITHM(dropdown), INDEX(input_value) | `huskylensv2_get_by_index($huskylens, ALGORITHM_ANY, math_number(0))` | `huskylens.getCachedResultByIndex(ALGORITHM_ANY, 1)` |
+| `huskylensv2_get_by_id` | 值块 | VAR(field_variable), ALGORITHM(dropdown), ID(input_value) | `huskylensv2_get_by_id($huskylens, ALGORITHM_ANY, math_number(0))` | `huskylens.getCachedResultByID(ALGORITHM_ANY, 1)` |
+| `huskylensv2_get_by_id_index` | 值块 | VAR(field_variable), ALGORITHM(dropdown), ID(input_value), INDEX(input_value) | `huskylensv2_get_by_id_index($huskylens, ALGORITHM_ANY, math_number(0), math_number(0))` | `huskylens.getCachedIndexResultByID(ALGORITHM_ANY, 1, 1)` |
+| `huskylensv2_current_branch` | 值块 | VAR(field_variable), ALGORITHM(dropdown) | `huskylensv2_current_branch($huskylens, ALGORITHM_ANY)` | `huskylens.getCurrentBranch(ALGORITHM_ANY)` |
+| `huskylensv2_upcoming_branch_count` | 值块 | VAR(field_variable), ALGORITHM(dropdown) | `huskylensv2_upcoming_branch_count($huskylens, ALGORITHM_ANY)` | `huskylens.getUpcomingBranchCount(ALGORITHM_ANY)` |
+| `huskylensv2_get_branch` | 值块 | VAR(field_variable), ALGORITHM(dropdown), INDEX(input_value) | `huskylensv2_get_branch($huskylens, ALGORITHM_ANY, math_number(0))` | `huskylens.getBranch(ALGORITHM_ANY, 1)` |
+| `huskylensv2_learn` | 语句块 | VAR(field_variable), ALGORITHM(dropdown) | `huskylensv2_learn($huskylens, ALGORITHM_ANY)` | `huskylens.learn(ALGORITHM_ANY);` |
+| `huskylensv2_learn_value` | 值块 | VAR(field_variable), ALGORITHM(dropdown) | `huskylensv2_learn_value($huskylens, ALGORITHM_ANY)` | `huskylens.learn(ALGORITHM_ANY)` |
+| `huskylensv2_learn_block` | 语句块 | VAR(field_variable), ALGORITHM(dropdown), X(input_value), Y(input_value), WIDTH(input_value), HEIGHT(input_value) | `huskylensv2_learn_block($huskylens, ALGORITHM_ANY, math_number(0), math_number(0), math_number(0), math_number(0))` | `huskylens.learnBlock(ALGORITHM_ANY, 1, 1, 1, 1);` |
+| `huskylensv2_learn_block_value` | 值块 | VAR(field_variable), ALGORITHM(dropdown), X(input_value), Y(input_value), WIDTH(input_value), HEIGHT(input_value) | `huskylensv2_learn_block_value($huskylens, ALGORITHM_ANY, math_number(0), math_number(0), math_number(0), math_number(0))` | `huskylens.learnBlock(ALGORITHM_ANY, 1, 1, 1, 1)` |
+| `huskylensv2_forget` | 语句块 | VAR(field_variable), ALGORITHM(dropdown) | `huskylensv2_forget($huskylens, ALGORITHM_ANY)` | `huskylens.forget(ALGORITHM_ANY);` |
+| `huskylensv2_take_photo` | 值块 | VAR(field_variable), RESOLUTION(dropdown) | `huskylensv2_take_photo($huskylens, RESOLUTION_DEFAULT)` | `huskylens.takePhoto(RESOLUTION_DEFAULT)` |
+| `huskylensv2_take_screenshot` | 值块 | VAR(field_variable) | `huskylensv2_take_screenshot($huskylens)` | `huskylens.takeScreenshot()` |
+| `huskylensv2_draw_rect` | 语句块 | VAR(field_variable), COLOR(dropdown), LINEWIDTH(input_value), X(input_value), Y(input_value), WIDTH(input_value), HEIGHT(input_value) | `huskylensv2_draw_rect($huskylens, COLOR_WHITE, math_number(0), math_number(0), math_number(0), math_number(0), math_number(0))` | `huskylens.drawRect(COLOR_WHITE, 1, 1, 1, 1, 1);` |
+| `huskylensv2_draw_unique_rect` | 语句块 | VAR(field_variable), COLOR(dropdown), LINEWIDTH(input_value), X(input_value), Y(input_value), WIDTH(input_value), HEIGHT(input_value) | `huskylensv2_draw_unique_rect($huskylens, COLOR_WHITE, math_number(0), math_number(0), math_number(0), math_number(0), math_number(0))` | `huskylens.drawUniqueRect(COLOR_WHITE, 1, 1, 1, 1, 1);` |
+| `huskylensv2_clear_rect` | 语句块 | VAR(field_variable) | `huskylensv2_clear_rect($huskylens)` | `huskylens.clearRect();` |
+| `huskylensv2_draw_text` | 语句块 | VAR(field_variable), COLOR(dropdown), FONTSIZE(input_value), X(input_value), Y(input_value), TEXT(input_value) | `huskylensv2_draw_text($huskylens, COLOR_WHITE, math_number(0), math_number(0), math_number(0), text(""))` | `huskylens.drawText(COLOR_WHITE, 1, 1, 1, "value");` |
+| `huskylensv2_clear_text` | 语句块 | VAR(field_variable) | `huskylensv2_clear_text($huskylens)` | `huskylens.clearText();` |
+| `huskylensv2_save_knowledge` | 语句块 | VAR(field_variable), ALGORITHM(dropdown), ID(input_value) | `huskylensv2_save_knowledge($huskylens, ALGORITHM_ANY, math_number(0))` | `huskylens.saveKnowledges(ALGORITHM_ANY, 1);` |
+| `huskylensv2_load_knowledge` | 语句块 | VAR(field_variable), ALGORITHM(dropdown), ID(input_value) | `huskylensv2_load_knowledge($huskylens, ALGORITHM_ANY, math_number(0))` | `huskylens.loadKnowledges(ALGORITHM_ANY, 1);` |
+| `huskylensv2_play_music` | 语句块 | VAR(field_variable), NAME(input_value), VOLUME(input_value) | `huskylensv2_play_music($huskylens, text(""), math_number(0))` | `huskylens.playMusic("value", 1);` |
+| `huskylensv2_set_name` | 语句块 | VAR(field_variable), ALGORITHM(dropdown), ID(input_value), NAME(input_value) | `huskylensv2_set_name($huskylens, ALGORITHM_ANY, math_number(0), text(""))` | `huskylens.setNameByID(ALGORITHM_ANY, 1, "value");` |
+| `huskylensv2_get_algo_param_bool` | 值块 | VAR(field_variable), ALGORITHM(dropdown), KEY(input_value) | `huskylensv2_get_algo_param_bool($huskylens, ALGORITHM_ANY, text(""))` | `huskylens.getAlgoParamBool(ALGORITHM_ANY, "value")` |
+| `huskylensv2_get_algo_param_float` | 值块 | VAR(field_variable), ALGORITHM(dropdown), KEY(input_value) | `huskylensv2_get_algo_param_float($huskylens, ALGORITHM_ANY, text(""))` | `huskylens.getAlgoParamFloat(ALGORITHM_ANY, "value")` |
+| `huskylensv2_get_algo_param_string` | 值块 | VAR(field_variable), ALGORITHM(dropdown), KEY(input_value) | `huskylensv2_get_algo_param_string($huskylens, ALGORITHM_ANY, text(""))` | `huskylens.getAlgoParamString(ALGORITHM_ANY, "value")` |
+| `huskylensv2_set_algo_param_bool` | 语句块 | VAR(field_variable), ALGORITHM(dropdown), KEY(input_value), VALUE(input_value) | `huskylensv2_set_algo_param_bool($huskylens, ALGORITHM_ANY, text(""), logic_boolean(TRUE))` | `huskylens.setAlgoParamBool(ALGORITHM_ANY, "value", true);` |
+| `huskylensv2_set_algo_param_float` | 语句块 | VAR(field_variable), ALGORITHM(dropdown), KEY(input_value), VALUE(input_value) | `huskylensv2_set_algo_param_float($huskylens, ALGORITHM_ANY, text(""), math_number(0))` | `huskylens.setAlgoParamFloat(ALGORITHM_ANY, "value", 1);` |
+| `huskylensv2_set_algo_param_string` | 语句块 | VAR(field_variable), ALGORITHM(dropdown), KEY(input_value), VALUE(input_value) | `huskylensv2_set_algo_param_string($huskylens, ALGORITHM_ANY, text(""), text(""))` | `huskylens.setAlgoParamString(ALGORITHM_ANY, "value", "value");` |
+| `huskylensv2_update_algo_params` | 语句块 | VAR(field_variable), ALGORITHM(dropdown) | `huskylensv2_update_algo_params($huskylens, ALGORITHM_ANY)` | `huskylens.updateAlgoParams(ALGORITHM_ANY);` |
+| `huskylensv2_result_id` | 值块 | RESULT(input_value) | `huskylensv2_result_id(huskylensv2_pop_result($huskylens, ALGORITHM_ANY))` | `RET_ITEM_NUM(1, Result, ID)` |
+| `huskylensv2_result_x` | 值块 | RESULT(input_value) | `huskylensv2_result_x(huskylensv2_pop_result($huskylens, ALGORITHM_ANY))` | `RET_ITEM_NUM(1, Result, xCenter)` |
+| `huskylensv2_result_y` | 值块 | RESULT(input_value) | `huskylensv2_result_y(huskylensv2_pop_result($huskylens, ALGORITHM_ANY))` | `RET_ITEM_NUM(1, Result, yCenter)` |
+| `huskylensv2_result_width` | 值块 | RESULT(input_value) | `huskylensv2_result_width(huskylensv2_pop_result($huskylens, ALGORITHM_ANY))` | `RET_ITEM_NUM(1, Result, width)` |
+| `huskylensv2_result_height` | 值块 | RESULT(input_value) | `huskylensv2_result_height(huskylensv2_pop_result($huskylens, ALGORITHM_ANY))` | `RET_ITEM_NUM(1, Result, height)` |
+| `huskylensv2_result_name` | 值块 | RESULT(input_value) | `huskylensv2_result_name(huskylensv2_pop_result($huskylens, ALGORITHM_ANY))` | `RET_ITEM_STR(1, Result, name)` |
+| `huskylensv2_result_content` | 值块 | RESULT(input_value) | `huskylensv2_result_content(huskylensv2_pop_result($huskylens, ALGORITHM_ANY))` | `RET_ITEM_STR(1, Result, content)` |
+| `huskylensv2_result_confidence` | 值块 | RESULT(input_value) | `huskylensv2_result_confidence(huskylensv2_pop_result($huskylens, ALGORITHM_ANY))` | `RET_ITEM_NUM(1, Result, confidence)` |
+| `huskylensv2_result_type` | 值块 | RESULT(input_value) | `huskylensv2_result_type(huskylensv2_pop_result($huskylens, ALGORITHM_ANY))` | `((1) ? (1)->type : -1)` |
+| `huskylensv2_result_pitch` | 值块 | RESULT(input_value) | `huskylensv2_result_pitch(huskylensv2_pop_result($huskylens, ALGORITHM_ANY))` | `RET_ITEM_NUM(1, Result, pitch)` |
+| `huskylensv2_result_yaw` | 值块 | RESULT(input_value) | `huskylensv2_result_yaw(huskylensv2_pop_result($huskylens, ALGORITHM_ANY))` | `RET_ITEM_NUM(1, Result, yaw)` |
+| `huskylensv2_result_roll` | 值块 | RESULT(input_value) | `huskylensv2_result_roll(huskylensv2_pop_result($huskylens, ALGORITHM_ANY))` | `RET_ITEM_NUM(1, Result, roll)` |
+| `huskylensv2_result_azimuth` | 值块 | RESULT(input_value) | `huskylensv2_result_azimuth(huskylensv2_pop_result($huskylens, ALGORITHM_ANY))` | `RET_ITEM_NUM(1, Result, azimuth)` |
+| `huskylensv2_result_classid` | 值块 | RESULT(input_value) | `huskylensv2_result_classid(huskylensv2_pop_result($huskylens, ALGORITHM_ANY))` | `RET_ITEM_NUM(1, Result, classID)` |
+| `huskylensv2_result_xtarget` | 值块 | RESULT(input_value) | `huskylensv2_result_xtarget(huskylensv2_pop_result($huskylens, ALGORITHM_ANY))` | `RET_ITEM_NUM(1, Result, xTarget)` |
+| `huskylensv2_result_ytarget` | 值块 | RESULT(input_value) | `huskylensv2_result_ytarget(huskylensv2_pop_result($huskylens, ALGORITHM_ANY))` | `RET_ITEM_NUM(1, Result, yTarget)` |
+| `huskylensv2_result_angle` | 值块 | RESULT(input_value) | `huskylensv2_result_angle(huskylensv2_pop_result($huskylens, ALGORITHM_ANY))` | `RET_ITEM_NUM(1, Result, angle)` |
+| `huskylensv2_result_length` | 值块 | RESULT(input_value) | `huskylensv2_result_length(huskylensv2_pop_result($huskylens, ALGORITHM_ANY))` | `RET_ITEM_NUM(1, Result, length)` |
+| `huskylensv2_result_level` | 值块 | RESULT(input_value) | `huskylensv2_result_level(huskylensv2_pop_result($huskylens, ALGORITHM_ANY))` | `RET_ITEM_NUM(1, Result, level)` |
+| `huskylensv2_result_steering` | 值块 | RESULT(input_value) | `huskylensv2_result_steering(huskylensv2_pop_result($huskylens, ALGORITHM_ANY))` | `RET_ITEM_NUM(1, Result, steering)` |
+| `huskylensv2_result_throttle` | 值块 | RESULT(input_value) | `huskylensv2_result_throttle(huskylensv2_pop_result($huskylens, ALGORITHM_ANY))` | `RET_ITEM_NUM(1, Result, throttle)` |
+| `huskylensv2_is_valid` | 值块 | RESULT(input_value) | `huskylensv2_is_valid(huskylensv2_pop_result($huskylens, ALGORITHM_ANY))` | `((1) != NULL)` |
+| `huskylensv2_face_leye` | 值块 | RESULT(input_value), AXIS(dropdown) | `huskylensv2_face_leye(huskylensv2_pop_result($huskylens, ALGORITHM_ANY), x)` | `RET_ITEM_NUM(static_cast<FaceResult*>(1), FaceResult, leye_x)` |
+| `huskylensv2_face_reye` | 值块 | RESULT(input_value), AXIS(dropdown) | `huskylensv2_face_reye(huskylensv2_pop_result($huskylens, ALGORITHM_ANY), x)` | `RET_ITEM_NUM(static_cast<FaceResult*>(1), FaceResult, reye_x)` |
+| `huskylensv2_face_nose` | 值块 | RESULT(input_value), AXIS(dropdown) | `huskylensv2_face_nose(huskylensv2_pop_result($huskylens, ALGORITHM_ANY), x)` | `RET_ITEM_NUM(static_cast<FaceResult*>(1), FaceResult, nose_x)` |
+| `huskylensv2_face_lmouth` | 值块 | RESULT(input_value), AXIS(dropdown) | `huskylensv2_face_lmouth(huskylensv2_pop_result($huskylens, ALGORITHM_ANY), x)` | `RET_ITEM_NUM(static_cast<FaceResult*>(1), FaceResult, lmouth_x)` |
+| `huskylensv2_face_rmouth` | 值块 | RESULT(input_value), AXIS(dropdown) | `huskylensv2_face_rmouth(huskylensv2_pop_result($huskylens, ALGORITHM_ANY), x)` | `RET_ITEM_NUM(static_cast<FaceResult*>(1), FaceResult, rmouth_x)` |
+| `huskylensv2_hand_point` | 值块 | RESULT(input_value), POINT(dropdown), AXIS(dropdown) | `huskylensv2_hand_point(huskylensv2_pop_result($huskylens, ALGORITHM_ANY), wrist, x)` | `RET_ITEM_NUM(static_cast<HandResult*>(1), HandResult, wrist_x)` |
+| `huskylensv2_pose_point` | 值块 | RESULT(input_value), POINT(dropdown), AXIS(dropdown) | `huskylensv2_pose_point(huskylensv2_pop_result($huskylens, ALGORITHM_ANY), nose, x)` | `RET_ITEM_NUM(static_cast<PoseResult*>(1), PoseResult, nose_x)` |
+| `huskylensv2_set_multi_algorithm` | 语句块 | VAR(field_variable), ALGORITHM1(dropdown), ALGORITHM2(dropdown), ALGORITHM3(dropdown) | `huskylensv2_set_multi_algorithm($huskylens, ALGORITHM_ANY, ALGORITHM_ANY, ALGORITHM_ANY)` | `huskylens.setMultiAlgorithm(ALGORITHM_ANY, ALGORITHM_ANY, ALGORITHM_ANY);` |
+| `huskylensv2_set_multi_algorithm_ratio` | 语句块 | VAR(field_variable), RATIO1(input_value), RATIO2(input_value), RATIO3(input_value) | `huskylensv2_set_multi_algorithm_ratio($huskylens, math_number(0), math_number(0), math_number(0))` | `huskylens.setMultiAlgorithmRatio(1, 1, 1);` |
+| `huskylensv2_start_recording` | 语句块 | VAR(field_variable), TYPE(dropdown), DURATION(input_value), FILENAME(input_value), RESOLUTION(dropdown) | `huskylensv2_start_recording($huskylens, MEDIA_TYPE_VIDEO, math_number(0), text(""), RESOLUTION_DEFAULT)` | `huskylens.startRecording(MEDIA_TYPE_VIDEO, 1, "value", RESOLUTION_DEFAULT);` |
+| `huskylensv2_stop_recording` | 语句块 | VAR(field_variable), TYPE(dropdown) | `huskylensv2_stop_recording($huskylens, MEDIA_TYPE_VIDEO)` | `huskylens.stopRecording(MEDIA_TYPE_VIDEO);` |
 
-## 参数选项
+## Parameter Options
 
 | 参数 | 可选值 |
 |------|--------|
@@ -124,6 +123,6 @@ arduino_loop()
 
 ## 注意事项
 
-1. 初始化块创建变量 `$name`，后续用 `variables_get($name)`
+1. 初始化块创建变量 `$name`；`field_variable` 槽位直接传 `$name`，只有 `input_value` 槽位才使用 `variables_get($name)`
 2. 串口初始化波特率：AVR=9600，其他=115200
 3. `is_valid` 生成 `(result != NULL)`

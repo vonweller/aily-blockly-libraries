@@ -50,7 +50,6 @@ Arduino.forBlock['adafruit_mcp9600_read'] = function(block, generator) {
   var varName = adafruit_mcp9600Variable(block);
   adafruit_mcp9600EnsureExtras(generator, varName);
   var data = block.getFieldValue('DATA') || "thermocouple";
-  var index = generator.valueToCode(block, 'INDEX', generator.ORDER_ATOMIC) || '0';
   var expressions = {
     "thermocouple": String(varName) + ".readThermocouple()",
     "ambient": String(varName) + ".readAmbient()",

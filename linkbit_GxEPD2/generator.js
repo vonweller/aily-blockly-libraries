@@ -139,8 +139,8 @@ Arduino.forBlock['gxepd2_setup'] = function(block, generator) {
   // linkbit 屏幕固定：2.13" 三色 GDEY0213Z98
   var panelKey = 'C3_GDEY0213Z98';
   var panel = GXEPD2_PANEL_OPTIONS[panelKey] || GXEPD2_PANEL_OPTIONS.BW_GDEH0154D67;
-  // linkbit 板卡 IO 固定：CS=10 DC=3 RST=1 BUSY=0
-  var cs = '10';
+  // linkbit 板卡 IO 固定(V2)：CS=2 DC=3 RST=1 BUSY=0
+  var cs = '2';
   var dc = '3';
   var rst = '1';
   var busy = '0';
@@ -164,7 +164,7 @@ Arduino.forBlock['gxepd2_setup'] = function(block, generator) {
   generator.addLibrary('SPI', '#include <SPI.h>');
   return varName + '.init(' + baud + ', ' + initial + ', ' + resetDuration + ', ' + pulldown + ');\n' +
     'SPI.end();\n' +
-    'SPI.begin(6, -1, 7, 10); // linkbit e-Paper SPI: SCK=6 MISO=-1(墨水屏只写) MOSI=7 CS=10\n';
+    'SPI.begin(6, -1, 7, 2); // linkbit e-Paper SPI: SCK=6 MISO=-1(墨水屏只写) MOSI=7 CS=2\n';
 };
 
 Arduino.forBlock['gxepd2_page_update'] = function(block, generator) {

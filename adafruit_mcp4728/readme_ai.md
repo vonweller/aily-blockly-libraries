@@ -11,12 +11,12 @@ Blocks for the MCP4728 four-channel 12-bit I2C DAC.
 
 ## Block Definitions
 
-| Block Type | Connection | Parameters (args0 order) | ABS Format | Generated Code |
+| Block Type | Connection | Parameters (block.json order) | ABS Format | Generated Code |
 |------------|------------|--------------------------|------------|----------------|
-| `adafruit_mcp4728_init` | Statement | VAR(field_input), WIRE(field_dropdown), ADDR(field_dropdown) | `adafruit_mcp4728_init(VAR, WIRE, ADDR)` | Dynamic code |
-| `adafruit_mcp4728_read` | Value | VAR(field_variable), DATA(field_dropdown), INDEX(input_value) | `adafruit_mcp4728_read(VAR, DATA, INDEX)` | Dynamic code |
-| `adafruit_mcp4728_action` | Statement | VAR(field_variable), ACTION(field_dropdown) | `adafruit_mcp4728_action(VAR, ACTION)` | Dynamic code |
-| `adafruit_mcp4728_write` | Statement | VAR(field_variable), INDEX(input_value), VALUE(input_value) | `adafruit_mcp4728_write(VAR, INDEX, VALUE)` | Dynamic code |
+| `adafruit_mcp4728_init` | Statement | VAR(field_input), WIRE(dropdown), ADDR(dropdown) | `adafruit_mcp4728_init("mcp4728", WIRE, "0x60")` | `Adafruit_MCP4728 mcp4728; ↵ WIRE.begin(); ↵ while (!(mcp4728.begin(0x60, &WIRE))) { delay(100); }` |
+| `adafruit_mcp4728_read` | Value | VAR(field_variable), DATA(dropdown), INDEX(input_value) | `adafruit_mcp4728_read($mcp4728, value, math_number(0))` | `mcp4728.getChannelValue((MCP4728_channel_t)constrain((int)1, 0, 3))` |
+| `adafruit_mcp4728_action` | Statement | VAR(field_variable), ACTION(dropdown) | `adafruit_mcp4728_action($mcp4728, save)` | `mcp4728.saveToEEPROM();` |
+| `adafruit_mcp4728_write` | Statement | VAR(field_variable), INDEX(input_value), VALUE(input_value) | `adafruit_mcp4728_write($mcp4728, INDEX, VALUE)` | `mcp4728.setChannelValue((MCP4728_channel_t)constrain((int)1, 0, 3), (uint16_t)constrain((int)1, 0, 4095));` |
 
 ## Parameter Options
 
@@ -33,7 +33,7 @@ Blocks for the MCP4728 four-channel 12-bit I2C DAC.
 
 ```
 arduino_setup()
-    adafruit_mcp4728_init("mcp4728")
+    adafruit_mcp4728_init("mcp4728", WIRE, "0x60")
 ```
 
 ## Notes

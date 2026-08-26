@@ -49,7 +49,6 @@ Arduino.forBlock['adafruit_ina228_read'] = function(block, generator) {
   var varName = adafruit_ina228Variable(block);
   adafruit_ina228EnsureExtras(generator, varName);
   var data = block.getFieldValue('DATA') || "bus_voltage";
-  var index = generator.valueToCode(block, 'INDEX', generator.ORDER_ATOMIC) || '0';
   var expressions = {
     "bus_voltage": String(varName) + ".getBusVoltage_V()",
     "shunt_voltage": String(varName) + ".getShuntVoltage_mV()",

@@ -5,7 +5,8 @@
     "基础读取": "Basic reading",
     "时间预估": "time estimate",
     "容量信息": "Capacity information",
-    "配置": "Configuration"
+    "配置": "Configuration",
+    "4pin座子模式切换": "4-pin header mode"
   },
   "bq27220_init": {
     "message0": "Initialize BQ27220 %1 address %2",
@@ -102,5 +103,23 @@
   "bq27220_set_design_capacity": {
     "message0": "%1 set design capacity %2 mAh",
     "tooltip": "Set battery design capacity (mAh)"
+  },
+  "bq27220_i2c_select": {
+    "message0": "switch to %1",
+    "tooltip": "linkbit V2: the on-board analog switch (GPIO9) routes GPIO20/21 one of two ways. I2C mode = on-board BQ27220 fuel gauge; plain IO mode = the CN2 expansion header, usable as general IO or for external I2C devices. Initialising the gauge selects I2C mode automatically.",
+    "args0": [
+      {
+        "options": [
+          [
+            "I2C mode",
+            "1"
+          ],
+          [
+            "plain IO mode",
+            "0"
+          ]
+        ]
+      }
+    ]
   }
 }

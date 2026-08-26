@@ -5,8 +5,8 @@ function isESP32Core() {
 }
 
 Arduino.forBlock['neopixel_init'] = function(block, generator) {
-  // linkbit 板卡 RGB 固定：单颗 WS2812，接 IO8，GRB 顺序
-  var pin = '8';
+  // linkbit 板卡 RGB 固定(V2)：单颗 WS2812，接 IO4，GRB 顺序
+  var pin = '4';
   var num = '1';
   var type = 'NEO_GRB + NEO_KHZ800';
 

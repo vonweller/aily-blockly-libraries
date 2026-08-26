@@ -11,11 +11,11 @@ Cross-controller Wire blocks for the Sensirion SPS30 particulate matter sensor.
 
 ## Block Definitions
 
-| Block Type | Connection | Parameters (args0 order) | ABS Format | Generated Code |
+| Block Type | Connection | Parameters (block.json order) | ABS Format | Generated Code |
 |------------|------------|--------------------------|------------|----------------|
-| `sensirion_sps30_init` | Statement | VAR(field_input), WIRE(field_dropdown) | `sensirion_sps30_init(VAR, WIRE)` | Dynamic code |
-| `sensirion_sps30_read` | Value | VAR(field_variable), DATA(field_dropdown) | `sensirion_sps30_read(VAR, DATA)` | Dynamic code |
-| `sensirion_sps30_action` | Statement | VAR(field_variable), ACTION(field_dropdown) | `sensirion_sps30_action(VAR, ACTION)` | Dynamic code |
+| `sensirion_sps30_init` | Statement | VAR(field_input), WIRE(dropdown) | `sensirion_sps30_init(VAR, WIRE)` | `AilySPS30 sps30(&WIRE); ↵ WIRE.begin(); ↵ while (!(sps30.begin())) { delay(100); } ↵ sps30.startMeasurement();` |
+| `sensirion_sps30_read` | Value | VAR(field_variable), DATA(dropdown) | `sensirion_sps30_read($sps30, pm1)` | `(sps30.read(), sps30.pm1())` |
+| `sensirion_sps30_action` | Statement | VAR(field_variable), ACTION(dropdown) | `sensirion_sps30_action($sps30, start)` | `sps30.startMeasurement();` |
 
 ## Parameter Options
 
@@ -31,7 +31,7 @@ Cross-controller Wire blocks for the Sensirion SPS30 particulate matter sensor.
 
 ```
 arduino_setup()
-    sensirion_sps30_init("sps30")
+    sensirion_sps30_init("sps30", WIRE)
 ```
 
 ## Notes

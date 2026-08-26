@@ -11,10 +11,10 @@ Blocks for the MCP4725 single-channel 12-bit I2C DAC.
 
 ## Block Definitions
 
-| Block Type | Connection | Parameters (args0 order) | ABS Format | Generated Code |
+| Block Type | Connection | Parameters (block.json order) | ABS Format | Generated Code |
 |------------|------------|--------------------------|------------|----------------|
-| `adafruit_mcp4725_init` | Statement | VAR(field_input), WIRE(field_dropdown), ADDR(field_dropdown) | `adafruit_mcp4725_init(VAR, WIRE, ADDR)` | Dynamic code |
-| `adafruit_mcp4725_set` | Statement | VAR(field_variable), SETTING(field_dropdown), VALUE(input_value) | `adafruit_mcp4725_set(VAR, SETTING, VALUE)` | Dynamic code |
+| `adafruit_mcp4725_init` | Statement | VAR(field_input), WIRE(dropdown), ADDR(dropdown) | `adafruit_mcp4725_init("mcp4725", WIRE, "0x60")` | `Adafruit_MCP4725 mcp4725; ↵ WIRE.begin(); ↵ while (!(mcp4725.begin(0x60, &WIRE))) { delay(100); }` |
+| `adafruit_mcp4725_set` | Statement | VAR(field_variable), SETTING(dropdown), VALUE(input_value) | `adafruit_mcp4725_set($mcp4725, volatile, math_number(0))` | `mcp4725.setVoltage((uint16_t)constrain((int)1, 0, 4095), false);` |
 
 ## Parameter Options
 
@@ -30,7 +30,7 @@ Blocks for the MCP4725 single-channel 12-bit I2C DAC.
 
 ```
 arduino_setup()
-    adafruit_mcp4725_init("mcp4725")
+    adafruit_mcp4725_init("mcp4725", WIRE, "0x60")
 ```
 
 ## Notes

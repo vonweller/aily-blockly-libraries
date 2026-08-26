@@ -11,6 +11,26 @@ function getBQVarName(block) {
   return varField ? varField.getText() : 'gauge';
 }
 
+// linkbit V2: GPIO9 控制板载 SGM3002 模拟开关，决定 I2C(GPIO20/21) 接到谁
+//   1 = BQ27220 电量计   0 = CN2 扩展接口
+// 注: GPIO9 同时是 BOOT 脚(复位时拉低进下载模式)，默认选电量计=HIGH 正好是安全电平
+const LINKBIT_I2C_SEL_FN = [
+  '// linkbit V2: GPIO9 选择 I2C 通道 (1=电量计 BQ27220, 0=扩展接口 CN2)',
+  '#define LINKBIT_I2C_SEL 9',
+  'void linkbitI2CSel(uint8_t target) {',
+  '  pinMode(LINKBIT_I2C_SEL, OUTPUT);',
+  '  digitalWrite(LINKBIT_I2C_SEL, target ? HIGH : LOW);',
+  '  delayMicroseconds(100);   // 等模拟开关切换稳定',
+  '}'
+].join('\n');
+
+// 切换 I2C 通道
+Arduino.forBlock['bq27220_i2c_select'] = function(block, generator) {
+  const target = block.getFieldValue('TARGET') || '1';
+  generator.addFunction('linkbit_i2c_sel', LINKBIT_I2C_SEL_FN);
+  return 'linkbitI2CSel(' + target + ');\n';
+};
+
 Arduino.forBlock['bq27220_init'] = function(block, generator) {
   const BQ27220_TYPE = 'BQ27220';
 
@@ -44,6 +64,9 @@ Arduino.forBlock['bq27220_init'] = function(block, generator) {
   generator.addObject(varName, 'BQ27220 ' + varName + ';');
   // I2C 走 GPIO20/21(ESP32-C3 的 U0RXD/U0TXD)，复位后被 UART0 占用，须先释放
   generator.addSetup('linkbit_free_uart0', 'Serial0.end(); // 释放 UART0(GPIO20/21) 供 I2C 使用');
+  // 板载模拟开关默认切到电量计, 否则 I2C 挂在扩展接口上, 读不到 0x55
+  generator.addFunction('linkbit_i2c_sel', LINKBIT_I2C_SEL_FN);
+  generator.addSetup('linkbit_i2c_sel_gauge', 'linkbitI2CSel(1); // I2C 通道 -> BQ27220 电量计');
   generator.addSetup('wire_begin', 'Wire.begin(20, 21); Wire.setClock(400000); // linkbit I2C: SDA=20 SCL=21');
 
   let setupCode = varName + '.begin(&Wire, ' + address + ', 400000);\n';

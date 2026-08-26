@@ -18,7 +18,7 @@
     "画像とアニメーション"
   ],
   "tftespi_setup": {
-    "message0": "TFTディスプレイ %1 を初期化\n基本設定：ドライバー %2 幅 %3 高さ %4\n ピン接続：MISO %5 MOSI %6 SCLK %7 CS %8 DC %9 RST %10 BL %11\nその他の設定：バックライトモード %12 カラー順序 %13 SPI周波数 %14",
+    "message0": "TFTディスプレイ %1 を初期化\n基本設定：ドライバー %2 幅 %3 高さ %4\n SPIピン：MISO %5 MOSI %6 SCLK %7 CS %8 DC %9 RST %10 BL %11\nその他の設定：バックライトモード %12 カラー順序 %13 SPI周波数 %14\nCH13613 QSPI: CS %15 SCLK %16 D0 %17 D1 %18 D2 %19 D3 %20 RST %21 TE %22",
     "args0": [
       null,
       {
@@ -30,6 +30,10 @@
           [
             "ILI9341_2",
             "ILI9341_2_DRIVER"
+          ],
+          [
+            "ILI9342",
+            "ILI9342_DRIVER"
           ],
           [
             "ST7735",
@@ -46,6 +50,14 @@
           [
             "RPI_ILI9486",
             "RPI_ILI9486_DRIVER"
+          ],
+          [
+            "HX8357B",
+            "HX8357B_DRIVER"
+          ],
+          [
+            "HX8357C",
+            "HX8357C_DRIVER"
           ],
           [
             "HX8357D",
@@ -74,6 +86,10 @@
           [
             "R61581",
             "R61581_DRIVER"
+          ],
+          [
+            "RM68120",
+            "RM68120_DRIVER"
           ],
           [
             "RM68140",
@@ -122,6 +138,10 @@
           [
             "AXS15231B",
             "AXS15231B_DRIVER"
+          ],
+          [
+            "CH13613",
+            "CH13613_DRIVER"
           ],
           [
             "CO5300",
@@ -313,7 +333,15 @@
             "80000000"
           ]
         ]
-      }
+      },
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
     ],
     "tooltip": "TFTディスプレイオブジェクトを作成して初期化します"
   },

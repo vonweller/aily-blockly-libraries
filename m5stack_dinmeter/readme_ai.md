@@ -8,12 +8,12 @@ Blockly bindings for the official M5DinMeter encoder API with fixed onboard pins
 
 ## Block Definitions
 
-| Block Type | Connection | Parameters (args0 order) | ABS Format | Generated Code |
+| Block Type | Connection | Parameters (block.json order) | ABS Format | Generated Code |
 |------------|------------|--------------------------|------------|----------------|
-| `m5dinmeter_encoder_init` | Statement | (none) | `m5dinmeter_encoder_init()` | Dynamic code |
-| `m5dinmeter_encoder_position` | Value | (none) | `m5dinmeter_encoder_position()` | DinMeter.Encoder.read() |
-| `m5dinmeter_encoder_delta` | Value | (none) | `m5dinmeter_encoder_delta()` | DinMeter.Encoder.readAndReset() |
-| `m5dinmeter_encoder_write` | Statement | VALUE(input_value) | `m5dinmeter_encoder_write(math_number(0))` | DinMeter.Encoder.write( |
+| `m5dinmeter_encoder_init` | Statement | (none) | `m5dinmeter_encoder_init()` | `auto ailyM5Config = M5.config(); ↵ DinMeter.begin(ailyM5Config, true); ↵ DinMeter.update();` |
+| `m5dinmeter_encoder_position` | Value | (none) | `m5dinmeter_encoder_position()` | `DinMeter.Encoder.read()` |
+| `m5dinmeter_encoder_delta` | Value | (none) | `m5dinmeter_encoder_delta()` | `DinMeter.Encoder.readAndReset()` |
+| `m5dinmeter_encoder_write` | Statement | VALUE(input_value) | `m5dinmeter_encoder_write(math_number(0))` | `DinMeter.Encoder.write(1);` |
 
 ## ABS Examples
 

@@ -11,11 +11,11 @@ Blocks for the INA260 integrated-shunt current, voltage and power monitor.
 
 ## Block Definitions
 
-| Block Type | Connection | Parameters (args0 order) | ABS Format | Generated Code |
+| Block Type | Connection | Parameters (block.json order) | ABS Format | Generated Code |
 |------------|------------|--------------------------|------------|----------------|
-| `adafruit_ina260_init` | Statement | VAR(field_input), WIRE(field_dropdown), ADDR(field_dropdown) | `adafruit_ina260_init(VAR, WIRE, ADDR)` | Dynamic code |
-| `adafruit_ina260_read` | Value | VAR(field_variable), DATA(field_dropdown) | `adafruit_ina260_read(VAR, DATA)` | Dynamic code |
-| `adafruit_ina260_action` | Statement | VAR(field_variable), ACTION(field_dropdown) | `adafruit_ina260_action(VAR, ACTION)` | Dynamic code |
+| `adafruit_ina260_init` | Statement | VAR(field_input), WIRE(dropdown), ADDR(dropdown) | `adafruit_ina260_init("ina260", WIRE, "0x40")` | `Adafruit_INA260 ina260; ↵ WIRE.begin(); ↵ while (!(ina260.begin(0x40, &WIRE))) { delay(100); }` |
+| `adafruit_ina260_read` | Value | VAR(field_variable), DATA(dropdown) | `adafruit_ina260_read($ina260, current)` | `ina260.readCurrent()` |
+| `adafruit_ina260_action` | Statement | VAR(field_variable), ACTION(dropdown) | `adafruit_ina260_action($ina260, reset)` | `ina260.reset();` |
 
 ## Parameter Options
 
@@ -32,7 +32,7 @@ Blocks for the INA260 integrated-shunt current, voltage and power monitor.
 
 ```
 arduino_setup()
-    adafruit_ina260_init("ina260")
+    adafruit_ina260_init("ina260", WIRE, "0x40")
 ```
 
 ## Notes

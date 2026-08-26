@@ -50,7 +50,6 @@ Arduino.forBlock['adafruit_bmp3xx_read'] = function(block, generator) {
   var varName = adafruit_bmp3xxVariable(block);
   adafruit_bmp3xxEnsureExtras(generator, varName);
   var data = block.getFieldValue('DATA') || "temperature";
-  var index = generator.valueToCode(block, 'INDEX', generator.ORDER_ATOMIC) || '0';
   var expressions = {
     "temperature": String(varName) + ".readTemperature()",
     "pressure": String(varName) + ".readPressure()",

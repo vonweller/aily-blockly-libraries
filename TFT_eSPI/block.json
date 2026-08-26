@@ -1,7 +1,7 @@
 [
   {
     "type": "tftespi_setup",
-    "message0": "初始化TFT屏幕 %1 \n基础设置:  型号 %2 宽度 %3 高度 %4\n 引脚连接:  MISO %5 MOSI %6 SCLK %7 CS %8 DC %9 RST %10 BL %11 \n其他设置:  背光模式 %12 颜色模式 %13 SPI频率 %14",
+    "message0": "初始化TFT屏幕 %1 \n基础设置:  型号 %2 宽度 %3 高度 %4\n SPI引脚:  MISO %5 MOSI %6 SCLK %7 CS %8 DC %9 RST %10 BL %11 \n其他设置:  背光模式 %12 颜色模式 %13 SPI频率 %14\nCH13613 QSPI引脚: CS %15 SCLK %16 D0 %17 D1 %18 D2 %19 D3 %20 RST %21 TE %22",
     "args0": [
       {
         "type": "field_input",
@@ -14,10 +14,13 @@
         "options": [
           ["ILI9341", "ILI9341_DRIVER"],
           ["ILI9341_2", "ILI9341_2_DRIVER"],
+          ["ILI9342", "ILI9342_DRIVER"],
           ["ST7735", "ST7735_DRIVER"],
           ["ILI9163", "ILI9163_DRIVER"],
           ["S6D02A1", "S6D02A1_DRIVER"],
           ["RPI_ILI9486", "RPI_ILI9486_DRIVER"],
+          ["HX8357B", "HX8357B_DRIVER"],
+          ["HX8357C", "HX8357C_DRIVER"],
           ["HX8357D", "HX8357D_DRIVER"],
           ["ILI9481", "ILI9481_DRIVER"],
           ["ILI9486", "ILI9486_DRIVER"],
@@ -25,6 +28,7 @@
           ["ST7789", "ST7789_DRIVER"],
           ["ST7789_2", "ST7789_2_DRIVER"],
           ["R61581", "R61581_DRIVER"],
+          ["RM68120", "RM68120_DRIVER"],
           ["RM68140", "RM68140_DRIVER"],
           ["ST7796", "ST7796_DRIVER"],
           ["SSD1351", "SSD1351_DRIVER"],
@@ -37,6 +41,7 @@
           ["GC9107", "GC9107_DRIVER"],
           ["GC9D01", "GC9D01_DRIVER"],
           ["AXS15231B", "AXS15231B_DRIVER"],
+          ["CH13613", "CH13613_DRIVER"],
           ["CO5300", "CO5300_DRIVER"],
           ["GC9106", "GC9106_DRIVER"],
           ["GC9C01", "GC9C01_DRIVER"],
@@ -143,6 +148,46 @@
           ["55MHz", "55000000"],
           ["80MHz", "80000000"]
         ]
+      },
+      {
+        "type": "field_input",
+        "name": "QSPI_CS",
+        "text": "-1"
+      },
+      {
+        "type": "field_input",
+        "name": "QSPI_SCLK",
+        "text": "-1"
+      },
+      {
+        "type": "field_input",
+        "name": "D0",
+        "text": "-1"
+      },
+      {
+        "type": "field_input",
+        "name": "D1",
+        "text": "-1"
+      },
+      {
+        "type": "field_input",
+        "name": "D2",
+        "text": "-1"
+      },
+      {
+        "type": "field_input",
+        "name": "D3",
+        "text": "-1"
+      },
+      {
+        "type": "field_input",
+        "name": "QSPI_RST",
+        "text": "-1"
+      },
+      {
+        "type": "field_input",
+        "name": "TE",
+        "text": "-1"
       }
     ],
     "previousStatement": null,

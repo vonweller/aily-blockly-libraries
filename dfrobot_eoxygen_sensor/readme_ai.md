@@ -11,11 +11,11 @@ Blocks for the DFRobot electrochemical oxygen concentration sensor using I2C.
 
 ## Block Definitions
 
-| Block Type | Connection | Parameters (args0 order) | ABS Format | Generated Code |
+| Block Type | Connection | Parameters (block.json order) | ABS Format | Generated Code |
 |------------|------------|--------------------------|------------|----------------|
-| `dfrobot_eoxygen_sensor_init` | Statement | VAR(field_input), WIRE(field_dropdown), ADDR(field_dropdown) | `dfrobot_eoxygen_sensor_init(VAR, WIRE, ADDR)` | Dynamic code |
-| `dfrobot_eoxygen_sensor_read` | Value | VAR(field_variable), DATA(field_dropdown) | `dfrobot_eoxygen_sensor_read(VAR, DATA)` | Dynamic code |
-| `dfrobot_eoxygen_sensor_action` | Statement | VAR(field_variable), ACTION(field_dropdown) | `dfrobot_eoxygen_sensor_action(VAR, ACTION)` | Dynamic code |
+| `dfrobot_eoxygen_sensor_init` | Statement | VAR(field_input), WIRE(dropdown), ADDR(dropdown) | `dfrobot_eoxygen_sensor_init("oxygen", WIRE, "0x30")` | `DFRobot_EOxygenSensor_I2C oxygen(&WIRE, 0x30); ↵ WIRE.begin(); ↵ while (!(oxygen.begin())) { delay(100); }` |
+| `dfrobot_eoxygen_sensor_read` | Value | VAR(field_variable), DATA(dropdown) | `dfrobot_eoxygen_sensor_read($oxygen, oxygen)` | `oxygen.readOxygenConcentration()` |
+| `dfrobot_eoxygen_sensor_action` | Statement | VAR(field_variable), ACTION(dropdown) | `dfrobot_eoxygen_sensor_action($oxygen, calibrate_air)` | `oxygen.calibration_20_9();` |
 
 ## Parameter Options
 
@@ -32,7 +32,7 @@ Blocks for the DFRobot electrochemical oxygen concentration sensor using I2C.
 
 ```
 arduino_setup()
-    dfrobot_eoxygen_sensor_init("oxygen")
+    dfrobot_eoxygen_sensor_init("oxygen", WIRE, "0x30")
 ```
 
 ## Notes

@@ -8,15 +8,15 @@ OJoy QMI8658C 6-axis IMU (accel+gyro): 3-axis accel/gyro/temperature/pitch-roll,
 
 ## Block Definitions
 
-| Block Type | Connection | Parameters (args0 order) | ABS Format | Generated Code |
+| Block Type | Connection | Parameters (block.json order) | ABS Format | Generated Code |
 |------------|------------|--------------------------|------------|----------------|
-| `ojqmi_init` | Statement | VAR(field_input), AR(dropdown), GR(dropdown) | `ojqmi_init("imu", "0", "0")` | See generator |
-| `ojqmi_update` | Statement | VAR(field_variable) | `ojqmi_update(variables_get($imu))` | See generator |
-| `ojqmi_accel` | Value | VAR(field_variable), AXIS(dropdown) | `ojqmi_accel(variables_get($imu), x)` | See generator |
-| `ojqmi_gyro` | Value | VAR(field_variable), AXIS(dropdown) | `ojqmi_gyro(variables_get($imu), x)` | See generator |
-| `ojqmi_angle` | Value | VAR(field_variable), WHICH(dropdown) | `ojqmi_angle(variables_get($imu), pitch)` | See generator |
-| `ojqmi_temp` | Value | VAR(field_variable) | `ojqmi_temp(variables_get($imu))` | See generator |
-| `ojqmi_present` | Value | VAR(field_variable) | `ojqmi_present(variables_get($imu))` | See generator |
+| `ojqmi_init` | Statement | VAR(field_input), AR(dropdown), GR(dropdown) | `ojqmi_init("imu", "0", "0")` | `imu.begin(); ↵ imu.setAccelRange(0); ↵ imu.setGyroRange(0);` |
+| `ojqmi_update` | Statement | VAR(field_variable) | `ojqmi_update($imu)` | `imu.read();` |
+| `ojqmi_accel` | Value | VAR(field_variable), AXIS(dropdown) | `ojqmi_accel($imu, x)` | `imu.ax()` |
+| `ojqmi_gyro` | Value | VAR(field_variable), AXIS(dropdown) | `ojqmi_gyro($imu, x)` | `imu.gx()` |
+| `ojqmi_angle` | Value | VAR(field_variable), WHICH(dropdown) | `ojqmi_angle($imu, pitch)` | `imu.pitch()` |
+| `ojqmi_temp` | Value | VAR(field_variable) | `ojqmi_temp($imu)` | `imu.temperature()` |
+| `ojqmi_present` | Value | VAR(field_variable) | `ojqmi_present($imu)` | `imu.present()` |
 
 ## Parameter Options
 
@@ -36,12 +36,12 @@ arduino_setup()
     serial_begin(Serial, 9600)
 
 arduino_loop()
-    serial_println(Serial, ojqmi_accel(variables_get($imu), x))
+    serial_println(Serial, ojqmi_accel($imu, x))
     time_delay(math_number(1000))
 ```
 
 ## Notes
 
-1. **Variable**: `ojqmi_init("varName", ...)` creates variable `$varName`; reference it later with `variables_get($varName)`.
+1. **Variable**: `ojqmi_init("varName", ...)` creates variable `$varName`; pass `$varName` directly to `field_variable` slots; use `variables_get($varName)` only for `input_value` slots.
 2. **Parameter order**: ABS parameters follow `block.json` args order.
 3. **Input values**: use `math_number(n)`, `text("s")`, `logic_boolean(TRUE/FALSE)`, variables, or nested value blocks.

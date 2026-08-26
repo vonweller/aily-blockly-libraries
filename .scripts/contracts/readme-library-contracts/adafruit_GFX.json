@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "blocks": {
+    "tft_print": {
+      "excludedRuntimeArgs": [
+        {
+          "name": "NEWLINE",
+          "type": "field",
+          "reason": "The shared generator accepts the legacy NEWLINE field when loading old projects; the current block always emits print and does not expose this field in new ABS."
+        }
+      ]
+    }
+  }
+}

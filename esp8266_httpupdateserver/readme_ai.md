@@ -10,13 +10,13 @@ Browser-based firmware update server for ESP8266.
 
 ## Block Definitions
 
-| Block Type | Connection | Parameters (args0 order) | ABS Format | Generated Code |
+| Block Type | Connection | Parameters (block.json order) | ABS Format | Generated Code |
 |---|---|---|---|---|
-| `esp8266_httpupdateserver_setup` | Statement | VAR(field_variable) | `esp8266_httpupdateserver_setup(VAR)` | Dynamic code |
-| `esp8266_httpupdateserver_setup_path` | Statement | VAR(field_variable), PATH(input_value) | `esp8266_httpupdateserver_setup_path(VAR, PATH)` | Dynamic code |
-| `esp8266_httpupdateserver_setup_auth` | Statement | VAR(field_variable), USERNAME(input_value), PASSWORD(input_value) | `esp8266_httpupdateserver_setup_auth(VAR, USERNAME, PASSWORD)` | Dynamic code |
-| `esp8266_httpupdateserver_setup_full` | Statement | VAR(field_variable), PATH(input_value), USERNAME(input_value), PASSWORD(input_value) | `esp8266_httpupdateserver_setup_full(VAR, PATH, USERNAME, PASSWORD)` | Dynamic code |
-| `esp8266_httpupdateserver_update_credentials` | Statement | USERNAME(input_value), PASSWORD(input_value) | `esp8266_httpupdateserver_update_credentials(USERNAME, PASSWORD)` | Dynamic code |
+| `esp8266_httpupdateserver_setup` | Statement | VAR(field_variable) | `esp8266_httpupdateserver_setup($server)` | `httpUpdater.setup(&server);` |
+| `esp8266_httpupdateserver_setup_path` | Statement | VAR(field_variable), PATH(input_value) | `esp8266_httpupdateserver_setup_path($server, PATH)` | `httpUpdater.setup(&server, "value");` |
+| `esp8266_httpupdateserver_setup_auth` | Statement | VAR(field_variable), USERNAME(input_value), PASSWORD(input_value) | `esp8266_httpupdateserver_setup_auth($server, USERNAME, PASSWORD)` | `httpUpdater.setup(&server, "value", "value");` |
+| `esp8266_httpupdateserver_setup_full` | Statement | VAR(field_variable), PATH(input_value), USERNAME(input_value), PASSWORD(input_value) | `esp8266_httpupdateserver_setup_full($server, PATH, USERNAME, PASSWORD)` | `httpUpdater.setup(&server, "value", "value", "value");` |
+| `esp8266_httpupdateserver_update_credentials` | Statement | USERNAME(input_value), PASSWORD(input_value) | `esp8266_httpupdateserver_update_credentials(USERNAME, PASSWORD)` | `httpUpdater.updateCredentials("value", "value");` |
 
 ## Parameter Options
 
@@ -31,3 +31,11 @@ Use the initialization block first when one is provided.
 ## Notes
 
 All types use the `esp8266_` prefix. SDK sources are used directly; no `src.7z` is bundled.
+## ABS Examples
+
+### Minimal Executable Usage
+
+```abs
+arduino_setup()
+    esp8266_httpupdateserver_setup($server)
+```

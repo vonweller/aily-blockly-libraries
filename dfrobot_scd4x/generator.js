@@ -50,7 +50,6 @@ Arduino.forBlock['dfrobot_scd4x_read'] = function(block, generator) {
   var varName = dfrobot_scd4xVariable(block);
   dfrobot_scd4xEnsureExtras(generator, varName);
   var data = block.getFieldValue('DATA') || "co2";
-  var index = generator.valueToCode(block, 'INDEX', generator.ORDER_ATOMIC) || '0';
   var expressions = {
     "co2": "(" + String(varName) + ".readMeasurement(&" + String(varName) + "Data), " + String(varName) + "Data.CO2ppm)",
     "temperature": "(" + String(varName) + ".readMeasurement(&" + String(varName) + "Data), " + String(varName) + "Data.temp)",

@@ -8,13 +8,13 @@ Blockly bindings for the official M5Dial encoder and RFID APIs with fixed onboar
 
 ## Block Definitions
 
-| Block Type | Connection | Parameters (args0 order) | ABS Format | Generated Code |
+| Block Type | Connection | Parameters (block.json order) | ABS Format | Generated Code |
 |------------|------------|--------------------------|------------|----------------|
-| `m5dial_peripheral_init` | Statement | (none) | `m5dial_peripheral_init()` | Dynamic code |
-| `m5dial_encoder_position` | Value | (none) | `m5dial_encoder_position()` | M5Dial.Encoder.read() |
-| `m5dial_encoder_delta` | Value | (none) | `m5dial_encoder_delta()` | M5Dial.Encoder.readAndReset() |
-| `m5dial_encoder_write` | Statement | VALUE(input_value) | `m5dial_encoder_write(math_number(0))` | M5Dial.Encoder.write( |
-| `m5dial_rfid_uid` | Value | (none) | `m5dial_rfid_uid()` | ailyM5DialRfidUid() |
+| `m5dial_peripheral_init` | Statement | (none) | `m5dial_peripheral_init()` | `auto ailyM5Config = M5.config(); ↵ M5Dial.begin(ailyM5Config, true, true); ↵ M5Dial.update();` |
+| `m5dial_encoder_position` | Value | (none) | `m5dial_encoder_position()` | `M5Dial.Encoder.read()` |
+| `m5dial_encoder_delta` | Value | (none) | `m5dial_encoder_delta()` | `M5Dial.Encoder.readAndReset()` |
+| `m5dial_encoder_write` | Statement | VALUE(input_value) | `m5dial_encoder_write(math_number(0))` | `M5Dial.Encoder.write(1);` |
+| `m5dial_rfid_uid` | Value | (none) | `m5dial_rfid_uid()` | `ailyM5DialRfidUid()` |
 
 ## ABS Examples
 

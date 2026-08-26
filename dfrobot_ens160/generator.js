@@ -50,7 +50,6 @@ Arduino.forBlock['dfrobot_ens160_read'] = function(block, generator) {
   var varName = dfrobot_ens160Variable(block);
   dfrobot_ens160EnsureExtras(generator, varName);
   var data = block.getFieldValue('DATA') || "aqi";
-  var index = generator.valueToCode(block, 'INDEX', generator.ORDER_ATOMIC) || '0';
   var expressions = {
     "aqi": String(varName) + ".getAQI()",
     "tvoc": String(varName) + ".getTVOC()",

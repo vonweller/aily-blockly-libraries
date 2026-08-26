@@ -1,19 +1,34 @@
-# ESP32 NetBIOS - AI 使用说明
+# ESP32 NetBIOS
 
-## 适用范围
+Provides ESP32 NetBIOS name service so devices on the local network can discover the board by hostname.
 
-ESP32 NetBIOS 名称服务积木，让局域网设备可通过主机名发现开发板。
+## Library Info
 
-芯片/配置约束：需先建立 Wi-Fi 或以太网连接；名称应符合局域网主机名规则。
+- **Name**: `@aily-project/lib-esp32-netbios`
+- **Version**: 0.0.1
 
-## 代码生成约定
+## Scope and Requirements
 
-- 所有积木类型均使用 `esp32_` 前缀。
-- generator.js 会自动添加 SDK 头文件和必要的全局对象。
-- 创建对象类积木应在初始化阶段执行；状态查询积木可在循环或条件中使用。
-- 不打包 SDK 源码，也不生成 src.7z。
+- Establish Wi-Fi or Ethernet connectivity before starting NetBIOS.
+- Use a hostname that is valid on the local network.
+- The generator adds the required ESP32 SDK header and shared service object.
 
-## 积木
+## Block Definitions
 
-- `esp32_netbios_begin`：启动 NBNS 并注册局域网名称。
-- `esp32_netbios_end`：停止 NBNS 服务。
+| Block Type | Connection | Parameters (block.json order) | ABS Format | Generated Code |
+|------------|------------|-------------------------------|------------|----------------|
+| `esp32_netbios_begin` | Value | NAME(input_value) | `esp32_netbios_begin(text("value"))` | `NBNS.begin("value")` |
+| `esp32_netbios_end` | Statement | (none) | `esp32_netbios_end()` | `NBNS.end();` |
+
+## ABS Examples
+
+```abs
+arduino_setup()
+    serial_begin(Serial, 115200)
+    serial_println(Serial, esp32_netbios_begin(text("my-device")))
+```
+
+## Notes
+
+1. Call `esp32_netbios_begin` after the network connection is ready.
+2. Call `esp32_netbios_end` before intentionally shutting down or replacing the service.

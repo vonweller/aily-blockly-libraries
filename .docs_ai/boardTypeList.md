@@ -29,6 +29,12 @@ arduino:renesas_uno:XIAO_RA4M1
 arduino:sam:arduino_due_x_dbg
 arduino:samd:arduino_zero_native
 
+## ChipIntelli CI13xx
+
+chipintelli:ci13xx:ci1302
+chipintelli:ci13xx:ci1303
+chipintelli:ci13xx:ci1306
+
 ## ESP32
 
 esp32:esp32:adafruit_metro_esp32s2
@@ -92,7 +98,12 @@ STMicroelectronics:stm32:GenL1
 STMicroelectronics:stm32:GenL4
 STMicroelectronics:stm32:GenL5
 STMicroelectronics:stm32:GenWB
-Teensy
+
+## Teensy
 
 teensy:avr:teensy40
 teensy:avr:teensy41
+
+## UNIHIKER K10
+
+UNIHIKER:esp32:k10

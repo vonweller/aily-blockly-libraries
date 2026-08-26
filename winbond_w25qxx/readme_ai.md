@@ -11,13 +11,13 @@ Cross-controller SPI blocks for common Winbond W25Qxx NOR flash devices.
 
 ## Block Definitions
 
-| Block Type | Connection | Parameters (args0 order) | ABS Format | Generated Code |
+| Block Type | Connection | Parameters (block.json order) | ABS Format | Generated Code |
 |------------|------------|--------------------------|------------|----------------|
-| `winbond_w25qxx_init` | Statement | VAR(field_input), CS(field_dropdown) | `winbond_w25qxx_init(VAR, CS)` | Dynamic code |
-| `winbond_w25qxx_read` | Value | VAR(field_variable), DATA(field_dropdown), INDEX(input_value) | `winbond_w25qxx_read(VAR, DATA, INDEX)` | Dynamic code |
-| `winbond_w25qxx_action` | Statement | VAR(field_variable), ACTION(field_dropdown) | `winbond_w25qxx_action(VAR, ACTION)` | Dynamic code |
-| `winbond_w25qxx_set` | Statement | VAR(field_variable), SETTING(field_dropdown), VALUE(input_value) | `winbond_w25qxx_set(VAR, SETTING, VALUE)` | Dynamic code |
-| `winbond_w25qxx_write` | Statement | VAR(field_variable), INDEX(input_value), VALUE(input_value) | `winbond_w25qxx_write(VAR, INDEX, VALUE)` | Dynamic code |
+| `winbond_w25qxx_init` | Statement | VAR(field_input), CS(dropdown) | `winbond_w25qxx_init(VAR, CS)` | `AilyW25QXX w25qxx(CS, &SPI); ↵ while (!(w25qxx.begin())) { delay(100); }` |
+| `winbond_w25qxx_read` | Value | VAR(field_variable), DATA(dropdown), INDEX(input_value) | `winbond_w25qxx_read($w25qxx, byte, math_number(0))` | `w25qxx.readByte((uint32_t)1)` |
+| `winbond_w25qxx_action` | Statement | VAR(field_variable), ACTION(dropdown) | `winbond_w25qxx_action($w25qxx, erase_chip)` | `w25qxx.eraseChip();` |
+| `winbond_w25qxx_set` | Statement | VAR(field_variable), SETTING(dropdown), VALUE(input_value) | `winbond_w25qxx_set($w25qxx, erase_sector, math_number(0))` | `w25qxx.eraseSector((uint32_t)1);` |
+| `winbond_w25qxx_write` | Statement | VAR(field_variable), INDEX(input_value), VALUE(input_value) | `winbond_w25qxx_write($w25qxx, INDEX, VALUE)` | `w25qxx.writeByte((uint32_t)1, (uint8_t)1);` |
 
 ## Parameter Options
 
@@ -34,7 +34,7 @@ Cross-controller SPI blocks for common Winbond W25Qxx NOR flash devices.
 
 ```
 arduino_setup()
-    winbond_w25qxx_init("w25qxx")
+    winbond_w25qxx_init("w25qxx", CS)
 ```
 
 ## Notes

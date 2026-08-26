@@ -1,4 +1,28 @@
 // nofrendo generator.js v36 - Separated browser + launch + esp_restart on exit
+function ensureNofrendoControlApi(generator) {
+  generator.addLibrary('nofrendo_h', '#include <nofrendo.h>');
+  generator.addVariable('nofrendo_control_api', [
+    'extern "C" {',
+    '  void nes_i2s_set_pins(int bck, int ws, int dout);',
+    '  extern int g_nes_volume;',
+    '  void nes_volume_save(int vol);',
+    '  extern int g_nes_scanline;',
+    '  void nes_scanline_save(int mode);',
+    '  extern int g_nes_fullscreen;',
+    '  void nes_fullscreen_save(int mode);',
+    '  extern int g_nes_speed;',
+    '  void nes_speed_save(int mode);',
+    '  extern int g_nes_overclock;',
+    '  void nes_overclock_save(int mode);',
+    '  extern int g_nes_color;',
+    '  void nes_color_save(int mode);',
+    '  void nes_color_rebuild(void);',
+    '  uint32_t nes_play_time_get(void);',
+    '  void nes_flush_sram(void);',
+    '}'
+  ].join('\n'));
+}
+
 Arduino.forBlock['nofrendo_browser'] = function(block, generator) {
   generator.addLibrary('esp_wifi', '#include <esp_wifi.h>');
   generator.addLibrary('nofrendo_h', '#include <nofrendo.h>');
@@ -153,4 +177,90 @@ Arduino.forBlock['nofrendo_find_rom'] = function(block, generator) {
   generator.addLibrary('SPI', '#include <SPI.h>');
   generator.addFunction('nofrendo_find_rom', 'String nofrendo_find_rom_file(){File root=SD.open("/");if(!root)return String("");File file=root.openNextFile();while(file){if(!file.isDirectory()){String n=file.name();String l=n;l.toLowerCase();if(l.endsWith(".nes")){String p="/"+n;file.close();return p;}}file=root.openNextFile();}return String("");}', true);
   return ['nofrendo_find_rom_file()', generator.ORDER_ATOMIC];
+};
+
+Arduino.forBlock['nes_audio_config'] = function(block, generator) {
+  const bck = generator.valueToCode(block, 'BCK', generator.ORDER_ATOMIC) || '25';
+  const ws = generator.valueToCode(block, 'WS', generator.ORDER_ATOMIC) || '32';
+  const dout = generator.valueToCode(block, 'DOUT', generator.ORDER_ATOMIC) || '33';
+  ensureNofrendoControlApi(generator);
+  return `nes_i2s_set_pins(${bck}, ${ws}, ${dout});\n`;
+};
+
+Arduino.forBlock['nes_volume_set'] = function(block, generator) {
+  const volume = generator.valueToCode(block, 'VOL', generator.ORDER_ATOMIC) || '4';
+  ensureNofrendoControlApi(generator);
+  return `g_nes_volume = constrain(${volume}, 0, 8);\nnes_volume_save(g_nes_volume);\n`;
+};
+
+Arduino.forBlock['nes_volume_get'] = function(block, generator) {
+  ensureNofrendoControlApi(generator);
+  return ['g_nes_volume', generator.ORDER_ATOMIC];
+};
+
+Arduino.forBlock['nes_scanline_set'] = function(block, generator) {
+  const mode = block.getFieldValue('MODE') || '0';
+  ensureNofrendoControlApi(generator);
+  return `g_nes_scanline = ${mode};\nnes_scanline_save(g_nes_scanline);\n`;
+};
+
+Arduino.forBlock['nes_scanline_get'] = function(block, generator) {
+  ensureNofrendoControlApi(generator);
+  return ['g_nes_scanline', generator.ORDER_ATOMIC];
+};
+
+Arduino.forBlock['nes_fullscreen_set'] = function(block, generator) {
+  const mode = block.getFieldValue('MODE') || '0';
+  ensureNofrendoControlApi(generator);
+  return `g_nes_fullscreen = ${mode};\nnes_fullscreen_save(g_nes_fullscreen);\n`;
+};
+
+Arduino.forBlock['nes_fullscreen_get'] = function(block, generator) {
+  ensureNofrendoControlApi(generator);
+  return ['g_nes_fullscreen', generator.ORDER_ATOMIC];
+};
+
+Arduino.forBlock['nes_speed_set'] = function(block, generator) {
+  const speed = block.getFieldValue('SPEED') || '0';
+  ensureNofrendoControlApi(generator);
+  return `g_nes_speed = ${speed};\nnes_speed_save(g_nes_speed);\n`;
+};
+
+Arduino.forBlock['nes_speed_get'] = function(block, generator) {
+  ensureNofrendoControlApi(generator);
+  return ['g_nes_speed', generator.ORDER_ATOMIC];
+};
+
+Arduino.forBlock['nes_overclock_set'] = function(block, generator) {
+  const frequencyIndex = block.getFieldValue('FREQ') || '1';
+  const frequencies = { '0': 240, '1': 260, '2': 267, '3': 280 };
+  const frequency = frequencies[frequencyIndex] || 260;
+  ensureNofrendoControlApi(generator);
+  return `g_nes_overclock = ${frequencyIndex};\nnes_overclock_save(g_nes_overclock);\nsetCpuFrequencyMhz(${frequency});\n`;
+};
+
+Arduino.forBlock['nes_overclock_get'] = function(block, generator) {
+  ensureNofrendoControlApi(generator);
+  return ['g_nes_overclock', generator.ORDER_ATOMIC];
+};
+
+Arduino.forBlock['nes_color_set'] = function(block, generator) {
+  const color = block.getFieldValue('COLOR') || '0';
+  ensureNofrendoControlApi(generator);
+  return `g_nes_color = ${color};\nnes_color_save(g_nes_color);\nnes_color_rebuild();\n`;
+};
+
+Arduino.forBlock['nes_color_get'] = function(block, generator) {
+  ensureNofrendoControlApi(generator);
+  return ['g_nes_color', generator.ORDER_ATOMIC];
+};
+
+Arduino.forBlock['nes_playtime_get'] = function(block, generator) {
+  ensureNofrendoControlApi(generator);
+  return ['nes_play_time_get()', generator.ORDER_FUNCTION_CALL];
+};
+
+Arduino.forBlock['nes_flush_sram'] = function(block, generator) {
+  ensureNofrendoControlApi(generator);
+  return 'nes_flush_sram();\n';
 };

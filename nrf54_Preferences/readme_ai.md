@@ -8,23 +8,23 @@ Persistent key/value storage for nRF54 with numeric, boolean, String, and byte v
 
 ## Block Definitions
 
-| Block Type | Connection | Parameters (args0 order) | ABS Format | Generated Code |
+| Block Type | Connection | Parameters (block.json order) | ABS Format | Generated Code |
 |------------|------------|--------------------------|------------|----------------|
-| `nrf54_preferences_begin` | Statement | NAMESPACE(input_value), READONLY(dropdown) | `nrf54_preferences_begin(text("value"), false)` | Dynamic code |
-| `nrf54_preferences_end` | Statement | (none) | `nrf54_preferences_end()` | Dynamic code |
-| `nrf54_preferences_clear` | Statement | (none) | `nrf54_preferences_clear()` | Dynamic code |
-| `nrf54_preferences_remove` | Statement | KEY(input_value) | `nrf54_preferences_remove(text("value"))` | Dynamic code |
-| `nrf54_preferences_is_key` | Value | KEY(input_value) | `nrf54_preferences_is_key(text("value"))` | Dynamic code |
-| `nrf54_preferences_free_entries` | Value | (none) | `nrf54_preferences_free_entries()` | Dynamic code |
-| `nrf54_preferences_put_number` | Statement | KEY(input_value), TYPE(dropdown), VALUE(input_value) | `nrf54_preferences_put_number(text("value"), putChar, math_number(0))` | Dynamic code |
-| `nrf54_preferences_get_number` | Value | KEY(input_value), TYPE(dropdown), DEFAULT(input_value) | `nrf54_preferences_get_number(text("value"), getChar, math_number(0))` | Dynamic code |
-| `nrf54_preferences_put_bool` | Statement | KEY(input_value), VALUE(input_value) | `nrf54_preferences_put_bool(text("value"), logic_boolean(TRUE))` | Dynamic code |
-| `nrf54_preferences_get_bool` | Value | KEY(input_value), DEFAULT(input_value) | `nrf54_preferences_get_bool(text("value"), logic_boolean(TRUE))` | Dynamic code |
-| `nrf54_preferences_put_string` | Statement | KEY(input_value), VALUE(input_value) | `nrf54_preferences_put_string(text("value"), text("value"))` | Dynamic code |
-| `nrf54_preferences_get_string` | Value | KEY(input_value), DEFAULT(input_value) | `nrf54_preferences_get_string(text("value"), text("value"))` | Dynamic code |
-| `nrf54_preferences_put_bytes` | Statement | KEY(input_value), BUFFER(field_input), LENGTH(input_value) | `nrf54_preferences_put_bytes(text("value"), "buffer", math_number(0))` | Dynamic code |
-| `nrf54_preferences_get_bytes` | Value | KEY(input_value), BUFFER(field_input), MAX_LENGTH(input_value) | `nrf54_preferences_get_bytes(text("value"), "buffer", math_number(0))` | Dynamic code |
-| `nrf54_preferences_get_bytes_length` | Value | KEY(input_value) | `nrf54_preferences_get_bytes_length(text("value"))` | Dynamic code |
+| `nrf54_preferences_begin` | Statement | NAMESPACE(input_value), READONLY(dropdown) | `nrf54_preferences_begin(text("value"), false)` | `nrf54Preferences.begin("value", false);` |
+| `nrf54_preferences_end` | Statement | (none) | `nrf54_preferences_end()` | `nrf54Preferences.end();` |
+| `nrf54_preferences_clear` | Statement | (none) | `nrf54_preferences_clear()` | `nrf54Preferences.clear();` |
+| `nrf54_preferences_remove` | Statement | KEY(input_value) | `nrf54_preferences_remove(text("value"))` | `nrf54Preferences.remove("value");` |
+| `nrf54_preferences_is_key` | Value | KEY(input_value) | `nrf54_preferences_is_key(text("value"))` | `nrf54Preferences.isKey("value")` |
+| `nrf54_preferences_free_entries` | Value | (none) | `nrf54_preferences_free_entries()` | `nrf54Preferences.freeEntries()` |
+| `nrf54_preferences_put_number` | Statement | KEY(input_value), TYPE(dropdown), VALUE(input_value) | `nrf54_preferences_put_number(text("value"), putChar, math_number(0))` | `nrf54Preferences.putChar("value", 1);` |
+| `nrf54_preferences_get_number` | Value | KEY(input_value), TYPE(dropdown), DEFAULT(input_value) | `nrf54_preferences_get_number(text("value"), getChar, math_number(0))` | `nrf54Preferences.getChar("value", 1)` |
+| `nrf54_preferences_put_bool` | Statement | KEY(input_value), VALUE(input_value) | `nrf54_preferences_put_bool(text("value"), logic_boolean(TRUE))` | `nrf54Preferences.putBool("value", true);` |
+| `nrf54_preferences_get_bool` | Value | KEY(input_value), DEFAULT(input_value) | `nrf54_preferences_get_bool(text("value"), logic_boolean(TRUE))` | `nrf54Preferences.getBool("value", true)` |
+| `nrf54_preferences_put_string` | Statement | KEY(input_value), VALUE(input_value) | `nrf54_preferences_put_string(text("value"), text("value"))` | `nrf54Preferences.putString("value", "value");` |
+| `nrf54_preferences_get_string` | Value | KEY(input_value), DEFAULT(input_value) | `nrf54_preferences_get_string(text("value"), text("value"))` | `nrf54Preferences.getString("value", "value")` |
+| `nrf54_preferences_put_bytes` | Statement | KEY(input_value), BUFFER(field_input), LENGTH(input_value) | `nrf54_preferences_put_bytes(text("value"), "buffer", math_number(0))` | `nrf54Preferences.putBytes("value", buffer, 1);` |
+| `nrf54_preferences_get_bytes` | Value | KEY(input_value), BUFFER(field_input), MAX_LENGTH(input_value) | `nrf54_preferences_get_bytes(text("value"), "buffer", math_number(0))` | `nrf54Preferences.getBytes("value", buffer, 1)` |
+| `nrf54_preferences_get_bytes_length` | Value | KEY(input_value) | `nrf54_preferences_get_bytes_length(text("value"))` | `nrf54Preferences.getBytesLength("value")` |
 
 ## Parameter Options
 

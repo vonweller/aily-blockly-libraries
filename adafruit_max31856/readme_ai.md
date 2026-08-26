@@ -11,11 +11,11 @@ Blocks for the MAX31856 precision universal thermocouple-to-digital converter.
 
 ## Block Definitions
 
-| Block Type | Connection | Parameters (args0 order) | ABS Format | Generated Code |
+| Block Type | Connection | Parameters (block.json order) | ABS Format | Generated Code |
 |------------|------------|--------------------------|------------|----------------|
-| `adafruit_max31856_init` | Statement | VAR(field_input), CS(field_dropdown) | `adafruit_max31856_init(VAR, CS)` | Dynamic code |
-| `adafruit_max31856_read` | Value | VAR(field_variable), DATA(field_dropdown) | `adafruit_max31856_read(VAR, DATA)` | Dynamic code |
-| `adafruit_max31856_set` | Statement | VAR(field_variable), SETTING(field_dropdown), VALUE(input_value) | `adafruit_max31856_set(VAR, SETTING, VALUE)` | Dynamic code |
+| `adafruit_max31856_init` | Statement | VAR(field_input), CS(dropdown) | `adafruit_max31856_init(VAR, CS)` | `Adafruit_MAX31856 max31856(CS, &SPI); ↵ while (!(max31856.begin())) { delay(100); } ↵ max31856.setThermocoupleType(MAX31856_TCTYPE_K); ↵ max31856.setConversionMode(MAX31856_CONTINUOUS);` |
+| `adafruit_max31856_read` | Value | VAR(field_variable), DATA(dropdown) | `adafruit_max31856_read($max31856, thermocouple)` | `max31856.readThermocoupleTemperature()` |
+| `adafruit_max31856_set` | Statement | VAR(field_variable), SETTING(dropdown), VALUE(input_value) | `adafruit_max31856_set($max31856, type, math_number(0))` | `max31856.setThermocoupleType((max31856_thermocoupletype_t)constrain((int)1, 0, 7));` |
 
 ## Parameter Options
 
@@ -31,7 +31,7 @@ Blocks for the MAX31856 precision universal thermocouple-to-digital converter.
 
 ```
 arduino_setup()
-    adafruit_max31856_init("max31856")
+    adafruit_max31856_init("max31856", CS)
 ```
 
 ## Notes

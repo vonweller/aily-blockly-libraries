@@ -21,30 +21,30 @@ ST7735 TFT屏幕简化库：一键初始化(引脚预设)，绘图/文字/颜色
 
 ## Block Definitions
 
-| Block Type | Connection | Parameters (args0 order) | ABS Format | Generated Code |
+| Block Type | Connection | Parameters (block.json order) | ABS Format | Generated Code |
 |------------|------------|--------------------------|------------|----------------|
-| `tftscr_init` | Statement | (无) | `tftscr_init()` | `tft.init(); tft.setRotation(3);` |
-| `tftscr_fill_screen` | Statement | COLOR(input_value) | `tftscr_fill_screen(tftscr_color(TFT_BLACK))` | `tft.fillScreen(TFT_BLACK);` |
-| `tftscr_draw_pixel` | Statement | X, Y, COLOR (input_value) | `tftscr_draw_pixel(math_number(0), math_number(0), tftscr_color(TFT_WHITE))` | `tft.drawPixel(0, 0, TFT_WHITE);` |
-| `tftscr_draw_line` | Statement | X1, Y1, X2, Y2, COLOR (input_value) | `tftscr_draw_line(...)` | `tft.drawLine(...);` |
-| `tftscr_draw_rect` | Statement | X, Y, W, H, COLOR (input_value) | `tftscr_draw_rect(...)` | `tft.drawRect(...);` |
-| `tftscr_fill_rect` | Statement | X, Y, W, H, COLOR (input_value) | `tftscr_fill_rect(...)` | `tft.fillRect(...);` |
-| `tftscr_draw_circle` | Statement | X, Y, R, COLOR (input_value) | `tftscr_draw_circle(...)` | `tft.drawCircle(...);` |
-| `tftscr_fill_circle` | Statement | X, Y, R, COLOR (input_value) | `tftscr_fill_circle(...)` | `tft.fillCircle(...);` |
-| `tftscr_draw_string` | Statement | X, Y, TEXT (input_value) | `tftscr_draw_string(math_number(0), math_number(0), text("Hello"))` | `tft.setCursor(0, 0); tft.print("Hello");` |
-| `tftscr_set_text_color` | Statement | COLOR(input_value) | `tftscr_set_text_color(tftscr_color(TFT_WHITE))` | `tft.setTextColor(TFT_WHITE);` |
-| `tftscr_set_text_size` | Statement | SIZE(field_dropdown) | `tftscr_set_text_size(2)` | `tft.setTextSize(2);` |
-| `tftscr_color` | Value (Number) | COLOR(field_dropdown) | `tftscr_color(TFT_RED)` | `TFT_RED` |
-| `tftscr_color_rgb` | Value (Number) | R, G, B (input_value) | `tftscr_color_rgb(math_number(255), math_number(0), math_number(0))` | `tft.color565(255, 0, 0)` |
-| `tftscr_width` | Value (Number) | (无) | `tftscr_width()` | `tft.width()` |
-| `tftscr_height` | Value (Number) | (无) | `tftscr_height()` | `tft.height()` |
-| `tftscr_image` | Value (TftScreenImage) | CUSTOM_IMAGE(field_tftespi_image) | `tftscr_image()` | `tftscr_image_..._data` |
-| `tftscr_draw_image` | Statement | X, Y, IMAGE (input_value) | `tftscr_draw_image(math_number(0), math_number(0), tftscr_image())` | 在指定坐标显示 RGB565/RGB332 图片 |
-| `tftscr_animation` | Value (TftScreenAnimation) | CUSTOM_ANIMATION(field_tftespi_animation) | `tftscr_animation()` | `tftscr_animation_..._frames` |
-| `tftscr_play_animation` | Statement | X, Y, ANIMATION (input_value), PLAY_MODE(dropdown), LOOP(field_checkbox) | `tftscr_play_animation(math_number(0), math_number(0), tftscr_animation(), BLOCKING, FALSE)` | 阻塞或非阻塞播放 RGB565/RGB332 动画 |
-| `tftscr_play_tf_animation` | Statement | FILENAME(String), BUFFER_KB(Number) | `tftscr_play_tf_animation(text("/animation.rgb565v"), math_number(48))` | 从板载 TF 卡分块流式播放 AILY 动画，使用同步批量写屏 |
-| `tftscr_draw_animation_frame` | Statement | X, Y, ANIMATION, FRAME (input_value) | `tftscr_draw_animation_frame(math_number(0), math_number(0), tftscr_animation(), math_number(0))` | 显示指定动画帧 |
-| `tftscr_animation_frame_count` | Value (Number) | ANIMATION(input_value) | `tftscr_animation_frame_count(tftscr_animation())` | 动画总帧数 |
+| `tftscr_init` | Statement | (none) | `tftscr_init()` | `tft.init(); ↵ tft.setRotation(3);` |
+| `tftscr_fill_screen` | Statement | COLOR(input_value) | `tftscr_fill_screen(tftscr_color(TFT_BLACK))` | `tft.fillScreen(1);` |
+| `tftscr_draw_pixel` | Statement | X(input_value), Y(input_value), COLOR(input_value) | `tftscr_draw_pixel(math_number(0), math_number(0), tftscr_color(TFT_WHITE))` | `tft.drawPixel(1, 1, 1);` |
+| `tftscr_draw_line` | Statement | X1(input_value), Y1(input_value), X2(input_value), Y2(input_value), COLOR(input_value) | `tftscr_draw_line(math_number(0), math_number(0), math_number(0), math_number(0), math_number(0))` | `tft.drawLine(1, 1, 1, 1, 1);` |
+| `tftscr_draw_rect` | Statement | X(input_value), Y(input_value), W(input_value), H(input_value), COLOR(input_value) | `tftscr_draw_rect(math_number(0), math_number(0), math_number(0), math_number(0), math_number(0))` | `tft.drawRect(1, 1, 1, 1, 1);` |
+| `tftscr_fill_rect` | Statement | X(input_value), Y(input_value), W(input_value), H(input_value), COLOR(input_value) | `tftscr_fill_rect(math_number(0), math_number(0), math_number(0), math_number(0), math_number(0))` | `tft.fillRect(1, 1, 1, 1, 1);` |
+| `tftscr_draw_circle` | Statement | X(input_value), Y(input_value), R(input_value), COLOR(input_value) | `tftscr_draw_circle(math_number(0), math_number(0), math_number(0), math_number(0))` | `tft.drawCircle(1, 1, 1, 1);` |
+| `tftscr_fill_circle` | Statement | X(input_value), Y(input_value), R(input_value), COLOR(input_value) | `tftscr_fill_circle(math_number(0), math_number(0), math_number(0), math_number(0))` | `tft.fillCircle(1, 1, 1, 1);` |
+| `tftscr_draw_string` | Statement | X(input_value), Y(input_value), TEXT(input_value) | `tftscr_draw_string(math_number(0), math_number(0), text("Hello"))` | `tft.setCursor(1, 1); ↵ tft.print("value");` |
+| `tftscr_set_text_color` | Statement | COLOR(input_value) | `tftscr_set_text_color(tftscr_color(TFT_WHITE))` | `tft.setTextColor(1);` |
+| `tftscr_set_text_size` | Statement | SIZE(dropdown) | `tftscr_set_text_size(2)` | `tft.setTextSize(1);` |
+| `tftscr_color` | Value (Number) | COLOR(dropdown) | `tftscr_color(TFT_RED)` | `TFT_BLACK` |
+| `tftscr_color_rgb` | Value (Number) | R(input_value), G(input_value), B(input_value) | `tftscr_color_rgb(math_number(255), math_number(0), math_number(0))` | `tft.color565(1, 1, 1)` |
+| `tftscr_width` | Value (Number) | (none) | `tftscr_width()` | `tft.width()` |
+| `tftscr_height` | Value (Number) | (none) | `tftscr_height()` | `tft.height()` |
+| `tftscr_image` | Value (TftScreenImage) | CUSTOM_IMAGE(field_tftespi_image) | `tftscr_image({"schemaVersion":1,"format":"rgb565","encoding":"rgb565-be","width":160,"height":120,"fps":10,"maxFrames":1,"frameCount":0,"frames":null})` | `#include <TFT_eSPI.h> ↵ #include <SPI.h>` |
+| `tftscr_draw_image` | Statement | X(input_value), Y(input_value), IMAGE(input_value) | `tftscr_draw_image(math_number(0), math_number(0), tftscr_image())` | `// No TFT screen image data` |
+| `tftscr_animation` | Value (TftScreenAnimation) | CUSTOM_ANIMATION(field_tftespi_animation) | `tftscr_animation({"schemaVersion":1,"format":"rgb565","encoding":"rgb565-be","width":160,"height":120,"fps":10,"maxFrames":10,"frameCount":0,"frames":null})` | `#include <TFT_eSPI.h> ↵ #include <SPI.h>` |
+| `tftscr_play_animation` | Statement | X(input_value), Y(input_value), ANIMATION(input_value), PLAY_MODE(dropdown), LOOP(field_checkbox) | `tftscr_play_animation(math_number(0), math_number(0), tftscr_animation(), BLOCKING, FALSE)` | `// No TFT screen animation data` |
+| `tftscr_play_tf_animation` | Statement | FILENAME(input_value), BUFFER_KB(input_value) | `tftscr_play_tf_animation(text("/animation.rgb565v"), math_number(48))` | `tftScreenPlayTfAnimation(tft, String("value"), (int32_t)(1));` |
+| `tftscr_draw_animation_frame` | Statement | X(input_value), Y(input_value), ANIMATION(input_value), FRAME(input_value) | `tftscr_draw_animation_frame(math_number(0), math_number(0), tftscr_animation(), math_number(0))` | `// No TFT screen animation data` |
+| `tftscr_animation_frame_count` | Value (Number) | ANIMATION(input_value) | `tftscr_animation_frame_count(tftscr_animation())` | `0` |
 
 ## Parameter Options
 
@@ -71,3 +71,11 @@ ST7735 TFT屏幕简化库：一键初始化(引脚预设)，绘图/文字/颜色
 13. **Scaling**: Oversized RGB565/RGB332 video is proportionally downscaled and centered. Native-size RGB565 remains preferable for FPS; scaling and MONO1_XBM use synchronous display transfers.
 14. **ESP32-only wiring**: TFT and TF time-share the same HSPI instance. TFT CS is 5 and TF CS is 22.
 15. **Visible failures**: Missing SD initialization, missing paths, open, AILY validation, frame-read, and allocation failures display a corresponding `TF ERR` instead of returning silently. Missing/open failures also print up to 32 root entries for diagnosis.
+## ABS Examples
+
+### Minimal Executable Usage
+
+```abs
+arduino_setup()
+    tftscr_init()
+```

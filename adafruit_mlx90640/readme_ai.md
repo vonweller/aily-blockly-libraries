@@ -11,11 +11,11 @@ Blocks for the MLX90640 32x24 infrared thermal imaging array.
 
 ## Block Definitions
 
-| Block Type | Connection | Parameters (args0 order) | ABS Format | Generated Code |
+| Block Type | Connection | Parameters (block.json order) | ABS Format | Generated Code |
 |------------|------------|--------------------------|------------|----------------|
-| `adafruit_mlx90640_init` | Statement | VAR(field_input), WIRE(field_dropdown), ADDR(field_dropdown) | `adafruit_mlx90640_init(VAR, WIRE, ADDR)` | Dynamic code |
-| `adafruit_mlx90640_read` | Value | VAR(field_variable), DATA(field_dropdown), INDEX(input_value) | `adafruit_mlx90640_read(VAR, DATA, INDEX)` | Dynamic code |
-| `adafruit_mlx90640_set` | Statement | VAR(field_variable), SETTING(field_dropdown), VALUE(input_value) | `adafruit_mlx90640_set(VAR, SETTING, VALUE)` | Dynamic code |
+| `adafruit_mlx90640_init` | Statement | VAR(field_input), WIRE(dropdown), ADDR(dropdown) | `adafruit_mlx90640_init("mlx90640", WIRE, "0x33")` | `Adafruit_MLX90640 mlx90640; ↵ float mlx90640Frame[768] = {0}; ↵ WIRE.begin(); ↵ while (!(mlx90640.begin(0x33, &WIRE))) { delay(100); } ↵ mlx90640.setMode(MLX90640_CHESS); ↵ mlx90640.setResolution(MLX90640_ADC_18BIT); ↵ mlx90640.setRefreshRate(MLX90640_4_HZ);` |
+| `adafruit_mlx90640_read` | Value | VAR(field_variable), DATA(dropdown), INDEX(input_value) | `adafruit_mlx90640_read($mlx90640, pixel, math_number(0))` | `(mlx90640.getFrame(mlx90640Frame), mlx90640Frame[constrain((int)1, 0, 767)])` |
+| `adafruit_mlx90640_set` | Statement | VAR(field_variable), SETTING(dropdown), VALUE(input_value) | `adafruit_mlx90640_set($mlx90640, refresh_rate, math_number(0))` | `mlx90640.setRefreshRate((mlx90640_refreshrate_t)constrain((int)1, 0, 7));` |
 
 ## Parameter Options
 
@@ -32,7 +32,7 @@ Blocks for the MLX90640 32x24 infrared thermal imaging array.
 
 ```
 arduino_setup()
-    adafruit_mlx90640_init("mlx90640")
+    adafruit_mlx90640_init("mlx90640", WIRE, "0x33")
 ```
 
 ## Notes

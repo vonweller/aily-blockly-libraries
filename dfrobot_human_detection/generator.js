@@ -49,7 +49,6 @@ Arduino.forBlock['dfrobot_human_detection_read'] = function(block, generator) {
   var varName = dfrobot_human_detectionVariable(block);
   dfrobot_human_detectionEnsureExtras(generator, varName);
   var data = block.getFieldValue('DATA') || "presence";
-  var index = generator.valueToCode(block, 'INDEX', generator.ORDER_ATOMIC) || '0';
   var expressions = {
     "presence": String(varName) + ".smHumanData(" + String(varName) + ".eHumanPresence)",
     "movement": String(varName) + ".smHumanData(" + String(varName) + ".eHumanMovement)",

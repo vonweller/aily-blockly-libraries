@@ -11,11 +11,11 @@ Cross-controller Wire blocks for SEN50/SEN54/SEN55 particulate, humidity, temper
 
 ## Block Definitions
 
-| Block Type | Connection | Parameters (args0 order) | ABS Format | Generated Code |
+| Block Type | Connection | Parameters (block.json order) | ABS Format | Generated Code |
 |------------|------------|--------------------------|------------|----------------|
-| `sensirion_sen5x_init` | Statement | VAR(field_input), WIRE(field_dropdown) | `sensirion_sen5x_init(VAR, WIRE)` | Dynamic code |
-| `sensirion_sen5x_read` | Value | VAR(field_variable), DATA(field_dropdown) | `sensirion_sen5x_read(VAR, DATA)` | Dynamic code |
-| `sensirion_sen5x_action` | Statement | VAR(field_variable), ACTION(field_dropdown) | `sensirion_sen5x_action(VAR, ACTION)` | Dynamic code |
+| `sensirion_sen5x_init` | Statement | VAR(field_input), WIRE(dropdown) | `sensirion_sen5x_init(VAR, WIRE)` | `AilySEN5X sen5x(&WIRE); ↵ WIRE.begin(); ↵ while (!(sen5x.begin())) { delay(100); } ↵ sen5x.startMeasurement();` |
+| `sensirion_sen5x_read` | Value | VAR(field_variable), DATA(dropdown) | `sensirion_sen5x_read($sen5x, pm1)` | `(sen5x.read(), sen5x.pm1())` |
+| `sensirion_sen5x_action` | Statement | VAR(field_variable), ACTION(dropdown) | `sensirion_sen5x_action($sen5x, start)` | `sen5x.startMeasurement();` |
 
 ## Parameter Options
 
@@ -31,7 +31,7 @@ Cross-controller Wire blocks for SEN50/SEN54/SEN55 particulate, humidity, temper
 
 ```
 arduino_setup()
-    sensirion_sen5x_init("sen5x")
+    sensirion_sen5x_init("sen5x", WIRE)
 ```
 
 ## Notes
