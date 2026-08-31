@@ -9,10 +9,12 @@ function ensureMicrobitSensorRuntime(generator) {
   generator.addLibrary('microbit_builtin_wire', '#include <Wire.h>');
   generator.addLibrary('microbit_builtin_math', '#include <math.h>');
 
-  generator.addObject('microbit_builtin_bus', `#if defined(NRF52833_XXAA)
+  generator.addObject('microbit_builtin_bus', `#if defined(ARDUINO_BBC_MICROBIT_V2)
 #define AILY_MICROBIT_INTERNAL_WIRE Wire1
-#else
+#elif defined(ARDUINO_BBC_MICROBIT)
 #define AILY_MICROBIT_INTERNAL_WIRE Wire
+#else
+#error "@aily-project/lib-microbit-builtins only supports BBC micro:bit v1/v2"
 #endif`);
 
   generator.addObject('microbit_builtin_sensor_state', `static bool _ailyMicrobitBuiltinsReady = false;
@@ -106,8 +108,8 @@ static unsigned long _ailyMicrobitShakeTime = 0;`);
     int16_t rawX = (int16_t)((uint16_t)data[1] << 8 | data[0]);
     int16_t rawY = (int16_t)((uint16_t)data[3] << 8 | data[2]);
     int16_t rawZ = (int16_t)((uint16_t)data[5] << 8 | data[4]);
-    _ailyMicrobitAccelX = -(rawY / 16);
-    _ailyMicrobitAccelY = -(rawX / 16);
+    _ailyMicrobitAccelX = rawX / 16;
+    _ailyMicrobitAccelY = -(rawY / 16);
     _ailyMicrobitAccelZ = rawZ / 16;
     return true;
   }
@@ -119,8 +121,8 @@ static unsigned long _ailyMicrobitShakeTime = 0;`);
     rawX >>= 6;
     rawY >>= 6;
     rawZ >>= 6;
-    _ailyMicrobitAccelX = (int16_t)((int32_t)rawX * 2000 / 512);
-    _ailyMicrobitAccelY = (int16_t)((int32_t)rawY * 2000 / 512);
+    _ailyMicrobitAccelX = (int16_t)(-(int32_t)rawX * 2000 / 512);
+    _ailyMicrobitAccelY = (int16_t)(-(int32_t)rawY * 2000 / 512);
     _ailyMicrobitAccelZ = (int16_t)((int32_t)rawZ * 2000 / 512);
     return true;
   }
@@ -182,8 +184,8 @@ static unsigned long _ailyMicrobitShakeTime = 0;`);
     int16_t rawX = (int16_t)((uint16_t)data[1] << 8 | data[0]);
     int16_t rawY = (int16_t)((uint16_t)data[3] << 8 | data[2]);
     int16_t rawZ = (int16_t)((uint16_t)data[5] << 8 | data[4]);
-    _ailyMicrobitMagX = -rawY * 0.15f;
-    _ailyMicrobitMagY = -rawX * 0.15f;
+    _ailyMicrobitMagX = rawX * 0.15f;
+    _ailyMicrobitMagY = -rawY * 0.15f;
     _ailyMicrobitMagZ = rawZ * 0.15f;
     return true;
   }
@@ -192,8 +194,8 @@ static unsigned long _ailyMicrobitShakeTime = 0;`);
     int16_t rawX = (int16_t)((uint16_t)data[0] << 8 | data[1]);
     int16_t rawY = (int16_t)((uint16_t)data[2] << 8 | data[3]);
     int16_t rawZ = (int16_t)((uint16_t)data[4] << 8 | data[5]);
-    _ailyMicrobitMagX = -rawY * 0.1f;
-    _ailyMicrobitMagY = rawX * 0.1f;
+    _ailyMicrobitMagX = -rawX * 0.1f;
+    _ailyMicrobitMagY = -rawY * 0.1f;
     _ailyMicrobitMagZ = -rawZ * 0.1f;
     return true;
   }
@@ -259,9 +261,7 @@ static String _ailyMicrobitRadioMessage;`);
   while (NRF_RADIO->EVENTS_DISABLED == 0) {}
 
   if (!_ailyMicrobitRadioReady) {
-    NRF_CLOCK->EVENTS_HFCLKSTARTED = 0;
-    NRF_CLOCK->TASKS_HFCLKSTART = 1;
-    while (NRF_CLOCK->EVENTS_HFCLKSTARTED == 0) {}
+    // Both supported n-able board variants keep HFXO running for USE_LFSYNT.
     _ailyMicrobitRadioSetPower(6);
     NRF_RADIO->FREQUENCY = 7;
     NRF_RADIO->MODE = RADIO_MODE_MODE_Nrf_1Mbit;

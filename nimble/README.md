@@ -1,24 +1,31 @@
 # NimBLEBluetooth
 
-ESP32 Bluetooth Low Energy (BLE) library supports server and client modes
+Bluetooth Low Energy (BLE) library for ESP32 and n-able Arduino boards, supporting server and client modes.
 
 ## Library Info
 
 | Field | Value |
 |-------|-------|
 | Package | @aily-project/lib-nimble |
-| Version | 1.0.0 |
+| Version | 1.0.1 |
 | Author | h2zero |
 | Source | https://github.com/h2zero/NimBLE-Arduino |
 | License | Apache-2.0 |
 
 ## Supported Boards
 
-ESP32
+ESP32 boards supported by this package, plus:
+
+- `n-able-Arduino:arm-ble:BBCmicrobit`
+- `n-able-Arduino:arm-ble:BBCmicrobitV2`
+- `n-able-Arduino:arm-ble:nRF52DK`
+- `n-able-Arduino:arm-ble:nRF52840_DK`
+- `n-able-Arduino:arm-ble:nRF52840_dongle`
+- `n-able-Arduino:arm-ble:seeed52840sense`
 
 ## Description
 
-ESP32 Bluetooth Low Energy (BLE) library supports server and client modes
+Provides NimBLE server and client blocks on compatible ESP32 and n-able Arduino boards.
 
 ## Quick Start
 
