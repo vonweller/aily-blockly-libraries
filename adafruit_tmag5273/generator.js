@@ -50,7 +50,6 @@ Arduino.forBlock['adafruit_tmag5273_read'] = function(block, generator) {
   var varName = adafruit_tmag5273Variable(block);
   adafruit_tmag5273EnsureExtras(generator, varName);
   var data = block.getFieldValue('DATA') || "x";
-  var index = generator.valueToCode(block, 'INDEX', generator.ORDER_ATOMIC) || '0';
   var expressions = {
     "x": String(varName) + ".readMagneticX()",
     "y": String(varName) + ".readMagneticY()",

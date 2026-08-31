@@ -12,6 +12,11 @@ on:
       - '*/README.md'
       - '*/readme_ai.md'
       - '*/README_AI.md'
+      - '*/i18n/*.json'
+      - '.scripts/**'
+      - '.github/workflows/library-compliance-check.yml'
+      - '.github/workflows/library-full-audit.yml'
+      - 'package.json'
   push:
     branches: [ main, develop ]
     paths:
@@ -23,6 +28,11 @@ on:
       - '*/README.md'
       - '*/readme_ai.md'
       - '*/README_AI.md'
+      - '*/i18n/*.json'
+      - '.scripts/**'
+      - '.github/workflows/library-compliance-check.yml'
+      - '.github/workflows/library-full-audit.yml'
+      - 'package.json'
 
 # GitHub Actions权限配置
 permissions:
@@ -57,17 +67,32 @@ jobs:
     - name: Install dependencies
       run: npm install js-yaml
 
+    - name: Test README governance unit tests
+      run: npm run readme:test
+
+    - name: Validate changed README and ABS contracts
+      run: |
+        if [ "${{ github.event_name }}" = "pull_request" ]; then
+          README_CMD=(node .scripts/check-changed-readme-governance.js --base "${{ github.event.pull_request.base.sha }}" --head "${{ github.event.pull_request.head.sha }}")
+        elif [ "${{ github.event.before }}" != "0000000000000000000000000000000000000000" ]; then
+          README_CMD=(node .scripts/check-changed-readme-governance.js --base "${{ github.event.before }}" --head "${{ github.sha }}")
+        else
+          README_CMD=(node .scripts/check-changed-readme-governance.js --head "${{ github.sha }}")
+        fi
+
+        "${README_CMD[@]}"
+
     - name: Validate changed libraries
       id: validation
       run: |
         echo "开始检测变更的库..."
 
         if [ "${{ github.event_name }}" = "pull_request" ]; then
-          VALIDATE_CMD=(node .scripts_git_action/validate-library-compliance.js --changed --base "${{ github.event.pull_request.base.sha }}" --head "${{ github.event.pull_request.head.sha }}")
+          VALIDATE_CMD=(node .scripts/validate-library-compliance.js --changed --base "${{ github.event.pull_request.base.sha }}" --head "${{ github.event.pull_request.head.sha }}")
         elif [ "${{ github.event.before }}" != "0000000000000000000000000000000000000000" ]; then
-          VALIDATE_CMD=(node .scripts_git_action/validate-library-compliance.js --changed --base "${{ github.event.before }}" --head "${{ github.sha }}")
+          VALIDATE_CMD=(node .scripts/validate-library-compliance.js --changed --base "${{ github.event.before }}" --head "${{ github.sha }}")
         else
-          VALIDATE_CMD=(node .scripts_git_action/validate-library-compliance.js --changed)
+          VALIDATE_CMD=(node .scripts/validate-library-compliance.js --changed)
         fi
         
         # 使用统一的检测脚本，自动读取配置文件
@@ -132,15 +157,15 @@ jobs:
             comment += '\n💡 **本地检测**: \n';
             comment += '```bash\n';
             comment += '# 检测变更的库\n';
-            comment += 'node .scripts_git_action/validate-library-compliance.js --changed\n\n';
+            comment += 'node .scripts/validate-library-compliance.js --changed\n\n';
               comment += '# 检测指定库\n';
-            comment += 'node .scripts_git_action/validate-library-compliance.js <库名>\n';
+            comment += 'node .scripts/validate-library-compliance.js <库名>\n';
             comment += '```\n\n';
             comment += '📖 **规范文档**: \n';
-            comment += '- [Arduino库转Blockly库规范](https://github.com/${{ github.repository }}/blob/main/Arduino库转Blockly库规范.md)\n';
+            comment += '- [Arduino库转Blockly库规范](https://github.com/${{ github.repository }}/blob/main/.docs_ai/zh_cn/Arduino库转Blockly库规范.md)\n';
             comment += '- [配置文件](.github/compliance-config.yml)\n\n';
             comment += '---\n';
-            comment += '*检测由 [库规范检测系统](https://github.com/${{ github.repository }}/blob/main/.scripts_git_action/validate-library-compliance.js) 自动完成 | 运行ID: ${{ github.run_id }}*';
+            comment += '*检测由 [库规范检测系统](https://github.com/${{ github.repository }}/blob/main/.scripts/validate-library-compliance.js) 自动完成 | 运行ID: ${{ github.run_id }}*';
             
             if (botComment) {
               await github.rest.issues.updateComment({

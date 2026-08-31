@@ -7,14 +7,14 @@ Control the 5x5 LED matrix on BBC micro:bit
 | Field | Value |
 |-------|-------|
 | Package | @aily-project/lib-microbit-matrix |
-| Version | 1.0.0 |
+| Version | 1.0.1 |
 | Author | Adafruit |
 | Source | https://github.com/adafruit/Adafruit_Microbit |
 | License | MIT |
 
 ## Supported Boards
 
-nRF5:nRF5:BBCmicrobit, nRF5:nRF5:BBCmicrobitV2
+`n-able-Arduino:arm-ble:BBCmicrobit`, `n-able-Arduino:arm-ble:BBCmicrobitV2`
 
 ## Description
 

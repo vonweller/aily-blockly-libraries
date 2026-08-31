@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "blocks": {
+    "controls_if": {
+      "variants": [
+        { "id": "simple-if", "when": {}, "appendArgs": [] },
+        {
+          "id": "one-else-if",
+          "when": {},
+          "appendArgs": [
+            { "name": "IF1", "type": "input_value", "example": "logic_boolean(false)", "required": true },
+            { "name": "DO1", "type": "input_statement", "example": "serial_println(Serial, text(\"else-if\"))", "required": true }
+          ]
+        },
+        {
+          "id": "else-only",
+          "when": {},
+          "appendArgs": [
+            { "name": "ELSE", "type": "input_statement", "example": "serial_println(Serial, text(\"else\"))", "required": true }
+          ]
+        },
+        {
+          "id": "one-else-if-and-else",
+          "when": {},
+          "appendArgs": [
+            { "name": "IF1", "type": "input_value", "example": "logic_boolean(false)", "required": true },
+            { "name": "DO1", "type": "input_statement", "example": "serial_println(Serial, text(\"else-if\"))", "required": true },
+            { "name": "ELSE", "type": "input_statement", "example": "serial_println(Serial, text(\"else\"))", "required": true }
+          ]
+        }
+      ]
+    },
+    "controls_ifelse": {
+      "variants": [
+        { "id": "if-else", "when": {}, "appendArgs": [] },
+        {
+          "id": "one-else-if-and-else",
+          "when": {},
+          "appendArgs": [
+            { "name": "IF1", "type": "input_value", "example": "logic_boolean(false)", "required": true },
+            { "name": "DO1", "type": "input_statement", "example": "serial_println(Serial, text(\"else-if\"))", "required": true }
+          ]
+        }
+      ]
+    },
+    "controls_switch": {
+      "variants": [
+        { "id": "one-case", "when": {}, "appendArgs": [] },
+        {
+          "id": "two-cases",
+          "when": {},
+          "appendArgs": [
+            { "name": "CASE1", "type": "input_value", "example": "math_number(1)", "required": true },
+            { "name": "DO1", "type": "input_statement", "example": "serial_println(Serial, text(\"case 1\"))", "required": true }
+          ]
+        }
+      ]
+    },
+    "logic_operation": {
+      "staticShape": true,
+      "reason": "logic_op_tooltip only changes tooltip text based on OP and does not change serializable fields or inputs."
+    },
+    "logic_ternary": {
+      "staticShape": true,
+      "reason": "The logic_ternary extension performs connection/type behavior only and preserves the three static value inputs."
+    }
+  }
+}

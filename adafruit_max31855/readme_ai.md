@@ -11,10 +11,10 @@ Blocks for the MAX31855 K-type thermocouple-to-digital converter.
 
 ## Block Definitions
 
-| Block Type | Connection | Parameters (args0 order) | ABS Format | Generated Code |
+| Block Type | Connection | Parameters (block.json order) | ABS Format | Generated Code |
 |------------|------------|--------------------------|------------|----------------|
-| `adafruit_max31855_init` | Statement | VAR(field_input), CS(field_dropdown) | `adafruit_max31855_init(VAR, CS)` | Dynamic code |
-| `adafruit_max31855_read` | Value | VAR(field_variable), DATA(field_dropdown) | `adafruit_max31855_read(VAR, DATA)` | Dynamic code |
+| `adafruit_max31855_init` | Statement | VAR(field_input), CS(dropdown) | `adafruit_max31855_init(VAR, CS)` | `Adafruit_MAX31855 max31855(CS, &SPI); ↵ while (!(max31855.begin())) { delay(100); }` |
+| `adafruit_max31855_read` | Value | VAR(field_variable), DATA(dropdown) | `adafruit_max31855_read($max31855, thermocouple_c)` | `max31855.readCelsius()` |
 
 ## Parameter Options
 
@@ -29,7 +29,7 @@ Blocks for the MAX31855 K-type thermocouple-to-digital converter.
 
 ```
 arduino_setup()
-    adafruit_max31855_init("max31855")
+    adafruit_max31855_init("max31855", CS)
 ```
 
 ## Notes

@@ -8,22 +8,22 @@ Contest PS3 Bluetooth gamepad wrapper for Cubic ESP32.
 
 ## Block Definitions
 
-| Block Type | Connection | Parameters (args0) | ABS Format | Generated Code |
+| Block Type | Connection | Parameters (block.json order) | ABS Format | Generated Code |
 |------------|------------|--------------------|------------|----------------|
-| `cubic_ps3_init` | Statement | VAR(field_input) | `cubic_ps3_init("pad")` | `CubicPs3 pad; pad.begin();` + loop `pad.update();` |
-| `cubic_ps3_init_mac` | Statement | VAR, MAC | `cubic_ps3_init_mac("pad", text("aa:bb:..."))` | `pad.begin("aa:bb:...");` |
-| `cubic_ps3_set_deadzone` | Statement | VAR, DZ | `cubic_ps3_set_deadzone(variables_get($pad), math_number(30))` | `pad.deadzone = 30;` |
-| `cubic_ps3_connected` | Value | VAR | `cubic_ps3_connected(variables_get($pad))` | `pad.isConnected()` |
-| `cubic_ps3_just_connected` | Value | VAR | `cubic_ps3_just_connected(variables_get($pad))` | `pad.justConnected()` |
-| `cubic_ps3_just_disconnected` | Value | VAR | `cubic_ps3_just_disconnected(variables_get($pad))` | `pad.justDisconnected()` |
-| `cubic_ps3_button` | Value | VAR, BTN | `cubic_ps3_button(variables_get($pad), BTN_CROSS)` | `pad.button(CubicPs3::BTN_CROSS)` |
-| `cubic_ps3_button_pressed` | Value | VAR, BTN | `cubic_ps3_button_pressed(variables_get($pad), BTN_L1)` | `pad.buttonPressed(...)` |
-| `cubic_ps3_stick` | Value | VAR, STICK, AXIS | `cubic_ps3_stick(variables_get($pad), STICK_L, AXIS_Y)` | `pad.stick(...)` |
-| `cubic_ps3_stick_raw` | Value | VAR, STICK, AXIS | `cubic_ps3_stick_raw(variables_get($pad), STICK_L, AXIS_Y)` | `pad.stickRaw(...)` |
-| `cubic_ps3_stick_mapped` | Value | VAR, STICK, AXIS, MAX | `cubic_ps3_stick_mapped(variables_get($pad), STICK_L, AXIS_Y, math_number(255))` | `pad.stickMapped(..., 255)` |
-| `cubic_ps3_set_player` | Statement | VAR, PLAYER | `cubic_ps3_set_player(variables_get($pad), 1)` | `pad.setPlayer(1);` |
-| `cubic_ps3_rumble` | Statement | VAR, INTENSITY, DURATION | `cubic_ps3_rumble(variables_get($pad), math_number(50), math_number(300))` | `pad.setRumble(50, 300);` |
-| `cubic_ps3_address` | Value | VAR | `cubic_ps3_address(variables_get($pad))` | `pad.address()` |
+| `cubic_ps3_init` | Statement | VAR(field_input) | `cubic_ps3_init("pad")` | `pad.begin();` |
+| `cubic_ps3_init_mac` | Statement | VAR(field_input), MAC(input_value) | `cubic_ps3_init_mac("pad", text("aa:bb:..."))` | `pad.begin("value");` |
+| `cubic_ps3_set_deadzone` | Statement | VAR(field_variable), DZ(input_value) | `cubic_ps3_set_deadzone($pad, math_number(30))` | `pad.deadzone = 1;` |
+| `cubic_ps3_connected` | Value | VAR(field_variable) | `cubic_ps3_connected($pad)` | `pad.isConnected()` |
+| `cubic_ps3_just_connected` | Value | VAR(field_variable) | `cubic_ps3_just_connected($pad)` | `pad.justConnected()` |
+| `cubic_ps3_just_disconnected` | Value | VAR(field_variable) | `cubic_ps3_just_disconnected($pad)` | `pad.justDisconnected()` |
+| `cubic_ps3_button` | Value | VAR(field_variable), BTN(dropdown) | `cubic_ps3_button($pad, BTN_CROSS)` | `pad.button(CubicPs3::BTN_CROSS)` |
+| `cubic_ps3_button_pressed` | Value | VAR(field_variable), BTN(dropdown) | `cubic_ps3_button_pressed($pad, BTN_L1)` | `pad.buttonPressed(CubicPs3::BTN_CROSS)` |
+| `cubic_ps3_stick` | Value | VAR(field_variable), STICK(dropdown), AXIS(dropdown) | `cubic_ps3_stick($pad, STICK_L, AXIS_Y)` | `pad.stick(CubicPs3::STICK_L, CubicPs3::AXIS_X)` |
+| `cubic_ps3_stick_raw` | Value | VAR(field_variable), STICK(dropdown), AXIS(dropdown) | `cubic_ps3_stick_raw($pad, STICK_L, AXIS_Y)` | `pad.stickRaw(CubicPs3::STICK_L, CubicPs3::AXIS_X)` |
+| `cubic_ps3_stick_mapped` | Value | VAR(field_variable), STICK(dropdown), AXIS(dropdown), MAX(input_value) | `cubic_ps3_stick_mapped($pad, STICK_L, AXIS_Y, math_number(255))` | `pad.stickMapped(CubicPs3::STICK_L, CubicPs3::AXIS_X, 1)` |
+| `cubic_ps3_set_player` | Statement | VAR(field_variable), PLAYER(dropdown) | `cubic_ps3_set_player($pad, 1)` | `pad.setPlayer(1);` |
+| `cubic_ps3_rumble` | Statement | VAR(field_variable), INTENSITY(input_value), DURATION(input_value) | `cubic_ps3_rumble($pad, math_number(50), math_number(300))` | `pad.setRumble(1, 1);` |
+| `cubic_ps3_address` | Value | VAR(field_variable) | `cubic_ps3_address($pad)` | `pad.address()` |
 
 ## Parameter Options
 
@@ -42,11 +42,11 @@ arduino_setup()
 
 arduino_loop()
     controls_if()
-        @IF0: cubic_ps3_connected(variables_get($pad))
+        @IF0: cubic_ps3_connected($pad)
         @DO0:
-            serial_println(Serial, cubic_ps3_stick(variables_get($pad), STICK_L, AXIS_Y))
+            serial_println(Serial, cubic_ps3_stick($pad, STICK_L, AXIS_Y))
     controls_if()
-        @IF0: cubic_ps3_just_disconnected(variables_get($pad))
+        @IF0: cubic_ps3_just_disconnected($pad)
         @DO0:
             serial_println(Serial, text("disconnect stop"))
 ```

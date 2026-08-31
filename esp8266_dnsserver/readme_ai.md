@@ -10,13 +10,13 @@ DNS server and captive portal blocks for ESP8266.
 
 ## Block Definitions
 
-| Block Type | Connection | Parameters (args0 order) | ABS Format | Generated Code |
+| Block Type | Connection | Parameters (block.json order) | ABS Format | Generated Code |
 |---|---|---|---|---|
-| `esp8266_dnsserver_start` | Statement | PORT(input_value), DOMAIN(input_value), IP(input_value) | `esp8266_dnsserver_start(PORT, DOMAIN, IP)` | Dynamic code |
-| `esp8266_dnsserver_start_captive` | Statement | None | `esp8266_dnsserver_start_captive()` | Dynamic code |
-| `esp8266_dnsserver_stop` | Statement | None | `esp8266_dnsserver_stop()` | Dynamic code |
-| `esp8266_dnsserver_process` | Statement | None | `esp8266_dnsserver_process()` | Dynamic code |
-| `esp8266_dnsserver_set_ttl` | Statement | TTL(input_value) | `esp8266_dnsserver_set_ttl(TTL)` | Dynamic code |
+| `esp8266_dnsserver_start` | Statement | PORT(input_value), DOMAIN(input_value), IP(input_value) | `esp8266_dnsserver_start(PORT, DOMAIN, IP)` | `{ ↵ IPAddress resolvedIP; ↵ resolvedIP.fromString("value"); ↵ dnsServer.start(1, "value", resolvedIP); ↵ }` |
+| `esp8266_dnsserver_start_captive` | Statement | (none) | `esp8266_dnsserver_start_captive()` | `dnsServer.start(53, "*", WiFi.softAPIP());` |
+| `esp8266_dnsserver_stop` | Statement | (none) | `esp8266_dnsserver_stop()` | `dnsServer.stop();` |
+| `esp8266_dnsserver_process` | Statement | (none) | `esp8266_dnsserver_process()` | `dnsServer.processNextRequest();` |
+| `esp8266_dnsserver_set_ttl` | Statement | TTL(input_value) | `esp8266_dnsserver_set_ttl(TTL)` | `dnsServer.setTTL(1);` |
 
 ## Parameter Options
 
@@ -31,3 +31,11 @@ Use the initialization block first when one is provided.
 ## Notes
 
 All types use the `esp8266_` prefix. SDK sources are used directly; no `src.7z` is bundled.
+## ABS Examples
+
+### Minimal Executable Usage
+
+```abs
+arduino_loop()
+    esp8266_dnsserver_start(PORT, DOMAIN, IP)
+```

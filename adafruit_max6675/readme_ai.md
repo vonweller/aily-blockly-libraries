@@ -11,10 +11,10 @@ Blocks for the MAX6675 K-type thermocouple-to-digital converter.
 
 ## Block Definitions
 
-| Block Type | Connection | Parameters (args0 order) | ABS Format | Generated Code |
+| Block Type | Connection | Parameters (block.json order) | ABS Format | Generated Code |
 |------------|------------|--------------------------|------------|----------------|
-| `adafruit_max6675_init` | Statement | VAR(field_input), SCLK(field_dropdown), CS(field_dropdown), MISO(field_dropdown) | `adafruit_max6675_init(VAR, SCLK, CS, MISO)` | Dynamic code |
-| `adafruit_max6675_read` | Value | VAR(field_variable), DATA(field_dropdown) | `adafruit_max6675_read(VAR, DATA)` | Dynamic code |
+| `adafruit_max6675_init` | Statement | VAR(field_input), SCLK(dropdown), CS(dropdown), MISO(dropdown) | `adafruit_max6675_init(VAR, SCLK, CS, MISO)` | `MAX6675 max6675(SCLK, CS, MISO);` |
+| `adafruit_max6675_read` | Value | VAR(field_variable), DATA(dropdown) | `adafruit_max6675_read($max6675, celsius)` | `max6675.readCelsius()` |
 
 ## Parameter Options
 
@@ -31,7 +31,7 @@ Blocks for the MAX6675 K-type thermocouple-to-digital converter.
 
 ```
 arduino_setup()
-    adafruit_max6675_init("max6675")
+    adafruit_max6675_init("max6675", SCLK, CS, MISO)
 ```
 
 ## Notes

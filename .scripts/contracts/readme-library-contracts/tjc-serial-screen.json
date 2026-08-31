@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "blocks": {
+    "tjc_set_variable": {
+      "excludedRuntimeArgs": [
+        {
+          "name": "SERIAL",
+          "type": "field",
+          "reason": "The shared command helper accepts a legacy SERIAL field but the current compact variable block intentionally defaults to Serial; new ABS must not emit SERIAL."
+        }
+      ]
+    }
+  }
+}

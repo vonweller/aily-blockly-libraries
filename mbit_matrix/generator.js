@@ -203,7 +203,9 @@ Arduino.forBlock['microbit_matrix_bitmap_create'] = function(block, generator) {
   const row5 = generator.valueToCode(block, 'ROW5', generator.ORDER_ATOMIC) || '0';
   
   // Generate a unique bitmap variable name
-  const bitmapVar = 'bitmap_' + block.id.substring(0, 8);
+  const bitmapId = String(block.id || 'custom')
+    .replace(/[^A-Za-z0-9_]/g, '_');
+  const bitmapVar = 'bitmap_' + bitmapId;
   
   const bitmapDef = 'const uint8_t ' + bitmapVar + '[5] = {' + row1 + ', ' + row2 + ', ' + row3 + ', ' + row4 + ', ' + row5 + '};\n';
   generator.addVariable(bitmapVar, bitmapDef);

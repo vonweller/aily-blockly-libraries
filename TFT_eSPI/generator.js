@@ -36,12 +36,63 @@ function cleanValue(value) {
   return value;
 }
 
+// The bundled User_Setup.h contains a default ILI9341 configuration. Blockly
+// supplies the complete configuration through project-wide build macros, so
+// prevent TFT_eSPI from loading that default and keep the fonts it previously
+// enabled for Blockly projects.
+const TFT_ESPI_SETUP_MACROS = [
+  'USER_SETUP_LOADED=1',
+  'LOAD_GLCD',
+  'LOAD_FONT2',
+  'LOAD_FONT4',
+  'LOAD_FONT6',
+  'LOAD_FONT7',
+  'LOAD_FONT8',
+  'LOAD_GFXFF',
+  'SMOOTH_FONT'
+];
+
+const TFT_ESPI_SETUP_MACRO_NAMES = TFT_ESPI_SETUP_MACROS.map(macro => macro.split('=')[0]);
+
+// Show exactly one pin row: standard SPI, or the CH13613 QSPI bus.
+function attachCh13613QspiFields(block) {
+  if (block._tftespiCh13613FieldsAttached) return;
+  block._tftespiCh13613FieldsAttached = true;
+
+  const spiInput = block.inputList.find(input =>
+    input.fieldRow && input.fieldRow.some(field => field.name === 'MISO')
+  );
+  const qspiInput = block.inputList.find(input =>
+    input.fieldRow && input.fieldRow.some(field => field.name === 'QSPI_CS')
+  );
+  if (!spiInput || !qspiInput) return;
+
+  const updateVisibility = model => {
+    const isCh13613 = model === 'CH13613_DRIVER';
+    spiInput.setVisible(!isCh13613);
+    qspiInput.setVisible(isCh13613);
+    if (block.rendered) block.render();
+  };
+
+  const modelField = block.getField('MODEL');
+  if (modelField) {
+    modelField.setValidator(option => {
+      updateVisibility(option);
+      return option;
+    });
+  }
+
+  updateVisibility(block.getFieldValue('MODEL'));
+}
+
 // Apply the board's built-in display settings once, while keeping later manual edits.
 function applyBoardDisplayConfig(block) {
   const config = typeof window !== 'undefined' && window['boardConfig']
     ? window['boardConfig'].displayConfig
     : null;
-  if (!config || (config.interface && String(config.interface).toLowerCase() !== 'spi')) return true;
+  if (!config) return true;
+  const displayInterface = config.interface ? String(config.interface).toLowerCase() : '';
+  if (displayInterface && displayInterface !== 'spi' && displayInterface !== 'qspi') return true;
 
   const pins = config.pins || {};
   const signature = JSON.stringify([config.controller, config.width, config.height, config.frequency, pins]);
@@ -71,7 +122,15 @@ function applyBoardDisplayConfig(block) {
     CS: pins.cs,
     DC: pins.dc,
     RST: pins.rst,
-    BL: pins.bl
+    BL: pins.bl,
+    QSPI_CS: pins.cs,
+    QSPI_SCLK: pins.sclk,
+    D0: pins.d0,
+    D1: pins.d1,
+    D2: pins.d2,
+    D3: pins.d3,
+    QSPI_RST: pins.rst,
+    TE: pins.te
   };
   Object.keys(fieldValues).forEach(name => {
     if (fieldValues[name] == null) return;
@@ -90,6 +149,7 @@ if (Blockly.Extensions.isRegistered('tftespi_board_display_config')) {
 
 Blockly.Extensions.register('tftespi_board_display_config', function() {
   const block = this;
+  attachCh13613QspiFields(block);
   let retries = 0;
   const updateConfig = () => {
     if (!block.workspace) return;
@@ -116,6 +176,11 @@ if (!Arduino.tft_espi) {
   Arduino.tft_espi_dc = -1;
   Arduino.tft_espi_rst = -1;
   Arduino.tft_espi_bl = -1;
+  Arduino.tft_espi_d0 = -1;
+  Arduino.tft_espi_d1 = -1;
+  Arduino.tft_espi_d2 = -1;
+  Arduino.tft_espi_d3 = -1;
+  Arduino.tft_espi_te = -1;
   Arduino.tft_espi_bl_level = '';
   Arduino.tft_espi_color_mode = 'TFT_RGB';
   Arduino.tft_espi_use_hspi = false;
@@ -131,14 +196,24 @@ if (typeof Blockly !== 'undefined' && Blockly.getMainWorkspace) {
     const deleteListener = function(event) {
       if (event.type === Blockly.Events.BLOCK_DELETE) {
         if (event.oldJson && event.oldJson.type === 'tftespi_setup') {
-          window['projectService'].removeMacro(Arduino.tft_espi_type)
+          return window['projectService'].removeMacro(Arduino.tft_espi_type)
             .then(() => {
               console.log('Macro removed:', Arduino.tft_espi_type);
               Arduino.tft_espi_type = '';
+              return TFT_ESPI_SETUP_MACRO_NAMES.reduce(
+                (promise, macroName) => promise.then(() => window['projectService'].removeMacro(macroName)),
+                Promise.resolve()
+              );
+            })
+            .then(() => {
               return window['projectService'].removeMacro('TFT_WIDTH');
             })
             .then(() => {
               Arduino.tft_espi_frequency = 0;
+              return window['projectService'].removeMacro('SPI_FREQUENCY');
+            })
+            .then(() => {
+              // Remove the obsolete name written by older versions.
               return window['projectService'].removeMacro('TFT_FREQUENCY');
             })
             .then(() => {
@@ -179,6 +254,31 @@ if (typeof Blockly !== 'undefined' && Blockly.getMainWorkspace) {
             .then(() => {
               console.log('Macro removed: TFT_RST');
               Arduino.tft_espi_rst = -1;
+              return window['projectService'].removeMacro('TFT_D0');
+            })
+            .then(() => {
+              console.log('Macro removed: TFT_D0');
+              Arduino.tft_espi_d0 = -1;
+              return window['projectService'].removeMacro('TFT_D1');
+            })
+            .then(() => {
+              console.log('Macro removed: TFT_D1');
+              Arduino.tft_espi_d1 = -1;
+              return window['projectService'].removeMacro('TFT_D2');
+            })
+            .then(() => {
+              console.log('Macro removed: TFT_D2');
+              Arduino.tft_espi_d2 = -1;
+              return window['projectService'].removeMacro('TFT_D3');
+            })
+            .then(() => {
+              console.log('Macro removed: TFT_D3');
+              Arduino.tft_espi_d3 = -1;
+              return window['projectService'].removeMacro('TFT_TE');
+            })
+            .then(() => {
+              console.log('Macro removed: TFT_TE');
+              Arduino.tft_espi_te = -1;
             })
             .then(() => {
               console.log('Macro removed: TFT_BL');
@@ -191,10 +291,13 @@ if (typeof Blockly !== 'undefined' && Blockly.getMainWorkspace) {
               return window['projectService'].removeMacro('TFT_BACKLIGHT_ON');
             })
             .then(() => {
-              if (isESP32Core() && Arduino.tft_espi_use_hspi) {
-                Arduino.tft_espi_use_hspi = false;
-                return window['projectService'].removeMacro('USE_HSPI_PORT');
-              }
+              console.log('Macro removed: TFT_RGB_ORDER');
+              Arduino.tft_espi_color_mode = 'TFT_RGB';
+              return window['projectService'].removeMacro('TFT_RGB_ORDER');
+            })
+            .then(() => {
+              Arduino.tft_espi_use_hspi = false;
+              return window['projectService'].removeMacro('USE_HSPI_PORT');
             })
             .then(() => {
               console.log('All TFT_eSPI related macros removed.');
@@ -256,15 +359,22 @@ Arduino.forBlock['tftespi_setup'] = function(block, generator) {
   const frequency = block.getFieldValue('FREQUENCY') || '40000000';
   const width = block.getFieldValue('WIDTH') || '240';
   const height = block.getFieldValue('HEIGHT') || '320';
-  const miso = block.getFieldValue('MISO') || '-1';
-  const mosi = block.getFieldValue('MOSI') || '-1';
-  const sclk = block.getFieldValue('SCLK') || '-1';
-  const cs = block.getFieldValue('CS') || '-1';
-  const dc = block.getFieldValue('DC') || '-1';
-  const rst = block.getFieldValue('RST') || '-1';
-  const bl = block.getFieldValue('BL') || '-1';
+  const isCh13613 = model === 'CH13613_DRIVER';
+  const miso = isCh13613 ? '-1' : (block.getFieldValue('MISO') || '-1');
+  const mosi = isCh13613 ? '-1' : (block.getFieldValue('MOSI') || '-1');
+  const sclk = isCh13613 ? (block.getFieldValue('QSPI_SCLK') || '-1') : (block.getFieldValue('SCLK') || '-1');
+  const cs = isCh13613 ? (block.getFieldValue('QSPI_CS') || '-1') : (block.getFieldValue('CS') || '-1');
+  const dc = isCh13613 ? '-1' : (block.getFieldValue('DC') || '-1');
+  const rst = isCh13613 ? (block.getFieldValue('QSPI_RST') || '-1') : (block.getFieldValue('RST') || '-1');
+  const bl = isCh13613 ? '-1' : (block.getFieldValue('BL') || '-1');
+  const d0 = isCh13613 ? (block.getFieldValue('D0') || '-1') : '-1';
+  const d1 = isCh13613 ? (block.getFieldValue('D1') || '-1') : '-1';
+  const d2 = isCh13613 ? (block.getFieldValue('D2') || '-1') : '-1';
+  const d3 = isCh13613 ? (block.getFieldValue('D3') || '-1') : '-1';
+  const te = isCh13613 ? (block.getFieldValue('TE') || '-1') : '-1';
   const blLevel = block.getFieldValue('BL_LEVEL') || 'HIGH';
   const colorMode = block.getFieldValue('COLOR_MODE') || 'TFT_RGB';
+  const useHspi = isESP32Core() && !isCh13613;
   // const rotation = block.getFieldValue('ROTATION') || '0';
 
   if (Arduino.tft_espi_type !== model ||
@@ -278,9 +388,14 @@ Arduino.forBlock['tftespi_setup'] = function(block, generator) {
       Arduino.tft_espi_dc != dc ||
       Arduino.tft_espi_rst != rst ||
       Arduino.tft_espi_bl != bl ||
+      Arduino.tft_espi_d0 != d0 ||
+      Arduino.tft_espi_d1 != d1 ||
+      Arduino.tft_espi_d2 != d2 ||
+      Arduino.tft_espi_d3 != d3 ||
+      Arduino.tft_espi_te != te ||
       Arduino.tft_espi_bl_level != blLevel ||
       Arduino.tft_espi_color_mode != colorMode ||
-      (isESP32Core() && !Arduino.tft_espi_use_hspi)) {
+      Arduino.tft_espi_use_hspi !== useHspi) {
     
     // 先保存旧的 model 用于删除
     const oldModel = Arduino.tft_espi_type;
@@ -298,11 +413,18 @@ Arduino.forBlock['tftespi_setup'] = function(block, generator) {
     // 更新并添加新的 model
     Arduino.tft_espi_type = model;
     promise = promise.then(() => window['projectService'].addMacro(model));
+
+    // Skip the bundled default ILI9341 setup in every TFT_eSPI translation unit.
+    TFT_ESPI_SETUP_MACROS.forEach(macro => {
+      promise = promise.then(() => window['projectService'].addMacro(macro));
+    });
     
     // 添加其他宏
     // if (Arduino.tft_espi_frequency != frequency) {
       Arduino.tft_espi_frequency = frequency;
-      promise = promise.then(() => window['projectService'].addMacro(`TFT_FREQUENCY=${frequency}`));
+      promise = promise
+        .then(() => window['projectService'].removeMacro('TFT_FREQUENCY'))
+        .then(() => window['projectService'].addMacro(`SPI_FREQUENCY=${frequency}`));
     // }
     
     // if (Arduino.tft_espi_width != width) {
@@ -355,6 +477,27 @@ Arduino.forBlock['tftespi_setup'] = function(block, generator) {
       promise = promise.then(() => window['projectService'].addMacro(`TFT_BL=${bl}`));
     // }
 
+    Arduino.tft_espi_d0 = d0;
+    Arduino.tft_espi_d1 = d1;
+    Arduino.tft_espi_d2 = d2;
+    Arduino.tft_espi_d3 = d3;
+    Arduino.tft_espi_te = te;
+    if (isCh13613) {
+      promise = promise
+        .then(() => window['projectService'].addMacro(`TFT_D0=${d0}`))
+        .then(() => window['projectService'].addMacro(`TFT_D1=${d1}`))
+        .then(() => window['projectService'].addMacro(`TFT_D2=${d2}`))
+        .then(() => window['projectService'].addMacro(`TFT_D3=${d3}`))
+        .then(() => window['projectService'].addMacro(`TFT_TE=${te}`));
+    } else {
+      promise = promise
+        .then(() => window['projectService'].removeMacro('TFT_D0'))
+        .then(() => window['projectService'].removeMacro('TFT_D1'))
+        .then(() => window['projectService'].removeMacro('TFT_D2'))
+        .then(() => window['projectService'].removeMacro('TFT_D3'))
+        .then(() => window['projectService'].removeMacro('TFT_TE'));
+    }
+
     // if (Arduino.tft_espi_bl_level != blLevel) {
       Arduino.tft_espi_bl_level = blLevel;
       const blMacro = blLevel === 'HIGH' ? 'TFT_BACKLIGHT_ON=HIGH' : 'TFT_BACKLIGHT_ON=LOW';
@@ -366,9 +509,12 @@ Arduino.forBlock['tftespi_setup'] = function(block, generator) {
       promise = promise.then(() => window['projectService'].addMacro(`TFT_RGB_ORDER=${colorMode}`));
     // }
     
-    if (isESP32Core() && !Arduino.tft_espi_use_hspi) {
-      Arduino.tft_espi_use_hspi = true;
+    Arduino.tft_espi_use_hspi = useHspi;
+    if (useHspi) {
       promise = promise.then(() => window['projectService'].addMacro('USE_HSPI_PORT'));
+    } else {
+      // CH13613 QSPI uses the ESP32-S3 default SPI2 host.
+      promise = promise.then(() => window['projectService'].removeMacro('USE_HSPI_PORT'));
     }
     
     promise
@@ -376,8 +522,17 @@ Arduino.forBlock['tftespi_setup'] = function(block, generator) {
       .catch(err => console.error('Error adding macro:', err));
   }
 
+  generator.addMacro("USER_SETUP_LOADED", '#define USER_SETUP_LOADED');
+  generator.addMacro("LOAD_GLCD", '#define LOAD_GLCD');
+  generator.addMacro("LOAD_FONT2", '#define LOAD_FONT2');
+  generator.addMacro("LOAD_FONT4", '#define LOAD_FONT4');
+  generator.addMacro("LOAD_FONT6", '#define LOAD_FONT6');
+  generator.addMacro("LOAD_FONT7", '#define LOAD_FONT7');
+  generator.addMacro("LOAD_FONT8", '#define LOAD_FONT8');
+  generator.addMacro("LOAD_GFXFF", '#define LOAD_GFXFF');
+  generator.addMacro("SMOOTH_FONT", '#define SMOOTH_FONT');
   generator.addMacro("TFT_MODEL", `#define ${model}`);
-  generator.addMacro("TFT_FREQUENCY", `#define TFT_FREQUENCY ${frequency}`);
+  generator.addMacro("SPI_FREQUENCY", `#define SPI_FREQUENCY ${frequency}`);
   generator.addMacro("TFT_WIDTH", `#define TFT_WIDTH ${width}`);
   generator.addMacro("TFT_HEIGHT", `#define TFT_HEIGHT ${height}`);
   generator.addMacro("TFT_MISO", `#define TFT_MISO ${miso}`);
@@ -387,11 +542,18 @@ Arduino.forBlock['tftespi_setup'] = function(block, generator) {
   generator.addMacro("TFT_DC", `#define TFT_DC ${dc}`);
   generator.addMacro("TFT_RST", `#define TFT_RST ${rst}`);
   generator.addMacro("TFT_BL", `#define TFT_BL ${bl}`);
+  if (isCh13613) {
+    generator.addMacro("TFT_D0", `#define TFT_D0 ${d0}`);
+    generator.addMacro("TFT_D1", `#define TFT_D1 ${d1}`);
+    generator.addMacro("TFT_D2", `#define TFT_D2 ${d2}`);
+    generator.addMacro("TFT_D3", `#define TFT_D3 ${d3}`);
+    generator.addMacro("TFT_TE", `#define TFT_TE ${te}`);
+  }
   const blMacro = blLevel === 'HIGH' ? '#define TFT_BACKLIGHT_ON HIGH' : '#define TFT_BACKLIGHT_ON LOW';
   generator.addMacro("TFT_BACKLIGHT_ON", blMacro);
   generator.addMacro("TFT_RGB_ORDER", `#define TFT_RGB_ORDER ${colorMode}`);
 
-  if (isESP32Core() && Arduino.tft_espi_use_hspi) {
+  if (useHspi) {
     generator.addMacro("USE_HSPI_PORT", '#define USE_HSPI_PORT');
   }
 
@@ -784,6 +946,7 @@ Arduino.forBlock['tftespi_set_text_font'] = function(block, generator) {
 };
 
 Arduino.forBlock['tftespi_color_rgb565'] = function(block, generator) {
+  const varField = block.getField('VAR');
   const varName = varField ? varField.getText() : 'tft';
   const color = block.getFieldValue('COLOR');
   
@@ -841,49 +1004,13 @@ function tftespiDecodeBase64Frame(frameValue, expectedByteLength, frameIndex) {
   }
 }
 
-function tftespiSwapRgb565RedBlue(value) {
-  const red5 = (value >> 11) & 0x1F;
-  const green6 = (value >> 5) & 0x3F;
-  const blue5 = value & 0x1F;
-  return (blue5 << 11) | (green6 << 5) | red5;
-}
-
-function tftespiSwapRgb332RedBlue(value) {
-  const red3 = (value >> 5) & 0x07;
-  const green3 = (value >> 2) & 0x07;
-  const blue2 = value & 0x03;
-  const swappedRed3 = (blue2 << 1) | (blue2 >> 1);
-  const swappedBlue2 = red3 >> 1;
-  return (swappedRed3 << 5) | (green3 << 2) | swappedBlue2;
-}
-
-function tftespiAnimationNeedsRedBlueSwap(block) {
-  const needsRedBlueSwap = model => [
-    'ILI9341_DRIVER',
-    'ILI9341_2_DRIVER',
-    'ILI9342_DRIVER',
-    'ST7735_DRIVER',
-    'ST7789_DRIVER',
-    'ST7789_2_DRIVER'
-  ].includes(model);
-  if (Arduino.tft_espi_type) {
-    return needsRedBlueSwap(Arduino.tft_espi_type);
-  }
-
-  const workspace = block && block.workspace;
-  if (workspace && typeof workspace.getBlocksByType === 'function') {
-    const setupBlocks = workspace.getBlocksByType('tftespi_setup', false);
-    return setupBlocks.some(setupBlock => needsRedBlueSwap(setupBlock.getFieldValue('MODEL')));
-  }
-
-  return false;
-}
-
-function tftespiFormatRgb565Frame(bytes, swapRedBlue) {
+// Image fields store standard RGB pixel values. The selected TFT_RGB_ORDER
+// configures the controller's MADCTL register for the panel, so image and
+// primitive drawing must use the same RGB565/RGB332 channel layout.
+function tftespiFormatRgb565Frame(bytes) {
   const values = [];
   for (let offset = 0; offset < bytes.length; offset += 2) {
-    const sourceValue = (bytes[offset] << 8) | bytes[offset + 1];
-    const value = swapRedBlue ? tftespiSwapRgb565RedBlue(sourceValue) : sourceValue;
+    const value = (bytes[offset] << 8) | bytes[offset + 1];
     values.push(`0x${value.toString(16).padStart(4, '0').toUpperCase()}`);
   }
 
@@ -894,11 +1021,8 @@ function tftespiFormatRgb565Frame(bytes, swapRedBlue) {
   return lines.join(',\n');
 }
 
-function tftespiFormatRgb332Frame(bytes, swapRedBlue) {
-  const values = Array.from(bytes, sourceValue => {
-    const value = swapRedBlue ? tftespiSwapRgb332RedBlue(sourceValue) : sourceValue;
-    return `0x${value.toString(16).padStart(2, '0').toUpperCase()}`;
-  });
+function tftespiFormatRgb332Frame(bytes) {
+  const values = Array.from(bytes, value => `0x${value.toString(16).padStart(2, '0').toUpperCase()}`);
   const lines = [];
   for (let index = 0; index < values.length; index += 16) {
     lines.push(`  ${values.slice(index, index + 16).join(', ')}`);
@@ -906,7 +1030,7 @@ function tftespiFormatRgb332Frame(bytes, swapRedBlue) {
   return lines.join(',\n');
 }
 
-function tftespiGetAnimationSignature(format, encoding, width, height, fps, encodedFrames, swapRedBlue) {
+function tftespiGetAnimationSignature(format, encoding, width, height, fps, encodedFrames) {
   let hash1 = 0x811C9DC5;
   let hash2 = 0x9E3779B9;
   const updateHash = (value) => {
@@ -918,7 +1042,7 @@ function tftespiGetAnimationSignature(format, encoding, width, height, fps, enco
     }
   };
 
-  updateHash(`${format}:${encoding}:${width}:${height}:${fps}:${swapRedBlue ? 'display-rb-swap' : 'native'}:${encodedFrames.length}|`);
+  updateHash(`${format}:${encoding}:${width}:${height}:${fps}:standard-rgb:${encodedFrames.length}|`);
   for (const encodedFrame of encodedFrames) {
     updateHash(encodedFrame);
     updateHash('|');
@@ -982,16 +1106,13 @@ function tftespiGetAnimationData(block) {
     return null;
   }
 
-  const swapRedBlue = tftespiAnimationNeedsRedBlueSwap(block);
   const frames = [];
   for (let index = 0; index < animationData.frames.length; index++) {
     const binary = tftespiDecodeBase64Frame(animationData.frames[index], expectedByteLength, index);
     if (binary === null) {
       return null;
     }
-    frames.push(isRgb332
-      ? tftespiFormatRgb332Frame(binary, swapRedBlue)
-      : tftespiFormatRgb565Frame(binary, swapRedBlue));
+    frames.push(isRgb332 ? tftespiFormatRgb332Frame(binary) : tftespiFormatRgb565Frame(binary));
   }
 
   return {
@@ -999,8 +1120,7 @@ function tftespiGetAnimationData(block) {
     height,
     fps,
     format,
-    swapRedBlue,
-    signature: tftespiGetAnimationSignature(format, encoding, width, height, fps, animationData.frames, swapRedBlue),
+    signature: tftespiGetAnimationSignature(format, encoding, width, height, fps, animationData.frames),
     frames
   };
 }
@@ -1054,7 +1174,6 @@ function tftespiGetImageData(block) {
     return null;
   }
 
-  const swapRedBlue = tftespiAnimationNeedsRedBlueSwap(block);
   return {
     width,
     height,
@@ -1065,12 +1184,11 @@ function tftespiGetImageData(block) {
       width,
       height,
       0,
-      [imageData.data],
-      swapRedBlue
+      [imageData.data]
     ),
     pixels: isRgb332
-      ? tftespiFormatRgb332Frame(bytes, swapRedBlue)
-      : tftespiFormatRgb565Frame(bytes, swapRedBlue)
+      ? tftespiFormatRgb332Frame(bytes)
+      : tftespiFormatRgb565Frame(bytes)
   };
 }
 
@@ -1195,7 +1313,7 @@ Arduino.forBlock['tftespi_animation'] = function(block, generator) {
     return ['', generator.ORDER_ATOMIC];
   }
 
-  const { width, height, fps, format, swapRedBlue, signature, frames } = animationData;
+  const { width, height, fps, format, signature, frames } = animationData;
   const symbolPrefix = `tftespi_animation_${signature}`;
   const frameType = format === 'rgb332' ? 'uint8_t' : 'uint16_t';
   const formatLabel = format.toUpperCase();
@@ -1219,8 +1337,7 @@ ${frames[index]}
   }
 
   const frameDelay = Math.max(1, Math.round(1000 / fps));
-  const colorConversionLabel = swapRedBlue ? ', display R/B corrected' : '';
-  const animationDeclaration = `// TFT_eSPI animation (${width}x${height}, ${frameNames.length} frames, ${frameDeclarations.length} unique, ${fps} FPS, ${formatLabel}${colorConversionLabel})
+  const animationDeclaration = `// TFT_eSPI animation (${width}x${height}, ${frameNames.length} frames, ${frameDeclarations.length} unique, ${fps} FPS, ${formatLabel})
 ${frameDeclarations.join('\n\n')}
 static const ${frameType}* const ${symbolPrefix}_frames[] = {
   ${frameNames.join(',\n  ')}

@@ -11,12 +11,12 @@ Blocks for MCP23017 I2C and MCP23S17 SPI 16-bit GPIO expanders; this package exp
 
 ## Block Definitions
 
-| Block Type | Connection | Parameters (args0 order) | ABS Format | Generated Code |
+| Block Type | Connection | Parameters (block.json order) | ABS Format | Generated Code |
 |------------|------------|--------------------------|------------|----------------|
-| `adafruit_mcp23x17_init` | Statement | VAR(field_input), WIRE(field_dropdown), ADDR(field_dropdown) | `adafruit_mcp23x17_init(VAR, WIRE, ADDR)` | Dynamic code |
-| `adafruit_mcp23x17_read` | Value | VAR(field_variable), DATA(field_dropdown), INDEX(input_value) | `adafruit_mcp23x17_read(VAR, DATA, INDEX)` | Dynamic code |
-| `adafruit_mcp23x17_action` | Statement | VAR(field_variable), ACTION(field_dropdown) | `adafruit_mcp23x17_action(VAR, ACTION)` | Dynamic code |
-| `adafruit_mcp23x17_write` | Statement | VAR(field_variable), INDEX(input_value), VALUE(input_value) | `adafruit_mcp23x17_write(VAR, INDEX, VALUE)` | Dynamic code |
+| `adafruit_mcp23x17_init` | Statement | VAR(field_input), WIRE(dropdown), ADDR(dropdown) | `adafruit_mcp23x17_init("mcp23x17", WIRE, "0x20")` | `Adafruit_MCP23X17 mcp23x17; ↵ WIRE.begin(); ↵ while (!(mcp23x17.begin_I2C(0x20, &WIRE))) { delay(100); }` |
+| `adafruit_mcp23x17_read` | Value | VAR(field_variable), DATA(dropdown), INDEX(input_value) | `adafruit_mcp23x17_read($mcp23x17, pin, math_number(0))` | `(mcp23x17.pinMode((uint8_t)1, INPUT), mcp23x17.digitalRead((uint8_t)1))` |
+| `adafruit_mcp23x17_action` | Statement | VAR(field_variable), ACTION(dropdown) | `adafruit_mcp23x17_action($mcp23x17, clear)` | `mcp23x17.writeGPIOAB(0);` |
+| `adafruit_mcp23x17_write` | Statement | VAR(field_variable), INDEX(input_value), VALUE(input_value) | `adafruit_mcp23x17_write($mcp23x17, INDEX, VALUE)` | `mcp23x17.pinMode((uint8_t)1, OUTPUT); mcp23x17.digitalWrite((uint8_t)1, (bool)1);` |
 
 ## Parameter Options
 
@@ -33,7 +33,7 @@ Blocks for MCP23017 I2C and MCP23S17 SPI 16-bit GPIO expanders; this package exp
 
 ```
 arduino_setup()
-    adafruit_mcp23x17_init("mcp23x17")
+    adafruit_mcp23x17_init("mcp23x17", WIRE, "0x20")
 ```
 
 ## Notes

@@ -18,7 +18,7 @@
     "Images & Animation"
   ],
   "tftespi_setup": {
-    "message0": "Initialize TFT display %1\nBasic settings: driver %2 width %3 height %4\n Pin connections: MISO %5 MOSI %6 SCLK %7 CS %8 DC %9 RST %10 BL %11\nOther settings: backlight mode %12 color order %13 SPI frequency %14",
+    "message0": "Initialize TFT display %1\nBasic settings: driver %2 width %3 height %4\n SPI pins: MISO %5 MOSI %6 SCLK %7 CS %8 DC %9 RST %10 BL %11\nOther settings: backlight mode %12 color order %13 SPI frequency %14\nCH13613 QSPI: CS %15 SCLK %16 D0 %17 D1 %18 D2 %19 D3 %20 RST %21 TE %22",
     "args0": [
       null,
       {
@@ -138,6 +138,10 @@
           [
             "AXS15231B",
             "AXS15231B_DRIVER"
+          ],
+          [
+            "CH13613",
+            "CH13613_DRIVER"
           ],
           [
             "CO5300",
@@ -329,7 +333,15 @@
             "80000000"
           ]
         ]
-      }
+      },
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
     ],
     "tooltip": "Create and initialize a TFT display object"
   },

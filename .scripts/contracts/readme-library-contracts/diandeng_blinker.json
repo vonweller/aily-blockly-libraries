@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "blocks": {
+    "blinker_print": {
+      "excludedRuntimeArgs": [
+        {
+          "name": "KEY",
+          "type": "input_value",
+          "reason": "The generator still accepts the legacy KEY/VALUE shape when loading an older workspace, but the current block exposes only TEXT."
+        },
+        {
+          "name": "VALUE",
+          "type": "input_value",
+          "reason": "The generator still accepts the legacy KEY/VALUE shape when loading an older workspace, but the current block exposes only TEXT."
+        }
+      ]
+    },
+    "blinker_init_wifi": {
+      "variants": [
+        {
+          "id": "manual-credentials",
+          "when": { "MODE": ["手动配网"] },
+          "appendArgs": [
+            { "name": "AUTH", "type": "input_value", "example": "text(\"Your Device Secret Key\")", "required": true },
+            { "name": "SSID", "type": "input_value", "example": "text(\"Your WiFi SSID\")", "required": true },
+            { "name": "PSWD", "type": "input_value", "example": "text(\"Your WiFi Password\")", "required": true }
+          ]
+        },
+        {
+          "id": "esptouch-v2",
+          "when": { "MODE": ["EspTouchV2"] },
+          "appendArgs": []
+        }
+      ]
+    },
+    "blinker_widget_print": {
+      "variadic": {
+        "prefix": "INPUT",
+        "startIndex": 1,
+        "type": "input_value",
+        "sampleCount": 1,
+        "example": "blinker_state(text(\"online\"))",
+        "reason": "The dynamic_inputs_mutator appends INPUT1, INPUT2, and later widget-method inputs; named inputs preserve their identities during ABS import."
+      }
+    }
+  }
+}

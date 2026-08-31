@@ -14,31 +14,31 @@ Blockly conversion of Espressif `ESP32_Display_Panel` v1.0.4.
 
 ## Block Definitions
 
-| Block Type | Connection | Parameters (args0 order) | ABS Format | Generated Code |
+| Block Type | Connection | Parameters (block.json order) | ABS Format | Generated Code |
 |------------|------------|--------------------------|------------|----------------|
-| `esp_panel_board_init` | Statement | VAR, MODEL, WIDTH, HEIGHT, MISO, MOSI, SCLK, CS, DC, RST, BL, BL_LEVEL, COLOR_MODE, FREQUENCY | `esp_panel_board_init("panel", "ST7789", 240, 320, -1, 11, 12, 10, 9, 8, 7, true, false, 40000000)` | Create `BusSPI`, selected LCD driver and optional PWM backlight |
-| `esp_panel_board_delete` | Statement | VAR | `esp_panel_board_delete($panel)` | release display devices and SPI bus |
-| `esp_panel_board_ready` | Value | VAR | `esp_panel_board_ready($panel)` | state check |
-| `esp_panel_has_device` | Value | VAR, DEVICE | `esp_panel_has_device($panel, LCD)` | device null check |
-| `esp_panel_lcd_color_bar` | Statement | VAR | `esp_panel_lcd_color_bar($panel)` | `LCD::colorBarTest()` |
-| `esp_panel_lcd_display` | Statement | VAR, STATE | `esp_panel_lcd_display($panel, true)` | display on/off |
-| `esp_panel_lcd_invert` | Statement | VAR, STATE | `esp_panel_lcd_invert($panel, true)` | color inversion |
-| `esp_panel_lcd_transform` | Statement | VAR, OP, STATE | `esp_panel_lcd_transform($panel, mirrorX, true)` | LCD transform |
-| `esp_panel_lcd_set_gap` | Statement | VAR, X, Y | `esp_panel_lcd_set_gap($panel, 0, 0)` | LCD gap |
-| `esp_panel_bitmap_data` | Value | DATA | `esp_panel_bitmap_data("rgb565_data")` | buffer symbol |
-| `esp_panel_lcd_draw_bitmap` | Statement | VAR, X, Y, W, H, DATA, TIMEOUT | `esp_panel_lcd_draw_bitmap(...)` | `LCD::drawBitmap()` |
-| `esp_panel_lcd_fill_screen` | Statement | VAR, COLOR | `esp_panel_lcd_fill_screen($panel, 0)` | RGB565 fill helper |
-| `esp_panel_lcd_fill_rect` | Statement | VAR, X, Y, W, H, COLOR | `esp_panel_lcd_fill_rect(...)` | RGB565 fill helper |
-| `esp_panel_rgb565` | Value | R, G, B | `esp_panel_rgb565(255, 255, 255)` | RGB565 helper |
-| `esp_panel_lcd_info` | Value | VAR, INFO | `esp_panel_lcd_info($panel, WIDTH)` | frame info |
-| `esp_panel_touch_read` | Value | VAR, TIMEOUT | `esp_panel_touch_read($panel, 0)` | cache first point |
-| `esp_panel_touch_value` | Value | VALUE | `esp_panel_touch_value(x)` | cached touch field |
-| `esp_panel_touch_transform` | Statement | VAR, OP, STATE | `esp_panel_touch_transform($panel, mirrorX, true)` | touch transform |
-| `esp_panel_touch_interrupt` | Value | VAR | `esp_panel_touch_interrupt($panel)` | interrupt state |
-| `esp_panel_touch_button` | Value | VAR, INDEX, TIMEOUT | `esp_panel_touch_button($panel, 0, 0)` | touch button state |
-| `esp_panel_backlight_set` | Statement | VAR, BRIGHTNESS | `esp_panel_backlight_set($panel, 100)` | set brightness |
-| `esp_panel_backlight_switch` | Statement | VAR, STATE | `esp_panel_backlight_switch($panel, on)` | backlight on/off |
-| `esp_panel_backlight_get` | Value | VAR | `esp_panel_backlight_get($panel)` | current brightness |
+| `esp_panel_board_init` | Statement | VAR(field_input), MODEL(dropdown), WIDTH(field_input), HEIGHT(field_input), MISO(field_input), MOSI(field_input), SCLK(field_input), CS(field_input), DC(field_input), RST(field_input), BL(field_input), BL_LEVEL(dropdown), COLOR_MODE(dropdown), FREQUENCY(dropdown) | `esp_panel_board_init("panel", "ST7789", 240, 320, -1, 11, 12, 10, 9, 8, 7, true, false, 40000000)` | `panel.del(); ↵ panel.bus = new esp_panel::drivers::BusSPI(-1, -1, -1, -1, -1); ↵ panel.bus->configSPI_FreqHz(10000000); ↵ panel.lcd = new esp_panel::drivers::LCD_ST7789(panel.bus, 240, 320, 16, -1); ↵ panel.lcd->configColorRGB_Order(false); ↵ if ((-1) >= 0) { ↵ panel.backlight = new esp_panel::drivers::BacklightPWM_LEDC(-1, true); ↵ if (!panel.backlight->begin()) { ↵ delete panel.backlight; ↵ panel.backlight = nullptr; ↵ } else { ↵ panel.backlight->off(); ↵ } ↵ } ↵ panel.ready = panel.lcd->begin(); ↵ if (panel.ready) { ↵ panel.lcd->setDisplayOnOff(true); ↵ if (panel.backlight != nullptr) panel.backlight->on(); ↵ }` |
+| `esp_panel_board_delete` | Statement | VAR(field_variable) | `esp_panel_board_delete($panel)` | `panel.del();` |
+| `esp_panel_board_ready` | Value | VAR(field_variable) | `esp_panel_board_ready($panel)` | `panel.isReady()` |
+| `esp_panel_has_device` | Value | VAR(field_variable), DEVICE(dropdown) | `esp_panel_has_device($panel, LCD)` | `panel.getLCD() != nullptr` |
+| `esp_panel_lcd_color_bar` | Statement | VAR(field_variable) | `esp_panel_lcd_color_bar($panel)` | `if (panel.getLCD() != nullptr) panel.getLCD()->colorBarTest();` |
+| `esp_panel_lcd_display` | Statement | VAR(field_variable), STATE(dropdown) | `esp_panel_lcd_display($panel, true)` | `if (panel.getLCD() != nullptr) panel.getLCD()->setDisplayOnOff(true);` |
+| `esp_panel_lcd_invert` | Statement | VAR(field_variable), STATE(dropdown) | `esp_panel_lcd_invert($panel, true)` | `if (panel.getLCD() != nullptr) panel.getLCD()->invertColor(true);` |
+| `esp_panel_lcd_transform` | Statement | VAR(field_variable), OP(dropdown), STATE(dropdown) | `esp_panel_lcd_transform($panel, mirrorX, true)` | `if (panel.getLCD() != nullptr) panel.getLCD()->mirrorX(true);` |
+| `esp_panel_lcd_set_gap` | Statement | VAR(field_variable), X(input_value), Y(input_value) | `esp_panel_lcd_set_gap($panel, 0, 0)` | `if (panel.getLCD() != nullptr) { ↵ panel.getLCD()->setGapX(1); ↵ panel.getLCD()->setGapY(1); ↵ }` |
+| `esp_panel_bitmap_data` | Value | DATA(field_input) | `esp_panel_bitmap_data("rgb565_data")` | `rgb565_data` |
+| `esp_panel_lcd_draw_bitmap` | Statement | VAR(field_variable), X(input_value), Y(input_value), W(input_value), H(input_value), DATA(input_value), TIMEOUT(input_value) | `esp_panel_lcd_draw_bitmap($panel, math_number(0), math_number(0), math_number(0), math_number(0), math_number(0), math_number(1000))` | `if (panel.getLCD() != nullptr) panel.getLCD()->drawBitmap(1, 1, 1, 1, reinterpret_cast<const uint8_t *>(1), 1);` |
+| `esp_panel_lcd_fill_screen` | Statement | VAR(field_variable), COLOR(input_value) | `esp_panel_lcd_fill_screen($panel, 0)` | `if (panel.getLCD() != nullptr) espPanelFillRect(panel.getLCD(), 0, 0, panel.getLCD()->getFrameWidth(), panel.getLCD()->getFrameHeight(), 1);` |
+| `esp_panel_lcd_fill_rect` | Statement | VAR(field_variable), X(input_value), Y(input_value), W(input_value), H(input_value), COLOR(input_value) | `esp_panel_lcd_fill_rect($panel, math_number(0), math_number(0), math_number(0), math_number(0), math_number(0))` | `espPanelFillRect(panel.getLCD(), 1, 1, 1, 1, 1);` |
+| `esp_panel_rgb565` | Value | R(input_value), G(input_value), B(input_value) | `esp_panel_rgb565(255, 255, 255)` | `espPanelRgb565(1, 1, 1)` |
+| `esp_panel_lcd_info` | Value | VAR(field_variable), INFO(dropdown) | `esp_panel_lcd_info($panel, WIDTH)` | `(panel.getLCD() != nullptr ? panel.getLCD()->getFrameWidth() : -1)` |
+| `esp_panel_touch_read` | Value | VAR(field_variable), TIMEOUT(input_value) | `esp_panel_touch_read($panel, 0)` | `espPanelReadTouch(panel.getTouch(), 1)` |
+| `esp_panel_touch_value` | Value | VALUE(dropdown) | `esp_panel_touch_value(x)` | `esp_panel_last_touch_point.x` |
+| `esp_panel_touch_transform` | Statement | VAR(field_variable), OP(dropdown), STATE(dropdown) | `esp_panel_touch_transform($panel, mirrorX, true)` | `if (panel.getTouch() != nullptr) panel.getTouch()->mirrorX(true);` |
+| `esp_panel_touch_interrupt` | Value | VAR(field_variable) | `esp_panel_touch_interrupt($panel)` | `(panel.getTouch() != nullptr && panel.getTouch()->isInterruptEnabled())` |
+| `esp_panel_touch_button` | Value | VAR(field_variable), INDEX(input_value), TIMEOUT(input_value) | `esp_panel_touch_button($panel, 0, 0)` | `(panel.getTouch() != nullptr ? panel.getTouch()->readButtonState(1, 1) : -1)` |
+| `esp_panel_backlight_set` | Statement | VAR(field_variable), BRIGHTNESS(input_value) | `esp_panel_backlight_set($panel, 100)` | `if (panel.getBacklight() != nullptr) panel.getBacklight()->setBrightness(1);` |
+| `esp_panel_backlight_switch` | Statement | VAR(field_variable), STATE(dropdown) | `esp_panel_backlight_switch($panel, on)` | `if (panel.getBacklight() != nullptr) panel.getBacklight()->on();` |
+| `esp_panel_backlight_get` | Value | VAR(field_variable) | `esp_panel_backlight_get($panel)` | `(panel.getBacklight() != nullptr ? panel.getBacklight()->getBrightness() : -1)` |
 
 ## Parameter Options
 
@@ -61,13 +61,13 @@ Blockly conversion of Espressif `ESP32_Display_Panel` v1.0.4.
 ```text
 arduino_setup()
     esp_panel_board_init("panel", "ST7789", 240, 320, -1, 11, 12, 10, 9, 8, 7, true, false, 40000000)
-    esp_panel_lcd_color_bar(panel)
-    esp_panel_backlight_set(panel, 80)
+    esp_panel_lcd_color_bar($panel)
+    esp_panel_backlight_set($panel, 80)
 
 arduino_loop()
-    if esp_panel_touch_read(panel, 0)
-        serial_print(esp_panel_touch_value("x"))
-        serial_print(esp_panel_touch_value("y"))
+    if esp_panel_touch_read($panel, 0)
+        serial_print(Serial, esp_panel_touch_value("x"))
+        serial_print(Serial, esp_panel_touch_value("y"))
 ```
 
 ## Generation and Configuration Notes
@@ -82,3 +82,11 @@ arduino_loop()
 8. LCD and touch coordinate transforms are independent; update both when the application needs aligned coordinates.
 9. The custom SPI initialization block does not create a touch controller or IO expander. Their availability checks return false until a dedicated configuration block is added.
 10. Some panels require manufacturer-specific LCD initialization commands even when the controller model matches. Those command tables are outside the TFT_eSPI-style basic pin configuration.
+## ABS Examples
+
+### Minimal Executable Usage
+
+```abs
+arduino_setup()
+    esp_panel_board_init("panel", "ST7789", 240, 320, -1, 11, 12, 10, 9, 8, 7, true, false, 40000000)
+```

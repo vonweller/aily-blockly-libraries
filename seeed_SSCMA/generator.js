@@ -276,6 +276,22 @@ Arduino.forBlock['sscma_available'] = function(block, generator) {
   return [code, generator.ORDER_ATOMIC];
 };
 
+// 检查最近一次推理结果是否包含图像数据
+Arduino.forBlock['sscma_check_last_image'] = function(block, generator) {
+  const varField = block.getField('VAR');
+  const varName = varField ? varField.getText() : 'ai';
+
+  return [varName + '.last_image().length() > 0', generator.ORDER_RELATIONAL];
+};
+
+// 获取最近一次推理结果中的图像数据
+Arduino.forBlock['sscma_get_last_image'] = function(block, generator) {
+  const varField = block.getField('VAR');
+  const varName = varField ? varField.getText() : 'ai';
+
+  return [varName + '.last_image()', generator.ORDER_FUNCTION_CALL];
+};
+
 Arduino.forBlock['sscma_read'] = function(block, generator) {
   const varField = block.getField('VAR');
   const varName = varField ? varField.getText() : 'ai';

@@ -11,11 +11,11 @@ Blocks for the INA228 high-precision current, voltage, power, energy and charge 
 
 ## Block Definitions
 
-| Block Type | Connection | Parameters (args0 order) | ABS Format | Generated Code |
+| Block Type | Connection | Parameters (block.json order) | ABS Format | Generated Code |
 |------------|------------|--------------------------|------------|----------------|
-| `adafruit_ina228_init` | Statement | VAR(field_input), WIRE(field_dropdown), ADDR(field_dropdown) | `adafruit_ina228_init(VAR, WIRE, ADDR)` | Dynamic code |
-| `adafruit_ina228_read` | Value | VAR(field_variable), DATA(field_dropdown) | `adafruit_ina228_read(VAR, DATA)` | Dynamic code |
-| `adafruit_ina228_adjust` | Statement | VAR(field_variable), VALUE1(input_value), VALUE2(input_value) | `adafruit_ina228_adjust(VAR, VALUE1, VALUE2)` | Dynamic code |
+| `adafruit_ina228_init` | Statement | VAR(field_input), WIRE(dropdown), ADDR(dropdown) | `adafruit_ina228_init("ina228", WIRE, "0x40")` | `Adafruit_INA228 ina228; ↵ WIRE.begin(); ↵ while (!(ina228.begin(0x40, &WIRE))) { delay(100); }` |
+| `adafruit_ina228_read` | Value | VAR(field_variable), DATA(dropdown) | `adafruit_ina228_read($ina228, bus_voltage)` | `ina228.getBusVoltage_V()` |
+| `adafruit_ina228_adjust` | Statement | VAR(field_variable), VALUE1(input_value), VALUE2(input_value) | `adafruit_ina228_adjust($ina228, VALUE1, VALUE2)` | `ina228.setShunt((float)1, (float)1);` |
 
 ## Parameter Options
 
@@ -31,7 +31,7 @@ Blocks for the INA228 high-precision current, voltage, power, energy and charge 
 
 ```
 arduino_setup()
-    adafruit_ina228_init("ina228")
+    adafruit_ina228_init("ina228", WIRE, "0x40")
 ```
 
 ## Notes

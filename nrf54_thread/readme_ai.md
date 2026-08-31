@@ -8,41 +8,41 @@ Experimental OpenThread networking for nRF54 with roles, datasets, Commissioner,
 
 ## Block Definitions
 
-| Block Type | Connection | Parameters (args0 order) | ABS Format | Generated Code |
+| Block Type | Connection | Parameters (block.json order) | ABS Format | Generated Code |
 |------------|------------|--------------------------|------------|----------------|
-| `nrf54_thread_begin` | Statement | POLICY(dropdown), WIPE(dropdown) | `nrf54_thread_begin(begin, true)` | nrf54Thread. |
-| `nrf54_thread_stop` | Statement | (none) | `nrf54_thread_stop()` | nrf54Thread.stop();\n |
-| `nrf54_thread_restart` | Statement | WIPE(dropdown) | `nrf54_thread_restart(true)` | nrf54Thread.restart( |
-| `nrf54_thread_wipe_settings` | Statement | (none) | `nrf54_thread_wipe_settings()` | nrf54Thread.wipePersistentSettings();\n |
-| `nrf54_thread_use_demo_dataset` | Statement | (none) | `nrf54_thread_use_demo_dataset()` | nrf54ThreadUseDemoDataset();\n |
-| `nrf54_thread_set_dataset_hex` | Statement | DATASET(input_value) | `nrf54_thread_set_dataset_hex(text("value"))` | nrf54Thread.setActiveDatasetHex(String( |
-| `nrf54_thread_set_router_eligible` | Statement | ENABLED(dropdown) | `nrf54_thread_set_router_eligible(true)` | nrf54Thread.setRouterEligible( |
-| `nrf54_thread_request_router` | Statement | (none) | `nrf54_thread_request_router()` | nrf54Thread.requestRouterRole();\n |
-| `nrf54_thread_set_poll_period` | Statement | POLL_MS(input_value) | `nrf54_thread_set_poll_period(math_number(1000))` | nrf54Thread.setPollPeriod((uint32_t)( |
-| `nrf54_thread_started` | Value | (none) | `nrf54_thread_started()` | nrf54Thread.started() |
-| `nrf54_thread_attached` | Value | (none) | `nrf54_thread_attached()` | nrf54Thread.attached() |
-| `nrf54_thread_role_name` | Value | (none) | `nrf54_thread_role_name()` | String(nrf54Thread.roleName()) |
-| `nrf54_thread_rloc16` | Value | (none) | `nrf54_thread_rloc16()` | nrf54Thread.rloc16() |
-| `nrf54_thread_partition_id` | Value | (none) | `nrf54_thread_partition_id()` | nrf54Thread.partitionId() |
-| `nrf54_thread_dataset_configured` | Value | (none) | `nrf54_thread_dataset_configured()` | nrf54Thread.datasetConfigured() |
-| `nrf54_thread_last_error` | Value | (none) | `nrf54_thread_last_error()` | (int)nrf54Thread.lastError() |
-| `nrf54_thread_commissioner_start` | Statement | (none) | `nrf54_thread_commissioner_start()` | nrf54Thread.startCommissioner();\n |
-| `nrf54_thread_commissioner_stop` | Statement | (none) | `nrf54_thread_commissioner_stop()` | nrf54Thread.stopCommissioner();\n |
-| `nrf54_thread_commissioner_add_joiner` | Statement | PSKD(input_value), SECONDS(input_value) | `nrf54_thread_commissioner_add_joiner(text("value"), math_number(0))` | nrf54Thread.addJoinerToCommissioner(String( |
-| `nrf54_thread_commissioner_active` | Value | (none) | `nrf54_thread_commissioner_active()` | nrf54Thread.commissionerActive() |
-| `nrf54_thread_joiner_start` | Statement | PSKD(input_value) | `nrf54_thread_joiner_start(text("value"))` | nrf54Thread.startJoiner(String( |
-| `nrf54_thread_joiner_stop` | Statement | (none) | `nrf54_thread_joiner_stop()` | nrf54Thread.stopJoiner();\n |
-| `nrf54_thread_joiner_active` | Value | (none) | `nrf54_thread_joiner_active()` | nrf54Thread.joinerActive() |
-| `nrf54_thread_joiner_state` | Value | (none) | `nrf54_thread_joiner_state()` | String(nrf54Thread.joinerStateName()) |
-| `nrf54_thread_open_udp` | Statement | LOCAL_PORT(input_value), HANDLER(input_statement) | `nrf54_thread_open_udp(math_number(0)) @HANDLER: child_block()` | nrf54Thread.openUdp((uint16_t)( |
-| `nrf54_thread_close_udp` | Statement | LOCAL_PORT(input_value) | `nrf54_thread_close_udp(math_number(0))` | nrf54Thread.closeUdp((uint16_t)( |
-| `nrf54_thread_send_udp` | Value | LOCAL_PORT(input_value), PEER_ADDRESS(input_value), PEER_PORT(input_value), DATA(input_value) | `nrf54_thread_send_udp(math_number(0), text("value"), math_number(0), text("value"))` | nrf54ThreadSendUdp((uint16_t)( |
-| `nrf54_thread_udp_data` | Value | (none) | `nrf54_thread_udp_data()` | nrf54ThreadUdpData |
-| `nrf54_thread_udp_peer_address` | Value | (none) | `nrf54_thread_udp_peer_address()` | nrf54ThreadUdpPeerAddress |
-| `nrf54_thread_udp_peer_port` | Value | (none) | `nrf54_thread_udp_peer_port()` | nrf54ThreadUdpPeerPort |
-| `nrf54_thread_on_state_changed` | Hat | HANDLER(input_statement) | `nrf54_thread_on_state_changed() @HANDLER: child_block()` | Dynamic code |
-| `nrf54_thread_callback_role` | Value | (none) | `nrf54_thread_callback_role()` | nrf54ThreadCallbackRole |
-| `nrf54_thread_callback_flags` | Value | (none) | `nrf54_thread_callback_flags()` | nrf54ThreadCallbackFlags |
+| `nrf54_thread_begin` | Statement | POLICY(dropdown), WIPE(dropdown) | `nrf54_thread_begin(begin, true)` | `nrf54Thread.begin(false);` |
+| `nrf54_thread_stop` | Statement | (none) | `nrf54_thread_stop()` | `nrf54Thread.stop();` |
+| `nrf54_thread_restart` | Statement | WIPE(dropdown) | `nrf54_thread_restart(true)` | `nrf54Thread.restart(false);` |
+| `nrf54_thread_wipe_settings` | Statement | (none) | `nrf54_thread_wipe_settings()` | `nrf54Thread.wipePersistentSettings();` |
+| `nrf54_thread_use_demo_dataset` | Statement | (none) | `nrf54_thread_use_demo_dataset()` | `nrf54ThreadUseDemoDataset();` |
+| `nrf54_thread_set_dataset_hex` | Statement | DATASET(input_value) | `nrf54_thread_set_dataset_hex(text("value"))` | `nrf54Thread.setActiveDatasetHex(String("value").c_str());` |
+| `nrf54_thread_set_router_eligible` | Statement | ENABLED(dropdown) | `nrf54_thread_set_router_eligible(true)` | `nrf54Thread.setRouterEligible(true);` |
+| `nrf54_thread_request_router` | Statement | (none) | `nrf54_thread_request_router()` | `nrf54Thread.requestRouterRole();` |
+| `nrf54_thread_set_poll_period` | Statement | POLL_MS(input_value) | `nrf54_thread_set_poll_period(math_number(1000))` | `nrf54Thread.setPollPeriod((uint32_t)(1));` |
+| `nrf54_thread_started` | Value | (none) | `nrf54_thread_started()` | `nrf54Thread.started()` |
+| `nrf54_thread_attached` | Value | (none) | `nrf54_thread_attached()` | `nrf54Thread.attached()` |
+| `nrf54_thread_role_name` | Value | (none) | `nrf54_thread_role_name()` | `String(nrf54Thread.roleName())` |
+| `nrf54_thread_rloc16` | Value | (none) | `nrf54_thread_rloc16()` | `nrf54Thread.rloc16()` |
+| `nrf54_thread_partition_id` | Value | (none) | `nrf54_thread_partition_id()` | `nrf54Thread.partitionId()` |
+| `nrf54_thread_dataset_configured` | Value | (none) | `nrf54_thread_dataset_configured()` | `nrf54Thread.datasetConfigured()` |
+| `nrf54_thread_last_error` | Value | (none) | `nrf54_thread_last_error()` | `(int)nrf54Thread.lastError()` |
+| `nrf54_thread_commissioner_start` | Statement | (none) | `nrf54_thread_commissioner_start()` | `nrf54Thread.startCommissioner();` |
+| `nrf54_thread_commissioner_stop` | Statement | (none) | `nrf54_thread_commissioner_stop()` | `nrf54Thread.stopCommissioner();` |
+| `nrf54_thread_commissioner_add_joiner` | Statement | PSKD(input_value), SECONDS(input_value) | `nrf54_thread_commissioner_add_joiner(text("value"), math_number(0))` | `nrf54Thread.addJoinerToCommissioner(String("value").c_str(), (uint32_t)(1));` |
+| `nrf54_thread_commissioner_active` | Value | (none) | `nrf54_thread_commissioner_active()` | `nrf54Thread.commissionerActive()` |
+| `nrf54_thread_joiner_start` | Statement | PSKD(input_value) | `nrf54_thread_joiner_start(text("value"))` | `nrf54Thread.startJoiner(String("value").c_str());` |
+| `nrf54_thread_joiner_stop` | Statement | (none) | `nrf54_thread_joiner_stop()` | `nrf54Thread.stopJoiner();` |
+| `nrf54_thread_joiner_active` | Value | (none) | `nrf54_thread_joiner_active()` | `nrf54Thread.joinerActive()` |
+| `nrf54_thread_joiner_state` | Value | (none) | `nrf54_thread_joiner_state()` | `String(nrf54Thread.joinerStateName())` |
+| `nrf54_thread_open_udp` | Statement | LOCAL_PORT(input_value), HANDLER(input_statement) | `nrf54_thread_open_udp(math_number(0))` | `nrf54Thread.openUdp((uint16_t)(1), nrf54ThreadUdpCallback, nullptr);` |
+| `nrf54_thread_close_udp` | Statement | LOCAL_PORT(input_value) | `nrf54_thread_close_udp(math_number(0))` | `nrf54Thread.closeUdp((uint16_t)(1));` |
+| `nrf54_thread_send_udp` | Value | LOCAL_PORT(input_value), PEER_ADDRESS(input_value), PEER_PORT(input_value), DATA(input_value) | `nrf54_thread_send_udp(math_number(0), text("value"), math_number(0), text("value"))` | `nrf54ThreadSendUdp((uint16_t)(1), String("value"), (uint16_t)(1), String("value"))` |
+| `nrf54_thread_udp_data` | Value | (none) | `nrf54_thread_udp_data()` | `nrf54ThreadUdpData` |
+| `nrf54_thread_udp_peer_address` | Value | (none) | `nrf54_thread_udp_peer_address()` | `nrf54ThreadUdpPeerAddress` |
+| `nrf54_thread_udp_peer_port` | Value | (none) | `nrf54_thread_udp_peer_port()` | `nrf54ThreadUdpPeerPort` |
+| `nrf54_thread_on_state_changed` | Hat | HANDLER(input_statement) | `nrf54_thread_on_state_changed()` | `using xiao_nrf54l15::Nrf54ThreadExperimental; ↵ Nrf54ThreadExperimental nrf54Thread; ↵ nrf54Thread.process(); ↵ String nrf54ThreadCallbackRole; ↵ uint32_t nrf54ThreadCallbackFlags = 0U; ↵ void nrf54ThreadStateCallback(void* context, otChangedFlags flags, Nrf54ThreadExperimental::Role role) { ↵ (void)context; ↵ nrf54ThreadCallbackFlags = (uint32_t)flags; ↵ nrf54ThreadCallbackRole = Nrf54ThreadExperimental::roleName(role); ↵ } ↵ nrf54Thread.setStateChangedCallback(nrf54ThreadStateCallback, nullptr);` |
+| `nrf54_thread_callback_role` | Value | (none) | `nrf54_thread_callback_role()` | `nrf54ThreadCallbackRole` |
+| `nrf54_thread_callback_flags` | Value | (none) | `nrf54_thread_callback_flags()` | `nrf54ThreadCallbackFlags` |
 
 ## Parameter Options
 

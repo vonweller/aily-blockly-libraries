@@ -1,0 +1,604 @@
+{
+  "kind": "category",
+  "name": "PD42S1 步进电机",
+  "contents": [
+    {
+      "kind": "label",
+      "text": "初始化与应答"
+    },
+    {
+      "kind": "block",
+      "type": "pd42s1_init"
+    },
+    {
+      "kind": "block",
+      "type": "pd42s1_read"
+    },
+    {
+      "kind": "block",
+      "type": "pd42s1_handle_ack"
+    },
+    {
+      "kind": "label",
+      "text": "运动控制"
+    },
+    {
+      "kind": "block",
+      "type": "pd42s1_torque_mode",
+      "inputs": {
+        "MA": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 500
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "pd42s1_speed_mode",
+      "inputs": {
+        "SPEED": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 600
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "pd42s1_pos_mode",
+      "inputs": {
+        "SPEED": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 600
+            }
+          }
+        },
+        "PULSES": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 51200
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "pd42s1_pos_rel_mode",
+      "inputs": {
+        "SPEED": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 600
+            }
+          }
+        },
+        "PULSES": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 51200
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "pd42s1_pulse_mode"
+    },
+    {
+      "kind": "block",
+      "type": "pd42s1_pw_pos_mode",
+      "inputs": {
+        "TOP_POS": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 25600
+            }
+          }
+        },
+        "DOWN_POS": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 0
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "pd42s1_pw_ma_mode",
+      "inputs": {
+        "TOP_MA": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 3000
+            }
+          }
+        },
+        "DOWN_MA": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 0
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "pd42s1_pw_speed_mode",
+      "inputs": {
+        "TOP_SPEED": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 6000
+            }
+          }
+        },
+        "DOWN_SPEED": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 0
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "pd42s1_ol_speed_mode",
+      "inputs": {
+        "SPEED": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 600
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "pd42s1_ol_pos_mode",
+      "inputs": {
+        "SPEED": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 600
+            }
+          }
+        },
+        "PULSES": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 51200
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "pd42s1_ol_pos_rel_mode",
+      "inputs": {
+        "SPEED": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 600
+            }
+          }
+        },
+        "PULSES": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 51200
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "pd42s1_ol_pulse_mode"
+    },
+    {
+      "kind": "block",
+      "type": "pd42s1_io_run_ctrl",
+      "inputs": {
+        "SPEED": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 600
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "label",
+      "text": "脉冲与IO输出"
+    },
+    {
+      "kind": "block",
+      "type": "pd42s1_pulse_pin_init"
+    },
+    {
+      "kind": "block",
+      "type": "pd42s1_pulse_en"
+    },
+    {
+      "kind": "block",
+      "type": "pd42s1_pulse_en_toggle"
+    },
+    {
+      "kind": "block",
+      "type": "pd42s1_pulse_dir"
+    },
+    {
+      "kind": "block",
+      "type": "pd42s1_pulse_dir_toggle"
+    },
+    {
+      "kind": "block",
+      "type": "pd42s1_pulse_output",
+      "inputs": {
+        "COUNT": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 3200
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "pd42s1_pulse_freq_from_rpm",
+      "inputs": {
+        "STEP": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 16
+            }
+          }
+        },
+        "RPM": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 300
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "pd42s1_pulse_rpm_from_freq",
+      "inputs": {
+        "FREQ": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 3200
+            }
+          }
+        },
+        "STEP": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 16
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "pd42s1_io_pin_init"
+    },
+    {
+      "kind": "block",
+      "type": "pd42s1_io_pin_set"
+    },
+    {
+      "kind": "block",
+      "type": "pd42s1_io_pin_toggle"
+    },
+    {
+      "kind": "label",
+      "text": "立即控制"
+    },
+    {
+      "kind": "block",
+      "type": "pd42s1_stop_now"
+    },
+    {
+      "kind": "block",
+      "type": "pd42s1_clear_sta"
+    },
+    {
+      "kind": "block",
+      "type": "pd42s1_motor_enable"
+    },
+    {
+      "kind": "block",
+      "type": "pd42s1_angle_zero"
+    },
+    {
+      "kind": "block",
+      "type": "pd42s1_remove_clog"
+    },
+    {
+      "kind": "label",
+      "text": "参数设置"
+    },
+    {
+      "kind": "block",
+      "type": "pd42s1_set_slave_add"
+    },
+    {
+      "kind": "block",
+      "type": "pd42s1_set_group_add"
+    },
+    {
+      "kind": "block",
+      "type": "pd42s1_set_mode"
+    },
+    {
+      "kind": "block",
+      "type": "pd42s1_set_pos_pid",
+      "inputs": {
+        "KP": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 0
+            }
+          }
+        },
+        "KI": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 0
+            }
+          }
+        },
+        "KD": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 0
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "pd42s1_set_speed_pid",
+      "inputs": {
+        "KP": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 0
+            }
+          }
+        },
+        "KI": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 0
+            }
+          }
+        },
+        "KD": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 0
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "pd42s1_set_pos_torque",
+      "inputs": {
+        "TORQUE": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 1500
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "pd42s1_set_step"
+    },
+    {
+      "kind": "block",
+      "type": "pd42s1_set_ma",
+      "inputs": {
+        "MA": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 1000
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "pd42s1_set_uart_baud"
+    },
+    {
+      "kind": "block",
+      "type": "pd42s1_set_can_baud"
+    },
+    {
+      "kind": "block",
+      "type": "pd42s1_set_modbus"
+    },
+    {
+      "kind": "block",
+      "type": "pd42s1_set_clog_pro"
+    },
+    {
+      "kind": "block",
+      "type": "pd42s1_set_clog_current",
+      "inputs": {
+        "MA": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 1500
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "pd42s1_set_can_id"
+    },
+    {
+      "kind": "block",
+      "type": "pd42s1_set_dir_level"
+    },
+    {
+      "kind": "block",
+      "type": "pd42s1_set_en_level"
+    },
+    {
+      "kind": "block",
+      "type": "pd42s1_set_cmd_echo"
+    },
+    {
+      "kind": "block",
+      "type": "pd42s1_set_key_lock"
+    },
+    {
+      "kind": "block",
+      "type": "pd42s1_set_auto_display"
+    },
+    {
+      "kind": "block",
+      "type": "pd42s1_set_io_start_level"
+    },
+    {
+      "kind": "label",
+      "text": "回零与限位"
+    },
+    {
+      "kind": "block",
+      "type": "pd42s1_origin_left_pos",
+      "inputs": {
+        "POS": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 0
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "pd42s1_origin_right_pos",
+      "inputs": {
+        "POS": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 0
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "pd42s1_origin_homing"
+    },
+    {
+      "kind": "block",
+      "type": "pd42s1_origin_trig"
+    },
+    {
+      "kind": "block",
+      "type": "pd42s1_origin_break"
+    },
+    {
+      "kind": "block",
+      "type": "pd42s1_origin_timeout"
+    },
+    {
+      "kind": "block",
+      "type": "pd42s1_origin_auto"
+    },
+    {
+      "kind": "block",
+      "type": "pd42s1_origin_switch"
+    },
+    {
+      "kind": "label",
+      "text": "系统维护"
+    },
+    {
+      "kind": "block",
+      "type": "pd42s1_cal_encoder"
+    },
+    {
+      "kind": "block",
+      "type": "pd42s1_restart"
+    },
+    {
+      "kind": "block",
+      "type": "pd42s1_reset_factory"
+    },
+    {
+      "kind": "block",
+      "type": "pd42s1_param_save"
+    }
+  ]
+}

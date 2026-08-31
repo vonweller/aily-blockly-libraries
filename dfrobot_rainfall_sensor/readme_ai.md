@@ -11,11 +11,11 @@ Blocks for the DFRobot tipping-bucket rainfall sensor using its universal I2C in
 
 ## Block Definitions
 
-| Block Type | Connection | Parameters (args0 order) | ABS Format | Generated Code |
+| Block Type | Connection | Parameters (block.json order) | ABS Format | Generated Code |
 |------------|------------|--------------------------|------------|----------------|
-| `dfrobot_rainfall_sensor_init` | Statement | VAR(field_input), WIRE(field_dropdown) | `dfrobot_rainfall_sensor_init(VAR, WIRE)` | Dynamic code |
-| `dfrobot_rainfall_sensor_read` | Value | VAR(field_variable), DATA(field_dropdown), INDEX(input_value) | `dfrobot_rainfall_sensor_read(VAR, DATA, INDEX)` | Dynamic code |
-| `dfrobot_rainfall_sensor_set` | Statement | VAR(field_variable), SETTING(field_dropdown), VALUE(input_value) | `dfrobot_rainfall_sensor_set(VAR, SETTING, VALUE)` | Dynamic code |
+| `dfrobot_rainfall_sensor_init` | Statement | VAR(field_input), WIRE(dropdown) | `dfrobot_rainfall_sensor_init(VAR, WIRE)` | `DFRobot_RainfallSensor_I2C rainfall(&WIRE); ↵ WIRE.begin(); ↵ while (!(rainfall.begin())) { delay(100); }` |
+| `dfrobot_rainfall_sensor_read` | Value | VAR(field_variable), DATA(dropdown), INDEX(input_value) | `dfrobot_rainfall_sensor_read($rainfall, period, math_number(0))` | `rainfall.getRainfall((uint8_t)constrain((int)1, 1, 24))` |
+| `dfrobot_rainfall_sensor_set` | Statement | VAR(field_variable), SETTING(dropdown), VALUE(input_value) | `dfrobot_rainfall_sensor_set($rainfall, bucket, math_number(0))` | `rainfall.setRainAccumulatedValue((float)1);` |
 
 ## Parameter Options
 
@@ -31,7 +31,7 @@ Blocks for the DFRobot tipping-bucket rainfall sensor using its universal I2C in
 
 ```
 arduino_setup()
-    dfrobot_rainfall_sensor_init("rainfall")
+    dfrobot_rainfall_sensor_init("rainfall", WIRE)
 ```
 
 ## Notes

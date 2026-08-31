@@ -47,7 +47,6 @@ Arduino.forBlock['adafruit_max31855_read'] = function(block, generator) {
   var varName = adafruit_max31855Variable(block);
   adafruit_max31855EnsureExtras(generator, varName);
   var data = block.getFieldValue('DATA') || "thermocouple_c";
-  var index = generator.valueToCode(block, 'INDEX', generator.ORDER_ATOMIC) || '0';
   var expressions = {
     "thermocouple_c": String(varName) + ".readCelsius()",
     "thermocouple_f": String(varName) + ".readFahrenheit()",

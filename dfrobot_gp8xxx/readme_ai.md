@@ -11,12 +11,12 @@ Blocks for the DFRobot GP8XXX family of I2C DAC voltage and current output modul
 
 ## Block Definitions
 
-| Block Type | Connection | Parameters (args0 order) | ABS Format | Generated Code |
+| Block Type | Connection | Parameters (block.json order) | ABS Format | Generated Code |
 |------------|------------|--------------------------|------------|----------------|
-| `dfrobot_gp8xxx_init` | Statement | VAR(field_input), WIRE(field_dropdown), MODEL(field_dropdown), ADDR(field_dropdown) | `dfrobot_gp8xxx_init(VAR, WIRE, MODEL, ADDR)` | Dynamic code |
-| `dfrobot_gp8xxx_action` | Statement | VAR(field_variable), ACTION(field_dropdown) | `dfrobot_gp8xxx_action(VAR, ACTION)` | Dynamic code |
-| `dfrobot_gp8xxx_set` | Statement | VAR(field_variable), SETTING(field_dropdown), VALUE(input_value) | `dfrobot_gp8xxx_set(VAR, SETTING, VALUE)` | Dynamic code |
-| `dfrobot_gp8xxx_write` | Statement | VAR(field_variable), INDEX(input_value), VALUE(input_value) | `dfrobot_gp8xxx_write(VAR, INDEX, VALUE)` | Dynamic code |
+| `dfrobot_gp8xxx_init` | Statement | VAR(field_input), WIRE(dropdown), MODEL(dropdown), ADDR(dropdown) | `dfrobot_gp8xxx_init("gp8xxx", WIRE, 12, "0x58")` | `DFRobot_GP8XXX_IIC gp8xxx(RESOLUTION_12_BIT, 0x58, &WIRE); ↵ WIRE.begin(); ↵ while ((gp8xxx.begin()) != 0) { delay(100); }` |
+| `dfrobot_gp8xxx_action` | Statement | VAR(field_variable), ACTION(dropdown) | `dfrobot_gp8xxx_action($gp8xxx, store)` | `gp8xxx.store();` |
+| `dfrobot_gp8xxx_set` | Statement | VAR(field_variable), SETTING(dropdown), VALUE(input_value) | `dfrobot_gp8xxx_set($gp8xxx, range, math_number(0))` | `gp8xxx.setDACOutRange((DFRobot_GP8XXX::eOutPutRange_t)constrain((int)1, 0, 3));` |
+| `dfrobot_gp8xxx_write` | Statement | VAR(field_variable), INDEX(input_value), VALUE(input_value) | `dfrobot_gp8xxx_write($gp8xxx, INDEX, VALUE)` | `gp8xxx.setDACOutVoltage((uint16_t)1, (uint8_t)constrain((int)1, 0, 2));` |
 
 ## Parameter Options
 
@@ -34,7 +34,7 @@ Blocks for the DFRobot GP8XXX family of I2C DAC voltage and current output modul
 
 ```
 arduino_setup()
-    dfrobot_gp8xxx_init("gp8xxx")
+    dfrobot_gp8xxx_init("gp8xxx", WIRE, 12, "0x58")
 ```
 
 ## Notes

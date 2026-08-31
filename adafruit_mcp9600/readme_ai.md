@@ -11,12 +11,12 @@ Blocks for the MCP9600/MCP9601 I2C thermocouple EMF converter.
 
 ## Block Definitions
 
-| Block Type | Connection | Parameters (args0 order) | ABS Format | Generated Code |
+| Block Type | Connection | Parameters (block.json order) | ABS Format | Generated Code |
 |------------|------------|--------------------------|------------|----------------|
-| `adafruit_mcp9600_init` | Statement | VAR(field_input), WIRE(field_dropdown), ADDR(field_dropdown) | `adafruit_mcp9600_init(VAR, WIRE, ADDR)` | Dynamic code |
-| `adafruit_mcp9600_read` | Value | VAR(field_variable), DATA(field_dropdown) | `adafruit_mcp9600_read(VAR, DATA)` | Dynamic code |
-| `adafruit_mcp9600_action` | Statement | VAR(field_variable), ACTION(field_dropdown) | `adafruit_mcp9600_action(VAR, ACTION)` | Dynamic code |
-| `adafruit_mcp9600_set` | Statement | VAR(field_variable), SETTING(field_dropdown), VALUE(input_value) | `adafruit_mcp9600_set(VAR, SETTING, VALUE)` | Dynamic code |
+| `adafruit_mcp9600_init` | Statement | VAR(field_input), WIRE(dropdown), ADDR(dropdown) | `adafruit_mcp9600_init("mcp9600", WIRE, "0x67")` | `Adafruit_MCP9600 mcp9600; ↵ WIRE.begin(); ↵ while (!(mcp9600.begin(0x67, &WIRE))) { delay(100); } ↵ mcp9600.enable(true);` |
+| `adafruit_mcp9600_read` | Value | VAR(field_variable), DATA(dropdown) | `adafruit_mcp9600_read($mcp9600, thermocouple)` | `mcp9600.readThermocouple()` |
+| `adafruit_mcp9600_action` | Statement | VAR(field_variable), ACTION(dropdown) | `adafruit_mcp9600_action($mcp9600, enable)` | `mcp9600.enable(true);` |
+| `adafruit_mcp9600_set` | Statement | VAR(field_variable), SETTING(dropdown), VALUE(input_value) | `adafruit_mcp9600_set($mcp9600, type, math_number(0))` | `mcp9600.setThermocoupleType((MCP9600_ThemocoupleType)constrain((int)1, 0, 7));` |
 
 ## Parameter Options
 
@@ -34,7 +34,7 @@ Blocks for the MCP9600/MCP9601 I2C thermocouple EMF converter.
 
 ```
 arduino_setup()
-    adafruit_mcp9600_init("mcp9600")
+    adafruit_mcp9600_init("mcp9600", WIRE, "0x67")
 ```
 
 ## Notes

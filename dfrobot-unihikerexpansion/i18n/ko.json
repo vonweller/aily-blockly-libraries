@@ -1,0 +1,49 @@
+{
+  "toolbox_name": "UNIHIKER 확장 보드 DFR1231",
+  "dfr1231_init": {
+    "message0": "DFR1231 확장 보드 초기화",
+    "tooltip": "UNIHIKER K10 DFR1231 IO 확장 보드 초기화: I2C 주소 0x33, 엣지 커넥터 SDA/SCL 사용, 준비될 때까지 대기"
+  },
+  "dfr1231_set_io_mode": {
+    "message0": "확장 보드 C포트 %1 모드를 %2(으)로 설정",
+    "tooltip": "C0-C3 다기능 포트를 디지털 출력 또는 디지털 입력 모드로 설정",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "디지털 출력",
+            "eWriteGpio"
+          ],
+          [
+            "디지털 입력",
+            "eReadGpio"
+          ]
+        ]
+      }
+    ]
+  },
+  "dfr1231_gpio_write": {
+    "message0": "확장 보드 C포트 %1 레벨을 %2(으)로 설정",
+    "tooltip": "C포트 디지털 출력 레벨 설정: HIGH=1, LOW=0 (먼저 디지털 출력 모드 설정 필요)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "하이 레벨",
+            "eHIGH"
+          ],
+          [
+            "로우 레벨",
+            "eLOW"
+          ]
+        ]
+      }
+    ]
+  },
+  "dfr1231_gpio_read": {
+    "message0": "확장 보드 C포트 %1 레벨 읽기",
+    "tooltip": "C포트 레벨 읽기(먼저 디지털 입력 모드 설정 필요), 0 또는 1 반환, 실패 시 255"
+  }
+}
