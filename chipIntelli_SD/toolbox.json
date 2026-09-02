@@ -1,0 +1,61 @@
+{
+  "kind": "category",
+  "name": "CI13XX SD 卡",
+  "colour": "#E65100",
+  "icon": "fa-regular fa-sd-card",
+  "contents": [
+    {"kind": "label", "text": "配置引脚并自动初始化"},
+    {
+      "kind": "block",
+      "type": "chipintelli_sd_init_pins",
+      "inputs": {
+        "SCK": {"shadow": {"type": "math_number", "fields": {"NUM": 5}}},
+        "MISO": {"shadow": {"type": "math_number", "fields": {"NUM": 2}}},
+        "MOSI": {"shadow": {"type": "math_number", "fields": {"NUM": 4}}},
+        "CS": {"shadow": {"type": "math_number", "fields": {"NUM": 3}}}
+      }
+    },
+    {"kind": "label", "text": "诊断与卸载"},
+    {"kind": "block", "type": "chipintelli_sd_error_info"},
+    {"kind": "block", "type": "chipintelli_sd_end"},
+    {"kind": "sep"},
+    {"kind": "label", "text": "文件与目录"},
+    {
+      "kind": "block",
+      "type": "chipintelli_sd_exists",
+      "inputs": {"PATH": {"shadow": {"type": "text", "fields": {"TEXT": "/data.txt"}}}}
+    },
+    {
+      "kind": "block",
+      "type": "chipintelli_sd_path_operation",
+      "inputs": {"PATH": {"shadow": {"type": "text", "fields": {"TEXT": "/data"}}}}
+    },
+    {
+      "kind": "block",
+      "type": "chipintelli_sd_file_create",
+      "inputs": {"PATH": {"shadow": {"type": "text", "fields": {"TEXT": "/data.txt"}}}}
+    },
+    {"kind": "block", "type": "chipintelli_sd_file_create_next"},
+    {"kind": "sep"},
+    {"kind": "label", "text": "文件状态与读取"},
+    {"kind": "block", "type": "chipintelli_sd_file_is_open"},
+    {"kind": "block", "type": "chipintelli_sd_file_is_directory"},
+    {"kind": "block", "type": "chipintelli_sd_file_name"},
+    {"kind": "block", "type": "chipintelli_sd_file_read"},
+    {"kind": "block", "type": "chipintelli_sd_file_available"},
+    {"kind": "block", "type": "chipintelli_sd_file_position"},
+    {
+      "kind": "block",
+      "type": "chipintelli_sd_file_seek",
+      "inputs": {"POSITION": {"shadow": {"type": "math_number", "fields": {"NUM": 0}}}}
+    },
+    {"kind": "sep"},
+    {"kind": "label", "text": "写入与控制"},
+    {
+      "kind": "block",
+      "type": "chipintelli_sd_file_write",
+      "inputs": {"DATA": {"shadow": {"type": "text", "fields": {"TEXT": "Hello CI13XX"}}}}
+    },
+    {"kind": "block", "type": "chipintelli_sd_file_control"}
+  ]
+}
