@@ -1,0 +1,247 @@
+{
+  "toolbox_name": "Cartão SD",
+  "toolbox_labels": {
+    "配置引脚并自动初始化": "Configurar pinos e inicializar automaticamente",
+    "诊断与卸载": "Diagnóstico e desmontagem",
+    "文件与目录": "Arquivos e diretórios",
+    "文件状态与读取": "Estado e leitura de arquivos",
+    "写入与控制": "Gravação e controle"
+  },
+  "chipintelli_sd_init_pins": {
+    "message0": "inicializar cartão SD CI13XX SCK %1 MISO %2 MOSI %3 CS %4",
+    "tooltip": "Inicializar o cartão SD em setup com pinos GPIO SPI por software personalizados na ordem SCK, MISO, MOSI, CS"
+  },
+  "chipintelli_sd_error_info": {
+    "message0": "último erro SD CI13XX %1",
+    "tooltip": "Ler o código ou os dados adicionais do erro da operação SD de baixo nível mais recente",
+    "args0": [
+      {
+        "options": [
+          [
+            "código de erro",
+            "cardErrorCode"
+          ],
+          [
+            "dados do erro",
+            "cardErrorData"
+          ]
+        ]
+      }
+    ]
+  },
+  "chipintelli_sd_end": {
+    "message0": "desmontar cartão SD CI13XX e liberar pinos SPI por software",
+    "tooltip": "Fechar o cartão e liberar SPI por software, SCK, MISO, MOSI e CS; reinicializar antes de reutilizar"
+  },
+  "chipintelli_sd_exists": {
+    "message0": "o caminho SD CI13XX %1 existe",
+    "tooltip": "Verificar se um arquivo ou diretório existe no cartão SD"
+  },
+  "chipintelli_sd_path_operation": {
+    "message0": "SD CI13XX %1 caminho %2",
+    "tooltip": "Criar um diretório, excluir um arquivo ou remover um diretório vazio; mkdir também cria diretórios pais ausentes",
+    "args0": [
+      {
+        "options": [
+          [
+            "criar diretório",
+            "mkdir"
+          ],
+          [
+            "excluir arquivo",
+            "remove"
+          ],
+          [
+            "remover diretório vazio",
+            "rmdir"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "chipintelli_sd_file_create": {
+    "message0": "abrir caminho SD CI13XX %1 modo %2 salvar como arquivo %3",
+    "tooltip": "Criar uma variável File e abrir um arquivo ou diretório; FILE_WRITE acrescenta no fim do arquivo",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "somente leitura",
+            "FILE_READ"
+          ],
+          [
+            "leitura/gravação e acrescentar",
+            "FILE_WRITE"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "chipintelli_sd_file_create_next": {
+    "message0": "no diretório CI13XX %1 abrir próxima entrada modo %2 salvar como arquivo %3",
+    "tooltip": "Obter o próximo arquivo ou subdiretório de um diretório aberto e salvá-lo em uma nova variável File",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "somente leitura",
+            "FILE_READ"
+          ],
+          [
+            "leitura/gravação e acrescentar",
+            "FILE_WRITE"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "chipintelli_sd_file_is_open": {
+    "message0": "arquivo CI13XX %1 aberto com sucesso",
+    "tooltip": "Verificar se o objeto File é válido e está aberto"
+  },
+  "chipintelli_sd_file_is_directory": {
+    "message0": "o arquivo CI13XX %1 é um diretório",
+    "tooltip": "Verificar se o objeto File atual representa um diretório"
+  },
+  "chipintelli_sd_file_name": {
+    "message0": "nome do arquivo CI13XX %1",
+    "tooltip": "Retornar o nome curto 8.3 do arquivo ou diretório"
+  },
+  "chipintelli_sd_file_read": {
+    "message0": "do arquivo CI13XX %1 %2",
+    "tooltip": "Ler ou consultar o próximo byte; retornar -1 sem dados; peek não avança a posição",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "ler um byte",
+            "read"
+          ],
+          [
+            "consultar próximo byte",
+            "peek"
+          ]
+        ]
+      }
+    ]
+  },
+  "chipintelli_sd_file_available": {
+    "message0": "arquivo CI13XX %1 %2",
+    "tooltip": "Retornar os bytes atualmente disponíveis para leitura ou gravação",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "bytes legíveis restantes",
+            "available"
+          ],
+          [
+            "bytes graváveis atuais",
+            "availableForWrite"
+          ]
+        ]
+      }
+    ]
+  },
+  "chipintelli_sd_file_position": {
+    "message0": "arquivo CI13XX %1 %2",
+    "tooltip": "Retornar a posição atual de leitura/gravação ou o tamanho do arquivo",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "posição atual",
+            "position"
+          ],
+          [
+            "tamanho (bytes)",
+            "size"
+          ]
+        ]
+      }
+    ]
+  },
+  "chipintelli_sd_file_seek": {
+    "message0": "posição do arquivo CI13XX %1 definida como %2 com sucesso",
+    "tooltip": "Mover para o deslocamento absoluto indicado e retornar se foi bem-sucedido"
+  },
+  "chipintelli_sd_file_write": {
+    "message0": "no arquivo CI13XX %1 %2 dados %3 base %4",
+    "tooltip": "Gravar com write, print ou println; a base só se aplica a valores numéricos de print/println",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "gravação bruta",
+            "write"
+          ],
+          [
+            "imprimir",
+            "print"
+          ],
+          [
+            "imprimir com nova linha",
+            "println"
+          ]
+        ]
+      },
+      null,
+      {
+        "options": [
+          [
+            "automático",
+            "AUTO"
+          ],
+          [
+            "binário",
+            "BIN"
+          ],
+          [
+            "octal",
+            "OCT"
+          ],
+          [
+            "decimal",
+            "DEC"
+          ],
+          [
+            "hexadecimal",
+            "HEX"
+          ]
+        ]
+      }
+    ]
+  },
+  "chipintelli_sd_file_control": {
+    "message0": "arquivo CI13XX %1 %2",
+    "tooltip": "Descarregar o arquivo, reiniciar a iteração do diretório ou fechar o objeto File",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "descarregar buffer de gravação",
+            "flush"
+          ],
+          [
+            "voltar à primeira entrada do diretório",
+            "rewindDirectory"
+          ],
+          [
+            "fechar",
+            "close"
+          ]
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,240 @@
+{
+  "toolbox_name": "SD卡",
+  "toolbox_labels": {
+    "初始化": "初始化",
+    "文件与目录": "文件与目录",
+    "文件状态与读取": "文件状态与读取",
+    "写入与控制": "写入与控制"
+  },
+  "arduino_sd_init": {
+    "message0": "初始化 SD 卡（默认 CS 引脚）",
+    "tooltip": "在 setup 中使用开发板默认的硬件 SS/CS 引脚初始化 SD 卡"
+  },
+  "arduino_sd_init_cs": {
+    "message0": "初始化 SD 卡 CS 引脚 %1",
+    "tooltip": "在 setup 中使用指定的片选引脚初始化 SD 卡"
+  },
+  "arduino_sd_init_clock": {
+    "message0": "初始化 SD 卡 CS 引脚 %1 SPI 时钟 %2 Hz",
+    "tooltip": "在 setup 中使用指定 CS 引脚和 SPI 时钟初始化 SD 卡（SD 1.3.0 扩展接口）"
+  },
+  "arduino_sd_begin_result": {
+    "message0": "初始化 SD 卡 CS 引脚 %1 成功",
+    "tooltip": "立即调用 SD.begin(cs)，返回初始化是否成功，适合重试或条件判断"
+  },
+  "arduino_sd_end": {
+    "message0": "卸载 SD 卡",
+    "tooltip": "关闭 SD 根目录；移除或更换存储卡前调用"
+  },
+  "arduino_sd_exists": {
+    "message0": "SD 路径 %1 存在",
+    "tooltip": "检查 SD 卡上的文件或目录是否存在"
+  },
+  "arduino_sd_path_operation": {
+    "message0": "SD %1 路径 %2",
+    "tooltip": "创建目录、删除文件或删除空目录；mkdir 会同时创建缺失的中间目录",
+    "args0": [
+      {
+        "options": [
+          [
+            "创建目录",
+            "mkdir"
+          ],
+          [
+            "删除文件",
+            "remove"
+          ],
+          [
+            "删除空目录",
+            "rmdir"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "arduino_sd_file_create": {
+    "message0": "打开 SD 路径 %1 模式 %2 保存为文件 %3",
+    "tooltip": "创建 File 变量并打开文件或目录；FILE_WRITE 从文件末尾追加",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "只读",
+            "FILE_READ"
+          ],
+          [
+            "读写并追加",
+            "FILE_WRITE"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "arduino_sd_file_create_next": {
+    "message0": "目录 %1 打开下一个条目 模式 %2 保存为文件 %3",
+    "tooltip": "从已打开目录取得下一个文件或子目录，并保存到新的 File 变量",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "只读",
+            "FILE_READ"
+          ],
+          [
+            "读写并追加",
+            "FILE_WRITE"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "arduino_sd_file_is_open": {
+    "message0": "文件 %1 已成功打开",
+    "tooltip": "检查 File 对象是否有效且已打开"
+  },
+  "arduino_sd_file_is_directory": {
+    "message0": "文件 %1 是目录",
+    "tooltip": "判断当前 File 对象是否表示目录"
+  },
+  "arduino_sd_file_name": {
+    "message0": "文件 %1 名称",
+    "tooltip": "返回文件或目录的 8.3 短文件名"
+  },
+  "arduino_sd_file_read": {
+    "message0": "从 文件 %1 %2",
+    "tooltip": "读取或查看下一个字节；没有数据时返回 -1，peek 不移动文件位置",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "读取一个字节",
+            "read"
+          ],
+          [
+            "查看下一个字节",
+            "peek"
+          ]
+        ]
+      }
+    ]
+  },
+  "arduino_sd_file_available": {
+    "message0": "文件 %1 %2",
+    "tooltip": "返回当前可读或可写的字节数",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "剩余可读字节数",
+            "available"
+          ],
+          [
+            "当前可写字节数",
+            "availableForWrite"
+          ]
+        ]
+      }
+    ]
+  },
+  "arduino_sd_file_position": {
+    "message0": "文件 %1 %2",
+    "tooltip": "返回当前读写位置或文件大小",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "当前位置",
+            "position"
+          ],
+          [
+            "大小（字节）",
+            "size"
+          ]
+        ]
+      }
+    ]
+  },
+  "arduino_sd_file_seek": {
+    "message0": "设置 文件 %1 位置为 %2 成功",
+    "tooltip": "把文件位置移动到指定绝对字节偏移，并返回是否成功"
+  },
+  "arduino_sd_file_write": {
+    "message0": "向 文件 %1 %2 数据 %3 进制 %4",
+    "tooltip": "使用 write、print 或 println 写入；进制仅用于 print/println 的数值",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "原始写入",
+            "write"
+          ],
+          [
+            "打印",
+            "print"
+          ],
+          [
+            "打印并换行",
+            "println"
+          ]
+        ]
+      },
+      null,
+      {
+        "options": [
+          [
+            "自动",
+            "AUTO"
+          ],
+          [
+            "二进制",
+            "BIN"
+          ],
+          [
+            "八进制",
+            "OCT"
+          ],
+          [
+            "十进制",
+            "DEC"
+          ],
+          [
+            "十六进制",
+            "HEX"
+          ]
+        ]
+      }
+    ]
+  },
+  "arduino_sd_file_control": {
+    "message0": "文件 %1 %2",
+    "tooltip": "刷新文件、重置目录遍历位置或关闭 File 对象",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "刷新写入缓存",
+            "flush"
+          ],
+          [
+            "目录回到第一个条目",
+            "rewindDirectory"
+          ],
+          [
+            "关闭",
+            "close"
+          ]
+        ]
+      }
+    ]
+  }
+}

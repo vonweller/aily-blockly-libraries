@@ -1,0 +1,247 @@
+{
+  "toolbox_name": "SDカード",
+  "toolbox_labels": {
+    "配置引脚并自动初始化": "ピン設定と自動初期化",
+    "诊断与卸载": "診断とアンマウント",
+    "文件与目录": "ファイルとディレクトリ",
+    "文件状态与读取": "ファイル状態と読み取り",
+    "写入与控制": "書き込みと制御"
+  },
+  "chipintelli_sd_init_pins": {
+    "message0": "CI13XX SDカードを初期化 SCK %1 MISO %2 MOSI %3 CS %4",
+    "tooltip": "setupでカスタムGPIOソフトウェアSPIピンをSCK、MISO、MOSI、CSの順に指定してSDカードを初期化します"
+  },
+  "chipintelli_sd_error_info": {
+    "message0": "CI13XX SDの直近エラー %1",
+    "tooltip": "直近の低レベルSD操作のエラーコードまたは追加エラーデータを読み取ります",
+    "args0": [
+      {
+        "options": [
+          [
+            "エラーコード",
+            "cardErrorCode"
+          ],
+          [
+            "エラーデータ",
+            "cardErrorData"
+          ]
+        ]
+      }
+    ]
+  },
+  "chipintelli_sd_end": {
+    "message0": "CI13XX SDカードをアンマウントしてソフトウェアSPIピンを解放",
+    "tooltip": "カードを閉じ、ソフトウェアSPI、SCK、MISO、MOSI、CSを解放します。再使用前に再初期化してください"
+  },
+  "chipintelli_sd_exists": {
+    "message0": "CI13XX SDパス %1 が存在",
+    "tooltip": "SDカード上にファイルまたはディレクトリが存在するか確認します"
+  },
+  "chipintelli_sd_path_operation": {
+    "message0": "CI13XX SD %1 パス %2",
+    "tooltip": "ディレクトリの作成、ファイルの削除、または空ディレクトリの削除を行います。mkdirは不足している親ディレクトリも作成します",
+    "args0": [
+      {
+        "options": [
+          [
+            "ディレクトリを作成",
+            "mkdir"
+          ],
+          [
+            "ファイルを削除",
+            "remove"
+          ],
+          [
+            "空のディレクトリを削除",
+            "rmdir"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "chipintelli_sd_file_create": {
+    "message0": "CI13XX SDパス %1 をモード %2 で開きファイル %3 として保存",
+    "tooltip": "File変数を作成してファイルまたはディレクトリを開きます。FILE_WRITEはファイル末尾に追記します",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "読み取り専用",
+            "FILE_READ"
+          ],
+          [
+            "読み書きして追記",
+            "FILE_WRITE"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "chipintelli_sd_file_create_next": {
+    "message0": "CI13XX ディレクトリ %1 の次の項目をモード %2 で開きファイル %3 として保存",
+    "tooltip": "開いているディレクトリから次のファイルまたはサブディレクトリを取得し、新しいFile変数に保存します",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "読み取り専用",
+            "FILE_READ"
+          ],
+          [
+            "読み書きして追記",
+            "FILE_WRITE"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "chipintelli_sd_file_is_open": {
+    "message0": "CI13XX ファイル %1 は正常に開いている",
+    "tooltip": "Fileオブジェクトが有効で開いているか確認します"
+  },
+  "chipintelli_sd_file_is_directory": {
+    "message0": "CI13XX ファイル %1 はディレクトリ",
+    "tooltip": "現在のFileオブジェクトがディレクトリを表すか確認します"
+  },
+  "chipintelli_sd_file_name": {
+    "message0": "CI13XX ファイル %1 の名前",
+    "tooltip": "ファイルまたはディレクトリの8.3形式の短い名前を返します"
+  },
+  "chipintelli_sd_file_read": {
+    "message0": "CI13XX ファイル %1 から %2",
+    "tooltip": "次のバイトを読み取るか確認します。データがなければ-1を返し、peekは位置を進めません",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "1バイト読み取り",
+            "read"
+          ],
+          [
+            "次のバイトを確認",
+            "peek"
+          ]
+        ]
+      }
+    ]
+  },
+  "chipintelli_sd_file_available": {
+    "message0": "CI13XX ファイル %1 %2",
+    "tooltip": "現在読み取りまたは書き込み可能なバイト数を返します",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "残りの読み取り可能バイト数",
+            "available"
+          ],
+          [
+            "現在の書き込み可能バイト数",
+            "availableForWrite"
+          ]
+        ]
+      }
+    ]
+  },
+  "chipintelli_sd_file_position": {
+    "message0": "CI13XX ファイル %1 %2",
+    "tooltip": "現在の読み書き位置またはファイルサイズを返します",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "現在位置",
+            "position"
+          ],
+          [
+            "サイズ（バイト）",
+            "size"
+          ]
+        ]
+      }
+    ]
+  },
+  "chipintelli_sd_file_seek": {
+    "message0": "CI13XX ファイル %1 の位置を %2 に設定成功",
+    "tooltip": "指定した絶対バイトオフセットへ移動し、成否を返します"
+  },
+  "chipintelli_sd_file_write": {
+    "message0": "CI13XX ファイル %1 に %2 データ %3 基数 %4",
+    "tooltip": "write、print、printlnで書き込みます。基数はprint/printlnの数値だけに適用されます",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "生データを書き込み",
+            "write"
+          ],
+          [
+            "表示",
+            "print"
+          ],
+          [
+            "表示して改行",
+            "println"
+          ]
+        ]
+      },
+      null,
+      {
+        "options": [
+          [
+            "自動",
+            "AUTO"
+          ],
+          [
+            "2進数",
+            "BIN"
+          ],
+          [
+            "8進数",
+            "OCT"
+          ],
+          [
+            "10進数",
+            "DEC"
+          ],
+          [
+            "16進数",
+            "HEX"
+          ]
+        ]
+      }
+    ]
+  },
+  "chipintelli_sd_file_control": {
+    "message0": "CI13XX ファイル %1 %2",
+    "tooltip": "ファイルのフラッシュ、ディレクトリ走査のリセット、またはFileオブジェクトのクローズを行います",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "書き込みバッファをフラッシュ",
+            "flush"
+          ],
+          [
+            "ディレクトリを先頭項目へ戻す",
+            "rewindDirectory"
+          ],
+          [
+            "閉じる",
+            "close"
+          ]
+        ]
+      }
+    ]
+  }
+}

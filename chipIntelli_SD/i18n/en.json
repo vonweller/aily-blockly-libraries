@@ -1,0 +1,247 @@
+{
+  "toolbox_name": "SD Card",
+  "toolbox_labels": {
+    "配置引脚并自动初始化": "Configure pins and initialize automatically",
+    "诊断与卸载": "Diagnostics and unmounting",
+    "文件与目录": "Files and directories",
+    "文件状态与读取": "File status and reading",
+    "写入与控制": "Writing and control"
+  },
+  "chipintelli_sd_init_pins": {
+    "message0": "initialize CI13XX SD card SCK %1 MISO %2 MOSI %3 CS %4",
+    "tooltip": "Initialize the SD card in setup with custom GPIO software-SPI pins in SCK, MISO, MOSI, CS order"
+  },
+  "chipintelli_sd_error_info": {
+    "message0": "CI13XX SD last error %1",
+    "tooltip": "Read the error code or additional error data from the most recent low-level SD operation",
+    "args0": [
+      {
+        "options": [
+          [
+            "error code",
+            "cardErrorCode"
+          ],
+          [
+            "error data",
+            "cardErrorData"
+          ]
+        ]
+      }
+    ]
+  },
+  "chipintelli_sd_end": {
+    "message0": "unmount CI13XX SD card and release software-SPI pins",
+    "tooltip": "Close the card and release software SPI, SCK, MISO, MOSI, and CS; initialize again before reuse"
+  },
+  "chipintelli_sd_exists": {
+    "message0": "CI13XX SD path %1 exists",
+    "tooltip": "Check whether a file or directory exists on the SD card"
+  },
+  "chipintelli_sd_path_operation": {
+    "message0": "CI13XX SD %1 path %2",
+    "tooltip": "Create a directory, delete a file, or remove an empty directory; mkdir also creates missing parent directories",
+    "args0": [
+      {
+        "options": [
+          [
+            "create directory",
+            "mkdir"
+          ],
+          [
+            "delete file",
+            "remove"
+          ],
+          [
+            "remove empty directory",
+            "rmdir"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "chipintelli_sd_file_create": {
+    "message0": "open CI13XX SD path %1 mode %2 save as file %3",
+    "tooltip": "Create a File variable and open a file or directory; FILE_WRITE appends at the end of a file",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "read only",
+            "FILE_READ"
+          ],
+          [
+            "read/write and append",
+            "FILE_WRITE"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "chipintelli_sd_file_create_next": {
+    "message0": "CI13XX directory %1 open next entry mode %2 save as file %3",
+    "tooltip": "Get the next file or subdirectory from an open directory and save it in a new File variable",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "read only",
+            "FILE_READ"
+          ],
+          [
+            "read/write and append",
+            "FILE_WRITE"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "chipintelli_sd_file_is_open": {
+    "message0": "CI13XX file %1 opened successfully",
+    "tooltip": "Check whether the File object is valid and open"
+  },
+  "chipintelli_sd_file_is_directory": {
+    "message0": "CI13XX file %1 is a directory",
+    "tooltip": "Check whether the current File object represents a directory"
+  },
+  "chipintelli_sd_file_name": {
+    "message0": "CI13XX file %1 name",
+    "tooltip": "Return the 8.3 short name of the file or directory"
+  },
+  "chipintelli_sd_file_read": {
+    "message0": "from CI13XX file %1 %2",
+    "tooltip": "Read or peek at the next byte; return -1 when no data is available, and peek does not advance the file position",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "read one byte",
+            "read"
+          ],
+          [
+            "peek next byte",
+            "peek"
+          ]
+        ]
+      }
+    ]
+  },
+  "chipintelli_sd_file_available": {
+    "message0": "CI13XX file %1 %2",
+    "tooltip": "Return the number of bytes currently available to read or write",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "remaining readable bytes",
+            "available"
+          ],
+          [
+            "currently writable bytes",
+            "availableForWrite"
+          ]
+        ]
+      }
+    ]
+  },
+  "chipintelli_sd_file_position": {
+    "message0": "CI13XX file %1 %2",
+    "tooltip": "Return the current read/write position or file size",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "current position",
+            "position"
+          ],
+          [
+            "size (bytes)",
+            "size"
+          ]
+        ]
+      }
+    ]
+  },
+  "chipintelli_sd_file_seek": {
+    "message0": "set CI13XX file %1 position to %2 successfully",
+    "tooltip": "Move to the specified absolute byte offset and return whether it succeeded"
+  },
+  "chipintelli_sd_file_write": {
+    "message0": "to CI13XX file %1 %2 data %3 base %4",
+    "tooltip": "Write with write, print, or println; the numeric base applies only to numeric print/println values",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "raw write",
+            "write"
+          ],
+          [
+            "print",
+            "print"
+          ],
+          [
+            "print with newline",
+            "println"
+          ]
+        ]
+      },
+      null,
+      {
+        "options": [
+          [
+            "auto",
+            "AUTO"
+          ],
+          [
+            "binary",
+            "BIN"
+          ],
+          [
+            "octal",
+            "OCT"
+          ],
+          [
+            "decimal",
+            "DEC"
+          ],
+          [
+            "hexadecimal",
+            "HEX"
+          ]
+        ]
+      }
+    ]
+  },
+  "chipintelli_sd_file_control": {
+    "message0": "CI13XX file %1 %2",
+    "tooltip": "Flush the file, reset directory iteration, or close the File object",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "flush write buffer",
+            "flush"
+          ],
+          [
+            "rewind directory to first entry",
+            "rewindDirectory"
+          ],
+          [
+            "close",
+            "close"
+          ]
+        ]
+      }
+    ]
+  }
+}
