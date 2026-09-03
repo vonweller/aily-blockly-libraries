@@ -1,0 +1,460 @@
+[
+  {
+    "type": "huangli_lunar",
+    "message0": "almanac lunar month-day year %1 month %2 day %3",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "YEAR",
+        "check": [
+          "Number"
+        ]
+      },
+      {
+        "type": "input_value",
+        "name": "MONTH",
+        "check": [
+          "Number"
+        ]
+      },
+      {
+        "type": "input_value",
+        "name": "DAY",
+        "check": [
+          "Number"
+        ]
+      }
+    ],
+    "output": null,
+    "colour": "#C48400",
+    "tooltip": "Solar date to lunar month-day string with leap-month prefix (1900-2100)"
+  },
+  {
+    "type": "huangli_ganzhi",
+    "message0": "almanac ganzhi (zodiac) year %1 month %2 day %3",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "YEAR",
+        "check": [
+          "Number"
+        ]
+      },
+      {
+        "type": "input_value",
+        "name": "MONTH",
+        "check": [
+          "Number"
+        ]
+      },
+      {
+        "type": "input_value",
+        "name": "DAY",
+        "check": [
+          "Number"
+        ]
+      }
+    ],
+    "output": null,
+    "colour": "#C48400",
+    "tooltip": "Ganzhi year with zodiac like 丙午(马)年, boundary at lunar new year"
+  },
+  {
+    "type": "huangli_day_ganzhi",
+    "message0": "almanac day ganzhi year %1 month %2 day %3",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "YEAR",
+        "check": [
+          "Number"
+        ]
+      },
+      {
+        "type": "input_value",
+        "name": "MONTH",
+        "check": [
+          "Number"
+        ]
+      },
+      {
+        "type": "input_value",
+        "name": "DAY",
+        "check": [
+          "Number"
+        ]
+      }
+    ],
+    "output": null,
+    "colour": "#C48400",
+    "tooltip": "Day pillar like 甲子日 (1900-2100)"
+  },
+  {
+    "type": "huangli_zhishen",
+    "message0": "almanac day officer (zhishen) year %1 month %2 day %3",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "YEAR",
+        "check": [
+          "Number"
+        ]
+      },
+      {
+        "type": "input_value",
+        "name": "MONTH",
+        "check": [
+          "Number"
+        ]
+      },
+      {
+        "type": "input_value",
+        "name": "DAY",
+        "check": [
+          "Number"
+        ]
+      }
+    ],
+    "output": null,
+    "colour": "#C48400",
+    "tooltip": "Twelve day officers 建除满平定执破危成收开闭 (2000-2070)"
+  },
+  {
+    "type": "huangli_yi",
+    "message0": "almanac Yi (auspicious) year %1 month %2 day %3",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "YEAR",
+        "check": [
+          "Number"
+        ]
+      },
+      {
+        "type": "input_value",
+        "name": "MONTH",
+        "check": [
+          "Number"
+        ]
+      },
+      {
+        "type": "input_value",
+        "name": "DAY",
+        "check": [
+          "Number"
+        ]
+      }
+    ],
+    "output": null,
+    "colour": "#C48400",
+    "tooltip": "Auspicious activities of the day, folk reference (2000-2070)"
+  },
+  {
+    "type": "huangli_ji",
+    "message0": "almanac Ji (inauspicious) year %1 month %2 day %3",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "YEAR",
+        "check": [
+          "Number"
+        ]
+      },
+      {
+        "type": "input_value",
+        "name": "MONTH",
+        "check": [
+          "Number"
+        ]
+      },
+      {
+        "type": "input_value",
+        "name": "DAY",
+        "check": [
+          "Number"
+        ]
+      }
+    ],
+    "output": null,
+    "colour": "#C48400",
+    "tooltip": "Inauspicious activities of the day, folk reference (2000-2070)"
+  },
+  {
+    "type": "huangli_yi_line",
+    "message0": "almanac yi list (51wnl) year %1 month %2 day %3 line %4",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "YEAR",
+        "check": [
+          "Number"
+        ]
+      },
+      {
+        "type": "input_value",
+        "name": "MONTH",
+        "check": [
+          "Number"
+        ]
+      },
+      {
+        "type": "input_value",
+        "name": "DAY",
+        "check": [
+          "Number"
+        ]
+      },
+      {
+        "type": "field_dropdown",
+        "name": "LINE",
+        "options": [
+          [
+            "第一行",
+            "L1"
+          ],
+          [
+            "第二行",
+            "L2"
+          ]
+        ]
+      }
+    ],
+    "output": null,
+    "colour": "#C48400",
+    "tooltip": "Tongshu yi list aligned with 51wnl (2026-2045); returns wrapped display line 1 or 2"
+  },
+  {
+    "type": "huangli_ji_line",
+    "message0": "almanac ji list (51wnl) year %1 month %2 day %3 line %4",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "YEAR",
+        "check": [
+          "Number"
+        ]
+      },
+      {
+        "type": "input_value",
+        "name": "MONTH",
+        "check": [
+          "Number"
+        ]
+      },
+      {
+        "type": "input_value",
+        "name": "DAY",
+        "check": [
+          "Number"
+        ]
+      },
+      {
+        "type": "field_dropdown",
+        "name": "LINE",
+        "options": [
+          [
+            "第一行",
+            "L1"
+          ],
+          [
+            "第二行",
+            "L2"
+          ]
+        ]
+      }
+    ],
+    "output": null,
+    "colour": "#C48400",
+    "tooltip": "Tongshu ji list aligned with 51wnl (2026-2045); returns wrapped display line 1 or 2"
+  },
+  {
+    "type": "huangli_jieqi",
+    "message0": "almanac jieqi (solar term) year %1 month %2 day %3",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "YEAR",
+        "check": [
+          "Number"
+        ]
+      },
+      {
+        "type": "input_value",
+        "name": "MONTH",
+        "check": [
+          "Number"
+        ]
+      },
+      {
+        "type": "input_value",
+        "name": "DAY",
+        "check": [
+          "Number"
+        ]
+      }
+    ],
+    "output": null,
+    "colour": "#C48400",
+    "tooltip": "今日X if today is a solar term, otherwise the next term with its date (2000-2070)"
+  },
+  {
+    "type": "huangli_font",
+    "message0": "almanac switch full GB2312 font (incl. 廿/祀) size %1",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "SIZE",
+        "options": [
+          [
+            "12px",
+            "S12"
+          ],
+          [
+            "16px",
+            "S16"
+          ]
+        ]
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#C48400",
+    "tooltip": "Set u8g2 text font to full GB2312 (level-1+2). Costs ~208KB(12px)/~318KB(16px) flash. Restore with gxepd2_u8g2_font afterwards if needed."
+  },
+  {
+    "type": "huangli_month_ganzhi",
+    "message0": "almanac month ganzhi year %1 month %2 day %3",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "YEAR",
+        "check": [
+          "Number"
+        ]
+      },
+      {
+        "type": "input_value",
+        "name": "MONTH",
+        "check": [
+          "Number"
+        ]
+      },
+      {
+        "type": "input_value",
+        "name": "DAY",
+        "check": [
+          "Number"
+        ]
+      }
+    ],
+    "output": null,
+    "colour": "#C48400",
+    "tooltip": "Month pillar via 五虎遁 with solar-term boundaries, e.g. 丙申月 (2000-2070)"
+  },
+  {
+    "type": "huangli_huangdao",
+    "message0": "almanac huangdao god year %1 month %2 day %3",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "YEAR",
+        "check": [
+          "Number"
+        ]
+      },
+      {
+        "type": "input_value",
+        "name": "MONTH",
+        "check": [
+          "Number"
+        ]
+      },
+      {
+        "type": "input_value",
+        "name": "DAY",
+        "check": [
+          "Number"
+        ]
+      }
+    ],
+    "output": null,
+    "colour": "#C48400",
+    "tooltip": "Twelve heaven gods 青龙/明堂/.../勾陈, e.g. 金匮 (2000-2070)"
+  },
+  {
+    "type": "huangli_nayin",
+    "message0": "almanac day nayin (five elements) year %1 month %2 day %3",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "YEAR",
+        "check": [
+          "Number"
+        ]
+      },
+      {
+        "type": "input_value",
+        "name": "MONTH",
+        "check": [
+          "Number"
+        ]
+      },
+      {
+        "type": "input_value",
+        "name": "DAY",
+        "check": [
+          "Number"
+        ]
+      }
+    ],
+    "output": null,
+    "colour": "#C48400",
+    "tooltip": "Day pillar 纳音五行, e.g. 白腊金"
+  },
+  {
+    "type": "huangli_chongsha",
+    "message0": "almanac chongsha year %1 month %2 day %3",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "YEAR",
+        "check": [
+          "Number"
+        ]
+      },
+      {
+        "type": "input_value",
+        "name": "MONTH",
+        "check": [
+          "Number"
+        ]
+      },
+      {
+        "type": "input_value",
+        "name": "DAY",
+        "check": [
+          "Number"
+        ]
+      }
+    ],
+    "output": null,
+    "colour": "#C48400",
+    "tooltip": "Clash zodiac and evil direction, e.g. 冲狗煞南"
+  },
+  {
+    "type": "huangli_center_x",
+    "message0": "almanac center X of %1",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "TEXT",
+        "check": [
+          "String"
+        ]
+      }
+    ],
+    "output": "Number",
+    "colour": "#C48400",
+    "tooltip": "X coordinate to center TEXT on the 250px display with the current u8g2 font. Set the font (huangli_font or gxepd2_u8g2_font) first."
+  }
+]
