@@ -1,0 +1,267 @@
+{
+  "toolbox_name": "Manette PS2",
+  "ps2x_init": {
+    "message0": "initialiser la manette PS2 %1 ATT %2 CMD %3 DAT %4 CLK %5",
+    "tooltip": "Initialise une manette PS2 (DualShock 2 ; bibliothèque universelle, SPI matériel). ATT est le chip select ; sur les cœurs permettant le remappage SPI (ex. ESP32), CMD/DAT/CLK acceptent n’importe quel GPIO, tandis que sur les cœurs à broches SPI fixes (ex. micro:bit V2) elles doivent être P15(MOSI)/P14(MISO)/P13(SCK). Câblage de référence pour la prise PS2 du Chuanglebo MakeBit : ATT=P12, CMD=P15, DAT=P14, CLK=P13. À placer dans l’initialisation ; la manette est ensuite lue automatiquement à chaque boucle."
+  },
+  "ps2x_connected": {
+    "message0": "manette %1 connectée",
+    "tooltip": "Indique si la manette est connectée et répond. Déconnectée, les sticks renvoient 0 et tous les boutons sont considérés relâchés ; la reconnexion reconfigure automatiquement la manette."
+  },
+  "ps2x_button_pressed": {
+    "message0": "manette %1 bouton %2 est enfoncé",
+    "tooltip": "Indique si le bouton choisi est actuellement maintenu (reste vrai tant qu'il est tenu).",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Triangle △",
+            "TRIANGLE"
+          ],
+          [
+            "Rond ○",
+            "CIRCLE"
+          ],
+          [
+            "Croix ✕",
+            "CROSS"
+          ],
+          [
+            "Carré □",
+            "SQUARE"
+          ],
+          [
+            "Haut ↑",
+            "UP"
+          ],
+          [
+            "Bas ↓",
+            "DOWN"
+          ],
+          [
+            "Gauche ←",
+            "LEFT"
+          ],
+          [
+            "Droite →",
+            "RIGHT"
+          ],
+          [
+            "L1",
+            "L1"
+          ],
+          [
+            "R1",
+            "R1"
+          ],
+          [
+            "L2",
+            "L2"
+          ],
+          [
+            "R2",
+            "R2"
+          ],
+          [
+            "SELECT",
+            "SELECT"
+          ],
+          [
+            "START",
+            "START"
+          ],
+          [
+            "L3 clic stick gauche",
+            "L3"
+          ],
+          [
+            "R3 clic stick droit",
+            "R3"
+          ]
+        ]
+      }
+    ]
+  },
+  "ps2x_button_newpress": {
+    "message0": "manette %1 bouton %2 vient d'être enfoncé",
+    "tooltip": "Indique si le bouton choisi vient d'être enfoncé depuis la boucle précédente (vrai pendant une seule boucle, idéal pour déclencher des actions).",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Triangle △",
+            "TRIANGLE"
+          ],
+          [
+            "Rond ○",
+            "CIRCLE"
+          ],
+          [
+            "Croix ✕",
+            "CROSS"
+          ],
+          [
+            "Carré □",
+            "SQUARE"
+          ],
+          [
+            "Haut ↑",
+            "UP"
+          ],
+          [
+            "Bas ↓",
+            "DOWN"
+          ],
+          [
+            "Gauche ←",
+            "LEFT"
+          ],
+          [
+            "Droite →",
+            "RIGHT"
+          ],
+          [
+            "L1",
+            "L1"
+          ],
+          [
+            "R1",
+            "R1"
+          ],
+          [
+            "L2",
+            "L2"
+          ],
+          [
+            "R2",
+            "R2"
+          ],
+          [
+            "SELECT",
+            "SELECT"
+          ],
+          [
+            "START",
+            "START"
+          ],
+          [
+            "L3 clic stick gauche",
+            "L3"
+          ],
+          [
+            "R3 clic stick droit",
+            "R3"
+          ]
+        ]
+      }
+    ]
+  },
+  "ps2x_button_released": {
+    "message0": "manette %1 bouton %2 vient d'être relâché",
+    "tooltip": "Indique si le bouton choisi vient d'être relâché depuis la boucle précédente.",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Triangle △",
+            "TRIANGLE"
+          ],
+          [
+            "Rond ○",
+            "CIRCLE"
+          ],
+          [
+            "Croix ✕",
+            "CROSS"
+          ],
+          [
+            "Carré □",
+            "SQUARE"
+          ],
+          [
+            "Haut ↑",
+            "UP"
+          ],
+          [
+            "Bas ↓",
+            "DOWN"
+          ],
+          [
+            "Gauche ←",
+            "LEFT"
+          ],
+          [
+            "Droite →",
+            "RIGHT"
+          ],
+          [
+            "L1",
+            "L1"
+          ],
+          [
+            "R1",
+            "R1"
+          ],
+          [
+            "L2",
+            "L2"
+          ],
+          [
+            "R2",
+            "R2"
+          ],
+          [
+            "SELECT",
+            "SELECT"
+          ],
+          [
+            "START",
+            "START"
+          ],
+          [
+            "L3 clic stick gauche",
+            "L3"
+          ],
+          [
+            "R3 clic stick droit",
+            "R3"
+          ]
+        ]
+      }
+    ]
+  },
+  "ps2x_stick": {
+    "message0": "manette %1 stick %2 position (-100~100)",
+    "tooltip": "Lit la position du stick : 0 au centre, extrêmes à -100 ou 100 (converti depuis 0..255). Nécessite le mode analogique ; renvoie 0 si déconnectée.",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "stick gauche X",
+            "LX"
+          ],
+          [
+            "stick gauche Y",
+            "LY"
+          ],
+          [
+            "stick droit X",
+            "RX"
+          ],
+          [
+            "stick droit Y",
+            "RY"
+          ]
+        ]
+      }
+    ]
+  },
+  "ps2x_set_vibration": {
+    "message0": "régler la vibration de la manette %1 petit moteur %2 grand moteur intensité %3",
+    "tooltip": "Règle la vibration : le petit moteur est simplement marche/arrêt (vrai = marche) ; le grand moteur va de 0 à 255. Appliqué au prochain relevé automatique."
+  }
+}

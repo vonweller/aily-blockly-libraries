@@ -1,0 +1,267 @@
+{
+  "toolbox_name": "PS2-Gamepad",
+  "ps2x_init": {
+    "message0": "PS2-Gamepad initialisieren %1 ATT %2 CMD %3 DAT %4 CLK %5",
+    "tooltip": "Initialisiert ein PS2-Gamepad (DualShock 2; universelle Bibliothek, Hardware-SPI). ATT ist die Chip-Select-Leitung; auf Kernen mit SPI-Remapping (z. B. ESP32) sind CMD/DAT/CLK beliebige GPIOs, auf Kernen mit festen SPI-Pads (z. B. micro:bit V2) müssen P15(MOSI)/P14(MISO)/P13(SCK) verwendet werden. Referenzverkabelung für den Chuanglebo MakeBit PS2-Sockel: ATT=P12, CMD=P15, DAT=P14, CLK=P13. Im Setup platzieren; danach wird das Gamepad in jeder Schleife automatisch abgefragt."
+  },
+  "ps2x_connected": {
+    "message0": "Gamepad %1 verbunden",
+    "tooltip": "Prüft, ob das Gamepad angeschlossen ist und antwortet. Getrennt liefern die Sticks 0 und alle Tasten gelten als losgelassen; nach dem Wiederverbinden wird automatisch neu konfiguriert."
+  },
+  "ps2x_button_pressed": {
+    "message0": "Gamepad %1 Taste %2 ist gedrückt",
+    "tooltip": "Ob die gewählte Taste aktuell gedrückt gehalten wird (bleibt solange wahr).",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Dreieck △",
+            "TRIANGLE"
+          ],
+          [
+            "Kreis ○",
+            "CIRCLE"
+          ],
+          [
+            "Kreuz ✕",
+            "CROSS"
+          ],
+          [
+            "Quadrat □",
+            "SQUARE"
+          ],
+          [
+            "Hoch ↑",
+            "UP"
+          ],
+          [
+            "Runter ↓",
+            "DOWN"
+          ],
+          [
+            "Links ←",
+            "LEFT"
+          ],
+          [
+            "Rechts →",
+            "RIGHT"
+          ],
+          [
+            "L1",
+            "L1"
+          ],
+          [
+            "R1",
+            "R1"
+          ],
+          [
+            "L2",
+            "L2"
+          ],
+          [
+            "R2",
+            "R2"
+          ],
+          [
+            "SELECT",
+            "SELECT"
+          ],
+          [
+            "START",
+            "START"
+          ],
+          [
+            "L3 linken Stick drücken",
+            "L3"
+          ],
+          [
+            "R3 rechten Stick drücken",
+            "R3"
+          ]
+        ]
+      }
+    ]
+  },
+  "ps2x_button_newpress": {
+    "message0": "Gamepad %1 Taste %2 gerade gedrückt",
+    "tooltip": "Ob die gewählte Taste seit dem letzten Durchlauf neu gedrückt wurde (nur einen Durchlauf lang wahr, ideal zum Auslösen von Aktionen).",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Dreieck △",
+            "TRIANGLE"
+          ],
+          [
+            "Kreis ○",
+            "CIRCLE"
+          ],
+          [
+            "Kreuz ✕",
+            "CROSS"
+          ],
+          [
+            "Quadrat □",
+            "SQUARE"
+          ],
+          [
+            "Hoch ↑",
+            "UP"
+          ],
+          [
+            "Runter ↓",
+            "DOWN"
+          ],
+          [
+            "Links ←",
+            "LEFT"
+          ],
+          [
+            "Rechts →",
+            "RIGHT"
+          ],
+          [
+            "L1",
+            "L1"
+          ],
+          [
+            "R1",
+            "R1"
+          ],
+          [
+            "L2",
+            "L2"
+          ],
+          [
+            "R2",
+            "R2"
+          ],
+          [
+            "SELECT",
+            "SELECT"
+          ],
+          [
+            "START",
+            "START"
+          ],
+          [
+            "L3 linken Stick drücken",
+            "L3"
+          ],
+          [
+            "R3 rechten Stick drücken",
+            "R3"
+          ]
+        ]
+      }
+    ]
+  },
+  "ps2x_button_released": {
+    "message0": "Gamepad %1 Taste %2 gerade losgelassen",
+    "tooltip": "Ob die gewählte Taste seit dem letzten Durchlauf losgelassen wurde.",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Dreieck △",
+            "TRIANGLE"
+          ],
+          [
+            "Kreis ○",
+            "CIRCLE"
+          ],
+          [
+            "Kreuz ✕",
+            "CROSS"
+          ],
+          [
+            "Quadrat □",
+            "SQUARE"
+          ],
+          [
+            "Hoch ↑",
+            "UP"
+          ],
+          [
+            "Runter ↓",
+            "DOWN"
+          ],
+          [
+            "Links ←",
+            "LEFT"
+          ],
+          [
+            "Rechts →",
+            "RIGHT"
+          ],
+          [
+            "L1",
+            "L1"
+          ],
+          [
+            "R1",
+            "R1"
+          ],
+          [
+            "L2",
+            "L2"
+          ],
+          [
+            "R2",
+            "R2"
+          ],
+          [
+            "SELECT",
+            "SELECT"
+          ],
+          [
+            "START",
+            "START"
+          ],
+          [
+            "L3 linken Stick drücken",
+            "L3"
+          ],
+          [
+            "R3 rechten Stick drücken",
+            "R3"
+          ]
+        ]
+      }
+    ]
+  },
+  "ps2x_stick": {
+    "message0": "Gamepad %1 Stick %2 Position (-100~100)",
+    "tooltip": "Liest die Stickposition: 0 mittig, Enden bei -100 oder 100 (aus Rohwert 0..255 umgerechnet). Erfordert den Analogmodus; getrennt wird 0 geliefert.",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "linker Stick X",
+            "LX"
+          ],
+          [
+            "linker Stick Y",
+            "LY"
+          ],
+          [
+            "rechter Stick X",
+            "RX"
+          ],
+          [
+            "rechter Stick Y",
+            "RY"
+          ]
+        ]
+      }
+    ]
+  },
+  "ps2x_set_vibration": {
+    "message0": "Gamepad %1 Vibration setzen kleiner Motor %2 großer Motor Stärke %3",
+    "tooltip": "Vibration einstellen: der kleine Motor kennt nur ein/aus (wahr = ein); der große Motor ist 0..255. Wirkt bei der nächsten automatischen Abfrage."
+  }
+}

@@ -1,0 +1,267 @@
+{
+  "toolbox_name": "Mando PS2",
+  "ps2x_init": {
+    "message0": "inicializar mando PS2 %1 ATT %2 CMD %3 DAT %4 CLK %5",
+    "tooltip": "Inicializa un mando PS2 (DualShock 2; biblioteca universal, SPI hardware). ATT es el chip select; en núcleos con remapeo SPI (p. ej. ESP32) CMD/DAT/CLK pueden ser cualquier GPIO, mientras que en núcleos con pines SPI fijos (p. ej. micro:bit V2) deben ser P15(MOSI)/P14(MISO)/P13(SCK). Cableado de referencia para el zócalo PS2 del Chuanglebo MakeBit: ATT=P12, CMD=P15, DAT=P14, CLK=P13. Colócalo en la inicialización; el mando se lee automáticamente en cada bucle."
+  },
+  "ps2x_connected": {
+    "message0": "mando %1 conectado",
+    "tooltip": "Indica si el mando está conectado y responde. Desconectado, los sticks devuelven 0 y todos los botones cuentan como soltados; al reconectar se reconfigura automáticamente."
+  },
+  "ps2x_button_pressed": {
+    "message0": "mando %1 botón %2 está pulsado",
+    "tooltip": "Indica si el botón elegido está pulsado en este momento (se mantiene verdadero mientras se mantiene pulsado).",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Triángulo △",
+            "TRIANGLE"
+          ],
+          [
+            "Círculo ○",
+            "CIRCLE"
+          ],
+          [
+            "Cruz ✕",
+            "CROSS"
+          ],
+          [
+            "Cuadrado □",
+            "SQUARE"
+          ],
+          [
+            "Arriba ↑",
+            "UP"
+          ],
+          [
+            "Abajo ↓",
+            "DOWN"
+          ],
+          [
+            "Izquierda ←",
+            "LEFT"
+          ],
+          [
+            "Derecha →",
+            "RIGHT"
+          ],
+          [
+            "L1",
+            "L1"
+          ],
+          [
+            "R1",
+            "R1"
+          ],
+          [
+            "L2",
+            "L2"
+          ],
+          [
+            "R2",
+            "R2"
+          ],
+          [
+            "SELECT",
+            "SELECT"
+          ],
+          [
+            "START",
+            "START"
+          ],
+          [
+            "L3 pulsar stick izquierdo",
+            "L3"
+          ],
+          [
+            "R3 pulsar stick derecho",
+            "R3"
+          ]
+        ]
+      }
+    ]
+  },
+  "ps2x_button_newpress": {
+    "message0": "mando %1 botón %2 recién pulsado",
+    "tooltip": "Indica si el botón elegido se acaba de pulsar desde el bucle anterior (verdadero solo un bucle, ideal para disparar acciones).",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Triángulo △",
+            "TRIANGLE"
+          ],
+          [
+            "Círculo ○",
+            "CIRCLE"
+          ],
+          [
+            "Cruz ✕",
+            "CROSS"
+          ],
+          [
+            "Cuadrado □",
+            "SQUARE"
+          ],
+          [
+            "Arriba ↑",
+            "UP"
+          ],
+          [
+            "Abajo ↓",
+            "DOWN"
+          ],
+          [
+            "Izquierda ←",
+            "LEFT"
+          ],
+          [
+            "Derecha →",
+            "RIGHT"
+          ],
+          [
+            "L1",
+            "L1"
+          ],
+          [
+            "R1",
+            "R1"
+          ],
+          [
+            "L2",
+            "L2"
+          ],
+          [
+            "R2",
+            "R2"
+          ],
+          [
+            "SELECT",
+            "SELECT"
+          ],
+          [
+            "START",
+            "START"
+          ],
+          [
+            "L3 pulsar stick izquierdo",
+            "L3"
+          ],
+          [
+            "R3 pulsar stick derecho",
+            "R3"
+          ]
+        ]
+      }
+    ]
+  },
+  "ps2x_button_released": {
+    "message0": "mando %1 botón %2 recién soltado",
+    "tooltip": "Indica si el botón elegido se acaba de soltar desde el bucle anterior.",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Triángulo △",
+            "TRIANGLE"
+          ],
+          [
+            "Círculo ○",
+            "CIRCLE"
+          ],
+          [
+            "Cruz ✕",
+            "CROSS"
+          ],
+          [
+            "Cuadrado □",
+            "SQUARE"
+          ],
+          [
+            "Arriba ↑",
+            "UP"
+          ],
+          [
+            "Abajo ↓",
+            "DOWN"
+          ],
+          [
+            "Izquierda ←",
+            "LEFT"
+          ],
+          [
+            "Derecha →",
+            "RIGHT"
+          ],
+          [
+            "L1",
+            "L1"
+          ],
+          [
+            "R1",
+            "R1"
+          ],
+          [
+            "L2",
+            "L2"
+          ],
+          [
+            "R2",
+            "R2"
+          ],
+          [
+            "SELECT",
+            "SELECT"
+          ],
+          [
+            "START",
+            "START"
+          ],
+          [
+            "L3 pulsar stick izquierdo",
+            "L3"
+          ],
+          [
+            "R3 pulsar stick derecho",
+            "R3"
+          ]
+        ]
+      }
+    ]
+  },
+  "ps2x_stick": {
+    "message0": "mando %1 stick %2 posición (-100~100)",
+    "tooltip": "Lee la posición del stick: 0 en el centro, extremos en -100 o 100 (convertido de 0..255). Requiere modo analógico; devuelve 0 si está desconectado.",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "stick izquierdo X",
+            "LX"
+          ],
+          [
+            "stick izquierdo Y",
+            "LY"
+          ],
+          [
+            "stick derecho X",
+            "RX"
+          ],
+          [
+            "stick derecho Y",
+            "RY"
+          ]
+        ]
+      }
+    ]
+  },
+  "ps2x_set_vibration": {
+    "message0": "ajustar vibración del mando %1 motor pequeño %2 motor grande intensidad %3",
+    "tooltip": "Ajusta la vibración: el motor pequeño solo enciende/apaga (verdadero = encendido); el motor grande va de 0 a 255. Se aplica en la próxima lectura automática."
+  }
+}
