@@ -1,6 +1,6 @@
 # ChipIntelliAudio
 
-Prompt and local-audio playback blocks for ChipIntelli CI1302, CI1303 and CI1306.
+Prompt, local-audio and runtime-number playback for ChipIntelli CI13XX.
 
 ## Library Info
 
@@ -14,12 +14,15 @@ Prompt and local-audio playback blocks for ChipIntelli CI1302, CI1303 and CI1306
 
 ## Supported Boards
 
-CI1302, CI1303 and CI1306 (`chipintelli:ci13xx`).
+CI1302, CI1303 and CI1306 (`chipintelli:ci13xx`) at 3.3 V.
 
 ## Description
 
-Plays prompts provisioned in firmware `voice.bin`, or an uploaded local MP3 prepared with the built-in audio editor. Numeric-variable inputs are converted to `String` and spoken as localized runtime numbers. Supports queueing, volume, mute and completion events.
+Plays fixed `voice.bin` prompts, imported audio, or decimal values from numeric variables. Includes queue/interrupt, volume, mute, status and completion; numeric speech supports 15 languages.
 
 ## Quick Start
 
-Initialize the player with the desired numeric-speech language, set volume, then use the play block with a configured prompt, local-audio value or numeric variable. The initialization block emits `#define CHIPINTELLI_LANGUAGE CHIPINTELLI_LANGUAGE_<code>` before the audio-library include. Prompt and local-audio inputs call the 16-bit voice-ID overload; numeric variables call the localized-number `String` overload. Local-audio IDs start at 500 and identical source/encoding settings are deduplicated.
+1. Initialize and select the runtime-number language.
+2. Optionally set prompt voice, volume and speed.
+3. Play a prompt, configured local audio or numeric variable; immediate mode interrupts, while queue mode waits.
+4. Put follow-up work in the completion event, which dispatches from the Arduino loop.
