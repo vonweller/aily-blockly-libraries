@@ -1,0 +1,283 @@
+{
+  "toolbox_name": "MakeBit",
+  "toolbox_categories": [
+    "Coche",
+    "Servo y ventilador",
+    "Zumbador",
+    "Luces"
+  ],
+  "makebit_car_init": {
+    "message0": "Inicializar coche (placa de driver I2C dirección 0x41) ",
+    "tooltip": "Inicializa el driver de motores PCA9685 del coche MakeBit (dirección I2C 0x41, PWM 50Hz). Colócalo en setup antes de usar bloques de coche/servo/ventilador/LED."
+  },
+  "makebit_car_ctrl": {
+    "message0": "Coche %1 ",
+    "tooltip": "Controla el coche a la velocidad predeterminada 255: avanzar, retroceder, girar a la izquierda, girar a la derecha, detener, girar a la izquierda en el sitio, girar a la derecha en el sitio.",
+    "args0": [
+      {
+        "options": [
+          [
+            "Avanzar",
+            "FORWARD"
+          ],
+          [
+            "Retroceder",
+            "BACKWARD"
+          ],
+          [
+            "Izquierda",
+            "LEFT"
+          ],
+          [
+            "Derecha",
+            "RIGHT"
+          ],
+          [
+            "Detener",
+            "STOP"
+          ],
+          [
+            "Girar izq. en el sitio",
+            "SPIN_LEFT"
+          ],
+          [
+            "Girar der. en el sitio",
+            "SPIN_RIGHT"
+          ]
+        ]
+      }
+    ]
+  },
+  "makebit_car_ctrl_speed": {
+    "message0": "Coche %1 velocidad %2",
+    "tooltip": "Controla el coche a la velocidad indicada (0-255): avanzar, retroceder, girar a la izquierda, girar a la derecha, detener, girar a la izquierda en el sitio, girar a la derecha en el sitio.",
+    "args0": [
+      {
+        "options": [
+          [
+            "Avanzar",
+            "FORWARD"
+          ],
+          [
+            "Retroceder",
+            "BACKWARD"
+          ],
+          [
+            "Izquierda",
+            "LEFT"
+          ],
+          [
+            "Derecha",
+            "RIGHT"
+          ],
+          [
+            "Detener",
+            "STOP"
+          ],
+          [
+            "Girar izq. en el sitio",
+            "SPIN_LEFT"
+          ],
+          [
+            "Girar der. en el sitio",
+            "SPIN_RIGHT"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "makebit_motor": {
+    "message0": "Motor %1 %2 velocidad %3",
+    "tooltip": "Controla el motor izquierdo o derecho por separado, hacia delante o hacia atrás, velocidad 0-255; velocidad 0 detiene ese motor.",
+    "args0": [
+      {
+        "options": [
+          [
+            "Motor izquierdo",
+            "LEFT"
+          ],
+          [
+            "Motor derecho",
+            "RIGHT"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "Adelante",
+            "FWD"
+          ],
+          [
+            "Atrás",
+            "REV"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "makebit_car_servo": {
+    "message0": "Servo del coche ángulo %1",
+    "tooltip": "Fija el ángulo del servo de a bordo (canal 3 del PCA9685) de 0 a 180 grados, ancho de pulso 600-2400 microsegundos."
+  },
+  "makebit_car_fan": {
+    "message0": "Ventilador de a bordo %1 velocidad %2",
+    "tooltip": "Controla el motor del ventilador de a bordo (canales 4/5 del PCA9685): adelante, atrás o detener, velocidad 0-255; con Detener se ignora la velocidad.",
+    "args0": [
+      {
+        "options": [
+          [
+            "Adelante",
+            "FWD"
+          ],
+          [
+            "Atrás",
+            "REV"
+          ],
+          [
+            "Detener",
+            "STOP"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "makebit_buzzer": {
+    "message0": "Zumbador pin %1 %2",
+    "tooltip": "Controla el módulo de zumbador activo (activado por nivel BAJO): sonar o silenciar.",
+    "args0": [
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": [
+          [
+            "Sonar",
+            "ON"
+          ],
+          [
+            "Silencio",
+            "OFF"
+          ]
+        ]
+      }
+    ]
+  },
+  "makebit_car_led": {
+    "message0": "Faro %1",
+    "tooltip": "Interruptor del faro: encendido = luz blanca con el brillo global (ajustado con el bloque de brillo del faro), apagado = apagado. Ambos faros están en paralelo en los mismos canales RGB y actúan juntos.",
+    "args0": [
+      {
+        "options": [
+          [
+            "encendido",
+            "ON"
+          ],
+          [
+            "apagado",
+            "OFF"
+          ]
+        ]
+      }
+    ]
+  },
+  "makebit_car_rgb": {
+    "message0": "Faro color %1",
+    "tooltip": "Fija un color predefinido del faro RGB del coche (canales 0/1/2 del PCA9685).",
+    "args0": [
+      {
+        "options": [
+          [
+            "Apagado",
+            "OFF"
+          ],
+          [
+            "Rojo",
+            "RED"
+          ],
+          [
+            "Verde",
+            "GREEN"
+          ],
+          [
+            "Azul",
+            "BLUE"
+          ],
+          [
+            "Blanco",
+            "WHITE"
+          ],
+          [
+            "Cian",
+            "CYAN"
+          ],
+          [
+            "Magenta",
+            "MAGENTA"
+          ],
+          [
+            "Amarillo",
+            "YELLOW"
+          ]
+        ]
+      }
+    ]
+  },
+  "makebit_car_rgb_val": {
+    "message0": "Faro rojo %1 verde %2 azul %3",
+    "tooltip": "Define un color personalizado del faro con componentes RGB (0-255); la salida se escala con el brillo global."
+  },
+  "makebit_ultrasonic": {
+    "message0": "Ultrasonido disparador %1 eco %2 distancia(cm)",
+    "tooltip": "Medición de distancia con módulo ultrasónico SR04 externo (pines disparador/eco seleccionables). Devuelve centímetros; devuelve 0 si no hay eco en ~30ms (unos 5m).",
+    "args0": [
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": "${board.digitalPins}"
+      }
+    ]
+  },
+  "makebit_rgb_effect": {
+    "message0": "Efecto de faro %1",
+    "tooltip": "Ejecuta una vez un efecto en el faro RGB: flujo (ciclo de seis colores), arcoíris (degradado), respiración, parpadeo o apagado. Bloqueante hasta terminar.",
+    "args0": [
+      {
+        "options": [
+          [
+            "flujo",
+            "FLOW"
+          ],
+          [
+            "arcoíris",
+            "RAINBOW"
+          ],
+          [
+            "respiración",
+            "BREATH"
+          ],
+          [
+            "parpadeo",
+            "BLINK"
+          ],
+          [
+            "apagado",
+            "OFF"
+          ]
+        ]
+      }
+    ]
+  },
+  "makebit_car_trim": {
+    "message0": "Coche corrección de avance izq %1 der %2",
+    "tooltip": "Corrige la desviación al avanzar: porcentaje de salida de los motores izquierdo/derecho en avance (0-100, 100 por defecto = sin corrección). Desvía a la derecha -> reducir el valor izquierdo; desvía a la izquierda -> reducir el derecho. Afecta a las ruedas que avanzan en avance/giro/giro sobre el eje; el retroceso no cambia."
+  },
+  "makebit_rgb_brightness": {
+    "message0": "Brillo del faro %1",
+    "tooltip": "Establece el brillo global (0-255, 255 por defecto = total): los bloques siguientes de color, efecto, encendido y RGB personalizado se muestran con este brillo."
+  }
+}
