@@ -1,0 +1,52 @@
+{
+  "kind": "category",
+  "name": "PS2手柄",
+  "contents": [
+    {
+      "kind": "block",
+      "type": "ps2x_init"
+    },
+    {
+      "kind": "block",
+      "type": "ps2x_connected"
+    },
+    {
+      "kind": "block",
+      "type": "ps2x_button_pressed"
+    },
+    {
+      "kind": "block",
+      "type": "ps2x_button_newpress"
+    },
+    {
+      "kind": "block",
+      "type": "ps2x_button_released"
+    },
+    {
+      "kind": "block",
+      "type": "ps2x_stick"
+    },
+    {
+      "kind": "block",
+      "type": "ps2x_set_vibration",
+      "inputs": {
+        "SMALL": {
+          "shadow": {
+            "type": "logic_boolean",
+            "fields": {
+              "BOOL": "FALSE"
+            }
+          }
+        },
+        "LARGE": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 0
+            }
+          }
+        }
+      }
+    }
+  ]
+}
