@@ -1,0 +1,283 @@
+{
+  "toolbox_name": "MakeBit",
+  "toolbox_categories": [
+    "Auto",
+    "Servo & Lüfter",
+    "Summer",
+    "Lichter"
+  ],
+  "makebit_car_init": {
+    "message0": "Auto initialisieren (Treiberboard I2C-Adresse 0x41) ",
+    "tooltip": "Initialisiert den PCA9685-Motortreiber des MakeBit-Autos (I2C-Adresse 0x41, 50Hz-PWM). Vor der Verwendung der Auto-/Servo-/Lüfter-/LED-Blöcke in setup platzieren."
+  },
+  "makebit_car_ctrl": {
+    "message0": "Auto %1 ",
+    "tooltip": "Steuert das Auto mit Standardgeschwindigkeit 255: vorwärts, rückwärts, links, rechts, stoppen, links drehen, rechts drehen.",
+    "args0": [
+      {
+        "options": [
+          [
+            "Vorwärts",
+            "FORWARD"
+          ],
+          [
+            "Rückwärts",
+            "BACKWARD"
+          ],
+          [
+            "Links",
+            "LEFT"
+          ],
+          [
+            "Rechts",
+            "RIGHT"
+          ],
+          [
+            "Stopp",
+            "STOP"
+          ],
+          [
+            "Links drehen",
+            "SPIN_LEFT"
+          ],
+          [
+            "Rechts drehen",
+            "SPIN_RIGHT"
+          ]
+        ]
+      }
+    ]
+  },
+  "makebit_car_ctrl_speed": {
+    "message0": "Auto %1 Geschwindigkeit %2",
+    "tooltip": "Steuert das Auto mit der angegebenen Geschwindigkeit (0-255): vorwärts, rückwärts, links, rechts, stoppen, links drehen, rechts drehen.",
+    "args0": [
+      {
+        "options": [
+          [
+            "Vorwärts",
+            "FORWARD"
+          ],
+          [
+            "Rückwärts",
+            "BACKWARD"
+          ],
+          [
+            "Links",
+            "LEFT"
+          ],
+          [
+            "Rechts",
+            "RIGHT"
+          ],
+          [
+            "Stopp",
+            "STOP"
+          ],
+          [
+            "Links drehen",
+            "SPIN_LEFT"
+          ],
+          [
+            "Rechts drehen",
+            "SPIN_RIGHT"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "makebit_motor": {
+    "message0": "Motor %1 %2 Geschwindigkeit %3",
+    "tooltip": "Steuert den linken oder rechten Motor einzeln, vorwärts oder rückwärts, Geschwindigkeit 0-255; Geschwindigkeit 0 stoppt den Motor.",
+    "args0": [
+      {
+        "options": [
+          [
+            "Linker Motor",
+            "LEFT"
+          ],
+          [
+            "Rechter Motor",
+            "RIGHT"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "Vorwärts",
+            "FWD"
+          ],
+          [
+            "Rückwärts",
+            "REV"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "makebit_car_servo": {
+    "message0": "Auto-Servo Winkel %1",
+    "tooltip": "Setzt den Winkel des Bord-Servos (PCA9685-Kanal 3) auf 0-180 Grad, Impulsbreite 600-2400 Mikrosekunden."
+  },
+  "makebit_car_fan": {
+    "message0": "Bord-Lüfter %1 Geschwindigkeit %2",
+    "tooltip": "Steuert den Bord-Lüftermotor (PCA9685-Kanäle 4/5): vorwärts, rückwärts oder Stopp, Geschwindigkeit 0-255; bei Stopp wird die Geschwindigkeit ignoriert.",
+    "args0": [
+      {
+        "options": [
+          [
+            "Vorwärts",
+            "FWD"
+          ],
+          [
+            "Rückwärts",
+            "REV"
+          ],
+          [
+            "Stopp",
+            "STOP"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "makebit_buzzer": {
+    "message0": "Summer Pin %1 %2",
+    "tooltip": "Steuert das aktive Summermodul (LOW-Pegel ausgelöst): ein oder aus.",
+    "args0": [
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": [
+          [
+            "Ein",
+            "ON"
+          ],
+          [
+            "Aus",
+            "OFF"
+          ]
+        ]
+      }
+    ]
+  },
+  "makebit_car_led": {
+    "message0": "Scheinwerfer %1",
+    "tooltip": "Scheinwerferschalter: ein = weiß mit der globalen Helligkeit (mit dem Scheinwerfer-Helligkeits-Block eingestellt), aus = aus. Beide Scheinwerfer hängen parallel an denselben RGB-Kanälen und schalten gemeinsam.",
+    "args0": [
+      {
+        "options": [
+          [
+            "ein",
+            "ON"
+          ],
+          [
+            "aus",
+            "OFF"
+          ]
+        ]
+      }
+    ]
+  },
+  "makebit_car_rgb": {
+    "message0": "Scheinwerfer Farbe %1",
+    "tooltip": "Setzt eine vorgegebene Farbe des RGB-Scheinwerfers (PCA9685-Kanäle 0/1/2).",
+    "args0": [
+      {
+        "options": [
+          [
+            "Aus",
+            "OFF"
+          ],
+          [
+            "Rot",
+            "RED"
+          ],
+          [
+            "Grün",
+            "GREEN"
+          ],
+          [
+            "Blau",
+            "BLUE"
+          ],
+          [
+            "Weiß",
+            "WHITE"
+          ],
+          [
+            "Cyan",
+            "CYAN"
+          ],
+          [
+            "Magenta",
+            "MAGENTA"
+          ],
+          [
+            "Gelb",
+            "YELLOW"
+          ]
+        ]
+      }
+    ]
+  },
+  "makebit_car_rgb_val": {
+    "message0": "Scheinwerfer Rot %1 Grün %2 Blau %3",
+    "tooltip": "Legt die Scheinwerferfarbe aus RGB-Komponenten (0-255) fest; die Ausgabe wird mit der globalen Helligkeit skaliert."
+  },
+  "makebit_ultrasonic": {
+    "message0": "Ultraschall Trigger %1 Echo %2 Abstand(cm)",
+    "tooltip": "Abstandsmessung mit externem SR04-Ultraschallmodul (Trigger/Echo-Pin wählbar). Rückgabe in Zentimetern; bei Timeout (kein Echo in ~30ms, ca. 5m) wird 0 zurückgegeben.",
+    "args0": [
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": "${board.digitalPins}"
+      }
+    ]
+  },
+  "makebit_rgb_effect": {
+    "message0": "Scheinwerfereffekt %1",
+    "tooltip": "Führt einmal einen Effekt am RGB-Scheinwerfer aus: Flow (Sechsfarbenwechsel), Regenbogen (Farbverlauf), Atmen, Blinken oder Aus. Blockierend bis zum Ende.",
+    "args0": [
+      {
+        "options": [
+          [
+            "Flow",
+            "FLOW"
+          ],
+          [
+            "Regenbogen",
+            "RAINBOW"
+          ],
+          [
+            "Atmen",
+            "BREATH"
+          ],
+          [
+            "Blinken",
+            "BLINK"
+          ],
+          [
+            "Aus",
+            "OFF"
+          ]
+        ]
+      }
+    ]
+  },
+  "makebit_car_trim": {
+    "message0": "Auto Vorwärts-Trimmen links %1 rechts %2",
+    "tooltip": "Korrigiert das Driften nach vorn: Ausgabe der linken/rechten Motoren beim Vorwärtsfahren in Prozent (0-100, Standard 100 = keine Korrektur). Drift nach rechts -> linken Wert verringern; Drift nach links -> rechten Wert verringern. Wirkt auf vorwärts drehende Räder bei Vorwärtsfahrt/Kurve/Drehung auf der Stelle; Rückwärts bleibt unverändert."
+  },
+  "makebit_rgb_brightness": {
+    "message0": "Scheinwerfer-Helligkeit %1",
+    "tooltip": "Legt die globale Helligkeit (0-255, Standard 255 = voll) fest: nachfolgende Farb-, Effekt-, Ein- und eigene RGB-Blöcke erscheinen mit dieser Helligkeit."
+  }
+}
