@@ -1,0 +1,433 @@
+[
+  {
+    "type": "makebit_car_init",
+    "message0": "初始化小车（驱动板I2C地址0x41）",
+    "args0": [],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#006400",
+    "tooltip": "初始化MakeBit小车PCA9685电机驱动芯片（I2C地址0x41，PWM 50Hz）。使用小车、舵机、车载风扇、LED积木前建议先放置本积木。",
+    "icon": "fa-light fa-flag-checkered"
+  },
+  {
+    "type": "makebit_car_ctrl",
+    "message0": "小车 %1",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "ACTION",
+        "options": [
+          [
+            "前进",
+            "FORWARD"
+          ],
+          [
+            "后退",
+            "BACKWARD"
+          ],
+          [
+            "左转",
+            "LEFT"
+          ],
+          [
+            "右转",
+            "RIGHT"
+          ],
+          [
+            "停止",
+            "STOP"
+          ],
+          [
+            "原地左旋",
+            "SPIN_LEFT"
+          ],
+          [
+            "原地右旋",
+            "SPIN_RIGHT"
+          ]
+        ]
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#006400",
+    "tooltip": "以默认速度255控制小车：前进、后退、左转、右转、停止、原地左旋、原地右旋。",
+    "icon": "fa-light fa-car-side"
+  },
+  {
+    "type": "makebit_car_ctrl_speed",
+    "message0": "小车 %1 速度 %2",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "ACTION",
+        "options": [
+          [
+            "前进",
+            "FORWARD"
+          ],
+          [
+            "后退",
+            "BACKWARD"
+          ],
+          [
+            "左转",
+            "LEFT"
+          ],
+          [
+            "右转",
+            "RIGHT"
+          ],
+          [
+            "停止",
+            "STOP"
+          ],
+          [
+            "原地左旋",
+            "SPIN_LEFT"
+          ],
+          [
+            "原地右旋",
+            "SPIN_RIGHT"
+          ]
+        ]
+      },
+      {
+        "type": "input_value",
+        "name": "SPEED",
+        "check": "Number"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#006400",
+    "inputsInline": true,
+    "tooltip": "以指定速度（0-255）控制小车动作：前进、后退、左转、右转、停止、原地左旋、原地右旋。",
+    "icon": "fa-light fa-car-side"
+  },
+  {
+    "type": "makebit_motor",
+    "message0": "电机 %1 %2 速度 %3",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "MOTOR",
+        "options": [
+          [
+            "左电机",
+            "LEFT"
+          ],
+          [
+            "右电机",
+            "RIGHT"
+          ]
+        ]
+      },
+      {
+        "type": "field_dropdown",
+        "name": "DIR",
+        "options": [
+          [
+            "正转",
+            "FWD"
+          ],
+          [
+            "反转",
+            "REV"
+          ]
+        ]
+      },
+      {
+        "type": "input_value",
+        "name": "SPEED",
+        "check": "Number"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#006400",
+    "inputsInline": true,
+    "tooltip": "单独控制左电机或右电机正转、反转，速度0-255，速度0表示该电机停转。",
+    "icon": "fa-light fa-gears"
+  },
+  {
+    "type": "makebit_car_trim",
+    "message0": "小车 前进校正 左 %1 右 %2",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "LEFT",
+        "check": "Number"
+      },
+      {
+        "type": "input_value",
+        "name": "RIGHT",
+        "check": "Number"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#006400",
+    "inputsInline": true,
+    "tooltip": "校正前进跑偏：设置左右电机正转输出百分比（0-100，默认100不校正）。前进向右偏→减小左值；向左偏→减小右值。影响前进、转弯与原地旋转中的正转轮，后退不变。",
+    "icon": "fa-light fa-sliders"
+  },
+  {
+    "type": "makebit_car_servo",
+    "message0": "小车舵机 角度 %1",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "ANGLE",
+        "check": "Number"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#0000CD",
+    "inputsInline": true,
+    "tooltip": "设置车载舵机（PCA9685通道3）角度0-180度，对应脉宽600-2400微秒。",
+    "icon": "fa-light fa-sliders"
+  },
+  {
+    "type": "makebit_car_fan",
+    "message0": "车载风扇 %1 速度 %2",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "FANDIR",
+        "options": [
+          [
+            "正转",
+            "FWD"
+          ],
+          [
+            "反转",
+            "REV"
+          ],
+          [
+            "停止",
+            "STOP"
+          ]
+        ]
+      },
+      {
+        "type": "input_value",
+        "name": "SPEED",
+        "check": "Number"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#0000CD",
+    "inputsInline": true,
+    "tooltip": "控制车载风扇电机（PCA9685通道4/5）正转、反转或停止，速度0-255，选择停止时忽略速度。",
+    "icon": "fa-light fa-fan"
+  },
+  {
+    "type": "makebit_buzzer",
+    "message0": "蜂鸣器 引脚 %1 %2",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "PIN",
+        "options": "${board.digitalPins}"
+      },
+      {
+        "type": "field_dropdown",
+        "name": "STATE",
+        "options": [
+          [
+            "响",
+            "ON"
+          ],
+          [
+            "不响",
+            "OFF"
+          ]
+        ]
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#D2691E",
+    "tooltip": "控制有源蜂鸣器模块（低电平触发）：响或不响。",
+    "icon": "fa-light fa-bell"
+  },
+  {
+    "type": "makebit_car_led",
+    "message0": "探照灯 %1",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "STATE",
+        "options": [
+          [
+            "亮",
+            "ON"
+          ],
+          [
+            "灭",
+            "OFF"
+          ]
+        ]
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#C814B8",
+    "inputsInline": true,
+    "tooltip": "探照灯开关：亮=按全局亮度点亮白光（先用「探照灯 亮度」积木设置），灭=熄灭（两个探照灯并联在同一RGB通道，同步动作）。",
+    "icon": "fa-light fa-lightbulb"
+  },
+  {
+    "type": "makebit_car_rgb",
+    "message0": "探照灯 颜色 %1",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "COLOR",
+        "options": [
+          [
+            "灭",
+            "OFF"
+          ],
+          [
+            "红",
+            "RED"
+          ],
+          [
+            "绿",
+            "GREEN"
+          ],
+          [
+            "蓝",
+            "BLUE"
+          ],
+          [
+            "白",
+            "WHITE"
+          ],
+          [
+            "青",
+            "CYAN"
+          ],
+          [
+            "品红",
+            "MAGENTA"
+          ],
+          [
+            "黄",
+            "YELLOW"
+          ]
+        ]
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#C814B8",
+    "tooltip": "设置小车RGB探照灯（PCA9685通道0/1/2）的预设颜色。",
+    "icon": "fa-light fa-lightbulb"
+  },
+  {
+    "type": "makebit_car_rgb_val",
+    "message0": "探照灯 红 %1 绿 %2 蓝 %3",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "R",
+        "check": "Number"
+      },
+      {
+        "type": "input_value",
+        "name": "G",
+        "check": "Number"
+      },
+      {
+        "type": "input_value",
+        "name": "B",
+        "check": "Number"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#C814B8",
+    "inputsInline": true,
+    "tooltip": "按RGB分量（0-255）自定义小车探照灯颜色，实际亮度按「探照灯 亮度」全局亮度缩放。",
+    "icon": "fa-light fa-palette"
+  },
+  {
+    "type": "makebit_rgb_effect",
+    "message0": "探照灯特效 %1",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "EFFECT",
+        "options": [
+          [
+            "流水",
+            "FLOW"
+          ],
+          [
+            "彩虹",
+            "RAINBOW"
+          ],
+          [
+            "呼吸",
+            "BREATH"
+          ],
+          [
+            "闪烁",
+            "BLINK"
+          ],
+          [
+            "熄灭",
+            "OFF"
+          ]
+        ]
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#C814B8",
+    "tooltip": "在RGB探照灯上执行一次特效：流水（六色轮换）、彩虹（色相渐变）、呼吸、闪烁或熄灭，阻塞执行完毕后返回。",
+    "icon": "fa-light fa-wave-square"
+  },
+  {
+    "type": "makebit_rgb_brightness",
+    "message0": "探照灯 亮度 %1",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "BRIGHTNESS",
+        "check": "Number"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#C814B8",
+    "inputsInline": true,
+    "tooltip": "设置探照灯的全局亮度（0-255，默认255全亮）：之后「探照灯 颜色」「探照灯特效」「探照灯 亮」「探照灯 红/绿/蓝」都按此亮度显示。",
+    "icon": "fa-light fa-sun"
+  },
+  {
+    "type": "makebit_ultrasonic",
+    "message0": "超声波 发射 %1 接收 %2 距离(cm)",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "TRIG",
+        "options": "${board.digitalPins}"
+      },
+      {
+        "type": "field_dropdown",
+        "name": "ECHO",
+        "options": "${board.digitalPins}"
+      }
+    ],
+    "output": "Number",
+    "colour": "#006400",
+    "tooltip": "外接SR04超声波模块测距（发射/接收引脚可选），返回距离厘米，超时（约5米内无回波）返回0。",
+    "icon": "fa-light fa-ruler-horizontal"
+  }
+]

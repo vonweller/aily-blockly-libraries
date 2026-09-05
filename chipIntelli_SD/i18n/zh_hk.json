@@ -1,0 +1,247 @@
+{
+  "toolbox_name": "SD卡",
+  "toolbox_labels": {
+    "配置引脚并自动初始化": "配置引腳並自動初始化",
+    "诊断与卸载": "診斷與卸載",
+    "文件与目录": "檔案與目錄",
+    "文件状态与读取": "檔案狀態與讀取",
+    "写入与控制": "寫入與控制"
+  },
+  "chipintelli_sd_init_pins": {
+    "message0": "初始化 CI13XX SD 卡 SCK %1 MISO %2 MOSI %3 CS %4",
+    "tooltip": "在 setup 中使用自訂 GPIO 軟件 SPI 引腳初始化 SD 卡，參數順序為 SCK、MISO、MOSI、CS"
+  },
+  "chipintelli_sd_error_info": {
+    "message0": "CI13XX SD 最近錯誤 %1",
+    "tooltip": "讀取最近一次底層 SD 卡操作的錯誤碼或附加錯誤資料",
+    "args0": [
+      {
+        "options": [
+          [
+            "錯誤碼",
+            "cardErrorCode"
+          ],
+          [
+            "錯誤資料",
+            "cardErrorData"
+          ]
+        ]
+      }
+    ]
+  },
+  "chipintelli_sd_end": {
+    "message0": "卸載 CI13XX SD 卡並釋放軟件 SPI 引腳",
+    "tooltip": "關閉卡並釋放軟件 SPI、SCK、MISO、MOSI 和 CS；再次使用前必須重新初始化"
+  },
+  "chipintelli_sd_exists": {
+    "message0": "CI13XX SD 路徑 %1 存在",
+    "tooltip": "檢查 SD 卡上的檔案或目錄是否存在"
+  },
+  "chipintelli_sd_path_operation": {
+    "message0": "CI13XX SD %1 路徑 %2",
+    "tooltip": "建立目錄、刪除檔案或刪除空目錄；mkdir 會同時建立缺少的中間目錄",
+    "args0": [
+      {
+        "options": [
+          [
+            "建立目錄",
+            "mkdir"
+          ],
+          [
+            "刪除檔案",
+            "remove"
+          ],
+          [
+            "刪除空目錄",
+            "rmdir"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "chipintelli_sd_file_create": {
+    "message0": "開啟 CI13XX SD 路徑 %1 模式 %2 儲存為檔案 %3",
+    "tooltip": "建立 File 變數並開啟檔案或目錄；FILE_WRITE 從檔案末尾附加",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "唯讀",
+            "FILE_READ"
+          ],
+          [
+            "讀寫並附加",
+            "FILE_WRITE"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "chipintelli_sd_file_create_next": {
+    "message0": "CI13XX 目錄 %1 開啟下一個項目 模式 %2 儲存為檔案 %3",
+    "tooltip": "從已開啟目錄取得下一個檔案或子目錄，並儲存到新的 File 變數",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "唯讀",
+            "FILE_READ"
+          ],
+          [
+            "讀寫並附加",
+            "FILE_WRITE"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "chipintelli_sd_file_is_open": {
+    "message0": "CI13XX 檔案 %1 已成功開啟",
+    "tooltip": "檢查 File 物件是否有效且已開啟"
+  },
+  "chipintelli_sd_file_is_directory": {
+    "message0": "CI13XX 檔案 %1 是目錄",
+    "tooltip": "判斷目前 File 物件是否代表目錄"
+  },
+  "chipintelli_sd_file_name": {
+    "message0": "CI13XX 檔案 %1 名稱",
+    "tooltip": "傳回檔案或目錄的 8.3 短檔名"
+  },
+  "chipintelli_sd_file_read": {
+    "message0": "從 CI13XX 檔案 %1 %2",
+    "tooltip": "讀取或查看下一個位元組；沒有資料時傳回 -1，peek 不移動檔案位置",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "讀取一個位元組",
+            "read"
+          ],
+          [
+            "查看下一個位元組",
+            "peek"
+          ]
+        ]
+      }
+    ]
+  },
+  "chipintelli_sd_file_available": {
+    "message0": "CI13XX 檔案 %1 %2",
+    "tooltip": "傳回目前可讀或可寫的位元組數",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "剩餘可讀位元組數",
+            "available"
+          ],
+          [
+            "目前可寫位元組數",
+            "availableForWrite"
+          ]
+        ]
+      }
+    ]
+  },
+  "chipintelli_sd_file_position": {
+    "message0": "CI13XX 檔案 %1 %2",
+    "tooltip": "傳回目前讀寫位置或檔案大小",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "目前位置",
+            "position"
+          ],
+          [
+            "大小（位元組）",
+            "size"
+          ]
+        ]
+      }
+    ]
+  },
+  "chipintelli_sd_file_seek": {
+    "message0": "設定 CI13XX 檔案 %1 位置為 %2 成功",
+    "tooltip": "把檔案位置移到指定的絕對位元組偏移，並傳回是否成功"
+  },
+  "chipintelli_sd_file_write": {
+    "message0": "向 CI13XX 檔案 %1 %2 資料 %3 進制 %4",
+    "tooltip": "使用 write、print 或 println 寫入；進制只用於 print/println 的數值",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "原始寫入",
+            "write"
+          ],
+          [
+            "列印",
+            "print"
+          ],
+          [
+            "列印並換行",
+            "println"
+          ]
+        ]
+      },
+      null,
+      {
+        "options": [
+          [
+            "自動",
+            "AUTO"
+          ],
+          [
+            "二進制",
+            "BIN"
+          ],
+          [
+            "八進制",
+            "OCT"
+          ],
+          [
+            "十進制",
+            "DEC"
+          ],
+          [
+            "十六進制",
+            "HEX"
+          ]
+        ]
+      }
+    ]
+  },
+  "chipintelli_sd_file_control": {
+    "message0": "CI13XX 檔案 %1 %2",
+    "tooltip": "刷新檔案、重設目錄遍歷位置或關閉 File 物件",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "刷新寫入快取",
+            "flush"
+          ],
+          [
+            "目錄回到第一個項目",
+            "rewindDirectory"
+          ],
+          [
+            "關閉",
+            "close"
+          ]
+        ]
+      }
+    ]
+  }
+}

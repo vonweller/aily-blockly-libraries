@@ -1,0 +1,247 @@
+{
+  "toolbox_name": "SD-Karte",
+  "toolbox_labels": {
+    "配置引脚并自动初始化": "Pins konfigurieren und automatisch initialisieren",
+    "诊断与卸载": "Diagnose und Aushängen",
+    "文件与目录": "Dateien und Verzeichnisse",
+    "文件状态与读取": "Dateistatus und Lesen",
+    "写入与控制": "Schreiben und Steuerung"
+  },
+  "chipintelli_sd_init_pins": {
+    "message0": "CI13XX-SD-Karte initialisieren SCK %1 MISO %2 MOSI %3 CS %4",
+    "tooltip": "Die SD-Karte in setup mit benutzerdefinierten GPIO-Software-SPI-Pins in der Reihenfolge SCK, MISO, MOSI, CS initialisieren"
+  },
+  "chipintelli_sd_error_info": {
+    "message0": "letzter CI13XX-SD-Fehler %1",
+    "tooltip": "Fehlercode oder zusätzliche Fehlerdaten der letzten hardwarenahen SD-Operation lesen",
+    "args0": [
+      {
+        "options": [
+          [
+            "Fehlercode",
+            "cardErrorCode"
+          ],
+          [
+            "Fehlerdaten",
+            "cardErrorData"
+          ]
+        ]
+      }
+    ]
+  },
+  "chipintelli_sd_end": {
+    "message0": "CI13XX-SD-Karte aushängen und Software-SPI-Pins freigeben",
+    "tooltip": "Karte schließen und Software-SPI, SCK, MISO, MOSI und CS freigeben; vor erneuter Verwendung neu initialisieren"
+  },
+  "chipintelli_sd_exists": {
+    "message0": "CI13XX SD-Pfad %1 existiert",
+    "tooltip": "Prüfen, ob eine Datei oder ein Verzeichnis auf der SD-Karte existiert"
+  },
+  "chipintelli_sd_path_operation": {
+    "message0": "CI13XX SD %1 Pfad %2",
+    "tooltip": "Ein Verzeichnis erstellen, eine Datei löschen oder ein leeres Verzeichnis entfernen; mkdir erstellt auch fehlende übergeordnete Verzeichnisse",
+    "args0": [
+      {
+        "options": [
+          [
+            "Verzeichnis erstellen",
+            "mkdir"
+          ],
+          [
+            "Datei löschen",
+            "remove"
+          ],
+          [
+            "leeres Verzeichnis entfernen",
+            "rmdir"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "chipintelli_sd_file_create": {
+    "message0": "CI13XX SD-Pfad %1 im Modus %2 öffnen und als Datei %3 speichern",
+    "tooltip": "Eine File-Variable erstellen und eine Datei oder ein Verzeichnis öffnen; FILE_WRITE hängt am Dateiende an",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "nur lesen",
+            "FILE_READ"
+          ],
+          [
+            "lesen/schreiben und anhängen",
+            "FILE_WRITE"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "chipintelli_sd_file_create_next": {
+    "message0": "im CI13XX Verzeichnis %1 nächsten Eintrag im Modus %2 öffnen und als Datei %3 speichern",
+    "tooltip": "Die nächste Datei oder das nächste Unterverzeichnis eines geöffneten Verzeichnisses in einer neuen File-Variable speichern",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "nur lesen",
+            "FILE_READ"
+          ],
+          [
+            "lesen/schreiben und anhängen",
+            "FILE_WRITE"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "chipintelli_sd_file_is_open": {
+    "message0": "CI13XX Datei %1 erfolgreich geöffnet",
+    "tooltip": "Prüfen, ob das File-Objekt gültig und geöffnet ist"
+  },
+  "chipintelli_sd_file_is_directory": {
+    "message0": "CI13XX Datei %1 ist ein Verzeichnis",
+    "tooltip": "Prüfen, ob das aktuelle File-Objekt ein Verzeichnis darstellt"
+  },
+  "chipintelli_sd_file_name": {
+    "message0": "Name der CI13XX Datei %1",
+    "tooltip": "Den 8.3-Kurznamen der Datei oder des Verzeichnisses zurückgeben"
+  },
+  "chipintelli_sd_file_read": {
+    "message0": "aus CI13XX Datei %1 %2",
+    "tooltip": "Das nächste Byte lesen oder ansehen; ohne Daten -1 zurückgeben; peek verschiebt die Dateiposition nicht",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "ein Byte lesen",
+            "read"
+          ],
+          [
+            "nächstes Byte ansehen",
+            "peek"
+          ]
+        ]
+      }
+    ]
+  },
+  "chipintelli_sd_file_available": {
+    "message0": "CI13XX Datei %1 %2",
+    "tooltip": "Die aktuell zum Lesen oder Schreiben verfügbare Bytezahl zurückgeben",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "verbleibende lesbare Bytes",
+            "available"
+          ],
+          [
+            "aktuell schreibbare Bytes",
+            "availableForWrite"
+          ]
+        ]
+      }
+    ]
+  },
+  "chipintelli_sd_file_position": {
+    "message0": "CI13XX Datei %1 %2",
+    "tooltip": "Aktuelle Lese-/Schreibposition oder Dateigröße zurückgeben",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "aktuelle Position",
+            "position"
+          ],
+          [
+            "Größe (Bytes)",
+            "size"
+          ]
+        ]
+      }
+    ]
+  },
+  "chipintelli_sd_file_seek": {
+    "message0": "Position der CI13XX Datei %1 erfolgreich auf %2 setzen",
+    "tooltip": "Zur angegebenen absoluten Byteposition springen und den Erfolg zurückgeben"
+  },
+  "chipintelli_sd_file_write": {
+    "message0": "in CI13XX Datei %1 %2 Daten %3 Basis %4",
+    "tooltip": "Mit write, print oder println schreiben; die Zahlenbasis gilt nur für numerische print/println-Werte",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "roh schreiben",
+            "write"
+          ],
+          [
+            "drucken",
+            "print"
+          ],
+          [
+            "drucken mit Zeilenumbruch",
+            "println"
+          ]
+        ]
+      },
+      null,
+      {
+        "options": [
+          [
+            "automatisch",
+            "AUTO"
+          ],
+          [
+            "binär",
+            "BIN"
+          ],
+          [
+            "oktal",
+            "OCT"
+          ],
+          [
+            "dezimal",
+            "DEC"
+          ],
+          [
+            "hexadezimal",
+            "HEX"
+          ]
+        ]
+      }
+    ]
+  },
+  "chipintelli_sd_file_control": {
+    "message0": "CI13XX Datei %1 %2",
+    "tooltip": "Datei leeren, Verzeichnisdurchlauf zurücksetzen oder File-Objekt schließen",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Schreibpuffer leeren",
+            "flush"
+          ],
+          [
+            "Verzeichnis zum ersten Eintrag zurücksetzen",
+            "rewindDirectory"
+          ],
+          [
+            "schließen",
+            "close"
+          ]
+        ]
+      }
+    ]
+  }
+}

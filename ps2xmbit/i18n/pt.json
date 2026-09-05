@@ -1,0 +1,267 @@
+{
+  "toolbox_name": "Controle PS2",
+  "ps2x_init": {
+    "message0": "inicializar controle PS2 %1 ATT %2 CMD %3 DAT %4 CLK %5",
+    "tooltip": "Inicializa um controle PS2 (DualShock 2; biblioteca universal, SPI de hardware). ATT é o chip select; em núcleos com remapeamento SPI (ex.: ESP32) CMD/DAT/CLK podem ser qualquer GPIO, enquanto em núcleos com pinos SPI fixos (ex.: micro:bit V2) devem ser P15(MOSI)/P14(MISO)/P13(SCK). Fiação de referência para o soquete PS2 do Chuanglebo MakeBit: ATT=P12, CMD=P15, DAT=P14, CLK=P13. Coloque na inicialização; o controle é lido automaticamente a cada laço."
+  },
+  "ps2x_connected": {
+    "message0": "controle %1 conectado",
+    "tooltip": "Indica se o controle está conectado e respondendo. Desconectado, os analógicos retornam 0 e todos os botões ficam soltos; ao reconectar, é reconfigurado automaticamente."
+  },
+  "ps2x_button_pressed": {
+    "message0": "controle %1 botão %2 está pressionado",
+    "tooltip": "Indica se o botão escolhido está sendo pressionado no momento (fica verdadeiro enquanto é mantido).",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Triângulo △",
+            "TRIANGLE"
+          ],
+          [
+            "Círculo ○",
+            "CIRCLE"
+          ],
+          [
+            "Cruz ✕",
+            "CROSS"
+          ],
+          [
+            "Quadrado □",
+            "SQUARE"
+          ],
+          [
+            "Cima ↑",
+            "UP"
+          ],
+          [
+            "Baixo ↓",
+            "DOWN"
+          ],
+          [
+            "Esquerda ←",
+            "LEFT"
+          ],
+          [
+            "Direita →",
+            "RIGHT"
+          ],
+          [
+            "L1",
+            "L1"
+          ],
+          [
+            "R1",
+            "R1"
+          ],
+          [
+            "L2",
+            "L2"
+          ],
+          [
+            "R2",
+            "R2"
+          ],
+          [
+            "SELECT",
+            "SELECT"
+          ],
+          [
+            "START",
+            "START"
+          ],
+          [
+            "L3 pressionar analógico esquerdo",
+            "L3"
+          ],
+          [
+            "R3 pressionar analógico direito",
+            "R3"
+          ]
+        ]
+      }
+    ]
+  },
+  "ps2x_button_newpress": {
+    "message0": "controle %1 botão %2 recém-pressionado",
+    "tooltip": "Indica se o botão escolhido acabou de ser pressionado desde o laço anterior (verdadeiro por apenas um laço, ideal para disparar ações).",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Triângulo △",
+            "TRIANGLE"
+          ],
+          [
+            "Círculo ○",
+            "CIRCLE"
+          ],
+          [
+            "Cruz ✕",
+            "CROSS"
+          ],
+          [
+            "Quadrado □",
+            "SQUARE"
+          ],
+          [
+            "Cima ↑",
+            "UP"
+          ],
+          [
+            "Baixo ↓",
+            "DOWN"
+          ],
+          [
+            "Esquerda ←",
+            "LEFT"
+          ],
+          [
+            "Direita →",
+            "RIGHT"
+          ],
+          [
+            "L1",
+            "L1"
+          ],
+          [
+            "R1",
+            "R1"
+          ],
+          [
+            "L2",
+            "L2"
+          ],
+          [
+            "R2",
+            "R2"
+          ],
+          [
+            "SELECT",
+            "SELECT"
+          ],
+          [
+            "START",
+            "START"
+          ],
+          [
+            "L3 pressionar analógico esquerdo",
+            "L3"
+          ],
+          [
+            "R3 pressionar analógico direito",
+            "R3"
+          ]
+        ]
+      }
+    ]
+  },
+  "ps2x_button_released": {
+    "message0": "controle %1 botão %2 recém-solto",
+    "tooltip": "Indica se o botão escolhido acabou de ser solto desde o laço anterior.",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Triângulo △",
+            "TRIANGLE"
+          ],
+          [
+            "Círculo ○",
+            "CIRCLE"
+          ],
+          [
+            "Cruz ✕",
+            "CROSS"
+          ],
+          [
+            "Quadrado □",
+            "SQUARE"
+          ],
+          [
+            "Cima ↑",
+            "UP"
+          ],
+          [
+            "Baixo ↓",
+            "DOWN"
+          ],
+          [
+            "Esquerda ←",
+            "LEFT"
+          ],
+          [
+            "Direita →",
+            "RIGHT"
+          ],
+          [
+            "L1",
+            "L1"
+          ],
+          [
+            "R1",
+            "R1"
+          ],
+          [
+            "L2",
+            "L2"
+          ],
+          [
+            "R2",
+            "R2"
+          ],
+          [
+            "SELECT",
+            "SELECT"
+          ],
+          [
+            "START",
+            "START"
+          ],
+          [
+            "L3 pressionar analógico esquerdo",
+            "L3"
+          ],
+          [
+            "R3 pressionar analógico direito",
+            "R3"
+          ]
+        ]
+      }
+    ]
+  },
+  "ps2x_stick": {
+    "message0": "controle %1 analógico %2 posição (-100~100)",
+    "tooltip": "Lê a posição do analógico: 0 no centro, extremos em -100 ou 100 (convertido de 0..255). Requer modo analógico; retorna 0 se desconectado.",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "analógico esquerdo X",
+            "LX"
+          ],
+          [
+            "analógico esquerdo Y",
+            "LY"
+          ],
+          [
+            "analógico direito X",
+            "RX"
+          ],
+          [
+            "analógico direito Y",
+            "RY"
+          ]
+        ]
+      }
+    ]
+  },
+  "ps2x_set_vibration": {
+    "message0": "definir vibração do controle %1 motor pequeno %2 motor grande intensidade %3",
+    "tooltip": "Define a vibração: o motor pequeno é apenas liga/desliga (verdadeiro = ligado); o motor grande vai de 0 a 255. Aplicado na próxima leitura automática."
+  }
+}

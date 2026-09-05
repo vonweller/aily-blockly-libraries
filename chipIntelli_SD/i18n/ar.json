@@ -1,0 +1,247 @@
+{
+  "toolbox_name": "بطاقة SD",
+  "toolbox_labels": {
+    "配置引脚并自动初始化": "ضبط الأطراف والتهيئة تلقائيًا",
+    "诊断与卸载": "التشخيص وإلغاء التركيب",
+    "文件与目录": "الملفات والمجلدات",
+    "文件状态与读取": "حالة الملفات وقراءتها",
+    "写入与控制": "الكتابة والتحكم"
+  },
+  "chipintelli_sd_init_pins": {
+    "message0": "تهيئة بطاقة SD لـ CI13XX ‏SCK ‏%1 MISO ‏%2 MOSI ‏%3 CS ‏%4",
+    "tooltip": "تهيئة بطاقة SD داخل setup باستخدام أطراف GPIO مخصصة لـ SPI البرمجي بالترتيب SCK وMISO وMOSI وCS"
+  },
+  "chipintelli_sd_error_info": {
+    "message0": "آخر خطأ SD لـ CI13XX ‏%1",
+    "tooltip": "قراءة رمز الخطأ أو بيانات الخطأ الإضافية لآخر عملية SD منخفضة المستوى",
+    "args0": [
+      {
+        "options": [
+          [
+            "رمز الخطأ",
+            "cardErrorCode"
+          ],
+          [
+            "بيانات الخطأ",
+            "cardErrorData"
+          ]
+        ]
+      }
+    ]
+  },
+  "chipintelli_sd_end": {
+    "message0": "إلغاء تركيب بطاقة SD لـ CI13XX وتحرير أطراف SPI البرمجي",
+    "tooltip": "إغلاق البطاقة وتحرير SPI البرمجي وSCK وMISO وMOSI وCS؛ أعد التهيئة قبل الاستخدام مجددًا"
+  },
+  "chipintelli_sd_exists": {
+    "message0": "مسار SD ‏CI13XX %1 موجود",
+    "tooltip": "التحقق من وجود ملف أو مجلد على بطاقة SD"
+  },
+  "chipintelli_sd_path_operation": {
+    "message0": "SD ‏CI13XX %1 المسار %2",
+    "tooltip": "إنشاء مجلد أو حذف ملف أو إزالة مجلد فارغ؛ ينشئ mkdir أيضًا المجلدات الأصلية المفقودة",
+    "args0": [
+      {
+        "options": [
+          [
+            "إنشاء مجلد",
+            "mkdir"
+          ],
+          [
+            "حذف ملف",
+            "remove"
+          ],
+          [
+            "إزالة مجلد فارغ",
+            "rmdir"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "chipintelli_sd_file_create": {
+    "message0": "فتح مسار SD ‏CI13XX %1 بالوضع %2 وحفظه كملف %3",
+    "tooltip": "إنشاء متغير File وفتح ملف أو مجلد؛ يضيف FILE_WRITE في نهاية الملف",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "للقراءة فقط",
+            "FILE_READ"
+          ],
+          [
+            "قراءة/كتابة وإلحاق",
+            "FILE_WRITE"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "chipintelli_sd_file_create_next": {
+    "message0": "فتح الإدخال التالي في المجلد CI13XX %1 بالوضع %2 وحفظه كملف %3",
+    "tooltip": "جلب الملف أو المجلد الفرعي التالي من مجلد مفتوح وحفظه في متغير File جديد",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "للقراءة فقط",
+            "FILE_READ"
+          ],
+          [
+            "قراءة/كتابة وإلحاق",
+            "FILE_WRITE"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "chipintelli_sd_file_is_open": {
+    "message0": "فُتح الملف CI13XX %1 بنجاح",
+    "tooltip": "التحقق من أن كائن File صالح ومفتوح"
+  },
+  "chipintelli_sd_file_is_directory": {
+    "message0": "الملف CI13XX %1 مجلد",
+    "tooltip": "التحقق مما إذا كان كائن File الحالي يمثل مجلدًا"
+  },
+  "chipintelli_sd_file_name": {
+    "message0": "اسم الملف CI13XX %1",
+    "tooltip": "إرجاع الاسم المختصر 8.3 للملف أو المجلد"
+  },
+  "chipintelli_sd_file_read": {
+    "message0": "من الملف CI13XX %1 ‏%2",
+    "tooltip": "قراءة البايت التالي أو معاينته؛ إرجاع -1 عند غياب البيانات؛ لا يغيّر peek موضع الملف",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "قراءة بايت واحد",
+            "read"
+          ],
+          [
+            "معاينة البايت التالي",
+            "peek"
+          ]
+        ]
+      }
+    ]
+  },
+  "chipintelli_sd_file_available": {
+    "message0": "الملف CI13XX %1 ‏%2",
+    "tooltip": "إرجاع عدد البايتات المتاحة حاليًا للقراءة أو الكتابة",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "البايتات المتبقية للقراءة",
+            "available"
+          ],
+          [
+            "البايتات المتاحة للكتابة",
+            "availableForWrite"
+          ]
+        ]
+      }
+    ]
+  },
+  "chipintelli_sd_file_position": {
+    "message0": "الملف CI13XX %1 ‏%2",
+    "tooltip": "إرجاع موضع القراءة/الكتابة الحالي أو حجم الملف",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "الموضع الحالي",
+            "position"
+          ],
+          [
+            "الحجم (بايت)",
+            "size"
+          ]
+        ]
+      }
+    ]
+  },
+  "chipintelli_sd_file_seek": {
+    "message0": "ضُبط موضع الملف CI13XX %1 على %2 بنجاح",
+    "tooltip": "الانتقال إلى إزاحة البايت المطلقة المحددة وإرجاع نجاح العملية"
+  },
+  "chipintelli_sd_file_write": {
+    "message0": "في الملف CI13XX %1 ‏%2 البيانات %3 الأساس %4",
+    "tooltip": "الكتابة باستخدام write أو print أو println؛ يطبّق الأساس على القيم الرقمية في print/println فقط",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "كتابة خام",
+            "write"
+          ],
+          [
+            "طباعة",
+            "print"
+          ],
+          [
+            "طباعة مع سطر جديد",
+            "println"
+          ]
+        ]
+      },
+      null,
+      {
+        "options": [
+          [
+            "تلقائي",
+            "AUTO"
+          ],
+          [
+            "ثنائي",
+            "BIN"
+          ],
+          [
+            "ثماني",
+            "OCT"
+          ],
+          [
+            "عشري",
+            "DEC"
+          ],
+          [
+            "سداسي عشري",
+            "HEX"
+          ]
+        ]
+      }
+    ]
+  },
+  "chipintelli_sd_file_control": {
+    "message0": "الملف CI13XX %1 ‏%2",
+    "tooltip": "تفريغ الملف أو إعادة تكرار المجلد إلى بدايته أو إغلاق كائن File",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "تفريغ مخزن الكتابة",
+            "flush"
+          ],
+          [
+            "إرجاع المجلد إلى أول إدخال",
+            "rewindDirectory"
+          ],
+          [
+            "إغلاق",
+            "close"
+          ]
+        ]
+      }
+    ]
+  }
+}

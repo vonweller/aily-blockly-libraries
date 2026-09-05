@@ -1,0 +1,267 @@
+{
+  "toolbox_name": "PS2 Gamepad",
+  "ps2x_init": {
+    "message0": "init PS2 gamepad %1 ATT %2 CMD %3 DAT %4 CLK %5",
+    "tooltip": "Initialize a PS2 (DualShock 2) gamepad (universal library, hardware SPI). ATT is the chip select; on cores that support SPI remapping (e.g. ESP32) CMD/DAT/CLK can be any GPIO, while on fixed-SPI-pad cores (e.g. micro:bit V2) they must be P15(MOSI)/P14(MISO)/P13(SCK). Reference wiring for the Chuanglebo MakeBit PS2 socket: ATT=P12, CMD=P15, DAT=P14, CLK=P13. Place it in setup; the gamepad is polled automatically every loop."
+  },
+  "ps2x_connected": {
+    "message0": "gamepad %1 connected",
+    "tooltip": "Whether the gamepad is connected and answering. When disconnected, sticks read 0 and all buttons read released; it reconfigures automatically after reconnecting."
+  },
+  "ps2x_button_pressed": {
+    "message0": "gamepad %1 button %2 is pressed",
+    "tooltip": "Whether the selected button is currently held down (stays true while held).",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Triangle △",
+            "TRIANGLE"
+          ],
+          [
+            "Circle ○",
+            "CIRCLE"
+          ],
+          [
+            "Cross ✕",
+            "CROSS"
+          ],
+          [
+            "Square □",
+            "SQUARE"
+          ],
+          [
+            "Up ↑",
+            "UP"
+          ],
+          [
+            "Down ↓",
+            "DOWN"
+          ],
+          [
+            "Left ←",
+            "LEFT"
+          ],
+          [
+            "Right →",
+            "RIGHT"
+          ],
+          [
+            "L1",
+            "L1"
+          ],
+          [
+            "R1",
+            "R1"
+          ],
+          [
+            "L2",
+            "L2"
+          ],
+          [
+            "R2",
+            "R2"
+          ],
+          [
+            "SELECT",
+            "SELECT"
+          ],
+          [
+            "START",
+            "START"
+          ],
+          [
+            "L3 left stick click",
+            "L3"
+          ],
+          [
+            "R3 right stick click",
+            "R3"
+          ]
+        ]
+      }
+    ]
+  },
+  "ps2x_button_newpress": {
+    "message0": "gamepad %1 button %2 just pressed",
+    "tooltip": "Whether the selected button was pressed since the previous loop (true for one loop only, useful to trigger actions).",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Triangle △",
+            "TRIANGLE"
+          ],
+          [
+            "Circle ○",
+            "CIRCLE"
+          ],
+          [
+            "Cross ✕",
+            "CROSS"
+          ],
+          [
+            "Square □",
+            "SQUARE"
+          ],
+          [
+            "Up ↑",
+            "UP"
+          ],
+          [
+            "Down ↓",
+            "DOWN"
+          ],
+          [
+            "Left ←",
+            "LEFT"
+          ],
+          [
+            "Right →",
+            "RIGHT"
+          ],
+          [
+            "L1",
+            "L1"
+          ],
+          [
+            "R1",
+            "R1"
+          ],
+          [
+            "L2",
+            "L2"
+          ],
+          [
+            "R2",
+            "R2"
+          ],
+          [
+            "SELECT",
+            "SELECT"
+          ],
+          [
+            "START",
+            "START"
+          ],
+          [
+            "L3 left stick click",
+            "L3"
+          ],
+          [
+            "R3 right stick click",
+            "R3"
+          ]
+        ]
+      }
+    ]
+  },
+  "ps2x_button_released": {
+    "message0": "gamepad %1 button %2 just released",
+    "tooltip": "Whether the selected button was released since the previous loop.",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Triangle △",
+            "TRIANGLE"
+          ],
+          [
+            "Circle ○",
+            "CIRCLE"
+          ],
+          [
+            "Cross ✕",
+            "CROSS"
+          ],
+          [
+            "Square □",
+            "SQUARE"
+          ],
+          [
+            "Up ↑",
+            "UP"
+          ],
+          [
+            "Down ↓",
+            "DOWN"
+          ],
+          [
+            "Left ←",
+            "LEFT"
+          ],
+          [
+            "Right →",
+            "RIGHT"
+          ],
+          [
+            "L1",
+            "L1"
+          ],
+          [
+            "R1",
+            "R1"
+          ],
+          [
+            "L2",
+            "L2"
+          ],
+          [
+            "R2",
+            "R2"
+          ],
+          [
+            "SELECT",
+            "SELECT"
+          ],
+          [
+            "START",
+            "START"
+          ],
+          [
+            "L3 left stick click",
+            "L3"
+          ],
+          [
+            "R3 right stick click",
+            "R3"
+          ]
+        ]
+      }
+    ]
+  },
+  "ps2x_stick": {
+    "message0": "gamepad %1 stick %2 position (-100~100)",
+    "tooltip": "Read the stick position: 0 centred, ends at -100 or 100 (converted from raw 0..255). Requires analog mode; returns 0 when disconnected.",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "left stick X",
+            "LX"
+          ],
+          [
+            "left stick Y",
+            "LY"
+          ],
+          [
+            "right stick X",
+            "RX"
+          ],
+          [
+            "right stick Y",
+            "RY"
+          ]
+        ]
+      }
+    ]
+  },
+  "ps2x_set_vibration": {
+    "message0": "set gamepad %1 vibration small motor %2 large motor level %3",
+    "tooltip": "Set vibration: the small motor is on/off only (true = on); the large motor level is 0..255. Applied on the next automatic gamepad poll."
+  }
+}
