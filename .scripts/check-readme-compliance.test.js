@@ -24,7 +24,11 @@ const { rewriteReadmeExampleCalls } = require('./migrate-readme-example-calls');
 const { appendMissingRuntimeVariantExamples } = require('./migrate-readme-runtime-variants');
 const { rewriteReadmeStructure } = require('./migrate-readme-structure');
 const { callWithNamedValueInputs } = require('./check-readme-cross-library-examples');
-const { buildGeneratedCodePreviews } = require('./check-library-generator-coverage');
+const {
+  buildGeneratedCodePreviews,
+  loadGenerator,
+  probeGeneratorHandler,
+} = require('./check-library-generator-coverage');
 const { loadLibraryContract } = require('./readme-library-contracts');
 const {
   contractPathForLibrary,
@@ -616,6 +620,44 @@ test('generated-code probing uses real variable names, wrapper connectivity, and
   const aiVox = build('ai-vox-xzai');
   assert.deepEqual(aiVox.errors, []);
   assert.match(aiVox.previews.get('aivox3_set_screen_light'), /analogWrite\(kDisplayBacklightPin, 1\)/);
+});
+
+test('generated-code getValue probing resolves variables and records each slot kind', () => {
+  const block = {
+    type: 'get_value_probe',
+    output: 'Number',
+    args0: [
+      { type: 'field_variable', name: 'VAR', variable: 'sensor' },
+      { type: 'input_value', name: 'VALUE', check: 'Number' },
+      { type: 'input_statement', name: 'BODY' },
+      { type: 'field_input', name: 'LABEL', text: 'ready' },
+    ],
+  };
+  for (const receiver of ['generator', 'Arduino']) {
+    const loaded = loadGenerator('get-value-probe', `
+      Arduino.forBlock.get_value_probe = function(block, generator) {
+        ${receiver}.nameDB_.getName = function(id, kind) {
+          if (id !== 'sensor' || kind !== 'VARIABLE') throw new Error('wrong variable lookup');
+          return 'resolved_sensor';
+        };
+        const variable = ${receiver}.getValue(block, 'VAR', 'field_variable');
+        const value = ${receiver}.getValue(block, 'VALUE', 'input_value');
+        const body = ${receiver}.getValue(block, 'BODY', 'input_statement');
+        const label = ${receiver}.getValue(block, 'LABEL');
+        return [variable + '.' + label + '(' + value + ')' + body, 0];
+      };
+    `);
+    assert.equal(loaded.error, null);
+    const probe = probeGeneratorHandler(loaded, loaded.handlers.get_value_probe, block);
+    assert.equal(probe.error, null, receiver);
+    assert.equal(probe.generatedCode, 'resolved_sensor.ready(1)', receiver);
+    assert.deepEqual(probe.reads, [
+      { kind: 'field', name: 'VAR' },
+      { kind: 'value', name: 'VALUE' },
+      { kind: 'statement', name: 'BODY' },
+      { kind: 'field', name: 'LABEL' },
+    ], receiver);
+  }
 });
 
 test('no-direct generated code requires a versioned classification with an explicit preview', () => {

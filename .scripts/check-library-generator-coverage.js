@@ -179,6 +179,15 @@ function createNoopProxy(overrides = {}) {
   });
 }
 
+function syntheticGetValue(block, name, type = '') {
+  if (type === 'input_value') return this.valueToCode(block, name, this.ORDER_ATOMIC);
+  if (type === 'input_statement') return this.statementToCode(block, name).replace(/^\s*/, '');
+  if (type === 'field_variable') {
+    return this.nameDB_.getName(block.getFieldValue(name), 'VARIABLE');
+  }
+  return block.getFieldValue(name);
+}
+
 function loadGenerator(library, source) {
   let activeProbe = null;
   const captureActiveEffect = (kind, args) => {
@@ -250,6 +259,7 @@ function loadGenerator(library, source) {
     nameDB: nameDatabase,
     nameDB_: nameDatabase,
     getVariableName: identityName,
+    getValue: syntheticGetValue,
     STATEMENT_PREFIX: '',
     STATEMENT_SUFFIX: '',
     INFINITE_LOOP_TRAP: '',
@@ -574,6 +584,7 @@ function probeGeneratorHandler(loaded, handler, block, blockContract) {
       valueToCode,
       statementToCode,
       getVariableName: value => String(value == null || value === '' ? 'item' : value),
+      getValue: syntheticGetValue,
       nameDB: nameDb,
       nameDB_: nameDb,
       codeDict: { macros: Object.create(null) },
