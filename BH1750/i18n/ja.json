@@ -1,0 +1,61 @@
+{
+  "toolbox_name": "BH1750",
+  "bh1750_init_with_wire": {
+    "message0": "光センサーの初期化 %1\nパターン %2\nアドレス %3\n%4 を使用します",
+    "tooltip": "BH1750 光センサーを初期化し、使用する I2C アドレスと I2C バスを指定します。",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "連続高解像度モード（1lux、120ms）",
+            "CONTINUOUS_HIGH_RES_MODE"
+          ],
+          [
+            "連続高解像度モード2（0.5lux、120ms）",
+            "CONTINUOUS_HIGH_RES_MODE_2"
+          ],
+          [
+            "連続低解像度モード (4lux、16ms)",
+            "CONTINUOUS_LOW_RES_MODE"
+          ],
+          [
+            "シングルショット高解像度モード（1lux、120ms）",
+            "ONE_TIME_HIGH_RES_MODE"
+          ],
+          [
+            "単発高解像度モード2（0.5lux、120ms）",
+            "ONE_TIME_HIGH_RES_MODE_2"
+          ],
+          [
+            "シングルショット低解像度モード (4lux、16ms)",
+            "ONE_TIME_LOW_RES_MODE"
+          ],
+          [
+            "未構成モード (UNCONFIGURED)",
+            "UNCONFIGURED"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "0x23 (ADDR ローレベル)",
+            "0x23"
+          ],
+          [
+            "0x5C (ADDR ハイレベル)",
+            "0x5C"
+          ]
+        ]
+      },
+      {
+        "options": "${board.i2c}"
+      }
+    ]
+  },
+  "bh1750_read_light_level": {
+    "message0": "光センサーの光値を読み取ります %1",
+    "tooltip": "BH1750センサーの光の強さ（ルクス）を読み取ります。"
+  }
+}

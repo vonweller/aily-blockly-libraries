@@ -1,0 +1,83 @@
+{
+  "toolbox_name": "Barramento ESP32 CAN",
+  "esp32_can_init": {
+    "message0": "Inicializar barramento CAN Receber pino %1 Enviar pino %2 Modo %3 taxa de baud %4",
+    "tooltip": "Inicialize o ESP32 CAN Bus (TWAI)",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "Modo normal",
+            "TWAI_MODE_NORMAL"
+          ],
+          [
+            "Modo somente ouvir",
+            "TWAI_MODE_LISTEN_ONLY"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "500Kbits",
+            "TWAI_TIMING_CONFIG_500KBITS()"
+          ],
+          [
+            "100Kbits",
+            "TWAI_TIMING_CONFIG_100KBITS()"
+          ],
+          [
+            "125Kbits",
+            "TWAI_TIMING_CONFIG_125KBITS()"
+          ],
+          [
+            "250Kbits",
+            "TWAI_TIMING_CONFIG_250KBITS()"
+          ],
+          [
+            "1Mbits",
+            "TWAI_TIMING_CONFIG_1MBITS()"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_can_configure_alerts": {
+    "message0": "Configurar alertas CAN %1 Receber dados %2 Enviar idle %3 Enviar bem-sucedido %4 Enviar falhado %5 Erro passivo %6 Erro do barramento %7 Fila completa de recepção %8",
+    "tooltip": "Configure alertas de barramento CAN para serem monitorados"
+  },
+  "esp32_can_send_message": {
+    "message0": "Enviar mensagem CAN Identificador (ID) %1 Comprimento de Dados %2 Dados %3",
+    "tooltip": "Enviar mensagens CAN em formato de byte separado por vírgulas"
+  },
+  "esp32_can_receive_message": {
+    "message0": "Receber mensagens CAN",
+    "tooltip": "Receber e processar mensagens CAN"
+  },
+  "esp32_can_check_alerts": {
+    "message0": "Verifique o alerta CAN",
+    "tooltip": "Verifique o alerta do ônibus CAN"
+  },
+  "esp32_can_message_available": {
+    "message0": "Mensagens CAN estão disponíveis",
+    "tooltip": "Verifique se há mensagens CAN disponíveis"
+  },
+  "esp32_can_get_message_id": {
+    "message0": "Obtenha o ID da mensagem CAN",
+    "tooltip": "Recupera o ID da mensagem CAN recebida"
+  },
+  "esp32_can_get_message_length": {
+    "message0": "Obtenha o comprimento da mensagem CAN",
+    "tooltip": "Obtenha o comprimento dos dados da mensagem CAN recebida"
+  },
+  "esp32_can_get_message_data": {
+    "message0": "Obter bytes de dados de mensagens CAN %1",
+    "tooltip": "Recupera o byte de dados na localização especificada da mensagem CAN recebida"
+  },
+  "esp32_can_transmit_interval": {
+    "message0": "Defina o intervalo de envio de mensagens CAN para %1 milissegundos",
+    "tooltip": "Defina o intervalo para enviar mensagens CAN em um horário agendado"
+  }
+}

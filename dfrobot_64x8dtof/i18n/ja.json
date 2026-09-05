@@ -1,0 +1,76 @@
+{
+  "toolbox_name": "64x8 dTOF行列測距",
+  "dtof64x8_init_uart": {
+    "message0": "64x8 dTOFをシリアルポート%1初期化%2RX%3TX%4",
+    "tooltip": "ESP32ハードウェアシリアルポート経由で64x8 dTOFを初期化すると、センサーのボーレートは921600に固定されます。",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Serial1",
+            "Serial1"
+          ],
+          [
+            "Serial2",
+            "Serial2"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "dtof64x8_config_frame_single": {
+    "message0": "64x8 dTOF%1シングルフレームモードで設定されています",
+    "tooltip": "センサーはシングルフレームモードで構成されています。 公式図書館はまだ連続モードを実装していません。"
+  },
+  "dtof64x8_config_full": {
+    "message0": "64x8 dTOF%1フルフレーム出力で設定されています",
+    "tooltip": "64*8のレンジファインダーポイントすべてに出力を設定してください。"
+  },
+  "dtof64x8_config_line": {
+    "message0": "64x8 dTOF%1構成単一ライン出力ライン%2",
+    "tooltip": "指定された行の64ポイントに出力を設定し、行番号は1から8の範囲で設定します。"
+  },
+  "dtof64x8_config_point": {
+    "message0": "64x8 dOF %1構成 単一ポイント出力線路%2ポイント%3",
+    "tooltip": "指定された行と列の1-8行目、1-64点の単一点の出力を設定します。"
+  },
+  "dtof64x8_config_points": {
+    "message0": "64x8 dTOF %1 単一点出力ラインを構成 %2 開始%3終了 %4",
+    "tooltip": "出力を設定して、ライン番号1-8、ポイント1-64の連続したポイント区間を指定します。"
+  },
+  "dtof64x8_read_data": {
+    "message0": "64x8 dTOF%1データリフレッシュタイムアウト%2 ms",
+    "tooltip": "データをトリガーして読み込み、解析されたポイントの数を返します。 失敗またはタイムアウトはマイナス値を返します。"
+  },
+  "dtof64x8_point_value": {
+    "message0": "64x8 dTOF%1キャッシュインデックス%2 %3",
+    "tooltip": "最後のリフレッシュ後にキャッシュからドットデータを読み取ってください。 インデックスは0から始まります。",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "X mm",
+            "X"
+          ],
+          [
+            "Y mm",
+            "Y"
+          ],
+          [
+            "Z距離(mm)",
+            "Z"
+          ],
+          [
+            "intensity",
+            "I"
+          ]
+        ]
+      }
+    ]
+  }
+}

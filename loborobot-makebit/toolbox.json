@@ -1,0 +1,194 @@
+{
+  "kind": "category",
+  "icon": "fa-light fa-car-side",
+  "name": "创乐博MakeBit",
+  "contents": [
+    {
+      "kind": "category",
+      "name": "小车",
+      "contents": [
+        {
+          "kind": "block",
+          "type": "makebit_car_init"
+        },
+        {
+          "kind": "block",
+          "type": "makebit_car_ctrl"
+        },
+        {
+          "kind": "block",
+          "type": "makebit_car_ctrl_speed",
+          "inputs": {
+            "SPEED": {
+              "shadow": {
+                "type": "math_number",
+                "fields": {
+                  "NUM": 255
+                }
+              }
+            }
+          }
+        },
+        {
+          "kind": "block",
+          "type": "makebit_motor",
+          "inputs": {
+            "SPEED": {
+              "shadow": {
+                "type": "math_number",
+                "fields": {
+                  "NUM": 255
+                }
+              }
+            }
+          }
+        },
+        {
+          "kind": "block",
+          "type": "makebit_car_trim",
+          "inputs": {
+            "LEFT": {
+              "shadow": {
+                "type": "math_number",
+                "fields": {
+                  "NUM": 100
+                }
+              }
+            },
+            "RIGHT": {
+              "shadow": {
+                "type": "math_number",
+                "fields": {
+                  "NUM": 100
+                }
+              }
+            }
+          }
+        },
+        {
+          "kind": "block",
+          "type": "makebit_ultrasonic",
+          "fields": {
+            "TRIG": "1",
+            "ECHO": "2"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "category",
+      "name": "舵机风扇",
+      "contents": [
+        {
+          "kind": "block",
+          "type": "makebit_car_servo",
+          "inputs": {
+            "ANGLE": {
+              "shadow": {
+                "type": "math_number",
+                "fields": {
+                  "NUM": 90
+                }
+              }
+            }
+          }
+        },
+        {
+          "kind": "block",
+          "type": "makebit_car_fan",
+          "inputs": {
+            "SPEED": {
+              "shadow": {
+                "type": "math_number",
+                "fields": {
+                  "NUM": 255
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "kind": "category",
+      "name": "蜂鸣器",
+      "contents": [
+        {
+          "kind": "block",
+          "type": "makebit_buzzer",
+          "fields": {
+            "PIN": "0"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "category",
+      "name": "彩灯",
+      "contents": [
+        {
+          "kind": "block",
+          "type": "makebit_rgb_brightness",
+          "inputs": {
+            "BRIGHTNESS": {
+              "shadow": {
+                "type": "math_number",
+                "fields": {
+                  "NUM": 100
+                }
+              }
+            }
+          }
+        },
+        {
+          "kind": "block",
+          "type": "makebit_car_led"
+        },
+        {
+          "kind": "block",
+          "type": "makebit_car_rgb",
+          "fields": {
+            "COLOR": "RED"
+          }
+        },
+        {
+          "kind": "block",
+          "type": "makebit_car_rgb_val",
+          "inputs": {
+            "R": {
+              "shadow": {
+                "type": "math_number",
+                "fields": {
+                  "NUM": 255
+                }
+              }
+            },
+            "G": {
+              "shadow": {
+                "type": "math_number",
+                "fields": {
+                  "NUM": 0
+                }
+              }
+            },
+            "B": {
+              "shadow": {
+                "type": "math_number",
+                "fields": {
+                  "NUM": 0
+                }
+              }
+            }
+          }
+        },
+        {
+          "kind": "block",
+          "type": "makebit_rgb_effect",
+          "fields": {
+            "EFFECT": "RAINBOW"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,317 @@
+{
+  "toolbox_name": "ESP32 BLE",
+  "toolbox_labels": {
+    "设备管理": "장치 관리",
+    "服务端": "서버",
+    "特征值": "고유값",
+    "广播": "방송",
+    "事件回调": "이벤트 콜백",
+    "客户端": "클라이언트",
+    "扫描": "스캔",
+    "快速操作-UART": "빠른 작동-UART"
+  },
+  "esp32_ble_init": {
+    "message0": "BLE 장치 이름: %1 초기화",
+    "tooltip": "BLE 장치를 초기화하고 장치 이름을 설정하세요"
+  },
+  "esp32_ble_deinit": {
+    "message0": "BLE 기기를 끄세요%1",
+    "tooltip": "BLE 장치를 끄세요",
+    "args0": [
+      {
+        "options": [
+          [
+            "기억 보존",
+            "false"
+          ],
+          [
+            "릴리스 메모리",
+            "true"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_ble_get_address": {
+    "message0": "BLE 주소를 받아보세요",
+    "tooltip": "로컬 BLE MAC 주소를 얻으세요"
+  },
+  "esp32_ble_set_mtu": {
+    "message0": "MTU 크기를 %1 설정하세요",
+    "tooltip": "BLE MTU 크기 (최대 전송 단위) 설정하세요"
+  },
+  "esp32_ble_get_mtu": {
+    "message0": "MTU 크기를 확인하세요",
+    "tooltip": "현재 BLE MTU 크기를 확인하세요"
+  },
+  "esp32_ble_create_server": {
+    "message0": "BLE 서버 %1 생성",
+    "tooltip": "BLE 서버 객체 생성"
+  },
+  "esp32_ble_server_create_service": {
+    "message0": "서버 측에서는 서비스 %1 생성%2 UUID%3",
+    "tooltip": "서버 측에서 GATT 서비스를 생성하세요"
+  },
+  "esp32_ble_service_start": {
+    "message0": "발사 서비스 %1",
+    "tooltip": "BLE 서비스 개시"
+  },
+  "esp32_ble_service_stop": {
+    "message0": "서비스가 중단%1",
+    "tooltip": "BLE 서비스 중단"
+  },
+  "esp32_ble_create_characteristic": {
+    "message0": "서비스 %1%4에서 UUID %3 속성을 %2 기능 생성",
+    "tooltip": "서비스 내에서 고유값을 생성한다",
+    "args0": [
+      null,
+      null,
+      null,
+      {
+        "options": [
+          [
+            "읽다",
+            "BLECharacteristic::PROPERTY_READ"
+          ],
+          [
+            "쓰다",
+            "BLECharacteristic::PROPERTY_WRITE"
+          ],
+          [
+            "알림",
+            "BLECharacteristic::PROPERTY_NOTIFY"
+          ],
+          [
+            "읽기/쓰기",
+            "BLECharacteristic::PROPERTY_READ | BLECharacteristic::PROPERTY_WRITE"
+          ],
+          [
+            "읽기 + 알림",
+            "BLECharacteristic::PROPERTY_READ | BLECharacteristic::PROPERTY_NOTIFY"
+          ],
+          [
+            "쓰기 + 알림",
+            "BLECharacteristic::PROPERTY_WRITE | BLECharacteristic::PROPERTY_NOTIFY"
+          ],
+          [
+            "읽기/쓰기+알림",
+            "BLECharacteristic::PROPERTY_READ | BLECharacteristic::PROPERTY_WRITE | BLECharacteristic::PROPERTY_NOTIFY"
+          ],
+          [
+            "방송",
+            "BLECharacteristic::PROPERTY_BROADCAST"
+          ],
+          [
+            "표시",
+            "BLECharacteristic::PROPERTY_INDICATE"
+          ],
+          [
+            "응답 없는 쓰기",
+            "BLECharacteristic::PROPERTY_WRITE_NR"
+          ],
+          [
+            "모두",
+            "BLECharacteristic::PROPERTY_READ | BLECharacteristic::PROPERTY_WRITE | BLECharacteristic::PROPERTY_NOTIFY | BLECharacteristic::PROPERTY_INDICATE"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_ble_characteristic_set_value": {
+    "message0": "특징 %1 값을 %2로 설정하세요",
+    "tooltip": "고유값 데이터를 설정하세요"
+  },
+  "esp32_ble_characteristic_get_value": {
+    "message0": "기능의 가치를 얻%1",
+    "tooltip": "고유값 얻기 위한 데이터"
+  },
+  "esp32_ble_characteristic_notify": {
+    "message0": "알림 기능 %1 데이터 업데이트",
+    "tooltip": "기능 값 업데이트 알림 전송"
+  },
+  "esp32_ble_characteristic_indicate": {
+    "message0": "지표 기능 %1 데이터 업데이트",
+    "tooltip": "특징 값 표시 전송 (확인 필요)"
+  },
+  "esp32_ble_add_descriptor": {
+    "message0": "기능 %1에 대한 알림 설명자를 추가하세요",
+    "tooltip": "알림 기능을 지원하기 위해 BLE2902 디스크립터 추가로"
+  },
+  "esp32_ble_start_advertising": {
+    "message0": "BLE 라디오 시작",
+    "tooltip": "장치를 감지할 수 있도록 BLE 방송을 시작하세요"
+  },
+  "esp32_ble_stop_advertising": {
+    "message0": "BLE 방송 중단",
+    "tooltip": "BLE 방송 중단"
+  },
+  "esp32_ble_advertising_add_service_uuid": {
+    "message0": "방송 추가 서비스 UUID%1",
+    "tooltip": "방송에 서비스 UUID 추가하기"
+  },
+  "esp32_ble_advertising_set_scan_response": {
+    "message0": "스캐닝 응답 설정%1",
+    "tooltip": "스캔 응답 활성화 여부를 설정하세요",
+    "args0": [
+      {
+        "options": [
+          [
+            "활성화",
+            "true"
+          ],
+          [
+            "비활성화",
+            "false"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_ble_on_connect": {
+    "message0": "BLE 클라이언트가 서버에 연결될 때%1",
+    "tooltip": "클라이언트가 BLE 서버에 접속할 때 실행됩니다",
+    "message1": "실행 %1"
+  },
+  "esp32_ble_on_disconnect": {
+    "message0": "BLE 클라이언트가 서버에서 연결이 끊기면 %1",
+    "tooltip": "클라이언트가 BLE 연결을 끊을 때 실행됩니다",
+    "message1": "실행 %1"
+  },
+  "esp32_ble_on_write": {
+    "message0": "특징 %1가 작성될 때",
+    "tooltip": "클라이언트가 특징 값을 작성할 때 실행됩니다",
+    "message1": "실행 %1"
+  },
+  "esp32_ble_server_connected_count": {
+    "message0": "서버에 연결된 클라이언트 %1 수",
+    "tooltip": "서버에 연결된 현재 클라이언트 수를 가져옵습니다"
+  },
+  "esp32_ble_create_client": {
+    "message0": "BLE 클라이언트 %1 생성",
+    "tooltip": "BLE 클라이언트 객체 생성"
+  },
+  "esp32_ble_client_connect": {
+    "message0": "클라이언트가 장치 %2에 연결%1",
+    "tooltip": "지정된 주소에서 BLE 장치에 연결하세요"
+  },
+  "esp32_ble_client_disconnect": {
+    "message0": "클라이언트 %1 연결 끊김",
+    "tooltip": "BLE 클라이언트 연결을 끊으세요"
+  },
+  "esp32_ble_client_is_connected": {
+    "message0": "클라이언트 %1가 연결되어 있습니다",
+    "tooltip": "클라이언트가 연결되어 있는지 확인해 보세요"
+  },
+  "esp32_ble_client_get_service": {
+    "message0": "클라이언트%1 UUID %2 서비스를 받을 수 있습니다%3",
+    "tooltip": "원격 BLE 서비스 접근"
+  },
+  "esp32_ble_remote_service_get_characteristic": {
+    "message0": "서비스 %1 %3에서 UUID%2 특징 추출",
+    "tooltip": "원격 고유값 얻기"
+  },
+  "esp32_ble_remote_characteristic_read": {
+    "message0": "원격 기능의 가치를 읽어보세요%1",
+    "tooltip": "원격 고유값 데이터를 읽습니다"
+  },
+  "esp32_ble_remote_characteristic_write": {
+    "message0": "원격 기능을 %1 값 %2",
+    "tooltip": "원격 특징 값으로 데이터를 쓰기"
+  },
+  "esp32_ble_remote_characteristic_can_read": {
+    "message0": "원격 기능%1 읽기 쉽습니다",
+    "tooltip": "원격 특징 값이 읽힐 수 있는지 확인해"
+  },
+  "esp32_ble_remote_characteristic_can_notify": {
+    "message0": "원격 기능%1 알림이 가능합니다",
+    "tooltip": "원격 기능 값이 알림을 지원하는지 확인해 보세요"
+  },
+  "esp32_ble_get_scan": {
+    "message0": "BLE 스캐너를 %1",
+    "tooltip": "BLE 스캐너 객체를 획득하세요"
+  },
+  "esp32_ble_scan_set_active": {
+    "message0": "스캐너 %1 액티브 스캐닝 %2",
+    "tooltip": "액티브 스캔 모드를 사용할지 여부를 설정하세요",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "활성화",
+            "true"
+          ],
+          [
+            "비활성화",
+            "false"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_ble_scan_set_interval": {
+    "message0": "스캐너 %1는 스캔 간격을 %2밀리초로 설정합니다",
+    "tooltip": "스캔 간격(밀리초) 설정하세요"
+  },
+  "esp32_ble_scan_set_window": {
+    "message0": "스캐너 %1 스캔 창을 %2밀리초로 설정하세요",
+    "tooltip": "스캔 윈도우 크기를 설정하세요 (밀리초 단위)"
+  },
+  "esp32_ble_scan_start": {
+    "message0": "스캐너 %1가 %2초 동안 스캔을 시작한다",
+    "tooltip": "BLE 장치 스캔 시작"
+  },
+  "esp32_ble_scan_stop": {
+    "message0": "스캐너가 스캔을 멈출 %1",
+    "tooltip": "BLE 스캔 중지"
+  },
+  "esp32_ble_scan_get_results": {
+    "message0": "스캔 결과를 얻기 위한 스캐너 %1",
+    "tooltip": "스캔 결과 객체를 가져옵십니다"
+  },
+  "esp32_ble_scan_results_count": {
+    "message0": "스캔 결과 %1 장치 수",
+    "tooltip": "해당 기기가 스캔한 기기 수를 확인하세요"
+  },
+  "esp32_ble_scan_results_get_device": {
+    "message0": "스캔 결과 %1 기기 인덱스 %2",
+    "tooltip": "인덱스를 기반으로 스캔된 장치를 검색합니다"
+  },
+  "esp32_ble_advertised_device_name": {
+    "message0": "장비 %1 명칭",
+    "tooltip": "방송 장치 이름을 알아내세요"
+  },
+  "esp32_ble_advertised_device_address": {
+    "message0": "장비 %1 주소",
+    "tooltip": "방송 장치의 MAC 주소를 얻으세요"
+  },
+  "esp32_ble_advertised_device_rssi": {
+    "message0": "신호 세기 (RSSI) %1 장비",
+    "tooltip": "방송 장비의 신호 세기를 얻으세요"
+  },
+  "esp32_ble_scan_clear_results": {
+    "message0": "스캐너 %1 스캔 결과 삭제",
+    "tooltip": "이전 스캔 결과는 명확합니다"
+  },
+  "esp32_ble_uart_server_quick": {
+    "message0": "BLE 시리얼 서버 장치 이름 %1 생성",
+    "tooltip": "빠르게 BLE UART 서버(Nordic UART Service)를 생성하세요"
+  },
+  "esp32_ble_uart_send": {
+    "message0": "BLE 시리얼 포트가 %1 전송",
+    "tooltip": "데이터는 BLE 시리얼 포트를 통해 전송됩니다"
+  },
+  "esp32_ble_uart_on_receive": {
+    "message0": "BLE 직렬 포트가 데이터를 받을 때",
+    "tooltip": "BLE 직렬 포트가 데이터를 수신할 때 실행됩니다",
+    "message1": "실행 %1"
+  },
+  "esp32_ble_uart_received_data": {
+    "message0": "BLE 직렬 포트를 통해 수신된 데이터는",
+    "tooltip": "BLE 직렬 포트에서 수신된 데이터를 가져옴(콜백에 사용)"
+  },
+  "esp32_ble_uart_is_connected": {
+    "message0": "BLE 시리얼 포트가 연결되어 있습니다",
+    "tooltip": "BLE 시리얼 포트가 이미 클라이언트에 연결되어 있는지 확인하세요"
+  }
+}

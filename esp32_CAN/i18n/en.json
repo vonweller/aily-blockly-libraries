@@ -1,0 +1,83 @@
+{
+  "toolbox_name": "ESP32 CAN bus",
+  "esp32_can_init": {
+    "message0": "Initialize CAN bus Receive pin %1 Send pin %2 Mode %3 Baud rate %4",
+    "tooltip": "Initialize ESP32 CAN bus (TWAI)",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "Normal mode",
+            "TWAI_MODE_NORMAL"
+          ],
+          [
+            "listen-only mode",
+            "TWAI_MODE_LISTEN_ONLY"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "500Kbits",
+            "TWAI_TIMING_CONFIG_500KBITS()"
+          ],
+          [
+            "100Kbits",
+            "TWAI_TIMING_CONFIG_100KBITS()"
+          ],
+          [
+            "125Kbits",
+            "TWAI_TIMING_CONFIG_125KBITS()"
+          ],
+          [
+            "250Kbits",
+            "TWAI_TIMING_CONFIG_250KBITS()"
+          ],
+          [
+            "1Mbits",
+            "TWAI_TIMING_CONFIG_1MBITS()"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_can_configure_alerts": {
+    "message0": "Configure CAN alarm %1 Receive data %2 Send idle %3 Send successfully %4 Send failed %5 Error passive %6 Bus error %7 The receiving queue is full %8",
+    "tooltip": "Configure CAN bus alarms that need to be monitored"
+  },
+  "esp32_can_send_message": {
+    "message0": "Send CAN message Identifier (ID) %1 Data length %2 Data %3",
+    "tooltip": "Send CAN message, the data format is comma separated byte values"
+  },
+  "esp32_can_receive_message": {
+    "message0": "Receive CAN messages",
+    "tooltip": "Receive and process CAN messages"
+  },
+  "esp32_can_check_alerts": {
+    "message0": "Check CAN alarm",
+    "tooltip": "Check CAN bus alarm"
+  },
+  "esp32_can_message_available": {
+    "message0": "CAN messages are available",
+    "tooltip": "Check if a CAN message is available"
+  },
+  "esp32_can_get_message_id": {
+    "message0": "Get CAN message ID",
+    "tooltip": "Get the ID of the received CAN message"
+  },
+  "esp32_can_get_message_length": {
+    "message0": "Get CAN message length",
+    "tooltip": "Get the data length of the received CAN message"
+  },
+  "esp32_can_get_message_data": {
+    "message0": "Get CAN message data bytes %1",
+    "tooltip": "Get the data bytes at the specified position of the received CAN message"
+  },
+  "esp32_can_transmit_interval": {
+    "message0": "Set CAN message sending interval %1 milliseconds",
+    "tooltip": "Set the interval for regularly sending CAN messages"
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "toolbox_name": "MAX31865 temperature sensor",
+  "max31865_init": {
+    "message0": "Initialize temperature sensor CS pin %1 Connection method %2 Sensor type %3",
+    "args0": [
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": [
+          [
+            "2-wire system",
+            "MAX31865_2WIRE"
+          ],
+          [
+            "3-wire system",
+            "MAX31865_3WIRE"
+          ],
+          [
+            "4-wire system",
+            "MAX31865_4WIRE"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "PT100",
+            "MAX31865_PT100"
+          ],
+          [
+            "PT1000",
+            "MAX31865_PT1000"
+          ]
+        ]
+      }
+    ]
+  },
+  "max31865_read": {
+    "message0": "Read the temperature sensor Get the temperature %1 Get the resistance %2 Get the status %3"
+  },
+  "max31865_set_low_threshold": {
+    "message0": "Set temperature sensor low fault threshold %1"
+  },
+  "max31865_set_high_threshold": {
+    "message0": "Set temperature sensor high fault threshold %1"
+  },
+  "max31865_check_fault": {
+    "message0": "Check temperature sensor failure %1",
+    "args0": [
+      {
+        "options": [
+          [
+            "High temperature failure",
+            "MAX31865_FAULT_TEMP_HIGH"
+          ],
+          [
+            "Low temperature failure",
+            "MAX31865_FAULT_TEMP_LOW"
+          ],
+          [
+            "Reference resistance high fault",
+            "MAX31865_FAULT_REFIN_HIGH"
+          ],
+          [
+            "Reference resistance low/open fault",
+            "MAX31865_FAULT_REFIN_LOW_OPEN"
+          ],
+          [
+            "Temperature sensor low/open fault",
+            "MAX31865_FAULT_RTDIN_LOW_OPEN"
+          ],
+          [
+            "Voltage out of range fault",
+            "MAX31865_FAULT_VOLTAGE_OOR"
+          ]
+        ]
+      }
+    ]
+  }
+}

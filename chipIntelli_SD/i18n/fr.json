@@ -1,0 +1,247 @@
+{
+  "toolbox_name": "Carte SD",
+  "toolbox_labels": {
+    "配置引脚并自动初始化": "Configurer les broches et initialiser automatiquement",
+    "诊断与卸载": "Diagnostic et démontage",
+    "文件与目录": "Fichiers et répertoires",
+    "文件状态与读取": "État et lecture des fichiers",
+    "写入与控制": "Écriture et contrôle"
+  },
+  "chipintelli_sd_init_pins": {
+    "message0": "initialiser la carte SD CI13XX SCK %1 MISO %2 MOSI %3 CS %4",
+    "tooltip": "Initialiser la carte SD dans setup avec des broches GPIO SPI logicielles personnalisées dans l’ordre SCK, MISO, MOSI, CS"
+  },
+  "chipintelli_sd_error_info": {
+    "message0": "dernière erreur SD CI13XX %1",
+    "tooltip": "Lire le code d’erreur ou les données d’erreur supplémentaires de la dernière opération SD de bas niveau",
+    "args0": [
+      {
+        "options": [
+          [
+            "code d’erreur",
+            "cardErrorCode"
+          ],
+          [
+            "données d’erreur",
+            "cardErrorData"
+          ]
+        ]
+      }
+    ]
+  },
+  "chipintelli_sd_end": {
+    "message0": "démonter la carte SD CI13XX et libérer les broches SPI logicielles",
+    "tooltip": "Fermer la carte et libérer le SPI logiciel, SCK, MISO, MOSI et CS ; réinitialiser avant toute réutilisation"
+  },
+  "chipintelli_sd_exists": {
+    "message0": "le chemin SD CI13XX %1 existe",
+    "tooltip": "Vérifier si un fichier ou un répertoire existe sur la carte SD"
+  },
+  "chipintelli_sd_path_operation": {
+    "message0": "SD CI13XX %1 chemin %2",
+    "tooltip": "Créer un répertoire, supprimer un fichier ou retirer un répertoire vide ; mkdir crée aussi les répertoires parents manquants",
+    "args0": [
+      {
+        "options": [
+          [
+            "créer un répertoire",
+            "mkdir"
+          ],
+          [
+            "supprimer le fichier",
+            "remove"
+          ],
+          [
+            "supprimer le répertoire vide",
+            "rmdir"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "chipintelli_sd_file_create": {
+    "message0": "ouvrir le chemin SD CI13XX %1 mode %2 enregistrer comme fichier %3",
+    "tooltip": "Créer une variable File et ouvrir un fichier ou un répertoire ; FILE_WRITE ajoute à la fin du fichier",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "lecture seule",
+            "FILE_READ"
+          ],
+          [
+            "lecture/écriture avec ajout",
+            "FILE_WRITE"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "chipintelli_sd_file_create_next": {
+    "message0": "dans le répertoire CI13XX %1 ouvrir l’entrée suivante mode %2 enregistrer comme fichier %3",
+    "tooltip": "Obtenir le fichier ou sous-répertoire suivant d’un répertoire ouvert et le stocker dans une nouvelle variable File",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "lecture seule",
+            "FILE_READ"
+          ],
+          [
+            "lecture/écriture avec ajout",
+            "FILE_WRITE"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "chipintelli_sd_file_is_open": {
+    "message0": "fichier CI13XX %1 ouvert avec succès",
+    "tooltip": "Vérifier que l’objet File est valide et ouvert"
+  },
+  "chipintelli_sd_file_is_directory": {
+    "message0": "le fichier CI13XX %1 est un répertoire",
+    "tooltip": "Vérifier si l’objet File actuel représente un répertoire"
+  },
+  "chipintelli_sd_file_name": {
+    "message0": "nom du fichier CI13XX %1",
+    "tooltip": "Renvoyer le nom court 8.3 du fichier ou du répertoire"
+  },
+  "chipintelli_sd_file_read": {
+    "message0": "depuis le fichier CI13XX %1 %2",
+    "tooltip": "Lire ou consulter l’octet suivant ; renvoyer -1 sans données ; peek ne déplace pas la position",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "lire un octet",
+            "read"
+          ],
+          [
+            "consulter l’octet suivant",
+            "peek"
+          ]
+        ]
+      }
+    ]
+  },
+  "chipintelli_sd_file_available": {
+    "message0": "fichier CI13XX %1 %2",
+    "tooltip": "Renvoyer le nombre d’octets actuellement disponibles en lecture ou en écriture",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "octets lisibles restants",
+            "available"
+          ],
+          [
+            "octets actuellement inscriptibles",
+            "availableForWrite"
+          ]
+        ]
+      }
+    ]
+  },
+  "chipintelli_sd_file_position": {
+    "message0": "fichier CI13XX %1 %2",
+    "tooltip": "Renvoyer la position de lecture/écriture actuelle ou la taille du fichier",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "position actuelle",
+            "position"
+          ],
+          [
+            "taille (octets)",
+            "size"
+          ]
+        ]
+      }
+    ]
+  },
+  "chipintelli_sd_file_seek": {
+    "message0": "position du fichier CI13XX %1 définie sur %2 avec succès",
+    "tooltip": "Aller au décalage absolu indiqué et renvoyer la réussite"
+  },
+  "chipintelli_sd_file_write": {
+    "message0": "dans le fichier CI13XX %1 %2 données %3 base %4",
+    "tooltip": "Écrire avec write, print ou println ; la base ne concerne que les valeurs numériques de print/println",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "écriture brute",
+            "write"
+          ],
+          [
+            "imprimer",
+            "print"
+          ],
+          [
+            "imprimer avec retour à la ligne",
+            "println"
+          ]
+        ]
+      },
+      null,
+      {
+        "options": [
+          [
+            "automatique",
+            "AUTO"
+          ],
+          [
+            "binaire",
+            "BIN"
+          ],
+          [
+            "octal",
+            "OCT"
+          ],
+          [
+            "décimal",
+            "DEC"
+          ],
+          [
+            "hexadécimal",
+            "HEX"
+          ]
+        ]
+      }
+    ]
+  },
+  "chipintelli_sd_file_control": {
+    "message0": "fichier CI13XX %1 %2",
+    "tooltip": "Vider le fichier, réinitialiser le parcours du répertoire ou fermer l’objet File",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "vider le tampon d’écriture",
+            "flush"
+          ],
+          [
+            "revenir à la première entrée du répertoire",
+            "rewindDirectory"
+          ],
+          [
+            "fermer",
+            "close"
+          ]
+        ]
+      }
+    ]
+  }
+}

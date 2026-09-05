@@ -1,0 +1,508 @@
+{
+  "toolbox_name": "HuskyLens",
+  "toolbox_labels": {
+    "初始化": "Initialisierung",
+    "算法设置": "Algorithmuseinstellungen",
+    "数据请求": "Datenanfrage",
+    "状态查询": "Statusabfrage",
+    "数量统计": "Mengenstatistik",
+    "数据读取": "Datenlesen",
+    "屏幕显示": "Bildschirmanzeige",
+    "学习与模型": "Lernen und Modellieren",
+    "拍照截屏": "Machen Sie Fotos und Screenshots"
+  },
+  "huskylens_init_i2c_until": {
+    "message0": "Initialisiere die HuskyLens-%1 I2C-Schnittstelle %2 bis zum Erfolg",
+    "tooltip": "Das Initialisieren von HuskyLens über die I2C-Schnittstelle wird weiterhin versucht, bis es erfolgreich ist",
+    "args0": [
+      null,
+      {
+        "options": "${board.i2c}"
+      }
+    ]
+  },
+  "huskylens_init_i2c": {
+    "message0": "Initialisieren Sie HuskyLens %1 I2C-Schnittstelle %2",
+    "tooltip": "Initialisieren Sie die HuskyLens AI-Kamera über die I2C-Schnittstelle",
+    "args0": [
+      null,
+      {
+        "options": "${board.i2c}"
+      }
+    ]
+  },
+  "huskylens_init_serial": {
+    "message0": "Initialisieren Sie HuskyLens %1 serielle Schnittstelle %2",
+    "tooltip": "Initialisieren Sie die HuskyLens-AI-Kamera über einen seriellen Anschluss",
+    "args0": [
+      null,
+      {
+        "options": "${board.serialPort}"
+      }
+    ]
+  },
+  "huskylens_set_algorithm": {
+    "message0": "HuskyLens %1 Switching-Algorithmus ist %2",
+    "tooltip": "Switch HuskyLens' Erkennungsalgorithmus",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Gesicht",
+            "ALGORITHM_FACE_RECOGNITION"
+          ],
+          [
+            "Objektverfolgung",
+            "ALGORITHM_OBJECT_TRACKING"
+          ],
+          [
+            "Objekterkennung",
+            "ALGORITHM_OBJECT_RECOGNITION"
+          ],
+          [
+            "Track and Drop",
+            "ALGORITHM_LINE_TRACKING"
+          ],
+          [
+            "Farbe",
+            "ALGORITHM_COLOR_RECOGNITION"
+          ],
+          [
+            "Labelerkennung",
+            "ALGORITHM_TAG_RECOGNITION"
+          ],
+          [
+            "Objektklassifikation",
+            "ALGORITHM_OBJECT_CLASSIFICATION"
+          ],
+          [
+            "QR-Code-Scan",
+            "ALGORITHM_QR_RECOGNITION"
+          ],
+          [
+            "Barcode-Erkennung",
+            "ALGORITHM_BARCODE_RECOGNITION"
+          ]
+        ]
+      }
+    ]
+  },
+  "huskylens_set_algorithm_until": {
+    "message0": "HuskyLens %1 auf %2 Algorithmus umgestellt, bis es erfolgreich war",
+    "tooltip": "Das Wechseln des Erkennungsalgorithmus von HuskyLens wird immer wieder versucht, bis es erfolgreich ist",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Gesicht",
+            "ALGORITHM_FACE_RECOGNITION"
+          ],
+          [
+            "Objektverfolgung",
+            "ALGORITHM_OBJECT_TRACKING"
+          ],
+          [
+            "Objekterkennung",
+            "ALGORITHM_OBJECT_RECOGNITION"
+          ],
+          [
+            "Track and Drop",
+            "ALGORITHM_LINE_TRACKING"
+          ],
+          [
+            "Farbe",
+            "ALGORITHM_COLOR_RECOGNITION"
+          ],
+          [
+            "Labelerkennung",
+            "ALGORITHM_TAG_RECOGNITION"
+          ],
+          [
+            "Objektklassifikation",
+            "ALGORITHM_OBJECT_CLASSIFICATION"
+          ]
+        ]
+      }
+    ]
+  },
+  "huskylens_request": {
+    "message0": "HuskyLens %1 Anfragedaten",
+    "tooltip": "Erkennungsdaten von HuskyLens anfordern"
+  },
+  "huskylens_request_blocks": {
+    "message0": "HuskyLens fordert %1 Box-Daten an",
+    "tooltip": "Abfrage von Box-Typdaten von HuskyLens"
+  },
+  "huskylens_request_arrows": {
+    "message0": "HuskyLens %1 Pfeildaten anfordern",
+    "tooltip": "Pfeil-Typ-Daten von HuskyLens anfordern (für Linienpatrouille)"
+  },
+  "huskylens_available": {
+    "message0": "HuskyLens erkennt %1 die Datenmenge",
+    "tooltip": "Erhalten Sie die von HuskyLens erkannte Datenmenge"
+  },
+  "huskylens_is_learned": {
+    "message0": "HuskyLens hat %1 gelernt",
+    "tooltip": "Überprüfen Sie, ob HuskyLens das Ziel erkannt hat"
+  },
+  "huskylens_count_learned_ids": {
+    "message0": "HuskyLens %1 die Anzahl der IDs gelernt hat",
+    "tooltip": "Erhalten Sie die Anzahl der IDs, die HuskyLens gelernt hat"
+  },
+  "huskylens_is_id_learned": {
+    "message0": "Wurde die HuskyLens %1 ID %2 gelernt?",
+    "tooltip": "Überprüfen Sie, ob die angegebene Identität gefunden wurde"
+  },
+  "huskylens_is_appear": {
+    "message0": "HuskyLens %1 %2 im Bild",
+    "tooltip": "Überprüfe, ob das Kästchen oder der Pfeil auf dem Bildschirm ist",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Box",
+            "Blocks"
+          ],
+          [
+            "Pfeil",
+            "Arrows"
+          ]
+        ]
+      }
+    ]
+  },
+  "huskylens_is_id_appear": {
+    "message0": "Ist die HuskyLens %1 ID %2 %3 im Rahmen?",
+    "tooltip": "Überprüfe, ob das Kästchen oder der Pfeil für die angegebene ID auf dem Bildschirm ist",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "Box",
+            "Blocks"
+          ],
+          [
+            "Pfeil",
+            "Arrows"
+          ]
+        ]
+      }
+    ]
+  },
+  "huskylens_count_type": {
+    "message0": "HuskyLens %1 %2 insgesamt",
+    "tooltip": "Erhalten Sie die Gesamtanzahl der Kästchen oder Pfeile",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Box",
+            "Blocks"
+          ],
+          [
+            "Pfeil",
+            "Arrows"
+          ]
+        ]
+      }
+    ]
+  },
+  "huskylens_count_id_type": {
+    "message0": "Gesamtzahl der HuskyLens- %1-IDs %2 %3",
+    "tooltip": "Erhalte die Anzahl der Kästchen oder Pfeile für die angegebene ID",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "Box",
+            "Blocks"
+          ],
+          [
+            "Pfeil",
+            "Arrows"
+          ]
+        ]
+      }
+    ]
+  },
+  "huskylens_get_near_center": {
+    "message0": "HuskyLens %1 %3 nahe der Mitte %2",
+    "tooltip": "Erhalten Sie Parameter für das Feld oder den Pfeil in der Nähe der Bildmitte",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Box",
+            "Block"
+          ],
+          [
+            "Pfeil",
+            "Arrow"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "ID",
+            "ID"
+          ],
+          [
+            "X Center",
+            "xCenter"
+          ],
+          [
+            "Y-Zentrum",
+            "yCenter"
+          ],
+          [
+            "width",
+            "width"
+          ],
+          [
+            "Höhe",
+            "height"
+          ]
+        ]
+      }
+    ]
+  },
+  "huskylens_get_id_param": {
+    "message0": "Parameter von HuskyLens %1 ID %2 %3%4",
+    "tooltip": "Erhalten Sie Parameter für das Feld oder den Pfeil der angegebenen ID",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "Box",
+            "Block"
+          ],
+          [
+            "Pfeil",
+            "Arrow"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "X Center",
+            "xCenter"
+          ],
+          [
+            "Y-Zentrum",
+            "yCenter"
+          ],
+          [
+            "width",
+            "width"
+          ],
+          [
+            "Höhe",
+            "height"
+          ]
+        ]
+      }
+    ]
+  },
+  "huskylens_get_index_param": {
+    "message0": "HuskyLens %1 %2 %3 %4",
+    "tooltip": "Erhalten Sie die Parameter des n-ten Kästchens oder Pfeils",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "Box",
+            "Block"
+          ],
+          [
+            "Pfeil",
+            "Arrow"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "ID",
+            "ID"
+          ],
+          [
+            "X Center",
+            "xCenter"
+          ],
+          [
+            "Y-Zentrum",
+            "yCenter"
+          ],
+          [
+            "width",
+            "width"
+          ],
+          [
+            "Höhe",
+            "height"
+          ]
+        ]
+      }
+    ]
+  },
+  "huskylens_get_id_index_param": {
+    "message0": "Parameter des %3-%4 %2 von HuskyLens %1 ID%5",
+    "tooltip": "Erhält die Parameter des n-ten Kästchens oder Pfeils der angegebenen ID",
+    "args0": [
+      null,
+      null,
+      null,
+      {
+        "options": [
+          [
+            "Box",
+            "Block"
+          ],
+          [
+            "Pfeil",
+            "Arrow"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "X Center",
+            "xCenter"
+          ],
+          [
+            "Y-Zentrum",
+            "yCenter"
+          ],
+          [
+            "width",
+            "width"
+          ],
+          [
+            "Höhe",
+            "height"
+          ]
+        ]
+      }
+    ]
+  },
+  "huskylens_set_custom_name": {
+    "message0": "HuskyLens %1 die ID %2 Namen auf %3 setzen",
+    "tooltip": "Setze einen benutzerdefinierten Namen für die angegebene ID"
+  },
+  "huskylens_request_by_id": {
+    "message0": "HuskyLens %1 fordert Daten von ID %2 an.",
+    "tooltip": "Abfragedaten für die angegebene ID"
+  },
+  "huskylens_read_block_param": {
+    "message0": "HuskyLens liest %1 die %3 der %2th-Box",
+    "tooltip": "Lesen Sie die Parameter der angegebenen Box",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "X-Zentrumskoordinaten",
+            "xCenter"
+          ],
+          [
+            "Y-Center-Koordinaten",
+            "yCenter"
+          ],
+          [
+            "width",
+            "width"
+          ],
+          [
+            "Höhe",
+            "height"
+          ],
+          [
+            "ID",
+            "ID"
+          ]
+        ]
+      }
+    ]
+  },
+  "huskylens_read_arrow_param": {
+    "message0": "HuskyLens liest %1 die %3 des %2th Pfeils",
+    "tooltip": "Lesen Sie die Parameter des angegebenen Pfeils ab",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "Startpunkt X-Koordinate",
+            "xOrigin"
+          ],
+          [
+            "Ausgangspunkt Y",
+            "yOrigin"
+          ],
+          [
+            "Endpunkt X-Koordinate",
+            "xTarget"
+          ],
+          [
+            "Endpunkt Y-Koordinaten",
+            "yTarget"
+          ],
+          [
+            "ID",
+            "ID"
+          ]
+        ]
+      }
+    ]
+  },
+  "huskylens_write_osd": {
+    "message0": "HuskyLens %1 zeigt Text auf dem Bildschirm X %2 Y %3%4",
+    "tooltip": "Zeigen Sie benutzerdefinierten Text auf dem HuskyLens-Bildschirm an"
+  },
+  "huskylens_clear_osd": {
+    "message0": "HuskyLens %1 Bildschirmtext löschen",
+    "tooltip": "Lösche benutzerdefinierten Text vom HuskyLens-Bildschirm"
+  },
+  "huskylens_learn_once": {
+    "message0": "HuskyLens %1 die ID lernen %2 einmal",
+    "tooltip": "Lass HuskyLens das Ziel im aktuellen Bildrahmen lernen"
+  },
+  "huskylens_forget_learn": {
+    "message0": "HuskyLens %1 Vergessen Sie jegliches Lernen",
+    "tooltip": "Lass HuskyLens alles vergessen, was du gelernt hast"
+  },
+  "huskylens_save_model": {
+    "message0": "HuskyLens %1 Speichere Modell auf SD-Karte Nummer %2",
+    "tooltip": "Speichere das aktuell gelernte Modell auf einer SD-Karte"
+  },
+  "huskylens_load_model": {
+    "message0": "HuskyLens %1 Modell von SD-Karte ID%2",
+    "tooltip": "Speicherte Modelle von der SD-Karte laden"
+  },
+  "huskylens_take_photo": {
+    "message0": "HuskyLens speichert %1 Fotos auf einer SD-Karte",
+    "tooltip": "Mach Fotos und speichere sie auf einer SD-Karte"
+  },
+  "huskylens_screenshot": {
+    "message0": "HuskyLens %1 Screenshot auf einer SD-Karte gespeichert",
+    "tooltip": "Erfassen Sie den aktuellen Bildschirm und speichern Sie ihn auf einer SD-Karte"
+  }
+}

@@ -1,101 +1,117 @@
 [
-    {
-        "type": "wdt_init",
-        "message0": "初始化任务看门狗 超时时间 %1 秒 %2 触发异常时重启",
-        "args0": [
-            {
-                "type": "field_number",
-                "name": "TIMEOUT",
-                "value": 5,
-                "min": 1,
-                "max": 128
-            },
-            {
-                "type": "field_checkbox",
-                "name": "PANIC",
-                "checked": false
-            }
-        ],
-        "inputsInline": true,
-        "previousStatement": null,
-        "nextStatement": null,
-        "colour": "#00979D"
-    },
-    {
-        "type": "wdt_add_task",
-        "message0": "添加当前任务到看门狗监控",
-        "inputsInline": true,
-        "previousStatement": null,
-        "nextStatement": null,
-        "colour": "#00979D"
-    },
-    {
-        "type": "wdt_reset",
-        "message0": "重置看门狗定时器（喂狗）",
-        "inputsInline": true,
-        "previousStatement": null,
-        "nextStatement": null,
-        "colour": "#00979D"
-    },
-    {
-        "type": "wdt_add_user",
-        "message0": "添加用户 %1 到看门狗监控",
-        "args0": [
-            {
-                "type": "input_value",
-                "name": "USER_NAME",
-                "check": "String"
-            }
-        ],
-        "inputsInline": true,
-        "previousStatement": null,
-        "nextStatement": null,
-        "colour": "#00979D"
-    },
-    {
-        "type": "wdt_reset_user",
-        "message0": "重置用户 %1 的看门狗定时器",
-        "args0": [
-            {
-                "type": "input_value",
-                "name": "USER_NAME",
-                "check": "String"
-            }
-        ],
-        "inputsInline": true,
-        "previousStatement": null,
-        "nextStatement": null,
-        "colour": "#00979D"
-    },
-    {
-        "type": "wdt_delete_task",
-        "message0": "从看门狗监控中移除当前任务",
-        "inputsInline": true,
-        "previousStatement": null,
-        "nextStatement": null,
-        "colour": "#00979D"
-    },
-    {
-        "type": "wdt_delete_user",
-        "message0": "从看门狗监控中移除用户 %1",
-        "args0": [
-            {
-                "type": "input_value",
-                "name": "USER_NAME",
-                "check": "String"
-            }
-        ],
-        "inputsInline": true,
-        "previousStatement": null,
-        "nextStatement": null,
-        "colour": "#00979D"
-    },
-    {
-        "type": "wdt_deinit",
-        "message0": "反初始化看门狗定时器",
-        "inputsInline": true,
-        "previousStatement": null,
-        "nextStatement": null,
-        "colour": "#00979D"
-    }
+  {
+    "type": "wdt_init",
+    "message0": "初始化任务看门狗 超时时间 %1 秒 %2 触发异常时重启",
+    "args0": [
+      {
+        "type": "field_number",
+        "name": "TIMEOUT",
+        "value": 5,
+        "min": 1,
+        "max": 128
+      },
+      {
+        "type": "field_checkbox",
+        "name": "PANIC",
+        "checked": false
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#00979D",
+    "icon": "fa-regular fa-shield-dog",
+    "tooltip": "配置并启动任务看门狗，超过指定秒数未重置时触发超时处理。"
+  },
+  {
+    "type": "wdt_add_task",
+    "message0": "添加当前任务到看门狗监控",
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#00979D",
+    "icon": "fa-regular fa-shield-dog",
+    "tooltip": "将当前 FreeRTOS 任务加入任务看门狗监控。"
+  },
+  {
+    "type": "wdt_reset",
+    "message0": "重置看门狗定时器（喂狗）",
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#00979D",
+    "icon": "fa-regular fa-shield-dog",
+    "tooltip": "重置当前任务的看门狗计时，防止触发超时。"
+  },
+  {
+    "type": "wdt_add_user",
+    "message0": "添加用户 %1 到看门狗监控",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "USER_NAME",
+        "check": "String"
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#00979D",
+    "icon": "fa-regular fa-shield-dog",
+    "tooltip": "创建指定名称的看门狗用户并加入监控。"
+  },
+  {
+    "type": "wdt_reset_user",
+    "message0": "重置用户 %1 的看门狗定时器",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "USER_NAME",
+        "check": "String"
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#00979D",
+    "icon": "fa-regular fa-shield-dog",
+    "tooltip": "重置指定看门狗用户的计时。"
+  },
+  {
+    "type": "wdt_delete_task",
+    "message0": "从看门狗监控中移除当前任务",
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#00979D",
+    "icon": "fa-regular fa-shield-dog",
+    "tooltip": "将当前任务从看门狗监控中移除。"
+  },
+  {
+    "type": "wdt_delete_user",
+    "message0": "从看门狗监控中移除用户 %1",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "USER_NAME",
+        "check": "String"
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#00979D",
+    "icon": "fa-regular fa-shield-dog",
+    "tooltip": "将指定用户从看门狗监控中移除。"
+  },
+  {
+    "type": "wdt_deinit",
+    "message0": "反初始化看门狗定时器",
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#00979D",
+    "icon": "fa-regular fa-shield-dog",
+    "tooltip": "停止并释放任务看门狗。"
+  }
 ]

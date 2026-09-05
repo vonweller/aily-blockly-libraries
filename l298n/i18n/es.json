@@ -1,0 +1,106 @@
+{
+  "toolbox_name": "Motor L298N",
+  "toolbox_labels": {
+    "初始化": "inicialización",
+    "速度控制": "control de velocidad",
+    "方向控制": "control direccional",
+    "定时运行": "Ejecutar regularmente",
+    "状态查询": "Consulta de estado",
+    "高级功能": "Funciones avanzadas"
+  },
+  "l298n_setup": {
+    "message0": "Inicializa el motor %1 el pin EN %2 el pin IN1 %3 el pin IN2 %4",
+    "tooltip": "Inicializar la transmisión del motor L298N (con control de velocidad PWM)"
+  },
+  "l298n_setup_no_enable": {
+    "message0": "Inicializar el motor %1 pin IN1 %2 pin IN2 %3 (sin control de velocidad)",
+    "tooltip": "Inicializar la unidad del motor L298N (sin control de velocidad PWM, activar el pin conectado a alto nivel)"
+  },
+  "l298n_set_speed": {
+    "message0": "Motor %1 Velocidad %2",
+    "tooltip": "Ajustar la velocidad del motor (0-255)"
+  },
+  "l298n_forward": {
+    "message0": "El motor %1 avanza",
+    "tooltip": "Los avances motores"
+  },
+  "l298n_backward": {
+    "message0": "El motor %1 al revés",
+    "tooltip": "El motor se invierte"
+  },
+  "l298n_stop": {
+    "message0": "El motor %1 parado",
+    "tooltip": "Para el motor"
+  },
+  "l298n_run": {
+    "message0": "Motor %1 Operation%2",
+    "tooltip": "Controla la dirección de funcionamiento del motor",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Adelante",
+            "FORWARD"
+          ],
+          [
+            "Atrás",
+            "BACKWARD"
+          ],
+          [
+            "Detener",
+            "STOP"
+          ]
+        ]
+      }
+    ]
+  },
+  "l298n_forward_for": {
+    "message0": "El motor %1 avanza %2 milisegundos",
+    "tooltip": "El motor se detiene automáticamente tras avanzar durante un tiempo especificado"
+  },
+  "l298n_backward_for": {
+    "message0": "El motor %1 retrocedió %2 milisegundos",
+    "tooltip": "El motor se detiene automáticamente tras invertir durante un tiempo especificado"
+  },
+  "l298n_run_for": {
+    "message0": "El motor %1 funciona durante %3 milisegundos %2",
+    "tooltip": "El motor funciona en una dirección especificada durante un tiempo determinado",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Adelante",
+            "FORWARD"
+          ],
+          [
+            "Atrás",
+            "BACKWARD"
+          ],
+          [
+            "Detener",
+            "STOP"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "l298n_get_speed": {
+    "message0": "La velocidad del motor %1",
+    "tooltip": "Obtén el valor actual de velocidad del motor (0-255)"
+  },
+  "l298n_is_moving": {
+    "message0": "El motor %1 se está moviendo",
+    "tooltip": "Comprueba si el motor se mueve"
+  },
+  "l298n_get_direction": {
+    "message0": "Dirección %1 motor",
+    "tooltip": "Averigua la dirección actual del motor (0=Adelante, 1=Atrás, -1=Parado)"
+  },
+  "l298n_reset": {
+    "message0": "Reinicio %1 motor",
+    "tooltip": "Tras usar el temporizador, el movimiento motor se reactiva"
+  }
+}

@@ -1,0 +1,173 @@
+{
+  "toolbox_name": "وحدة تحكم PID",
+  "toolbox_labels": {
+    "快速开始": "بداية سريعة",
+    "基础控制": "السيطرة الأساسية",
+    "参数设置": "إعدادات المعلمة",
+    "值设置与获取": "تحديد القيمة والحصول عليها",
+    "高级控制": "التحكم المتقدم",
+    "条件判断": "حكم مشروط"
+  },
+  "pid_init": {
+    "message0": "تهيئة متغير الإدخال%2متغير الإخراج%1متغير الإدخال%3قيمة الهدف%4المعلمة%5معلمة P%6I%7معامل D%8اتجاه التحكم%9",
+    "args0": [
+      null,
+      null,
+      null,
+      null,
+      {
+        "options": [
+          [
+            "تخصيص",
+            "custom"
+          ],
+          [
+            "التحكم في درجة الحرارة",
+            "temperature"
+          ],
+          [
+            "سرعة المحرك",
+            "motor_speed"
+          ],
+          [
+            "التحكم في الموقف",
+            "position"
+          ],
+          [
+            "التحكم في مستوى السائل",
+            "level"
+          ]
+        ]
+      },
+      null,
+      null,
+      null,
+      {
+        "options": [
+          [
+            "التحكم الإيجابي",
+            "DIRECT"
+          ],
+          [
+            "التحكم العكسي",
+            "REVERSE"
+          ]
+        ]
+      }
+    ]
+  },
+  "pid_quick_setup": {
+    "message0": "يتحكم نظام PID السريع %1في دبابيس الإدخال pins%3%2  القيم المستهدفة %4 scenarios%5 التطبيق",
+    "args0": [
+      null,
+      {
+        "options": "${board.analogPins}"
+      },
+      {
+        "options": "${board.pwmPins}"
+      },
+      null,
+      {
+        "options": [
+          [
+            "التحكم في درجة الحرارة",
+            "temperature"
+          ],
+          [
+            "سرعة المحرك",
+            "motor_speed"
+          ],
+          [
+            "التحكم في الموقف",
+            "position"
+          ],
+          [
+            "التحكم في مستوى السائل",
+            "level"
+          ],
+          [
+            "تخصيص",
+            "custom"
+          ]
+        ]
+      }
+    ]
+  },
+  "pid_compute": {
+    "message0": "وحدة تحكم PID %1 الحوسبة"
+  },
+  "pid_control_loop": {
+    "message0": "شغل وحدة التحكم في PID loop%1 وحدة التحكم %2 قراءة المدخلات %3 تنفيذ output%4"
+  },
+  "pid_temperature_control": {
+    "message0": "يتحكم مؤشر الحرارة في %1 دبابيس حساس درجة الحرارة %2 دبابيس التسخين %3 الهدف temperature%4",
+    "args0": [
+      null,
+      {
+        "options": "${board.analogPins}"
+      },
+      {
+        "options": "${board.pwmPins}"
+      },
+      null
+    ]
+  },
+  "pid_motor_speed_control": {
+    "message0": "التحكم في سرعة المحرك %1 دبابيس المشفر %2 دبابيس PWM %3 سرعة الهدف (RPM) %4",
+    "args0": [
+      null,
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": "${board.pwmPins}"
+      },
+      null
+    ]
+  },
+  "pid_set_mode": {
+    "message0": "قم بضبط وضع %1 وحدة تحكم PID على %2",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "تلقائي",
+            "AUTOMATIC"
+          ],
+          [
+            "الدليل",
+            "MANUAL"
+          ]
+        ]
+      }
+    ]
+  },
+  "pid_set_tunings": {
+    "message0": "تعيين وحدة تحكم PID %1 parameters%2P parameters%3I parameters%4D parameters%5"
+  },
+  "pid_set_output_limits": {
+    "message0": "اضبط وحدة تحكم PID %1 الإخراج limits%2 الحد الأدنى %3 maximum%4"
+  },
+  "pid_get_input": {
+    "message0": "احصل على مدخلات PID values%1"
+  },
+  "pid_get_output": {
+    "message0": "احصل على مخرج PID value%1"
+  },
+  "pid_set_setpoint": {
+    "message0": "اضبط قيمة الهدف لمؤشر PID %1 على %2"
+  },
+  "pid_set_input": {
+    "message0": "اضبط قيمة إدخال PID %1 على %2"
+  },
+  "pid_adaptive_control": {
+    "message0": "التحكم التكيفي في PID%1وحدة تحكم PID%2متغير الإدخال%3القيمة المستهدفة%4العتبة%5المعاملات العدوانية P%6I%7D%8المعلمات المحافظة P%9I%10D%11"
+  },
+  "pid_is_at_setpoint": {
+    "message0": "هل وصلت PID إلى القيمة المستهدفة %1 التسامح %2 الهدف value%3"
+  },
+  "pid_get_error": {
+    "message0": "الحصول على قيم خطأ PID %1 values%2 الهدف"
+  }
+}

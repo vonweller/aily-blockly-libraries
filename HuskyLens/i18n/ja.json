@@ -1,0 +1,508 @@
+{
+  "toolbox_name": "HuskyLens",
+  "toolbox_labels": {
+    "初始化": "初期化",
+    "算法设置": "アルゴリズム設定",
+    "数据请求": "データリクエスト",
+    "状态查询": "ステータスクエリ",
+    "数量统计": "数量統計",
+    "数据读取": "データ読み取り",
+    "屏幕显示": "画面表示",
+    "学习与模型": "学習とモデリング",
+    "拍照截屏": "写真やスクリーンショットを撮る"
+  },
+  "huskylens_init_i2c_until": {
+    "message0": "成功するまで HuskyLens %1 I2C インターフェイス %2 を初期化します",
+    "tooltip": "I2C インターフェイスを通じて HuskyLens を初期化し、成功するまで試行を続けます。",
+    "args0": [
+      null,
+      {
+        "options": "${board.i2c}"
+      }
+    ]
+  },
+  "huskylens_init_i2c": {
+    "message0": "HuskyLens %1 I2C インターフェイス %2 を初期化します",
+    "tooltip": "I2C インターフェース経由で HuskyLens AI カメラを初期化する",
+    "args0": [
+      null,
+      {
+        "options": "${board.i2c}"
+      }
+    ]
+  },
+  "huskylens_init_serial": {
+    "message0": "HuskyLens %1 シリアル ポート %2 を初期化します",
+    "tooltip": "シリアルポート経由で HuskyLens AI カメラを初期化する",
+    "args0": [
+      null,
+      {
+        "options": "${board.serialPort}"
+      }
+    ]
+  },
+  "huskylens_set_algorithm": {
+    "message0": "HuskyLens %1 切り替えアルゴリズムは %2",
+    "tooltip": "HuskyLensの認識アルゴリズムを切り替える",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "顔認識",
+            "ALGORITHM_FACE_RECOGNITION"
+          ],
+          [
+            "オブジェクト追跡",
+            "ALGORITHM_OBJECT_TRACKING"
+          ],
+          [
+            "物体認識",
+            "ALGORITHM_OBJECT_RECOGNITION"
+          ],
+          [
+            "ライントラッキング",
+            "ALGORITHM_LINE_TRACKING"
+          ],
+          [
+            "色の認識",
+            "ALGORITHM_COLOR_RECOGNITION"
+          ],
+          [
+            "タグの識別",
+            "ALGORITHM_TAG_RECOGNITION"
+          ],
+          [
+            "オブジェクトの分類",
+            "ALGORITHM_OBJECT_CLASSIFICATION"
+          ],
+          [
+            "QRコード認識",
+            "ALGORITHM_QR_RECOGNITION"
+          ],
+          [
+            "バーコード認識",
+            "ALGORITHM_BARCODE_RECOGNITION"
+          ]
+        ]
+      }
+    ]
+  },
+  "huskylens_set_algorithm_until": {
+    "message0": "HuskyLens %1 は、成功するまで %2 アルゴリズムに切り替わります",
+    "tooltip": "HuskyLens の認識アルゴリズムを切り替えると、成功するまで試行され続けます。",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "顔認識",
+            "ALGORITHM_FACE_RECOGNITION"
+          ],
+          [
+            "オブジェクト追跡",
+            "ALGORITHM_OBJECT_TRACKING"
+          ],
+          [
+            "物体認識",
+            "ALGORITHM_OBJECT_RECOGNITION"
+          ],
+          [
+            "ライントラッキング",
+            "ALGORITHM_LINE_TRACKING"
+          ],
+          [
+            "色の認識",
+            "ALGORITHM_COLOR_RECOGNITION"
+          ],
+          [
+            "タグの識別",
+            "ALGORITHM_TAG_RECOGNITION"
+          ],
+          [
+            "オブジェクトの分類",
+            "ALGORITHM_OBJECT_CLASSIFICATION"
+          ]
+        ]
+      }
+    ]
+  },
+  "huskylens_request": {
+    "message0": "HuskyLens %1 データのリクエスト",
+    "tooltip": "HuskyLens に認識データをリクエストする"
+  },
+  "huskylens_request_blocks": {
+    "message0": "HuskyLens %1 リクエスト ボックス データ",
+    "tooltip": "HuskyLens からのボックス タイプ データのリクエスト"
+  },
+  "huskylens_request_arrows": {
+    "message0": "HuskyLens %1 矢印データのリクエスト",
+    "tooltip": "HuskyLens から矢印タイプのデータをリクエストします (行のフォローに使用)"
+  },
+  "huskylens_available": {
+    "message0": "HuskyLens %1 検出されたデータの数",
+    "tooltip": "HuskyLens が検出したデータの数を取得する"
+  },
+  "huskylens_is_learned": {
+    "message0": "HuskyLens %1 を学習しました",
+    "tooltip": "HuskyLens がターゲットを学習したかどうかを確認する"
+  },
+  "huskylens_count_learned_ids": {
+    "message0": "HuskyLens %1 学習した ID の数",
+    "tooltip": "HuskyLens が学習した ID の数を取得する"
+  },
+  "huskylens_is_id_learned": {
+    "message0": "HuskyLens %1 ID %2 学習されましたか?",
+    "tooltip": "指定したIDが学習済みか確認する"
+  },
+  "huskylens_is_appear": {
+    "message0": "HuskyLens %1 %2 が画面内にあります",
+    "tooltip": "ボックスまたは矢印がフレーム内にあるかどうかを確認します",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "ボックス",
+            "Blocks"
+          ],
+          [
+            "矢印",
+            "Arrows"
+          ]
+        ]
+      }
+    ]
+  },
+  "huskylens_is_id_appear": {
+    "message0": "HuskyLens %1 ID %2 %3 が画面内にあります",
+    "tooltip": "指定されたIDのボックスまたは矢印が画像内にあるかどうかを確認します",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "ボックス",
+            "Blocks"
+          ],
+          [
+            "矢印",
+            "Arrows"
+          ]
+        ]
+      }
+    ]
+  },
+  "huskylens_count_type": {
+    "message0": "ハスキーレンズ %1 %2 合計",
+    "tooltip": "ボックスまたは矢印の合計数を取得する",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "ボックス",
+            "Blocks"
+          ],
+          [
+            "矢印",
+            "Arrows"
+          ]
+        ]
+      }
+    ]
+  },
+  "huskylens_count_id_type": {
+    "message0": "HuskyLens %1 ID %2 %3 合計",
+    "tooltip": "指定された ID を持つボックスまたは矢印の数を取得します",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "ボックス",
+            "Blocks"
+          ],
+          [
+            "矢印",
+            "Arrows"
+          ]
+        ]
+      }
+    ]
+  },
+  "huskylens_get_near_center": {
+    "message0": "HuskyLens %1 %3 の中心 %2 付近",
+    "tooltip": "画面中央付近のボックスまたは矢印のパラメータを取得します",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "ボックス",
+            "Block"
+          ],
+          [
+            "矢印",
+            "Arrow"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "ID",
+            "ID"
+          ],
+          [
+            "Xセンター",
+            "xCenter"
+          ],
+          [
+            "Yセンター",
+            "yCenter"
+          ],
+          [
+            "幅",
+            "width"
+          ],
+          [
+            "身長",
+            "height"
+          ]
+        ]
+      }
+    ]
+  },
+  "huskylens_get_id_param": {
+    "message0": "HuskyLens %1 ID %2 %3 のパラメータ %4",
+    "tooltip": "指定されたIDのボックスまたは矢印のパラメータを取得します",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "ボックス",
+            "Block"
+          ],
+          [
+            "矢印",
+            "Arrow"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "Xセンター",
+            "xCenter"
+          ],
+          [
+            "Yセンター",
+            "yCenter"
+          ],
+          [
+            "幅",
+            "width"
+          ],
+          [
+            "身長",
+            "height"
+          ]
+        ]
+      }
+    ]
+  },
+  "huskylens_get_index_param": {
+    "message0": "ハスキーレンズ %1 %2 %4/%3",
+    "tooltip": "N 番目のボックスまたは矢印のパラメータを取得します",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "ボックス",
+            "Block"
+          ],
+          [
+            "矢印",
+            "Arrow"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "ID",
+            "ID"
+          ],
+          [
+            "Xセンター",
+            "xCenter"
+          ],
+          [
+            "Yセンター",
+            "yCenter"
+          ],
+          [
+            "幅",
+            "width"
+          ],
+          [
+            "身長",
+            "height"
+          ]
+        ]
+      }
+    ]
+  },
+  "huskylens_get_id_index_param": {
+    "message0": "HuskyLens %1 ID %2 %3 番目のパラメータ %4 %5",
+    "tooltip": "指定された ID を持つ N 番目のボックスまたは矢印のパラメーターを取得します",
+    "args0": [
+      null,
+      null,
+      null,
+      {
+        "options": [
+          [
+            "ボックス",
+            "Block"
+          ],
+          [
+            "矢印",
+            "Arrow"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "Xセンター",
+            "xCenter"
+          ],
+          [
+            "Yセンター",
+            "yCenter"
+          ],
+          [
+            "幅",
+            "width"
+          ],
+          [
+            "身長",
+            "height"
+          ]
+        ]
+      }
+    ]
+  },
+  "huskylens_set_custom_name": {
+    "message0": "HuskyLens %1 ID %2 を設定します。名前は %3 です。",
+    "tooltip": "指定された ID のカスタム名を設定します"
+  },
+  "huskylens_request_by_id": {
+    "message0": "HuskyLens %1 ID %2 のデータをリクエストします",
+    "tooltip": "指定したIDのデータをリクエストします"
+  },
+  "huskylens_read_block_param": {
+    "message0": "HuskyLens %1 はボックス %2 の %3 を読み取ります",
+    "tooltip": "指定されたボックスのパラメータを読み取ります",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "X中心座標",
+            "xCenter"
+          ],
+          [
+            "Y中心座標",
+            "yCenter"
+          ],
+          [
+            "幅",
+            "width"
+          ],
+          [
+            "身長",
+            "height"
+          ],
+          [
+            "ID",
+            "ID"
+          ]
+        ]
+      }
+    ]
+  },
+  "huskylens_read_arrow_param": {
+    "message0": "HuskyLens %1 は、矢印 %2 の %3 を読み取ります",
+    "tooltip": "指定された矢印のパラメータを読み取ります",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "始点X座標",
+            "xOrigin"
+          ],
+          [
+            "始点Y座標",
+            "yOrigin"
+          ],
+          [
+            "終点X座標",
+            "xTarget"
+          ],
+          [
+            "終点Y座標",
+            "yTarget"
+          ],
+          [
+            "ID",
+            "ID"
+          ]
+        ]
+      }
+    ]
+  },
+  "huskylens_write_osd": {
+    "message0": "HuskyLens %1 は画面にテキスト %4 を表示します X %2 Y %3",
+    "tooltip": "HuskyLens 画面にカスタム テキストを表示する"
+  },
+  "huskylens_clear_osd": {
+    "message0": "HuskyLens %1 画面のテキストをクリアする",
+    "tooltip": "HuskyLens 画面上のカスタム テキストをクリアする"
+  },
+  "huskylens_learn_once": {
+    "message0": "HuskyLens %1 一度学習 ID %2",
+    "tooltip": "HuskyLens に現在の画面内のターゲットを学習させます"
+  },
+  "huskylens_forget_learn": {
+    "message0": "HuskyLens %1 学習をすべて忘れてください",
+    "tooltip": "HuskyLens に学んだことをすべて忘れさせましょう"
+  },
+  "huskylens_save_model": {
+    "message0": "HuskyLens %1 モデルを SD カード番号 %2 に保存します",
+    "tooltip": "現在学習しているモデルをSDカードに保存します"
+  },
+  "huskylens_load_model": {
+    "message0": "HuskyLens %1 SD カード番号 %2 からモデルをロードします",
+    "tooltip": "保存したモデルをSDカードからロード"
+  },
+  "huskylens_take_photo": {
+    "message0": "HuskyLens %1 写真を撮って SD カードに保存",
+    "tooltip": "写真を撮ってSDカードに保存"
+  },
+  "huskylens_screenshot": {
+    "message0": "HuskyLens %1 スクリーンショットを SD カードに保存",
+    "tooltip": "現在の画面をキャプチャして SD カードに保存"
+  }
+}

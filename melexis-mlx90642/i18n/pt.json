@@ -1,0 +1,129 @@
+{
+  "toolbox_name": "MLX90642 Imagem térmica infravermelha",
+  "mlx90642_init": {
+    "message0": "Inicialize MLX90642 %1 SDA %2 endereço SCL %3 modo %4 %5 taxa de atualização %6 saída %7",
+    "tooltip": "Inicialize o sensor térmico infravermelho de imagem MLX90642 32x24 via pino ESP32 I2C.",
+    "args0": [
+      null,
+      null,
+      null,
+      null,
+      {
+        "options": [
+          [
+            "continuous",
+            "MLX90642_CONT_MEAS_MODE"
+          ],
+          [
+            "step",
+            "MLX90642_STEP_MEAS_MODE"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "2 Hz",
+            "MLX90642_REF_RATE_2HZ"
+          ],
+          [
+            "4 Hz",
+            "MLX90642_REF_RATE_4HZ"
+          ],
+          [
+            "8 Hz",
+            "MLX90642_REF_RATE_8HZ"
+          ],
+          [
+            "16 Hz",
+            "MLX90642_REF_RATE_16HZ"
+          ],
+          [
+            "32 Hz",
+            "MLX90642_REF_RATE_32HZ"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "Temperatura",
+            "MLX90642_TEMPERATURE_OUTPUT"
+          ],
+          [
+            "Dados normalizados",
+            "MLX90642_NORMALIZED_DATA_OUTPUT"
+          ]
+        ]
+      }
+    ]
+  },
+  "mlx90642_data_ready": {
+    "message0": "MLX90642 %1 Dados prontos",
+    "tooltip": "Detecta se MLX90642 possui um novo quadro de dados de imagem térmica legível."
+  },
+  "mlx90642_read_frame": {
+    "message0": "MLX90642 %1 Leia um quadro no cache",
+    "tooltip": "Leia o quadro atual de imagem 32x24 no cache."
+  },
+  "mlx90642_measure_now": {
+    "message0": "MLX90642 %1 Meça e cache um quadro instantaneamente",
+    "tooltip": "Acione uma medição e aguarde o retorno dos dados; se for bem-sucedido, retorne true."
+  },
+  "mlx90642_pixel_value": {
+    "message0": "MLX90642 %1 Cache pixels X %2 Y %3 Leitura %4",
+    "tooltip": "Leia os pixels especificados do cache de quadros anterior, com o intervalo X 0-31 e o intervalo Y 0-23.",
+    "args0": [
+      null,
+      null,
+      null,
+      {
+        "options": [
+          [
+            "Temperatura: °C",
+            "C"
+          ],
+          [
+            "Valores brutos",
+            "RAW"
+          ]
+        ]
+      }
+    ]
+  },
+  "mlx90642_frame_stat": {
+    "message0": "MLX90642 %1 Quadros de cache %2 Temperatura °C",
+    "tooltip": "Calcule a temperatura mínima, máxima ou média do cache de quadro anterior.",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "minimum",
+            "MIN"
+          ],
+          [
+            "maximum",
+            "MAX"
+          ],
+          [
+            "average",
+            "AVG"
+          ]
+        ]
+      }
+    ]
+  },
+  "mlx90642_progress": {
+    "message0": "MLX90642 %1 Progresso da Medição %",
+    "tooltip": "Leia a porcentagem atual de progresso da medição."
+  },
+  "mlx90642_print_frame_csv": {
+    "message0": "MLX90642 %1 Exportar quadros de cache em CSV para %2 bauds rate%3",
+    "tooltip": "Envie o cache de temperatura 32x24 do frame anterior como 24 linhas de CSV para a porta serial."
+  },
+  "mlx90642_sleep": {
+    "message0": "MLX90642 %1 sleep",
+    "tooltip": "Coloque MLX90642 modo de suspensão de baixo consumo."
+  }
+}

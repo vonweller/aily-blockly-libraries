@@ -1,0 +1,117 @@
+{
+  "toolbox_name": "AI—Assistant",
+  "ai_assistant_config": {
+    "message0": "직렬 포트%1 보드 속도 %2을 이용해 AI 어시스턴트 구성",
+    "tooltip": "AI 어시스턴트 직렬 통신 구성",
+    "args0": [
+      {
+        "options": "${board.serialPort}"
+      },
+      {
+        "options": "${board.serialSpeed}"
+      }
+    ]
+  },
+  "serial_command_handler": {
+    "message0": "지휘권 %1 부여",
+    "tooltip": "지정된 유형의 명령이 수신되었는지 확인해",
+    "args0": [
+      {
+        "options": [
+          [
+            "작은 수레가 앞으로 나아간다",
+            "MOVE_FORWARD"
+          ],
+          [
+            "작은 차가 후진한다",
+            "MOVE_BACKWARD"
+          ],
+          [
+            "작은 마차가 왼쪽으로 간다",
+            "TURN_LEFT"
+          ],
+          [
+            "작은 마차가 오른쪽으로 꺾는다",
+            "TURN_RIGHT"
+          ],
+          [
+            "차는 갑자기 멈췄다",
+            "STOP"
+          ],
+          [
+            "LED 켜세요",
+            "LED_ON"
+          ],
+          [
+            "LED 꺼",
+            "LED_OFF"
+          ],
+          [
+            "LED 깜빡임",
+            "LED_BLINK"
+          ],
+          [
+            "서보가 회전합니다",
+            "SERVO_ROTATE"
+          ],
+          [
+            "팬 속도를 조절하세요",
+            "FAN_SPEED"
+          ],
+          [
+            "선풍기 켜",
+            "FAN_ON"
+          ],
+          [
+            "선풍기 꺼",
+            "FAN_OFF"
+          ],
+          [
+            "색색 조명을 켜",
+            "RGB_ON"
+          ],
+          [
+            "색색 조명 꺼",
+            "RGB_OFF"
+          ],
+          [
+            "색 조명의 밝기를 설정하세요",
+            "RGB_BRIGHTNESS"
+          ],
+          [
+            "컬러 조명에 색상 그라데이션을 설정하세요",
+            "RGB_GRADIENT"
+          ],
+          [
+            "로봇 팔 그립",
+            "ARM_GRAB"
+          ],
+          [
+            "로봇 팔이 느슨해졌다",
+            "ARM_RELEASE"
+          ],
+          [
+            "로봇 팔이 원래 위치로 돌아갑니다",
+            "ARM_DOWN"
+          ],
+          [
+            "릴레이 열어",
+            "RELAY_ON"
+          ],
+          [
+            "릴레이 꺼",
+            "RELAY_OFF"
+          ]
+        ]
+      }
+    ]
+  },
+  "serial_custom_command": {
+    "message0": "카메라 인식: %1",
+    "tooltip": "맞춤 명령어를 받았는지 확인해 보세요 (부분 일치 지원 있음)"
+  },
+  "serial_clear_command": {
+    "message0": "수신된 명령 해제",
+    "tooltip": "모든 명령을 처리하기 위해 receivedCommand 변수를 지웁니다"
+  }
+}

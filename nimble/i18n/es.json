@@ -1,0 +1,247 @@
+{
+  "toolbox_name": "NimBLE Bluetooth",
+  "toolbox_labels": {
+    "初始化": "inicialización",
+    "服务端": "Servidor",
+    "广播": "transmitir",
+    "服务端事件": "Eventos del lado del servidor",
+    "扫描": "escanear",
+    "客户端": "cliente"
+  },
+  "nimble_init": {
+    "message0": "Inicializar el nombre del dispositivo NimBLE %1",
+    "tooltip": "Inicializa la pila Bluetooth de NimBLE y establece el nombre de difusión del dispositivo"
+  },
+  "nimble_deinit": {
+    "message0": "Apaga NimBLE para liberar recursos %1",
+    "tooltip": "Cierra la pila Bluetooth de NimBLE y elige si borrar todas las configuraciones"
+  },
+  "nimble_create_server": {
+    "message0": "Creación de un servidor BLE %1",
+    "tooltip": "Crear una instancia de servidor BLE"
+  },
+  "nimble_server_create_service": {
+    "message0": "Server %1 Create Service UUIDs %2 guardar en %3",
+    "tooltip": "Crea un servicio BLE en el servidor"
+  },
+  "nimble_service_create_characteristic": {
+    "message0": "Servicio %1 Crear UUIDs de características %2 Guardar en %3",
+    "tooltip": "Crea un valor de característica legible y escribible dentro del servicio"
+  },
+  "nimble_service_create_characteristic_props": {
+    "message0": "Servicio %1 Crear características UUID %2 atributos %3 guardar en %4",
+    "tooltip": "Crear un valor propio con atributos especificados en el servicio",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "Leer + escribir",
+            "READ_WRITE"
+          ],
+          [
+            "Solo lectura",
+            "READ"
+          ],
+          [
+            "Solo escribe",
+            "WRITE"
+          ],
+          [
+            "Leer + notificar",
+            "READ_NOTIFY"
+          ],
+          [
+            "Leer + escribir + notificar",
+            "READ_WRITE_NOTIFY"
+          ],
+          [
+            "Leer + escribir + indicar",
+            "READ_WRITE_INDICATE"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "nimble_characteristic_set_value": {
+    "message0": "Características %1 valores de fijar %2",
+    "tooltip": "Establecer los datos para valores propios"
+  },
+  "nimble_characteristic_get_value": {
+    "message0": "Obtén el valor de la función %1",
+    "tooltip": "Datos para obtener valores propios"
+  },
+  "nimble_characteristic_notify": {
+    "message0": "Funciones %1 Enviar notificaciones",
+    "tooltip": "Las notificaciones se envían a los clientes suscritos"
+  },
+  "nimble_service_start": {
+    "message0": "Servicio de lanzamiento %1",
+    "tooltip": "Lanzamiento del servicio BLE"
+  },
+  "nimble_start_advertising": {
+    "message0": "Empieza la emisión",
+    "tooltip": "Inicia las emisiones BLE para que el dispositivo pueda ser descubierto"
+  },
+  "nimble_stop_advertising": {
+    "message0": "Cesar la emisión",
+    "tooltip": "Detener la emisión de BLE"
+  },
+  "nimble_advertising_add_service": {
+    "message0": "UUID del Servicio de Agregación de Radiodifusión %1",
+    "tooltip": "Añadir UUIDs de servicio a los datos de difusión"
+  },
+  "nimble_advertising_set_name": {
+    "message0": "Configuración de emisión Name%1",
+    "tooltip": "Establece el nombre del dispositivo para la visualización de difusión"
+  },
+  "nimble_server_connected_count": {
+    "message0": "El número de clientes conectados %1 servidor",
+    "tooltip": "Asegúrate de conocer el número de clientes conectados actualmente"
+  },
+  "nimble_on_connect": {
+    "message0": "Cuando el cliente se conecta al servidor %1",
+    "tooltip": "Código ejecutado cuando hay una conexión cliente",
+    "message1": "ejecutar %1"
+  },
+  "nimble_on_disconnect": {
+    "message0": "Cuando el cliente se desconecta del servidor %1 conexión",
+    "tooltip": "Código ejecutado cuando el cliente se desconecta",
+    "message1": "ejecutar %1"
+  },
+  "nimble_on_characteristic_write": {
+    "message0": "Cuando se escribe %1 de característica",
+    "tooltip": "Código ejecutado cuando el cliente escribe los valores de las características.",
+    "message1": "ejecutar %1"
+  },
+  "nimble_start_scan": {
+    "message0": "Empieza a escanear durante %1 segundos",
+    "tooltip": "Comienza a escanear el dispositivo BLE; 0 significa escaneo continuo"
+  },
+  "nimble_stop_scan": {
+    "message0": "Deja de escanear",
+    "tooltip": "Detener el escaneo BLE"
+  },
+  "nimble_is_scanning": {
+    "message0": "Escaneo en curso",
+    "tooltip": "Comprueba si el escaneo está en marcha"
+  },
+  "nimble_on_scan_result": {
+    "message0": "Al escanear hacia el dispositivo",
+    "tooltip": "Al escanear un dispositivo BLE, el código ejecutado puede obtenerse usando la variable scanDevice",
+    "message1": "ejecutar %1"
+  },
+  "nimble_scan_device_name": {
+    "message0": "El nombre del dispositivo escaneado",
+    "tooltip": "Obtén el nombre del dispositivo escaneado (usado en la callback de escaneo)"
+  },
+  "nimble_scan_device_address": {
+    "message0": "La dirección del dispositivo escaneado",
+    "tooltip": "Recuperar la dirección del dispositivo escaneado (usado en la devolución de llamada de escaneo)"
+  },
+  "nimble_scan_device_rssi": {
+    "message0": "Intensidad de la señal del dispositivo escaneado",
+    "tooltip": "Obtener la intensidad de la señal RSSI del dispositivo escaneado (usado en la llamada de escaneo)"
+  },
+  "nimble_scan_device_has_service": {
+    "message0": "El dispositivo escaneado incluye servicios %1",
+    "tooltip": "Comprueba si el dispositivo escaneado emite el UUID de servicio especificado"
+  },
+  "nimble_create_client": {
+    "message0": "Crear un cliente BLE %1",
+    "tooltip": "Crear una instancia cliente BLE"
+  },
+  "nimble_client_connect_address": {
+    "message0": "El cliente %1 se conecta a la dirección %2",
+    "tooltip": "Conéctate al dispositivo BLE en la dirección especificada y devuelve si ha tenido éxito"
+  },
+  "nimble_client_connect_device": {
+    "message0": "El cliente %1 conectado al dispositivo de escaneo",
+    "tooltip": "Conectado a dispositivos en callbacks de escaneo"
+  },
+  "nimble_client_disconnect": {
+    "message0": "Desconexión %1 cliente",
+    "tooltip": "Desconectar de la conexión al servidor"
+  },
+  "nimble_client_is_connected": {
+    "message0": "El cliente %1 está conectado",
+    "tooltip": "Comprueba si el cliente está conectado"
+  },
+  "nimble_client_get_service": {
+    "message0": "Cliente %1 Obtener UUID de servicio %2 guardar en %3",
+    "tooltip": "Obtener el servicio especificado para el servidor remoto"
+  },
+  "nimble_remote_service_get_characteristic": {
+    "message0": "Funciones de recuperación %1 servicio remoto UUID %2 guardar en %3",
+    "tooltip": "Recupera características específicas en servicios remotos"
+  },
+  "nimble_remote_char_read": {
+    "message0": "Lee el valor de las funciones remotas %1",
+    "tooltip": "Lee el valor de la función remota"
+  },
+  "nimble_remote_char_write": {
+    "message0": "Escribe en características remotas %1 %2",
+    "tooltip": "Escribe datos en características remotas"
+  },
+  "nimble_remote_char_subscribe": {
+    "message0": "Suscríbete a las notificaciones de Funciones %1 Funciones Remotas",
+    "tooltip": "Suscríbete a notificaciones de funciones remotas, ejecuta devoluciones de llamada cuando se reciben datos y utiliza la variable notifyData para recuperar datos",
+    "message1": "Ejecutar %1 al recibir los datos"
+  },
+  "nimble_notify_data": {
+    "message0": "Datos de notificación recibidos",
+    "tooltip": "Datos recibidos en callbacks de notificación (usados en callbacks de suscripción)"
+  },
+  "nimble_get_address": {
+    "message0": "Obtener la dirección local de BLE",
+    "tooltip": "Consigue la dirección local de BLE"
+  },
+  "nimble_set_mtu": {
+    "message0": "Configurar el tamaño del MTU %1",
+    "tooltip": "Establezca el tamaño máximo de la unidad de transmisión para paquetes BLE"
+  },
+  "nimble_set_power": {
+    "message0": "Configurar la potencia de transmisión %1",
+    "tooltip": "Ajustar la potencia de transmisión BLE",
+    "args0": [
+      {
+        "options": [
+          [
+            "-12 dBm",
+            "-12"
+          ],
+          [
+            "-9 dBm",
+            "-9"
+          ],
+          [
+            "-6 dBm",
+            "-6"
+          ],
+          [
+            "-3 dBm",
+            "-3"
+          ],
+          [
+            "0 dBm",
+            "0"
+          ],
+          [
+            "3 dBm",
+            "3"
+          ],
+          [
+            "6 dBm",
+            "6"
+          ],
+          [
+            "9 dBm",
+            "9"
+          ]
+        ]
+      }
+    ]
+  }
+}

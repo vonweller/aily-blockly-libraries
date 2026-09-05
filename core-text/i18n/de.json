@@ -1,194 +1,174 @@
 {
-    "toolbox_name": "Text",
-    "string_add_string": {
-        "message0": "String(%1) + String(%2)"
-    },
-    "string_charAt": {
-        "message0": "%1's %2. Buchstabe"
-    },
-    "string_length": {
-        "message0": "Anzahl der Zeichen von %1"
-    },
-    "string_indexOf": {
-        "message0": "Enthält %1 %2?"
-    },
-    "string_substring": {
-        "message0": "%1 Zeichen von %2 %3 bis %4 %5 erhalten",
-        "args0": [
-            null,
-            {
-                "options": [
-                    [
-                        "dem",
-                        "0"
-                    ],
-                    [
-                        "dem letzten",
-                        "1"
-                    ]
-                ]
-            },
-            null,
-            {
-                "options": [
-                    [
-                        "dem",
-                        "0"
-                    ],
-                    [
-                        "dem letzten",
-                        "1"
-                    ]
-                ]
-            },
-            null
+  "toolbox_name": "Text",
+  "string_add_string": {
+    "message0": "String(%1) + String(%2)",
+    "tooltip": "Zwei Zeichenketten verketten"
+  },
+  "array_get_dataAt": {
+    "message0": "Element %2 von Array %1",
+    "tooltip": "Element an angegebener Position im Array abrufen"
+  },
+  "number_to": {
+    "message0": "Zahl %1 in ASCII-Zeichen umwandeln",
+    "tooltip": "ASCII-Code-Zahl in entsprechendes Zeichen umwandeln"
+  },
+  "toascii": {
+    "message0": "Zeichen %1 in ASCII-Wert umwandeln",
+    "tooltip": "ASCII-Code-Wert eines Zeichens abrufen"
+  },
+  "number_to_string": {
+    "message0": "Zahl %1 in Zeichenkette umwandeln",
+    "tooltip": "Zahl in Zeichenkettentyp umwandeln"
+  },
+  "char": {
+    "message0": "%1",
+    "tooltip": "Einzelnes Zeichen eingeben. Escape-Zeichen: \\n(Zeilenumbruch), \\t(Tab), \\r(Wagenrücklauf), \\\\(Backslash), \\'(Apostroph), \\\"(Anführungszeichen), \\0(Null)"
+  },
+  "text": {
+    "message0": "%1",
+    "tooltip": "Textzeichenkette eingeben"
+  },
+  "text_join": {
+    "message0": "",
+    "tooltip": "Beliebige Anzahl von Textelementen verbinden"
+  },
+  "text_create_join_container": {
+    "message0": "verbinden %1 %2",
+    "tooltip": "Textverbindungsabschnitte hinzufügen, entfernen oder neu anordnen"
+  },
+  "text_create_join_item": {
+    "message0": "Element",
+    "tooltip": "Element zur Textverbindung hinzufügen"
+  },
+  "text_length": {
+    "message0": "Länge von %1",
+    "tooltip": "Anzahl der Zeichen im Text abrufen"
+  },
+  "text_isEmpty": {
+    "message0": "%1 ist leer",
+    "tooltip": "Prüfen ob Text leer ist"
+  },
+  "text_indexOf": {
+    "message0": "in Text %1 %2 Vorkommen von Text %3",
+    "tooltip": "Position des ersten/letzten Vorkommens des Teilstrings im Text zurückgeben",
+    "args0": [
+      null,
+      {
+        "options": [
+          ["erstes finden", "FIRST"],
+          ["letztes finden", "LAST"]
         ]
-    },
-    "string_find_str": {
-        "message0": "Finde %1 in %2 an der %3 Position",
-        "args0": [
-            null,
-            null,
-            {
-                "options": [
-                    [
-                        "Erste",
-                        "indexOf"
-                    ],
-                    [
-                        "Letzte",
-                        "lastIndexOf"
-                    ]
-                ]
-            }
+      },
+      null
+    ]
+  },
+  "string_endsWith": {
+    "message0": "Text %1 endet mit %2",
+    "tooltip": "Prüft ob Text mit angegebenem Suffix endet"
+  },
+  "string_startsWith": {
+    "message0": "Text %1 beginnt mit %2",
+    "tooltip": "Prüft ob Text mit angegebenem Präfix beginnt"
+  },
+  "text_charAt": {
+    "message0": "in Text %1 %2",
+    "tooltip": "Zeichen an angegebener Position im Text abrufen",
+    "args0": [
+      null,
+      {
+        "options": [
+          ["Zeichen # holen", "FROM_START"],
+          ["Zeichen # vom Ende holen", "FROM_END"],
+          ["erstes Zeichen holen", "FIRST"],
+          ["letztes Zeichen holen", "LAST"],
+          ["zufälliges Zeichen holen", "RANDOM"]
         ]
-    },
-    "string_to": {
-        "message0": "Zeichenkette %1 nach %2 konvertieren",
-        "args0": [
-            null,
-            {
-                "options": [["Ganzzahl", "toInt"],["Kommazahl", "toFloat"]]
-            }
+      }
+    ]
+  },
+  "tt_getSubstring": {
+    "message0": "Teilstring aus Text %1 holen",
+    "tooltip": "Teilstring aus Text im angegebenen Bereich abrufen",
+    "message1": "%1 %2",
+    "args1": [
+      {
+        "options": [
+          ["von Zeichen #", "FROM_START"],
+          ["von Zeichen # vom Ende", "FROM_END"],
+          ["vom ersten Zeichen", "FIRST"]
         ]
-    },
-    "number_to": {
-        "message0": "Zahl %1 in ASCII-Zeichenkette umwandeln"
-    },
-    "toascii": {
-        "message0": "Zeichen %1 in ASCII-Wert umwandeln"
-    },
-    "number_to_string": {
-        "message0": "Zahl %1 in Zeichenkette umwandeln"
-    },
-    "text": {
-        "message0": "%1"
-    },
-    "text_join": {
-        "message0": ""
-    },
-    "text_create_join_container": {
-        "message0": "%{BKY_TEXT_CREATE_JOIN_TITLE_JOIN} %1 %2"
-    },
-    "text_create_join_item": {
-        "message0": "%{BKY_TEXT_CREATE_JOIN_ITEM_TITLE_ITEM}"
-    },
-    "text_append": {
-        "message0": "Text %2 nach %1 anhängen"
-    },
-    "text_length": {
-        "message0": "Länge von %1"
-    },
-    "text_isEmpty": {
-        "message0": "%1 ist leer"
-    },
-    "text_indexOf": {
-        "message0": "Im Text %1 %2 %3",
-        "args0": [
-            null,
-            {
-                "options": [["erstes Vorkommen des Textes finden", "FIRST"],["letztes Vorkommen des Textes finden", "LAST"]]
-            },
-            null
+      },
+      null
+    ],
+    "message2": "%1 %2",
+    "args2": [
+      {
+        "options": [
+          ["bis Zeichen #", "FROM_START"],
+          ["bis Zeichen # vom Ende", "FROM_END"],
+          ["bis zum letzten Zeichen", "LAST"]
         ]
-    },
-    "text_charAt": {
-        "message0": "Im Text %1 %2",
-        "args0": [
-            null,
-            {
-                "options": [["Zeichen # abrufen", "FROM_START"],["Zeichen vom Ende # abrufen", "FROM_END"],["erstes Zeichen abrufen", "FIRST"],["letztes Zeichen abrufen", "LAST"],["zufälliges Zeichen abrufen", "RANDOM"]]
-            }
+      },
+      null
+    ]
+  },
+  "text_changeCase": {
+    "message0": "%1 %2",
+    "tooltip": "Groß-/Kleinschreibung des Texts ändern",
+    "args0": [
+      {
+        "options": [
+          ["in GROSSBUCHSTABEN", "UPPERCASE"],
+          ["in kleinbuchstaben", "LOWERCASE"],
+          ["in Titelschreibweise", "TITLECASE"]
         ]
-    },
-    "tt_getSubstring": {
-        "message0": "Teilstring aus Text %1 erhalten",
-        "message1": "%1 %2",
-        "args1": [
-            {
-                "options": [
-                    [
-                        "ab Zeichen #",
-                        "FROM_START"
-                    ],
-                    [
-                        "ab # von hinten",
-                        "FROM_END"
-                    ],
-                    [
-                        "ab erstem Zeichen",
-                        "FIRST"
-                    ]
-                ]
-            },
-            null
-        ],
-        "message2": "%1 %2",
-        "args2": [
-            {
-                "options": [
-                    [
-                        "bis Zeichen #",
-                        "FROM_START"
-                    ],
-                    [
-                        "bis # von hinten",
-                        "FROM_END"
-                    ],
-                    [
-                        "bis letztem Zeichen",
-                        "LAST"
-                    ]
-                ]
-            },
-            null
+      },
+      null
+    ]
+  },
+  "text_trim": {
+    "message0": "%1 von %2",
+    "tooltip": "Leerzeichen von einem oder beiden Enden des Texts entfernen",
+    "args0": [
+      {
+        "options": [
+          ["Leerzeichen beidseitig entfernen", "BOTH"],
+          ["Leerzeichen links entfernen", "LEFT"],
+          ["Leerzeichen rechts entfernen", "RIGHT"]
         ]
-    },
-    "text_changeCase": {
-        "message0": "%1 %2",
-        "args0": [
-            {
-                "options": [["in Großbuchstaben umwandeln", "UPPERCASE"],["in Kleinbuchstaben umwandeln", "LOWERCASE"],["in Titel Großbuchstaben umwandeln", "TITLECASE"]]
-            },
-            null
+      },
+      null
+    ]
+  },
+  "text_count": {
+    "message0": "Vorkommen von %1 in %2 zählen",
+    "tooltip": "Zählen wie oft Teilstring im Text vorkommt"
+  },
+  "text_replace": {
+    "message0": "%2 durch %3 in %1 ersetzen",
+    "tooltip": "Alle Vorkommen im Text durch neuen Inhalt ersetzen"
+  },
+  "text_reverse": {
+    "message0": "Text %1 umkehren",
+    "tooltip": "Reihenfolge der Zeichen im Text umkehren"
+  },
+  "string_to_something": {
+    "message0": "Zeichenkette %1 in %2 umwandeln",
+    "tooltip": "Zeichenkette in angegebenen Datentyp umwandeln",
+    "args0": [
+      null,
+      {
+        "options": [
+          ["Ganzzahl (int)", "toInt"],
+          ["lange Ganzzahl (long)", "toLong"],
+          ["Gleitkomma (float)", "toFloat"],
+          ["Doppelt (double)", "toDouble"],
+          ["C-Zeichenkette (char*)", "c_str"],
+          ["erstes Zeichen (char)", "charAt0"],
+          ["Großbuchstaben", "toUpper"],
+          ["Kleinbuchstaben", "toLower"]
         ]
-    },
-    "text_trim": {
-        "message0": "%1 trim %2",
-        "args0": [
-            {
-                "options": [["Leerzeichen von beiden Seiten entfernen", "BOTH"],["Leerzeichen von links entfernen", "LEFT"],["Leerzeichen von rechts entfernen", "RIGHT"]]
-            },
-            null
-        ]
-    },
-    "text_count": {
-        "message0": "Vorkommen von %1 in %2 zählen"
-    },
-    "text_replace": {
-        "message0": "Ersetze %2 durch %3 in %1"
-    },
-    "text_reverse": {
-        "message0": "Text %1 umkehren"
-    }
+      }
+    ]
+  }
 }

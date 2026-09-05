@@ -1,0 +1,125 @@
+{
+  "toolbox_name": "BQ27220 Kraftstoffanzeige",
+  "toolbox_labels": {
+    "初始化": "Initialisierung",
+    "基础读取": "Grundlegende Lektüre",
+    "时间预估": "Zeitschätzung",
+    "容量信息": "Kapazitätsinformationen",
+    "配置": "Konfiguration",
+    "4pin座子模式切换": "4-Pin-Buchse Modus"
+  },
+  "bq27220_init": {
+    "message0": "BQ27220 initialisieren %1 Adresse %2",
+    "tooltip": "BQ27220 Einzelzellen-Lithium-Ionen-Kraftstoffanzeige initialisieren",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "0x55 (Standard)",
+            "0x55"
+          ]
+        ]
+      }
+    ]
+  },
+  "bq27220_basic_read": {
+    "message0": "%1 %2",
+    "tooltip": "Grundlegende Batterie-Daten lesen",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Spannung(mV)",
+            "voltage"
+          ],
+          [
+            "Strom(mA)",
+            "current"
+          ],
+          [
+            "Durchschnittsstrom(mA)",
+            "avg_current"
+          ],
+          [
+            "Temperatur(°C)",
+            "temperature"
+          ],
+          [
+            "Ladezustand(%)",
+            "soc"
+          ]
+        ]
+      }
+    ]
+  },
+  "bq27220_time_read": {
+    "message0": "%1 %2",
+    "tooltip": "Batterie-Zeitschätzung lesen",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Zeit bis leer(Minuten)",
+            "tte"
+          ],
+          [
+            "Zeit bis voll(Minuten)",
+            "ttf"
+          ]
+        ]
+      }
+    ]
+  },
+  "bq27220_capacity_read": {
+    "message0": "%1 %2",
+    "tooltip": "Batteriekapazität und Gesundheitsinformationen lesen",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Verbleibende Kapazität(mAh)",
+            "remaining_capacity"
+          ],
+          [
+            "Vollladungskapazität(mAh)",
+            "full_charge_capacity"
+          ],
+          [
+            "Zykluszahl",
+            "cycle_count"
+          ],
+          [
+            "Gesundheitszustand(%)",
+            "soh"
+          ]
+        ]
+      }
+    ]
+  },
+  "bq27220_set_design_capacity": {
+    "message0": "%1 Designkapazität einstellen %2 mAh",
+    "tooltip": "Batterie-Designkapazität einstellen(mAh)"
+  },
+  "bq27220_i2c_select": {
+    "message0": "auf %1 umschalten",
+    "tooltip": "linkbit V2: Der Analogschalter (GPIO9) führt GPIO20/21 wahlweise zur BQ27220-Ladestandsanzeige (I2C-Modus) oder zur CN2-Erweiterungsbuchse (normaler IO-Modus, auch für externe I2C-Geräte). Beim Initialisieren der Anzeige wird der I2C-Modus automatisch gewählt.",
+    "args0": [
+      {
+        "options": [
+          [
+            "I2C-Modus",
+            "1"
+          ],
+          [
+            "normaler IO-Modus",
+            "0"
+          ]
+        ]
+      }
+    ]
+  }
+}

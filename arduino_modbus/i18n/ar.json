@@ -1,0 +1,177 @@
+{
+  "toolbox_name": "اتصالات مودباص",
+  "toolbox_labels": {
+    "客户端初始化": "تهيئة العميل",
+    "服务器初始化": "تهيئة الخادم",
+    "服务器配置": "تكوين الخادم",
+    "客户端读写操作": "عمليات القراءة والكتابة للعميل",
+    "服务器读写操作": "عمليات القراءة والكتابة للخادم",
+    "错误处理": "معالجة الأخطاء",
+    "快速操作": "عملية سريعة"
+  },
+  "modbus_rtu_client_begin": {
+    "message0": "تهيئة عميل Modbus RTU baud rate%1",
+    "tooltip": "قم بتهيئة عميل RTU في Modbus وضبط معدل البود.",
+    "args0": [
+      {
+        "options": [
+          [
+            "9600",
+            "9600"
+          ],
+          [
+            "19200",
+            "19200"
+          ],
+          [
+            "38400",
+            "38400"
+          ],
+          [
+            "57600",
+            "57600"
+          ],
+          [
+            "115200",
+            "115200"
+          ]
+        ]
+      }
+    ]
+  },
+  "modbus_rtu_server_begin": {
+    "message0": "تهيئة جهاز خادم RTU في Modbus ID%1 البود rate%2",
+    "tooltip": "قم بتهيئة خادم RTU في Modbus، وضبط معرف الجهاز ومعدل البودية",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "9600",
+            "9600"
+          ],
+          [
+            "19200",
+            "19200"
+          ],
+          [
+            "38400",
+            "38400"
+          ],
+          [
+            "57600",
+            "57600"
+          ],
+          [
+            "115200",
+            "115200"
+          ]
+        ]
+      }
+    ]
+  },
+  "modbus_tcp_client_begin": {
+    "message0": "تهيئة عنوان IP عميل Modbus TCP %1 port%2",
+    "tooltip": "تهيئة عميل Modbus TCP، والاتصال بعنوان IP والمنفذ المحدد"
+  },
+  "modbus_tcp_server_begin": {
+    "message0": "تهيئة جهاز خادم Modbus TCP ID%1",
+    "tooltip": "تهيئة خادم Modbus TCP"
+  },
+  "modbus_coil_read": {
+    "message0": "اقرأ جهاز الملف ID%1 address%2",
+    "tooltip": "اقرأ حالة الملف عند العنوان المحدد، ثم أعد 0 أو 1، أو أعد -1 إذا فشل"
+  },
+  "modbus_coil_write": {
+    "message0": "جهاز كتابة ملف ID%1 عنوان %2 value%3",
+    "tooltip": "اكتب قيمة الملف (0 أو 1) إلى العنوان المحدد"
+  },
+  "modbus_discrete_input_read": {
+    "message0": "قراءة جهاز الإدخال المنفصل ID%1 address%2",
+    "tooltip": "اقرأ حالة الإدخال المنفصلة للعنوان المحدد، ثم أعد 0 أو 1، ثم أعد -1 عند الفشل"
+  },
+  "modbus_holding_register_read": {
+    "message0": "اقرأ جهاز تسجيل الاحتفاظ ID%1 address%2",
+    "tooltip": "يقرأ قيمة السجل الثابت عند العنوان المحدد، ويعيد -1 عند الفشل"
+  },
+  "modbus_holding_register_write": {
+    "message0": "اكتب إلى جهاز السجل المحفوظ ID%1 العنوان %2 value%3",
+    "tooltip": "اكتب قيمة سجل الاحتفاظ إلى العنوان المحدد (0-65535)"
+  },
+  "modbus_input_register_read": {
+    "message0": "سجلات القراءة وإدخال الجهاز ID%1 address%2",
+    "tooltip": "يقرأ قيمة سجل الإدخال للعنوان المحدد؛ الفشل يعود ب -1"
+  },
+  "modbus_server_configure_coils": {
+    "message0": "تكوين ملفات الخادم لعنوان البدء %1 quantity%2",
+    "tooltip": "تكوين نطاق عناوين الملفات لخادم مودباص"
+  },
+  "modbus_server_configure_discrete_inputs": {
+    "message0": "تكوين عنوان بدء إدخال منفصل في الخادم %1 quantity%2",
+    "tooltip": "تكوين نطاق عناوين الإدخال المنفصل لخادم مودباص"
+  },
+  "modbus_server_configure_holding_registers": {
+    "message0": "قم بتكوين الخادم الذي يحمل السجلات، وابدأ address%1 quantity%2",
+    "tooltip": "تكوين نطاق عناوين السجلات لخادم مودباص"
+  },
+  "modbus_server_configure_input_registers": {
+    "message0": "تكوين سجلات إدخال الخادم وعنوان البدء %1 quantity%2",
+    "tooltip": "تكوين نطاق عناوين سجلات الإدخال لخادم مودباص"
+  },
+  "modbus_server_poll": {
+    "message0": "استطلاع خوادم مودباص",
+    "tooltip": "استطلاع خادم مودباص للطلبات سيعود إلى true"
+  },
+  "modbus_server_coil_read": {
+    "message0": "الخادم يقرأ ملف address%1",
+    "tooltip": "اقرأ القيمة الحالية لملف الخادم"
+  },
+  "modbus_server_coil_write": {
+    "message0": "الخادم يكتب عنوان الملف %1 value%2",
+    "tooltip": "اضبط قيمة ملف الخادم"
+  },
+  "modbus_server_discrete_input_write": {
+    "message0": "يكتب الخادم عناوين إدخال منفصلة %1 values%2",
+    "tooltip": "اضبط قيمة الإدخال المنفصلة للخادم"
+  },
+  "modbus_server_holding_register_read": {
+    "message0": "الخادم يقرأ ويحافظ على السجل address%1",
+    "tooltip": "اقرأ القيمة الحالية للسجل المحتفظ به في الخادم"
+  },
+  "modbus_server_holding_register_write": {
+    "message0": "الخادم يكتب إلى عنوان السجل %1 value%2",
+    "tooltip": "حدد قيمة السجل المحتفظ به الخادم"
+  },
+  "modbus_server_input_register_write": {
+    "message0": "يكتب الخادم عنوان سجل الإدخال %1 value%2",
+    "tooltip": "حدد قيمة سجل إدخال الخادم"
+  },
+  "modbus_last_error": {
+    "message0": "احصل على رسالة الخطأ النهائية من مودباص",
+    "tooltip": "استرجاع رسائل الخطأ من آخر عملية مودباص"
+  },
+  "modbus_quick_coil_control": {
+    "message0": "جهاز ملف التحكم السريع في مودباص ID%1 العنوان %2 القيمة %3",
+    "tooltip": "التحكم بسرعة في ملفات أجهزة مودباس وتهيئة العمليات تلقائيا",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "تشغيل",
+            "1"
+          ],
+          [
+            "إيقاف",
+            "0"
+          ]
+        ]
+      }
+    ]
+  },
+  "modbus_quick_register_read": {
+    "message0": "جهاز تسجيل القراءة السريع Modbus ID%1 Address%2",
+    "tooltip": "اقرأ بسرعة قيمة سجل التثبيت لجهاز Modbus"
+  }
+}

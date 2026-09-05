@@ -1,0 +1,280 @@
+{
+  "toolbox_name": "ESP32 I2S",
+  "toolbox_labels": {
+    "基本操作": "基本操作",
+    "引脚配置": "引腳配置",
+    "初始化配置": "初始化設定",
+    "数据读写": "數據讀寫",
+    "音调生成": "音調生成",
+    "WAV音频": "WAV音訊",
+    "状态查询": "狀態查詢"
+  },
+  "esp32_i2s_create": {
+    "message0": "建立 I2S 物件 命名為 %1",
+    "tooltip": "建立一個I2S音訊介面對象"
+  },
+  "esp32_i2s_set_pins_std": {
+    "message0": "I2S 物件 %1 設定標準模式腳位 BCLK%2 WS/LRC%3 DOUT%4 DIN%5 MCLK%6",
+    "tooltip": "設定標準I2S模式的接腳,DIN和MCLK可選,不使用則設為-1"
+  },
+  "esp32_i2s_set_pins_pdm_tx": {
+    "message0": "I2S物件 %1 設定PDM傳送引腳 CLK%2 DOUT0%3 DOUT1%4",
+    "tooltip": "設定PDM發送模式的引腳"
+  },
+  "esp32_i2s_set_pins_pdm_rx": {
+    "message0": "I2S 物件 %1 設定 PDM 接收腳位 CLK%2 DIN0%3 DIN1%4 DIN2%5 DIN3%6",
+    "tooltip": "設定PDM接收模式的引腳"
+  },
+  "esp32_i2s_begin": {
+    "message0": "初始化 I2S 物件 %1 模式 %2 取樣率 %3 Hz 位元寬度 %4 通道 %5 插槽 %6",
+    "tooltip": "初始化I2S介面,必須先設定引腳。插槽參數可選擇使用左/右/雙聲道",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "標準I2S",
+            "I2S_MODE_STD"
+          ],
+          [
+            "TDM 模式",
+            "I2S_MODE_TDM"
+          ],
+          [
+            "PDM發送",
+            "I2S_MODE_PDM_TX"
+          ],
+          [
+            "PDM 的評價",
+            "I2S_MODE_PDM_RX"
+          ]
+        ]
+      },
+      null,
+      {
+        "options": [
+          [
+            "16個位置",
+            "I2S_DATA_BIT_WIDTH_16BIT"
+          ],
+          [
+            "第32名",
+            "I2S_DATA_BIT_WIDTH_32BIT"
+          ],
+          [
+            "24人",
+            "I2S_DATA_BIT_WIDTH_24BIT"
+          ],
+          [
+            "8人",
+            "I2S_DATA_BIT_WIDTH_8BIT"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "立體聲",
+            "I2S_SLOT_MODE_STEREO"
+          ],
+          [
+            "單聲道",
+            "I2S_SLOT_MODE_MONO"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "自動",
+            "-1"
+          ],
+          [
+            "左聲道",
+            "I2S_STD_SLOT_LEFT"
+          ],
+          [
+            "右聲道",
+            "I2S_STD_SLOT_RIGHT"
+          ],
+          [
+            "雙聲道",
+            "I2S_STD_SLOT_BOTH"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_i2s_configure_tx": {
+    "message0": "設定 I2S 物件 %1 TX 取樣率 %2 Hz 位元寬度 %3 通道 %4 插槽 %5",
+    "tooltip": "配置I2S發送通道參數",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "16個位置",
+            "I2S_DATA_BIT_WIDTH_16BIT"
+          ],
+          [
+            "第32名",
+            "I2S_DATA_BIT_WIDTH_32BIT"
+          ],
+          [
+            "24人",
+            "I2S_DATA_BIT_WIDTH_24BIT"
+          ],
+          [
+            "8人",
+            "I2S_DATA_BIT_WIDTH_8BIT"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "立體聲",
+            "I2S_SLOT_MODE_STEREO"
+          ],
+          [
+            "單聲道",
+            "I2S_SLOT_MODE_MONO"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "自動",
+            "-1"
+          ],
+          [
+            "左聲道",
+            "I2S_STD_SLOT_LEFT"
+          ],
+          [
+            "右聲道",
+            "I2S_STD_SLOT_RIGHT"
+          ],
+          [
+            "雙聲道",
+            "I2S_STD_SLOT_BOTH"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_i2s_configure_rx": {
+    "message0": "設定 I2S 物件 %1 接收取樣率 %2 Hz 位元寬 %3 頻道 %4 轉換 %5",
+    "tooltip": "配置I2S接收通道參數",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "16個位置",
+            "I2S_DATA_BIT_WIDTH_16BIT"
+          ],
+          [
+            "第32名",
+            "I2S_DATA_BIT_WIDTH_32BIT"
+          ],
+          [
+            "24人",
+            "I2S_DATA_BIT_WIDTH_24BIT"
+          ],
+          [
+            "8人",
+            "I2S_DATA_BIT_WIDTH_8BIT"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "立體聲",
+            "I2S_SLOT_MODE_STEREO"
+          ],
+          [
+            "單聲道",
+            "I2S_SLOT_MODE_MONO"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "無轉換",
+            "I2S_RX_TRANSFORM_NONE"
+          ],
+          [
+            "32轉16位",
+            "I2S_RX_TRANSFORM_32_TO_16"
+          ],
+          [
+            "立體聲轉單聲道",
+            "I2S_RX_TRANSFORM_16_STEREO_TO_MONO"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_i2s_write_byte": {
+    "message0": "I2S物件 %1 寫入位元組 %2",
+    "tooltip": "向I2S寫入單一位元組,通常在loop中連續寫入"
+  },
+  "esp32_i2s_read_bytes": {
+    "message0": "I2S物件 %1 讀取位元組到陣列 %2 讀取數量 %3",
+    "tooltip": "從I2S讀取指定數量的位元組到陣列,傳回實際讀取的位元組數"
+  },
+  "esp32_i2s_record_wav": {
+    "message0": "I2S物件 %1 錄製WAV音訊 長度 %2 秒 儲存大小至 %3",
+    "tooltip": "錄製指定時長的WAV音訊,返回位元組數組指標,大小儲存到指定變數。使用後請用free()釋出內存"
+  },
+  "esp32_i2s_play_wav": {
+    "message0": "I2S物件 %1 播放WAV音訊 資料 %2 長度 %3",
+    "tooltip": "播放WAV格式的音訊資料,需指定資料長度"
+  },
+  "esp32_i2s_end": {
+    "message0": "結束I2S物件 %1",
+    "tooltip": "停止I2S並釋放資源"
+  },
+  "esp32_i2s_get_last_error": {
+    "message0": "取得I2S物件 %1 的最後錯誤代碼",
+    "tooltip": "取得最後一次I2S操作的錯誤代碼,0表示成功"
+  },
+  "esp32_i2s_write_sample": {
+    "message0": "I2S物件 %1 寫入取樣值 %2 (立體聲寫入左右聲道)",
+    "tooltip": "寫入一個16位元取樣值到I2S會自動寫入左右聲道"
+  },
+  "esp32_i2s_write_buffer": {
+    "message0": "I2S物件 %1 寫入緩衝區 %2 長度 %3",
+    "tooltip": "向I2S寫入緩衝區資料,傳回實際寫入的位元組數"
+  },
+  "esp32_i2s_available": {
+    "message0": "I2S物件 %1 可讀位元組數",
+    "tooltip": "取得I2S接收緩衝區中可讀取的位元組數"
+  },
+  "esp32_i2s_tx_sample_rate": {
+    "message0": "I2S物件 %1 發送取樣率",
+    "tooltip": "取得I2S發送通道的取樣率"
+  },
+  "esp32_i2s_rx_sample_rate": {
+    "message0": "I2S物件 %1 接收取樣率",
+    "tooltip": "取得I2S接收通道的取樣率"
+  },
+  "esp32_i2s_set_inverted": {
+    "message0": "I2S物件 %1 設定訊號反轉 BCLK%2 WS%3 MCLK%4",
+    "tooltip": "設定I2S訊號反轉選項,用於相容於不同的音訊晶片"
+  },
+  "esp32_i2s_generate_tone": {
+    "message0": "I2S物件 %1 產生方波音調 頻率 %2 Hz 持續 %3 毫秒 振幅 %4",
+    "tooltip": "產生指定頻率的方波音調並透過I2S播放"
+  },
+  "esp32_i2s_free_wav_buffer": {
+    "message0": "釋放WAV緩衝區 %1",
+    "tooltip": "釋放recordWAV分配的記憶體緩衝區"
+  }
+}

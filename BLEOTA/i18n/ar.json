@@ -1,0 +1,164 @@
+{
+  "toolbox_name": "BLE OTA",
+  "toolbox_labels": {
+    "快速启动": "بدء سريع",
+    "配置": "التكوين",
+    "运行": "Runtime",
+    "事件": "Events"
+  },
+  "bleota_begin_auto": {
+    "message0": "ابدأ بسرعة BLE OTA",
+    "tooltip": "إنشاء خادم BLE باستخدام اسم الجهاز الافتراضي والكائن الافتراضي، وتشغيل خدمة BLE OTA، وبدء البث، ومعالجة التحديثات تلقائيا في الحلقة—مما يتيح OTA في كتلة واحدة"
+  },
+  "bleota_setup": {
+    "message0": "تكوين خادم كائن %1 OTA في BLE %2 اسم الجهاز %3 الوضع الآمن %4",
+    "tooltip": "أنشئ كائن BLEOTA وخادم BLE، وابدأ المكالمة؛ يتطلب الوضع الآمن ضبط مفتاح عام قبل بدء الخدمة",
+    "args0": [
+      null,
+      null,
+      null,
+      {
+        "options": [
+          [
+            "إيقاف",
+            "false"
+          ],
+          [
+            "تشغيل",
+            "true"
+          ]
+        ]
+      }
+    ]
+  },
+  "bleota_set_public_key": {
+    "message0": "BLE OTA %1 Set RSA Public Key %2",
+    "tooltip": "قم بتعيين محتوى المفتاح العام RSA-2048 لنظام BLE OTA الآمن"
+  },
+  "bleota_set_device_info": {
+    "message0": "BLE OTA %1 تعيين معلومات الجهاز %2 على %3",
+    "tooltip": "قم بتعيين النموذج أو الإصدار أو حقول الشركة المصنعة ليتم عرضها في نظام معلومات الجهاز (DIS)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Model",
+            "MODEL"
+          ],
+          [
+            "الرقم التسلسلي",
+            "SERIAL_NUMBER"
+          ],
+          [
+            "إصدار البرنامج الثابت",
+            "FW_VERSION"
+          ],
+          [
+            "إصدار العتاد",
+            "HW_VERSION"
+          ],
+          [
+            "Manufacturer",
+            "MANUFACTURER"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "bleota_init": {
+    "message0": "تهيئة استجابة المسح %1 BLE OTA %2",
+    "tooltip": "تهيئة خدمة BLEOTA والانضمام إلى البث؛ لا تضاف المعالجة تلقائيا إلى الحلقة؛ يرجى استخدام كتل المعالجة داخل الحلقة",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "إيقاف",
+            "false"
+          ],
+          [
+            "تشغيل",
+            "true"
+          ]
+        ]
+      }
+    ]
+  },
+  "bleota_start_service": {
+    "message0": "ابدأ خادم BLE OTA %1 %2 استجابته %3 إعادة التشغيل التلقائي بعد update%4",
+    "tooltip": "تهيئة خدمة BLEOTA، وانضم إلى البث، وتعامل تلقائيا مع عمليات الاتصال والتحديث داخل الحلقة",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "إيقاف",
+            "false"
+          ],
+          [
+            "تشغيل",
+            "true"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "تشغيل",
+            "true"
+          ],
+          [
+            "إيقاف",
+            "false"
+          ]
+        ]
+      }
+    ]
+  },
+  "bleota_process": {
+    "message0": "التعامل مع BLE OTA %1 إعادة التشغيل التلقائي بعد Update%2",
+    "tooltip": "استدعاء BLEOTA.process يدويا للتعامل مع قوائم الاستقبال، والتحقق، والكتابة، وإعادة الاتصال",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "تشغيل",
+            "true"
+          ],
+          [
+            "إيقاف",
+            "false"
+          ]
+        ]
+      }
+    ]
+  },
+  "bleota_abort": {
+    "message0": "إلغاء تحديثات BLE OTA %1",
+    "tooltip": "أوقف كتابة BLE OTA الجارية حاليا"
+  },
+  "bleota_is_running": {
+    "message0": "يتم تحديث %1 BLE OTA",
+    "tooltip": "يعيد ما إذا كانت بيانات OTA تستقبل وتكتب حاليا"
+  },
+  "bleota_progress": {
+    "message0": "نسبة التقدم %1 BLE OTA",
+    "tooltip": "يعيد نسبة تقدم الكتابة الحالية في OTA، وهي 0 قبل البدء"
+  },
+  "bleota_uuid": {
+    "message0": "BLE OTA %1 service UUID",
+    "tooltip": "يعيد خدمة BLE OTA GATT UID، التي يمكن استخدامها للبث المخصص"
+  },
+  "bleota_on_events": {
+    "message0": "عندما يحدث حدث %1 OTA في BLE",
+    "message1": "قبل بدء تشغيل البرنامج الثابت updates%1",
+    "message2": "قبل بدء نظام الملفات updates%1",
+    "message3": "بعد التحديث complete%1",
+    "message4": "بعد أن توقف التحديث %1",
+    "tooltip": "سجل استدعاءات دورة حياة BLE OTA لتنفيذ كود مخصص قبل وبعد التحديثات"
+  }
+}

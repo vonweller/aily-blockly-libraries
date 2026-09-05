@@ -1,0 +1,117 @@
+{
+  "toolbox_name": "AI—Assistant",
+  "ai_assistant_config": {
+    "message0": "Konfigurieren Sie den KI-Assistant mit seriellem Port %1 Baudrate %2",
+    "tooltip": "Konfigurieren Sie die serielle Kommunikation mit KI-Assistenten",
+    "args0": [
+      {
+        "options": "${board.serialPort}"
+      },
+      {
+        "options": "${board.serialSpeed}"
+      }
+    ]
+  },
+  "serial_command_handler": {
+    "message0": "Erhielt %1 Kommando",
+    "tooltip": "Überprüfen Sie, ob ein Befehl des angegebenen Typs empfangen wurde",
+    "args0": [
+      {
+        "options": [
+          [
+            "Der kleine Wagen fährt vorwärts",
+            "MOVE_FORWARD"
+          ],
+          [
+            "Das kleine Auto fährt rückwärts",
+            "MOVE_BACKWARD"
+          ],
+          [
+            "Der kleine Wagen biegt links ab",
+            "TURN_LEFT"
+          ],
+          [
+            "Die kleine Kutsche biegt rechts ab",
+            "TURN_RIGHT"
+          ],
+          [
+            "Das Auto kam abrupt zum Stehen",
+            "STOP"
+          ],
+          [
+            "Schalte die LED ein",
+            "LED_ON"
+          ],
+          [
+            "Schalte die LED aus",
+            "LED_OFF"
+          ],
+          [
+            "LED blinkt",
+            "LED_BLINK"
+          ],
+          [
+            "Der Servo dreht sich",
+            "SERVO_ROTATE"
+          ],
+          [
+            "Stell die Lüftergeschwindigkeit ein",
+            "FAN_SPEED"
+          ],
+          [
+            "Mach den Ventilator an",
+            "FAN_ON"
+          ],
+          [
+            "Mach den Ventilator aus",
+            "FAN_OFF"
+          ],
+          [
+            "Mach die farbigen Lichter an",
+            "RGB_ON"
+          ],
+          [
+            "Mach die farbigen Lichter aus.",
+            "RGB_OFF"
+          ],
+          [
+            "Stellen Sie die Helligkeit der farbigen Lichter ein",
+            "RGB_BRIGHTNESS"
+          ],
+          [
+            "Richte Farbverlauf für farbige Lichter ein",
+            "RGB_GRADIENT"
+          ],
+          [
+            "Roboterarm-Griff",
+            "ARM_GRAB"
+          ],
+          [
+            "Der Roboterarm lockerte sich",
+            "ARM_RELEASE"
+          ],
+          [
+            "Der Roboterarm kehrt in seine Ausgangsposition zurück",
+            "ARM_DOWN"
+          ],
+          [
+            "Öffne das Relais",
+            "RELAY_ON"
+          ],
+          [
+            "Schalte das Relais aus",
+            "RELAY_OFF"
+          ]
+        ]
+      }
+    ]
+  },
+  "serial_custom_command": {
+    "message0": "Kamera erkennt: %1",
+    "tooltip": "Überprüfe, ob du einen benutzerdefinierten Befehl erhalten hast (teilweise abgestimmt unterstützt)."
+  },
+  "serial_clear_command": {
+    "message0": "Lösche den empfangenen Befehl",
+    "tooltip": "Löscht die receivedCommand-Variable, um alle Befehle zu verwalten"
+  }
+}

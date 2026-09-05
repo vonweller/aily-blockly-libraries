@@ -1,0 +1,274 @@
+{
+  "toolbox_name": "CAN",
+  "toolbox_labels": {
+    "初始化": "initialisation",
+    "消息发送": "envoi de messages",
+    "消息接收": "Réception des messages",
+    "过滤器设置": "Paramètres de filtre",
+    "控制模式": "mode de contrôle",
+    "状态检查": "vérification de l'état"
+  },
+  "seeed_can_create": {
+    "message0": "Créer un objet CAN %1 une broche CS %2",
+    "tooltip": "Créer un objet bus CAN et spécifier la broche de sélection de la puce SPI"
+  },
+  "seeed_can_begin": {
+    "message0": "Initialiser la vitesse %1 %2 l’horloge CAN %3",
+    "tooltip": "Initialiser le bus CAN et définir la vitesse de communication et la fréquence d’horloge",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "5KBPS",
+            "CAN_5KBPS"
+          ],
+          [
+            "10KBPS",
+            "CAN_10KBPS"
+          ],
+          [
+            "20KBPS",
+            "CAN_20KBPS"
+          ],
+          [
+            "25KBPS",
+            "CAN_25KBPS"
+          ],
+          [
+            "31.25KBPS",
+            "CAN_31K25BPS"
+          ],
+          [
+            "33KBPS",
+            "CAN_33KBPS"
+          ],
+          [
+            "40KBPS",
+            "CAN_40KBPS"
+          ],
+          [
+            "50KBPS",
+            "CAN_50KBPS"
+          ],
+          [
+            "80KBPS",
+            "CAN_80KBPS"
+          ],
+          [
+            "83.3KBPS",
+            "CAN_83K3BPS"
+          ],
+          [
+            "95KBPS",
+            "CAN_95KBPS"
+          ],
+          [
+            "95.2KBPS",
+            "CAN_95K2BPS"
+          ],
+          [
+            "100KBPS",
+            "CAN_100KBPS"
+          ],
+          [
+            "125KBPS",
+            "CAN_125KBPS"
+          ],
+          [
+            "200KBPS",
+            "CAN_200KBPS"
+          ],
+          [
+            "250KBPS",
+            "CAN_250KBPS"
+          ],
+          [
+            "500KBPS",
+            "CAN_500KBPS"
+          ],
+          [
+            "666KBPS",
+            "CAN_666KBPS"
+          ],
+          [
+            "800KBPS",
+            "CAN_800KBPS"
+          ],
+          [
+            "1000KBPS",
+            "CAN_1000KBPS"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "8MHz",
+            "MCP_8MHz"
+          ],
+          [
+            "12MHz",
+            "MCP_12MHz"
+          ],
+          [
+            "16MHz",
+            "MCP_16MHz"
+          ]
+        ]
+      }
+    ]
+  },
+  "seeed_can_send": {
+    "message0": "CAN envoie %1 ID %2 trame étendue %3 données %4",
+    "tooltip": "Envoyer des messages CAN en spécifiant l’ID, le type de trame et les données",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "Châssis standard",
+            "0"
+          ],
+          [
+            "Cadre étendu",
+            "1"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "seeed_can_receive_check": {
+    "message0": "CAN %1 Message reçu",
+    "tooltip": "Vérifiez si des messages CAN ont été reçus"
+  },
+  "seeed_can_receive": {
+    "message0": "CAN reçoit %1 longueur de données %2 identifiant de message %3 données %4",
+    "tooltip": "Lisez le message CAN reçu pour obtenir sa longueur, son ID et ses données"
+  },
+  "seeed_can_get_id": {
+    "message0": "CAN %1 Obtenir l’ID du message",
+    "tooltip": "Récupère le dernier identifiant CAN reçu"
+  },
+  "seeed_can_init_mask": {
+    "message0": "PEUT-%1 définir le masque %2 étendre la valeur du masque %3 image %4",
+    "tooltip": "Configurez des masques CAN receive pour filtrer les messages",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Masque 0",
+            "0"
+          ],
+          [
+            "Masque 1",
+            "1"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "Châssis standard",
+            "0"
+          ],
+          [
+            "Cadre étendu",
+            "1"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "seeed_can_init_filter": {
+    "message0": "CAN %1 Définir le filtre %2 Étendre la trame %3 la valeur du filtre %4",
+    "tooltip": "Configurez des filtres CAN receive pour filtrer les messages provenant d’identifiants spécifiques",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Filtre 0",
+            "0"
+          ],
+          [
+            "Filtre 1",
+            "1"
+          ],
+          [
+            "Filtre 2",
+            "2"
+          ],
+          [
+            "Filtre 3",
+            "3"
+          ],
+          [
+            "Filtre 4",
+            "4"
+          ],
+          [
+            "Filtre 5",
+            "5"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "Châssis standard",
+            "0"
+          ],
+          [
+            "Cadre étendu",
+            "1"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "seeed_can_set_mode": {
+    "message0": "CAN %1 Régler le mode %2",
+    "tooltip": "Définir le mode de fonctionnement du contrôleur CAN",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Mode normal",
+            "MODE_NORMAL"
+          ],
+          [
+            "Mode veille",
+            "MODE_SLEEP"
+          ],
+          [
+            "Mode écoute",
+            "MODE_LISTEN"
+          ],
+          [
+            "Mode de configuration",
+            "MODE_CONFIG"
+          ]
+        ]
+      }
+    ]
+  },
+  "seeed_can_sleep": {
+    "message0": "PEUT-%1 entrer en mode veille",
+    "tooltip": "Mettez le contrôleur CAN en mode veille pour économiser de l’énergie"
+  },
+  "seeed_can_wake": {
+    "message0": "PEUT-%1 se réveiller",
+    "tooltip": "Réveillez le contrôleur CAN"
+  },
+  "seeed_can_check_error": {
+    "message0": "CAN %1 Vérifier les erreurs",
+    "tooltip": "Vérifiez l’état d’erreur du contrôleur CAN"
+  }
+}

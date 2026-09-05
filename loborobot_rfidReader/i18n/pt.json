@@ -1,0 +1,58 @@
+{
+  "toolbox_name": "Leitor de cartão RFID",
+  "toolbox_labels": {
+    "初始化": "inicialização",
+    "事件": "evento",
+    "控制": "controle",
+    "读取": "leia"
+  },
+  "rfid_setup": {
+    "message0": "Inicialize o Leitor de Cartão RFID %1 o PIN RX %2 PIN TX %3 Ativer o Pin %4",
+    "tooltip": "Inicialize o leitor de cartão RFID, defina RX, TX e ative os pinos",
+    "args0": [
+      null,
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": "${board.digitalPins}"
+      }
+    ]
+  },
+  "rfid_on_tag_read": {
+    "message0": "Quando o leitor de cartão RFID %1 lê a etiqueta",
+    "tooltip": "O código executado quando uma etiqueta RFID é lida",
+    "message1": "ID da etiqueta %1",
+    "message2": "executar %1"
+  },
+  "rfid_available": {
+    "message0": "Leitor de cartão RFID %1 pode ler dados",
+    "tooltip": "Verifique se o leitor de cartão RFID é um dado legível"
+  },
+  "rfid_read_tag": {
+    "message0": "Leitor de cartão RFID %1 lê ID da etiqueta",
+    "tooltip": "Leia o ID da tag RFID (string de 10 bits)"
+  },
+  "rfid_enable": {
+    "message0": "Leitor de Cartão RFID %1 %2",
+    "tooltip": "Ativer ou desativar leitores de cartão RFID",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Habilitar",
+            "LOW"
+          ],
+          [
+            "Desabilitar",
+            "HIGH"
+          ]
+        ]
+      }
+    ]
+  }
+}

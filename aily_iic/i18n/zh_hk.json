@@ -1,0 +1,141 @@
+{
+  "toolbox_name": "I2C",
+  "wire_begin": {
+    "message0": "初始化%1模式%2",
+    "args0": [
+      {
+        "options": "${board.i2c}"
+      },
+      {
+        "options": [
+          [
+            "主設備",
+            "MASTER"
+          ],
+          [
+            "從設備",
+            "SLAVE"
+          ]
+        ]
+      }
+    ]
+  },
+  "wire_begin_with_settings": {
+    "message0": "%1模式初始化%2 SDA %3 SCL %4",
+    "args0": [
+      {
+        "options": "${board.i2c}"
+      },
+      {
+        "options": [
+          [
+            "主設備",
+            "MASTER"
+          ],
+          [
+            "從設備",
+            "SLAVE"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "wire_set_clock": {
+    "message0": "設定%1時脈頻率為 %2 kHz",
+    "args0": [
+      {
+        "options": "${board.i2c}"
+      },
+      null
+    ]
+  },
+  "wire_begin_transmission": {
+    "message0": "%1開始傳送到位址 %2",
+    "args0": [
+      {
+        "options": "${board.i2c}"
+      },
+      null
+    ]
+  },
+  "wire_write": {
+    "message0": "%1傳送資料 %2",
+    "args0": [
+      {
+        "options": "${board.i2c}"
+      },
+      null
+    ]
+  },
+  "wire_end_transmission": {
+    "message0": "%1結束傳輸",
+    "args0": [
+      {
+        "options": "${board.i2c}"
+      }
+    ]
+  },
+  "wire_request_from": {
+    "message0": "%1從位址 %2 請求 %3 位元組數據",
+    "args0": [
+      {
+        "options": "${board.i2c}"
+      },
+      null,
+      null
+    ]
+  },
+  "wire_available": {
+    "message0": "%1是否可讀數據",
+    "args0": [
+      {
+        "options": "${board.i2c}"
+      }
+    ]
+  },
+  "wire_read": {
+    "message0": "%1讀取數據",
+    "args0": [
+      {
+        "options": "${board.i2c}"
+      }
+    ]
+  },
+  "wire_variables": {
+    "message0": "I2C物件 %1",
+    "tooltip": "取得Wire物件引用，可用於需要I2C實例的函數或表達式中",
+    "args0": [
+      {
+        "options": "${board.i2c}"
+      }
+    ]
+  },
+  "wire_on_receive": {
+    "message0": "%1收到資料時呼叫 %2",
+    "args0": [
+      {
+        "options": "${board.i2c}"
+      },
+      null
+    ]
+  },
+  "wire_on_request": {
+    "message0": "%1請求資料時呼叫 %2",
+    "args0": [
+      {
+        "options": "${board.i2c}"
+      },
+      null
+    ]
+  },
+  "wire_scan": {
+    "message0": "%1掃描I2C設備",
+    "args0": [
+      {
+        "options": "${board.i2c}"
+      }
+    ]
+  }
+}

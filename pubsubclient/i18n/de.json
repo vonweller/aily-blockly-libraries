@@ -1,0 +1,135 @@
+{
+  "toolbox_name": "MQTT",
+  "toolbox_labels": {
+    "初始化": "Initialisierung",
+    "连接": "verbinden",
+    "通信": "Kommunikation",
+    "设置": "Einstellungen"
+  },
+  "pubsub_create": {
+    "message0": "Erstellen Sie einen MQTT-Client %1 verwenden Sie Client %2 SSL-%3\nServer %4 Port %5",
+    "tooltip": "Erstellen Sie ein MQTT-Client-Objekt",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "Nein",
+            "FALSE"
+          ],
+          [
+            "Ja",
+            "TRUE"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "pubsub_set_callback": {
+    "message0": "Wenn der MQTT-Client %1 eine Nachricht empfängt",
+    "tooltip": "Setzen Sie die MQTT-Nachrichtenempfangs-Callback-Funktion ein",
+    "message1": "ausführen %1"
+  },
+  "pubsub_set_callback_with_topic": {
+    "message0": "Wenn Sie eine Nachricht zum Thema erhalten%1",
+    "tooltip": "Setze die MQTT-Nachrichtenempfangs-Rückruffunktion für bestimmte Themen ein",
+    "message1": "ausführen %1"
+  },
+  "pubsub_get_topic_callback_payload": {
+    "message0": "Ruft den Inhalt der empfangenen MQTT-Nachricht ab",
+    "tooltip": "Ruft den MQTT-Nachrichteninhalt ab, der in der Rückruffunktion empfangen wurde."
+  },
+  "pubsub_connect": {
+    "message0": "MQTT-Client %1 sich mit der Client-ID verbinden %2",
+    "tooltip": "Verbinden Sie sich mit dem MQTT-Server"
+  },
+  "pubsub_connect_auth": {
+    "message0": "MQTT-Client %1 Client-ID %2 Benutzername %3 Passwort verbinden %4",
+    "tooltip": "Verbinden Sie sich mit Ihrem Benutzernamen und Passwort mit dem MQTT-Server"
+  },
+  "pubsub_publish": {
+    "message0": "MQTT-Client %1 Nachrichtenbetreff %2 Inhalt veröffentlichen %3",
+    "tooltip": "Veröffentlichung von MQTT-Nachrichten"
+  },
+  "pubsub_subscribe": {
+    "message0": "MQTT-Client %1 Abonnementthema %2",
+    "tooltip": "Abonnieren Sie MQTT-Themen"
+  },
+  "pubsub_unsubscribe": {
+    "message0": "MQTT-Client %1 Abmelden für Thema %2",
+    "tooltip": "Abmelde dich von MQTT-Themen ab"
+  },
+  "pubsub_loop": {
+    "message0": "Verwaltet MQTT-Client- %1-Kommunikation",
+    "tooltip": "MQTT-Kommunikation muss in einer Schleife aufgerufen werden"
+  },
+  "pubsub_connected": {
+    "message0": "Überprüfe, ob der MQTT-Client %1 verbunden ist",
+    "tooltip": "Überprüfen Sie den MQTT-Verbindungsstatus"
+  },
+  "pubsub_state": {
+    "message0": "MQTT-Client %1 erhält den Verbindungsstatus",
+    "tooltip": "Erhalten Sie den MQTT-Verbindungsstatuscode"
+  },
+  "pubsub_state_code": {
+    "message0": "MQTT-Statuscode %1",
+    "tooltip": "MQTT-Statuscode-Konstante",
+    "args0": [
+      {
+        "options": [
+          [
+            "Erfolgreiche Verbindung",
+            "MQTT_CONNECTED"
+          ],
+          [
+            "Verbindung fehlgeschlagen",
+            "MQTT_CONNECT_FAILED"
+          ],
+          [
+            "Trenne die Verbindung",
+            "MQTT_DISCONNECTED"
+          ],
+          [
+            "Verbindung verloren",
+            "MQTT_CONNECTION_LOST"
+          ],
+          [
+            "Verbindungs-Timeout",
+            "MQTT_CONNECTION_TIMEOUT"
+          ],
+          [
+            "Protokollfehler",
+            "MQTT_CONNECT_BAD_PROTOCOL"
+          ],
+          [
+            "Client-ID-Fehler",
+            "MQTT_CONNECT_BAD_CLIENT_ID"
+          ],
+          [
+            "Der Dienst ist nicht verfügbar",
+            "MQTT_CONNECT_UNAVAILABLE"
+          ],
+          [
+            "Gutscheinfehler",
+            "MQTT_CONNECT_BAD_CREDENTIALS"
+          ],
+          [
+            "Unautorisiert",
+            "MQTT_CONNECT_UNAUTHORIZED"
+          ]
+        ]
+      }
+    ]
+  },
+  "pubsub_disconnect": {
+    "message0": "Trennen Sie den MQTT-Client %1 Verbindung",
+    "tooltip": "Trennen Sie die MQTT-Verbindung"
+  },
+  "pubsub_setBufferSize": {
+    "message0": "Setze die Puffergröße des MQTT-Clients %1 auf %2 Bytes",
+    "tooltip": "Setzen Sie die Größe des MQTT-Client-Puffers ein"
+  }
+}

@@ -1,0 +1,882 @@
+{
+  "toolbox_name": "曉智 AI",
+  "toolbox_labels": {
+    "说明:小智事件中禁用delay阻塞编程，简单定时器不如多线程": "說明:小智事件中禁用delay阻塞編程，簡單定時器不如多線程",
+    "说明:1. 预内置和自定义不可混用": "說明:1. 預先內建和自訂不可混用",
+    "   2. 自定义需要自己画界面,内容可自定，灵活但麻烦": "2. 自訂需要自己畫介面,內容可自定，靈活但麻煩",
+    "   3. 预内置是定死的，但直接可用": "3. 預先內建是定死的，但直接可用",
+    "*特别声明1. 屏显功能需要加载LVGL库": "*特別聲明1. 螢幕顯示功能需要載入LVGL庫",
+    "*特别声明2. 在LVGL库初始化中需‘设置图像字体开启’": "*特別聲明2. 在LVGL庫初始化中需‘設定圖像字體開啟’",
+    "*特别声明3. 需自绘界面的，一般用TFT_eSPI库，按例程": "*特別聲明3. 需自繪介面的，一般用TFT_eSPI庫，依例程",
+    " 就行，这里的自定义一般不需要，单色屏时可考虑使用": "就行，這裡的自訂一般不需要，單色螢幕時可考慮使用",
+    "说明:操作设备代码放设置，服务器读取代码放上报": "說明:操作設備代碼放設置，伺服器讀取代碼放上報"
+  },
+  "toolbox_categories": [
+    "初始化",
+    "屏顯示",
+    "預內置",
+    "自定義",
+    "控制",
+    "AI按鈕",
+    "狀態與激活",
+    "表情與聊天",
+    "MCP"
+  ],
+  "esp32_task": {
+    "message0": "ESP32 task%1 Core%2 空間分配%3",
+    "tooltip": "設定執行緒在哪個核心上運行",
+    "args0": [
+      {
+        "options": [
+          [
+            "任務1",
+            "1"
+          ],
+          [
+            "任務2",
+            "2"
+          ],
+          [
+            "任務3",
+            "3"
+          ],
+          [
+            "任務4",
+            "4"
+          ],
+          [
+            "任務5",
+            "5"
+          ],
+          [
+            "任務6",
+            "6"
+          ],
+          [
+            "任務7",
+            "7"
+          ],
+          [
+            "任務8",
+            "8"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "核心0",
+            "0"
+          ],
+          [
+            "核心1",
+            "1"
+          ]
+        ]
+      },
+      null
+    ],
+    "message1": "初始化%1",
+    "message2": "循環%1"
+  },
+  "esp32_serial_init": {
+    "message0": "ESP32 串列埠初始化 %1 RX針腳%2 TX針腳%3 波特率%4",
+    "tooltip": "初始化ESP32指定串口及引腳配置",
+    "args0": [
+      {
+        "options": [
+          [
+            "Serial",
+            "Serial"
+          ],
+          [
+            "Serial1",
+            "Serial1"
+          ],
+          [
+            "Serial2",
+            "Serial2"
+          ]
+        ]
+      },
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": [
+          [
+            "9600",
+            "9600"
+          ],
+          [
+            "19200",
+            "19200"
+          ],
+          [
+            "38400",
+            "38400"
+          ],
+          [
+            "57600",
+            "57600"
+          ],
+          [
+            "115200",
+            "115200"
+          ],
+          [
+            "256000",
+            "256000"
+          ],
+          [
+            "500000",
+            "500000"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32ai_button_setup": {
+    "message0": "AI觸發按鈕腳位 %1 模式 %2 低電位有效 %3",
+    "tooltip": "建立並初始化ESP32 AI語音互動按鈕（適配Espressif按鈕庫）",
+    "args0": [
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": [
+          [
+            "普通輸入",
+            "INPUT"
+          ],
+          [
+            "上拉輸入",
+            "INPUT_PULLUP"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "是的",
+            "TRUE"
+          ],
+          [
+            "不",
+            "FALSE"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32ai_init_wifi": {
+    "message0": "初始化ESP32_小智 AI WIFI 模式%1",
+    "args0": [
+      {
+        "options": [
+          [
+            "手動配網",
+            "Manual"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32ai_button_click": {
+    "message0": "AI觸發按鈕點擊時",
+    "tooltip": "按鈕點擊事件觸發時執行的操作",
+    "message1": "%1"
+  },
+  "esp32ai_button_double_click": {
+    "message0": "AI觸發按鈕雙擊時",
+    "tooltip": "按鈕雙擊事件觸發時執行的操作",
+    "message1": "%1"
+  },
+  "esp32ai_button_long_pressing": {
+    "message0": "AI觸發按鈕長按中",
+    "tooltip": "按鈕長按過程中持續觸發的操作",
+    "message1": "%1"
+  },
+  "esp32_i2s_mic_setup": {
+    "message0": "AI麥克風類型 %1",
+    "tooltip": "初始化I2S/PDM麥克風（適配ai_vox_engine音訊輸入）",
+    "args0": [
+      {
+        "options": [
+          [
+            "I2S標準",
+            "AUDIO_INPUT_DEVICE_TYPE_I2S_STD"
+          ],
+          [
+            "PDM",
+            "AUDIO_INPUT_DEVICE_TYPE_PDM"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32ai_i2s_speaker_setup": {
+    "message0": "AI揚聲器 SCK/BCLK %1 WS/LRCLK %2 SD/DIN %3",
+    "tooltip": "初始化I2S揚聲器（引腳對應main.cpp中的kSpeakerPin*常數）",
+    "args0": [
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": "${board.digitalPins}"
+      }
+    ]
+  },
+  "esp32ai_init_display": {
+    "message0": "原界面初始化顯示幕: %1",
+    "tooltip": "初始化指定類型的顯示屏",
+    "args0": [
+      {
+        "options": [
+          [
+            "ST7789 (SPI，240x240)",
+            "ST7789"
+          ],
+          [
+            "SSD1306 (I2C, 128x64)",
+            "SSD1306"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32ai_init_nlvgl_display": {
+    "message0": "自定lVGL初始化顯示器: %1 旋轉角度: %2",
+    "tooltip": "初始化指定類型的顯示屏",
+    "args0": [
+      {
+        "options": [
+          [
+            "ST7789 (SPI)",
+            "nST7789"
+          ],
+          [
+            "SSD1306 (I2C)",
+            "nSSD1306"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "0°",
+            "LV_DISPLAY_ROTATION_0"
+          ],
+          [
+            "90°",
+            "LV_DISPLAY_ROTATION_90"
+          ],
+          [
+            "180°",
+            "LV_DISPLAY_ROTATION_180"
+          ],
+          [
+            "270°",
+            "LV_DISPLAY_ROTATION_270"
+          ]
+        ]
+      }
+    ]
+  },
+  "aivox_config_ota_url": {
+    "message0": "自訂OTA連結 %1",
+    "tooltip": "使用蝦哥伺服器不需要呼叫此區塊，自建相容蝦哥伺服器協定呼叫此區塊"
+  },
+  "aivox_config_websocket": {
+    "message0": "自訂websocket連結 %1",
+    "tooltip": "使用蝦哥伺服器不需要呼叫此區塊，自建相容蝦哥伺服器協定呼叫此區塊",
+    "message1": "請求頭(C語言數組格式) %1"
+  },
+  "esp32ai_start_engine": {
+    "message0": "啟動ESP32-AI引擎"
+  },
+  "aivox_display_mode": {
+    "message0": "初始化會話顯示樣式為 %1",
+    "args0": [
+      {
+        "options": [
+          [
+            "普通",
+            "normal"
+          ],
+          [
+            "微信對話",
+            "wechat"
+          ]
+        ]
+      }
+    ]
+  },
+  "aivox3_set_es8311_volume": {
+    "message0": "設定AI音量為 %1",
+    "tooltip": "設定AI設備音量大小"
+  },
+  "aivox3_set_screen_light": {
+    "message0": "設定ST7789螢幕亮度為 %1",
+    "tooltip": "設定ST7789螢幕亮度"
+  },
+  "esp32ai_wake_engine": {
+    "message0": "喚醒ESP32-AI"
+  },
+  "esp32ai_sendtext": {
+    "message0": "主動發送訊息 %1",
+    "tooltip": "主動給小智發送訊息，讓他工作"
+  },
+  "aivox_lcd_show_status": {
+    "message0": "在 %1顯示 %2",
+    "args0": [
+      {
+        "options": [
+          [
+            "狀態框",
+            "ShowStatus"
+          ],
+          [
+            "表情符號盒",
+            "SetEmotion"
+          ],
+          [
+            "內容框",
+            "SetChatMessage"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "esp32ai_state_change_root": {
+    "message0": "當AI設備狀態變化時",
+    "tooltip": "處理AI設備所有狀態變化事件的總入口",
+    "message1": "%1"
+  },
+  "esp32ai_state_change_case": {
+    "message0": "當狀態為 %1 時",
+    "tooltip": "當AI設備進入指定狀態時，執行這裡的程式碼",
+    "args0": [
+      {
+        "options": [
+          [
+            "空閒 (Idle)",
+            "kIdle"
+          ],
+          [
+            "開始",
+            "kInitted"
+          ],
+          [
+            "載入中 (Loading)",
+            "kLoading"
+          ],
+          [
+            "載入失敗 (LoadingFailed)",
+            "kLoadingFailed"
+          ],
+          [
+            "待命",
+            "kStandby"
+          ],
+          [
+            "連線中 (Connecting)",
+            "kConnecting"
+          ],
+          [
+            "聆聽中 (Listening)",
+            "kListening"
+          ],
+          [
+            "說話中 (Speaking)",
+            "kSpeaking"
+          ]
+        ]
+      }
+    ],
+    "message1": "%1"
+  },
+  "aivox3_ST77789TurnOnBacklight_engine": {
+    "message0": "點亮ST77789屏"
+  },
+  "aivox3_ST77789TurnOffBacklight_engine": {
+    "message0": "熄滅ST77789屏"
+  },
+  "esp32ai_loop_activation": {
+    "message0": "當AI收到激活訊息",
+    "tooltip": "AI啟動事件的邏輯",
+    "message1": "%1"
+  },
+  "get_aivox_activation_message": {
+    "message0": "收到%1",
+    "tooltip": "取得設備的啟動碼",
+    "args0": [
+      {
+        "options": [
+          [
+            "啟用設定",
+            "code"
+          ],
+          [
+            "啟用網址",
+            "message"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32ai_loop_emotion": {
+    "message0": "當AI收到表情碼",
+    "tooltip": "AI-VOX表情事件的邏輯",
+    "message1": "%1"
+  },
+  "get_aivox_emotion_result": {
+    "message0": "收到的表情碼",
+    "tooltip": "獲取當前情緒表情"
+  },
+  "aivox_emotion": {
+    "message0": "收到的表情為 %1?",
+    "tooltip": "情緒表情",
+    "args0": [
+      {
+        "options": [
+          [
+            "高興",
+            "happy"
+          ],
+          [
+            "酷",
+            "cool"
+          ],
+          [
+            "大笑著",
+            "laughing"
+          ],
+          [
+            "真有趣",
+            "funny"
+          ],
+          [
+            "憂傷",
+            "sad"
+          ],
+          [
+            "生氣",
+            "angry"
+          ],
+          [
+            "哭泣",
+            "crying"
+          ],
+          [
+            "喜歡",
+            "loving"
+          ],
+          [
+            "尷尬",
+            "embarrassed"
+          ],
+          [
+            "驚訝",
+            "surprised"
+          ],
+          [
+            "震驚",
+            "shocked"
+          ],
+          [
+            "思考",
+            "thinking"
+          ],
+          [
+            "調皮",
+            "winking"
+          ],
+          [
+            "放鬆",
+            "relaxed"
+          ],
+          [
+            "請欣賞",
+            "delicious"
+          ],
+          [
+            "親親",
+            "kissy"
+          ],
+          [
+            "信心",
+            "confident"
+          ],
+          [
+            "睏倦",
+            "sleepy"
+          ],
+          [
+            "真有趣",
+            "silly"
+          ],
+          [
+            "困惑",
+            "confused"
+          ]
+        ]
+      }
+    ]
+  },
+  "aivox_emotion_list": {
+    "message0": "迷因%1",
+    "tooltip": "情緒表情",
+    "args0": [
+      {
+        "options": [
+          [
+            "高興",
+            "happy"
+          ],
+          [
+            "酷",
+            "cool"
+          ],
+          [
+            "大笑著",
+            "laughing"
+          ],
+          [
+            "真有趣",
+            "funny"
+          ],
+          [
+            "憂傷",
+            "sad"
+          ],
+          [
+            "生氣",
+            "angry"
+          ],
+          [
+            "哭泣",
+            "crying"
+          ],
+          [
+            "喜歡",
+            "loving"
+          ],
+          [
+            "尷尬",
+            "embarrassed"
+          ],
+          [
+            "驚訝",
+            "surprised"
+          ],
+          [
+            "震驚",
+            "shocked"
+          ],
+          [
+            "思考",
+            "thinking"
+          ],
+          [
+            "調皮",
+            "winking"
+          ],
+          [
+            "放鬆",
+            "relaxed"
+          ],
+          [
+            "請欣賞",
+            "delicious"
+          ],
+          [
+            "親親",
+            "kissy"
+          ],
+          [
+            "信心",
+            "confident"
+          ],
+          [
+            "睏倦",
+            "sleepy"
+          ],
+          [
+            "真有趣",
+            "silly"
+          ],
+          [
+            "困惑",
+            "confused"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32ai_loop_chat_message": {
+    "message0": "當AI收到聊天訊息",
+    "tooltip": "處理AI-VOX交互訊息事件",
+    "message1": "%1"
+  },
+  "aivox_loop_chat_message_role_var": {
+    "message0": "收到%1的訊息？",
+    "tooltip": "AI-VOX設備目前訊息的角色",
+    "args0": [
+      {
+        "options": [
+          [
+            "助理回覆",
+            "Assistant"
+          ],
+          [
+            "用戶詢問",
+            "User"
+          ]
+        ]
+      }
+    ]
+  },
+  "aivox_mcp_register_control_command": {
+    "message0": "%1註冊MCP控制服務%2",
+    "args0": [
+      {
+        "options": [
+          [
+            "常規",
+            "regular"
+          ],
+          [
+            "只設定",
+            "set_only"
+          ],
+          [
+            "只上報",
+            "report_only"
+          ]
+        ]
+      },
+      null
+    ],
+    "message1": "參數%1"
+  },
+  "aivox_mcp_control_param": {
+    "message0": "MCP服務參數%1 參數類型%2",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "布林值 (Boolean)",
+            "Boolean"
+          ],
+          [
+            "數值 (Number)",
+            "Number"
+          ],
+          [
+            "字串 (String)",
+            "String"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32ai_mcp_control_param": {
+    "message0": "MCP服務參數%1 參數類型%2",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "布林值 (Boolean)",
+            "Boolean"
+          ],
+          [
+            "數值 (Number)",
+            "Number"
+          ],
+          [
+            "字串 (String)",
+            "String"
+          ]
+        ]
+      }
+    ]
+  },
+  "aivox_mcp_control": {
+    "message0": "MCP服務名稱%1 描述%2"
+  },
+  "aivox_loop_chat_message_msg_var": {
+    "message0": "收到的訊息內容",
+    "tooltip": "AI-VOX設備目前聊天的資訊內容"
+  },
+  "esp32ai_loop_mcp": {
+    "message0": "當AI收到MCP訊息",
+    "tooltip": "處理AI-VOX MCP訊息",
+    "message1": "%1"
+  },
+  "esp32ai_loop_mcp_new": {
+    "message0": "%1 註冊MCP控制服務",
+    "tooltip": "MCP服務註冊及訊息處理",
+    "args0": [
+      {
+        "options": [
+          [
+            "常規",
+            "regular"
+          ],
+          [
+            "只設定",
+            "set_only"
+          ],
+          [
+            "只上報",
+            "report_only"
+          ]
+        ]
+      }
+    ],
+    "message1": "服務名稱%1 描述%2",
+    "message2": "參數%1",
+    "message3": "訊息處理"
+  },
+  "aivox_get_iot_message_event_name": {
+    "message0": "設備名稱為 %1"
+  },
+  "aivox_get_iot_message_event_name_new": {
+    "message0": "MCP服務名稱為 %1?"
+  },
+  "aivox_state_control_message_event_fuction": {
+    "message0": "取得設備名稱 %1 狀態參數 %2 的結果"
+  },
+  "aivox_control_message_event_fuction": {
+    "message0": "取得MCP服務名稱 %1 參數 %2 的結果"
+  },
+  "aivox_response_mcp_control_result": {
+    "message0": "回報設備 %1 控制結果"
+  },
+  "aivox_response_mcp_control_result_new": {
+    "message0": "回報MCP服務名稱 %1 執行完成"
+  },
+  "aivox_update_mcp_control_state_new": {
+    "message0": "簡單回報MCP服務名稱 %1 參數 %2 的值為 %3"
+  },
+  "aivox_calculateupdate_mcp_control_state": {
+    "message0": "計算上報MCP服務名稱 %1 參數 %2",
+    "message1": "%1"
+  },
+  "esp32ai_selget_mcp_control": {
+    "message0": "MCP服務名稱 %1"
+  },
+  "lvgl_port_lock": {
+    "message0": "取得LVGL鎖定 逾時%1ms",
+    "tooltip": "取得LVGL互斥鎖"
+  },
+  "lvgl_port_unlock": {
+    "message0": "釋放LVGL鎖定",
+    "tooltip": "釋放LVGL互斥鎖"
+  },
+  "esp32ai_lvgl_obj_set_style_text_font": {
+    "message0": "設定 %1 小智字體 %2",
+    "tooltip": "設定物件的文字字體",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "單色螢幕文字14號字體",
+            "font_puhui_14_1"
+          ],
+          [
+            "單色螢幕30號大圖標",
+            "font_awesome_30_1"
+          ],
+          [
+            "單色螢幕14號小圖標",
+            "font_awesome_14_1"
+          ],
+          [
+            "彩色螢幕文字16號字體",
+            "font_puhui_16_4"
+          ],
+          [
+            "彩色螢幕黑色功能圖示30號",
+            "font_awesome_30_4"
+          ],
+          [
+            "彩色螢幕黑色功能圖示16號",
+            "font_awesome_16_4"
+          ],
+          [
+            "彩屏情緒32號",
+            "font_emoji_32_init()"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32ai_emotion_select": {
+    "message0": "回傳圖片字體 分類：%1",
+    "tooltip": "選擇分類和圖標，返回對應的圖形字體宏",
+    "args0": [
+      {
+        "options": [
+          [
+            "表情類",
+            "EMOJI"
+          ],
+          [
+            "電池類",
+            "BATTERY"
+          ],
+          [
+            "WiFi類",
+            "WIFI"
+          ],
+          [
+            "訊號類",
+            "SIGNAL"
+          ],
+          [
+            "音量類",
+            "VOLUME"
+          ],
+          [
+            "媒體控制類",
+            "MEDIA"
+          ],
+          [
+            "箭頭類",
+            "ARROW"
+          ],
+          [
+            "功能圖示類",
+            "FUNCTION"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_label_set_text_emotion": {
+    "message0": "設定標籤 %1 圖示文字為 %2",
+    "tooltip": "設定標籤顯示的圖標"
+  },
+  "lvgl_label_set_text_cpemotion": {
+    "message0": "設定標籤 %1 小智彩螢幕表情 %2",
+    "tooltip": "設定標籤顯示的小智彩螢幕表情"
+  },
+  "aivox3_init_es8311": {
+    "tooltip": "初始化AI-VOX3引擎ES8311模組"
+  },
+  "esp32ai_init_es8388": {
+    "tooltip": "初始化小智語音引擎ES8388模組"
+  }
+}

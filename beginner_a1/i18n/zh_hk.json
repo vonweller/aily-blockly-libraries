@@ -1,0 +1,148 @@
+{
+  "toolbox_name": "Beginner A1",
+  "toolbox_labels": {
+    "初始化": "初始化",
+    "遥控输入": "遙控輸入",
+    "行驶控制": "行車控制",
+    "舵机": "舵機"
+  },
+  "beginner_a1_init": {
+    "message0": "初始化 Beginner A1 小車 %1 最大速度 %2",
+    "tooltip": "建立並初始化小車物件：通訊、馬達、舵機、LED 與電池，並在循環中自動刷新狀態"
+  },
+  "beginner_a1_button": {
+    "message0": "%1 遙控按鍵 %2 被按下",
+    "tooltip": "判斷遙控器按鍵 A/B/C/D 是否被按下",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "A",
+            "0"
+          ],
+          [
+            "B",
+            "1"
+          ],
+          [
+            "C",
+            "2"
+          ],
+          [
+            "D",
+            "3"
+          ]
+        ]
+      }
+    ]
+  },
+  "beginner_a1_joystick": {
+    "message0": "%1 遙控搖桿 %2",
+    "tooltip": "讀取遙控器搖桿值，範圍 -127~127（未連接時為 0）",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "左搖桿X",
+            "0"
+          ],
+          [
+            "左搖桿Y",
+            "1"
+          ],
+          [
+            "右搖桿X",
+            "2"
+          ],
+          [
+            "右搖桿Y",
+            "3"
+          ]
+        ]
+      }
+    ]
+  },
+  "beginner_a1_drive": {
+    "message0": "%1 小車行駛 前進 %2 轉向 %3",
+    "tooltip": "差速行駛：前進量與轉向量範圍 -127~127"
+  },
+  "beginner_a1_motor": {
+    "message0": "%1 設定 %2 馬達速度 %3",
+    "tooltip": "單獨設定左/右馬達速度，範圍 -120~120，負值反轉",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "左",
+            "0"
+          ],
+          [
+            "對",
+            "1"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "beginner_a1_stop": {
+    "message0": "%1 停止小車",
+    "tooltip": "兩路馬達停止"
+  },
+  "beginner_a1_servo": {
+    "message0": "%1 %2 舵機前往 %3 度",
+    "tooltip": "定位舵機平滑轉到指定角度，範圍 0~360 度",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "SERVO_20",
+            "0"
+          ],
+          [
+            "SERVO_21",
+            "1"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "beginner_a1_servo_rotate": {
+    "message0": "%1 %2 舵機 %3 速度 %4 轉 %5 秒",
+    "tooltip": "連續旋轉舵機：依方向和速度轉動指定秒數後自動停（速度 0~100），非阻塞",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "SERVO_20",
+            "0"
+          ],
+          [
+            "SERVO_21",
+            "1"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "正轉",
+            "1"
+          ],
+          [
+            "反轉",
+            "-1"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  }
+}

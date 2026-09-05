@@ -1,0 +1,191 @@
+[
+  {
+    "type": "microbit_builtin_setup",
+    "message0": "initialize micro:bit built-in sensors",
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#5C2D91",
+    "tooltip": "Initialize buttons and auto-detect the built-in motion and compass sensor. Value blocks also initialize them automatically.",
+    "icon": "fa-light fa-microchip"
+  },
+  {
+    "type": "microbit_button_is_pressed",
+    "message0": "micro:bit button %1 is pressed",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "BUTTON",
+        "options": [
+          ["A", "0"],
+          ["B", "1"],
+          ["A+B", "2"]
+        ]
+      }
+    ],
+    "output": "Boolean",
+    "colour": "#5C2D91",
+    "tooltip": "Return true while the selected active-low button is pressed.",
+    "icon": "fa-light fa-hand-pointer"
+  },
+  {
+    "type": "microbit_temperature",
+    "message0": "micro:bit temperature (°C)",
+    "output": "Number",
+    "colour": "#D83A56",
+    "tooltip": "Read the nRF processor die temperature in degrees Celsius.",
+    "icon": "fa-light fa-temperature-half"
+  },
+  {
+    "type": "microbit_acceleration",
+    "message0": "micro:bit acceleration %1 (mg)",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "AXIS",
+        "options": [
+          ["X", "0"],
+          ["Y", "1"],
+          ["Z", "2"],
+          ["strength", "3"]
+        ]
+      }
+    ],
+    "output": "Number",
+    "colour": "#00A4A6",
+    "tooltip": "Read an acceleration axis or total strength in milli-g.",
+    "icon": "fa-light fa-gauge-high"
+  },
+  {
+    "type": "microbit_gesture_is",
+    "message0": "micro:bit gesture is %1",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "GESTURE",
+        "options": [
+          ["logo up", "1"],
+          ["logo down", "2"],
+          ["tilt left", "3"],
+          ["tilt right", "4"],
+          ["screen up", "5"],
+          ["screen down", "6"],
+          ["free fall", "7"],
+          ["shake", "11"]
+        ]
+      }
+    ],
+    "output": "Boolean",
+    "colour": "#00A4A6",
+    "tooltip": "Detect a standard micro:bit orientation or shake gesture from acceleration.",
+    "icon": "fa-light fa-person-running"
+  },
+  {
+    "type": "microbit_magnetic_field",
+    "message0": "micro:bit magnetic field %1 (µT)",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "AXIS",
+        "options": [
+          ["X", "0"],
+          ["Y", "1"],
+          ["Z", "2"],
+          ["strength", "3"]
+        ]
+      }
+    ],
+    "output": "Number",
+    "colour": "#008C95",
+    "tooltip": "Read a magnetic-field axis or total strength in microtesla.",
+    "icon": "fa-light fa-magnet"
+  },
+  {
+    "type": "microbit_compass_heading",
+    "message0": "micro:bit compass heading (°)",
+    "output": "Number",
+    "colour": "#008C95",
+    "tooltip": "Return an uncalibrated horizontal compass heading from 0 to 359 degrees.",
+    "icon": "fa-light fa-compass"
+  },
+  {
+    "type": "microbit_radio_set_group",
+    "message0": "micro:bit radio set group %1",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "GROUP",
+        "check": "Number"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#744DA9",
+    "tooltip": "Set the radio group from 0 to 255. Both micro:bits must use the same group.",
+    "icon": "fa-light fa-tower-broadcast"
+  },
+  {
+    "type": "microbit_radio_set_power",
+    "message0": "micro:bit radio set transmit power %1",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "POWER",
+        "options": [
+          ["0 (lowest)", "0"],
+          ["1", "1"],
+          ["2", "2"],
+          ["3", "3"],
+          ["4", "4"],
+          ["5", "5"],
+          ["6", "6"],
+          ["7 (highest)", "7"]
+        ]
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#744DA9",
+    "tooltip": "Set the common micro:bit radio power level from 0 to 7.",
+    "icon": "fa-light fa-signal-bars"
+  },
+  {
+    "type": "microbit_radio_send_string",
+    "message0": "micro:bit radio send text %1",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "TEXT",
+        "check": "String"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#744DA9",
+    "tooltip": "Broadcast up to 29 bytes as a micro:bit datagram.",
+    "icon": "fa-light fa-paper-plane"
+  },
+  {
+    "type": "microbit_radio_received",
+    "message0": "micro:bit radio message available",
+    "output": "Boolean",
+    "colour": "#744DA9",
+    "tooltip": "Return true when a valid datagram is waiting to be read.",
+    "icon": "fa-light fa-inbox-in"
+  },
+  {
+    "type": "microbit_radio_receive_string",
+    "message0": "micro:bit radio received text",
+    "output": "String",
+    "colour": "#744DA9",
+    "tooltip": "Read and remove the latest received datagram, or return an empty string.",
+    "icon": "fa-light fa-message"
+  },
+  {
+    "type": "microbit_radio_rssi",
+    "message0": "micro:bit last radio signal strength (dBm)",
+    "output": "Number",
+    "colour": "#744DA9",
+    "tooltip": "Return the RSSI of the most recently received valid datagram.",
+    "icon": "fa-light fa-signal-stream"
+  }
+]

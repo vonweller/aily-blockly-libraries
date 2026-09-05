@@ -1,0 +1,81 @@
+{
+  "toolbox_name": "MAX31865 Temperatursensor",
+  "max31865_init": {
+    "message0": "Initialisieren des Temperatursensors CS-Pin %1 Verbindungsmethode %2 Sensortyp %3",
+    "args0": [
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": [
+          [
+            "Zwei-Draht-System",
+            "MAX31865_2WIRE"
+          ],
+          [
+            "Dreidrahtsystem",
+            "MAX31865_3WIRE"
+          ],
+          [
+            "4-Draht-System",
+            "MAX31865_4WIRE"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "PT100",
+            "MAX31865_PT100"
+          ],
+          [
+            "PT1000",
+            "MAX31865_PT1000"
+          ]
+        ]
+      }
+    ]
+  },
+  "max31865_read": {
+    "message0": "Lesen Sie den Temperatursensor, um die Temperatur zu bestimmen %1 den Widerstand zu erhalten %2 den Status %3"
+  },
+  "max31865_set_low_threshold": {
+    "message0": "Stellen Sie eine niedrige Fehlertoleranzgrenze für die Temperatur sensors%1"
+  },
+  "max31865_set_high_threshold": {
+    "message0": "Stellen Sie eine hohe Fehlerschwelle für die Temperatur sensors%1"
+  },
+  "max31865_check_fault": {
+    "message0": "Überprüfen Sie %1 auf Temperatursensorfehler",
+    "args0": [
+      {
+        "options": [
+          [
+            "Hochtemperaturstörungen",
+            "MAX31865_FAULT_TEMP_HIGH"
+          ],
+          [
+            "Niedrigtemperaturstörungen",
+            "MAX31865_FAULT_TEMP_LOW"
+          ],
+          [
+            "Referenzwiderstand mit hohen Fehlern",
+            "MAX31865_FAULT_REFIN_HIGH"
+          ],
+          [
+            "Referenzwiderstand niedriger / offener Stromkreisfehler",
+            "MAX31865_FAULT_REFIN_LOW_OPEN"
+          ],
+          [
+            "Temperatursensor niedriger/offener Stromkreisfehler",
+            "MAX31865_FAULT_RTDIN_LOW_OPEN"
+          ],
+          [
+            "Die Spannung überschreitet den Reichweitenfehler",
+            "MAX31865_FAULT_VOLTAGE_OOR"
+          ]
+        ]
+      }
+    ]
+  }
+}

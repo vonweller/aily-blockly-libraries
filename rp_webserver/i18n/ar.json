@@ -1,0 +1,194 @@
+{
+  "toolbox_name": "خادم الويب بيكو",
+  "toolbox_labels": {
+    "初始化": "التهيئة",
+    "路由处理": "معالجة التوجيه",
+    "发送响应": "إرسال الرد",
+    "请求信息": "طلب المعلومات",
+    "请求参数": "طلب المعلمات",
+    "请求头": "رأس الطلب",
+    "高级功能": "ميزات متقدمة"
+  },
+  "rp_webserver_create": {
+    "message0": "إنشاء خادم ويب %1 المنفذ %2",
+    "tooltip": "إنشاء كائن خادم ويب"
+  },
+  "rp_webserver_begin": {
+    "message0": "ابدأ السيرفر %1",
+    "tooltip": "ابدأ خادم الويب وابدأ بالاستماع"
+  },
+  "rp_webserver_handle_client": {
+    "message0": "التعامل مع طلبات %1 العملاء",
+    "tooltip": "التعامل مع طلبات العملاء (يجب وضعها في حلقة)"
+  },
+  "rp_webserver_on": {
+    "message0": "عندما يستقبل %1 طلب %2 المسار %3",
+    "tooltip": "تسجيل دالة معالجة الطلب للمسار المحدد",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "أي",
+            "HTTP_ANY"
+          ],
+          [
+            "GET",
+            "HTTP_GET"
+          ],
+          [
+            "POST",
+            "HTTP_POST"
+          ],
+          [
+            "PUT",
+            "HTTP_PUT"
+          ],
+          [
+            "DELETE",
+            "HTTP_DELETE"
+          ],
+          [
+            "PATCH",
+            "HTTP_PATCH"
+          ]
+        ]
+      },
+      null
+    ],
+    "message1": "نفذ %1"
+  },
+  "rp_webserver_on_not_found": {
+    "message0": "عندما يتلقى %1 طلب مسار غير معروف",
+    "tooltip": "التعامل مع طلبات لا تتطابق مع أي مسارات (404)",
+    "message1": "نفذ %1"
+  },
+  "rp_webserver_send": {
+    "message0": "رمز حالة الاستجابة %1 %2 نوع المحتوى %3 %4",
+    "tooltip": "إرسال استجابة HTTP إلى العميل",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "النص البسيط/البسيط",
+            "text/plain"
+          ],
+          [
+            "نص/html HTML",
+            "text/html"
+          ],
+          [
+            "تطبيق JSON/json",
+            "application/json"
+          ],
+          [
+            "تطبيق XML/XML",
+            "application/xml"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "rp_webserver_send_custom_type": {
+    "message0": "%1 رمز حالة الاستجابة %2 نوع مخصص %3 المحتوى %4",
+    "tooltip": "إرسال ردود HTTP مع نوع محتوى مخصص"
+  },
+  "rp_webserver_send_header": {
+    "message0": "%1 إرسال رأس الرد %2 القيمة %3",
+    "tooltip": "إرسال رؤوس الاستجابة المخصصة"
+  },
+  "rp_webserver_uri": {
+    "message0": "%1 ال URI المطلوب",
+    "tooltip": "الحصول على مسار URI للطلب الحالي"
+  },
+  "rp_webserver_method": {
+    "message0": "%1 طرق الطلب",
+    "tooltip": "احصل على طريقة HTTP للطلب الحالي (GET/POST، إلخ)"
+  },
+  "rp_webserver_method_is": {
+    "message0": "%1 طريقة الطلب %2",
+    "tooltip": "تحقق مما إذا كان الطلب الحالي هو طريقة HTTP محددة",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "GET",
+            "HTTP_GET"
+          ],
+          [
+            "POST",
+            "HTTP_POST"
+          ],
+          [
+            "PUT",
+            "HTTP_PUT"
+          ],
+          [
+            "DELETE",
+            "HTTP_DELETE"
+          ],
+          [
+            "PATCH",
+            "HTTP_PATCH"
+          ]
+        ]
+      }
+    ]
+  },
+  "rp_webserver_arg_by_name": {
+    "message0": "%1 الحصول على قيمة المعامل %2",
+    "tooltip": "الحصول على قيمة معامل الطلب بناء على اسم المعامل"
+  },
+  "rp_webserver_arg_by_index": {
+    "message0": "%1 الحصول على قيمة المعامل %2 بالفهرس",
+    "tooltip": "استرجاع قيم معلمات الطلب بناء على الفهرس (بدءا من 0)"
+  },
+  "rp_webserver_arg_name": {
+    "message0": "%1 الحصول على اسم المعامل %2 بالفهرس",
+    "tooltip": "استرجاع أسماء معلمات الطلبات بناء على الفهرس (بدءا من 0)"
+  },
+  "rp_webserver_args_count": {
+    "message0": "%1 عدد المعلمات",
+    "tooltip": "يسترجع عدد معلمات الطلب"
+  },
+  "rp_webserver_has_arg": {
+    "message0": "%1 المعامل %2 موجود",
+    "tooltip": "تحقق مما إذا كانت هناك معاملات بأسماء محددة"
+  },
+  "rp_webserver_header": {
+    "message0": "%1 الحصول على قيمة الرأس %2",
+    "tooltip": "يسترجع قيمة رأس الطلب للاسم المحدد"
+  },
+  "rp_webserver_has_header": {
+    "message0": "%1 الرأس %2 موجود",
+    "tooltip": "تحقق من وجود رأس طلب بالاسم المحدد"
+  },
+  "rp_webserver_host_header": {
+    "message0": "%1 رأس طلب المضيف",
+    "tooltip": "يسترجع رأس المضيف للطلب"
+  },
+  "rp_webserver_collect_headers": {
+    "message0": "%1 رأس طلب جمع %2",
+    "tooltip": "اضبط رؤوس الطلبات ليتم جمعها (مفصول بين عدة فواصل)"
+  },
+  "rp_webserver_enable_cors": {
+    "message0": "%1 تمكين المصادر المشتركة بين CORS",
+    "tooltip": "تمكين مشاركة الموارد عبر المجالات (CORS)"
+  },
+  "rp_webserver_stop": {
+    "message0": "أوقف السيرفر %1",
+    "tooltip": "إيقاف خادم الويب"
+  },
+  "rp_webserver_authenticate": {
+    "message0": "%1 التحقق من اسم المستخدم %2 كلمة المرور %3",
+    "tooltip": "تحقق من اسم المستخدم وكلمة المرور للمصادقة الأساسية عبر HTTP"
+  },
+  "rp_webserver_request_authentication": {
+    "message0": "%1 طلب مصادقة %2",
+    "tooltip": "اطلب من العميل إجراء مصادقة HTTP"
+  }
+}

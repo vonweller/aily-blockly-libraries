@@ -1,0 +1,99 @@
+{
+  "toolbox_name": "المشفر الدوار",
+  "encoder_init": {
+    "message0": "تهيئة المشفر %1 الاتصال بالدبوس A %2 الدبوس B %3",
+    "tooltip": "تهيئة كائن مشفر دوار متصل بالدبوسين المحددين",
+    "args0": [
+      null,
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": "${board.digitalPins}"
+      }
+    ]
+  },
+  "encoder_set_property": {
+    "message0": "اضبط %2 %1 المشفر على %3",
+    "tooltip": "حدد قيم سمات مختلفة للمشفر",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "الموقع",
+            "position"
+          ],
+          [
+            "أعلى",
+            "upper_limit"
+          ],
+          [
+            "أدنى",
+            "lower_limit"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "encoder_value_changed": {
+    "message0": "تغيرات دوران قيمة المشفر",
+    "tooltip": "تحديد ما إذا كانت قيمة المشفر الدوار قد تغيرت"
+  },
+  "encoder_state_change": {
+    "message0": "عندما تكون حالة المشفر %1، %2 ينفذ %3",
+    "tooltip": "تنفيذ العمليات المقابلة عندما يخضع المشفر لتغيير الحالة المحددة",
+    "args0": [
+      {
+        "options": [
+          [
+            "الدوران إلى اليسار",
+            "LEFT"
+          ],
+          [
+            "تدوير إلى اليمين",
+            "RIGHT"
+          ],
+          [
+            "فوق الحد الأعلى",
+            "ABOVE_LIMIT"
+          ],
+          [
+            "تحت الحد الأدنى",
+            "BELOW_LIMIT"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "encoder_get_property": {
+    "message0": "الحصول على %2 Encoder %1",
+    "tooltip": "الحصول على قيم سمات مختلفة للمشفر",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "الموقع",
+            "POSITION"
+          ],
+          [
+            "اتجاه",
+            "DIRECTION"
+          ],
+          [
+            "أعلى",
+            "UPPER_LIMIT"
+          ],
+          [
+            "أدنى",
+            "LOWER_LIMIT"
+          ]
+        ]
+      }
+    ]
+  }
+}

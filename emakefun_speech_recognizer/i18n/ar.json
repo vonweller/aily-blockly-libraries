@@ -1,0 +1,96 @@
+{
+  "toolbox_name": "LD3320D التعرف على الكلام",
+  "toolbox_labels": {
+    "初始化": "التهيئة",
+    "配置": "التكوين",
+    "识别": "تحديد",
+    "事件处理": "التعامل مع الحدث"
+  },
+  "speech_recognizer_setup": {
+    "message0": "تهيئة وحدة التعرف على الكلام %1 عنوان I2C %2",
+    "tooltip": "تهيئة وحدة التعرف على الكلام، مع تعيين عنوان I2C الافتراضي على 0x30"
+  },
+  "speech_recognizer_set_mode": {
+    "message0": "اضبط وضع التعرف %1 على %2",
+    "tooltip": "تعيين وضع التعرف على الصوت",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "تلقائي",
+            "kRecognitionAuto"
+          ],
+          [
+            "يتم تفعيله بواسطة زر",
+            "kButtonTrigger"
+          ],
+          [
+            "محفزات الكلمات المفتاحية",
+            "kKeywordTrigger"
+          ],
+          [
+            "يتم تفعيله بواسطة مفتاح أو كلمة مفتاحية",
+            "kKeywordOrButtonTrigger"
+          ]
+        ]
+      }
+    ]
+  },
+  "speech_recognizer_set_timeout": {
+    "message0": "اضبط %1 للتعرف على المهلة %2 مللي ثانية",
+    "tooltip": "اضبط مهلة التعرف (مللي ثانية)، وهو غير فعال في وضع التعرف التلقائي"
+  },
+  "speech_recognizer_add_keyword": {
+    "message0": "أضف الكلمات المفتاحية %1 %2 الفهرس إلى %3",
+    "tooltip": "أضف كلمات مفتاحية للتعرف على الصوت، حتى 50 كلمة، مع كل كلمة لا تتجاوز 50 بايت"
+  },
+  "speech_recognizer_recognize": {
+    "message0": "%1 أداء التعرف على الكلام",
+    "tooltip": "يتم إجراء التعرف على الكلام، ويعاد مؤشر الكلمات المفتاحية المعترف به (>=0)؛ وإذا لم يكن كذلك، يعيد -1. يجب أن يسمى هذا حلقة داخل حلقة"
+  },
+  "speech_recognizer_get_event": {
+    "message0": "%1 احصل على الحدث الحالي",
+    "tooltip": "احصل على نوع الحدث الحالي"
+  },
+  "speech_recognizer_event_handler": {
+    "message0": "الأحداث %1 الحالية %2",
+    "tooltip": "قم بتنفيذ العملية المقابلة عند حدوث حدث محدد",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "ابدأ بالانتظار للمحفز",
+            "kEventStartWaitingForTrigger"
+          ],
+          [
+            "يتم تفعيله بواسطة زر",
+            "kEventButtonTriggered"
+          ],
+          [
+            "يتم تحفيزها بواسطة الكلمات المفتاحية",
+            "kEventKeywordTriggered"
+          ],
+          [
+            "بدء التعريف",
+            "kEventStartRecognizing"
+          ],
+          [
+            "الاعتراف ناجح",
+            "kEventSpeechRecognized"
+          ],
+          [
+            "تعرف على فترات التوقف",
+            "kEventSpeechRecognitionTimedOut"
+          ]
+        ]
+      }
+    ],
+    "message1": "نفذ %1"
+  },
+  "speech_recognizer_check_result": {
+    "message0": "نتيجة الاعتراف %1 تساوي %2",
+    "tooltip": "تحقق مما إذا كانت نتيجة التعرف تطابق الفهرس المحدد"
+  }
+}

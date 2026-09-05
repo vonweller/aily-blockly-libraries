@@ -1,0 +1,269 @@
+{
+  "toolbox_name": "GPIO-Erweiterungsplatine",
+  "toolbox_labels": {
+    "初始化": "Initialisierung",
+    "GPIO控制": "GPIO-Steuerung",
+    "PWM控制": "PWM-Steuerung",
+    "舵机控制": "Servosteuerung"
+  },
+  "gpio_expansion_board_init": {
+    "message0": "GPIO-Erweiterungsplatine %1 Initialisierung der I2C-Adresse %2",
+    "tooltip": "Erstellung einer GPIO-Erweiterungskarten-Instanz, Standard-I2C-Adresse 0x24(36)"
+  },
+  "gpio_expansion_board_set_mode": {
+    "message0": "Die GPIO-Erweiterungsplatine %1 Pins %2 sind auf %3 Modus eingestellt",
+    "tooltip": "Stellen Sie den Arbeitsmodus des GPIO-Pins ein",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "E0",
+            "0"
+          ],
+          [
+            "E1",
+            "1"
+          ],
+          [
+            "E2",
+            "2"
+          ],
+          [
+            "E3",
+            "3"
+          ],
+          [
+            "E4",
+            "4"
+          ],
+          [
+            "E5",
+            "5"
+          ],
+          [
+            "E6",
+            "6"
+          ],
+          [
+            "E7",
+            "7"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "Enter (Pull Up)",
+            "1"
+          ],
+          [
+            "Enter (Pull down)",
+            "2"
+          ],
+          [
+            "Eingang (luftgetragen)",
+            "4"
+          ],
+          [
+            "Ausgabe",
+            "8"
+          ],
+          [
+            "ADC",
+            "16"
+          ],
+          [
+            "PWM",
+            "32"
+          ]
+        ]
+      }
+    ]
+  },
+  "gpio_expansion_board_set_level": {
+    "message0": "GPIO-Erweiterungsplatine %1 Pins %2 Ausgabe %3",
+    "tooltip": "Stellen Sie den Ausgangspegel des GPIO-Pins ein",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "E0",
+            "0"
+          ],
+          [
+            "E1",
+            "1"
+          ],
+          [
+            "E2",
+            "2"
+          ],
+          [
+            "E3",
+            "3"
+          ],
+          [
+            "E4",
+            "4"
+          ],
+          [
+            "E5",
+            "5"
+          ],
+          [
+            "E6",
+            "6"
+          ],
+          [
+            "E7",
+            "7"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "Low-Pegel",
+            "0"
+          ],
+          [
+            "High-Pegel",
+            "1"
+          ]
+        ]
+      }
+    ]
+  },
+  "gpio_expansion_board_get_level": {
+    "message0": "GPIO-Erweiterungsplatine %1 Pins %2 Levels",
+    "tooltip": "Lesen Sie den digitalen Pegelwert des GPIO-Pins ab",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "E0",
+            "0"
+          ],
+          [
+            "E1",
+            "1"
+          ],
+          [
+            "E2",
+            "2"
+          ],
+          [
+            "E3",
+            "3"
+          ],
+          [
+            "E4",
+            "4"
+          ],
+          [
+            "E5",
+            "5"
+          ],
+          [
+            "E6",
+            "6"
+          ],
+          [
+            "E7",
+            "7"
+          ]
+        ]
+      }
+    ]
+  },
+  "gpio_expansion_board_get_adc": {
+    "message0": "GPIO-Erweiterungsplatine %1 Pins %2 ADC-Werte",
+    "tooltip": "Lesen Sie den ADC-Wert des GPIO-Pins (0-1023)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "E0",
+            "0"
+          ],
+          [
+            "E1",
+            "1"
+          ],
+          [
+            "E2",
+            "2"
+          ],
+          [
+            "E3",
+            "3"
+          ],
+          [
+            "E4",
+            "4"
+          ],
+          [
+            "E5",
+            "5"
+          ],
+          [
+            "E6",
+            "6"
+          ],
+          [
+            "E7",
+            "7"
+          ]
+        ]
+      }
+    ]
+  },
+  "gpio_expansion_board_set_pwm_frequency": {
+    "message0": "GPIO-Erweiterungsplatine stellt %1 die PWM-Frequenz auf %2 Hz ein",
+    "tooltip": "PWM-Frequenz einstellen (1-10000Hz)"
+  },
+  "gpio_expansion_board_set_pwm_duty": {
+    "message0": "GPIO-Expansionsplatine %1 Pins %2 PWM-Duty Cycle %3",
+    "tooltip": "PWM-Duty Cycle (0-4095) einstellen, unterstützt nur die Pins E1 und E2",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "E1",
+            "1"
+          ],
+          [
+            "E2",
+            "2"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "gpio_expansion_board_set_servo_angle": {
+    "message0": "GPIO-Expansionsplatine %1 Pins %2 Servowinkel %3 Grad",
+    "tooltip": "Stellen Sie den Servowinkel ein (0-180 Grad), unterstützen Sie nur die Pins E1 und E2",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "E1",
+            "1"
+          ],
+          [
+            "E2",
+            "2"
+          ]
+        ]
+      },
+      null
+    ]
+  }
+}

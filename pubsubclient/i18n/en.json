@@ -1,0 +1,135 @@
+{
+  "toolbox_name": "MQTT",
+  "toolbox_labels": {
+    "初始化": "initialization",
+    "连接": "connect",
+    "通信": "communication",
+    "设置": "settings"
+  },
+  "pubsub_create": {
+    "message0": "Create MQTT client %1 Use client %2 SSL %3\nServer %4 Port %5",
+    "tooltip": "Create MQTT client object",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "No",
+            "FALSE"
+          ],
+          [
+            "Yes",
+            "TRUE"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "pubsub_set_callback": {
+    "message0": "MQTT client %1 when receiving the message",
+    "tooltip": "Set the MQTT message receiving callback function",
+    "message1": "Execute %1"
+  },
+  "pubsub_set_callback_with_topic": {
+    "message0": "When receiving a message with topic %1",
+    "tooltip": "Set the MQTT message receiving callback function for a specific topic",
+    "message1": "Execute %1"
+  },
+  "pubsub_get_topic_callback_payload": {
+    "message0": "Get the received MQTT message content",
+    "tooltip": "Get the MQTT message content received in the callback function"
+  },
+  "pubsub_connect": {
+    "message0": "MQTT client %1 connection client ID %2",
+    "tooltip": "Connect to MQTT server"
+  },
+  "pubsub_connect_auth": {
+    "message0": "MQTT client %1 Connection Client ID %2 Username %3 Password %4",
+    "tooltip": "Connect to MQTT server using username and password"
+  },
+  "pubsub_publish": {
+    "message0": "MQTT client %1 publishes message topic %2 content %3",
+    "tooltip": "Publish MQTT messages"
+  },
+  "pubsub_subscribe": {
+    "message0": "MQTT client %1 subscribes to topic %2",
+    "tooltip": "Subscribe to an MQTT topic"
+  },
+  "pubsub_unsubscribe": {
+    "message0": "MQTT client %1 Unsubscribe from topic %2",
+    "tooltip": "Unsubscribe from an MQTT topic"
+  },
+  "pubsub_loop": {
+    "message0": "Handle MQTT client %1 communication",
+    "tooltip": "To handle MQTT communication, it needs to be called in the loop"
+  },
+  "pubsub_connected": {
+    "message0": "Is MQTT client %1 connected?",
+    "tooltip": "Check MQTT connection status"
+  },
+  "pubsub_state": {
+    "message0": "MQTT client %1 Get connection status",
+    "tooltip": "Get MQTT connection status code"
+  },
+  "pubsub_state_code": {
+    "message0": "MQTT status code %1",
+    "tooltip": "MQTT status code constants",
+    "args0": [
+      {
+        "options": [
+          [
+            "Successfully connected",
+            "MQTT_CONNECTED"
+          ],
+          [
+            "Connection failed",
+            "MQTT_CONNECT_FAILED"
+          ],
+          [
+            "Disconnect",
+            "MQTT_DISCONNECTED"
+          ],
+          [
+            "connection lost",
+            "MQTT_CONNECTION_LOST"
+          ],
+          [
+            "Connection timeout",
+            "MQTT_CONNECTION_TIMEOUT"
+          ],
+          [
+            "protocol error",
+            "MQTT_CONNECT_BAD_PROTOCOL"
+          ],
+          [
+            "Wrong client ID",
+            "MQTT_CONNECT_BAD_CLIENT_ID"
+          ],
+          [
+            "Service unavailable",
+            "MQTT_CONNECT_UNAVAILABLE"
+          ],
+          [
+            "Credential error",
+            "MQTT_CONNECT_BAD_CREDENTIALS"
+          ],
+          [
+            "Unauthorized",
+            "MQTT_CONNECT_UNAUTHORIZED"
+          ]
+        ]
+      }
+    ]
+  },
+  "pubsub_disconnect": {
+    "message0": "Disconnect MQTT client %1",
+    "tooltip": "Disconnect MQTT connection"
+  },
+  "pubsub_setBufferSize": {
+    "message0": "Set MQTT client %1 buffer size %2 bytes",
+    "tooltip": "Set MQTT client buffer size"
+  }
+}

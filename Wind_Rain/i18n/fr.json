@@ -1,0 +1,89 @@
+{
+  "toolbox_name": "Vitesse du vent, direction du vent, quantité de précipitations",
+  "toolbox_labels": {
+    "初始化风速风向传感器": "Initialiser le capteur de vitesse et de direction du vent",
+    "数据更新": "Mise à jour des données",
+    "数据获取": "acquisition de données",
+    "雨量传感器": "capteur de pluie"
+  },
+  "wind_begin": {
+    "message0": "Initialisez les capteurs de vitesse et de direction du vent, la vitesse du vent pins%1 la direction du vent pins%2",
+    "args0": [
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": "${board.analogPins}"
+      }
+    ]
+  },
+  "wind_begin_speed": {
+    "message0": "Initialisez la broche du capteur de vitesse du vent %1",
+    "args0": [
+      {
+        "options": "${board.digitalPins}"
+      }
+    ]
+  },
+  "wind_begin_direction": {
+    "message0": "Initialisez la broche du capteur de direction du vent %1",
+    "args0": [
+      {
+        "options": "${board.analogPins}"
+      }
+    ]
+  },
+  "wind_update": {
+    "message0": "Mettre à jour les données de vitesse et de direction du vent"
+  },
+  "wind_update_speed": {
+    "message0": "Mettre à jour les données de vitesse du vent"
+  },
+  "wind_update_direction": {
+    "message0": "Mettre à jour les données de direction du vent"
+  },
+  "wind_get_speed_kmh": {
+    "message0": "Obtenir la vitesse du vent (km/h)"
+  },
+  "wind_get_speed_mph": {
+    "message0": "Obtenir la vitesse du vent (mph)"
+  },
+  "wind_get_direction": {
+    "message0": "Obtenir la direction du vent (degrés)"
+  },
+  "wind_get_direction_string": {
+    "message0": "Obtenir la direction du vent (corde)"
+  },
+  "wind_get_direction_adc": {
+    "message0": "Obtenir la valeur ADC pour la direction du vent"
+  },
+  "wind_is_data_ready": {
+    "message0": "Vérifiez si les données de vitesse et de direction du vent sont prêtes"
+  },
+  "rain_init": {
+    "message0": "Initialisez la broche du capteur de pluie %1",
+    "args0": [
+      {
+        "options": "${board.digitalPins}"
+      }
+    ]
+  },
+  "rain_update": {
+    "message0": "Mettre à jour les données de précipitations"
+  },
+  "rain_get_total": {
+    "message0": "Obtenez des précipitations cumulées (mm)"
+  },
+  "rain_get_hour": {
+    "message0": "Précipitations d’une heure (mm)"
+  },
+  "rain_get_day": {
+    "message0": "Obtenez des précipitations sur 24 heures (mm)"
+  },
+  "rain_get_ticks": {
+    "message0": "Faites un compte des gouttes de pluie"
+  },
+  "rain_is_data_ready": {
+    "message0": "Les données sur les précipitations sont prêtes"
+  }
+}

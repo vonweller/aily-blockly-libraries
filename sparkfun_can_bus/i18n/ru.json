@@ -1,0 +1,87 @@
+{
+  "toolbox_name": "CAN-Bus",
+  "canbus_init": {
+    "message0": "Инициализировать CAN-Bus скорость %1",
+    "tooltip": "Инициализировать модуль CAN Bus SparkFun со скоростью",
+    "args0": [
+      {
+        "options": [
+          [
+            "500 kbps",
+            "CANSPEED_500"
+          ],
+          [
+            "250 kbps",
+            "CANSPEED_250"
+          ],
+          [
+            "125 kbps",
+            "CANSPEED_125"
+          ]
+        ]
+      }
+    ]
+  },
+  "canbus_is_ready": {
+    "message0": "Успешная инициализация CAN-Bus",
+    "tooltip": "Статус инициализации CAN Bus"
+  },
+  "canbus_send_test": {
+    "message0": "CAN-Bus успешно отправляет тестовые сообщения",
+    "tooltip": "Отправить тестовое CAN-сообщение"
+  },
+  "canbus_read_message": {
+    "message0": "CAN-Bus читает сообщение",
+    "tooltip": "Считать входящее CAN-сообщение"
+  },
+  "canbus_last_id": {
+    "message0": "CAN-Bus Недавний новостной идентификатор",
+    "tooltip": "Получить ID последнего полученного CAN-сообщения"
+  },
+  "canbus_last_length": {
+    "message0": "Длина недавнего сообщения CAN-Bus",
+    "tooltip": "Длина последнего полученного CAN-сообщения"
+  },
+  "canbus_data_byte": {
+    "message0": "CAN-Bus байт данных последнего сообщения %1",
+    "tooltip": "Получить байт данных последнего CAN-сообщения"
+  },
+  "canbus_obd_request": {
+    "message0": "CAN-Bus OBD-запрос %1 текст",
+    "tooltip": "Отправить запрос OBD2 PID через CAN Bus",
+    "args0": [
+      {
+        "options": [
+          [
+            "Температура охлаждающей жидкости",
+            "ENGINE_COOLANT_TEMP"
+          ],
+          [
+            "Скорость вращения",
+            "ENGINE_RPM"
+          ],
+          [
+            "Скорость",
+            "VEHICLE_SPEED"
+          ],
+          [
+            "Поток воздуха",
+            "MAF_SENSOR"
+          ],
+          [
+            "Датчик кислорода",
+            "O2_VOLTAGE"
+          ],
+          [
+            "Солнечный термин",
+            "THROTTLE"
+          ]
+        ]
+      }
+    ]
+  },
+  "canbus_send_message": {
+    "message0": "Отправить CAN сообщение ID %1 длина %2 данные %3 %4 %5 %6 %7 %8 %9 %10",
+    "tooltip": "Отправить CAN-сообщение с ID и данными"
+  }
+}

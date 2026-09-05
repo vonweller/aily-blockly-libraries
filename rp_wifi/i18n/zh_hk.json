@@ -1,0 +1,316 @@
+{
+  "toolbox_name": "Pico WiFi",
+  "toolbox_labels": {
+    "WiFi连接": "WiFi連接",
+    "状态查询": "狀態查詢",
+    "网络信息": "網路資訊",
+    "网络配置": "網路設定",
+    "网络扫描": "網路掃描",
+    "热点模式(AP)": "熱點模式(AP)",
+    "网络工具": "網路工具"
+  },
+  "rp_wifi_begin": {
+    "message0": "連接WiFi %1 密碼 %2",
+    "tooltip": "連接WiFi網路（阻塞模式）"
+  },
+  "rp_wifi_begin_open": {
+    "message0": "連線開放WiFi %1",
+    "tooltip": "連接到無密碼的開放WiFi網絡"
+  },
+  "rp_wifi_begin_noblock": {
+    "message0": "連接WiFi(非阻塞) %1 密碼 %2",
+    "tooltip": "連接到WiFi網路（非阻塞模式，需要檢查connected()狀態）"
+  },
+  "rp_wifi_disconnect": {
+    "message0": "斷開WiFi連線 %1",
+    "tooltip": "斷開WiFi連接",
+    "args0": [
+      {
+        "options": [
+          [
+            "保持WiFi開啟",
+            "FALSE"
+          ],
+          [
+            "關閉WiFi",
+            "TRUE"
+          ]
+        ]
+      }
+    ]
+  },
+  "rp_wifi_end": {
+    "message0": "關閉WiFi",
+    "tooltip": "完全關閉WiFi功能"
+  },
+  "rp_wifi_connected": {
+    "message0": "WiFi已連接",
+    "tooltip": "檢查WiFi是否已連接"
+  },
+  "rp_wifi_status": {
+    "message0": "WiFi連線狀態",
+    "tooltip": "取得WiFi連線狀態碼"
+  },
+  "rp_wifi_status_type": {
+    "message0": "WiFi狀態 %1",
+    "tooltip": "取得WiFi狀態常數",
+    "args0": [
+      {
+        "options": [
+          [
+            "空閒",
+            "WL_IDLE_STATUS"
+          ],
+          [
+            "無可用SSID",
+            "WL_NO_SSID_AVAIL"
+          ],
+          [
+            "掃描完成",
+            "WL_SCAN_COMPLETED"
+          ],
+          [
+            "已連接",
+            "WL_CONNECTED"
+          ],
+          [
+            "連線失敗",
+            "WL_CONNECT_FAILED"
+          ],
+          [
+            "連線遺失",
+            "WL_CONNECTION_LOST"
+          ],
+          [
+            "斷開連接",
+            "WL_DISCONNECTED"
+          ]
+        ]
+      }
+    ]
+  },
+  "rp_wifi_wait_for_connect": {
+    "message0": "等待連線結果 逾時 %1 毫秒",
+    "tooltip": "等待WiFi連線結果，返回連線狀態"
+  },
+  "rp_wifi_local_ip": {
+    "message0": "本機IP位址",
+    "tooltip": "取得本機IP位址"
+  },
+  "rp_wifi_subnet_mask": {
+    "message0": "子網路遮罩",
+    "tooltip": "取得子網路遮罩"
+  },
+  "rp_wifi_gateway_ip": {
+    "message0": "網關IP位址",
+    "tooltip": "取得網關IP位址"
+  },
+  "rp_wifi_dns_ip": {
+    "message0": "DNS伺服器IP",
+    "tooltip": "取得DNS伺服器IP位址"
+  },
+  "rp_wifi_mac_address": {
+    "message0": "MAC位址",
+    "tooltip": "取得MAC位址"
+  },
+  "rp_wifi_ssid": {
+    "message0": "目前WiFi名稱(SSID)",
+    "tooltip": "取得目前連線的WiFi名稱"
+  },
+  "rp_wifi_rssi": {
+    "message0": "訊號強度(RSSI)",
+    "tooltip": "取得WiFi訊號強度(dBm)"
+  },
+  "rp_wifi_channel": {
+    "message0": "目前WiFi通道",
+    "tooltip": "取得當前WiFi通道"
+  },
+  "rp_wifi_encryption_type": {
+    "message0": "目前加密類型",
+    "tooltip": "取得目前WiFi加密類型"
+  },
+  "rp_wifi_set_hostname": {
+    "message0": "設定主機名稱 %1",
+    "tooltip": "設定DHCP請求中使用的主機名"
+  },
+  "rp_wifi_get_hostname": {
+    "message0": "取得主機名",
+    "tooltip": "取得目前設定的主機名"
+  },
+  "rp_wifi_config_static": {
+    "message0": "配置靜態IP\nIP位址 %1\nDNS伺服器 %2\n網關 %3\n子網路遮罩 %4",
+    "tooltip": "配置靜態IP位址（停用DHCP）"
+  },
+  "rp_wifi_set_dns": {
+    "message0": "設定DNS伺服器 %1",
+    "tooltip": "設定DNS伺服器"
+  },
+  "rp_wifi_set_mode": {
+    "message0": "設定WiFi模式 %1",
+    "tooltip": "設定WiFi工作模式",
+    "args0": [
+      {
+        "options": [
+          [
+            "站點模式(STA)",
+            "WIFI_STA"
+          ],
+          [
+            "熱點模式(AP)",
+            "WIFI_AP"
+          ],
+          [
+            "混合模式（AP+STA）",
+            "WIFI_AP_STA"
+          ],
+          [
+            "關閉",
+            "WIFI_OFF"
+          ]
+        ]
+      }
+    ]
+  },
+  "rp_wifi_get_mode": {
+    "message0": "取得WiFi模式",
+    "tooltip": "取得目前WiFi工作模式"
+  },
+  "rp_wifi_scan_networks": {
+    "message0": "掃描WiFi網路 %1",
+    "tooltip": "掃描可用的WiFi網絡，傳回發現的網路數量",
+    "args0": [
+      {
+        "options": [
+          [
+            "同步掃描",
+            "FALSE"
+          ],
+          [
+            "非同步掃描",
+            "TRUE"
+          ]
+        ]
+      }
+    ]
+  },
+  "rp_wifi_scan_complete": {
+    "message0": "掃描完成狀態",
+    "tooltip": "取得非同步掃描完成狀態，傳回發現的網路數量"
+  },
+  "rp_wifi_scan_delete": {
+    "message0": "刪除掃描結果",
+    "tooltip": "刪除WiFi掃描結果，釋放內存"
+  },
+  "rp_wifi_get_ssid": {
+    "message0": "取得網路 %1 的SSID",
+    "tooltip": "取得指定網路的SSID"
+  },
+  "rp_wifi_get_rssi": {
+    "message0": "取得網路 %1 的訊號強度",
+    "tooltip": "取得指定網路的訊號強度(dBm)"
+  },
+  "rp_wifi_get_encryption": {
+    "message0": "取得網路 %1 的加密類型",
+    "tooltip": "取得指定網路的加密類型"
+  },
+  "rp_wifi_get_channel": {
+    "message0": "取得網路 %1 的通道",
+    "tooltip": "取得指定網路的通道"
+  },
+  "rp_wifi_encryption_constant": {
+    "message0": "加密類型 %1",
+    "tooltip": "取得加密類型常數",
+    "args0": [
+      {
+        "options": [
+          [
+            "無加密",
+            "ENC_TYPE_NONE"
+          ],
+          [
+            "WPA",
+            "ENC_TYPE_TKIP"
+          ],
+          [
+            "WPA2",
+            "ENC_TYPE_CCMP"
+          ],
+          [
+            "自動",
+            "ENC_TYPE_AUTO"
+          ]
+        ]
+      }
+    ]
+  },
+  "rp_wifi_begin_ap": {
+    "message0": "建立WiFi熱點 %1 密碼 %2 頻道 %3",
+    "tooltip": "建立WiFi熱點（AP模式）"
+  },
+  "rp_wifi_begin_ap_open": {
+    "message0": "建立開放WiFi熱點 %1 通道 %2",
+    "tooltip": "創建無密碼的開放WiFi熱點"
+  },
+  "rp_wifi_softap_config": {
+    "message0": "配置熱點IP\nIP位址 %1\n網關 %2\n子網路遮罩 %3",
+    "tooltip": "配置熱點IP設定"
+  },
+  "rp_wifi_softap_disconnect": {
+    "message0": "關閉WiFi熱點 %1",
+    "tooltip": "關閉WiFi熱點",
+    "args0": [
+      {
+        "options": [
+          [
+            "保持WiFi開啟",
+            "FALSE"
+          ],
+          [
+            "關閉WiFi",
+            "TRUE"
+          ]
+        ]
+      }
+    ]
+  },
+  "rp_wifi_softap_ip": {
+    "message0": "熱點IP位址",
+    "tooltip": "取得熱點IP位址"
+  },
+  "rp_wifi_softap_mac": {
+    "message0": "熱點MAC位址",
+    "tooltip": "取得熱點MAC位址"
+  },
+  "rp_wifi_softap_ssid": {
+    "message0": "熱點SSID",
+    "tooltip": "取得熱點SSID"
+  },
+  "rp_wifi_softap_station_count": {
+    "message0": "熱點連接設備數",
+    "tooltip": "取得連接到熱點的設備數量"
+  },
+  "rp_wifi_host_by_name": {
+    "message0": "解析網域名稱 %1",
+    "tooltip": "將網域名稱解析為IP位址"
+  },
+  "rp_wifi_ping": {
+    "message0": "Ping %1 TTL %2",
+    "tooltip": "Ping指定主機，回傳回應時間(ms)"
+  },
+  "rp_wifi_get_time": {
+    "message0": "取得網路時間",
+    "tooltip": "取得網路時間(Unix時間戳)"
+  },
+  "rp_wifi_set_timeout": {
+    "message0": "設定超時時間 %1 毫秒",
+    "tooltip": "設定WiFi操作超時時間"
+  },
+  "rp_wifi_no_low_power": {
+    "message0": "停用低功耗模式",
+    "tooltip": "停用WiFi低功耗模式以提高效能"
+  },
+  "rp_wifi_firmware_version": {
+    "message0": "韌體版本",
+    "tooltip": "取得WiFi韌體版本"
+  }
+}

@@ -1,0 +1,105 @@
+{
+  "toolbox_name": "Sensor de iluminación",
+  "ltr308_init_with_wire": {
+    "message0": "Inicializa el sensor de luz LTR308 %1\nGanar %2\nPeriodo de puntos: %3\nTasa de medición: %4\nUso %5",
+    "tooltip": "Inicializa el sensor de luz LTR308 y ajusta la ganancia, el tiempo de integración y la tasa de medición",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "1x (1-64k lux)",
+            "LTR308_GAIN_1"
+          ],
+          [
+            "3x (0,3-21k lux)",
+            "LTR308_GAIN_3"
+          ],
+          [
+            "6x (0,15-10,6k lux)",
+            "LTR308_GAIN_6"
+          ],
+          [
+            "9x (0,1-7k lux)",
+            "LTR308_GAIN_9"
+          ],
+          [
+            "18x (0,05-3,5k lux)",
+            "LTR308_GAIN_18"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "25ms",
+            "LTR308_INTEGRATION_25MS"
+          ],
+          [
+            "50ms",
+            "LTR308_INTEGRATION_50MS"
+          ],
+          [
+            "100ms (por defecto)",
+            "LTR308_INTEGRATION_100MS"
+          ],
+          [
+            "200ms",
+            "LTR308_INTEGRATION_200MS"
+          ],
+          [
+            "400ms",
+            "LTR308_INTEGRATION_400MS"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "25ms",
+            "LTR308_RATE_25MS"
+          ],
+          [
+            "50ms",
+            "LTR308_RATE_50MS"
+          ],
+          [
+            "100ms",
+            "LTR308_RATE_100MS"
+          ],
+          [
+            "200ms",
+            "LTR308_RATE_200MS"
+          ],
+          [
+            "500ms (por defecto)",
+            "LTR308_RATE_500MS"
+          ],
+          [
+            "1000ms",
+            "LTR308_RATE_1000MS"
+          ],
+          [
+            "2000ms",
+            "LTR308_RATE_2000MS"
+          ]
+        ]
+      },
+      {
+        "options": "${board.i2c}"
+      }
+    ]
+  },
+  "ltr308_read_light_level": {
+    "message0": "Lee el valor de luz del sensor LTR308 %1",
+    "tooltip": "Lee la intensidad de luz (lux) del sensor LTR308"
+  },
+  "ltr308_read_raw_data": {
+    "message0": "Lee los datos en bruto del sensor LTR308 %1",
+    "tooltip": "Lee los datos en bruto del ADC del sensor LTR308"
+  },
+  "ltr308_is_data_ready": {
+    "message0": "Sensor LTR308 %1 datos listos",
+    "tooltip": "Comprueba si el sensor LTR308 tiene datos nuevos para leer"
+  }
+}

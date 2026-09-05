@@ -1,0 +1,61 @@
+{
+  "toolbox_name": "BH1750",
+  "bh1750_init_with_wire": {
+    "message0": "Initialisez le capteur de lumière %1\nMode %2\nAddress%3\nUtilisation %4",
+    "tooltip": "Initialisez le capteur de lumière BH1750, spécifiez l’adresse I2C et le bus I2C utilisé",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Mode continue haute résolution (1 lux, 120 ms)",
+            "CONTINUOUS_HIGH_RES_MODE"
+          ],
+          [
+            "Mode 2 de haute résolution continue (0,5 lux, 120 ms)",
+            "CONTINUOUS_HIGH_RES_MODE_2"
+          ],
+          [
+            "Mode continu basse résolution (4lux, 16ms)",
+            "CONTINUOUS_LOW_RES_MODE"
+          ],
+          [
+            "Mode haute résolution unique (1 lux, 120 ms)",
+            "ONE_TIME_HIGH_RES_MODE"
+          ],
+          [
+            "Mode haute résolution unique 2 (0,5 lux, 120 ms)",
+            "ONE_TIME_HIGH_RES_MODE_2"
+          ],
+          [
+            "Mode simple basse résolution (4 lux, 16 ms)",
+            "ONE_TIME_LOW_RES_MODE"
+          ],
+          [
+            "Mode non configuré",
+            "UNCONFIGURED"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "0x23 (ADDR de bas niveau)",
+            "0x23"
+          ],
+          [
+            "0x5C (ADDR Haut niveau)",
+            "0x5C"
+          ]
+        ]
+      },
+      {
+        "options": "${board.i2c}"
+      }
+    ]
+  },
+  "bh1750_read_light_level": {
+    "message0": "Lisez la valeur lumineuse du capteur de lumière %1",
+    "tooltip": "Lisez l’intensité lumineuse (lux) du capteur BH1750"
+  }
+}

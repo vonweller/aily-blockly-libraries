@@ -1,0 +1,205 @@
+{
+  "toolbox_name": "PN532 NFC",
+  "toolbox_labels": {
+    "模块初始化": "모듈 초기화",
+    "基本配置": "기본 구성",
+    "读取卡片信息": "카드 정보 읽기",
+    "Mifare Classic操作": "Mifare 클래식 작동",
+    "Mifare Ultralight操作": "Mifare 초경량 작동",
+    "NTAG2xx操作": "NTAG2xx 작동"
+  },
+  "pn532_create_spi": {
+    "message0": "PN532 NFC 모듈을 생성%1 SPI 인터페이스를 사용하세요 SCK:%2 MISO:%3 MOSI:%4 SS:%5",
+    "tooltip": "소프트웨어 SPI 인터페이스를 사용하여 PN532 NFC 모듈 객체를 생성합니다"
+  },
+  "pn532_create_spi_hw": {
+    "message0": "PN532 NFC 모듈을 생성하고 하드웨어 SPI 인터페이스 SS:%2%1 사용",
+    "tooltip": "하드웨어 SPI 인터페이스를 사용하여 PN532 NFC 모듈 객체를 생성합니다"
+  },
+  "pn532_create_i2c": {
+    "message0": "PN532 NFC 모듈을 %1 I2C 인터페이스를 사용하기 (단순화 버전)",
+    "tooltip": "I2C 인터페이스(IRQ 또는 RESET 핀 없이)를 사용하여 PN532 NFC 모듈 객체를 생성합니다"
+  },
+  "pn532_create_i2c_pins": {
+    "message0": "PN532 NFC 모듈 생성 %1 I2C 인터페이스 사용 IRQ:%2 RESET:%3",
+    "tooltip": "I2C 인터페이스(IRQ 및 RESET 핀 포함)를 사용하여 PN532 NFC 모듈 객체를 생성합니다"
+  },
+  "pn532_begin": {
+    "message0": "PN532 모듈 초기화 %1",
+    "tooltip": "PN532 모듈을 초기화하려면 설정 시 호출해야 합니다"
+  },
+  "pn532_get_firmware_version": {
+    "message0": "PN532 모듈의 펌웨어 버전을 %1",
+    "tooltip": "PN532 모듈의 펌웨어 버전 번호를 확인하세요"
+  },
+  "pn532_sam_config": {
+    "message0": "PN532 모듈 %1 SAM 장착",
+    "tooltip": "PN532 모듈에 SAM(보안 접근 모듈)을 설정하세요"
+  },
+  "pn532_set_passive_retries": {
+    "message0": "PN532 모듈 수동 활성화 재시도 횟수 %1 설정%2",
+    "tooltip": "카드를 읽을 때 최대 재시도 횟수를 설정하세요"
+  },
+  "pn532_read_passive_target": {
+    "message0": "수동 대상 ID 카드 유형 %1 읽기: 타임아웃 %3 밀리초 %2",
+    "tooltip": "수동 대상의 ID를 읽고 읽기에 성공했는지 반환합니다",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "MIFARE ISO14443A",
+            "PN532_MIFARE_ISO14443A"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "pn532_get_uid_length": {
+    "message0": "가장 최근에 읽은 UID 길이를 확인하세요",
+    "tooltip": "가장 최근에 성공한 읽기 UID 길이(바이트 단위)를 확인하세요"
+  },
+  "pn532_get_uid_byte": {
+    "message0": "%1 바이트 UID를 받아",
+    "tooltip": "UID에서 지정된 위치에서 바이트 값을 얻습니다"
+  },
+  "pn532_mifare_classic_authenticate": {
+    "message0": "Mifare Classic 인증 %1 섹터 %2 키 유형 %3 키 %4",
+    "tooltip": "Mifare Classic 카드 인증에 지정된 구역",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "열쇠",
+            "MIFARE_CMD_AUTH_A"
+          ],
+          [
+            "B 키",
+            "MIFARE_CMD_AUTH_B"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "pn532_mifare_classic_read_block": {
+    "message0": "Mifare Classic을 읽어%1 데이터 블록을 %2",
+    "tooltip": "Mifare Classic 카드에 명시된 데이터 블록의 내용을 읽으세요"
+  },
+  "pn532_mifare_classic_write_block": {
+    "message0": "Mifare Classic %1 데이터 블록%2 기록 %3",
+    "tooltip": "Mifare Classic 카드의 지정된 데이터 블록에 데이터를 쓰기"
+  },
+  "pn532_mifare_ultralight_read_page": {
+    "message0": "Mifare 울트라라이트 %1 페이지를 읽어보세요%2",
+    "tooltip": "Mifare Ultralight 카드의 지정된 페이지 내용을 읽어보세요"
+  },
+  "pn532_mifare_ultralight_write_page": {
+    "message0": "Mifare Ultralight %1 페이지에 데이터 %2 작성하세요 %3",
+    "tooltip": "Mifare Ultralight 카드의 지정된 페이지에 데이터를 쓰기"
+  },
+  "pn532_ntag2xx_read_page": {
+    "message0": "NTAG2xx %1 페이지 %2 읽어보세요",
+    "tooltip": "NTAG2xx 태그 지정 페이지의 내용을 읽어보세요"
+  },
+  "pn532_ntag2xx_write_page": {
+    "message0": "NTAG2xx %1 페이지 %2 데이터 %3 작성하세요",
+    "tooltip": "NTAG2xx 태그에 데이터를 쓰는 페이지를 지정하세요"
+  },
+  "pn532_mifare_classic_write_ndef_uri": {
+    "message0": "MIFARE Classic %1 NDEF URI 섹터 %2 URI 접두사%3 URL %4 작성",
+    "tooltip": "NDEF 형식의 URI 레코드를 Mifare Classic 카드에 쓰기",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "없음",
+            "NDEF_URIPREFIX_NONE"
+          ],
+          [
+            "http://www.",
+            "NDEF_URIPREFIX_HTTP_WWWDOT"
+          ],
+          [
+            "https://www.",
+            "NDEF_URIPREFIX_HTTPS_WWWDOT"
+          ],
+          [
+            "http://",
+            "NDEF_URIPREFIX_HTTP"
+          ],
+          [
+            "https://",
+            "NDEF_URIPREFIX_HTTPS"
+          ],
+          [
+            "tel:",
+            "NDEF_URIPREFIX_TEL"
+          ],
+          [
+            "mailto:",
+            "NDEF_URIPREFIX_MAILTO"
+          ],
+          [
+            "ftp://anonymous@",
+            "NDEF_URIPREFIX_FTP_ANONAT"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "pn532_ntag2xx_write_ndef_uri": {
+    "message0": "NTAG2xx를 NDEF URI 접두사%1 URL %2 작성하세요 URL %3",
+    "tooltip": "NDEF 형식의 URI 레코드를 NTAG2xx 태그에 쓰기",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "없음",
+            "NDEF_URIPREFIX_NONE"
+          ],
+          [
+            "http://www.",
+            "NDEF_URIPREFIX_HTTP_WWWDOT"
+          ],
+          [
+            "https://www.",
+            "NDEF_URIPREFIX_HTTPS_WWWDOT"
+          ],
+          [
+            "http://",
+            "NDEF_URIPREFIX_HTTP"
+          ],
+          [
+            "https://",
+            "NDEF_URIPREFIX_HTTPS"
+          ],
+          [
+            "tel:",
+            "NDEF_URIPREFIX_TEL"
+          ],
+          [
+            "mailto:",
+            "NDEF_URIPREFIX_MAILTO"
+          ],
+          [
+            "ftp://anonymous@",
+            "NDEF_URIPREFIX_FTP_ANONAT"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "pn532_mifare_classic_format_ndef": {
+    "message0": "Mifare Classic %1에서 NDEF 포맷으로 포맷하기",
+    "tooltip": "Mifare Classic 카드를 NDEF 형식으로 포맷하세요"
+  }
+}

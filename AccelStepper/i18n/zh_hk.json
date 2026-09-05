@@ -1,0 +1,164 @@
+{
+  "toolbox_name": "AccelStepper",
+  "toolbox_labels": {
+    "初始化": "初始化",
+    "运动控制": "運動控制",
+    "速度与加速度": "速度與加速度",
+    "状态查询": "狀態查詢",
+    "位置控制": "位置控制",
+    "输出控制": "輸出控制",
+    "阻塞模式": "阻擋模式",
+    "多电机同步控制 (MultiStepper)": "多馬達同步控制 (MultiStepper)"
+  },
+  "accelstepper_setup": {
+    "message0": "建立步進馬達 %1 介面類型 %2 腳位 %3 %4 %5 %6",
+    "tooltip": "建立步進馬達對象，支援多種介面類型",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "4線全步",
+            "4"
+          ],
+          [
+            "2線全步",
+            "2"
+          ],
+          [
+            "3線全步",
+            "3"
+          ],
+          [
+            "3線半步",
+            "6"
+          ],
+          [
+            "4線半步",
+            "8"
+          ]
+        ]
+      },
+      null,
+      null,
+      null,
+      null
+    ]
+  },
+  "accelstepper_setup_driver": {
+    "message0": "建立步進馬達 %1 驅動模式(Step+Direction) Step腳%2 Direction引腳%3",
+    "tooltip": "建立步進馬達對象，使用驅動器模式（Step+Direction）"
+  },
+  "accelstepper_move_to": {
+    "message0": "讓步進馬達 %1 移動到位置 %2",
+    "tooltip": "設定目標位置（絕對位置）"
+  },
+  "accelstepper_move": {
+    "message0": "讓步進馬達 %1 相對移動 %2 步",
+    "tooltip": "相對移動指定步數"
+  },
+  "accelstepper_run": {
+    "message0": "讓步進馬達 %1 執行一步（帶加速）",
+    "tooltip": "執行一步，帶加速/減速（需要在loop中頻繁調用）"
+  },
+  "accelstepper_run_speed": {
+    "message0": "讓步進馬達 %1 恆速執行一步",
+    "tooltip": "恆速執行一步（需要在loop中頻繁調用）"
+  },
+  "accelstepper_stop": {
+    "message0": "讓步進馬達 %1 停止",
+    "tooltip": "盡可能快地停止電機"
+  },
+  "accelstepper_set_max_speed": {
+    "message0": "設定步進馬達 %1 的最大速度為 %2 步/秒",
+    "tooltip": "設定最大速度（單位：步/秒）"
+  },
+  "accelstepper_set_speed": {
+    "message0": "設定步進馬達 %1 的恆定速度為 %2 步/秒",
+    "tooltip": "設定恆定速度（單位：步/秒，用於runSpeed模式）"
+  },
+  "accelstepper_get_speed": {
+    "message0": "取得步進馬達 %1 的目前速度",
+    "tooltip": "取得當前速度（單位：步/秒）"
+  },
+  "accelstepper_set_acceleration": {
+    "message0": "設定步進馬達 %1 的加速度為 %2 步/秒²",
+    "tooltip": "設定加速度（單位：步/秒²）"
+  },
+  "accelstepper_get_current_position": {
+    "message0": "取得步進馬達 %1 的目前位置",
+    "tooltip": "取得目前位置（單位：步）"
+  },
+  "accelstepper_set_current_position": {
+    "message0": "設定步進馬達 %1 的目前位置為 %2",
+    "tooltip": "設定當前位置（用於歸零等操作）"
+  },
+  "accelstepper_distance_to_go": {
+    "message0": "取得步進馬達 %1 到目標位置的距離",
+    "tooltip": "取得到目標位置的距離（單位：步）"
+  },
+  "accelstepper_is_running": {
+    "message0": "步進馬達 %1 是否正在運作",
+    "tooltip": "檢查馬達是否正在運行"
+  },
+  "accelstepper_enable_outputs": {
+    "message0": "啟用步進馬達 %1 的輸出",
+    "tooltip": "啟用馬達輸出"
+  },
+  "accelstepper_disable_outputs": {
+    "message0": "停用步進馬達 %1 的輸出",
+    "tooltip": "禁用馬達輸出（省電）"
+  },
+  "accelstepper_run_to_position": {
+    "message0": "讓步進馬達 %1 運轉到目標位置（阻塞）",
+    "tooltip": "運行到目標位置（阻塞模式，會等待直到到達）"
+  },
+  "accelstepper_run_to_new_position": {
+    "message0": "讓步進馬達 %1 運轉到新位置 %2（阻塞）",
+    "tooltip": "運行到新位置（阻塞模式，會等待直到到達）"
+  },
+  "accelstepper_run_speed_to_position": {
+    "message0": "讓步進馬達 %1 恆速運轉到目標位置",
+    "tooltip": "恆速運行到目標位置（需要在loop中頻繁調用）"
+  },
+  "accelstepper_set_enable_pin": {
+    "message0": "設定步進馬達 %1 的啟用引腳為 %2",
+    "tooltip": "設定使能引腳（用於驅動器）"
+  },
+  "multistepper_create": {
+    "message0": "建立多馬達同步控制器 %1",
+    "tooltip": "建立 MultiStepper 對象，可管理最多10個步進電機"
+  },
+  "multistepper_add_stepper": {
+    "message0": "新增步進馬達 %1 到多馬達控制器 %2",
+    "tooltip": "將單一步進馬達新增至多馬達控制器"
+  },
+  "multistepper_move_to": {
+    "message0": "讓多馬達控制器 %1 中所有馬達同步移動到位置 %2",
+    "tooltip": "設定所有馬達的目標位置數組 {pos1, pos2, ...}，它們將以恆定速度同時到達"
+  },
+  "multistepper_move_to_2": {
+    "message0": "讓多馬達控制器 %1 中2個馬達同步移動 馬達1位置%2 馬達2位置%3",
+    "tooltip": "設定2個馬達的目標位置，適用於XY平台等雙軸應用"
+  },
+  "multistepper_move_to_3": {
+    "message0": "讓多馬達控制器 %1 中3個馬達同步移動 馬達1位置%2 馬達2位置%3 馬達3位置%4",
+    "tooltip": "設定3個馬達的目標位置，適用於XYZ平台等三軸應用"
+  },
+  "multistepper_move_to_4": {
+    "message0": "多馬達控制器 %1 同步中間四個馬達的動作：馬達1號位置%2 馬達2號位置%3 馬達3號馬達%4 馬達4號馬達%5",
+    "tooltip": "設定4個馬達的目標位置"
+  },
+  "multistepper_run": {
+    "message0": "讓多馬達控制器 %1 執行一步（非阻塞）",
+    "tooltip": "執行一步，必須在loop中頻繁調用"
+  },
+  "multistepper_run_speed_to_position": {
+    "message0": "讓多馬達控制器 %1 運轉到目標位置（阻塞）",
+    "tooltip": "運行到目標位置（阻塞模式，會等待直到到達）"
+  },
+  "multistepper_positions_array": {
+    "message0": "建立位置數組 %1",
+    "tooltip": "建立位置數組，用於 multistepper_move_to"
+  }
+}

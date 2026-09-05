@@ -1,31 +1,30 @@
-
 [
   {
     "type": "dfplayer_begin",
-    "message0": "初始化DFPlayer模块 %1 RX引脚 %2 TX引脚 %3",
+    "message0": "初始化 DFPlayer 模块 %1 RX 引脚 %2 TX 引脚 %3",
     "args0": [
       {
-        "type": "field_variable",
-        "name": "NAME",
-        "variable": "dfplayer1",
-        "variableTypes": [
-          "DFPlayer"
-        ],
-        "defaultType": "DFPlayer"
+        "type": "field_input",
+        "name": "VAR",
+        "text": "dfplayer"
       },
       {
         "type": "input_value",
-        "name": "RX"
+        "name": "RX",
+        "check": "Number"
       },
       {
         "type": "input_value",
-        "name": "TX"
+        "name": "TX",
+        "check": "Number"
       }
     ],
     "inputsInline": true,
     "previousStatement": null,
     "nextStatement": null,
-    "colour": "#FF5722"
+    "colour": "#FF5722",
+    "icon": "fa-regular fa-list-music",
+    "tooltip": "初始化DFPlayer Mini MP3模块，指定串口RX和TX引脚"
   },
   {
     "type": "dfplayer_play",
@@ -33,22 +32,23 @@
     "args0": [
       {
         "type": "field_variable",
-        "name": "NAME",
-        "variable": "dfplayer1",
-        "variableTypes": [
-          "DFPlayer"
-        ],
+        "name": "VAR",
+        "variable": "dfplayer",
+        "variableTypes": ["DFPlayer"],
         "defaultType": "DFPlayer"
       },
       {
         "type": "input_value",
-        "name": "FILE"
+        "name": "FILE",
+        "check": "Number"
       }
     ],
     "inputsInline": true,
     "previousStatement": null,
     "nextStatement": null,
-    "colour": "#FF5722"
+    "colour": "#FF5722",
+    "icon": "fa-regular fa-list-music",
+    "tooltip": "播放指定编号的音频文件(1-3000)"
   },
   {
     "type": "dfplayer_pause",
@@ -56,18 +56,18 @@
     "args0": [
       {
         "type": "field_variable",
-        "name": "NAME",
-        "variable": "dfplayer1",
-        "variableTypes": [
-          "DFPlayer"
-        ],
+        "name": "VAR",
+        "variable": "dfplayer",
+        "variableTypes": ["DFPlayer"],
         "defaultType": "DFPlayer"
       }
     ],
     "inputsInline": true,
     "previousStatement": null,
     "nextStatement": null,
-    "colour": "#FF5722"
+    "colour": "#FF5722",
+    "icon": "fa-regular fa-list-music",
+    "tooltip": "暂停当前播放的音频"
   },
   {
     "type": "dfplayer_start",
@@ -75,18 +75,18 @@
     "args0": [
       {
         "type": "field_variable",
-        "name": "NAME",
-        "variable": "dfplayer1",
-        "variableTypes": [
-          "DFPlayer"
-        ],
+        "name": "VAR",
+        "variable": "dfplayer",
+        "variableTypes": ["DFPlayer"],
         "defaultType": "DFPlayer"
       }
     ],
     "inputsInline": true,
     "previousStatement": null,
     "nextStatement": null,
-    "colour": "#FF5722"
+    "colour": "#FF5722",
+    "icon": "fa-regular fa-list-music",
+    "tooltip": "继续播放暂停的音频"
   },
   {
     "type": "dfplayer_stop",
@@ -94,56 +94,56 @@
     "args0": [
       {
         "type": "field_variable",
-        "name": "NAME",
-        "variable": "dfplayer1",
-        "variableTypes": [
-          "DFPlayer"
-        ],
+        "name": "VAR",
+        "variable": "dfplayer",
+        "variableTypes": ["DFPlayer"],
         "defaultType": "DFPlayer"
       }
     ],
     "inputsInline": true,
     "previousStatement": null,
     "nextStatement": null,
-    "colour": "#FF5722"
+    "colour": "#FF5722",
+    "icon": "fa-regular fa-list-music",
+    "tooltip": "停止当前播放"
   },
   {
     "type": "dfplayer_next",
-    "message0": "DFPlayer %1 播放下一首",
+    "message0": "DFPlayer %1 播放下一曲",
     "args0": [
       {
         "type": "field_variable",
-        "name": "NAME",
-        "variable": "dfplayer1",
-        "variableTypes": [
-          "DFPlayer"
-        ],
+        "name": "VAR",
+        "variable": "dfplayer",
+        "variableTypes": ["DFPlayer"],
         "defaultType": "DFPlayer"
       }
     ],
     "inputsInline": true,
     "previousStatement": null,
     "nextStatement": null,
-    "colour": "#FF5722"
+    "colour": "#FF5722",
+    "icon": "fa-regular fa-list-music",
+    "tooltip": "播放下一首音频文件"
   },
   {
     "type": "dfplayer_previous",
-    "message0": "DFPlayer %1 播放上一首",
+    "message0": "DFPlayer %1 播放上一曲",
     "args0": [
       {
         "type": "field_variable",
-        "name": "NAME",
-        "variable": "dfplayer1",
-        "variableTypes": [
-          "DFPlayer"
-        ],
+        "name": "VAR",
+        "variable": "dfplayer",
+        "variableTypes": ["DFPlayer"],
         "defaultType": "DFPlayer"
       }
     ],
     "inputsInline": true,
     "previousStatement": null,
     "nextStatement": null,
-    "colour": "#FF5722"
+    "colour": "#FF5722",
+    "icon": "fa-regular fa-list-music",
+    "tooltip": "播放上一首音频文件"
   },
   {
     "type": "dfplayer_volume",
@@ -151,142 +151,119 @@
     "args0": [
       {
         "type": "field_variable",
-        "name": "NAME",
-        "variable": "dfplayer1",
-        "variableTypes": [
-          "DFPlayer"
-        ],
+        "name": "VAR",
+        "variable": "dfplayer",
+        "variableTypes": ["DFPlayer"],
         "defaultType": "DFPlayer"
       },
       {
         "type": "input_value",
-        "name": "VOLUME"
+        "name": "VOLUME",
+        "check": "Number"
       }
     ],
     "inputsInline": true,
     "previousStatement": null,
     "nextStatement": null,
-    "colour": "#FF5722"
+    "colour": "#FF5722",
+    "icon": "fa-regular fa-list-music",
+    "tooltip": "设置播放音量(0-30)"
   },
   {
     "type": "dfplayer_volume_up",
-    "message0": "DFPlayer %1 增大音量",
+    "message0": "DFPlayer %1 提升音量一级",
     "args0": [
       {
         "type": "field_variable",
-        "name": "NAME",
-        "variable": "dfplayer1",
-        "variableTypes": [
-          "DFPlayer"
-        ],
+        "name": "VAR",
+        "variable": "dfplayer",
+        "variableTypes": ["DFPlayer"],
         "defaultType": "DFPlayer"
       }
     ],
     "inputsInline": true,
     "previousStatement": null,
     "nextStatement": null,
-    "colour": "#FF5722"
+    "colour": "#FF5722",
+    "icon": "fa-regular fa-list-music",
+    "tooltip": "音量增加一级"
   },
   {
     "type": "dfplayer_volume_down",
-    "message0": "DFPlayer %1 减小音量",
+    "message0": "DFPlayer %1 降低音量一级",
     "args0": [
       {
         "type": "field_variable",
-        "name": "NAME",
-        "variable": "dfplayer1",
-        "variableTypes": [
-          "DFPlayer"
-        ],
+        "name": "VAR",
+        "variable": "dfplayer",
+        "variableTypes": ["DFPlayer"],
         "defaultType": "DFPlayer"
       }
     ],
     "inputsInline": true,
     "previousStatement": null,
     "nextStatement": null,
-    "colour": "#FF5722"
+    "colour": "#FF5722",
+    "icon": "fa-regular fa-list-music",
+    "tooltip": "音量降低一级"
   },
   {
     "type": "dfplayer_eq",
-    "message0": "DFPlayer %1 设置均衡器 %2",
+    "message0": "DFPlayer %1 设置均衡模式 %2",
     "args0": [
       {
         "type": "field_variable",
-        "name": "NAME",
-        "variable": "dfplayer1",
-        "variableTypes": [
-          "DFPlayer"
-        ],
+        "name": "VAR",
+        "variable": "dfplayer",
+        "variableTypes": ["DFPlayer"],
         "defaultType": "DFPlayer"
       },
       {
         "type": "field_dropdown",
         "name": "EQ",
         "options": [
-          [
-            "Normal",
-            "0"
-          ],
-          [
-            "Pop",
-            "1"
-          ],
-          [
-            "Rock",
-            "2"
-          ],
-          [
-            "Jazz",
-            "3"
-          ],
-          [
-            "Classic",
-            "4"
-          ],
-          [
-            "Bass",
-            "5"
-          ]
+          ["Normal", "0"],
+          ["Pop", "1"],
+          ["Rock", "2"],
+          ["Jazz", "3"],
+          ["Classic", "4"],
+          ["Bass", "5"]
         ]
       }
     ],
     "inputsInline": true,
     "previousStatement": null,
     "nextStatement": null,
-    "colour": "#FF5722"
+    "colour": "#FF5722",
+    "icon": "fa-regular fa-list-music",
+    "tooltip": "设置音频均衡器模式"
   },
   {
     "type": "dfplayer_output_device",
-    "message0": "DFPlayer %1 设置输出设备为 %2",
+    "message0": "DFPlayer %1 选择输出设备 %2",
     "args0": [
       {
         "type": "field_variable",
-        "name": "NAME",
-        "variable": "dfplayer1",
-        "variableTypes": [
-          "DFPlayer"
-        ],
+        "name": "VAR",
+        "variable": "dfplayer",
+        "variableTypes": ["DFPlayer"],
         "defaultType": "DFPlayer"
       },
       {
         "type": "field_dropdown",
         "name": "DEVICE",
         "options": [
-          [
-            "DEVICE1",
-            "1"
-          ],
-          [
-            "DEVICE2",
-            "2"
-          ]
+          ["U盘", "1"],
+          ["TF卡", "2"]
         ]
       }
     ],
     "inputsInline": true,
     "previousStatement": null,
     "nextStatement": null,
-    "colour": "#FF5722"
+    "colour": "#FF5722",
+    "icon": "fa-regular fa-list-music",
+    "tooltip": "选择音频输出设备"
   },
   {
     "type": "dfplayer_loop",
@@ -294,22 +271,23 @@
     "args0": [
       {
         "type": "field_variable",
-        "name": "NAME",
-        "variable": "dfplayer1",
-        "variableTypes": [
-          "DFPlayer"
-        ],
+        "name": "VAR",
+        "variable": "dfplayer",
+        "variableTypes": ["DFPlayer"],
         "defaultType": "DFPlayer"
       },
       {
         "type": "input_value",
-        "name": "FILE"
+        "name": "FILE",
+        "check": "Number"
       }
     ],
     "inputsInline": true,
     "previousStatement": null,
     "nextStatement": null,
-    "colour": "#FF5722"
+    "colour": "#FF5722",
+    "icon": "fa-regular fa-list-music",
+    "tooltip": "循环播放指定编号的音频文件"
   },
   {
     "type": "dfplayer_play_folder",
@@ -317,26 +295,28 @@
     "args0": [
       {
         "type": "field_variable",
-        "name": "NAME",
-        "variable": "dfplayer1",
-        "variableTypes": [
-          "DFPlayer"
-        ],
+        "name": "VAR",
+        "variable": "dfplayer",
+        "variableTypes": ["DFPlayer"],
         "defaultType": "DFPlayer"
       },
       {
         "type": "input_value",
-        "name": "FOLDER"
+        "name": "FOLDER",
+        "check": "Number"
       },
       {
         "type": "input_value",
-        "name": "FILE"
+        "name": "FILE",
+        "check": "Number"
       }
     ],
     "inputsInline": true,
     "previousStatement": null,
     "nextStatement": null,
-    "colour": "#FF5722"
+    "colour": "#FF5722",
+    "icon": "fa-regular fa-list-music",
+    "tooltip": "播放指定文件夹中的指定文件"
   },
   {
     "type": "dfplayer_enable_loop_all",
@@ -344,18 +324,18 @@
     "args0": [
       {
         "type": "field_variable",
-        "name": "NAME",
-        "variable": "dfplayer1",
-        "variableTypes": [
-          "DFPlayer"
-        ],
+        "name": "VAR",
+        "variable": "dfplayer",
+        "variableTypes": ["DFPlayer"],
         "defaultType": "DFPlayer"
       }
     ],
     "inputsInline": true,
     "previousStatement": null,
     "nextStatement": null,
-    "colour": "#FF5722"
+    "colour": "#FF5722",
+    "icon": "fa-regular fa-list-music",
+    "tooltip": "开启全部文件循环播放"
   },
   {
     "type": "dfplayer_disable_loop_all",
@@ -363,83 +343,85 @@
     "args0": [
       {
         "type": "field_variable",
-        "name": "NAME",
-        "variable": "dfplayer1",
-        "variableTypes": [
-          "DFPlayer"
-        ],
+        "name": "VAR",
+        "variable": "dfplayer",
+        "variableTypes": ["DFPlayer"],
         "defaultType": "DFPlayer"
       }
     ],
     "inputsInline": true,
     "previousStatement": null,
     "nextStatement": null,
-    "colour": "#FF5722"
+    "colour": "#FF5722",
+    "icon": "fa-regular fa-list-music",
+    "tooltip": "关闭全部文件循环播放"
   },
   {
     "type": "dfplayer_play_mp3_folder",
-    "message0": "DFPlayer %1 播放MP3文件夹中的文件 %2",
+    "message0": "DFPlayer %1 播放 MP3 文件夹中的文件 %2",
     "args0": [
       {
         "type": "field_variable",
-        "name": "NAME",
-        "variable": "dfplayer1",
-        "variableTypes": [
-          "DFPlayer"
-        ],
+        "name": "VAR",
+        "variable": "dfplayer",
+        "variableTypes": ["DFPlayer"],
         "defaultType": "DFPlayer"
       },
       {
         "type": "input_value",
-        "name": "FILE"
+        "name": "FILE",
+        "check": "Number"
       }
     ],
     "inputsInline": true,
     "previousStatement": null,
     "nextStatement": null,
-    "colour": "#FF5722"
+    "colour": "#FF5722",
+    "icon": "fa-regular fa-list-music",
+    "tooltip": "播放MP3文件夹中的指定文件"
   },
   {
     "type": "dfplayer_advertise",
-    "message0": "DFPlayer %1 播放广告 %2",
+    "message0": "DFPlayer %1 插播广告曲目 %2",
     "args0": [
       {
         "type": "field_variable",
-        "name": "NAME",
-        "variable": "dfplayer1",
-        "variableTypes": [
-          "DFPlayer"
-        ],
+        "name": "VAR",
+        "variable": "dfplayer",
+        "variableTypes": ["DFPlayer"],
         "defaultType": "DFPlayer"
       },
       {
         "type": "input_value",
-        "name": "FILE"
+        "name": "FILE",
+        "check": "Number"
       }
     ],
     "inputsInline": true,
     "previousStatement": null,
     "nextStatement": null,
-    "colour": "#FF5722"
+    "colour": "#FF5722",
+    "icon": "fa-regular fa-list-music",
+    "tooltip": "插播广告音频，播完后继续原曲目"
   },
   {
     "type": "dfplayer_stop_advertise",
-    "message0": "DFPlayer %1 停止广告",
+    "message0": "DFPlayer %1 停止广告播放",
     "args0": [
       {
         "type": "field_variable",
-        "name": "NAME",
-        "variable": "dfplayer1",
-        "variableTypes": [
-          "DFPlayer"
-        ],
+        "name": "VAR",
+        "variable": "dfplayer",
+        "variableTypes": ["DFPlayer"],
         "defaultType": "DFPlayer"
       }
     ],
     "inputsInline": true,
     "previousStatement": null,
     "nextStatement": null,
-    "colour": "#FF5722"
+    "colour": "#FF5722",
+    "icon": "fa-regular fa-list-music",
+    "tooltip": "停止广告播放，恢复原曲目"
   },
   {
     "type": "dfplayer_play_large_folder",
@@ -447,26 +429,28 @@
     "args0": [
       {
         "type": "field_variable",
-        "name": "NAME",
-        "variable": "dfplayer1",
-        "variableTypes": [
-          "DFPlayer"
-        ],
+        "name": "VAR",
+        "variable": "dfplayer",
+        "variableTypes": ["DFPlayer"],
         "defaultType": "DFPlayer"
       },
       {
         "type": "input_value",
-        "name": "FOLDER"
+        "name": "FOLDER",
+        "check": "Number"
       },
       {
         "type": "input_value",
-        "name": "FILE"
+        "name": "FILE",
+        "check": "Number"
       }
     ],
     "inputsInline": true,
     "previousStatement": null,
     "nextStatement": null,
-    "colour": "#FF5722"
+    "colour": "#FF5722",
+    "icon": "fa-regular fa-list-music",
+    "tooltip": "播放大文件夹(支持3000个文件)中的指定文件"
   },
   {
     "type": "dfplayer_loop_folder",
@@ -474,22 +458,23 @@
     "args0": [
       {
         "type": "field_variable",
-        "name": "NAME",
-        "variable": "dfplayer1",
-        "variableTypes": [
-          "DFPlayer"
-        ],
+        "name": "VAR",
+        "variable": "dfplayer",
+        "variableTypes": ["DFPlayer"],
         "defaultType": "DFPlayer"
       },
       {
         "type": "input_value",
-        "name": "FOLDER"
+        "name": "FOLDER",
+        "check": "Number"
       }
     ],
     "inputsInline": true,
     "previousStatement": null,
     "nextStatement": null,
-    "colour": "#FF5722"
+    "colour": "#FF5722",
+    "icon": "fa-regular fa-list-music",
+    "tooltip": "循环播放指定文件夹中的所有文件"
   },
   {
     "type": "dfplayer_random_all",
@@ -497,74 +482,74 @@
     "args0": [
       {
         "type": "field_variable",
-        "name": "NAME",
-        "variable": "dfplayer1",
-        "variableTypes": [
-          "DFPlayer"
-        ],
+        "name": "VAR",
+        "variable": "dfplayer",
+        "variableTypes": ["DFPlayer"],
         "defaultType": "DFPlayer"
       }
     ],
     "inputsInline": true,
     "previousStatement": null,
     "nextStatement": null,
-    "colour": "#FF5722"
+    "colour": "#FF5722",
+    "icon": "fa-regular fa-list-music",
+    "tooltip": "随机播放所有音频文件"
   },
   {
     "type": "dfplayer_enable_loop",
-    "message0": "DFPlayer %1 开启循环",
+    "message0": "DFPlayer %1 开启当前曲目循环",
     "args0": [
       {
         "type": "field_variable",
-        "name": "NAME",
-        "variable": "dfplayer1",
-        "variableTypes": [
-          "DFPlayer"
-        ],
+        "name": "VAR",
+        "variable": "dfplayer",
+        "variableTypes": ["DFPlayer"],
         "defaultType": "DFPlayer"
       }
     ],
     "inputsInline": true,
     "previousStatement": null,
     "nextStatement": null,
-    "colour": "#FF5722"
+    "colour": "#FF5722",
+    "icon": "fa-regular fa-list-music",
+    "tooltip": "开启当前曲目单曲循环"
   },
   {
     "type": "dfplayer_disable_loop",
-    "message0": "DFPlayer %1 关闭循环",
+    "message0": "DFPlayer %1 关闭当前曲目循环",
     "args0": [
       {
         "type": "field_variable",
-        "name": "NAME",
-        "variable": "dfplayer1",
-        "variableTypes": [
-          "DFPlayer"
-        ],
+        "name": "VAR",
+        "variable": "dfplayer",
+        "variableTypes": ["DFPlayer"],
         "defaultType": "DFPlayer"
       }
     ],
     "inputsInline": true,
     "previousStatement": null,
     "nextStatement": null,
-    "colour": "#FF5722"
+    "colour": "#FF5722",
+    "icon": "fa-regular fa-list-music",
+    "tooltip": "关闭当前曲目单曲循环"
   },
   {
     "type": "dfplayer_read_state",
-    "message0": "DFPlayer %1 读取状态",
+    "message0": "DFPlayer %1 读取播放状态",
     "args0": [
       {
         "type": "field_variable",
-        "name": "NAME",
-        "variable": "dfplayer1",
-        "variableTypes": [
-          "DFPlayer"
-        ],
+        "name": "VAR",
+        "variable": "dfplayer",
+        "variableTypes": ["DFPlayer"],
         "defaultType": "DFPlayer"
       }
     ],
     "inputsInline": true,
     "output": "Number",
-    "colour": "#FF5722"
+    "colour": "#FF5722",
+    "icon": "fa-regular fa-list-music",
+    "tooltip": "读取当前播放状态"
   },
   {
     "type": "dfplayer_read_volume",
@@ -572,53 +557,53 @@
     "args0": [
       {
         "type": "field_variable",
-        "name": "NAME",
-        "variable": "dfplayer1",
-        "variableTypes": [
-          "DFPlayer"
-        ],
+        "name": "VAR",
+        "variable": "dfplayer",
+        "variableTypes": ["DFPlayer"],
         "defaultType": "DFPlayer"
       }
     ],
     "inputsInline": true,
     "output": "Number",
-    "colour": "#FF5722"
+    "colour": "#FF5722",
+    "icon": "fa-regular fa-list-music",
+    "tooltip": "读取当前音量值(0-30)"
   },
   {
     "type": "dfplayer_read_eq",
-    "message0": "DFPlayer %1 读取均衡器",
+    "message0": "DFPlayer %1 读取均衡模式",
     "args0": [
       {
         "type": "field_variable",
-        "name": "NAME",
-        "variable": "dfplayer1",
-        "variableTypes": [
-          "DFPlayer"
-        ],
+        "name": "VAR",
+        "variable": "dfplayer",
+        "variableTypes": ["DFPlayer"],
         "defaultType": "DFPlayer"
       }
     ],
     "inputsInline": true,
     "output": "Number",
-    "colour": "#FF5722"
+    "colour": "#FF5722",
+    "icon": "fa-regular fa-list-music",
+    "tooltip": "读取当前均衡器模式"
   },
   {
     "type": "dfplayer_read_file_counts",
-    "message0": "DFPlayer %1 读取文件数量",
+    "message0": "DFPlayer %1 读取总文件数",
     "args0": [
       {
         "type": "field_variable",
-        "name": "NAME",
-        "variable": "dfplayer1",
-        "variableTypes": [
-          "DFPlayer"
-        ],
+        "name": "VAR",
+        "variable": "dfplayer",
+        "variableTypes": ["DFPlayer"],
         "defaultType": "DFPlayer"
       }
     ],
     "inputsInline": true,
     "output": "Number",
-    "colour": "#FF5722"
+    "colour": "#FF5722",
+    "icon": "fa-regular fa-list-music",
+    "tooltip": "读取SD卡中的总文件数量"
   },
   {
     "type": "dfplayer_read_current_file_number",
@@ -626,39 +611,40 @@
     "args0": [
       {
         "type": "field_variable",
-        "name": "NAME",
-        "variable": "dfplayer1",
-        "variableTypes": [
-          "DFPlayer"
-        ],
+        "name": "VAR",
+        "variable": "dfplayer",
+        "variableTypes": ["DFPlayer"],
         "defaultType": "DFPlayer"
       }
     ],
     "inputsInline": true,
     "output": "Number",
-    "colour": "#FF5722"
+    "colour": "#FF5722",
+    "icon": "fa-regular fa-list-music",
+    "tooltip": "读取当前播放的文件编号"
   },
   {
     "type": "dfplayer_read_file_counts_in_folder",
-    "message0": "DFPlayer %1 读取文件夹 %2 中的文件数量",
+    "message0": "DFPlayer %1 读取文件夹 %2 的文件数量",
     "args0": [
       {
         "type": "field_variable",
-        "name": "NAME",
-        "variable": "dfplayer1",
-        "variableTypes": [
-          "DFPlayer"
-        ],
+        "name": "VAR",
+        "variable": "dfplayer",
+        "variableTypes": ["DFPlayer"],
         "defaultType": "DFPlayer"
       },
       {
         "type": "input_value",
-        "name": "FOLDER"
+        "name": "FOLDER",
+        "check": "Number"
       }
     ],
     "inputsInline": true,
     "output": "Number",
-    "colour": "#FF5722"
+    "colour": "#FF5722",
+    "icon": "fa-regular fa-list-music",
+    "tooltip": "读取指定文件夹中的文件数量"
   },
   {
     "type": "dfplayer_available",
@@ -666,17 +652,17 @@
     "args0": [
       {
         "type": "field_variable",
-        "name": "NAME",
-        "variable": "dfplayer1",
-        "variableTypes": [
-          "DFPlayer"
-        ],
+        "name": "VAR",
+        "variable": "dfplayer",
+        "variableTypes": ["DFPlayer"],
         "defaultType": "DFPlayer"
       }
     ],
     "inputsInline": true,
     "output": "Boolean",
-    "colour": "#FF5722"
+    "colour": "#FF5722",
+    "icon": "fa-regular fa-list-music",
+    "tooltip": "检查是否有来自模块的消息"
   },
   {
     "type": "dfplayer_read_type",
@@ -684,17 +670,17 @@
     "args0": [
       {
         "type": "field_variable",
-        "name": "NAME",
-        "variable": "dfplayer1",
-        "variableTypes": [
-          "DFPlayer"
-        ],
+        "name": "VAR",
+        "variable": "dfplayer",
+        "variableTypes": ["DFPlayer"],
         "defaultType": "DFPlayer"
       }
     ],
     "inputsInline": true,
     "output": "Number",
-    "colour": "#FF5722"
+    "colour": "#FF5722",
+    "icon": "fa-regular fa-list-music",
+    "tooltip": "读取消息类型(如播放完成、插入SD卡等)"
   },
   {
     "type": "dfplayer_read",
@@ -702,38 +688,43 @@
     "args0": [
       {
         "type": "field_variable",
-        "name": "NAME",
-        "variable": "dfplayer1",
-        "variableTypes": [
-          "DFPlayer"
-        ],
+        "name": "VAR",
+        "variable": "dfplayer",
+        "variableTypes": ["DFPlayer"],
         "defaultType": "DFPlayer"
       }
     ],
     "inputsInline": true,
     "output": "Number",
-    "colour": "#FF5722"
+    "colour": "#FF5722",
+    "icon": "fa-regular fa-list-music",
+    "tooltip": "读取消息的参数值"
   },
   {
     "type": "dfplayer_simple_play",
-    "message0": "简单播放：初始化DFPlayer (RX: %1, TX: %2) 并播放文件 %3",
+    "message0": "简单播放：初始化 DFPlayer (RX %1, TX %2) 并播放文件 %3",
     "args0": [
       {
         "type": "input_value",
-        "name": "RX"
+        "name": "RX",
+        "check": "Number"
       },
       {
         "type": "input_value",
-        "name": "TX"
+        "name": "TX",
+        "check": "Number"
       },
       {
         "type": "input_value",
-        "name": "FILE"
+        "name": "FILE",
+        "check": "Number"
       }
     ],
     "inputsInline": true,
     "previousStatement": null,
     "nextStatement": null,
-    "colour": "#FF5722"
+    "colour": "#FF5722",
+    "icon": "fa-regular fa-list-music",
+    "tooltip": "快速初始化并播放指定文件"
   }
 ]

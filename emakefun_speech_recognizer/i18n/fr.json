@@ -1,0 +1,96 @@
+{
+  "toolbox_name": "LD3320D Reconnaissance vocale",
+  "toolbox_labels": {
+    "初始化": "initialisation",
+    "配置": "Configuration",
+    "识别": "identifier",
+    "事件处理": "gestion des événements"
+  },
+  "speech_recognizer_setup": {
+    "message0": "Initialiser le module de reconnaissance vocale %1 adresse I2C %2",
+    "tooltip": "Initialiser le module de reconnaissance vocale, avec l’adresse I2C par défaut définie sur 0x30"
+  },
+  "speech_recognizer_set_mode": {
+    "message0": "Réglez %1 mode reconnaissance sur %2",
+    "tooltip": "Régler le mode de reconnaissance vocale",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Automatique",
+            "kRecognitionAuto"
+          ],
+          [
+            "Déclenché par un bouton",
+            "kButtonTrigger"
+          ],
+          [
+            "Déclencheurs de mots-clés",
+            "kKeywordTrigger"
+          ],
+          [
+            "Déclenché par une clé ou un mot-clé",
+            "kKeywordOrButtonTrigger"
+          ]
+        ]
+      }
+    ]
+  },
+  "speech_recognizer_set_timeout": {
+    "message0": "Réglez %1 pour reconnaître le délai d’attente %2 millisecondes",
+    "tooltip": "Régler un délai d’attente de reconnaissance (millisecondes), ce qui est inefficace pour le mode de reconnaissance automatique"
+  },
+  "speech_recognizer_add_keyword": {
+    "message0": "Ajoutez des mots-clés %1 %2 d’index à %3",
+    "tooltip": "Ajoutez des mots-clés de reconnaissance vocale, jusqu’à 50 mots, chaque mot atteignant au maximum 50 octets"
+  },
+  "speech_recognizer_recognize": {
+    "message0": "%1 Effectuer la reconnaissance vocale",
+    "tooltip": "La reconnaissance vocale est effectuée, et l’indice de mots-clés reconnu (>=0) est retourné ; sinon, il est retourné -1. Cela doit être appelé boucle dans une boucle"
+  },
+  "speech_recognizer_get_event": {
+    "message0": "%1 Obtenez l’événement actuel",
+    "tooltip": "Obtenez le type d’événement actuel"
+  },
+  "speech_recognizer_event_handler": {
+    "message0": "Événements actuels %1 %2",
+    "tooltip": "Effectuer l’opération correspondante lorsqu’un événement spécifié se produit",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Commence à attendre le déclencheur",
+            "kEventStartWaitingForTrigger"
+          ],
+          [
+            "Déclenché par un bouton",
+            "kEventButtonTriggered"
+          ],
+          [
+            "Déclenché par des mots-clés",
+            "kEventKeywordTriggered"
+          ],
+          [
+            "Démarrez l’identification",
+            "kEventStartRecognizing"
+          ],
+          [
+            "La reconnaissance est un succès",
+            "kEventSpeechRecognized"
+          ],
+          [
+            "Reconnaissez les temps morts",
+            "kEventSpeechRecognitionTimedOut"
+          ]
+        ]
+      }
+    ],
+    "message1": "exécuter %1"
+  },
+  "speech_recognizer_check_result": {
+    "message0": "Le résultat de reconnaissance %1 est égal à %2",
+    "tooltip": "Vérifiez si le résultat de reconnaissance correspond à l’indice spécifié"
+  }
+}

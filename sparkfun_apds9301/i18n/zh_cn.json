@@ -1,0 +1,115 @@
+{
+  "toolbox_name": "APDS9301",
+  "apds9301_init": {
+    "message0": "初始化 APDS9301 %1 地址 %2",
+    "tooltip": "创建并初始化 SparkFun APDS9301 光照传感器"
+  },
+  "apds9301_is_ready": {
+    "message0": "APDS9301 %1 已初始化",
+    "tooltip": "返回初始化块保存的 APDS9301 初始化状态"
+  },
+  "apds9301_read_lux": {
+    "message0": "APDS9301 %1 读取照度",
+    "tooltip": "读取计算后的 lux 光照值"
+  },
+  "apds9301_read_channel": {
+    "message0": "APDS9301 %1 读取原始通道 %2",
+    "tooltip": "读取 APDS9301 原始通道值",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "CH0 可见+红外",
+            "readCH0Level"
+          ],
+          [
+            "CH1 红外",
+            "readCH1Level"
+          ]
+        ]
+      }
+    ]
+  },
+  "apds9301_set_gain": {
+    "message0": "设置 APDS9301 %1 增益 %2",
+    "tooltip": "设置 APDS9301 增益",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "低",
+            "APDS9301::LOW_GAIN"
+          ],
+          [
+            "高",
+            "APDS9301::HIGH_GAIN"
+          ]
+        ]
+      }
+    ]
+  },
+  "apds9301_set_integration_time": {
+    "message0": "设置 APDS9301 %1 转换时间 %2",
+    "tooltip": "设置 APDS9301 积分时间"
+  },
+  "apds9301_enable_interrupt": {
+    "message0": "APDS9301 %1 中断 %2",
+    "tooltip": "启用或禁用 APDS9301 中断输出",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "启用",
+            "APDS9301::INT_ON"
+          ],
+          [
+            "禁用",
+            "APDS9301::INT_OFF"
+          ]
+        ]
+      }
+    ]
+  },
+  "apds9301_set_threshold": {
+    "message0": "设置 APDS9301 %1 %2 阈值 %3",
+    "tooltip": "设置 APDS9301 中断阈值",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "下限",
+            "LOW"
+          ],
+          [
+            "上限",
+            "HIGH"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "apds9301_power": {
+    "message0": "APDS9301 %1 电源 %2",
+    "tooltip": "打开或关闭 APDS9301 电源",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "开启",
+            "APDS9301::POW_ON"
+          ],
+          [
+            "关闭",
+            "APDS9301::POW_OFF"
+          ]
+        ]
+      }
+    ]
+  }
+}

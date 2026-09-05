@@ -1,0 +1,65 @@
+{
+  "toolbox_name": "SFA40ホルムアルデヒド温度・湿度センサー",
+  "sfa40_init_i2c": {
+    "message0": "SFA40 I2C %1バス%2の初期化",
+    "tooltip": "SFA40はI2Cで初期化され、アドレスは0x5Dに固定されています。"
+  },
+  "sfa40_measurement": {
+    "message0": "SFA40 %1 %2 measurement",
+    "tooltip": "SFA40の測定を開始または停止します。",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "スタート",
+            "START"
+          ],
+          [
+            "やめて",
+            "STOP"
+          ]
+        ]
+      }
+    ]
+  },
+  "sfa40_read_data": {
+    "message0": "SFA40 %1リフレッシュ測定データ",
+    "tooltip": "HCHO、湿度、温度を読み取ってキャッシュしてください。 返却0は信頼性、1はウォームアップされていない、2は仕様不全、3は通信またはCRCの失敗を示します。"
+  },
+  "sfa40_value": {
+    "message0": "SFA40 %1キャッシュvalue%2",
+    "tooltip": "最後のリフレッシュ後にキャッシュ値を読み込みます。",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "HCHO ppb",
+            "HCHO"
+          ],
+          [
+            "湿度%RH",
+            "HUMIDITY"
+          ],
+          [
+            "温度C",
+            "TEMP_C"
+          ],
+          [
+            "温度F",
+            "TEMP_F"
+          ]
+        ]
+      }
+    ]
+  },
+  "sfa40_read_serial": {
+    "message0": "SFA40%1シリアル番号を読み取る",
+    "tooltip": "SFA40のシリアル番号を読み取り、シリアル番号の長さを更新してください。 まずは測定をやめることが推奨されます。"
+  },
+  "sfa40_serial_length": {
+    "message0": "SFA40 %1シリアル番号の長さ",
+    "tooltip": "有効なバイト長のシーケンス番号を読みます。 停止測定後にシリアル番号を呼び出さなければなりません。"
+  }
+}

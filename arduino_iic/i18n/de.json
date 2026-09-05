@@ -1,0 +1,141 @@
+{
+  "toolbox_name": "I2C",
+  "toolbox_labels": {
+    "I2C扫描模板": "I2C-Scan-Vorlage"
+  },
+  "wire_begin": {
+    "message0": "Initialisieren der I2C-Kommunikation",
+    "tooltip": "Initialisieren der I2C-Kommunikation"
+  },
+  "wire_begin_address": {
+    "message0": "Initialisieren Sie die I2C-Kommunikation mit einer Slave-Adresse %1",
+    "tooltip": "Initialisieren Sie die I2C-Kommunikation mit einer angegebenen Adresse"
+  },
+  "wire_set_clock": {
+    "message0": "Stellen Sie die I2C-Taktfrequenz auf %1 kHz ein",
+    "tooltip": "Stellen Sie die I2C-Kommunikationstaktfrequenz ein"
+  },
+  "wire_end": {
+    "message0": "I2C-Kommunikation beenden",
+    "tooltip": "I2C-Kommunikation beenden"
+  },
+  "wire_begin_transmission": {
+    "message0": "Beginnen Sie mit der Übertragung an address%1",
+    "tooltip": "Beginnen Sie mit der zugewiesenen Ausrüstung zu wechseln"
+  },
+  "wire_end_transmission": {
+    "message0": "Übertragung beenden, stoppen? %1",
+    "tooltip": "Senden Sie die Übertragung und senden Sie bei Bedarf ein Stoppsignal",
+    "args0": [
+      {
+        "options": [
+          [
+            "true",
+            "TRUE"
+          ],
+          [
+            "false",
+            "FALSE"
+          ]
+        ]
+      }
+    ]
+  },
+  "wire_end_transmission_result": {
+    "message0": "Übertragung endet und gibt einen Fehlercode zurück, stoppt? %1",
+    "tooltip": "Nach Abschluss der I2C-Übertragung und Rückgabe des Statuscodes bedeutet 0 erfolgreich und 4 unbekannter Fehler",
+    "args0": [
+      {
+        "options": [
+          [
+            "true",
+            "TRUE"
+          ],
+          [
+            "false",
+            "FALSE"
+          ]
+        ]
+      }
+    ]
+  },
+  "wire_write": {
+    "message0": "Schreibe Daten %1",
+    "tooltip": "Senden Sie ein einzelnes Datenbyte"
+  },
+  "wire_write_bytes": {
+    "message0": "Schreiben Sie mehrere Bytes an Daten %1, Länge %2",
+    "tooltip": "Schreibe eine Menge von Datenbytes"
+  },
+  "wire_request_from": {
+    "message0": "Anfordern %2 Daten von Adresse %1, stoppen? %3",
+    "tooltip": "Fordern Sie eine bestimmte Datenmenge an",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "true",
+            "TRUE"
+          ],
+          [
+            "false",
+            "FALSE"
+          ]
+        ]
+      }
+    ]
+  },
+  "wire_available": {
+    "message0": "Die Datenmenge für I2C verfügbar",
+    "tooltip": "Gibt die Menge der verfügbaren Daten im Empfangspuffer zurück"
+  },
+  "wire_read": {
+    "message0": "I2C-Daten lesen",
+    "tooltip": "Liest Daten aus dem I2C-Puffer"
+  },
+  "wire_peek": {
+    "message0": "Vorschau der I2C-Daten",
+    "tooltip": "Schaue die nächsten I2C-Daten vor, ohne sie zu entfernen"
+  },
+  "wire_flush": {
+    "message0": "Aktualisiere den I2C-Puffer",
+    "tooltip": "Aktualisieren Sie den I2C-Datenpuffer"
+  },
+  "wire_on_receive": {
+    "message0": "Wenn I2C Daten erhält, führt es die Funktion %1 %2",
+    "tooltip": "Richte die I2C-Empfangs-Rückruffunktion ein"
+  },
+  "wire_on_request": {
+    "message0": "Führe die Funktion aus, wenn I2C Daten anfordert, %1 %2",
+    "tooltip": "Setze die I2C-Anfrage-Callback-Funktion"
+  },
+  "wire_set_timeout": {
+    "message0": "I2C-Timeout auf %1 Millisekunden setzen, Flag zurücksetzen %2",
+    "tooltip": "I2C-Timeout-Zeit und Reset-Verhalten einstellen",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "true",
+            "TRUE"
+          ],
+          [
+            "false",
+            "FALSE"
+          ]
+        ]
+      }
+    ]
+  },
+  "wire_get_timeout_flag": {
+    "message0": "Hol dir das I2C-Timeout-Flag",
+    "tooltip": "Erhalten Sie den aktuellen I2C-Timeout-Status"
+  },
+  "wire_clear_timeout_flag": {
+    "message0": "Entfernen Sie das I2C-Timeout-Zeichen",
+    "tooltip": "Entfernen Sie das I2C-Timeout-Zeichen"
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "toolbox_name": "イーサネット",
+  "toolbox_labels": {
+    "初始化": "初期化",
+    "状态查询": "ステータスクエリ"
+  },
+  "esp32_eth_begin": {
+    "message0": "イーサネットPHYタイプ%1PHYアドレスの初期化%2",
+    "tooltip": "イーサネットインターフェースの初期化",
+    "args0": [
+      {
+        "options": [
+          [
+            "LAN8720",
+            "ETH_PHY_LAN8720"
+          ],
+          [
+            "TLK110",
+            "ETH_PHY_TLK110"
+          ],
+          [
+            "RTL8201",
+            "ETH_PHY_RTL8201"
+          ],
+          [
+            "DP83848",
+            "ETH_PHY_DP83848"
+          ],
+          [
+            "KSZ8041",
+            "ETH_PHY_KSZ8041"
+          ],
+          [
+            "KSZ8081",
+            "ETH_PHY_KSZ8081"
+          ],
+          [
+            "W5500",
+            "ETH_PHY_W5500"
+          ],
+          [
+            "DM9051",
+            "ETH_PHY_DM9051"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "esp32_eth_begin_spi": {
+    "message0": "RST%4のIRQ%2 SIイーサネットPHYタイプ%1CSを初期化%3",
+    "tooltip": "SPI経由でイーサネットを初期化します(W5500のようなSPIのPHYに適しています)",
+    "args0": [
+      {
+        "options": [
+          [
+            "W5500",
+            "ETH_PHY_W5500"
+          ],
+          [
+            "DM9051",
+            "ETH_PHY_DM9051"
+          ]
+        ]
+      },
+      null,
+      null,
+      null
+    ]
+  },
+  "esp32_eth_connected": {
+    "message0": "イーサネットは接続されています",
+    "tooltip": "イーサネットが接続されているか確認してください"
+  },
+  "esp32_eth_local_ip": {
+    "message0": "イーサネットローカルIPアドレス",
+    "tooltip": "イーサネットのローカルIPアドレスを取得する"
+  },
+  "esp32_eth_mac": {
+    "message0": "イーサネットMACアドレス",
+    "tooltip": "イーサネットMACアドレスを取得する"
+  },
+  "esp32_eth_full_duplex": {
+    "message0": "イーサネット全二重モード",
+    "tooltip": "イーサネットがフルデュプレックスモードで動作しているか確認してください"
+  },
+  "esp32_eth_link_speed": {
+    "message0": "イーサネット接続速度",
+    "tooltip": "イーサネットリンク速度(Mbps)を取得します"
+  }
+}

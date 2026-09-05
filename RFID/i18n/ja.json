@@ -1,0 +1,102 @@
+{
+  "toolbox_name": "RFID モジュール",
+  "toolbox_labels": {
+    "初始化": "初期化",
+    "卡片检测": "カードの検出",
+    "数据操作": "データ操作",
+    "控制": "コントロール"
+  },
+  "mfrc522_setup": {
+    "args0": [
+      null,
+      null
+    ],
+    "message0": "RFID リーダー %1 I2C アドレス %2 を初期化します",
+    "tooltip": "MFRC522 RFID リーダーを初期化し、I2C アドレスとピンを設定します。"
+  },
+  "mfrc522_is_new_card_present": {
+    "args0": [
+      null
+    ],
+    "message0": "RFID %1 新しいカードが検出されました",
+    "tooltip": "新しいRFIDカードが近づいているかどうかを検出します"
+  },
+  "mfrc522_read_card_serial": {
+    "args0": [
+      null
+    ],
+    "message0": "RFID %1 カードのシリアル番号を読み取ります",
+    "tooltip": "RFIDカードの一意のシリアル番号を読み取ります"
+  },
+  "mfrc522_read_uid": {
+    "args0": [
+      null
+    ],
+    "message0": "RFID %1 UID文字列を取得",
+    "tooltip": "RFIDカードのUID文字列を取得する"
+  },
+  "mfrc522_when_card_detected": {
+    "args0": [
+      null
+    ],
+    "args1": [
+      null
+    ],
+    "message0": "RFID %1 がカードを検出した場合",
+    "message1": "%1 を実行します",
+    "tooltip": "RFIDカードが検出されたときにトリガーされるイベント"
+  },
+  "mfrc522_authenticate": {
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "鍵",
+            "A"
+          ],
+          [
+            "Bキー",
+            "B"
+          ]
+        ]
+      },
+      null
+    ],
+    "message0": "RFID %1 認証セクター %2 キーの種類 %3 キー %4",
+    "tooltip": "RFIDカードの指定セクタを認証する"
+  },
+  "mfrc522_read_block": {
+    "args0": [
+      null,
+      null,
+      null
+    ],
+    "message0": "RFID %1 はブロック %2 を %3 に読み取ります",
+    "tooltip": "指定されたデータブロックを配列に読み取ります"
+  },
+  "mfrc522_write_block": {
+    "args0": [
+      null,
+      null,
+      null
+    ],
+    "message0": "RFID %1 はデータ %2 をブロック %3 に書き込みます",
+    "tooltip": "指定したブロックにデータを書き込みます"
+  },
+  "mfrc522_halt_card": {
+    "args0": [
+      null
+    ],
+    "message0": "RFID %1 カード通信を停止します",
+    "tooltip": "RFIDカードとの通信を停止する"
+  },
+  "mfrc522_get_data_string": {
+    "args0": [
+      null
+    ],
+    "message0": "%1 の 16 進文字列を取得します",
+    "tooltip": "RFID データ配列を 16 進文字列形式に変換します (例: 48 65 6c 6c 6f)"
+  }
+}

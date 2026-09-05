@@ -1,0 +1,141 @@
+{
+  "toolbox_name": "I2C",
+  "toolbox_labels": {
+    "I2C扫描模板": "قالب مسح I2C"
+  },
+  "wire_begin": {
+    "message0": "تهيئة اتصال I2C",
+    "tooltip": "تهيئة اتصال I2C"
+  },
+  "wire_begin_address": {
+    "message0": "تهيئة الاتصال عبر I2C باستخدام %1 عنوان التابع",
+    "tooltip": "تهيئة اتصال I2C مع عنوان محدد"
+  },
+  "wire_set_clock": {
+    "message0": "اضبط تردد ساعة I2C على %1 كيلوهرتز",
+    "tooltip": "ضبط تردد ساعة الاتصال I2C"
+  },
+  "wire_end": {
+    "message0": "نهاية الاتصال بين المعالجين (I2C)",
+    "tooltip": "نهاية الاتصال بين المعالجين (I2C)"
+  },
+  "wire_begin_transmission": {
+    "message0": "ابدأ الإرسال إلى address%1",
+    "tooltip": "ابدأ بالانتقال مع المعدات المخصصة"
+  },
+  "wire_end_transmission": {
+    "message0": "إنهاء الإرسال، التوقف؟ %1",
+    "tooltip": "أنهي الإرسال وأرسل إشارة توقف حسب الحاجة",
+    "args0": [
+      {
+        "options": [
+          [
+            "true",
+            "TRUE"
+          ],
+          [
+            "false",
+            "FALSE"
+          ]
+        ]
+      }
+    ]
+  },
+  "wire_end_transmission_result": {
+    "message0": "ينتهي الإرسال ويعود رمز خطأ، توقف؟ %1",
+    "tooltip": "بعد إكمال نقل I2C وإرجاع رمز الحالة، 0 تعني نجاح، 4 تعني خطأ غير معروف",
+    "args0": [
+      {
+        "options": [
+          [
+            "true",
+            "TRUE"
+          ],
+          [
+            "false",
+            "FALSE"
+          ]
+        ]
+      }
+    ]
+  },
+  "wire_write": {
+    "message0": "اكتب البيانات %1",
+    "tooltip": "إرسال بايت بيانات واحد"
+  },
+  "wire_write_bytes": {
+    "message0": "اكتب عدة بايتات من البيانات %1 الطول %2",
+    "tooltip": "اكتب مجموعة من بايتات البيانات"
+  },
+  "wire_request_from": {
+    "message0": "طلب بيانات %2 من العنوان %1، توقف؟ %3",
+    "tooltip": "طلب كمية محددة من البيانات",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "true",
+            "TRUE"
+          ],
+          [
+            "false",
+            "FALSE"
+          ]
+        ]
+      }
+    ]
+  },
+  "wire_available": {
+    "message0": "كمية البيانات المتاحة ل I2C",
+    "tooltip": "يعيد كمية البيانات المتاحة في مخزن الاستقبال"
+  },
+  "wire_read": {
+    "message0": "اقرأ بيانات I2C",
+    "tooltip": "يقرأ البيانات من مخزن I2C"
+  },
+  "wire_peek": {
+    "message0": "معاينة بيانات I2C",
+    "tooltip": "معاينة بيانات I2C التالية دون إزالتها"
+  },
+  "wire_flush": {
+    "message0": "تحديث مخزن I2C",
+    "tooltip": "تحديث مخزن بيانات I2C"
+  },
+  "wire_on_receive": {
+    "message0": "عندما يستقبل I2C البيانات، فإنه ينفذ الوظيفة %1 %2",
+    "tooltip": "إعداد وظيفة استقبال الاتصال عبر I2C"
+  },
+  "wire_on_request": {
+    "message0": "تنفيذ الوظيفة عندما يطلب I2C بيانات %1 %2",
+    "tooltip": "تعيين دالة استدعاء طلب I2C"
+  },
+  "wire_set_timeout": {
+    "message0": "اضبط مهلة I2C على %1 مللي ثانية، وأعدت تعيين العلم %2",
+    "tooltip": "حدد وقت انتهاء صلاحية I2C وسلوك إعادة الضبط",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "true",
+            "TRUE"
+          ],
+          [
+            "false",
+            "FALSE"
+          ]
+        ]
+      }
+    ]
+  },
+  "wire_get_timeout_flag": {
+    "message0": "احصل على علم مهلة I2C",
+    "tooltip": "احصل على حالة علم مهلة الانتهاء الحالية من I2C"
+  },
+  "wire_clear_timeout_flag": {
+    "message0": "إزالة علامة مهلة I2C",
+    "tooltip": "إزالة علامة مهلة I2C"
+  }
+}

@@ -1,0 +1,274 @@
+{
+  "toolbox_name": "Summer Driver",
+  "toolbox_labels": {
+    "按键和传感器": "Tasten und Sensoren",
+    "JY61P六轴传感器": "JY61P Sechs-Achsen-Sensor",
+    "舵机控制": "Servosteuerung",
+    "TT马达": "TT-Motor",
+    "步进电机": "Schrittmotor"
+  },
+  "car_is_key_pressed": {
+    "message0": "Taste %1 ist gedrückt",
+    "tooltip": "Überprüfe, ob die Bordknöpfe gedrückt wurden",
+    "args0": [
+      {
+        "options": [
+          [
+            "A",
+            "0"
+          ],
+          [
+            "B",
+            "1"
+          ],
+          [
+            "C",
+            "2"
+          ]
+        ]
+      }
+    ]
+  },
+  "car_servo_angle": {
+    "message0": "Stelle den Servo %1 Winkel auf %2 Grad ein",
+    "tooltip": "Stellen Sie den Servowinkel der STM32 ein (0-180°)",
+    "args0": [
+      {
+        "options": [
+          [
+            "S1",
+            "0"
+          ],
+          [
+            "S2",
+            "1"
+          ],
+          [
+            "S3",
+            "2"
+          ],
+          [
+            "S4",
+            "3"
+          ],
+          [
+            "S5",
+            "4"
+          ],
+          [
+            "S6",
+            "5"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "car_motor_control_single": {
+    "message0": "Steuer-TT-Motor %1 Richtung %2 Geschwindigkeit %3 (0-255)",
+    "tooltip": "TT-Motor gesteuert über STM32 (Drehzahlbereich 0-255)",
+    "args0": [
+      {
+        "options": [
+          [
+            "EL1",
+            "0"
+          ],
+          [
+            "ER1",
+            "1"
+          ],
+          [
+            "EL2",
+            "2"
+          ],
+          [
+            "ER2",
+            "3"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "Stoppen",
+            "0"
+          ],
+          [
+            "Vorwärts",
+            "1"
+          ],
+          [
+            "reverse",
+            "2"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "car_motor_stop_single": {
+    "message0": "Stopp-TT-Motor %1",
+    "tooltip": "Stoppen Sie einen einzelnen TT-Motor",
+    "args0": [
+      {
+        "options": [
+          [
+            "EL1",
+            "0"
+          ],
+          [
+            "ER1",
+            "1"
+          ],
+          [
+            "EL2",
+            "2"
+          ],
+          [
+            "ER2",
+            "3"
+          ]
+        ]
+      }
+    ]
+  },
+  "car_stepper_control": {
+    "message0": "Schrittmotor %1 %2 Drehzahl %3 Grad, Geschwindigkeit %4 ms pro Schlag",
+    "tooltip": "Steuern Sie den Schrittmotor (0-65535 Grad) über STM32, bei Geschwindigkeiten von 1-10 ms pro Schlag, je niedriger die Geschwindigkeit ist",
+    "args0": [
+      {
+        "options": [
+          [
+            "L",
+            "0"
+          ],
+          [
+            "R",
+            "1"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "Uhrzeigersinn",
+            "0"
+          ],
+          [
+            "Gegen Uhrzeigersinn",
+            "1"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "car_stepper_control_turns": {
+    "message0": "Schrittmotor %1 %2 Drehzahl %3 Umdrehung, Geschwindigkeit %4 ms/Beat",
+    "tooltip": "Steuern Sie den Schrittmotor mit STM32 für eine festgelegte Anzahl von Umdrehungen (1 Umdrehung = 360 Grad), mit einer Geschwindigkeit von 1–10 ms pro Schlag, je niedriger die Geschwindigkeit ist",
+    "args0": [
+      {
+        "options": [
+          [
+            "L",
+            "0"
+          ],
+          [
+            "R",
+            "1"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "Uhrzeigersinn",
+            "0"
+          ],
+          [
+            "Gegen Uhrzeigersinn",
+            "1"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "jy61p_set_zero": {
+    "message0": "Stell den Lagewinkel auf null Punkt",
+    "tooltip": "Stellen Sie den aktuellen Lagewinkel auf null (Referenzposition)"
+  },
+  "jy61p_get_angle": {
+    "message0": "Positionswinkel erhalten %1",
+    "tooltip": "Erhalten Sie den JY61P-Lagewinkel, der 0-360 Grad zurückgibt",
+    "args0": [
+      {
+        "options": [
+          [
+            "Gier (Kurswinkel)",
+            "YAW"
+          ],
+          [
+            "Pitch (Pitch Angle)",
+            "PITCH"
+          ],
+          [
+            "Rolle",
+            "ROLL"
+          ]
+        ]
+      }
+    ]
+  },
+  "jy61p_get_acceleration": {
+    "message0": "Beschleunigung %1",
+    "tooltip": "Erhalten Sie JY61P-Beschleunigung, Einheit: g, Reichweite: -16~16",
+    "args0": [
+      {
+        "options": [
+          [
+            "X-Achse",
+            "X"
+          ],
+          [
+            "Y-Achse",
+            "Y"
+          ],
+          [
+            "Z-Achse",
+            "Z"
+          ]
+        ]
+      }
+    ]
+  },
+  "jy61p_get_gyro": {
+    "message0": "Bestimmung der Winkelgeschwindigkeit %1",
+    "tooltip": "Erhalten Sie die Winkelgeschwindigkeit von JY61P, Einheit: °/s, Reichweite: -2000~2000",
+    "args0": [
+      {
+        "options": [
+          [
+            "X-Achse",
+            "X"
+          ],
+          [
+            "Y-Achse",
+            "Y"
+          ],
+          [
+            "Z-Achse",
+            "Z"
+          ]
+        ]
+      }
+    ]
+  },
+  "car_servo_angle_value": {
+    "message0": "Winkel %1 Grad",
+    "tooltip": "Servowinkelwert (0-180 Grad)"
+  }
+}

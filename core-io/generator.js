@@ -23,24 +23,53 @@ Arduino.forBlock["io_pin_pwm"] = function (block, generator) {
   return [code, Arduino.ORDER_ATOMIC];
 };
 
+function isStaticPinInput(block) {
+  const pinBlock = typeof block.getInputTargetBlock === "function"
+    ? block.getInputTargetBlock("PIN")
+    : null;
+
+  return Boolean(pinBlock) && [
+    "io_pin_digi",
+    "io_pin_adc",
+    "io_pin_pwm",
+    "math_number",
+  ].includes(pinBlock.type);
+}
+
+// 检查指定引脚是否在当前 workspace 中被 io_pinmode 块手动设置了模式
+function isPinModeSetByBlock(block, generator, targetPin) {
+  const workspace = block.workspace;
+  if (!workspace) return false;
+  
+  // 获取当前 workspace 中所有的 io_pinmode 块
+  const pinModeBlocks = workspace.getBlocksByType("io_pinmode", false);
+  
+  for (const pinModeBlock of pinModeBlocks) {
+    // 获取该块设置的引脚
+    const pin = generator.valueToCode(pinModeBlock, "PIN", Arduino.ORDER_ATOMIC);
+    if (pin === targetPin) {
+      return true;
+    }
+  }
+  return false;
+}
+
 Arduino.forBlock["io_pinmode"] = function (block, generator) {
   const pin = generator.valueToCode(block, "PIN", Arduino.ORDER_ATOMIC);
   const mode = generator.valueToCode(block, "MODE", Arduino.ORDER_ATOMIC);
-
-  // 记录该引脚已经被手动设置了模式
-  if (!generator.pinModeSet) {
-    generator.pinModeSet = new Set();
-  }
-  generator.pinModeSet.add(pin);
 
   return `pinMode(${pin}, ${mode});\n`;
 };
 Arduino.forBlock["io_digitalread"] = function (block, generator) {
   const pin = generator.valueToCode(block, "PIN", Arduino.ORDER_ATOMIC);
 
-  // 如果引脚没有被设置过模式，则自动添加pinMode
-  if (!generator.pinModeSet || !generator.pinModeSet.has(pin)) {
-    generator.addSetupBegin(`pinMode_${pin}`, `pinMode(${pin}, INPUT);`);
+  // 如果引脚没有被 io_pinmode 块设置过模式，则自动添加pinMode
+  if (!isPinModeSetByBlock(block, generator, pin)) {
+    if (isStaticPinInput(block)) {
+      generator.addSetupBegin(`pinMode_${pin}`, `pinMode(${pin}, INPUT);`);
+    } else {
+      return [`(pinMode(${pin}, INPUT), digitalRead(${pin}))`, Arduino.ORDER_COMMA];
+    }
   }
 
   return [`digitalRead(${pin})`, Arduino.ORDER_FUNCTION_CALL];
@@ -50,9 +79,14 @@ Arduino.forBlock["io_digitalwrite"] = function (block, generator) {
   const pin = generator.valueToCode(block, "PIN", Arduino.ORDER_ATOMIC);
   const value = generator.valueToCode(block, "STATE", Arduino.ORDER_ATOMIC);
 
-  // 如果引脚没有被设置过模式，则自动添加pinMode
-  if (!generator.pinModeSet || !generator.pinModeSet.has(pin)) {
-    generator.addSetupBegin(`pinMode_${pin}`, `pinMode(${pin}, OUTPUT);`);
+  // 如果引脚没有被 io_pinmode 块设置过模式，则自动添加pinMode
+  if (!isPinModeSetByBlock(block, generator, pin)) {
+    if (isStaticPinInput(block)) {
+      generator.addSetupBegin(`pinMode_${pin}`, `pinMode(${pin}, OUTPUT);`);
+    } else {
+      return `pinMode(${pin}, OUTPUT);\n` +
+        `digitalWrite(${pin}, ${value});\n`;
+    }
   }
 
   return `digitalWrite(${pin}, ${value});\n`;

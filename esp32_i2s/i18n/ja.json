@@ -1,0 +1,280 @@
+{
+  "toolbox_name": "ESP32 I2S",
+  "toolbox_labels": {
+    "基本操作": "基本操作",
+    "引脚配置": "ピン配置",
+    "初始化配置": "初期設定",
+    "数据读写": "データの読み書き",
+    "音调生成": "トーン生成",
+    "WAV音频": "WAVオーディオ",
+    "状态查询": "ステータスクエリ"
+  },
+  "esp32_i2s_create": {
+    "message0": "%1 という名前のI2Sオブジェクトを作成します",
+    "tooltip": "I2Sオーディオインターフェースオブジェクトを作成する"
+  },
+  "esp32_i2s_set_pins_std": {
+    "message0": "I2Sオブジェクト%1標準モードピンをWS/BCLK%2に設定LRC%3 DOUT%4 DIN%5 MCLK%6",
+    "tooltip": "ピンを標準I2Sモードに設定します。DINとMCLKはオプションです。使わない場合は-1に設定してください"
+  },
+  "esp32_i2s_set_pins_pdm_tx": {
+    "message0": "I2S オブジェクト %1 PDM 設定 送信ピン CLK%2 DOUT0%3 DOUT1%4",
+    "tooltip": "PDM伝送モードのピンを設定してください"
+  },
+  "esp32_i2s_set_pins_pdm_rx": {
+    "message0": "I2S オブジェクト %1 PDM 受信ピン CLK%2 DIN0%3 DIN1%4 DIN2%5 DIN3%6 設定",
+    "tooltip": "PDM受信モードのピンを設定してください"
+  },
+  "esp32_i2s_begin": {
+    "message0": "I2Sオブジェクトをモード%1%2サンプリングレート%3Hzチャネル%5スロット%4初期化%6",
+    "tooltip": "I2Sインターフェースを初期化するには、まずピンを設定します。 スロットパラメータは左/右/デュアルチャンネルとして選択可能です",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "標準I2S",
+            "I2S_MODE_STD"
+          ],
+          [
+            "TDMモード",
+            "I2S_MODE_TDM"
+          ],
+          [
+            "PDM送信",
+            "I2S_MODE_PDM_TX"
+          ],
+          [
+            "PDMの受容",
+            "I2S_MODE_PDM_RX"
+          ]
+        ]
+      },
+      null,
+      {
+        "options": [
+          [
+            "16ポジション",
+            "I2S_DATA_BIT_WIDTH_16BIT"
+          ],
+          [
+            "32位",
+            "I2S_DATA_BIT_WIDTH_32BIT"
+          ],
+          [
+            "24人",
+            "I2S_DATA_BIT_WIDTH_24BIT"
+          ],
+          [
+            "8ビット",
+            "I2S_DATA_BIT_WIDTH_8BIT"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "ステレオ",
+            "I2S_SLOT_MODE_STEREO"
+          ],
+          [
+            "単調な音",
+            "I2S_SLOT_MODE_MONO"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "自動",
+            "-1"
+          ],
+          [
+            "左生が言った",
+            "I2S_STD_SLOT_LEFT"
+          ],
+          [
+            "正しい声が言った",
+            "I2S_STD_SLOT_RIGHT"
+          ],
+          [
+            "双生は言った",
+            "I2S_STD_SLOT_BOTH"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_i2s_configure_tx": {
+    "message0": "I2Sオブジェクト%1 TXサンプリングレート%2Hzビット幅%3チャネル%4スロット%5設定",
+    "tooltip": "I2S伝送チャネルパラメータの設定",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "16ポジション",
+            "I2S_DATA_BIT_WIDTH_16BIT"
+          ],
+          [
+            "32位",
+            "I2S_DATA_BIT_WIDTH_32BIT"
+          ],
+          [
+            "24人",
+            "I2S_DATA_BIT_WIDTH_24BIT"
+          ],
+          [
+            "8ビット",
+            "I2S_DATA_BIT_WIDTH_8BIT"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "ステレオ",
+            "I2S_SLOT_MODE_STEREO"
+          ],
+          [
+            "単調な音",
+            "I2S_SLOT_MODE_MONO"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "自動",
+            "-1"
+          ],
+          [
+            "左生が言った",
+            "I2S_STD_SLOT_LEFT"
+          ],
+          [
+            "正しい声が言った",
+            "I2S_STD_SLOT_RIGHT"
+          ],
+          [
+            "双生は言った",
+            "I2S_STD_SLOT_BOTH"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_i2s_configure_rx": {
+    "message0": "I2Sオブジェクト%1RXサンプリングレート%2Hzビット幅%3チャネル、%4変換%5設定",
+    "tooltip": "I2S受信チャネルパラメータの設定",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "16ポジション",
+            "I2S_DATA_BIT_WIDTH_16BIT"
+          ],
+          [
+            "32位",
+            "I2S_DATA_BIT_WIDTH_32BIT"
+          ],
+          [
+            "24人",
+            "I2S_DATA_BIT_WIDTH_24BIT"
+          ],
+          [
+            "8ビット",
+            "I2S_DATA_BIT_WIDTH_8BIT"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "ステレオ",
+            "I2S_SLOT_MODE_STEREO"
+          ],
+          [
+            "単調な音",
+            "I2S_SLOT_MODE_MONO"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "変換はなし",
+            "I2S_RX_TRANSFORM_NONE"
+          ],
+          [
+            "32回のスピン、16ビット",
+            "I2S_RX_TRANSFORM_32_TO_16"
+          ],
+          [
+            "ステレオからモノラルへ",
+            "I2S_RX_TRANSFORM_16_STEREO_TO_MONO"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_i2s_write_byte": {
+    "message0": "I2Sオブジェクト%1バイトを書き込む%2",
+    "tooltip": "通常はループで1バイトをI2Sに書き込みます"
+  },
+  "esp32_i2s_read_bytes": {
+    "message0": "I2Sオブジェクト %1 ArrayへのRead bytes %2 Read数量%3",
+    "tooltip": "I2Sから指定されたバイト数を配列に読み込み、実際に読み取ったバイト数を返します"
+  },
+  "esp32_i2s_record_wav": {
+    "message0": "I2Sオブジェクト%1WAV音声の録音時間%2秒、保存サイズを%3に設定します",
+    "tooltip": "指定された時間のWAV音声を録音し、バイト配列ポインタを返し、指定された変数のサイズを保存します。 使用後はfree()を使ってメモリを解放してください"
+  },
+  "esp32_i2s_play_wav": {
+    "message0": "I2Sオブジェクト%1WAV音声データを長く再生%2 %3",
+    "tooltip": "WAVオーディオデータを再生する際は、データ長を指定します"
+  },
+  "esp32_i2s_end": {
+    "message0": "終了 I2S オブジェクト %1",
+    "tooltip": "I2Sを止めてリソースを解放しましょう"
+  },
+  "esp32_i2s_get_last_error": {
+    "message0": "I2Sオブジェクトの最後のエラーコードを取得し%1",
+    "tooltip": "最後のI2S操作のエラーコードを取得してください。0は成功を示します"
+  },
+  "esp32_i2s_write_sample": {
+    "message0": "I2S オブジェクト %1 サンプリング値を%2(ステレオが左・右チャンネルを書き込む)",
+    "tooltip": "I2Sに16ビットのサンプル値を書き込むと、自動的に左右チャネルに書き込みます"
+  },
+  "esp32_i2s_write_buffer": {
+    "message0": "I2Sオブジェクト%1書き込みバッファ%2長さ%3",
+    "tooltip": "バッファデータをI2Sに書き込み、実際に書き込まれたバイト数を返します"
+  },
+  "esp32_i2s_available": {
+    "message0": "I2Sオブジェクト %1 読み取り可能なバイト数",
+    "tooltip": "I2S受信バッファ内の読み取れるバイト数を取得します"
+  },
+  "esp32_i2s_tx_sample_rate": {
+    "message0": "I2S オブジェクト %1サンプリングレート",
+    "tooltip": "I2S伝送チャネルのサンプリングレートを取得する"
+  },
+  "esp32_i2s_rx_sample_rate": {
+    "message0": "I2S オブジェクト %1サンプリングレート",
+    "tooltip": "I2S受信チャネルのサンプリングレートを取得する"
+  },
+  "esp32_i2s_set_inverted": {
+    "message0": "I2Sオブジェクト %1 信号反転セット BCLK%2 WS%3 MCLK%4",
+    "tooltip": "異なるオーディオチップとの互換性のためにI2S信号反転オプションを設定してください"
+  },
+  "esp32_i2s_generate_tone": {
+    "message0": "I2Sオブジェクト%1%2 Hzの方形波トーン周波数を生成し、%3ミリ秒の振幅を持続させます%4",
+    "tooltip": "指定された周波数で方形波のトーンを生成し、I2Sで再生します"
+  },
+  "esp32_i2s_free_wav_buffer": {
+    "message0": "WAVバッファを解放%1",
+    "tooltip": "recordWAVで割り当てられたメモリバッファを解放します"
+  }
+}

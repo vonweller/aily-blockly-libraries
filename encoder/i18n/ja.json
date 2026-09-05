@@ -1,0 +1,99 @@
+{
+  "toolbox_name": "ロータリーエンコーダー",
+  "encoder_init": {
+    "message0": "エンコーダを初期化%1ピンA%2ピンBに接続%3",
+    "tooltip": "指定された2つのピンに接続された回転エンコーダオブジェクトを初期化します",
+    "args0": [
+      null,
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": "${board.digitalPins}"
+      }
+    ]
+  },
+  "encoder_set_property": {
+    "message0": "エンコーダーの%2を%1に設定%3",
+    "tooltip": "エンコーダのさまざまな属性値を設定します",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "所在地",
+            "position"
+          ],
+          [
+            "上限",
+            "upper_limit"
+          ],
+          [
+            "下限値",
+            "lower_limit"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "encoder_value_changed": {
+    "message0": "エンコーダ値の回転変化",
+    "tooltip": "回転エンコーダの値が変化したかどうかを判定します"
+  },
+  "encoder_state_change": {
+    "message0": "エンコーダの状態が%1されると、%2は%3を実行します。",
+    "tooltip": "エンコーダが特定の状態変化を経験した際に対応する操作を行います",
+    "args0": [
+      {
+        "options": [
+          [
+            "左に回転してください",
+            "LEFT"
+          ],
+          [
+            "右に回転してください",
+            "RIGHT"
+          ],
+          [
+            "上限を超える",
+            "ABOVE_LIMIT"
+          ],
+          [
+            "下限値を下回る",
+            "BELOW_LIMIT"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "encoder_get_property": {
+    "message0": "エンコーダー%1の%2を得る方法",
+    "tooltip": "エンコーダのさまざまな属性値を取得する",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "所在地",
+            "POSITION"
+          ],
+          [
+            "演出",
+            "DIRECTION"
+          ],
+          [
+            "上限",
+            "UPPER_LIMIT"
+          ],
+          [
+            "下限値",
+            "LOWER_LIMIT"
+          ]
+        ]
+      }
+    ]
+  }
+}

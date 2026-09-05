@@ -1,0 +1,96 @@
+{
+  "toolbox_name": "網路圖片載入器",
+  "toolbox_labels": {
+    "初始化": "初始化",
+    "图片加载": "圖片載入",
+    "信息查询": "資訊查詢",
+    "错误处理": "錯誤處理",
+    "资源管理": "資源管理"
+  },
+  "lvgl_http_img_init": {
+    "message0": "初始化LVGL HTTP圖片載入器 螢幕寬%1 高%2\nPSRAM模式%3 儲存模式%4\n最大檔案%5KB 逾時%6ms 偵錯%7",
+    "tooltip": "初始化HTTP圖片載入器（全域單例，只需呼叫一次）",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "自動偵測",
+            "AUTO"
+          ],
+          [
+            "有PSRAM",
+            "AVAILABLE"
+          ],
+          [
+            "無PSRAM",
+            "NONE"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "自動選擇",
+            "AUTO"
+          ],
+          [
+            "強制LittleFS",
+            "LITTLEFS"
+          ],
+          [
+            "強制PSRAM",
+            "PSRAM"
+          ]
+        ]
+      },
+      null,
+      null,
+      {
+        "options": [
+          [
+            "關閉",
+            "FALSE"
+          ],
+          [
+            "開啟",
+            "TRUE"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_http_img_load": {
+    "message0": "從HTTP載入圖片 URL%1 顯示到%2",
+    "tooltip": "從HTTP下載JPEG圖片並顯示到LVGL Image對象"
+  },
+  "lvgl_http_img_get_info": {
+    "message0": "取得HTTP圖片資訊 URL%1",
+    "tooltip": "取得遠端圖片的大小和類型資訊（返回檔案大小，-1表示未知）"
+  },
+  "lvgl_http_img_check": {
+    "message0": "檢查圖片是否可載入 URL%1",
+    "tooltip": "檢查圖片是否可加載（true:可加載，false:太大或錯誤）"
+  },
+  "lvgl_http_img_has_psram": {
+    "message0": "檢測是否有PSRAM",
+    "tooltip": "偵測系統是否有PSRAM（有PSRAM時可載入更大圖片）"
+  },
+  "lvgl_http_img_get_max_size": {
+    "message0": "取得目前最大允許圖片大小",
+    "tooltip": "取得目前配置允許的最大圖片大小（位元組）"
+  },
+  "lvgl_http_img_get_last_error": {
+    "message0": "取得最後錯誤代碼",
+    "tooltip": "取得最後一次操作的錯誤代碼（0=成功）"
+  },
+  "lvgl_http_img_err_to_string": {
+    "message0": "錯誤代碼%1轉為描述字串",
+    "tooltip": "將錯誤代碼轉換為可讀的錯誤描述"
+  },
+  "lvgl_http_img_cleanup": {
+    "message0": "清理HTTP圖片載入器臨時檔案和快取",
+    "tooltip": "清理臨時檔案和PSRAM緩存，釋放內存"
+  }
+}

@@ -1,0 +1,194 @@
+{
+  "toolbox_name": "피코 웹 서버",
+  "toolbox_labels": {
+    "初始化": "초기화",
+    "路由处理": "라우팅 처리",
+    "发送响应": "응답 보내기",
+    "请求信息": "정보 요청",
+    "请求参数": "요청 매개변수",
+    "请求头": "요청 헤더",
+    "高级功能": "고급 기능"
+  },
+  "rp_webserver_create": {
+    "message0": "웹 서버 생성 %1 포트 %2",
+    "tooltip": "웹 서버 객체 생성"
+  },
+  "rp_webserver_begin": {
+    "message0": "서버 %1",
+    "tooltip": "웹 서버를 시작하고 듣기 시작하세요"
+  },
+  "rp_webserver_handle_client": {
+    "message0": "클라이언트 요청을 처리%1",
+    "tooltip": "클라이언트 요청을 처리하기(루프에 넣어야 함)"
+  },
+  "rp_webserver_on": {
+    "message0": "%1 이(가) %2 요청 경로 %3 수신 시",
+    "tooltip": "지정된 경로에 대해 요청 핸들러 함수를 등록합니다",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "임의",
+            "HTTP_ANY"
+          ],
+          [
+            "GET",
+            "HTTP_GET"
+          ],
+          [
+            "POST",
+            "HTTP_POST"
+          ],
+          [
+            "PUT",
+            "HTTP_PUT"
+          ],
+          [
+            "DELETE",
+            "HTTP_DELETE"
+          ],
+          [
+            "PATCH",
+            "HTTP_PATCH"
+          ]
+        ]
+      },
+      null
+    ],
+    "message1": "실행 %1"
+  },
+  "rp_webserver_on_not_found": {
+    "message0": "%1 알 수 없는 경로 요청을 받을 때",
+    "tooltip": "어떤 경로와 일치하지 않는 요청 처리 (404)",
+    "message1": "실행 %1"
+  },
+  "rp_webserver_send": {
+    "message0": "%1 응답 상태 코드 %2 유형 %3 콘텐츠 %4",
+    "tooltip": "클라이언트에 HTTP 응답 전송",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "평문/평문",
+            "text/plain"
+          ],
+          [
+            "HTML 텍스트/HTML",
+            "text/html"
+          ],
+          [
+            "JSON application/json",
+            "application/json"
+          ],
+          [
+            "XML application/xml",
+            "application/xml"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "rp_webserver_send_custom_type": {
+    "message0": "%1 응답 상태 코드 %2 사용자 지정 유형 %3 콘텐츠 %4",
+    "tooltip": "사용자 지정 콘텐츠-타입으로 HTTP 응답을 전송하세요"
+  },
+  "rp_webserver_send_header": {
+    "message0": "%1 응답 전송 헤드 %2 값 %3",
+    "tooltip": "맞춤형 응답 헤더 전송"
+  },
+  "rp_webserver_uri": {
+    "message0": "%1 요청된 URI",
+    "tooltip": "현재 요청의 URI 경로 가져오기"
+  },
+  "rp_webserver_method": {
+    "message0": "%1 요청 방법",
+    "tooltip": "현재 요청에 대한 HTTP 메서드(GET/POST 등)를 받으세요."
+  },
+  "rp_webserver_method_is": {
+    "message0": "%1 요청 방법은 %2",
+    "tooltip": "현재 요청이 지정된 HTTP 메서드인지 확인해",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "GET",
+            "HTTP_GET"
+          ],
+          [
+            "POST",
+            "HTTP_POST"
+          ],
+          [
+            "PUT",
+            "HTTP_PUT"
+          ],
+          [
+            "DELETE",
+            "HTTP_DELETE"
+          ],
+          [
+            "PATCH",
+            "HTTP_PATCH"
+          ]
+        ]
+      }
+    ]
+  },
+  "rp_webserver_arg_by_name": {
+    "message0": "%1 매개변수 %2 값 가져오기",
+    "tooltip": "매개변수 이름을 기반으로 요청 매개변수 값을 얻습니다"
+  },
+  "rp_webserver_arg_by_index": {
+    "message0": "%1 제 %2 매개변수 값 가져오기",
+    "tooltip": "인덱스(0부터)를 기반으로 요청 매개변수 값을 검색합니다."
+  },
+  "rp_webserver_arg_name": {
+    "message0": "%1 제 %2 매개변수 이름 가져오기",
+    "tooltip": "인덱스(0부터 시작)를 기반으로 요청 매개변수 이름을 검색합니다"
+  },
+  "rp_webserver_args_count": {
+    "message0": "%1 매개변수 수",
+    "tooltip": "요청 매개변수 수를 가져옵니다"
+  },
+  "rp_webserver_has_arg": {
+    "message0": "%1 매개변수 %2 존재",
+    "tooltip": "지정된 이름의 매개변수가 있는지 확인해"
+  },
+  "rp_webserver_header": {
+    "message0": "%1 요청 헤더 %2 값 가져오기",
+    "tooltip": "지정된 이름의 요청 헤더 값을 가져옵습니다"
+  },
+  "rp_webserver_has_header": {
+    "message0": "%1 요청 헤더 %2 존재",
+    "tooltip": "지정된 이름의 요청 헤더가 있는지 확인하세요"
+  },
+  "rp_webserver_host_header": {
+    "message0": "%1 호스트 요청 헤더",
+    "tooltip": "요청의 호스트 헤더를 가져옵습니다"
+  },
+  "rp_webserver_collect_headers": {
+    "message0": "%1 요청 헤더 수집 %2",
+    "tooltip": "요청 헤더를 collect(쉼표로 구분한 여러 개)로 설정하세요."
+  },
+  "rp_webserver_enable_cors": {
+    "message0": "%1 CORS 교차 오리진 활성화",
+    "tooltip": "도메인 간 자원 공유(CORS) 활성화"
+  },
+  "rp_webserver_stop": {
+    "message0": "서버 중단%1",
+    "tooltip": "웹 서버 중지"
+  },
+  "rp_webserver_authenticate": {
+    "message0": "%1 사용자 이름%2 비밀번호 %3 확인하기.",
+    "tooltip": "기본 HTTP 인증을 위해 사용자 이름과 비밀번호를 확인하세요"
+  },
+  "rp_webserver_request_authentication": {
+    "message0": "%1 인증 요청 프롬프트 %2",
+    "tooltip": "클라이언트에게 HTTP 인증을 요청하세요"
+  }
+}

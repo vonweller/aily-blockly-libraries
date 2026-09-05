@@ -1,8 +1,62 @@
 {
+  "name": "aily-blockly-libraries",
+  "version": "1.0.0",
+  "description": "Arduino Blockly库集合及规范检测工具",
+  "main": ".scripts/validate-library-compliance.js",
+  "scripts": {
+    "validate": "node .scripts/validate-library-compliance.js",
+    "validate:all": "node .scripts/validate-library-compliance.js --all",
+    "validate:changed": "node .scripts/validate-library-compliance.js --changed",
+    "readme:check": "node .scripts/check-readme-compliance.js --all",
+    "readme:audit": "node .scripts/check-readme-compliance.js --all --strict-abs --json",
+    "readme:changed": "node .scripts/check-changed-readme-governance.js",
+    "readme:contract": "node .scripts/check-readme-compliance.js --all --tracked --ai-only --strict-abs",
+    "readme:runtime-contract": "node .scripts/check-readme-runtime-contract.js",
+    "readme:runtime-compile": "node .scripts/check-readme-runtime-contract.js --compile",
+    "readme:dynamic-shapes": "node .scripts/check-readme-dynamic-shapes.js --strict",
+    "readme:generator-coverage": "node .scripts/check-library-generator-coverage.js --strict",
+    "readme:cross-check": "node .scripts/check-readme-cross-library-examples.js",
+    "readme:candidate": "node .scripts/generate-readme-candidate.js",
+    "readme:candidate-check": "node .scripts/generate-readme-candidate.js --all && node .scripts/check-readme-cross-library-examples.js --readme-root .temp/readme-candidates",
+    "readme:migrate-field-variables": "node .scripts/migrate-readme-field-variables.js",
+    "readme:migrate-table-statements": "node .scripts/migrate-readme-table-statements.js",
+    "readme:migrate-block-tables": "node .scripts/migrate-readme-block-tables.js",
+    "readme:migrate-examples": "node .scripts/migrate-readme-examples.js",
+    "readme:migrate-example-calls": "node .scripts/migrate-readme-example-calls.js",
+    "readme:migrate-runtime-variants": "node .scripts/migrate-readme-runtime-variants.js",
+    "readme:migrate-generated-code": "node .scripts/migrate-readme-generated-code.js",
+    "readme:migrate-structure": "node .scripts/migrate-readme-structure.js",
+    "readme:test": "node --test .scripts/check-readme-compliance.test.js .scripts/check-changed-readme-governance.test.js",
+    "test:tft-espi": "node --test TFT_eSPI/generator.test.js",
+    "readme:fix": "node .scripts/check-readme-compliance.js --all --fix",
+    "i18n:check": "node .scripts/check-i18n-compliance.js",
+    "help": "node .scripts/validate-library-compliance.js --help"
+  },
+  "bin": {
+    "validate-library": "./.scripts/validate-library-compliance.js"
+  },
+  "keywords": [
+    "arduino",
+    "blockly",
+    "validation",
+    "github-actions",
+    "compliance",
+    "quality-assurance"
+  ],
+  "author": "ailyProject",
+  "license": "MIT",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ailyProject/aily-blockly-libraries.git"
+  },
   "dependencies": {
     "@langchain/core": "^0.3.46",
     "@langchain/openai": "^0.5.6",
     "dotenv": "^16.5.0",
+    "js-yaml": "^4.3.1",
     "langchain": "^0.3.24",
     "zod": "^3.24.3"
   }

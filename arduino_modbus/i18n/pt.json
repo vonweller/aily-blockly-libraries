@@ -1,0 +1,177 @@
+{
+  "toolbox_name": "Comunicação Modbus",
+  "toolbox_labels": {
+    "客户端初始化": "Inicialização do cliente",
+    "服务器初始化": "Inicialização do servidor",
+    "服务器配置": "Configuração do servidor",
+    "客户端读写操作": "Operações de leitura e gravação do cliente",
+    "服务器读写操作": "Operações de leitura e gravação do servidor",
+    "错误处理": "Tratamento de erros",
+    "快速操作": "Operação rápida"
+  },
+  "modbus_rtu_client_begin": {
+    "message0": "Inicialize Modbus RTU client baud rate%1",
+    "tooltip": "Inicialize o cliente Modbus RTU e defina a taxa de baud",
+    "args0": [
+      {
+        "options": [
+          [
+            "9600",
+            "9600"
+          ],
+          [
+            "19200",
+            "19200"
+          ],
+          [
+            "38400",
+            "38400"
+          ],
+          [
+            "57600",
+            "57600"
+          ],
+          [
+            "115200",
+            "115200"
+          ]
+        ]
+      }
+    ]
+  },
+  "modbus_rtu_server_begin": {
+    "message0": "Inicialize o dispositivo servidor Modbus RTU ID%1 baud rate%2",
+    "tooltip": "Inicialize o servidor Modbus RTU, defina o ID do dispositivo e a taxa de baud",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "9600",
+            "9600"
+          ],
+          [
+            "19200",
+            "19200"
+          ],
+          [
+            "38400",
+            "38400"
+          ],
+          [
+            "57600",
+            "57600"
+          ],
+          [
+            "115200",
+            "115200"
+          ]
+        ]
+      }
+    ]
+  },
+  "modbus_tcp_client_begin": {
+    "message0": "Inicialize o endereço IP do cliente Modbus TCP %1 port%2",
+    "tooltip": "Inicialize o cliente Modbus TCP, conectando-se ao IP e à porta especificados"
+  },
+  "modbus_tcp_server_begin": {
+    "message0": "Inicialize o dispositivo servidor Modbus TCP ID%1",
+    "tooltip": "Inicializar o servidor Modbus TCP"
+  },
+  "modbus_coil_read": {
+    "message0": "Leia o dispositivo de bobina ID%1 address%2",
+    "tooltip": "Leia o status da bobina no endereço especificado, retorne 0 ou 1, ou retorne -1 se falhar"
+  },
+  "modbus_coil_write": {
+    "message0": "Dispositivo de bobina de gravação ID%1 endereço %2 value%3",
+    "tooltip": "Escreva o valor da bobina (0 ou 1) no endereço especificado"
+  },
+  "modbus_discrete_input_read": {
+    "message0": "Leia dispositivos de entrada discretos ID%1 address%2",
+    "tooltip": "Leia o estado discreto de entrada do endereço especificado, retorne 0 ou 1, e retorne -1 em caso de falha"
+  },
+  "modbus_holding_register_read": {
+    "message0": "Leia o dispositivo de registro de retenção ID%1 address%2",
+    "tooltip": "Lê o valor do registrador de contenção no endereço especificado, retorna -1 em caso de falha"
+  },
+  "modbus_holding_register_write": {
+    "message0": "Escreva no dispositivo registrador de armazenamento ID%1 endereço %2 value%3",
+    "tooltip": "Escreva o valor do registrador de retenção no endereço especificado (0-65535)"
+  },
+  "modbus_input_register_read": {
+    "message0": "Registradores de entrada de leitura Dispositivo ID%1 address%2",
+    "tooltip": "Lê o valor do registrador de entrada para o endereço especificado; falha retorna -1"
+  },
+  "modbus_server_configure_coils": {
+    "message0": "Configurar bobinas de servidor Endereço inicial %1 quantity%2",
+    "tooltip": "Configure o intervalo de endereços da bobina do servidor Modbus"
+  },
+  "modbus_server_configure_discrete_inputs": {
+    "message0": "Configure o endereço de entrada discreta do servidor %1 quantity%2",
+    "tooltip": "Configure o intervalo de endereços de entrada discreto do servidor Modbus"
+  },
+  "modbus_server_configure_holding_registers": {
+    "message0": "Configure o servidor que segura o registrador, comece address%1 quantity%2",
+    "tooltip": "Configure o intervalo de endereços de registradores para o servidor Modbus"
+  },
+  "modbus_server_configure_input_registers": {
+    "message0": "Configurar registradores de entrada do servidor Endereço inicial %1 quantity%2",
+    "tooltip": "Configure a faixa de endereços dos registradores de entrada para o servidor Modbus"
+  },
+  "modbus_server_poll": {
+    "message0": "Consulta do servidor Modbus",
+    "tooltip": "Pesquisar o servidor Modbus para solicitações retornará true"
+  },
+  "modbus_server_coil_read": {
+    "message0": "Servidor lê bobina address%1",
+    "tooltip": "Leia o valor atual da bobina do servidor"
+  },
+  "modbus_server_coil_write": {
+    "message0": "O servidor grava o endereço da bobina %1 value%2",
+    "tooltip": "Defina o valor da bobina do servidor"
+  },
+  "modbus_server_discrete_input_write": {
+    "message0": "O servidor grava endereços de entrada discretos %1 values%2",
+    "tooltip": "Defina o valor de entrada discreto para o servidor"
+  },
+  "modbus_server_holding_register_read": {
+    "message0": "O servidor lê e mantém registros address%1",
+    "tooltip": "Leia o valor atual do registrador mantido pelo servidor"
+  },
+  "modbus_server_holding_register_write": {
+    "message0": "O servidor escreve no endereço do registrador %1 value%2",
+    "tooltip": "Defina o valor do registrador mantido pelo servidor"
+  },
+  "modbus_server_input_register_write": {
+    "message0": "O servidor grava o endereço do registrador de entrada %1 value%2",
+    "tooltip": "Defina o valor do registrador de entrada do servidor"
+  },
+  "modbus_last_error": {
+    "message0": "Receba a mensagem de erro final do Modbus",
+    "tooltip": "Recuperar mensagens de erro da última operação Modbus"
+  },
+  "modbus_quick_coil_control": {
+    "message0": "Dispositivo de Bobina de Controle Rápido Modbus ID%1 Endereço %2 Valor %3",
+    "tooltip": "Controle rapidamente as bobinas dos dispositivos Modbus e processe automaticamente a inicialização",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "Ligado",
+            "1"
+          ],
+          [
+            "Desligado",
+            "0"
+          ]
+        ]
+      }
+    ]
+  },
+  "modbus_quick_register_read": {
+    "message0": "Dispositivo de Registro de Leitura Rápida Modbus ID%1 Address%2",
+    "tooltip": "Leia rapidamente o valor do registrador de contenção do dispositivo Modbus"
+  }
+}

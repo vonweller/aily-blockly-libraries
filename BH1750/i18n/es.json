@@ -1,0 +1,61 @@
+{
+  "toolbox_name": "BH1750",
+  "bh1750_init_with_wire": {
+    "message0": "Inicializa el sensor de luz %1\nModo %2\nAddress%3\nUso %4",
+    "tooltip": "Inicializa el sensor de luz del BH1750, especifica la dirección I2C y el bus I2C utilizado",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Modo continuo de alta resolución (1 lux, 120ms)",
+            "CONTINUOUS_HIGH_RES_MODE"
+          ],
+          [
+            "Modo continuo de alta resolución 2 (0,5 lux, 120ms)",
+            "CONTINUOUS_HIGH_RES_MODE_2"
+          ],
+          [
+            "Modo continuo de baja resolución (4lux, 16ms)",
+            "CONTINUOUS_LOW_RES_MODE"
+          ],
+          [
+            "Modo único de alta resolución (1 lux, 120ms)",
+            "ONE_TIME_HIGH_RES_MODE"
+          ],
+          [
+            "Modo de Alta Resolución Simple 2 (0,5 lux, 120ms)",
+            "ONE_TIME_HIGH_RES_MODE_2"
+          ],
+          [
+            "Modo único de baja resolución (4 lux, 16ms)",
+            "ONE_TIME_LOW_RES_MODE"
+          ],
+          [
+            "Modo sin configurar",
+            "UNCONFIGURED"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "0x23 (ADDR Bajo Nivel)",
+            "0x23"
+          ],
+          [
+            "0x5C (ADDR Nivel Alto)",
+            "0x5C"
+          ]
+        ]
+      },
+      {
+        "options": "${board.i2c}"
+      }
+    ]
+  },
+  "bh1750_read_light_level": {
+    "message0": "Lee el valor de luz del sensor de luz %1",
+    "tooltip": "Lee la intensidad de luz (lux) del sensor BH1750"
+  }
+}

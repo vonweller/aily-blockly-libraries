@@ -1,0 +1,115 @@
+{
+  "toolbox_name": "APDS9301",
+  "apds9301_init": {
+    "message0": "初始化 APDS9301 %1 位址 %2",
+    "tooltip": "建立並初始化 SparkFun APDS9301 光照感測器"
+  },
+  "apds9301_is_ready": {
+    "message0": "APDS9301 %1 已初始化",
+    "tooltip": "返回初始化區塊保存的 APDS9301 初始化狀態"
+  },
+  "apds9301_read_lux": {
+    "message0": "APDS9301 %1 讀取照度",
+    "tooltip": "讀取計算後的 lux 光照值"
+  },
+  "apds9301_read_channel": {
+    "message0": "APDS9301 %1 讀取原始通道 %2",
+    "tooltip": "讀取 APDS9301 原始通道值",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "CH0 可見+紅外線",
+            "readCH0Level"
+          ],
+          [
+            "CH1 紅外線",
+            "readCH1Level"
+          ]
+        ]
+      }
+    ]
+  },
+  "apds9301_set_gain": {
+    "message0": "設定 APDS9301 %1 增益 %2",
+    "tooltip": "設定 APDS9301 增益",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "低",
+            "APDS9301::LOW_GAIN"
+          ],
+          [
+            "高",
+            "APDS9301::HIGH_GAIN"
+          ]
+        ]
+      }
+    ]
+  },
+  "apds9301_set_integration_time": {
+    "message0": "設定 APDS9301 %1 轉換時間 %2",
+    "tooltip": "設定 APDS9301 積分時間"
+  },
+  "apds9301_enable_interrupt": {
+    "message0": "APDS9301 %1 中斷 %2",
+    "tooltip": "啟用或停用 APDS9301 中斷輸出",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "啟用",
+            "APDS9301::INT_ON"
+          ],
+          [
+            "停用",
+            "APDS9301::INT_OFF"
+          ]
+        ]
+      }
+    ]
+  },
+  "apds9301_set_threshold": {
+    "message0": "設定 APDS9301 %1 %2 閾值 %3",
+    "tooltip": "設定 APDS9301 中斷閾值",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "下限",
+            "LOW"
+          ],
+          [
+            "上限",
+            "HIGH"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "apds9301_power": {
+    "message0": "APDS9301 %1 電源 %2",
+    "tooltip": "開啟或關閉 APDS9301 電源",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "開啟",
+            "APDS9301::POW_ON"
+          ],
+          [
+            "關閉",
+            "APDS9301::POW_OFF"
+          ]
+        ]
+      }
+    ]
+  }
+}

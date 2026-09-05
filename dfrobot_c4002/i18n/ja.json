@@ -1,0 +1,312 @@
+{
+  "toolbox_name": "C4002ミリ波レーダー",
+  "dfrobot_c4002_init": {
+    "message0": "C4002レーダーをシリアルポート%2%1初期化し、ボウトレート%3RX%4TX%5OUTピン%6",
+    "tooltip": "DFRobot C4002を初期化してください。 ESP32は選択したハードシリアルポートとRX/TXピンを使用し、UNO/ESP8266はSoftwareSerialを使用し、OUTピン255は使用不可を示します。"
+  },
+  "dfrobot_c4002_update": {
+    "message0": "C4002 %1 アップデート通知データ",
+    "tooltip": "getNoteInfoに連絡して、通知タイプの更新、カウントダウンのキャリブレーション、結果の検出を行ってください。"
+  },
+  "dfrobot_c4002_get_note": {
+    "message0": "C4002 %1 note %2",
+    "tooltip": "最新のアップデートの通知タイプやキャリブレーションカウントダウンを読んでください。",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "通知タイプ",
+            "NOTE_TYPE"
+          ],
+          [
+            "カウントダウンをキャリブレーションする",
+            "CALIB_COUNTDOWN"
+          ]
+        ]
+      }
+    ]
+  },
+  "dfrobot_c4002_get_value": {
+    "message0": "C4002 %1 %2",
+    "tooltip": "レーダー探知結果や設定値を読み取ってください。",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "標的の状況",
+            "TARGET_STATE"
+          ],
+          [
+            "光強度のルクス",
+            "LIGHT"
+          ],
+          [
+            "カウントダウンがあります",
+            "PRESENCE_COUNTDOWN"
+          ],
+          [
+            "距離ゲート指数が存在する",
+            "PRESENCE_GATE_INDEX"
+          ],
+          [
+            "目標距離はmです",
+            "PRESENCE_DISTANCE"
+          ],
+          [
+            "ターゲットエネルギーがあります",
+            "PRESENCE_ENERGY"
+          ],
+          [
+            "運動対象までの距離 m",
+            "MOTION_DISTANCE"
+          ],
+          [
+            "目標速度(m/s)",
+            "MOTION_SPEED"
+          ],
+          [
+            "ターゲットエネルギーの運動",
+            "MOTION_ENERGY"
+          ],
+          [
+            "移動方向",
+            "MOTION_DIRECTION"
+          ],
+          [
+            "OUTターゲットの状況",
+            "OUT_TARGET_STATE"
+          ],
+          [
+            "照明閾値",
+            "LIGHT_THRESHOLD"
+          ],
+          [
+            "最近検出距離 cm",
+            "RANGE_CLOSEST"
+          ],
+          [
+            "最大検出距離(センチメートル)",
+            "RANGE_FARTHEST"
+          ],
+          [
+            "ターゲット消失遅延 s",
+            "DISAPPEAR_DELAY"
+          ],
+          [
+            "アウトピンモード",
+            "OUT_PIN_MODE"
+          ],
+          [
+            "解決モード",
+            "RESOLUTION_MODE"
+          ],
+          [
+            "モーション感度",
+            "MOTION_SENSITIVITY"
+          ],
+          [
+            "感度は存在します",
+            "PRESENCE_SENSITIVITY"
+          ]
+        ]
+      }
+    ]
+  },
+  "dfrobot_c4002_set_led": {
+    "message0": "C4002 %1 LED%2設定%3",
+    "tooltip": "ランニングライトや出力ライト用のスイッチを設置しましょう。",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "run",
+            "RUN"
+          ],
+          [
+            "出力",
+            "OUT"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "閉じる",
+            "eLedOff"
+          ],
+          [
+            "オンにする",
+            "eLedOn"
+          ]
+        ]
+      }
+    ]
+  },
+  "dfrobot_c4002_set_out_pin_mode": {
+    "message0": "C4002 %1 セットアウトモード%2",
+    "tooltip": "OUTピンの出力条件を設定してください。",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "運動だけ",
+            "eOutpinMode1"
+          ],
+          [
+            "それはただ存在しているだけです",
+            "eOutpinMode2"
+          ],
+          [
+            "移動または存在",
+            "eOutpinMode3"
+          ]
+        ]
+      }
+    ]
+  },
+  "dfrobot_c4002_set_resolution": {
+    "message0": "C4002 %1 解像度設定 %2",
+    "tooltip": "距離ゲート解像度を設定してください。",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "80 cm",
+            "eResolution80Cm"
+          ],
+          [
+            "20 cm",
+            "eResolution20Cm"
+          ]
+        ]
+      }
+    ]
+  },
+  "dfrobot_c4002_set_detect_range": {
+    "message0": "C4002 %1検出範囲 最近 cm %2 最も遠い cm %3",
+    "tooltip": "検出距離範囲(単位cm)を0から1100まで設定します。"
+  },
+  "dfrobot_c4002_set_report_period": {
+    "message0": "C4002 %1 報告サイクル 0.1秒 多重%2",
+    "tooltip": "通知報告サイクルを設定してください:10は1秒を意味します。"
+  },
+  "dfrobot_c4002_set_light_threshold": {
+    "message0": "C4002 %1 照明閾値 lux %2",
+    "tooltip": "周囲光の閾値を設定します。0は光に制限されないことを意味します。"
+  },
+  "dfrobot_c4002_set_target_disappear_delay": {
+    "message0": "C4002 %1 ターゲット消失遅延 %2",
+    "tooltip": "ターゲットが消えた後の状態の持続時間を設定します。"
+  },
+  "dfrobot_c4002_set_lock_time": {
+    "message0": "C4002 %1 ロック時間 %2",
+    "tooltip": "検知ロック時間を有人から無人に設定してください。"
+  },
+  "dfrobot_c4002_set_sensitivity": {
+    "message0": "C4002 %1 感度設定%2 %3",
+    "tooltip": "動きやグループの存在を検知するための感度グループを設定しましょう。",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "スポーツドア",
+            "eMotionDistGate"
+          ],
+          [
+            "存在ゲート",
+            "ePresenceDistGate"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "低い",
+            "eLowThreshGroup"
+          ],
+          [
+            "mid",
+            "eMidThreshGroup"
+          ],
+          [
+            "高い",
+            "eHighThreshGroup"
+          ],
+          [
+            "custom",
+            "eCustomThreshGroup"
+          ]
+        ]
+      }
+    ]
+  },
+  "dfrobot_c4002_configure_all_gates": {
+    "message0": "C4002 %1 すべての%2を%3に設定",
+    "tooltip": "25の距離ゲートを一括で有効化または無効化します。",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "スポーツドア",
+            "eMotionDistGate"
+          ],
+          [
+            "存在ゲート",
+            "ePresenceDistGate"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "有効にする",
+            "C4002_ENABLE"
+          ],
+          [
+            "無効にする",
+            "C4002_DISABLE"
+          ]
+        ]
+      }
+    ]
+  },
+  "dfrobot_c4002_set_gate_threshold_all": {
+    "message0": "C4002 %1 すべての閾値%2%3",
+    "tooltip": "0から99までの距離を25段階の閾値でまとめて設定します。",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "スポーツドア",
+            "eMotionDistGate"
+          ],
+          [
+            "存在ゲート",
+            "ePresenceDistGate"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "dfrobot_c4002_start_calibration": {
+    "message0": "C4002 %1 環境較正遅延 s %2 連続 s %3",
+    "tooltip": "環境騒音のキャリブレーションを開始してください。"
+  },
+  "dfrobot_c4002_factory_reset": {
+    "message0": "C4002 %1工場出荷時リセット",
+    "tooltip": "センサーを工場出荷時設定に戻してください。"
+  },
+  "dfrobot_c4002_set_baudrate": {
+    "message0": "C4002 %1 ボーレートを%2設定",
+    "tooltip": "センサーのシリアルポートボーレートを変更してください。再起動に成功すると、効果が発揮されます。"
+  }
+}

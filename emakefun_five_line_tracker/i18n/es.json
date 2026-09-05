@@ -1,0 +1,194 @@
+{
+  "toolbox_name": "Sensores de patrulla de cinco canales",
+  "toolbox_labels": {
+    "初始化": "inicialización",
+    "信息查询": "Consulta de información",
+    "阈值设置": "Configuración de umbral",
+    "数据读取": "Lectura de datos"
+  },
+  "five_line_tracker_v3_setup": {
+    "message0": "Inicializar el sensor de seguimiento de línea %1 dirección I2C %2",
+    "tooltip": "Crea e inicializa el sensor de patrulla de línea, la interfaz I2C y la dirección predeterminada 0x50",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "0x50 (por defecto)",
+            "0x50"
+          ],
+          [
+            "0x51",
+            "0x51"
+          ],
+          [
+            "0x52",
+            "0x52"
+          ],
+          [
+            "0x53",
+            "0x53"
+          ],
+          [
+            "0x54",
+            "0x54"
+          ],
+          [
+            "0x55",
+            "0x55"
+          ],
+          [
+            "0x56",
+            "0x56"
+          ],
+          [
+            "0x57",
+            "0x57"
+          ]
+        ]
+      }
+    ]
+  },
+  "five_line_tracker_v3_get_device_id": {
+    "message0": "Sensor de seguimiento de línea %1 obtener el ID del dispositivo",
+    "tooltip": "Obtén los IDs de los dispositivos de los sensores de patrulla de cinco canales"
+  },
+  "five_line_tracker_v3_get_firmware_version": {
+    "message0": "Trace Sensor %1 Consigue la versión del firmware",
+    "tooltip": "Obtén el número de versión del firmware del sensor de patrulla de línea de cinco canales"
+  },
+  "five_line_tracker_v3_set_high_threshold": {
+    "message0": "Sensor de seguimiento de línea %1 ajustes de canal %2 umbral alto %3",
+    "tooltip": "Establezca un umbral alto para canales designados (0-1023) para la conversión digital",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Canal 0",
+            "0"
+          ],
+          [
+            "Canal 1",
+            "1"
+          ],
+          [
+            "Canal 2",
+            "2"
+          ],
+          [
+            "Canal 3",
+            "3"
+          ],
+          [
+            "Canal 4",
+            "4"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "five_line_tracker_v3_set_low_threshold": {
+    "message0": "Configuración de canal del sensor de seguimiento de línea %1 %2 umbral bajo %3",
+    "tooltip": "Establece un umbral bajo para el canal especificado (0-1023) para la conversión digital",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Canal 0",
+            "0"
+          ],
+          [
+            "Canal 1",
+            "1"
+          ],
+          [
+            "Canal 2",
+            "2"
+          ],
+          [
+            "Canal 3",
+            "3"
+          ],
+          [
+            "Canal 4",
+            "4"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "five_line_tracker_v3_get_analog_value": {
+    "message0": "Sensor de seguimiento de rutas %1 canal de lectura %2 valor analógico",
+    "tooltip": "Lee el valor analógico del canal especificado (0-1023)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Canal 0",
+            "0"
+          ],
+          [
+            "Canal 1",
+            "1"
+          ],
+          [
+            "Canal 2",
+            "2"
+          ],
+          [
+            "Canal 3",
+            "3"
+          ],
+          [
+            "Canal 4",
+            "4"
+          ]
+        ]
+      }
+    ]
+  },
+  "five_line_tracker_v3_get_digital_value": {
+    "message0": "Sensor de seguimiento de línea %1 lee valores digitales %2 canal",
+    "tooltip": "Lee el valor numérico (0 o 1) del canal especificado y convierte automáticamente en función del umbral",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Canal 0",
+            "0"
+          ],
+          [
+            "Canal 1",
+            "1"
+          ],
+          [
+            "Canal 2",
+            "2"
+          ],
+          [
+            "Canal 3",
+            "3"
+          ],
+          [
+            "Canal 4",
+            "4"
+          ]
+        ]
+      }
+    ]
+  },
+  "five_line_tracker_v3_get_all_digital_values": {
+    "message0": "El sensor de seguimiento de línea %1 lee todos los valores numéricos",
+    "tooltip": "Lee los valores numéricos de todos los canales, devuelve un byte, con cada bit representando el estado de un canal"
+  },
+  "five_line_tracker_v3_check_error": {
+    "message0": "Sensor de seguimiento %1 Si la inicialización es exitosa",
+    "tooltip": "Comprueba si la inicialización del sensor ha sido exitosa"
+  }
+}

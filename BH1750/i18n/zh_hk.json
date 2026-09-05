@@ -1,0 +1,61 @@
+{
+  "toolbox_name": "BH1750",
+  "bh1750_init_with_wire": {
+    "message0": "初始化光照感測器 %1\n模式 %2\n地址 %3\n使用 %4",
+    "tooltip": "初始化BH1750光照感測器，指定I2C位址和使用的I2C匯流排",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "連續高解析度模式 (1lux, 120ms)",
+            "CONTINUOUS_HIGH_RES_MODE"
+          ],
+          [
+            "連續高解析度模式2 (0.5lux, 120ms)",
+            "CONTINUOUS_HIGH_RES_MODE_2"
+          ],
+          [
+            "連續低解析度模式 (4lux, 16ms)",
+            "CONTINUOUS_LOW_RES_MODE"
+          ],
+          [
+            "單次高解析度模式 (1lux, 120ms)",
+            "ONE_TIME_HIGH_RES_MODE"
+          ],
+          [
+            "單次高解析度模式2 (0.5lux, 120ms)",
+            "ONE_TIME_HIGH_RES_MODE_2"
+          ],
+          [
+            "單次低解析度模式 (4lux, 16ms)",
+            "ONE_TIME_LOW_RES_MODE"
+          ],
+          [
+            "未設定模式",
+            "UNCONFIGURED"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "0x23 (ADDR低電位)",
+            "0x23"
+          ],
+          [
+            "0x5C (ADDR高電位)",
+            "0x5C"
+          ]
+        ]
+      },
+      {
+        "options": "${board.i2c}"
+      }
+    ]
+  },
+  "bh1750_read_light_level": {
+    "message0": "讀取光照感測器 %1 的光照值",
+    "tooltip": "讀取BH1750感測器的光照強度(lux)"
+  }
+}

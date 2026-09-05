@@ -1,0 +1,89 @@
+{
+  "toolbox_name": "LibSSH ESP32",
+  "toolbox_labels": {
+    "Connection": "Conexión",
+    "Channel": "canal",
+    "SCP": "SCP",
+    "Constants": "Constantes"
+  },
+  "libssh_begin": {
+    "message0": "Inicio de LibSSH",
+    "tooltip": "Inicializa el runtime de LibSSH ESP32 una vez antes de usar las sesiones SSH."
+  },
+  "libssh_connect_password": {
+    "message0": "SSH Connect %1 sesión %2 usuario %3 contraseña %4 puerto %5 tiempo de espera %6 inicio de sesión %7",
+    "tooltip": "Crea, configura, conecta y autentica con contraseña una sesión SSH."
+  },
+  "libssh_session_create": {
+    "message0": "crear %1 sesión SSH",
+    "tooltip": "Crea un ssh_session mango vacío."
+  },
+  "libssh_session_set_options": {
+    "message0": "establecer %1 sesión SSH como host %2 usuario %3 puerto %4 timeout s %5 log %6",
+    "tooltip": "Configura la verbosidad de host, usuario, puerto, tiempo de espera y registro en una sesión SSH."
+  },
+  "libssh_session_connect": {
+    "message0": "Sesión %1 conexión SSH tiene éxito",
+    "tooltip": "Conecta una sesión SSH y regresa con éxito en el caso de éxito."
+  },
+  "libssh_session_auth_password": {
+    "message0": "Sesión SSH %1 autenticación de contraseña %2 contraseña %3 éxito",
+    "tooltip": "Autentica una sesión SSH con nombre de usuario y contraseña."
+  },
+  "libssh_session_connected": {
+    "message0": "La sesión SSH %1 está conectada",
+    "tooltip": "Return true cuando la sesión SSH está conectada."
+  },
+  "libssh_session_error": {
+    "message0": "Texto de error %1 sesión SSH",
+    "tooltip": "Devuelva el texto de error actual de libssh para esta sesión."
+  },
+  "libssh_session_disconnect": {
+    "message0": "Sesión SSH %1 desconexión gratuita %2 finalizar %3",
+    "tooltip": "Desconecta una sesión, opcionalmente libera el handle y finaliza libssh."
+  },
+  "libssh_channel_create": {
+    "message0": "crear %1 canal SSH para la %2 de sesión",
+    "tooltip": "Crea un handle de canal para una sesión SSH."
+  },
+  "libssh_channel_exec": {
+    "message0": "Canal SSH %1 comando ejecutivo %2 éxito",
+    "tooltip": "Abre un canal de sesión y solicita la ejecución remota de un comando."
+  },
+  "libssh_channel_read": {
+    "message0": "leer el canal SSH %1 bytes máximos %2 tiempo de espera ms %3 flujo %4",
+    "tooltip": "Lee texto de un canal SSH. Tiempo muerto -1 utiliza lectura bloqueadora."
+  },
+  "libssh_channel_write": {
+    "message0": "escribe canales SSH %1 datos %2",
+    "tooltip": "Escribe texto en un canal SSH."
+  },
+  "libssh_channel_close": {
+    "message0": "cerrar canal SSH %1",
+    "tooltip": "Envía EOF, cierra, libera y limpia un handle de canal SSH."
+  },
+  "libssh_scp_open": {
+    "message0": "abrir SCP %1 sesión %2 modo %3 ubicación %4",
+    "tooltip": "Crea e inicializa un handle SCP para una ubicación remota."
+  },
+  "libssh_scp_read_text": {
+    "message0": "leer SCP %1 texto máximo bytes %2",
+    "tooltip": "Acepta la siguiente solicitud de archivo SCP y lee el texto hasta el límite de bytes."
+  },
+  "libssh_scp_write_text": {
+    "message0": "escribe SCP %1 archivo %2 texto %3 perms %4 tiene éxito",
+    "tooltip": "Envía un archivo de texto a través de un handle SCP inicializado en modo de escritura."
+  },
+  "libssh_scp_last_size": {
+    "message0": "último tamaño de archivo SCP",
+    "tooltip": "Devuelve el tamaño de archivo capturado por la última solicitud de lectura SCP."
+  },
+  "libssh_scp_close": {
+    "message0": "cerrar %1 SCP",
+    "tooltip": "Cierra, libera y limpia un mando SCP."
+  },
+  "libssh_status_code": {
+    "message0": "Estado de LibSSH %1",
+    "tooltip": "Devuelve un estado libssh o una constante de solicitud SCP."
+  }
+}

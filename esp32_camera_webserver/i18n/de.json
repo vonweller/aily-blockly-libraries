@@ -1,0 +1,176 @@
+{
+  "toolbox_name": "Kameraserver",
+  "toolbox_labels": {
+    "基础配置": "Grundkonfiguration",
+    "高级配置": "Erweiterte Konfiguration",
+    "画质调整": "Anpassung der Bildqualität",
+    "拍摄与数据访问": "Fotografie und Datenzugriff"
+  },
+  "esp32_camera_webserver_init": {
+    "message0": "Initialisieren Sie den ESP32-Kameraserver %1 Kameramodell %2 Auflösung %3 Pixelformat %4",
+    "tooltip": "Initialisieren Sie die ESP32-Kamera und konfigurieren Sie die Kameraparameter",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "AI Thinker",
+            "CAMERA_MODEL_AI_THINKER"
+          ],
+          [
+            "M5Stack PSRAM",
+            "CAMERA_MODEL_M5STACK_PSRAM"
+          ],
+          [
+            "M5Stack Wide",
+            "CAMERA_MODEL_M5STACK_WIDE"
+          ],
+          [
+            "ESP Eye",
+            "CAMERA_MODEL_ESP_EYE"
+          ],
+          [
+            "FireBeetle 2 ESP32S3",
+            "CAMERA_MODEL_DFRobot_FireBeetle2_ESP32S3"
+          ],
+          [
+            "ESP32S3 EYE / NL-ESP32-S3-CAM",
+            "CAMERA_MODEL_ESP32S3_EYE"
+          ],
+          [
+            "XIAO ESP32S3",
+            "CAMERA_MODEL_XIAO_ESP32S3"
+          ],
+          [
+            "ESP32-S3-WROOM-CAM",
+            "CAMERA_MODEL_ESP32S3_WROOM_CAM"
+          ],
+          [
+            "ESP32_AIOT_Kit",
+            "CAMERA_MODEL_ESP32_AIOT_KIT"
+          ],
+          [
+            "ESP32_AIOT_Kit GC2145 DVP",
+            "CAMERA_MODEL_ESP32_AIOT_KIT_GC2145"
+          ],
+          [
+            "Individuelle Pins",
+            "CUSTOM"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "UXGA (1600x1200)",
+            "FRAMESIZE_UXGA"
+          ],
+          [
+            "SXGA (1280x1024)",
+            "FRAMESIZE_SXGA"
+          ],
+          [
+            "XGA (1024x768)",
+            "FRAMESIZE_XGA"
+          ],
+          [
+            "SVGA (800x600)",
+            "FRAMESIZE_SVGA"
+          ],
+          [
+            "VGA (640x480)",
+            "FRAMESIZE_VGA"
+          ],
+          [
+            "CIF (400x296)",
+            "FRAMESIZE_CIF"
+          ],
+          [
+            "QVGA (320x240)",
+            "FRAMESIZE_QVGA"
+          ],
+          [
+            "HQVGA (240x176)",
+            "FRAMESIZE_HQVGA"
+          ],
+          [
+            "QQVGA (160x120)",
+            "FRAMESIZE_QQVGA"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "JPEG",
+            "PIXFORMAT_JPEG"
+          ],
+          [
+            "RGB565",
+            "PIXFORMAT_RGB565"
+          ],
+          [
+            "YUV422",
+            "PIXFORMAT_YUV422"
+          ],
+          [
+            "GRAYSCALE",
+            "PIXFORMAT_GRAYSCALE"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_camera_custom_pins": {
+    "message0": "Benutzerdefinierte Kamerapin-Konfiguration: %1 Datenpins D0-D7 %2 XCLK-Pin %3 PCLK-Pin %4 VSYNC-Pin %5 HREF-Pin %6 SDA-Pins %7 SCL-Pins %8 PWDN-Pins %9 RESET-Pins %10",
+    "tooltip": "Wenn Sie 'Benutzerdefinierte Pins' auswählen, verwenden Sie diesen Block, um die Kamerapins zu konfigurieren. Datenpin-Formate: '11, 12, 13, 14, 15, 16, 17, 18'"
+  },
+  "esp32_camera_set_quality": {
+    "message0": "Stelle JPEG-Qualität der Kamera %1",
+    "tooltip": "Stelle JPEG-Kompressionsqualität ein (0-63; je kleiner der Wert, desto höher die Qualität)"
+  },
+  "esp32_camera_set_flip": {
+    "message0": "Setze Kameraflip %1 vertikalen Flip %2 horizontale Spiegelung %3",
+    "tooltip": "Einrichtung von Kamerabild-Flipping und Spiegelung"
+  },
+  "esp32_camera_set_brightness": {
+    "message0": "Stelle Kamera%1Helligkeit %2 Kontrast %3 Sättigung %4",
+    "tooltip": "Kamerahelligkeit, Kontrast und Sättigung anpassen (-2 bis 2)"
+  },
+  "esp32_camera_capture": {
+    "message0": "Mach ein Foto",
+    "tooltip": "Ruft ein Bild mit Kamerabilddaten ab und gibt das Frame-Objekt zurück ( ⚠️ verwendet mit der Variable 'unsigned long integer'; nach Verwendung muss der Release-Frame-Block aufgerufen werden)"
+  },
+  "esp32_camera_frame_buffer": {
+    "message0": "Datenzeiger für Frame %1",
+    "tooltip": "Speicherzeiger (uint8_t*) zum Abruf von Framedaten, die zur Darstellung oder Übertragung verwendet werden können"
+  },
+  "esp32_camera_frame_len": {
+    "message0": "Die Datenlänge der Frames %1",
+    "tooltip": "Erhalten Sie die Bytelänge der Frame-Daten"
+  },
+  "esp32_camera_frame_width": {
+    "message0": "Rahmen %1 Breite",
+    "tooltip": "Erhalten Sie die Breite des Bildbildes (Pixel)"
+  },
+  "esp32_camera_frame_height": {
+    "message0": "Die Höhe des Rahmens %1",
+    "tooltip": "Höhe des erhaltenen Bildbildes (Pixel)"
+  },
+  "esp32_camera_release": {
+    "message0": "Release Frame %1",
+    "tooltip": "Frame-Buffer-Speicher freigeben (muss nach Verwendung eines Frames aufgerufen werden; send_serial Blöcke werden automatisch freigegeben)"
+  },
+  "esp32_camera_send_serial": {
+    "message0": "Frames über serielle Sendung port%1",
+    "tooltip": "Senden von JPEG-Bilddaten über serielle Anschlüsse (mit Frame-Kennung, nutzbar für die Anzeige des Hostcomputers)"
+  },
+  "esp32_camera_capture_and_encode_base64": {
+    "message0": "Mach Fotos und konvertiere sie in Base64",
+    "tooltip": "Machen Sie ein Foto und kodieren Sie dessen JPEG-Daten im Base64-Format"
+  },
+  "esp32_camera_print_diagnostics": {
+    "message0": "Diagnoseinformationen zur Druckkamera",
+    "tooltip": "Serielle Anschlüsse drucken den Initialisierungsstatus der Kamera, den Sensor-PID und häufige Fehlerfehler-Fehleraufforderungen aus"
+  }
+}

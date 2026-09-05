@@ -1,0 +1,110 @@
+{
+  "toolbox_name": "Voz de IA volcánica",
+  "toolbox_labels": {
+    "配置": "Configuración",
+    "屏幕": "pantalla",
+    "语音对话": "Conversación de voz",
+    "参数": "parámetros",
+    "状态": "Estado"
+  },
+  "huoshan_ai_config": {
+    "message0": "Configura el ID de la app Doubao de voz de Volcano AI %1 el token Doubao %2 el token Coze %3 el ID del bot Coze %4 el ID de usuario %5",
+    "tooltip": "Configurar los parámetros necesarios para el diálogo multi-turno Doubao ASR/TTS y Coze; usar el ID del chip cuando el ID de usuario sea nulo"
+  },
+  "huoshan_ai_wifi_connect": {
+    "message0": "Conexión Volcano AI WiFi, SSID %1 contraseña %2 tiempo de espera (ms) %3",
+    "tooltip": "Conectarse a WiFi, ASR, Cote y TTS posteriores dependen de la red"
+  },
+  "huoshan_ai_mic_config": {
+    "message0": "Equipado con micrófono Volcano AI I2S ports%1 BCLK %2 WS/LRCLK %3 DIN %4 gain%5 máxima seconds%6",
+    "tooltip": "Equipado con pines de micrófono I2S y parámetros de grabación, con una frecuencia de muestreo mono fija de 16 bits a 16 kHz; Ganancia recomendada 4. Si el registro indica recorte, reduce la ganancia"
+  },
+  "huoshan_ai_speaker_config": {
+    "message0": "Configura puertos de altavoces Volcano AI I2S %1 BCLK %2 WS/LRCLK %3 DOUT %4 volumen %5",
+    "tooltip": "Equipado con altavoces MAX98357 I2S, reproducción TTS PCM a 16kHz"
+  },
+  "huoshan_ai_begin": {
+    "message0": "Activar la voz de la IA del volcán",
+    "tooltip": "Inicializa el micrófono y los altavoces I2S para prepararte para conversaciones de voz"
+  },
+  "huoshan_ai_start_listening": {
+    "message0": "La IA del Volcán empieza a escuchar",
+    "tooltip": "Empieza a grabar desde el micrófono I2S, que normalmente se coloca al pulsar el botón"
+  },
+  "huoshan_ai_stop_listening_and_chat": {
+    "message0": "Volcano AI deja de escuchar y hablar",
+    "tooltip": "Detén la grabación, llama al reconocimiento ASR de Doubao, luego envíalo a Coze y reproduce una respuesta usando Doubao TTS"
+  },
+  "huoshan_ai_send_text": {
+    "message0": "La IA del Volcán envía texto a Coze %1 partidas y replies%2",
+    "tooltip": "Envía mensajes de texto directamente a Coze para conversaciones de varios turnos, con la opción de reproducir respuestas en TTS"
+  },
+  "huoshan_ai_tts_speak": {
+    "message0": "Reproducción de texto TTS de Volcano AI %1",
+    "tooltip": "El texto se sintetiza usando Doubao TTS y se reproduce a través de altavoces I2S"
+  },
+  "huoshan_ai_stop_audio": {
+    "message0": "Volcano AI dejó de reproducir audio",
+    "tooltip": "Borra el búfer DMA del I2S y detiene la reproducción actual"
+  },
+  "huoshan_ai_clear_conversation": {
+    "message0": "La IA del volcán limpia las sesiones de Coze",
+    "tooltip": "Borra la conversation_id y comienza la siguiente petición de una nueva sesión"
+  },
+  "huoshan_ai_set_voice": {
+    "message0": "La IA del volcán establece el tono Doubao %1",
+    "tooltip": "Configura el voice_type TTS Doubao, por ejemplo zh_female_wanwanxiaohe_moon_bigtts"
+  },
+  "huoshan_ai_set_volume": {
+    "message0": "Volcano AI Configuración del volumen de reproducción %1",
+    "tooltip": "Configura el volumen de reproducción local del I2S, recomendado entre 0.0 y 1.0"
+  },
+  "huoshan_ai_set_speed": {
+    "message0": "La IA del volcán establece el rate%1 de voz TTS",
+    "tooltip": "Configura el speed_ratio TTS Doubao, normalmente entre 0,8 y 1,2"
+  },
+  "huoshan_ai_get_state": {
+    "message0": "Consulta el estado actual de la IA del Volcán",
+    "tooltip": "Devuelve estados inactivos, escuchando, reconociendo, pensando, hablando, equivocándose y otros estados"
+  },
+  "huoshan_ai_is_wifi_connected": {
+    "message0": "El WiFi de Volcano AI está conectado",
+    "tooltip": "Comprueba si el WiFi está conectado"
+  },
+  "huoshan_ai_get_last_asr_text": {
+    "message0": "Obtén el reconocimiento final de texto de Volcano AI",
+    "tooltip": "Devolver el texto de reconocimiento final para el Doubao ASR más reciente"
+  },
+  "huoshan_ai_get_last_reply_text": {
+    "message0": "Recibe el texto final de respuesta de Volcano AI",
+    "tooltip": "Devolver el texto de respuesta más reciente de Coze"
+  },
+  "huoshan_ai_get_last_error": {
+    "message0": "Conseguir el último error de la IA del volcán",
+    "tooltip": "Devolver el mensaje de error más reciente"
+  },
+  "huoshan_ai_screen_config": {
+    "message0": "Configuración: Pantalla de IA del volcán: Ancho %1 altura %2 rotación %3 brillo: %4 Backlight%5 MISO %6 MOSI %7 SCLK %8 CS %9 DC %10 RST %11 Touch SDA %12 SCL %13 RST %14 INT %15",
+    "tooltip": "Configura las macros de ingeniería ST7789, TFT_eSPI, LVGL y FT6336U de pantalla táctil, con el hardware por defecto que coincide con el hardware original del proyecto PIO"
+  },
+  "huoshan_ai_screen_begin": {
+    "message0": "Activa la pantalla de IA del Volcán, mantén pulsada para hablar con táctil %1 mostrar automáticamente conversations%2",
+    "tooltip": "Inicializa el panel de voz LVGL, crea una barra de estado, una lista de mensajes y un botón de chat táctil"
+  },
+  "huoshan_ai_screen_set_brightness": {
+    "message0": "Configuración de brillo de pantalla de Volcano AI %1",
+    "tooltip": "Ajusta el brillo de la retroiluminación de pantalla de 0 a 100"
+  },
+  "huoshan_ai_screen_set_status": {
+    "message0": "Configuración de pantalla de Volcano AI Status%1",
+    "tooltip": "Configura manualmente el texto de estado en la parte superior de la pantalla"
+  },
+  "huoshan_ai_screen_add_message": {
+    "message0": "La pantalla de IA del volcán añade mensajes, personajes %1 Text%2",
+    "tooltip": "Añadir un mensaje de usuario, IA o sistema a la lista de mensajes de pantalla"
+  },
+  "huoshan_ai_screen_clear_messages": {
+    "message0": "La pantalla de IA del volcán borró el mensaje",
+    "tooltip": "Borrar la lista de mensajes en pantalla"
+  }
+}

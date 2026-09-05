@@ -1,0 +1,76 @@
+{
+  "toolbox_name": "Variação de matrizes dTOF 64x8",
+  "dtof64x8_init_uart": {
+    "message0": "Inicialize 64x8 dTOF %1 porta serial %2 RX %3 TX %4",
+    "tooltip": "Inicializando 64x8 dTOF via porta serial de hardware ESP32, a taxa de transmissão do sensor está fixa em 921600.",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Serial1",
+            "Serial1"
+          ],
+          [
+            "Serial2",
+            "Serial2"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "dtof64x8_config_frame_single": {
+    "message0": "64x8 dTOF %1 configurado em modo quadro único",
+    "tooltip": "O sensor é configurado no modo de quadro único. A biblioteca oficial ainda não implementou um modo contínuo."
+  },
+  "dtof64x8_config_full": {
+    "message0": "64x8 dTOF %1 configurado com saída full-frame",
+    "tooltip": "Configure a saída para todos os pontos de telémetro 64*8."
+  },
+  "dtof64x8_config_line": {
+    "message0": "64x8 dTOF %1 configuração de linha única %2",
+    "tooltip": "Configure a saída para 64 pontos na linha especificada, com números de linha variando de 1 a 8."
+  },
+  "dtof64x8_config_point": {
+    "message0": "Configuração 64x8 dTOF %1 Linha de Saída de Ponto Único %2 Ponto %3",
+    "tooltip": "Configure a saída de pontos individuais na linha e coluna especificadas, linhas 1-8, ponto 1-64."
+  },
+  "dtof64x8_config_points": {
+    "message0": "64x8 dTOF %1 Configure um ponto único de saída Linha %2 Início %3 Fim %4",
+    "tooltip": "Configure a saída para especificar um segmento contínuo de pontos dentro da linha, números de linha 1-8, pontos 1-64."
+  },
+  "dtof64x8_read_data": {
+    "message0": "64x8 dTOF %1 tempo de atualização de dados %2 ms",
+    "tooltip": "Acione e leia um quadro de dados, retornando o número de pontos analisados; Falhar ou timeout retorna um número negativo."
+  },
+  "dtof64x8_point_value": {
+    "message0": "Índice de Cache %1 dTOF 64x8 %2 %3",
+    "tooltip": "Leia os dados do ponto do cache após a última atualização. Os índices começam de 0.",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "X mm",
+            "X"
+          ],
+          [
+            "Y mm",
+            "Y"
+          ],
+          [
+            "Distância Z em mm",
+            "Z"
+          ],
+          [
+            "intensity",
+            "I"
+          ]
+        ]
+      }
+    ]
+  }
+}

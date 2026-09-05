@@ -1,69 +1,99 @@
-// SHT31 温湿度传感器 Generator
+'use strict';
+
+// SHT31 温湿度传感器 
+
+// 板卡适配机制
+function isESP32Core() {
+  const boardConfig = window['boardConfig'];
+  return boardConfig && boardConfig.core && boardConfig.core.indexOf('esp32') > -1;
+}
+
 Arduino.forBlock['sht31_init'] = function (block, generator) {
-    const address = block.getFieldValue('ADDRESS');
+    // 设置变量重命名监听
+    if (!block._sht31VarMonitorAttached) {
+        block._sht31VarMonitorAttached = true;
+        block._sht31VarLastName = block.getFieldValue('VAR') || 'sht31';
+        const varField = block.getField('VAR');
+        if (varField && typeof varField.setValidator === 'function') {
+            varField.setValidator(function(newName) {
+                const workspace = block.workspace || (typeof Blockly !== 'undefined' && Blockly.getMainWorkspace && Blockly.getMainWorkspace());
+                const oldName = block._sht31VarLastName;
+                if (workspace && newName && newName !== oldName) {
+                    renameVariableInBlockly(block, oldName, newName, 'Adafruit_SHT31');
+                    block._sht31VarLastName = newName;
+                }
+                return newName;
+            });
+        }
+    }
+
+    const varName = block.getFieldValue('VAR') || 'sht31';
+    const address = block.getFieldValue('ADDRESS') || '0x44';
 
     // 添加库文件
-    generator.addLibrary('#include <Wire.h>', '#include <Wire.h>');
-    generator.addLibrary('#include "Adafruit_SHT31.h"', '#include "Adafruit_SHT31.h"');
+    generator.addLibrary('Wire', '#include <Wire.h>');
+    generator.addLibrary('Adafruit_SHT31', '#include "Adafruit_SHT31.h"');
 
-    // 添加全局变量
-    generator.addObject('Adafruit_SHT31 sht31 = Adafruit_SHT31();', 'Adafruit_SHT31 sht31 = Adafruit_SHT31();');
+    // 注册变量到Blockly
+    registerVariableToBlockly(varName, 'Adafruit_SHT31');
+    
+    // 添加全局对象
+    generator.addObject(varName, 'Adafruit_SHT31 ' + varName + ';');
 
-    // 添加初始化代码到setup
-    const initCode = `if (!sht31.begin(${address})) {
-    Serial.println("SHT31 sensor not found!");
-  }`;
-    generator.addSetupBegin('sht31_init', initCode);
+    // 从WIRE字段读取I2C接口
+    const wire = block.getFieldValue('WIRE') || 'Wire';
+    
+    // 分离Wire初始化和传感器初始化
+    const wireInitCode = wire + '.begin();';
+    const pinComment = '// SHT3x I2C连接: 使用默认I2C引脚';
+    
+    // 转换地址为十六进制格式
+    const addressHex = address.startsWith('0x') ? address : '0x' + parseInt(address).toString(16);
+    
+    const sensorInitCode = `if (!${varName}.begin(${addressHex})) {
+  while (1) delay(1);
+}
+`;
+  
+    // 使用动态setupKey添加Wire初始化（支持多I2C总线）
+    generator.addSetup(`wire_${wire}_begin`, pinComment + '\n' + wireInitCode + '\n');
+  
+    // 传感器初始化使用独立的key
+    generator.addSetup(`sht31_${varName}_init`, sensorInitCode);
 
     return '';
 };
 
 Arduino.forBlock['sht31_heater_control'] = function (block, generator) {
+    const varField = block.getField('VAR');
+    const varName = varField ? varField.getText() : 'sht31';
     const state = block.getFieldValue('STATE');
 
-    // 确保已初始化
-    generator.addLibrary('#include <Wire.h>', '#include <Wire.h>');
-    generator.addLibrary('#include "Adafruit_SHT31.h"', '#include "Adafruit_SHT31.h"');
-    generator.addObject('Adafruit_SHT31 sht31 = Adafruit_SHT31();', 'Adafruit_SHT31 sht31 = Adafruit_SHT31();');
-
-    return `sht31.heater(${state});\n`;
+    return `${varName}.heater(${state});\n`;
 };
 
 Arduino.forBlock['sht31_is_heater_enabled'] = function (block, generator) {
-    // 确保已初始化
-    generator.addLibrary('#include <Wire.h>', '#include <Wire.h>');
-    generator.addLibrary('#include "Adafruit_SHT31.h"', '#include "Adafruit_SHT31.h"');
-    generator.addObject('Adafruit_SHT31 sht31 = Adafruit_SHT31();', 'Adafruit_SHT31 sht31 = Adafruit_SHT31();');
+    const varField = block.getField('VAR');
+    const varName = varField ? varField.getText() : 'sht31';
 
-    return ['sht31.isHeaterEnabled()', generator.ORDER_ATOMIC];
+    return [varName + '.isHeaterEnabled()', generator.ORDER_ATOMIC];
 };
 
 Arduino.forBlock['sht31_reset'] = function (block, generator) {
-    // 确保已初始化
-    generator.addLibrary('#include <Wire.h>', '#include <Wire.h>');
-    generator.addLibrary('#include "Adafruit_SHT31.h"', '#include "Adafruit_SHT31.h"');
-    generator.addObject('Adafruit_SHT31 sht31 = Adafruit_SHT31();', 'Adafruit_SHT31 sht31 = Adafruit_SHT31();');
+    const varField = block.getField('VAR');
+    const varName = varField ? varField.getText() : 'sht31';
 
-    return 'sht31.reset();\n';
+    return varName + '.reset();\n';
 };
 
 Arduino.forBlock['sht31_simple_read'] = function (block, generator) {
+    const varField = block.getField('VAR');
+    const varName = varField ? varField.getText() : 'sht31';
     const type = block.getFieldValue('TYPE');
 
-    // 确保已初始化
-    generator.addLibrary('#include <Wire.h>', '#include <Wire.h>');
-    generator.addLibrary('#include "Adafruit_SHT31.h"', '#include "Adafruit_SHT31.h"');
-    generator.addObject('Adafruit_SHT31 sht31 = Adafruit_SHT31();', 'Adafruit_SHT31 sht31 = Adafruit_SHT31();');
-
-    // 自动初始化（简化版本）
-    const initCode = `if (!sht31.begin(0x44)) {
-    Serial.println("SHT31 sensor not found!");
-  }`;
-    generator.addSetupBegin('sht31_init', initCode);
-
     if (type === 'temperature') {
-        return ['sht31.readTemperature()', generator.ORDER_ATOMIC];
+        return [varName + '.readTemperature()', generator.ORDER_ATOMIC];
     } else {
-        return ['sht31.readHumidity()', generator.ORDER_ATOMIC];
+        return [varName + '.readHumidity()', generator.ORDER_ATOMIC];
     }
 };

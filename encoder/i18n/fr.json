@@ -1,0 +1,99 @@
+{
+  "toolbox_name": "Encodeur rotatif",
+  "encoder_init": {
+    "message0": "Initialiser l’encodeur %1 connecter à la broche A %2 broche B %3",
+    "tooltip": "Initialiser un objet encodeur rotatif connecté aux deux broches spécifiées",
+    "args0": [
+      null,
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": "${board.digitalPins}"
+      }
+    ]
+  },
+  "encoder_set_property": {
+    "message0": "Réglez le %2 de l’encodeur %1 sur %3",
+    "tooltip": "Définir différentes valeurs d’attributs pour l’encodeur",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Position",
+            "position"
+          ],
+          [
+            "Supérieure",
+            "upper_limit"
+          ],
+          [
+            "Inférieure",
+            "lower_limit"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "encoder_value_changed": {
+    "message0": "La rotation de la valeur de l’encodeur change",
+    "tooltip": "Déterminez si la valeur de l’encodeur rotatif a changé"
+  },
+  "encoder_state_change": {
+    "message0": "Lorsque l’état de l’encodeur est %1, %2 exécute %3",
+    "tooltip": "Effectuer les opérations correspondantes lorsque l’encodeur subit un changement d’état spécifique",
+    "args0": [
+      {
+        "options": [
+          [
+            "Tournez vers la gauche",
+            "LEFT"
+          ],
+          [
+            "Tournez vers la droite",
+            "RIGHT"
+          ],
+          [
+            "Au-dessus de la limite supérieure",
+            "ABOVE_LIMIT"
+          ],
+          [
+            "En dessous de la limite inférieure",
+            "BELOW_LIMIT"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "encoder_get_property": {
+    "message0": "Obtenir le %2 de l’encodeur %1",
+    "tooltip": "Obtenir différentes valeurs d’attributs de l’encodeur",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Position",
+            "POSITION"
+          ],
+          [
+            "Direction",
+            "DIRECTION"
+          ],
+          [
+            "Supérieure",
+            "UPPER_LIMIT"
+          ],
+          [
+            "Inférieure",
+            "LOWER_LIMIT"
+          ]
+        ]
+      }
+    ]
+  }
+}

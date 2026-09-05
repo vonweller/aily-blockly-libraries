@@ -1,0 +1,138 @@
+{
+  "toolbox_name": "Servo",
+  "toolbox_labels": {
+    "基础控制": "基本制御",
+    "读取状态": "読み取りステータス",
+    "高级控制": "高度な制御",
+    "实用功能": "実用的な機能",
+    "角度值": "角度値"
+  },
+  "servo_attach": {
+    "message0": "サーボ%1ピンを初期化してください",
+    "tooltip": "指定されたピンでサーボを初期化します。 ESP32はGPIO 4、5、12-19、21-23、25-27、32、33を推奨しています。 GPIO 6-11(フラッシュ)および34-39(入力のみ)の使用は避けてください。",
+    "args0": [
+      {
+        "options": "${board.servoPins}"
+      }
+    ]
+  },
+  "servo_attach_advanced": {
+    "message0": "サーボ%1ピンを初期化してください\n最小パルス幅 %2 最大パルス幅 %3",
+    "tooltip": "指定されたピンでサーボを初期化し、パルス幅範囲を設定します。 ESP32は手動指定なしで自動的にPWMチャネルを割り当てます",
+    "args0": [
+      {
+        "options": "${board.servoPins}"
+      },
+      null,
+      null
+    ]
+  },
+  "servo_attach_full": {
+    "message0": "サーボ%1ピンを初期化してください\n最小角度 %2 最大角度%3\n最小パルス幅 %4 最大パルス幅 %5",
+    "tooltip": "指定されたピンでサーボを初期化し、角度範囲、パルス幅範囲などのパラメータを全設定します。 ESP32は自動的にPWMチャネルを割り当てます",
+    "args0": [
+      {
+        "options": "${board.servoPins}"
+      },
+      null,
+      null,
+      null,
+      null
+    ]
+  },
+  "servo_write": {
+    "message0": "コントロールピン%1サーボを%2度の角度に回転させます",
+    "tooltip": "指定されたピンサーボのターゲット角度(0-180度)を設定します",
+    "args0": [
+      {
+        "options": "${board.servoPins}"
+      },
+      null
+    ]
+  },
+  "servo_write_float": {
+    "message0": "コントロールピン%1サーボを%2度の角度に回転させます",
+    "tooltip": "指定されたピンサーボの正確な角度を設定する(浮動小数点カウントに対応しています)",
+    "args0": [
+      {
+        "options": "${board.servoPins}"
+      },
+      null
+    ]
+  },
+  "servo_write_microseconds": {
+    "message0": "制御ピン%1サーボはパルス幅を%2マイクロ秒に設定します",
+    "tooltip": "指定されたピンサーボのパルス幅値を直接設定します(通常は544〜2400マイクロ秒)。",
+    "args0": [
+      {
+        "options": "${board.servoPins}"
+      },
+      null
+    ]
+  },
+  "servo_read": {
+    "message0": "サーボの現在の角度%1トレーディングフットを読みましょう",
+    "tooltip": "指定されたピンサーボの電流角度値を読み取ってください",
+    "args0": [
+      {
+        "options": "${board.servoPins}"
+      }
+    ]
+  },
+  "servo_read_microseconds": {
+    "message0": "サーボの脚%1電流パルス幅を読み取ってください",
+    "tooltip": "指定されたピンサーボの現在のパルス幅(マイクロ秒)を読み取る",
+    "args0": [
+      {
+        "options": "${board.servoPins}"
+      }
+    ]
+  },
+  "servo_attached": {
+    "message0": "ピン%1サーボは接続されています",
+    "tooltip": "指定されたピンのサーボが接続されているか確認してください",
+    "args0": [
+      {
+        "options": "${board.servoPins}"
+      }
+    ]
+  },
+  "servo_detach": {
+    "message0": "サーボ%1ピンディスコネクト",
+    "tooltip": "指定されたピンサーボとピンの接続を切り離します",
+    "args0": [
+      {
+        "options": "${board.servoPins}"
+      }
+    ]
+  },
+  "servo_get_pin": {
+    "message0": "サーボ接続用のピン%1 ピン番号",
+    "tooltip": "指定されたサーボ接続のピン番号を取得する(入力したピン番号を返す)",
+    "args0": [
+      {
+        "options": "${board.servoPins}"
+      }
+    ]
+  },
+  "servo_map_angle": {
+    "message0": "値のマッピング値はレンジ%2から%3まで%1\n角度は%4から%5まで幅があります",
+    "tooltip": "範囲の値をサーボ角の範囲にマッピングします"
+  },
+  "servo_sweep": {
+    "message0": "ピン%1サーボスキャン\n%2度から%3度まで、遅延は%4ミリ秒です",
+    "tooltip": "指定されたピンを持つサーボが指定された角度範囲内でスキャンできるようにします",
+    "args0": [
+      {
+        "options": "${board.servoPins}"
+      },
+      null,
+      null,
+      null
+    ]
+  },
+  "servo_angle": {
+    "message0": "角度%1度",
+    "tooltip": "サーボ角度値(0～180度)"
+  }
+}

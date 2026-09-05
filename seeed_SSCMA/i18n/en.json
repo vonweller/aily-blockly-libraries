@@ -1,0 +1,299 @@
+{
+  "toolbox_name": "SSCMA AI",
+  "toolbox_labels": {
+    "初始化": "initialization",
+    "AI推理": "AI reasoning",
+    "检测结果": "Test results",
+    "性能信息": "Performance information",
+    "数据传输": "Data transfer",
+    "设备信息": "Device information",
+    "控制操作": "control operations"
+  },
+  "sscma_begin_i2c": {
+    "message0": "Initialize SSCMA AI module %1 I2C interface %2\nReset pin %3 I2C address %4",
+    "tooltip": "Initialize the SSCMA AI module and communicate using the I2C interface",
+    "args0": [
+      null,
+      {
+        "options": "${board.i2c}"
+      },
+      null,
+      null
+    ]
+  },
+  "sscma_begin_serial": {
+    "message0": "Initialize SSCMA AI module %1 Serial interface %2\nReset pin %3 Baud rate %4",
+    "tooltip": "Initialize the SSCMA AI module and communicate using the serial port interface",
+    "args0": [
+      null,
+      {
+        "options": "${board.serialPort}"
+      },
+      null,
+      null
+    ]
+  },
+  "sscma_begin_spi": {
+    "message0": "Initialize SSCMA AI module %1 SPI interface %2\nCS pin %3 SYNC pin %4\nReset pin %5 Clock frequency %6 MHz",
+    "tooltip": "Initialize the SSCMA AI module and communicate using the SPI interface",
+    "args0": [
+      null,
+      {
+        "options": "${board.spi}"
+      },
+      null,
+      null,
+      null,
+      null
+    ]
+  },
+  "sscma_invoke": {
+    "message0": "%1 Get the result of executing AI inference Number of inferences %2 Filter %3 Display %4",
+    "tooltip": "Perform AI inference and obtain detection results",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "Yes",
+            "true"
+          ],
+          [
+            "No",
+            "false"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "No",
+            "false"
+          ],
+          [
+            "Yes",
+            "true"
+          ]
+        ]
+      }
+    ]
+  },
+  "sscma_return_status": {
+    "message0": "AI execution result status constant %1",
+    "tooltip": "SSCMA command execution result status constant",
+    "args0": [
+      {
+        "options": [
+          [
+            "success",
+            "CMD_OK"
+          ],
+          [
+            "Try again",
+            "CMD_AGAIN"
+          ],
+          [
+            "log error",
+            "CMD_ELOG"
+          ],
+          [
+            "timeout",
+            "CMD_ETIMEDOUT"
+          ],
+          [
+            "IO error",
+            "CMD_EIO"
+          ],
+          [
+            "Invalid parameter",
+            "CMD_EINVAL"
+          ],
+          [
+            "Out of memory",
+            "CMD_ENOMEM"
+          ],
+          [
+            "busy",
+            "CMD_EBUSY"
+          ],
+          [
+            "Not supported",
+            "CMD_ENOTSUP"
+          ],
+          [
+            "Permission error",
+            "CMD_EPERM"
+          ],
+          [
+            "unknown error",
+            "CMD_EUNKNOWN"
+          ]
+        ]
+      }
+    ]
+  },
+  "sscma_get_boxes_count": {
+    "message0": "%1 Get the number of target detection results",
+    "tooltip": "Get the number of detected target frames"
+  },
+  "sscma_get_box_info": {
+    "message0": "%1 Get target detection information Index %2 Attribute %3",
+    "tooltip": "Get the attribute information of the specified detection frame",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "X coordinate",
+            "x"
+          ],
+          [
+            "Y coordinate",
+            "y"
+          ],
+          [
+            "Width",
+            "w"
+          ],
+          [
+            "height",
+            "h"
+          ],
+          [
+            "Confidence",
+            "score"
+          ],
+          [
+            "target category",
+            "target"
+          ]
+        ]
+      }
+    ]
+  },
+  "sscma_get_classes_count": {
+    "message0": "%1 Get the number of classification detection results",
+    "tooltip": "Get the number of classification results"
+  },
+  "sscma_get_class_info": {
+    "message0": "%1 Get classification detection information Index %2 Attribute %3",
+    "tooltip": "Get attribute information of specified classification results",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "Confidence",
+            "score"
+          ],
+          [
+            "target category",
+            "target"
+          ]
+        ]
+      }
+    ]
+  },
+  "sscma_get_points_count": {
+    "message0": "%1 Get the number of key points",
+    "tooltip": "Get the number of key points"
+  },
+  "sscma_get_point_info": {
+    "message0": "%1 Get key point information Index %2 Attribute %3",
+    "tooltip": "Get attribute information of specified keypoint",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "X coordinate",
+            "x"
+          ],
+          [
+            "Y coordinate",
+            "y"
+          ],
+          [
+            "Confidence",
+            "score"
+          ],
+          [
+            "target category",
+            "target"
+          ]
+        ]
+      }
+    ]
+  },
+  "sscma_check_last_image": {
+    "message0": "%1 Whether there is the latest frame of image data",
+    "tooltip": "Check if SSCMA has the latest frame of image data available"
+  },
+  "sscma_get_last_image": {
+    "message0": "%1 Get the latest frame of image data",
+    "tooltip": "Get the latest frame of image data processed by SSCMA"
+  },
+  "sscma_get_performance": {
+    "message0": "%1 Get performance information stage %2",
+    "tooltip": "Get the processing time of the specified stage (milliseconds)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "preprocessing",
+            "prepocess"
+          ],
+          [
+            "reasoning",
+            "inference"
+          ],
+          [
+            "Post-processing",
+            "postprocess"
+          ]
+        ]
+      }
+    ]
+  },
+  "sscma_available": {
+    "message0": "%1 Whether there is readable data",
+    "tooltip": "Check if SSCMA has readable data"
+  },
+  "sscma_read": {
+    "message0": "%1 Read data Data%2 Length%3",
+    "tooltip": "Reading data from SSCMA"
+  },
+  "sscma_write": {
+    "message0": "%1 Write data Data %2 Length %3",
+    "tooltip": "Write data to SSCMA"
+  },
+  "sscma_get_device_id": {
+    "message0": "%1 Get device ID",
+    "tooltip": "Get the unique ID of the SSCMA device"
+  },
+  "sscma_get_device_name": {
+    "message0": "%1 Get the device name",
+    "tooltip": "Get the name of the SSCMA device"
+  },
+  "sscma_get_device_info": {
+    "message0": "%1 Get device information",
+    "tooltip": "Get detailed information of SSCMA device"
+  },
+  "sscma_reset": {
+    "message0": "%1Reset SSCMA device",
+    "tooltip": "Reset SSCMA device"
+  },
+  "sscma_save_jpeg": {
+    "message0": "%1Save JPEG image",
+    "tooltip": "Save current image as JPEG format"
+  },
+  "sscma_clean_actions": {
+    "message0": "%1 Cleanup action",
+    "tooltip": "Clear all set actions"
+  }
+}

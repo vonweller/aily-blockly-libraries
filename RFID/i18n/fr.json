@@ -1,0 +1,102 @@
+{
+  "toolbox_name": "Module RFID",
+  "toolbox_labels": {
+    "初始化": "initialisation",
+    "卡片检测": "Détection de carte",
+    "数据操作": "Opérations sur les données",
+    "控制": "contrôle"
+  },
+  "mfrc522_setup": {
+    "args0": [
+      null,
+      null
+    ],
+    "message0": "Initialiser le lecteur RFID %1 l’adresse I2C %2",
+    "tooltip": "Initialisez MFRC522 lecteur/écriveur RFID, définissez l’adresse I2C et les broches"
+  },
+  "mfrc522_is_new_card_present": {
+    "args0": [
+      null
+    ],
+    "message0": "Le %1 RFID détecte les nouvelles cartes",
+    "tooltip": "Détecter si de nouvelles cartes RFID sont à proximité"
+  },
+  "mfrc522_read_card_serial": {
+    "args0": [
+      null
+    ],
+    "message0": "Le %1 RFID lit le numéro de série de la carte",
+    "tooltip": "Lisez le numéro de série unique de la carte RFID"
+  },
+  "mfrc522_read_uid": {
+    "args0": [
+      null
+    ],
+    "message0": "La %1 RFID obtient la chaîne UID",
+    "tooltip": "Obtenir la chaîne UID de la carte RFID"
+  },
+  "mfrc522_when_card_detected": {
+    "args0": [
+      null
+    ],
+    "args1": [
+      null
+    ],
+    "message0": "Lorsque la RFID détecte %1 la carte",
+    "message1": "exécuter %1",
+    "tooltip": "Un événement déclenché lorsqu’une carte RFID est détectée"
+  },
+  "mfrc522_authenticate": {
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "Une clé",
+            "A"
+          ],
+          [
+            "Clé B",
+            "B"
+          ]
+        ]
+      },
+      null
+    ],
+    "message0": "Secteur %2 d’authentification RFID %1 type %3 clé %4",
+    "tooltip": "Secteurs désignés pour l’authentification des cartes RFID"
+  },
+  "mfrc522_read_block": {
+    "args0": [
+      null,
+      null,
+      null
+    ],
+    "message0": "Le bloc de lecture RFID %1 %2 à %3",
+    "tooltip": "Lire les données du bloc spécifié dans le tableau"
+  },
+  "mfrc522_write_block": {
+    "args0": [
+      null,
+      null,
+      null
+    ],
+    "message0": "RFID %1 écrit des données %2 pour bloquer %3",
+    "tooltip": "Écrire des données sur des blocs spécifiés"
+  },
+  "mfrc522_halt_card": {
+    "args0": [
+      null
+    ],
+    "message0": "Le %1 RFID interrompt la communication par carte",
+    "tooltip": "Arrêter la communication avec les cartes RFID"
+  },
+  "mfrc522_get_data_string": {
+    "args0": [
+      null
+    ],
+    "message0": "Obtenez la chaîne hexadécimale de %1",
+    "tooltip": "Convertir les tableaux de données RFID en format chaîne hexadécimale (par exemple, 48 65 6c 6c 6f)"
+  }
+}

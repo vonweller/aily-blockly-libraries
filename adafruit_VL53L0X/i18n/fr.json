@@ -1,0 +1,47 @@
+{
+  "toolbox_name": "VL53L0X Mesure de distance au laser",
+  "vl53l0x_config_i2c": {
+    "message0": "Configuration VL53L0X broche I2C %1",
+    "tooltip": "Équipé de broches I2C utilisées par les capteurs VL53L0X",
+    "args0": [
+      {
+        "options": [
+          [
+            "Wire1 (SDA:8, SCL:9)",
+            "WIRE1"
+          ],
+          [
+            "Wire2 (SDA:4, SCL:5)",
+            "WIRE2"
+          ]
+        ]
+      }
+    ]
+  },
+  "vl53l0x_init_with_wire": {
+    "message0": "Initialisez VL53L0X capteur %1 utilisez %2",
+    "tooltip": "Initialiser VL53L0X capteur de distance laser et spécifier le bus I2C utilisé",
+    "args0": [
+      null,
+      {
+        "options": "${board.i2c}"
+      }
+    ]
+  },
+  "vl53l0x_begin": {
+    "message0": "Initialiser VL53L0X capteur %1 %2",
+    "tooltip": "Initialisez VL53L0X capteur de distance laser, configurez les broches I2C et vérifiez la connexion"
+  },
+  "vl53l0x_ranging_test": {
+    "message0": "Les capteurs %1 effectuer des mesures et stocker les results%2",
+    "tooltip": "Une mesure détaillée est effectuée et les résultats sont stockés dans la variable spécifiée"
+  },
+  "vl53l0x_check_range_valid": {
+    "message0": "Les résultats des mesures %1 valides",
+    "tooltip": "Vérifiez si le résultat de la mesure est valide ; si la valeur d’état n’est pas 4, elle est valide"
+  },
+  "vl53l0x_get_range_mm": {
+    "message0": "Obtenir la distance (mm) à partir du résultat de la mesure %1",
+    "tooltip": "Les données de distance sont obtenues à partir des résultats de la mesure, mesurées en millimètres"
+  }
+}

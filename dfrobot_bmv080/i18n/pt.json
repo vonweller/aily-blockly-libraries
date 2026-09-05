@@ -1,0 +1,199 @@
+{
+  "toolbox_name": "Sensor de partículas BMV080",
+  "bmv080_init_i2c": {
+    "message0": "Inicialize o barramento %1 do BMV080 I2C %2 endereço %3",
+    "tooltip": "Inicialize e ligue o sensor de partículas do BMV080 via I2C.",
+    "args0": [
+      null,
+      {
+        "options": "${board.i2c}"
+      },
+      {
+        "options": [
+          [
+            "0x57",
+            "0x57"
+          ],
+          [
+            "0x56",
+            "0x56"
+          ],
+          [
+            "0x55",
+            "0x55"
+          ],
+          [
+            "0x54",
+            "0x54"
+          ]
+        ]
+      }
+    ]
+  },
+  "bmv080_init_spi": {
+    "message0": "Inicializar o barramento %1  do BMV080 SPI %2 CS %3",
+    "tooltip": "Inicialize e ative o sensor de partículas do BMV080 via SPI."
+  },
+  "bmv080_set_mode": {
+    "message0": "BMV080 %1 Configurando o Modo de Medição %2",
+    "tooltip": "Inicie a medição contínua ou a medição do ciclo de trabalho.",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "continuous",
+            "CONTINUOUS_MODE"
+          ],
+          [
+            "Medição do ciclo de trabalho",
+            "DUTY_CYCLE_MODE"
+          ]
+        ]
+      }
+    ]
+  },
+  "bmv080_set_duty_cycle": {
+    "message0": "BMV080 %1 Ajuste o ciclo de trabalho para %2 segundos e o tempo de integração para %3 segundos",
+    "tooltip": "Defina o parâmetro de Modo Ciclo de Trabalho. O ciclo deve ter pelo menos 12 segundos, o tempo de integração deve ser de pelo menos 1 segundo, e o ciclo deve ser pelo menos 2 segundos maior que o tempo de integração."
+  },
+  "bmv080_set_algorithm": {
+    "message0": "BMV080 %1 Algoritmo de Medição de Configuração %2",
+    "tooltip": "Defina algoritmos de medição de PM.",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Resposta rápida",
+            "FAST_RESPONSE"
+          ],
+          [
+            "balanced",
+            "BALANCED"
+          ],
+          [
+            "Alta precisão",
+            "HIGH_PRECISION"
+          ]
+        ]
+      }
+    ]
+  },
+  "bmv080_set_feature": {
+    "message0": "BMV080 %1 Settings%2 %3",
+    "tooltip": "Ative ou desative as funções de detecção de oclusão e filtragem de vibração.",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Detecção de obstrução",
+            "OBSTRUCTION"
+          ],
+          [
+            "Filtração por vibração",
+            "VIBRATION"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "Ligado",
+            "true"
+          ],
+          [
+            "Desligado",
+            "false"
+          ]
+        ]
+      }
+    ]
+  },
+  "bmv080_read_data": {
+    "message0": "BMV080 %1 atualiza dados PM",
+    "tooltip": "Leia e armazene em cache PM1, PM2.5, PM10. Dados prontos retornam verdadeiro, não pronto retorna falso."
+  },
+  "bmv080_pm_value": {
+    "message0": "value%2 cache %1 BMV080",
+    "tooltip": "Leia o valor do cache do PM após a última atualização.",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "PM1 ug/m3",
+            "PM1"
+          ],
+          [
+            "PM2,5 ug/m3",
+            "PM25"
+          ],
+          [
+            "PM10 ug/m3",
+            "PM10"
+          ]
+        ]
+      }
+    ]
+  },
+  "bmv080_get_status": {
+    "message0": "Status/Configuração do BMV080 %1 %2",
+    "tooltip": "Leia a configuração ou o status de oclusão do BMV080.",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "algorithm",
+            "ALGORITHM"
+          ],
+          [
+            "Tempo de pontuação",
+            "INTEGRATION"
+          ],
+          [
+            "Ciclo do vazio",
+            "PERIOD"
+          ],
+          [
+            "Interruptor de detecção de bloco",
+            "OBSTRUCTION_FEATURE"
+          ],
+          [
+            "Interruptor de filtro de vibração",
+            "VIBRATION_FEATURE"
+          ],
+          [
+            "Se está obstruído",
+            "OBSTRUCTED"
+          ]
+        ]
+      }
+    ]
+  },
+  "bmv080_command": {
+    "message0": "BMV080 %1 run %2",
+    "tooltip": "Pare de medir, resetar ou desligar o BMV080.",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Pare a medição",
+            "STOP"
+          ],
+          [
+            "Volte para o seu lugar",
+            "RESET"
+          ],
+          [
+            "Desligue o sensor",
+            "CLOSE"
+          ]
+        ]
+      }
+    ]
+  }
+}

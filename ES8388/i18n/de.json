@@ -1,0 +1,195 @@
+{
+  "toolbox_name": "ES8388",
+  "toolbox_labels": {
+    "初始化": "Initialisierung",
+    "输入输出配置": "Eingabe- und Ausgabekonfiguration",
+    "录音功能": "Aufnahmefunktion",
+    "播放功能": "Spielfunktion",
+    "实时音频处理": "Audioverarbeitung in Echtzeit",
+    "状态查询": "Statusabfrage",
+    "调试工具": "Debugging-Tools"
+  },
+  "es8388_create": {
+    "message0": "Erstellen Sie den ES8388-Audiocodec %1 I2C SDA-Pin %2 I2C-SCL-Pin %3 I2C-Geschwindigkeit %4 kHz",
+    "tooltip": "Erstellen Sie das Audiocodec-Objekt ES8388"
+  },
+  "es8388_begin": {
+    "message0": "Initialisieren von ES8388 %1 Abtastrate %2 MCLK-Pin %3 BCLK-Pin %4 WS-Pin %5 Datenausgabepin %6 Dateneingabepin %7",
+    "tooltip": "Initialisieren des ES8388-Chips und der I2S-Schnittstelle"
+  },
+  "es8388_set_input_gain": {
+    "message0": "Stelle ES8388 %1 Eingangsverstärkung %2",
+    "tooltip": "Eingangsverstärkung einstellen (0-8)"
+  },
+  "es8388_set_output_volume": {
+    "message0": "Setze ES8388 %1 Ausgangslautstärke %2",
+    "tooltip": "Einstellende Ausgangslautstärke (0-33)"
+  },
+  "es8388_dac_mute": {
+    "message0": "ES8388 %1 DAC Silent %2",
+    "tooltip": "Stell den DAC auf Stummschaltmodus ein",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Ein",
+            "TRUE"
+          ],
+          [
+            "Aus",
+            "FALSE"
+          ]
+        ]
+      }
+    ]
+  },
+  "es8388_start_recording": {
+    "message0": "ES8388 %1 beginnt für %2 Sekunden mit der Aufnahme",
+    "tooltip": "Beginnen Sie mit der Aufnahme und geben Sie die Dauer an"
+  },
+  "es8388_stop_recording": {
+    "message0": "ES8388 %1 die Aufnahme eingestellt",
+    "tooltip": "Aufnahme stoppen"
+  },
+  "es8388_start_playback": {
+    "message0": "ES8388 %1 beginnt, die Aufnahme abzuspielen",
+    "tooltip": "Beginnen Sie mit dem Abspielen der aufgenommenen Audioaufnahmen"
+  },
+  "es8388_stop_playback": {
+    "message0": "ES8388 %1 aufgehört zu spielen",
+    "tooltip": "Wiedergabe stoppen"
+  },
+  "es8388_record_and_play": {
+    "message0": "ES8388 %1 Aufnahme und Wiedergabe für %2 Sekunden",
+    "tooltip": "Aufnehmen und sofort abspielen"
+  },
+  "es8388_enable_passthrough": {
+    "message0": "ES8388 %1 ermöglicht Audio-Passthrough",
+    "tooltip": "Audio-Passthrough-Modus aktivieren"
+  },
+  "es8388_disable_passthrough": {
+    "message0": "ES8388 %1 Audio-Durchleitung deaktivieren",
+    "tooltip": "Audio-Passthrough-Modus deaktivieren"
+  },
+  "es8388_process_audio": {
+    "message0": "ES8388 verarbeitet %1 Audiodaten",
+    "tooltip": "Verarbeitung von Audiodaten (für Echtzeit-Audioverarbeitung)"
+  },
+  "es8388_is_recording": {
+    "message0": "ES8388 %1 Ist die Aufnahme im Gange?",
+    "tooltip": "Überprüfen Sie, ob die Aufnahmen laufen"
+  },
+  "es8388_is_playing": {
+    "message0": "ES8388 %1 läuft jetzt?",
+    "tooltip": "Schau mal, ob es abgespielt wird"
+  },
+  "es8388_get_recorded_samples": {
+    "message0": "ES8388 %1 Ruft die Anzahl der Aufzeichnungsproben ab",
+    "tooltip": "Ermitteln Sie die Anzahl der aufgenommenen Proben"
+  },
+  "es8388_get_recorded_duration": {
+    "message0": "ES8388 %1 Aufnahmedauer erhalten",
+    "tooltip": "Erhalten Sie die Aufnahmedauer (Sekunden)"
+  },
+  "es8388_set_input_select": {
+    "message0": "ES8388 %1 Eingang auswählen Source%2",
+    "tooltip": "Wählen Sie die Audioeingangsquelle aus",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Hier kommt 1 ins Spiel",
+            "IN1"
+          ],
+          [
+            "Hier kommt 2 ins Spiel",
+            "IN2"
+          ],
+          [
+            "Eintritt 1 Differential",
+            "IN1DIFF"
+          ],
+          [
+            "Hier kommt 2 Differential ins Spiel",
+            "IN2DIFF"
+          ]
+        ]
+      }
+    ]
+  },
+  "es8388_set_output_select": {
+    "message0": "ES8388 %1 Ausgangsauswahl %2",
+    "tooltip": "Audioausgang auswählen",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Ausgabe 1",
+            "OUT1"
+          ],
+          [
+            "Ausgabe 2",
+            "OUT2"
+          ],
+          [
+            "Alle Ausgaben",
+            "OUTALL"
+          ]
+        ]
+      }
+    ]
+  },
+  "es8388_set_alc_mode": {
+    "message0": "ES8388 %1 ALC-Modus %2",
+    "tooltip": "Stellen Sie den automatischen Pegelkontrollmodus ein",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Deaktivieren",
+            "DISABLE"
+          ],
+          [
+            "Allgemeines",
+            "GENERIC"
+          ],
+          [
+            "Stimme",
+            "VOICE"
+          ],
+          [
+            "Musik",
+            "MUSIC"
+          ]
+        ]
+      }
+    ]
+  },
+  "es8388_analog_bypass": {
+    "message0": "ES8388 %1 Analoger Durchführ-%2",
+    "tooltip": "Setzen Sie den simulierten Passthrough-Modus ein",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Ein",
+            "TRUE"
+          ],
+          [
+            "Aus",
+            "FALSE"
+          ]
+        ]
+      }
+    ]
+  },
+  "es8388_scan_i2c": {
+    "message0": "ES8388 scannt %1 I2C-Geräte",
+    "tooltip": "Scan-Geräte auf dem I2C-Bus"
+  }
+}

@@ -1,0 +1,115 @@
+{
+  "toolbox_name": "Hash calculation",
+  "toolbox_labels": {
+    "快速哈希": "fast hash",
+    "分步哈希（大数据）": "Stepwise Hashing (Big Data)",
+    "密钥派生": "Key derivation"
+  },
+  "esp32_hash_compute": {
+    "message0": "Calculate %1 hash value data %2",
+    "tooltip": "Calculate the hash value of a string and return a hexadecimal string",
+    "args0": [
+      {
+        "options": [
+          [
+            "SHA1",
+            "SHA1"
+          ],
+          [
+            "SHA224",
+            "SHA224"
+          ],
+          [
+            "SHA256",
+            "SHA256"
+          ],
+          [
+            "SHA384",
+            "SHA384"
+          ],
+          [
+            "SHA512",
+            "SHA512"
+          ],
+          [
+            "SHA3-256",
+            "SHA3_256"
+          ],
+          [
+            "SHA3-512",
+            "SHA3_512"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "esp32_hash_create": {
+    "message0": "Create hash builder %1 %2",
+    "tooltip": "Create a hash builder object (for step-by-step calculation of big data hashes)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "SHA1",
+            "SHA1"
+          ],
+          [
+            "SHA256",
+            "SHA256"
+          ],
+          [
+            "SHA512",
+            "SHA512"
+          ],
+          [
+            "SHA3-256",
+            "SHA3_256"
+          ],
+          [
+            "SHA3-512",
+            "SHA3_512"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_hash_begin": {
+    "message0": "Hash builder %1 starts",
+    "tooltip": "Reset the hash builder and start a new calculation"
+  },
+  "esp32_hash_add": {
+    "message0": "Hash builder %1 Add data %2",
+    "tooltip": "Add data to hash builder"
+  },
+  "esp32_hash_calculate": {
+    "message0": "Hash builder %1 completes calculation",
+    "tooltip": "Complete hash calculation"
+  },
+  "esp32_hash_result": {
+    "message0": "Hash builder %1 gets results",
+    "tooltip": "Get the hash calculation result (hex string)"
+  },
+  "esp32_hash_pbkdf2": {
+    "message0": "PBKDF2 Key Derivation Algorithm %1 Password %2 Salt %3 Number of Iterations %4",
+    "tooltip": "Key derivation using PBKDF2-HMAC",
+    "args0": [
+      {
+        "options": [
+          [
+            "SHA256",
+            "SHA256"
+          ],
+          [
+            "SHA512",
+            "SHA512"
+          ]
+        ]
+      },
+      null,
+      null,
+      null
+    ]
+  }
+}

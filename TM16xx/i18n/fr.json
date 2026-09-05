@@ -1,0 +1,180 @@
+{
+  "toolbox_name": "Tube numérique TM16xx",
+  "toolbox_labels": {
+    "初始化": "initialisation",
+    "显示控制": "contrôle de l'affichage",
+    "高级功能": "Fonctionnalités avancées",
+    "按键检测": "Détection de clé"
+  },
+  "tm16xx_init": {
+    "message0": "Initialisation %1 tube numérique, DIO pin%2 CLK pin%3 décodeur pin%4 nombre de chiffres %5",
+    "args0": [
+      {
+        "options": [
+          [
+            "TM1637",
+            "TM1637"
+          ],
+          [
+            "TM1638",
+            "TM1638"
+          ],
+          [
+            "TM1640",
+            "TM1640"
+          ],
+          [
+            "TM1650",
+            "TM1650"
+          ],
+          [
+            "TM1668",
+            "TM1668"
+          ]
+        ]
+      },
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": "${board.digitalPins}"
+      },
+      null
+    ]
+  },
+  "tm16xx_simple_init": {
+    "message0": "Initialiser %1 broche DIO du tube numérique %2 CLK pin%3",
+    "args0": [
+      {
+        "options": [
+          [
+            "TM1637",
+            "TM1637"
+          ],
+          [
+            "TM1640",
+            "TM1640"
+          ],
+          [
+            "TM1650",
+            "TM1650"
+          ]
+        ]
+      },
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": "${board.digitalPins}"
+      }
+    ]
+  },
+  "tm16xx_display_string": {
+    "message0": "Affichage text%1"
+  },
+  "tm16xx_display_number": {
+    "message0": "Affichez les nombres %1 les %2 en virgule",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Aucun",
+            "0"
+          ],
+          [
+            "Numéro 1",
+            "1"
+          ],
+          [
+            "2e place",
+            "2"
+          ],
+          [
+            "3e place",
+            "3"
+          ],
+          [
+            "4e place",
+            "4"
+          ],
+          [
+            "5e place",
+            "5"
+          ],
+          [
+            "6e place",
+            "6"
+          ],
+          [
+            "7e place",
+            "7"
+          ],
+          [
+            "8e place",
+            "8"
+          ]
+        ]
+      }
+    ]
+  },
+  "tm16xx_clear_display": {
+    "message0": "Effacer l’écran"
+  },
+  "tm16xx_set_brightness": {
+    "message0": "Régler la luminosité %1",
+    "args0": [
+      {
+        "options": [
+          [
+            "Darkest (0)",
+            "0"
+          ],
+          [
+            "1",
+            "1"
+          ],
+          [
+            "2",
+            "2"
+          ],
+          [
+            "3",
+            "3"
+          ],
+          [
+            "4",
+            "4"
+          ],
+          [
+            "5",
+            "5"
+          ],
+          [
+            "6",
+            "6"
+          ],
+          [
+            "Brightest (7)",
+            "7"
+          ]
+        ]
+      }
+    ]
+  },
+  "tm16xx_set_segment": {
+    "message0": "Définissez le segment d’affichage %1 bits number%2"
+  },
+  "tm16xx_get_buttons": {
+    "message0": "Obtenez l’état de la clé"
+  },
+  "tm16xx_is_button_pressed": {
+    "message0": "Le bouton %1 appuyé"
+  },
+  "tm16xx_display_time": {
+    "message0": "Durée d’affichage : hours%1 minutes%2 Affichage colon%3"
+  }
+}

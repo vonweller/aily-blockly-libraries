@@ -1,0 +1,96 @@
+{
+  "toolbox_name": "Online-Bildladeder",
+  "toolbox_labels": {
+    "初始化": "Initialisierung",
+    "图片加载": "Bild wird geladen",
+    "信息查询": "Informationsanfrage",
+    "错误处理": "Fehlerbehandlung",
+    "资源管理": "Ressourcenmanagement"
+  },
+  "lvgl_http_img_init": {
+    "message0": "Initialisieren Sie LVGL HTTP Image Loader Bildschirm %1 High %2 \nPSRAM-Modus %3 Speichermodus %4 \nMaximale Datei%5KB Timeout %6ms Debugging %7",
+    "tooltip": "Initialisieren Sie den HTTP-Image-Loader (globaler Singleton, benötigt nur einen Aufruf)",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "Automatische Erkennung",
+            "AUTO"
+          ],
+          [
+            "Es gibt PSRAM",
+            "AVAILABLE"
+          ],
+          [
+            "Kein PSRAM",
+            "NONE"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "Automatische Auswahl",
+            "AUTO"
+          ],
+          [
+            "Erzwungenes LittleFS",
+            "LITTLEFS"
+          ],
+          [
+            "Erzwungenes PSRAM",
+            "PSRAM"
+          ]
+        ]
+      },
+      null,
+      null,
+      {
+        "options": [
+          [
+            "Aus",
+            "FALSE"
+          ],
+          [
+            "Ein",
+            "TRUE"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_http_img_load": {
+    "message0": "Das Laden von HTTP-Bildern URL%1 Anzeige an %2",
+    "tooltip": "Laden Sie JPEG-Bilder von HTTP herunter und zeigen Sie sie in LVGL-Bildobjekten an"
+  },
+  "lvgl_http_img_get_info": {
+    "message0": "Erhalten Sie HTTP-Bildinformationen URL%1",
+    "tooltip": "Rufen Sie die Größen- und Typinformationen des entfernten Bildes ab (gibt Dateigröße zurück, -1 bedeutet unbekannt)"
+  },
+  "lvgl_http_img_check": {
+    "message0": "Überprüfe, ob das Bild geladen werden kann URL%1",
+    "tooltip": "Prüfen Sie, ob das Bild geladen werden kann (wahr: ladebar, falsch: zu groß oder falsch)"
+  },
+  "lvgl_http_img_has_psram": {
+    "message0": "PSRAM erkennen",
+    "tooltip": "Erkennt, ob das System PSRAM hat (falls PSRAM vorhanden ist, können größere Bilder geladen werden)"
+  },
+  "lvgl_http_img_get_max_size": {
+    "message0": "Erhalten Sie die aktuell maximal erlaubte Bildgröße",
+    "tooltip": "Erhalten Sie die maximal erlaubte Bildgröße durch die aktuelle Konfiguration (Bytes)"
+  },
+  "lvgl_http_img_get_last_error": {
+    "message0": "Erhalten Sie den finalen Fehlercode",
+    "tooltip": "Erhalten Sie den Fehlercode für die letzte Operation (0=Erfolg)"
+  },
+  "lvgl_http_img_err_to_string": {
+    "message0": "Fehlercodes %1 in beschreibende Zeichenketten umgewandelt",
+    "tooltip": "Fehlercodes in lesbare Fehlerbeschreibungen umwandeln"
+  },
+  "lvgl_http_img_cleanup": {
+    "message0": "Bereinigen Sie temporäre Dateien und Caches in HTTP-Bildloadern",
+    "tooltip": "Lösche temporäre Dateien und PSRAM-Caches, um Speicher freizumachen"
+  }
+}

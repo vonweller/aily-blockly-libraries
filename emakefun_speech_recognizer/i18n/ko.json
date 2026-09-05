@@ -1,0 +1,96 @@
+{
+  "toolbox_name": "LD3320D 음성 인식",
+  "toolbox_labels": {
+    "初始化": "초기화",
+    "配置": "구성",
+    "识别": "식별하다",
+    "事件处理": "이벤트 처리"
+  },
+  "speech_recognizer_setup": {
+    "message0": "음성 인식 모듈을 I2C 주소%1 초기화하세요%2",
+    "tooltip": "음성 인식 모듈을 초기화하고, 기본 I2C 주소를 0x30로 설정하세요"
+  },
+  "speech_recognizer_set_mode": {
+    "message0": "인식 모드를 %1로 설정하세요%2",
+    "tooltip": "음성 인식 모드를 설정하세요",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "자동 감지",
+            "kRecognitionAuto"
+          ],
+          [
+            "버튼으로 트리거됨",
+            "kButtonTrigger"
+          ],
+          [
+            "키워드 트리거",
+            "kKeywordTrigger"
+          ],
+          [
+            "키나 키워드에 의해 트리거됩니다",
+            "kKeywordOrButtonTrigger"
+          ]
+        ]
+      }
+    ]
+  },
+  "speech_recognizer_set_timeout": {
+    "message0": "%1 밀리초 단위로 타임아웃을 인식하도록 설정%2",
+    "tooltip": "자동 인식 모드에는 효과가 없는 인식 타임아웃(밀리초)을 설정하세요"
+  },
+  "speech_recognizer_add_keyword": {
+    "message0": "키워드%1 색인 %2을 추가하세요%3",
+    "tooltip": "음성 인식 키워드를 최대 50단어까지 추가하고, 각 단어는 최대 50바이트입니다"
+  },
+  "speech_recognizer_recognize": {
+    "message0": "%1 음성 인식 수행",
+    "tooltip": "음성 인식이 수행되고, 인식된 키워드 인덱스(>=0)가 반환됩니다; 그렇지 않으면 -1을 반환합니다. 이를 루프 인 루프라고 불러야 합니다"
+  },
+  "speech_recognizer_get_event": {
+    "message0": "%1 현재 소식을 확인하세요",
+    "tooltip": "현재 이벤트 유형을 확인하세요"
+  },
+  "speech_recognizer_event_handler": {
+    "message0": "현재 %1 행사 %2",
+    "tooltip": "지정된 이벤트가 발생하면 해당 연산을 수행합니다",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "트리거를 기다리기 시작하세요",
+            "kEventStartWaitingForTrigger"
+          ],
+          [
+            "버튼으로 트리거됨",
+            "kEventButtonTriggered"
+          ],
+          [
+            "키워드에 의해 트리거됨",
+            "kEventKeywordTriggered"
+          ],
+          [
+            "시작 식별",
+            "kEventStartRecognizing"
+          ],
+          [
+            "인정은 성공적이다",
+            "kEventSpeechRecognized"
+          ],
+          [
+            "타임아웃 인식하기",
+            "kEventSpeechRecognitionTimedOut"
+          ]
+        ]
+      }
+    ],
+    "message1": "실행 %1"
+  },
+  "speech_recognizer_check_result": {
+    "message0": "인정 결과는 %1 %2",
+    "tooltip": "인식 결과가 지정된 인덱스와 일치하는지 확인하세요"
+  }
+}

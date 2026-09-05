@@ -1,0 +1,69 @@
+{
+  "toolbox_name": "Motores de codificación",
+  "toolbox_labels": {
+    "电机配置": "Configuración del motor",
+    "电机控制": "control de motores",
+    "状态查询": "Consulta de estado"
+  },
+  "encoder_motor_create": {
+    "message0": "Crear un motor codificado %1 Pines del motor A %2 B %3 Pines codificadores A %4 B %5 PPR%6 Relación de reducción %7 Fase de %8",
+    "tooltip": "Crear objetos motores codificados, configurar los pines del motor y del codificador, la PPR y la relación de reducción",
+    "args0": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      {
+        "options": [
+          [
+            "El Aspecto A conduce",
+            "em::EncoderMotor::kAPhaseLeads"
+          ],
+          [
+            "B lidera el camino",
+            "em::EncoderMotor::kBPhaseLeads"
+          ]
+        ]
+      }
+    ]
+  },
+  "encoder_motor_set_pid": {
+    "message0": "Configurar el motor codificado %1 parámetros PID P%2 I%3 D%4",
+    "tooltip": "Establecer los parámetros del controlador PID del anillo de velocidad"
+  },
+  "encoder_motor_run_pwm": {
+    "message0": "El motor codificado %1 funciona con %2 de potencia (-1023~1023)",
+    "tooltip": "Motores de accionamiento PWM ajustados directamente, rango -1023 a 1023, inversión de valor negativo"
+  },
+  "encoder_motor_run_speed": {
+    "message0": "Motor de codificación %1 Funciona a velocidades %2 RPM (-300~300)",
+    "tooltip": "La velocidad del motor se controla mediante un bucle de velocidad, que va de -300 a 300 RPM, con inversión negativa"
+  },
+  "encoder_motor_stop": {
+    "message0": "Dejar de codificar %1 motor",
+    "tooltip": "Para el motor"
+  },
+  "encoder_motor_get_speed": {
+    "message0": "Motor codificado %1 Velocidad de corriente (RPM)",
+    "tooltip": "Obtén la velocidad actual del motor"
+  },
+  "encoder_motor_get_pwm": {
+    "message0": "Motor codificado %1 Ciclo de trabajo actual de PWM",
+    "tooltip": "Obtener el ciclo de trabajo PWM actual del motor"
+  },
+  "encoder_motor_get_pulse": {
+    "message0": "Motor codificado %1 recuento de pulsos codificado",
+    "tooltip": "Obtener el recuento de pulsos del codificador"
+  },
+  "encoder_motor_get_revolutions": {
+    "message0": "Motor codificante %1 Número de rotaciones",
+    "tooltip": "Obtén el número de vueltas que ha girado el motor; los números positivos indican rotación hacia adelante, los números negativos indican rotación inversa"
+  },
+  "encoder_motor_reset_pulse": {
+    "message0": "Reinicia el motor de codificación %1 el recuento de pulsos",
+    "tooltip": "Reinicia el conteo de pulsos del codificador a 0 (reinicia el número de turnos simultáneamente)."
+  }
+}

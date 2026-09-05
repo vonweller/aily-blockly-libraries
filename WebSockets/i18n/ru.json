@@ -1,0 +1,162 @@
+{
+  "toolbox_name": "WebSockets",
+  "toolbox_labels": {
+    "WebSocket客户端": "Клиент WebSocket",
+    "WebSocket服务器": "Вебсокет-сервер",
+    "事件处理": "обработка событий"
+  },
+  "websocket_client_create": {
+    "message0": "Создание клиента WebSocket %1",
+    "tooltip": "Создать клиентский объект WebSocket"
+  },
+  "websocket_client_begin": {
+    "message0": "Клиент WebSocket %1 подключается к %2 порту %3 пути %4",
+    "tooltip": "Подключитесь к серверу WebSocket"
+  },
+  "websocket_client_begin_ssl": {
+    "message0": "Клиент WebSocket подключает %1 SSL к %2 порту %3 пути %4",
+    "tooltip": "SSL безопасно подключается к серверам WebSocket"
+  },
+  "websocket_client_on_event": {
+    "message0": "Когда клиент WebSocket %1 получает событие",
+    "tooltip": "Настройка обработки событий клиента WebSocket",
+    "message1": "выполнить %1"
+  },
+  "websocket_client_send_text": {
+    "message0": "Клиент WebSocket %1 отправлять текст %2",
+    "tooltip": "Отправляйте текстовые сообщения на сервер WebSocket"
+  },
+  "websocket_client_send_binary": {
+    "message0": "Клиент WebSocket %1 отправлять бинарные данные %2",
+    "tooltip": "Отправьте бинарные данные на сервер WebSocket"
+  },
+  "websocket_client_disconnect": {
+    "message0": "Отключение %1 клиента WebSocket",
+    "tooltip": "Отключите подключение клиента WebSocket"
+  },
+  "websocket_client_is_connected": {
+    "message0": "Проверьте, подключён ли клиент WebSocket %1",
+    "tooltip": "Проверьте, подключён ли клиент WebSocket"
+  },
+  "websocket_client_set_reconnect": {
+    "message0": "Клиент WebSocket %1 устанавливает интервал повторного подключения в %2 миллисекунд",
+    "tooltip": "Установите интервал повторного подключения клиента WebSocket"
+  },
+  "websocket_client_enable_heartbeat": {
+    "message0": "Клиент WebSocket %1 Включить интервал сердечного ритма %2ms тайм-аут %3ms отключить count%4",
+    "tooltip": "Включить обнаружение сердцебиения на клиенте WebSocket"
+  },
+  "websocket_server_create": {
+    "message0": "Создать WebSocket сервер %1 порт %2",
+    "tooltip": "Создать объект сервера WebSocket"
+  },
+  "websocket_server_begin": {
+    "message0": "WebSocket server %1 start",
+    "tooltip": "Запустить сервер WebSocket"
+  },
+  "websocket_server_on_event": {
+    "message0": "Когда сервер WebSocket %1 получает событие",
+    "tooltip": "Настройка обработки событий сервера WebSocket",
+    "message1": "выполнить %1"
+  },
+  "websocket_server_send_text": {
+    "message0": "Сервер WebSocket %1 отправляет текст клиенту %2%3",
+    "tooltip": "Отправляйте текстовые сообщения указанным клиентам"
+  },
+  "websocket_server_broadcast_text": {
+    "message0": "WebSocket Server %1 Broadcast Text %2",
+    "tooltip": "Трансляция текстовых сообщений всем подключённым клиентам"
+  },
+  "websocket_server_send_binary": {
+    "message0": "WebSocket server %1 отправляет бинарные данные клиенту %2 %3",
+    "tooltip": "Бинарные данные отправляются указанному клиенту"
+  },
+  "websocket_server_broadcast_binary": {
+    "message0": "WebSocket Server %1 Broadcast Binary Data %2",
+    "tooltip": "Транслирует двоичные данные всем подключённым клиентам"
+  },
+  "websocket_server_disconnect": {
+    "message0": "WebSocket Server %1 Disconnect Client %2",
+    "tooltip": "Отключите указанное клиентское соединение"
+  },
+  "websocket_server_disconnect_all": {
+    "message0": "Сервер WebSocket %1 отключает все клиенты",
+    "tooltip": "Отключите все клиентские соединения"
+  },
+  "websocket_server_connected_clients": {
+    "message0": "WebSocket сервер %1 Количество подключённых клиентов",
+    "tooltip": "Узнайте количество связанных клиентов"
+  },
+  "websocket_server_client_connected": {
+    "message0": "Подключен ли сервер WebSocket %1 клиент %2",
+    "tooltip": "Проверьте, подключён ли указанный клиент"
+  },
+  "websocket_event_type": {
+    "message0": "Тип мероприятия %1",
+    "tooltip": "Тип события WebSocket",
+    "args0": [
+      {
+        "options": [
+          [
+            "Отключите соединение",
+            "WStype_DISCONNECTED"
+          ],
+          [
+            "Связан",
+            "WStype_CONNECTED"
+          ],
+          [
+            "Текстовые сообщения",
+            "WStype_TEXT"
+          ],
+          [
+            "Бинарное сообщение",
+            "WStype_BIN"
+          ],
+          [
+            "Ping",
+            "WStype_PING"
+          ],
+          [
+            "Pong",
+            "WStype_PONG"
+          ],
+          [
+            "ошибка",
+            "WStype_ERROR"
+          ]
+        ]
+      }
+    ]
+  },
+  "websocket_event_payload": {
+    "message0": "События %1",
+    "tooltip": "Данные событий WebSocket",
+    "args0": [
+      {
+        "options": [
+          [
+            "Типы мероприятий",
+            "TYPE"
+          ],
+          [
+            "Данные событий (uint8_t*)",
+            "PAYLOAD"
+          ],
+          [
+            "Данные событий (символ*)",
+            "PAYLOAD_CHAR"
+          ]
+        ]
+      }
+    ]
+  },
+  "websocket_event_payload_length": {
+    "message0": "Длина данных события",
+    "tooltip": "Получить данные о длине событий"
+  },
+  "websocket_event_client_num": {
+    "message0": "Номер клиента мероприятия",
+    "tooltip": "Получите номер на стороне клиента события"
+  }
+}

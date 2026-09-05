@@ -1,0 +1,187 @@
+{
+  "toolbox_name": "Capteur IMU 9 axes",
+  "imu9dof_init": {
+    "message0": "Initialiser le capteur IMU 9 axes %1\nUtilisation %2",
+    "tooltip": "Initialiser le capteur IMU 9 axes sur la manette 3.0",
+    "args0": [
+      null,
+      {
+        "options": "${board.i2c}"
+      }
+    ]
+  },
+  "imu9dof_read_accel": {
+    "message0": "Lisez l’accélération (g) de l’IMU %1%2",
+    "tooltip": "Lisez les données de l’accéléromètre, mesurées en g",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Axe des X",
+            "X"
+          ],
+          [
+            "Axe des Y",
+            "Y"
+          ],
+          [
+            "Axe Z",
+            "Z"
+          ]
+        ]
+      }
+    ]
+  },
+  "imu9dof_read_gyro": {
+    "message0": "Lire la vitesse angulaire (°/s) de l’IMU %1%2",
+    "tooltip": "Lecture des données du gyroscope, mesurées en degrés/seconde",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Axe des X",
+            "X"
+          ],
+          [
+            "Axe des Y",
+            "Y"
+          ],
+          [
+            "Axe Z",
+            "Z"
+          ]
+        ]
+      }
+    ]
+  },
+  "imu9dof_read_mag": {
+    "message0": "Lisez la force du champ magnétique (μT) de l’IMU %1%2",
+    "tooltip": "Lire les données du magnétomètre, mesurées en microtesla (μT)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Axe des X",
+            "X"
+          ],
+          [
+            "Axe des Y",
+            "Y"
+          ],
+          [
+            "Axe Z",
+            "Z"
+          ]
+        ]
+      }
+    ]
+  },
+  "imu9dof_read_temperature": {
+    "message0": "Lire la température de l’IMU %1 (°C)",
+    "tooltip": "Lire la température du capteur IMU, mesurée en degrés Celsius"
+  },
+  "imu9dof_compute_angles": {
+    "message0": "Calculez l’angle d’attitude de l’IMU %1",
+    "tooltip": "Calculer l’angle d’attitude de l’IMU (angle de roulis, angle de tangage, angle de cap)"
+  },
+  "imu9dof_read_angle": {
+    "message0": "Lisez l’angle %2 de l’IMU %1 (°)",
+    "tooltip": "Lisez l’angle d’attitude de l’IMU, mesuré en degrés",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Rouleau",
+            "ROLL"
+          ],
+          [
+            "Terrain",
+            "PITCH"
+          ],
+          [
+            "Cap (lacet)",
+            "YAW"
+          ]
+        ]
+      }
+    ]
+  },
+  "imu9dof_calibrate_mag": {
+    "message0": "Calibrez le magnétomètre de l’IMU %1",
+    "tooltip": "Calibrez le magnétomètre pour éliminer les interférences du fer dur et du fer tendre"
+  },
+  "imu9dof_set_acc_range": {
+    "message0": "Réglez la plage de l’IMU %1 de l’accéléromètre à %2",
+    "tooltip": "Réglez la plage de mesure de l’accéléromètre",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "±2g",
+            "QMI8658A_ACC_RANGE_2G"
+          ],
+          [
+            "±4g",
+            "QMI8658A_ACC_RANGE_4G"
+          ],
+          [
+            "±8g",
+            "QMI8658A_ACC_RANGE_8G"
+          ],
+          [
+            "±16g",
+            "QMI8658A_ACC_RANGE_16G"
+          ]
+        ]
+      }
+    ]
+  },
+  "imu9dof_set_gyro_range": {
+    "message0": "Réglez la portée du gyroscope de l’IMU %1 à %2",
+    "tooltip": "Régler la plage de mesure du gyroscope",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "±16°/s",
+            "QMI8658A_GYRO_RANGE_16DPS"
+          ],
+          [
+            "±32°/s",
+            "QMI8658A_GYRO_RANGE_32DPS"
+          ],
+          [
+            "±64°/s",
+            "QMI8658A_GYRO_RANGE_64DPS"
+          ],
+          [
+            "±128°/s",
+            "QMI8658A_GYRO_RANGE_128DPS"
+          ],
+          [
+            "±256°/s",
+            "QMI8658A_GYRO_RANGE_256DPS"
+          ],
+          [
+            "±512°/s",
+            "QMI8658A_GYRO_RANGE_512DPS"
+          ],
+          [
+            "±1024°/s",
+            "QMI8658A_GYRO_RANGE_1024DPS"
+          ],
+          [
+            "±2048°/s",
+            "QMI8658A_GYRO_RANGE_2048DPS"
+          ]
+        ]
+      }
+    ]
+  }
+}

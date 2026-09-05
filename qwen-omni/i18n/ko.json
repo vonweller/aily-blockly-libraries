@@ -1,0 +1,382 @@
+{
+  "toolbox_name": "Tongyi Qianwen",
+  "toolbox_labels": {
+    "配置": "구성",
+    "I2S音频": "I2S 오디오",
+    "文本对话": "문자 대화",
+    "图片对话": "그림대화",
+    "图像生成": "이미지 생성",
+    "语音合成(TTS)": "텍스트 음성 변환(TTS)",
+    "全模态对话": "전체 모달 대화",
+    "流式回调": "스트리밍 콜백",
+    "状态管理": "현황관리"
+  },
+  "qwen_omni_config": {
+    "message0": "Tongyi Qianwen API 설정 %1 API 키 %2 %3 기본 URL %4",
+    "tooltip": "통이 천원 API의 접근 키와 기본 URL을 설정하세요"
+  },
+  "qwen_omni_chat": {
+    "message0": "통이 첸원 대화 %1 사용자 메시지 %2 %3 모델 %4",
+    "tooltip": "통이 첸원에게 메시지를 보내면 답장을 받아.",
+    "args0": [
+      null,
+      null,
+      null,
+      {
+        "options": [
+          [
+            "QWEN3.7-plus",
+            "qwen3.7-plus"
+          ],
+          [
+            "QWEN3.7-맥스",
+            "qwen3.7-max"
+          ]
+        ]
+      }
+    ]
+  },
+  "qwen_omni_chat_simple": {
+    "message0": "통이 천원 대화 (간단) %1 사용자 메시지 %2",
+    "tooltip": "기본 모델(qwen3.7-plus)을 사용해 메시지를 보내세요."
+  },
+  "qwen_omni_chat_with_thinking": {
+    "message0": "통이 첸원 심도 대화 %1 사용자 메시지 %2 %3 모델 %4",
+    "tooltip": "깊은 사고 모드를 활성화하고 천 개의 질문에 참여하세요",
+    "args0": [
+      null,
+      null,
+      null,
+      {
+        "options": [
+          [
+            "QWEN3.7-plus",
+            "qwen3.7-plus"
+          ],
+          [
+            "QWEN3.7-맥스",
+            "qwen3.7-max"
+          ]
+        ]
+      }
+    ]
+  },
+  "qwen_omni_chat_with_history": {
+    "message0": "통이 첸원 다방향 대화 %1 사용자 메시지 %2 %3 모델 %4",
+    "tooltip": "통이 첸원은 다중 턴 대화를 지원하며 자동으로 대화 기록을 저장합니다",
+    "args0": [
+      null,
+      null,
+      null,
+      {
+        "options": [
+          [
+            "QWEN3.7-plus",
+            "qwen3.7-plus"
+          ],
+          [
+            "QWEN3.7-맥스",
+            "qwen3.7-max"
+          ]
+        ]
+      }
+    ]
+  },
+  "qwen_omni_clear_history": {
+    "message0": "통이 첸원 대화의 역사를 정리하다",
+    "tooltip": "저장된 대화 기록 초기화"
+  },
+  "qwen_omni_set_system_prompt": {
+    "message0": "통이 첸원 시스템 프롬프트 %1 시스템 프롬프트 설정 %2",
+    "tooltip": "AI 어시스턴트의 역할과 동작 규칙 설정"
+  },
+  "qwen_omni_get_response_status": {
+    "message0": "통이 첸원의 응답 상태를 확인하세요",
+    "tooltip": "마지막 API 호출이 성공했는지 확인"
+  },
+  "qwen_omni_get_error_message": {
+    "message0": "통이 천원 오류 정보를 얻으세요",
+    "tooltip": "마지막 API 호출의 오류 메시지 확인"
+  },
+  "qwen_omni_set_stream_callback": {
+    "message0": "통이 천원 플로우 콜백을 설정하세요%1 %2",
+    "tooltip": "텍스트 청크 수신 시 실행되는 스트림 콜백 설정"
+  },
+  "qwen_omni_get_stream_chunk": {
+    "message0": "통이 천문흐름 조각을 얻으세요",
+    "tooltip": "스트림 콜백에서 현재 텍스트 청크 가져오기"
+  },
+  "qwen_omni_clear_stream_callback": {
+    "message0": "통이 천문(Tongyi Qianwen) 흐름 후퇴를 정리하라",
+    "tooltip": "설정된 스트림 콜백 초기화"
+  },
+  "qwen_omni_vision_chat": {
+    "message0": "통이 첸원 이미지 대화 %1 base64 이미지 %2 %3 프롬프트 %4 %5 모델 %6",
+    "tooltip": "Base64로 인코딩된 이미지와 텍스트는 통이 천원 VL 모델로 전송되어 이미지 이해가 이루어집니다",
+    "args0": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      {
+        "options": [
+          [
+            "QWEN3.7-plus",
+            "qwen3.7-plus"
+          ],
+          [
+            "QWEN3-VL-Plus",
+            "qwen3-vl-plus"
+          ],
+          [
+            "QWEN3-VL-플래시",
+            "qwen3-vl-flash"
+          ],
+          [
+            "qwen-vl-max",
+            "qwen-vl-max"
+          ],
+          [
+            "qwen-vl-plus",
+            "qwen-vl-plus"
+          ]
+        ]
+      }
+    ]
+  },
+  "qwen_omni_vision_chat_direct_capture": {
+    "message0": "통이 첸원 이미지 대화(직접 사진) %1 프롬프트 %2 %3 모델 %4",
+    "tooltip": "카메라에서 직접 사진을 찍어 통이 첸원 VL로 스트리밍하세요 (완전한 Base64 문자열을 생성하지 않아 메모리 사용량을 줄여줍니다)",
+    "args0": [
+      null,
+      null,
+      null,
+      {
+        "options": [
+          [
+            "QWEN3.7-plus",
+            "qwen3.7-plus"
+          ],
+          [
+            "QWEN3-VL-Plus",
+            "qwen3-vl-plus"
+          ],
+          [
+            "QWEN3-VL-플래시",
+            "qwen3-vl-flash"
+          ],
+          [
+            "qwen-vl-max",
+            "qwen-vl-max"
+          ],
+          [
+            "qwen-vl-plus",
+            "qwen-vl-plus"
+          ]
+        ]
+      }
+    ]
+  },
+  "qwen_omni_vision_url_chat": {
+    "message0": "통이 첸원 이미지 URL 대화 %1 이미지 URL %2 %3 프롬프트 %4 %5 모델 %6",
+    "tooltip": "이미지 이해를 위해 Tongyi Qianwen VL 모델에 이미지 URL과 텍스트를 전송하세요",
+    "args0": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      {
+        "options": [
+          [
+            "QWEN3.7-plus",
+            "qwen3.7-plus"
+          ],
+          [
+            "QWEN3-VL-Plus",
+            "qwen3-vl-plus"
+          ],
+          [
+            "QWEN3-VL-플래시",
+            "qwen3-vl-flash"
+          ],
+          [
+            "qwen-vl-max",
+            "qwen-vl-max"
+          ],
+          [
+            "qwen-vl-plus",
+            "qwen-vl-plus"
+          ]
+        ]
+      }
+    ]
+  },
+  "qwen_omni_image_generate": {
+    "message0": "통이 완샹 이미지 생성 %1 프롬프트 %2 %3 모델 %4 %5 크기 %6",
+    "tooltip": "텍스트 설명을 기반으로 이미지를 생성하고 이미지 URL 링크를 반환하며, 이는 TFT 화면과 함께 표시할 수 있습니다",
+    "args0": [
+      null,
+      null,
+      null,
+      {
+        "options": [
+          [
+            "WANX2.1-T2I-터보",
+            "wanx2.1-t2i-turbo"
+          ],
+          [
+            "WANX2.1-T2I-Plus",
+            "wanx2.1-t2i-plus"
+          ],
+          [
+            "wanx-v1",
+            "wanx-v1"
+          ]
+        ]
+      },
+      null,
+      {
+        "options": [
+          [
+            "1024x1024",
+            "1024*1024"
+          ],
+          [
+            "720x1280",
+            "720*1280"
+          ],
+          [
+            "1280x720",
+            "1280*720"
+          ]
+        ]
+      }
+    ]
+  },
+  "qwen_omni_image_generate_simple": {
+    "message0": "통이 무리안 폼 이미지 생성 (간단) %1 프롬프트 %2",
+    "tooltip": "텍스트 설명을 기반으로 이미지를 생성하고, 기본 설정을 사용하며, 이미지 URL 링크를 반환하고, TFT 화면에 표시할 수 있습니다"
+  },
+  "qwen_omni_tts": {
+    "message0": "Qwen TTS 음성 합성 %1 합성 텍스트 %2 %3 음성 %4 %5 모델 %6 %7 언어 %8",
+    "tooltip": "Qwen TTS 모델로 텍스트를 음성으로 합성. Base64 인코딩 PCM 오디오 반환 (24kHz 16bit 모노)"
+  },
+  "qwen_omni_tts_play": {
+    "message0": "Qwen TTS 오디오 재생 %1 I2S 객체 %2 %3 Base64 오디오 %4",
+    "tooltip": "Qwen TTS의 Base64 오디오를 디코딩하여 I2S로 재생 (24kHz 16bit 모노)"
+  },
+  "qwen_omni_tts_and_play": {
+    "message0": "Qwen TTS 합성 및 재생 %1 I2S 객체 %2 %3 텍스트 %4 %5 음성 %6 %7 모델 %8 %9 언어 %10",
+    "tooltip": "Qwen TTS로 음성을 합성하고 I2S로 재생. 전체 오디오를 수집 후 안정적으로 재생"
+  },
+  "qwen_omni_tts_stream_play": {
+    "message0": "Qwen TTS 스트림 재생 %1 I2S 객체 %2 %3 텍스트 %4 %5 음성 %6 %7 모델 %8 %9 언어 %10",
+    "tooltip": "Qwen TTS 스트림 합성을 I2S로 실시간 재생. 낮은 지연, 연속적인 부드러운 오디오"
+  },
+  "qwen_omni_omni_text": {
+    "message0": "Qwen 전모달 대화(텍스트만) %1 메시지 %2 %3 모델 %4",
+    "tooltip": "전모달 모델로 대화하고 텍스트만 반환"
+  },
+  "qwen_omni_omni_and_play": {
+    "message0": "Qwen 전모달 대화 및 재생 %1 I2S 객체 %2 %3 메시지 %4 %5 모델 %6 %7 음성 %8",
+    "tooltip": "전모달 대화로 텍스트와 오디오를 반환하고, 오디오를 I2S로 재생"
+  },
+  "qwen_omni_omni_stream_play": {
+    "message0": "Qwen 전모달 스트림 재생 %1 I2S 객체 %2 %3 메시지 %4 %5 모델 %6 %7 음성 %8",
+    "tooltip": "전모달 스트림 대화, 텍스트 실시간 출력, 오디오 수집 후 I2S 재생. 낮은 지연"
+  },
+  "qwen_omni_omni_get_audio": {
+    "message0": "Qwen 전모달 오디오 데이터 가져오기",
+    "tooltip": "전모달 대화에서 반환된 Base64 오디오 데이터를 가져오기"
+  },
+  "qwen_omni_tts_voice_design": {
+    "message0": "Qwen TTS 음성 디자인 합성 %1 I2S 객체 %2 %3 텍스트 %4 %5 음성 설명 %6",
+    "tooltip": "텍스트 설명으로 음성을 커스터마이징하여 합성. 예: 부드러운 젊은 여성의 목소리"
+  },
+  "qwen_omni_omni_voice_chat": {
+    "message0": "Qwen Omni 음성 대화 마이크 객체 %1 스피커 객체 %2 %3 녹음 %4 초 %5 모델 %6 음성 %7 비프음 %8 %9 질문(선택) %10",
+    "tooltip": "독립 I2S 마이크 객체로 녹음하고 독립 I2S 스피커 객체로 수신 중 디코딩/재생합니다. 비프음을 선택하면 녹음 시작과 종료에 짧은 소리가 납니다. 녹음 형식: 16kHz 16bit 모노"
+  },
+  "qwen_omni_omni_record_text": {
+    "message0": "통이 풀 모달 녹음-텍스트 마이크로폰 객체 %1 %2 %3초 녹음 %4 모델 %5 %6 전사 프롬프트(선택 사항) %7",
+    "tooltip": "I2S 마이크로 녹음하고 통이 풀모달 모델에 호출하면 음성 재생 없이 인식/전사된 텍스트만 반환합니다. 기본 녹음 형식은 16kHz 16비트 모노입니다",
+    "args0": [
+      null,
+      null,
+      null,
+      null,
+      {
+        "options": [
+          [
+            "QWEN3.5-옴니플러스",
+            "qwen3.5-omni-plus"
+          ],
+          [
+            "QWEN3.5-옴니-플래시",
+            "qwen3.5-omni-flash"
+          ],
+          [
+            "QWEN3-옴니-플래시",
+            "qwen3-omni-flash"
+          ],
+          [
+            "qwen-omni-turbo",
+            "qwen-omni-turbo"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "qwen_omni_pdm_mic_init": {
+    "message0": "PDM 마이크 초기화 객체 %1 %2 CLK %3 데이터 %4 샘플링 속도 %5",
+    "tooltip": "XIAO ESP32S3 Sense 온보드 마이크 등 PDM 마이크 입력 객체를 초기화합니다. 샤오 ESP32S3 센스는 기본적으로 42 CLK와 41 데이터로"
+  },
+  "qwen_omni_es8311_mic_init": {
+    "message0": "ES8311 마이크 초기화 객체 %1 %2 SDA %3 SCL %4 주소 %5 BCLK %6 LRCLK %7 SDOUT %8 MCLK %9 샘플링 속도 %10 게인 레지스터 %11",
+    "tooltip": "ES8311 오디오 코덱의 마이크 입력을 초기화하고, 먼저 I2C를 통해 ADC/마이크 경로를 설정한 뒤, I2S 녹음 객체를 초기화합니다. 기본 주소 0x18(소수점 24), 기본 게인 레지스터 0x24 (십진수 36)"
+  },
+  "qwen_omni_es8311_audio_init": {
+    "message0": "ES8311 마이크 + 스피커 초기화 객체 %1 %2 SDA %3 SCL %4 주소 %5 BCLK/SCLK %6 LR %7 DI/DAC 입력 %8 DO/ADC 출력 %9 MCK %10 샘플링 속도 %11 게인 레지스터 %12 PA_EN %13",
+    "tooltip": "ES8311 오디오 코덱의 마이크 및 스피커 채널을 초기화하여 Microphone + Audio Amplifier 보드에 적합합니다. 도표의 기본값: SCLK39, LR2, DI38, DO40, MCK46, SDA41, SCL42. ES8311은 3V 전원과 5V NS4150B 증폭기를 공급합니다. 기본값PA_EN -1은 제어 없음을 의미합니다; 보드에 증폭기 활성화 핀이 있다면 GPIO를 삽입하면 점수가 올라갑니다"
+  },
+  "qwen_omni_es8311_test_tone": {
+    "message0": "프롬프트 재생 소리 객체 %1 %2 주파수 Hz %3 지속 시간 %4",
+    "tooltip": "현재 I2S/ES8311 스피커 객체를 통해 짧은 프롬프트 사운드를 재생하며, 스피커 출력을 시작, 종료 또는 확인할 때 사용됩니다"
+  },
+  "qwen_omni_k10_audio_init": {
+    "message0": "K10 내장 마이크+스피커 초기화 객체 %1 %2 샘플레이트 %3",
+    "tooltip": "UNIHIKER K10 온보드 마이크와 스피커를 초기화하세요. Qwen 음성 대화의 경우, 마이크와 스피커 객체 모두를 선택하세요."
+  },
+  "qwen_omni_i2s_prompt_tone": {
+    "message0": "프롬프트 재생 소리 객체 %1 %2 주파수 Hz %3 지속 시간 %4",
+    "tooltip": "현재 I2S/ES8311 스피커 객체를 통해 짧은 프롬프트 사운드를 재생하며, 스피커 출력을 시작, 종료 또는 확인할 때 사용됩니다"
+  },
+  "qwen_omni_i2s_speaker_init": {
+    "args0": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "message0": "I2S 스피커 초기화 객체 %1 %2 BCLK %3 LRCLK %4 DIN %5 샘플링 속도 %6",
+    "tooltip": "MAX98357A 및 기타 I2S 스피커 출력 객체를 초기화하고, I2SClass 객체를 자동으로 선언하세요"
+  },
+  "qwen_omni_i2s_mic_init": {
+    "args0": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "message0": "I2S 마이크로폰 초기화 객체 %1 %2 BCLK %3 LRCLK/WS %4 SD/DOUT %5 샘플링 레이트 %6",
+    "tooltip": "INMP441와 같은 표준 I2S 마이크 입력 객체를 초기화하고 자동으로 I2SClass 객체를 선언하세요"
+  }
+}

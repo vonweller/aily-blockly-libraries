@@ -1,0 +1,194 @@
+{
+  "toolbox_name": "Five-way line tracking sensor",
+  "toolbox_labels": {
+    "初始化": "initialization",
+    "信息查询": "Information inquiry",
+    "阈值设置": "Threshold setting",
+    "数据读取": "Data reading"
+  },
+  "five_line_tracker_v3_setup": {
+    "message0": "Initialize line following sensor %1 I2C address %2",
+    "tooltip": "Create and initialize the line following sensor, I2C interface, default address 0x50",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "0x50 (default)",
+            "0x50"
+          ],
+          [
+            "0x51",
+            "0x51"
+          ],
+          [
+            "0x52",
+            "0x52"
+          ],
+          [
+            "0x53",
+            "0x53"
+          ],
+          [
+            "0x54",
+            "0x54"
+          ],
+          [
+            "0x55",
+            "0x55"
+          ],
+          [
+            "0x56",
+            "0x56"
+          ],
+          [
+            "0x57",
+            "0x57"
+          ]
+        ]
+      }
+    ]
+  },
+  "five_line_tracker_v3_get_device_id": {
+    "message0": "Line following sensor %1 Get device ID",
+    "tooltip": "Get the device ID of the five-way line patrol sensor"
+  },
+  "five_line_tracker_v3_get_firmware_version": {
+    "message0": "Line following sensor %1 Get firmware version",
+    "tooltip": "Get the firmware version number of the five-channel line-following sensor"
+  },
+  "five_line_tracker_v3_set_high_threshold": {
+    "message0": "Line following sensor %1 Setting channel %2 High threshold %3",
+    "tooltip": "Sets the high threshold (0-1023) of the specified channel for digital conversion",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Channel 0",
+            "0"
+          ],
+          [
+            "Channel 1",
+            "1"
+          ],
+          [
+            "Channel 2",
+            "2"
+          ],
+          [
+            "Channel 3",
+            "3"
+          ],
+          [
+            "Channel 4",
+            "4"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "five_line_tracker_v3_set_low_threshold": {
+    "message0": "Line following sensor %1 Setting channel %2 Low threshold %3",
+    "tooltip": "Sets the low threshold (0-1023) of the specified channel for digital conversion",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Channel 0",
+            "0"
+          ],
+          [
+            "Channel 1",
+            "1"
+          ],
+          [
+            "Channel 2",
+            "2"
+          ],
+          [
+            "Channel 3",
+            "3"
+          ],
+          [
+            "Channel 4",
+            "4"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "five_line_tracker_v3_get_analog_value": {
+    "message0": "Line following sensor %1 Read channel %2 Analog value",
+    "tooltip": "Read the analog value of the specified channel (0-1023)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Channel 0",
+            "0"
+          ],
+          [
+            "Channel 1",
+            "1"
+          ],
+          [
+            "Channel 2",
+            "2"
+          ],
+          [
+            "Channel 3",
+            "3"
+          ],
+          [
+            "Channel 4",
+            "4"
+          ]
+        ]
+      }
+    ]
+  },
+  "five_line_tracker_v3_get_digital_value": {
+    "message0": "Line following sensor %1 Read channel %2 digital value",
+    "tooltip": "Read the digital value (0 or 1) of the specified channel and automatically convert according to the threshold",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Channel 0",
+            "0"
+          ],
+          [
+            "Channel 1",
+            "1"
+          ],
+          [
+            "Channel 2",
+            "2"
+          ],
+          [
+            "Channel 3",
+            "3"
+          ],
+          [
+            "Channel 4",
+            "4"
+          ]
+        ]
+      }
+    ]
+  },
+  "five_line_tracker_v3_get_all_digital_values": {
+    "message0": "Line following sensor %1 reads all digital values",
+    "tooltip": "Read the digital values of all channels and return a byte, each bit represents the status of a channel"
+  },
+  "five_line_tracker_v3_check_error": {
+    "message0": "Is the initialization of line following sensor %1 successful?",
+    "tooltip": "Check if sensor initialization is successful"
+  }
+}

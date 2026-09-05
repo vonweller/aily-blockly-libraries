@@ -1,0 +1,335 @@
+{
+  "toolbox_name": "Entraînement moteur à quatre voies",
+  "toolbox_labels": {
+    "── I2C模式 ──": "── Mode I2C ──",
+    "初始化": "initialisation",
+    "参数配置": "Configuration des paramètres",
+    "电机控制": "Contrôle du moteur",
+    "编码器": "encodeur",
+    "── 串口模式 ──": "── Mode port série ──",
+    "数据读取": "Lecture de données"
+  },
+  "yahboom_md_iic_init": {
+    "message0": "Initialiser l’adresse du pilote moteur i2C %1 %2 type de moteur %3",
+    "tooltip": "Initialiser la carte pilote moteur à quatre voies Yahboom I2C, définir l’adresse I2C et le type de moteur",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "0x26 (par défaut)",
+            "0x26"
+          ],
+          [
+            "0x27",
+            "0x27"
+          ],
+          [
+            "0x28",
+            "0x28"
+          ],
+          [
+            "0x29",
+            "0x29"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "Moteur 520",
+            "MOTOR_520"
+          ],
+          [
+            "310 moteurs",
+            "MOTOR_310"
+          ],
+          [
+            "Moteur codé TT",
+            "MOTOR_TT_ENCODER"
+          ],
+          [
+            "Moteur TT DC",
+            "MOTOR_TT"
+          ],
+          [
+            "Moteur 520-L",
+            "MOTOR_520_L"
+          ]
+        ]
+      }
+    ]
+  },
+  "yahboom_md_iic_set_deadzone": {
+    "message0": "Moteur I2C %1 Définir les zones mortes %2",
+    "tooltip": "Régler la valeur de la zone morte du moteur"
+  },
+  "yahboom_md_iic_set_pulse_line": {
+    "message0": "Entraînement moteur I2C %1 Régler le nombre de lignes d’impulsions %2",
+    "tooltip": "Réglez le nombre de lignes d’impulsion magnétique en anneau"
+  },
+  "yahboom_md_iic_set_pulse_phase": {
+    "message0": "Entraînement moteur I2C %1 Régler le ratio de réduction %2",
+    "tooltip": "Régler le rapport de réduction motrice"
+  },
+  "yahboom_md_iic_set_wheel_diameter": {
+    "message0": "Entraînement moteur I2C %1 régler le diamètre de la roue (mm) %2",
+    "tooltip": "Diamètre de roue réglé (mm)"
+  },
+  "yahboom_md_iic_control_speed": {
+    "message0": "Commande moteur I2C %1 contrôle de vitesse M1 %2 M2 %3 M3 %4 M4 %5",
+    "tooltip": "Contrôle la vitesse de 4 moteurs (moteurs encodeurs requis), plage -1000~1000"
+  },
+  "yahboom_md_iic_control_pwm": {
+    "message0": "Commande moteur I2C %1 contrôle PWM M1 %2 M2 %3 M3 %4 M4 %5",
+    "tooltip": "Contrôle directement les valeurs de PWM de quatre moteurs"
+  },
+  "yahboom_md_iic_encoder_offset": {
+    "message0": "Le moteur I2C %1 pour obtenir un décalage d’encodeur de 10 ms %2",
+    "tooltip": "Lisez le décalage de l’encodeur en temps réel de 10 ms du moteur spécifié",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "M1",
+            "0"
+          ],
+          [
+            "M2",
+            "1"
+          ],
+          [
+            "M3",
+            "2"
+          ],
+          [
+            "M4",
+            "3"
+          ]
+        ]
+      }
+    ]
+  },
+  "yahboom_md_iic_encoder_total": {
+    "message0": "Entraînement moteur I2C %1 Obtenir le nombre total d’encodeurs %2",
+    "tooltip": "Lire le nombre total d’encodeurs pour le moteur spécifié",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "M1",
+            "0"
+          ],
+          [
+            "M2",
+            "1"
+          ],
+          [
+            "M3",
+            "2"
+          ],
+          [
+            "M4",
+            "3"
+          ]
+        ]
+      }
+    ]
+  },
+  "yahboom_md_usart_init": {
+    "message0": "Initialiser le moteur série %1 port série %2 moteur %3",
+    "tooltip": "Initialiser la carte de commande de moteur à quatre voies du port série Yahboom",
+    "args0": [
+      null,
+      {
+        "options": "${board.serialPort}"
+      },
+      {
+        "options": [
+          [
+            "Moteur 520",
+            "MOTOR_520"
+          ],
+          [
+            "310 moteurs",
+            "MOTOR_310"
+          ],
+          [
+            "Moteur codé TT",
+            "MOTOR_TT_ENCODER"
+          ],
+          [
+            "Moteur TT DC",
+            "MOTOR_TT"
+          ],
+          [
+            "Moteur 520-L",
+            "MOTOR_520_L"
+          ]
+        ]
+      }
+    ]
+  },
+  "yahboom_md_usart_set_deadzone": {
+    "message0": "Moteur série %1 Régler les zones mortes %2",
+    "tooltip": "Régler la valeur de la zone morte du moteur"
+  },
+  "yahboom_md_usart_set_pulse_line": {
+    "message0": "Lecteur de moteur série %1 Définir le nombre de lignes d’impulsions %2",
+    "tooltip": "Réglez le nombre de lignes d’impulsion magnétique en anneau"
+  },
+  "yahboom_md_usart_set_pulse_phase": {
+    "message0": "Entraînement série du moteur %1 Régler le rapport de réduction %2",
+    "tooltip": "Régler le rapport de réduction motrice"
+  },
+  "yahboom_md_usart_set_wheel_diameter": {
+    "message0": "Entraînement moteur par port série %1 réglez le diamètre de la roue (mm) %2",
+    "tooltip": "Diamètre de roue réglé (mm)"
+  },
+  "yahboom_md_usart_set_pid": {
+    "message0": "Moteur série %1 Réglé PID P %2 I %3 D %4",
+    "tooltip": "Régler les paramètres du PID moteur"
+  },
+  "yahboom_md_usart_set_upload_data": {
+    "message0": "Rapport de données sur lecteur moteur série %1 Données Total encodeur %2 encodeur 10 ms %3 Vitesse %4",
+    "tooltip": "Types de données rapportés par le module moteur : nombre total d’encodeurs, encodeur en temps réel de 10 ms, vitesse (mm/s)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Desactive",
+            "false"
+          ],
+          [
+            "Active",
+            "true"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "Desactive",
+            "false"
+          ],
+          [
+            "Active",
+            "true"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "Desactive",
+            "false"
+          ],
+          [
+            "Active",
+            "true"
+          ]
+        ]
+      }
+    ]
+  },
+  "yahboom_md_usart_control_speed": {
+    "message0": "Commande de moteur série %1 Contrôle de vitesse M1 %2 M2 %3 M3 %4 M4 %5",
+    "tooltip": "Contrôle la vitesse de 4 moteurs (moteurs encodeurs requis), plage -1000~1000"
+  },
+  "yahboom_md_usart_control_pwm": {
+    "message0": "Commande de moteur série %1 contrôle PWM M1 %2 M2 %3 M3 %4 M4 %5",
+    "tooltip": "Contrôle directement les valeurs de PWM de quatre moteurs"
+  },
+  "yahboom_md_usart_data_available": {
+    "message0": "Les moteurs série %1 recevoir des données",
+    "tooltip": "Vérifiez si les données retournées par le module moteur ont été reçues (il reçoit automatiquement les données dans la boucle)"
+  },
+  "yahboom_md_usart_parse_data": {
+    "message0": "Les lecteurs de moteurs série %1 analyse des données",
+    "tooltip": "L’analyse des données reçues et la suppression du drapeau de réception doivent être appelées après confirmation que les données sont disponibles"
+  },
+  "yahboom_md_usart_encoder_offset": {
+    "message0": "Le moteur du port série %1 pour obtenir un décalage d’encodeur de 10 ms %2",
+    "tooltip": "Obtenir le décalage de l’encodeur en temps réel de 10 ms pour le moteur spécifié",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "M1",
+            "0"
+          ],
+          [
+            "M2",
+            "1"
+          ],
+          [
+            "M3",
+            "2"
+          ],
+          [
+            "M4",
+            "3"
+          ]
+        ]
+      }
+    ]
+  },
+  "yahboom_md_usart_encoder_total": {
+    "message0": "Moteur série %1 Obtenir le nombre total d’encodeurs %2",
+    "tooltip": "Obtenez le nombre total d’encodeurs pour le moteur spécifié",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "M1",
+            "0"
+          ],
+          [
+            "M2",
+            "1"
+          ],
+          [
+            "M3",
+            "2"
+          ],
+          [
+            "M4",
+            "3"
+          ]
+        ]
+      }
+    ]
+  },
+  "yahboom_md_usart_speed": {
+    "message0": "Commande de moteur série %1 vitesse d’acquisition (mm/s) %2",
+    "tooltip": "Obtenez la vitesse actuelle du moteur spécifié (mm/s)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "M1",
+            "0"
+          ],
+          [
+            "M2",
+            "1"
+          ],
+          [
+            "M3",
+            "2"
+          ],
+          [
+            "M4",
+            "3"
+          ]
+        ]
+      }
+    ]
+  }
+}

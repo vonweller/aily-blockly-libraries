@@ -1,0 +1,316 @@
+{
+  "toolbox_name": "Pico WiFi",
+  "toolbox_labels": {
+    "WiFi连接": "WiFi接続",
+    "状态查询": "ステータスクエリ",
+    "网络信息": "ネットワーク情報",
+    "网络配置": "ネットワーク構成",
+    "网络扫描": "ネットワークスキャン",
+    "热点模式(AP)": "ホットスポットモード (AP)",
+    "网络工具": "ネットワークツール"
+  },
+  "rp_wifi_begin": {
+    "message0": "WiFi%1 Password%2とつながる",
+    "tooltip": "WiFiネットワークに接続(ブロックモード)"
+  },
+  "rp_wifi_begin_open": {
+    "message0": "開かれるための接続WiFi%1",
+    "tooltip": "パスワードなしのオープンWiFiネットワークに接続"
+  },
+  "rp_wifi_begin_noblock": {
+    "message0": "WiFiに接続(ブロックなし)%1パスワード%2",
+    "tooltip": "WiFiネットワークに接続(ノンブロッキングモード、接続状態を確認)"
+  },
+  "rp_wifi_disconnect": {
+    "message0": "WiFiからの切断%1",
+    "tooltip": "WiFi切断",
+    "args0": [
+      {
+        "options": [
+          [
+            "WiFiはつけておきましょう",
+            "FALSE"
+          ],
+          [
+            "WiFiをオフにしてください",
+            "TRUE"
+          ]
+        ]
+      }
+    ]
+  },
+  "rp_wifi_end": {
+    "message0": "WiFiをオフにしてください",
+    "tooltip": "WiFiを完全に無効にしてください"
+  },
+  "rp_wifi_connected": {
+    "message0": "WiFi接続済み",
+    "tooltip": "WiFiが接続されているか確認してください"
+  },
+  "rp_wifi_status": {
+    "message0": "WiFi接続状態",
+    "tooltip": "WiFi接続ステータスコードを取得してください"
+  },
+  "rp_wifi_status_type": {
+    "message0": "WiFi状態:%1",
+    "tooltip": "WiFiの状態を定数に設定してください",
+    "args0": [
+      {
+        "options": [
+          [
+            "アイドル",
+            "WL_IDLE_STATUS"
+          ],
+          [
+            "SSIDは利用できません",
+            "WL_NO_SSID_AVAIL"
+          ],
+          [
+            "スキャン完了",
+            "WL_SCAN_COMPLETED"
+          ],
+          [
+            "接続済み",
+            "WL_CONNECTED"
+          ],
+          [
+            "接続不良",
+            "WL_CONNECT_FAILED"
+          ],
+          [
+            "接続喪失",
+            "WL_CONNECTION_LOST"
+          ],
+          [
+            "切断する",
+            "WL_DISCONNECTED"
+          ]
+        ]
+      }
+    ]
+  },
+  "rp_wifi_wait_for_connect": {
+    "message0": "接続結果がタイムアウトされるのを%1ミリ秒待つ",
+    "tooltip": "WiFi接続の結果が接続状態を返すのを待ちます"
+  },
+  "rp_wifi_local_ip": {
+    "message0": "ローカルIPアドレス",
+    "tooltip": "ローカルIPアドレスを取得する"
+  },
+  "rp_wifi_subnet_mask": {
+    "message0": "サブネットマスク",
+    "tooltip": "サブネットマスクを取得"
+  },
+  "rp_wifi_gateway_ip": {
+    "message0": "ゲートウェイIPアドレス",
+    "tooltip": "ゲートウェイIPアドレスを取得"
+  },
+  "rp_wifi_dns_ip": {
+    "message0": "DNSサーバーのIP",
+    "tooltip": "DNSサーバーのIPアドレスを取得しましょう"
+  },
+  "rp_wifi_mac_address": {
+    "message0": "MACアドレス",
+    "tooltip": "MACアドレスを取得"
+  },
+  "rp_wifi_ssid": {
+    "message0": "現在のWiFi名(SSID)",
+    "tooltip": "現在接続されているWiFiの名前を確認してください"
+  },
+  "rp_wifi_rssi": {
+    "message0": "信号強度(RSSI)",
+    "tooltip": "WiFi信号強度(dBm)を取得する"
+  },
+  "rp_wifi_channel": {
+    "message0": "現在のWiFiチャンネル",
+    "tooltip": "現在のWiFiチャンネルを取得しましょう"
+  },
+  "rp_wifi_encryption_type": {
+    "message0": "現在の暗号化タイプ",
+    "tooltip": "現在のWiFi暗号化タイプを取得してください"
+  },
+  "rp_wifi_set_hostname": {
+    "message0": "ホスト名を設定 %1",
+    "tooltip": "DHCPリクエストで使用するホスト名を設定します"
+  },
+  "rp_wifi_get_hostname": {
+    "message0": "ホスト名を入手してください",
+    "tooltip": "現在設定されているホスト名を取得してください"
+  },
+  "rp_wifi_config_static": {
+    "message0": "静的IPの設定\nIPアドレス%1\nDNSサーバー%2\nゲートウェイ%3\nサブネットマスク%4",
+    "tooltip": "静的IPアドレスの設定(DHCPを無効にする)"
+  },
+  "rp_wifi_set_dns": {
+    "message0": "DNSサーバーの%1を設定してください",
+    "tooltip": "DNSサーバーの設定をしましょう"
+  },
+  "rp_wifi_set_mode": {
+    "message0": "WiFiモードを%1設定",
+    "tooltip": "WiFi動作モードを設定しましょう",
+    "args0": [
+      {
+        "options": [
+          [
+            "サイトモード(STA)",
+            "WIFI_STA"
+          ],
+          [
+            "ホットスポットモード (AP)",
+            "WIFI_AP"
+          ],
+          [
+            "ハイブリッドモード(AP+STA)",
+            "WIFI_AP_STA"
+          ],
+          [
+            "閉じる",
+            "WIFI_OFF"
+          ]
+        ]
+      }
+    ]
+  },
+  "rp_wifi_get_mode": {
+    "message0": "WiFiモードを達成",
+    "tooltip": "現在のWiFi動作モードを取得しましょう"
+  },
+  "rp_wifi_scan_networks": {
+    "message0": "WiFiネットワーク%1をスキャン",
+    "tooltip": "利用可能なWiFiネットワークをスキャンし、見つけたネットワーク数を返してください",
+    "args0": [
+      {
+        "options": [
+          [
+            "同期走査",
+            "FALSE"
+          ],
+          [
+            "非同期走査",
+            "TRUE"
+          ]
+        ]
+      }
+    ]
+  },
+  "rp_wifi_scan_complete": {
+    "message0": "スキャン完了状況",
+    "tooltip": "非同期スキャン完了の状態を取得し、検出されたネットワーク数を返します"
+  },
+  "rp_wifi_scan_delete": {
+    "message0": "スキャン結果を削除してください",
+    "tooltip": "WiFiスキャンの結果を削除してメモリを空けてください"
+  },
+  "rp_wifi_get_ssid": {
+    "message0": "ネットワークのSSIDを取得してください%1",
+    "tooltip": "指定されたネットワークのSSIDを取得してください"
+  },
+  "rp_wifi_get_rssi": {
+    "message0": "ネットワークの信号強度を取得%1",
+    "tooltip": "指定されたネットワークの信号強度(dBm)を取得します"
+  },
+  "rp_wifi_get_encryption": {
+    "message0": "ネットワークの暗号化タイプを取得し%1",
+    "tooltip": "指定されたネットワークの暗号化タイプを取得します"
+  },
+  "rp_wifi_get_channel": {
+    "message0": "ネットワークへのアクセス%1",
+    "tooltip": "指定されたネットワークのチャネルを取得する"
+  },
+  "rp_wifi_encryption_constant": {
+    "message0": "暗号化タイプ:%1",
+    "tooltip": "暗号型定数を取得",
+    "args0": [
+      {
+        "options": [
+          [
+            "暗号化はしていません",
+            "ENC_TYPE_NONE"
+          ],
+          [
+            "WPA",
+            "ENC_TYPE_TKIP"
+          ],
+          [
+            "WPA2",
+            "ENC_TYPE_CCMP"
+          ],
+          [
+            "自動",
+            "ENC_TYPE_AUTO"
+          ]
+        ]
+      }
+    ]
+  },
+  "rp_wifi_begin_ap": {
+    "message0": "WiFiホットスポットを作成し、パスワード%1チャンネル%2%3",
+    "tooltip": "WiFiホットスポットの作成(APモード)"
+  },
+  "rp_wifi_begin_ap_open": {
+    "message0": "オープンWiFiホットスポット%1チャンネル%2",
+    "tooltip": "パスワードレスのオープンWiFiホットスポットを作成する"
+  },
+  "rp_wifi_softap_config": {
+    "message0": "ホットスポットIPの設定\nIPアドレス%1\nゲートウェイ%2\nサブネットマスク%3",
+    "tooltip": "ホットスポットIP設定の設定をしてください"
+  },
+  "rp_wifi_softap_disconnect": {
+    "message0": "WiFiホットスポットをオフに%1",
+    "tooltip": "WiFiホットスポットをオフにしてください",
+    "args0": [
+      {
+        "options": [
+          [
+            "WiFiはつけておきましょう",
+            "FALSE"
+          ],
+          [
+            "WiFiをオフにしてください",
+            "TRUE"
+          ]
+        ]
+      }
+    ]
+  },
+  "rp_wifi_softap_ip": {
+    "message0": "ホットスポットIPアドレス",
+    "tooltip": "ホットスポットのIPアドレスを取得する"
+  },
+  "rp_wifi_softap_mac": {
+    "message0": "ホットスポットMACアドレス",
+    "tooltip": "ホットスポットのMACアドレスを取得してください"
+  },
+  "rp_wifi_softap_ssid": {
+    "message0": "ホットスポットSSID",
+    "tooltip": "ホットスポットのSSIDを取得してください"
+  },
+  "rp_wifi_softap_station_count": {
+    "message0": "ホットスポット接続デバイスの数",
+    "tooltip": "ホットスポットに接続されているデバイス数を調べてください"
+  },
+  "rp_wifi_host_by_name": {
+    "message0": "ドメイン名Resolve%1",
+    "tooltip": "ドメイン名をIPアドレスとして解決する方法"
+  },
+  "rp_wifi_ping": {
+    "message0": "Ping %1 TTL %2",
+    "tooltip": "指定されたホストにpingを送ると、応答時間(ms)が返されます"
+  },
+  "rp_wifi_get_time": {
+    "message0": "ネットワークの時間を確保しましょう",
+    "tooltip": "ネットワーク時間(Unixタイムスタンプ)を取得する"
+  },
+  "rp_wifi_set_timeout": {
+    "message0": "タイムアウトタイムアウトを%1ミリ秒に設定してください",
+    "tooltip": "WiFiの運用タイムアウトを設定してください"
+  },
+  "rp_wifi_no_low_power": {
+    "message0": "低消費電力モードを無効にしてください",
+    "tooltip": "WiFi低消費電力モードを無効にして性能を向上させる"
+  },
+  "rp_wifi_firmware_version": {
+    "message0": "ファームウェアのバージョン",
+    "tooltip": "WiFiファームウェアバージョンを取得"
+  }
+}

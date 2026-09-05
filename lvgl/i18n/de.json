@@ -1,0 +1,1877 @@
+{
+  "toolbox_name": "LVGL",
+  "toolbox_labels": {
+    "标签": "Etikett",
+    "图像": "Bild",
+    "列表": "Liste",
+    "选项卡": "Registerkarte",
+    "按钮": "Taste",
+    "滑动条": "Schieberegler",
+    "开关": "Schalter",
+    "复选框": "Kontrollkästchen",
+    "下拉框": "Dropdown-Feld",
+    "文本框": "Textfeld",
+    "键盘": "Tastatur",
+    "进度条": "Fortschrittsbalken",
+    "圆弧": "Bogen",
+    "加载动画": "Ladeanimation",
+    "图表": "Diagramm"
+  },
+  "lvgl_init": {
+    "message0": "Initialisieren Sie LVGL mit der Display-Treiber-Bibliothek %1 Bildschirmauflösung Breite %2 Höhe %3 Drehwinkel %4",
+    "tooltip": "Initialisieren Sie die LVGL-Bibliothek",
+    "args0": [
+      {
+        "options": [
+          [
+            "TFT_eSPI",
+            "TFT_eSPI"
+          ],
+          [
+            "Lovyan GFX (wird unterstützt)",
+            "LovyanGFX"
+          ]
+        ]
+      },
+      null,
+      null,
+      {
+        "options": [
+          [
+            "0°",
+            "LV_DISPLAY_ROTATION_0"
+          ],
+          [
+            "90°",
+            "LV_DISPLAY_ROTATION_90"
+          ],
+          [
+            "180°",
+            "LV_DISPLAY_ROTATION_180"
+          ],
+          [
+            "270°",
+            "LV_DISPLAY_ROTATION_270"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_indev_create": {
+    "message0": "Initialisieren %1 Eingabegerät %2 Typ %3 Datenabruf-Callback-Funktion",
+    "tooltip": "Initialisieren Sie das Eingabegerät",
+    "args0": [
+      {
+        "options": [
+          [
+            "Die ganze Situation",
+            "global"
+          ],
+          [
+            "Lokal",
+            "local"
+          ]
+        ]
+      },
+      null,
+      {
+        "options": [
+          [
+            "Zeigergerät (Touchscreen/Maus)",
+            "LV_INDEV_TYPE_POINTER"
+          ],
+          [
+            "Knopfgeräte",
+            "LV_INDEV_TYPE_KEYPAD"
+          ],
+          [
+            "Knopfgeräte",
+            "LV_INDEV_TYPE_BUTTON"
+          ],
+          [
+            "Encoder-Ausrüstung",
+            "LV_INDEV_TYPE_ENCODER"
+          ]
+        ]
+      }
+    ],
+    "message1": "ausführen %1"
+  },
+  "lvgl_indev_data_param_set": {
+    "message0": "Der Datenparameter %1 auf %2 gesetzt",
+    "tooltip": "Beziehen Sie Datenparameter vom Eingabegerät",
+    "args0": [
+      {
+        "options": [
+          [
+            "Status",
+            "state"
+          ],
+          [
+            "Koordinate X",
+            "point.x"
+          ],
+          [
+            "Koordinate Y",
+            "point.y"
+          ],
+          [
+            "Schlüsselwerte",
+            "key"
+          ],
+          [
+            "Knopf-ID",
+            "btn_id"
+          ],
+          [
+            "Encoder-Inkremente",
+            "enc_diff"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "lvgl_indev_state_param": {
+    "message0": "Geben Sie die Gerätezustandskonstante %1 ein",
+    "tooltip": "Geben Sie die Gerätezustandskonstante ein",
+    "args0": [
+      {
+        "options": [
+          [
+            "Loslassen",
+            "LV_INDEV_STATE_REL"
+          ],
+          [
+            "Drücken",
+            "LV_INDEV_STATE_PR"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_label_create": {
+    "message0": "Erstellen Sie %1 Tags %2 übergeordneten Objekte %3",
+    "tooltip": "Erstellen Sie eine Texttag-Steuerung",
+    "args0": [
+      {
+        "options": [
+          [
+            "Die ganze Situation",
+            "global"
+          ],
+          [
+            "Lokal",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_label_set_text": {
+    "message0": "Setze das Tag %1 Text auf %2",
+    "tooltip": "Setze den auf dem Etikett angezeigten Textinhalt"
+  },
+  "lv_label_set_text_fmt": {
+    "message0": "Setze Tags %1 Format, Textzeichenkette %2 Parameter %3",
+    "tooltip": "Tag-Text mit formatierten Strings setzen, die Formatierung im Printf-Stil unterstützen (wie \"Button: %d\")"
+  },
+  "lvgl_label_set_long_mode": {
+    "message0": "Tags %1 Langtext-Modus %2",
+    "tooltip": "Setze den Langtextverarbeitungsmodus für Tags ein",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Automatische Leitungswicklung",
+            "LV_LABEL_LONG_MODE_WRAP"
+          ],
+          [
+            "Zeigen von Ellipsen",
+            "LV_LABEL_LONG_MODE_DOTS"
+          ],
+          [
+            "Hin und her rollen",
+            "LV_LABEL_LONG_MODE_SCROLL"
+          ],
+          [
+            "Zyklusrollen",
+            "LV_LABEL_LONG_MODE_SCROLL_CIRCULAR"
+          ],
+          [
+            "Schneiden",
+            "LV_LABEL_LONG_MODE_CLIP"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_button_create": {
+    "message0": "Erstelle %1 Button %2 Elternobjekt %3",
+    "tooltip": "Erstellen Sie eine Tastensteuerung",
+    "args0": [
+      {
+        "options": [
+          [
+            "Die ganze Situation",
+            "global"
+          ],
+          [
+            "Lokal",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_slider_create": {
+    "message0": "Erstellen Sie %1 Schieberegler %2 übergeordnetes Objekt %3",
+    "tooltip": "Erstellen Sie eine Schieberegler-Steuerung",
+    "args0": [
+      {
+        "options": [
+          [
+            "Die ganze Situation",
+            "global"
+          ],
+          [
+            "Lokal",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_slider_set_value": {
+    "message0": "Setze den Regler %1 Wert auf %2 Animation %3",
+    "tooltip": "Setze den aktuellen Wert des Schiebereglers",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "Ein",
+            "LV_ANIM_ON"
+          ],
+          [
+            "Aus",
+            "LV_ANIM_OFF"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_slider_set_range": {
+    "message0": "Setze den Schieberegler %1 Bereich Minimum %2 Maximum %3",
+    "tooltip": "Stellen Sie den Wertebereich für den Schieber ein"
+  },
+  "lvgl_slider_get_value": {
+    "message0": "Erhalten Sie den Wert von Slider %1",
+    "tooltip": "Erhalten Sie den aktuellen Wert der Schiebeleiste"
+  },
+  "lvgl_switch_create": {
+    "message0": "Erstelle %1 schalte %2 übergeordnetes Objekt %3",
+    "tooltip": "Erstellen Sie eine Schaltersteuerung",
+    "args0": [
+      {
+        "options": [
+          [
+            "Die ganze Situation",
+            "global"
+          ],
+          [
+            "Lokal",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_checkbox_create": {
+    "message0": "Erstellen Sie %1 Kontrollkästchen %2 Elternobjekt %3 Text %4",
+    "tooltip": "Erstellen Sie eine Checkbox-Kontrolle",
+    "args0": [
+      {
+        "options": [
+          [
+            "Die ganze Situation",
+            "global"
+          ],
+          [
+            "Lokal",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null,
+      null
+    ]
+  },
+  "lvgl_bar_create": {
+    "message0": "Erstellen Sie %1 Fortschrittsleiste %2 übergeordnetes Objekt %3",
+    "tooltip": "Erstellen Sie eine Fortschrittsleiste-Steuerung",
+    "args0": [
+      {
+        "options": [
+          [
+            "Die ganze Situation",
+            "global"
+          ],
+          [
+            "Lokal",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_bar_set_value": {
+    "message0": "Stell die Fortschrittsleiste %1 Wert auf %2 Animation %3",
+    "tooltip": "Setze den aktuellen Wert der Fortschrittsleiste",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "Ein",
+            "LV_ANIM_ON"
+          ],
+          [
+            "Aus",
+            "LV_ANIM_OFF"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_bar_set_range": {
+    "message0": "Setzen Sie die Fortschrittsleiste %1 Reichweite auf Minimum %2 Maximum %3",
+    "tooltip": "Stellen Sie den Wertbereich für die Fortschrittsleiste ein"
+  },
+  "lvgl_arc_create": {
+    "message0": "Erstellen Sie %1 Bogen %2 Elternobjekt %3",
+    "tooltip": "Erstellen Sie eine Lichtbogensteuerung",
+    "args0": [
+      {
+        "options": [
+          [
+            "Die ganze Situation",
+            "global"
+          ],
+          [
+            "Lokal",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_arc_set_value": {
+    "message0": "Setze den Bogenwert %1 Wert auf %2",
+    "tooltip": "Setzen Sie den aktuellen Wert des Bogens"
+  },
+  "lvgl_arc_set_range": {
+    "message0": "Stellen Sie den Bogen %1 Bereich ein: Minimum %2 Maximum %3",
+    "tooltip": "Stellen Sie den Bereich der Bogenwerte fest"
+  },
+  "lvgl_spinner_create": {
+    "message0": "Erstelle %1 Lade-Animation %2 Elternobjekt %3",
+    "tooltip": "Erstellen Sie eine Ladeanimationssteuerung",
+    "args0": [
+      {
+        "options": [
+          [
+            "Die ganze Situation",
+            "global"
+          ],
+          [
+            "Lokal",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_spinner_set_anim_params": {
+    "message0": "Ladeanimation %1 duration%2 ms radiant %3° eingestellt",
+    "tooltip": "Stelle die Ladedauer und Krümmung für die Animation ein"
+  },
+  "lvgl_dropdown_create": {
+    "message0": "Erstellen Sie %1 Dropdown-Menü %2 übergeordnetes Objekt %3",
+    "tooltip": "Erstellen Sie eine Dropdown-Steuerung",
+    "args0": [
+      {
+        "options": [
+          [
+            "Die ganze Situation",
+            "global"
+          ],
+          [
+            "Lokal",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_dropdown_set_options": {
+    "message0": "Setze ein Dropdown-Menü %1 Optionen %2",
+    "tooltip": "Setze Dropdown-Optionen, trenne mehrere Optionen mit \\n"
+  },
+  "lvgl_dropdown_get_selected": {
+    "message0": "Hol dir das Dropdown-Menü %1 Wähle das Indexelement aus",
+    "tooltip": "Erhält den Index des aktuell ausgewählten Elements im Dropdown-Menü"
+  },
+  "lvgl_textarea_create": {
+    "message0": "Erstellen Sie %1 Textfeld %2 Elternobjekt %3",
+    "tooltip": "Erstellen Sie eine Texteingabebox-Steuerung",
+    "args0": [
+      {
+        "options": [
+          [
+            "Die ganze Situation",
+            "global"
+          ],
+          [
+            "Lokal",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_textarea_set_text": {
+    "message0": "Setze Textbox %1 Text auf %2",
+    "tooltip": "Setzen Sie den Inhalt des Textfelds ein"
+  },
+  "lvgl_textarea_get_text": {
+    "message0": "Ruft den Text des Textkästchens %1",
+    "tooltip": "Erhalten Sie den Inhalt des Textfelds"
+  },
+  "lvgl_textarea_set_placeholder": {
+    "message0": "Setze das Textfeld %1 Platzhalter auf %2",
+    "tooltip": "Setzen Sie den Platzhaltertext für das Textfeld ein"
+  },
+  "lvgl_obj_set_pos": {
+    "message0": "Setze %1 Position X %2 Y %3",
+    "tooltip": "Setze die X- und Y-Koordinaten des Objekts"
+  },
+  "lvgl_obj_set_size": {
+    "message0": "Stelle %1 Größe, Breite %2 Höhe %3",
+    "tooltip": "Setze die Breite und Höhe des Objekts"
+  },
+  "lvgl_obj_align": {
+    "message0": "Setze %1 Ausrichtung %2 Versatz X %3 Y %4",
+    "tooltip": "Legt die Ausrichtung und den Offset von Objekten relativ zu den Elternobjekten fest",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Mitte",
+            "LV_ALIGN_CENTER"
+          ],
+          [
+            "Oben links",
+            "LV_ALIGN_TOP_LEFT"
+          ],
+          [
+            "Überdurchschnittlich",
+            "LV_ALIGN_TOP_MID"
+          ],
+          [
+            "Oben rechts",
+            "LV_ALIGN_TOP_RIGHT"
+          ],
+          [
+            "Linke Mitte",
+            "LV_ALIGN_LEFT_MID"
+          ],
+          [
+            "Rechts in der Mitte",
+            "LV_ALIGN_RIGHT_MID"
+          ],
+          [
+            "Unten links",
+            "LV_ALIGN_BOTTOM_LEFT"
+          ],
+          [
+            "Unterdurchschnittlich",
+            "LV_ALIGN_BOTTOM_MID"
+          ],
+          [
+            "Unten rechts",
+            "LV_ALIGN_BOTTOM_RIGHT"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_obj_center": {
+    "message0": "Zentrierte %1",
+    "tooltip": "Zentriere das Objekt"
+  },
+  "lvgl_obj_add_flag": {
+    "message0": "Hinzufügen eines Logos zu %1 %2",
+    "tooltip": "Füge dem Objekt eine Flagge hinzu",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "hide",
+            "LV_OBJ_FLAG_HIDDEN"
+          ],
+          [
+            "Klickbar",
+            "LV_OBJ_FLAG_CLICKABLE"
+          ],
+          [
+            "Auswählbar",
+            "LV_OBJ_FLAG_CHECKABLE"
+          ],
+          [
+            "Rollbar",
+            "LV_OBJ_FLAG_SCROLLABLE"
+          ],
+          [
+            "Deaktivieren",
+            "LV_OBJ_FLAG_DISABLED"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_obj_remove_flag": {
+    "message0": "Entfernen Sie die Flagge von %1 %2",
+    "tooltip": "Entferne die Flagge vom Objekt",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "hide",
+            "LV_OBJ_FLAG_HIDDEN"
+          ],
+          [
+            "Klickbar",
+            "LV_OBJ_FLAG_CLICKABLE"
+          ],
+          [
+            "Auswählbar",
+            "LV_OBJ_FLAG_CHECKABLE"
+          ],
+          [
+            "Rollbar",
+            "LV_OBJ_FLAG_SCROLLABLE"
+          ],
+          [
+            "Deaktivieren",
+            "LV_OBJ_FLAG_DISABLED"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_obj_add_state": {
+    "message0": "Status zu %1 %2",
+    "tooltip": "Fügen Sie einem Objekt einen Zustand hinzu",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Auswahl",
+            "LV_STATE_CHECKED"
+          ],
+          [
+            "Fokus",
+            "LV_STATE_FOCUSED"
+          ],
+          [
+            "Drücken",
+            "LV_STATE_PRESSED"
+          ],
+          [
+            "Deaktivieren",
+            "LV_STATE_DISABLED"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_obj_remove_state": {
+    "message0": "Status aus %1%2 entfernen",
+    "tooltip": "Entferne den Zustand aus dem Objekt",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Auswahl",
+            "LV_STATE_CHECKED"
+          ],
+          [
+            "Fokus",
+            "LV_STATE_FOCUSED"
+          ],
+          [
+            "Drücken",
+            "LV_STATE_PRESSED"
+          ],
+          [
+            "Deaktivieren",
+            "LV_STATE_DISABLED"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_obj_has_state": {
+    "message0": "%1 Stated%2",
+    "tooltip": "Überprüfen Sie, ob das Objekt einen bestimmten Status hat",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Auswahl",
+            "LV_STATE_CHECKED"
+          ],
+          [
+            "Fokus",
+            "LV_STATE_FOCUSED"
+          ],
+          [
+            "Drücken",
+            "LV_STATE_PRESSED"
+          ],
+          [
+            "Deaktivieren",
+            "LV_STATE_DISABLED"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_obj_delete": {
+    "message0": "Lösche %1",
+    "tooltip": "Lösche ein Objekt und alle seine Kindobjekte"
+  },
+  "lvgl_obj_set_style_text_font": {
+    "message0": "Stelle %1 Schriftart %2",
+    "tooltip": "Setze die Textschriftart für das Objekt",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Englische Schriftart 8",
+            "LV_FONT_MONTSERRAT_8"
+          ],
+          [
+            "Englische Schriftart 10",
+            "LV_FONT_MONTSERRAT_10"
+          ],
+          [
+            "Englische Schrift 12",
+            "LV_FONT_MONTSERRAT_12"
+          ],
+          [
+            "Englische Schrift 14",
+            "LV_FONT_MONTSERRAT_14"
+          ],
+          [
+            "Englische Schrift 16",
+            "LV_FONT_MONTSERRAT_16"
+          ],
+          [
+            "Englische Schrift 18",
+            "LV_FONT_MONTSERRAT_18"
+          ],
+          [
+            "Englische Schriftarten 20",
+            "LV_FONT_MONTSERRAT_20"
+          ],
+          [
+            "Englische Schriftart 22",
+            "LV_FONT_MONTSERRAT_22"
+          ],
+          [
+            "Englische Schrift 24",
+            "LV_FONT_MONTSERRAT_24"
+          ],
+          [
+            "Englische Schriftart 26",
+            "LV_FONT_MONTSERRAT_26"
+          ],
+          [
+            "Englische Schrift 28",
+            "LV_FONT_MONTSERRAT_28"
+          ],
+          [
+            "Englische Schriftarten 30",
+            "LV_FONT_MONTSERRAT_30"
+          ],
+          [
+            "Englische Schriftart 32",
+            "LV_FONT_MONTSERRAT_32"
+          ],
+          [
+            "Englische Schriftart 34",
+            "LV_FONT_MONTSERRAT_34"
+          ],
+          [
+            "Englische Schrift 36",
+            "LV_FONT_MONTSERRAT_36"
+          ],
+          [
+            "Englische Schriftart 38",
+            "LV_FONT_MONTSERRAT_38"
+          ],
+          [
+            "Englische Schrift 40",
+            "LV_FONT_MONTSERRAT_40"
+          ],
+          [
+            "Englische Schriftart 42",
+            "LV_FONT_MONTSERRAT_42"
+          ],
+          [
+            "Englische Schrift 44",
+            "LV_FONT_MONTSERRAT_44"
+          ],
+          [
+            "Englische Schrift 46",
+            "LV_FONT_MONTSERRAT_46"
+          ],
+          [
+            "Englische Schrift 48",
+            "LV_FONT_MONTSERRAT_48"
+          ],
+          [
+            "Chinesische Schriftart 14",
+            "LV_FONT_SOURCE_HAN_SANS_SC_14_CJK"
+          ],
+          [
+            "Chinesische Schriftarten 16",
+            "LV_FONT_SOURCE_HAN_SANS_SC_16_CJK"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_obj_set_style_bg_color": {
+    "message0": "Setze %1 Hintergrundfarbe %2",
+    "tooltip": "Stellen Sie die Hintergrundfarbe des Objekts ein"
+  },
+  "lvgl_obj_set_style_text_color": {
+    "message0": "Setze %1 Textfarbe %2",
+    "tooltip": "Stellen Sie die Textfarbe des Objekts ein"
+  },
+  "lvgl_obj_set_style_border_color": {
+    "message0": "Setze %1 Randfarbe %2",
+    "tooltip": "Setze die Farbe des Objektrandes"
+  },
+  "lvgl_obj_set_style_border_width": {
+    "message0": "Setze %1 Randbreite %2",
+    "tooltip": "Stellen Sie die Randbreite des Objekts fest"
+  },
+  "lvgl_obj_set_style_radius": {
+    "message0": "Stelle %1 Filetradius %2",
+    "tooltip": "Stellen Sie den Fillet-Radius des Objekts ein"
+  },
+  "lvgl_obj_set_style_pad_all": {
+    "message0": "Setze %1 Margin %2",
+    "tooltip": "Setze alle inneren Ränder für ein Objekt"
+  },
+  "lvgl_obj_set_style_bg_opa": {
+    "message0": "Stelle %1 Hintergrundtransparenz %2",
+    "tooltip": "Stellen Sie die Hintergrundtransparenz des Objekts ein",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Völlig transparent",
+            "LV_OPA_TRANSP"
+          ],
+          [
+            "25%",
+            "LV_OPA_25"
+          ],
+          [
+            "50%",
+            "LV_OPA_50"
+          ],
+          [
+            "75%",
+            "LV_OPA_75"
+          ],
+          [
+            "Undurchsichtig",
+            "LV_OPA_COVER"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_event_add_cb": {
+    "message0": "Wenn %1 %2 Ereignis eintritt",
+    "tooltip": "Setzen Sie den Ereignisaufruf für das Objekt ein",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Alle Veranstaltungen",
+            "LV_EVENT_ALL"
+          ],
+          [
+            "Drücken",
+            "LV_EVENT_PRESSED"
+          ],
+          [
+            "Drück weiter",
+            "LV_EVENT_PRESSING"
+          ],
+          [
+            "Drücken und dann weiterziehen",
+            "LV_EVENT_PRESS_LOST"
+          ],
+          [
+            "Kurzdruck",
+            "LV_EVENT_SHORT_CLICKED"
+          ],
+          [
+            "Einzeltipp",
+            "LV_EVENT_SINGLE_CLICKED"
+          ],
+          [
+            "Doppeltipp",
+            "LV_EVENT_DOUBLE_CLICKED"
+          ],
+          [
+            "Drei Strikes",
+            "LV_EVENT_TRIPLE_CLICKED"
+          ],
+          [
+            "Drücken und halten",
+            "LV_EVENT_LONG_PRESSED"
+          ],
+          [
+            "Drücken und halten, um zu wiederholen",
+            "LV_EVENT_LONG_PRESSED_REPEAT"
+          ],
+          [
+            "Klicken",
+            "LV_EVENT_CLICKED"
+          ],
+          [
+            "Loslassen",
+            "LV_EVENT_RELEASED"
+          ],
+          [
+            "Die Schriftrolle beginnt",
+            "LV_EVENT_SCROLL_BEGIN"
+          ],
+          [
+            "Der Rollwurf beginnt",
+            "LV_EVENT_SCROLL_THROW_BEGIN"
+          ],
+          [
+            "Ende der Schriftrolle",
+            "LV_EVENT_SCROLL_END"
+          ],
+          [
+            "Lauftext",
+            "LV_EVENT_SCROLL"
+          ],
+          [
+            "Gesten",
+            "LV_EVENT_GESTURE"
+          ],
+          [
+            "Tasten",
+            "LV_EVENT_KEY"
+          ],
+          [
+            "Drehen",
+            "LV_EVENT_ROTARY"
+          ],
+          [
+            "Fokus",
+            "LV_EVENT_FOCUSED"
+          ],
+          [
+            "Verlor den Fokus",
+            "LV_EVENT_DEFOCUSED"
+          ],
+          [
+            "Gehen Sie",
+            "LV_EVENT_LEAVE"
+          ],
+          [
+            "Crashtests",
+            "LV_EVENT_HIT_TEST"
+          ],
+          [
+            "Eingabegerät-Reset",
+            "LV_EVENT_INDEV_RESET"
+          ],
+          [
+            "Mit der Maus zum Eintreten",
+            "LV_EVENT_HOVER_OVER"
+          ],
+          [
+            "Schweben und Verlassen",
+            "LV_EVENT_HOVER_LEAVE"
+          ],
+          [
+            "Abdeckungsprüfungen",
+            "LV_EVENT_COVER_CHECK"
+          ],
+          [
+            "Erneuere die erweiterte Ziehgröße",
+            "LV_EVENT_REFR_EXT_DRAW_SIZE"
+          ],
+          [
+            "Die Hauptverlosung beginnt",
+            "LV_EVENT_DRAW_MAIN_BEGIN"
+          ],
+          [
+            "Hauptsächlich Illustrator",
+            "LV_EVENT_DRAW_MAIN"
+          ],
+          [
+            "Die Hauptzeichnung ist fertiggestellt",
+            "LV_EVENT_DRAW_MAIN_END"
+          ],
+          [
+            "Das Ziehen beginnt",
+            "LV_EVENT_DRAW_POST_BEGIN"
+          ],
+          [
+            "Spätere Auslosung",
+            "LV_EVENT_DRAW_POST"
+          ],
+          [
+            "Dann ist die Zeichnung fertig",
+            "LV_EVENT_DRAW_POST_END"
+          ],
+          [
+            "Fügen Sie die Zeichen-Aufgabe hinzu",
+            "LV_EVENT_DRAW_TASK_ADDED"
+          ],
+          [
+            "Werte ändern sich",
+            "LV_EVENT_VALUE_CHANGED"
+          ],
+          [
+            "Insert",
+            "LV_EVENT_INSERT"
+          ],
+          [
+            "Aktualisieren",
+            "LV_EVENT_REFRESH"
+          ],
+          [
+            "Bereit",
+            "LV_EVENT_READY"
+          ],
+          [
+            "Eingestellt",
+            "LV_EVENT_CANCEL"
+          ],
+          [
+            "Zustandsänderungen",
+            "LV_EVENT_STATE_CHANGED"
+          ],
+          [
+            "Gegründet",
+            "LV_EVENT_CREATE"
+          ],
+          [
+            "Löschen",
+            "LV_EVENT_DELETE"
+          ],
+          [
+            "Unterobjektänderungen",
+            "LV_EVENT_CHILD_CHANGED"
+          ],
+          [
+            "Erstellung eines Kindobjekts",
+            "LV_EVENT_CHILD_CREATED"
+          ],
+          [
+            "Lösche von Kindobjekten",
+            "LV_EVENT_CHILD_DELETED"
+          ],
+          [
+            "Die Deinstallation des Bildschirms beginnt",
+            "LV_EVENT_SCREEN_UNLOAD_START"
+          ],
+          [
+            "Das Laden des Bildschirms beginnt",
+            "LV_EVENT_SCREEN_LOAD_START"
+          ],
+          [
+            "Der Bildschirm lädt gerade",
+            "LV_EVENT_SCREEN_LOADED"
+          ],
+          [
+            "Der Bildschirm wurde deinstalliert",
+            "LV_EVENT_SCREEN_UNLOADED"
+          ],
+          [
+            "Größenänderungen",
+            "LV_EVENT_SIZE_CHANGED"
+          ],
+          [
+            "Stiländerungen",
+            "LV_EVENT_STYLE_CHANGED"
+          ],
+          [
+            "Layoutänderungen",
+            "LV_EVENT_LAYOUT_CHANGED"
+          ],
+          [
+            "Such dir deine eigene Größe",
+            "LV_EVENT_GET_SELF_SIZE"
+          ],
+          [
+            "Zonenversagen",
+            "LV_EVENT_INVALIDATE_AREA"
+          ],
+          [
+            "Auflösungsänderungen",
+            "LV_EVENT_RESOLUTION_CHANGED"
+          ],
+          [
+            "Farbformatänderungen",
+            "LV_EVENT_COLOR_FORMAT_CHANGED"
+          ],
+          [
+            "Aktualisierungsanfragen",
+            "LV_EVENT_REFR_REQUEST"
+          ],
+          [
+            "Refresh beginnt",
+            "LV_EVENT_REFR_START"
+          ],
+          [
+            "Erfrischt und bereit",
+            "LV_EVENT_REFR_READY"
+          ],
+          [
+            "Das Rendern beginnt",
+            "LV_EVENT_RENDER_START"
+          ],
+          [
+            "Das Rendering ist bereit",
+            "LV_EVENT_RENDER_READY"
+          ],
+          [
+            "Flush Start",
+            "LV_EVENT_FLUSH_START"
+          ],
+          [
+            "Aktualisierung abgeschlossen (Flush)",
+            "LV_EVENT_FLUSH_FINISH"
+          ],
+          [
+            "Das Warten auf das Aktualisieren beginnt",
+            "LV_EVENT_FLUSH_WAIT_START"
+          ],
+          [
+            "Aktualisieren und auf die Fertigstellung warten",
+            "LV_EVENT_FLUSH_WAIT_FINISH"
+          ],
+          [
+            "Layout-Update abgeschlossen",
+            "LV_EVENT_UPDATE_LAYOUT_COMPLETED"
+          ],
+          [
+            "Vertikale Synchronisation",
+            "LV_EVENT_VSYNC"
+          ],
+          [
+            "Vertikale Synchronisationsanfrage",
+            "LV_EVENT_VSYNC_REQUEST"
+          ]
+        ]
+      }
+    ],
+    "message1": "ausführen %1"
+  },
+  "lvgl_event_code": {
+    "message0": "Ereigniscode-Konstanten %1",
+    "tooltip": "Ruft den konstanten Wert des Ereigniscodes ab",
+    "args0": [
+      {
+        "options": [
+          [
+            "Alle Veranstaltungen",
+            "LV_EVENT_ALL"
+          ],
+          [
+            "Drücken",
+            "LV_EVENT_PRESSED"
+          ],
+          [
+            "Drück weiter",
+            "LV_EVENT_PRESSING"
+          ],
+          [
+            "Drücken und dann weiterziehen",
+            "LV_EVENT_PRESS_LOST"
+          ],
+          [
+            "Kurzdruck",
+            "LV_EVENT_SHORT_CLICKED"
+          ],
+          [
+            "Einzeltipp",
+            "LV_EVENT_SINGLE_CLICKED"
+          ],
+          [
+            "Doppeltipp",
+            "LV_EVENT_DOUBLE_CLICKED"
+          ],
+          [
+            "Drei Strikes",
+            "LV_EVENT_TRIPLE_CLICKED"
+          ],
+          [
+            "Drücken und halten",
+            "LV_EVENT_LONG_PRESSED"
+          ],
+          [
+            "Drücken und halten, um zu wiederholen",
+            "LV_EVENT_LONG_PRESSED_REPEAT"
+          ],
+          [
+            "Klicken",
+            "LV_EVENT_CLICKED"
+          ],
+          [
+            "Loslassen",
+            "LV_EVENT_RELEASED"
+          ],
+          [
+            "Die Schriftrolle beginnt",
+            "LV_EVENT_SCROLL_BEGIN"
+          ],
+          [
+            "Der Rollwurf beginnt",
+            "LV_EVENT_SCROLL_THROW_BEGIN"
+          ],
+          [
+            "Ende der Schriftrolle",
+            "LV_EVENT_SCROLL_END"
+          ],
+          [
+            "Lauftext",
+            "LV_EVENT_SCROLL"
+          ],
+          [
+            "Gesten",
+            "LV_EVENT_GESTURE"
+          ],
+          [
+            "Tasten",
+            "LV_EVENT_KEY"
+          ],
+          [
+            "Drehen",
+            "LV_EVENT_ROTARY"
+          ],
+          [
+            "Fokus",
+            "LV_EVENT_FOCUSED"
+          ],
+          [
+            "Verlor den Fokus",
+            "LV_EVENT_DEFOCUSED"
+          ],
+          [
+            "Gehen Sie",
+            "LV_EVENT_LEAVE"
+          ],
+          [
+            "Crashtests",
+            "LV_EVENT_HIT_TEST"
+          ],
+          [
+            "Eingabegerät-Reset",
+            "LV_EVENT_INDEV_RESET"
+          ],
+          [
+            "Mit der Maus zum Eintreten",
+            "LV_EVENT_HOVER_OVER"
+          ],
+          [
+            "Schweben und Verlassen",
+            "LV_EVENT_HOVER_LEAVE"
+          ],
+          [
+            "Abdeckungsprüfungen",
+            "LV_EVENT_COVER_CHECK"
+          ],
+          [
+            "Erneuere die erweiterte Ziehgröße",
+            "LV_EVENT_REFR_EXT_DRAW_SIZE"
+          ],
+          [
+            "Die Hauptverlosung beginnt",
+            "LV_EVENT_DRAW_MAIN_BEGIN"
+          ],
+          [
+            "Hauptsächlich Illustrator",
+            "LV_EVENT_DRAW_MAIN"
+          ],
+          [
+            "Die Hauptzeichnung ist fertiggestellt",
+            "LV_EVENT_DRAW_MAIN_END"
+          ],
+          [
+            "Das Ziehen beginnt",
+            "LV_EVENT_DRAW_POST_BEGIN"
+          ],
+          [
+            "Spätere Auslosung",
+            "LV_EVENT_DRAW_POST"
+          ],
+          [
+            "Dann ist die Zeichnung fertig",
+            "LV_EVENT_DRAW_POST_END"
+          ],
+          [
+            "Fügen Sie die Zeichen-Aufgabe hinzu",
+            "LV_EVENT_DRAW_TASK_ADDED"
+          ],
+          [
+            "Werte ändern sich",
+            "LV_EVENT_VALUE_CHANGED"
+          ],
+          [
+            "Insert",
+            "LV_EVENT_INSERT"
+          ],
+          [
+            "Aktualisieren",
+            "LV_EVENT_REFRESH"
+          ],
+          [
+            "Bereit",
+            "LV_EVENT_READY"
+          ],
+          [
+            "Eingestellt",
+            "LV_EVENT_CANCEL"
+          ],
+          [
+            "Zustandsänderungen",
+            "LV_EVENT_STATE_CHANGED"
+          ],
+          [
+            "Gegründet",
+            "LV_EVENT_CREATE"
+          ],
+          [
+            "Löschen",
+            "LV_EVENT_DELETE"
+          ],
+          [
+            "Unterobjektänderungen",
+            "LV_EVENT_CHILD_CHANGED"
+          ],
+          [
+            "Erstellung eines Kindobjekts",
+            "LV_EVENT_CHILD_CREATED"
+          ],
+          [
+            "Lösche von Kindobjekten",
+            "LV_EVENT_CHILD_DELETED"
+          ],
+          [
+            "Die Deinstallation des Bildschirms beginnt",
+            "LV_EVENT_SCREEN_UNLOAD_START"
+          ],
+          [
+            "Das Laden des Bildschirms beginnt",
+            "LV_EVENT_SCREEN_LOAD_START"
+          ],
+          [
+            "Der Bildschirm lädt gerade",
+            "LV_EVENT_SCREEN_LOADED"
+          ],
+          [
+            "Der Bildschirm wurde deinstalliert",
+            "LV_EVENT_SCREEN_UNLOADED"
+          ],
+          [
+            "Größenänderungen",
+            "LV_EVENT_SIZE_CHANGED"
+          ],
+          [
+            "Stiländerungen",
+            "LV_EVENT_STYLE_CHANGED"
+          ],
+          [
+            "Layoutänderungen",
+            "LV_EVENT_LAYOUT_CHANGED"
+          ],
+          [
+            "Such dir deine eigene Größe",
+            "LV_EVENT_GET_SELF_SIZE"
+          ],
+          [
+            "Zonenversagen",
+            "LV_EVENT_INVALIDATE_AREA"
+          ],
+          [
+            "Auflösungsänderungen",
+            "LV_EVENT_RESOLUTION_CHANGED"
+          ],
+          [
+            "Farbformatänderungen",
+            "LV_EVENT_COLOR_FORMAT_CHANGED"
+          ],
+          [
+            "Aktualisierungsanfragen",
+            "LV_EVENT_REFR_REQUEST"
+          ],
+          [
+            "Refresh beginnt",
+            "LV_EVENT_REFR_START"
+          ],
+          [
+            "Erfrischt und bereit",
+            "LV_EVENT_REFR_READY"
+          ],
+          [
+            "Das Rendern beginnt",
+            "LV_EVENT_RENDER_START"
+          ],
+          [
+            "Das Rendering ist bereit",
+            "LV_EVENT_RENDER_READY"
+          ],
+          [
+            "Flush Start",
+            "LV_EVENT_FLUSH_START"
+          ],
+          [
+            "Aktualisierung abgeschlossen (Flush)",
+            "LV_EVENT_FLUSH_FINISH"
+          ],
+          [
+            "Das Warten auf das Aktualisieren beginnt",
+            "LV_EVENT_FLUSH_WAIT_START"
+          ],
+          [
+            "Aktualisieren und auf die Fertigstellung warten",
+            "LV_EVENT_FLUSH_WAIT_FINISH"
+          ],
+          [
+            "Layout-Update abgeschlossen",
+            "LV_EVENT_UPDATE_LAYOUT_COMPLETED"
+          ],
+          [
+            "Vertikale Synchronisation",
+            "LV_EVENT_VSYNC"
+          ],
+          [
+            "Vertikale Synchronisationsanfrage",
+            "LV_EVENT_VSYNC_REQUEST"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_obj_get_child": {
+    "message0": "Erstellen Sie %1 Index mit dem Child Object %2 %3",
+    "tooltip": "Ruft das Kindobjekt des spezifizierten Index des übergeordneten Objekts ab"
+  },
+  "lvgl_screen_active": {
+    "message0": "Hol dir den aktuellen Bildschirm",
+    "tooltip": "Hol dir das aktuelle aktive Bildschirmobjekt"
+  },
+  "lvgl_screen_load": {
+    "message0": "Ladebildschirm %1",
+    "tooltip": "Wechsle zum angegebenen Bildschirm"
+  },
+  "lvgl_obj_create": {
+    "message0": "Erstellen Sie %1 Basisobjekt %2 Elternobjekt %3",
+    "tooltip": "Erstellen Sie ein Basiscontainer-Objekt",
+    "args0": [
+      {
+        "options": [
+          [
+            "Die ganze Situation",
+            "global"
+          ],
+          [
+            "Lokal",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_screen_create": {
+    "message0": "Erstellen Sie %1 neuen Bildschirme %2",
+    "tooltip": "Erstelle eines neuen Bildschirmobjekts",
+    "args0": [
+      {
+        "options": [
+          [
+            "Die ganze Situation",
+            "global"
+          ],
+          [
+            "Lokal",
+            "local"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "lvgl_image_create": {
+    "message0": "Erstellen Sie %1 Bild %2 Elternobjekt %3",
+    "tooltip": "Erstellen Sie eine Bildsteuerung",
+    "args0": [
+      {
+        "options": [
+          [
+            "Die ganze Situation",
+            "global"
+          ],
+          [
+            "Lokal",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_image_set_src": {
+    "message0": "Setze das Bild %1 Quelle auf %2",
+    "tooltip": "Setzen Sie den Quelldateipfad oder das Symbol für das Bild ein"
+  },
+  "lvgl_image_set_zoom": {
+    "message0": "Stelle das Bild %1 Maßstab auf %2",
+    "tooltip": "Stelle den Bildzoom ein (256 ist die ursprüngliche Größe)"
+  },
+  "lvgl_image_set_angle": {
+    "message0": "Stellen Sie das Bild %1 Rotationswinkel auf %2",
+    "tooltip": "Stellen Sie den Bildrotationswinkel ein (in 0,1-Grad-Einheiten)"
+  },
+  "lvgl_image_set_offset": {
+    "message0": "Bild %1 Offset X %2 Y %3",
+    "tooltip": "Setze den Offset des Bildes"
+  },
+  "lvgl_chart_create": {
+    "message0": "Erstellen Sie %1 Diagramm %2 Elternobjekt %3",
+    "tooltip": "Erstellen Sie eine Chartsteuerung",
+    "args0": [
+      {
+        "options": [
+          [
+            "Die ganze Situation",
+            "global"
+          ],
+          [
+            "Lokal",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_chart_set_type": {
+    "message0": "Set Chart %1 Type %2",
+    "tooltip": "Leg die Art der Karte fest",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Balkendiagramm",
+            "LV_CHART_TYPE_BAR"
+          ],
+          [
+            "Liniendiagramm",
+            "LV_CHART_TYPE_LINE"
+          ],
+          [
+            "Streudiagramm",
+            "LV_CHART_TYPE_SCATTER"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_chart_set_point_count": {
+    "message0": "Set Chart %1 Punkte %2",
+    "tooltip": "Stellen Sie die Anzahl der auf der Grafik angezeigten Datenpunkte fest"
+  },
+  "lvgl_chart_add_series": {
+    "message0": "Diagramm hinzufügen %1 Serien %2 Farb-%3",
+    "tooltip": "Fügen Sie dem Diagramm eine Datenreihe hinzu",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "Rot",
+            "lv_palette_main(LV_PALETTE_RED)"
+          ],
+          [
+            "Blau",
+            "lv_palette_main(LV_PALETTE_BLUE)"
+          ],
+          [
+            "Grün",
+            "lv_palette_main(LV_PALETTE_GREEN)"
+          ],
+          [
+            "Orange",
+            "lv_palette_main(LV_PALETTE_ORANGE)"
+          ],
+          [
+            "Lila",
+            "lv_palette_main(LV_PALETTE_PURPLE)"
+          ],
+          [
+            "cyan",
+            "lv_palette_main(LV_PALETTE_CYAN)"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_chart_set_next_value": {
+    "message0": "Setze das Diagramm %1 Reihe %2 nächsten Wert auf %3",
+    "tooltip": "Setzen Sie den nächsten Datenpunktwert für die Reihe"
+  },
+  "lvgl_chart_set_range": {
+    "message0": "Setze Diagramm %1 Reihe %2 Bereich, Minimum %3 Maximum %4",
+    "tooltip": "Stellen Sie den Y-Achsenbereich der Reihe ein"
+  },
+  "lvgl_chart_set_update_mode": {
+    "message0": "Setze Diagramm %1 Update-Modus %2",
+    "tooltip": "Stellen Sie den Datenaktualisierungsmodus für die Grafik ein",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Schicht",
+            "LV_CHART_UPDATE_MODE_SHIFT"
+          ],
+          [
+            "Schleifen",
+            "LV_CHART_UPDATE_MODE_CIRCULAR"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_chart_refresh": {
+    "message0": "Grafik aktualisieren %1",
+    "tooltip": "Aktualisieren Sie die Kartenanzeige"
+  },
+  "lvgl_keyboard_create": {
+    "message0": "Erstellen Sie %1 Tastatur %2 übergeordnetes Objekt %3",
+    "tooltip": "Erstellen Sie eine Tastatursteuerung",
+    "args0": [
+      {
+        "options": [
+          [
+            "Die ganze Situation",
+            "global"
+          ],
+          [
+            "Lokal",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_keyboard_set_textarea": {
+    "message0": "Tastatur %1 Assoziiertes Textfeld %2",
+    "tooltip": "Setze das Textfeld, das mit der Tastatur zugeordnet ist"
+  },
+  "lvgl_keyboard_set_mode": {
+    "message0": "Stelle die Tastatur %1 Modus %2",
+    "tooltip": "Stellen Sie den Tastaturmodus ein",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Text",
+            "LV_KEYBOARD_MODE_TEXT_LOWER"
+          ],
+          [
+            "Zahl",
+            "LV_KEYBOARD_MODE_NUMBER"
+          ],
+          [
+            "Besondere Charaktere",
+            "LV_KEYBOARD_MODE_SPECIAL"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_keyboard_set_popovers": {
+    "message0": "Setze Tastatur %1 Pop-up-Prompt %2",
+    "tooltip": "Setze den Tasten-Pop-up-Prompt für die Tastatur",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Ein",
+            "true"
+          ],
+          [
+            "Aus",
+            "false"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_list_create": {
+    "message0": "Erstellen Sie %1 Liste %2 übergeordneten Objekt%3",
+    "tooltip": "Erstellen Sie eine Listensteuerung",
+    "args0": [
+      {
+        "options": [
+          [
+            "Die ganze Situation",
+            "global"
+          ],
+          [
+            "Lokal",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_list_add_text": {
+    "message0": "Liste %1 Text hinzufügen %2",
+    "tooltip": "Fügen Sie Textelemente zur Liste hinzu"
+  },
+  "lvgl_list_add_btn": {
+    "message0": "Liste %1 Hinzufügen-Button %2 Symbol %3",
+    "tooltip": "Button-Elemente zur Liste hinzufügen",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "Keine",
+            "NULL"
+          ],
+          [
+            "Abspielen",
+            "LV_SYMBOL_PLAY"
+          ],
+          [
+            "Pause",
+            "LV_SYMBOL_PAUSE"
+          ],
+          [
+            "Stoppen",
+            "LV_SYMBOL_STOP"
+          ],
+          [
+            "Einstellungen",
+            "LV_SYMBOL_SETTINGS"
+          ],
+          [
+            "Lautstärke",
+            "LV_SYMBOL_VOLUME_MAX"
+          ],
+          [
+            "WiFi",
+            "LV_SYMBOL_WIFI"
+          ],
+          [
+            "Bluetooth",
+            "LV_SYMBOL_BLUETOOTH"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_tabview_create": {
+    "message0": "Erstellen Sie %1 Tab-Ansicht %2 Elternobjekt %3",
+    "tooltip": "Erstellen Sie eine Tab-View-Steuerung",
+    "args0": [
+      {
+        "options": [
+          [
+            "Die ganze Situation",
+            "global"
+          ],
+          [
+            "Lokal",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_tabview_add_tab": {
+    "message0": "Tab-Ansicht %1 Tab hinzufügen %2",
+    "tooltip": "Fügen Sie einen Tab hinzu und geben Sie das Tab-Inhaltsobjekt zurück"
+  },
+  "lvgl_set_img_font": {
+    "message0": "Bildschriftart festlegen %1",
+    "tooltip": "Stellen Sie ein, ob die Unterstützung für Bildschriften aktiviert werden soll",
+    "args0": [
+      {
+        "options": [
+          [
+            "Ein",
+            "true"
+          ],
+          [
+            "Aus",
+            "false"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_set_stdlib_malloc": {
+    "message0": "Setze den Standard-Bibliothekstyp %1",
+    "tooltip": "Stellen Sie den Standardbibliothekstyp ein, der verwendet wird",
+    "args0": [
+      {
+        "options": [
+          [
+            "Eingebaut",
+            "LV_STDLIB_BUILTIN"
+          ],
+          [
+            "C-Standardbibliothek",
+            "LV_STDLIB_CLIB"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_set_stdlib_string": {
+    "message0": "Setze den String-Bibliothekstyp %1",
+    "tooltip": "Setzen Sie den Typ der zu verwendenden Stringbibliothek ein",
+    "args0": [
+      {
+        "options": [
+          [
+            "Eingebaut",
+            "LV_STDLIB_BUILTIN"
+          ],
+          [
+            "C-Standardbibliothek",
+            "LV_STDLIB_CLIB"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_set_stdlib_sprintf": {
+    "message0": "Setzen Sie die Art der Formatierungsausgabefunktion %1",
+    "tooltip": "Stellen Sie die Art der formatierten Ausgabefunktion fest, die verwendet werden soll",
+    "args0": [
+      {
+        "options": [
+          [
+            "Eingebaut",
+            "LV_STDLIB_BUILTIN"
+          ],
+          [
+            "C-Standardbibliothek",
+            "LV_STDLIB_CLIB"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_set_theme": {
+    "message0": "Festlegendes Thema %1",
+    "tooltip": "Setzen Sie den globalen Themenstil fest",
+    "args0": [
+      {
+        "options": [
+          [
+            "Helle Farbe",
+            "light"
+          ],
+          [
+            "Dunkel",
+            "dark"
+          ]
+        ]
+      }
+    ]
+  },
+  "toolbox_categories": [
+    "Initialisierung",
+    "Bildschirm",
+    "Display-Steuerungen",
+    "Eingangssteuerung",
+    "Monitorsteuerung",
+    "Aufbau",
+    "Stil",
+    "Events",
+    "Status und Zeichen"
+  ]
+}

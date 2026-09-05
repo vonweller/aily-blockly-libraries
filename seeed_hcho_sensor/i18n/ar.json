@@ -1,0 +1,35 @@
+{
+  "toolbox_name": "حساسات HCHO",
+  "toolbox_labels": {
+    "初始化": "التهيئة",
+    "读取数据": "قراءة البيانات",
+    "校准": "المعايرة"
+  },
+  "grove_hcho_init": {
+    "message0": "تهيئة دبابيس %1 مستشعر HCHO %2 قيمة معايرة R0 %3",
+    "tooltip": "قم بتهيئة حساس HCHO وضبط قيم معايرة الدبوس وR0. يجب أن يكون R0 معايرا مسبقا في الهواء النقي.",
+    "args0": [
+      null,
+      {
+        "options": "${board.analogPins}"
+      },
+      null
+    ]
+  },
+  "grove_hcho_read_raw": {
+    "message0": "اقرأ قيمة المحاكاة الخام %1 HCHO",
+    "tooltip": "اقرأ القيمة التناظرية الخام للحساس (0-1023)"
+  },
+  "grove_hcho_read_rs": {
+    "message0": "اقرأ قيمة المقاومة R لحساس %1 HCHO",
+    "tooltip": "احسب قيمة مقاومة المستشعر Rs"
+  },
+  "grove_hcho_read_ppm": {
+    "message0": "اقرأ تركيز HCHO %1 (ppm)",
+    "tooltip": "احسب تركيز HCHO (ppm)، مع نطاق كشف من 1 إلى 50 جزء في المليون"
+  },
+  "grove_hcho_calibrate_r0": {
+    "message0": "معايرة %1 HCHO للحصول على قيمة R0",
+    "tooltip": "معاير المستشعر في هواء نقي وأعد قيمة R0. املأ هذه القيمة في معامل R0 في كتلة التهيئة (Initialization Block)."
+  }
+}

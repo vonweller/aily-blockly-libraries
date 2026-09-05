@@ -1,0 +1,323 @@
+{
+  "toolbox_name": "Bluetooth BLE",
+  "toolbox_labels": {
+    "一键BLE外设": "Périphérique BLE en un clic",
+    "设备初始化": "Initialisation de l'appareil",
+    "广播配置": "Configuration de diffusion",
+    "广播发送": "diffusion envoyer",
+    "连接管理": "Gestion des connexions",
+    "连接事件": "événements de connexion",
+    "标准GATT": "Norme du GATT",
+    "自定义GATT": "GATT personnalisé",
+    "写入回调": "écrire un rappel",
+    "Nordic UART服务": "Service UART nordique",
+    "BLE扫描": "Analyse BLE",
+    "扫描结果": "Résultats de l'analyse"
+  },
+  "toolbox_categories": [
+    "Mode rapide",
+    "Initialisation",
+    "diffuser",
+    "Connexion",
+    "Service GATT",
+    "Pont NUS",
+    "Balayage",
+    "Alimentation"
+  ],
+  "nrf54_ble_init": {
+    "message0": "Initialiser BLE puissance TX(dBm) %1",
+    "tooltip": "Initialisez la radio nRF54 BLE et réglez la puissance de transmission",
+    "args0": [
+      {
+        "options": [
+          [
+            "+8",
+            "8"
+          ],
+          [
+            "+4",
+            "4"
+          ],
+          [
+            "0",
+            "0"
+          ],
+          [
+            "-4",
+            "-4"
+          ],
+          [
+            "-8 (default)",
+            "-8"
+          ],
+          [
+            "-12",
+            "-12"
+          ],
+          [
+            "-16",
+            "-16"
+          ],
+          [
+            "-20",
+            "-20"
+          ],
+          [
+            "-40",
+            "-40"
+          ]
+        ]
+      }
+    ]
+  },
+  "nrf54_ble_end": {
+    "message0": "Désactivez BLE",
+    "tooltip": "Éteins la radio BLE"
+  },
+  "nrf54_ble_set_name": {
+    "message0": "Définir le nom de diffusion BLE %1",
+    "tooltip": "Définir le nom de l’appareil de diffusion BLE"
+  },
+  "nrf54_ble_set_address": {
+    "message0": "Définir l’adresse BLE %1 type %2",
+    "tooltip": "Définir l’adresse du périphérique BLE (format : AA :BB :CC :DD :EE :FF)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Statique aléatoire",
+            "kRandomStatic"
+          ],
+          [
+            "Public",
+            "kPublic"
+          ]
+        ]
+      }
+    ]
+  },
+  "nrf54_ble_get_address": {
+    "message0": "Obtenir l'adresse BLE",
+    "tooltip": "Récupère la chaîne de l’adresse actuelle de l’appareil BLE"
+  },
+  "nrf54_ble_set_tx_power": {
+    "message0": "Régler la puissance d’émission (dBm) %1",
+    "tooltip": "Régler la puissance de transmission BLE"
+  },
+  "nrf54_ble_set_adv_type": {
+    "message0": "Mettre le type de diffusion %1",
+    "tooltip": "Définir le type de PDU de diffusion BLE",
+    "args0": [
+      {
+        "options": [
+          [
+            "Connectable et scannable (ADV_IND)",
+            "kAdvInd"
+          ],
+          [
+            "Impossible de connecter ou de scanner (ADV_NONCONN_IND)",
+            "kAdvNonConnInd"
+          ],
+          [
+            "Non connecté, peut scanner (ADV_SCAN_IND)",
+            "kAdvScanInd"
+          ]
+        ]
+      }
+    ]
+  },
+  "nrf54_ble_set_adv_data_raw": {
+    "message0": "Définir les données brutes de diffusion Drapeaux %1 Inclure le nom %2",
+    "tooltip": "Construire automatiquement les données de diffusion en utilisant setAdvertisingName"
+  },
+  "nrf54_ble_set_scan_response_name": {
+    "message0": "Définir le nom de la réponse de balayage %1",
+    "tooltip": "Définir le nom de l’appareil dans la réponse de balayage BLE"
+  },
+  "nrf54_ble_advertise_once": {
+    "message0": "Envoyer un événement diffusé",
+    "tooltip": "Envoyez un événement de diffusion (uniquement TX) sur trois principaux canaux de diffusion"
+  },
+  "nrf54_ble_advertise_connectable": {
+    "message0": "Diffusions connectables à transmission et surveillance",
+    "tooltip": "Envoyez des événements de diffusion connectables et écoutez les demandes de connexion (ADV_IND)"
+  },
+  "nrf54_ble_is_connected": {
+    "message0": "BLE connecté ?",
+    "tooltip": "Vérifiez si le BLE a établi une connexion"
+  },
+  "nrf54_ble_disconnect": {
+    "message0": "Déconnectez la connexion BLE",
+    "tooltip": "Déconnectez activement la connexion BLE actuelle"
+  },
+  "nrf54_ble_poll_event": {
+    "message0": "Événements d’attente de connexion",
+    "tooltip": "Attendre et gérer un événement de connexion BLE"
+  },
+  "nrf54_ble_on_connected": {
+    "message0": "Lors de la connexion BLE %1 %2",
+    "tooltip": "Exécuté lorsque le périphérique BLE se connecte avec succès"
+  },
+  "nrf54_ble_on_disconnected": {
+    "message0": "Quand le BLE brise %1 %2",
+    "tooltip": "Exécuté lorsque le dispositif BLE est déconnecté"
+  },
+  "nrf54_ble_set_gatt_device_name": {
+    "message0": "Définir le nom de l’appareil GATT %1",
+    "tooltip": "Définir la valeur de la caractéristique du nom de périphérique standard GATT"
+  },
+  "nrf54_ble_set_gatt_battery": {
+    "message0": "Régler la charge de la batterie GATT %1 % %",
+    "tooltip": "Régler la capacité standard de la batterie GATT (0-100)"
+  },
+  "nrf54_ble_clear_gatt": {
+    "message0": "Effacer la table GATT personnalisée",
+    "tooltip": "Effacez la table de service GATT personnalisée ; elle doit être appelée avant d’ajouter un nouveau service"
+  },
+  "nrf54_ble_add_service_16": {
+    "message0": "Ajouter un service GATT %1 UUID(16 bits) %2",
+    "tooltip": "Ajouter un service GATT UUID 16 bits"
+  },
+  "nrf54_ble_add_service_128": {
+    "message0": "Ajouter un service GATT(128 bits) %1 UUID %2",
+    "tooltip": "Ajouter un service GATT UUID 128 bits"
+  },
+  "nrf54_ble_add_characteristic": {
+    "message0": "Ajouter des fonctionnalités %2 UUID (16 bits) %3 attributs dans Service %1%4",
+    "tooltip": "Ajouter une valeur propre sous le service spécifié",
+    "args0": [
+      null,
+      null,
+      null,
+      {
+        "options": [
+          [
+            "Lire",
+            "READ"
+          ],
+          [
+            "écrire (répondre)",
+            "WRITE"
+          ],
+          [
+            "Écrire (pas de réponse)",
+            "WRITE_NR"
+          ],
+          [
+            "Notify",
+            "NOTIFY"
+          ],
+          [
+            "Indicate",
+            "INDICATE"
+          ],
+          [
+            "Lire + notifier",
+            "READ_NOTIFY"
+          ],
+          [
+            "Lire + écrire",
+            "READ_WRITE"
+          ],
+          [
+            "Lire + écrire + notify",
+            "READ_WRITE_NOTIFY"
+          ]
+        ]
+      }
+    ]
+  },
+  "nrf54_ble_set_char_value": {
+    "message0": "Définir les valeurs propres %1 les données %2",
+    "tooltip": "Définir le contenu des données de la valeur propre"
+  },
+  "nrf54_ble_notify_char": {
+    "message0": "Valeur de la fonction de notification %1",
+    "tooltip": "Envoyez une notification des changements de valeur de la fonctionnalité à l’appareil central connecté"
+  },
+  "nrf54_ble_is_cccd_enabled": {
+    "message0": "Fonctionnalité %1 notification activée ?",
+    "tooltip": "Vérifiez si l’appareil central a activé les notifications pour cette valeur de fonctionnalité"
+  },
+  "nrf54_ble_on_char_write": {
+    "message0": "Lorsque la %1 de fonctionnalité est written%2 %3",
+    "tooltip": "Exécuté lorsque la valeur propre est écrite par le dispositif central"
+  },
+  "nrf54_ble_char_write_value": {
+    "message0": "Données écrites (chaîne)",
+    "tooltip": "Récupère les données de la dernière valeur propre d’écriture (doit être utilisée lors du rappel d’écriture)"
+  },
+  "nrf54_ble_nus_init": {
+    "message0": "Initialiser le service BLE Nordic UART nom %1",
+    "tooltip": "Initialiser BLE et le service NUS"
+  },
+  "nrf54_ble_nus_available": {
+    "message0": "NUS octets disponibles",
+    "tooltip": "Renvoyer le nombre d'octets disponibles dans le tampon NUS"
+  },
+  "nrf54_ble_nus_read_string": {
+    "message0": "NUS lit la chaîne",
+    "tooltip": "Le tampon de réception NUS lit toutes les données disponibles sous forme de chaînes de caractères"
+  },
+  "nrf54_ble_nus_write": {
+    "message0": "NUS envoyer %1",
+    "tooltip": "Les données de chaîne sont envoyées au dispositif central via NUS"
+  },
+  "nrf54_ble_nus_println": {
+    "message0": "NUS envoyer une ligne %1",
+    "tooltip": "Envoi de données de chaîne et de coupures de ligne via NUS"
+  },
+  "nrf54_ble_nus_connected": {
+    "message0": "NUS connecté ?",
+    "tooltip": "Vérifiez si la connexion Bluetooth NUS est établie"
+  },
+  "nrf54_ble_nus_service": {
+    "message0": "Traitement de la boucle NUS",
+    "tooltip": "Appeler dans loop pour traiter NUS"
+  },
+  "nrf54_ble_scan_passive": {
+    "message0": "Scan passif BLE (pas de transmission)",
+    "tooltip": "Scanne passivement les diffusions BLE à proximité (aucune SCAN_REQ n’est envoyée), et renvoie si la diffusion a été reçue"
+  },
+  "nrf54_ble_scan_active": {
+    "message0": "Scan actif BLE",
+    "tooltip": "Scanner activement les appareils BLE proches (envoyant SCAN_REQ recevant SCAN_RSP), en indiquant si le balayage atteint l’appareil"
+  },
+  "nrf54_ble_scan_get_address": {
+    "message0": "Résultats de balayage Adresse de l’appareil",
+    "tooltip": "Obtenez les adresses de périphériques les plus récentes numérisées"
+  },
+  "nrf54_ble_scan_get_rssi": {
+    "message0": "Résultats du scan RSSI",
+    "tooltip": "Obtenir la puissance du signal (dBm) de l’appareil balayé la plus récente"
+  },
+  "nrf54_ble_scan_get_name": {
+    "message0": "Résultats de la balayage Nom de l’appareil",
+    "tooltip": "Analyser le nom de l'appareil"
+  },
+  "nrf54_ble_peripheral_quick": {
+    "message0": "Périphériques BLE rapides Name%1 %2 Lorsque les données sont received%3",
+    "tooltip": "Initialisation en un clic des périphériques BLE NUS. Après la connexion, il fait automatiquement des ponts et exécute des blocs de code lorsque les données sont reçues"
+  },
+  "nrf54_ble_peripheral_received_data": {
+    "message0": "Données BLE reçues",
+    "tooltip": "Récupérer la chaîne de données reçue via BLE (doit être utilisée lors du rappel)"
+  },
+  "nrf54_ble_peripheral_send": {
+    "message0": "BLE envoyer %1",
+    "tooltip": "Les données sont envoyées au dispositif central via BLE"
+  },
+  "nrf54_ble_peripheral_connected": {
+    "message0": "Périphériques BLE connectés ?",
+    "tooltip": "Vérifiez si le périphérique BLE rapide est connecté"
+  },
+  "nrf54_ble_power_low_power_mode": {
+    "message0": "Régler le mode basse consommation",
+    "tooltip": "Mettre le CPU en mode basse consommation"
+  },
+  "nrf54_ble_battery_percent": {
+    "message0": "Niveau de batterie (%)",
+    "tooltip": "Obtenir le pourcentage de batterie"
+  }
+}

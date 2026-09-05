@@ -1,0 +1,1087 @@
+{
+  "toolbox_name": "ESPUI Web UI",
+  "toolbox_labels": {
+    "网络与启动": "Red e inicio",
+    "控件ID": "ID de controles",
+    "容器": "Contenedores",
+    "控件创建": "Crear controles",
+    "更新与样式": "Actualizacion y estilo",
+    "事件值": "Valores de evento"
+  },
+  "espui_wifi_ap": {
+    "message0": "Activación del punto de acceso ESPUI: SSID %1 contraseña %2",
+    "tooltip": "Configura los dispositivos ESP como puntos de acceso WiFi adecuados para interfaces de control locales sin routers"
+  },
+  "espui_wifi_sta": {
+    "message0": "Conexión ESPUI SSID WiFi %1 contraseña %2 tiempo de espera (ms) %3",
+    "tooltip": "Conéctate a una red WiFi existente y sigue funcionando después del tiempo de espera especificado"
+  },
+  "espui_wifi_auto": {
+    "message0": "ESPUI Redes Automáticas STA SSID %1 Contraseña STA %2 SSID de AP %3 Contraseña de AP %4 Tiempo de espera (ms) %5",
+    "tooltip": "Primero, prueba a conectarte al router; si falla, se creará automáticamente un punto de acceso"
+  },
+  "espui_begin": {
+    "message0": "Lanzar el Modo %1 Título ESPUI %2 Autenticación %3 Nombre de usuario %4 contraseña %5 puerto %6 deslizadores Actualizaciones continuas %7 Portal de captura %8",
+    "tooltip": "Tras crear el control, lanzar el servicio web ESPUI; El modo LittleFS requiere preparar primero un sistema de archivos",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Recursos en memoria",
+            "MEMORY"
+          ],
+          [
+            "Recursos LittleFS",
+            "LITTLEFS"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "Desactivado",
+            "FALSE"
+          ],
+          [
+            "Activado",
+            "TRUE"
+          ]
+        ]
+      },
+      null,
+      null,
+      null,
+      {
+        "options": [
+          [
+            "No",
+            "FALSE"
+          ],
+          [
+            "Si",
+            "TRUE"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "Activado",
+            "TRUE"
+          ],
+          [
+            "Desactivado",
+            "FALSE"
+          ]
+        ]
+      }
+    ]
+  },
+  "espui_prepare_filesystem": {
+    "message0": "Prepara el formato del sistema de archivos ESPUI LittleFS %1",
+    "tooltip": "Escribir recursos web estáticos de ESPUI en LittleFS normalmente solo necesita ejecutarse una vez por separado",
+    "args0": [
+      {
+        "options": [
+          [
+            "Si",
+            "TRUE"
+          ],
+          [
+            "No",
+            "FALSE"
+          ]
+        ]
+      }
+    ]
+  },
+  "espui_no_parent": {
+    "message0": "Sin control parental",
+    "tooltip": "no parent control"
+  },
+  "espui_control_id": {
+    "message0": "El ID del %1 de control ESPUI",
+    "tooltip": "Lee el ID uint16_t del control ESPUI creado"
+  },
+  "espui_create_tab": {
+    "message0": "Crear ID de pestaña %1 título %2",
+    "tooltip": "Crea una pestaña ESPUI y guarda el ID de control para controles hijos"
+  },
+  "espui_create_separator": {
+    "message0": "Crea un ID de separador %1 texto %2 control parental %3",
+    "tooltip": "Crear separadores de texto para separar áreas de interfaz"
+  },
+  "espui_create_label": {
+    "message0": "Crear ID de etiqueta %1 título %2 valor %3 color %4 control parental %5",
+    "tooltip": "Crear controles de etiquetas que solo muestren texto o contenido HTML",
+    "args0": [
+      null,
+      null,
+      null,
+      {
+        "options": [
+          [
+            "Turquesa",
+            "Turquoise"
+          ],
+          [
+            "Esmeralda",
+            "Emerald"
+          ],
+          [
+            "Peter River",
+            "Peterriver"
+          ],
+          [
+            "Asfalto humedo",
+            "Wetasphalt"
+          ],
+          [
+            "Girasol",
+            "Sunflower"
+          ],
+          [
+            "Zanahoria",
+            "Carrot"
+          ],
+          [
+            "Alizarina",
+            "Alizarin"
+          ],
+          [
+            "Oscuro",
+            "Dark"
+          ],
+          [
+            "Ninguno",
+            "None"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "espui_create_button": {
+    "message0": "Crear ID de botón %1 título %2 texto %3 color %4 control parental %5",
+    "tooltip": "Crear controles de botones y manejar los eventos de pulsar y soltar por separado",
+    "message1": "Prensa %1 Comunicado %2",
+    "args0": [
+      null,
+      null,
+      null,
+      {
+        "options": [
+          [
+            "Turquesa",
+            "Turquoise"
+          ],
+          [
+            "Esmeralda",
+            "Emerald"
+          ],
+          [
+            "Peter River",
+            "Peterriver"
+          ],
+          [
+            "Asfalto humedo",
+            "Wetasphalt"
+          ],
+          [
+            "Girasol",
+            "Sunflower"
+          ],
+          [
+            "Zanahoria",
+            "Carrot"
+          ],
+          [
+            "Alizarina",
+            "Alizarin"
+          ],
+          [
+            "Oscuro",
+            "Dark"
+          ],
+          [
+            "Ninguno",
+            "None"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "espui_create_switcher": {
+    "message0": "Crear ID del switch %1 título %2 estado inicial %3 color %4 control parental %5",
+    "tooltip": "Crea controles de interruptores y gestiona los eventos de apertura y cierre por separado",
+    "message1": "En %1 Cuando está cerrado %2",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "Desactivado",
+            "FALSE"
+          ],
+          [
+            "Activado",
+            "TRUE"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "Turquesa",
+            "Turquoise"
+          ],
+          [
+            "Esmeralda",
+            "Emerald"
+          ],
+          [
+            "Peter River",
+            "Peterriver"
+          ],
+          [
+            "Asfalto humedo",
+            "Wetasphalt"
+          ],
+          [
+            "Girasol",
+            "Sunflower"
+          ],
+          [
+            "Zanahoria",
+            "Carrot"
+          ],
+          [
+            "Alizarina",
+            "Alizarin"
+          ],
+          [
+            "Oscuro",
+            "Dark"
+          ],
+          [
+            "Ninguno",
+            "None"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "espui_create_slider": {
+    "message0": "Crear ID de deslizante %1 Título %2 Valor %3 Mínimo %4 Máximo %5 Color %6 Control Padre %7",
+    "tooltip": "Crea controles deslizantes; cuando cambien, puedes usar el \"Valor de Control de Evento\" para leer el nuevo valor",
+    "message1": "Cuando el valor changes%1",
+    "args0": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      {
+        "options": [
+          [
+            "Turquesa",
+            "Turquoise"
+          ],
+          [
+            "Esmeralda",
+            "Emerald"
+          ],
+          [
+            "Peter River",
+            "Peterriver"
+          ],
+          [
+            "Asfalto humedo",
+            "Wetasphalt"
+          ],
+          [
+            "Girasol",
+            "Sunflower"
+          ],
+          [
+            "Zanahoria",
+            "Carrot"
+          ],
+          [
+            "Alizarina",
+            "Alizarin"
+          ],
+          [
+            "Oscuro",
+            "Dark"
+          ],
+          [
+            "Ninguno",
+            "None"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "espui_create_number": {
+    "message0": "Crea un ID de entrada numérico %1 Título %2 Valor %3 Mínimo %4 Máximo %5 Color %6 Control Parental %7",
+    "tooltip": "Crea controles de entrada digitales que puedan leer los valores de control de eventos cuando cambian",
+    "message1": "Cuando el valor changes%1",
+    "args0": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      {
+        "options": [
+          [
+            "Turquesa",
+            "Turquoise"
+          ],
+          [
+            "Esmeralda",
+            "Emerald"
+          ],
+          [
+            "Peter River",
+            "Peterriver"
+          ],
+          [
+            "Asfalto humedo",
+            "Wetasphalt"
+          ],
+          [
+            "Girasol",
+            "Sunflower"
+          ],
+          [
+            "Zanahoria",
+            "Carrot"
+          ],
+          [
+            "Alizarina",
+            "Alizarin"
+          ],
+          [
+            "Oscuro",
+            "Dark"
+          ],
+          [
+            "Ninguno",
+            "None"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "espui_create_text": {
+    "message0": "Crear ID de entrada de texto %1 Título %2 Valor %3 Tipo %4 Color %5 Control Padre %6",
+    "tooltip": "Crea un control de entrada de texto y establece el tipo de entrada HTML",
+    "message1": "Cuando el contenido Changes%1",
+    "args0": [
+      null,
+      null,
+      null,
+      {
+        "options": [
+          [
+            "Texto",
+            "text"
+          ],
+          [
+            "Contrasena",
+            "password"
+          ],
+          [
+            "Numero",
+            "number"
+          ],
+          [
+            "Fecha",
+            "date"
+          ],
+          [
+            "Hora",
+            "time"
+          ],
+          [
+            "Color",
+            "color"
+          ],
+          [
+            "Correo",
+            "email"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "Turquesa",
+            "Turquoise"
+          ],
+          [
+            "Esmeralda",
+            "Emerald"
+          ],
+          [
+            "Peter River",
+            "Peterriver"
+          ],
+          [
+            "Asfalto humedo",
+            "Wetasphalt"
+          ],
+          [
+            "Girasol",
+            "Sunflower"
+          ],
+          [
+            "Zanahoria",
+            "Carrot"
+          ],
+          [
+            "Alizarina",
+            "Alizarin"
+          ],
+          [
+            "Oscuro",
+            "Dark"
+          ],
+          [
+            "Ninguno",
+            "None"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "espui_create_select": {
+    "message0": "Crea un ID de selector %1 Título %2 Valor inicial %3 Color %4 Control Padre %5",
+    "tooltip": "Crea un selector desplegable; Añadir opciones usando el bloque \"Añadir opciones de selector\"",
+    "message1": "Al elegir change%1",
+    "args0": [
+      null,
+      null,
+      null,
+      {
+        "options": [
+          [
+            "Turquesa",
+            "Turquoise"
+          ],
+          [
+            "Esmeralda",
+            "Emerald"
+          ],
+          [
+            "Peter River",
+            "Peterriver"
+          ],
+          [
+            "Asfalto humedo",
+            "Wetasphalt"
+          ],
+          [
+            "Girasol",
+            "Sunflower"
+          ],
+          [
+            "Zanahoria",
+            "Carrot"
+          ],
+          [
+            "Alizarina",
+            "Alizarin"
+          ],
+          [
+            "Oscuro",
+            "Dark"
+          ],
+          [
+            "Ninguno",
+            "None"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "espui_add_option": {
+    "message0": "Añadir opciones al selector %1 Título %2 Valor %3",
+    "tooltip": "Añade una opción al selector ESPUI que ya hayas creado"
+  },
+  "espui_create_pad": {
+    "message0": "Crear ID de tablero direccional %1 Título %2 tecla central %3 Color %4 Control de padres %5",
+    "tooltip": "Crear un panel de control de dirección; En los eventos, usa \"Si el evento ESPUI es\" para distinguir dirección y pulsar/soltar",
+    "message1": "Cuando el incidente occurred%1",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "Activado",
+            "TRUE"
+          ],
+          [
+            "Desactivado",
+            "FALSE"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "Turquesa",
+            "Turquoise"
+          ],
+          [
+            "Esmeralda",
+            "Emerald"
+          ],
+          [
+            "Peter River",
+            "Peterriver"
+          ],
+          [
+            "Asfalto humedo",
+            "Wetasphalt"
+          ],
+          [
+            "Girasol",
+            "Sunflower"
+          ],
+          [
+            "Zanahoria",
+            "Carrot"
+          ],
+          [
+            "Alizarina",
+            "Alizarin"
+          ],
+          [
+            "Oscuro",
+            "Dark"
+          ],
+          [
+            "Ninguno",
+            "None"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "espui_create_graph": {
+    "message0": "Crear ID de Gráfico %1 Título %2 Color %3 Control Parental %4",
+    "tooltip": "Crear controles de gráfico que añadan datos dinámicamente",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "Turquesa",
+            "Turquoise"
+          ],
+          [
+            "Esmeralda",
+            "Emerald"
+          ],
+          [
+            "Peter River",
+            "Peterriver"
+          ],
+          [
+            "Asfalto humedo",
+            "Wetasphalt"
+          ],
+          [
+            "Girasol",
+            "Sunflower"
+          ],
+          [
+            "Zanahoria",
+            "Carrot"
+          ],
+          [
+            "Alizarina",
+            "Alizarin"
+          ],
+          [
+            "Oscuro",
+            "Dark"
+          ],
+          [
+            "Ninguno",
+            "None"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "espui_create_gauge": {
+    "message0": "Crear ID de panel %1 Título %2 Valor %3 Mínimo %4 Máximo %5 Color %6 Control Padre %7",
+    "tooltip": "Crear controles en el panel de control para mostrar porcentajes o valores de sensores",
+    "args0": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      {
+        "options": [
+          [
+            "Turquesa",
+            "Turquoise"
+          ],
+          [
+            "Esmeralda",
+            "Emerald"
+          ],
+          [
+            "Peter River",
+            "Peterriver"
+          ],
+          [
+            "Asfalto humedo",
+            "Wetasphalt"
+          ],
+          [
+            "Girasol",
+            "Sunflower"
+          ],
+          [
+            "Zanahoria",
+            "Carrot"
+          ],
+          [
+            "Alizarina",
+            "Alizarin"
+          ],
+          [
+            "Oscuro",
+            "Dark"
+          ],
+          [
+            "Ninguno",
+            "None"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "espui_create_file_display": {
+    "message0": "Crea un ID de visualización de archivo %1 Título %2 Nombre del archivo %3 Color %4 Control de Padres %5",
+    "tooltip": "Muestra el contenido de los archivos especificados en LittleFS, requiriendo modo sistema de archivos o un sistema de archivos montado",
+    "args0": [
+      null,
+      null,
+      null,
+      {
+        "options": [
+          [
+            "Turquesa",
+            "Turquoise"
+          ],
+          [
+            "Esmeralda",
+            "Emerald"
+          ],
+          [
+            "Peter River",
+            "Peterriver"
+          ],
+          [
+            "Asfalto humedo",
+            "Wetasphalt"
+          ],
+          [
+            "Girasol",
+            "Sunflower"
+          ],
+          [
+            "Zanahoria",
+            "Carrot"
+          ],
+          [
+            "Alizarina",
+            "Alizarin"
+          ],
+          [
+            "Oscuro",
+            "Dark"
+          ],
+          [
+            "Ninguno",
+            "None"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "espui_create_accelerometer": {
+    "message0": "Crear ID de entrada de aceleración %1 título %2 color %3 control parental %4",
+    "tooltip": "Crea un control de entrada de aceleración móvil y lee el valor del control de eventos cuando cambie",
+    "message1": "Cuando los datos changes%1",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "Turquesa",
+            "Turquoise"
+          ],
+          [
+            "Esmeralda",
+            "Emerald"
+          ],
+          [
+            "Peter River",
+            "Peterriver"
+          ],
+          [
+            "Asfalto humedo",
+            "Wetasphalt"
+          ],
+          [
+            "Girasol",
+            "Sunflower"
+          ],
+          [
+            "Zanahoria",
+            "Carrot"
+          ],
+          [
+            "Alizarina",
+            "Alizarin"
+          ],
+          [
+            "Oscuro",
+            "Dark"
+          ],
+          [
+            "Ninguno",
+            "None"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "espui_update_value": {
+    "message0": "Actualizar el valor de la %1 %2",
+    "tooltip": "Llama a updateControlValue para actualizar el valor de cualquier control"
+  },
+  "espui_update_control_label": {
+    "message0": "Actualizar el título de Control %1 %2",
+    "tooltip": "Llama a updateControlLabel para modificar el texto del título de control"
+  },
+  "espui_update_switcher": {
+    "message0": "Actualizar %1 interruptor a %2",
+    "tooltip": "Actualizar el estado de control del interruptor con valores booleanos"
+  },
+  "espui_update_number": {
+    "message0": "Actualizar los controles numéricos %1 a %2",
+    "tooltip": "Actualizar controles numéricos como deslizadores, entradas numéricas o paneles de control"
+  },
+  "espui_add_graph_point": {
+    "message0": "Añadir puntos de datos a la %1%2",
+    "tooltip": "Añade un punto numérico al gráfico ESPUI"
+  },
+  "espui_clear_graph": {
+    "message0": "Carta %1",
+    "tooltip": "Borrar todos los datos en el gráfico ESPUI"
+  },
+  "espui_set_enabled": {
+    "message0": "Configurar controles %1 habilitar %2",
+    "tooltip": "Activa o desactiva los controles y sincronízalos con la interfaz web"
+  },
+  "espui_set_visible": {
+    "message0": "Configura controles %1 visibles %2",
+    "tooltip": "Mostrar o ocultar controles y sincronízalos con la interfaz web"
+  },
+  "espui_set_layout": {
+    "message0": "Configura controles %1 panel ancho %2 disposición vertical %3",
+    "tooltip": "Establece el ancho del panel de control y las propiedades de disposición vertical"
+  },
+  "espui_set_style": {
+    "message0": "Establece controles %1 posiciones de estilo %2 CSS %3",
+    "tooltip": "Establecer estilos CSS en línea para paneles de control o elementos internos",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Panel",
+            "PANEL"
+          ],
+          [
+            "Elemento",
+            "ELEMENT"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "espui_set_input_type": {
+    "message0": "Establece controles de texto %1 tipo de entrada %2",
+    "tooltip": "Modificar el tipo de entrada HTML del control de entrada de texto",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Texto",
+            "text"
+          ],
+          [
+            "Contrasena",
+            "password"
+          ],
+          [
+            "Numero",
+            "number"
+          ],
+          [
+            "Fecha",
+            "date"
+          ],
+          [
+            "Hora",
+            "time"
+          ],
+          [
+            "Color",
+            "color"
+          ],
+          [
+            "Correo",
+            "email"
+          ]
+        ]
+      }
+    ]
+  },
+  "espui_get_value": {
+    "message0": "Valor del control %1",
+    "tooltip": "Lee el valor actual del control; si el control no existe, devuelve una cadena vacía"
+  },
+  "espui_sender_value": {
+    "message0": "Valores de control de eventos",
+    "tooltip": "event control value"
+  },
+  "espui_sender_value_number": {
+    "message0": "Valores de control de eventos",
+    "tooltip": "event control number"
+  },
+  "espui_sender_id": {
+    "message0": "ID de control de eventos",
+    "tooltip": "event control ID"
+  },
+  "espui_event_type": {
+    "message0": "Tipos de eventos ESPUI",
+    "tooltip": "ESPUI event type"
+  },
+  "espui_event_is": {
+    "message0": "El evento ESPUI es %1",
+    "tooltip": "Determinar el tipo de evento actual dentro del procesamiento de eventos ESPUI",
+    "args0": [
+      {
+        "options": [
+          [
+            "Boton pulsado",
+            "B_DOWN"
+          ],
+          [
+            "Boton soltado",
+            "B_UP"
+          ],
+          [
+            "Interruptor activado",
+            "S_ACTIVE"
+          ],
+          [
+            "Interruptor desactivado",
+            "S_INACTIVE"
+          ],
+          [
+            "Deslizador cambiado",
+            "SL_VALUE"
+          ],
+          [
+            "Numero cambiado",
+            "N_VALUE"
+          ],
+          [
+            "Texto cambiado",
+            "T_VALUE"
+          ],
+          [
+            "Seleccion cambiada",
+            "S_VALUE"
+          ],
+          [
+            "Izquierda pulsada",
+            "P_LEFT_DOWN"
+          ],
+          [
+            "Izquierda soltada",
+            "P_LEFT_UP"
+          ],
+          [
+            "Derecha pulsada",
+            "P_RIGHT_DOWN"
+          ],
+          [
+            "Derecha soltada",
+            "P_RIGHT_UP"
+          ],
+          [
+            "Adelante pulsado",
+            "P_FOR_DOWN"
+          ],
+          [
+            "Adelante soltado",
+            "P_FOR_UP"
+          ],
+          [
+            "Atras pulsado",
+            "P_BACK_DOWN"
+          ],
+          [
+            "Atras soltado",
+            "P_BACK_UP"
+          ],
+          [
+            "Centro pulsado",
+            "P_CENTER_DOWN"
+          ],
+          [
+            "Centro soltado",
+            "P_CENTER_UP"
+          ]
+        ]
+      }
+    ]
+  },
+  "espui_if_event": {
+    "message0": "Si el evento ESPUI es %1",
+    "tooltip": "Ejecuta sentencias por tipo de evento dentro de las callbacks ESPUI",
+    "message1": "%1",
+    "args0": [
+      {
+        "options": [
+          [
+            "Boton pulsado",
+            "B_DOWN"
+          ],
+          [
+            "Boton soltado",
+            "B_UP"
+          ],
+          [
+            "Interruptor activado",
+            "S_ACTIVE"
+          ],
+          [
+            "Interruptor desactivado",
+            "S_INACTIVE"
+          ],
+          [
+            "Deslizador cambiado",
+            "SL_VALUE"
+          ],
+          [
+            "Numero cambiado",
+            "N_VALUE"
+          ],
+          [
+            "Texto cambiado",
+            "T_VALUE"
+          ],
+          [
+            "Seleccion cambiada",
+            "S_VALUE"
+          ],
+          [
+            "Izquierda pulsada",
+            "P_LEFT_DOWN"
+          ],
+          [
+            "Izquierda soltada",
+            "P_LEFT_UP"
+          ],
+          [
+            "Derecha pulsada",
+            "P_RIGHT_DOWN"
+          ],
+          [
+            "Derecha soltada",
+            "P_RIGHT_UP"
+          ],
+          [
+            "Adelante pulsado",
+            "P_FOR_DOWN"
+          ],
+          [
+            "Adelante soltado",
+            "P_FOR_UP"
+          ],
+          [
+            "Atras pulsado",
+            "P_BACK_DOWN"
+          ],
+          [
+            "Atras soltado",
+            "P_BACK_UP"
+          ],
+          [
+            "Centro pulsado",
+            "P_CENTER_DOWN"
+          ],
+          [
+            "Centro soltado",
+            "P_CENTER_UP"
+          ]
+        ]
+      }
+    ]
+  },
+  "espui_wifi_connected": {
+    "message0": "El WiFi está conectado",
+    "tooltip": "WiFi is connected"
+  },
+  "espui_ip_address": {
+    "message0": "Dirección IP de ESPUI %1",
+    "tooltip": "Lee la cadena de direcciones IP para el WiFi actual o el modo hotspot",
+    "args0": [
+      {
+        "options": [
+          [
+            "Estacion",
+            "STA"
+          ],
+          [
+            "Punto de acceso",
+            "AP"
+          ]
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "toolbox_name": "NeoPixel",
+  "neopixel_init": {
+    "message0": "NeoPixelライトストリップピンの初期化%1LEDタイプ%2 %3",
+    "tooltip": "NeoPixel LEDライトストリップの初期化",
+    "args0": [
+      {
+        "options": "${board.digitalPins}"
+      },
+      null,
+      {
+        "options": [
+          [
+            "RGB (GRB)",
+            "NEO_GRB + NEO_KHZ800"
+          ],
+          [
+            "RGB (RGB)",
+            "NEO_RGB + NEO_KHZ800"
+          ],
+          [
+            "RGBW",
+            "NEO_RGBW + NEO_KHZ800"
+          ],
+          [
+            "RGB (400 KHz)",
+            "NEO_GRB + NEO_KHZ400"
+          ]
+        ]
+      }
+    ]
+  },
+  "neopixel_begin": {
+    "message0": "NeoPixelは始まりです",
+    "tooltip": "NeoPixel通信開始"
+  },
+  "neopixel_show": {
+    "message0": "NeoPixelディスプレイ",
+    "tooltip": "更新されたNeoPixelディスプレイ"
+  },
+  "neopixel_set_brightness": {
+    "message0": "NeoPixel 明るさの設定%1",
+    "tooltip": "NeoPixel ストリップ明るさ設定(0-255)"
+  },
+  "neopixel_set_pixel_color": {
+    "message0": "LED%1色:赤%2緑%3青、%4",
+    "tooltip": "単一のLEDの色を設定する"
+  },
+  "neopixel_fill": {
+    "message0": "赤、%1、緑、%2、青、%3のLEDカラーを塗りつぶす",
+    "tooltip": "すべてのLEDを同じ色で満たしてください"
+  },
+  "neopixel_clear": {
+    "message0": "すべてのNeoPixelをクリアしてください",
+    "tooltip": "すべてのLEDを消してください"
+  },
+  "neopixel_rainbow": {
+    "message0": "ディスプレイレインボー効果遅延(ms)%1",
+    "tooltip": "LEDライトストリップに虹の効果を表示する"
+  },
+  "neopixel_color_wipe": {
+    "message0": "LEDを個別に表示してください:色:赤、%1、緑、%2、青、%3、レイテンシ(ms)、%4",
+    "tooltip": "各LEDは色で満たされます"
+  },
+  "neopixel_theater_chase": {
+    "message0": "チェイスライトエフェクトカラー:赤%1緑%2青%3レイテンシー(ms)%4",
+    "tooltip": "チェイスライト効果を表示する"
+  },
+  "neopixel_theater_chase_rainbow": {
+    "message0": "レインボー追跡光効果レイテンシ(ms)%1",
+    "tooltip": "虹を追いかける光のエフェクトを表示"
+  }
+}

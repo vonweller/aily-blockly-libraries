@@ -1,0 +1,195 @@
+{
+  "toolbox_name": "ES8388",
+  "toolbox_labels": {
+    "初始化": "初期化",
+    "输入输出配置": "入出力構成",
+    "录音功能": "録音機能",
+    "播放功能": "再生機能",
+    "实时音频处理": "リアルタイムオーディオ処理",
+    "状态查询": "ステータスクエリ",
+    "调试工具": "デバッグツール"
+  },
+  "es8388_create": {
+    "message0": "ES8388 オーディオ コーデックの作成 %1 I2C SDA ピン %2 I2C SCL ピン %3 I2C 速度 %4 kHz",
+    "tooltip": "ES8388 オーディオ コーデック オブジェクトの作成"
+  },
+  "es8388_begin": {
+    "message0": "初期化 ES8388 %1 サンプリングレート %2 MCLK ピン %3 BCLK ピン %4 WS ピン %5 データ出力ピン %6 データ入力ピン%7",
+    "tooltip": "ES8388チップとI2Sインターフェースを初期化します。"
+  },
+  "es8388_set_input_gain": {
+    "message0": "ES8388 %1 入力ゲイン %2 を設定します",
+    "tooltip": "入力ゲインを設定します (0 ～ 8)"
+  },
+  "es8388_set_output_volume": {
+    "message0": "ES8388 %1 出力ボリューム %2 を設定します",
+    "tooltip": "出力音量の設定 (0-33)"
+  },
+  "es8388_dac_mute": {
+    "message0": "ES8388 %1 DAC ミュート %2",
+    "tooltip": "DACのミュート状態を設定する",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "オンにする",
+            "TRUE"
+          ],
+          [
+            "閉じる",
+            "FALSE"
+          ]
+        ]
+      }
+    ]
+  },
+  "es8388_start_recording": {
+    "message0": "ES8388 %1 記録開始 継続時間 %2 秒",
+    "tooltip": "指定した期間の録音を開始します"
+  },
+  "es8388_stop_recording": {
+    "message0": "ES8388 %1 記録を停止します",
+    "tooltip": "録音を停止する"
+  },
+  "es8388_start_playback": {
+    "message0": "ES8388 %1 録音の再生を開始します",
+    "tooltip": "録音されたオーディオの再生を開始します"
+  },
+  "es8388_stop_playback": {
+    "message0": "ES8388 %1 プレイを停止",
+    "tooltip": "プレイをやめる"
+  },
+  "es8388_record_and_play": {
+    "message0": "ES8388 %1 録音および再生時間 %2 秒",
+    "tooltip": "すぐに録音して再生"
+  },
+  "es8388_enable_passthrough": {
+    "message0": "ES8388 %1 はオーディオ パススルーを有効にします",
+    "tooltip": "オーディオパススルーモードを有効にする"
+  },
+  "es8388_disable_passthrough": {
+    "message0": "ES8388 %1 オーディオ パススルーを無効にする",
+    "tooltip": "オーディオパススルーモードを無効にする"
+  },
+  "es8388_process_audio": {
+    "message0": "ES8388 %1 は音声データを処理します",
+    "tooltip": "音声データの処理（リアルタイム音声処理用）"
+  },
+  "es8388_is_recording": {
+    "message0": "ES8388 %1 が記録中です",
+    "tooltip": "録音が行われているかどうかを確認する"
+  },
+  "es8388_is_playing": {
+    "message0": "ES8388 %1 が再生中です",
+    "tooltip": "再生中かどうかを確認する"
+  },
+  "es8388_get_recorded_samples": {
+    "message0": "ES8388 %1 録音サンプル数を取得",
+    "tooltip": "記録されたサンプル数を取得する"
+  },
+  "es8388_get_recorded_duration": {
+    "message0": "ES8388 %1 録音時間を取得します",
+    "tooltip": "録音時間(秒)を取得します。"
+  },
+  "es8388_set_input_select": {
+    "message0": "ES8388 %1 入力ソースの選択 %2",
+    "tooltip": "オーディオ入力ソースの選択",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "1を入力してください",
+            "IN1"
+          ],
+          [
+            "2を入力してください",
+            "IN2"
+          ],
+          [
+            "差動1を入力してください",
+            "IN1DIFF"
+          ],
+          [
+            "2差分を入力してください",
+            "IN2DIFF"
+          ]
+        ]
+      }
+    ]
+  },
+  "es8388_set_output_select": {
+    "message0": "ES8388 %1 出力の選択 %2",
+    "tooltip": "オーディオ出力の選択",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "出力1",
+            "OUT1"
+          ],
+          [
+            "出力2",
+            "OUT2"
+          ],
+          [
+            "すべての出力",
+            "OUTALL"
+          ]
+        ]
+      }
+    ]
+  },
+  "es8388_set_alc_mode": {
+    "message0": "ES8388 %1 ALC モードを設定します %2",
+    "tooltip": "自動レベルコントロールモードを設定する",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "無効にする",
+            "DISABLE"
+          ],
+          [
+            "ユニバーサル",
+            "GENERIC"
+          ],
+          [
+            "声",
+            "VOICE"
+          ],
+          [
+            "音楽",
+            "MUSIC"
+          ]
+        ]
+      }
+    ]
+  },
+  "es8388_analog_bypass": {
+    "message0": "ES8388 %1 アナログ パススルー %2",
+    "tooltip": "アナログパススルーモードを設定する",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "オンにする",
+            "TRUE"
+          ],
+          [
+            "閉じる",
+            "FALSE"
+          ]
+        ]
+      }
+    ]
+  },
+  "es8388_scan_i2c": {
+    "message0": "ES8388 %1 I2C デバイスをスキャンします",
+    "tooltip": "I2C バス上のデバイスをスキャンします。"
+  }
+}

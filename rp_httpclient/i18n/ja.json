@@ -1,0 +1,220 @@
+{
+  "toolbox_name": "Pico HTTPClient",
+  "toolbox_labels": {
+    "初始化": "初期化",
+    "连接": "接続する",
+    "配置": "構成",
+    "请求": "リクエスト",
+    "响应": "応答",
+    "状态": "ステータス",
+    "快速操作": "素早い操作"
+  },
+  "rp_httpclient_create": {
+    "message0": "HTTPクライアントを作成%1",
+    "tooltip": "新しいHTTPClientオブジェクトを作成する"
+  },
+  "rp_httpclient_begin_url": {
+    "message0": "URL%2%1に接続してください",
+    "tooltip": "指定されたURLに接続します"
+  },
+  "rp_httpclient_begin_host": {
+    "message0": "ホスト%2ポート%3パス%4%1に接続してください",
+    "tooltip": "指定されたホスト、ポート、パスに接続"
+  },
+  "rp_httpclient_begin_https": {
+    "message0": "URL %2への安全な接続%1(証明書検証をスキップ)",
+    "tooltip": "HTTPS URLへの安全な接続(証明書検証を回避)"
+  },
+  "rp_httpclient_end": {
+    "message0": "切断%1",
+    "tooltip": "HTTP接続を切断してください"
+  },
+  "rp_httpclient_set_timeout": {
+    "message0": "タイムアウト%1%2ミリ秒に設定してください",
+    "tooltip": "接続タイムアウトの設定(ミリ秒)"
+  },
+  "rp_httpclient_set_reuse": {
+    "message0": "マルチプレックス接続%1設定%2",
+    "tooltip": "TCP接続を再利用するかどうかを設定する(keep-alive)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "有効にする",
+            "true"
+          ],
+          [
+            "無効にする",
+            "false"
+          ]
+        ]
+      }
+    ]
+  },
+  "rp_httpclient_set_user_agent": {
+    "message0": "Set by %1 User Agent %2",
+    "tooltip": "HTTPユーザープロキシ文字列を設定します"
+  },
+  "rp_httpclient_set_authorization": {
+    "message0": "認証%1 ユーザー名 %2 パスワード %3",
+    "tooltip": "基本的なHTTP認証の設定"
+  },
+  "rp_httpclient_set_authorization_token": {
+    "message0": "認証トークン%1設定%2",
+    "tooltip": "HTTPベアラートークン認証の設定"
+  },
+  "rp_httpclient_set_follow_redirects": {
+    "message0": "設定 %1 リダイレクト フォロー %2",
+    "tooltip": "HTTPリダイレクトフォローモードを設定します",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "無効にする",
+            "HTTPC_DISABLE_FOLLOW_REDIRECTS"
+          ],
+          [
+            "厳格モード(GET/HEADのみ)",
+            "HTTPC_STRICT_FOLLOW_REDIRECTS"
+          ],
+          [
+            "強制モード(すべての方法)",
+            "HTTPC_FORCE_FOLLOW_REDIRECTS"
+          ]
+        ]
+      }
+    ]
+  },
+  "rp_httpclient_set_redirect_limit": {
+    "message0": "設定%1最大リダイレクト数%2",
+    "tooltip": "リダイレクトの最大数を設定する"
+  },
+  "rp_httpclient_add_header": {
+    "message0": "リクエストヘッダー%1値%2追加%3",
+    "tooltip": "HTTPリクエストヘッダーの追加"
+  },
+  "rp_httpclient_get": {
+    "message0": "GET リクエストを送信%1",
+    "tooltip": "HTTP GETリクエストを送信してください"
+  },
+  "rp_httpclient_post": {
+    "message0": "データ%1POSTリクエストを送信%2",
+    "tooltip": "HTTP POSTリクエストを送信"
+  },
+  "rp_httpclient_put": {
+    "message0": "データ%1PUTリクエストを送信%2",
+    "tooltip": "HTTP PUTリクエストを送信"
+  },
+  "rp_httpclient_patch": {
+    "message0": "PATCHリクエストを送信%1データ%2",
+    "tooltip": "HTTP PATCHリクエストを送信します"
+  },
+  "rp_httpclient_delete": {
+    "message0": "DELETEリクエストを送信%1",
+    "tooltip": "HTTP DELETEリクエストを送信してください"
+  },
+  "rp_httpclient_get_response_code": {
+    "message0": "応答ステータスコードを取得してください",
+    "tooltip": "最後のリクエストのHTTP応答ステータスコードを取得してください"
+  },
+  "rp_httpclient_code_list": {
+    "message0": "HTTPステータスコード%1",
+    "tooltip": "HTTPステータスコード定数",
+    "args0": [
+      {
+        "options": [
+          [
+            "200 OK",
+            "HTTP_CODE_OK"
+          ],
+          [
+            "201 Created",
+            "HTTP_CODE_CREATED"
+          ],
+          [
+            "204 コンテンツなし",
+            "HTTP_CODE_NO_CONTENT"
+          ],
+          [
+            "301恒久的な移動",
+            "HTTP_CODE_MOVED_PERMANENTLY"
+          ],
+          [
+            "302 Found",
+            "HTTP_CODE_FOUND"
+          ],
+          [
+            "304 未改造",
+            "HTTP_CODE_NOT_MODIFIED"
+          ],
+          [
+            "400の悪いリクエスト",
+            "HTTP_CODE_BAD_REQUEST"
+          ],
+          [
+            "401 Unauthorized",
+            "HTTP_CODE_UNAUTHORIZED"
+          ],
+          [
+            "403 Forbidden",
+            "HTTP_CODE_FORBIDDEN"
+          ],
+          [
+            "404号機が見つからない",
+            "HTTP_CODE_NOT_FOUND"
+          ],
+          [
+            "500サーバーエラー",
+            "HTTP_CODE_INTERNAL_SERVER_ERROR"
+          ],
+          [
+            "502 バッドゲートウェイ",
+            "HTTP_CODE_BAD_GATEWAY"
+          ],
+          [
+            "503 サービス利用不可",
+            "HTTP_CODE_SERVICE_UNAVAILABLE"
+          ]
+        ]
+      }
+    ]
+  },
+  "rp_httpclient_get_size": {
+    "message0": "%1のレスポンスサイズを手に入れましょう",
+    "tooltip": "レスポンス内容のサイズ(バイト)を取得します"
+  },
+  "rp_httpclient_get_string": {
+    "message0": "%1返答コンテンツを受け取る",
+    "tooltip": "応答文字列を取得する"
+  },
+  "rp_httpclient_get_header": {
+    "message0": "%1返信をhead%2",
+    "tooltip": "指定された応答ヘッダーの値を取得します"
+  },
+  "rp_httpclient_get_location": {
+    "message0": "リダイレクト%1場所を取得してください",
+    "tooltip": "リダイレクトされたLocationのヘッダー値を取得する"
+  },
+  "rp_httpclient_connected": {
+    "message0": "%1つながっている",
+    "tooltip": "HTTP接続が確立されているか確認してください"
+  },
+  "rp_httpclient_error_to_string": {
+    "message0": "%1 エラーコード %2 テキストに変換",
+    "tooltip": "エラーコードを読みやすいエラーメッセージに変換します"
+  },
+  "rp_httpclient_quick_get": {
+    "message0": "クイックGETリクエストURL%1",
+    "tooltip": "迅速にGETリクエストを送信し、返答を返す"
+  },
+  "rp_httpclient_quick_post": {
+    "message0": "クイックPOSTリクエストURL%1データ%2",
+    "tooltip": "POSTリクエストを迅速に送信し、返信を返す"
+  },
+  "rp_httpclient_quick_post_json": {
+    "message0": "Fast POST JSON URL %1 JSON %2",
+    "tooltip": "JSONのPOSTリクエストを素早く送信し、レスポンス内容を返す"
+  }
+}

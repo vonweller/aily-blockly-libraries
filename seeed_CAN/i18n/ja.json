@@ -1,0 +1,274 @@
+{
+  "toolbox_name": "CAN",
+  "toolbox_labels": {
+    "初始化": "初期化",
+    "消息发送": "メッセージ送信",
+    "消息接收": "メッセージ受信",
+    "过滤器设置": "フィルター設定",
+    "控制模式": "制御モード",
+    "状态检查": "ステータスチェック"
+  },
+  "seeed_can_create": {
+    "message0": "CSピン%1CANオブジェクトを作成する%2",
+    "tooltip": "CANバスオブジェクトを作成し、SPIチップ選択ピンを指定します"
+  },
+  "seeed_can_begin": {
+    "message0": "CAN %1 Speed %2 Clock %3 初期化",
+    "tooltip": "CANバスを初期化し、通信速度とクロック周波数を設定します",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "5KBPS",
+            "CAN_5KBPS"
+          ],
+          [
+            "10KBPS",
+            "CAN_10KBPS"
+          ],
+          [
+            "20KBPS",
+            "CAN_20KBPS"
+          ],
+          [
+            "25KBPS",
+            "CAN_25KBPS"
+          ],
+          [
+            "31.25KBPS",
+            "CAN_31K25BPS"
+          ],
+          [
+            "33KBPS",
+            "CAN_33KBPS"
+          ],
+          [
+            "40KBPS",
+            "CAN_40KBPS"
+          ],
+          [
+            "50KBPS",
+            "CAN_50KBPS"
+          ],
+          [
+            "80KBPS",
+            "CAN_80KBPS"
+          ],
+          [
+            "83.3KBPS",
+            "CAN_83K3BPS"
+          ],
+          [
+            "95KBPS",
+            "CAN_95KBPS"
+          ],
+          [
+            "95.2KBPS",
+            "CAN_95K2BPS"
+          ],
+          [
+            "100KBPS",
+            "CAN_100KBPS"
+          ],
+          [
+            "125KBPS",
+            "CAN_125KBPS"
+          ],
+          [
+            "200KBPS",
+            "CAN_200KBPS"
+          ],
+          [
+            "250KBPS",
+            "CAN_250KBPS"
+          ],
+          [
+            "500KBPS",
+            "CAN_500KBPS"
+          ],
+          [
+            "666KBPS",
+            "CAN_666KBPS"
+          ],
+          [
+            "800KBPS",
+            "CAN_800KBPS"
+          ],
+          [
+            "1000KBPS",
+            "CAN_1000KBPS"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "8MHz",
+            "MCP_8MHz"
+          ],
+          [
+            "12MHz",
+            "MCP_12MHz"
+          ],
+          [
+            "16MHz",
+            "MCP_16MHz"
+          ]
+        ]
+      }
+    ]
+  },
+  "seeed_can_send": {
+    "message0": "CANは拡張フレーム%2データ%1ID%3送信%4",
+    "tooltip": "ID、フレームタイプ、データを指定したCANメッセージを送信します",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "標準フレーム",
+            "0"
+          ],
+          [
+            "拡張フレーム",
+            "1"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "seeed_can_receive_check": {
+    "message0": "メッセージ受信%1",
+    "tooltip": "CANメッセージが受信されているか確認してください"
+  },
+  "seeed_can_receive": {
+    "message0": "CANはデータ長、メッセージID%2データ%3データ%1受信%4",
+    "tooltip": "受信したCANメッセージを読み取り、その長さ、ID、データを取得します"
+  },
+  "seeed_can_get_id": {
+    "message0": "メッセージIDを取得する%1",
+    "tooltip": "最後に受信したCANメッセージIDを取得する"
+  },
+  "seeed_can_init_mask": {
+    "message0": "マスクを設定%2マスク値を拡張%4%3 %1",
+    "tooltip": "メッセージをフィルタリングするためにCAN RECEIVEマスクを設定しましょう",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "マスク0",
+            "0"
+          ],
+          [
+            "マスク1",
+            "1"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "標準フレーム",
+            "0"
+          ],
+          [
+            "拡張フレーム",
+            "1"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "seeed_can_init_filter": {
+    "message0": "CAN %1 フィルター設定 %2 フレームを展開 %3 フィルター値%4",
+    "tooltip": "特定のIDからのメッセージをフィルタリングするためのCAN RECEIVEフィルターを設定しましょう",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "フィルター0",
+            "0"
+          ],
+          [
+            "フィルター1",
+            "1"
+          ],
+          [
+            "フィルター2",
+            "2"
+          ],
+          [
+            "フィルター3",
+            "3"
+          ],
+          [
+            "フィルター4",
+            "4"
+          ],
+          [
+            "フィルター5",
+            "5"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "標準フレーム",
+            "0"
+          ],
+          [
+            "拡張フレーム",
+            "1"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "seeed_can_set_mode": {
+    "message0": "設定モード%1%2",
+    "tooltip": "CANコントローラの動作モードを設定します",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "ノーマルモード",
+            "MODE_NORMAL"
+          ],
+          [
+            "スリープモード",
+            "MODE_SLEEP"
+          ],
+          [
+            "リスニングモード",
+            "MODE_LISTEN"
+          ],
+          [
+            "設定モード",
+            "MODE_CONFIG"
+          ]
+        ]
+      }
+    ]
+  },
+  "seeed_can_sleep": {
+    "message0": "スリープモードに入ることはできますか%1",
+    "tooltip": "CANコントローラーをスリープモードにして電力を節約してください"
+  },
+  "seeed_can_wake": {
+    "message0": "%1起きていい?",
+    "tooltip": "CANコントローラーを起動してください"
+  },
+  "seeed_can_check_error": {
+    "message0": "%1 エラーの有無をチェックできますか",
+    "tooltip": "CANコントローラーのエラー状態を確認してください"
+  }
+}

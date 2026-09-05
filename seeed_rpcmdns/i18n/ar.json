@@ -1,0 +1,161 @@
+{
+  "toolbox_name": "Seeed RPC mDNS",
+  "toolbox_categories": [
+    "البداية والأمثلة",
+    "البث الخدمي",
+    "النتائج والنتائج"
+  ],
+  "seeed_rpcmdns_begin": {
+    "message0": "بدء mDNS service hostname %1",
+    "tooltip": "قم بتشغيل جهاز الاستجابة mDNS الخاص بمحطة Wio RPC، ويمكن للمضيف الوصول إليه عبر hostname.local"
+  },
+  "seeed_rpcmdns_begin_or_print": {
+    "message0": "خطأ في الطباعة عند بدء خدمة mDNS لأسماء المضيف %1 يفشل",
+    "tooltip": "يبدأ جهاز mDNS ويقوم بإرسال رسائل خطأ عبر Serial إذا فشل بدء التشغيل"
+  },
+  "seeed_rpcmdns_end": {
+    "message0": "إيقاف خدمات mDNS",
+    "tooltip": "تحرير وإيقاف خدمات mDNS"
+  },
+  "seeed_rpcmdns_set_instance_name": {
+    "message0": "تعيين اسم مثيل mDNS %1",
+    "tooltip": "تعيين اسم العرض لنسخة الخدمة، بحيث لا يتجاوز طوله 63 حرفا"
+  },
+  "seeed_rpcmdns_add_service": {
+    "message0": "بروتوكول نوع خدمة mDNS %1 %2 %3",
+    "tooltip": "تسجيل خدمة mDNS-SD، مثل http/tcp/80",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "TCP",
+            "tcp"
+          ],
+          [
+            "UDP",
+            "udp"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "seeed_rpcmdns_add_service_txt": {
+    "message0": "إضافة بروتوكول خدمة mDNS %1 خدمة TXT %2 قيمة %3 مفتاح %4",
+    "tooltip": "إضافة سجلات TXT إلى خدمات mDNS المسجلة",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "TCP",
+            "tcp"
+          ],
+          [
+            "UDP",
+            "udp"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "seeed_rpcmdns_enable_arduino": {
+    "message0": "تمكين منفذ خدمة Arduino OTA mDNS %1 %2",
+    "tooltip": "خدمة البث _arduino._tcp للاكتشاف بواسطة أدوات رفع شبكة أردوينو",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "لا يتطلب أي شهادة",
+            "FALSE"
+          ],
+          [
+            "الشهادة مطلوبة",
+            "TRUE"
+          ]
+        ]
+      }
+    ]
+  },
+  "seeed_rpcmdns_disable_arduino": {
+    "message0": "تعطيل خدمة mDNS في أردوينو OTA",
+    "tooltip": "إزالة بث خدمة mDNS _arduino._tcp"
+  },
+  "seeed_rpcmdns_enable_workstation": {
+    "message0": "تمكين خدمة mDNS لمحطة العمل في واجهة الشبكة %1",
+    "tooltip": "خدمة البث _workstation._tcp، المستخدمة لاكتشاف أجهزة الشبكة",
+    "args0": [
+      {
+        "options": [
+          [
+            "STA",
+            "ESP_IF_WIFI_STA"
+          ],
+          [
+            "AP",
+            "ESP_IF_WIFI_AP"
+          ]
+        ]
+      }
+    ]
+  },
+  "seeed_rpcmdns_disable_workstation": {
+    "message0": "تعطيل خدمات mDNS لمحطة العمل",
+    "tooltip": "إزالة بث خدمة mDNS _workstation._tcp"
+  },
+  "seeed_rpcmdns_query_host": {
+    "message0": "استعلام مضيف mDNS %1 عنوان IP مع مهلة زمنية %2 مللي ثانية",
+    "tooltip": "استعلام hostname.local عبر mDNS وأعد سلسلة عناوين IPv4"
+  },
+  "seeed_rpcmdns_query_service": {
+    "message0": "استعلام بروتوكول نوع خدمة mDNS %1 %2",
+    "tooltip": "استعلام خدمة mDNS-SD المحددة، وإعادة عدد الخدمات المكتشفة، وتخزين النتائج مؤقتا لتقرأها كتلة النتائج",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "TCP",
+            "tcp"
+          ],
+          [
+            "UDP",
+            "udp"
+          ]
+        ]
+      }
+    ]
+  },
+  "seeed_rpcmdns_result_hostname": {
+    "message0": "نتيجة mDNS %1 اسم المضيف",
+    "tooltip": "اقرأ اسم المضيف للفهرس المحدد في أحدث استعلام خدمة"
+  },
+  "seeed_rpcmdns_result_ip": {
+    "message0": "نتائج mDNS %1 عنوان IPv4",
+    "tooltip": "اقرأ عنوان IPv4 المحدد في أحدث نتيجة استعلام خدمة للفهرس المحدد"
+  },
+  "seeed_rpcmdns_result_port": {
+    "message0": "نتائج mDNS %1 المنافذ",
+    "tooltip": "اقرأ رقم المنفذ للفهرس المحدد في أحدث نتيجة استعلام خدمة"
+  },
+  "seeed_rpcmdns_result_txt_count": {
+    "message0": "نتائج mDNS %1 عد TXT",
+    "tooltip": "اقرأ عدد سجلات TXT المحددة في الفهرس من أحدث استعلام خدمة"
+  },
+  "seeed_rpcmdns_result_has_txt": {
+    "message0": "تحتوي %1 نتيجة mDNS على مفتاح TXT %2",
+    "tooltip": "تحقق مما إذا كانت النتيجة المحددة تحتوي على مفتاح TXT معين"
+  },
+  "seeed_rpcmdns_result_txt_by_key": {
+    "message0": "نتيجة mDNS %1 قيمة مفتاح TXT %2",
+    "tooltip": "اقرأ القيمة المقابلة لمفتاح TXT معين في النتيجة المحددة"
+  },
+  "seeed_rpcmdns_result_txt_by_index": {
+    "message0": "نتيجة mDNS %1 قيمة TXT %2th",
+    "tooltip": "اقرأ قيمة TXT للنتيجة المحددة بواسطة مؤشر TXT"
+  }
+}

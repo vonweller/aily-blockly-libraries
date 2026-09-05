@@ -1,0 +1,247 @@
+{
+  "toolbox_name": "NimBLEBluetooth",
+  "toolbox_labels": {
+    "初始化": "initialization",
+    "服务端": "Server",
+    "广播": "broadcast",
+    "服务端事件": "Server side events",
+    "扫描": "scan",
+    "客户端": "client"
+  },
+  "nimble_init": {
+    "message0": "Initialize NimBLE device name %1",
+    "tooltip": "Initialize the NimBLE Bluetooth stack and set the device broadcast name"
+  },
+  "nimble_deinit": {
+    "message0": "Close NimBLE and release resources %1",
+    "tooltip": "Close the NimBLE Bluetooth stack and choose whether to clear all configurations"
+  },
+  "nimble_create_server": {
+    "message0": "Create BLE server %1",
+    "tooltip": "Create a BLE server instance"
+  },
+  "nimble_server_create_service": {
+    "message0": "Server %1 creates service UUID %2 and saves it to %3",
+    "tooltip": "Create a BLE service on the server"
+  },
+  "nimble_service_create_characteristic": {
+    "message0": "Service %1 Creates feature UUID %2 Save to %3",
+    "tooltip": "Create a read-write characteristic value in the service"
+  },
+  "nimble_service_create_characteristic_props": {
+    "message0": "Service %1 Create feature UUID %2 Attribute %3 Save to %4",
+    "tooltip": "Creates a characteristic value with the specified properties in the service",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "read+write",
+            "READ_WRITE"
+          ],
+          [
+            "read only",
+            "READ"
+          ],
+          [
+            "write only",
+            "WRITE"
+          ],
+          [
+            "Read+Notify",
+            "READ_NOTIFY"
+          ],
+          [
+            "Read+Write+Notify",
+            "READ_WRITE_NOTIFY"
+          ],
+          [
+            "Read+Write+Instruct",
+            "READ_WRITE_INDICATE"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "nimble_characteristic_set_value": {
+    "message0": "Feature %1 Setting value %2",
+    "tooltip": "Set data for characteristic values"
+  },
+  "nimble_characteristic_get_value": {
+    "message0": "Get the value of feature %1",
+    "tooltip": "Get data of feature values"
+  },
+  "nimble_characteristic_notify": {
+    "message0": "Features %1 Send notification",
+    "tooltip": "Send notifications to subscribed clients"
+  },
+  "nimble_service_start": {
+    "message0": "Start service %1",
+    "tooltip": "Start BLE service"
+  },
+  "nimble_start_advertising": {
+    "message0": "Start broadcasting",
+    "tooltip": "Start BLE broadcast so that the device can be discovered"
+  },
+  "nimble_stop_advertising": {
+    "message0": "Stop broadcasting",
+    "tooltip": "Stop BLE broadcast"
+  },
+  "nimble_advertising_add_service": {
+    "message0": "Broadcast added service UUID %1",
+    "tooltip": "Add service UUID in broadcast data"
+  },
+  "nimble_advertising_set_name": {
+    "message0": "Broadcast setting name %1",
+    "tooltip": "Set the device name for broadcast display"
+  },
+  "nimble_server_connected_count": {
+    "message0": "Server %1 Number of connected clients",
+    "tooltip": "Get the number of currently connected clients"
+  },
+  "nimble_on_connect": {
+    "message0": "When the client connects to the server %1",
+    "tooltip": "Code executed when a client connects",
+    "message1": "Execute %1"
+  },
+  "nimble_on_disconnect": {
+    "message0": "When the client disconnects the server %1 connection",
+    "tooltip": "Code executed when the client disconnects",
+    "message1": "Execute %1"
+  },
+  "nimble_on_characteristic_write": {
+    "message0": "When feature %1 is written",
+    "tooltip": "Code executed when the characteristic value is written by the client",
+    "message1": "Execute %1"
+  },
+  "nimble_start_scan": {
+    "message0": "Start scanning for %1 seconds",
+    "tooltip": "Start scanning for BLE devices, 0 means continuous scanning"
+  },
+  "nimble_stop_scan": {
+    "message0": "Stop scanning",
+    "tooltip": "Stop BLE scan"
+  },
+  "nimble_is_scanning": {
+    "message0": "Scanning",
+    "tooltip": "Check if scanning is taking place"
+  },
+  "nimble_on_scan_result": {
+    "message0": "When scanning to device",
+    "tooltip": "Code executed when a BLE device is scanned, you can use the scanDevice variable to obtain device information",
+    "message1": "Execute %1"
+  },
+  "nimble_scan_device_name": {
+    "message0": "Scanned device name",
+    "tooltip": "Get the scanned device name (used in the scan callback)"
+  },
+  "nimble_scan_device_address": {
+    "message0": "Scanned device address",
+    "tooltip": "Get the scanned device address (used in the scan callback)"
+  },
+  "nimble_scan_device_rssi": {
+    "message0": "Scanned device signal strength",
+    "tooltip": "Get the RSSI signal strength of the scanned device (used in the scan callback)"
+  },
+  "nimble_scan_device_has_service": {
+    "message0": "The scanned device contains service %1",
+    "tooltip": "Checks whether the scanned device broadcasts the specified service UUID"
+  },
+  "nimble_create_client": {
+    "message0": "Create BLE client %1",
+    "tooltip": "Create a BLE client instance"
+  },
+  "nimble_client_connect_address": {
+    "message0": "Client %1 connects to address %2",
+    "tooltip": "Connect to the BLE device at the specified address and return whether it is successful."
+  },
+  "nimble_client_connect_device": {
+    "message0": "Client %1 connects to scanning device",
+    "tooltip": "Connect to device in scan callback"
+  },
+  "nimble_client_disconnect": {
+    "message0": "Client %1 disconnected",
+    "tooltip": "Disconnect from the server"
+  },
+  "nimble_client_is_connected": {
+    "message0": "Client %1 is connected",
+    "tooltip": "Check if the client is connected"
+  },
+  "nimble_client_get_service": {
+    "message0": "Client %1 gets service UUID %2 and saves it to %3",
+    "tooltip": "Get the specified service from the remote server"
+  },
+  "nimble_remote_service_get_characteristic": {
+    "message0": "Remote Service %1 Get characteristic UUID %2 Save to %3",
+    "tooltip": "Get the specified characteristics from the remote service"
+  },
+  "nimble_remote_char_read": {
+    "message0": "Read the value of remote feature %1",
+    "tooltip": "Read the value of a remote characteristic"
+  },
+  "nimble_remote_char_write": {
+    "message0": "Write %2 to remote feature %1",
+    "tooltip": "Write data to remote features"
+  },
+  "nimble_remote_char_subscribe": {
+    "message0": "Subscribe to remote feature %1 notifications",
+    "tooltip": "Subscribe to notifications of remote features and execute callbacks when data is received. You can use the notifyData variable to obtain data.",
+    "message1": "Executed when data is received %1"
+  },
+  "nimble_notify_data": {
+    "message0": "Notification data received",
+    "tooltip": "Get the data received in the notification callback (used in the subscription callback)"
+  },
+  "nimble_get_address": {
+    "message0": "Get the local BLE address",
+    "tooltip": "Get the BLE address of the local machine"
+  },
+  "nimble_set_mtu": {
+    "message0": "Set MTU size %1",
+    "tooltip": "Set the maximum transmission unit size of BLE data packets"
+  },
+  "nimble_set_power": {
+    "message0": "Set transmit power %1",
+    "tooltip": "Set BLE transmit power",
+    "args0": [
+      {
+        "options": [
+          [
+            "-12 dBm",
+            "-12"
+          ],
+          [
+            "-9 dBm",
+            "-9"
+          ],
+          [
+            "-6 dBm",
+            "-6"
+          ],
+          [
+            "-3 dBm",
+            "-3"
+          ],
+          [
+            "0 dBm",
+            "0"
+          ],
+          [
+            "3 dBm",
+            "3"
+          ],
+          [
+            "6 dBm",
+            "6"
+          ],
+          [
+            "9 dBm",
+            "9"
+          ]
+        ]
+      }
+    ]
+  }
+}

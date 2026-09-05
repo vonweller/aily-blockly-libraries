@@ -1,78 +1,78 @@
-// 添加新函数，用于将循环变量添加到工具箱
-function addLoopEndVariableToToolbox(block, varName) {
-  try {
-    const workspace = block.workspace;
-    if (!workspace || !varName) return;
+// // 添加新函数，用于将循环变量添加到工具箱
+// function addLoopEndVariableToToolbox(block, varName) {
+//   try {
+//     const workspace = block.workspace;
+//     if (!workspace || !varName) return;
 
-    // 获取工具箱
-    const toolbox = workspace.getToolbox();
-    if (!toolbox) return;
+//     // 获取工具箱
+//     const toolbox = workspace.getToolbox();
+//     if (!toolbox) return;
 
-    const allCategories = toolbox.getToolboxItems();
-    const variableCategory = allCategories.find(item =>
-      item.name_ === "Variables" || (item.getContents && item.getContents()[0]?.callbackKey === "CREATE_VARIABLE")
-    );
+//     const allCategories = toolbox.getToolboxItems();
+//     const variableCategory = allCategories.find(item =>
+//       item.name_ === "Variables" || (item.getContents && item.getContents()[0]?.callbackKey === "CREATE_VARIABLE")
+//     );
 
-    // 获取原始工具箱定义
-    const originalToolboxDef = workspace.options.languageTree;
-    if (!originalToolboxDef) return;
+//     // 获取原始工具箱定义
+//     const originalToolboxDef = workspace.options.languageTree;
+//     if (!originalToolboxDef) return;
 
-    // 找到变量类别并更新其内容
-    for (let category of originalToolboxDef.contents) {
-      if ((category.name === "Variables" ||
-        (category.contents && category.contents[0]?.callbackKey === "CREATE_VARIABLE"))) {
+//     // 找到变量类别并更新其内容
+//     for (let category of originalToolboxDef.contents) {
+//       if ((category.name === "Variables" ||
+//         (category.contents && category.contents[0]?.callbackKey === "CREATE_VARIABLE"))) {
 
-        // 检查变量是否已存在
-        const varExists = category.contents.some(item =>
-          item.fields && item.fields.VAR && item.fields.VAR.name === varName
-        );
+//         // 检查变量是否已存在
+//         const varExists = category.contents.some(item =>
+//           item.fields && item.fields.VAR && item.fields.VAR.name === varName
+//         );
 
-        if (!varExists) {
-          // 获取当前时间戳作为ID
-          const timestamp = new Date().getTime();
-          category.contents.push({
-            "kind": "block",
-            "type": "variables_get",
-            "fields": {
-              "VAR": {
-                "id": "loopVar" + timestamp,
-                "name": varName,
-                "type": "int"
-              }
-            }
-          });
+//         if (!varExists) {
+//           // 获取当前时间戳作为ID
+//           const timestamp = new Date().getTime();
+//           category.contents.push({
+//             "kind": "block",
+//             "type": "variables_get",
+//             "fields": {
+//               "VAR": {
+//                 "id": "loopVar" + timestamp,
+//                 "name": varName,
+//                 "type": "int"
+//               }
+//             }
+//           });
 
-          // 更新工具箱
-          if (toolbox && variableCategory) {
-            toolbox.refreshSelection();
-            workspace.updateToolbox(originalToolboxDef);
+//           // 更新工具箱
+//           if (toolbox && variableCategory) {
+//             toolbox.refreshSelection();
+//             workspace.updateToolbox(originalToolboxDef);
 
-            // 强制刷新工具箱显示
-            variableCategory.refreshTheme();
+//             // 强制刷新工具箱显示
+//             variableCategory.refreshTheme();
 
-            // 如果工具箱处于打开状态，使用更可靠的方式重新打开类别
-            if (toolbox.isOpen_) {
-              // 保存当前打开的类别ID
-              toolbox.setSelectedItem(null);
+//             // 如果工具箱处于打开状态，使用更可靠的方式重新打开类别
+//             if (toolbox.isOpen_) {
+//               // 保存当前打开的类别ID
+//               toolbox.setSelectedItem(null);
 
-              // 延迟更新确保DOM有足够时间更新
-              setTimeout(() => {
-                variableCategory.updateFlyoutContents(originalToolboxDef);
-                toolbox.setSelectedItem(variableCategory);
-                workspace.refreshToolboxSelection();
-              }, 50);
-            } else {
-              variableCategory.updateFlyoutContents(originalToolboxDef);
-            }
-          }
-        }
-        break;
-      }
-    }
-  } catch (e) {
-    console.log("添加循环变量到工具箱时出错:", e);
-  }
-}
+//               // 延迟更新确保DOM有足够时间更新
+//               setTimeout(() => {
+//                 variableCategory.updateFlyoutContents(originalToolboxDef);
+//                 toolbox.setSelectedItem(variableCategory);
+//                 workspace.refreshToolboxSelection();
+//               }, 50);
+//             } else {
+//               variableCategory.updateFlyoutContents(originalToolboxDef);
+//             }
+//           }
+//         }
+//         break;
+//       }
+//     }
+//   } catch (e) {
+//     console.log("添加循环变量到工具箱时出错:", e);
+//   }
+// }
 
 Arduino.forBlock["arduino_setup"] = function (block, generator) {
   const code = Arduino.statementToCode(block, "ARDUINO_SETUP");
@@ -84,6 +84,13 @@ Arduino.forBlock["arduino_loop"] = function (block, generator) {
   const code = Arduino.statementToCode(block, "ARDUINO_LOOP");
   generator.addLoop("loop", code);
   return `loop() {\n${code}}\n`;
+};
+
+Arduino.forBlock["arduino_global"] = function (block, generator) {
+  const code = Arduino.statementToCode(block, "ARDUINO_GLOBAL");
+  // generator.addVariable("global_variables", code);
+  // return "";
+  return code;
 };
 
 Arduino.forBlock["controls_repeat_ext"] = function (block, generator) {
@@ -146,7 +153,8 @@ Arduino.forBlock["controls_for"] = function (block, generator) {
   );
 
   // 添加循环变量到工具箱
-  addLoopEndVariableToToolbox(block, variable0);
+  // addLoopEndVariableToToolbox(block, variable0);
+  addVariableToToolbox(block, variable0);
 
   const argument0 =
     Arduino.valueToCode(block, "FROM", Arduino.ORDER_ASSIGNMENT) || "0";
@@ -170,7 +178,7 @@ Arduino.forBlock["controls_for"] = function (block, generator) {
   }
 
   // 使用模板字符串改善代码可读性
-  code = `for (int ${variable0} = ${argument0}; ${variable0}${up ? " <= " : " >= "}${argument1}; ${variable0}`;
+  code = `for (int ${variable0} = ${argument0}; ${variable0}${up ? " < " : " > "}${argument1}; ${variable0}`;
 
   console.log("code: ", code);
   const step = Math.abs(Number(increment));

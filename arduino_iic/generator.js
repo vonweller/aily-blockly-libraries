@@ -18,9 +18,10 @@ Arduino.forBlock['wire_begin_address'] = function(block, generator) {
 
 // 设置I2C时钟频率
 Arduino.forBlock['wire_set_clock'] = function(block, generator) {
-  const clock = generator.valueToCode(block, 'CLOCK', Arduino.ORDER_ATOMIC) || '100000';
+  const clockKHz = generator.valueToCode(block, 'CLOCK', Arduino.ORDER_ATOMIC) || '100';
+  const clockHz = `((uint32_t)((${clockKHz}) * 1000.0))`;
   generator.addLibrary('wire', '#include <Wire.h>');
-  generator.addSetupBegin('wire_set_clock', `Wire.setClock(${clock});`);
+  generator.addSetupBegin('wire_set_clock', `Wire.setClock(${clockHz});`);
   return '';
 };
 
@@ -40,6 +41,13 @@ Arduino.forBlock['wire_begin_transmission'] = function(block, generator) {
 Arduino.forBlock['wire_end_transmission'] = function(block, generator) {
   const stop = block.getFieldValue('STOP') === 'TRUE' ? 'true' : 'false';
   return `Wire.endTransmission(${stop});\n`;
+};
+
+// 结束传输并返回状态码
+Arduino.forBlock['wire_end_transmission_result'] = function(block, generator) {
+  const stop = block.getFieldValue('STOP') === 'TRUE' ? 'true' : 'false';
+  generator.addLibrary('wire', '#include <Wire.h>');
+  return [`Wire.endTransmission(${stop})`, Arduino.ORDER_FUNCTION_CALL];
 };
 
 // 写入数据
@@ -108,35 +116,6 @@ Arduino.forBlock['wire_on_request'] = function(block, generator) {
   generator.addSetupBegin('wire_on_request', `Wire.onRequest(${functionName});`);
   
   return '';
-};
-
-// I2C设备扫描
-Arduino.forBlock['wire_scan_devices'] = function(block, generator) {
-  const delay = generator.valueToCode(block, 'DELAY', Arduino.ORDER_ATOMIC) || '5000';
-  
-  generator.addLibrary('wire', '#include <Wire.h>');
-  generator.addSetupBegin('wire_begin', 'Wire.begin();');
-  generator.addSetupBegin('serial_begin', 'Serial.begin(9600);');
-  
-  let code = '';
-  code += 'Serial.println("I2C Scanner");\n';
-  code += 'for (byte address = 1; address < 127; address++) {\n';
-  code += '  Wire.beginTransmission(address);\n';
-  code += '  byte error = Wire.endTransmission();\n';
-  code += '  if (error == 0) {\n';
-  code += '    Serial.print("I2C device found at address 0x");\n';
-  code += '    if (address < 16) Serial.print("0");\n';
-  code += '    Serial.print(address, HEX);\n';
-  code += '    Serial.println();\n';
-  code += '  } else if (error == 4) {\n';
-  code += '    Serial.print("Unknown error at address 0x");\n';
-  code += '    if (address < 16) Serial.print("0");\n';
-  code += '    Serial.println(address, HEX);\n';
-  code += '  }\n';
-  code += '}\n';
-  code += `delay(${delay});\n`;
-  
-  return code;
 };
 
 // 设置超时

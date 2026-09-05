@@ -1,0 +1,47 @@
+{
+  "toolbox_name": "VL53L0X 雷射測距",
+  "vl53l0x_config_i2c": {
+    "message0": "配置VL53L0X I2C腳位 %1",
+    "tooltip": "配置VL53L0X感測器使用的I2C引腳",
+    "args0": [
+      {
+        "options": [
+          [
+            "Wire1 (SDA:8, SCL:9)",
+            "WIRE1"
+          ],
+          [
+            "Wire2 (SDA:4, SCL:5)",
+            "WIRE2"
+          ]
+        ]
+      }
+    ]
+  },
+  "vl53l0x_init_with_wire": {
+    "message0": "初始化VL53L0X感測器 %1 使用 %2",
+    "tooltip": "初始化VL53L0X雷射測距感測器，指定使用的I2C匯流排",
+    "args0": [
+      null,
+      {
+        "options": "${board.i2c}"
+      }
+    ]
+  },
+  "vl53l0x_begin": {
+    "message0": "初始化VL53L0X感測器 %1 %2",
+    "tooltip": "初始化VL53L0X雷射測距感知器，配置I2C接腳並檢查連接"
+  },
+  "vl53l0x_ranging_test": {
+    "message0": "感測器 %1 進行測量並存入結果 %2",
+    "tooltip": "進行一次詳細測量並將結果存入指定變量"
+  },
+  "vl53l0x_check_range_valid": {
+    "message0": "量測結果 %1 有效",
+    "tooltip": "檢查測量結果是否有效，狀態值不為4時表示有效"
+  },
+  "vl53l0x_get_range_mm": {
+    "message0": "從量測結果 %1 中取得距離(mm)",
+    "tooltip": "從測量結果中取得距離數據，單位是毫米"
+  }
+}

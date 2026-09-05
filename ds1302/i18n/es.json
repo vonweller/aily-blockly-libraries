@@ -1,0 +1,96 @@
+{
+  "toolbox_name": "Reloj DS1302",
+  "toolbox_labels": {
+    "初始化与配置": "Inicialización y configuración",
+    "时间读取": "lectura del tiempo",
+    "时间设置": "Ajuste de tiempo",
+    "时间组件": "componente de tiempo",
+    "RAM操作": "Operaciones de RAM"
+  },
+  "ds1302_setup": {
+    "message0": "Inicialización de DS1302 %1 pin CE %2 pin de IO %3 pin SCLK %4",
+    "tooltip": "Inicializa el módulo de reloj RTC DS1302 y establece los pines CE, IO y SCLK"
+  },
+  "ds1302_set_write_protect": {
+    "message0": "%1 Establecer protección de escritura %2",
+    "tooltip": "Habilitar o deshabilitar la protección contra escritura del DS1302",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Habilitar",
+            "TRUE"
+          ],
+          [
+            "Deshabilitar",
+            "FALSE"
+          ]
+        ]
+      }
+    ]
+  },
+  "ds1302_set_halt": {
+    "message0": "%1 Configurar el stop del reloj %2",
+    "tooltip": "Detener o arrancar el oscilador de reloj del DS1302",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Detener",
+            "TRUE"
+          ],
+          [
+            "Runtime",
+            "FALSE"
+          ]
+        ]
+      }
+    ]
+  },
+  "ds1302_get_time": {
+    "message0": "%1 obtener hora actual",
+    "tooltip": "Lee la hora actual del DS1302 y devuelve el objeto Tiempo"
+  },
+  "ds1302_set_time": {
+    "message0": "%1 Tiempo de ambientación: Año %2 Mes %3 %4 horas %5 minutos %6 segundos %7 semanas %8",
+    "tooltip": "Configura la hora DS1302 (año, mes, día, hora, minuto, segundo, día laborable)"
+  },
+  "ds1302_get_year": {
+    "message0": "año de hora %1",
+    "tooltip": "Recuperar el objeto Año del Tiempo (2000-2099)"
+  },
+  "ds1302_get_month": {
+    "message0": "mes de hora %1",
+    "tooltip": "Obtener el objeto del mes del Tiempo (1-12)"
+  },
+  "ds1302_get_day": {
+    "message0": "día de hora %1",
+    "tooltip": "Recuperar la fecha del objeto Tiempo (1-31)"
+  },
+  "ds1302_get_hour": {
+    "message0": "hora de hora %1",
+    "tooltip": "Recuperar la hora del objeto Tiempo (0-23)"
+  },
+  "ds1302_get_minute": {
+    "message0": "minuto de hora %1",
+    "tooltip": "Objeto de minutos de tiempo (0-59)"
+  },
+  "ds1302_get_second": {
+    "message0": "segundo de hora %1",
+    "tooltip": "Número de segundos para recuperar el objeto Tiempo (0-59)"
+  },
+  "ds1302_get_weekday": {
+    "message0": "día de la semana de %1",
+    "tooltip": "Consigue el objeto de la semana del tiempo (1=domingo, 2=lunes, ..., 7=sábado)"
+  },
+  "ds1302_write_ram": {
+    "message0": "%1 Escribe la dirección %2 valor de la RAM %3",
+    "tooltip": "Escribe un byte en la RAM del DS1302 (rango de direcciones 0-30)"
+  },
+  "ds1302_read_ram": {
+    "message0": "%1 Leer direcciones de RAM %2",
+    "tooltip": "Lee un byte de la RAM del DS1302 (rango de direcciones 0-30)"
+  }
+}

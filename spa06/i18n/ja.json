@@ -1,0 +1,321 @@
+{
+  "toolbox_name": "SPA06 空気圧・温度センサー",
+  "toolbox_labels": {
+    "初始化": "初期化",
+    "配置": "構成",
+    "数据读取": "データ読み取り",
+    "状态检查": "ステータスチェック",
+    "中断": "中断された",
+    "校准": "校正"
+  },
+  "spa06_create_i2c": {
+    "message0": "%1I2Cアドレスを使用するSPA06センサーを作成し%2",
+    "tooltip": "I2C通信を用いたSPA06-003気圧温度センサーオブジェクトの作成",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "0x76 (デフォルト)",
+            "0x76"
+          ],
+          [
+            "0x77",
+            "0x77"
+          ]
+        ]
+      }
+    ]
+  },
+  "spa06_create_spi": {
+    "message0": "SPA06センサーの作成%1SPIピンの使用 %2",
+    "tooltip": "SPI通信を用いてSPA06-003気圧温度センサーオブジェクトを作成します"
+  },
+  "spa06_set_pressure_sampling": {
+    "message0": "圧力サンプリングレート%1オーバーサンプリングレート%2設定%3",
+    "tooltip": "圧力センサーのサンプリングレートとオーバーサンプリングレートの設定",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "1 Hz",
+            "SPL07_1HZ"
+          ],
+          [
+            "2 Hz",
+            "SPL07_2HZ"
+          ],
+          [
+            "4 Hz",
+            "SPL07_4HZ"
+          ],
+          [
+            "8 Hz",
+            "SPL07_8HZ"
+          ],
+          [
+            "16 Hz",
+            "SPL07_16HZ"
+          ],
+          [
+            "32 Hz",
+            "SPL07_32HZ"
+          ],
+          [
+            "64 Hz",
+            "SPL07_64HZ"
+          ],
+          [
+            "128 Hz",
+            "SPL07_128HZ"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "1回",
+            "SPL07_1SAMPLE"
+          ],
+          [
+            "2回",
+            "SPL07_2SAMPLES"
+          ],
+          [
+            "4回",
+            "SPL07_4SAMPLES"
+          ],
+          [
+            "8回",
+            "SPL07_8SAMPLES"
+          ],
+          [
+            "16回",
+            "SPL07_16SAMPLES"
+          ],
+          [
+            "32回",
+            "SPL07_32SAMPLES"
+          ],
+          [
+            "64回",
+            "SPL07_64SAMPLES"
+          ],
+          [
+            "128回",
+            "SPL07_128SAMPLES"
+          ]
+        ]
+      }
+    ]
+  },
+  "spa06_set_temperature_sampling": {
+    "message0": "温度サンプリングレート%1オーバーサンプリングレート%2設定%3",
+    "tooltip": "温度センサーのサンプリングレートとオーバーサンプリングレートの設定",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "1 Hz",
+            "SPL07_1HZ"
+          ],
+          [
+            "2 Hz",
+            "SPL07_2HZ"
+          ],
+          [
+            "4 Hz",
+            "SPL07_4HZ"
+          ],
+          [
+            "8 Hz",
+            "SPL07_8HZ"
+          ],
+          [
+            "16 Hz",
+            "SPL07_16HZ"
+          ],
+          [
+            "32 Hz",
+            "SPL07_32HZ"
+          ],
+          [
+            "64 Hz",
+            "SPL07_64HZ"
+          ],
+          [
+            "128 Hz",
+            "SPL07_128HZ"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "1回",
+            "SPL07_1SAMPLE"
+          ],
+          [
+            "2回",
+            "SPL07_2SAMPLES"
+          ],
+          [
+            "4回",
+            "SPL07_4SAMPLES"
+          ],
+          [
+            "8回",
+            "SPL07_8SAMPLES"
+          ],
+          [
+            "16回",
+            "SPL07_16SAMPLES"
+          ],
+          [
+            "32回",
+            "SPL07_32SAMPLES"
+          ],
+          [
+            "64回",
+            "SPL07_64SAMPLES"
+          ],
+          [
+            "128回",
+            "SPL07_128SAMPLES"
+          ]
+        ]
+      }
+    ]
+  },
+  "spa06_set_mode": {
+    "message0": "%1 動作モードを%2設定",
+    "tooltip": "センサーの動作モードを設定してください",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "アイドル",
+            "SPL07_IDLE"
+          ],
+          [
+            "単一圧力",
+            "SPL07_ONE_PRESSURE"
+          ],
+          [
+            "単一温度",
+            "SPL07_ONE_TEMPERATURE"
+          ],
+          [
+            "連続圧力",
+            "SPL07_CONT_PRESSURE"
+          ],
+          [
+            "連続温度",
+            "SPL07_CONT_TEMPERATURE"
+          ],
+          [
+            "連続圧力温度",
+            "SPL07_CONT_PRES_TEMP"
+          ]
+        ]
+      }
+    ]
+  },
+  "spa06_set_temperature_source": {
+    "message0": "温度%1設定%2",
+    "tooltip": "温度センサーの電源を設置してください",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "ASIC内部",
+            "SPL07_TSRC_ASIC"
+          ],
+          [
+            "MEMS外部",
+            "SPL07_TSRC_MEMS"
+          ]
+        ]
+      }
+    ]
+  },
+  "spa06_read_pressure": {
+    "message0": "%1 圧力値を読みます",
+    "tooltip": "現在の圧力値(パスカル)を読み上げます"
+  },
+  "spa06_read_temperature": {
+    "message0": "%1 温度値を読み取る",
+    "tooltip": "現在の温度値(摂氏度)を読み上げます"
+  },
+  "spa06_calc_altitude": {
+    "message0": "%1 高度を計算する",
+    "tooltip": "高度(メートル)は気圧値を基に計算されます。"
+  },
+  "spa06_pressure_available": {
+    "message0": "%1 気圧データは利用可能です",
+    "tooltip": "新しい圧力データがあるか確認してください"
+  },
+  "spa06_temperature_available": {
+    "message0": "%1 温度データが利用可能です",
+    "tooltip": "新しい温度データが利用可能かどうか確認してください"
+  },
+  "spa06_set_interrupt": {
+    "message0": "%1割り込みモードを設定してください%2",
+    "tooltip": "割り込みモードの設定",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "閉じる",
+            "SPL07_INT_OFF"
+          ],
+          [
+            "圧力は準備できています",
+            "SPL07_INT_PRES"
+          ],
+          [
+            "温度準備完了",
+            "SPL07_INT_TEMP"
+          ],
+          [
+            "圧力または温度準備完了",
+            "SPL07_INT_PRES_TEMP"
+          ],
+          [
+            "FIFOは最大限に設定",
+            "SPL07_INT_FIFO"
+          ],
+          [
+            "FIFOはフルまたはプレッシャー準備状態です",
+            "SPL07_INT_FIFO_PRES"
+          ],
+          [
+            "FIFOは完全に設定済みか温度準備が整っています",
+            "SPL07_INT_FIFO_TEMP"
+          ],
+          [
+            "すべての中断",
+            "SPL07_INT_ALL"
+          ]
+        ]
+      }
+    ]
+  },
+  "spa06_get_interrupt_status": {
+    "message0": "%1 割り込み状態を取得する",
+    "tooltip": "現在の割り込み状態レジスタの値を取得します"
+  },
+  "spa06_set_pressure_offset": {
+    "message0": "圧力%1相殺をPa%2設定",
+    "tooltip": "圧力測定のオフセット値を設定します"
+  },
+  "spa06_set_temperature_offset": {
+    "message0": "温度%1%2°Cオフセットに設定",
+    "tooltip": "温度測定のオフセット値を設定します"
+  }
+}

@@ -1,0 +1,117 @@
+{
+  "toolbox_name": "AI—Assistant",
+  "ai_assistant_config": {
+    "message0": "Configure AI-assistant to use serial port %1 baud rate %2",
+    "tooltip": "Configure AI-assistant serial communication",
+    "args0": [
+      {
+        "options": "${board.serialPort}"
+      },
+      {
+        "options": "${board.serialSpeed}"
+      }
+    ]
+  },
+  "serial_command_handler": {
+    "message0": "Received %1 command",
+    "tooltip": "Determine whether a command of the specified type is received",
+    "args0": [
+      {
+        "options": [
+          [
+            "The car moves forward",
+            "MOVE_FORWARD"
+          ],
+          [
+            "Car backs up",
+            "MOVE_BACKWARD"
+          ],
+          [
+            "Car turns left",
+            "TURN_LEFT"
+          ],
+          [
+            "Car turns right",
+            "TURN_RIGHT"
+          ],
+          [
+            "Car stops suddenly",
+            "STOP"
+          ],
+          [
+            "Turn on LED",
+            "LED_ON"
+          ],
+          [
+            "Turn off LED",
+            "LED_OFF"
+          ],
+          [
+            "LED flashing",
+            "LED_BLINK"
+          ],
+          [
+            "Servo rotation",
+            "SERVO_ROTATE"
+          ],
+          [
+            "Modify fan speed",
+            "FAN_SPEED"
+          ],
+          [
+            "Turn on the fan",
+            "FAN_ON"
+          ],
+          [
+            "Turn off the fan",
+            "FAN_OFF"
+          ],
+          [
+            "Turn on the lanterns",
+            "RGB_ON"
+          ],
+          [
+            "Turn off the lanterns",
+            "RGB_OFF"
+          ],
+          [
+            "Set the brightness of the colored lights",
+            "RGB_BRIGHTNESS"
+          ],
+          [
+            "Set the gradient color difference of lanterns",
+            "RGB_GRADIENT"
+          ],
+          [
+            "Robotic arm grabbing",
+            "ARM_GRAB"
+          ],
+          [
+            "Robotic arm released",
+            "ARM_RELEASE"
+          ],
+          [
+            "Robotic arm returns to initial position",
+            "ARM_DOWN"
+          ],
+          [
+            "open relay",
+            "RELAY_ON"
+          ],
+          [
+            "Close relay",
+            "RELAY_OFF"
+          ]
+        ]
+      }
+    ]
+  },
+  "serial_custom_command": {
+    "message0": "The camera recognized: %1",
+    "tooltip": "Determine whether a custom command is received (supports partial matching)"
+  },
+  "serial_clear_command": {
+    "message0": "Clear received commands",
+    "tooltip": "Clear the receivedCommand variable, which is used after all commands have been processed."
+  }
+}

@@ -1,0 +1,138 @@
+{
+  "toolbox_name": "Servo",
+  "toolbox_labels": {
+    "基础控制": "contrôle de base",
+    "读取状态": "lire l'état",
+    "高级控制": "Contrôle avancé",
+    "实用功能": "Fonctions pratiques",
+    "角度值": "Valeur d'angle"
+  },
+  "servo_attach": {
+    "message0": "Initialiser la goupille %1 servo",
+    "tooltip": "Initialisez le servo avec la broche spécifiée. ESP32 recommande GPIO 4, 5, 12-19, 21-23, 25-27, 32 et 33. Évitez d’utiliser GPIO 6-11 (flash) et 34-39 (entrée uniquement)",
+    "args0": [
+      {
+        "options": "${board.servoPins}"
+      }
+    ]
+  },
+  "servo_attach_advanced": {
+    "message0": "Initialiser la goupille %1 servo\nLargeur d’impulsion minimale %2 largeur d’impulsion maximale %3",
+    "tooltip": "Initialisez le servo avec des broches spécifiées et réglez la plage de largeur d’impulsion. L’ESP32 attribue automatiquement des canaux PWM sans spécification manuelle",
+    "args0": [
+      {
+        "options": "${board.servoPins}"
+      },
+      null,
+      null
+    ]
+  },
+  "servo_attach_full": {
+    "message0": "Initialiser la goupille %1 servo\nAngle minimum %2 Angle maximal %3\nLargeur d’impulsion minimale %4 Largeur d’impulsion maximale %5",
+    "tooltip": "Initialisez le servo avec des broches spécifiées et réglez tous les paramètres (plage d’angle, largeur d’impulsion). ESP32 alloue automatiquement des canaux PWM",
+    "args0": [
+      {
+        "options": "${board.servoPins}"
+      },
+      null,
+      null,
+      null,
+      null
+    ]
+  },
+  "servo_write": {
+    "message0": "Goupille de contrôle %1 tourner le servo à un angle de %2 degrés",
+    "tooltip": "Régler l’angle ciblé pour le servo de goupille spécifié (0-180 degrés)",
+    "args0": [
+      {
+        "options": "${board.servoPins}"
+      },
+      null
+    ]
+  },
+  "servo_write_float": {
+    "message0": "Goupille de contrôle %1 tourner le servo à un angle de %2 degrés",
+    "tooltip": "Régler l’angle exact du servo de broches spécifié (supporte le comptage en virgule flottante)",
+    "args0": [
+      {
+        "options": "${board.servoPins}"
+      },
+      null
+    ]
+  },
+  "servo_write_microseconds": {
+    "message0": "La goupille de contrôle %1 servo réglent la largeur d’impulsion à %2 microsecondes",
+    "tooltip": "Régler directement la valeur de largeur d’impulsion du servo de broche spécifié (généralement 544-2400 microsecondes)",
+    "args0": [
+      {
+        "options": "${board.servoPins}"
+      },
+      null
+    ]
+  },
+  "servo_read": {
+    "message0": "Lisez l’angle actuel du servo %1 pied de négociation",
+    "tooltip": "Lisez la valeur de l’angle courant du servo de broche spécifié",
+    "args0": [
+      {
+        "options": "${board.servoPins}"
+      }
+    ]
+  },
+  "servo_read_microseconds": {
+    "message0": "Lisez la largeur d’impulsion du servo %1 la jambe du courant",
+    "tooltip": "Lire la valeur de largeur d’impulsion actuelle (microsecondes) du servo de broche spécifié",
+    "args0": [
+      {
+        "options": "${board.servoPins}"
+      }
+    ]
+  },
+  "servo_attached": {
+    "message0": "Broche %1 servo est connecté",
+    "tooltip": "Vérifiez si le servo avec les broches spécifiées est connecté",
+    "args0": [
+      {
+        "options": "${board.servoPins}"
+      }
+    ]
+  },
+  "servo_detach": {
+    "message0": "Déconnexion de broches %1 servo",
+    "tooltip": "Déconnectez la connexion entre le servo de broches spécifié et la broche",
+    "args0": [
+      {
+        "options": "${board.servoPins}"
+      }
+    ]
+  },
+  "servo_get_pin": {
+    "message0": "Broche %1 Numéro de broche pour la connexion servo",
+    "tooltip": "Récupérer le numéro de broche pour la connexion servo spécifiée (retourner le numéro de broche saisi)",
+    "args0": [
+      {
+        "options": "${board.servoPins}"
+      }
+    ]
+  },
+  "servo_map_angle": {
+    "message0": "Les valeurs de cartographie %1 de la distance %2 à la %3\nPlage d’angle de %4 à %5",
+    "tooltip": "Associez la valeur d’une distance à la plage d’angle du servo"
+  },
+  "servo_sweep": {
+    "message0": "Balayage %1 servo\nDe %2 à %3 degrés, avec un délai de %4 millisecondes",
+    "tooltip": "Permet au servo avec la goupille spécifiée de scanner dans une plage d’angle spécifiée",
+    "args0": [
+      {
+        "options": "${board.servoPins}"
+      },
+      null,
+      null,
+      null
+    ]
+  },
+  "servo_angle": {
+    "message0": "Angle %1 degrés",
+    "tooltip": "Valeur de l’angle servo (0-180 degrés)"
+  }
+}

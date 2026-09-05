@@ -1,0 +1,75 @@
+{
+  "toolbox_name": "Écran tactile CHSC6X",
+  "toolbox_labels": {
+    "初始化": "initialisation",
+    "触摸检测": "Détection tactile",
+    "坐标获取": "Acquisition de coordonnées",
+    "配置": "Configuration"
+  },
+  "chsc6x_setup": {
+    "message0": "Créer un écran tactile %1 utiliser I2C %2 adresse %3 broche d’interruption %4 largeur %5 hauteur %6 faire pivoter %7",
+    "tooltip": "Créer et initialiser l’objet écran tactile CHSC6X",
+    "args0": [
+      null,
+      {
+        "options": "${board.i2c}"
+      },
+      null,
+      null,
+      null,
+      null,
+      {
+        "options": [
+          [
+            "0°",
+            "0"
+          ],
+          [
+            "90°",
+            "1"
+          ],
+          [
+            "180°",
+            "2"
+          ],
+          [
+            "270°",
+            "3"
+          ]
+        ]
+      }
+    ]
+  },
+  "chsc6x_is_pressed": {
+    "message0": "Écrans tactiles %1 touchés",
+    "tooltip": "Détecter si l’écran tactile a été touché"
+  },
+  "chsc6x_get_x": {
+    "message0": "La coordonnée X de l’écran tactile %1",
+    "tooltip": "Obtenez la coordonnée X du point de contact"
+  },
+  "chsc6x_get_y": {
+    "message0": "Écran tactile %1 coordonnée Y",
+    "tooltip": "Obtenir la coordonnée Y du point de contact"
+  },
+  "chsc6x_get_xy": {
+    "message0": "Écran tactile %1 Obtenir les coordonnées X %2 Y %3",
+    "tooltip": "Obtenez les coordonnées de toucher à la variable spécifiée"
+  },
+  "chsc6x_set_rotation": {
+    "message0": "Écran tactile %1 réglé pour tourner en %2",
+    "tooltip": "Régler l’angle de rotation de l’écran tactile (0-3)"
+  },
+  "chsc6x_get_rotation": {
+    "message0": "L’angle de rotation de l’écran tactile %1",
+    "tooltip": "Obtenir l’angle de rotation actuel (0-3)"
+  },
+  "chsc6x_set_screen_size": {
+    "message0": "Écran tactile %1 Définir la taille de l’écran Largeur %2 Hauteur %3",
+    "tooltip": "Réglez la taille de l’écran tactile"
+  },
+  "chsc6x_run": {
+    "message0": "Détection de fonctionnement %1 écran tactile",
+    "tooltip": "Lancer la détection tactile et mettre à jour les coordonnées internes"
+  }
+}

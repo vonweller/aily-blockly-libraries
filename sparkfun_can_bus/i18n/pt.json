@@ -1,0 +1,87 @@
+{
+  "toolbox_name": "CAN-Bus",
+  "canbus_init": {
+    "message0": "Inicializar CAN-Bus velocidade %1",
+    "tooltip": "Inicializar o módulo CAN Bus SparkFun com velocidade",
+    "args0": [
+      {
+        "options": [
+          [
+            "500 kbps",
+            "CANSPEED_500"
+          ],
+          [
+            "250 kbps",
+            "CANSPEED_250"
+          ],
+          [
+            "125 kbps",
+            "CANSPEED_125"
+          ]
+        ]
+      }
+    ]
+  },
+  "canbus_is_ready": {
+    "message0": "Inicialização do barramento CAN-Bus bem-sucedida",
+    "tooltip": "Estado init CAN Bus"
+  },
+  "canbus_send_test": {
+    "message0": "O CAN-Bus envia com sucesso mensagens de teste",
+    "tooltip": "Enviar uma mensagem CAN de teste"
+  },
+  "canbus_read_message": {
+    "message0": "O CAN-Bus lê a mensagem",
+    "tooltip": "Ler a mensagem CAN de entrada"
+  },
+  "canbus_last_id": {
+    "message0": "Identificação recente de notícias do CAN-Bus",
+    "tooltip": "Obter o ID da última mensagem CAN recebida"
+  },
+  "canbus_last_length": {
+    "message0": "Comprimento recente da mensagem no barramento CAN-Bus",
+    "tooltip": "Comprimento da última mensagem CAN recebida"
+  },
+  "canbus_data_byte": {
+    "message0": "CAN-Bus byte de dados da última mensagem %1",
+    "tooltip": "Obter byte de dados da última mensagem CAN"
+  },
+  "canbus_obd_request": {
+    "message0": "CAN-Bus pedido OBD %1 texto",
+    "tooltip": "Enviar solicitação OBD2 PID via CAN Bus",
+    "args0": [
+      {
+        "options": [
+          [
+            "Temperatura do líquido de arrefecimento",
+            "ENGINE_COOLANT_TEMP"
+          ],
+          [
+            "Velocidade de rotação",
+            "ENGINE_RPM"
+          ],
+          [
+            "Velocidade",
+            "VEHICLE_SPEED"
+          ],
+          [
+            "Fluxo de ar",
+            "MAF_SENSOR"
+          ],
+          [
+            "Sensor de oxigênio",
+            "O2_VOLTAGE"
+          ],
+          [
+            "Termo solar",
+            "THROTTLE"
+          ]
+        ]
+      }
+    ]
+  },
+  "canbus_send_message": {
+    "message0": "Enviar mensagem CAN ID %1 comprimento %2 dados %3 %4 %5 %6 %7 %8 %9 %10",
+    "tooltip": "Enviar mensagem CAN com ID e dados"
+  }
+}

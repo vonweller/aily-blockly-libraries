@@ -1,0 +1,227 @@
+{
+  "toolbox_name": "ESP-NOW",
+  "toolbox_labels": {
+    "ESP-NOW极简模式": "ESP-NOW minimalistischer Modus",
+    "ESP-NOW串口模式": "ESP-NOW-Modus für serielle Schnittstelle",
+    "ESP-NOW标准模式": "ESP-NOW-Standardmodus",
+    "初始化": "Initialisierung",
+    "创建对等设备": "Peer-Gerät erstellen",
+    "发送消息": "Nachricht senden",
+    "接收事件": "Ereignisse empfangen",
+    "回调变量": "Rückrufvariable",
+    "快速操作": "Schnelle Bedienung",
+    "状态查询": "Statusabfrage"
+  },
+  "esp_now_master_init": {
+    "message0": "ESP-NOW initialisiert auf den Host-(Sender-)Kanal %1",
+    "tooltip": "Ein-Klick-Initialisierung als ESP-NOW-Host (Broadcast-Sender), automatische Konfiguration von WiFi und ESP-NOW"
+  },
+  "esp_now_slave_init": {
+    "message0": "ESP-NOW initialisiert zum Slave (Empfänger) channel%1",
+    "tooltip": "Ein-Klick-Initialisierung als ESP-NOW-Slave (Empfänger), automatische Konfiguration von WLAN, ESP-NOW und Registrierung neuer Geräte"
+  },
+  "esp_now_broadcast_message": {
+    "message0": "Sendebotschaft %1",
+    "tooltip": "Senden Sie Nachrichten an alle Geräte im Netzwerk (müssen zuerst als Host initialisiert werden)"
+  },
+  "esp_now_on_message_received": {
+    "message0": "Wenn Sie eine Nachricht von ESP-NOW erhalten",
+    "tooltip": "Globale Empfangsrückrufe lösen jede ESP-NOW-Nachricht aus. Rückrufe umfassen: Inhalt empfangener Nachrichten, Nachrichtenlänge, Broadcast-Status und Sender-MAC",
+    "message1": "ausführen %1"
+  },
+  "esp_now_received_message": {
+    "message0": "Nachrichten erhalten",
+    "tooltip": "Rufen Sie den Inhalt der empfangenen Nachrichten im globalen Empfangs-Rückruf ab"
+  },
+  "esp_now_received_message_len": {
+    "message0": "Nachrichtenlänge",
+    "tooltip": "Erhalten Sie die Nachrichtenlänge im globalen Empfangs-Rückruf"
+  },
+  "esp_now_received_is_broadcast": {
+    "message0": "Es waren Broadcast-Nachrichten",
+    "tooltip": "Überprüfen Sie, ob eine Nachricht während des globalen Empfangs-Rückrufs ausgestrahlt wird"
+  },
+  "esp_now_received_sender_mac": {
+    "message0": "Sender-MAC",
+    "tooltip": "Erhalten Sie die MAC-Adresse des Absenders im globalen Empfangs-Rückruf"
+  },
+  "esp_now_reply_message": {
+    "message0": "Antworte auf die message%1",
+    "tooltip": "Antwort auf das letzte Gerät, das die Nachricht gesendet hat (während oder nach Rückrufen verwendet)"
+  },
+  "esp_now_node_init": {
+    "message0": "ESP-NOW initialisiert als bidirektionaler Knotenkanal %1",
+    "tooltip": "Als bidirektionaler Knoten initialisiert, kann er sowohl senden als auch Nachrichten senden"
+  },
+  "esp_now_begin": {
+    "message0": "ESP-NOW initialisieren",
+    "tooltip": "Initialisieren Sie das ESP-NOW-Protokoll mit der Standardkonfiguration"
+  },
+  "esp_now_begin_with_pmk": {
+    "message0": "Initialisieren Sie den ESP-NOW Masterschlüssel %1",
+    "tooltip": "Initialisieren Sie das ESP-NOW-Protokoll und stellen Sie den Masterschlüssel (16 Byte) für die verschlüsselte Kommunikation ein"
+  },
+  "esp_now_end": {
+    "message0": "Stop ESP-NOW",
+    "tooltip": "Das ESP-NOW-Abkommen beenden"
+  },
+  "esp_now_wifi_init": {
+    "message0": "Setze den WLAN-Modus %1 Kanal %2",
+    "tooltip": "Initialisieren Sie den WLAN-Modus und -Kanal (ESP-NOW benötigt zuerst eine WLAN-Konfiguration)",
+    "args0": [
+      {
+        "options": [
+          [
+            "STA (Standortmodus)",
+            "WIFI_STA"
+          ],
+          [
+            "AP (Hotspot-Modus)",
+            "WIFI_AP"
+          ],
+          [
+            "AP+STA (Hybridmodus)",
+            "WIFI_AP_STA"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "esp_now_create_peer": {
+    "message0": "Erstellen Sie ein Peer-Gerät %1 MAC-Adresse %2",
+    "tooltip": "Erstellen Sie ein ESP-NOW Peer-Gerät (Sie müssen die MAC-Adresse der anderen Partei angeben)"
+  },
+  "esp_now_create_peer_advanced": {
+    "message0": "Erstellen Sie ein Peer-Gerät %1 MAC-Adresse %2 \nChannel %3 Verschlüsselungsschlüssel %4",
+    "tooltip": "Erstellen Sie ein ESP-NOW-Peer-Gerät mit Verschlüsselung (LMK benötigt 16 Byte)"
+  },
+  "esp_now_create_broadcast_peer": {
+    "message0": "Erstellen Sie ein Broadcast-Peer-Gerät %1",
+    "tooltip": "Erstellen Sie ein Broadcast-Peer-Gerät, um Nachrichten an alle Geräte im Netzwerk zu senden"
+  },
+  "esp_now_remove_peer": {
+    "message0": "Entfernen Sie Peer-to-Peer-Geräte %1",
+    "tooltip": "Entfernen Sie registrierte Peer-Geräte"
+  },
+  "esp_now_send": {
+    "message0": "Peer-Geräte %1 Nachrichten %2",
+    "tooltip": "Senden Sie String-Nachrichten an bestimmte Peer-Geräte"
+  },
+  "esp_now_send_data": {
+    "message0": "Peer-Gerät %1 Daten %2 Länge %3",
+    "tooltip": "Senden Sie Rohdaten an das angegebene Peer-Gerät"
+  },
+  "esp_now_on_receive": {
+    "message0": "Wenn das Peer-Gerät %1 eine Nachricht empfängt",
+    "tooltip": "Stellen Sie die Rückruffunktion ein, damit Peer-Geräte Nachrichten empfangen. Für Rückrufe verfügbare Variablen: esp_now_data (Nachrichteninhalt), esp_now_len (Nachrichtenlänge), esp_now_broadcast (ob gesendet werden soll)",
+    "message1": "ausführen %1"
+  },
+  "esp_now_on_sent": {
+    "message0": "Wenn das Peer-Gerät %1 Nachricht vollständig gesendet wird",
+    "tooltip": "Stellen Sie die Rückruffunktion für die Nachricht ein, nachdem die Nachricht gesendet wurde. Variable im Rückruf verfügbar: esp_now_success (sofern erfolgreich gesendet)",
+    "message1": "ausführen %1"
+  },
+  "esp_now_on_new_peer": {
+    "message0": "Wenn eine neue Peer-Geräte-Nachricht empfangen wird",
+    "tooltip": "Wird ausgelöst, wenn ich eine Nachricht von einem unbekannten Gerät empfange. Bei Rückrufen verfügbare Variable: esp_now_src_mac (Absender-MAC), esp_now_data (Nachrichteninhalt), esp_now_len (Nachrichtenlänge)",
+    "message1": "ausführen %1"
+  },
+  "esp_now_received_data": {
+    "message0": "Der Inhalt der empfangenen Nachricht",
+    "tooltip": "Rufen Sie den empfangenen Nachrichteninhalt (String) im empfangenen Rückruf ab"
+  },
+  "esp_now_received_len": {
+    "message0": "Die Länge der empfangenen Nachricht",
+    "tooltip": "Erhalten Sie die Länge der empfangenen Nachricht im Rückruf"
+  },
+  "esp_now_is_broadcast": {
+    "message0": "Ist es eine Broadcast-Nachricht?",
+    "tooltip": "Bestimmen Sie, ob es sich während des Empfangs-Rückrufs um eine Broadcast-Nachricht handelt"
+  },
+  "esp_now_send_success": {
+    "message0": "Ob die Entsendung erfolgreich war",
+    "tooltip": "Überprüfen Sie, ob die Nachricht während des Rückrufs erfolgreich gesendet wurde"
+  },
+  "esp_now_src_mac": {
+    "message0": "MAC-Adresse des Absenders",
+    "tooltip": "Erhalten Sie die MAC-Adresse des Absenders im neuen Peer-Gerät-Callback"
+  },
+  "esp_now_serial_create": {
+    "message0": "Erstelle ESP-NOW serieller Port %1 Counterparty MAC %2 Kanal %3 Betriebsmodus %4",
+    "tooltip": "Erstellen Sie ESP-NOW serielle Kommunikationsobjekte, ähnlich wie Serialen verwendet werden",
+    "args0": [
+      null,
+      null,
+      null,
+      {
+        "options": [
+          [
+            "Stationsmodus",
+            "WIFI_STA"
+          ],
+          [
+            "AP-Modus",
+            "WIFI_AP"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp_now_serial_available": {
+    "message0": "ESP-NOW serielle port%1 lesbare Bytes",
+    "tooltip": "Ruft die Anzahl lesbarer Bytes im ESP-NOW seriellen Port-Empfangspuffer ab"
+  },
+  "esp_now_serial_available_for_write": {
+    "message0": "ESP-NOW serieller Port %1 Anzahl der beschreibbaren Bytes",
+    "tooltip": "Erhalten Sie den verbleibenden Speicherplatz im ESP-NOW-Seriellport-Übertragungspuffer"
+  },
+  "esp_now_serial_read": {
+    "message0": "ESP-NOW Seriellport%1 liest ein Byte",
+    "tooltip": "Ein Byte vom ESP-NOW-Seriellport gelesen"
+  },
+  "esp_now_serial_read_string": {
+    "message0": "ESP-NOW serieller Port %1 liest Strings",
+    "tooltip": "Lesen Sie alle verfügbaren Daten vom ESP-NOW Seriellport als Strings aus"
+  },
+  "esp_now_serial_read_string_until": {
+    "message0": "ESP-NOW Seriellport %1 Zeichenketten lesen bis %2",
+    "tooltip": "Lesen Sie Daten vom seriellen Anschluss des ESP-NOW aus, bis es auf das angegebene Zeichen trifft"
+  },
+  "esp_now_serial_print": {
+    "message0": "ESP-NOW serieller Anschluss %1 senden %2",
+    "tooltip": "Die Daten werden über den seriellen Anschluss ESP-NOW übertragen"
+  },
+  "esp_now_serial_println": {
+    "message0": "ESP-NOW serieller Port %1 sendet %2 und bricht ab",
+    "tooltip": "Senden Sie Daten und Zeilenbrüche über den seriellen Anschluss ESP-NOW"
+  },
+  "esp_now_serial_write": {
+    "message0": "ESP-NOW serieller Port %1 zum Senden von Rohdaten %2",
+    "tooltip": "Rohdaten werden über den seriellen Anschluss von ESP-NOW gesendet"
+  },
+  "esp_now_quick_broadcast": {
+    "message0": "Schnelle Übertragungsnachricht %1 Kanal %2",
+    "tooltip": "Senden Sie Nachrichten schnell an alle Geräte im Netzwerk (automatische Initialisierung)"
+  },
+  "esp_now_quick_send": {
+    "message0": "Senden Sie schnell Nachrichten an MAC%1 Content %2 channels%3",
+    "tooltip": "Nachrichten schnell an Geräte mit angegebenen MAC-Adressen senden (automatische Initialisierung)"
+  },
+  "esp_now_get_mac": {
+    "message0": "Hol dir die lokale MAC-Adresse",
+    "tooltip": "Hol dir die lokale WLAN-MAC-Adresse"
+  },
+  "esp_now_get_max_data_len": {
+    "message0": "ESP-NOW maximale Datenlänge",
+    "tooltip": "Erhalten Sie die maximale Datenlänge, die vom ESP-NOW-Protokoll unterstützt wird (üblicherweise 250 Bytes)"
+  },
+  "esp_now_get_peer_count": {
+    "message0": "ESP-NOW-äquivalente Geräteanzahl",
+    "tooltip": "Ermitteln Sie die Anzahl der registrierten Peer-Geräte"
+  },
+  "esp_now_get_version": {
+    "message0": "ESP-NOW Versionsnummer",
+    "tooltip": "Erhalten Sie die Versionsnummer des ESP-NOW-Protokolls"
+  }
+}

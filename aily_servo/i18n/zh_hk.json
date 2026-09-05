@@ -1,0 +1,138 @@
+{
+  "toolbox_name": "Servo",
+  "toolbox_labels": {
+    "基础控制": "基礎控制",
+    "读取状态": "讀取狀態",
+    "高级控制": "進階控制",
+    "实用功能": "實用功能",
+    "角度值": "角度值"
+  },
+  "servo_attach": {
+    "message0": "初始化引腳 %1 舵機",
+    "tooltip": "初始化指定引腳的舵機。 ESP32建議使用GPIO 4,5,12-19,21-23,25-27,32,33。避免使用GPIO 6-11(快閃記憶體)和34-39(僅輸入)",
+    "args0": [
+      {
+        "options": "${board.servoPins}"
+      }
+    ]
+  },
+  "servo_attach_advanced": {
+    "message0": "初始化引腳 %1 舵機\n最小脈寬 %2 最大脈寬 %3",
+    "tooltip": "初始化指定引腳的舵機，並設定脈寬範圍。 ESP32會自動分配PWM通道，無需手動指定",
+    "args0": [
+      {
+        "options": "${board.servoPins}"
+      },
+      null,
+      null
+    ]
+  },
+  "servo_attach_full": {
+    "message0": "初始化引腳 %1 舵機\n最小角度 %2 最大角度 %3\n最小脈寬 %4 最大脈寬 %5",
+    "tooltip": "初始化指定引腳的舵機，並設定完整參數（角度範圍、脈寬範圍）。 ESP32會自動分配PWM通道",
+    "args0": [
+      {
+        "options": "${board.servoPins}"
+      },
+      null,
+      null,
+      null,
+      null
+    ]
+  },
+  "servo_write": {
+    "message0": "控制腳位 %1 舵機轉到角度 %2 度",
+    "tooltip": "設定指定引腳舵機的目標角度（0-180度）",
+    "args0": [
+      {
+        "options": "${board.servoPins}"
+      },
+      null
+    ]
+  },
+  "servo_write_float": {
+    "message0": "控制腳位 %1 舵機轉到角度 %2 度",
+    "tooltip": "設定指定引腳舵機的精確角度（支援浮點數）",
+    "args0": [
+      {
+        "options": "${board.servoPins}"
+      },
+      null
+    ]
+  },
+  "servo_write_microseconds": {
+    "message0": "控制腳位 %1 舵機設定脈寬為 %2 微秒",
+    "tooltip": "直接設定指定引腳舵機的脈寬值（通常544-2400微秒）",
+    "args0": [
+      {
+        "options": "${board.servoPins}"
+      },
+      null
+    ]
+  },
+  "servo_read": {
+    "message0": "讀取接腳 %1 舵機目前角度",
+    "tooltip": "讀取指定引腳舵機目前的角度值",
+    "args0": [
+      {
+        "options": "${board.servoPins}"
+      }
+    ]
+  },
+  "servo_read_microseconds": {
+    "message0": "讀取接腳 %1 舵機目前脈寬",
+    "tooltip": "讀取指定引腳舵機目前的脈寬值（微秒）",
+    "args0": [
+      {
+        "options": "${board.servoPins}"
+      }
+    ]
+  },
+  "servo_attached": {
+    "message0": "腳位 %1 舵機已連接",
+    "tooltip": "檢查指定接腳的舵機是否已連接",
+    "args0": [
+      {
+        "options": "${board.servoPins}"
+      }
+    ]
+  },
+  "servo_detach": {
+    "message0": "斷開腳位 %1 舵機",
+    "tooltip": "斷開指定引腳舵機與引腳的連接",
+    "args0": [
+      {
+        "options": "${board.servoPins}"
+      }
+    ]
+  },
+  "servo_get_pin": {
+    "message0": "腳位 %1 舵機連接的接腳號",
+    "tooltip": "取得指定舵機連接的引腳號（返回輸入的引腳號）",
+    "args0": [
+      {
+        "options": "${board.servoPins}"
+      }
+    ]
+  },
+  "servo_map_angle": {
+    "message0": "映射值 %1 從範圍 %2 到 %3\n至角度範圍 %4 到 %5",
+    "tooltip": "將一個範圍的數值映射到舵機角度範圍"
+  },
+  "servo_sweep": {
+    "message0": "腳位 %1 舵機掃描\n從 %2 度到 %3 度 延遲 %4 毫秒",
+    "tooltip": "讓指定接腳的舵機在指定角度範圍內掃描",
+    "args0": [
+      {
+        "options": "${board.servoPins}"
+      },
+      null,
+      null,
+      null
+    ]
+  },
+  "servo_angle": {
+    "message0": "角度%1度",
+    "tooltip": "舵機角度值（0-180度）"
+  }
+}

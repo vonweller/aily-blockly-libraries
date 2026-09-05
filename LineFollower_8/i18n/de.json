@@ -1,0 +1,274 @@
+{
+  "toolbox_name": "8-Kanal-Linienfolger",
+  "line_init": {
+    "message0": "Initialisieren Sie den Achtkanal-Patrouillensensor mit I2C-Schnittstelle %1",
+    "tooltip": "Achtkanal-Patrouillensensor (I2C-Adresse 0x27)",
+    "args0": [
+      {
+        "options": "${board.i2c}"
+      }
+    ]
+  },
+  "line_is_state": {
+    "message0": "Der aktuelle Linienstatus entspricht %1",
+    "tooltip": "Aktuellen Linienpatrouillenstatus bestimmen (8 Sensoren)",
+    "args0": [
+      {
+        "options": [
+          [
+            "(0) 000000000 Ganz weiß",
+            "0"
+          ],
+          [
+            "(24) 00011000 Zwei mittlere Routen",
+            "24"
+          ],
+          [
+            "(60) 00111100 Die mittleren vier Routen",
+            "60"
+          ],
+          [
+            "(126) 01111110 Sechs mittlere Routen",
+            "126"
+          ],
+          [
+            "(255) 11111111 Ganz schwarz",
+            "255"
+          ],
+          [
+            "(1) 00000001 A0",
+            "1"
+          ],
+          [
+            "(2) 00000010 A1",
+            "2"
+          ],
+          [
+            "(4) 00000100 A2",
+            "4"
+          ],
+          [
+            "(8) 00001000 A3",
+            "8"
+          ],
+          [
+            "(16) 00010000 A4",
+            "16"
+          ],
+          [
+            "(32) 00100000 A5",
+            "32"
+          ],
+          [
+            "(64) 01000000 A6",
+            "64"
+          ],
+          [
+            "(128) 10000000 A7",
+            "128"
+          ],
+          [
+            "(3) 00000011 A0+A1",
+            "3"
+          ],
+          [
+            "(12) 00001100 A2+A3",
+            "12"
+          ],
+          [
+            "(48) 00110000 A4+A5",
+            "48"
+          ],
+          [
+            "(192) 11000000 A6+A7",
+            "192"
+          ]
+        ]
+      }
+    ]
+  },
+  "line_get_state": {
+    "message0": "Ruft den aktuellen Zeilenstatuswert ab",
+    "tooltip": "Erhalten Sie die digitalen Statuswerte von 8 Sensoren (0-255)"
+  },
+  "line_offset": {
+    "message0": "Line-Offset erhalten",
+    "tooltip": "Erhalte den Spurversatz für PID-Steuerung (-7 bis +7)"
+  },
+  "line_sensor_value": {
+    "message0": "Erhalten Sie den Stromwert des %1-Sensors",
+    "tooltip": "Erhalten Sie den aktuellen Wert eines einzelnen Sensors (0-4095)",
+    "args0": [
+      {
+        "options": [
+          [
+            "A0",
+            "0"
+          ],
+          [
+            "A1",
+            "1"
+          ],
+          [
+            "A2",
+            "2"
+          ],
+          [
+            "A3",
+            "3"
+          ],
+          [
+            "A4",
+            "4"
+          ],
+          [
+            "A5",
+            "5"
+          ],
+          [
+            "A6",
+            "6"
+          ],
+          [
+            "A7",
+            "7"
+          ]
+        ]
+      }
+    ]
+  },
+  "line_sensor_reference": {
+    "message0": "Beziehen Sie %1 Sensorreferenzwerte",
+    "tooltip": "Erhalte einen Referenzwert für einen einzelnen Sensor (Schwellewert, 0–4095)",
+    "args0": [
+      {
+        "options": [
+          [
+            "A0",
+            "0"
+          ],
+          [
+            "A1",
+            "1"
+          ],
+          [
+            "A2",
+            "2"
+          ],
+          [
+            "A3",
+            "3"
+          ],
+          [
+            "A4",
+            "4"
+          ],
+          [
+            "A5",
+            "5"
+          ],
+          [
+            "A6",
+            "6"
+          ],
+          [
+            "A7",
+            "7"
+          ]
+        ]
+      }
+    ]
+  },
+  "line_sensor_digital": {
+    "message0": "Erhalten Sie den numerischen Wert des %1 Sensors",
+    "tooltip": "Erhalten Sie den numerischen Wert eines einzelnen Sensors (0 oder 1, 1 zeigt die erkannte schwarze Linie an)",
+    "args0": [
+      {
+        "options": [
+          [
+            "A0",
+            "0"
+          ],
+          [
+            "A1",
+            "1"
+          ],
+          [
+            "A2",
+            "2"
+          ],
+          [
+            "A3",
+            "3"
+          ],
+          [
+            "A4",
+            "4"
+          ],
+          [
+            "A5",
+            "5"
+          ],
+          [
+            "A6",
+            "6"
+          ],
+          [
+            "A7",
+            "7"
+          ]
+        ]
+      }
+    ]
+  },
+  "line_set_rgb": {
+    "message0": "Stellen Sie das RGB-Licht im Traversalmodul auf %1",
+    "tooltip": "Stellen Sie die RGB-Anzeigefarbe auf dem Traversalmodul ein",
+    "args0": [
+      {
+        "options": [
+          [
+            "Aus",
+            "0"
+          ],
+          [
+            "Rot",
+            "1"
+          ],
+          [
+            "Grün",
+            "2"
+          ],
+          [
+            "Blau",
+            "3"
+          ],
+          [
+            "Weiß",
+            "4"
+          ],
+          [
+            "Gelb",
+            "5"
+          ],
+          [
+            "cyan",
+            "6"
+          ],
+          [
+            "Lila",
+            "7"
+          ]
+        ]
+      }
+    ]
+  },
+  "line_set_frequency": {
+    "message0": "Stellen Sie die Upload-Frequenz des Line-Patrol-Moduls auf %1 Millisekunden ein",
+    "tooltip": "Setze das Upload-Intervall für Sensordaten (Millisekunden)"
+  },
+  "line_print_data": {
+    "message0": "Daten der Löschlinienpatrouillensensoren",
+    "tooltip": "Alle Sensordaten werden über den seriellen Anschluss gedruckt"
+  }
+}

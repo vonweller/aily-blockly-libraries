@@ -1,0 +1,394 @@
+{
+  "toolbox_name": "매트릭스 키보드",
+  "toolbox_labels": {
+    "初始化": "초기화",
+    "按键检测": "키 감지"
+  },
+  "matrix_keyboard_init": {
+    "message0": "I2C 주소%1 매트릭스 키보드를 초기화%2",
+    "tooltip": "매트릭스 키보드를 초기화하세요; 기본 I2C 주소는 0x65"
+  },
+  "matrix_keyboard_tick": {
+    "message0": "스캐닝 매트릭스 키보드 %1",
+    "tooltip": "스캐닝 버튼 상태는 루프 내에서 매번 호출되어야 합니다"
+  },
+  "matrix_keyboard_get_current_key": {
+    "message0": "매트릭스 키보드 %1 현재 키를 누르고 있습니다",
+    "tooltip": "현재 누르고 있는 키 문자를 불러와 '0'-'9', 'A'-'D', '*', '#'를 반환합니다; 누르지 않으면 빈 문자를 반환합니다."
+  },
+  "matrix_keyboard_key_pressed": {
+    "message0": "매트릭스 키보드 %1 %2 키를 누릅니다",
+    "tooltip": "지정된 버튼이 눌렸는지 (누르는 순간) 감지합니다",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "0",
+            "kKey0"
+          ],
+          [
+            "1",
+            "kKey1"
+          ],
+          [
+            "2",
+            "kKey2"
+          ],
+          [
+            "3",
+            "kKey3"
+          ],
+          [
+            "4",
+            "kKey4"
+          ],
+          [
+            "5",
+            "kKey5"
+          ],
+          [
+            "6",
+            "kKey6"
+          ],
+          [
+            "7",
+            "kKey7"
+          ],
+          [
+            "8",
+            "kKey8"
+          ],
+          [
+            "9",
+            "kKey9"
+          ],
+          [
+            "A",
+            "kKeyA"
+          ],
+          [
+            "B",
+            "kKeyB"
+          ],
+          [
+            "C",
+            "kKeyC"
+          ],
+          [
+            "D",
+            "kKeyD"
+          ],
+          [
+            "*",
+            "kKeyAsterisk"
+          ],
+          [
+            "#",
+            "kKeyNumberSign"
+          ]
+        ]
+      }
+    ]
+  },
+  "matrix_keyboard_key_pressing": {
+    "message0": "매트릭스 키보드 %1 키 %2 잡고 있습니다",
+    "tooltip": "지정된 키가 눌리고 있는지 확인하세요",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "0",
+            "kKey0"
+          ],
+          [
+            "1",
+            "kKey1"
+          ],
+          [
+            "2",
+            "kKey2"
+          ],
+          [
+            "3",
+            "kKey3"
+          ],
+          [
+            "4",
+            "kKey4"
+          ],
+          [
+            "5",
+            "kKey5"
+          ],
+          [
+            "6",
+            "kKey6"
+          ],
+          [
+            "7",
+            "kKey7"
+          ],
+          [
+            "8",
+            "kKey8"
+          ],
+          [
+            "9",
+            "kKey9"
+          ],
+          [
+            "A",
+            "kKeyA"
+          ],
+          [
+            "B",
+            "kKeyB"
+          ],
+          [
+            "C",
+            "kKeyC"
+          ],
+          [
+            "D",
+            "kKeyD"
+          ],
+          [
+            "*",
+            "kKeyAsterisk"
+          ],
+          [
+            "#",
+            "kKeyNumberSign"
+          ]
+        ]
+      }
+    ]
+  },
+  "matrix_keyboard_key_released": {
+    "message0": "매트릭스 키보드 %1 키는 %2 해제됩니다",
+    "tooltip": "지정된 키가 해제되었는지 (해제 시점) 감지합니다",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "0",
+            "kKey0"
+          ],
+          [
+            "1",
+            "kKey1"
+          ],
+          [
+            "2",
+            "kKey2"
+          ],
+          [
+            "3",
+            "kKey3"
+          ],
+          [
+            "4",
+            "kKey4"
+          ],
+          [
+            "5",
+            "kKey5"
+          ],
+          [
+            "6",
+            "kKey6"
+          ],
+          [
+            "7",
+            "kKey7"
+          ],
+          [
+            "8",
+            "kKey8"
+          ],
+          [
+            "9",
+            "kKey9"
+          ],
+          [
+            "A",
+            "kKeyA"
+          ],
+          [
+            "B",
+            "kKeyB"
+          ],
+          [
+            "C",
+            "kKeyC"
+          ],
+          [
+            "D",
+            "kKeyD"
+          ],
+          [
+            "*",
+            "kKeyAsterisk"
+          ],
+          [
+            "#",
+            "kKeyNumberSign"
+          ]
+        ]
+      }
+    ]
+  },
+  "matrix_keyboard_key_idle": {
+    "message0": "매트릭스 키보드 %1 keys%2 아이들 상태",
+    "tooltip": "지정된 키가 자유 상태에 있는지 확인해",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "0",
+            "kKey0"
+          ],
+          [
+            "1",
+            "kKey1"
+          ],
+          [
+            "2",
+            "kKey2"
+          ],
+          [
+            "3",
+            "kKey3"
+          ],
+          [
+            "4",
+            "kKey4"
+          ],
+          [
+            "5",
+            "kKey5"
+          ],
+          [
+            "6",
+            "kKey6"
+          ],
+          [
+            "7",
+            "kKey7"
+          ],
+          [
+            "8",
+            "kKey8"
+          ],
+          [
+            "9",
+            "kKey9"
+          ],
+          [
+            "A",
+            "kKeyA"
+          ],
+          [
+            "B",
+            "kKeyB"
+          ],
+          [
+            "C",
+            "kKeyC"
+          ],
+          [
+            "D",
+            "kKeyD"
+          ],
+          [
+            "*",
+            "kKeyAsterisk"
+          ],
+          [
+            "#",
+            "kKeyNumberSign"
+          ]
+        ]
+      }
+    ]
+  },
+  "matrix_keyboard_get_key_state": {
+    "message0": "매트릭스 키보드 %1 키 %2 상태",
+    "tooltip": "지정된 키의 상태를 조회합니다: 0 = 대기, 1 = 누르기, 2 = 홀드, 3 = 해제",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "0",
+            "kKey0"
+          ],
+          [
+            "1",
+            "kKey1"
+          ],
+          [
+            "2",
+            "kKey2"
+          ],
+          [
+            "3",
+            "kKey3"
+          ],
+          [
+            "4",
+            "kKey4"
+          ],
+          [
+            "5",
+            "kKey5"
+          ],
+          [
+            "6",
+            "kKey6"
+          ],
+          [
+            "7",
+            "kKey7"
+          ],
+          [
+            "8",
+            "kKey8"
+          ],
+          [
+            "9",
+            "kKey9"
+          ],
+          [
+            "A",
+            "kKeyA"
+          ],
+          [
+            "B",
+            "kKeyB"
+          ],
+          [
+            "C",
+            "kKeyC"
+          ],
+          [
+            "D",
+            "kKeyD"
+          ],
+          [
+            "*",
+            "kKeyAsterisk"
+          ],
+          [
+            "#",
+            "kKeyNumberSign"
+          ]
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,173 @@
+{
+  "toolbox_name": "PID controller",
+  "toolbox_labels": {
+    "快速开始": "quick start",
+    "基础控制": "basic control",
+    "参数设置": "Parameter settings",
+    "值设置与获取": "Value setting and getting",
+    "高级控制": "Advanced control",
+    "条件判断": "Conditional judgment"
+  },
+  "pid_init": {
+    "message0": "Initialize PID controller %1 Input variable %2 Output variable %3 Target value %4 Parameter preset %5P parameter %6 I parameter %7D parameter %8 Control direction %9",
+    "args0": [
+      null,
+      null,
+      null,
+      null,
+      {
+        "options": [
+          [
+            "Customize",
+            "custom"
+          ],
+          [
+            "temperature control",
+            "temperature"
+          ],
+          [
+            "Motor speed",
+            "motor_speed"
+          ],
+          [
+            "position control",
+            "position"
+          ],
+          [
+            "Level control",
+            "level"
+          ]
+        ]
+      },
+      null,
+      null,
+      null,
+      {
+        "options": [
+          [
+            "forward control",
+            "DIRECT"
+          ],
+          [
+            "reverse control",
+            "REVERSE"
+          ]
+        ]
+      }
+    ]
+  },
+  "pid_quick_setup": {
+    "message0": "Fast PID control%1Input pin%2Output pin%3Target value%4Application scenario%5",
+    "args0": [
+      null,
+      {
+        "options": "${board.analogPins}"
+      },
+      {
+        "options": "${board.pwmPins}"
+      },
+      null,
+      {
+        "options": [
+          [
+            "temperature control",
+            "temperature"
+          ],
+          [
+            "Motor speed",
+            "motor_speed"
+          ],
+          [
+            "position control",
+            "position"
+          ],
+          [
+            "Level control",
+            "level"
+          ],
+          [
+            "Customize",
+            "custom"
+          ]
+        ]
+      }
+    ]
+  },
+  "pid_compute": {
+    "message0": "PID controller%1 calculation"
+  },
+  "pid_control_loop": {
+    "message0": "Run PID control loop %1 Controller %2 Read input %3 Execute output %4"
+  },
+  "pid_temperature_control": {
+    "message0": "Temperature PID control%1Temperature sensor pin%2Heater pin%3Target temperature%4",
+    "args0": [
+      null,
+      {
+        "options": "${board.analogPins}"
+      },
+      {
+        "options": "${board.pwmPins}"
+      },
+      null
+    ]
+  },
+  "pid_motor_speed_control": {
+    "message0": "Motor speed PID control%1Encoder pin%2Motor PWM pin%3Target speed (RPM)%4",
+    "args0": [
+      null,
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": "${board.pwmPins}"
+      },
+      null
+    ]
+  },
+  "pid_set_mode": {
+    "message0": "Set the PID controller %1 mode to %2",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "automatic",
+            "AUTOMATIC"
+          ],
+          [
+            "Manual",
+            "MANUAL"
+          ]
+        ]
+      }
+    ]
+  },
+  "pid_set_tunings": {
+    "message0": "Set PID controller %1 parameter %2P parameter %3I parameter %4D parameter %5"
+  },
+  "pid_set_output_limits": {
+    "message0": "Set PID controller%1output limit%2minimum value%3maximum value%4"
+  },
+  "pid_get_input": {
+    "message0": "Get PID input value%1"
+  },
+  "pid_get_output": {
+    "message0": "Get PID output value%1"
+  },
+  "pid_set_setpoint": {
+    "message0": "Set the PID target value %1 to %2"
+  },
+  "pid_set_input": {
+    "message0": "Set the PID input value %1 to %2"
+  },
+  "pid_adaptive_control": {
+    "message0": "Adaptive PID Control%1PID Controller%2Input Variable%3Target Value%4Threshold%5Aggressive Parameters P%6I%7D%8Conservative parameters P%9I%10D%11"
+  },
+  "pid_is_at_setpoint": {
+    "message0": "Whether the PID reaches the target value%1Target value%2Tolerance%3"
+  },
+  "pid_get_error": {
+    "message0": "Get the PID error value %1 target value %2"
+  }
+}

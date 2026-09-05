@@ -1,0 +1,513 @@
+{
+  "toolbox_name": "GFX",
+  "toolbox_labels": {
+    "TFT显示": "شاشة تي اف تي",
+    "墨水屏显示": "عرض شاشة الحبر",
+    "基本绘图": "الرسم الأساسي",
+    "文字显示": "عرض النص",
+    "数据获取": "الحصول على البيانات",
+    "图片": "صورة",
+    "动画": "رسوم متحركة"
+  },
+  "seeed_gfx_create_tft": {
+    "message0": "إنشاء كائنات TFT %1",
+    "tooltip": "إنشاء كائنات عرض TFT"
+  },
+  "seeed_gfx_init": {
+    "message0": "تهيئة شاشة TFT %1 نموذج %2 تردد SPI %3",
+    "tooltip": "تهيئة شاشة TFT",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Seeed_Wio_Terminal",
+            "500"
+          ],
+          [
+            "Seeed_XIAO_Round_Display",
+            "501"
+          ],
+          [
+            "Seeed_XIAO_ILI9341",
+            "666"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "10MHz",
+            "10000000"
+          ],
+          [
+            "20MHz",
+            "20000000"
+          ],
+          [
+            "27MHz",
+            "27000000"
+          ],
+          [
+            "40MHz",
+            "40000000"
+          ],
+          [
+            "55MHz",
+            "55000000"
+          ],
+          [
+            "80MHz",
+            "80000000"
+          ]
+        ]
+      }
+    ]
+  },
+  "seeed_gfx_fill_screen": {
+    "message0": "ملء الشاشة %1 %2 الألوان",
+    "tooltip": "املأ الشاشة بالكامل بألوان محددة"
+  },
+  "seeed_gfx_set_rotation": {
+    "message0": "اضبط الشاشة %1 زاوية الدوران %2",
+    "tooltip": "ضبط اتجاه دوران الشاشة",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "0 درجة",
+            "0"
+          ],
+          [
+            "90 درجة",
+            "1"
+          ],
+          [
+            "180 درجة",
+            "2"
+          ],
+          [
+            "270 درجة",
+            "3"
+          ],
+          [
+            "مستوى المرآة",
+            "4"
+          ],
+          [
+            "الصورة المعكوسة عمودية",
+            "5"
+          ],
+          [
+            "تبديل محاور XY",
+            "6"
+          ],
+          [
+            "بدل محور XY وعكس الصورة الأفقية",
+            "7"
+          ]
+        ]
+      }
+    ]
+  },
+  "seeed_gfx_draw_pixel": {
+    "message0": "على النقطة screen%1 X:%2 Y:%3 اللون:%4",
+    "tooltip": "رسم نقطة في الإحداثيات المحددة"
+  },
+  "seeed_gfx_draw_line": {
+    "message0": "على screen%1 ارسم خطوطا من X:%2 Y:%3 إلى X:%4 Y:%5 اللون: %6",
+    "tooltip": "ارسم خطا بين نقطتين"
+  },
+  "seeed_gfx_draw_rect": {
+    "message0": "على screen%1 ارسم مستطيلا: X:%2 Y:%3 العرض: %4 الارتفاع:%5 اللون:%6",
+    "tooltip": "ارسم حافة مستطيلة"
+  },
+  "seeed_gfx_fill_rect": {
+    "message0": "على مستطيلات الحشو screen%1 X:%2 Y:%3 العرض:%4 الارتفاع:%5 اللون:%6",
+    "tooltip": "ارسم مستطيلا مملوءا"
+  },
+  "seeed_gfx_draw_round_rect": {
+    "message0": "على screen%1 الرسم مستطيلات مستديرة X:%2 Y:%3 العرض:%4 الارتفاع:%5 نصف قطر الفيليت: %6 اللون:%7",
+    "tooltip": "ارسم حافة مستطيلة"
+  },
+  "seeed_gfx_fill_round_rect": {
+    "message0": "على screen%1 يملأ المستطيلات المستديرة X:%2 Y:%3 العرض:%4 الارتفاع:%5 نصف قطر الفيليت:%6 اللون:%7",
+    "tooltip": "ارسم مستطيلا مملوءا"
+  },
+  "seeed_gfx_draw_circle": {
+    "message0": "على دوائر الرسم screen%1 مركز X:%2 Y:%3 نصف القطر: %4 اللون: %5",
+    "tooltip": "ارسم دائرة"
+  },
+  "seeed_gfx_fill_circle": {
+    "message0": "على دائرة التعبئة screen%1 مركز X:%2 Y:%3 نصف القطر: %4 اللون: %5",
+    "tooltip": "ارسم دائرة مملوءة"
+  },
+  "seeed_gfx_draw_triangle": {
+    "message0": "على screen%1 رسم مثلثات ب 1X:%2 Y:%3 2X:%4 Y:%5 3X:%6 Y:%7 اللون: %8",
+    "tooltip": "ارسم حافة مثلثية"
+  },
+  "seeed_gfx_set_text_color": {
+    "message0": "تعيين الشاشة %1 لون النص %2 لون الخلفية %3",
+    "tooltip": "تعيين لون النص ولون الخلفية"
+  },
+  "seeed_gfx_set_text_size": {
+    "message0": "تعيين الشاشة %1 حجم النص %2",
+    "tooltip": "حدد حجم النص",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "1",
+            "1"
+          ],
+          [
+            "2",
+            "2"
+          ],
+          [
+            "3",
+            "3"
+          ],
+          [
+            "4",
+            "4"
+          ],
+          [
+            "5",
+            "5"
+          ],
+          [
+            "6",
+            "6"
+          ],
+          [
+            "7",
+            "7"
+          ]
+        ]
+      }
+    ]
+  },
+  "seeed_gfx_set_cursor": {
+    "message0": "تعيين الشاشة %1 موضع المؤشر X:%2 Y:%3",
+    "tooltip": "تعيين موضع المؤشر للنص"
+  },
+  "seeed_gfx_print": {
+    "message0": "عرض النص على الشاشة %1 %2",
+    "tooltip": "طباعة النص في الموقع الحالي"
+  },
+  "seeed_gfx_draw_string": {
+    "message0": "على screen%1 عرض النص %2 X:%3 Y:%4 الخط:%5",
+    "tooltip": "عرض النص في المواقع المخصصة",
+    "args0": [
+      null,
+      null,
+      null,
+      null,
+      {
+        "options": [
+          [
+            "الخط 1",
+            "1"
+          ],
+          [
+            "الخط 2",
+            "2"
+          ],
+          [
+            "الخط 4",
+            "4"
+          ],
+          [
+            "الخط 6",
+            "6"
+          ],
+          [
+            "الخط 7",
+            "7"
+          ]
+        ]
+      }
+    ]
+  },
+  "seeed_gfx_create_sprite": {
+    "message0": "إنشاء عرض الساحر:%1 الارتفاع:%2 المتغير:%3",
+    "tooltip": "أنشئ كائن جني"
+  },
+  "seeed_gfx_epaper_begin": {
+    "message0": "تهيئة شاشة الحبر الإلكتروني %1 نموذج %2",
+    "tooltip": "تهيئة شاشة الحبر الإلكتروني",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Seeed_XIAO_EPaper_7inch5",
+            "502"
+          ],
+          [
+            "Seeed_reTerminal_E1001",
+            "520"
+          ],
+          [
+            "Seeed_reTerminal_E1002",
+            "521"
+          ],
+          [
+            "Seeed_reTerminal_E1003",
+            "522"
+          ],
+          [
+            "Seeed_reTerminal_E1004",
+            "523"
+          ]
+        ]
+      }
+    ]
+  },
+  "seeed_gfx_epaper_update": {
+    "message0": "تحديث محتوى الحبر الإلكتروني %1 العرض",
+    "tooltip": "تحديث شاشة الحبر الإلكتروني لعرض المحتوى"
+  },
+  "seeed_gfx_epaper_sleep": {
+    "message0": "%1 تدخل شاشة الحبر الإلكتروني وضع السكون",
+    "tooltip": "ضع شاشة الحبر الإلكتروني في وضع السكون لتوفير الطاقة"
+  },
+  "seeed_gfx_animation": {
+    "message0": "رسوم Seeed GFX متحركة %1",
+    "tooltip": "ارفع GIF أو MP4 وحوله إلى إطارات رسوم متحركة RGB565/RGB332 لـ Seeed GFX"
+  },
+  "seeed_gfx_play_animation": {
+    "message0": "الشاشة %1 تشغيل الحركة x%2 y%3 الحركة %4 الوضع %5",
+    "message1": "تشغيل متكرر %1",
+    "tooltip": "تشغيل حركة Seeed GFX؛ في الوضع غير الحاجب يعرض الإطار التالي عند فاصل الإطار",
+    "args0": [
+      null,
+      null,
+      null,
+      null,
+      {
+        "options": [
+          [
+            "تشغيل حاجب",
+            "BLOCKING"
+          ],
+          [
+            "تشغيل غير حاجب",
+            "NON_BLOCKING"
+          ]
+        ]
+      }
+    ]
+  },
+  "seeed_gfx_play_sd_video": {
+    "message0": "الشاشة %1 تشغيل فيديو AILY من ملف SD %2 بذاكرة مؤقتة %3 كيلوبايت",
+    "tooltip": "تشغيل فيديو AILY من SD ضمن حد الذاكرة المؤقتة المحدد؛ ويمكن لـ Wio Terminal تهيئة بطاقة SD المدمجة تلقائيا"
+  },
+  "seeed_gfx_draw_animation_frame": {
+    "message0": "الشاشة %1 عرض إطار الحركة x%2 y%3 الحركة %4 الإطار %5",
+    "tooltip": "اعرض إطارا محددا من حركة Seeed GFX مع تقييد رقم الإطار بالنطاق الصحيح"
+  },
+  "seeed_gfx_animation_frame_count": {
+    "message0": "الحصول على إجمالي إطارات حركة Seeed GFX %1",
+    "tooltip": "الحصول على العدد الكلي لإطارات حركة Seeed GFX"
+  },
+  "seeed_gfx_color": {
+    "message0": "اللون %1",
+    "tooltip": "تستخدم شاشات TFT والحبر الإلكتروني عادة تعريفات ماكرو لونية",
+    "args0": [
+      {
+        "options": [
+          [
+            "أبيض",
+            "TFT_WHITE"
+          ],
+          [
+            "أسود",
+            "TFT_BLACK"
+          ],
+          [
+            "أحمر",
+            "TFT_RED"
+          ],
+          [
+            "أخضر",
+            "TFT_GREEN"
+          ],
+          [
+            "أزرق",
+            "TFT_BLUE"
+          ],
+          [
+            "أصفر",
+            "TFT_YELLOW"
+          ],
+          [
+            "ماجنتا",
+            "TFT_MAGENTA"
+          ],
+          [
+            "cyan",
+            "TFT_CYAN"
+          ],
+          [
+            "برتقالي",
+            "TFT_ORANGE"
+          ],
+          [
+            "وردي",
+            "TFT_PINK"
+          ],
+          [
+            "بنفسجي",
+            "TFT_PURPLE"
+          ],
+          [
+            "براون",
+            "TFT_BROWN"
+          ],
+          [
+            "الرمادي",
+            "TFT_DARKGREY"
+          ],
+          [
+            "رمادي فاتح",
+            "TFT_LIGHTGREY"
+          ],
+          [
+            "ذهبي",
+            "TFT_GOLD"
+          ],
+          [
+            "الفضة",
+            "TFT_SILVER"
+          ],
+          [
+            "أزرق سماوي",
+            "TFT_SKYBLUE"
+          ],
+          [
+            "بنفسجي فاتح",
+            "TFT_VIOLET"
+          ],
+          [
+            "أخضر زيتوني",
+            "TFT_OLIVE"
+          ],
+          [
+            "أزرق داكن",
+            "TFT_NAVY"
+          ],
+          [
+            "أخضر داكن",
+            "TFT_DARKGREEN"
+          ],
+          [
+            "الأزرق العميق",
+            "TFT_DARKCYAN"
+          ],
+          [
+            "بني مائل إلى الحمراء",
+            "TFT_MAROON"
+          ],
+          [
+            "الأصفر الأخضر",
+            "TFT_GREENYELLOW"
+          ]
+        ]
+      }
+    ]
+  },
+  "seeed_gfx_epaper_wake": {
+    "message0": "شاشة الحبر %1 الاستيقاظ",
+    "tooltip": "إيقاظ شاشة الحبر"
+  },
+  "seeed_gfx_rgb565": {
+    "message0": "تحويل الألوان %1 الشاشة %2",
+    "tooltip": "تحويل ألوان RGB إلى صيغة RGB565"
+  },
+  "seeed_gfx_get_width": {
+    "message0": "عرض الشاشة %1",
+    "tooltip": "احصل على عرض الشاشة"
+  },
+  "seeed_gfx_get_height": {
+    "message0": "ارتفاع الشاشة %1",
+    "tooltip": "احصل على ارتفاع الشاشة"
+  },
+  "seeed_gfx_fill_rect_v_gradient": {
+    "args0": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "message0": "على screen %1 التدرج العمودي يملأ مستطيلات: X:%2 Y:%3 العرض:%4 الارتفاع:%5 لون البداية:%6 لون النهاية:%7",
+    "tooltip": "املأ المنطقة المستطيلة بتدرجات عمودية"
+  },
+  "seeed_gfx_fill_rect_h_gradient": {
+    "args0": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "message0": "على screen %1 يملأ التدرج الأفقي المستطيلات X:%2 Y:%3 العرض:%4 الارتفاع:%5 اللون الابتدائي:%6 لون النهاية:%7",
+    "tooltip": "املأ المنطقة المستطيلة بتدرج أفقي"
+  },
+  "seeed_gfx_fill_triangle": {
+    "args0": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "message0": "على مثلثات التعبئة screen%1 dot1X:%2 y:%3 dot2X:%4 Y:%5 Dot3X:%6 Y:%7 اللون: %8",
+    "tooltip": "ملء منطقة مثلثة"
+  },
+  "seeed_gfx_draw_ellipse": {
+    "args0": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "message0": "على screen%1 ارسم قطع ناقص، المركز X:%2 Y:%3 نصف القطر X:%4 نصف القطر Y:%5 اللون:%6",
+    "tooltip": "رسم حدود بيضاوية"
+  },
+  "seeed_gfx_image": {
+    "message0": "صورة %1",
+    "tooltip": "تحويل صورة PNG أو JPEG أو WebP أو BMP إلى بيانات بكسل RGB565/RGB332",
+    "args0": [null]
+  },
+  "seeed_gfx_draw_image": {
+    "message0": "على الشاشة %1 عند X:%2 Y:%3 اعرض الصورة %4",
+    "tooltip": "عرض بيانات الصورة RGB565/RGB332 المحولة عند الإحداثيات المحددة",
+    "args0": [null, null, null, null]
+  },
+  "seeed_gfx_fill_ellipse": {
+    "args0": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "message0": "على screen%1 املأ القطع الناقص مركز X:%2 Y:%3 نصف قطر X:%4 نصف قطر Y:%5 اللون:%6",
+    "tooltip": "املأ منطقة بيضاوية"
+  }
+}

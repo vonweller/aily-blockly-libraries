@@ -1,0 +1,164 @@
+{
+  "toolbox_name": "BLE OTA",
+  "toolbox_labels": {
+    "快速启动": "Schnellstart",
+    "配置": "Konfiguration",
+    "运行": "Runtime",
+    "事件": "Events"
+  },
+  "bleota_begin_auto": {
+    "message0": "Starte schnell BLE OTA",
+    "tooltip": "Erstellen Sie einen BLE-Server mit dem Standardgerätsnamen und dem Standardobjekt, starten Sie den BLE-OTA-Service, starten Sie die Übertragung und bearbeiten Sie Updates automatisch in der Schleife – wodurch OTA in einem einzigen Block aktiviert wird"
+  },
+  "bleota_setup": {
+    "message0": "Konfigurieren Sie BLE OTA-Objekt %1 Server %2 Gerätenamen %3 Secure Mode %4",
+    "tooltip": "Erstelle ein BLEOTA-Objekt und einen BLE-Server und beginne den Aufruf; Der sichere Modus erfordert das Setzen eines öffentlichen Schlüssels vor dem Start des Dienstes",
+    "args0": [
+      null,
+      null,
+      null,
+      {
+        "options": [
+          [
+            "Aus",
+            "false"
+          ],
+          [
+            "Ein",
+            "true"
+          ]
+        ]
+      }
+    ]
+  },
+  "bleota_set_public_key": {
+    "message0": "BLE OTA %1 Setting RSA Public Key %2",
+    "tooltip": "Setze RSA-2048 Public-Key-Inhalte für sicheren BLE OTA ein"
+  },
+  "bleota_set_device_info": {
+    "message0": "BLE OTA %1 Geräteinformationen %2 auf %3",
+    "tooltip": "Stellen Sie die Modell-, Versions- oder Herstellerfelder so ein, dass sie im Device Information Service DIS angezeigt werden",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Model",
+            "MODEL"
+          ],
+          [
+            "Seriennummer",
+            "SERIAL_NUMBER"
+          ],
+          [
+            "Firmwareversion",
+            "FW_VERSION"
+          ],
+          [
+            "Hardwareversion",
+            "HW_VERSION"
+          ],
+          [
+            "Manufacturer",
+            "MANUFACTURER"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "bleota_init": {
+    "message0": "Initialisieren Sie BLE OTA %1 Scan-Antwort %2",
+    "tooltip": "Initialisieren Sie den BLEOTA-Dienst und treten Sie der Sendung bei; Die Verarbeitung wird nicht automatisch zur Schleife hinzugefügt; bitte verwenden Sie Verarbeitungsblöcke innerhalb der Schleife",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Aus",
+            "false"
+          ],
+          [
+            "Ein",
+            "true"
+          ]
+        ]
+      }
+    ]
+  },
+  "bleota_start_service": {
+    "message0": "Starte BLE OTA %1 Server %2 Scan-Antwort %3 automatischer Neustart nach update%4",
+    "tooltip": "Initialisieren Sie den BLEOTA-Service, treten Sie dem Broadcast bei und verwalten Sie automatisch Verbindungs- und Aktualisierungsprozesse innerhalb der Schleife",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "Aus",
+            "false"
+          ],
+          [
+            "Ein",
+            "true"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "Ein",
+            "true"
+          ],
+          [
+            "Aus",
+            "false"
+          ]
+        ]
+      }
+    ]
+  },
+  "bleota_process": {
+    "message0": "Behandle BLE OTA %1 automatischen Neustart nach Update%2",
+    "tooltip": "Rufen Sie BLEOTA.process manuell auf, um Empfang-, Validierungs-, Schreib- und Rückrufwarteschlangen zu bearbeiten",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Ein",
+            "true"
+          ],
+          [
+            "Aus",
+            "false"
+          ]
+        ]
+      }
+    ]
+  },
+  "bleota_abort": {
+    "message0": "Stornierung von BLE OTA %1 Aktualisierungen",
+    "tooltip": "Beenden Sie das derzeit laufende BLE OTA-Schreiben"
+  },
+  "bleota_is_running": {
+    "message0": "BLE OTA %1 wird aktualisiert",
+    "tooltip": "Gibt an, ob OTA-Daten derzeit empfangen und geschrieben werden"
+  },
+  "bleota_progress": {
+    "message0": "BLE OTA %1 Fortschrittsprozentsatz",
+    "tooltip": "Gibt den aktuellen OTA-Schreibfortschrittsprozentsatz zurück, der vor Beginn 0 ist"
+  },
+  "bleota_uuid": {
+    "message0": "BLE OTA %1 service UUID",
+    "tooltip": "Gibt den BLE OTA GATT-Dienst UUID zurück, der für benutzerdefinierte Übertragungen verwendet werden kann"
+  },
+  "bleota_on_events": {
+    "message0": "Wenn ein BLE OTA %1 Ereignis auftritt",
+    "message1": "Vor dem Start der Firmware updates%1",
+    "message2": "Vor dem Start des Dateisystems updates%1",
+    "message3": "Nachdem das Update complete%1",
+    "message4": "Nachdem das Update aufgehört %1",
+    "tooltip": "Registrieren Sie BLE OTA Lebenszyklus-Callbacks, um benutzerdefinierten Code vor und nach Updates auszuführen"
+  }
+}

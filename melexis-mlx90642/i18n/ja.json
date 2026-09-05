@@ -1,0 +1,129 @@
+{
+  "toolbox_name": "MLX90642 赤外線サーマルイメージング",
+  "mlx90642_init": {
+    "message0": "SDA%2SCL MLX90642 %1%3アドレス%4モード%5初期化%6出力%7",
+    "tooltip": "ESP32 I2Cピンを介してMLX90642 32x24赤外線サーマルイメージングセンサーを初期化します。",
+    "args0": [
+      null,
+      null,
+      null,
+      null,
+      {
+        "options": [
+          [
+            "continuous",
+            "MLX90642_CONT_MEAS_MODE"
+          ],
+          [
+            "step",
+            "MLX90642_STEP_MEAS_MODE"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "2 Hz",
+            "MLX90642_REF_RATE_2HZ"
+          ],
+          [
+            "4 Hz",
+            "MLX90642_REF_RATE_4HZ"
+          ],
+          [
+            "8 Hz",
+            "MLX90642_REF_RATE_8HZ"
+          ],
+          [
+            "16 Hz",
+            "MLX90642_REF_RATE_16HZ"
+          ],
+          [
+            "32 Hz",
+            "MLX90642_REF_RATE_32HZ"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "温度",
+            "MLX90642_TEMPERATURE_OUTPUT"
+          ],
+          [
+            "正規化データ",
+            "MLX90642_NORMALIZED_DATA_OUTPUT"
+          ]
+        ]
+      }
+    ]
+  },
+  "mlx90642_data_ready": {
+    "message0": "MLX90642 %1 データが準備できた",
+    "tooltip": "MLX90642新しいサーマルイメージングデータのフレームを読み取れるかどうかを検出します。"
+  },
+  "mlx90642_read_frame": {
+    "message0": "MLX90642 %1 キャッシュに1フレーム読み込む",
+    "tooltip": "現在の32x24画像フレームをキャッシュに読み込みます。"
+  },
+  "mlx90642_measure_now": {
+    "message0": "MLX90642 %1 1フレームを瞬時に測定・キャッシュする",
+    "tooltip": "測定をトリガーし、データが戻るのを待ちます。成功した場合はtrueを返します。"
+  },
+  "mlx90642_pixel_value": {
+    "message0": "MLX90642 %1 キャッシュピクセル X %2 Y %3 %4",
+    "tooltip": "前のフレームキャッシュから指定されたピクセルを読み込み、Xの範囲0-31、Yの範囲0-23を読み込みます。",
+    "args0": [
+      null,
+      null,
+      null,
+      {
+        "options": [
+          [
+            "気温:°C",
+            "C"
+          ],
+          [
+            "元の値",
+            "RAW"
+          ]
+        ]
+      }
+    ]
+  },
+  "mlx90642_frame_stat": {
+    "message0": "MLX90642 %1 温度%2 °C のキャッシュフレーム",
+    "tooltip": "前のフレームキャッシュの最小、最大、または平均温度を計算します。",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "minimum",
+            "MIN"
+          ],
+          [
+            "maximum",
+            "MAX"
+          ],
+          [
+            "average",
+            "AVG"
+          ]
+        ]
+      }
+    ]
+  },
+  "mlx90642_progress": {
+    "message0": "MLX90642 %1 測定進捗率",
+    "tooltip": "現在の測定進捗率を読んでください。"
+  },
+  "mlx90642_print_frame_csv": {
+    "message0": "MLX90642 %1 キャッシュフレームをCSVでエクスポートしてボー%2rate%3",
+    "tooltip": "前のフレームの32x24温度キャッシュを24行のCSVとしてシリアルポートに出力します。"
+  },
+  "mlx90642_sleep": {
+    "message0": "MLX90642 %1 sleep",
+    "tooltip": "MLX90642を低消費電力のスリープモードにしてください。"
+  }
+}

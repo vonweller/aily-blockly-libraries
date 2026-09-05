@@ -1,0 +1,75 @@
+{
+  "toolbox_name": "CHSC6X-Touchscreen",
+  "toolbox_labels": {
+    "初始化": "Initialisierung",
+    "触摸检测": "Berührungserkennung",
+    "坐标获取": "Koordinatenerfassung",
+    "配置": "Konfiguration"
+  },
+  "chsc6x_setup": {
+    "message0": "Erstelle einen Touchscreen %1 benutze I2C %2 Adresse %3 Interrupt-Pin %4 Breite %5 Höhe %6 drehe %7",
+    "tooltip": "Erstellen und initialisieren Sie das CHSC6X-Touchscreen-Objekt",
+    "args0": [
+      null,
+      {
+        "options": "${board.i2c}"
+      },
+      null,
+      null,
+      null,
+      null,
+      {
+        "options": [
+          [
+            "0°",
+            "0"
+          ],
+          [
+            "90°",
+            "1"
+          ],
+          [
+            "180°",
+            "2"
+          ],
+          [
+            "270°",
+            "3"
+          ]
+        ]
+      }
+    ]
+  },
+  "chsc6x_is_pressed": {
+    "message0": "Touchscreens %1 berührt werden",
+    "tooltip": "Erkennen Sie, ob der Touchscreen berührt wurde"
+  },
+  "chsc6x_get_x": {
+    "message0": "Die X-Koordinate des Touchscreens %1",
+    "tooltip": "Erhalten Sie die X-Koordinate des Kontaktpunkts"
+  },
+  "chsc6x_get_y": {
+    "message0": "Touchscreen %1 Y-Koordinate",
+    "tooltip": "Erhalten Sie die Y-Koordinate des Kontaktpunkts"
+  },
+  "chsc6x_get_xy": {
+    "message0": "Touchscreen %1 Koordinaten zu X %2 Y %3",
+    "tooltip": "Erhalten Sie die Touch-Koordinaten zur angegebenen Variablen"
+  },
+  "chsc6x_set_rotation": {
+    "message0": "Touchscreen %1 auf Rotation auf %2 eingestellt",
+    "tooltip": "Stellen Sie den Drehwinkel des Touchscreens ein (0-3)"
+  },
+  "chsc6x_get_rotation": {
+    "message0": "Der Drehwinkel des Touchscreens %1",
+    "tooltip": "Erhalten Sie den aktuellen Rotationswinkel (0-3)"
+  },
+  "chsc6x_set_screen_size": {
+    "message0": "Touchscreen %1 Bildschirmgröße, Breite %2 Höhe %3",
+    "tooltip": "Stelle die Touchscreen-Größe ein"
+  },
+  "chsc6x_run": {
+    "message0": "Touchscreen %1 Betriebserkennung",
+    "tooltip": "Führe die Berührungserkennung durch und aktualisiere interne Koordinaten"
+  }
+}

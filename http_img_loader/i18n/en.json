@@ -1,0 +1,96 @@
+{
+  "toolbox_name": "Network image loader",
+  "toolbox_labels": {
+    "初始化": "initialization",
+    "图片加载": "Image loading",
+    "信息查询": "Information inquiry",
+    "错误处理": "Error handling",
+    "资源管理": "Resource management"
+  },
+  "lvgl_http_img_init": {
+    "message0": "Initialize LVGL HTTP image loader screen width%1 height%2\nPSRAM mode%3 Storage mode%4\nMax file%5KB Timeout%6ms Debug%7",
+    "tooltip": "Initialize the HTTP image loader (global singleton, only needs to be called once)",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "Automatic detection",
+            "AUTO"
+          ],
+          [
+            "There is PSRAM",
+            "AVAILABLE"
+          ],
+          [
+            "No PSRAM",
+            "NONE"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "automatic selection",
+            "AUTO"
+          ],
+          [
+            "ForceLittleFS",
+            "LITTLEFS"
+          ],
+          [
+            "Force PSRAM",
+            "PSRAM"
+          ]
+        ]
+      },
+      null,
+      null,
+      {
+        "options": [
+          [
+            "Close",
+            "FALSE"
+          ],
+          [
+            "turn on",
+            "TRUE"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_http_img_load": {
+    "message0": "Load image from HTTP URL%1 Display to %2",
+    "tooltip": "Download JPEG image from HTTP and display to LVGL Image object"
+  },
+  "lvgl_http_img_get_info": {
+    "message0": "Get HTTP image information URL%1",
+    "tooltip": "Get the size and type information of the remote image (returns the file size, -1 means unknown)"
+  },
+  "lvgl_http_img_check": {
+    "message0": "Check if the image can be loaded URL%1",
+    "tooltip": "Check whether the image can be loaded (true: loadable, false: too large or wrong)"
+  },
+  "lvgl_http_img_has_psram": {
+    "message0": "Check if there is PSRAM",
+    "tooltip": "Detect whether the system has PSRAM (larger images can be loaded when PSRAM is present)"
+  },
+  "lvgl_http_img_get_max_size": {
+    "message0": "Get the current maximum allowed image size",
+    "tooltip": "Get the maximum image size (bytes) allowed by the current configuration"
+  },
+  "lvgl_http_img_get_last_error": {
+    "message0": "Get the last error code",
+    "tooltip": "Get the error code of the last operation (0=success)"
+  },
+  "lvgl_http_img_err_to_string": {
+    "message0": "The error code %1 is converted into a description string",
+    "tooltip": "Convert error codes into readable error descriptions"
+  },
+  "lvgl_http_img_cleanup": {
+    "message0": "Clean HTTP image loader temporary files and cache",
+    "tooltip": "Clean temporary files and PSRAM cache to free up memory"
+  }
+}

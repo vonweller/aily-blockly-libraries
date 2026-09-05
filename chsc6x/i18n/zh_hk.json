@@ -1,0 +1,75 @@
+{
+  "toolbox_name": "CHSC6X觸控螢幕",
+  "toolbox_labels": {
+    "初始化": "初始化",
+    "触摸检测": "觸摸偵測",
+    "坐标获取": "座標獲取",
+    "配置": "配置"
+  },
+  "chsc6x_setup": {
+    "message0": "建立觸控螢幕 %1 使用 I2C %2 地址 %3 中斷腳位 %4 寬度 %5 高度 %6 旋轉 %7",
+    "tooltip": "建立並初始化CHSC6X觸控螢幕對象",
+    "args0": [
+      null,
+      {
+        "options": "${board.i2c}"
+      },
+      null,
+      null,
+      null,
+      null,
+      {
+        "options": [
+          [
+            "0度",
+            "0"
+          ],
+          [
+            "90度",
+            "1"
+          ],
+          [
+            "180度",
+            "2"
+          ],
+          [
+            "270度",
+            "3"
+          ]
+        ]
+      }
+    ]
+  },
+  "chsc6x_is_pressed": {
+    "message0": "觸控螢幕 %1 被觸摸",
+    "tooltip": "偵測觸控螢幕是否被觸控"
+  },
+  "chsc6x_get_x": {
+    "message0": "觸控螢幕 %1 的X座標",
+    "tooltip": "取得觸控點的X座標"
+  },
+  "chsc6x_get_y": {
+    "message0": "觸控螢幕 %1 的Y座標",
+    "tooltip": "取得觸控點的Y座標"
+  },
+  "chsc6x_get_xy": {
+    "message0": "觸控螢幕 %1 取得座標到 X %2 Y %3",
+    "tooltip": "取得觸控座標到指定變數"
+  },
+  "chsc6x_set_rotation": {
+    "message0": "觸控螢幕 %1 設定旋轉為 %2",
+    "tooltip": "設定觸控螢幕旋轉角度(0-3)"
+  },
+  "chsc6x_get_rotation": {
+    "message0": "觸控螢幕 %1 的旋轉角度",
+    "tooltip": "取得目前旋轉角度(0-3)"
+  },
+  "chsc6x_set_screen_size": {
+    "message0": "觸控螢幕 %1 設定螢幕大小 寬 %2 高 %3",
+    "tooltip": "設定觸控螢幕尺寸"
+  },
+  "chsc6x_run": {
+    "message0": "觸控螢幕 %1 運作偵測",
+    "tooltip": "執行觸控偵測並更新內部座標"
+  }
+}

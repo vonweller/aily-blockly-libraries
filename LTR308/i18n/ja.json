@@ -1,0 +1,105 @@
+{
+  "toolbox_name": "光センサー",
+  "ltr308_init_with_wire": {
+    "message0": "LTR308 光センサーを初期化します %1\n%2 を獲得\n統合時間 %3\n測定レート %4\n%5 を使用します",
+    "tooltip": "LTR308 光センサーを初期化し、ゲイン、積分時間、測定レートを設定します。",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "1倍(1-64k lux)",
+            "LTR308_GAIN_1"
+          ],
+          [
+            "3倍(0.3-21k lux)",
+            "LTR308_GAIN_3"
+          ],
+          [
+            "6倍(0.15-10.6k lux)",
+            "LTR308_GAIN_6"
+          ],
+          [
+            "9倍(0.1-7k lux)",
+            "LTR308_GAIN_9"
+          ],
+          [
+            "18倍(0.05-3.5k lux)",
+            "LTR308_GAIN_18"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "25ms",
+            "LTR308_INTEGRATION_25MS"
+          ],
+          [
+            "50ms",
+            "LTR308_INTEGRATION_50MS"
+          ],
+          [
+            "100ms (デフォルト)",
+            "LTR308_INTEGRATION_100MS"
+          ],
+          [
+            "200ms",
+            "LTR308_INTEGRATION_200MS"
+          ],
+          [
+            "400ms",
+            "LTR308_INTEGRATION_400MS"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "25ms",
+            "LTR308_RATE_25MS"
+          ],
+          [
+            "50ms",
+            "LTR308_RATE_50MS"
+          ],
+          [
+            "100ms",
+            "LTR308_RATE_100MS"
+          ],
+          [
+            "200ms",
+            "LTR308_RATE_200MS"
+          ],
+          [
+            "500ms (デフォルト)",
+            "LTR308_RATE_500MS"
+          ],
+          [
+            "1000ms",
+            "LTR308_RATE_1000MS"
+          ],
+          [
+            "2000ms",
+            "LTR308_RATE_2000MS"
+          ]
+        ]
+      },
+      {
+        "options": "${board.i2c}"
+      }
+    ]
+  },
+  "ltr308_read_light_level": {
+    "message0": "LTR308 センサーの光値を読み取ります %1",
+    "tooltip": "LTR308センサーの光の強さ（ルクス）を読み取ります。"
+  },
+  "ltr308_read_raw_data": {
+    "message0": "LTR308 センサーの生データを読み取ります %1",
+    "tooltip": "LTR308センサーから生のADCデータを読み取る"
+  },
+  "ltr308_is_data_ready": {
+    "message0": "LTR308 センサー %1 データの準備はできていますか?",
+    "tooltip": "LTR308 センサーに読み取る新しいデータがあるかどうかを確認します"
+  }
+}

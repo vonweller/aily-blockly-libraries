@@ -1,0 +1,57 @@
+{
+  "toolbox_name": "DFRobot 音声認識",
+  "dfrobot_asr_init": {
+    "message0": "音声認識モジュールを初期化してください\n認識モード%1\nマイクモード%2\nI2C Address%3\n使用%4",
+    "tooltip": "3つの認識モードをサポートするDFRobot音声認識モジュールを初期化してください",
+    "args0": [
+      {
+        "options": [
+          [
+            "ループモード(LOOP)",
+            "LOOP"
+          ],
+          [
+            "コマンドモード(PASSWORD)",
+            "PASSWORD"
+          ],
+          [
+            "ボタンモード(BUTTON)",
+            "BUTTON"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "マイク(MIC)",
+            "MIC"
+          ],
+          [
+            "モノ(MONO)",
+            "MONO"
+          ]
+        ]
+      },
+      null,
+      {
+        "options": "${board.i2c}"
+      }
+    ]
+  },
+  "dfrobot_asr_add_command": {
+    "message0": "番号付き%1音声キーワードを追加%2",
+    "tooltip": "音声の項目はピンイン(例:カイ・デン)で、識別番号は1から255までの範囲で加えます"
+  },
+  "dfrobot_asr_start": {
+    "message0": "音声認識開始",
+    "tooltip": "音声認識を起動"
+  },
+  "dfrobot_asr_read": {
+    "message0": "音声認識の結果番号を読み取る",
+    "tooltip": "認識されたエントリー番号を読み上げます。-1を返すということは認識されなかったことを意味します"
+  },
+  "dfrobot_asr_set_i2c_addr": {
+    "message0": "音声モジュールのI2Cアドレスを設定し%1",
+    "tooltip": "音声モジュール用のI2Cアドレス(0-127)を設定し、再起動後に有効となります"
+  }
+}

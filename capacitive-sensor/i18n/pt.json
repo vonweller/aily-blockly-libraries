@@ -1,0 +1,46 @@
+{
+  "toolbox_name": "Sensor capacitivo",
+  "toolbox_labels": {
+    "初始化": "Inicialização",
+    "读数": "Leituras",
+    "校准配置": "Configuração de calibração",
+    "接线参考": "Referência de ligação"
+  },
+  "capacitivesensor_create": {
+    "message0": "Crie sensores capacitivos %1 pinos de envio %2 pinos de recepção %3",
+    "tooltip": "Crie objetos sensores de toque capacitivos e especifique pinos de envio e recepção",
+    "args0": [
+      null,
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": "${board.digitalPins}"
+      }
+    ]
+  },
+  "capacitivesensor_read": {
+    "message0": "Sensor capacitivo %1 leitura de valores de filtro Tamanho da amostra %2",
+    "tooltip": "Leia o valor de toque após a remoção da linha de base; quanto maior o tamanho da amostra, mais estável ela é"
+  },
+  "capacitivesensor_read_raw": {
+    "message0": "Sensor capacitivo %1 leitura do tamanho da amostra de valores brutos %2",
+    "tooltip": "Leia o valor bruto da capacitância sem calibração de base"
+  },
+  "capacitivesensor_set_timeout": {
+    "message0": "Sensor capacitivo %1 timeout definido para %2 milissegundos",
+    "tooltip": "Configure os tempos de espera do ciclo de carga/descarga para evitar a espera interminável sob forte interferência"
+  },
+  "capacitivesensor_set_autocal": {
+    "message0": "Sensor capacitivo %1 definir o intervalo automático de calibração de %2 milissegundos",
+    "tooltip": "Defina o intervalo automático de calibração de base; 0 significa que a autocalibração está desligada"
+  },
+  "capacitivesensor_reset_autocal": {
+    "message0": "Sensor capacitivo %1 reinício automático da calibração",
+    "tooltip": "Resete imediatamente a linha de base, comumente usada durante a inicialização ou após mudanças de status do sensor"
+  },
+  "capacitivesensor_wiring_hint": {
+    "message0": "Referência de fiação %1",
+    "tooltip": "Consulte o método de conexão de pinos de envio/recepção do sensor de toque capacitivo e do resistor, sem gerar código"
+  }
+}

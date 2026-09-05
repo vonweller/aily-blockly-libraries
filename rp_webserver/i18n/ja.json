@@ -1,0 +1,194 @@
+{
+  "toolbox_name": "Picoウェブサーバー",
+  "toolbox_labels": {
+    "初始化": "初期化",
+    "路由处理": "ルーティング処理",
+    "发送响应": "応答を送信する",
+    "请求信息": "情報を要求する",
+    "请求参数": "リクエストパラメータ",
+    "请求头": "リクエストヘッダー",
+    "高级功能": "高度な機能"
+  },
+  "rp_webserver_create": {
+    "message0": "Webサーバー作成 %1 ポート %2",
+    "tooltip": "ウェブサーバーオブジェクトを作成する"
+  },
+  "rp_webserver_begin": {
+    "message0": "サーバーを起動%1",
+    "tooltip": "ウェブサーバーを起動して、リスニングを始めましょう"
+  },
+  "rp_webserver_handle_client": {
+    "message0": "クライアント%1リクエストを処理する",
+    "tooltip": "クライアントのリクエストを処理する(ループに入れるべき)"
+  },
+  "rp_webserver_on": {
+    "message0": "%1 が %2 リクエストパス %3 を受信した時",
+    "tooltip": "指定されたパスに対してリクエストハンドラ関数を登録します",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "恣意的",
+            "HTTP_ANY"
+          ],
+          [
+            "GET",
+            "HTTP_GET"
+          ],
+          [
+            "POST",
+            "HTTP_POST"
+          ],
+          [
+            "PUT",
+            "HTTP_PUT"
+          ],
+          [
+            "DELETE",
+            "HTTP_DELETE"
+          ],
+          [
+            "PATCH",
+            "HTTP_PATCH"
+          ]
+        ]
+      },
+      null
+    ],
+    "message1": "%1 を実行します"
+  },
+  "rp_webserver_on_not_found": {
+    "message0": "未知のパスリクエストを受信した%1",
+    "tooltip": "どのルートにも一致しないリクエストの処理(404)",
+    "message1": "%1 を実行します"
+  },
+  "rp_webserver_send": {
+    "message0": "%1 レスポンスステータスコード %2 タイプ %3 コンテンツ%4",
+    "tooltip": "クライアントにHTTPレスポンスを送信",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "プレーンテキスト/プレーン",
+            "text/plain"
+          ],
+          [
+            "HTMLテキスト/HTML",
+            "text/html"
+          ],
+          [
+            "JSON application/json",
+            "application/json"
+          ],
+          [
+            "XML アプリケーション/XML",
+            "application/xml"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "rp_webserver_send_custom_type": {
+    "message0": "%1 レスポンスステータスコード %2 カスタムタイプ %3 コンテンツ%4",
+    "tooltip": "カスタムコンテンツタイプでHTTP応答を送信する"
+  },
+  "rp_webserver_send_header": {
+    "message0": "%1 Send Response Head %2 Value %3",
+    "tooltip": "カスタムレスポンスヘッダーを送信"
+  },
+  "rp_webserver_uri": {
+    "message0": "%1 リクエストされたURI",
+    "tooltip": "現在のリクエストのURIパスを取得"
+  },
+  "rp_webserver_method": {
+    "message0": "%1 依頼方法",
+    "tooltip": "現在のリクエストのHTTPメソッド(GET/POSTなど)を取得してください。"
+  },
+  "rp_webserver_method_is": {
+    "message0": "%1 リクエストの方法は%2",
+    "tooltip": "現在のリクエストが指定されたHTTPメソッドかどうか確認してください",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "GET",
+            "HTTP_GET"
+          ],
+          [
+            "POST",
+            "HTTP_POST"
+          ],
+          [
+            "PUT",
+            "HTTP_PUT"
+          ],
+          [
+            "DELETE",
+            "HTTP_DELETE"
+          ],
+          [
+            "PATCH",
+            "HTTP_PATCH"
+          ]
+        ]
+      }
+    ]
+  },
+  "rp_webserver_arg_by_name": {
+    "message0": "%1 パラメータ %2 の値を取得",
+    "tooltip": "パラメータ名に基づいてリクエストパラメータ値を取得します"
+  },
+  "rp_webserver_arg_by_index": {
+    "message0": "%1 第 %2 パラメータの値を取得",
+    "tooltip": "インデックス(0から)に基づいてリクエストパラメータ値を取得します"
+  },
+  "rp_webserver_arg_name": {
+    "message0": "%1 第 %2 パラメータの名前を取得",
+    "tooltip": "インデックス(0から)に基づいてリクエストパラメータ名を取得する"
+  },
+  "rp_webserver_args_count": {
+    "message0": "%1 パラメータの数",
+    "tooltip": "リクエストパラメータの数を取得します"
+  },
+  "rp_webserver_has_arg": {
+    "message0": "%1 パラメータ %2 が存在",
+    "tooltip": "指定された名前のパラメータがあるかどうか確認してください"
+  },
+  "rp_webserver_header": {
+    "message0": "%1 リクエストヘッダー %2 の値を取得",
+    "tooltip": "指定された名前のリクエストヘッダー値を取得する"
+  },
+  "rp_webserver_has_header": {
+    "message0": "%1 リクエストヘッダー %2 が存在",
+    "tooltip": "指定された名前のリクエストヘッダーの存在を確認します"
+  },
+  "rp_webserver_host_header": {
+    "message0": "%1 ホストリクエストヘッダー",
+    "tooltip": "リクエストのホストヘッダーを取得する"
+  },
+  "rp_webserver_collect_headers": {
+    "message0": "%1 リクエストヘッダーの収集%2",
+    "tooltip": "リクエストヘッダーを「collect」に設定します(複数はコンマで区切られています)"
+  },
+  "rp_webserver_enable_cors": {
+    "message0": "%1 CORSクロスオリジンを有効にする",
+    "tooltip": "クロスドメインリソース共有(CORS)を有効にする"
+  },
+  "rp_webserver_stop": {
+    "message0": "サーバーを止め%1",
+    "tooltip": "Webサーバーを停止"
+  },
+  "rp_webserver_authenticate": {
+    "message0": "%1 ユーザー名%2パスワードの確認%3",
+    "tooltip": "基本的なHTTP認証のためにユーザー名とパスワードを確認してください"
+  },
+  "rp_webserver_request_authentication": {
+    "message0": "%1 認証リクエストプロンプト%2",
+    "tooltip": "クライアントにHTTP認証の実行を依頼します"
+  }
+}

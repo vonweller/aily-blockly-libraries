@@ -1,0 +1,317 @@
+{
+  "toolbox_name": "ESP32 BLE",
+  "toolbox_labels": {
+    "设备管理": "Device management",
+    "服务端": "Server",
+    "特征值": "Eigenvalue",
+    "广播": "broadcast",
+    "事件回调": "event callback",
+    "客户端": "client",
+    "扫描": "scan",
+    "快速操作-UART": "Quick operation-UART"
+  },
+  "esp32_ble_init": {
+    "message0": "Initialize BLE device name %1",
+    "tooltip": "Initialize the BLE device and set the device name"
+  },
+  "esp32_ble_deinit": {
+    "message0": "Turn off BLE device %1",
+    "tooltip": "Turn off BLE device",
+    "args0": [
+      {
+        "options": [
+          [
+            "reserved memory",
+            "false"
+          ],
+          [
+            "free memory",
+            "true"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_ble_get_address": {
+    "message0": "Get BLE address",
+    "tooltip": "Get the local BLE MAC address"
+  },
+  "esp32_ble_set_mtu": {
+    "message0": "Set MTU size %1",
+    "tooltip": "Set BLE MTU size (maximum transmission unit)"
+  },
+  "esp32_ble_get_mtu": {
+    "message0": "Get MTU size",
+    "tooltip": "Get current BLE MTU size"
+  },
+  "esp32_ble_create_server": {
+    "message0": "Create BLE server %1",
+    "tooltip": "Create BLE server object"
+  },
+  "esp32_ble_server_create_service": {
+    "message0": "Create service %2 UUID %3 on the server side %1",
+    "tooltip": "Create a GATT service on the server side"
+  },
+  "esp32_ble_service_start": {
+    "message0": "Start service %1",
+    "tooltip": "Start BLE service"
+  },
+  "esp32_ble_service_stop": {
+    "message0": "Stop service %1",
+    "tooltip": "Stop BLE service"
+  },
+  "esp32_ble_create_characteristic": {
+    "message0": "In service %1 create feature %2 UUID %3 attribute %4",
+    "tooltip": "Create characteristic values in the service",
+    "args0": [
+      null,
+      null,
+      null,
+      {
+        "options": [
+          [
+            "read",
+            "BLECharacteristic::PROPERTY_READ"
+          ],
+          [
+            "write",
+            "BLECharacteristic::PROPERTY_WRITE"
+          ],
+          [
+            "Notification",
+            "BLECharacteristic::PROPERTY_NOTIFY"
+          ],
+          [
+            "Read and write",
+            "BLECharacteristic::PROPERTY_READ | BLECharacteristic::PROPERTY_WRITE"
+          ],
+          [
+            "Read+Notify",
+            "BLECharacteristic::PROPERTY_READ | BLECharacteristic::PROPERTY_NOTIFY"
+          ],
+          [
+            "write+notify",
+            "BLECharacteristic::PROPERTY_WRITE | BLECharacteristic::PROPERTY_NOTIFY"
+          ],
+          [
+            "Read and write + notification",
+            "BLECharacteristic::PROPERTY_READ | BLECharacteristic::PROPERTY_WRITE | BLECharacteristic::PROPERTY_NOTIFY"
+          ],
+          [
+            "broadcast",
+            "BLECharacteristic::PROPERTY_BROADCAST"
+          ],
+          [
+            "instructions",
+            "BLECharacteristic::PROPERTY_INDICATE"
+          ],
+          [
+            "No response to write",
+            "BLECharacteristic::PROPERTY_WRITE_NR"
+          ],
+          [
+            "All",
+            "BLECharacteristic::PROPERTY_READ | BLECharacteristic::PROPERTY_WRITE | BLECharacteristic::PROPERTY_NOTIFY | BLECharacteristic::PROPERTY_INDICATE"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_ble_characteristic_set_value": {
+    "message0": "Set feature %1 to value %2",
+    "tooltip": "Set data for characteristic values"
+  },
+  "esp32_ble_characteristic_get_value": {
+    "message0": "Get the value of feature %1",
+    "tooltip": "Get data of feature values"
+  },
+  "esp32_ble_characteristic_notify": {
+    "message0": "Notification feature %1 data update",
+    "tooltip": "Send feature value update notifications"
+  },
+  "esp32_ble_characteristic_indicate": {
+    "message0": "Indicative feature %1 data update",
+    "tooltip": "Send characteristic value indication (confirmation required)"
+  },
+  "esp32_ble_add_descriptor": {
+    "message0": "Add notification descriptor for feature %1",
+    "tooltip": "Add BLE2902 descriptor to support notification function"
+  },
+  "esp32_ble_start_advertising": {
+    "message0": "Start BLE broadcast",
+    "tooltip": "Start BLE broadcast to make the device discoverable"
+  },
+  "esp32_ble_stop_advertising": {
+    "message0": "Stop BLE broadcast",
+    "tooltip": "Stop BLE broadcast"
+  },
+  "esp32_ble_advertising_add_service_uuid": {
+    "message0": "Broadcast added service UUID %1",
+    "tooltip": "Add service UUID in broadcast"
+  },
+  "esp32_ble_advertising_set_scan_response": {
+    "message0": "Set scan response %1",
+    "tooltip": "Set whether to enable scan response",
+    "args0": [
+      {
+        "options": [
+          [
+            "enable",
+            "true"
+          ],
+          [
+            "Disable",
+            "false"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_ble_on_connect": {
+    "message0": "When the BLE client connects the server %1",
+    "tooltip": "Executed when a client connects to the BLE server",
+    "message1": "Execute %1"
+  },
+  "esp32_ble_on_disconnect": {
+    "message0": "When the BLE client is disconnected, the server %1",
+    "tooltip": "Executed when the client disconnects the BLE connection",
+    "message1": "Execute %1"
+  },
+  "esp32_ble_on_write": {
+    "message0": "When feature %1 is written",
+    "tooltip": "Executed when the characteristic value is written by the client",
+    "message1": "Execute %1"
+  },
+  "esp32_ble_server_connected_count": {
+    "message0": "Server %1 Number of connected clients",
+    "tooltip": "Get the number of clients currently connected to the server"
+  },
+  "esp32_ble_create_client": {
+    "message0": "Create BLE client %1",
+    "tooltip": "Create BLE client object"
+  },
+  "esp32_ble_client_connect": {
+    "message0": "Client %1 connects to device %2",
+    "tooltip": "Connect to the BLE device at the specified address"
+  },
+  "esp32_ble_client_disconnect": {
+    "message0": "Client %1 disconnected",
+    "tooltip": "Disconnect BLE client"
+  },
+  "esp32_ble_client_is_connected": {
+    "message0": "Client %1 is connected",
+    "tooltip": "Check if the client is connected"
+  },
+  "esp32_ble_client_get_service": {
+    "message0": "Client %1 Get service %2 UUID %3",
+    "tooltip": "Get remote BLE service"
+  },
+  "esp32_ble_remote_service_get_characteristic": {
+    "message0": "Get characteristics %2 UUID %3 from service %1",
+    "tooltip": "Get remote feature value"
+  },
+  "esp32_ble_remote_characteristic_read": {
+    "message0": "Read the value of remote feature %1",
+    "tooltip": "Read data from remote feature values"
+  },
+  "esp32_ble_remote_characteristic_write": {
+    "message0": "Write remote feature %1 value %2",
+    "tooltip": "Write data to remote feature value"
+  },
+  "esp32_ble_remote_characteristic_can_read": {
+    "message0": "Remote feature %1 can be read",
+    "tooltip": "Check if the remote characteristic value is readable"
+  },
+  "esp32_ble_remote_characteristic_can_notify": {
+    "message0": "Remote feature %1 can be notified",
+    "tooltip": "Check if the remote characteristic value supports notifications"
+  },
+  "esp32_ble_get_scan": {
+    "message0": "Get BLE scanner %1",
+    "tooltip": "Get BLE scanner object"
+  },
+  "esp32_ble_scan_set_active": {
+    "message0": "Scanner %1 Active Scan %2",
+    "tooltip": "Set whether to use active scanning mode",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "enable",
+            "true"
+          ],
+          [
+            "Disable",
+            "false"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_ble_scan_set_interval": {
+    "message0": "Scanner %1 Set scan interval %2 milliseconds",
+    "tooltip": "Set scan interval (milliseconds)"
+  },
+  "esp32_ble_scan_set_window": {
+    "message0": "Scanner %1 Set scan window %2 milliseconds",
+    "tooltip": "Set scan window size (milliseconds)"
+  },
+  "esp32_ble_scan_start": {
+    "message0": "Scanner %1 starts scanning %2 seconds",
+    "tooltip": "Start BLE device scan"
+  },
+  "esp32_ble_scan_stop": {
+    "message0": "Scanner %1 stopped scanning",
+    "tooltip": "Stop BLE scan"
+  },
+  "esp32_ble_scan_get_results": {
+    "message0": "Scanner %1 Get scan results",
+    "tooltip": "Get scan result object"
+  },
+  "esp32_ble_scan_results_count": {
+    "message0": "Scan result %1 device quantity",
+    "tooltip": "Get the number of scanned devices"
+  },
+  "esp32_ble_scan_results_get_device": {
+    "message0": "Scan result %1 Get device index %2",
+    "tooltip": "Get scanned devices based on index"
+  },
+  "esp32_ble_advertised_device_name": {
+    "message0": "Device %1 Name",
+    "tooltip": "Get the name of the broadcast device"
+  },
+  "esp32_ble_advertised_device_address": {
+    "message0": "Device %1 address",
+    "tooltip": "Get the MAC address of the broadcasting device"
+  },
+  "esp32_ble_advertised_device_rssi": {
+    "message0": "Device %1 Signal Strength (RSSI)",
+    "tooltip": "Get the signal strength of a broadcast device"
+  },
+  "esp32_ble_scan_clear_results": {
+    "message0": "Scanner %1 Clear scan results",
+    "tooltip": "Clear previous scan results"
+  },
+  "esp32_ble_uart_server_quick": {
+    "message0": "Create BLE serial port server device name %1",
+    "tooltip": "Quickly create a BLE UART server (Nordic UART Service)"
+  },
+  "esp32_ble_uart_send": {
+    "message0": "BLE serial port sending %1",
+    "tooltip": "Send data through BLE serial port"
+  },
+  "esp32_ble_uart_on_receive": {
+    "message0": "When the BLE serial port receives data",
+    "tooltip": "Executed when the BLE serial port receives data",
+    "message1": "Execute %1"
+  },
+  "esp32_ble_uart_received_data": {
+    "message0": "Data received by BLE serial port",
+    "tooltip": "Get the data received by the BLE serial port (used in the callback)"
+  },
+  "esp32_ble_uart_is_connected": {
+    "message0": "BLE serial port is connected",
+    "tooltip": "Check whether there is a client connection to the BLE serial port"
+  }
+}

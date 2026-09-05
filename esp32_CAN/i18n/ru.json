@@ -1,0 +1,83 @@
+{
+  "toolbox_name": "ESP32 CAN шина",
+  "esp32_can_init": {
+    "message0": "Инициализация шины CAN Прием вывода %1 Отправка %2 режим %3 скорость передачи %4",
+    "tooltip": "Инициализация шины ESP32 CAN (TWAI)",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "Обычный режим",
+            "TWAI_MODE_NORMAL"
+          ],
+          [
+            "Режим только прослушивания",
+            "TWAI_MODE_LISTEN_ONLY"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "500Kbits",
+            "TWAI_TIMING_CONFIG_500KBITS()"
+          ],
+          [
+            "100Kbits",
+            "TWAI_TIMING_CONFIG_100KBITS()"
+          ],
+          [
+            "125Kbits",
+            "TWAI_TIMING_CONFIG_125KBITS()"
+          ],
+          [
+            "250Kbits",
+            "TWAI_TIMING_CONFIG_250KBITS()"
+          ],
+          [
+            "1Mbits",
+            "TWAI_TIMING_CONFIG_1MBITS()"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_can_configure_alerts": {
+    "message0": "Настроить оповещения CAN %1 Получить данные %2 Отправить в простое %3 Отправить успешно %4 Отправить неудачно %5 Ошибка пассивная %6 Ошибка шины %7 Полная очередь приема %8",
+    "tooltip": "Настройте оповещения шины CAN для мониторинга"
+  },
+  "esp32_can_send_message": {
+    "message0": "Отправить идентификатор сообщения CAN (ID) %1 длину данных %2 %3",
+    "tooltip": "Отправлять сообщения CAN в формате байтов с разделёнными запятой"
+  },
+  "esp32_can_receive_message": {
+    "message0": "Получать сообщения CAN",
+    "tooltip": "Приём и обработка CAN-сообщений"
+  },
+  "esp32_can_check_alerts": {
+    "message0": "Проверьте предупреждение CAN",
+    "tooltip": "Проверьте предупреждение о шинах CAN"
+  },
+  "esp32_can_message_available": {
+    "message0": "Доступны сообщения CAN",
+    "tooltip": "Проверьте, доступны ли CAN-сообщения"
+  },
+  "esp32_can_get_message_id": {
+    "message0": "Получить идентификатор сообщения CAN",
+    "tooltip": "Получает ID полученного сообщения CAN"
+  },
+  "esp32_can_get_message_length": {
+    "message0": "Определите длину сообщения CAN",
+    "tooltip": "Получите длину данных полученного сообщения CAN"
+  },
+  "esp32_can_get_message_data": {
+    "message0": "Получить байты данных сообщений CAN %1",
+    "tooltip": "Получает байт данных в указанном месте полученного сообщения CAN"
+  },
+  "esp32_can_transmit_interval": {
+    "message0": "Установите интервал передачи сообщений CAN на %1 миллисекунд",
+    "tooltip": "Установите интервал для отправки сообщений CAN в запланированное время"
+  }
+}

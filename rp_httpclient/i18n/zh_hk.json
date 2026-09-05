@@ -1,0 +1,220 @@
+{
+  "toolbox_name": "Pico HTTPClient",
+  "toolbox_labels": {
+    "初始化": "初始化",
+    "连接": "連接",
+    "配置": "配置",
+    "请求": "請求",
+    "响应": "回應",
+    "状态": "狀態",
+    "快速操作": "快速操作"
+  },
+  "rp_httpclient_create": {
+    "message0": "建立HTTP客戶端 %1",
+    "tooltip": "建立一個新的HTTPClient對象"
+  },
+  "rp_httpclient_begin_url": {
+    "message0": "連接 %1 到URL %2",
+    "tooltip": "連接到指定的URL"
+  },
+  "rp_httpclient_begin_host": {
+    "message0": "連接 %1 到主機 %2 連接埠 %3 路徑 %4",
+    "tooltip": "連接到指定的主機、連接埠和路徑"
+  },
+  "rp_httpclient_begin_https": {
+    "message0": "安全連線 %1 到URL %2 (跳過憑證驗證)",
+    "tooltip": "安全連線到HTTPS URL（跳過憑證驗證）"
+  },
+  "rp_httpclient_end": {
+    "message0": "斷開連接 %1",
+    "tooltip": "斷開HTTP連接"
+  },
+  "rp_httpclient_set_timeout": {
+    "message0": "設定 %1 逾時時間 %2 毫秒",
+    "tooltip": "設定連線超時時間（毫秒）"
+  },
+  "rp_httpclient_set_reuse": {
+    "message0": "設定 %1 復用連接 %2",
+    "tooltip": "設定是否有復用TCP連線（keep-alive）",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "啟用",
+            "true"
+          ],
+          [
+            "停用",
+            "false"
+          ]
+        ]
+      }
+    ]
+  },
+  "rp_httpclient_set_user_agent": {
+    "message0": "設定 %1 用戶代理程式 %2",
+    "tooltip": "設定HTTP用戶代理字串"
+  },
+  "rp_httpclient_set_authorization": {
+    "message0": "設定 %1 認證 使用者名稱 %2 密碼 %3",
+    "tooltip": "設定HTTP基本認證"
+  },
+  "rp_httpclient_set_authorization_token": {
+    "message0": "設定 %1 認證令牌 %2",
+    "tooltip": "設定HTTP Bearer令牌認證"
+  },
+  "rp_httpclient_set_follow_redirects": {
+    "message0": "設定 %1 重定向跟隨 %2",
+    "tooltip": "設定HTTP重定向跟隨模式",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "停用",
+            "HTTPC_DISABLE_FOLLOW_REDIRECTS"
+          ],
+          [
+            "嚴格模式(僅GET/HEAD)",
+            "HTTPC_STRICT_FOLLOW_REDIRECTS"
+          ],
+          [
+            "強制模式(所有方法)",
+            "HTTPC_FORCE_FOLLOW_REDIRECTS"
+          ]
+        ]
+      }
+    ]
+  },
+  "rp_httpclient_set_redirect_limit": {
+    "message0": "設定 %1 最大重定向次數 %2",
+    "tooltip": "設定最大重定向次數"
+  },
+  "rp_httpclient_add_header": {
+    "message0": "新增 %1 請求頭 %2 值 %3",
+    "tooltip": "新增HTTP請求頭"
+  },
+  "rp_httpclient_get": {
+    "message0": "發送GET請求 %1",
+    "tooltip": "發送HTTP GET請求"
+  },
+  "rp_httpclient_post": {
+    "message0": "發送POST請求 %1 資料 %2",
+    "tooltip": "發送HTTP POST請求"
+  },
+  "rp_httpclient_put": {
+    "message0": "發送PUT請求 %1 資料 %2",
+    "tooltip": "發送HTTP PUT請求"
+  },
+  "rp_httpclient_patch": {
+    "message0": "發送PATCH請求 %1 資料 %2",
+    "tooltip": "發送HTTP PATCH請求"
+  },
+  "rp_httpclient_delete": {
+    "message0": "發送DELETE請求 %1",
+    "tooltip": "發送HTTP DELETE請求"
+  },
+  "rp_httpclient_get_response_code": {
+    "message0": "取得回應狀態碼",
+    "tooltip": "取得最後一次請求的HTTP回應狀態碼"
+  },
+  "rp_httpclient_code_list": {
+    "message0": "HTTP狀態碼 %1",
+    "tooltip": "HTTP狀態碼常數",
+    "args0": [
+      {
+        "options": [
+          [
+            "200 OK",
+            "HTTP_CODE_OK"
+          ],
+          [
+            "201 Created",
+            "HTTP_CODE_CREATED"
+          ],
+          [
+            "204 無內容",
+            "HTTP_CODE_NO_CONTENT"
+          ],
+          [
+            "301 永久移動",
+            "HTTP_CODE_MOVED_PERMANENTLY"
+          ],
+          [
+            "302 Found",
+            "HTTP_CODE_FOUND"
+          ],
+          [
+            "304 未改裝",
+            "HTTP_CODE_NOT_MODIFIED"
+          ],
+          [
+            "400 個壞請求",
+            "HTTP_CODE_BAD_REQUEST"
+          ],
+          [
+            "401 Unauthorized",
+            "HTTP_CODE_UNAUTHORIZED"
+          ],
+          [
+            "403 Forbidden",
+            "HTTP_CODE_FORBIDDEN"
+          ],
+          [
+            "404號未找到",
+            "HTTP_CODE_NOT_FOUND"
+          ],
+          [
+            "500 伺服器錯誤",
+            "HTTP_CODE_INTERNAL_SERVER_ERROR"
+          ],
+          [
+            "502 壞門",
+            "HTTP_CODE_BAD_GATEWAY"
+          ],
+          [
+            "503 服務 不可用",
+            "HTTP_CODE_SERVICE_UNAVAILABLE"
+          ]
+        ]
+      }
+    ]
+  },
+  "rp_httpclient_get_size": {
+    "message0": "取得 %1 回應大小",
+    "tooltip": "取得回應內容大小（位元組）"
+  },
+  "rp_httpclient_get_string": {
+    "message0": "取得 %1 回應內容",
+    "tooltip": "取得回應內容字串"
+  },
+  "rp_httpclient_get_header": {
+    "message0": "取得 %1 回應頭 %2",
+    "tooltip": "取得指定響應頭的值"
+  },
+  "rp_httpclient_get_location": {
+    "message0": "取得 %1 重定向位置",
+    "tooltip": "取得重定向的Location頭值"
+  },
+  "rp_httpclient_connected": {
+    "message0": "%1 已連接",
+    "tooltip": "檢查HTTP連線是否已建立"
+  },
+  "rp_httpclient_error_to_string": {
+    "message0": "%1 錯誤碼 %2 轉文本",
+    "tooltip": "將錯誤代碼轉換為可讀的錯誤訊息"
+  },
+  "rp_httpclient_quick_get": {
+    "message0": "快速GET請求 URL %1",
+    "tooltip": "快速發送GET請求並回傳回應內容"
+  },
+  "rp_httpclient_quick_post": {
+    "message0": "快速POST請求 URL %1 資料 %2",
+    "tooltip": "快速發送POST請求並回傳回應內容"
+  },
+  "rp_httpclient_quick_post_json": {
+    "message0": "Fast POST JSON URL %1 JSON %2",
+    "tooltip": "快速發送JSON POST請求並回傳回應內容"
+  }
+}

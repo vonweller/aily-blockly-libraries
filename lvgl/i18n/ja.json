@@ -1,0 +1,1877 @@
+{
+  "toolbox_name": "LVGL",
+  "toolbox_labels": {
+    "标签": "ラベル",
+    "图像": "画像",
+    "列表": "リスト",
+    "选项卡": "タブ",
+    "按钮": "ボタン",
+    "滑动条": "スライダー",
+    "开关": "スイッチ",
+    "复选框": "チェックボックス",
+    "下拉框": "ドロップダウンボックス",
+    "文本框": "テキストボックス",
+    "键盘": "キーボード",
+    "进度条": "プログレスバー",
+    "圆弧": "アーク",
+    "加载动画": "読み込みアニメーション",
+    "图表": "チャート"
+  },
+  "lvgl_init": {
+    "message0": "表示ドライバーライブラリを使ってLVGLを初期化します %1画面解像度 幅 %2 高さ %3回転角度 %4",
+    "tooltip": "LVGLライブラリの初期化",
+    "args0": [
+      {
+        "options": [
+          [
+            "TFT_eSPI",
+            "TFT_eSPI"
+          ],
+          [
+            "ロヴィアンGFX(サポート予定)",
+            "LovyanGFX"
+          ]
+        ]
+      },
+      null,
+      null,
+      {
+        "options": [
+          [
+            "0°",
+            "LV_DISPLAY_ROTATION_0"
+          ],
+          [
+            "90°",
+            "LV_DISPLAY_ROTATION_90"
+          ],
+          [
+            "180°",
+            "LV_DISPLAY_ROTATION_180"
+          ],
+          [
+            "270°",
+            "LV_DISPLAY_ROTATION_270"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_indev_create": {
+    "message0": "入力デバイスを初期%1化%2 %3データ検索コールバック関数",
+    "tooltip": "入力デバイスを初期化します",
+    "args0": [
+      {
+        "options": [
+          [
+            "状況全体",
+            "global"
+          ],
+          [
+            "ローカル",
+            "local"
+          ]
+        ]
+      },
+      null,
+      {
+        "options": [
+          [
+            "ポインタデバイス(タッチスクリーン/マウス)",
+            "LV_INDEV_TYPE_POINTER"
+          ],
+          [
+            "ボタンデバイス",
+            "LV_INDEV_TYPE_KEYPAD"
+          ],
+          [
+            "ボタンデバイス",
+            "LV_INDEV_TYPE_BUTTON"
+          ],
+          [
+            "エンコーダー機器",
+            "LV_INDEV_TYPE_ENCODER"
+          ]
+        ]
+      }
+    ],
+    "message1": "%1 を実行します"
+  },
+  "lvgl_indev_data_param_set": {
+    "message0": "データパラメータ%1%2に設定されています",
+    "tooltip": "入力デバイスからデータパラメータを取得する",
+    "args0": [
+      {
+        "options": [
+          [
+            "状態",
+            "state"
+          ],
+          [
+            "座標X",
+            "point.x"
+          ],
+          [
+            "座標 Y",
+            "point.y"
+          ],
+          [
+            "主要価値観",
+            "key"
+          ],
+          [
+            "ボタンID",
+            "btn_id"
+          ],
+          [
+            "エンコーダーの増分",
+            "enc_diff"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "lvgl_indev_state_param": {
+    "message0": "デバイス状態定数を入力します%1",
+    "tooltip": "デバイス状態定数を入力します",
+    "args0": [
+      {
+        "options": [
+          [
+            "リリース",
+            "LV_INDEV_STATE_REL"
+          ],
+          [
+            "押下",
+            "LV_INDEV_STATE_PR"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_label_create": {
+    "message0": "親オブジェクト%2%1タグを作成%3",
+    "tooltip": "テキストタグコントロールを作成する",
+    "args0": [
+      {
+        "options": [
+          [
+            "状況全体",
+            "global"
+          ],
+          [
+            "ローカル",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_label_set_text": {
+    "message0": "テキスト%1タグを%2に設定してください",
+    "tooltip": "ラベルに表示されるテキスト内容を設定してください"
+  },
+  "lv_label_set_text_fmt": {
+    "message0": "タグ設定 %1 フォーマット テキスト フォーマット 文字列 %2パラメータ %3",
+    "tooltip": "タグテキストをフォーマットされた文字列で設定し、printfスタイルのフォーマット(例:「Button: %d」)をサポートします"
+  },
+  "lvgl_label_set_long_mode": {
+    "message0": "タグを長文%1テキストモードに設定%2",
+    "tooltip": "タグの長文処理モードを設定します",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "自動線巻き",
+            "LV_LABEL_LONG_MODE_WRAP"
+          ],
+          [
+            "省略記号表示",
+            "LV_LABEL_LONG_MODE_DOTS"
+          ],
+          [
+            "前後に転がる",
+            "LV_LABEL_LONG_MODE_SCROLL"
+          ],
+          [
+            "サイクルローリング",
+            "LV_LABEL_LONG_MODE_SCROLL_CIRCULAR"
+          ],
+          [
+            "カット",
+            "LV_LABEL_LONG_MODE_CLIP"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_button_create": {
+    "message0": "親オブジェクト%2%1ボタンを作成%3",
+    "tooltip": "ボタンコントロールを作成する",
+    "args0": [
+      {
+        "options": [
+          [
+            "状況全体",
+            "global"
+          ],
+          [
+            "ローカル",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_slider_create": {
+    "message0": "親オブジェクト%2スライダーを作成%1%3",
+    "tooltip": "スライダーコントロールを作成する",
+    "args0": [
+      {
+        "options": [
+          [
+            "状況全体",
+            "global"
+          ],
+          [
+            "ローカル",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_slider_set_value": {
+    "message0": "スライダー%1値をアニメーション%2に設定%3",
+    "tooltip": "スライダーの現在の値を設定します",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "オンにする",
+            "LV_ANIM_ON"
+          ],
+          [
+            "閉じる",
+            "LV_ANIM_OFF"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_slider_set_range": {
+    "message0": "スライダー%1範囲 最小 %2 最大%3",
+    "tooltip": "スライダーの値範囲を設定します"
+  },
+  "lvgl_slider_get_value": {
+    "message0": "スライダーの値を取り%1",
+    "tooltip": "スライドバーの現在の値を取得してください"
+  },
+  "lvgl_switch_create": {
+    "message0": "親オブジェクト%2スイッチ%1作成%3",
+    "tooltip": "スイッチコントロールを作成する",
+    "args0": [
+      {
+        "options": [
+          [
+            "状況全体",
+            "global"
+          ],
+          [
+            "ローカル",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_checkbox_create": {
+    "message0": "親オブジェクト%2テキスト%3%1チェックボックスを作成する%4",
+    "tooltip": "チェックボックスコントロールの作成",
+    "args0": [
+      {
+        "options": [
+          [
+            "状況全体",
+            "global"
+          ],
+          [
+            "ローカル",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null,
+      null
+    ]
+  },
+  "lvgl_bar_create": {
+    "message0": "親オブジェクト%1進行バー%2作成%3",
+    "tooltip": "進行バーコントロールを作成する",
+    "args0": [
+      {
+        "options": [
+          [
+            "状況全体",
+            "global"
+          ],
+          [
+            "ローカル",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_bar_set_value": {
+    "message0": "進行バー%1値を%2アニメーション%3に設定してください。",
+    "tooltip": "進行バーの現在の値を設定します",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "オンにする",
+            "LV_ANIM_ON"
+          ],
+          [
+            "閉じる",
+            "LV_ANIM_OFF"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_bar_set_range": {
+    "message0": "進行バーを%1範囲、最小%2最大%3設定",
+    "tooltip": "進行バーの値範囲を設定します"
+  },
+  "lvgl_arc_create": {
+    "message0": "親オブジェクト%2アークを作成%1 %3",
+    "tooltip": "アーク制御を作成する",
+    "args0": [
+      {
+        "options": [
+          [
+            "状況全体",
+            "global"
+          ],
+          [
+            "ローカル",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_arc_set_value": {
+    "message0": "アーク%1値を%2に設定します。",
+    "tooltip": "アークの現在の値を設定します"
+  },
+  "lvgl_arc_set_range": {
+    "message0": "アーク%1範囲を最小%2最大%3設定",
+    "tooltip": "弧の値の範囲を設定します"
+  },
+  "lvgl_spinner_create": {
+    "message0": "親オブジェクト%2%1 アニメーションを読み込む %3",
+    "tooltip": "読み込みアニメーションコントロールを作成する",
+    "args0": [
+      {
+        "options": [
+          [
+            "状況全体",
+            "global"
+          ],
+          [
+            "ローカル",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_spinner_set_anim_params": {
+    "message0": "読み込みアニメーションを ms ラジアン %3° %1 duration%2設定",
+    "tooltip": "アニメーションの読み込み時間と曲率を設定します"
+  },
+  "lvgl_dropdown_create": {
+    "message0": "親オブジェクト%2ドロップダウンを作成%1%3",
+    "tooltip": "ドロップダウンコントロールを作成してください",
+    "args0": [
+      {
+        "options": [
+          [
+            "状況全体",
+            "global"
+          ],
+          [
+            "ローカル",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_dropdown_set_options": {
+    "message0": "ドロップダウンボックス%1オプションを設定してください%2",
+    "tooltip": "ドロップダウンオプションを設定し、複数のオプションを\\nで区切る"
+  },
+  "lvgl_dropdown_get_selected": {
+    "message0": "ドロップダウンを取って%1インデックスアイテムを選択する",
+    "tooltip": "ドロップダウンボックスで現在選択中のアイテムのインデックスが表示されます"
+  },
+  "lvgl_textarea_create": {
+    "message0": "親オブジェクト%2テキストボックス%1作成%3",
+    "tooltip": "テキスト入力ボックスコントロールの作成",
+    "args0": [
+      {
+        "options": [
+          [
+            "状況全体",
+            "global"
+          ],
+          [
+            "ローカル",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_textarea_set_text": {
+    "message0": "テキストボックス%1%2に設定してください",
+    "tooltip": "テキストボックスの内容を設定する"
+  },
+  "lvgl_textarea_get_text": {
+    "message0": "テキストボックスのテキストを取得%1",
+    "tooltip": "テキストボックスの内容を入手してください"
+  },
+  "lvgl_textarea_set_placeholder": {
+    "message0": "テキストボックス%1プレースホルダーを%2に設定してください。",
+    "tooltip": "テキストボックスのプレースホルダーテキストを設定します"
+  },
+  "lvgl_obj_set_pos": {
+    "message0": "%1位置X%2Y%3設定してください。",
+    "tooltip": "対象のX座標とY座標を設定します"
+  },
+  "lvgl_obj_set_size": {
+    "message0": "サイズ%1幅%2高さ%3",
+    "tooltip": "オブジェクトの幅と高さを設定します"
+  },
+  "lvgl_obj_align": {
+    "message0": "%1 アライメント %2 オフセット x %3 y %4",
+    "tooltip": "オブジェクトのアラインメントと親オブジェクトのオフセットを設定します",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "中央",
+            "LV_ALIGN_CENTER"
+          ],
+          [
+            "左上",
+            "LV_ALIGN_TOP_LEFT"
+          ],
+          [
+            "平均以上",
+            "LV_ALIGN_TOP_MID"
+          ],
+          [
+            "右上",
+            "LV_ALIGN_TOP_RIGHT"
+          ],
+          [
+            "左中間",
+            "LV_ALIGN_LEFT_MID"
+          ],
+          [
+            "右中間",
+            "LV_ALIGN_RIGHT_MID"
+          ],
+          [
+            "左下",
+            "LV_ALIGN_BOTTOM_LEFT"
+          ],
+          [
+            "平均以下",
+            "LV_ALIGN_BOTTOM_MID"
+          ],
+          [
+            "右下",
+            "LV_ALIGN_BOTTOM_RIGHT"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_obj_center": {
+    "message0": "中心%1",
+    "tooltip": "物体を中心に据えた"
+  },
+  "lvgl_obj_add_flag": {
+    "message0": "ロゴの追加%1 %2",
+    "tooltip": "オブジェクトにフラグを追加する",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "隠す",
+            "LV_OBJ_FLAG_HIDDEN"
+          ],
+          [
+            "クリック可能",
+            "LV_OBJ_FLAG_CLICKABLE"
+          ],
+          [
+            "選択可能",
+            "LV_OBJ_FLAG_CHECKABLE"
+          ],
+          [
+            "ロール可能",
+            "LV_OBJ_FLAG_SCROLLABLE"
+          ],
+          [
+            "無効にする",
+            "LV_OBJ_FLAG_DISABLED"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_obj_remove_flag": {
+    "message0": "旗を%1 %2から撤去してください",
+    "tooltip": "オブジェクトからフラグを外す",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "隠す",
+            "LV_OBJ_FLAG_HIDDEN"
+          ],
+          [
+            "クリック可能",
+            "LV_OBJ_FLAG_CLICKABLE"
+          ],
+          [
+            "選択可能",
+            "LV_OBJ_FLAG_CHECKABLE"
+          ],
+          [
+            "ロール可能",
+            "LV_OBJ_FLAG_SCROLLABLE"
+          ],
+          [
+            "無効にする",
+            "LV_OBJ_FLAG_DISABLED"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_obj_add_state": {
+    "message0": "%1 %2に地位を加える",
+    "tooltip": "オブジェクトに状態を追加する",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "選ばれました",
+            "LV_STATE_CHECKED"
+          ],
+          [
+            "焦点",
+            "LV_STATE_FOCUSED"
+          ],
+          [
+            "押下",
+            "LV_STATE_PRESSED"
+          ],
+          [
+            "無効にする",
+            "LV_STATE_DISABLED"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_obj_remove_state": {
+    "message0": "%1%2からステータスを削除してください",
+    "tooltip": "オブジェクトから状態を除去します",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "選ばれました",
+            "LV_STATE_CHECKED"
+          ],
+          [
+            "焦点",
+            "LV_STATE_FOCUSED"
+          ],
+          [
+            "押下",
+            "LV_STATE_PRESSED"
+          ],
+          [
+            "無効にする",
+            "LV_STATE_DISABLED"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_obj_has_state": {
+    "message0": "%1 Stated%2",
+    "tooltip": "オブジェクトが指定ステータスを持っているかどうか確認してください",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "選ばれました",
+            "LV_STATE_CHECKED"
+          ],
+          [
+            "焦点",
+            "LV_STATE_FOCUSED"
+          ],
+          [
+            "押下",
+            "LV_STATE_PRESSED"
+          ],
+          [
+            "無効にする",
+            "LV_STATE_DISABLED"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_obj_delete": {
+    "message0": "削除%1",
+    "tooltip": "オブジェクトとその子オブジェクトをすべて削除します"
+  },
+  "lvgl_obj_set_style_text_font": {
+    "message0": "フォント%1設定%2",
+    "tooltip": "オブジェクトのテキストフォントを設定します",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "英語フォント8",
+            "LV_FONT_MONTSERRAT_8"
+          ],
+          [
+            "英語フォント10",
+            "LV_FONT_MONTSERRAT_10"
+          ],
+          [
+            "英語フォント12",
+            "LV_FONT_MONTSERRAT_12"
+          ],
+          [
+            "英語フォント14",
+            "LV_FONT_MONTSERRAT_14"
+          ],
+          [
+            "英語フォント16",
+            "LV_FONT_MONTSERRAT_16"
+          ],
+          [
+            "英語フォント18",
+            "LV_FONT_MONTSERRAT_18"
+          ],
+          [
+            "英語フォント 20",
+            "LV_FONT_MONTSERRAT_20"
+          ],
+          [
+            "英語フォント22",
+            "LV_FONT_MONTSERRAT_22"
+          ],
+          [
+            "英語フォント24",
+            "LV_FONT_MONTSERRAT_24"
+          ],
+          [
+            "英語フォント26",
+            "LV_FONT_MONTSERRAT_26"
+          ],
+          [
+            "英語フォント28",
+            "LV_FONT_MONTSERRAT_28"
+          ],
+          [
+            "英語フォント 30",
+            "LV_FONT_MONTSERRAT_30"
+          ],
+          [
+            "英語フォント32",
+            "LV_FONT_MONTSERRAT_32"
+          ],
+          [
+            "英語フォント34",
+            "LV_FONT_MONTSERRAT_34"
+          ],
+          [
+            "英語フォント36",
+            "LV_FONT_MONTSERRAT_36"
+          ],
+          [
+            "英語フォント38",
+            "LV_FONT_MONTSERRAT_38"
+          ],
+          [
+            "英語フォント40",
+            "LV_FONT_MONTSERRAT_40"
+          ],
+          [
+            "英語フォント42",
+            "LV_FONT_MONTSERRAT_42"
+          ],
+          [
+            "英語フォント44",
+            "LV_FONT_MONTSERRAT_44"
+          ],
+          [
+            "英語フォント46",
+            "LV_FONT_MONTSERRAT_46"
+          ],
+          [
+            "英語フォント48",
+            "LV_FONT_MONTSERRAT_48"
+          ],
+          [
+            "中国語フォント14",
+            "LV_FONT_SOURCE_HAN_SANS_SC_14_CJK"
+          ],
+          [
+            "中国語フォント 16",
+            "LV_FONT_SOURCE_HAN_SANS_SC_16_CJK"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_obj_set_style_bg_color": {
+    "message0": "背景色%1設定%2",
+    "tooltip": "オブジェクトの背景色を設定する"
+  },
+  "lvgl_obj_set_style_text_color": {
+    "message0": "テキストの色%1設定%2",
+    "tooltip": "オブジェクトのテキスト色を設定する"
+  },
+  "lvgl_obj_set_style_border_color": {
+    "message0": "%1境界色を設定してください%2",
+    "tooltip": "オブジェクトの境界の色を設定します"
+  },
+  "lvgl_obj_set_style_border_width": {
+    "message0": "%1境界の幅を%2設定",
+    "tooltip": "オブジェクトの境界幅を設定します"
+  },
+  "lvgl_obj_set_style_radius": {
+    "message0": "フィレット半径%1設定%2",
+    "tooltip": "物体のフィレット半径を設定します"
+  },
+  "lvgl_obj_set_style_pad_all": {
+    "message0": "マージン%1設定%2",
+    "tooltip": "オブジェクトの内部余白をすべて設定します"
+  },
+  "lvgl_obj_set_style_bg_opa": {
+    "message0": "背景透明%1設定%2",
+    "tooltip": "オブジェクトの背景透明度を設定します",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "完全に透明",
+            "LV_OPA_TRANSP"
+          ],
+          [
+            "25%",
+            "LV_OPA_25"
+          ],
+          [
+            "50%",
+            "LV_OPA_50"
+          ],
+          [
+            "75%",
+            "LV_OPA_75"
+          ],
+          [
+            "不透明",
+            "LV_OPA_COVER"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_event_add_cb": {
+    "message0": "%1 %2事象が起こったとき",
+    "tooltip": "オブジェクトのイベントコールバックを設定してください",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "すべてのイベント",
+            "LV_EVENT_ALL"
+          ],
+          [
+            "押下",
+            "LV_EVENT_PRESSED"
+          ],
+          [
+            "押し続けて",
+            "LV_EVENT_PRESSING"
+          ],
+          [
+            "押してから出発",
+            "LV_EVENT_PRESS_LOST"
+          ],
+          [
+            "ショートプレス",
+            "LV_EVENT_SHORT_CLICKED"
+          ],
+          [
+            "シングルタップ",
+            "LV_EVENT_SINGLE_CLICKED"
+          ],
+          [
+            "ダブルタップ",
+            "LV_EVENT_DOUBLE_CLICKED"
+          ],
+          [
+            "三振",
+            "LV_EVENT_TRIPLE_CLICKED"
+          ],
+          [
+            "押してホールド",
+            "LV_EVENT_LONG_PRESSED"
+          ],
+          [
+            "押し続けると繰り返します",
+            "LV_EVENT_LONG_PRESSED_REPEAT"
+          ],
+          [
+            "クリック",
+            "LV_EVENT_CLICKED"
+          ],
+          [
+            "リリース",
+            "LV_EVENT_RELEASED"
+          ],
+          [
+            "巻物が始まる",
+            "LV_EVENT_SCROLL_BEGIN"
+          ],
+          [
+            "ローリングスローが始まります",
+            "LV_EVENT_SCROLL_THROW_BEGIN"
+          ],
+          [
+            "巻物の終わり",
+            "LV_EVENT_SCROLL_END"
+          ],
+          [
+            "スクロール",
+            "LV_EVENT_SCROLL"
+          ],
+          [
+            "ジェスチャー",
+            "LV_EVENT_GESTURE"
+          ],
+          [
+            "ボタン",
+            "LV_EVENT_KEY"
+          ],
+          [
+            "回転",
+            "LV_EVENT_ROTARY"
+          ],
+          [
+            "焦点",
+            "LV_EVENT_FOCUSED"
+          ],
+          [
+            "焦点を失った",
+            "LV_EVENT_DEFOCUSED"
+          ],
+          [
+            "出て行け",
+            "LV_EVENT_LEAVE"
+          ],
+          [
+            "衝突試験",
+            "LV_EVENT_HIT_TEST"
+          ],
+          [
+            "入力デバイスリセット",
+            "LV_EVENT_INDEV_RESET"
+          ],
+          [
+            "入力はカーソルを合わせる",
+            "LV_EVENT_HOVER_OVER"
+          ],
+          [
+            "徘徊して去る",
+            "LV_EVENT_HOVER_LEAVE"
+          ],
+          [
+            "カバレッジチェック",
+            "LV_EVENT_COVER_CHECK"
+          ],
+          [
+            "拡張ドローサイズをリフレッシュしてください",
+            "LV_EVENT_REFR_EXT_DRAW_SIZE"
+          ],
+          [
+            "メインドローイングが始まります",
+            "LV_EVENT_DRAW_MAIN_BEGIN"
+          ],
+          [
+            "主にイラストレーター",
+            "LV_EVENT_DRAW_MAIN"
+          ],
+          [
+            "メイン図面は完成しました",
+            "LV_EVENT_DRAW_MAIN_END"
+          ],
+          [
+            "引き取り開始",
+            "LV_EVENT_DRAW_POST_BEGIN"
+          ],
+          [
+            "後で描かれました",
+            "LV_EVENT_DRAW_POST"
+          ],
+          [
+            "そして絵が完成します",
+            "LV_EVENT_DRAW_POST_END"
+          ],
+          [
+            "描画タスクを追加します",
+            "LV_EVENT_DRAW_TASK_ADDED"
+          ],
+          [
+            "値が変わる",
+            "LV_EVENT_VALUE_CHANGED"
+          ],
+          [
+            "挿入",
+            "LV_EVENT_INSERT"
+          ],
+          [
+            "更新",
+            "LV_EVENT_REFRESH"
+          ],
+          [
+            "準備",
+            "LV_EVENT_READY"
+          ],
+          [
+            "中止",
+            "LV_EVENT_CANCEL"
+          ],
+          [
+            "州の変動",
+            "LV_EVENT_STATE_CHANGED"
+          ],
+          [
+            "設立",
+            "LV_EVENT_CREATE"
+          ],
+          [
+            "削除",
+            "LV_EVENT_DELETE"
+          ],
+          [
+            "サブオブジェクトの変更",
+            "LV_EVENT_CHILD_CHANGED"
+          ],
+          [
+            "子オブジェクトの作成",
+            "LV_EVENT_CHILD_CREATED"
+          ],
+          [
+            "子オブジェクトを削除",
+            "LV_EVENT_CHILD_DELETED"
+          ],
+          [
+            "画面アンインストールが始まります",
+            "LV_EVENT_SCREEN_UNLOAD_START"
+          ],
+          [
+            "画面読み込み開始",
+            "LV_EVENT_SCREEN_LOAD_START"
+          ],
+          [
+            "画面が読み込まれています",
+            "LV_EVENT_SCREEN_LOADED"
+          ],
+          [
+            "画面はアンインストールされています",
+            "LV_EVENT_SCREEN_UNLOADED"
+          ],
+          [
+            "サイズの変更",
+            "LV_EVENT_SIZE_CHANGED"
+          ],
+          [
+            "スタイルの変化",
+            "LV_EVENT_STYLE_CHANGED"
+          ],
+          [
+            "レイアウトの変更",
+            "LV_EVENT_LAYOUT_CHANGED"
+          ],
+          [
+            "自分のサイズを選びましょう",
+            "LV_EVENT_GET_SELF_SIZE"
+          ],
+          [
+            "ゾーンの失敗",
+            "LV_EVENT_INVALIDATE_AREA"
+          ],
+          [
+            "解像度の変更",
+            "LV_EVENT_RESOLUTION_CHANGED"
+          ],
+          [
+            "カラーフォーマットの変更",
+            "LV_EVENT_COLOR_FORMAT_CHANGED"
+          ],
+          [
+            "リフレッシュリクエスト",
+            "LV_EVENT_REFR_REQUEST"
+          ],
+          [
+            "リフレッシュ開始",
+            "LV_EVENT_REFR_START"
+          ],
+          [
+            "リフレッシュして準備万端",
+            "LV_EVENT_REFR_READY"
+          ],
+          [
+            "レンダリング開始",
+            "LV_EVENT_RENDER_START"
+          ],
+          [
+            "レンダリング準備完了",
+            "LV_EVENT_RENDER_READY"
+          ],
+          [
+            "フラッシュスタート",
+            "LV_EVENT_FLUSH_START"
+          ],
+          [
+            "リフレッシュ完了(フラッシュ)",
+            "LV_EVENT_FLUSH_FINISH"
+          ],
+          [
+            "リフレッシュ待ちが始まります",
+            "LV_EVENT_FLUSH_WAIT_START"
+          ],
+          [
+            "リフレッシュして完了を待つ",
+            "LV_EVENT_FLUSH_WAIT_FINISH"
+          ],
+          [
+            "レイアウト更新完了",
+            "LV_EVENT_UPDATE_LAYOUT_COMPLETED"
+          ],
+          [
+            "垂直同期",
+            "LV_EVENT_VSYNC"
+          ],
+          [
+            "垂直同期要求",
+            "LV_EVENT_VSYNC_REQUEST"
+          ]
+        ]
+      }
+    ],
+    "message1": "%1 を実行します"
+  },
+  "lvgl_event_code": {
+    "message0": "イベントコード定数%1",
+    "tooltip": "イベントコードの定数値を取得します",
+    "args0": [
+      {
+        "options": [
+          [
+            "すべてのイベント",
+            "LV_EVENT_ALL"
+          ],
+          [
+            "押下",
+            "LV_EVENT_PRESSED"
+          ],
+          [
+            "押し続けて",
+            "LV_EVENT_PRESSING"
+          ],
+          [
+            "押してから出発",
+            "LV_EVENT_PRESS_LOST"
+          ],
+          [
+            "ショートプレス",
+            "LV_EVENT_SHORT_CLICKED"
+          ],
+          [
+            "シングルタップ",
+            "LV_EVENT_SINGLE_CLICKED"
+          ],
+          [
+            "ダブルタップ",
+            "LV_EVENT_DOUBLE_CLICKED"
+          ],
+          [
+            "三振",
+            "LV_EVENT_TRIPLE_CLICKED"
+          ],
+          [
+            "押してホールド",
+            "LV_EVENT_LONG_PRESSED"
+          ],
+          [
+            "押し続けると繰り返します",
+            "LV_EVENT_LONG_PRESSED_REPEAT"
+          ],
+          [
+            "クリック",
+            "LV_EVENT_CLICKED"
+          ],
+          [
+            "リリース",
+            "LV_EVENT_RELEASED"
+          ],
+          [
+            "巻物が始まる",
+            "LV_EVENT_SCROLL_BEGIN"
+          ],
+          [
+            "ローリングスローが始まります",
+            "LV_EVENT_SCROLL_THROW_BEGIN"
+          ],
+          [
+            "巻物の終わり",
+            "LV_EVENT_SCROLL_END"
+          ],
+          [
+            "スクロール",
+            "LV_EVENT_SCROLL"
+          ],
+          [
+            "ジェスチャー",
+            "LV_EVENT_GESTURE"
+          ],
+          [
+            "ボタン",
+            "LV_EVENT_KEY"
+          ],
+          [
+            "回転",
+            "LV_EVENT_ROTARY"
+          ],
+          [
+            "焦点",
+            "LV_EVENT_FOCUSED"
+          ],
+          [
+            "焦点を失った",
+            "LV_EVENT_DEFOCUSED"
+          ],
+          [
+            "出て行け",
+            "LV_EVENT_LEAVE"
+          ],
+          [
+            "衝突試験",
+            "LV_EVENT_HIT_TEST"
+          ],
+          [
+            "入力デバイスリセット",
+            "LV_EVENT_INDEV_RESET"
+          ],
+          [
+            "入力はカーソルを合わせる",
+            "LV_EVENT_HOVER_OVER"
+          ],
+          [
+            "徘徊して去る",
+            "LV_EVENT_HOVER_LEAVE"
+          ],
+          [
+            "カバレッジチェック",
+            "LV_EVENT_COVER_CHECK"
+          ],
+          [
+            "拡張ドローサイズをリフレッシュしてください",
+            "LV_EVENT_REFR_EXT_DRAW_SIZE"
+          ],
+          [
+            "メインドローイングが始まります",
+            "LV_EVENT_DRAW_MAIN_BEGIN"
+          ],
+          [
+            "主にイラストレーター",
+            "LV_EVENT_DRAW_MAIN"
+          ],
+          [
+            "メイン図面は完成しました",
+            "LV_EVENT_DRAW_MAIN_END"
+          ],
+          [
+            "引き取り開始",
+            "LV_EVENT_DRAW_POST_BEGIN"
+          ],
+          [
+            "後で描かれました",
+            "LV_EVENT_DRAW_POST"
+          ],
+          [
+            "そして絵が完成します",
+            "LV_EVENT_DRAW_POST_END"
+          ],
+          [
+            "描画タスクを追加します",
+            "LV_EVENT_DRAW_TASK_ADDED"
+          ],
+          [
+            "値が変わる",
+            "LV_EVENT_VALUE_CHANGED"
+          ],
+          [
+            "挿入",
+            "LV_EVENT_INSERT"
+          ],
+          [
+            "更新",
+            "LV_EVENT_REFRESH"
+          ],
+          [
+            "準備",
+            "LV_EVENT_READY"
+          ],
+          [
+            "中止",
+            "LV_EVENT_CANCEL"
+          ],
+          [
+            "州の変動",
+            "LV_EVENT_STATE_CHANGED"
+          ],
+          [
+            "設立",
+            "LV_EVENT_CREATE"
+          ],
+          [
+            "削除",
+            "LV_EVENT_DELETE"
+          ],
+          [
+            "サブオブジェクトの変更",
+            "LV_EVENT_CHILD_CHANGED"
+          ],
+          [
+            "子オブジェクトの作成",
+            "LV_EVENT_CHILD_CREATED"
+          ],
+          [
+            "子オブジェクトを削除",
+            "LV_EVENT_CHILD_DELETED"
+          ],
+          [
+            "画面アンインストールが始まります",
+            "LV_EVENT_SCREEN_UNLOAD_START"
+          ],
+          [
+            "画面読み込み開始",
+            "LV_EVENT_SCREEN_LOAD_START"
+          ],
+          [
+            "画面が読み込まれています",
+            "LV_EVENT_SCREEN_LOADED"
+          ],
+          [
+            "画面はアンインストールされています",
+            "LV_EVENT_SCREEN_UNLOADED"
+          ],
+          [
+            "サイズの変更",
+            "LV_EVENT_SIZE_CHANGED"
+          ],
+          [
+            "スタイルの変化",
+            "LV_EVENT_STYLE_CHANGED"
+          ],
+          [
+            "レイアウトの変更",
+            "LV_EVENT_LAYOUT_CHANGED"
+          ],
+          [
+            "自分のサイズを選びましょう",
+            "LV_EVENT_GET_SELF_SIZE"
+          ],
+          [
+            "ゾーンの失敗",
+            "LV_EVENT_INVALIDATE_AREA"
+          ],
+          [
+            "解像度の変更",
+            "LV_EVENT_RESOLUTION_CHANGED"
+          ],
+          [
+            "カラーフォーマットの変更",
+            "LV_EVENT_COLOR_FORMAT_CHANGED"
+          ],
+          [
+            "リフレッシュリクエスト",
+            "LV_EVENT_REFR_REQUEST"
+          ],
+          [
+            "リフレッシュ開始",
+            "LV_EVENT_REFR_START"
+          ],
+          [
+            "リフレッシュして準備万端",
+            "LV_EVENT_REFR_READY"
+          ],
+          [
+            "レンダリング開始",
+            "LV_EVENT_RENDER_START"
+          ],
+          [
+            "レンダリング準備完了",
+            "LV_EVENT_RENDER_READY"
+          ],
+          [
+            "フラッシュスタート",
+            "LV_EVENT_FLUSH_START"
+          ],
+          [
+            "リフレッシュ完了(フラッシュ)",
+            "LV_EVENT_FLUSH_FINISH"
+          ],
+          [
+            "リフレッシュ待ちが始まります",
+            "LV_EVENT_FLUSH_WAIT_START"
+          ],
+          [
+            "リフレッシュして完了を待つ",
+            "LV_EVENT_FLUSH_WAIT_FINISH"
+          ],
+          [
+            "レイアウト更新完了",
+            "LV_EVENT_UPDATE_LAYOUT_COMPLETED"
+          ],
+          [
+            "垂直同期",
+            "LV_EVENT_VSYNC"
+          ],
+          [
+            "垂直同期要求",
+            "LV_EVENT_VSYNC_REQUEST"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_obj_get_child": {
+    "message0": "%2の子オブジェクトを使って%1インデックスを作成%3",
+    "tooltip": "親オブジェクトの指定されたインデックスの子オブジェクトを取得する"
+  },
+  "lvgl_screen_active": {
+    "message0": "現在の画面を入手してください",
+    "tooltip": "現在のアクティブなスクリーンオブジェクトを取得します"
+  },
+  "lvgl_screen_load": {
+    "message0": "ロード画面%1",
+    "tooltip": "指定された画面に切り替える"
+  },
+  "lvgl_obj_create": {
+    "message0": "親オブジェクト%2%1基本オブジェクトを作成する%3",
+    "tooltip": "ベースコンテナオブジェクトを作成します",
+    "args0": [
+      {
+        "options": [
+          [
+            "状況全体",
+            "global"
+          ],
+          [
+            "ローカル",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_screen_create": {
+    "message0": "新しい画面%1作成%2",
+    "tooltip": "新しいスクリーンオブジェクトを作成する",
+    "args0": [
+      {
+        "options": [
+          [
+            "状況全体",
+            "global"
+          ],
+          [
+            "ローカル",
+            "local"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "lvgl_image_create": {
+    "message0": "親オブジェクト%2画像を作成する%1 %3",
+    "tooltip": "イメージコントロールを作成する",
+    "args0": [
+      {
+        "options": [
+          [
+            "状況全体",
+            "global"
+          ],
+          [
+            "ローカル",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_image_set_src": {
+    "message0": "画像%1ソースを%2に設定します",
+    "tooltip": "画像のソースファイルパスまたはシンボルを設定します"
+  },
+  "lvgl_image_set_zoom": {
+    "message0": "画像%1スケールを%2に設定します",
+    "tooltip": "画像ズームを設定してください(256が元のサイズです)"
+  },
+  "lvgl_image_set_angle": {
+    "message0": "画像%1回転角度を%2に設定します",
+    "tooltip": "画像の回転角(0.1度単位)を設定します。"
+  },
+  "lvgl_image_set_offset": {
+    "message0": "画像をオフセットX%1Y%2%3",
+    "tooltip": "画像のオフセットを設定します"
+  },
+  "lvgl_chart_create": {
+    "message0": "親オブジェクト%2チャートを作成する%3%1",
+    "tooltip": "チャートコントロールを作成する",
+    "args0": [
+      {
+        "options": [
+          [
+            "状況全体",
+            "global"
+          ],
+          [
+            "ローカル",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_chart_set_type": {
+    "message0": "タイプ %1 チャートを%2",
+    "tooltip": "チャートの種類を設定する",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "棒グラフ",
+            "LV_CHART_TYPE_BAR"
+          ],
+          [
+            "線図",
+            "LV_CHART_TYPE_LINE"
+          ],
+          [
+            "散布図",
+            "LV_CHART_TYPE_SCATTER"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_chart_set_point_count": {
+    "message0": "ポイント%1チャートを%2設定",
+    "tooltip": "チャートに表示されるデータポイントの数を設定します"
+  },
+  "lvgl_chart_add_series": {
+    "message0": "チャート シリーズ%1 カラー%2追加 %3",
+    "tooltip": "チャートにデータ系列を追加する",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "赤",
+            "lv_palette_main(LV_PALETTE_RED)"
+          ],
+          [
+            "青",
+            "lv_palette_main(LV_PALETTE_BLUE)"
+          ],
+          [
+            "緑",
+            "lv_palette_main(LV_PALETTE_GREEN)"
+          ],
+          [
+            "オレンジ",
+            "lv_palette_main(LV_PALETTE_ORANGE)"
+          ],
+          [
+            "紫",
+            "lv_palette_main(LV_PALETTE_PURPLE)"
+          ],
+          [
+            "シアン",
+            "lv_palette_main(LV_PALETTE_CYAN)"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_chart_set_next_value": {
+    "message0": "次の値を%1%2チャートを%3に設定します。",
+    "tooltip": "次のデータポイント値を系列に設定します"
+  },
+  "lvgl_chart_set_range": {
+    "message0": "チャートをセット %1 シリーズ %2 レンジ 最小%3最大%4",
+    "tooltip": "系列のY軸範囲を設定します"
+  },
+  "lvgl_chart_set_update_mode": {
+    "message0": "チャートを更新モード%1設定%2",
+    "tooltip": "チャートのデータ更新モードを設定します",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "シフト",
+            "LV_CHART_UPDATE_MODE_SHIFT"
+          ],
+          [
+            "ループ",
+            "LV_CHART_UPDATE_MODE_CIRCULAR"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_chart_refresh": {
+    "message0": "チャートの更新%1",
+    "tooltip": "チャート表示を更新する"
+  },
+  "lvgl_keyboard_create": {
+    "message0": "親オブジェクト%2キーボード%1作成%3",
+    "tooltip": "キーボードコントロールを作成する",
+    "args0": [
+      {
+        "options": [
+          [
+            "状況全体",
+            "global"
+          ],
+          [
+            "ローカル",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_keyboard_set_textarea": {
+    "message0": "キーボードをテキストボックス%1アソシエイトする設定%2",
+    "tooltip": "キーボードに関連付けられたテキストボックスを設定します"
+  },
+  "lvgl_keyboard_set_mode": {
+    "message0": "キーボード%1モードを%2設定してください",
+    "tooltip": "キーボードモードを設定する",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "テキスト",
+            "LV_KEYBOARD_MODE_TEXT_LOWER"
+          ],
+          [
+            "数値",
+            "LV_KEYBOARD_MODE_NUMBER"
+          ],
+          [
+            "特殊キャラクター",
+            "LV_KEYBOARD_MODE_SPECIAL"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_keyboard_set_popovers": {
+    "message0": "キーボード%1ポップアッププロンプトを設定し%2",
+    "tooltip": "キーボードキーのポップアッププロンプトを設定する",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "オンにする",
+            "true"
+          ],
+          [
+            "閉じる",
+            "false"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_list_create": {
+    "message0": "親オブジェクト%2リストを作成%1 %3",
+    "tooltip": "リストコントロールの作成",
+    "args0": [
+      {
+        "options": [
+          [
+            "状況全体",
+            "global"
+          ],
+          [
+            "ローカル",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_list_add_text": {
+    "message0": "リスト%1テキストを追加%2",
+    "tooltip": "リストにテキスト項目を追加する"
+  },
+  "lvgl_list_add_btn": {
+    "message0": "リスト %1 追加ボタン %2アイコン %3",
+    "tooltip": "ボタン項目をリストに追加してください",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "なし",
+            "NULL"
+          ],
+          [
+            "再生",
+            "LV_SYMBOL_PLAY"
+          ],
+          [
+            "一時停止",
+            "LV_SYMBOL_PAUSE"
+          ],
+          [
+            "やめて",
+            "LV_SYMBOL_STOP"
+          ],
+          [
+            "設定",
+            "LV_SYMBOL_SETTINGS"
+          ],
+          [
+            "音量",
+            "LV_SYMBOL_VOLUME_MAX"
+          ],
+          [
+            "WiFi",
+            "LV_SYMBOL_WIFI"
+          ],
+          [
+            "Bluetooth",
+            "LV_SYMBOL_BLUETOOTH"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_tabview_create": {
+    "message0": "親オブジェクト%2タブビュー%1作成%3",
+    "tooltip": "タブビューコントロールを作成する",
+    "args0": [
+      {
+        "options": [
+          [
+            "状況全体",
+            "global"
+          ],
+          [
+            "ローカル",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_tabview_add_tab": {
+    "message0": "タブ表示 %1 タブを追加 %2",
+    "tooltip": "タブを追加し、タブのコンテンツオブジェクトを返します"
+  },
+  "lvgl_set_img_font": {
+    "message0": "セットイメージフォント%1",
+    "tooltip": "画像フォントサポートを有効にするかどうかを設定する",
+    "args0": [
+      {
+        "options": [
+          [
+            "オンにする",
+            "true"
+          ],
+          [
+            "閉じる",
+            "false"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_set_stdlib_malloc": {
+    "message0": "標準ライブラリタイプを%1設定します",
+    "tooltip": "標準ライブラリタイプを設定します",
+    "args0": [
+      {
+        "options": [
+          [
+            "内蔵",
+            "LV_STDLIB_BUILTIN"
+          ],
+          [
+            "C 標準ライブラリ",
+            "LV_STDLIB_CLIB"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_set_stdlib_string": {
+    "message0": "文字列ライブラリの型を%1",
+    "tooltip": "使用する文字列ライブラリの種類を設定します",
+    "args0": [
+      {
+        "options": [
+          [
+            "内蔵",
+            "LV_STDLIB_BUILTIN"
+          ],
+          [
+            "C 標準ライブラリ",
+            "LV_STDLIB_CLIB"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_set_stdlib_sprintf": {
+    "message0": "出力関数のフォーマットタイプを設定する%1",
+    "tooltip": "使用するフォーマット済み出力関数の種類を設定します",
+    "args0": [
+      {
+        "options": [
+          [
+            "内蔵",
+            "LV_STDLIB_BUILTIN"
+          ],
+          [
+            "C 標準ライブラリ",
+            "LV_STDLIB_CLIB"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_set_theme": {
+    "message0": "セットテーマ%1",
+    "tooltip": "グローバルテーマスタイルを設定する",
+    "args0": [
+      {
+        "options": [
+          [
+            "明るい色",
+            "light"
+          ],
+          [
+            "ダーク",
+            "dark"
+          ]
+        ]
+      }
+    ]
+  },
+  "toolbox_categories": [
+    "初期化",
+    "画面",
+    "表示コントロール",
+    "入力制御",
+    "モニター制御",
+    "レイアウト",
+    "スタイル",
+    "Events",
+    "現状と特徴"
+  ]
+}

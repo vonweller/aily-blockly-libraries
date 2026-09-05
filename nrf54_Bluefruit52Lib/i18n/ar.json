@@ -1,0 +1,712 @@
+{
+  "toolbox_name": "Bluefruit52 BLE",
+  "toolbox_categories": [
+    "الوضع السريع",
+    "التهيئة والحالة",
+    "استدعاءات الأحداث",
+    "الإعلان",
+    "طرفي BLE UART",
+    "خدمات GATT",
+    "الخدمات القياسية",
+    "الماسح والمركزي",
+    "HID",
+    "منارة"
+  ],
+  "bluefruit52_init": {
+    "message0": "تهيئة اتصالات بلوفروت الطرفية %1 المراكز %2",
+    "tooltip": "قم بتهيئة بروتوكول Bluefruit BLE وضبط عدد الاتصالات الطرفية/المركزية"
+  },
+  "bluefruit52_set_name": {
+    "message0": "تعيين اسم جهاز BLE %1",
+    "tooltip": "تعيين أسماء أجهزة BLE المستخدمة في البث وGATT"
+  },
+  "bluefruit52_set_tx_power": {
+    "message0": "اضبط قدرة إرسال BLE (dBm) %1",
+    "tooltip": "اضبط قوة إرسال راديو BLE",
+    "args0": [
+      {
+        "options": [
+          [
+            "+8",
+            "8"
+          ],
+          [
+            "+4",
+            "4"
+          ],
+          [
+            "0",
+            "0"
+          ],
+          [
+            "-4",
+            "-4"
+          ],
+          [
+            "-8",
+            "-8"
+          ],
+          [
+            "-12",
+            "-12"
+          ],
+          [
+            "-16",
+            "-16"
+          ],
+          [
+            "-20",
+            "-20"
+          ],
+          [
+            "-40",
+            "-40"
+          ]
+        ]
+      }
+    ]
+  },
+  "bluefruit52_auto_conn_led": {
+    "message0": "مؤشر الاتصال light%1",
+    "tooltip": "تفعيل أو تعطيل مؤشر حالة اتصال بلوفروت",
+    "args0": [
+      {
+        "options": [
+          [
+            "تمكين",
+            "true"
+          ],
+          [
+            "تعطيل",
+            "false"
+          ]
+        ]
+      }
+    ]
+  },
+  "bluefruit52_config_bandwidth": {
+    "message0": "تكوين %1 عرض النطاق الترددي %2",
+    "tooltip": "قم بتكوين مستوى عرض النطاق الترددي للاتصالات الطرفية أو المركزية",
+    "args0": [
+      {
+        "options": [
+          [
+            "طرفي",
+            "Prph"
+          ],
+          [
+            "مركزي",
+            "Central"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "تلقائي",
+            "BANDWIDTH_AUTO"
+          ],
+          [
+            "منخفض",
+            "BANDWIDTH_LOW"
+          ],
+          [
+            "عادي",
+            "BANDWIDTH_NORMAL"
+          ],
+          [
+            "عال",
+            "BANDWIDTH_HIGH"
+          ],
+          [
+            "أقصى",
+            "BANDWIDTH_MAX"
+          ]
+        ]
+      }
+    ]
+  },
+  "bluefruit52_connected": {
+    "message0": "هل البلوفروت مرتبطة؟",
+    "tooltip": "يعيد ما إذا كان هناك اتصال BLE موجود حاليا"
+  },
+  "bluefruit52_disconnect": {
+    "message0": "مقبض فصل %1",
+    "tooltip": "افصل اتصال BLE بالضغط على مقبض الاتصال"
+  },
+  "bluefruit52_callback_conn_handle": {
+    "message0": "إعادة الاتصال الحالية لربط مناوبات BLE",
+    "tooltip": "اقرأ مقبض الانضمام الحالي في انضمام، فصل اتصال، UART، أو استدعاء مكتوب"
+  },
+  "bluefruit52_callback_disconnect_reason": {
+    "message0": "الأسباب الحالية لفصل BLE",
+    "tooltip": "اقرأ رمز سبب الانقطاع في استدعاء الانقطاع"
+  },
+  "bluefruit52_callback_data": {
+    "message0": "بيانات سحب BLE الحالية",
+    "tooltip": "اقرأ بيانات BLE UART أو كتابة بيانات نصية من ذاكرة الرجوع المؤقتة"
+  },
+  "bluefruit52_on_periph_connect": {
+    "message0": "عندما يكون طرف بلوفروت متصلا",
+    "message1": "تنفيذ %1",
+    "tooltip": "سجل استدعاء الاتصال للحرف الطرفي"
+  },
+  "bluefruit52_on_periph_disconnect": {
+    "message0": "عندما يتم فصل ملحقات بلوفروت",
+    "message1": "تنفيذ %1",
+    "tooltip": "قطع الاتصال للاستدعاء للأدوار الطرفية المسجلة"
+  },
+  "bluefruit52_on_central_connect": {
+    "message0": "عندما يكون الطرف المركزي لبلوفروت متصلا",
+    "message1": "تنفيذ %1",
+    "tooltip": "استدعاءات الاتصال لأدوار مراكز السجل"
+  },
+  "bluefruit52_on_central_disconnect": {
+    "message0": "عندما يتم فصل الطرف الأوسط من بلوفروت",
+    "message1": "تنفيذ %1",
+    "tooltip": "قطع الاتصال لدور مركز التسجيل"
+  },
+  "bluefruit52_adv_clear": {
+    "message0": "بيانات بث BLE واضحة %1",
+    "tooltip": "مسح حزم البث أو بيانات استجابة المسح",
+    "args0": [
+      {
+        "options": [
+          [
+            "حزمة الإعلان",
+            "Advertising"
+          ],
+          [
+            "استجابة المسح",
+            "ScanResponse"
+          ],
+          [
+            "كلاهما",
+            "Both"
+          ]
+        ]
+      }
+    ]
+  },
+  "bluefruit52_adv_add_flags": {
+    "message0": "تضيف البث أعلام الاكتشاف العالمي",
+    "tooltip": "إضافة شعار LE Only General Discoverable إلى حزم البث"
+  },
+  "bluefruit52_adv_add_tx_power": {
+    "message0": "البث يضيف قوة الإرسال",
+    "tooltip": "أضف حقل طاقة الإرسال إلى حزمة البث"
+  },
+  "bluefruit52_adv_add_name": {
+    "message0": "%1 إضافة اسم الجهاز",
+    "tooltip": "إضافة أسماء الأجهزة إلى حزم البث أو استجابات المسح",
+    "args0": [
+      {
+        "options": [
+          [
+            "حزمة الإعلان",
+            "Advertising"
+          ],
+          [
+            "استجابة المسح",
+            "ScanResponse"
+          ],
+          [
+            "كلاهما",
+            "Both"
+          ]
+        ]
+      }
+    ]
+  },
+  "bluefruit52_adv_add_service": {
+    "message0": "خدمة البث الإضافي %1",
+    "tooltip": "أضف UUID خدمة BLE التي أنشأتها إلى حزمة البث"
+  },
+  "bluefruit52_adv_add_uuid": {
+    "message0": "يضيف البث UUID%1",
+    "tooltip": "إضافة UUID للخدمة إلى حزم البث بواسطة سلسلة UUID"
+  },
+  "bluefruit52_adv_add_appearance": {
+    "message0": "البث يضيف مظهرا %1",
+    "tooltip": "إضافة قيم ظهور BLE إلى حزم البث",
+    "args0": [
+      {
+        "options": [
+          [
+            "ساعة عامة",
+            "BLE_APPEARANCE_GENERIC_CLOCK"
+          ],
+          [
+            "لوحة مفاتيح",
+            "BLE_APPEARANCE_HID_KEYBOARD"
+          ],
+          [
+            "فأرة",
+            "BLE_APPEARANCE_HID_MOUSE"
+          ],
+          [
+            "ذراع ألعاب",
+            "BLE_APPEARANCE_HID_GAMEPAD"
+          ]
+        ]
+      }
+    ]
+  },
+  "bluefruit52_adv_restart_on_disconnect": {
+    "message0": "إعادة بث تلقائية بعد disconnection%1",
+    "tooltip": "حدد ما إذا كان البث سيستأنف تلقائيا بعد فصل الاتصال",
+    "args0": [
+      {
+        "options": [
+          [
+            "تمكين",
+            "true"
+          ],
+          [
+            "تعطيل",
+            "false"
+          ]
+        ]
+      }
+    ]
+  },
+  "bluefruit52_adv_set_interval": {
+    "message0": "تحديد فترة البث السريعة %1 البطيئة %2",
+    "tooltip": "اضبط فترة البث السريعة/البطيئة، بوحدات 0.625 مللي ثانية"
+  },
+  "bluefruit52_adv_set_initial_timeout": {
+    "message0": "اضبط مهلة البث الأولية (ثواني) %1",
+    "tooltip": "حدد مدة البث السريع"
+  },
+  "bluefruit52_adv_start": {
+    "message0": "بدء بث BLE وقت مستقطع (ثواني) %1",
+    "tooltip": "ابدأ البث عبر BLE، 0 يعني البث المستمر"
+  },
+  "bluefruit52_adv_stop": {
+    "message0": "إيقاف بث BLE",
+    "tooltip": "أوقف البث الحالي ل BLE"
+  },
+  "bluefruit52_adv_is_running": {
+    "message0": "هل BLE تبث بث؟",
+    "tooltip": "أعد ما إذا كان البث يعمل"
+  },
+  "bluefruit52_bleuart_create": {
+    "message0": "إنشاء BLE UART %1 مخزن استقبال %2",
+    "tooltip": "إنشاء كائنات طرفية لخدمة UART الإسكندنافية"
+  },
+  "bluefruit52_bleuart_begin": {
+    "message0": "إطلاق BLE UART %1",
+    "tooltip": "إطلاق خدمات BLE UART"
+  },
+  "bluefruit52_bleuart_write": {
+    "message0": "BLE UART %1 send %2",
+    "tooltip": "إرسال النص أو البيانات عبر BLE UART"
+  },
+  "bluefruit52_bleuart_available": {
+    "message0": "BLE UART %1 عدد البايتات القابلة للقراءة",
+    "tooltip": "يعيد عدد البايتات في مخزن BLE UART المستقبل"
+  },
+  "bluefruit52_bleuart_read": {
+    "message0": "BLE UART %1 يقرأ بايت واحد",
+    "tooltip": "عند قراءة بايت واحد من BLE UART، يظهر الفشل -1"
+  },
+  "bluefruit52_bleuart_read_string": {
+    "message0": "BLE UART %1 اقرأ النص الكامل",
+    "tooltip": "اقرأ كل النص في مخزن BLE UART"
+  },
+  "bluefruit52_bleuart_notify_enabled": {
+    "message0": "هل تم تفعيل إشعارات %1 BLE UART؟",
+    "tooltip": "تحقق مما إذا كانت إشعارات BLE UART قد تم تفعيلها في الطرف الأوسط"
+  },
+  "bluefruit52_bleuart_on_receive": {
+    "message0": "اضبط BLE UART %1 عند استقبال البيانات",
+    "message1": "تنفيذ %1",
+    "tooltip": "يسجل ويستقبل الاستدعاءات المتكررة ل BLE UART، ويمكن قراءة بيانات إعادة الاتصال باستخدام بيانات استدعاء BLE الحالية"
+  },
+  "bluefruit52_bleuart_peripheral_quick": {
+    "message0": "البداية السريعة BLE UART الاسم المحيطي: %1",
+    "tooltip": "تهيئة Bluefruit بنقرة واحدة، معلومات الجهاز، BLE UART، والبث العادي"
+  },
+  "bluefruit52_bleuart_quick_send": {
+    "message0": "إرسال سريع من BLE UART %1",
+    "tooltip": "يتم إرسال البيانات باستخدام BLE UART الذي يتم إنشاؤه في الوضع السريع"
+  },
+  "bluefruit52_bleuart_quick_received_data": {
+    "message0": "البيانات التي استلمت بسرعة من قبل BLE UART",
+    "tooltip": "اقرأ كل النصوص في الوضع السريع الذي استلمه BLE UART في المخزن المؤقت"
+  },
+  "bluefruit52_bleuart_quick_connected": {
+    "message0": "هل BLE UART متصلا بسرعة؟",
+    "tooltip": "تحقق مما إذا كان BLE UART في الوضع السريع متصلا"
+  },
+  "bluefruit52_service_create": {
+    "message0": "إنشاء خدمة BLE %1 UUID%2",
+    "tooltip": "إنشاء كائنات خدمة GATT مخصصة"
+  },
+  "bluefruit52_service_begin": {
+    "message0": "إطلاق خدمة BLE %1",
+    "tooltip": "تسجيل وإطلاق خدمات GATT"
+  },
+  "bluefruit52_characteristic_create": {
+    "message0": "إنشاء ميزات BLE %1 خصائص UUID %2 %3 أقصى طول %4",
+    "tooltip": "أنشئ كائنات ميزات GATT مخصصة وقم بتكوين خصائصها وأقصى طول لها",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "قراءة",
+            "CHR_PROPS_READ"
+          ],
+          [
+            "كتابة",
+            "CHR_PROPS_WRITE"
+          ],
+          [
+            "كتابة بلا رد",
+            "CHR_PROPS_WRITE_WO_RESP"
+          ],
+          [
+            "إشعار",
+            "CHR_PROPS_NOTIFY"
+          ],
+          [
+            "إشارة",
+            "CHR_PROPS_INDICATE"
+          ],
+          [
+            "قراءة/كتابة",
+            "CHR_PROPS_READ | CHR_PROPS_WRITE"
+          ],
+          [
+            "قراءة/كتابة+إشعار",
+            "CHR_PROPS_READ | CHR_PROPS_WRITE | CHR_PROPS_NOTIFY"
+          ],
+          [
+            "قراءة+إشارة",
+            "CHR_PROPS_READ | CHR_PROPS_INDICATE"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "bluefruit52_characteristic_set_permission": {
+    "message0": "تعيين الميزات %1 الأذونات للقراءة %2 الكتابة %3",
+    "tooltip": "تعيين صلاحيات الأمان للقراءة والكتابة الخاصة بالميزات",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "مفتوح",
+            "SECMODE_OPEN"
+          ],
+          [
+            "لا وصول",
+            "SECMODE_NO_ACCESS"
+          ],
+          [
+            "مشفر",
+            "SECMODE_ENC_NO_MITM"
+          ],
+          [
+            "مشفر+MITM",
+            "SECMODE_ENC_WITH_MITM"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "مفتوح",
+            "SECMODE_OPEN"
+          ],
+          [
+            "لا وصول",
+            "SECMODE_NO_ACCESS"
+          ],
+          [
+            "مشفر",
+            "SECMODE_ENC_NO_MITM"
+          ],
+          [
+            "مشفر+MITM",
+            "SECMODE_ENC_WITH_MITM"
+          ]
+        ]
+      }
+    ]
+  },
+  "bluefruit52_characteristic_begin": {
+    "message0": "تفعيل ميزات BLE %1",
+    "tooltip": "إضافة ميزات إلى خدمة GATT التي أطلقت مؤخرا"
+  },
+  "bluefruit52_characteristic_write_text": {
+    "message0": "ميزات %1 كتابة %2 النص",
+    "tooltip": "اكتب القيمة المحلية للميزة"
+  },
+  "bluefruit52_characteristic_notify_text": {
+    "message0": "ميزات %1 نص الإشعار %2",
+    "tooltip": "يتم إرسال إشعارات نصية إلى الطرف المركزي من الإشعار المشترك"
+  },
+  "bluefruit52_characteristic_indicate_text": {
+    "message0": "الميزات %1 نص المؤشر %2",
+    "tooltip": "ترسل تعليمات نصية لتأكيدها إلى الطرف المركزي من التعليمات المشتركة"
+  },
+  "bluefruit52_characteristic_read_string": {
+    "message0": "اقرأ الميزات %1 النص",
+    "tooltip": "اقرأ القيمة الحالية للميزات وحولها إلى نص"
+  },
+  "bluefruit52_characteristic_notify_enabled": {
+    "message0": "الخاصية %1 الإشعارات مفعلة؟",
+    "tooltip": "تحقق مما إذا كان هذا الإشعار قد تم تفعيله من قبل الطرف المركزي"
+  },
+  "bluefruit52_characteristic_on_write": {
+    "message0": "اكتب الميزات %1 عند كتابتها",
+    "message1": "تنفيذ %1",
+    "tooltip": "سجل استدعاءات الميزات قبل بدء تشغيل الميزات"
+  },
+  "bluefruit52_dis_create": {
+    "message0": "إنشاء خدمات معلومات الأجهزة %1",
+    "tooltip": "إنشاء كائنات خدمة معلومات جهاز BLE"
+  },
+  "bluefruit52_dis_set": {
+    "message0": "خدمة معلومات الجهاز %1 ضبط %2 على %3",
+    "tooltip": "تعيين حقل خدمة معلومات الجهاز",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "الشركة المصنعة",
+            "setManufacturer"
+          ],
+          [
+            "الطراز",
+            "setModel"
+          ],
+          [
+            "الرقم التسلسلي",
+            "setSerialNum"
+          ],
+          [
+            "إصدار البرنامج الثابت",
+            "setFirmwareRev"
+          ],
+          [
+            "إصدار العتاد",
+            "setHardwareRev"
+          ],
+          [
+            "إصدار البرنامج",
+            "setSoftwareRev"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "bluefruit52_dis_begin": {
+    "message0": "خدمة معلومات معدات الإطلاق %1",
+    "tooltip": "إطلاق خدمات معلومات معدات BLE"
+  },
+  "bluefruit52_bas_create": {
+    "message0": "إنشاء خدمات البطاريات %1",
+    "tooltip": "إنشاء أهداف خدمة بطاريات BLE"
+  },
+  "bluefruit52_bas_begin": {
+    "message0": "تشغيل خدمة البطارية %1",
+    "tooltip": "إطلاق خدمة بطاريات BLE"
+  },
+  "bluefruit52_bas_write": {
+    "message0": "خدمة البطارية %1 الكتابة %2٪",
+    "tooltip": "قيمة خدمة البطارية المحدثة"
+  },
+  "bluefruit52_bas_notify": {
+    "message0": "خدمة البطارية %1 البطارية الإعلامية %2٪",
+    "tooltip": "يخبرك بتغيرات في مستوى البطارية"
+  },
+  "bluefruit52_scanner_config": {
+    "message0": "تكوين فترة المسح الفاصل %1 النافذة %2 المسح النشط %3 فصل وإعادة المسح %4",
+    "tooltip": "تكوين معلمات المسح المركزي، الوحدة 0.625 مللي ثانية",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "تمكين",
+            "true"
+          ],
+          [
+            "تعطيل",
+            "false"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "تمكين",
+            "true"
+          ],
+          [
+            "تعطيل",
+            "false"
+          ]
+        ]
+      }
+    ]
+  },
+  "bluefruit52_scanner_start": {
+    "message0": "ابدأ مسح الوقت الفائق (ثواني) %1",
+    "tooltip": "ابدأ مسح BLE؛ 0 يعني المسح المستمر"
+  },
+  "bluefruit52_scanner_stop": {
+    "message0": "توقف عن المسح",
+    "tooltip": "أوقف مسح BLE"
+  },
+  "bluefruit52_scanner_resume": {
+    "message0": "استمر في المسح",
+    "tooltip": "استعادة الفحص في إعادة الاتصال"
+  },
+  "bluefruit52_scanner_filter_uuid": {
+    "message0": "مسح وتصفية UUID %1",
+    "tooltip": "فقط أجهزة المسح التي تحتوي على UUID محدد"
+  },
+  "bluefruit52_on_scan_report": {
+    "message0": "عند المسح إلى بث BLE",
+    "message1": "تنفيذ %1",
+    "tooltip": "مسح السجلات للاستدعاءات، والتي يمكنها قراءة نتائج مطابقة RSSI والعنوان وUUID"
+  },
+  "bluefruit52_scan_report_rssi": {
+    "message0": "تقرير RSSI مسح",
+    "tooltip": "اقرأ مؤشر RSSI لتقرير المسح الحالي"
+  },
+  "bluefruit52_scan_report_address": {
+    "message0": "امسح عنوان التقرير",
+    "tooltip": "اقرأ عنوان MAC في تقرير المسح الحالي"
+  },
+  "bluefruit52_scan_report_has_uuid": {
+    "message0": "تقارير المسح التي تحتوي على UUID %1؟",
+    "tooltip": "تحقق مما إذا كان تقرير المسح الحالي يحتوي على UUID الخدمة المحددة"
+  },
+  "bluefruit52_central_connect_report": {
+    "message0": "قم بتوصيل جهاز تقرير المسح الحالي",
+    "tooltip": "الطرف المركزي يتصل بالجهاز الذي هو حاليا في مرحلة إعادة الاتصال"
+  },
+  "bluefruit52_central_connected": {
+    "message0": "هل المحطة المركزية متصلة؟",
+    "tooltip": "تحقق مما إذا كان الدور المركزي مرتبطا"
+  },
+  "bluefruit52_client_uart_create": {
+    "message0": "أنشئ برنامج BLE UART مستضاف مركزيا %1",
+    "tooltip": "إنشاء كائن مركزي لعميل BLE UART"
+  },
+  "bluefruit52_client_uart_begin": {
+    "message0": "مركز الشركات الناشئة BLE UART %1",
+    "tooltip": "تهيئة عميل BLE UART"
+  },
+  "bluefruit52_client_uart_discover": {
+    "message0": "مقبض اتصال خدمة الاكتشاف %1 BLE UART في الطرف المركزي %2",
+    "tooltip": "بعد الاتصال، وجدت خدمة UART النوردية البعيدة"
+  },
+  "bluefruit52_client_uart_enable_txd": {
+    "message0": "يتيح %1 BLE UART المركزي استقبال الإشعارات",
+    "tooltip": "تفعيل إشعارات TXD البعيدة لاستقبال البيانات"
+  },
+  "bluefruit52_client_uart_write": {
+    "message0": "مركز BLE UART %1 إرسال %2",
+    "tooltip": "إرسال البيانات إلى جهاز BLE UART المتصل"
+  },
+  "bluefruit52_client_uart_read_string": {
+    "message0": "يقرأ %1 BLE UART في الوسط جميع النصوص",
+    "tooltip": "اقرأ كل النصوص التي استلمها عميل BLE UART"
+  },
+  "bluefruit52_client_uart_on_receive": {
+    "message0": "اضبط %1 UART المركزي عند استقبال البيانات",
+    "message1": "تنفيذ %1",
+    "tooltip": "قم بتعيين عميل BLE UART لاستقبال مكالمات متكررة"
+  },
+  "bluefruit52_hid_create": {
+    "message0": "إنشاء برنامج BLE HID %1",
+    "tooltip": "إنشاء كائن خدمة لوحة مفاتيح/فأرة BLE HID"
+  },
+  "bluefruit52_hid_begin": {
+    "message0": "تفعيل BLE HID %1",
+    "tooltip": "إطلاق خدمة BLE HID"
+  },
+  "bluefruit52_hid_key_press": {
+    "message0": "BLE HID %1 Press Character %2",
+    "tooltip": "أرسل لوحة مفاتيح للإبلاغ"
+  },
+  "bluefruit52_hid_key_release": {
+    "message0": "BLE HID %1 يطلق مفاتيح لوحة المفاتيح",
+    "tooltip": "تحرير مفتاح لوحة المفاتيح الحالي"
+  },
+  "bluefruit52_hid_key_sequence": {
+    "message0": "BLE HID %1 إدخال النص %2 التباعد (ms) %3",
+    "tooltip": "يتم إرسال إدخال لوحة المفاتيح بتسلسل الأحرف"
+  },
+  "bluefruit52_hid_mouse_move": {
+    "message0": "BLE HID %1 حركة الفأرة X %2 Y %3",
+    "tooltip": "أرسل تقريرا عن حركة الفأر النسبية"
+  },
+  "bluefruit52_hid_mouse_press": {
+    "message0": "BLE HID %1 ضغط الفأرة %2",
+    "tooltip": "اضغط زر الفأرة",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "الزر الأيسر",
+            "MOUSE_BUTTON_LEFT"
+          ],
+          [
+            "الزر الأيمن",
+            "MOUSE_BUTTON_RIGHT"
+          ],
+          [
+            "الزر الأوسط",
+            "MOUSE_BUTTON_MIDDLE"
+          ],
+          [
+            "رجوع",
+            "MOUSE_BUTTON_BACKWARD"
+          ],
+          [
+            "تقدم",
+            "MOUSE_BUTTON_FORWARD"
+          ]
+        ]
+      }
+    ]
+  },
+  "bluefruit52_hid_mouse_release": {
+    "message0": "%1 BLE HID يطلق أزرار الفأرة",
+    "tooltip": "تحرير جميع أزرار الفأرة"
+  },
+  "bluefruit52_hid_mouse_scroll": {
+    "message0": "عجلة الفأرة %1 BLE HID %2",
+    "tooltip": "إرسال تقارير عجلة الفأرة"
+  },
+  "bluefruit52_beacon_create": {
+    "message0": "إنشاء iBeacon %1 UUID%2 %3 كبير %4 فرعي %5",
+    "tooltip": "إنشاء وتكوين كائنات iBeacon"
+  },
+  "bluefruit52_beacon_set_manufacturer": {
+    "message0": "إعداد iBeacon %1 معرف البائع %2",
+    "tooltip": "قم بتعيين معرف مورد iBeacon"
+  },
+  "bluefruit52_eddystone_create": {
+    "message0": "إنشاء رابط Eddystone %1 URL %2 RSSI %3",
+    "tooltip": "إنشاء وتكوين كائن منارة URL في Eddystone"
+  },
+  "bluefruit52_adv_set_beacon": {
+    "message0": "منارة إعداد البث %1",
+    "tooltip": "اكتب كائنات iBeacon أو Eddystone لإرسال الحزم"
+  }
+}

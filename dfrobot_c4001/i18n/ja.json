@@ -1,0 +1,314 @@
+{
+  "toolbox_name": "C4001ミリ波レーダー",
+  "c4001_init_i2c": {
+    "message0": "アドレス%2バス%1C4001 I2Cを初期化%3",
+    "tooltip": "I2C経由でC4001レーダーを初期化します。",
+    "args0": [
+      null,
+      {
+        "options": "${board.i2c}"
+      },
+      {
+        "options": [
+          [
+            "0x2A",
+            "DEVICE_ADDR_0"
+          ],
+          [
+            "0x2B",
+            "DEVICE_ADDR_1"
+          ]
+        ]
+      }
+    ]
+  },
+  "c4001_init_uart": {
+    "message0": "C4001 UARTをシリアルポート%1RX%3TX%2初期化%4",
+    "tooltip": "UART経由でC4001レーダーを初期化すると、ボーレートは9600に固定されます。",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Serial1",
+            "Serial1"
+          ],
+          [
+            "Serial2",
+            "Serial2"
+          ],
+          [
+            "Serial",
+            "Serial"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "c4001_motion_detected": {
+    "message0": "C4001%1人間の存在を検知した",
+    "tooltip": "検出モードでは、人体や動く標的が検出されているかどうかを読み取ります。"
+  },
+  "c4001_set_mode": {
+    "message0": "C4001 %1 動作モード設定%2",
+    "tooltip": "C4001の動作モードに切り替えてください。",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "presence",
+            "eExitMode"
+          ],
+          [
+            "距離と速度の測定",
+            "eSpeedMode"
+          ]
+        ]
+      }
+    ]
+  },
+  "c4001_sensor_command": {
+    "message0": "C4001 %1 run %2",
+    "tooltip": "C4001センサー制御コマンドを実行してください。",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "収集を始めましょう",
+            "eStartSen"
+          ],
+          [
+            "集めるのはやめろ",
+            "eStopSen"
+          ],
+          [
+            "センサーリセット",
+            "eResetSen"
+          ],
+          [
+            "デフォルトパラメータを復元する",
+            "eRecoverSen"
+          ],
+          [
+            "設定を保存してください",
+            "eSaveParams"
+          ],
+          [
+            "スイッチモード",
+            "eChangeMode"
+          ]
+        ]
+      }
+    ]
+  },
+  "c4001_get_status": {
+    "message0": "C4001 %1 Status%2",
+    "tooltip": "読み取り状態:動作状態0/1、動作モード0/1、初期化状態0/1。",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "現役状況",
+            "WORK"
+          ],
+          [
+            "動作モード",
+            "MODE"
+          ],
+          [
+            "初期化状態",
+            "INIT"
+          ]
+        ]
+      }
+    ]
+  },
+  "c4001_set_presence_range": {
+    "message0": "C4001 %1 検出範囲 最小cm %2 最大cm %3トリガーcm%4",
+    "tooltip": "存在感の検出範囲を最小30-2000cm、最大240-2000cmに設定し、トリガー距離は範囲を超えてはいけません。"
+  },
+  "c4001_set_sensitivity": {
+    "message0": "C4001 %1 %2感度%3セット",
+    "tooltip": "トリガーを設定するか感度を維持するか、範囲0-9。",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "trigger",
+            "TRIG"
+          ],
+          [
+            "keep",
+            "KEEP"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "c4001_set_delay": {
+    "message0": "C4001 %1 ディレイトリガー(0.01秒) %2ホールド(0.5秒)%3",
+    "tooltip": "トリガーディレイを設定し、タイムアウトを維持しましょう。 ユニットを0.01秒、ホールドユニット0.5秒。"
+  },
+  "c4001_get_presence_config": {
+    "message0": "C4001 %1 プレゼンス構成%2",
+    "tooltip": "読み取り検出に関連する構成。",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "最小距離 cm",
+            "MIN"
+          ],
+          [
+            "最大距離 cm",
+            "MAX"
+          ],
+          [
+            "トリガー距離cm",
+            "TRIG_RANGE"
+          ],
+          [
+            "トリガー感度",
+            "TRIG_SENS"
+          ],
+          [
+            "警戒を怠るな",
+            "KEEP_SENS"
+          ],
+          [
+            "トリガーディレイ",
+            "TRIG_DELAY"
+          ],
+          [
+            "タイムアウトを維持",
+            "KEEP_TIMEOUT"
+          ],
+          [
+            "IO polarity",
+            "IO_POLARITY"
+          ],
+          [
+            "PWM1",
+            "PWM1"
+          ],
+          [
+            "PWM2",
+            "PWM2"
+          ],
+          [
+            "PWM period",
+            "PWM_TIMER"
+          ]
+        ]
+      }
+    ]
+  },
+  "c4001_set_io_polarity": {
+    "message0": "C4001 %1 IO極性を設定%2",
+    "tooltip": "ターゲットを検出した後、出力端子の極性を設定します。 UARTモードは動作します。",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "active low",
+            "0"
+          ],
+          [
+            "active high",
+            "1"
+          ]
+        ]
+      }
+    ]
+  },
+  "c4001_set_pwm": {
+    "message0": "C4001 %1 PWMをターゲット%2ターゲット%3勾配時間%4設定",
+    "tooltip": "OUTピンのPWMをデューティサイクル0-100に設定し、勾配時間単位は64msにします。 UARTモードは動作します。"
+  },
+  "c4001_get_target": {
+    "message0": "C4001 %1 target %2",
+    "tooltip": "距離および速度測定モードで目標の数、速度、距離、エネルギーを読み取る。 ターゲットの数量を最初に読み取ることで内部キャッシュが更新されます。",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "count",
+            "NUMBER"
+          ],
+          [
+            "speed",
+            "SPEED"
+          ],
+          [
+            "range",
+            "RANGE"
+          ],
+          [
+            "energy",
+            "ENERGY"
+          ]
+        ]
+      }
+    ]
+  },
+  "c4001_set_speed_threshold": {
+    "message0": "C4001 %1 距離および速度測定閾値 最小cm%2最大cm%3閾値%4",
+    "tooltip": "距離距離と速度測定モードの距離距離と目標検出閾値を設定します。"
+  },
+  "c4001_set_micro_motion": {
+    "message0": "C4001 %1 微小動作検知%2",
+    "tooltip": "距離測定および速度測定モードでマイクロモーション検知を有効または無効にできます。",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "オンにする",
+            "eON"
+          ],
+          [
+            "閉じる",
+            "eOFF"
+          ]
+        ]
+      }
+    ]
+  },
+  "c4001_get_speed_config": {
+    "message0": "C4001 %1距離および速度測定の構成%2",
+    "tooltip": "距離と速度測定モードの構成を読み取る。",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "最小距離 cm",
+            "MIN"
+          ],
+          [
+            "最大距離 cm",
+            "MAX"
+          ],
+          [
+            "threshold",
+            "THRESHOLD"
+          ],
+          [
+            "micro-motion",
+            "MICRO_MOTION"
+          ]
+        ]
+      }
+    ]
+  }
+}

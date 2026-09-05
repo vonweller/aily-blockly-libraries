@@ -1,0 +1,141 @@
+{
+  "toolbox_name": "I2C",
+  "wire_begin": {
+    "message0": "モード%1初期化%2",
+    "args0": [
+      {
+        "options": "${board.i2c}"
+      },
+      {
+        "options": [
+          [
+            "主な装備",
+            "MASTER"
+          ],
+          [
+            "装備から",
+            "SLAVE"
+          ]
+        ]
+      }
+    ]
+  },
+  "wire_begin_with_settings": {
+    "message0": "SDA%2%1モードを初期化%3SCL%4",
+    "args0": [
+      {
+        "options": "${board.i2c}"
+      },
+      {
+        "options": [
+          [
+            "主な装備",
+            "MASTER"
+          ],
+          [
+            "装備から",
+            "SLAVE"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "wire_set_clock": {
+    "message0": "クロック周波数%1 %2 kHzに設定してください",
+    "args0": [
+      {
+        "options": "${board.i2c}"
+      },
+      null
+    ]
+  },
+  "wire_begin_transmission": {
+    "message0": "%1address%2に送信を始めます",
+    "args0": [
+      {
+        "options": "${board.i2c}"
+      },
+      null
+    ]
+  },
+  "wire_write": {
+    "message0": "%1データを送%2",
+    "args0": [
+      {
+        "options": "${board.i2c}"
+      },
+      null
+    ]
+  },
+  "wire_end_transmission": {
+    "message0": "%1送信終了",
+    "args0": [
+      {
+        "options": "${board.i2c}"
+      }
+    ]
+  },
+  "wire_request_from": {
+    "message0": "%1アドレス%2から%3バイトのデータを要求します",
+    "args0": [
+      {
+        "options": "${board.i2c}"
+      },
+      null,
+      null
+    ]
+  },
+  "wire_available": {
+    "message0": "%1データが読み取れるかどうか",
+    "args0": [
+      {
+        "options": "${board.i2c}"
+      }
+    ]
+  },
+  "wire_read": {
+    "message0": "%1データを読み取る",
+    "args0": [
+      {
+        "options": "${board.i2c}"
+      }
+    ]
+  },
+  "wire_variables": {
+    "message0": "I2Cオブジェクト%1",
+    "tooltip": "I2Cインスタンスを必要とする関数や式で使用できるWireオブジェクト参照を取得します",
+    "args0": [
+      {
+        "options": "${board.i2c}"
+      }
+    ]
+  },
+  "wire_on_receive": {
+    "message0": "%1データを受け取ったら%2に電話をかけます",
+    "args0": [
+      {
+        "options": "${board.i2c}"
+      },
+      null
+    ]
+  },
+  "wire_on_request": {
+    "message0": "%1がデータを要求したときの呼び出し%2",
+    "args0": [
+      {
+        "options": "${board.i2c}"
+      },
+      null
+    ]
+  },
+  "wire_scan": {
+    "message0": "%1I2Cデバイスのスキャン",
+    "args0": [
+      {
+        "options": "${board.i2c}"
+      }
+    ]
+  }
+}

@@ -1,0 +1,204 @@
+{
+  "toolbox_name": "R4リアルタイムクロック",
+  "toolbox_labels": {
+    "基础操作": "基本操作",
+    "时间设置": "時刻設定",
+    "时间获取": "時刻取得",
+    "回调函数": "コールバック関数"
+  },
+  "renesas_rtc_begin": {
+    "message0": "RTCの初期化",
+    "tooltip": "RTCモジュールの初期化"
+  },
+  "renesas_rtc_is_running": {
+    "message0": "RTCは稼働していますか?",
+    "tooltip": "RTCが稼働しているか確認してください"
+  },
+  "renesas_rtc_set_time": {
+    "message0": "RTC %1time設定:%4 %2ヶ月%3日、時間%5分、秒%6week%7",
+    "tooltip": "RTC時間を設定してください"
+  },
+  "renesas_rtc_get_time": {
+    "message0": "RTCの時間を確保して、%1",
+    "tooltip": "指定された変数の現在のRTC時間を取得してください"
+  },
+  "renesas_rtc_time_get_day": {
+    "message0": "%1取得日程(1-31)",
+    "tooltip": "時間オブジェクトの日付を入手してください"
+  },
+  "renesas_rtc_time_get_month": {
+    "message0": "%1までの月数(1-12)",
+    "tooltip": "時間の月のオブジェクトを手に入れてください"
+  },
+  "renesas_rtc_time_get_year": {
+    "message0": "%1年を取得しましょう",
+    "tooltip": "時間対象の年を取得する"
+  },
+  "renesas_rtc_time_get_hour": {
+    "message0": "%1までの時間(0-23)",
+    "tooltip": "時間オブジェクトの取得に必要な時間(0-23)"
+  },
+  "renesas_rtc_time_get_minute": {
+    "message0": "%1に至るまで残り時間(0-59)",
+    "tooltip": "時間オブジェクトの分数(0-59)"
+  },
+  "renesas_rtc_time_get_second": {
+    "message0": "%1を取るまでの秒数(0-59)",
+    "tooltip": "時間オブジェクトを取得するまでの秒数(0-59)"
+  },
+  "renesas_rtc_time_get_day_of_week": {
+    "message0": "週のどの曜日(0〜6日)を接種%1",
+    "tooltip": "曜日の時間帯(0-6)を把握する"
+  },
+  "renesas_rtc_set_periodic_callback": {
+    "message0": "RTC期間コールバック期間を%1設定",
+    "tooltip": "RTCの周期的コールバック関数を設定する(コールバックは1つしか設定できません)",
+    "args0": [
+      {
+        "options": [
+          [
+            "2秒ごとに",
+            "ONCE_EVERY_2_SEC"
+          ],
+          [
+            "1秒ごとに",
+            "ONCE_EVERY_1_SEC"
+          ],
+          [
+            "1秒間に2回",
+            "N2_TIMES_EVERY_SEC"
+          ],
+          [
+            "1秒間に4回",
+            "N4_TIMES_EVERY_SEC"
+          ],
+          [
+            "毎秒8回",
+            "N8_TIMES_EVERY_SEC"
+          ],
+          [
+            "1秒間に16回",
+            "N16_TIMES_EVERY_SEC"
+          ],
+          [
+            "毎秒32回",
+            "N32_TIMES_EVERY_SEC"
+          ],
+          [
+            "1秒間に64回",
+            "N64_TIMES_EVERY_SEC"
+          ],
+          [
+            "1秒間に128回",
+            "N128_TIMES_EVERY_SEC"
+          ],
+          [
+            "毎秒256回",
+            "N256_TIMES_EVERY_SEC"
+          ]
+        ]
+      }
+    ],
+    "message1": "%1 を実行します"
+  },
+  "renesas_rtc_set_alarm_callback": {
+    "message0": "RTCアラーム時計のコールバック設定seconds%1",
+    "tooltip": "秒が一致したときにトリガーされるRTCアラームクロックコールバック機能を設定します(アラームは1つしか設定できません)。",
+    "message1": "%1 を実行します"
+  },
+  "renesas_rtc_set_time_if_not_running": {
+    "message0": "RTCが稼働していない場合は、時間をday%1month%2year%3hour%4minute%5second%6week%7に設定してください。",
+    "tooltip": "RTCが稼働していない場合はタイマーをセットしてください",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "1月",
+            "JANUARY"
+          ],
+          [
+            "2月",
+            "FEBRUARY"
+          ],
+          [
+            "3月",
+            "MARCH"
+          ],
+          [
+            "4月",
+            "APRIL"
+          ],
+          [
+            "5月",
+            "MAY"
+          ],
+          [
+            "6月",
+            "JUNE"
+          ],
+          [
+            "7月",
+            "JULY"
+          ],
+          [
+            "8月",
+            "AUGUST"
+          ],
+          [
+            "9月",
+            "SEPTEMBER"
+          ],
+          [
+            "10月",
+            "OCTOBER"
+          ],
+          [
+            "11月",
+            "NOVEMBER"
+          ],
+          [
+            "12月",
+            "DECEMBER"
+          ]
+        ]
+      },
+      null,
+      null,
+      null,
+      null,
+      {
+        "options": [
+          [
+            "日曜日",
+            "SUNDAY"
+          ],
+          [
+            "月曜日",
+            "MONDAY"
+          ],
+          [
+            "火曜日",
+            "TUESDAY"
+          ],
+          [
+            "水曜日",
+            "WEDNESDAY"
+          ],
+          [
+            "木曜日",
+            "THURSDAY"
+          ],
+          [
+            "金曜日",
+            "FRIDAY"
+          ],
+          [
+            "土曜日",
+            "SATURDAY"
+          ]
+        ]
+      }
+    ]
+  }
+}

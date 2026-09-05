@@ -1,0 +1,35 @@
+{
+  "toolbox_name": "HCHOセンサー",
+  "toolbox_labels": {
+    "初始化": "初期化",
+    "读取数据": "読み取りデータ",
+    "校准": "校正"
+  },
+  "grove_hcho_init": {
+    "message0": "R0キャリブレーション値%2%1HCHOセンサーのピンを初期化%3",
+    "tooltip": "HCHOセンサーを初期化し、ピンとR0のキャリブレーション値を設定します。 R0はクリーンな空気で事前校正されている必要があります。",
+    "args0": [
+      null,
+      {
+        "options": "${board.analogPins}"
+      },
+      null
+    ]
+  },
+  "grove_hcho_read_raw": {
+    "message0": "HCHO%1生シミュレーション値を読みましょう",
+    "tooltip": "センサーの生アナログ値(0-1023)を読み取ってください。"
+  },
+  "grove_hcho_read_rs": {
+    "message0": "HCHO%1センサーの抵抗値Rsを読み取ってください",
+    "tooltip": "センサー抵抗値Rsを計算します"
+  },
+  "grove_hcho_read_ppm": {
+    "message0": "HCHO%1濃度(ppm)を読んでください",
+    "tooltip": "検出範囲は1〜50ppmのHCHO濃度(ppm)を計算します"
+  },
+  "grove_hcho_calibrate_r0": {
+    "message0": "HCHOのキャリブレーション%1R0値を得る",
+    "tooltip": "センサーをクリーンエアでキャリブレーションし、R0値を返してください。 この値を初期化ブロックのR0パラメータに入力します。"
+  }
+}

@@ -1,0 +1,288 @@
+{
+  "toolbox_name": "eModbus communication",
+  "toolbox_labels": {
+    "RTU客户端": "RTU client",
+    "TCP客户端": "TCP client",
+    "客户端设置": "Client settings",
+    "异步读取": "Asynchronous reading",
+    "同步读取": "Synchronous reading",
+    "写入操作": "write operation",
+    "响应数据处理": "Response data processing",
+    "错误处理": "Error handling",
+    "客户端状态": "client status",
+    "RTU服务器": "RTU server",
+    "TCP服务器": "TCP server",
+    "服务器功能": "Server functions"
+  },
+  "emodbus_rtu_client_create": {
+    "message0": "Create Modbus RTU client %1 RS485 control pin %2",
+    "tooltip": "To create a Modbus RTU client instance, you need to specify the DE/RE control pin of the RS485 module",
+    "args0": [
+      null,
+      {
+        "options": "${board.digitalPins}"
+      }
+    ]
+  },
+  "emodbus_rtu_client_begin": {
+    "message0": "Start RTU client %1 Serial port %2 Baud rate %3 RX pin %4 TX pin %5",
+    "tooltip": "Start the Modbus RTU client and configure the serial port and pins",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Serial1",
+            "Serial1"
+          ],
+          [
+            "Serial2",
+            "Serial2"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "9600",
+            "9600"
+          ],
+          [
+            "19200",
+            "19200"
+          ],
+          [
+            "38400",
+            "38400"
+          ],
+          [
+            "57600",
+            "57600"
+          ],
+          [
+            "115200",
+            "115200"
+          ]
+        ]
+      },
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": "${board.digitalPins}"
+      }
+    ]
+  },
+  "emodbus_tcp_client_create": {
+    "message0": "Create Modbus TCP client %1",
+    "tooltip": "Create Modbus TCP client instance"
+  },
+  "emodbus_tcp_client_begin": {
+    "message0": "Start TCP client %1",
+    "tooltip": "Start Modbus TCP client background task"
+  },
+  "emodbus_tcp_client_set_target": {
+    "message0": "Set TCP client %1 Target server IP %2 Port %3",
+    "tooltip": "Set the IP address and port of the Modbus TCP server"
+  },
+  "emodbus_client_set_timeout": {
+    "message0": "Set client %1 timeout %2 milliseconds",
+    "tooltip": "Set Modbus communication timeout"
+  },
+  "emodbus_client_on_data": {
+    "message0": "When client %1 receives data",
+    "tooltip": "Set the data receiving callback function and execute it when the response is received",
+    "message1": "Execute %1"
+  },
+  "emodbus_client_on_error": {
+    "message0": "When an error occurs on the client side %1",
+    "tooltip": "Set an error handling callback function to be executed when a communication error occurs",
+    "message1": "Execute %1"
+  },
+  "emodbus_read_holding_registers": {
+    "message0": "Client %1 Read holding register Slave ID %2 Starting address %3 Quantity %4",
+    "tooltip": "Read the holding register asynchronously (function code 0x03), and the result is returned through the callback"
+  },
+  "emodbus_read_input_registers": {
+    "message0": "Client %1 Read input register Slave ID %2 Starting address %3 Quantity %4",
+    "tooltip": "Read the input register asynchronously (function code 0x04), and the result is returned through the callback"
+  },
+  "emodbus_read_coils": {
+    "message0": "Client %1 Read coil Slave ID %2 Starting address %3 Quantity %4",
+    "tooltip": "Asynchronously read the coil status (function code 0x01), and the result is returned through callback"
+  },
+  "emodbus_read_discrete_inputs": {
+    "message0": "Client %1 Read discrete input Slave ID %2 Starting address %3 Quantity %4",
+    "tooltip": "Asynchronously read discrete input (function code 0x02), the result is returned through callback"
+  },
+  "emodbus_write_single_register": {
+    "message0": "Client %1 Write to single register Slave ID %2 Address %3 Value %4",
+    "tooltip": "Write to a single holding register (function code 0x06)"
+  },
+  "emodbus_write_single_coil": {
+    "message0": "Client %1 writes to a single coil Slave ID %2 Address %3 Value %4",
+    "tooltip": "Write to a single coil (function code 0x05), the value is 0 (OFF) or 1 (ON)"
+  },
+  "emodbus_write_multiple_registers": {
+    "message0": "Client %1 Write multiple registers Slave ID %2 Starting address %3 Value array %4",
+    "tooltip": "Write multiple holding registers (function code 0x10)"
+  },
+  "emodbus_sync_read_holding_registers": {
+    "message0": "Client %1 Synchronously read holding register Slave ID %2 Address %3",
+    "tooltip": "Synchronously read a single holding register and return the value (function code 0x03)"
+  },
+  "emodbus_sync_read_input_register": {
+    "message0": "Client %1 Synchronously read input register Slave ID %2 Address %3",
+    "tooltip": "Synchronously read a single input register and return the value (function code 0x04)"
+  },
+  "emodbus_sync_read_coil": {
+    "message0": "Client %1 Synchronously read coil Slave ID %2 Address %3",
+    "tooltip": "Synchronously read the status of a single coil and return the value (function code 0x01)"
+  },
+  "emodbus_response_get_uint16": {
+    "message0": "Get the %1th register value (16 bits) from the response",
+    "tooltip": "Read the 16-bit register value at the specified position (starting from 0) from the callback response"
+  },
+  "emodbus_response_get_float": {
+    "message0": "Get the %1th floating point value (32 bits) from the response",
+    "tooltip": "Read the 32-bit floating point value at the specified position from the callback response (occupies 2 registers)"
+  },
+  "emodbus_response_server_id": {
+    "message0": "Responding slave ID",
+    "tooltip": "Get the slave ID of the current response"
+  },
+  "emodbus_response_function_code": {
+    "message0": "Response function code",
+    "tooltip": "Get the function code of the current response"
+  },
+  "emodbus_response_length": {
+    "message0": "Response data length",
+    "tooltip": "Get the number of data bytes in the current response"
+  },
+  "emodbus_error_code": {
+    "message0": "error code",
+    "tooltip": "Get the error code of the current error"
+  },
+  "emodbus_error_message": {
+    "message0": "error message",
+    "tooltip": "Get the human-readable error message of the current error"
+  },
+  "emodbus_rtu_server_create": {
+    "message0": "Create Modbus RTU server %1 Timeout %2 ms RS485 control pin %3",
+    "tooltip": "Create Modbus RTU server instance",
+    "args0": [
+      null,
+      null,
+      {
+        "options": "${board.digitalPins}"
+      }
+    ]
+  },
+  "emodbus_rtu_server_begin": {
+    "message0": "Start RTU server %1 Serial port %2 Baud rate %3 RX pin %4 TX pin %5",
+    "tooltip": "Start the Modbus RTU server",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Serial1",
+            "Serial1"
+          ],
+          [
+            "Serial2",
+            "Serial2"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "9600",
+            "9600"
+          ],
+          [
+            "19200",
+            "19200"
+          ],
+          [
+            "38400",
+            "38400"
+          ],
+          [
+            "57600",
+            "57600"
+          ],
+          [
+            "115200",
+            "115200"
+          ]
+        ]
+      },
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": "${board.digitalPins}"
+      }
+    ]
+  },
+  "emodbus_tcp_server_create": {
+    "message0": "Create Modbus TCP server %1 Port %2 Maximum number of clients %3",
+    "tooltip": "Create Modbus TCP server instance"
+  },
+  "emodbus_tcp_server_begin": {
+    "message0": "Start TCP server %1",
+    "tooltip": "Start the Modbus TCP server"
+  },
+  "emodbus_server_register_fc03": {
+    "message0": "Server %1 Register read holding register processing Slave ID %2",
+    "tooltip": "Register the processing function for reading the holding register (FC03)",
+    "message1": "Processing request Starting address: %1 Quantity: %2",
+    "message2": "Return data %1"
+  },
+  "emodbus_server_register_fc06": {
+    "message0": "Server %1 registers writing to a single register processing slave ID %2",
+    "tooltip": "Register a handler function for writing to a single holding register (FC06)",
+    "message1": "Handle request Address: %1 Value: %2",
+    "message2": "Perform operation %1"
+  },
+  "emodbus_server_add_response_data": {
+    "message0": "Add response data (16 bits) %1",
+    "tooltip": "Adds a 16-bit data to the server response"
+  },
+  "emodbus_server_set_error": {
+    "message0": "Set response error error code %1",
+    "tooltip": "Set server response to error response",
+    "args0": [
+      {
+        "options": [
+          [
+            "Illegal function code",
+            "ILLEGAL_FUNCTION"
+          ],
+          [
+            "Illegal data address",
+            "ILLEGAL_DATA_ADDRESS"
+          ],
+          [
+            "illegal data value",
+            "ILLEGAL_DATA_VALUE"
+          ],
+          [
+            "Equipment failure",
+            "SERVER_DEVICE_FAILURE"
+          ]
+        ]
+      }
+    ]
+  },
+  "emodbus_client_pending_requests": {
+    "message0": "Client %1 Number of pending requests",
+    "tooltip": "Get the number of pending requests in the queue"
+  },
+  "emodbus_client_clear_queue": {
+    "message0": "Client %1 clears the request queue",
+    "tooltip": "Clear all pending requests"
+  }
+}

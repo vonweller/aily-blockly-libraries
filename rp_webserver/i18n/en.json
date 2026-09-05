@@ -1,0 +1,194 @@
+{
+  "toolbox_name": "Pico Web Server",
+  "toolbox_labels": {
+    "初始化": "initialization",
+    "路由处理": "routing processing",
+    "发送响应": "Send response",
+    "请求信息": "request information",
+    "请求参数": "Request parameters",
+    "请求头": "Request header",
+    "高级功能": "Advanced features"
+  },
+  "rp_webserver_create": {
+    "message0": "Create web server %1 port %2",
+    "tooltip": "Create a web server object"
+  },
+  "rp_webserver_begin": {
+    "message0": "Start server %1",
+    "tooltip": "Start the web server and start listening"
+  },
+  "rp_webserver_handle_client": {
+    "message0": "Handle %1 client request",
+    "tooltip": "Handle client requests (should be placed in the loop)"
+  },
+  "rp_webserver_on": {
+    "message0": "When %1 receives %2 request path %3",
+    "tooltip": "Register the request processing function of the specified path",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "arbitrary",
+            "HTTP_ANY"
+          ],
+          [
+            "GET",
+            "HTTP_GET"
+          ],
+          [
+            "POST",
+            "HTTP_POST"
+          ],
+          [
+            "PUT",
+            "HTTP_PUT"
+          ],
+          [
+            "DELETE",
+            "HTTP_DELETE"
+          ],
+          [
+            "PATCH",
+            "HTTP_PATCH"
+          ]
+        ]
+      },
+      null
+    ],
+    "message1": "Execute %1"
+  },
+  "rp_webserver_on_not_found": {
+    "message0": "When %1 receives an unknown path request",
+    "tooltip": "Handle requests that do not match any route (404)",
+    "message1": "Execute %1"
+  },
+  "rp_webserver_send": {
+    "message0": "%1 Response status code %2 Type %3 Content %4",
+    "tooltip": "Send HTTP response to client",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "plain text text/plain",
+            "text/plain"
+          ],
+          [
+            "HTML text/html",
+            "text/html"
+          ],
+          [
+            "JSON application/json",
+            "application/json"
+          ],
+          [
+            "XML application/xml",
+            "application/xml"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "rp_webserver_send_custom_type": {
+    "message0": "%1 Response status code %2 Custom type %3 Content %4",
+    "tooltip": "Send HTTP response with custom Content-Type"
+  },
+  "rp_webserver_send_header": {
+    "message0": "%1 sends response header %2 value %3",
+    "tooltip": "Send custom response headers"
+  },
+  "rp_webserver_uri": {
+    "message0": "%1 requested URI",
+    "tooltip": "Get the URI path of the current request"
+  },
+  "rp_webserver_method": {
+    "message0": "%1 Requested method",
+    "tooltip": "Get the HTTP method of the current request (GET/POST, etc.)"
+  },
+  "rp_webserver_method_is": {
+    "message0": "%1 The request method is %2",
+    "tooltip": "Determine whether the current request is the specified HTTP method",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "GET",
+            "HTTP_GET"
+          ],
+          [
+            "POST",
+            "HTTP_POST"
+          ],
+          [
+            "PUT",
+            "HTTP_PUT"
+          ],
+          [
+            "DELETE",
+            "HTTP_DELETE"
+          ],
+          [
+            "PATCH",
+            "HTTP_PATCH"
+          ]
+        ]
+      }
+    ]
+  },
+  "rp_webserver_arg_by_name": {
+    "message0": "%1 gets the value of parameter %2",
+    "tooltip": "Get request parameter value based on parameter name"
+  },
+  "rp_webserver_arg_by_index": {
+    "message0": "%1 Gets the value of the %2th parameter",
+    "tooltip": "Get request parameter value based on index (starting from 0)"
+  },
+  "rp_webserver_arg_name": {
+    "message0": "%1 Gets the name of the %2th parameter",
+    "tooltip": "Get request parameter name based on index (starting from 0)"
+  },
+  "rp_webserver_args_count": {
+    "message0": "%1 Number of parameters",
+    "tooltip": "Get the number of request parameters"
+  },
+  "rp_webserver_has_arg": {
+    "message0": "%1 exists parameter %2",
+    "tooltip": "Checks whether a parameter with the specified name exists"
+  },
+  "rp_webserver_header": {
+    "message0": "%1 Gets the value of request header %2",
+    "tooltip": "Get the request header value of the specified name"
+  },
+  "rp_webserver_has_header": {
+    "message0": "%1 Request header %2 exists",
+    "tooltip": "Check whether the request header with the specified name exists"
+  },
+  "rp_webserver_host_header": {
+    "message0": "%1 Host request header",
+    "tooltip": "Get the Host header of the request"
+  },
+  "rp_webserver_collect_headers": {
+    "message0": "%1 Collect request header %2",
+    "tooltip": "Set the request headers to be collected (separate multiple with commas)"
+  },
+  "rp_webserver_enable_cors": {
+    "message0": "%1 Enable CORS cross-domain",
+    "tooltip": "Enable Cross-Origin Resource Sharing (CORS)"
+  },
+  "rp_webserver_stop": {
+    "message0": "Stop server %1",
+    "tooltip": "Stop web server"
+  },
+  "rp_webserver_authenticate": {
+    "message0": "%1 Verification username %2 Password %3",
+    "tooltip": "Verify username and password for HTTP Basic Authentication"
+  },
+  "rp_webserver_request_authentication": {
+    "message0": "%1 Request authentication prompt %2",
+    "tooltip": "Request client for HTTP authentication"
+  }
+}

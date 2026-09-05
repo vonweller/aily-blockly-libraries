@@ -1,0 +1,76 @@
+{
+  "toolbox_name": "Rangement matriciel dTOF 64x8",
+  "dtof64x8_init_uart": {
+    "message0": "Initialiser 64x8 dTOF %1 port série %2 RX %3 TX %4",
+    "tooltip": "Initialisant le dTOF 64x8 via le port série matériel ESP32, le débit de bauds du capteur est fixé à 921600.",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Serial1",
+            "Serial1"
+          ],
+          [
+            "Serial2",
+            "Serial2"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "dtof64x8_config_frame_single": {
+    "message0": "64x8 dTOF %1 configuré en mode image unique",
+    "tooltip": "Le capteur est configuré en mode image unique. La bibliothèque officielle n’a pas encore mis en place de mode continu."
+  },
+  "dtof64x8_config_full": {
+    "message0": "64x8 dTOF %1 configuré avec une sortie plein cadre",
+    "tooltip": "Configurez la sortie pour tous les points de télémètre 64*8."
+  },
+  "dtof64x8_config_line": {
+    "message0": "64x8 dTOF %1 configuration ligne de sortie ligne %2",
+    "tooltip": "Configurez la sortie à 64 points dans la ligne spécifiée, avec des numéros de ligne allant de 1 à 8."
+  },
+  "dtof64x8_config_point": {
+    "message0": "64x8 dTOF %1 configuration Ligne de sortie point unique %2 point %3",
+    "tooltip": "Configurez la sortie des points uniques dans la ligne et colonne spécifiées, lignes 1 à 8, point 1 à 64."
+  },
+  "dtof64x8_config_points": {
+    "message0": "64x8 dTOF %1 Configurez une sortie de ligne à point unique %2 Commencez %3 Fin %4",
+    "tooltip": "Configurez la sortie pour spécifier un segment continu de points à l’intérieur de la ligne, numéros de ligne 1 à 8, points 1 à 64."
+  },
+  "dtof64x8_read_data": {
+    "message0": "64x8 dTOF %1 délai de rafraîchissement des données %2 ms",
+    "tooltip": "Déclencher et lire une trame de données, en retournant le nombre de points analysés ; Un échec ou un délai d’attente donne un chiffre négatif."
+  },
+  "dtof64x8_point_value": {
+    "message0": "64x8 dTOF %1 Index de cache %2 %3",
+    "tooltip": "Lisez les données du point depuis le cache après le dernier rafraîchissement. Les indices commencent à 0.",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "X mm",
+            "X"
+          ],
+          [
+            "Y mm",
+            "Y"
+          ],
+          [
+            "Z distance en mm",
+            "Z"
+          ],
+          [
+            "intensity",
+            "I"
+          ]
+        ]
+      }
+    ]
+  }
+}

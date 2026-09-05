@@ -1,0 +1,83 @@
+{
+  "toolbox_name": "حافلة ESP32 CAN",
+  "esp32_can_init": {
+    "message0": "تهيئة ناقل CAN دبوس الاستقبال %1 إرسال دبوس %2 الوضع %3 معدل البود %4",
+    "tooltip": "تهيئة حافلة ESP32 CAN (TWAI)",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "الوضع العادي",
+            "TWAI_MODE_NORMAL"
+          ],
+          [
+            "وضع الاستماع فقط",
+            "TWAI_MODE_LISTEN_ONLY"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "500Kbits",
+            "TWAI_TIMING_CONFIG_500KBITS()"
+          ],
+          [
+            "100Kbits",
+            "TWAI_TIMING_CONFIG_100KBITS()"
+          ],
+          [
+            "125Kbits",
+            "TWAI_TIMING_CONFIG_125KBITS()"
+          ],
+          [
+            "250Kbits",
+            "TWAI_TIMING_CONFIG_250KBITS()"
+          ],
+          [
+            "1Mbits",
+            "TWAI_TIMING_CONFIG_1MBITS()"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_can_configure_alerts": {
+    "message0": "تكوين تنبيهات CAN %1 استقبال البيانات %2 إرسال الخمول %3 إرسال ناجح %4 فشل %5 خطأ سلبي %6 الناقل %7 قائمة الاستقبال كاملة %8",
+    "tooltip": "تكوين تنبيهات ناقل CAN ليتم مراقبتها"
+  },
+  "esp32_can_send_message": {
+    "message0": "معرف رسالة CAN (ID) %1 طول البيانات %2 بيانات %3",
+    "tooltip": "إرسال رسائل CAN بصيغة بايت مفصولة بفاصل"
+  },
+  "esp32_can_receive_message": {
+    "message0": "استلام رسائل CAN",
+    "tooltip": "استلام ومعالجة رسائل CAN"
+  },
+  "esp32_can_check_alerts": {
+    "message0": "تحقق من تنبيه CAN",
+    "tooltip": "تحقق من تنبيه حافلة CAN"
+  },
+  "esp32_can_message_available": {
+    "message0": "رسائل CAN متوفرة",
+    "tooltip": "تحقق مما إذا كانت هناك رسائل CAN متاحة"
+  },
+  "esp32_can_get_message_id": {
+    "message0": "احصل على معرف رسالة CAN",
+    "tooltip": "يسترجع معرف رسالة CAN المستلمة"
+  },
+  "esp32_can_get_message_length": {
+    "message0": "احصل على طول رسالة CAN",
+    "tooltip": "الحصول على طول بيانات رسالة CAN المستلمة"
+  },
+  "esp32_can_get_message_data": {
+    "message0": "الحصول على بايتات بيانات رسائل CAN %1",
+    "tooltip": "يسترجع بايت البيانات في الموقع المحدد لرسالة CAN المستلمة"
+  },
+  "esp32_can_transmit_interval": {
+    "message0": "اضبط فترة إرسال رسالة CAN إلى %1 مللي ثانية",
+    "tooltip": "حدد الفترة الزمنية لإرسال رسائل CAN في وقت محدد"
+  }
+}

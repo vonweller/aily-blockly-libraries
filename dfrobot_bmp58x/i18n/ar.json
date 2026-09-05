@@ -1,0 +1,144 @@
+{
+  "toolbox_name": "BMP58X Barometer",
+  "bmp58x_init_i2c": {
+    "message0": "تهيئة ناقل BMP58X I2C %1 عنوان %2 %3",
+    "tooltip": "قم بتهيئة حساس درجة الحرارة البارومترية BMP58X عبر I2C.",
+    "args0": [
+      null,
+      {
+        "options": "${board.i2c}"
+      },
+      {
+        "options": [
+          [
+            "0x47",
+            "0x47"
+          ],
+          [
+            "0x46",
+            "0x46"
+          ]
+        ]
+      }
+    ]
+  },
+  "bmp58x_init_spi": {
+    "message0": "تهيئة ناقل BMP58X SPI %1 %2 %3 CS",
+    "tooltip": "قم بتهيئة حساس درجة الحرارة الجوي BMP58X عبر SPI."
+  },
+  "bmp58x_init_uart": {
+    "message0": "تهيئة عنوان منفذ تسلسلي %1 BMP58X UART %2 %3 RX %4 TX %5",
+    "tooltip": "تهيئة BMP58X عبر UART/Modbus RTU، معدل بودي افتراضي 9600.",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Serial1",
+            "Serial1"
+          ],
+          [
+            "Serial2",
+            "Serial2"
+          ],
+          [
+            "Serial",
+            "Serial"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "0x47",
+            "0x47"
+          ],
+          [
+            "0x46",
+            "0x46"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "bmp58x_read_value": {
+    "message0": "BMP58X %1 قراءة %2",
+    "tooltip": "اقرأ درجة الحرارة أو ضغط الهواء أو الارتفاع المحسوبة بناء على ضغط الهواء.",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "درجة الحرارة C",
+            "TEMP"
+          ],
+          [
+            "ضغط الهواء بحسب المستوى",
+            "PRESS"
+          ],
+          [
+            "الارتفاع m",
+            "ALT"
+          ]
+        ]
+      }
+    ]
+  },
+  "bmp58x_set_measure_mode": {
+    "message0": "إعداد وضع القياس %1 BMP58X %2",
+    "tooltip": "قم بضبط وضع القياس/القدرة في BMP58X.",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "normal",
+            "eNormal"
+          ],
+          [
+            "القياس الواحد",
+            "eSingleShot"
+          ],
+          [
+            "continuous",
+            "eContinuous"
+          ],
+          [
+            "sleep",
+            "eSleep"
+          ],
+          [
+            "نوم عميق",
+            "eDeepSleep"
+          ]
+        ]
+      }
+    ]
+  },
+  "bmp58x_set_odr": {
+    "message0": "معدل الإخراج المعين %1 BMP58X %2",
+    "tooltip": "اضبط معدل بيانات الإخراج ODR."
+  },
+  "bmp58x_set_osr": {
+    "message0": "BMP58X %1 ضبط درجة حرارة %2 ضغط أخذ عينات زائد %3",
+    "tooltip": "اضبط معدل أخذ العينات الزائدة من درجة الحرارة والضغط."
+  },
+  "bmp58x_set_iir": {
+    "message0": "يحدد BMP58X %1 درجة حرارة IIR %2 الضغط %3",
+    "tooltip": "اضبط معاملات الفلتر IIR لدرجة الحرارة والضغط."
+  },
+  "bmp58x_calibrate_altitude": {
+    "message0": "يتم معايرة BMP58X %1 إلى ارتفاع تيار ضعيف تماما يبلغ %2 متر",
+    "tooltip": "يتم معايرة فرق القياس المطلق باستخدام الارتفاع المعروف حاليا."
+  },
+  "bmp58x_set_uart_baud": {
+    "message0": "BMP58X UART %1 ضبط معدل البود %2",
+    "tooltip": "يتوفر فقط إصدار UART، مما يعدل معدل بودات UART للحساس."
+  },
+  "bmp58x_reset": {
+    "message0": "إعادة ضبط برنامج BMP58X %1",
+    "tooltip": "قم بإعادة ضبط برنامج BMP58X."
+  }
+}

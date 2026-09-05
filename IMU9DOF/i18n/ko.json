@@ -1,0 +1,187 @@
+{
+  "toolbox_name": "9축 IMU 센서",
+  "imu9dof_init": {
+    "message0": "9축 IMU 센서 초기화 %1\n사용 %2",
+    "tooltip": "컨트롤러 3.0에서 9축 IMU 센서를 초기화하세요",
+    "args0": [
+      null,
+      {
+        "options": "${board.i2c}"
+      }
+    ]
+  },
+  "imu9dof_read_accel": {
+    "message0": "IMU %1%2의 가속도(g)를 읽어보세요",
+    "tooltip": "가속도계 데이터를 g 단위로 측정해 보세요",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "x축",
+            "X"
+          ],
+          [
+            "Y축",
+            "Y"
+          ],
+          [
+            "Z축",
+            "Z"
+          ]
+        ]
+      }
+    ]
+  },
+  "imu9dof_read_gyro": {
+    "message0": "IMU %1%2의 각속도(°/s)를 읽어보세요",
+    "tooltip": "자이로스코프 데이터를 읽으세요, 초당 도(degree/s)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "x축",
+            "X"
+          ],
+          [
+            "Y축",
+            "Y"
+          ],
+          [
+            "Z축",
+            "Z"
+          ]
+        ]
+      }
+    ]
+  },
+  "imu9dof_read_mag": {
+    "message0": "IMU %1%2의 자기장 세기(μT)를 읽어보세요",
+    "tooltip": "자기계의 데이터를 마이크로테슬라(μT) 단위로 측정해",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "x축",
+            "X"
+          ],
+          [
+            "Y축",
+            "Y"
+          ],
+          [
+            "Z축",
+            "Z"
+          ]
+        ]
+      }
+    ]
+  },
+  "imu9dof_read_temperature": {
+    "message0": "IMU %1 온도(°C)를 읽어보세요",
+    "tooltip": "IMU 센서의 온도를 측정해 섭씨 단위로 측정합니다"
+  },
+  "imu9dof_compute_angles": {
+    "message0": "IMU %1의 자세각을 계산하세요",
+    "tooltip": "IMU의 자세각(롤 각도, 피치각, 방향 각도)을 계산합니다."
+  },
+  "imu9dof_read_angle": {
+    "message0": "IMU %1의 %2 각도를 읽어보세요 (°)",
+    "tooltip": "IMU의 자세 각도를 도수 단위로 측정해 보세요",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "롤",
+            "ROLL"
+          ],
+          [
+            "음정",
+            "PITCH"
+          ],
+          [
+            "항로 (요)",
+            "YAW"
+          ]
+        ]
+      }
+    ]
+  },
+  "imu9dof_calibrate_mag": {
+    "message0": "IMU 자기계의 자기계력 계 보정%1",
+    "tooltip": "경철과 연철 간의 간섭을 제거하도록 자기계를 보정하세요"
+  },
+  "imu9dof_set_acc_range": {
+    "message0": "IMU %1 가속도계 범위를 %2로 설정하세요",
+    "tooltip": "가속도계의 측정 범위를 설정하세요",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "±2g",
+            "QMI8658A_ACC_RANGE_2G"
+          ],
+          [
+            "±4g",
+            "QMI8658A_ACC_RANGE_4G"
+          ],
+          [
+            "±8g",
+            "QMI8658A_ACC_RANGE_8G"
+          ],
+          [
+            "±16g",
+            "QMI8658A_ACC_RANGE_16G"
+          ]
+        ]
+      }
+    ]
+  },
+  "imu9dof_set_gyro_range": {
+    "message0": "IMU %1 자이로스코프 범위를 %2로 설정하세요",
+    "tooltip": "자이로스코프의 측정 범위를 설정하세요",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "±16°/s",
+            "QMI8658A_GYRO_RANGE_16DPS"
+          ],
+          [
+            "±32°/s",
+            "QMI8658A_GYRO_RANGE_32DPS"
+          ],
+          [
+            "±64°/s",
+            "QMI8658A_GYRO_RANGE_64DPS"
+          ],
+          [
+            "±128°/s",
+            "QMI8658A_GYRO_RANGE_128DPS"
+          ],
+          [
+            "±256°/s",
+            "QMI8658A_GYRO_RANGE_256DPS"
+          ],
+          [
+            "±512°/s",
+            "QMI8658A_GYRO_RANGE_512DPS"
+          ],
+          [
+            "±1024°/s",
+            "QMI8658A_GYRO_RANGE_1024DPS"
+          ],
+          [
+            "±2048°/s",
+            "QMI8658A_GYRO_RANGE_2048DPS"
+          ]
+        ]
+      }
+    ]
+  }
+}

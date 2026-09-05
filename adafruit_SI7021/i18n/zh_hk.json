@@ -1,0 +1,91 @@
+{
+  "toolbox_name": "Si7021感測器",
+  "toolbox_labels": {
+    "基础操作": "基礎操作",
+    "数据读取": "資料讀取",
+    "加热器控制": "加熱器控制",
+    "设备信息": "設備資訊"
+  },
+  "si7021_begin": {
+    "message0": "初始化Si7021感測器%1 使用 %2",
+    "args0": [
+      null,
+      {
+        "options": "${board.i2c}"
+      }
+    ]
+  },
+  "si7021_read_temperature": {
+    "message0": "讀取Si7021感測器%1溫度"
+  },
+  "si7021_read_humidity": {
+    "message0": "讀取Si7021感測器%1濕度"
+  },
+  "si7021_heater_control": {
+    "message0": "Si7021感知器%1加熱器%2",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "啟用",
+            "true"
+          ],
+          [
+            "停用",
+            "false"
+          ]
+        ]
+      }
+    ]
+  },
+  "si7021_is_heater_enabled": {
+    "message0": "Si7021感知器%1加熱器是否啟用"
+  },
+  "si7021_set_heat_level": {
+    "message0": "設定Si7021感知器%1加熱器等級%2",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "最低階",
+            "SI_HEATLEVEL_LOWEST"
+          ],
+          [
+            "低",
+            "SI_HEATLEVEL_LOW"
+          ],
+          [
+            "中間",
+            "SI_HEATLEVEL_MEDIUM"
+          ],
+          [
+            "高",
+            "SI_HEATLEVEL_HIGH"
+          ],
+          [
+            "更高",
+            "SI_HEATLEVEL_HIGHER"
+          ],
+          [
+            "最高",
+            "SI_HEATLEVEL_HIGHEST"
+          ]
+        ]
+      }
+    ]
+  },
+  "si7021_get_model": {
+    "message0": "取得Si7021感測器%1型號"
+  },
+  "si7021_get_revision": {
+    "message0": "取得Si7021感測器%1版本"
+  },
+  "si7021_reset": {
+    "message0": "重置Si7021感測器%1"
+  },
+  "si7021_read_serial_number": {
+    "message0": "讀取Si7021感測器%1序號"
+  }
+}

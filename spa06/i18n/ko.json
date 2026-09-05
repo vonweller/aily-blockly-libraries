@@ -1,0 +1,321 @@
+{
+  "toolbox_name": "SPA06 공기압 및 온도 센서",
+  "toolbox_labels": {
+    "初始化": "초기화",
+    "配置": "구성",
+    "数据读取": "데이터 읽기",
+    "状态检查": "상태 확인",
+    "中断": "인터럽트",
+    "校准": "교정"
+  },
+  "spa06_create_i2c": {
+    "message0": "%1 I2C 주소를 사용하는 SPA06 센서를 생성하세요%2",
+    "tooltip": "I2C 통신을 이용한 SPA06-003 기압 온도 센서 객체 생성",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "0x76 (기본값)",
+            "0x76"
+          ],
+          [
+            "0x77",
+            "0x77"
+          ]
+        ]
+      }
+    ]
+  },
+  "spa06_create_spi": {
+    "message0": "SPA 핀 사용 %1 SPA06 센서 생성 %2",
+    "tooltip": "SPI 통신을 이용해 SPA06-003 기압 온도 센서 객체를 생성합니다"
+  },
+  "spa06_set_pressure_sampling": {
+    "message0": "압력 샘플링 속도%2 과잉 샘플링 속도%1 설정하세요%3",
+    "tooltip": "압력 센서의 샘플링 속도와 과잉 샘플링 속도를 설정하세요",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "1 Hz",
+            "SPL07_1HZ"
+          ],
+          [
+            "2 Hz",
+            "SPL07_2HZ"
+          ],
+          [
+            "4 Hz",
+            "SPL07_4HZ"
+          ],
+          [
+            "8 Hz",
+            "SPL07_8HZ"
+          ],
+          [
+            "16 Hz",
+            "SPL07_16HZ"
+          ],
+          [
+            "32 Hz",
+            "SPL07_32HZ"
+          ],
+          [
+            "64 Hz",
+            "SPL07_64HZ"
+          ],
+          [
+            "128 Hz",
+            "SPL07_128HZ"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "1회",
+            "SPL07_1SAMPLE"
+          ],
+          [
+            "2회",
+            "SPL07_2SAMPLES"
+          ],
+          [
+            "4회",
+            "SPL07_4SAMPLES"
+          ],
+          [
+            "8회",
+            "SPL07_8SAMPLES"
+          ],
+          [
+            "16회",
+            "SPL07_16SAMPLES"
+          ],
+          [
+            "32회",
+            "SPL07_32SAMPLES"
+          ],
+          [
+            "64회",
+            "SPL07_64SAMPLES"
+          ],
+          [
+            "128회",
+            "SPL07_128SAMPLES"
+          ]
+        ]
+      }
+    ]
+  },
+  "spa06_set_temperature_sampling": {
+    "message0": "온도 샘플링 속도%1 과잉 샘플링 속도%2 설정하세요%3",
+    "tooltip": "온도 센서의 샘플링 속도와 과잉 샘플링 속도를 설정하세요",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "1 Hz",
+            "SPL07_1HZ"
+          ],
+          [
+            "2 Hz",
+            "SPL07_2HZ"
+          ],
+          [
+            "4 Hz",
+            "SPL07_4HZ"
+          ],
+          [
+            "8 Hz",
+            "SPL07_8HZ"
+          ],
+          [
+            "16 Hz",
+            "SPL07_16HZ"
+          ],
+          [
+            "32 Hz",
+            "SPL07_32HZ"
+          ],
+          [
+            "64 Hz",
+            "SPL07_64HZ"
+          ],
+          [
+            "128 Hz",
+            "SPL07_128HZ"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "1회",
+            "SPL07_1SAMPLE"
+          ],
+          [
+            "2회",
+            "SPL07_2SAMPLES"
+          ],
+          [
+            "4회",
+            "SPL07_4SAMPLES"
+          ],
+          [
+            "8회",
+            "SPL07_8SAMPLES"
+          ],
+          [
+            "16회",
+            "SPL07_16SAMPLES"
+          ],
+          [
+            "32회",
+            "SPL07_32SAMPLES"
+          ],
+          [
+            "64회",
+            "SPL07_64SAMPLES"
+          ],
+          [
+            "128회",
+            "SPL07_128SAMPLES"
+          ]
+        ]
+      }
+    ]
+  },
+  "spa06_set_mode": {
+    "message0": "%1 작동 모드 설정%2",
+    "tooltip": "센서 작동 모드를 설정하세요",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "대기",
+            "SPL07_IDLE"
+          ],
+          [
+            "단일 압력",
+            "SPL07_ONE_PRESSURE"
+          ],
+          [
+            "단일 온도",
+            "SPL07_ONE_TEMPERATURE"
+          ],
+          [
+            "연속 압력",
+            "SPL07_CONT_PRESSURE"
+          ],
+          [
+            "연속 온도",
+            "SPL07_CONT_TEMPERATURE"
+          ],
+          [
+            "연속 압력 온도",
+            "SPL07_CONT_PRES_TEMP"
+          ]
+        ]
+      }
+    ]
+  },
+  "spa06_set_temperature_source": {
+    "message0": "온도 소스%1 설정%2",
+    "tooltip": "온도 센서 소스를 설정하세요",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "ASIC 내부",
+            "SPL07_TSRC_ASIC"
+          ],
+          [
+            "MEMS 외부",
+            "SPL07_TSRC_MEMS"
+          ]
+        ]
+      }
+    ]
+  },
+  "spa06_read_pressure": {
+    "message0": "%1 압력 값을 읽으세요",
+    "tooltip": "현재 압력 값(파스칼)을 읽어보세요."
+  },
+  "spa06_read_temperature": {
+    "message0": "%1 온도 값을 읽어보세요",
+    "tooltip": "현재 온도 값(섭씨 씨)을 읽어보세요"
+  },
+  "spa06_calc_altitude": {
+    "message0": "%1 고도 계산",
+    "tooltip": "고도(미터)는 압력 값을 기준으로 계산됩니다."
+  },
+  "spa06_pressure_available": {
+    "message0": "%1 압력 데이터가 제공됩니다",
+    "tooltip": "새로운 압력 데이터가 있는지 확인해 보세요"
+  },
+  "spa06_temperature_available": {
+    "message0": "%1 온도 데이터가 제공됩니다",
+    "tooltip": "새로운 온도 데이터가 있는지 확인해 보세요"
+  },
+  "spa06_set_interrupt": {
+    "message0": "인터럽트 모드를 %1 설정하세요%2",
+    "tooltip": "인터럽트 모드 구성",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "끄기",
+            "SPL07_INT_OFF"
+          ],
+          [
+            "압력 준비 완료",
+            "SPL07_INT_PRES"
+          ],
+          [
+            "온도 준비 완료",
+            "SPL07_INT_TEMP"
+          ],
+          [
+            "압력 또는 온도 준비",
+            "SPL07_INT_PRES_TEMP"
+          ],
+          [
+            "FIFO가 최대치였어요",
+            "SPL07_INT_FIFO"
+          ],
+          [
+            "FIFO는 가득 차 있거나 압력 준비가 되어 있습니다",
+            "SPL07_INT_FIFO_PRES"
+          ],
+          [
+            "FIFO는 완전히 설정되었거나 온도 준비가 완료되었습니다",
+            "SPL07_INT_FIFO_TEMP"
+          ],
+          [
+            "모든 방해",
+            "SPL07_INT_ALL"
+          ]
+        ]
+      }
+    ]
+  },
+  "spa06_get_interrupt_status": {
+    "message0": "%1 인터럽트 상태 조회",
+    "tooltip": "현재 인터럽트 상태 레지스터 값을 가져옵니다"
+  },
+  "spa06_set_pressure_offset": {
+    "message0": "압력 상쇄%1 %2 Pa",
+    "tooltip": "압력 측정 오프셋 값을 설정하세요"
+  },
+  "spa06_set_temperature_offset": {
+    "message0": "온도%1 %2 °C 차로 설정하세요",
+    "tooltip": "온도 측정 오프셋 값을 설정하세요"
+  }
+}

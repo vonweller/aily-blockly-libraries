@@ -1,0 +1,73 @@
+{
+  "toolbox_name": "NeoPixel",
+  "neopixel_init": {
+    "message0": "Initialize NeoPixel strip Pin %1 LED quantity %2 LED type %3",
+    "tooltip": "Initialize NeoPixel LED strip",
+    "args0": [
+      {
+        "options": "${board.digitalPins}"
+      },
+      null,
+      {
+        "options": [
+          [
+            "RGB (GRB)",
+            "NEO_GRB + NEO_KHZ800"
+          ],
+          [
+            "RGB (RGB)",
+            "NEO_RGB + NEO_KHZ800"
+          ],
+          [
+            "RGBW",
+            "NEO_RGBW + NEO_KHZ800"
+          ],
+          [
+            "RGB (400 KHz)",
+            "NEO_GRB + NEO_KHZ400"
+          ]
+        ]
+      }
+    ]
+  },
+  "neopixel_begin": {
+    "message0": "Start NeoPixel",
+    "tooltip": "Start NeoPixel communication"
+  },
+  "neopixel_show": {
+    "message0": "Show NeoPixels",
+    "tooltip": "Update NeoPixel display"
+  },
+  "neopixel_set_brightness": {
+    "message0": "Set NeoPixel brightness %1",
+    "tooltip": "Set the brightness of NeoPixel light strip (0-255)"
+  },
+  "neopixel_set_pixel_color": {
+    "message0": "Set LED %1 Color Red %2 Green %3 Blue %4",
+    "tooltip": "Set individual LED color"
+  },
+  "neopixel_fill": {
+    "message0": "Fill all LED colors Red %1 Green %2 Blue %3",
+    "tooltip": "Fill all LEDs with the same color"
+  },
+  "neopixel_clear": {
+    "message0": "Clear all NeoPixels",
+    "tooltip": "Turn off all LEDs"
+  },
+  "neopixel_rainbow": {
+    "message0": "Display rainbow effect delay (ms) %1",
+    "tooltip": "Display rainbow effect on LED light strip"
+  },
+  "neopixel_color_wipe": {
+    "message0": "Fill LED one by one Color Red %1 Green %2 Blue %3 Delay (ms) %4",
+    "tooltip": "Fill color LED by LED"
+  },
+  "neopixel_theater_chase": {
+    "message0": "Chase light effect Color Red %1 Green %2 Blue %3 Delay (ms) %4",
+    "tooltip": "Show chasing light effect"
+  },
+  "neopixel_theater_chase_rainbow": {
+    "message0": "Rainbow chasing light effect delay (ms) %1",
+    "tooltip": "Show rainbow chase light effect"
+  }
+}

@@ -1,0 +1,118 @@
+{
+  "toolbox_name": "TCA8418 Tastaturmatrix",
+  "toolbox_labels": {
+    "初始化": "Initialisierung",
+    "键盘矩阵": "Tastaturmatrix",
+    "GPIO控制": "GPIO-Steuerung",
+    "配置选项": "Konfigurationsoptionen"
+  },
+  "tca8418_create": {
+    "message0": "Erstellen Sie TCA8418 Tastaturmatrix/GPIO-Extender-Variable %1",
+    "tooltip": "Erstellen Sie TCA8418 Tastaturmatrix/GPIO-Extender-Objekt"
+  },
+  "tca8418_begin": {
+    "message0": "Initialisieren %1 I2C-Adresse %2",
+    "tooltip": "Initialisieren TCA8418 Geräte"
+  },
+  "tca8418_matrix": {
+    "message0": "Setze %1 Tastaturmatrix Anzahl der Zeilen %2 Anzahl der Spalten %3",
+    "tooltip": "Konfigurieren Sie die Anzahl der Zeilen und Spalten in der Tastaturmatrix"
+  },
+  "tca8418_available": {
+    "message0": "%1 Anzahl verfügbarer Schlüsselereignisse",
+    "tooltip": "Ermitteln Sie die Anzahl der im FIFO-Puffer verfügbaren Ereignisse"
+  },
+  "tca8418_get_event": {
+    "message0": "%1 Schlüsselereignisse abrufen",
+    "tooltip": "Ein Schlüsselereignis aus dem FIFO-Puffer abrufen"
+  },
+  "tca8418_flush": {
+    "message0": "Leere den %1 Ereignispuffer",
+    "tooltip": "Alle Ereignisse im FIFO-Puffer löschen"
+  },
+  "tca8418_pin_mode": {
+    "message0": "Stelle %1 Pin %2 Modus %3",
+    "tooltip": "Stellen Sie den GPIO-Pin-Modus ein",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "Eingabe",
+            "INPUT"
+          ],
+          [
+            "Ausgabe",
+            "OUTPUT"
+          ],
+          [
+            "Eingabe und Pull-up",
+            "INPUT_PULLUP"
+          ]
+        ]
+      }
+    ]
+  },
+  "tca8418_digital_read": {
+    "message0": "Lies %1 Pin %2 Level",
+    "tooltip": "Lesen Sie den Status des GPIO-Pin-Levels"
+  },
+  "tca8418_digital_write": {
+    "message0": "Stell %1 Pin %2 level%3",
+    "tooltip": "Stellen Sie den Ausgangspegel des GPIO-Pins ein",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "High-Pegel",
+            "HIGH"
+          ],
+          [
+            "Low-Pegel",
+            "LOW"
+          ]
+        ]
+      }
+    ]
+  },
+  "tca8418_enable_interrupts": {
+    "message0": "Aktivieren Sie %1 Interrupts",
+    "tooltip": "Aktiviere Interrupts für Matrix- und GPIO-Pins"
+  },
+  "tca8418_disable_interrupts": {
+    "message0": "Deaktiviere %1 Interrupts",
+    "tooltip": "Unterbrechungen für Matrix- und GPIO-Pins deaktivieren"
+  },
+  "tca8418_enable_debounce": {
+    "message0": "Aktivieren Sie %1 Tastenstabilisierung",
+    "tooltip": "Key-Stabilisierung aktivieren"
+  },
+  "tca8418_disable_debounce": {
+    "message0": "Deaktiviere %1 Knopf-Debounce",
+    "tooltip": "Tastenstabilisierung deaktivieren"
+  },
+  "tca8418_when_key_event": {
+    "message0": "Wenn %1 ein Schlüsselereignis hat",
+    "tooltip": "Code ausführen, wenn ein Schlüsselereignis auftritt",
+    "message1": "ausführen %1"
+  },
+  "tca8418_current_event": {
+    "message0": "%1 Aktuelles Schlüsselereignis",
+    "tooltip": "Erhalten Sie das automatisch gespeicherte aktuelle Schlüsselereignis (wird nur innerhalb von Ereignisverarbeitungsblöcken verwendet)"
+  },
+  "tca8418_get_event_row": {
+    "message0": "Die Zeilennummer des Schlüsselereignisses %1",
+    "tooltip": "Zeilennummern aus Schlüsselereignissen extrahieren (0-7)"
+  },
+  "tca8418_get_event_col": {
+    "message0": "Spaltennummer des Schlüsselereignisses %1",
+    "tooltip": "Spaltennummern aus Schlüsselereignissen extrahieren (0-9)"
+  },
+  "tca8418_get_event_pressed": {
+    "message0": "Das entscheidende Ereignis %1 ist das Drücken nach unten",
+    "tooltip": "Bestimmen Sie, ob Sie (wahr) drücken oder (falsch) von Schlüsselereignissen loslassen"
+  }
+}

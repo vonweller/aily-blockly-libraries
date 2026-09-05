@@ -1,0 +1,181 @@
+{
+  "toolbox_name": "ICM20948",
+  "toolbox_labels": {
+    "初始化": "inicialización",
+    "基础读取": "Lectura básica",
+    "AHRS姿态解算": "Solución de actitud AHRS",
+    "校准和配置": "Calibración y configuración"
+  },
+  "icm20948_init": {
+    "message0": "Inicializar ICM20948 sensor I2C address%1",
+    "tooltip": "Inicializar ICM20948 sensor de nueve ejes",
+    "args0": [
+      {
+        "options": [
+          [
+            "0x69 (Predeterminado)",
+            "1"
+          ],
+          [
+            "0x68 (Conexión ADR)",
+            "0"
+          ]
+        ]
+      }
+    ]
+  },
+  "icm20948_read_accel": {
+    "message0": "Lee el valor del eje %1 del acelerómetro",
+    "tooltip": "Lee el valor del eje especificado en el acelerómetro (mg)",
+    "args0": [
+      {
+        "options": [
+          [
+            "X",
+            "X"
+          ],
+          [
+            "Y",
+            "Y"
+          ],
+          [
+            "Z",
+            "Z"
+          ]
+        ]
+      }
+    ]
+  },
+  "icm20948_read_gyro": {
+    "message0": "Lee los valores del giroscopio %1 los ejes",
+    "tooltip": "Lee el valor del eje especificado del giroscopio (grados/segundo)",
+    "args0": [
+      {
+        "options": [
+          [
+            "X",
+            "X"
+          ],
+          [
+            "Y",
+            "Y"
+          ],
+          [
+            "Z",
+            "Z"
+          ]
+        ]
+      }
+    ]
+  },
+  "icm20948_read_mag": {
+    "message0": "Lee la lectura del magnetómetro %1 eje",
+    "tooltip": "Lee el valor del eje especificado en el magnetómetro (μT)",
+    "args0": [
+      {
+        "options": [
+          [
+            "X",
+            "X"
+          ],
+          [
+            "Y",
+            "Y"
+          ],
+          [
+            "Z",
+            "Z"
+          ]
+        ]
+      }
+    ]
+  },
+  "icm20948_read_temp": {
+    "message0": "Lee la temperatura",
+    "tooltip": "Temperatura del sensor de lectura (°C)"
+  },
+  "icm20948_data_ready": {
+    "message0": "ICM20948 lista para los datos",
+    "tooltip": "Comprueba si el sensor tiene datos nuevos para leer"
+  },
+  "icm20948_ahrs_init": {
+    "message0": "Inicializar cálculo de actitud AHRS Frecuencia de muestreo %1Hz",
+    "tooltip": "Inicializar el algoritmo de resolución de actitudes AHRS"
+  },
+  "icm20948_ahrs_update": {
+    "message0": "Cálculos actualizados de postura del AHRS",
+    "tooltip": "Actualizar las soluciones AHRS utilizando los datos más recientes de los sensores"
+  },
+  "icm20948_get_roll": {
+    "message0": "Consigue el ángulo de alabeo",
+    "tooltip": "Obtén el ángulo de alabeo (grados) de la solución AHRS"
+  },
+  "icm20948_get_pitch": {
+    "message0": "Asegúrate del ángulo de cabeceo",
+    "tooltip": "Obtener el ángulo de cabeceo (grados) para la solución AHRS"
+  },
+  "icm20948_get_yaw": {
+    "message0": "Haz el ángulo de guiñada ¡Guiñada",
+    "tooltip": "Obtener el ángulo de guiñada (grados) para la solución AHRS"
+  },
+  "icm20948_calibrate_gyro": {
+    "message0": "Calibración del giroscopio count%1",
+    "tooltip": "Para calibrar el desplazamiento cero del giroscopio, el sensor debe permanecer estacionario"
+  },
+  "icm20948_set_gyro_offset": {
+    "message0": "Configurar el desplazamiento del giroscopio X%1 Y%2 Z%3",
+    "tooltip": "Ajusta manualmente el valor del desplazamiento en tres ejes del giroscopio"
+  },
+  "icm20948_set_accel_range": {
+    "message0": "Ajusta el acelerómetro range%1",
+    "tooltip": "Instala el acelerómetro para medir la distancia",
+    "args0": [
+      {
+        "options": [
+          [
+            "±2g",
+            "gpm2"
+          ],
+          [
+            "±4g",
+            "gpm4"
+          ],
+          [
+            "±8g",
+            "gpm8"
+          ],
+          [
+            "±16g",
+            "gpm16"
+          ]
+        ]
+      }
+    ]
+  },
+  "icm20948_set_gyro_range": {
+    "message0": "Pon el giroscopio range%1",
+    "tooltip": "Instala un giroscopio para medir el alcance",
+    "args0": [
+      {
+        "options": [
+          [
+            "±250°/s",
+            "dps250"
+          ],
+          [
+            "±500°/s",
+            "dps500"
+          ],
+          [
+            "±1000°/s",
+            "dps1000"
+          ],
+          [
+            "±2000°/s",
+            "dps2000"
+          ]
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "toolbox_name": "Sensor Si7021",
+  "toolbox_labels": {
+    "基础操作": "Operaciones básicas",
+    "数据读取": "Lectura de datos",
+    "加热器控制": "control del calentador",
+    "设备信息": "Información del dispositivo"
+  },
+  "si7021_begin": {
+    "message0": "Inicializar el sensor Si7021 %1 usando %2",
+    "args0": [
+      null,
+      {
+        "options": "${board.i2c}"
+      }
+    ]
+  },
+  "si7021_read_temperature": {
+    "message0": "Lee la temperatura %1 el sensor Si7021"
+  },
+  "si7021_read_humidity": {
+    "message0": "Lee la humedad %1 el sensor Si7021"
+  },
+  "si7021_heater_control": {
+    "message0": "Sensor Si7021 %1 heater%2",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Habilitar",
+            "true"
+          ],
+          [
+            "Deshabilitar",
+            "false"
+          ]
+        ]
+      }
+    ]
+  },
+  "si7021_is_heater_enabled": {
+    "message0": "El sensor Si7021 %1 si el calefactor está activado"
+  },
+  "si7021_set_heat_level": {
+    "message0": "Configura el sensor Si7021 %1 calentador grade%2",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "minimum",
+            "SI_HEATLEVEL_LOWEST"
+          ],
+          [
+            "Bajo",
+            "SI_HEATLEVEL_LOW"
+          ],
+          [
+            "Medio",
+            "SI_HEATLEVEL_MEDIUM"
+          ],
+          [
+            "Alto",
+            "SI_HEATLEVEL_HIGH"
+          ],
+          [
+            "Más alto",
+            "SI_HEATLEVEL_HIGHER"
+          ],
+          [
+            "maximum",
+            "SI_HEATLEVEL_HIGHEST"
+          ]
+        ]
+      }
+    ]
+  },
+  "si7021_get_model": {
+    "message0": "Consigue el modelo de %1 sensor Si7021"
+  },
+  "si7021_get_revision": {
+    "message0": "Consigue la versión %1 del sensor Si7021"
+  },
+  "si7021_reset": {
+    "message0": "Reinicia el sensor Si7021 %1"
+  },
+  "si7021_read_serial_number": {
+    "message0": "Lee el número de serie %1 sensor Si7021"
+  }
+}

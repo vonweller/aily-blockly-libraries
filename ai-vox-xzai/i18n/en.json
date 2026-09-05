@@ -1,0 +1,882 @@
+{
+  "toolbox_name": "XiaoZhi AI",
+  "toolbox_labels": {
+    "说明:小智事件中禁用delay阻塞编程，简单定时器不如多线程": "Note: Disable delay blocking programming in Xiaozhi events. Simple timers are not as good as multi-threads.",
+    "说明:1. 预内置和自定义不可混用": "Note: 1. Pre-built-in and customized cannot be mixed.",
+    "   2. 自定义需要自己画界面,内容可自定，灵活但麻烦": "2. Customization requires you to draw the interface yourself, and the content can be customized, which is flexible but troublesome.",
+    "   3. 预内置是定死的，但直接可用": "3. The pre-built-in is fixed, but can be used directly.",
+    "*特别声明1. 屏显功能需要加载LVGL库": "*Special statement 1. The screen display function needs to load the LVGL library",
+    "*特别声明2. 在LVGL库初始化中需‘设置图像字体开启’": "*Special statement 2. It is necessary to ‘set image font on’ during LVGL library initialization",
+    "*特别声明3. 需自绘界面的，一般用TFT_eSPI库，按例程": "*Special statement 3. If you need to draw your own interface, generally use the TFT_eSPI library and follow the routine",
+    " 就行，这里的自定义一般不需要，单色屏时可考虑使用": "That’s fine. Customization here is generally not needed. You can consider using it when using a monochrome screen.",
+    "说明:操作设备代码放设置，服务器读取代码放上报": "Description: The operating device code is set, and the server reads the code and reports it."
+  },
+  "toolbox_categories": [
+    "Initialize",
+    "Display",
+    "Built-in",
+    "Custom",
+    "Control",
+    "AI Button",
+    "Status & Activation",
+    "Emoji & Chat",
+    "MCP"
+  ],
+  "esp32_task": {
+    "message0": "ESP32 task%1 Core%2 space allocation%3",
+    "tooltip": "Set which core the thread runs on",
+    "args0": [
+      {
+        "options": [
+          [
+            "Task 1",
+            "1"
+          ],
+          [
+            "Task 2",
+            "2"
+          ],
+          [
+            "Task 3",
+            "3"
+          ],
+          [
+            "Task 4",
+            "4"
+          ],
+          [
+            "Task 5",
+            "5"
+          ],
+          [
+            "Task 6",
+            "6"
+          ],
+          [
+            "Task 7",
+            "7"
+          ],
+          [
+            "Task 8",
+            "8"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "Core 0",
+            "0"
+          ],
+          [
+            "Core 1",
+            "1"
+          ]
+        ]
+      },
+      null
+    ],
+    "message1": "Initialize%1",
+    "message2": "Loop%1"
+  },
+  "esp32_serial_init": {
+    "message0": "ESP32 serial port initialization %1 RX pin %2 TX pin %3 Baud rate %4",
+    "tooltip": "Initialize ESP32 specified serial port and pin configuration",
+    "args0": [
+      {
+        "options": [
+          [
+            "Serial",
+            "Serial"
+          ],
+          [
+            "Serial1",
+            "Serial1"
+          ],
+          [
+            "Serial2",
+            "Serial2"
+          ]
+        ]
+      },
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": [
+          [
+            "9600",
+            "9600"
+          ],
+          [
+            "19200",
+            "19200"
+          ],
+          [
+            "38400",
+            "38400"
+          ],
+          [
+            "57600",
+            "57600"
+          ],
+          [
+            "115200",
+            "115200"
+          ],
+          [
+            "256000",
+            "256000"
+          ],
+          [
+            "500000",
+            "500000"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32ai_button_setup": {
+    "message0": "AI trigger button pin %1 mode %2 active low level %3",
+    "tooltip": "Create and initialize ESP32 AI voice interaction button (adapted to Espressif button library)",
+    "args0": [
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": [
+          [
+            "Normal input",
+            "INPUT"
+          ],
+          [
+            "pull-up input",
+            "INPUT_PULLUP"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "Yes",
+            "TRUE"
+          ],
+          [
+            "No",
+            "FALSE"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32ai_init_wifi": {
+    "message0": "Initialize ESP32_Xiaozhi AI WIFI mode %1",
+    "args0": [
+      {
+        "options": [
+          [
+            "Manual network configuration",
+            "Manual"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32ai_button_click": {
+    "message0": "AI triggers on button click",
+    "tooltip": "Action to perform when button click event fires",
+    "message1": "%1"
+  },
+  "esp32ai_button_double_click": {
+    "message0": "AI triggers when button is double clicked",
+    "tooltip": "Action to be performed when the button double-click event is triggered",
+    "message1": "%1"
+  },
+  "esp32ai_button_long_pressing": {
+    "message0": "AI trigger button long press",
+    "tooltip": "Operations that continue to be triggered during long press of the button",
+    "message1": "%1"
+  },
+  "esp32_i2s_mic_setup": {
+    "message0": "AI microphone type %1",
+    "tooltip": "Initialize I2S/PDM microphone (adapted to ai_vox_engine audio input)",
+    "args0": [
+      {
+        "options": [
+          [
+            "I2S standard",
+            "AUDIO_INPUT_DEVICE_TYPE_I2S_STD"
+          ],
+          [
+            "PDM",
+            "AUDIO_INPUT_DEVICE_TYPE_PDM"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32ai_i2s_speaker_setup": {
+    "message0": "AI Speaker SCK/BCLK %1 WS/LRCLK %2 SD/DIN %3",
+    "tooltip": "Initialize the I2S speaker (the pin corresponds to the kSpeakerPin* constant in main.cpp)",
+    "args0": [
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": "${board.digitalPins}"
+      }
+    ]
+  },
+  "esp32ai_init_display": {
+    "message0": "Original interface initialization display: %1",
+    "tooltip": "Initialize a display of the specified type",
+    "args0": [
+      {
+        "options": [
+          [
+            "ST7789 (SPI，240x240)",
+            "ST7789"
+          ],
+          [
+            "SSD1306 (I2C, 128x64)",
+            "SSD1306"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32ai_init_nlvgl_display": {
+    "message0": "Customized lVGL initialization display: %1 Rotation angle: %2",
+    "tooltip": "Initialize a display of the specified type",
+    "args0": [
+      {
+        "options": [
+          [
+            "ST7789 (SPI)",
+            "nST7789"
+          ],
+          [
+            "SSD1306 (I2C)",
+            "nSSD1306"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "0°",
+            "LV_DISPLAY_ROTATION_0"
+          ],
+          [
+            "90°",
+            "LV_DISPLAY_ROTATION_90"
+          ],
+          [
+            "180°",
+            "LV_DISPLAY_ROTATION_180"
+          ],
+          [
+            "270°",
+            "LV_DISPLAY_ROTATION_270"
+          ]
+        ]
+      }
+    ]
+  },
+  "aivox_config_ota_url": {
+    "message0": "Custom OTA link %1",
+    "tooltip": "There is no need to call this block when using the Xiage server. The self-built compatible Xiage server protocol calls this block."
+  },
+  "aivox_config_websocket": {
+    "message0": "Custom websocket link %1",
+    "tooltip": "There is no need to call this block when using the Xiage server. The self-built compatible Xiage server protocol calls this block.",
+    "message1": "Request header (C language array format) %1"
+  },
+  "esp32ai_start_engine": {
+    "message0": "Start the ESP32-AI engine"
+  },
+  "aivox_display_mode": {
+    "message0": "The initialization session display style is %1",
+    "args0": [
+      {
+        "options": [
+          [
+            "Ordinary",
+            "normal"
+          ],
+          [
+            "WeChat conversation",
+            "wechat"
+          ]
+        ]
+      }
+    ]
+  },
+  "aivox3_set_es8311_volume": {
+    "message0": "Set AI volume to %1",
+    "tooltip": "Set the volume of AI device"
+  },
+  "aivox3_set_screen_light": {
+    "message0": "Set the ST7789 screen brightness to %1",
+    "tooltip": "Set ST7789 screen brightness"
+  },
+  "esp32ai_wake_engine": {
+    "message0": "Wake up ESP32-AI"
+  },
+  "esp32ai_sendtext": {
+    "message0": "Actively send messages %1",
+    "tooltip": "Take the initiative to send messages to Xiaozhi and ask him to work"
+  },
+  "aivox_lcd_show_status": {
+    "message0": "Display %2 in %1",
+    "args0": [
+      {
+        "options": [
+          [
+            "status box",
+            "ShowStatus"
+          ],
+          [
+            "emoticon box",
+            "SetEmotion"
+          ],
+          [
+            "content box",
+            "SetChatMessage"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "esp32ai_state_change_root": {
+    "message0": "When the AI device status changes",
+    "tooltip": "The general entrance for handling all status change events of AI equipment",
+    "message1": "%1"
+  },
+  "esp32ai_state_change_case": {
+    "message0": "When the status is %1",
+    "tooltip": "When the AI device enters the specified state, execute the code here",
+    "args0": [
+      {
+        "options": [
+          [
+            "Idle",
+            "kIdle"
+          ],
+          [
+            "Initialized",
+            "kInitted"
+          ],
+          [
+            "Loading",
+            "kLoading"
+          ],
+          [
+            "LoadingFailed",
+            "kLoadingFailed"
+          ],
+          [
+            "Standby",
+            "kStandby"
+          ],
+          [
+            "Connecting",
+            "kConnecting"
+          ],
+          [
+            "Listening",
+            "kListening"
+          ],
+          [
+            "Speaking",
+            "kSpeaking"
+          ]
+        ]
+      }
+    ],
+    "message1": "%1"
+  },
+  "aivox3_ST77789TurnOnBacklight_engine": {
+    "message0": "Light up the ST77789 screen"
+  },
+  "aivox3_ST77789TurnOffBacklight_engine": {
+    "message0": "Turn off ST77789 screen"
+  },
+  "esp32ai_loop_activation": {
+    "message0": "When AI receives activation information",
+    "tooltip": "The logic of AI activation events",
+    "message1": "%1"
+  },
+  "get_aivox_activation_message": {
+    "message0": "Received %1",
+    "tooltip": "Get the activation code for your device",
+    "args0": [
+      {
+        "options": [
+          [
+            "activation code",
+            "code"
+          ],
+          [
+            "Activation URL",
+            "message"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32ai_loop_emotion": {
+    "message0": "When AI receives emoticon code",
+    "tooltip": "The logic of AI-VOX expression events",
+    "message1": "%1"
+  },
+  "get_aivox_emotion_result": {
+    "message0": "Received emoticon code",
+    "tooltip": "Get the current emotional expression"
+  },
+  "aivox_emotion": {
+    "message0": "The expression received was %1?",
+    "tooltip": "emotional expression",
+    "args0": [
+      {
+        "options": [
+          [
+            "happy",
+            "happy"
+          ],
+          [
+            "Cool",
+            "cool"
+          ],
+          [
+            "laugh",
+            "laughing"
+          ],
+          [
+            "Funny",
+            "funny"
+          ],
+          [
+            "sad",
+            "sad"
+          ],
+          [
+            "angry",
+            "angry"
+          ],
+          [
+            "cry",
+            "crying"
+          ],
+          [
+            "like",
+            "loving"
+          ],
+          [
+            "Embarrassing",
+            "embarrassed"
+          ],
+          [
+            "surprised",
+            "surprised"
+          ],
+          [
+            "shocked",
+            "shocked"
+          ],
+          [
+            "think",
+            "thinking"
+          ],
+          [
+            "naughty",
+            "winking"
+          ],
+          [
+            "relax",
+            "relaxed"
+          ],
+          [
+            "enjoy",
+            "delicious"
+          ],
+          [
+            "kiss",
+            "kissy"
+          ],
+          [
+            "Confident",
+            "confident"
+          ],
+          [
+            "sleepy",
+            "sleepy"
+          ],
+          [
+            "Funny",
+            "silly"
+          ],
+          [
+            "confused",
+            "confused"
+          ]
+        ]
+      }
+    ]
+  },
+  "aivox_emotion_list": {
+    "message0": "Emoticon package %1",
+    "tooltip": "emotional expression",
+    "args0": [
+      {
+        "options": [
+          [
+            "happy",
+            "happy"
+          ],
+          [
+            "Cool",
+            "cool"
+          ],
+          [
+            "laugh",
+            "laughing"
+          ],
+          [
+            "Funny",
+            "funny"
+          ],
+          [
+            "sad",
+            "sad"
+          ],
+          [
+            "angry",
+            "angry"
+          ],
+          [
+            "cry",
+            "crying"
+          ],
+          [
+            "like",
+            "loving"
+          ],
+          [
+            "Embarrassing",
+            "embarrassed"
+          ],
+          [
+            "surprised",
+            "surprised"
+          ],
+          [
+            "shocked",
+            "shocked"
+          ],
+          [
+            "think",
+            "thinking"
+          ],
+          [
+            "naughty",
+            "winking"
+          ],
+          [
+            "relax",
+            "relaxed"
+          ],
+          [
+            "enjoy",
+            "delicious"
+          ],
+          [
+            "kiss",
+            "kissy"
+          ],
+          [
+            "Confident",
+            "confident"
+          ],
+          [
+            "sleepy",
+            "sleepy"
+          ],
+          [
+            "Funny",
+            "silly"
+          ],
+          [
+            "confused",
+            "confused"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32ai_loop_chat_message": {
+    "message0": "When the AI receives a chat message",
+    "tooltip": "Handle AI-VOX interactive message events",
+    "message1": "%1"
+  },
+  "aivox_loop_chat_message_role_var": {
+    "message0": "Received a message from %1?",
+    "tooltip": "The role of the current message of the AI-VOX device",
+    "args0": [
+      {
+        "options": [
+          [
+            "Assistant reply",
+            "Assistant"
+          ],
+          [
+            "User inquiry",
+            "User"
+          ]
+        ]
+      }
+    ]
+  },
+  "aivox_mcp_register_control_command": {
+    "message0": "%1Register MCP control service%2",
+    "args0": [
+      {
+        "options": [
+          [
+            "regular",
+            "regular"
+          ],
+          [
+            "only set",
+            "set_only"
+          ],
+          [
+            "Report only",
+            "report_only"
+          ]
+        ]
+      },
+      null
+    ],
+    "message1": "Parameter%1"
+  },
+  "aivox_mcp_control_param": {
+    "message0": "MCP service parameter%1 Parameter type%2",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Boolean",
+            "Boolean"
+          ],
+          [
+            "Number",
+            "Number"
+          ],
+          [
+            "String",
+            "String"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32ai_mcp_control_param": {
+    "message0": "MCP service parameter%1 Parameter type%2",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Boolean",
+            "Boolean"
+          ],
+          [
+            "Number",
+            "Number"
+          ],
+          [
+            "String",
+            "String"
+          ]
+        ]
+      }
+    ]
+  },
+  "aivox_mcp_control": {
+    "message0": "MCP Service Name%1 Description%2"
+  },
+  "aivox_loop_chat_message_msg_var": {
+    "message0": "Received message content",
+    "tooltip": "Information content of the current chat on the AI-VOX device"
+  },
+  "esp32ai_loop_mcp": {
+    "message0": "When AI receives MCP message",
+    "tooltip": "Processing AI-VOX MCP information",
+    "message1": "%1"
+  },
+  "esp32ai_loop_mcp_new": {
+    "message0": "%1 Register MCP control service",
+    "tooltip": "MCP service registration and message processing",
+    "args0": [
+      {
+        "options": [
+          [
+            "regular",
+            "regular"
+          ],
+          [
+            "only set",
+            "set_only"
+          ],
+          [
+            "Report only",
+            "report_only"
+          ]
+        ]
+      }
+    ],
+    "message1": "Service Name%1 Description%2",
+    "message2": "Parameter%1",
+    "message3": "Message processing"
+  },
+  "aivox_get_iot_message_event_name": {
+    "message0": "The device name is %1"
+  },
+  "aivox_get_iot_message_event_name_new": {
+    "message0": "The MCP service name is %1?"
+  },
+  "aivox_state_control_message_event_fuction": {
+    "message0": "Get the result of device name %1 status parameter %2"
+  },
+  "aivox_control_message_event_fuction": {
+    "message0": "Get the result of MCP service name %1 parameter %2"
+  },
+  "aivox_response_mcp_control_result": {
+    "message0": "Report device %1 control results"
+  },
+  "aivox_response_mcp_control_result_new": {
+    "message0": "Report MCP service name %1 execution completed"
+  },
+  "aivox_update_mcp_control_state_new": {
+    "message0": "Simply report the MCP service name %1 and the value of parameter %2 is %3"
+  },
+  "aivox_calculateupdate_mcp_control_state": {
+    "message0": "Calculate the reported MCP service name %1 Parameter %2",
+    "message1": "%1"
+  },
+  "esp32ai_selget_mcp_control": {
+    "message0": "MCP service name %1"
+  },
+  "lvgl_port_lock": {
+    "message0": "Acquisition of LVGL lock timeout%1ms",
+    "tooltip": "Get LVGL mutex lock"
+  },
+  "lvgl_port_unlock": {
+    "message0": "Release LVGL lock",
+    "tooltip": "Release LVGL mutex lock"
+  },
+  "esp32ai_lvgl_obj_set_style_text_font": {
+    "message0": "Set %1 Xiaozhi font %2",
+    "tooltip": "Set the object's text font",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Monochrome screen text 14 point font",
+            "font_puhui_14_1"
+          ],
+          [
+            "Monochrome screen No. 30 large icon",
+            "font_awesome_30_1"
+          ],
+          [
+            "Monochrome screen No. 14 small icon",
+            "font_awesome_14_1"
+          ],
+          [
+            "Color screen text 16 point font",
+            "font_puhui_16_4"
+          ],
+          [
+            "Color screen black function icon number 30",
+            "font_awesome_30_4"
+          ],
+          [
+            "Color screen black function icon number 16",
+            "font_awesome_16_4"
+          ],
+          [
+            "Color screen mood No. 32",
+            "font_emoji_32_init()"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32ai_emotion_select": {
+    "message0": "Return to image font Category: %1",
+    "tooltip": "Select the category and icon to return the corresponding graphic font macro",
+    "args0": [
+      {
+        "options": [
+          [
+            "Expressions",
+            "EMOJI"
+          ],
+          [
+            "Batteries",
+            "BATTERY"
+          ],
+          [
+            "WiFi class",
+            "WIFI"
+          ],
+          [
+            "Signal class",
+            "SIGNAL"
+          ],
+          [
+            "Volume type",
+            "VOLUME"
+          ],
+          [
+            "Media control class",
+            "MEDIA"
+          ],
+          [
+            "Arrow class",
+            "ARROW"
+          ],
+          [
+            "Function icon class",
+            "FUNCTION"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_label_set_text_emotion": {
+    "message0": "Set label %1 icon text to %2",
+    "tooltip": "Set the icon displayed by the label"
+  },
+  "lvgl_label_set_text_cpemotion": {
+    "message0": "Set tag %1 Xiaozhi color screen emoticon %2",
+    "tooltip": "Set the Xiaozhi color screen emoticon displayed by the label"
+  },
+  "aivox3_init_es8311": {
+    "tooltip": "Initialize AI-VOX3 engine ES8311 module"
+  },
+  "esp32ai_init_es8388": {
+    "tooltip": "Initialize Xiaozhi voice engine ES8388 module"
+  }
+}

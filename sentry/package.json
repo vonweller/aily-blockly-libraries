@@ -1,0 +1,44 @@
+{
+  "name": "@aily-project/lib-sentry",
+  "nickname": "Sentry视觉传感器",
+  "description": "这是面向 AilyBlockly 的 Sentry 系列智能视觉传感器库，支持 Sentry1、Sentry2 和 Sentry3。三个型号采用独立积木、变量类型和功能目录，确保算法不会跨型号混用。",
+  "version": "2.1.6",
+  "author": "脆脆鲨",
+  "license": "Apache-2.0",
+  "compatibility": {
+    "core": [
+      "esp32:esp32",
+      "arduino:avr",
+      "arduino:megaavr",
+      "renesas_uno:unor4wifi"
+    ],
+    "voltage": [
+      3.3,
+      5
+    ]
+  },
+  "keywords": [
+    "aily",
+    "blockly",
+    "sentry",
+    "sengo",
+    "computer-vision",
+    "i2c",
+    "uart"
+  ],
+  "tested": false,
+  "tester": "",
+  "url": "https://gitee.com/AITosee/Sentry-Arduino",
+  "dependencies": {},
+  "bundledSources": [
+    {
+      "name": "Sentry-Arduino",
+      "version": "1.4.5",
+      "author": "Tosee Intelligence (hangzhoou) co.,ltd.",
+      "url": "https://gitee.com/AITosee/Sentry-Arduino",
+      "license": "Apache-2.0",
+      "path": "src/sentry/Sentry.h",
+      "reason": "Complete upstream Sentry/Sengo protocol driver; Arduino core Wire and Stream are platform prerequisites"
+    }
+  ]
+}

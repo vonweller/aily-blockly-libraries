@@ -1,0 +1,528 @@
+{
+  "toolbox_name": "Accionamiento del motor MD40",
+  "toolbox_labels": {
+    "初始化": "inicialización",
+    "直流模式": "modo CC",
+    "编码器模式": "Modo codificador",
+    "运行控制": "control de operaciones",
+    "位置校准": "calibración de posición",
+    "状态读取": "lectura de estado"
+  },
+  "md40_init": {
+    "message0": "Inicializa el controlador de motor MD40 %1 usa I2C %2 direcciones I2C %3",
+    "tooltip": "Inicializar el módulo de accionamiento de motor de cuatro vías MD40 mediante comunicación I2C, dirección por defecto 0x16",
+    "args0": [
+      null,
+      {
+        "options": "${board.i2c}"
+      },
+      {
+        "options": [
+          [
+            "0x16 (por defecto)",
+            "0x16"
+          ],
+          [
+            "0x17",
+            "0x17"
+          ],
+          [
+            "0x18",
+            "0x18"
+          ],
+          [
+            "0x19",
+            "0x19"
+          ]
+        ]
+      }
+    ]
+  },
+  "md40_set_dc_mode": {
+    "message0": "El MD40 %1 pone el motor %2 en modo CC",
+    "tooltip": "Configura el motor especificado en modo DC y usa directamente el control del ciclo de trabajo PWM",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Motor: 0",
+            "0"
+          ],
+          [
+            "Motor 1",
+            "1"
+          ],
+          [
+            "Motor 2",
+            "2"
+          ],
+          [
+            "Motor 3",
+            "3"
+          ]
+        ]
+      }
+    ]
+  },
+  "md40_set_encoder_mode": {
+    "message0": "MD40 %1 Ajuste el motor %2 al modo encoder PPR %3 relación de reducción %4 relación de fase %5",
+    "tooltip": "Configura el motor especificado en modo codificador y configura pulsos por revolución (PPR), relación de reducción y relación de fase",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Motor: 0",
+            "0"
+          ],
+          [
+            "Motor 1",
+            "1"
+          ],
+          [
+            "Motor 2",
+            "2"
+          ],
+          [
+            "Motor 3",
+            "3"
+          ]
+        ]
+      },
+      null,
+      null,
+      {
+        "options": [
+          [
+            "El Aspecto A conduce",
+            "em::Md40::Motor::PhaseRelation::kAPhaseLeads"
+          ],
+          [
+            "B lidera el camino",
+            "em::Md40::Motor::PhaseRelation::kBPhaseLeads"
+          ]
+        ]
+      }
+    ]
+  },
+  "md40_set_speed_pid": {
+    "message0": "MD40 %1 Ajustes del motor %2 velocidad PID P %3 I %4 D %5",
+    "tooltip": "Establece los parámetros para el controlador PID del anillo de velocidad del motor",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Motor: 0",
+            "0"
+          ],
+          [
+            "Motor 1",
+            "1"
+          ],
+          [
+            "Motor 2",
+            "2"
+          ],
+          [
+            "Motor 3",
+            "3"
+          ]
+        ]
+      },
+      null,
+      null,
+      null
+    ]
+  },
+  "md40_set_position_pid": {
+    "message0": "MD40 %1 Ajuste del motor %2 posición PID P %3 I %4 D %5",
+    "tooltip": "Establecer los parámetros del controlador PID del anillo de posición del motor",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Motor: 0",
+            "0"
+          ],
+          [
+            "Motor 1",
+            "1"
+          ],
+          [
+            "Motor 2",
+            "2"
+          ],
+          [
+            "Motor 3",
+            "3"
+          ]
+        ]
+      },
+      null,
+      null,
+      null
+    ]
+  },
+  "md40_run_pwm_duty": {
+    "message0": "El %2 de motor MD40 %1 funciona en ciclo de trabajo PWM %3 (-1023~1023)",
+    "tooltip": "Accionar el motor a un ciclo de trabajo PWM especificado, con números positivos hacia adelante y números negativos en reversa, que van de -1023 a 1023",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Motor: 0",
+            "0"
+          ],
+          [
+            "Motor 1",
+            "1"
+          ],
+          [
+            "Motor 2",
+            "2"
+          ],
+          [
+            "Motor 3",
+            "3"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "md40_run_speed": {
+    "message0": "El motor de %1 MD40 %2 funciona a velocidades %3 RPM",
+    "tooltip": "Opera el motor a una velocidad (RPM) especificada, con rotación positiva hacia adelante y rotación negativa inversa. Primero necesitas configurar el modo codificador y el PID de velocidad",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Motor: 0",
+            "0"
+          ],
+          [
+            "Motor 1",
+            "1"
+          ],
+          [
+            "Motor 2",
+            "2"
+          ],
+          [
+            "Motor 3",
+            "3"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "md40_move_to": {
+    "message0": "El motor del MD40 %1 %2 gira hasta la posición %3 grados a la velocidad %4 RPM",
+    "tooltip": "Para rotar el eje de salida del motor hasta la posición absoluta (ángulo) especificada, primero tienes que establecer el modo codificador y los parámetros PID",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Motor: 0",
+            "0"
+          ],
+          [
+            "Motor 1",
+            "1"
+          ],
+          [
+            "Motor 2",
+            "2"
+          ],
+          [
+            "Motor 3",
+            "3"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "md40_move": {
+    "message0": "MD40 %1 motor %2 rotación relativa %3 grados velocidad %4 rpm",
+    "tooltip": "Para girar el eje de salida del motor en un ángulo específico respecto a la posición actual, primero necesitas establecer el modo codificador y los parámetros PID",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Motor: 0",
+            "0"
+          ],
+          [
+            "Motor 1",
+            "1"
+          ],
+          [
+            "Motor 2",
+            "2"
+          ],
+          [
+            "Motor 3",
+            "3"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "md40_stop": {
+    "message0": "MD40 %1 motor de parada %2",
+    "tooltip": "Detener la operación motora especificada",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Motor: 0",
+            "0"
+          ],
+          [
+            "Motor 1",
+            "1"
+          ],
+          [
+            "Motor 2",
+            "2"
+          ],
+          [
+            "Motor 3",
+            "3"
+          ]
+        ]
+      }
+    ]
+  },
+  "md40_reset": {
+    "message0": "MD40 %1 reinicio del motor %2",
+    "tooltip": "Reinicia el motor especificado a su estado inicial",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Motor: 0",
+            "0"
+          ],
+          [
+            "Motor 1",
+            "1"
+          ],
+          [
+            "Motor 2",
+            "2"
+          ],
+          [
+            "Motor 3",
+            "3"
+          ]
+        ]
+      }
+    ]
+  },
+  "md40_set_position": {
+    "message0": "El MD40 %1 ajusta la posición %2 motor a %3 grados",
+    "tooltip": "Establece el valor de posición (ángulo) del eje de salida del motor para calibrar la posición",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Motor: 0",
+            "0"
+          ],
+          [
+            "Motor 1",
+            "1"
+          ],
+          [
+            "Motor 2",
+            "2"
+          ],
+          [
+            "Motor 3",
+            "3"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "md40_set_pulse_count": {
+    "message0": "MD40 %1 Ajusta el motor %2 el recuento de pulsos a %3",
+    "tooltip": "Establece el valor de conteo de pulsos del codificador del motor",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Motor: 0",
+            "0"
+          ],
+          [
+            "Motor 1",
+            "1"
+          ],
+          [
+            "Motor 2",
+            "2"
+          ],
+          [
+            "Motor 3",
+            "3"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "md40_get_speed": {
+    "message0": "Motor %1 MD40 %2 Velocidad de Corriente (RPM)",
+    "tooltip": "Calcula la velocidad de corriente (RPM) del eje de salida del motor, número positivo rotación hacia adelante, número negativo rotación inversa",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Motor: 0",
+            "0"
+          ],
+          [
+            "Motor 1",
+            "1"
+          ],
+          [
+            "Motor 2",
+            "2"
+          ],
+          [
+            "Motor 3",
+            "3"
+          ]
+        ]
+      }
+    ]
+  },
+  "md40_get_position": {
+    "message0": "MD40 %1 Motor %2 Posición Actual (Grados)",
+    "tooltip": "Obtén el valor de posición (ángulo) del eje de salida del motor y acumula el valor del ángulo",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Motor: 0",
+            "0"
+          ],
+          [
+            "Motor 1",
+            "1"
+          ],
+          [
+            "Motor 2",
+            "2"
+          ],
+          [
+            "Motor 3",
+            "3"
+          ]
+        ]
+      }
+    ]
+  },
+  "md40_get_pulse_count": {
+    "message0": "MD40 %1 motor %2 recuento de pulsos",
+    "tooltip": "Recupera el recuento actual de pulsos del codificador del motor",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Motor: 0",
+            "0"
+          ],
+          [
+            "Motor 1",
+            "1"
+          ],
+          [
+            "Motor 2",
+            "2"
+          ],
+          [
+            "Motor 3",
+            "3"
+          ]
+        ]
+      }
+    ]
+  },
+  "md40_get_pwm_duty": {
+    "message0": "MD40 %1 Motor %2 ciclo de trabajo actual de PWM",
+    "tooltip": "Obtén el ciclo de trabajo actual del PWM del motor, que va de -1023 a 1023",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Motor: 0",
+            "0"
+          ],
+          [
+            "Motor 1",
+            "1"
+          ],
+          [
+            "Motor 2",
+            "2"
+          ],
+          [
+            "Motor 3",
+            "3"
+          ]
+        ]
+      }
+    ]
+  },
+  "md40_get_state": {
+    "message0": "Motor %1 MD40 %2 estado actual",
+    "tooltip": "Averigua el estado actual del motor: 0 - ralentí, 1 - PWM en marcha, 2 - velocidad de marcha, 3 - posición en marcha, 4 - posición alcanzada",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Motor: 0",
+            "0"
+          ],
+          [
+            "Motor 1",
+            "1"
+          ],
+          [
+            "Motor 2",
+            "2"
+          ],
+          [
+            "Motor 3",
+            "3"
+          ]
+        ]
+      }
+    ]
+  }
+}

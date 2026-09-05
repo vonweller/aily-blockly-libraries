@@ -1,0 +1,137 @@
+{
+  "toolbox_name": "STCC4 CO2",
+  "stcc4_init": {
+    "message0": "STCC4をI2C%1%2アドレスの初期化%3",
+    "tooltip": "STCC4 CO2センサーを作成・初期化し、起床後は連続測定を開始します。",
+    "args0": [
+      null,
+      {
+        "options": "${board.i2c}"
+      },
+      {
+        "options": [
+          [
+            "0x64(デフォルト)",
+            "0x64"
+          ],
+          [
+            "0x65",
+            "0x65"
+          ]
+        ]
+      }
+    ]
+  },
+  "stcc4_read": {
+    "message0": "STCC4 %1データ読み込み成功",
+    "tooltip": "CO2、温度、湿度、状態データを一度読み取り、成功するとtrueを返します。"
+  },
+  "stcc4_get_data": {
+    "message0": "STCC4 %1データ%2",
+    "tooltip": "最新の測定または校正から得られたデータを読みましょう。",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "CO2濃度ppm",
+            "CO2"
+          ],
+          [
+            "温度℃",
+            "TEMPERATURE"
+          ],
+          [
+            "湿度%RH",
+            "HUMIDITY"
+          ],
+          [
+            "センサーの状態",
+            "STATUS"
+          ],
+          [
+            "強制キャリブレーション補正値",
+            "FRC_CORRECTION"
+          ]
+        ]
+      }
+    ]
+  },
+  "stcc4_get_id": {
+    "message0": "STCC4 %1センサーID",
+    "tooltip": "STCC4センサーIDを読み取ってください。"
+  },
+  "stcc4_measurement_control": {
+    "message0": "STCC4 %1測定制御%2",
+    "tooltip": "STCC4を制御して連続測定または単一測定をトリガーします。",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "連続測定を開始",
+            "startMeasurement"
+          ],
+          [
+            "停止連続測定",
+            "stopMeasurement"
+          ],
+          [
+            "単一測定",
+            "singleMeasurement"
+          ]
+        ]
+      }
+    ]
+  },
+  "stcc4_power_control": {
+    "message0": "STCC4 %1 パワーコントロール%2",
+    "tooltip": "センサーを起動するか、スリープモードに入ってください。",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "wakeup",
+            "wakeup"
+          ],
+          [
+            "sleep",
+            "sleep"
+          ]
+        ]
+      }
+    ]
+  },
+  "stcc4_reset": {
+    "message0": "STCC4 %1リセット%2",
+    "tooltip": "STCC4でソフトリセットまたは工場出荷時リセットを実行してください。",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "ソフトリポジション",
+            "softRest"
+          ],
+          [
+            "工場出荷時の設定を復元する",
+            "factoryReset"
+          ]
+        ]
+      }
+    ]
+  },
+  "stcc4_set_rht_compensation": {
+    "message0": "STCC4 %1 温度および湿度補償の設定 温度 °C %2湿度 %RH %3",
+    "tooltip": "温度と湿度の補償が設定されており、温度範囲は10〜40°C、湿度範囲は湿度20〜80%です。"
+  },
+  "stcc4_set_pressure_compensation": {
+    "message0": "STCC4 %1 空気圧補償をhPa %2設定",
+    "tooltip": "空気圧補償機能を備えており、400〜1100 hPaの範囲です。"
+  },
+  "stcc4_forced_recalibration": {
+    "message0": "STCC4 %1 強制キャリブレーションターゲットppm%2",
+    "tooltip": "強制キャリブレーションを行い、ターゲット値は0〜32,000ppmの範囲で、成功したら強制キャリブレーション補正値を読み出します。"
+  }
+}

@@ -1,0 +1,137 @@
+{
+  "toolbox_name": "STCC4 CO2",
+  "stcc4_init": {
+    "message0": "初始化 STCC4 %1 I2C %2位址%3",
+    "tooltip": "建立並初始化 STCC4 二氧化碳感測器，醒來後開始連續測量。",
+    "args0": [
+      null,
+      {
+        "options": "${board.i2c}"
+      },
+      {
+        "options": [
+          [
+            "0x64（預設）",
+            "0x64"
+          ],
+          [
+            "0x65",
+            "0x65"
+          ]
+        ]
+      }
+    ]
+  },
+  "stcc4_read": {
+    "message0": "STCC4 %1 資料成功讀取",
+    "tooltip": "讀取一次二氧化碳、溫度、濕度和狀態資料，成功後返回為真。"
+  },
+  "stcc4_get_data": {
+    "message0": "STCC4 %1資料%2",
+    "tooltip": "閱讀最近測量或校正所得的數據。",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "二氧化碳濃度 ppm",
+            "CO2"
+          ],
+          [
+            "溫度 °C",
+            "TEMPERATURE"
+          ],
+          [
+            "濕度 %RH",
+            "HUMIDITY"
+          ],
+          [
+            "感測器狀態",
+            "STATUS"
+          ],
+          [
+            "強制校正值",
+            "FRC_CORRECTION"
+          ]
+        ]
+      }
+    ]
+  },
+  "stcc4_get_id": {
+    "message0": "STCC4 %1感測器識別碼",
+    "tooltip": "讀取 STCC4 感測器 ID。"
+  },
+  "stcc4_measurement_control": {
+    "message0": "STCC4 %1 測量控制%2",
+    "tooltip": "控制 STCC4 以進行連續測量或觸發單一測量。",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "開始連續測量",
+            "startMeasurement"
+          ],
+          [
+            "停止連續測量",
+            "stopMeasurement"
+          ],
+          [
+            "單一測量",
+            "singleMeasurement"
+          ]
+        ]
+      }
+    ]
+  },
+  "stcc4_power_control": {
+    "message0": "STCC4 %1 動力控制%2",
+    "tooltip": "喚醒感應器或進入睡眠模式。",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "wakeup",
+            "wakeup"
+          ],
+          [
+            "sleep",
+            "sleep"
+          ]
+        ]
+      }
+    ]
+  },
+  "stcc4_reset": {
+    "message0": "STCC4 %1重置%2",
+    "tooltip": "對 STCC4 進行軟重置或出廠重置。",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "軟性重新定位",
+            "softRest"
+          ],
+          [
+            "恢復出廠設定",
+            "factoryReset"
+          ]
+        ]
+      }
+    ]
+  },
+  "stcc4_set_rht_compensation": {
+    "message0": "STCC4 %1 設定溫度與濕度補償 溫度 °C %2 濕度 %RH %3",
+    "tooltip": "設置溫度與濕度補償系統，溫度範圍為10-40°C，濕度範圍為20-80%相對濕度。"
+  },
+  "stcc4_set_pressure_compensation": {
+    "message0": "STCC4 %1 設定空氣壓力補償 hPa %2",
+    "tooltip": "配備氣壓補償系統，壓力範圍介於400至1100 hPa之間。"
+  },
+  "stcc4_forced_recalibration": {
+    "message0": "STCC4 %1 強制校正目標 ppm %2",
+    "tooltip": "執行強制校正，目標值範圍為0-32,000 ppm，成功後讀取強制校正值。"
+  }
+}

@@ -1,0 +1,135 @@
+{
+  "toolbox_name": "MQTT",
+  "toolbox_labels": {
+    "初始化": "初始化",
+    "连接": "連接",
+    "通信": "通訊",
+    "设置": "設定"
+  },
+  "pubsub_create": {
+    "message0": "建立MQTT客戶端 %1 使用客戶端 %2 SSL %3\n伺服器 %4 連接埠 %5",
+    "tooltip": "建立MQTT客戶端對象",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "不",
+            "FALSE"
+          ],
+          [
+            "是的",
+            "TRUE"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "pubsub_set_callback": {
+    "message0": "MQTT客戶端 %1 收到訊息時",
+    "tooltip": "設定MQTT訊息接收回呼函數",
+    "message1": "執行 %1"
+  },
+  "pubsub_set_callback_with_topic": {
+    "message0": "收到主題 %1 訊息時",
+    "tooltip": "設定特定主題的MQTT訊息接收回呼函數",
+    "message1": "執行 %1"
+  },
+  "pubsub_get_topic_callback_payload": {
+    "message0": "取得收到的MQTT訊息內容",
+    "tooltip": "取得回呼函數中收到的MQTT訊息內容"
+  },
+  "pubsub_connect": {
+    "message0": "MQTT客戶端 %1 連接 客戶端ID %2",
+    "tooltip": "連接到MQTT伺服器"
+  },
+  "pubsub_connect_auth": {
+    "message0": "MQTT客戶端 %1 連線 用戶端ID %2 使用者名稱 %3 密碼 %4",
+    "tooltip": "使用使用者名稱和密碼連接到MQTT伺服器"
+  },
+  "pubsub_publish": {
+    "message0": "MQTT客戶端 %1 發佈訊息 主題 %2 內容 %3",
+    "tooltip": "發布MQTT消息"
+  },
+  "pubsub_subscribe": {
+    "message0": "MQTT客戶端 %1 訂閱主題 %2",
+    "tooltip": "訂閱MQTT主題"
+  },
+  "pubsub_unsubscribe": {
+    "message0": "MQTT客戶端 %1 取消訂閱主題 %2",
+    "tooltip": "取消訂閱MQTT主題"
+  },
+  "pubsub_loop": {
+    "message0": "處理MQTT客戶端 %1 通信",
+    "tooltip": "處理MQTT通信，需要在loop中調用"
+  },
+  "pubsub_connected": {
+    "message0": "MQTT客戶端 %1 是否已連接",
+    "tooltip": "檢查MQTT連線狀態"
+  },
+  "pubsub_state": {
+    "message0": "MQTT客戶端 %1 取得連線狀態",
+    "tooltip": "取得MQTT連線狀態碼"
+  },
+  "pubsub_state_code": {
+    "message0": "MQTT狀態碼 %1",
+    "tooltip": "MQTT狀態碼常數",
+    "args0": [
+      {
+        "options": [
+          [
+            "成功連接",
+            "MQTT_CONNECTED"
+          ],
+          [
+            "連線失敗",
+            "MQTT_CONNECT_FAILED"
+          ],
+          [
+            "斷開連接",
+            "MQTT_DISCONNECTED"
+          ],
+          [
+            "連線遺失",
+            "MQTT_CONNECTION_LOST"
+          ],
+          [
+            "連線逾時",
+            "MQTT_CONNECTION_TIMEOUT"
+          ],
+          [
+            "協定錯誤",
+            "MQTT_CONNECT_BAD_PROTOCOL"
+          ],
+          [
+            "客戶端ID錯誤",
+            "MQTT_CONNECT_BAD_CLIENT_ID"
+          ],
+          [
+            "服務不可用",
+            "MQTT_CONNECT_UNAVAILABLE"
+          ],
+          [
+            "憑證錯誤",
+            "MQTT_CONNECT_BAD_CREDENTIALS"
+          ],
+          [
+            "未授權",
+            "MQTT_CONNECT_UNAUTHORIZED"
+          ]
+        ]
+      }
+    ]
+  },
+  "pubsub_disconnect": {
+    "message0": "斷開MQTT客戶端 %1 連接",
+    "tooltip": "斷開MQTT連接"
+  },
+  "pubsub_setBufferSize": {
+    "message0": "設定MQTT客戶端 %1 緩衝區大小 %2 位元組",
+    "tooltip": "設定MQTT客戶端緩衝區大小"
+  }
+}

@@ -1,0 +1,317 @@
+{
+  "toolbox_name": "ESP32 BLE",
+  "toolbox_labels": {
+    "设备管理": "إدارة الجهاز",
+    "服务端": "الخادم",
+    "特征值": "القيمة الذاتية",
+    "广播": "بث",
+    "事件回调": "رد اتصال الحدث",
+    "客户端": "العميل",
+    "扫描": "مسح",
+    "快速操作-UART": "عملية سريعة-UART"
+  },
+  "esp32_ble_init": {
+    "message0": "تهيئة اسم جهاز BLE: %1",
+    "tooltip": "قم بتهيئة جهاز BLE وضبط اسم الجهاز"
+  },
+  "esp32_ble_deinit": {
+    "message0": "إيقاف تشغيل أجهزة BLE %1",
+    "tooltip": "إيقاف تشغيل أجهزة BLE",
+    "args0": [
+      {
+        "options": [
+          [
+            "الذكرى محفوظة",
+            "false"
+          ],
+          [
+            "ذاكرة التحرير",
+            "true"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_ble_get_address": {
+    "message0": "الحصول على عنوان BLE",
+    "tooltip": "الحصول على عنوان BLE MAC المحلي"
+  },
+  "esp32_ble_set_mtu": {
+    "message0": "اضبط حجم وحدة MTU %1",
+    "tooltip": "اضبط حجم وحدة النقل الأقصى لوحدة BLE MTU)"
+  },
+  "esp32_ble_get_mtu": {
+    "message0": "احصل على مقاس MTU",
+    "tooltip": "احصل على حجم MTU الحالي لوحدة BLE"
+  },
+  "esp32_ble_create_server": {
+    "message0": "إنشاء خادم BLE %1",
+    "tooltip": "إنشاء كائنات خادم BLE"
+  },
+  "esp32_ble_server_create_service": {
+    "message0": "على جانب الخادم، %1 إنشاء خدمة %2 UUID%3",
+    "tooltip": "إنشاء خدمة GATT على جانب الخادم"
+  },
+  "esp32_ble_service_start": {
+    "message0": "خدمة الإطلاق %1",
+    "tooltip": "خدمة BLE أطلقت"
+  },
+  "esp32_ble_service_stop": {
+    "message0": "توقفت الخدمة %1",
+    "tooltip": "إيقاف خدمة BLE"
+  },
+  "esp32_ble_create_characteristic": {
+    "message0": "إنشاء ميزات %2 خصائص UUID %3 في Service %1%4",
+    "tooltip": "إنشاء قيم ذاتية في الخدمة",
+    "args0": [
+      null,
+      null,
+      null,
+      {
+        "options": [
+          [
+            "قراءة",
+            "BLECharacteristic::PROPERTY_READ"
+          ],
+          [
+            "اكتب",
+            "BLECharacteristic::PROPERTY_WRITE"
+          ],
+          [
+            "إشعار",
+            "BLECharacteristic::PROPERTY_NOTIFY"
+          ],
+          [
+            "قراءة/كتابة",
+            "BLECharacteristic::PROPERTY_READ | BLECharacteristic::PROPERTY_WRITE"
+          ],
+          [
+            "اقرأ + إشعار",
+            "BLECharacteristic::PROPERTY_READ | BLECharacteristic::PROPERTY_NOTIFY"
+          ],
+          [
+            "اكتب + إشعار",
+            "BLECharacteristic::PROPERTY_WRITE | BLECharacteristic::PROPERTY_NOTIFY"
+          ],
+          [
+            "قراءة/كتابة+إشعار",
+            "BLECharacteristic::PROPERTY_READ | BLECharacteristic::PROPERTY_WRITE | BLECharacteristic::PROPERTY_NOTIFY"
+          ],
+          [
+            "بث",
+            "BLECharacteristic::PROPERTY_BROADCAST"
+          ],
+          [
+            "إشارة",
+            "BLECharacteristic::PROPERTY_INDICATE"
+          ],
+          [
+            "كتابة بلا رد",
+            "BLECharacteristic::PROPERTY_WRITE_NR"
+          ],
+          [
+            "الجميع",
+            "BLECharacteristic::PROPERTY_READ | BLECharacteristic::PROPERTY_WRITE | BLECharacteristic::PROPERTY_NOTIFY | BLECharacteristic::PROPERTY_INDICATE"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_ble_characteristic_set_value": {
+    "message0": "اضبط قيمة %1 الميزة على %2",
+    "tooltip": "قم بتعيين البيانات للقيم الذاتية"
+  },
+  "esp32_ble_characteristic_get_value": {
+    "message0": "احصل على قيمة الميزة %1",
+    "tooltip": "بيانات للحصول على القيم الذاتية"
+  },
+  "esp32_ble_characteristic_notify": {
+    "message0": "ميزات الإشعارات %1 تحديثات البيانات",
+    "tooltip": "إرسال إشعارات تحديث قيمة الميزات"
+  },
+  "esp32_ble_characteristic_indicate": {
+    "message0": "ميزات المؤشر %1 تحديثات البيانات",
+    "tooltip": "إرسال مؤشرات قيمة الميزة (يتطلب تأكيدا)"
+  },
+  "esp32_ble_add_descriptor": {
+    "message0": "أضف واصف إشعارات لميزة %1",
+    "tooltip": "إضافة BLE2902 أوصاف لدعم ميزات الإشعارات"
+  },
+  "esp32_ble_start_advertising": {
+    "message0": "ابدأ راديو BLE",
+    "tooltip": "ابدأ بث BLE حتى يمكن اكتشاف الجهاز"
+  },
+  "esp32_ble_stop_advertising": {
+    "message0": "إيقاف بث BLE",
+    "tooltip": "إيقاف بث BLE"
+  },
+  "esp32_ble_advertising_add_service_uuid": {
+    "message0": "خدمة البث الإضافي UUID%1",
+    "tooltip": "إضافة معرفات UUID للخدمة إلى البث"
+  },
+  "esp32_ble_advertising_set_scan_response": {
+    "message0": "اضبط استجابة المسح %1",
+    "tooltip": "حدد ما إذا كنت سأفعل استجابة المسح",
+    "args0": [
+      {
+        "options": [
+          [
+            "تمكين",
+            "true"
+          ],
+          [
+            "تعطيل",
+            "false"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_ble_on_connect": {
+    "message0": "عندما يتصل عميل BLE بالخادم %1",
+    "tooltip": "يتم تنفيذها عندما يتصل العميل بخادم BLE",
+    "message1": "نفذ %1"
+  },
+  "esp32_ble_on_disconnect": {
+    "message0": "عندما ينفصل عميل BLE عن الخادم %1",
+    "tooltip": "يتم تنفيذها عندما يقوم العميل بفصل اتصال BLE",
+    "message1": "نفذ %1"
+  },
+  "esp32_ble_on_write": {
+    "message0": "عند كتابة %1 الميزة",
+    "tooltip": "يتم تنفيذها عندما يكتب العميل قيمة الميزة",
+    "message1": "نفذ %1"
+  },
+  "esp32_ble_server_connected_count": {
+    "message0": "عدد العملاء المتصلين %1 الخادم",
+    "tooltip": "يسترجع العدد الحالي من العملاء المتصلين بالخادم"
+  },
+  "esp32_ble_create_client": {
+    "message0": "إنشاء %1 عميل BLE",
+    "tooltip": "إنشاء كائنات عميل BLE"
+  },
+  "esp32_ble_client_connect": {
+    "message0": "%1 العميل متصل بجهاز %2",
+    "tooltip": "اتصل بأجهزة BLE عند عناوين محددة"
+  },
+  "esp32_ble_client_disconnect": {
+    "message0": "انقطاع %1 العميل",
+    "tooltip": "افصل اتصال عميل BLE"
+  },
+  "esp32_ble_client_is_connected": {
+    "message0": "العميل %1 متصل",
+    "tooltip": "تحقق مما إذا كان العميل متصلا"
+  },
+  "esp32_ble_client_get_service": {
+    "message0": "الحصول %1 العميل على الخدمة %2 UUID %3",
+    "tooltip": "الوصول إلى خدمات BLE عن بعد"
+  },
+  "esp32_ble_remote_service_get_characteristic": {
+    "message0": "استخراج الميزات %2 UUIDs من %1 %3 الخدمة",
+    "tooltip": "الحصول على القيم الذاتية البعيدة"
+  },
+  "esp32_ble_remote_characteristic_read": {
+    "message0": "اقرأ قيمة ميزة اللعب عن بعد %1",
+    "tooltip": "يقرأ بيانات القيم الذاتية البعيدة"
+  },
+  "esp32_ble_remote_characteristic_write": {
+    "message0": "ميزة %1 قيمة للكتابة عن بعد %2",
+    "tooltip": "كتابة البيانات إلى قيم الميزات البعيدة"
+  },
+  "esp32_ble_remote_characteristic_can_read": {
+    "message0": "الميزات عن بعد %1 قابلة للقراءة",
+    "tooltip": "تحقق مما إذا كان يمكن قراءة قيم الميزات البعيدة"
+  },
+  "esp32_ble_remote_characteristic_can_notify": {
+    "message0": "يمكن إشعار الميزات عن بعد %1",
+    "tooltip": "تحقق مما إذا كانت قيم الميزات البعيدة تدعم إشعارات"
+  },
+  "esp32_ble_get_scan": {
+    "message0": "احصل على ماسح BLE %1",
+    "tooltip": "الحصول على كائن ماسح BLE"
+  },
+  "esp32_ble_scan_set_active": {
+    "message0": "الماسح %1 المسح النشط %2",
+    "tooltip": "حدد ما إذا كنت ستستخدم وضع المسح النشط",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "تمكين",
+            "true"
+          ],
+          [
+            "تعطيل",
+            "false"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_ble_scan_set_interval": {
+    "message0": "%1 الماسح يضبط فترة المسح على %2 مللي ثانية",
+    "tooltip": "اضبط فترة المسح (ميلي ثانية)"
+  },
+  "esp32_ble_scan_set_window": {
+    "message0": "الماسح %1 اضبط نافذة المسح على %2 مللي ثانية",
+    "tooltip": "اضبط حجم نافذة المسح (مللي ثانية)"
+  },
+  "esp32_ble_scan_start": {
+    "message0": "يبدأ %1 المسح السريع لمدة %2 ثانية",
+    "tooltip": "ابدأ بمسح جهاز BLE"
+  },
+  "esp32_ble_scan_stop": {
+    "message0": "الماسح %1 توقف المسح",
+    "tooltip": "أوقف مسح BLE"
+  },
+  "esp32_ble_scan_get_results": {
+    "message0": "جهاز المسح %1 للحصول على نتائج المسح",
+    "tooltip": "استرجاع كائن نتيجة المسح"
+  },
+  "esp32_ble_scan_results_count": {
+    "message0": "نتائج المسح %1 عدد الأجهزة",
+    "tooltip": "احصل على عدد الأجهزة التي يتم مسحها ضوئيا بواسطة الجهاز"
+  },
+  "esp32_ble_scan_results_get_device": {
+    "message0": "نتائج المسح %1 الحصول على فهرس الجهاز %2",
+    "tooltip": "استرجاع الأجهزة الممسوحة ضوئيا بناء على الفهرس"
+  },
+  "esp32_ble_advertised_device_name": {
+    "message0": "اسم المعدات %1",
+    "tooltip": "احصل على اسم جهاز البث"
+  },
+  "esp32_ble_advertised_device_address": {
+    "message0": "المعدات %1 العنوان",
+    "tooltip": "الحصول على عنوان MAC لجهاز البث"
+  },
+  "esp32_ble_advertised_device_rssi": {
+    "message0": "المعدات %1 قوة الإشارة (RSSI)",
+    "tooltip": "الحصول على قوة الإشارة لمعدات البث"
+  },
+  "esp32_ble_scan_clear_results": {
+    "message0": "الماسح %1 مسح نتائج المسح",
+    "tooltip": "نتائج الفحص السابقة واضحة"
+  },
+  "esp32_ble_uart_server_quick": {
+    "message0": "إنشاء خادم تسلسلي BLE اسم الجهاز %1",
+    "tooltip": "إنشاء خادم UART BLE بسرعة (خدمة UART النوردية)"
+  },
+  "esp32_ble_uart_send": {
+    "message0": "منفذ BLE التسلسلي يرسل %1",
+    "tooltip": "يتم إرسال البيانات عبر منفذ تسلسلي BLE"
+  },
+  "esp32_ble_uart_on_receive": {
+    "message0": "عندما يستقبل منفذ BLE التسلسلي البيانات",
+    "tooltip": "يتم التنفيذ عندما يستقبل منفذ BLE التسلسلي البيانات",
+    "message1": "نفذ %1"
+  },
+  "esp32_ble_uart_received_data": {
+    "message0": "البيانات المستلمة عبر منفذ BLE التسلسلي",
+    "tooltip": "استرجاع البيانات المستلمة من منفذ BLE التسلسلي (المستخدم في عمليات الاستدعاء)"
+  },
+  "esp32_ble_uart_is_connected": {
+    "message0": "منفذ BLE التسلسلي متصل",
+    "tooltip": "تحقق مما إذا كان منفذ BLE التسلسلي متصلا بالفعل بعميل"
+  }
+}

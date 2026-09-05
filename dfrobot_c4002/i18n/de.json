@@ -1,0 +1,312 @@
+{
+  "toolbox_name": "C4002-Millimeterwellenradar",
+  "dfrobot_c4002_init": {
+    "message0": "Initialisieren Sie das C4002-Radar %1 seriellen Port %2 Baudrate %3 RX %4 TX %5 OUT-Pin %6",
+    "tooltip": "Initialisieren Sie DFRobot C4002. ESP32 verwendet den ausgewählten harten seriellen Port und RX/TX-Pins, UNO/ESP8266 verwendet SoftwareSerial, und OUT-Pin 255 zeigt keine Nutzung an."
+  },
+  "dfrobot_c4002_update": {
+    "message0": "C4002 %1 Aktualisierungsbenachrichtigungsdaten",
+    "tooltip": "Rufen Sie getNoteInfo an, um Benachrichtigungstypen zu aktualisieren, Countdowns zu kalibrieren und Ergebnisse zu erkennen."
+  },
+  "dfrobot_c4002_get_note": {
+    "message0": "C4002 %1 note %2",
+    "tooltip": "Lesen Sie den Benachrichtigungstyp oder den Kalibrierungscountdown aus dem neuesten Update.",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Benachrichtigungstyp",
+            "NOTE_TYPE"
+          ],
+          [
+            "Kalibrieren Sie den Countdown",
+            "CALIB_COUNTDOWN"
+          ]
+        ]
+      }
+    ]
+  },
+  "dfrobot_c4002_get_value": {
+    "message0": "C4002 %1 Lesen %2",
+    "tooltip": "Lesen Sie Radarerkennungsergebnisse oder Konfigurationswerte.",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Zielstatus",
+            "TARGET_STATE"
+          ],
+          [
+            "Lichtintensitätslux",
+            "LIGHT"
+          ],
+          [
+            "Es gibt einen Countdown s",
+            "PRESENCE_COUNTDOWN"
+          ],
+          [
+            "Es gibt einen Distanzgatter-Index",
+            "PRESENCE_GATE_INDEX"
+          ],
+          [
+            "Es gibt eine Zieldistanz von m",
+            "PRESENCE_DISTANCE"
+          ],
+          [
+            "Es gibt Zielenergie",
+            "PRESENCE_ENERGY"
+          ],
+          [
+            "Entfernung zum Bewegungsziel m",
+            "MOTION_DISTANCE"
+          ],
+          [
+            "Zielgeschwindigkeit in m/s",
+            "MOTION_SPEED"
+          ],
+          [
+            "Bewegung zielt auf Energie",
+            "MOTION_ENERGY"
+          ],
+          [
+            "Bewegungsrichtung",
+            "MOTION_DIRECTION"
+          ],
+          [
+            "OUT-Zielstatus",
+            "OUT_TARGET_STATE"
+          ],
+          [
+            "Beleuchtungsschwelle",
+            "LIGHT_THRESHOLD"
+          ],
+          [
+            "Nächster Detektionsabstand cm",
+            "RANGE_CLOSEST"
+          ],
+          [
+            "Maximale Nachweisentfernung in Zentimetern",
+            "RANGE_FARTHEST"
+          ],
+          [
+            "Ziel-Nullverzögerung s",
+            "DISAPPEAR_DELAY"
+          ],
+          [
+            "OUT-Pin-Modus",
+            "OUT_PIN_MODE"
+          ],
+          [
+            "Auflösungsmodus",
+            "RESOLUTION_MODE"
+          ],
+          [
+            "Bewegungsempfindlichkeit",
+            "MOTION_SENSITIVITY"
+          ],
+          [
+            "Sensitivität existiert",
+            "PRESENCE_SENSITIVITY"
+          ]
+        ]
+      }
+    ]
+  },
+  "dfrobot_c4002_set_led": {
+    "message0": "C4002 %1 Einstellung %2 LED %3",
+    "tooltip": "Richte einen Schalter zum Laufen oder Leuchten ein.",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "run",
+            "RUN"
+          ],
+          [
+            "Ausgabe",
+            "OUT"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "Aus",
+            "eLedOff"
+          ],
+          [
+            "Ein",
+            "eLedOn"
+          ]
+        ]
+      }
+    ]
+  },
+  "dfrobot_c4002_set_out_pin_mode": {
+    "message0": "C4002 %1 Set OUT-Modus %2",
+    "tooltip": "Stellen Sie die Ausgangsbedingung des OUT-Pins ein.",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Nur Sport",
+            "eOutpinMode1"
+          ],
+          [
+            "Es existiert nur",
+            "eOutpinMode2"
+          ],
+          [
+            "Bewegung oder Existenz",
+            "eOutpinMode3"
+          ]
+        ]
+      }
+    ]
+  },
+  "dfrobot_c4002_set_resolution": {
+    "message0": "C4002 %1 Einstellungsauflösung %2",
+    "tooltip": "Stellen Sie die Auflösung des Distanzgatters ein.",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "80 cm",
+            "eResolution80Cm"
+          ],
+          [
+            "20 cm",
+            "eResolution20Cm"
+          ]
+        ]
+      }
+    ]
+  },
+  "dfrobot_c4002_set_detect_range": {
+    "message0": "C4002 %1 Detektionsbereich Nächster cm %2 entferntester cm %3",
+    "tooltip": "Stellen Sie den Detektionsentfernungsbereich, Einheit cm, üblicherweise von 0 bis 1100 ein."
+  },
+  "dfrobot_c4002_set_report_period": {
+    "message0": "C4002 %1 Berichtszyklus 0,1s Mehrfach %2",
+    "tooltip": "Stellen Sie den Benachrichtigungs-Meldezyklus ein: 10 bedeutet 1 Sekunde."
+  },
+  "dfrobot_c4002_set_light_threshold": {
+    "message0": "C4002 %1 Beleuchtungsschwellen-Lux %2",
+    "tooltip": "Stellen Sie die Umgebungslicht-Schwelle ein; 0 bedeutet, dass sie nicht durch Licht begrenzt ist."
+  },
+  "dfrobot_c4002_set_target_disappear_delay": {
+    "message0": "C4002 %1 Ziel-Nullverzögerung s %2",
+    "tooltip": "Stellen Sie die Dauer für den Zustand ein, nachdem das Ziel verschwunden ist."
+  },
+  "dfrobot_c4002_set_lock_time": {
+    "message0": "C4002 %1 Lock-Zeit s %2",
+    "tooltip": "Stellen Sie die Erkennungssperre von bemannt auf unbemannt ein."
+  },
+  "dfrobot_c4002_set_sensitivity": {
+    "message0": "C4002 %1 Einstellung %2 Empfindlichkeit %3",
+    "tooltip": "Richte eine Sensitivitätsgruppe für Bewegungen oder die Erkennung der Anwesenheit einer Gruppe ein.",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Sporttüren",
+            "eMotionDistGate"
+          ],
+          [
+            "Existenztor",
+            "ePresenceDistGate"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "Niedrig",
+            "eLowThreshGroup"
+          ],
+          [
+            "mid",
+            "eMidThreshGroup"
+          ],
+          [
+            "Hoch",
+            "eHighThreshGroup"
+          ],
+          [
+            "custom",
+            "eCustomThreshGroup"
+          ]
+        ]
+      }
+    ]
+  },
+  "dfrobot_c4002_configure_all_gates": {
+    "message0": "C4002 %1 alle %2 auf %3",
+    "tooltip": "Aktiviere oder deaktiviere 25 Distanzgatter im Batch.",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Sporttüren",
+            "eMotionDistGate"
+          ],
+          [
+            "Existenztor",
+            "ePresenceDistGate"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "Aktivieren",
+            "C4002_ENABLE"
+          ],
+          [
+            "Deaktivieren",
+            "C4002_DISABLE"
+          ]
+        ]
+      }
+    ]
+  },
+  "dfrobot_c4002_set_gate_threshold_all": {
+    "message0": "C4002 %1 Alle %2 Schwellenwert %3",
+    "tooltip": "Setze 25 Distanzschwellenwerte in Bulk, von 0 bis 99.",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Sporttüren",
+            "eMotionDistGate"
+          ],
+          [
+            "Existenztor",
+            "ePresenceDistGate"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "dfrobot_c4002_start_calibration": {
+    "message0": "C4002 %1 Umweltkalibrierungsverzögerung s %2 kontinuierliche s %3",
+    "tooltip": "Kalibrieren Sie die Kalibrierung von Umgebungsgeräuschen."
+  },
+  "dfrobot_c4002_factory_reset": {
+    "message0": "C4002 %1 Werksreset",
+    "tooltip": "Stelle den Sensor auf Werkseinstellungen zurück."
+  },
+  "dfrobot_c4002_set_baudrate": {
+    "message0": "C4002 %1 Baudrate %2",
+    "tooltip": "Verändern Sie die Baudrate des seriellen Ports des Sensors; nach erfolgreichem Neustart tritt sie in Kraft."
+  }
+}

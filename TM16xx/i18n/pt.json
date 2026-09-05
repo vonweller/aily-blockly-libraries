@@ -1,0 +1,180 @@
+{
+  "toolbox_name": "Válvula digital TM16xx",
+  "toolbox_labels": {
+    "初始化": "inicialização",
+    "显示控制": "controle de exibição",
+    "高级功能": "Recursos avançados",
+    "按键检测": "Detecção de chave"
+  },
+  "tm16xx_init": {
+    "message0": "Inicialização %1 válvula digital, DIO pin%2 CLK pin%3 STB pin%4 número de dígitos %5",
+    "args0": [
+      {
+        "options": [
+          [
+            "TM1637",
+            "TM1637"
+          ],
+          [
+            "TM1638",
+            "TM1638"
+          ],
+          [
+            "TM1640",
+            "TM1640"
+          ],
+          [
+            "TM1650",
+            "TM1650"
+          ],
+          [
+            "TM1668",
+            "TM1668"
+          ]
+        ]
+      },
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": "${board.digitalPins}"
+      },
+      null
+    ]
+  },
+  "tm16xx_simple_init": {
+    "message0": "Inicialize %1 pino DIO do tubo digital %2 CLK pin%3",
+    "args0": [
+      {
+        "options": [
+          [
+            "TM1637",
+            "TM1637"
+          ],
+          [
+            "TM1640",
+            "TM1640"
+          ],
+          [
+            "TM1650",
+            "TM1650"
+          ]
+        ]
+      },
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": "${board.digitalPins}"
+      }
+    ]
+  },
+  "tm16xx_display_string": {
+    "message0": "Exibição text%1"
+  },
+  "tm16xx_display_number": {
+    "message0": "Números de exibição %1 ponto decimal %2",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Nenhum",
+            "0"
+          ],
+          [
+            "Número 1",
+            "1"
+          ],
+          [
+            "2º lugar",
+            "2"
+          ],
+          [
+            "3º lugar",
+            "3"
+          ],
+          [
+            "4º lugar",
+            "4"
+          ],
+          [
+            "5º lugar",
+            "5"
+          ],
+          [
+            "6º lugar",
+            "6"
+          ],
+          [
+            "7º lugar",
+            "7"
+          ],
+          [
+            "8º lugar",
+            "8"
+          ]
+        ]
+      }
+    ]
+  },
+  "tm16xx_clear_display": {
+    "message0": "Limpar a tela"
+  },
+  "tm16xx_set_brightness": {
+    "message0": "Defina o brilho %1",
+    "args0": [
+      {
+        "options": [
+          [
+            "O Mais Sombrio (0)",
+            "0"
+          ],
+          [
+            "1",
+            "1"
+          ],
+          [
+            "2",
+            "2"
+          ],
+          [
+            "3",
+            "3"
+          ],
+          [
+            "4",
+            "4"
+          ],
+          [
+            "5",
+            "5"
+          ],
+          [
+            "6",
+            "6"
+          ],
+          [
+            "O Mais Brilhante (7)",
+            "7"
+          ]
+        ]
+      }
+    ]
+  },
+  "tm16xx_set_segment": {
+    "message0": "Defina o segmento de exibição de %1 bits number%2"
+  },
+  "tm16xx_get_buttons": {
+    "message0": "Obtenha o status da chave"
+  },
+  "tm16xx_is_button_pressed": {
+    "message0": "O botão %1 pressionado"
+  },
+  "tm16xx_display_time": {
+    "message0": "Tempo de exibição: hours%1 minutes%2 Exibição colon%3"
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "toolbox_name": "CAN-Bus",
+  "canbus_init": {
+    "message0": "초기화 CAN-Bus 속도 %1",
+    "tooltip": "SparkFun CAN Bus 모듈을 속도와 함께 초기화합니다",
+    "args0": [
+      {
+        "options": [
+          [
+            "500 kbps",
+            "CANSPEED_500"
+          ],
+          [
+            "250 kbps",
+            "CANSPEED_250"
+          ],
+          [
+            "125 kbps",
+            "CANSPEED_125"
+          ]
+        ]
+      }
+    ]
+  },
+  "canbus_is_ready": {
+    "message0": "CAN-버스 초기화 성공",
+    "tooltip": "CAN Bus 초기화 상태를 반환합니다"
+  },
+  "canbus_send_test": {
+    "message0": "CAN-Bus가 테스트 메시지를 성공적으로 전송합니다",
+    "tooltip": "CAN 테스트 메시지를 전송합니다"
+  },
+  "canbus_read_message": {
+    "message0": "CAN-Bus가 메시지를 읽습니다",
+    "tooltip": "수신된 CAN 메시지를 읽습니다"
+  },
+  "canbus_last_id": {
+    "message0": "CAN-Bus 최근 뉴스 ID",
+    "tooltip": "마지막으로 수신된 CAN 메시지의 ID를 가져옵니다"
+  },
+  "canbus_last_length": {
+    "message0": "CAN-Bus의 최근 메시지 길이",
+    "tooltip": "마지막으로 수신된 CAN 메시지의 길이를 가져옵니다"
+  },
+  "canbus_data_byte": {
+    "message0": "CAN-Bus 최근 메시지 데이터 바이트 %1",
+    "tooltip": "마지막으로 수신된 CAN 메시지의 데이터 바이트를 가져옵니다"
+  },
+  "canbus_obd_request": {
+    "message0": "CAN-Bus OBD 요청 %1 텍스트",
+    "tooltip": "CAN Bus를 통해 OBD2 PID 요청을 전송합니다",
+    "args0": [
+      {
+        "options": [
+          [
+            "냉각수 온도",
+            "ENGINE_COOLANT_TEMP"
+          ],
+          [
+            "회전 속도",
+            "ENGINE_RPM"
+          ],
+          [
+            "속도",
+            "VEHICLE_SPEED"
+          ],
+          [
+            "공기 흐름",
+            "MAF_SENSOR"
+          ],
+          [
+            "산소 센서",
+            "O2_VOLTAGE"
+          ],
+          [
+            "태양 항해",
+            "THROTTLE"
+          ]
+        ]
+      }
+    ]
+  },
+  "canbus_send_message": {
+    "message0": "CAN 메시지 보내기 ID %1 길이 %2 데이터 %3 %4 %5 %6 %7 %8 %9 %10",
+    "tooltip": "ID와 데이터로 CAN 메시지를 전송합니다"
+  }
+}

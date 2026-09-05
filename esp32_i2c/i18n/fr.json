@@ -1,0 +1,156 @@
+{
+  "toolbox_name": "ESP32 I2C",
+  "toolbox_labels": {
+    "I2C主模式": "Mode maître I2C",
+    "数据传输（基础）": "Transfert de données (de base)",
+    "数据接收（基础）": "Réception de données (de base)",
+    "简化操作": "Simplifier les opérations",
+    "I2C从模式": "Mode esclave I2C"
+  },
+  "esp32_i2c_begin": {
+    "message0": "Initialiser la broche SDA de communication I2C %1 la broche SCL %2 fréquence %3 kHz",
+    "tooltip": "Initialiser la communication I2C de l’ESP32, définir les broches SDA et SCL, ainsi que la fréquence de communication",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "100 (Mode Standard)",
+            "100000"
+          ],
+          [
+            "400 (Mode Rapide)",
+            "400000"
+          ],
+          [
+            "1000 (Mode Rapide+)",
+            "1000000"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_i2c_begin_simple": {
+    "message0": "Initialiser la communication I2C (en utilisant les broches par défaut)",
+    "tooltip": "Initialiser la communication I2C de l’ESP32 en utilisant les broches par défaut"
+  },
+  "esp32_i2c_scan_devices": {
+    "message0": "Balayage des dispositifs I2C",
+    "tooltip": "Scannez et retournez le nombre d’appareils I2C trouvés"
+  },
+  "esp32_i2c_begin_transmission": {
+    "message0": "Commencez à envoyer des données à l’appareil %1",
+    "tooltip": "Commencez à envoyer des données vers des appareils avec des adresses I2C spécifiées"
+  },
+  "esp32_i2c_write_byte": {
+    "message0": "Écrire data%1 d’octets",
+    "tooltip": "Écrire un octet de données sur l’appareil I2C"
+  },
+  "esp32_i2c_write_string": {
+    "message0": "Écrivez un string%1",
+    "tooltip": "Écrire des données de chaînes sur des appareils I2C"
+  },
+  "esp32_i2c_end_transmission": {
+    "message0": "Transmission finale des données",
+    "tooltip": "Fin de la transmission des données I2C, retour d’un code d’erreur (0 signifie réussi)"
+  },
+  "esp32_i2c_request_from": {
+    "message0": "Demandez %2byte données à l’appareil %1",
+    "tooltip": "Demande des données avec un nombre spécifié d’octets à un périphérique I2C spécifié"
+  },
+  "esp32_i2c_available": {
+    "message0": "I2C peut lire des octets",
+    "tooltip": "Retourne le nombre d’octets lisibles dans le tampon de réception I2C"
+  },
+  "esp32_i2c_read": {
+    "message0": "Lire les données I2C",
+    "tooltip": "Lit un octet de données provenant du tampon de réception I2C"
+  },
+  "esp32_i2c_slave_begin": {
+    "message0": "Initialisation du mode esclave I2C : adresse %1 broche SDA %2 broche SCL %3",
+    "tooltip": "Initialiser le mode esclave I2C de l’ESP32, définir les adresses et broches des dispositifs esclaves"
+  },
+  "esp32_i2c_on_receive": {
+    "message0": "Quand les données sont received%1 %2",
+    "tooltip": "Définissez la fonction de rappel lorsque I2C reçoit des données de l’appareil"
+  },
+  "esp32_i2c_on_request": {
+    "message0": "Lorsque le dispositif maître demande des données %1 %2",
+    "tooltip": "Définir la fonction de rappel lorsque les périphériques esclaves I2C répondent aux requêtes du périphérique maître"
+  },
+  "esp32_i2c_slave_print": {
+    "message0": "Envoi de cordes depuis le device%1",
+    "tooltip": "I2C envoie des données de chaîne de l’appareil esclave vers le dispositif maître"
+  },
+  "esp32_i2c_write_to_device": {
+    "message0": "Écrivez les données %1 au device%2",
+    "tooltip": "Une version simplifiée de l’écriture de données sur des dispositifs I2C spécifiés",
+    "args0": [
+      {
+        "options": [
+          [
+            "0x3C (Écran OLED)",
+            "0x3C"
+          ],
+          [
+            "0x48 (ADS1115)",
+            "0x48"
+          ],
+          [
+            "0x68 (MPU6050)",
+            "0x68"
+          ],
+          [
+            "0x76 (BMP280)",
+            "0x76"
+          ],
+          [
+            "0x77 (BMP280 de secours)",
+            "0x77"
+          ],
+          [
+            "Adresse personnalisée",
+            "CUSTOM"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "esp32_i2c_read_from_device": {
+    "message0": "Lit %2 octets de données provenant de l’appareil %1",
+    "tooltip": "Lire un nombre spécifié d’octets de données provenant d’un périphérique I2C spécifié",
+    "args0": [
+      {
+        "options": [
+          [
+            "0x3C (Écran OLED)",
+            "0x3C"
+          ],
+          [
+            "0x48 (ADS1115)",
+            "0x48"
+          ],
+          [
+            "0x68 (MPU6050)",
+            "0x68"
+          ],
+          [
+            "0x76 (BMP280)",
+            "0x76"
+          ],
+          [
+            "0x77 (BMP280 de secours)",
+            "0x77"
+          ],
+          [
+            "Adresse personnalisée",
+            "CUSTOM"
+          ]
+        ]
+      },
+      null
+    ]
+  }
+}

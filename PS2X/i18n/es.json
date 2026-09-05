@@ -1,0 +1,511 @@
+{
+  "toolbox_name": "Mando de PS2",
+  "toolbox_labels": {
+    "简化版本": "Versión simplificada",
+    "完整版本": "versión completa",
+    "按钮检测": "Detección de botones",
+    "模拟量读取": "Lectura analógica",
+    "控制器信息": "Información del controlador"
+  },
+  "ps2x_init": {
+    "message0": "Inicializa el mando de PS2 CLK%1 CMD%2 ATT%3 DAT%4 modo presión %5 vibración mode%6",
+    "args0": [
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": [
+          [
+            "Activado",
+            "true"
+          ],
+          [
+            "Desactivado",
+            "false"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "Activado",
+            "true"
+          ],
+          [
+            "Desactivado",
+            "false"
+          ]
+        ]
+      }
+    ]
+  },
+  "ps2x_read": {
+    "message0": "Lee el estado de la intensidad de vibración del mando PS2 %1"
+  },
+  "ps2x_button": {
+    "message0": "Se %1 pulsado el botón de la PS2",
+    "args0": [
+      {
+        "options": [
+          [
+            "Arriba",
+            "PSB_PAD_UP"
+          ],
+          [
+            "Abajo",
+            "PSB_PAD_DOWN"
+          ],
+          [
+            "Izquierda",
+            "PSB_PAD_LEFT"
+          ],
+          [
+            "Derecha",
+            "PSB_PAD_RIGHT"
+          ],
+          [
+            "triangulo",
+            "PSB_TRIANGLE"
+          ],
+          [
+            "redondo",
+            "PSB_CIRCLE"
+          ],
+          [
+            "Cruz",
+            "PSB_CROSS"
+          ],
+          [
+            "Plaza",
+            "PSB_SQUARE"
+          ],
+          [
+            "L1",
+            "PSB_L1"
+          ],
+          [
+            "L2",
+            "PSB_L2"
+          ],
+          [
+            "L3",
+            "PSB_L3"
+          ],
+          [
+            "R1",
+            "PSB_R1"
+          ],
+          [
+            "R2",
+            "PSB_R2"
+          ],
+          [
+            "R3",
+            "PSB_R3"
+          ],
+          [
+            "SELECT",
+            "PSB_SELECT"
+          ],
+          [
+            "START",
+            "PSB_START"
+          ]
+        ]
+      }
+    ]
+  },
+  "ps2x_button_pressed": {
+    "message0": "El botón de PS2 %1 simplemente pulsado",
+    "args0": [
+      {
+        "options": [
+          [
+            "Arriba",
+            "PSB_PAD_UP"
+          ],
+          [
+            "Abajo",
+            "PSB_PAD_DOWN"
+          ],
+          [
+            "Izquierda",
+            "PSB_PAD_LEFT"
+          ],
+          [
+            "Derecha",
+            "PSB_PAD_RIGHT"
+          ],
+          [
+            "triangulo",
+            "PSB_TRIANGLE"
+          ],
+          [
+            "redondo",
+            "PSB_CIRCLE"
+          ],
+          [
+            "Cruz",
+            "PSB_CROSS"
+          ],
+          [
+            "Plaza",
+            "PSB_SQUARE"
+          ],
+          [
+            "L1",
+            "PSB_L1"
+          ],
+          [
+            "L2",
+            "PSB_L2"
+          ],
+          [
+            "L3",
+            "PSB_L3"
+          ],
+          [
+            "R1",
+            "PSB_R1"
+          ],
+          [
+            "R2",
+            "PSB_R2"
+          ],
+          [
+            "R3",
+            "PSB_R3"
+          ],
+          [
+            "SELECT",
+            "PSB_SELECT"
+          ],
+          [
+            "START",
+            "PSB_START"
+          ],
+          [
+            "Rojo",
+            "PSB_RED"
+          ],
+          [
+            "Azul",
+            "PSB_BLUE"
+          ]
+        ]
+      }
+    ]
+  },
+  "ps2x_button_released": {
+    "message0": "El botón de PS2 %1 salido justo después de lanzar",
+    "args0": [
+      {
+        "options": [
+          [
+            "Arriba",
+            "PSB_PAD_UP"
+          ],
+          [
+            "Abajo",
+            "PSB_PAD_DOWN"
+          ],
+          [
+            "Izquierda",
+            "PSB_PAD_LEFT"
+          ],
+          [
+            "Derecha",
+            "PSB_PAD_RIGHT"
+          ],
+          [
+            "triangulo",
+            "PSB_TRIANGLE"
+          ],
+          [
+            "redondo",
+            "PSB_CIRCLE"
+          ],
+          [
+            "Cruz",
+            "PSB_CROSS"
+          ],
+          [
+            "Plaza",
+            "PSB_SQUARE"
+          ],
+          [
+            "L1",
+            "PSB_L1"
+          ],
+          [
+            "L2",
+            "PSB_L2"
+          ],
+          [
+            "L3",
+            "PSB_L3"
+          ],
+          [
+            "R1",
+            "PSB_R1"
+          ],
+          [
+            "R2",
+            "PSB_R2"
+          ],
+          [
+            "R3",
+            "PSB_R3"
+          ],
+          [
+            "SELECT",
+            "PSB_SELECT"
+          ],
+          [
+            "START",
+            "PSB_START"
+          ]
+        ]
+      }
+    ]
+  },
+  "ps2x_analog": {
+    "message0": "PS2 Analógico %1",
+    "args0": [
+      {
+        "options": [
+          [
+            "Stick derecho X",
+            "PSS_RX"
+          ],
+          [
+            "Joystick derecho Y",
+            "PSS_RY"
+          ],
+          [
+            "Joystick izquierdo X",
+            "PSS_LX"
+          ],
+          [
+            "Joystick izquierdo Y",
+            "PSS_LY"
+          ]
+        ]
+      }
+    ]
+  },
+  "ps2x_analog_button": {
+    "message0": "Los botones de PS2 %1 valores de presión",
+    "args0": [
+      {
+        "options": [
+          [
+            "Arriba",
+            "PSAB_PAD_UP"
+          ],
+          [
+            "Abajo",
+            "PSAB_PAD_DOWN"
+          ],
+          [
+            "Izquierda",
+            "PSAB_PAD_LEFT"
+          ],
+          [
+            "Derecha",
+            "PSAB_PAD_RIGHT"
+          ],
+          [
+            "triangulo",
+            "PSAB_TRIANGLE"
+          ],
+          [
+            "redondo",
+            "PSAB_CIRCLE"
+          ],
+          [
+            "Cruz",
+            "PSAB_CROSS"
+          ],
+          [
+            "Plaza",
+            "PSAB_SQUARE"
+          ],
+          [
+            "L1",
+            "PSAB_L1"
+          ],
+          [
+            "L2",
+            "PSAB_L2"
+          ],
+          [
+            "R1",
+            "PSAB_R1"
+          ],
+          [
+            "R2",
+            "PSAB_R2"
+          ]
+        ]
+      }
+    ]
+  },
+  "ps2x_controller_type": {
+    "message0": "Tipo de mando para PS2"
+  },
+  "ps2x_new_button_state": {
+    "message0": "El estado del botón de PS2 ha cambiado"
+  },
+  "ps2x_new_button_state_specific": {
+    "message0": "El estado de la button%1 de la PS2 ha cambiado",
+    "args0": [
+      {
+        "options": [
+          [
+            "Arriba",
+            "PSB_PAD_UP"
+          ],
+          [
+            "Abajo",
+            "PSB_PAD_DOWN"
+          ],
+          [
+            "Izquierda",
+            "PSB_PAD_LEFT"
+          ],
+          [
+            "Derecha",
+            "PSB_PAD_RIGHT"
+          ],
+          [
+            "triangulo",
+            "PSB_TRIANGLE"
+          ],
+          [
+            "redondo",
+            "PSB_CIRCLE"
+          ],
+          [
+            "Cruz",
+            "PSB_CROSS"
+          ],
+          [
+            "Plaza",
+            "PSB_SQUARE"
+          ],
+          [
+            "L1",
+            "PSB_L1"
+          ],
+          [
+            "L2",
+            "PSB_L2"
+          ],
+          [
+            "L3",
+            "PSB_L3"
+          ],
+          [
+            "R1",
+            "PSB_R1"
+          ],
+          [
+            "R2",
+            "PSB_R2"
+          ],
+          [
+            "R3",
+            "PSB_R3"
+          ],
+          [
+            "SELECT",
+            "PSB_SELECT"
+          ],
+          [
+            "START",
+            "PSB_START"
+          ]
+        ]
+      }
+    ]
+  },
+  "ps2x_is_connected": {
+    "message0": "El mando de PS2 está conectado"
+  },
+  "ps2x_simple_init": {
+    "message0": "Inicialización sencilla del mando de PS2 CLK%1 CMD%2 ATT%3 DAT%4",
+    "args0": [
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": "${board.digitalPins}"
+      }
+    ]
+  },
+  "ps2x_simple_read": {
+    "message0": "Lee el mando de PS2"
+  },
+  "ps2x_joystick_moved": {
+    "message0": "El joystick %1 moverse",
+    "args0": [
+      {
+        "options": [
+          [
+            "Izquierda",
+            "LEFT"
+          ],
+          [
+            "Derecha",
+            "RIGHT"
+          ]
+        ]
+      }
+    ]
+  },
+  "ps2x_joystick_position": {
+    "message0": "La posición del eje %2 del joystick %1",
+    "args0": [
+      {
+        "options": [
+          [
+            "Izquierda",
+            "LEFT"
+          ],
+          [
+            "Derecha",
+            "RIGHT"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "X",
+            "X"
+          ],
+          [
+            "Y",
+            "Y"
+          ]
+        ]
+      }
+    ]
+  }
+}

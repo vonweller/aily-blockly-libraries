@@ -1,0 +1,1877 @@
+{
+  "toolbox_name": "LVGL",
+  "toolbox_labels": {
+    "标签": "этикетка",
+    "图像": "изображение",
+    "列表": "список",
+    "选项卡": "вкладка",
+    "按钮": "кнопка",
+    "滑动条": "Слайдер",
+    "开关": "переключатель",
+    "复选框": "флажок",
+    "下拉框": "раскрывающийся список",
+    "文本框": "текстовое поле",
+    "键盘": "клавиатура",
+    "进度条": "индикатор выполнения",
+    "圆弧": "Дуга",
+    "加载动画": "анимация загрузки",
+    "图表": "диаграмма"
+  },
+  "lvgl_init": {
+    "message0": "Инициализация LVGL с помощью библиотеки драйверов дисплея %1 разрешение экрана, ширина %2 высота %3 угол вращения %4",
+    "tooltip": "Инициализация библиотеки LVGL",
+    "args0": [
+      {
+        "options": [
+          [
+            "TFT_eSPI",
+            "TFT_eSPI"
+          ],
+          [
+            "Lovyan GFX (будет поддерживаться)",
+            "LovyanGFX"
+          ]
+        ]
+      },
+      null,
+      null,
+      {
+        "options": [
+          [
+            "0°",
+            "LV_DISPLAY_ROTATION_0"
+          ],
+          [
+            "90°",
+            "LV_DISPLAY_ROTATION_90"
+          ],
+          [
+            "180°",
+            "LV_DISPLAY_ROTATION_180"
+          ],
+          [
+            "270°",
+            "LV_DISPLAY_ROTATION_270"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_indev_create": {
+    "message0": "Инициализуйте %1 вводное устройство %2 тип %3 функции обратного вызова для извлечения данных",
+    "tooltip": "Инициализация входного устройства",
+    "args0": [
+      {
+        "options": [
+          [
+            "Вся ситуация",
+            "global"
+          ],
+          [
+            "Местные",
+            "local"
+          ]
+        ]
+      },
+      null,
+      {
+        "options": [
+          [
+            "Указательное устройство (сенсорный экран/мышь)",
+            "LV_INDEV_TYPE_POINTER"
+          ],
+          [
+            "Кнопочные устройства",
+            "LV_INDEV_TYPE_KEYPAD"
+          ],
+          [
+            "Кнопочные устройства",
+            "LV_INDEV_TYPE_BUTTON"
+          ],
+          [
+            "Оборудование энкодеров",
+            "LV_INDEV_TYPE_ENCODER"
+          ]
+        ]
+      }
+    ],
+    "message1": "выполнить %1"
+  },
+  "lvgl_indev_data_param_set": {
+    "message0": "Параметр данных %1 установить в %2",
+    "tooltip": "Получить параметры данных с входного устройства",
+    "args0": [
+      {
+        "options": [
+          [
+            "Состояние",
+            "state"
+          ],
+          [
+            "Координата X",
+            "point.x"
+          ],
+          [
+            "Координата Y",
+            "point.y"
+          ],
+          [
+            "Ключевые значения",
+            "key"
+          ],
+          [
+            "Идентификатор кнопки",
+            "btn_id"
+          ],
+          [
+            "Инкременты кодировщика",
+            "enc_diff"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "lvgl_indev_state_param": {
+    "message0": "Введите константу состояния устройства %1",
+    "tooltip": "Введите константу состояния устройства",
+    "args0": [
+      {
+        "options": [
+          [
+            "Отпустить",
+            "LV_INDEV_STATE_REL"
+          ],
+          [
+            "Нажать",
+            "LV_INDEV_STATE_PR"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_label_create": {
+    "message0": "Создайте %1 тегов %2 родительских объектов %3",
+    "tooltip": "Создание управления текстовыми тегами",
+    "args0": [
+      {
+        "options": [
+          [
+            "Вся ситуация",
+            "global"
+          ],
+          [
+            "Местные",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_label_set_text": {
+    "message0": "Установите тег %1 тексте на %2",
+    "tooltip": "Задайте текст, отображаемый на этикетке"
+  },
+  "lv_label_set_text_fmt": {
+    "message0": "Задать теги %1 форматировать строку формата текста %2 параметры %3",
+    "tooltip": "Задайте текст тегов с помощью отформатированных строк, поддерживающих форматирование в стиле printf (например, «Button: %d»)"
+  },
+  "lvgl_label_set_long_mode": {
+    "message0": "Установить теги %1 режиме длинного текста %2",
+    "tooltip": "Настройте режим обработки длинного текста для тегов",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Автоматическая обмотка линий",
+            "LV_LABEL_LONG_MODE_WRAP"
+          ],
+          [
+            "Показать многоточия",
+            "LV_LABEL_LONG_MODE_DOTS"
+          ],
+          [
+            "Перекатываясь туда-сюда",
+            "LV_LABEL_LONG_MODE_SCROLL"
+          ],
+          [
+            "Катание цикла",
+            "LV_LABEL_LONG_MODE_SCROLL_CIRCULAR"
+          ],
+          [
+            "Вырезка",
+            "LV_LABEL_LONG_MODE_CLIP"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_button_create": {
+    "message0": "Создайте %1 кнопку %2 родительский объект %3",
+    "tooltip": "Создайте управление кнопкой",
+    "args0": [
+      {
+        "options": [
+          [
+            "Вся ситуация",
+            "global"
+          ],
+          [
+            "Местные",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_slider_create": {
+    "message0": "Создайте %1 ползунок %2 родительский объект %3",
+    "tooltip": "Создайте управление ползунком",
+    "args0": [
+      {
+        "options": [
+          [
+            "Вся ситуация",
+            "global"
+          ],
+          [
+            "Местные",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_slider_set_value": {
+    "message0": "Установите значение ползунка %1 на %2 анимации %3",
+    "tooltip": "Установите текущее значение ползунка",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "Вкл",
+            "LV_ANIM_ON"
+          ],
+          [
+            "Выкл",
+            "LV_ANIM_OFF"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_slider_set_range": {
+    "message0": "Установите ползунок %1 Минимальный диапазон %2 Максимальный %3",
+    "tooltip": "Задайте диапазон значений для ползунка"
+  },
+  "lvgl_slider_get_value": {
+    "message0": "Получите значение ползунка %1",
+    "tooltip": "Получите текущее значение слайдбара"
+  },
+  "lvgl_switch_create": {
+    "message0": "Создайте %1 переключатель %2 родительский объект %3",
+    "tooltip": "Создайте управление переключателем",
+    "args0": [
+      {
+        "options": [
+          [
+            "Вся ситуация",
+            "global"
+          ],
+          [
+            "Местные",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_checkbox_create": {
+    "message0": "Создайте %1 галочку %2 родительский объект %3 текст %4",
+    "tooltip": "Создайте контрольный блок",
+    "args0": [
+      {
+        "options": [
+          [
+            "Вся ситуация",
+            "global"
+          ],
+          [
+            "Местные",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null,
+      null
+    ]
+  },
+  "lvgl_bar_create": {
+    "message0": "Создайте %1 панель прогресса %2 родительский объект %3",
+    "tooltip": "Создайте управление индикатором прогресса",
+    "args0": [
+      {
+        "options": [
+          [
+            "Вся ситуация",
+            "global"
+          ],
+          [
+            "Местные",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_bar_set_value": {
+    "message0": "Установите значение %1 прогресса на %2 анимации %3",
+    "tooltip": "Установите текущее значение индикатора прогресса",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "Вкл",
+            "LV_ANIM_ON"
+          ],
+          [
+            "Выкл",
+            "LV_ANIM_OFF"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_bar_set_range": {
+    "message0": "Установьте индикатор прогресса %1 минимальный диапазон %2 максимальный %3",
+    "tooltip": "Установите диапазон значений для шкалы прогресса"
+  },
+  "lvgl_arc_create": {
+    "message0": "Создать %1 Arc %2 Parent Object %3",
+    "tooltip": "Создайте дуговое управление",
+    "args0": [
+      {
+        "options": [
+          [
+            "Вся ситуация",
+            "global"
+          ],
+          [
+            "Местные",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_arc_set_value": {
+    "message0": "Установить значение дуги %1 на %2",
+    "tooltip": "Установите текущее значение дуги"
+  },
+  "lvgl_arc_set_range": {
+    "message0": "Установите дугу %1 дальность Минимум %2 Максимальный %3",
+    "tooltip": "Задайте диапазон значений дуги"
+  },
+  "lvgl_spinner_create": {
+    "message0": "Создать %1 Загрузить анимацию %2 родительский объект %3",
+    "tooltip": "Создайте управление анимацией загрузки",
+    "args0": [
+      {
+        "options": [
+          [
+            "Вся ситуация",
+            "global"
+          ],
+          [
+            "Местные",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_spinner_set_anim_params": {
+    "message0": "Установите анимацию загрузки %1 duration%2 ms radian %3°",
+    "tooltip": "Задайте длительность загрузки и кривизну для анимации"
+  },
+  "lvgl_dropdown_create": {
+    "message0": "Создайте %1 выпадающий список %2 родительский объект %3",
+    "tooltip": "Создайте выпадающее меню",
+    "args0": [
+      {
+        "options": [
+          [
+            "Вся ситуация",
+            "global"
+          ],
+          [
+            "Местные",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_dropdown_set_options": {
+    "message0": "Поставьте выпадающее меню %1 опции %2",
+    "tooltip": "Настройте выпадающие списки, разделяя несколько опций с помощью \\n"
+  },
+  "lvgl_dropdown_get_selected": {
+    "message0": "Получите выпадающее меню %1 выберите индексный элемент",
+    "tooltip": "В выпадающем меню появляется индекс выбранного предмета"
+  },
+  "lvgl_textarea_create": {
+    "message0": "Создать %1 текстовое поле %2 родительский объект %3",
+    "tooltip": "Создать управление текстовым входным окном",
+    "args0": [
+      {
+        "options": [
+          [
+            "Вся ситуация",
+            "global"
+          ],
+          [
+            "Местные",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_textarea_set_text": {
+    "message0": "Установить текстовое поле %1 текст на %2",
+    "tooltip": "Задайте содержимое текстового поля"
+  },
+  "lvgl_textarea_get_text": {
+    "message0": "Получает текст текстового поля %1",
+    "tooltip": "Получите содержимое текстового поля"
+  },
+  "lvgl_textarea_set_placeholder": {
+    "message0": "Установить текстовое поле %1 заполнитель на %2",
+    "tooltip": "Задайте заполнительный текст для текстового поля"
+  },
+  "lvgl_obj_set_pos": {
+    "message0": "Установите %1 позицию X %2 Y %3",
+    "tooltip": "Установите координаты X и Y объекта"
+  },
+  "lvgl_obj_set_size": {
+    "message0": "Установить %1 размер ширины %2 высоты %3",
+    "tooltip": "Задайте ширину и высоту объекта"
+  },
+  "lvgl_obj_align": {
+    "message0": "Установите %1 выравнивание %2 смещение X %3 Y %4",
+    "tooltip": "Устанавливает выравнивание и смещение объектов относительно родительских объектов",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Центр",
+            "LV_ALIGN_CENTER"
+          ],
+          [
+            "Вверх-влево",
+            "LV_ALIGN_TOP_LEFT"
+          ],
+          [
+            "Выше среднего",
+            "LV_ALIGN_TOP_MID"
+          ],
+          [
+            "Вверх-вправо",
+            "LV_ALIGN_TOP_RIGHT"
+          ],
+          [
+            "Левый центр",
+            "LV_ALIGN_LEFT_MID"
+          ],
+          [
+            "Правый центр",
+            "LV_ALIGN_RIGHT_MID"
+          ],
+          [
+            "Вниз-влево",
+            "LV_ALIGN_BOTTOM_LEFT"
+          ],
+          [
+            "Ниже среднего",
+            "LV_ALIGN_BOTTOM_MID"
+          ],
+          [
+            "Вниз-вправо",
+            "LV_ALIGN_BOTTOM_RIGHT"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_obj_center": {
+    "message0": "Центрированная %1",
+    "tooltip": "Центр объекта"
+  },
+  "lvgl_obj_add_flag": {
+    "message0": "Добавление логотипа в %1 %2",
+    "tooltip": "Добавьте флаг к объекту",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "hide",
+            "LV_OBJ_FLAG_HIDDEN"
+          ],
+          [
+            "Кликабельное",
+            "LV_OBJ_FLAG_CLICKABLE"
+          ],
+          [
+            "Выбор",
+            "LV_OBJ_FLAG_CHECKABLE"
+          ],
+          [
+            "Роллируемый",
+            "LV_OBJ_FLAG_SCROLLABLE"
+          ],
+          [
+            "Отключить",
+            "LV_OBJ_FLAG_DISABLED"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_obj_remove_flag": {
+    "message0": "Уберите флаг с %1 %2",
+    "tooltip": "Удалите флаг с объекта",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "hide",
+            "LV_OBJ_FLAG_HIDDEN"
+          ],
+          [
+            "Кликабельное",
+            "LV_OBJ_FLAG_CLICKABLE"
+          ],
+          [
+            "Выбор",
+            "LV_OBJ_FLAG_CHECKABLE"
+          ],
+          [
+            "Роллируемый",
+            "LV_OBJ_FLAG_SCROLLABLE"
+          ],
+          [
+            "Отключить",
+            "LV_OBJ_FLAG_DISABLED"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_obj_add_state": {
+    "message0": "Добавление статуса в %1 %2",
+    "tooltip": "Добавить состояние к объекту",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Избранные",
+            "LV_STATE_CHECKED"
+          ],
+          [
+            "Фокус",
+            "LV_STATE_FOCUSED"
+          ],
+          [
+            "Нажать",
+            "LV_STATE_PRESSED"
+          ],
+          [
+            "Отключить",
+            "LV_STATE_DISABLED"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_obj_remove_state": {
+    "message0": "Удалить статус из %1%2",
+    "tooltip": "Удалить состояние из объекта",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Избранные",
+            "LV_STATE_CHECKED"
+          ],
+          [
+            "Фокус",
+            "LV_STATE_FOCUSED"
+          ],
+          [
+            "Нажать",
+            "LV_STATE_PRESSED"
+          ],
+          [
+            "Отключить",
+            "LV_STATE_DISABLED"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_obj_has_state": {
+    "message0": "%1 Stated%2",
+    "tooltip": "Проверьте, имеет ли объект определённый статус",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Избранные",
+            "LV_STATE_CHECKED"
+          ],
+          [
+            "Фокус",
+            "LV_STATE_FOCUSED"
+          ],
+          [
+            "Нажать",
+            "LV_STATE_PRESSED"
+          ],
+          [
+            "Отключить",
+            "LV_STATE_DISABLED"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_obj_delete": {
+    "message0": "Удалить %1",
+    "tooltip": "Удалить объект и все его дочерние объекты"
+  },
+  "lvgl_obj_set_style_text_font": {
+    "message0": "Установить %1 шрифт %2",
+    "tooltip": "Задайте текстовый шрифт для объекта",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Английский шрифт 8",
+            "LV_FONT_MONTSERRAT_8"
+          ],
+          [
+            "Английский шрифт 10",
+            "LV_FONT_MONTSERRAT_10"
+          ],
+          [
+            "Английский шрифт 12",
+            "LV_FONT_MONTSERRAT_12"
+          ],
+          [
+            "Английский шрифт 14",
+            "LV_FONT_MONTSERRAT_14"
+          ],
+          [
+            "Английский шрифт 16",
+            "LV_FONT_MONTSERRAT_16"
+          ],
+          [
+            "Английский шрифт 18",
+            "LV_FONT_MONTSERRAT_18"
+          ],
+          [
+            "Английские шрифты 20",
+            "LV_FONT_MONTSERRAT_20"
+          ],
+          [
+            "Английский шрифт 22",
+            "LV_FONT_MONTSERRAT_22"
+          ],
+          [
+            "Английский шрифт 24",
+            "LV_FONT_MONTSERRAT_24"
+          ],
+          [
+            "Английский шрифт 26",
+            "LV_FONT_MONTSERRAT_26"
+          ],
+          [
+            "Английский шрифт 28",
+            "LV_FONT_MONTSERRAT_28"
+          ],
+          [
+            "Английские шрифты 30",
+            "LV_FONT_MONTSERRAT_30"
+          ],
+          [
+            "Английский шрифт 32",
+            "LV_FONT_MONTSERRAT_32"
+          ],
+          [
+            "Английский шрифт 34",
+            "LV_FONT_MONTSERRAT_34"
+          ],
+          [
+            "Английский шрифт 36",
+            "LV_FONT_MONTSERRAT_36"
+          ],
+          [
+            "Английский шрифт 38",
+            "LV_FONT_MONTSERRAT_38"
+          ],
+          [
+            "Английский шрифт 40",
+            "LV_FONT_MONTSERRAT_40"
+          ],
+          [
+            "Английский шрифт 42",
+            "LV_FONT_MONTSERRAT_42"
+          ],
+          [
+            "Английский шрифт 44",
+            "LV_FONT_MONTSERRAT_44"
+          ],
+          [
+            "Английский шрифт 46",
+            "LV_FONT_MONTSERRAT_46"
+          ],
+          [
+            "Английский шрифт 48",
+            "LV_FONT_MONTSERRAT_48"
+          ],
+          [
+            "Китайский шрифт 14",
+            "LV_FONT_SOURCE_HAN_SANS_SC_14_CJK"
+          ],
+          [
+            "Китайские шрифты 16",
+            "LV_FONT_SOURCE_HAN_SANS_SC_16_CJK"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_obj_set_style_bg_color": {
+    "message0": "Установить %1 цвет фона %2",
+    "tooltip": "Задайте цвет фона объекта"
+  },
+  "lvgl_obj_set_style_text_color": {
+    "message0": "Установите %1 цвет текста %2",
+    "tooltip": "Задайте цвет текста объекта"
+  },
+  "lvgl_obj_set_style_border_color": {
+    "message0": "Установите %1 цвет рамки %2",
+    "tooltip": "Задайте цвет границы объекта"
+  },
+  "lvgl_obj_set_style_border_width": {
+    "message0": "Установите %1 ширину рамки %2",
+    "tooltip": "Задайте ширину границы объекта"
+  },
+  "lvgl_obj_set_style_radius": {
+    "message0": "Установите радиус %1 филе %2",
+    "tooltip": "Задайте радиус филета объекта"
+  },
+  "lvgl_obj_set_style_pad_all": {
+    "message0": "Установить %1 Margin %2",
+    "tooltip": "Установите все внутренние поля для объекта"
+  },
+  "lvgl_obj_set_style_bg_opa": {
+    "message0": "Установить %1 фоновую прозрачность %2",
+    "tooltip": "Задайте фоновую прозрачность объекта",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Полностью прозрачный",
+            "LV_OPA_TRANSP"
+          ],
+          [
+            "25%",
+            "LV_OPA_25"
+          ],
+          [
+            "50%",
+            "LV_OPA_50"
+          ],
+          [
+            "75%",
+            "LV_OPA_75"
+          ],
+          [
+            "Непрозрачный",
+            "LV_OPA_COVER"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_event_add_cb": {
+    "message0": "Когда происходит %1 %2 событие",
+    "tooltip": "Установите обратный вызов события для объекта",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Все мероприятия",
+            "LV_EVENT_ALL"
+          ],
+          [
+            "Нажать",
+            "LV_EVENT_PRESSED"
+          ],
+          [
+            "Продолжай нажимать",
+            "LV_EVENT_PRESSING"
+          ],
+          [
+            "Нажми и затем двигайся",
+            "LV_EVENT_PRESS_LOST"
+          ],
+          [
+            "Короткая пресса",
+            "LV_EVENT_SHORT_CLICKED"
+          ],
+          [
+            "Одиночное касание",
+            "LV_EVENT_SINGLE_CLICKED"
+          ],
+          [
+            "Двойное касание",
+            "LV_EVENT_DOUBLE_CLICKED"
+          ],
+          [
+            "Три ошибки",
+            "LV_EVENT_TRIPLE_CLICKED"
+          ],
+          [
+            "Нажмите и удержите",
+            "LV_EVENT_LONG_PRESSED"
+          ],
+          [
+            "Нажмите и удерживайте, чтобы повторить",
+            "LV_EVENT_LONG_PRESSED_REPEAT"
+          ],
+          [
+            "Клик",
+            "LV_EVENT_CLICKED"
+          ],
+          [
+            "Отпустить",
+            "LV_EVENT_RELEASED"
+          ],
+          [
+            "Свиток начинается",
+            "LV_EVENT_SCROLL_BEGIN"
+          ],
+          [
+            "Начинается бросок",
+            "LV_EVENT_SCROLL_THROW_BEGIN"
+          ],
+          [
+            "Конец свитка",
+            "LV_EVENT_SCROLL_END"
+          ],
+          [
+            "Прокрутка",
+            "LV_EVENT_SCROLL"
+          ],
+          [
+            "Жесты",
+            "LV_EVENT_GESTURE"
+          ],
+          [
+            "Кнопки",
+            "LV_EVENT_KEY"
+          ],
+          [
+            "Ротация",
+            "LV_EVENT_ROTARY"
+          ],
+          [
+            "Фокус",
+            "LV_EVENT_FOCUSED"
+          ],
+          [
+            "Потерял фокус",
+            "LV_EVENT_DEFOCUSED"
+          ],
+          [
+            "Уходи",
+            "LV_EVENT_LEAVE"
+          ],
+          [
+            "Краш-тесты",
+            "LV_EVENT_HIT_TEST"
+          ],
+          [
+            "Сброс устройства ввода",
+            "LV_EVENT_INDEV_RESET"
+          ],
+          [
+            "Наведите курсор для входа",
+            "LV_EVENT_HOVER_OVER"
+          ],
+          [
+            "Зависание и уход",
+            "LV_EVENT_HOVER_LEAVE"
+          ],
+          [
+            "Проверки покрытия",
+            "LV_EVENT_COVER_CHECK"
+          ],
+          [
+            "Обновите расширенный размер затяжки",
+            "LV_EVENT_REFR_EXT_DRAW_SIZE"
+          ],
+          [
+            "Начинается основной розыгрыш",
+            "LV_EVENT_DRAW_MAIN_BEGIN"
+          ],
+          [
+            "В основном иллюстратор",
+            "LV_EVENT_DRAW_MAIN"
+          ],
+          [
+            "Основной рисунок готов",
+            "LV_EVENT_DRAW_MAIN_END"
+          ],
+          [
+            "Начало розыгрыша",
+            "LV_EVENT_DRAW_POST_BEGIN"
+          ],
+          [
+            "Позднее нарисованные",
+            "LV_EVENT_DRAW_POST"
+          ],
+          [
+            "Затем рисунок завершён",
+            "LV_EVENT_DRAW_POST_END"
+          ],
+          [
+            "Добавьте задачу рисования",
+            "LV_EVENT_DRAW_TASK_ADDED"
+          ],
+          [
+            "Изменение ценностей",
+            "LV_EVENT_VALUE_CHANGED"
+          ],
+          [
+            "Вставка",
+            "LV_EVENT_INSERT"
+          ],
+          [
+            "Обновить",
+            "LV_EVENT_REFRESH"
+          ],
+          [
+            "Готовы",
+            "LV_EVENT_READY"
+          ],
+          [
+            "Отменён",
+            "LV_EVENT_CANCEL"
+          ],
+          [
+            "Изменения штатов",
+            "LV_EVENT_STATE_CHANGED"
+          ],
+          [
+            "Основано",
+            "LV_EVENT_CREATE"
+          ],
+          [
+            "Удалить",
+            "LV_EVENT_DELETE"
+          ],
+          [
+            "Изменения подобъектов",
+            "LV_EVENT_CHILD_CHANGED"
+          ],
+          [
+            "Создание дочернего объекта",
+            "LV_EVENT_CHILD_CREATED"
+          ],
+          [
+            "Удаление дочерних объектов",
+            "LV_EVENT_CHILD_DELETED"
+          ],
+          [
+            "Начало удаления экрана",
+            "LV_EVENT_SCREEN_UNLOAD_START"
+          ],
+          [
+            "Начинается загрузка экрана",
+            "LV_EVENT_SCREEN_LOAD_START"
+          ],
+          [
+            "Экран загружается",
+            "LV_EVENT_SCREEN_LOADED"
+          ],
+          [
+            "Экран был удалён",
+            "LV_EVENT_SCREEN_UNLOADED"
+          ],
+          [
+            "Изменения размеров",
+            "LV_EVENT_SIZE_CHANGED"
+          ],
+          [
+            "Изменения стиля",
+            "LV_EVENT_STYLE_CHANGED"
+          ],
+          [
+            "Изменения планировки",
+            "LV_EVENT_LAYOUT_CHANGED"
+          ],
+          [
+            "Выбирайте свой размер",
+            "LV_EVENT_GET_SELF_SIZE"
+          ],
+          [
+            "Сбой зоны",
+            "LV_EVENT_INVALIDATE_AREA"
+          ],
+          [
+            "Изменения разрешения",
+            "LV_EVENT_RESOLUTION_CHANGED"
+          ],
+          [
+            "Изменения цветового формата",
+            "LV_EVENT_COLOR_FORMAT_CHANGED"
+          ],
+          [
+            "Запросы на обновление",
+            "LV_EVENT_REFR_REQUEST"
+          ],
+          [
+            "Начинается обновление",
+            "LV_EVENT_REFR_START"
+          ],
+          [
+            "Отдохнувшим и готовым",
+            "LV_EVENT_REFR_READY"
+          ],
+          [
+            "Начало рендеринга",
+            "LV_EVENT_RENDER_START"
+          ],
+          [
+            "Рендеринг готов",
+            "LV_EVENT_RENDER_READY"
+          ],
+          [
+            "Флеш Старт",
+            "LV_EVENT_FLUSH_START"
+          ],
+          [
+            "Обновление завершено (промывка)",
+            "LV_EVENT_FLUSH_FINISH"
+          ],
+          [
+            "Начинается ожидание обновления",
+            "LV_EVENT_FLUSH_WAIT_START"
+          ],
+          [
+            "Обновите и ждите завершения",
+            "LV_EVENT_FLUSH_WAIT_FINISH"
+          ],
+          [
+            "Обновление планировки завершено",
+            "LV_EVENT_UPDATE_LAYOUT_COMPLETED"
+          ],
+          [
+            "Вертикальная синхронизация",
+            "LV_EVENT_VSYNC"
+          ],
+          [
+            "Запрос на вертикальную синхронизацию",
+            "LV_EVENT_VSYNC_REQUEST"
+          ]
+        ]
+      }
+    ],
+    "message1": "выполнить %1"
+  },
+  "lvgl_event_code": {
+    "message0": "Константы кода событий %1",
+    "tooltip": "Получает постоянное значение кода события",
+    "args0": [
+      {
+        "options": [
+          [
+            "Все мероприятия",
+            "LV_EVENT_ALL"
+          ],
+          [
+            "Нажать",
+            "LV_EVENT_PRESSED"
+          ],
+          [
+            "Продолжай нажимать",
+            "LV_EVENT_PRESSING"
+          ],
+          [
+            "Нажми и затем двигайся",
+            "LV_EVENT_PRESS_LOST"
+          ],
+          [
+            "Короткая пресса",
+            "LV_EVENT_SHORT_CLICKED"
+          ],
+          [
+            "Одиночное касание",
+            "LV_EVENT_SINGLE_CLICKED"
+          ],
+          [
+            "Двойное касание",
+            "LV_EVENT_DOUBLE_CLICKED"
+          ],
+          [
+            "Три ошибки",
+            "LV_EVENT_TRIPLE_CLICKED"
+          ],
+          [
+            "Нажмите и удержите",
+            "LV_EVENT_LONG_PRESSED"
+          ],
+          [
+            "Нажмите и удерживайте, чтобы повторить",
+            "LV_EVENT_LONG_PRESSED_REPEAT"
+          ],
+          [
+            "Клик",
+            "LV_EVENT_CLICKED"
+          ],
+          [
+            "Отпустить",
+            "LV_EVENT_RELEASED"
+          ],
+          [
+            "Свиток начинается",
+            "LV_EVENT_SCROLL_BEGIN"
+          ],
+          [
+            "Начинается бросок",
+            "LV_EVENT_SCROLL_THROW_BEGIN"
+          ],
+          [
+            "Конец свитка",
+            "LV_EVENT_SCROLL_END"
+          ],
+          [
+            "Прокрутка",
+            "LV_EVENT_SCROLL"
+          ],
+          [
+            "Жесты",
+            "LV_EVENT_GESTURE"
+          ],
+          [
+            "Кнопки",
+            "LV_EVENT_KEY"
+          ],
+          [
+            "Ротация",
+            "LV_EVENT_ROTARY"
+          ],
+          [
+            "Фокус",
+            "LV_EVENT_FOCUSED"
+          ],
+          [
+            "Потерял фокус",
+            "LV_EVENT_DEFOCUSED"
+          ],
+          [
+            "Уходи",
+            "LV_EVENT_LEAVE"
+          ],
+          [
+            "Краш-тесты",
+            "LV_EVENT_HIT_TEST"
+          ],
+          [
+            "Сброс устройства ввода",
+            "LV_EVENT_INDEV_RESET"
+          ],
+          [
+            "Наведите курсор для входа",
+            "LV_EVENT_HOVER_OVER"
+          ],
+          [
+            "Зависание и уход",
+            "LV_EVENT_HOVER_LEAVE"
+          ],
+          [
+            "Проверки покрытия",
+            "LV_EVENT_COVER_CHECK"
+          ],
+          [
+            "Обновите расширенный размер затяжки",
+            "LV_EVENT_REFR_EXT_DRAW_SIZE"
+          ],
+          [
+            "Начинается основной розыгрыш",
+            "LV_EVENT_DRAW_MAIN_BEGIN"
+          ],
+          [
+            "В основном иллюстратор",
+            "LV_EVENT_DRAW_MAIN"
+          ],
+          [
+            "Основной рисунок готов",
+            "LV_EVENT_DRAW_MAIN_END"
+          ],
+          [
+            "Начало розыгрыша",
+            "LV_EVENT_DRAW_POST_BEGIN"
+          ],
+          [
+            "Позднее нарисованные",
+            "LV_EVENT_DRAW_POST"
+          ],
+          [
+            "Затем рисунок завершён",
+            "LV_EVENT_DRAW_POST_END"
+          ],
+          [
+            "Добавьте задачу рисования",
+            "LV_EVENT_DRAW_TASK_ADDED"
+          ],
+          [
+            "Изменение ценностей",
+            "LV_EVENT_VALUE_CHANGED"
+          ],
+          [
+            "Вставка",
+            "LV_EVENT_INSERT"
+          ],
+          [
+            "Обновить",
+            "LV_EVENT_REFRESH"
+          ],
+          [
+            "Готовы",
+            "LV_EVENT_READY"
+          ],
+          [
+            "Отменён",
+            "LV_EVENT_CANCEL"
+          ],
+          [
+            "Изменения штатов",
+            "LV_EVENT_STATE_CHANGED"
+          ],
+          [
+            "Основано",
+            "LV_EVENT_CREATE"
+          ],
+          [
+            "Удалить",
+            "LV_EVENT_DELETE"
+          ],
+          [
+            "Изменения подобъектов",
+            "LV_EVENT_CHILD_CHANGED"
+          ],
+          [
+            "Создание дочернего объекта",
+            "LV_EVENT_CHILD_CREATED"
+          ],
+          [
+            "Удаление дочерних объектов",
+            "LV_EVENT_CHILD_DELETED"
+          ],
+          [
+            "Начало удаления экрана",
+            "LV_EVENT_SCREEN_UNLOAD_START"
+          ],
+          [
+            "Начинается загрузка экрана",
+            "LV_EVENT_SCREEN_LOAD_START"
+          ],
+          [
+            "Экран загружается",
+            "LV_EVENT_SCREEN_LOADED"
+          ],
+          [
+            "Экран был удалён",
+            "LV_EVENT_SCREEN_UNLOADED"
+          ],
+          [
+            "Изменения размеров",
+            "LV_EVENT_SIZE_CHANGED"
+          ],
+          [
+            "Изменения стиля",
+            "LV_EVENT_STYLE_CHANGED"
+          ],
+          [
+            "Изменения планировки",
+            "LV_EVENT_LAYOUT_CHANGED"
+          ],
+          [
+            "Выбирайте свой размер",
+            "LV_EVENT_GET_SELF_SIZE"
+          ],
+          [
+            "Сбой зоны",
+            "LV_EVENT_INVALIDATE_AREA"
+          ],
+          [
+            "Изменения разрешения",
+            "LV_EVENT_RESOLUTION_CHANGED"
+          ],
+          [
+            "Изменения цветового формата",
+            "LV_EVENT_COLOR_FORMAT_CHANGED"
+          ],
+          [
+            "Запросы на обновление",
+            "LV_EVENT_REFR_REQUEST"
+          ],
+          [
+            "Начинается обновление",
+            "LV_EVENT_REFR_START"
+          ],
+          [
+            "Отдохнувшим и готовым",
+            "LV_EVENT_REFR_READY"
+          ],
+          [
+            "Начало рендеринга",
+            "LV_EVENT_RENDER_START"
+          ],
+          [
+            "Рендеринг готов",
+            "LV_EVENT_RENDER_READY"
+          ],
+          [
+            "Флеш Старт",
+            "LV_EVENT_FLUSH_START"
+          ],
+          [
+            "Обновление завершено (промывка)",
+            "LV_EVENT_FLUSH_FINISH"
+          ],
+          [
+            "Начинается ожидание обновления",
+            "LV_EVENT_FLUSH_WAIT_START"
+          ],
+          [
+            "Обновите и ждите завершения",
+            "LV_EVENT_FLUSH_WAIT_FINISH"
+          ],
+          [
+            "Обновление планировки завершено",
+            "LV_EVENT_UPDATE_LAYOUT_COMPLETED"
+          ],
+          [
+            "Вертикальная синхронизация",
+            "LV_EVENT_VSYNC"
+          ],
+          [
+            "Запрос на вертикальную синхронизацию",
+            "LV_EVENT_VSYNC_REQUEST"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_obj_get_child": {
+    "message0": "Создайте %1 Index, используя дочерний объект %2 %3",
+    "tooltip": "Получает дочерний объект указанного индекса родительского объекта"
+  },
+  "lvgl_screen_active": {
+    "message0": "Получите текущий экран",
+    "tooltip": "Получите текущий объект активного экрана"
+  },
+  "lvgl_screen_load": {
+    "message0": "Экран загрузки %1",
+    "tooltip": "Переключитесь на указанный экран"
+  },
+  "lvgl_obj_create": {
+    "message0": "Создайте %1 базовый объект %2 родительский объект %3",
+    "tooltip": "Создать объект базового контейнера",
+    "args0": [
+      {
+        "options": [
+          [
+            "Вся ситуация",
+            "global"
+          ],
+          [
+            "Местные",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_screen_create": {
+    "message0": "Создайте %1 новые экраны %2",
+    "tooltip": "Создать новый объект экрана",
+    "args0": [
+      {
+        "options": [
+          [
+            "Вся ситуация",
+            "global"
+          ],
+          [
+            "Местные",
+            "local"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "lvgl_image_create": {
+    "message0": "Создать %1 изображение %2 родительский объект %3",
+    "tooltip": "Создайте управление изображением",
+    "args0": [
+      {
+        "options": [
+          [
+            "Вся ситуация",
+            "global"
+          ],
+          [
+            "Местные",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_image_set_src": {
+    "message0": "Установите изображение %1 источник на %2",
+    "tooltip": "Задайте путь или символ исходного файла для изображения"
+  },
+  "lvgl_image_set_zoom": {
+    "message0": "Установить изображение %1 масштаб на %2",
+    "tooltip": "Установите зум изображения (256 — исходный размер)"
+  },
+  "lvgl_image_set_angle": {
+    "message0": "Установить угол вращения изображения %1 %2",
+    "tooltip": "Установите угол вращения изображения (в единицах 0,1 градуса)"
+  },
+  "lvgl_image_set_offset": {
+    "message0": "Установить изображение %1 смещение X %2 Y %3",
+    "tooltip": "Установить смещение изображения"
+  },
+  "lvgl_chart_create": {
+    "message0": "Создать %1 диаграмму %2 родительский объект %3",
+    "tooltip": "Создайте контроль диаграммы",
+    "args0": [
+      {
+        "options": [
+          [
+            "Вся ситуация",
+            "global"
+          ],
+          [
+            "Местные",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_chart_set_type": {
+    "message0": "Задайте таблицу %1 тип %2",
+    "tooltip": "Задайте тип карты",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Гистограмма",
+            "LV_CHART_TYPE_BAR"
+          ],
+          [
+            "Линейная схема",
+            "LV_CHART_TYPE_LINE"
+          ],
+          [
+            "Диаграмма рассеяния",
+            "LV_CHART_TYPE_SCATTER"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_chart_set_point_count": {
+    "message0": "Задайте таблицу %1 очков %2",
+    "tooltip": "Задайте количество точек данных, отображаемых на графике"
+  },
+  "lvgl_chart_add_series": {
+    "message0": "Таблица %1 добавление серий %2 цветных %3",
+    "tooltip": "Добавьте в график серию данных",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "Красный",
+            "lv_palette_main(LV_PALETTE_RED)"
+          ],
+          [
+            "Синий",
+            "lv_palette_main(LV_PALETTE_BLUE)"
+          ],
+          [
+            "Зелёный",
+            "lv_palette_main(LV_PALETTE_GREEN)"
+          ],
+          [
+            "Оранжевый",
+            "lv_palette_main(LV_PALETTE_ORANGE)"
+          ],
+          [
+            "Фиолетовый",
+            "lv_palette_main(LV_PALETTE_PURPLE)"
+          ],
+          [
+            "cyan",
+            "lv_palette_main(LV_PALETTE_CYAN)"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_chart_set_next_value": {
+    "message0": "Установить график %1 рядов %2 следующее значение %3",
+    "tooltip": "Установите следующее значение точки данных для ряда"
+  },
+  "lvgl_chart_set_range": {
+    "message0": "Поставьте таблицу %1 серии %2 Минимальный диапазон %3 Максимальный %4",
+    "tooltip": "Установите диапазон осей Y в серии"
+  },
+  "lvgl_chart_set_update_mode": {
+    "message0": "Задать диаграмму %1 режим обновления %2",
+    "tooltip": "Настройте режим обновления данных для диаграммы",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Сдвиг",
+            "LV_CHART_UPDATE_MODE_SHIFT"
+          ],
+          [
+            "Циклы",
+            "LV_CHART_UPDATE_MODE_CIRCULAR"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_chart_refresh": {
+    "message0": "Обновить диаграмму %1",
+    "tooltip": "Обновить отображение диаграммы"
+  },
+  "lvgl_keyboard_create": {
+    "message0": "Создайте %1 клавиатуру %2 родительский объект %3",
+    "tooltip": "Создайте управление клавиатурой",
+    "args0": [
+      {
+        "options": [
+          [
+            "Вся ситуация",
+            "global"
+          ],
+          [
+            "Местные",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_keyboard_set_textarea": {
+    "message0": "Установить клавиатуру %1 ассоциировать текстовое поле %2",
+    "tooltip": "Установите текстовое окно, связанное с клавиатурой"
+  },
+  "lvgl_keyboard_set_mode": {
+    "message0": "Настройте режим клавиатуры %1 %2",
+    "tooltip": "Настройте режим клавиатуры",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Текст",
+            "LV_KEYBOARD_MODE_TEXT_LOWER"
+          ],
+          [
+            "Число",
+            "LV_KEYBOARD_MODE_NUMBER"
+          ],
+          [
+            "Особые персонажи",
+            "LV_KEYBOARD_MODE_SPECIAL"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_keyboard_set_popovers": {
+    "message0": "Установить клавиатуру %1 всплывающее окно %2",
+    "tooltip": "Установите всплывающее окно клавиши клавиатуры",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Вкл",
+            "true"
+          ],
+          [
+            "Выкл",
+            "false"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_list_create": {
+    "message0": "Создать %1 список %2 родительский объект %3",
+    "tooltip": "Создать контроль списка",
+    "args0": [
+      {
+        "options": [
+          [
+            "Вся ситуация",
+            "global"
+          ],
+          [
+            "Местные",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_list_add_text": {
+    "message0": "Список %1 Добавить текст %2",
+    "tooltip": "Добавляйте текстовые элементы в список"
+  },
+  "lvgl_list_add_btn": {
+    "message0": "Список %1 Добавить кнопку %2 значок %3",
+    "tooltip": "Добавить элементы кнопок в список",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "Нет",
+            "NULL"
+          ],
+          [
+            "Воспроизведение",
+            "LV_SYMBOL_PLAY"
+          ],
+          [
+            "Пауза",
+            "LV_SYMBOL_PAUSE"
+          ],
+          [
+            "Стоп",
+            "LV_SYMBOL_STOP"
+          ],
+          [
+            "Настройки",
+            "LV_SYMBOL_SETTINGS"
+          ],
+          [
+            "громкость",
+            "LV_SYMBOL_VOLUME_MAX"
+          ],
+          [
+            "WiFi",
+            "LV_SYMBOL_WIFI"
+          ],
+          [
+            "Bluetooth",
+            "LV_SYMBOL_BLUETOOTH"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_tabview_create": {
+    "message0": "Создать %1 Tab View %2 Parent Object %3",
+    "tooltip": "Создать управление просмотром вкладок",
+    "args0": [
+      {
+        "options": [
+          [
+            "Вся ситуация",
+            "global"
+          ],
+          [
+            "Местные",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_tabview_add_tab": {
+    "message0": "Просмотр вкладки %1 добавление вкладки %2",
+    "tooltip": "Добавьте вкладку и верните объект содержимого вкладки"
+  },
+  "lvgl_set_img_font": {
+    "message0": "Set Image Font %1",
+    "tooltip": "Настройте, включать ли поддержку шрифтов изображений",
+    "args0": [
+      {
+        "options": [
+          [
+            "Вкл",
+            "true"
+          ],
+          [
+            "Выкл",
+            "false"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_set_stdlib_malloc": {
+    "message0": "Задайте стандартный тип библиотеки %1",
+    "tooltip": "Установите стандартный тип библиотеки для использования",
+    "args0": [
+      {
+        "options": [
+          [
+            "Встроенный",
+            "LV_STDLIB_BUILTIN"
+          ],
+          [
+            "C Стандартная библиотека",
+            "LV_STDLIB_CLIB"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_set_stdlib_string": {
+    "message0": "Настройте тип библиотеки строк %1",
+    "tooltip": "Задайте тип библиотеки строк для использования",
+    "args0": [
+      {
+        "options": [
+          [
+            "Встроенный",
+            "LV_STDLIB_BUILTIN"
+          ],
+          [
+            "C Стандартная библиотека",
+            "LV_STDLIB_CLIB"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_set_stdlib_sprintf": {
+    "message0": "Задайте тип форматирования функции выхода %1",
+    "tooltip": "Задайте тип отформатированной функции вывода для использования",
+    "args0": [
+      {
+        "options": [
+          [
+            "Встроенный",
+            "LV_STDLIB_BUILTIN"
+          ],
+          [
+            "C Стандартная библиотека",
+            "LV_STDLIB_CLIB"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_set_theme": {
+    "message0": "Заданная тема %1",
+    "tooltip": "Задайте глобальный стиль темы",
+    "args0": [
+      {
+        "options": [
+          [
+            "Светлый цвет",
+            "light"
+          ],
+          [
+            "Темный",
+            "dark"
+          ]
+        ]
+      }
+    ]
+  },
+  "toolbox_categories": [
+    "инициализация",
+    "экран",
+    "Управление дисплеем",
+    "Управление вводом",
+    "Управление монитором",
+    "Планировка",
+    "Стиль",
+    "Events",
+    "Статус и знаки"
+  ]
+}

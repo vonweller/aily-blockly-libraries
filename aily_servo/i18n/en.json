@@ -1,0 +1,138 @@
+{
+  "toolbox_name": "Servo",
+  "toolbox_labels": {
+    "基础控制": "basic control",
+    "读取状态": "read status",
+    "高级控制": "Advanced control",
+    "实用功能": "Practical functions",
+    "角度值": "Angle value"
+  },
+  "servo_attach": {
+    "message0": "Initialization pin %1 servo",
+    "tooltip": "Initialize the servo of the specified pin. ESP32 recommends using GPIO 4,5,12-19,21-23,25-27,32,33. Avoid using GPIO 6-11 (flash) and 34-39 (input only)",
+    "args0": [
+      {
+        "options": "${board.servoPins}"
+      }
+    ]
+  },
+  "servo_attach_advanced": {
+    "message0": "Initialization pin %1 servo\nMinimum pulse width %2 Maximum pulse width %3",
+    "tooltip": "Initialize the servo of the specified pin and set the pulse width range. ESP32 will automatically assign PWM channels, no need to manually specify",
+    "args0": [
+      {
+        "options": "${board.servoPins}"
+      },
+      null,
+      null
+    ]
+  },
+  "servo_attach_full": {
+    "message0": "Initialization pin %1 servo\nMinimum angle %2 Maximum angle %3\nMinimum pulse width %4 Maximum pulse width %5",
+    "tooltip": "Initialize the servo of the specified pin and set the complete parameters (angle range, pulse width range). ESP32 will automatically assign PWM channels",
+    "args0": [
+      {
+        "options": "${board.servoPins}"
+      },
+      null,
+      null,
+      null,
+      null
+    ]
+  },
+  "servo_write": {
+    "message0": "Control pin %1 Servo rotation angle %2 degrees",
+    "tooltip": "Set the target angle of the specified pin servo (0-180 degrees)",
+    "args0": [
+      {
+        "options": "${board.servoPins}"
+      },
+      null
+    ]
+  },
+  "servo_write_float": {
+    "message0": "Control pin %1 Servo rotation angle %2 degrees",
+    "tooltip": "Set the precise angle of the specified pin servo (supports floating point numbers)",
+    "args0": [
+      {
+        "options": "${board.servoPins}"
+      },
+      null
+    ]
+  },
+  "servo_write_microseconds": {
+    "message0": "Control pin %1 servo setting pulse width is %2 microseconds",
+    "tooltip": "Directly set the pulse width value of the specified pin servo (usually 544-2400 microseconds)",
+    "args0": [
+      {
+        "options": "${board.servoPins}"
+      },
+      null
+    ]
+  },
+  "servo_read": {
+    "message0": "Read pin %1 current angle of servo",
+    "tooltip": "Read the current angle value of the specified pin servo",
+    "args0": [
+      {
+        "options": "${board.servoPins}"
+      }
+    ]
+  },
+  "servo_read_microseconds": {
+    "message0": "Read pin %1 current pulse width of servo",
+    "tooltip": "Read the current pulse width value of the specified pin servo (microseconds)",
+    "args0": [
+      {
+        "options": "${board.servoPins}"
+      }
+    ]
+  },
+  "servo_attached": {
+    "message0": "Pin %1 Servo is connected",
+    "tooltip": "Check whether the servo of the specified pin is connected",
+    "args0": [
+      {
+        "options": "${board.servoPins}"
+      }
+    ]
+  },
+  "servo_detach": {
+    "message0": "Disconnect pin %1 servo",
+    "tooltip": "Disconnect the specified pin servo from the pin",
+    "args0": [
+      {
+        "options": "${board.servoPins}"
+      }
+    ]
+  },
+  "servo_get_pin": {
+    "message0": "Pin %1 The pin number of the servo connection",
+    "tooltip": "Get the pin number of the specified servo connection (return the input pin number)",
+    "args0": [
+      {
+        "options": "${board.servoPins}"
+      }
+    ]
+  },
+  "servo_map_angle": {
+    "message0": "Maps value %1 from the range %2 to %3\nto angle range %4 to %5",
+    "tooltip": "Map a range of values to the servo angle range"
+  },
+  "servo_sweep": {
+    "message0": "Pin %1 Servo scan\nDelay from %2 degrees to %3 degrees Delay %4 milliseconds",
+    "tooltip": "Let the servo of the specified pin scan within the specified angle range",
+    "args0": [
+      {
+        "options": "${board.servoPins}"
+      },
+      null,
+      null,
+      null
+    ]
+  },
+  "servo_angle": {
+    "message0": "Angle %1 degrees",
+    "tooltip": "Servo angle value (0-180 degrees)"
+  }
+}

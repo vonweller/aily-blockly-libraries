@@ -1,0 +1,173 @@
+{
+  "toolbox_name": "ESP32 Network",
+  "toolbox_labels": {
+    "TCP客户端": "TCPクライアント",
+    "TCP安全客户端": "TCPセキュアクライアント",
+    "TCP客户端通用功能": "TCPクライアント共通機能",
+    "TCP服务器": "TCPサーバー",
+    "UDP通信": "UDP通信"
+  },
+  "esp32_network_client_create": {
+    "message0": "ネットワーククライアントを作成%1",
+    "tooltip": "ウェブクライアントオブジェクトを作成する"
+  },
+  "esp32_network_client_connect_ip": {
+    "message0": "クライアント%1IP%2ポート%3",
+    "tooltip": "指定されたIPアドレスとポートに接続してください"
+  },
+  "esp32_network_client_connect_host": {
+    "message0": "クライアント%1はホスト%2ポート%3接続します",
+    "tooltip": "指定されたホスト名とポートに接続"
+  },
+  "esp32_networkclientsecure_create": {
+    "message0": "安全なネットワーククライアント%1",
+    "tooltip": "新しいNetworkClientSecureのセキュアネットワーククライアントオブジェクトを作成する"
+  },
+  "esp32_networkclientsecure_set_insecure": {
+    "message0": "%1を安全モードで設定してください",
+    "tooltip": "非安全モードに設定し、証明書チェーンの検証はしない(テストのみ)"
+  },
+  "esp32_networkclientsecure_set_ca_cert": {
+    "message0": "%1のCA証明書を%2設定",
+    "tooltip": "rootCA証明書を設定してサーバーを検証してください"
+  },
+  "esp32_networkclientsecure_set_certificate": {
+    "message0": "%1クライアント証明書を設定してください%2",
+    "tooltip": "双方向認証用のクライアント証明書を設定する"
+  },
+  "esp32_networkclientsecure_set_private_key": {
+    "message0": "%1の秘密鍵%2",
+    "tooltip": "クライアントの秘密鍵を双方向認証用に設定します"
+  },
+  "esp32_networkclientsecure_set_psk": {
+    "message0": "%1のPSK認証ID%2キー%3設定してください",
+    "tooltip": "事前共有鍵(PSK)認証の設定"
+  },
+  "esp32_networkclientsecure_set_plain_start": {
+    "message0": "%1をプレーンテキスト起動モードに設定してください",
+    "tooltip": "プロトコルのアップグレード(例:STARTTLS)のためにプレーンテキストブートモードに設定"
+  },
+  "esp32_networkclientsecure_start_tls": {
+    "message0": "TLS接続を開始し%1",
+    "tooltip": "平文接続をTLS接続にアップグレードします。0を返すと失敗、0でないと成功を示します"
+  },
+  "esp32_networkclientsecure_set_handshake_timeout": {
+    "message0": "握手タイムアウト%1%2秒に設定してください",
+    "tooltip": "SSLハンドシェイクのタイムアウトを設定してください"
+  },
+  "esp32_networkclientsecure_verify_fingerprint": {
+    "message0": "指紋%1ドメイン%2確認%3",
+    "tooltip": "サーバー証明書、指紋、ドメイン名の確認をしてください"
+  },
+  "esp32_networkclientsecure_get_peer_fingerprint": {
+    "message0": "%1のピア証明書の指紋を取得してください",
+    "tooltip": "ピア証明書のためにSHA256フィンガープリント(16進文字列)を取得してください。"
+  },
+  "esp32_networkclientsecure_last_error": {
+    "message0": "最後のエラーを%1",
+    "tooltip": "直近の接続や操作からエラーメッセージを取得する"
+  },
+  "esp32_network_client_print": {
+    "message0": "クライアント%1データを送信%2",
+    "tooltip": "サーバーにデータを送る"
+  },
+  "esp32_network_client_println": {
+    "message0": "クライアント%1データを送信して壊lines%2",
+    "tooltip": "サーバーにデータを送信し、改行を追加します"
+  },
+  "esp32_network_client_available": {
+    "message0": "クライアントの%1はバイト単位のデータを読み取ることができます",
+    "tooltip": "読み取れるデータバイト数を取得します"
+  },
+  "esp32_network_client_read": {
+    "message0": "クライアント%1データ%2",
+    "tooltip": "サーバーからのデータの読み込み",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "1バイト",
+            "BYTE"
+          ],
+          [
+            "文字列",
+            "STRING"
+          ],
+          [
+            "改行を読んでみてください",
+            "LINE"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_network_client_connected": {
+    "message0": "クライアント%1接続されています",
+    "tooltip": "クライアントが接続されているか確認してください"
+  },
+  "esp32_network_client_stop": {
+    "message0": "クライアント%1切断",
+    "tooltip": "クライアント接続を切断します"
+  },
+  "esp32_network_server_create": {
+    "message0": "ネットワークサーバー%1ポート%2最大接続数%3",
+    "tooltip": "ウェブサーバーオブジェクトを作成する"
+  },
+  "esp32_network_server_begin": {
+    "message0": "サーバー%1が聞き始める",
+    "tooltip": "クライアントとの接続を聞き取り始めましょう"
+  },
+  "esp32_network_server_accept": {
+    "message0": "サーバー%1クライアント%2接続をリスチします",
+    "tooltip": "クライアント接続を受け入れ、クライアントオブジェクトを返します"
+  },
+  "esp32_network_server_stop": {
+    "message0": "サーバー%1が聞くのをやめます",
+    "tooltip": "サーバーリスニングを止めろ"
+  },
+  "esp32_network_udp_create": {
+    "message0": "UDPオブジェクトの作成%1",
+    "tooltip": "UDPオブジェクトを作成する"
+  },
+  "esp32_network_udp_begin": {
+    "message0": "UDP %1 ポート%2を受信開始",
+    "tooltip": "指定されたポートでUDPパケットのリスニングを開始します"
+  },
+  "esp32_network_udp_begin_packet": {
+    "message0": "UDP %1はポート%2%3へのパケット送信を開始します",
+    "tooltip": "UDPパケット送信の準備を始めましょう"
+  },
+  "esp32_network_udp_write": {
+    "message0": "UDP%1データ書き込み%2",
+    "tooltip": "UDPパケットへの書き込み"
+  },
+  "esp32_network_udp_end_packet": {
+    "message0": "UDP%1データパケットを送信します",
+    "tooltip": "UDPパケットを送信"
+  },
+  "esp32_network_udp_parse_packet": {
+    "message0": "UDP%1受信したデータパケットを解析します",
+    "tooltip": "受信したUDPパケットを解析し、パケットサイズを返す"
+  },
+  "esp32_network_udp_available": {
+    "message0": "UDP%1利用可能なデータバイト数",
+    "tooltip": "読み取れるデータバイト数を取得します"
+  },
+  "esp32_network_udp_read": {
+    "message0": "UDP%1データを読み込みます",
+    "tooltip": "UDPバッファからのデータの読み込み"
+  },
+  "esp32_network_udp_remote_ip": {
+    "message0": "UDP %1リモートIPアドレス",
+    "tooltip": "データパケットを送信するためのリモートIPアドレスを取得します"
+  },
+  "esp32_network_udp_remote_port": {
+    "message0": "リモートポート%1UDP",
+    "tooltip": "パケットを送信するためのリモートポートを取得します"
+  },
+  "esp32_network_udp_stop": {
+    "message0": "UDP%1監視を停止しました",
+    "tooltip": "UDP監視を停止する"
+  }
+}

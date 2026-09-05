@@ -1,0 +1,96 @@
+{
+  "toolbox_name": "LD3320D Reconhecimento de fala",
+  "toolbox_labels": {
+    "初始化": "inicialização",
+    "配置": "Configuração",
+    "识别": "identificar",
+    "事件处理": "manipulação de eventos"
+  },
+  "speech_recognizer_setup": {
+    "message0": "Inicialize o módulo de reconhecimento de fala %1 endereço I2C %2",
+    "tooltip": "Inicialize o módulo de reconhecimento de voz, com o endereço padrão I2C definido como 0x30"
+  },
+  "speech_recognizer_set_mode": {
+    "message0": "Defina o modo de reconhecimento %1 para %2",
+    "tooltip": "Defina o modo de reconhecimento de voz",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Automático",
+            "kRecognitionAuto"
+          ],
+          [
+            "Acionado por um botão",
+            "kButtonTrigger"
+          ],
+          [
+            "Gatilhos de palavras-chave",
+            "kKeywordTrigger"
+          ],
+          [
+            "Acionado por uma chave ou palavra-chave",
+            "kKeywordOrButtonTrigger"
+          ]
+        ]
+      }
+    ]
+  },
+  "speech_recognizer_set_timeout": {
+    "message0": "Configure %1 para reconhecer o tempo limite %2 milissegundos",
+    "tooltip": "Defina o tempo de reconhecimento (milissegundos), o que é ineficaz para o modo de reconhecimento automático"
+  },
+  "speech_recognizer_add_keyword": {
+    "message0": "Adicione palavras-chave %1 índice %2 ao %3",
+    "tooltip": "Adicione palavras-chave de reconhecimento de voz, até 50 palavras, com cada palavra no máximo 50 bytes"
+  },
+  "speech_recognizer_recognize": {
+    "message0": "%1 Realizar reconhecimento de fala",
+    "tooltip": "O reconhecimento de fala é realizado, e o índice de palavras-chave reconhecido (>=0) é retornado; se não, retorna -1. Isso deve ser chamado de loop em loop"
+  },
+  "speech_recognizer_get_event": {
+    "message0": "%1 Obtenha o evento atual",
+    "tooltip": "Obtenha o tipo de evento atual"
+  },
+  "speech_recognizer_event_handler": {
+    "message0": "Eventos %1 Atuais %2",
+    "tooltip": "Realize a operação correspondente quando ocorre um evento especificado",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Comece a esperar pelo gatilho",
+            "kEventStartWaitingForTrigger"
+          ],
+          [
+            "Acionado por um botão",
+            "kEventButtonTriggered"
+          ],
+          [
+            "Desencadeado por palavras-chave",
+            "kEventKeywordTriggered"
+          ],
+          [
+            "Iniciar identificação",
+            "kEventStartRecognizing"
+          ],
+          [
+            "Reconhecimento é bem-sucedido",
+            "kEventSpeechRecognized"
+          ],
+          [
+            "Reconheça tempos mortos",
+            "kEventSpeechRecognitionTimedOut"
+          ]
+        ]
+      }
+    ],
+    "message1": "executar %1"
+  },
+  "speech_recognizer_check_result": {
+    "message0": "Resultado de reconhecimento %1 igual a %2",
+    "tooltip": "Verifique se o resultado de reconhecimento corresponde ao índice especificado"
+  }
+}

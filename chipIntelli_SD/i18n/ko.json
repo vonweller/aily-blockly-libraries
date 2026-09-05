@@ -1,0 +1,247 @@
+{
+  "toolbox_name": "SD 카드",
+  "toolbox_labels": {
+    "配置引脚并自动初始化": "핀 설정 및 자동 초기화",
+    "诊断与卸载": "진단 및 마운트 해제",
+    "文件与目录": "파일 및 디렉터리",
+    "文件状态与读取": "파일 상태 및 읽기",
+    "写入与控制": "쓰기 및 제어"
+  },
+  "chipintelli_sd_init_pins": {
+    "message0": "CI13XX SD 카드 초기화 SCK %1 MISO %2 MOSI %3 CS %4",
+    "tooltip": "setup에서 사용자 지정 GPIO 소프트웨어 SPI 핀을 SCK, MISO, MOSI, CS 순서로 사용해 SD 카드를 초기화합니다"
+  },
+  "chipintelli_sd_error_info": {
+    "message0": "CI13XX SD 최근 오류 %1",
+    "tooltip": "가장 최근의 저수준 SD 작업에서 오류 코드 또는 추가 오류 데이터를 읽습니다",
+    "args0": [
+      {
+        "options": [
+          [
+            "오류 코드",
+            "cardErrorCode"
+          ],
+          [
+            "오류 데이터",
+            "cardErrorData"
+          ]
+        ]
+      }
+    ]
+  },
+  "chipintelli_sd_end": {
+    "message0": "CI13XX SD 카드 마운트 해제 및 소프트웨어 SPI 핀 해제",
+    "tooltip": "카드를 닫고 소프트웨어 SPI, SCK, MISO, MOSI, CS를 해제합니다. 다시 사용하기 전에 초기화하세요"
+  },
+  "chipintelli_sd_exists": {
+    "message0": "CI13XX SD 경로 %1 존재",
+    "tooltip": "SD 카드에 파일이나 디렉터리가 있는지 확인합니다"
+  },
+  "chipintelli_sd_path_operation": {
+    "message0": "CI13XX SD %1 경로 %2",
+    "tooltip": "디렉터리를 만들거나 파일 또는 빈 디렉터리를 삭제합니다. mkdir은 없는 상위 디렉터리도 만듭니다",
+    "args0": [
+      {
+        "options": [
+          [
+            "디렉터리 만들기",
+            "mkdir"
+          ],
+          [
+            "파일 삭제",
+            "remove"
+          ],
+          [
+            "빈 디렉터리 삭제",
+            "rmdir"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "chipintelli_sd_file_create": {
+    "message0": "CI13XX SD 경로 %1 모드 %2로 열어 파일 %3에 저장",
+    "tooltip": "File 변수를 만들고 파일 또는 디렉터리를 엽니다. FILE_WRITE는 파일 끝에 추가합니다",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "읽기 전용",
+            "FILE_READ"
+          ],
+          [
+            "읽기/쓰기 및 추가",
+            "FILE_WRITE"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "chipintelli_sd_file_create_next": {
+    "message0": "CI13XX 디렉터리 %1 다음 항목을 모드 %2로 열어 파일 %3에 저장",
+    "tooltip": "열린 디렉터리에서 다음 파일 또는 하위 디렉터리를 가져와 새 File 변수에 저장합니다",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "읽기 전용",
+            "FILE_READ"
+          ],
+          [
+            "읽기/쓰기 및 추가",
+            "FILE_WRITE"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "chipintelli_sd_file_is_open": {
+    "message0": "CI13XX 파일 %1 열기 성공",
+    "tooltip": "File 객체가 유효하고 열려 있는지 확인합니다"
+  },
+  "chipintelli_sd_file_is_directory": {
+    "message0": "CI13XX 파일 %1은 디렉터리",
+    "tooltip": "현재 File 객체가 디렉터리인지 확인합니다"
+  },
+  "chipintelli_sd_file_name": {
+    "message0": "CI13XX 파일 %1 이름",
+    "tooltip": "파일 또는 디렉터리의 8.3 짧은 이름을 반환합니다"
+  },
+  "chipintelli_sd_file_read": {
+    "message0": "CI13XX 파일 %1에서 %2",
+    "tooltip": "다음 바이트를 읽거나 확인합니다. 데이터가 없으면 -1을 반환하고 peek는 위치를 이동하지 않습니다",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "1바이트 읽기",
+            "read"
+          ],
+          [
+            "다음 바이트 확인",
+            "peek"
+          ]
+        ]
+      }
+    ]
+  },
+  "chipintelli_sd_file_available": {
+    "message0": "CI13XX 파일 %1 %2",
+    "tooltip": "현재 읽거나 쓸 수 있는 바이트 수를 반환합니다",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "남은 읽기 가능 바이트 수",
+            "available"
+          ],
+          [
+            "현재 쓰기 가능 바이트 수",
+            "availableForWrite"
+          ]
+        ]
+      }
+    ]
+  },
+  "chipintelli_sd_file_position": {
+    "message0": "CI13XX 파일 %1 %2",
+    "tooltip": "현재 읽기/쓰기 위치 또는 파일 크기를 반환합니다",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "현재 위치",
+            "position"
+          ],
+          [
+            "크기(바이트)",
+            "size"
+          ]
+        ]
+      }
+    ]
+  },
+  "chipintelli_sd_file_seek": {
+    "message0": "CI13XX 파일 %1 위치를 %2로 설정 성공",
+    "tooltip": "지정한 절대 바이트 오프셋으로 이동하고 성공 여부를 반환합니다"
+  },
+  "chipintelli_sd_file_write": {
+    "message0": "CI13XX 파일 %1에 %2 데이터 %3 진법 %4",
+    "tooltip": "write, print 또는 println으로 씁니다. 진법은 print/println의 숫자 값에만 적용됩니다",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "원시 쓰기",
+            "write"
+          ],
+          [
+            "출력",
+            "print"
+          ],
+          [
+            "출력 후 줄 바꿈",
+            "println"
+          ]
+        ]
+      },
+      null,
+      {
+        "options": [
+          [
+            "자동",
+            "AUTO"
+          ],
+          [
+            "2진수",
+            "BIN"
+          ],
+          [
+            "8진수",
+            "OCT"
+          ],
+          [
+            "10진수",
+            "DEC"
+          ],
+          [
+            "16진수",
+            "HEX"
+          ]
+        ]
+      }
+    ]
+  },
+  "chipintelli_sd_file_control": {
+    "message0": "CI13XX 파일 %1 %2",
+    "tooltip": "파일을 플러시하거나 디렉터리 순회를 재설정하거나 File 객체를 닫습니다",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "쓰기 버퍼 플러시",
+            "flush"
+          ],
+          [
+            "디렉터리를 첫 항목으로 되돌리기",
+            "rewindDirectory"
+          ],
+          [
+            "닫기",
+            "close"
+          ]
+        ]
+      }
+    ]
+  }
+}

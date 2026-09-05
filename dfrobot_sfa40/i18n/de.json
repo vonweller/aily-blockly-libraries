@@ -1,0 +1,65 @@
+{
+  "toolbox_name": "SFA40 Formaldehyd-Temperatur- und Luftfeuchtigkeitssensor",
+  "sfa40_init_i2c": {
+    "message0": "Initialisieren Sie den SFA40 I2C %1 Bus %2",
+    "tooltip": "SFA40 wird über I2C initialisiert, wobei die Adresse auf 0x5D festgelegt ist."
+  },
+  "sfa40_measurement": {
+    "message0": "SFA40 %1 %2 measurement",
+    "tooltip": "Beginnen oder stoppen Sie SFA40-Messungen.",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Start",
+            "START"
+          ],
+          [
+            "Stoppen",
+            "STOP"
+          ]
+        ]
+      }
+    ]
+  },
+  "sfa40_read_data": {
+    "message0": "SFA40 %1 Aktualisierungsmessdaten",
+    "tooltip": "Lesen und cachen Sie HCHO, Luftfeuchtigkeit und Temperatur. Return 0 bedeutet zuverlässig, 1 bedeutet nicht aufgewärmt, 2 bedeutet nicht die Spezifikationen erfüllt, 3 bedeutet Kommunikation oder CRC fehlgeschlagen."
+  },
+  "sfa40_value": {
+    "message0": "SFA40 %1 Cache value%2",
+    "tooltip": "Lesen Sie den Cache-Wert nach der letzten Aktualisierung.",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "HCHO ppb",
+            "HCHO"
+          ],
+          [
+            "Luftfeuchtigkeit %RH",
+            "HUMIDITY"
+          ],
+          [
+            "Temperatur C",
+            "TEMP_C"
+          ],
+          [
+            "Temperatur F",
+            "TEMP_F"
+          ]
+        ]
+      }
+    ]
+  },
+  "sfa40_read_serial": {
+    "message0": "SFA40 liest %1 die Seriennummer aus",
+    "tooltip": "Lesen Sie die SFA40-Seriennummer und aktualisieren Sie die Seriennummernlänge. Es wird empfohlen, zuerst mit dem Messen aufzuhören."
+  },
+  "sfa40_serial_length": {
+    "message0": "SFA40 %1 Seriennummernlänge",
+    "tooltip": "Lesen Sie die Sequenznummer der gültigen Bytelängen. Die Seriennummer muss nach dem Stoppen der Messung aufgerufen werden."
+  }
+}

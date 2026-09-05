@@ -1,0 +1,106 @@
+{
+  "toolbox_name": "Moteur L298N",
+  "toolbox_labels": {
+    "初始化": "initialisation",
+    "速度控制": "contrôle de vitesse",
+    "方向控制": "Contrôle directionnel",
+    "定时运行": "Courez régulièrement",
+    "状态查询": "Requête d'état",
+    "高级功能": "Fonctionnalités avancées"
+  },
+  "l298n_setup": {
+    "message0": "Initialisez le moteur %1 broche EN %2 broche IN1 %3 broche IN2 %4",
+    "tooltip": "Initialiser le moteur L298N (avec contrôle de vitesse PWM)"
+  },
+  "l298n_setup_no_enable": {
+    "message0": "Initialisation du moteur %1 broche IN1 %2 broche IN2 %3 (pas de contrôle de vitesse)",
+    "tooltip": "Initialisation de l’entraînement moteur L298N (pas de contrôle de vitesse PWM, activation de la broche connectée à haut niveau)"
+  },
+  "l298n_set_speed": {
+    "message0": "Moteur %1 régler la vitesse %2",
+    "tooltip": "Régler la vitesse du moteur (0-255)"
+  },
+  "l298n_forward": {
+    "message0": "Le moteur %1 avance",
+    "tooltip": "Les avancées du moteur"
+  },
+  "l298n_backward": {
+    "message0": "Le moteur %1 à l’envers",
+    "tooltip": "Le moteur inverse"
+  },
+  "l298n_stop": {
+    "message0": "Le moteur %1 arrêté",
+    "tooltip": "Arrêtez le moteur"
+  },
+  "l298n_run": {
+    "message0": "Moteur %1 Operation%2",
+    "tooltip": "Contrôler la direction de marche du moteur",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Avancer",
+            "FORWARD"
+          ],
+          [
+            "Retour",
+            "BACKWARD"
+          ],
+          [
+            "Arrêt",
+            "STOP"
+          ]
+        ]
+      }
+    ]
+  },
+  "l298n_forward_for": {
+    "message0": "Le moteur %1 avance %2 millisecondes",
+    "tooltip": "Le moteur s’arrête automatiquement après avoir avancé pendant un temps déterminé"
+  },
+  "l298n_backward_for": {
+    "message0": "Le moteur %1 reculé %2 millisecondes",
+    "tooltip": "Le moteur s’arrête automatiquement après avoir fait marche arrière pendant un temps déterminé"
+  },
+  "l298n_run_for": {
+    "message0": "Le %1 moteur fonctionne pendant %3 millisecondes %2",
+    "tooltip": "Le moteur tourne dans une direction spécifiée pendant une durée donnée",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Avancer",
+            "FORWARD"
+          ],
+          [
+            "Retour",
+            "BACKWARD"
+          ],
+          [
+            "Arrêt",
+            "STOP"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "l298n_get_speed": {
+    "message0": "La vitesse du moteur %1",
+    "tooltip": "Obtenez la valeur actuelle de la vitesse moteur (0-255)"
+  },
+  "l298n_is_moving": {
+    "message0": "Le moteur %1 bouge",
+    "tooltip": "Vérifiez si le moteur bouge"
+  },
+  "l298n_get_direction": {
+    "message0": "Direction %1 moteur",
+    "tooltip": "Obtenez la direction actuelle du moteur (0=Avant, 1=Arrière, -1=Arrêt)"
+  },
+  "l298n_reset": {
+    "message0": "Réinitialisation %1 moteur",
+    "tooltip": "Après utilisation du minuteur, le mouvement moteur est réactivé"
+  }
+}

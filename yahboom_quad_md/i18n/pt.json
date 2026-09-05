@@ -1,0 +1,335 @@
+{
+  "toolbox_name": "Acionamento de motor de quatro vias",
+  "toolbox_labels": {
+    "── I2C模式 ──": "── Modo I2C ──",
+    "初始化": "inicialização",
+    "参数配置": "Configuração de parâmetros",
+    "电机控制": "Controle motor",
+    "编码器": "codificador",
+    "── 串口模式 ──": "── Modo porta serial ──",
+    "数据读取": "Leitura de dados"
+  },
+  "yahboom_md_iic_init": {
+    "message0": "Inicializar o Driver de Motor I2C %1 Endereço %2 Tipo de Motor %3",
+    "tooltip": "Inicialize a placa de driver de motor Yahboom I2C de quatro vias, defina o endereço I2C e o tipo de motor",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "0x26 (padrão)",
+            "0x26"
+          ],
+          [
+            "0x27",
+            "0x27"
+          ],
+          [
+            "0x28",
+            "0x28"
+          ],
+          [
+            "0x29",
+            "0x29"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "Motor 520",
+            "MOTOR_520"
+          ],
+          [
+            "310 motores",
+            "MOTOR_310"
+          ],
+          [
+            "Motor codificado TT",
+            "MOTOR_TT_ENCODER"
+          ],
+          [
+            "Motor TT DC",
+            "MOTOR_TT"
+          ],
+          [
+            "Motor 520-L",
+            "MOTOR_520_L"
+          ]
+        ]
+      }
+    ]
+  },
+  "yahboom_md_iic_set_deadzone": {
+    "message0": "Acionamento do motor I2C %1 Definir zonas mortas %2",
+    "tooltip": "Defina o valor da zona morta do motor"
+  },
+  "yahboom_md_iic_set_pulse_line": {
+    "message0": "Acionamento do motor I2C %1 Definir a contagem de linhas de pulsos %2",
+    "tooltip": "Defina o número de linhas de pulso em anel magnético"
+  },
+  "yahboom_md_iic_set_pulse_phase": {
+    "message0": "Acionamento do motor I2C %1 Ajuste a razão de redução %2",
+    "tooltip": "Defina a razão de redução do motor"
+  },
+  "yahboom_md_iic_set_wheel_diameter": {
+    "message0": "Acionamento do motor I2C %1 Ajuste o diâmetro da roda (mm) %2",
+    "tooltip": "Diâmetro da roda ajustada (mm)"
+  },
+  "yahboom_md_iic_control_speed": {
+    "message0": "Acionamento de motor I2C %1 controle de velocidade M1 %2 M2 %3 M3 %4 M4 %5",
+    "tooltip": "Controla a velocidade de 4 motores (motores codificadores necessários), faixa -1000~1000"
+  },
+  "yahboom_md_iic_control_pwm": {
+    "message0": "Acionamento do motor I2C %1 controle PWM M1 %2 M2 %3 M3 %4 M4 %5",
+    "tooltip": "Controla diretamente os valores de PWM de quatro motores"
+  },
+  "yahboom_md_iic_encoder_offset": {
+    "message0": "O motor I2C %1 para obter um deslocamento de 10ms do codificador %2",
+    "tooltip": "Leia o deslocamento de 10ms em tempo real do motor especificado do codificador",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "M1",
+            "0"
+          ],
+          [
+            "M2",
+            "1"
+          ],
+          [
+            "M3",
+            "2"
+          ],
+          [
+            "M4",
+            "3"
+          ]
+        ]
+      }
+    ]
+  },
+  "yahboom_md_iic_encoder_total": {
+    "message0": "Acionamento de motor I2C %1 Obter a contagem total de codificadores %2",
+    "tooltip": "Leia a contagem total de codificadores para o motor especificado",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "M1",
+            "0"
+          ],
+          [
+            "M2",
+            "1"
+          ],
+          [
+            "M3",
+            "2"
+          ],
+          [
+            "M4",
+            "3"
+          ]
+        ]
+      }
+    ]
+  },
+  "yahboom_md_usart_init": {
+    "message0": "Inicializar o motor serial drive %1 porta serial %2 motor tipo %3",
+    "tooltip": "Inicialize a placa de condutores de motor de quatro vias da porta serial Yahboom",
+    "args0": [
+      null,
+      {
+        "options": "${board.serialPort}"
+      },
+      {
+        "options": [
+          [
+            "Motor 520",
+            "MOTOR_520"
+          ],
+          [
+            "310 motores",
+            "MOTOR_310"
+          ],
+          [
+            "Motor codificado TT",
+            "MOTOR_TT_ENCODER"
+          ],
+          [
+            "Motor TT DC",
+            "MOTOR_TT"
+          ],
+          [
+            "Motor 520-L",
+            "MOTOR_520_L"
+          ]
+        ]
+      }
+    ]
+  },
+  "yahboom_md_usart_set_deadzone": {
+    "message0": "Unidade de motor serial %1 Definir zonas mortas %2",
+    "tooltip": "Defina o valor da zona morta do motor"
+  },
+  "yahboom_md_usart_set_pulse_line": {
+    "message0": "Unidade de motor serial %1 Definir a contagem de linhas de pulsos %2",
+    "tooltip": "Defina o número de linhas de pulso em anel magnético"
+  },
+  "yahboom_md_usart_set_pulse_phase": {
+    "message0": "Acionamento serial do motor %1 Ajuste a razão de redução %2",
+    "tooltip": "Defina a razão de redução do motor"
+  },
+  "yahboom_md_usart_set_wheel_diameter": {
+    "message0": "Acionamento do motor da porta serial %1 Ajuste o diâmetro da roda (mm) %2",
+    "tooltip": "Diâmetro da roda ajustada (mm)"
+  },
+  "yahboom_md_usart_set_pid": {
+    "message0": "Unidade de motor serial %1 Definir PID P %2 I %3 D %4",
+    "tooltip": "Defina os parâmetros do PID do motor"
+  },
+  "yahboom_md_usart_set_upload_data": {
+    "message0": "Unidade de motor serial %1 Relatório de dados Total do codificador %2 codificador de 10ms %3 Velocidade %4",
+    "tooltip": "Tipos de dados reportados pelo módulo motor: contagem total de codificadores, codificador em tempo real de 10ms, velocidade (mm/s)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Desligado",
+            "false"
+          ],
+          [
+            "Ligado",
+            "true"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "Desligado",
+            "false"
+          ],
+          [
+            "Ligado",
+            "true"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "Desligado",
+            "false"
+          ],
+          [
+            "Ligado",
+            "true"
+          ]
+        ]
+      }
+    ]
+  },
+  "yahboom_md_usart_control_speed": {
+    "message0": "Motor serial %1 controle de velocidade M1 %2 M2 %3 M3 %4 M4 %5",
+    "tooltip": "Controla a velocidade de 4 motores (motores codificadores necessários), faixa -1000~1000"
+  },
+  "yahboom_md_usart_control_pwm": {
+    "message0": "Acionamento serial %1 controle PWM M1 %2 M2 %3 M3 %4 M4 %5",
+    "tooltip": "Controla diretamente os valores de PWM de quatro motores"
+  },
+  "yahboom_md_usart_data_available": {
+    "message0": "Os motores seriais %1 para receber dados",
+    "tooltip": "Verifique se os dados retornados pelo módulo motor foram recebidos (recebe automaticamente dados no loop)"
+  },
+  "yahboom_md_usart_parse_data": {
+    "message0": "Unidades de motor seriais %1 análise de dados",
+    "tooltip": "A análise dos dados recebidos e a eliminação do flag de recebimento devem ser chamadas após confirmar que os dados estão disponíveis"
+  },
+  "yahboom_md_usart_encoder_offset": {
+    "message0": "A unidade de motor da porta serial %1 para obter um deslocamento de 10ms do codificador %2",
+    "tooltip": "Obtenha o offset de 10ms em tempo real do codificador para o motor especificado",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "M1",
+            "0"
+          ],
+          [
+            "M2",
+            "1"
+          ],
+          [
+            "M3",
+            "2"
+          ],
+          [
+            "M4",
+            "3"
+          ]
+        ]
+      }
+    ]
+  },
+  "yahboom_md_usart_encoder_total": {
+    "message0": "Unidade de motor serial %1 Obter a contagem total de codificadores %2",
+    "tooltip": "Obtenha a contagem total de codificadores para o motor especificado",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "M1",
+            "0"
+          ],
+          [
+            "M2",
+            "1"
+          ],
+          [
+            "M3",
+            "2"
+          ],
+          [
+            "M4",
+            "3"
+          ]
+        ]
+      }
+    ]
+  },
+  "yahboom_md_usart_speed": {
+    "message0": "Acionamento serial do motor %1 Velocidade de aquisição (mm/s) %2",
+    "tooltip": "Obtenha a velocidade atual do motor especificado (mm/s)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "M1",
+            "0"
+          ],
+          [
+            "M2",
+            "1"
+          ],
+          [
+            "M3",
+            "2"
+          ],
+          [
+            "M4",
+            "3"
+          ]
+        ]
+      }
+    ]
+  }
+}

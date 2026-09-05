@@ -1,0 +1,65 @@
+{
+  "toolbox_name": "Sensor de temperatura y humedad de formaldehído SFA40",
+  "sfa40_init_i2c": {
+    "message0": "Inicializar el bus %1 SFA40 I2C %2",
+    "tooltip": "SFA40 se inicializa mediante I2C, con la dirección fijada a 0x5D."
+  },
+  "sfa40_measurement": {
+    "message0": "SFA40 %1 %2 measurement",
+    "tooltip": "Inicia o detiene las mediciones SFA40.",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Iniciar",
+            "START"
+          ],
+          [
+            "Detener",
+            "STOP"
+          ]
+        ]
+      }
+    ]
+  },
+  "sfa40_read_data": {
+    "message0": "SFA40 %1 datos de medición de refrescos",
+    "tooltip": "Lee y almacena en caché HCHO, humedad y temperatura. Return 0 significa fiable, 1 significa no calentado, 2 significa no cumplir las especificaciones, 3 significa comunicación o CRC fallido."
+  },
+  "sfa40_value": {
+    "message0": "SFA40 %1 caché value%2",
+    "tooltip": "Lee el valor de la caché tras la última actualización.",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "HCHO ppb",
+            "HCHO"
+          ],
+          [
+            "Humedad % HR",
+            "HUMIDITY"
+          ],
+          [
+            "Temperatura C",
+            "TEMP_C"
+          ],
+          [
+            "Temperatura F",
+            "TEMP_F"
+          ]
+        ]
+      }
+    ]
+  },
+  "sfa40_read_serial": {
+    "message0": "SFA40 %1 lee el número de serie",
+    "tooltip": "Lee el número de serie SFA40 y actualiza la longitud del número de serie. Se recomienda dejar de medir primero."
+  },
+  "sfa40_serial_length": {
+    "message0": "SFA40 %1 longitud del número de serie",
+    "tooltip": "Lee el número de secuencia de longitudes válidas de bytes. El número de serie debe llamarse tras detener la medición."
+  }
+}

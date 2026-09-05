@@ -1,0 +1,511 @@
+{
+  "toolbox_name": "PS2 컨트롤러",
+  "toolbox_labels": {
+    "简化版本": "단순화된 버전",
+    "完整版本": "정식 버전",
+    "按钮检测": "버튼 감지",
+    "模拟量读取": "아날로그 독서",
+    "控制器信息": "컨트롤러 정보"
+  },
+  "ps2x_init": {
+    "message0": "PS2 컨트롤러를 압력 모드CLK%1 CMD%2 ATT%3 DAT%4 초기화하세요 %5 진동 mode%6",
+    "args0": [
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": [
+          [
+            "켜기",
+            "true"
+          ],
+          [
+            "끄기",
+            "false"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "켜기",
+            "true"
+          ],
+          [
+            "끄기",
+            "false"
+          ]
+        ]
+      }
+    ]
+  },
+  "ps2x_read": {
+    "message0": "PS2 컨트롤러 상태 진동 강도 읽기 %1"
+  },
+  "ps2x_button": {
+    "message0": "PS2 버튼을 눌렀%1",
+    "args0": [
+      {
+        "options": [
+          [
+            "위",
+            "PSB_PAD_UP"
+          ],
+          [
+            "아래",
+            "PSB_PAD_DOWN"
+          ],
+          [
+            "왼쪽",
+            "PSB_PAD_LEFT"
+          ],
+          [
+            "오른쪽",
+            "PSB_PAD_RIGHT"
+          ],
+          [
+            "삼각형",
+            "PSB_TRIANGLE"
+          ],
+          [
+            "둥근",
+            "PSB_CIRCLE"
+          ],
+          [
+            "십자",
+            "PSB_CROSS"
+          ],
+          [
+            "스퀘어",
+            "PSB_SQUARE"
+          ],
+          [
+            "L1",
+            "PSB_L1"
+          ],
+          [
+            "L2",
+            "PSB_L2"
+          ],
+          [
+            "L3",
+            "PSB_L3"
+          ],
+          [
+            "R1",
+            "PSB_R1"
+          ],
+          [
+            "R2",
+            "PSB_R2"
+          ],
+          [
+            "R3",
+            "PSB_R3"
+          ],
+          [
+            "SELECT",
+            "PSB_SELECT"
+          ],
+          [
+            "START",
+            "PSB_START"
+          ]
+        ]
+      }
+    ]
+  },
+  "ps2x_button_pressed": {
+    "message0": "PS2 버튼%1 그냥 눌렀어요",
+    "args0": [
+      {
+        "options": [
+          [
+            "위",
+            "PSB_PAD_UP"
+          ],
+          [
+            "아래",
+            "PSB_PAD_DOWN"
+          ],
+          [
+            "왼쪽",
+            "PSB_PAD_LEFT"
+          ],
+          [
+            "오른쪽",
+            "PSB_PAD_RIGHT"
+          ],
+          [
+            "삼각형",
+            "PSB_TRIANGLE"
+          ],
+          [
+            "둥근",
+            "PSB_CIRCLE"
+          ],
+          [
+            "십자",
+            "PSB_CROSS"
+          ],
+          [
+            "스퀘어",
+            "PSB_SQUARE"
+          ],
+          [
+            "L1",
+            "PSB_L1"
+          ],
+          [
+            "L2",
+            "PSB_L2"
+          ],
+          [
+            "L3",
+            "PSB_L3"
+          ],
+          [
+            "R1",
+            "PSB_R1"
+          ],
+          [
+            "R2",
+            "PSB_R2"
+          ],
+          [
+            "R3",
+            "PSB_R3"
+          ],
+          [
+            "SELECT",
+            "PSB_SELECT"
+          ],
+          [
+            "START",
+            "PSB_START"
+          ],
+          [
+            "빨강",
+            "PSB_RED"
+          ],
+          [
+            "파랑",
+            "PSB_BLUE"
+          ]
+        ]
+      }
+    ]
+  },
+  "ps2x_button_released": {
+    "message0": "PS2 버튼%1 방금 출시되었습니다",
+    "args0": [
+      {
+        "options": [
+          [
+            "위",
+            "PSB_PAD_UP"
+          ],
+          [
+            "아래",
+            "PSB_PAD_DOWN"
+          ],
+          [
+            "왼쪽",
+            "PSB_PAD_LEFT"
+          ],
+          [
+            "오른쪽",
+            "PSB_PAD_RIGHT"
+          ],
+          [
+            "삼각형",
+            "PSB_TRIANGLE"
+          ],
+          [
+            "둥근",
+            "PSB_CIRCLE"
+          ],
+          [
+            "십자",
+            "PSB_CROSS"
+          ],
+          [
+            "스퀘어",
+            "PSB_SQUARE"
+          ],
+          [
+            "L1",
+            "PSB_L1"
+          ],
+          [
+            "L2",
+            "PSB_L2"
+          ],
+          [
+            "L3",
+            "PSB_L3"
+          ],
+          [
+            "R1",
+            "PSB_R1"
+          ],
+          [
+            "R2",
+            "PSB_R2"
+          ],
+          [
+            "R3",
+            "PSB_R3"
+          ],
+          [
+            "SELECT",
+            "PSB_SELECT"
+          ],
+          [
+            "START",
+            "PSB_START"
+          ]
+        ]
+      }
+    ]
+  },
+  "ps2x_analog": {
+    "message0": "PS2 아날로그 %1",
+    "args0": [
+      {
+        "options": [
+          [
+            "오른쪽 스틱 X",
+            "PSS_RX"
+          ],
+          [
+            "오른쪽 조이스틱 Y",
+            "PSS_RY"
+          ],
+          [
+            "왼쪽 조이스틱 X",
+            "PSS_LX"
+          ],
+          [
+            "왼쪽 조이스틱 Y",
+            "PSS_LY"
+          ]
+        ]
+      }
+    ]
+  },
+  "ps2x_analog_button": {
+    "message0": "PS2 버튼 %1 압력 값",
+    "args0": [
+      {
+        "options": [
+          [
+            "위",
+            "PSAB_PAD_UP"
+          ],
+          [
+            "아래",
+            "PSAB_PAD_DOWN"
+          ],
+          [
+            "왼쪽",
+            "PSAB_PAD_LEFT"
+          ],
+          [
+            "오른쪽",
+            "PSAB_PAD_RIGHT"
+          ],
+          [
+            "삼각형",
+            "PSAB_TRIANGLE"
+          ],
+          [
+            "둥근",
+            "PSAB_CIRCLE"
+          ],
+          [
+            "십자",
+            "PSAB_CROSS"
+          ],
+          [
+            "스퀘어",
+            "PSAB_SQUARE"
+          ],
+          [
+            "L1",
+            "PSAB_L1"
+          ],
+          [
+            "L2",
+            "PSAB_L2"
+          ],
+          [
+            "R1",
+            "PSAB_R1"
+          ],
+          [
+            "R2",
+            "PSAB_R2"
+          ]
+        ]
+      }
+    ]
+  },
+  "ps2x_controller_type": {
+    "message0": "PS2 컨트롤러 유형"
+  },
+  "ps2x_new_button_state": {
+    "message0": "PS2 버튼 상태가 변경되었습니다"
+  },
+  "ps2x_new_button_state_specific": {
+    "message0": "PS2 button%1 상태가 변경되었습니다",
+    "args0": [
+      {
+        "options": [
+          [
+            "위",
+            "PSB_PAD_UP"
+          ],
+          [
+            "아래",
+            "PSB_PAD_DOWN"
+          ],
+          [
+            "왼쪽",
+            "PSB_PAD_LEFT"
+          ],
+          [
+            "오른쪽",
+            "PSB_PAD_RIGHT"
+          ],
+          [
+            "삼각형",
+            "PSB_TRIANGLE"
+          ],
+          [
+            "둥근",
+            "PSB_CIRCLE"
+          ],
+          [
+            "십자",
+            "PSB_CROSS"
+          ],
+          [
+            "스퀘어",
+            "PSB_SQUARE"
+          ],
+          [
+            "L1",
+            "PSB_L1"
+          ],
+          [
+            "L2",
+            "PSB_L2"
+          ],
+          [
+            "L3",
+            "PSB_L3"
+          ],
+          [
+            "R1",
+            "PSB_R1"
+          ],
+          [
+            "R2",
+            "PSB_R2"
+          ],
+          [
+            "R3",
+            "PSB_R3"
+          ],
+          [
+            "SELECT",
+            "PSB_SELECT"
+          ],
+          [
+            "START",
+            "PSB_START"
+          ]
+        ]
+      }
+    ]
+  },
+  "ps2x_is_connected": {
+    "message0": "PS2 컨트롤러가 연결되어 있습니다"
+  },
+  "ps2x_simple_init": {
+    "message0": "PS2 컨트롤러 초기화 CLK%1 CMD%2 ATT%3 DAT%4",
+    "args0": [
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": "${board.digitalPins}"
+      }
+    ]
+  },
+  "ps2x_simple_read": {
+    "message0": "PS2 컨트롤러를 읽어보세요"
+  },
+  "ps2x_joystick_moved": {
+    "message0": "조이스틱이 움직이%1",
+    "args0": [
+      {
+        "options": [
+          [
+            "왼쪽",
+            "LEFT"
+          ],
+          [
+            "오른쪽",
+            "RIGHT"
+          ]
+        ]
+      }
+    ]
+  },
+  "ps2x_joystick_position": {
+    "message0": "조이스틱의 %2축 위치%1",
+    "args0": [
+      {
+        "options": [
+          [
+            "왼쪽",
+            "LEFT"
+          ],
+          [
+            "오른쪽",
+            "RIGHT"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "X",
+            "X"
+          ],
+          [
+            "Y",
+            "Y"
+          ]
+        ]
+      }
+    ]
+  }
+}

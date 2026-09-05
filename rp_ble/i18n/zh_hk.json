@@ -1,0 +1,173 @@
+{
+  "toolbox_name": "Pico BLE",
+  "toolbox_labels": {
+    "初始化": "初始化",
+    "广播管理": "廣播管理",
+    "扫描设备": "掃描設備",
+    "GATT服务": "GATT服務",
+    "事件回调": "事件回調",
+    "连接管理": "連線管理"
+  },
+  "rp_ble_setup": {
+    "message0": "初始化BLE 設備名稱 %1",
+    "tooltip": "初始化BLE藍牙，並設定裝置名稱"
+  },
+  "rp_ble_setup_simple": {
+    "message0": "初始化BLE (使用預設名稱)",
+    "tooltip": "使用預設名稱初始化BLE藍牙"
+  },
+  "rp_ble_start_advertising": {
+    "message0": "開始BLE廣播",
+    "tooltip": "開始BLE廣播，讓其他設備可以發現"
+  },
+  "rp_ble_stop_advertising": {
+    "message0": "停止BLE廣播",
+    "tooltip": "停止BLE廣播"
+  },
+  "rp_ble_ibeacon_configure": {
+    "message0": "設定 iBeacon UUID %1主要 ID %2次要 ID %3",
+    "tooltip": "配置iBeacon參數"
+  },
+  "rp_ble_start_scanning": {
+    "message0": "開始BLE掃描",
+    "tooltip": "開始掃描周圍的BLE設備"
+  },
+  "rp_ble_stop_scanning": {
+    "message0": "停止BLE掃描",
+    "tooltip": "停止掃描BLE設備"
+  },
+  "rp_ble_on_advertisement": {
+    "message0": "當掃描到BLE廣播時 裝置資訊存入 %1",
+    "tooltip": "掃描到BLE設備廣播時執行代碼",
+    "message1": "執行 %1"
+  },
+  "rp_ble_adv_get_address": {
+    "message0": "取得廣播 %1 的裝置位址",
+    "tooltip": "取得廣播設備的MAC位址"
+  },
+  "rp_ble_adv_get_rssi": {
+    "message0": "取得廣播 %1 的訊號強度(RSSI)",
+    "tooltip": "取得廣播設備的訊號強度RSSI"
+  },
+  "rp_ble_adv_is_ibeacon": {
+    "message0": "廣播 %1 是iBeacon",
+    "tooltip": "檢查廣播是否為iBeacon"
+  },
+  "rp_ble_adv_name_has_prefix": {
+    "message0": "廣播 %1 設備名稱以 %2 開頭",
+    "tooltip": "檢查廣播設備名稱是否以指定前綴開頭"
+  },
+  "rp_ble_add_service": {
+    "message0": "新增GATT服務 UUID %1",
+    "tooltip": "增加一個GATT服務"
+  },
+  "rp_ble_add_characteristic": {
+    "message0": "新增特徵 UUID %1 屬性 %2 初始值 %3",
+    "tooltip": "新增一個靜態特徵值",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "只讀",
+            "ATT_PROPERTY_READ"
+          ],
+          [
+            "只寫",
+            "ATT_PROPERTY_WRITE"
+          ],
+          [
+            "讀寫",
+            "ATT_PROPERTY_READ | ATT_PROPERTY_WRITE"
+          ],
+          [
+            "通知",
+            "ATT_PROPERTY_NOTIFY"
+          ],
+          [
+            "閱讀+通知",
+            "ATT_PROPERTY_READ | ATT_PROPERTY_NOTIFY"
+          ],
+          [
+            "讀寫+通知",
+            "ATT_PROPERTY_READ | ATT_PROPERTY_WRITE | ATT_PROPERTY_NOTIFY"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "rp_ble_add_characteristic_dynamic": {
+    "message0": "新增動態特徵 UUID %1 屬性 %2 ID %3",
+    "tooltip": "加入一個動態特徵，讀寫透過回呼處理",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "只讀",
+            "ATT_PROPERTY_READ"
+          ],
+          [
+            "只寫",
+            "ATT_PROPERTY_WRITE"
+          ],
+          [
+            "讀寫",
+            "ATT_PROPERTY_READ | ATT_PROPERTY_WRITE"
+          ],
+          [
+            "通知",
+            "ATT_PROPERTY_NOTIFY"
+          ],
+          [
+            "閱讀+通知",
+            "ATT_PROPERTY_READ | ATT_PROPERTY_NOTIFY"
+          ],
+          [
+            "讀寫+通知",
+            "ATT_PROPERTY_READ | ATT_PROPERTY_WRITE | ATT_PROPERTY_NOTIFY"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "rp_ble_on_device_connected": {
+    "message0": "當BLE設備連接時 設備存入 %1",
+    "tooltip": "當BLE設備連線成功時執行程式碼",
+    "message1": "執行 %1"
+  },
+  "rp_ble_on_device_disconnected": {
+    "message0": "當BLE設備斷開連接時",
+    "tooltip": "當BLE設備斷開連線時執行程式碼",
+    "message1": "執行 %1"
+  },
+  "rp_ble_on_characteristic_read": {
+    "message0": "當特徵被讀取時 特徵ID %1 緩衝區 %2 緩衝區大小 %3",
+    "tooltip": "當動態特徵被讀取時執行程式碼，需要傳回資料長度",
+    "message1": "執行 %1",
+    "message2": "傳回資料長度 %1"
+  },
+  "rp_ble_on_characteristic_write": {
+    "message0": "當特徵被寫入 特徵ID %1 資料 %2 資料長度 %3",
+    "tooltip": "當動態特徵被寫入時執行程式碼",
+    "message1": "執行 %1"
+  },
+  "rp_ble_write_buffer": {
+    "message0": "寫入緩衝區 %1 資料 %2",
+    "tooltip": "向緩衝區寫入資料（用於特徵讀取回調）"
+  },
+  "rp_ble_connect": {
+    "message0": "連接BLE設備 位址 %1 逾時 %2 毫秒",
+    "tooltip": "連接指定位址的BLE設備"
+  },
+  "rp_ble_connect_adv": {
+    "message0": "連接BLE廣播設備 %1 逾時 %2 毫秒",
+    "tooltip": "連接掃描到的BLE廣播設備"
+  },
+  "rp_ble_disconnect": {
+    "message0": "斷開BLE設備 %1",
+    "tooltip": "斷開與BLE設備的連接"
+  }
+}

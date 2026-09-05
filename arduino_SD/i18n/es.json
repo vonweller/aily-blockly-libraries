@@ -1,0 +1,240 @@
+{
+  "toolbox_name": "Tarjeta SD",
+  "toolbox_labels": {
+    "初始化": "Inicialización",
+    "文件与目录": "Archivos y directorios",
+    "文件状态与读取": "Estado y lectura de archivos",
+    "写入与控制": "Escritura y control"
+  },
+  "arduino_sd_init": {
+    "message0": "inicializar tarjeta SD (pin CS predeterminado)",
+    "tooltip": "Inicializar la tarjeta SD en setup con el pin SS/CS de hardware predeterminado de la placa"
+  },
+  "arduino_sd_init_cs": {
+    "message0": "inicializar tarjeta SD pin CS %1",
+    "tooltip": "Inicializar la tarjeta SD en setup con el pin de selección indicado"
+  },
+  "arduino_sd_init_clock": {
+    "message0": "inicializar tarjeta SD pin CS %1 reloj SPI %2 Hz",
+    "tooltip": "Inicializar la tarjeta SD en setup con el pin CS y reloj SPI indicados (API ampliada de SD 1.3.0)"
+  },
+  "arduino_sd_begin_result": {
+    "message0": "inicialización de tarjeta SD con pin CS %1 correcta",
+    "tooltip": "Llamar inmediatamente a SD.begin(cs) y devolver si la inicialización fue correcta para reintentos o condiciones"
+  },
+  "arduino_sd_end": {
+    "message0": "desmontar tarjeta SD",
+    "tooltip": "Cerrar el directorio raíz SD; llamar antes de retirar o sustituir la tarjeta"
+  },
+  "arduino_sd_exists": {
+    "message0": "existe la ruta SD %1",
+    "tooltip": "Comprobar si existe un archivo o directorio en la tarjeta SD"
+  },
+  "arduino_sd_path_operation": {
+    "message0": "SD %1 ruta %2",
+    "tooltip": "Crear un directorio, borrar un archivo o eliminar un directorio vacío; mkdir también crea los directorios superiores que falten",
+    "args0": [
+      {
+        "options": [
+          [
+            "crear directorio",
+            "mkdir"
+          ],
+          [
+            "borrar archivo",
+            "remove"
+          ],
+          [
+            "eliminar directorio vacío",
+            "rmdir"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "arduino_sd_file_create": {
+    "message0": "abrir ruta SD %1 modo %2 guardar como archivo %3",
+    "tooltip": "Crear una variable File y abrir un archivo o directorio; FILE_WRITE añade al final del archivo",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "solo lectura",
+            "FILE_READ"
+          ],
+          [
+            "lectura/escritura y añadir",
+            "FILE_WRITE"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "arduino_sd_file_create_next": {
+    "message0": "en directorio %1 abrir siguiente entrada modo %2 guardar como archivo %3",
+    "tooltip": "Obtener el siguiente archivo o subdirectorio de un directorio abierto y guardarlo en una nueva variable File",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "solo lectura",
+            "FILE_READ"
+          ],
+          [
+            "lectura/escritura y añadir",
+            "FILE_WRITE"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "arduino_sd_file_is_open": {
+    "message0": "archivo %1 abierto correctamente",
+    "tooltip": "Comprobar que el objeto File sea válido y esté abierto"
+  },
+  "arduino_sd_file_is_directory": {
+    "message0": "el archivo %1 es un directorio",
+    "tooltip": "Comprobar si el objeto File actual representa un directorio"
+  },
+  "arduino_sd_file_name": {
+    "message0": "nombre del archivo %1",
+    "tooltip": "Devolver el nombre corto 8.3 del archivo o directorio"
+  },
+  "arduino_sd_file_read": {
+    "message0": "desde archivo %1 %2",
+    "tooltip": "Leer o consultar el siguiente byte; devolver -1 si no hay datos; peek no mueve la posición",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "leer un byte",
+            "read"
+          ],
+          [
+            "consultar siguiente byte",
+            "peek"
+          ]
+        ]
+      }
+    ]
+  },
+  "arduino_sd_file_available": {
+    "message0": "archivo %1 %2",
+    "tooltip": "Devolver los bytes disponibles actualmente para lectura o escritura",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "bytes legibles restantes",
+            "available"
+          ],
+          [
+            "bytes escribibles actuales",
+            "availableForWrite"
+          ]
+        ]
+      }
+    ]
+  },
+  "arduino_sd_file_position": {
+    "message0": "archivo %1 %2",
+    "tooltip": "Devolver la posición actual de lectura/escritura o el tamaño del archivo",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "posición actual",
+            "position"
+          ],
+          [
+            "tamaño (bytes)",
+            "size"
+          ]
+        ]
+      }
+    ]
+  },
+  "arduino_sd_file_seek": {
+    "message0": "posición del archivo %1 establecida en %2 correctamente",
+    "tooltip": "Mover al desplazamiento absoluto indicado y devolver si tuvo éxito"
+  },
+  "arduino_sd_file_write": {
+    "message0": "en archivo %1 %2 datos %3 base %4",
+    "tooltip": "Escribir con write, print o println; la base solo se aplica a valores numéricos de print/println",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "escritura sin formato",
+            "write"
+          ],
+          [
+            "imprimir",
+            "print"
+          ],
+          [
+            "imprimir con salto de línea",
+            "println"
+          ]
+        ]
+      },
+      null,
+      {
+        "options": [
+          [
+            "automático",
+            "AUTO"
+          ],
+          [
+            "binario",
+            "BIN"
+          ],
+          [
+            "octal",
+            "OCT"
+          ],
+          [
+            "decimal",
+            "DEC"
+          ],
+          [
+            "hexadecimal",
+            "HEX"
+          ]
+        ]
+      }
+    ]
+  },
+  "arduino_sd_file_control": {
+    "message0": "archivo %1 %2",
+    "tooltip": "Vaciar el archivo, reiniciar el recorrido del directorio o cerrar el objeto File",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "vaciar búfer de escritura",
+            "flush"
+          ],
+          [
+            "volver a la primera entrada del directorio",
+            "rewindDirectory"
+          ],
+          [
+            "cerrar",
+            "close"
+          ]
+        ]
+      }
+    ]
+  }
+}

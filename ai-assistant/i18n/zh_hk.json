@@ -1,0 +1,117 @@
+{
+  "toolbox_name": "AI—Assistant",
+  "ai_assistant_config": {
+    "message0": "配置AI-assistant 使用串列埠%1 波特率%2",
+    "tooltip": "配置 AI 助理串列通訊",
+    "args0": [
+      {
+        "options": "${board.serialPort}"
+      },
+      {
+        "options": "${board.serialSpeed}"
+      }
+    ]
+  },
+  "serial_command_handler": {
+    "message0": "接收到 %1 指令",
+    "tooltip": "判斷是否接收到指定類型的命令",
+    "args0": [
+      {
+        "options": [
+          [
+            "小車前進",
+            "MOVE_FORWARD"
+          ],
+          [
+            "小車後退",
+            "MOVE_BACKWARD"
+          ],
+          [
+            "小車左轉",
+            "TURN_LEFT"
+          ],
+          [
+            "小車右轉",
+            "TURN_RIGHT"
+          ],
+          [
+            "小車急停",
+            "STOP"
+          ],
+          [
+            "開啟LED",
+            "LED_ON"
+          ],
+          [
+            "關閉LED",
+            "LED_OFF"
+          ],
+          [
+            "LED閃爍",
+            "LED_BLINK"
+          ],
+          [
+            "舵機旋轉",
+            "SERVO_ROTATE"
+          ],
+          [
+            "修改風扇速度",
+            "FAN_SPEED"
+          ],
+          [
+            "打開風扇",
+            "FAN_ON"
+          ],
+          [
+            "關閉風扇",
+            "FAN_OFF"
+          ],
+          [
+            "打開彩燈",
+            "RGB_ON"
+          ],
+          [
+            "關閉彩燈",
+            "RGB_OFF"
+          ],
+          [
+            "設定彩燈亮度",
+            "RGB_BRIGHTNESS"
+          ],
+          [
+            "設定彩燈漸層差",
+            "RGB_GRADIENT"
+          ],
+          [
+            "機械手臂抓取",
+            "ARM_GRAB"
+          ],
+          [
+            "機械手臂鬆開",
+            "ARM_RELEASE"
+          ],
+          [
+            "機械手臂回歸初始位置",
+            "ARM_DOWN"
+          ],
+          [
+            "打開繼電器",
+            "RELAY_ON"
+          ],
+          [
+            "關閉繼電器",
+            "RELAY_OFF"
+          ]
+        ]
+      }
+    ]
+  },
+  "serial_custom_command": {
+    "message0": "攝影機辨識到:%1",
+    "tooltip": "判斷是否接收到自訂命令（支援部分匹配）"
+  },
+  "serial_clear_command": {
+    "message0": "清除接收的指令",
+    "tooltip": "清空receivedCommand變量，用於處理所有命令後"
+  }
+}

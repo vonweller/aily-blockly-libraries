@@ -1,0 +1,712 @@
+{
+  "toolbox_name": "Bluefruit52 BLE",
+  "toolbox_categories": [
+    "Modo rápido",
+    "Inicialización y estado",
+    "Callbacks de evento",
+    "Publicidad",
+    "Periférico BLE UART",
+    "Servicios GATT",
+    "Servicios estándar",
+    "Escáner y central",
+    "HID",
+    "Beacon"
+  ],
+  "bluefruit52_init": {
+    "message0": "Inicializar las conexiones periféricas de Bluefruit %1 las conexiones centrales %2",
+    "tooltip": "Inicializa la pila de protocolos Bluefruit BLE y establece el número de conexiones periféricas/centrales"
+  },
+  "bluefruit52_set_name": {
+    "message0": "Establecer el nombre del dispositivo BLE %1",
+    "tooltip": "Establezca el nombre de los dispositivos BLE usados en radiodifusión y GATT"
+  },
+  "bluefruit52_set_tx_power": {
+    "message0": "Establecer la potencia de transmisión (dBm) de BLE %1",
+    "tooltip": "Configurar la potencia de transmisión de radio BLE",
+    "args0": [
+      {
+        "options": [
+          [
+            "+8",
+            "8"
+          ],
+          [
+            "+4",
+            "4"
+          ],
+          [
+            "0",
+            "0"
+          ],
+          [
+            "-4",
+            "-4"
+          ],
+          [
+            "-8",
+            "-8"
+          ],
+          [
+            "-12",
+            "-12"
+          ],
+          [
+            "-16",
+            "-16"
+          ],
+          [
+            "-20",
+            "-20"
+          ],
+          [
+            "-40",
+            "-40"
+          ]
+        ]
+      }
+    ]
+  },
+  "bluefruit52_auto_conn_led": {
+    "message0": "Indicador de conexión light%1",
+    "tooltip": "Activa o desactiva el indicador de estado de la conexión de Bluefruit",
+    "args0": [
+      {
+        "options": [
+          [
+            "Activar",
+            "true"
+          ],
+          [
+            "Desactivar",
+            "false"
+          ]
+        ]
+      }
+    ]
+  },
+  "bluefruit52_config_bandwidth": {
+    "message0": "Configurar %1 ancho de banda %2",
+    "tooltip": "Configura el nivel de ancho de banda para conexiones periféricas o centrales",
+    "args0": [
+      {
+        "options": [
+          [
+            "Periférico",
+            "Prph"
+          ],
+          [
+            "Central",
+            "Central"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "Automático",
+            "BANDWIDTH_AUTO"
+          ],
+          [
+            "Bajo",
+            "BANDWIDTH_LOW"
+          ],
+          [
+            "Normal",
+            "BANDWIDTH_NORMAL"
+          ],
+          [
+            "Alto",
+            "BANDWIDTH_HIGH"
+          ],
+          [
+            "Máximo",
+            "BANDWIDTH_MAX"
+          ]
+        ]
+      }
+    ]
+  },
+  "bluefruit52_connected": {
+    "message0": "¿Está relacionado Bluefruit?",
+    "tooltip": "Devuelve si existe actualmente una conexión BLE"
+  },
+  "bluefruit52_disconnect": {
+    "message0": "Manilla de desconexión %1",
+    "tooltip": "Desconecta la conexión BLE pulsando la maneta de conexión"
+  },
+  "bluefruit52_callback_conn_handle": {
+    "message0": "La callback actual de BLE conecta manillas",
+    "tooltip": "Lee el handle de join actual en una unión, desconexión, UART o callback de escritura"
+  },
+  "bluefruit52_callback_disconnect_reason": {
+    "message0": "Razones actuales de la desconexión de BLE",
+    "tooltip": "Lee el código de razón de desconexión en la devolución de llamada de desconexión"
+  },
+  "bluefruit52_callback_data": {
+    "message0": "Datos actuales de retroceso de BLE",
+    "tooltip": "Lee BLE UART o escribe datos de texto desde la caché de callback"
+  },
+  "bluefruit52_on_periph_connect": {
+    "message0": "Cuando se conecta el periférico Bluefruit",
+    "message1": "ejecutar %1",
+    "tooltip": "Registrar la llamada de devolución de conexión para el carácter periférico"
+  },
+  "bluefruit52_on_periph_disconnect": {
+    "message0": "Cuando los periféricos Bluefruit se desconectan",
+    "message1": "ejecutar %1",
+    "tooltip": "Desconexión de llamada para roles periféricos registrados"
+  },
+  "bluefruit52_on_central_connect": {
+    "message0": "Cuando el extremo central de Bluefruit está conectado",
+    "message1": "ejecutar %1",
+    "tooltip": "Devolución de llamadas de conexión para roles en centros de registro"
+  },
+  "bluefruit52_on_central_disconnect": {
+    "message0": "Cuando el extremo central de Bluefruit se desconecta",
+    "message1": "ejecutar %1",
+    "tooltip": "Desconexión de llamada para el puesto del centro de registro"
+  },
+  "bluefruit52_adv_clear": {
+    "message0": "Borrar los datos de difusión BLE %1",
+    "tooltip": "Borrar paquetes de difusión o datos de respuesta de escaneo",
+    "args0": [
+      {
+        "options": [
+          [
+            "Paquete de anuncio",
+            "Advertising"
+          ],
+          [
+            "Respuesta de escaneo",
+            "ScanResponse"
+          ],
+          [
+            "Ambos",
+            "Both"
+          ]
+        ]
+      }
+    ]
+  },
+  "bluefruit52_adv_add_flags": {
+    "message0": "Las emisiones añaden Banderas Universales de Descubrimiento",
+    "tooltip": "Añadir el logotipo de LE Only General Discoverable a los paquetes de difusión"
+  },
+  "bluefruit52_adv_add_tx_power": {
+    "message0": "La radiodifusión añade potencia de transmisión",
+    "tooltip": "Añadir el campo TX Power al paquete de difusión"
+  },
+  "bluefruit52_adv_add_name": {
+    "message0": "%1 Añadir el nombre del dispositivo",
+    "tooltip": "Añadir nombres de dispositivos a paquetes de difusión o respuestas de escaneo",
+    "args0": [
+      {
+        "options": [
+          [
+            "Paquete de anuncio",
+            "Advertising"
+          ],
+          [
+            "Respuesta de escaneo",
+            "ScanResponse"
+          ],
+          [
+            "Ambos",
+            "Both"
+          ]
+        ]
+      }
+    ]
+  },
+  "bluefruit52_adv_add_service": {
+    "message0": "Servicio de Agregación de Radiodifusión %1",
+    "tooltip": "Añade el UUID del servicio BLE que has creado al paquete de difusión"
+  },
+  "bluefruit52_adv_add_uuid": {
+    "message0": "La emisión añade UUID%1",
+    "tooltip": "Añadir UUIDs de servicio a paquetes de difusión mediante cadena UUID"
+  },
+  "bluefruit52_adv_add_appearance": {
+    "message0": "La emisión añade apariencia %1",
+    "tooltip": "Añadir valores de apariencia BLE a los paquetes de difusión",
+    "args0": [
+      {
+        "options": [
+          [
+            "Reloj genérico",
+            "BLE_APPEARANCE_GENERIC_CLOCK"
+          ],
+          [
+            "Teclado",
+            "BLE_APPEARANCE_HID_KEYBOARD"
+          ],
+          [
+            "Ratón",
+            "BLE_APPEARANCE_HID_MOUSE"
+          ],
+          [
+            "Gamepad",
+            "BLE_APPEARANCE_HID_GAMEPAD"
+          ]
+        ]
+      }
+    ]
+  },
+  "bluefruit52_adv_restart_on_disconnect": {
+    "message0": "Retransmisión automática tras disconnection%1",
+    "tooltip": "Establece si la emisión se reanudará automáticamente tras desconectarte",
+    "args0": [
+      {
+        "options": [
+          [
+            "Activar",
+            "true"
+          ],
+          [
+            "Desactivar",
+            "false"
+          ]
+        ]
+      }
+    ]
+  },
+  "bluefruit52_adv_set_interval": {
+    "message0": "Establecer intervalo de emisión Rápido %1 Lento %2",
+    "tooltip": "Configura el intervalo rápido/lento de emisión, con unidades de 0,625 ms"
+  },
+  "bluefruit52_adv_set_initial_timeout": {
+    "message0": "Establecer el tiempo de espera inicial de emisión (segundos) %1",
+    "tooltip": "Establece la duración de la emisión rápida"
+  },
+  "bluefruit52_adv_start": {
+    "message0": "Iniciar emisión BLE Tiempo de espera (segundos) %1",
+    "tooltip": "Empieza la emisión BLE, 0 significa emisión continua"
+  },
+  "bluefruit52_adv_stop": {
+    "message0": "Detener la emisión de BLE",
+    "tooltip": "Detener la emisión actual de BLE"
+  },
+  "bluefruit52_adv_is_running": {
+    "message0": "¿BLE está emitiendo?",
+    "tooltip": "Indica si la emisión está en marcha"
+  },
+  "bluefruit52_bleuart_create": {
+    "message0": "Creación de BLE UART %1 Receiving Buffer %2",
+    "tooltip": "Crear objetos periféricos del Servicio UART Nórdico"
+  },
+  "bluefruit52_bleuart_begin": {
+    "message0": "Lanzamiento de BLE UART %1",
+    "tooltip": "Lanzamiento de los servicios BLE UART"
+  },
+  "bluefruit52_bleuart_write": {
+    "message0": "BLE UART %1 send %2",
+    "tooltip": "Envía mensajes de texto o datos vía BLE UART"
+  },
+  "bluefruit52_bleuart_available": {
+    "message0": "BLE UART %1 Número de bytes legibles",
+    "tooltip": "Devuelve el número de bytes en el búfer BLE UART recibido"
+  },
+  "bluefruit52_bleuart_read": {
+    "message0": "BLE UART %1 lee 1 byte",
+    "tooltip": "Al leer un byte de BLE UART, el fallo devuelve -1"
+  },
+  "bluefruit52_bleuart_read_string": {
+    "message0": "BLE UART %1 Lee el texto completo",
+    "tooltip": "Lee todo el texto en el buffer BLE UART"
+  },
+  "bluefruit52_bleuart_notify_enabled": {
+    "message0": "¿Notificaciones de BLE UART %1 activadas?",
+    "tooltip": "Comprueba si las notificaciones de BLE UART están activadas en el extremo central"
+  },
+  "bluefruit52_bleuart_on_receive": {
+    "message0": "Establece BLE UART %1 cuando se reciban los datos",
+    "message1": "ejecutar %1",
+    "tooltip": "Los registros y reciben callbacks para BLE UART, y los datos de callback pueden leerse usando los datos de callback BLE actuales"
+  },
+  "bluefruit52_bleuart_peripheral_quick": {
+    "message0": "Inicio rápido BLE Nombre del periférico UART: %1",
+    "tooltip": "Inicialización con un solo clic de Bluefruit, información del dispositivo, BLE URT y emisiones estándar"
+  },
+  "bluefruit52_bleuart_quick_send": {
+    "message0": "Envío rápido de BLE UART %1",
+    "tooltip": "Los datos se envían usando BLE UART creado en Modo Rápido"
+  },
+  "bluefruit52_bleuart_quick_received_data": {
+    "message0": "Datos recibidos rápidamente por BLE UART",
+    "tooltip": "Lee todo el texto en modo rápido que BLE UART recibió en el búfer"
+  },
+  "bluefruit52_bleuart_quick_connected": {
+    "message0": "¿Conectado el UART BLE rápido?",
+    "tooltip": "Comprueba si el modo rápido BLE UART está conectado"
+  },
+  "bluefruit52_service_create": {
+    "message0": "Crear %1 UUID%2 de servicio BLE",
+    "tooltip": "Crear objetos de servicio GATT personalizados"
+  },
+  "bluefruit52_service_begin": {
+    "message0": "Lanzamiento de BLE Service %1",
+    "tooltip": "Regístrate y lanza los servicios GATT"
+  },
+  "bluefruit52_characteristic_create": {
+    "message0": "Crear características BLE %1 UUID %2 atributos %3 longitud máxima %4",
+    "tooltip": "Crea objetos de característica GATT personalizados y configura sus propiedades y longitudes máximas",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "Leer",
+            "CHR_PROPS_READ"
+          ],
+          [
+            "Escribir",
+            "CHR_PROPS_WRITE"
+          ],
+          [
+            "Escribir sin respuesta",
+            "CHR_PROPS_WRITE_WO_RESP"
+          ],
+          [
+            "Notificar",
+            "CHR_PROPS_NOTIFY"
+          ],
+          [
+            "Indicar",
+            "CHR_PROPS_INDICATE"
+          ],
+          [
+            "Leer/escribir",
+            "CHR_PROPS_READ | CHR_PROPS_WRITE"
+          ],
+          [
+            "Leer/escribir+notificar",
+            "CHR_PROPS_READ | CHR_PROPS_WRITE | CHR_PROPS_NOTIFY"
+          ],
+          [
+            "Leer+indicar",
+            "CHR_PROPS_READ | CHR_PROPS_INDICATE"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "bluefruit52_characteristic_set_permission": {
+    "message0": "Establecer características %1 permisos de lectura %2 escritura %3",
+    "tooltip": "Establecer permisos de seguridad para la lectura/escritura de características",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Abierto",
+            "SECMODE_OPEN"
+          ],
+          [
+            "Sin acceso",
+            "SECMODE_NO_ACCESS"
+          ],
+          [
+            "Cifrado",
+            "SECMODE_ENC_NO_MITM"
+          ],
+          [
+            "Cifrado+MITM",
+            "SECMODE_ENC_WITH_MITM"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "Abierto",
+            "SECMODE_OPEN"
+          ],
+          [
+            "Sin acceso",
+            "SECMODE_NO_ACCESS"
+          ],
+          [
+            "Cifrado",
+            "SECMODE_ENC_NO_MITM"
+          ],
+          [
+            "Cifrado+MITM",
+            "SECMODE_ENC_WITH_MITM"
+          ]
+        ]
+      }
+    ]
+  },
+  "bluefruit52_characteristic_begin": {
+    "message0": "Activar las funciones de BLE %1",
+    "tooltip": "Añadir funciones al servicio GATT recientemente lanzado"
+  },
+  "bluefruit52_characteristic_write_text": {
+    "message0": "Características %1 Escribir texto %2",
+    "tooltip": "Escribe el valor local de la característica"
+  },
+  "bluefruit52_characteristic_notify_text": {
+    "message0": "Características %1 Notificación %2",
+    "tooltip": "Las notificaciones de texto se envían al extremo central de la notificación suscrita"
+  },
+  "bluefruit52_characteristic_indicate_text": {
+    "message0": "Características %1 Texto indicador %2",
+    "tooltip": "Las instrucciones de texto a confirmar se envían al extremo central de la instrucción suscrita"
+  },
+  "bluefruit52_characteristic_read_string": {
+    "message0": "Lee características %1 texto",
+    "tooltip": "Lee el valor actual de las características y conviértelas en texto"
+  },
+  "bluefruit52_characteristic_notify_enabled": {
+    "message0": "¿Función %1 notificación activada?",
+    "tooltip": "Comprueba si esta notificación de función ha sido activada por el extremo central"
+  },
+  "bluefruit52_characteristic_on_write": {
+    "message0": "Características del set %1 cuando se escriben",
+    "message1": "ejecutar %1",
+    "tooltip": "Registrar las escrituras de llamadas de características antes de iniciar funcionalidades"
+  },
+  "bluefruit52_dis_create": {
+    "message0": "Creación de servicios de información de dispositivos %1",
+    "tooltip": "Crear objetos de servicio de información de dispositivo BLE"
+  },
+  "bluefruit52_dis_set": {
+    "message0": "Servicio de Información de Dispositivos %1 configurado %2 para %3",
+    "tooltip": "Configurar el campo de servicio de información del dispositivo",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Fabricante",
+            "setManufacturer"
+          ],
+          [
+            "Modelo",
+            "setModel"
+          ],
+          [
+            "Número de serie",
+            "setSerialNum"
+          ],
+          [
+            "Versión firmware",
+            "setFirmwareRev"
+          ],
+          [
+            "Versión hardware",
+            "setHardwareRev"
+          ],
+          [
+            "Versión software",
+            "setSoftwareRev"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "bluefruit52_dis_begin": {
+    "message0": "Servicio de información de equipos de lanzamiento %1",
+    "tooltip": "Lanzamiento de los servicios de información de equipos BLE"
+  },
+  "bluefruit52_bas_create": {
+    "message0": "Creando servicios de batería %1",
+    "tooltip": "Creación de objetivos de servicio de batería BLE"
+  },
+  "bluefruit52_bas_begin": {
+    "message0": "Arrancando el servicio de batería %1",
+    "tooltip": "Lanzamiento del servicio de baterías BLE"
+  },
+  "bluefruit52_bas_write": {
+    "message0": "Servicio de batería %1 Potencia de escritura %2 %",
+    "tooltip": "Valor actualizado del servicio de batería"
+  },
+  "bluefruit52_bas_notify": {
+    "message0": "Servicio de batería %1 Batería notificada %2%",
+    "tooltip": "Te notifica de cambios en el nivel de batería"
+  },
+  "bluefruit52_scanner_config": {
+    "message0": "Configurar el intervalo de escaneo %1 ventana %2 escaneo activo %3 desconectar y volver a escanear %4",
+    "tooltip": "Configurar parámetros de escaneo al centro, unidad 0,625ms",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "Activar",
+            "true"
+          ],
+          [
+            "Desactivar",
+            "false"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "Activar",
+            "true"
+          ],
+          [
+            "Desactivar",
+            "false"
+          ]
+        ]
+      }
+    ]
+  },
+  "bluefruit52_scanner_start": {
+    "message0": "Empieza a escanear Tiempo límite (segundos) %1",
+    "tooltip": "Iniciar escaneo BLE; 0 significa escaneo continuo"
+  },
+  "bluefruit52_scanner_stop": {
+    "message0": "Deja de escanear",
+    "tooltip": "Detener el escaneo BLE"
+  },
+  "bluefruit52_scanner_resume": {
+    "message0": "Sigue escaneando",
+    "tooltip": "Restaurar el escaneo en la callback de escaneo"
+  },
+  "bluefruit52_scanner_filter_uuid": {
+    "message0": "Escaneo y filtrado de UUIDs %1",
+    "tooltip": "Solo escanear dispositivos que contengan UUIDs especificados"
+  },
+  "bluefruit52_on_scan_report": {
+    "message0": "Al escanear a emisiones BLE",
+    "message1": "ejecutar %1",
+    "tooltip": "Callbacks de escaneo de registros, que pueden leer resultados de coincidencia RSSI, direcciones y UUID"
+  },
+  "bluefruit52_scan_report_rssi": {
+    "message0": "Informe de escaneo RSSI",
+    "tooltip": "Lee el RSSI del informe actual de escaneo"
+  },
+  "bluefruit52_scan_report_address": {
+    "message0": "Escanea la dirección del informe",
+    "tooltip": "Lee la dirección MAC del informe de escaneo actual"
+  },
+  "bluefruit52_scan_report_has_uuid": {
+    "message0": "¿Escanear informes que contienen UUIDs %1?",
+    "tooltip": "Comprueba si el informe de escaneo actual contiene el UUID de servicio especificado"
+  },
+  "bluefruit52_central_connect_report": {
+    "message0": "Conecta el dispositivo actual de informes de escaneo",
+    "tooltip": "El terminal central se conecta al dispositivo que está en la llamada de escaneo"
+  },
+  "bluefruit52_central_connected": {
+    "message0": "¿Está conectado el terminal central?",
+    "tooltip": "Comprueba si el rol central está conectado"
+  },
+  "bluefruit52_client_uart_create": {
+    "message0": "Crea un BLE UART %1 alojado centralmente",
+    "tooltip": "Crear un objeto cliente central BLE UART"
+  },
+  "bluefruit52_client_uart_begin": {
+    "message0": "Centro de Startups BLE UART %1",
+    "tooltip": "Inicializar el cliente BLE UART"
+  },
+  "bluefruit52_client_uart_discover": {
+    "message0": "Referencia central del BLE UART %1 Discovery Service %2",
+    "tooltip": "Después de conectarme, encontré el servicio remoto Nordic UART"
+  },
+  "bluefruit52_client_uart_enable_txd": {
+    "message0": "El %1 central BLE UART permite que las notificaciones reciban",
+    "tooltip": "Activar notificaciones remotas de TXD para recibir datos"
+  },
+  "bluefruit52_client_uart_write": {
+    "message0": "Central BLE UART %1 enviar %2",
+    "tooltip": "Enviar datos al periférico BLE UART conectado"
+  },
+  "bluefruit52_client_uart_read_string": {
+    "message0": "El extremo central BLE UART %1 lee todo el texto",
+    "tooltip": "Lee todo el texto recibido por el cliente de BLE UART"
+  },
+  "bluefruit52_client_uart_on_receive": {
+    "message0": "Establece el %1 central BLE UART cuando se reciban los datos",
+    "message1": "ejecutar %1",
+    "tooltip": "Configura el cliente BLE UART para recibir llamadas de retorno"
+  },
+  "bluefruit52_hid_create": {
+    "message0": "Crear un BLE HID %1",
+    "tooltip": "Crear un objeto de servicio de teclado/ratón BLE HID"
+  },
+  "bluefruit52_hid_begin": {
+    "message0": "Activando el %1 BLE HID",
+    "tooltip": "Lanzamiento del servicio BLE HID"
+  },
+  "bluefruit52_hid_key_press": {
+    "message0": "BLE HID %1 Personaje de la prensa %2",
+    "tooltip": "Envía un teclado para informar"
+  },
+  "bluefruit52_hid_key_release": {
+    "message0": "BLE HID %1 lanza teclas de teclado",
+    "tooltip": "Suelta la tecla actual del teclado"
+  },
+  "bluefruit52_hid_key_sequence": {
+    "message0": "BLE HID %1 Texto de entrada %2 Espaciado (ms) %3",
+    "tooltip": "La entrada del teclado se envía en secuencia de caracteres"
+  },
+  "bluefruit52_hid_mouse_move": {
+    "message0": "BLE HID %1 movimiento del ratón X %2 Y %3",
+    "tooltip": "Envía un informe sobre el movimiento relativo del ratón"
+  },
+  "bluefruit52_hid_mouse_press": {
+    "message0": "BLE HID %1 Mouse pulse %2",
+    "tooltip": "Pulsa el botón del ratón",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Botón izquierdo",
+            "MOUSE_BUTTON_LEFT"
+          ],
+          [
+            "Botón derecho",
+            "MOUSE_BUTTON_RIGHT"
+          ],
+          [
+            "Botón central",
+            "MOUSE_BUTTON_MIDDLE"
+          ],
+          [
+            "Atrás",
+            "MOUSE_BUTTON_BACKWARD"
+          ],
+          [
+            "Adelante",
+            "MOUSE_BUTTON_FORWARD"
+          ]
+        ]
+      }
+    ]
+  },
+  "bluefruit52_hid_mouse_release": {
+    "message0": "BLE HID %1 libera botones del ratón",
+    "tooltip": "Suelta todos los botones del ratón"
+  },
+  "bluefruit52_hid_mouse_scroll": {
+    "message0": "BLE ESCONDIÓ %1 rueda del ratón %2",
+    "tooltip": "Envía informes de la rueda del ratón"
+  },
+  "bluefruit52_beacon_create": {
+    "message0": "Crea iBeacon %1 UUID%2 mayor %3 menor %4 RSSI %5",
+    "tooltip": "Crear y configurar objetos iBeacon"
+  },
+  "bluefruit52_beacon_set_manufacturer": {
+    "message0": "iBeacon %1 Configuración del ID del proveedor %2",
+    "tooltip": "Establecer el ID de proveedor del iBeacon"
+  },
+  "bluefruit52_eddystone_create": {
+    "message0": "Crear URL %1 URL de Eddystone %2 RSSI %3",
+    "tooltip": "Crea y configura el objeto beacon de URL de Eddystone"
+  },
+  "bluefruit52_adv_set_beacon": {
+    "message0": "Baliza de Configuración de Emisión %1",
+    "tooltip": "Escribe objetos iBeacon o Eddystone para difundir paquetes"
+  }
+}

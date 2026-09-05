@@ -1,0 +1,382 @@
+{
+  "toolbox_name": "Tongyi Qianwen",
+  "toolbox_labels": {
+    "配置": "Configuração",
+    "I2S音频": "Áudio I2S",
+    "文本对话": "conversa de texto",
+    "图片对话": "Conversa de imagem",
+    "图像生成": "geração de imagem",
+    "语音合成(TTS)": "Conversão de texto para fala (TTS)",
+    "全模态对话": "diálogo modal completo",
+    "流式回调": "Retorno de chamada de streaming",
+    "状态管理": "Gerenciamento de status"
+  },
+  "qwen_omni_config": {
+    "message0": "Configurar a API Tongyi Qianwen %1 chave de API %2 %3 URL base %4",
+    "tooltip": "Configure a chave de acesso e a URL básica para a API Tongyi Qianwen"
+  },
+  "qwen_omni_chat": {
+    "message0": "Tongyi Qianwen Diálogos %1 Mensagens de Usuário %2 %3 Modelo %4",
+    "tooltip": "Envie uma mensagem para Tongyi Qianwen e receba uma resposta",
+    "args0": [
+      null,
+      null,
+      null,
+      {
+        "options": [
+          [
+            "qwen3.7-plus",
+            "qwen3.7-plus"
+          ],
+          [
+            "qwen3.7-max",
+            "qwen3.7-max"
+          ]
+        ]
+      }
+    ]
+  },
+  "qwen_omni_chat_simple": {
+    "message0": "Diálogo de Tongyi Qianwen (Simples) %1 Mensagens de Usuário %2",
+    "tooltip": "Envie mensagens usando o modelo padrão (qwen3.7-plus)."
+  },
+  "qwen_omni_chat_with_thinking": {
+    "message0": "Tongyi Qianwen Pensamento Profundo %1 Mensagens de Usuário %2 %3 Modelo %4",
+    "tooltip": "Ative o modo de pensamento profundo e engaje-se em um diálogo de mil perguntas",
+    "args0": [
+      null,
+      null,
+      null,
+      {
+        "options": [
+          [
+            "qwen3.7-plus",
+            "qwen3.7-plus"
+          ],
+          [
+            "qwen3.7-max",
+            "qwen3.7-max"
+          ]
+        ]
+      }
+    ]
+  },
+  "qwen_omni_chat_with_history": {
+    "message0": "Tongyi Qianwen Diálogos %1 Mensagens de Usuário %2 %3 Modelo %4",
+    "tooltip": "Tongyi Qianwen suporta diálogos com múltiplos turnos e salva automaticamente o histórico de conversas",
+    "args0": [
+      null,
+      null,
+      null,
+      {
+        "options": [
+          [
+            "qwen3.7-plus",
+            "qwen3.7-plus"
+          ],
+          [
+            "qwen3.7-max",
+            "qwen3.7-max"
+          ]
+        ]
+      }
+    ]
+  },
+  "qwen_omni_clear_history": {
+    "message0": "Esclarecendo a história do diálogo Tongyi Qianwen",
+    "tooltip": "Limpar histórico de conversa salvo"
+  },
+  "qwen_omni_set_system_prompt": {
+    "message0": "Defina o prompt do sistema Tongyi Qianwen %1 o prompt do sistema %2",
+    "tooltip": "Definir regras de papel e comportamento do assistente IA"
+  },
+  "qwen_omni_get_response_status": {
+    "message0": "Obtenha o status de resposta de Tongyi Qianwen",
+    "tooltip": "Verificar se a última chamada API foi bem-sucedida"
+  },
+  "qwen_omni_get_error_message": {
+    "message0": "Obtenha a informação de erro Tongyi Qianwen",
+    "tooltip": "Obter mensagem de erro da última chamada API"
+  },
+  "qwen_omni_set_stream_callback": {
+    "message0": "Configure callbacks de fluxo Tongyi Qianwen %1 %2",
+    "tooltip": "Definir função de callback, executada a cada fragmento de texto"
+  },
+  "qwen_omni_get_stream_chunk": {
+    "message0": "Obtenha o Fragmento de Fluxo Tongyi Qianwen",
+    "tooltip": "Obter fragmento de texto atual no callback de fluxo"
+  },
+  "qwen_omni_clear_stream_callback": {
+    "message0": "Libere o recuo do fluxo Tongyi Qianwen",
+    "tooltip": "Limpar a função de callback de fluxo definida"
+  },
+  "qwen_omni_vision_chat": {
+    "message0": "Diálogo de Imagem de Tongyi Qianwen %1 Prompt de Imagem %2 %3 Base64 %4 %5 Modelo %6",
+    "tooltip": "Imagens e textos codificados em Base64 são enviados para o modelo VL de Tongyi Qianwen para compreensão de imagens",
+    "args0": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      {
+        "options": [
+          [
+            "qwen3.7-plus",
+            "qwen3.7-plus"
+          ],
+          [
+            "qwen3-vl-plus",
+            "qwen3-vl-plus"
+          ],
+          [
+            "qwen3-vl-flash",
+            "qwen3-vl-flash"
+          ],
+          [
+            "qwen-vl-max",
+            "qwen-vl-max"
+          ],
+          [
+            "qwen-vl-plus",
+            "qwen-vl-plus"
+          ]
+        ]
+      }
+    ]
+  },
+  "qwen_omni_vision_chat_direct_capture": {
+    "message0": "Diálogo de Imagem Tongyi Qianwen (Fotos Diretas) %1 Prompts %2 %3 Modelo %4",
+    "tooltip": "Tire uma foto diretamente da câmera e transmita para o Tongyi Qianwen VL (não gera uma string completa em Base64, reduzindo o uso de memória)",
+    "args0": [
+      null,
+      null,
+      null,
+      {
+        "options": [
+          [
+            "qwen3.7-plus",
+            "qwen3.7-plus"
+          ],
+          [
+            "qwen3-vl-plus",
+            "qwen3-vl-plus"
+          ],
+          [
+            "qwen3-vl-flash",
+            "qwen3-vl-flash"
+          ],
+          [
+            "qwen-vl-max",
+            "qwen-vl-max"
+          ],
+          [
+            "qwen-vl-plus",
+            "qwen-vl-plus"
+          ]
+        ]
+      }
+    ]
+  },
+  "qwen_omni_vision_url_chat": {
+    "message0": "URL da imagem Tongyi Qianwen Diálogo %1 URL da imagem %2 %3 prompt %4 %5 modelo %6",
+    "tooltip": "Envie URLs de imagens e texto para o modelo VL de Tongyi Qianwen para compreensão das imagens",
+    "args0": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      {
+        "options": [
+          [
+            "qwen3.7-plus",
+            "qwen3.7-plus"
+          ],
+          [
+            "qwen3-vl-plus",
+            "qwen3-vl-plus"
+          ],
+          [
+            "qwen3-vl-flash",
+            "qwen3-vl-flash"
+          ],
+          [
+            "qwen-vl-max",
+            "qwen-vl-max"
+          ],
+          [
+            "qwen-vl-plus",
+            "qwen-vl-plus"
+          ]
+        ]
+      }
+    ]
+  },
+  "qwen_omni_image_generate": {
+    "message0": "Tongyi Wanxiang Geração de Imagens %1 Prompt %2 %3 Tamanho %4 %5 Modelo %6",
+    "tooltip": "Gerar imagens com base em descrições de texto e devolver o link da URL da imagem, que pode ser exibido junto com telas TFT",
+    "args0": [
+      null,
+      null,
+      null,
+      {
+        "options": [
+          [
+            "WAXX2.1-T2I-Turbo",
+            "wanx2.1-t2i-turbo"
+          ],
+          [
+            "WAX2.1-T2I-Plus",
+            "wanx2.1-t2i-plus"
+          ],
+          [
+            "wanx-v1",
+            "wanx-v1"
+          ]
+        ]
+      },
+      null,
+      {
+        "options": [
+          [
+            "1024x1024",
+            "1024*1024"
+          ],
+          [
+            "720x1280",
+            "720*1280"
+          ],
+          [
+            "1280x720",
+            "1280*720"
+          ]
+        ]
+      }
+    ]
+  },
+  "qwen_omni_image_generate_simple": {
+    "message0": "Geração de Imagens de Tongyi Myriad Forms (Simples) %1 Prompt %2",
+    "tooltip": "Gerar imagens baseadas em descrições de texto, usar configurações padrão, retornar links de URL de imagem e pode ser exibido em telas TFT"
+  },
+  "qwen_omni_tts": {
+    "message0": "Qwen TTS sintese de fala %1 Texto %2 %3 Voz %4 %5 Modelo %6 %7 Idioma %8",
+    "tooltip": "Sintetizar fala a partir de texto com o modelo Qwen TTS, retorna audio PCM Base64 (24kHz 16bit mono)"
+  },
+  "qwen_omni_tts_play": {
+    "message0": "Qwen TTS reproduzir audio %1 Objeto I2S %2 %3 Audio Base64 %4",
+    "tooltip": "Decodificar e reproduzir audio Base64 do Qwen TTS via I2S (24kHz 16bit mono)"
+  },
+  "qwen_omni_tts_and_play": {
+    "message0": "Qwen TTS sintetizar e reproduzir %1 Objeto I2S %2 %3 Texto %4 %5 Voz %6 %7 Modelo %8 %9 Idioma %10",
+    "tooltip": "Sintetizar fala com Qwen TTS e reproduzir via I2S. Coleta audio completo para qualidade estavel"
+  },
+  "qwen_omni_tts_stream_play": {
+    "message0": "Qwen TTS fluxo e reproducao %1 Objeto I2S %2 %3 Texto %4 %5 Voz %6 %7 Modelo %8 %9 Idioma %10",
+    "tooltip": "Sintese TTS em fluxo e reproducao I2S em tempo real. Menor latencia, audio continuo fluido"
+  },
+  "qwen_omni_omni_text": {
+    "message0": "Qwen Dialogo omni (somente texto) %1 Mensagem %2 %3 Modelo %4",
+    "tooltip": "Conversar com o modelo Qwen Omni, retorna apenas resposta de texto"
+  },
+  "qwen_omni_omni_and_play": {
+    "message0": "Qwen Dialogo omni e reproducao %1 Objeto I2S %2 %3 Mensagem %4 %5 Modelo %6 %7 Voz %8",
+    "tooltip": "Dialogo omni retorna texto e audio, audio reproduzido via I2S"
+  },
+  "qwen_omni_omni_stream_play": {
+    "message0": "Qwen Fluxo omni e reproducao %1 Objeto I2S %2 %3 Mensagem %4 %5 Modelo %6 %7 Voz %8",
+    "tooltip": "Dialogo omni em fluxo, texto em tempo real, audio coletado e reproduzido via I2S. Menor latencia"
+  },
+  "qwen_omni_omni_get_audio": {
+    "message0": "Obter dados de audio omni Qwen",
+    "tooltip": "Obter dados de audio Base64 do dialogo omni"
+  },
+  "qwen_omni_tts_voice_design": {
+    "message0": "Qwen TTS design de voz %1 Objeto I2S %2 %3 Texto %4 %5 Descricao da voz %6",
+    "tooltip": "Personalizar voz por descricao textual e sintetizar. ex: suave voz feminina jovem"
+  },
+  "qwen_omni_omni_voice_chat": {
+    "message0": "Qwen Omni Chat de voz objeto microfone %1 objeto alto-falante %2 %3 Gravacao %4 s %5 Modelo %6 Voz %7 bip %8 %9 Pergunta (opcional) %10",
+    "tooltip": "Gravar com um objeto I2S de microfone independente e decodificar/reproduzir a resposta por um objeto I2S de alto-falante independente. Se bip estiver marcado, toca um som curto no inicio e no fim da gravacao. Formato: 16kHz 16bit mono"
+  },
+  "qwen_omni_omni_record_text": {
+    "message0": "Tongyi gravação modal completa para texto Objeto de microfone %1 %2 Gravação %3 segundos %4 Prompt de transcrição de Modelo %5 %6 (opcional) %7",
+    "tooltip": "Gravar com um microfone I2S e chamar o modelo Tongyi totalmente modal retorna apenas o texto reconhecido/transcrito, sem tocar voz. O formato padrão de gravação é mono 16kHz 16 bits",
+    "args0": [
+      null,
+      null,
+      null,
+      null,
+      {
+        "options": [
+          [
+            "qwen3.5-omni-plus",
+            "qwen3.5-omni-plus"
+          ],
+          [
+            "qwen3.5-omni-flash",
+            "qwen3.5-omni-flash"
+          ],
+          [
+            "qwen3-omni-flash",
+            "qwen3-omni-flash"
+          ],
+          [
+            "qwen-omni-turbo",
+            "qwen-omni-turbo"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "qwen_omni_pdm_mic_init": {
+    "message0": "Objeto de inicialização de microfone PDM %1 %2 CLK %3 DADOS %4 taxa de amostragem %5",
+    "tooltip": "Inicializa objetos de entrada de microfone PDM, adequados para microfones internos XIAO ESP32S3 Sense e outros. O XIAO ESP32S3 Sense tem como padrão 42 CLK e 41 DATA"
+  },
+  "qwen_omni_es8311_mic_init": {
+    "message0": "ES8311 Objeto de Inicialização do Microfone %1 %2 SDA %3 SCL %4 Endereço %5 BCLK %6 LRCLK %7 SDOUT %8 MCLK %9 Taxa de Amostragem %10 Registrador de ganho %11",
+    "tooltip": "Inicialize a entrada do microfone do codec de áudio ES8311, primeiro configure o caminho do ADC/microfone via I2C e depois inicialize o objeto de gravação I2S. Endereço padrão 0x18 (decimal 24), registrador de ganho padrão 0x24 (decimal 36)"
+  },
+  "qwen_omni_es8311_audio_init": {
+    "message0": "ES8311 Microfone + Objeto de Inicialização de Alto-Falante %1 %2 SDA %3 SCL %4 Endereço %5 BCLK/SCLK %6 LR %7 Entrada DI/DAC %8 Saída DO/ADC %9 MCK %10 Taxa de Amostragem %11 Registrador de ganho %12 PA_EN %13",
+    "tooltip": "Inicialize os canais de microfone e alto-falante do codec de áudio ES8311, adequado para placas de Microfone + Amplificador de Áudio. Padrões na figura: SCLK39, LR2, DI38, DO40, MCK46, SDA41, SCL42. O ES8311 fornece alimentação de 3V e amplificador de NS4150B de 5V. PA_EN padrão -1 significa sem controle; Se a placa tiver um pino de ativação de amplificador, inserir GPIO aumentará a pontuação"
+  },
+  "qwen_omni_es8311_test_tone": {
+    "message0": "Reproduzir Prompt Objeto Sonoro %1 %2 Frequência Hz %3 Duração ms %4",
+    "tooltip": "Reproduza um som curto de prompt pelo objeto atual do alto-falante I2S/ES8311, usado para iniciar, encerrar ou verificar a saída do alto-falante"
+  },
+  "qwen_omni_k10_audio_init": {
+    "message0": "Inicializar microfone+alto-falante K10 objeto %1 %2 frequência %3",
+    "tooltip": "Inicialize o microfone e alto-falante incorporados do UNIHIKER K10. Para conversas de voz Qwen, selecione tanto o microfone quanto os objetos do alto-falante."
+  },
+  "qwen_omni_i2s_prompt_tone": {
+    "message0": "Reproduzir Prompt Objeto Sonoro %1 %2 Frequência Hz %3 Duração ms %4",
+    "tooltip": "Reproduza um som curto de prompt pelo objeto atual do alto-falante I2S/ES8311, usado para iniciar, encerrar ou verificar a saída do alto-falante"
+  },
+  "qwen_omni_i2s_speaker_init": {
+    "args0": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "message0": "Objeto de inicialização de alto-falante I2S %1 %2 BCLK %3 LRCLK %4 taxa de amostragem DIN %5 %6",
+    "tooltip": "Inicialize MAX98357A e outros objetos de saída de alto-falantes I2S, e declare automaticamente os objetos I2SClass"
+  },
+  "qwen_omni_i2s_mic_init": {
+    "args0": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "message0": "Objeto de inicialização de microfone I2S %1 %2 BCLK %3 LRCLK/WS %4 SD/DOUT %5 taxa de amostragem %6",
+    "tooltip": "Inicialize objetos de entrada padrão de microfone I2S, como INMP441 e declare automaticamente os objetos I2SClass"
+  }
+}

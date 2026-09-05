@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "blocks": {
+    "math_number": {
+      "staticShape": true,
+      "reason": "parent_tooltip_when_inline affects tooltip presentation only and preserves NUM as the sole serializable field."
+    },
+    "math_arithmetic": {
+      "staticShape": true,
+      "reason": "math_op_tooltip affects tooltip presentation only and preserves A, OP, and B."
+    },
+    "math_single": {
+      "staticShape": true,
+      "reason": "math_single_tooltip affects tooltip presentation only and preserves OP and NUM."
+    },
+    "math_trig": {
+      "staticShape": true,
+      "reason": "math_trig_tooltip affects tooltip presentation only and preserves OP and NUM."
+    },
+    "math_number_property": {
+      "variants": [
+        {
+          "id": "unary-property",
+          "when": { "PROPERTY": ["EVEN", "ODD", "PRIME", "WHOLE", "POSITIVE", "NEGATIVE"] },
+          "appendArgs": []
+        },
+        {
+          "id": "divisible-by",
+          "when": { "PROPERTY": ["DIVISIBLE_BY"] },
+          "appendArgs": [
+            { "name": "DIVISOR", "type": "input_value", "example": "math_number(2)", "required": true }
+          ]
+        }
+      ]
+    }
+  }
+}

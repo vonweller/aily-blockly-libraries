@@ -1,0 +1,274 @@
+{
+  "toolbox_name": "ESP32 SPI",
+  "toolbox_labels": {
+    "初始化": "инициализация",
+    "事务控制": "контроль транзакций",
+    "数据传输": "Передача данных",
+    "参数设置": "Настройки параметров",
+    "参数获取": "Получение параметров"
+  },
+  "esp32_spi_create": {
+    "message0": "Создавать объекты SPI %1 шине %2",
+    "tooltip": "Создание объектов связи SPI",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "VSPI",
+            "VSPI"
+          ],
+          [
+            "HSPI",
+            "HSPI"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_spi_begin": {
+    "message0": "Инициализуйте SPI %1 используйте %2 вывод по умолчанию",
+    "tooltip": "Инициализируйте шину SPI с помощью стандартного вывода",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Аппаратный SPI",
+            "HSPI"
+          ],
+          [
+            "Виртуальный SPI",
+            "VSPI"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_spi_begin_custom": {
+    "message0": "Инициализация SPI %1 использование %2 пользовательских контактов SCK:%3 MISO:%4 MOSI:%5 SS:%6",
+    "tooltip": "Инициализируйте шину SPI и установите контакты",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Аппаратный SPI",
+            "HSPI"
+          ],
+          [
+            "Виртуальный SPI",
+            "VSPI"
+          ]
+        ]
+      },
+      null,
+      null,
+      null,
+      null
+    ]
+  },
+  "esp32_spi_settings": {
+    "message0": "SPI %1 Установленная частота: %2 МГц Позиция: %3 Режим: %4",
+    "tooltip": "Установка параметров связи SPI",
+    "args0": [
+      {
+        "options": "${board.spi}"
+      },
+      null,
+      {
+        "options": [
+          [
+            "Предпочтительно для MSB",
+            "MSBFIRST"
+          ],
+          [
+            "LSB предпочтительно",
+            "LSBFIRST"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "MODE0",
+            "0"
+          ],
+          [
+            "MODE1",
+            "1"
+          ],
+          [
+            "MODE2",
+            "2"
+          ],
+          [
+            "MODE3",
+            "3"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_spi_begin_transaction": {
+    "message0": "Начать SPI %1 Частота транзакций: %2 МГц Порядок: %3 Режим: %4",
+    "tooltip": "Начать транзакции SPI",
+    "args0": [
+      {
+        "options": "${board.spi}"
+      },
+      null,
+      {
+        "options": [
+          [
+            "Предпочтительно для MSB",
+            "MSBFIRST"
+          ],
+          [
+            "LSB предпочтительно",
+            "LSBFIRST"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "MODE0",
+            "0"
+          ],
+          [
+            "MODE1",
+            "1"
+          ],
+          [
+            "MODE2",
+            "2"
+          ],
+          [
+            "MODE3",
+            "3"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_spi_end_transaction": {
+    "message0": "Завершить транзакцию SPI %1",
+    "tooltip": "Конечные транзакции SPI",
+    "args0": [
+      {
+        "options": "${board.spi}"
+      }
+    ]
+  },
+  "esp32_spi_transfer": {
+    "message0": "SPI %1 передача данных: %2",
+    "tooltip": "Передача одного байта данных и возврат полученных данных",
+    "args0": [
+      {
+        "options": "${board.spi}"
+      },
+      null
+    ]
+  },
+  "esp32_spi_transfer16": {
+    "message0": "SPI %1 передаёт 16-битные данные: %2",
+    "tooltip": "Передаёт 16-битные данные и возвращает полученные данные",
+    "args0": [
+      {
+        "options": "${board.spi}"
+      },
+      null
+    ]
+  },
+  "esp32_spi_write": {
+    "message0": "SPI %1 Запись данных: %2",
+    "tooltip": "Запишите один байт данных",
+    "args0": [
+      {
+        "options": "${board.spi}"
+      },
+      null
+    ]
+  },
+  "esp32_spi_write_bytes": {
+    "message0": "SPI %1 Записать в массив байтов Данные: %2 Длина: %3",
+    "tooltip": "Запись данных массива байтов",
+    "args0": [
+      {
+        "options": "${board.spi}"
+      },
+      null,
+      null
+    ]
+  },
+  "esp32_spi_set_frequency": {
+    "message0": "Установите SPI %1 частоту: %2 МГц",
+    "tooltip": "Установите частоту связи SPI",
+    "args0": [
+      {
+        "options": "${board.spi}"
+      },
+      null
+    ]
+  },
+  "esp32_spi_set_bit_order": {
+    "message0": "Установить SPI %1 Позиция: %2",
+    "tooltip": "Установите последовательность данных SPI",
+    "args0": [
+      {
+        "options": "${board.spi}"
+      },
+      {
+        "options": [
+          [
+            "Предпочтительно для MSB",
+            "MSBFIRST"
+          ],
+          [
+            "LSB предпочтительно",
+            "LSBFIRST"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_spi_set_data_mode": {
+    "message0": "Установите режим SPI %1: %2",
+    "tooltip": "Установите полярность и фазовый режим SPI",
+    "args0": [
+      {
+        "options": "${board.spi}"
+      },
+      {
+        "options": [
+          [
+            "MODE0",
+            "0"
+          ],
+          [
+            "MODE1",
+            "1"
+          ],
+          [
+            "MODE2",
+            "2"
+          ],
+          [
+            "MODE3",
+            "3"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_spi_get_ss_pin": {
+    "message0": "Получите SPI %1 выбор пина чипа",
+    "tooltip": "Получите пин-код выбора чипа SPI",
+    "args0": [
+      {
+        "options": "${board.spi}"
+      }
+    ]
+  }
+}

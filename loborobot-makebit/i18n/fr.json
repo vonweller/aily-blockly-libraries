@@ -1,0 +1,283 @@
+{
+  "toolbox_name": "MakeBit",
+  "toolbox_categories": [
+    "Voiture",
+    "Servo et ventilateur",
+    "Buzzer",
+    "Lumières"
+  ],
+  "makebit_car_init": {
+    "message0": "Initialiser la voiture (carte driver I2C adresse 0x41) ",
+    "tooltip": "Initialise le driver moteur PCA9685 de la voiture MakeBit (adresse I2C 0x41, PWM 50Hz). À placer dans setup avant d'utiliser les blocs voiture/servo/ventilateur/LED."
+  },
+  "makebit_car_ctrl": {
+    "message0": "Voiture %1 ",
+    "tooltip": "Contrôle la voiture à la vitesse par défaut 255 : avancer, reculer, tourner à gauche, tourner à droite, arrêter, pivoter à gauche, pivoter à droite.",
+    "args0": [
+      {
+        "options": [
+          [
+            "Avancer",
+            "FORWARD"
+          ],
+          [
+            "Reculer",
+            "BACKWARD"
+          ],
+          [
+            "Gauche",
+            "LEFT"
+          ],
+          [
+            "Droite",
+            "RIGHT"
+          ],
+          [
+            "Arrêter",
+            "STOP"
+          ],
+          [
+            "Pivoter à gauche",
+            "SPIN_LEFT"
+          ],
+          [
+            "Pivoter à droite",
+            "SPIN_RIGHT"
+          ]
+        ]
+      }
+    ]
+  },
+  "makebit_car_ctrl_speed": {
+    "message0": "Voiture %1 vitesse %2",
+    "tooltip": "Contrôle la voiture à la vitesse indiquée (0-255) : avancer, reculer, tourner à gauche, tourner à droite, arrêter, pivoter à gauche, pivoter à droite.",
+    "args0": [
+      {
+        "options": [
+          [
+            "Avancer",
+            "FORWARD"
+          ],
+          [
+            "Reculer",
+            "BACKWARD"
+          ],
+          [
+            "Gauche",
+            "LEFT"
+          ],
+          [
+            "Droite",
+            "RIGHT"
+          ],
+          [
+            "Arrêter",
+            "STOP"
+          ],
+          [
+            "Pivoter à gauche",
+            "SPIN_LEFT"
+          ],
+          [
+            "Pivoter à droite",
+            "SPIN_RIGHT"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "makebit_motor": {
+    "message0": "Moteur %1 %2 vitesse %3",
+    "tooltip": "Contrôle indépendamment le moteur gauche ou droit, en marche avant ou arrière, vitesse 0-255 ; vitesse 0 arrête ce moteur.",
+    "args0": [
+      {
+        "options": [
+          [
+            "Moteur gauche",
+            "LEFT"
+          ],
+          [
+            "Moteur droit",
+            "RIGHT"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "Avant",
+            "FWD"
+          ],
+          [
+            "Arrière",
+            "REV"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "makebit_car_servo": {
+    "message0": "Servo de la voiture angle %1",
+    "tooltip": "Définit l'angle du servo embarqué (canal PCA9685 3) de 0 à 180 degrés, largeur d'impulsion 600-2400 microsecondes."
+  },
+  "makebit_car_fan": {
+    "message0": "Ventilateur embarqué %1 vitesse %2",
+    "tooltip": "Contrôle le moteur du ventilateur embarqué (canaux PCA9685 4/5) : avant, arrière ou arrêt, vitesse 0-255 ; la vitesse est ignorée en arrêt.",
+    "args0": [
+      {
+        "options": [
+          [
+            "Avant",
+            "FWD"
+          ],
+          [
+            "Arrière",
+            "REV"
+          ],
+          [
+            "Arrêter",
+            "STOP"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "makebit_buzzer": {
+    "message0": "Buzzer broche %1 %2",
+    "tooltip": "Contrôle le module buzzer actif (déclenché par niveau BAS) : marche ou arrêt.",
+    "args0": [
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": [
+          [
+            "Marche",
+            "ON"
+          ],
+          [
+            "Arrêt",
+            "OFF"
+          ]
+        ]
+      }
+    ]
+  },
+  "makebit_car_led": {
+    "message0": "Phare %1",
+    "tooltip": "Interrupteur de phare : allumé = blanc à la luminosité globale (définie avec le bloc luminosité du phare), éteint = éteint. Les deux phares sont en parallèle sur les mêmes canaux RVB et agissent ensemble.",
+    "args0": [
+      {
+        "options": [
+          [
+            "allumé",
+            "ON"
+          ],
+          [
+            "éteint",
+            "OFF"
+          ]
+        ]
+      }
+    ]
+  },
+  "makebit_car_rgb": {
+    "message0": "Phare couleur %1",
+    "tooltip": "Définit une couleur prédéfinie du phare RGB (canaux PCA9685 0/1/2).",
+    "args0": [
+      {
+        "options": [
+          [
+            "Éteinte",
+            "OFF"
+          ],
+          [
+            "Rouge",
+            "RED"
+          ],
+          [
+            "Vert",
+            "GREEN"
+          ],
+          [
+            "Bleu",
+            "BLUE"
+          ],
+          [
+            "Blanc",
+            "WHITE"
+          ],
+          [
+            "Cyan",
+            "CYAN"
+          ],
+          [
+            "Magenta",
+            "MAGENTA"
+          ],
+          [
+            "Jaune",
+            "YELLOW"
+          ]
+        ]
+      }
+    ]
+  },
+  "makebit_car_rgb_val": {
+    "message0": "Phare rouge %1 vert %2 bleu %3",
+    "tooltip": "Définit une couleur personnalisée du phare à partir des composantes RGB (0-255) ; la sortie est mise à l échelle par la luminosité globale."
+  },
+  "makebit_ultrasonic": {
+    "message0": "Ultrason déclencheur %1 écho %2 distance(cm)",
+    "tooltip": "Mesure de distance avec un module ultrason SR04 externe (broches déclencheur/écho sélectionnables). Renvoie des centimètres ; renvoie 0 en cas de dépassement de délai (~30 ms, environ 5 m).",
+    "args0": [
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": "${board.digitalPins}"
+      }
+    ]
+  },
+  "makebit_rgb_effect": {
+    "message0": "Effet de phare %1",
+    "tooltip": "Exécute une fois un effet sur le phare RVB : défilé (six couleurs), arc-en-ciel (dégradé), respiration, clignotement ou extinction. Bloquant jusqu’à la fin.",
+    "args0": [
+      {
+        "options": [
+          [
+            "défilé",
+            "FLOW"
+          ],
+          [
+            "arc-en-ciel",
+            "RAINBOW"
+          ],
+          [
+            "respiration",
+            "BREATH"
+          ],
+          [
+            "clignotement",
+            "BLINK"
+          ],
+          [
+            "extinction",
+            "OFF"
+          ]
+        ]
+      }
+    ]
+  },
+  "makebit_car_trim": {
+    "message0": "Voiture correction avant gauche %1 droite %2",
+    "tooltip": "Corrige la dérive en marche avant : pourcentage de sortie des moteurs gauche/droite en marche avant (0-100, 100 par défaut = aucune correction). Dérive à droite -> diminuer la valeur gauche ; dérive à gauche -> diminuer la valeur droite. Concerne les roues avançant en marche avant/virage/rotation sur place ; la marche arrière est inchangée."
+  },
+  "makebit_rgb_brightness": {
+    "message0": "Luminosité du phare %1",
+    "tooltip": "Définit la luminosité globale (0-255, 255 par défaut = pleine) : les blocs suivants de couleur, d effet, d allumage et RVB personnalisé s affichent avec cette luminosité."
+  }
+}

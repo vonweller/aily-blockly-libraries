@@ -1,0 +1,83 @@
+{
+  "toolbox_name": "ESP32 CANバス",
+  "esp32_can_init": {
+    "message0": "CANバスの初期化 受信ピン %1 送信ピン %2モード %3ボーレート%4",
+    "tooltip": "ESP32 CANバス(TWAI)の初期化",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "ノーマルモード",
+            "TWAI_MODE_NORMAL"
+          ],
+          [
+            "リスニングオンリーモード",
+            "TWAI_MODE_LISTEN_ONLY"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "500Kbits",
+            "TWAI_TIMING_CONFIG_500KBITS()"
+          ],
+          [
+            "100Kbits",
+            "TWAI_TIMING_CONFIG_100KBITS()"
+          ],
+          [
+            "125Kbits",
+            "TWAI_TIMING_CONFIG_125KBITS()"
+          ],
+          [
+            "250Kbits",
+            "TWAI_TIMING_CONFIG_250KBITS()"
+          ],
+          [
+            "1Mbits",
+            "TWAI_TIMING_CONFIG_1MBITS()"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_can_configure_alerts": {
+    "message0": "CANアラートの設定 %1 データ受信 %2 アイドル送信 %3 送信成功 %4 送信失敗 %5 パッシブエラー %6 バスエラー %7 フル受信キュー %8",
+    "tooltip": "CANバスアラートを監視対象に設定する"
+  },
+  "esp32_can_send_message": {
+    "message0": "送信 CANメッセージ 識別子(ID) %1 データ長 %2 データ%3",
+    "tooltip": "カンマ区切られたバイト形式でCANメッセージを送信"
+  },
+  "esp32_can_receive_message": {
+    "message0": "CANメッセージの受信",
+    "tooltip": "CANメッセージの受信および処理"
+  },
+  "esp32_can_check_alerts": {
+    "message0": "CANアラートを確認してください",
+    "tooltip": "CANのバスアラートを確認してください"
+  },
+  "esp32_can_message_available": {
+    "message0": "CANメッセージが利用可能です",
+    "tooltip": "CANメッセージが利用可能かどうか確認してください"
+  },
+  "esp32_can_get_message_id": {
+    "message0": "CANメッセージIDを取得してください",
+    "tooltip": "受信したCANメッセージのIDを取得する"
+  },
+  "esp32_can_get_message_length": {
+    "message0": "CANメッセージの長さを取得してください",
+    "tooltip": "受信したCANメッセージのデータ長を取得する"
+  },
+  "esp32_can_get_message_data": {
+    "message0": "CANメッセージデータのバイトを取得する%1",
+    "tooltip": "受信したCANメッセージの指定位置でデータバイトを取得する"
+  },
+  "esp32_can_transmit_interval": {
+    "message0": "CANメッセージ送信間隔を%1ミリ秒に設定します",
+    "tooltip": "CANメッセージを予定された時間に送信する間隔を設定します"
+  }
+}

@@ -1,0 +1,398 @@
+{
+  "toolbox_name": "Sprachsynthese",
+  "toolbox_labels": {
+    "初始化": "Initialisierung",
+    "语音播报": "Sprachübertragung",
+    "音量/语速/语调": "Lautstärke/Geschwindigkeit/Intonation",
+    "发音设置": "Ausspracheeinstellungen",
+    "高级设置": "Erweiterte Einstellungen",
+    "播放控制": "Wiedergabesteuerung",
+    "其他": "Andere"
+  },
+  "speech_init_i2c": {
+    "message0": "Initialisieren Sie das Sprachsynthesemodul %1 I2C-Schnittstelle %2 Version %3",
+    "tooltip": "Um das Sprachsynthesemodul über das I2C-Interface zu initialisieren, muss man zuerst den I2C-Initialisierungsblock verwenden, um die Pins einzustellen",
+    "args0": [
+      null,
+      {
+        "options": "${board.i2c}"
+      },
+      {
+        "options": [
+          [
+            "V1",
+            "eV1"
+          ],
+          [
+            "V2",
+            "eV2"
+          ]
+        ]
+      }
+    ]
+  },
+  "speech_init_uart": {
+    "message0": "Initialisieren Sie das Sprachsynthesemodul %1 seriellen Anschluss %2 Version %3",
+    "tooltip": "Initialisieren Sie das Sprachsynthesemodul über einen seriellen Anschluss",
+    "args0": [
+      null,
+      {
+        "options": "${board.serialPort}"
+      },
+      {
+        "options": [
+          [
+            "V1",
+            "eV1"
+          ],
+          [
+            "V2",
+            "eV2"
+          ]
+        ]
+      }
+    ]
+  },
+  "speech_speak": {
+    "message0": "Sprachsynthese %1 Broadcast %2",
+    "tooltip": "Übertragung von spezifizierten Textinhalten, unterstützt gemischte Chinesische und Englische"
+  },
+  "speech_set_volume": {
+    "message0": "Sprachsynthese %1 Lautstärkeeinstellung %2",
+    "tooltip": "Stellen Sie die Lautstärke der Sprachübertragung ein (0-9)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "0 (Stumm)",
+            "0"
+          ],
+          [
+            "1",
+            "1"
+          ],
+          [
+            "2",
+            "2"
+          ],
+          [
+            "3",
+            "3"
+          ],
+          [
+            "4",
+            "4"
+          ],
+          [
+            "5 (Standard)",
+            "5"
+          ],
+          [
+            "6",
+            "6"
+          ],
+          [
+            "7",
+            "7"
+          ],
+          [
+            "8",
+            "8"
+          ],
+          [
+            "9 (maximal)",
+            "9"
+          ]
+        ]
+      }
+    ]
+  },
+  "speech_set_speed": {
+    "message0": "Sprachsynthese %1 Einstellung der Sprachgeschwindigkeit %2",
+    "tooltip": "Stellen Sie die Sprachübertragungsgeschwindigkeit ein (0-9)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "0 (langsamste)",
+            "0"
+          ],
+          [
+            "1",
+            "1"
+          ],
+          [
+            "2",
+            "2"
+          ],
+          [
+            "3",
+            "3"
+          ],
+          [
+            "4",
+            "4"
+          ],
+          [
+            "5 (Standard)",
+            "5"
+          ],
+          [
+            "6",
+            "6"
+          ],
+          [
+            "7",
+            "7"
+          ],
+          [
+            "8",
+            "8"
+          ],
+          [
+            "9 (schnellste)",
+            "9"
+          ]
+        ]
+      }
+    ]
+  },
+  "speech_set_tone": {
+    "message0": "Sprachsynthese %1 Einstellung der Intonation %2",
+    "tooltip": "Tonlage der Sprachübertragung eingestellt (0-9)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "0 (niedrigste)",
+            "0"
+          ],
+          [
+            "1",
+            "1"
+          ],
+          [
+            "2",
+            "2"
+          ],
+          [
+            "3",
+            "3"
+          ],
+          [
+            "4",
+            "4"
+          ],
+          [
+            "5 (Standard)",
+            "5"
+          ],
+          [
+            "6",
+            "6"
+          ],
+          [
+            "7",
+            "7"
+          ],
+          [
+            "8",
+            "8"
+          ],
+          [
+            "9 (Best)",
+            "9"
+          ]
+        ]
+      }
+    ]
+  },
+  "speech_set_sound_type": {
+    "message0": "Sprachsynthese %1 Lautsprecher %2",
+    "tooltip": "Stellen Sie den Sprechertyp ein",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Weibliche Stimme 1 (Empfohlen)",
+            "eFemale1"
+          ],
+          [
+            "Male Voice 1 (Empfohlen)",
+            "eMale1"
+          ],
+          [
+            "Männliche Stimme 2",
+            "eMale2"
+          ],
+          [
+            "Weibliche Stimme 2",
+            "eFemale2"
+          ],
+          [
+            "Donald Duck",
+            "eDonaldDuck"
+          ],
+          [
+            "Weibliche Stimme 3",
+            "eFemale3"
+          ]
+        ]
+      }
+    ]
+  },
+  "speech_set_english_pron": {
+    "message0": "Sprachsynthese %1 englische Aussprache method%2",
+    "tooltip": "Englische Aussprache: nach Wort oder Buchstaben",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Worte",
+            "eWord"
+          ],
+          [
+            "Briefe",
+            "eAlphabet"
+          ]
+        ]
+      }
+    ]
+  },
+  "speech_set_language": {
+    "message0": "Sprachsynthese %1 Digitale Sprach%2",
+    "tooltip": "Stellen Sie die Aussprachesprache für Zahlen, Einheiten und Sonderzeichen ein",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Automatisches Urteil",
+            "eAutoJudgel"
+          ],
+          [
+            "Chinesisch",
+            "eChinesel"
+          ],
+          [
+            "Englisch",
+            "eEnglishl"
+          ]
+        ]
+      }
+    ]
+  },
+  "speech_set_digital_pron": {
+    "message0": "Sprachsynthese %1 Zahlenaussprache %2",
+    "tooltip": "Stelle die Lesemethode für lange Zahlen ein",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Automatisches Urteil",
+            "eAutoJudged"
+          ],
+          [
+            "Telefonnummer",
+            "eNumber"
+          ],
+          [
+            "Numerische Werte",
+            "eNumeric"
+          ]
+        ]
+      }
+    ]
+  },
+  "speech_set_style": {
+    "message0": "Sprachsynthese %1 Synthesestile %2",
+    "tooltip": "Setze den Sprachsynthese-Stil",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Glatt",
+            "eSmooth"
+          ],
+          [
+            "Wort für Wort",
+            "eCaton"
+          ]
+        ]
+      }
+    ]
+  },
+  "speech_enable_rhythm": {
+    "message0": "Sprachsynthese %1 %2 Rhythmus",
+    "tooltip": "Aktivieren oder deaktivieren Sie die Funktion des chinesischen Rhythmus",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Aktivieren",
+            "true"
+          ],
+          [
+            "Deaktivieren",
+            "false"
+          ]
+        ]
+      }
+    ]
+  },
+  "speech_enable_pinyin": {
+    "message0": "Sprachsynthese %1 %2 Pinyin-Synthese",
+    "tooltip": "Aktivieren oder deaktivieren Sie die Pinyin-Synthesefunktion",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Aktivieren",
+            "true"
+          ],
+          [
+            "Deaktivieren",
+            "false"
+          ]
+        ]
+      }
+    ]
+  },
+  "speech_stop": {
+    "message0": "Sprachsynthese %1 die Ausstrahlung stoppt",
+    "tooltip": "Stoppe die aktuelle Sprachübertragung"
+  },
+  "speech_pause": {
+    "message0": "Sprachsynthese %1 Pausenübertragung",
+    "tooltip": "Pausieren Sie die aktuelle Sprachübertragung"
+  },
+  "speech_resume": {
+    "message0": "Sprachsynthese %1 nimmt den Rundfunk wieder auf",
+    "tooltip": "Fortsetzen von pausierten Sprachsendungen"
+  },
+  "speech_wait": {
+    "message0": "Sprachsynthese %1 Warte, bis die Sendung endet.",
+    "tooltip": "Warte, bis die aktuelle Sprachankündigung fertig ist"
+  },
+  "speech_reset": {
+    "message0": "Sprachsynthese stellt %1 die Standardeinstellungen wieder her",
+    "tooltip": "Alle Einstellungen auf Standardwerte wiederherstellen"
+  },
+  "speech_sleep": {
+    "message0": "Sprachsynthese %1 in den Winterschlaf geht",
+    "tooltip": "Versetzen Sie das Sprachsynthesemodul in den Schlafmodus"
+  },
+  "speech_wakeup": {
+    "message0": "Sprachsynthese %1 Aufwachen",
+    "tooltip": "Das Sprachsynthesemodul aus dem Schlafmodus wecken"
+  }
+}

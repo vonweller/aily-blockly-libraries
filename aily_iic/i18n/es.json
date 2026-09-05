@@ -1,0 +1,141 @@
+{
+  "toolbox_name": "I2C",
+  "wire_begin": {
+    "message0": "Inicializar %1 modo %2",
+    "args0": [
+      {
+        "options": "${board.i2c}"
+      },
+      {
+        "options": [
+          [
+            "Equipamiento principal",
+            "MASTER"
+          ],
+          [
+            "De equipos",
+            "SLAVE"
+          ]
+        ]
+      }
+    ]
+  },
+  "wire_begin_with_settings": {
+    "message0": "Inicializar %1 Modo %2 SDA %3 SCL %4",
+    "args0": [
+      {
+        "options": "${board.i2c}"
+      },
+      {
+        "options": [
+          [
+            "Equipamiento principal",
+            "MASTER"
+          ],
+          [
+            "De equipos",
+            "SLAVE"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "wire_set_clock": {
+    "message0": "Ajusta %1 frecuencia de reloj a %2 kHz",
+    "args0": [
+      {
+        "options": "${board.i2c}"
+      },
+      null
+    ]
+  },
+  "wire_begin_transmission": {
+    "message0": "%1 empezar a transmitir a la address%2",
+    "args0": [
+      {
+        "options": "${board.i2c}"
+      },
+      null
+    ]
+  },
+  "wire_write": {
+    "message0": "%1 enviar datos %2",
+    "args0": [
+      {
+        "options": "${board.i2c}"
+      },
+      null
+    ]
+  },
+  "wire_end_transmission": {
+    "message0": "%1 terminar la transmisión",
+    "args0": [
+      {
+        "options": "${board.i2c}"
+      }
+    ]
+  },
+  "wire_request_from": {
+    "message0": "%1 solicitar %3 bytes de datos desde la dirección %2",
+    "args0": [
+      {
+        "options": "${board.i2c}"
+      },
+      null,
+      null
+    ]
+  },
+  "wire_available": {
+    "message0": "%1 si los datos son legibles",
+    "args0": [
+      {
+        "options": "${board.i2c}"
+      }
+    ]
+  },
+  "wire_read": {
+    "message0": "%1 lectura de datos",
+    "args0": [
+      {
+        "options": "${board.i2c}"
+      }
+    ]
+  },
+  "wire_variables": {
+    "message0": "Objeto I2C %1",
+    "tooltip": "Recupera una referencia de objeto Wire, que puede usarse en funciones u expresiones que requieren instancias I2C",
+    "args0": [
+      {
+        "options": "${board.i2c}"
+      }
+    ]
+  },
+  "wire_on_receive": {
+    "message0": "%1 llaman %2 al recibir datos",
+    "args0": [
+      {
+        "options": "${board.i2c}"
+      },
+      null
+    ]
+  },
+  "wire_on_request": {
+    "message0": "Llamar %2 cuando %1 solicita datos",
+    "args0": [
+      {
+        "options": "${board.i2c}"
+      },
+      null
+    ]
+  },
+  "wire_scan": {
+    "message0": "%1 escaneo de dispositivos I2C",
+    "args0": [
+      {
+        "options": "${board.i2c}"
+      }
+    ]
+  }
+}

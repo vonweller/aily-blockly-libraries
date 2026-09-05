@@ -1,0 +1,205 @@
+{
+  "toolbox_name": "Настройки хранения",
+  "toolbox_labels": {
+    "命名空间": "Namespace",
+    "写入标量": "Запишите скаляры",
+    "读取标量": "Читайте скаляр",
+    "字节与长度": "Байты и длина",
+    "查询与维护": "Запрос и поддержка"
+  },
+  "esp32_preferences_begin": {
+    "message0": "Откройте пространство имён Preferences %1 только для чтения %2",
+    "tooltip": "Вызовите Preferences.begin(name, readOnly), чтобы открыть пространство имён в разделе NVS по умолчанию.",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "No",
+            "false"
+          ],
+          [
+            "Yes",
+            "true"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_preferences_begin_partition": {
+    "message0": "Откройте пространство имён Preferences %1 только для чтения %2 partition%3",
+    "tooltip": "Вызовите Preferences.begin(name, readOnly, partition_label), чтобы открыть пространство имён в указанном разделе NVS.",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "No",
+            "false"
+          ],
+          [
+            "Yes",
+            "true"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "esp32_preferences_end": {
+    "message0": "Закрыть предпочтения",
+    "tooltip": "Вызовите Preferences.end(), чтобы закрыть текущее пространство имён."
+  },
+  "esp32_preferences_clear": {
+    "message0": "Очистить текущее пространство имён",
+    "tooltip": "Вызовите Preferences.clear(), чтобы удалить все ключи в текущем пространстве имён."
+  },
+  "esp32_preferences_remove": {
+    "message0": "Удалить клавишу %1",
+    "tooltip": "Вызовите Preferences.remove(key), чтобы удалить указанный ключ."
+  },
+  "esp32_preferences_put_char": {
+    "message0": "Запишем %1 значение ключа int8 %2",
+    "tooltip": "Вызовите Preferences.putChar() для записи в int8."
+  },
+  "esp32_preferences_put_uchar": {
+    "message0": "Запишите значение ключа uint8 %1 %2",
+    "tooltip": "Вызовите Preferences.putUChar() для записи в uint8."
+  },
+  "esp32_preferences_put_short": {
+    "message0": "Запишите %1 значение ключа int16 %2",
+    "tooltip": "Вызовите Preferences.putShort() для записи в int16."
+  },
+  "esp32_preferences_put_ushort": {
+    "message0": "Запишите %1 значение ключа uint16 %2",
+    "tooltip": "Вызовите Preferences.putUShort() для записи в uint16."
+  },
+  "esp32_preferences_put_int": {
+    "message0": "Запишите %1 значение ключа int32 %2",
+    "tooltip": "Вызовите Preferences.putInt() для записи int32."
+  },
+  "esp32_preferences_put_uint": {
+    "message0": "Запишите значение ключа uint32 %1 %2",
+    "tooltip": "Вызовите Preferences.putUInt() для записи в uint32."
+  },
+  "esp32_preferences_put_long": {
+    "message0": "Запишите %1 значение длинного ключа %2",
+    "tooltip": "Вызовите Preferences.putLong() для записи long."
+  },
+  "esp32_preferences_put_ulong": {
+    "message0": "Запишите значение незнакового длинного ключа %1 %2",
+    "tooltip": "Вызовите Preferences.putULong(), чтобы записать неподписанный длинный номер."
+  },
+  "esp32_preferences_put_long64": {
+    "message0": "Запишите %1 значение ключа int64 %2",
+    "tooltip": "Вызовите Preferences.putLong64() для записи в int64."
+  },
+  "esp32_preferences_put_ulong64": {
+    "message0": "Запишите %1 ключа uint64 %2",
+    "tooltip": "Вызовите Preferences.putULong64() для записи в uint64."
+  },
+  "esp32_preferences_put_float": {
+    "message0": "Запишите %1 числа с плавающим ключом%2",
+    "tooltip": "Вызовите Preferences.putFloat(), чтобы записать float."
+  },
+  "esp32_preferences_put_double": {
+    "message0": "Запишите двойную клавишу %1 значения %2",
+    "tooltip": "Вызовите Preferences.putDouble() для записи double."
+  },
+  "esp32_preferences_put_bool": {
+    "message0": "Запишите булевый ключ %1 значение %2",
+    "tooltip": "Вызовите Preferences.putBool(), чтобы записать булево значение."
+  },
+  "esp32_preferences_put_string": {
+    "message0": "Запишите строковый ключ %1 значение %2",
+    "tooltip": "Вызовите Preferences.putString() для записи строки."
+  },
+  "esp32_preferences_put_bytes": {
+    "message0": "Запись ключа %1 буфера %2 длины %3",
+    "tooltip": "Вызовите Preferences.putBytes(key, buffer, len) для записи в байтовый буфер; Буфер заполняется именем или выражением переменной C++."
+  },
+  "esp32_preferences_get_char": {
+    "message0": "Читайте ключ INT8 %1 по умолчанию %2",
+    "tooltip": "Вызовите Preferences.getChar() для чтения int8; Возвращает значение по умолчанию, когда ключ отсутствует."
+  },
+  "esp32_preferences_get_uchar": {
+    "message0": "Чтение ключа UINT8 %1 по умолчанию %2",
+    "tooltip": "Позвоните в Preferences.getUChar(), чтобы прочитать uint8; Возвращает значение по умолчанию, когда ключ отсутствует."
+  },
+  "esp32_preferences_get_short": {
+    "message0": "Читайте клавишу int16 %1 по умолчанию %2",
+    "tooltip": "Вызовите Preferences.getShort() для чтения int16; Возвращает значение по умолчанию, когда ключ отсутствует."
+  },
+  "esp32_preferences_get_ushort": {
+    "message0": "Читайте ключ UINT16 %1 по умолчанию %2",
+    "tooltip": "Позвоните в Preferences.getUShort(), чтобы прочитать uint16; Возвращает значение по умолчанию, когда ключ отсутствует."
+  },
+  "esp32_preferences_get_int": {
+    "message0": "Читайте ключ int32 %1 по умолчанию %2",
+    "tooltip": "Вызовите Preferences.getInt() для чтения int32; Возвращает значение по умолчанию, когда ключ отсутствует."
+  },
+  "esp32_preferences_get_uint": {
+    "message0": "Читайте ключ uint32 %1 по умолчанию %2",
+    "tooltip": "Позвоните в Preferences.getUInt(), чтобы прочитать uint32; Возвращает значение по умолчанию, когда ключ отсутствует."
+  },
+  "esp32_preferences_get_long": {
+    "message0": "Прочитайте длинную клавишу %1 по умолчанию %2",
+    "tooltip": "Позвоните в Preferences.getLong() для чтения длинного текста; Возвращает значение по умолчанию, когда ключ отсутствует."
+  },
+  "esp32_preferences_get_ulong": {
+    "message0": "Читайте незнаковый длинный ключ %1 по умолчанию %2",
+    "tooltip": "Вызовите Preferences.getULong() для чтения неподписанного длинного текста; Возвращает значение по умолчанию, когда ключ отсутствует."
+  },
+  "esp32_preferences_get_long64": {
+    "message0": "Чтение клавиши int64 %1 по умолчанию %2",
+    "tooltip": "Позвоните в Preferences.getLong64(), чтобы прочитать int64; Возвращает значение по умолчанию, когда ключ отсутствует."
+  },
+  "esp32_preferences_get_ulong64": {
+    "message0": "Читайте ключ UINT64 %1 по умолчанию %2",
+    "tooltip": "Позвоните в Preferences.getULong64(), чтобы прочитать uint64; Возвращает значение по умолчанию, когда ключ отсутствует."
+  },
+  "esp32_preferences_get_float": {
+    "message0": "Чтение «плавающий ключ» %1 по умолчанию %2",
+    "tooltip": "Вызовите Preferences.getFloat() для чтения плавающей информации; Возвращает значение по умолчанию, когда ключ отсутствует."
+  },
+  "esp32_preferences_get_double": {
+    "message0": "Чтение двойной клавиши %1 стандартных %2",
+    "tooltip": "Вызовите Preferences.getDouble() для чтения double; Возвращает значение по умолчанию, когда ключ отсутствует."
+  },
+  "esp32_preferences_get_bool": {
+    "message0": "Читайте булевую тональность %1 по умолчанию %2",
+    "tooltip": "Вызовите Preferences.getBool(), чтобы прочитать булево значение; Возвращает значение по умолчанию, когда ключ отсутствует."
+  },
+  "esp32_preferences_get_string": {
+    "message0": "Чтение строкового ключа %1 по умолчанию %2",
+    "tooltip": "Вызовите Preferences.getString() для чтения строки; Возвращает значение по умолчанию, когда ключ отсутствует."
+  },
+  "esp32_preferences_get_bytes": {
+    "message0": "Чтение ключа байта %1 для буферизации %2 Максимальная длина %3",
+    "tooltip": "Вызовите Preferences.getBytes(key, buffer, maxLen), чтобы прочитать буфер байтов и вернуть длину чтения."
+  },
+  "esp32_preferences_get_string_length": {
+    "message0": "Тональность %1 длины струны",
+    "tooltip": "Вызовите Preferences.getStringLength(key), чтобы получить длину строки."
+  },
+  "esp32_preferences_get_bytes_length": {
+    "message0": "Ключ байта %1 длина",
+    "tooltip": "Вызовите Preferences.getBytesLength(key), чтобы получить длину данных по байту."
+  },
+  "esp32_preferences_is_key": {
+    "message0": "Существует ли ключевой %1",
+    "tooltip": "Вызовите Preferences.isKey(key), чтобы проверить, существует ли ключ."
+  },
+  "esp32_preferences_get_type": {
+    "message0": "Предпочтения, тип клавиши %1",
+    "tooltip": "Вызовите Preferences.getType(key), чтобы получить значение перечисления PreferenceType."
+  },
+  "esp32_preferences_type_constant": {
+    "message0": "Предпочтения Type%1",
+    "tooltip": "Выводит константу перечисления PreferenceType, определённую в Preferences.h."
+  },
+  "esp32_preferences_free_entries": {
+    "message0": "Оставшиеся доступные записи NVS",
+    "tooltip": "Вызовите Preferences.freeEntries(), чтобы получить оставшиеся доступные записи в стандартном разделе NVS."
+  }
+}

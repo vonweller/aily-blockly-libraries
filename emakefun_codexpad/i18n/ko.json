@@ -1,0 +1,450 @@
+{
+  "toolbox_name": "코덱스패드 컨트롤러",
+  "toolbox_labels": {
+    "初始化": "초기화",
+    "按键检测": "키 감지",
+    "摇杆": "조이스틱"
+  },
+  "codexpad_init": {
+    "message0": "CodexPad 컨트롤러를 MAC 주소%1 초기화하세요 %2",
+    "tooltip": "CodexPad 블루투스 컨트롤러를 초기화하고 지정된 MAC 주소에 연결하세요; Update()는 메인 루프에 자동으로 추가됩니다"
+  },
+  "codexpad_is_connected": {
+    "message0": "코덱스패드 %1 연결되어 있습니다",
+    "tooltip": "CodexPad 핸들이 연결되어 있는지 확인해 보세요"
+  },
+  "codexpad_set_tx_power": {
+    "message0": "CodexPad 설정%1 전송 전력 %2",
+    "tooltip": "컨트롤러의 블루투스 송신기 전력을 설정하세요; 출력이 높을수록 통신 거리가 길어지지만, 전력 소비는 더 커집니다",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "-16 dBm",
+            "kMinus16dBm"
+          ],
+          [
+            "-12 dBm",
+            "kMinus12dBm"
+          ],
+          [
+            "-8 dBm",
+            "kMinus8dBm"
+          ],
+          [
+            "-5 dBm",
+            "kMinus5dBm"
+          ],
+          [
+            "-3 dBm",
+            "kMinus3dBm"
+          ],
+          [
+            "-1 dBm",
+            "kMinus1dBm"
+          ],
+          [
+            "0 dBm",
+            "k0dBm"
+          ],
+          [
+            "1 dBm",
+            "k1dBm"
+          ],
+          [
+            "2 dBm",
+            "k2dBm"
+          ],
+          [
+            "3 dBm",
+            "k3dBm"
+          ],
+          [
+            "4 dBm",
+            "k4dBm"
+          ],
+          [
+            "5 dBm",
+            "k5dBm"
+          ],
+          [
+            "6 dBm",
+            "k6dBm"
+          ]
+        ]
+      }
+    ]
+  },
+  "codexpad_button_pressed": {
+    "message0": "CodexPad %1 버튼이 %2 눌렀다",
+    "tooltip": "버튼이 방금 눌렸는지 (팝업부터 버튼 누른 것까지) 감지합니다",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "위",
+            "kUp"
+          ],
+          [
+            "아래",
+            "kDown"
+          ],
+          [
+            "왼쪽",
+            "kLeft"
+          ],
+          [
+            "오른쪽",
+            "kRight"
+          ],
+          [
+            "X/□",
+            "kSquareX"
+          ],
+          [
+            "Y/△",
+            "kTriangleY"
+          ],
+          [
+            "A/×",
+            "kCrossA"
+          ],
+          [
+            "B/○",
+            "kCircleB"
+          ],
+          [
+            "L1",
+            "kL1"
+          ],
+          [
+            "L2",
+            "kL2"
+          ],
+          [
+            "L3",
+            "kL3"
+          ],
+          [
+            "R1",
+            "kR1"
+          ],
+          [
+            "R2",
+            "kR2"
+          ],
+          [
+            "R3",
+            "kR3"
+          ],
+          [
+            "Select",
+            "kSelect"
+          ],
+          [
+            "시작",
+            "kStart"
+          ],
+          [
+            "Home",
+            "kHome"
+          ]
+        ]
+      }
+    ]
+  },
+  "codexpad_button_released": {
+    "message0": "CodexPad %1 버튼이 방금 출시%2",
+    "tooltip": "버튼이 방금 놓였는지 감지합니다(누르는 순간에서 팝업으로 바뀌는 순간)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "위",
+            "kUp"
+          ],
+          [
+            "아래",
+            "kDown"
+          ],
+          [
+            "왼쪽",
+            "kLeft"
+          ],
+          [
+            "오른쪽",
+            "kRight"
+          ],
+          [
+            "X/□",
+            "kSquareX"
+          ],
+          [
+            "Y/△",
+            "kTriangleY"
+          ],
+          [
+            "A/×",
+            "kCrossA"
+          ],
+          [
+            "B/○",
+            "kCircleB"
+          ],
+          [
+            "L1",
+            "kL1"
+          ],
+          [
+            "L2",
+            "kL2"
+          ],
+          [
+            "L3",
+            "kL3"
+          ],
+          [
+            "R1",
+            "kR1"
+          ],
+          [
+            "R2",
+            "kR2"
+          ],
+          [
+            "R3",
+            "kR3"
+          ],
+          [
+            "Select",
+            "kSelect"
+          ],
+          [
+            "시작",
+            "kStart"
+          ],
+          [
+            "Home",
+            "kHome"
+          ]
+        ]
+      }
+    ]
+  },
+  "codexpad_button_holding": {
+    "message0": "CodexPad %1 버튼을 계속 누르%2",
+    "tooltip": "버튼을 계속 누르고 있는지 감지합니다(이전 프레임과 현재 프레임 모두 눌렀습니다)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "위",
+            "kUp"
+          ],
+          [
+            "아래",
+            "kDown"
+          ],
+          [
+            "왼쪽",
+            "kLeft"
+          ],
+          [
+            "오른쪽",
+            "kRight"
+          ],
+          [
+            "X/□",
+            "kSquareX"
+          ],
+          [
+            "Y/△",
+            "kTriangleY"
+          ],
+          [
+            "A/×",
+            "kCrossA"
+          ],
+          [
+            "B/○",
+            "kCircleB"
+          ],
+          [
+            "L1",
+            "kL1"
+          ],
+          [
+            "L2",
+            "kL2"
+          ],
+          [
+            "L3",
+            "kL3"
+          ],
+          [
+            "R1",
+            "kR1"
+          ],
+          [
+            "R2",
+            "kR2"
+          ],
+          [
+            "R3",
+            "kR3"
+          ],
+          [
+            "Select",
+            "kSelect"
+          ],
+          [
+            "시작",
+            "kStart"
+          ],
+          [
+            "Home",
+            "kHome"
+          ]
+        ]
+      }
+    ]
+  },
+  "codexpad_button_state": {
+    "message0": "CodexPad %1 상태 %2 키",
+    "tooltip": "키의 현재 상태를 확인하고; 누르면 true, 팝업은 false를 반환합니다.",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "위",
+            "kUp"
+          ],
+          [
+            "아래",
+            "kDown"
+          ],
+          [
+            "왼쪽",
+            "kLeft"
+          ],
+          [
+            "오른쪽",
+            "kRight"
+          ],
+          [
+            "X/□",
+            "kSquareX"
+          ],
+          [
+            "Y/△",
+            "kTriangleY"
+          ],
+          [
+            "A/×",
+            "kCrossA"
+          ],
+          [
+            "B/○",
+            "kCircleB"
+          ],
+          [
+            "L1",
+            "kL1"
+          ],
+          [
+            "L2",
+            "kL2"
+          ],
+          [
+            "L3",
+            "kL3"
+          ],
+          [
+            "R1",
+            "kR1"
+          ],
+          [
+            "R2",
+            "kR2"
+          ],
+          [
+            "R3",
+            "kR3"
+          ],
+          [
+            "Select",
+            "kSelect"
+          ],
+          [
+            "시작",
+            "kStart"
+          ],
+          [
+            "Home",
+            "kHome"
+          ]
+        ]
+      }
+    ]
+  },
+  "codexpad_axis_value": {
+    "message0": "CodexPad %1 조이스틱 %2 값",
+    "tooltip": "조이스틱 샤프트 값을 0~255 범위, 중앙 위치는 약 128 정도로 측정하세요",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "왼쪽 조이스틱 X축",
+            "kLeftStickX"
+          ],
+          [
+            "왼쪽 조종 레버 Y축",
+            "kLeftStickY"
+          ],
+          [
+            "오른쪽 조이스틱 X축",
+            "kRightStickX"
+          ],
+          [
+            "오른쪽 조종 레버 Y축",
+            "kRightStickY"
+          ]
+        ]
+      }
+    ]
+  },
+  "codexpad_axis_changed": {
+    "message0": "CodexPad %1 조이스틱 %2 값 변경 임계값 %3",
+    "tooltip": "조이스틱 샤프트 값이 임계값을 크게 초과했는지 감지하여 미세한 흔들림을 필터링하는 데 사용됩니다",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "왼쪽 조이스틱 X축",
+            "kLeftStickX"
+          ],
+          [
+            "왼쪽 조종 레버 Y축",
+            "kLeftStickY"
+          ],
+          [
+            "오른쪽 조이스틱 X축",
+            "kRightStickX"
+          ],
+          [
+            "오른쪽 조종 레버 Y축",
+            "kRightStickY"
+          ]
+        ]
+      },
+      null
+    ]
+  }
+}

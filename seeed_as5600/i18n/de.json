@@ -1,0 +1,206 @@
+{
+  "toolbox_name": "AS5600 Magnetencoder",
+  "toolbox_labels": {
+    "初始化": "Initialisierung",
+    "角度读取": "Winkellesen",
+    "磁铁状态": "Magnetzustand",
+    "位置配置": "Standortanordnung",
+    "高级配置": "Erweiterte Konfiguration",
+    "一次性烧录": "Einmaliges Verbrennen"
+  },
+  "seeed_as5600_init": {
+    "message0": "Initialisieren Sie den Seeed AS5600 Encoder %1",
+    "tooltip": "Initialisieren Sie den Grove/Seeed AS5600 12-Bit-magnetischen Absolutwert-Encoder"
+  },
+  "seeed_as5600_get_address": {
+    "message0": "Encoder %1 I2C-Adresse",
+    "tooltip": "Erhalten Sie die AS5600 feste I2C-Adresse, meist 0x36"
+  },
+  "seeed_as5600_read_angle": {
+    "message0": "Encoder %1 %2 Winkel %3",
+    "tooltip": "Lesen Sie den ursprünglichen oder skalierten Winkelwert, der den Originalwert von 0 bis 4095 zurückgeben oder in einen Winkel umwandeln kann",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "raw",
+            "RAW"
+          ],
+          [
+            "scaled",
+            "SCALED"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "Rohwerte",
+            "RAW"
+          ],
+          [
+            "degrees",
+            "DEGREES"
+          ]
+        ]
+      }
+    ]
+  },
+  "seeed_as5600_detect_magnet": {
+    "message0": "Der Encoder erkennt %1 den Magneten",
+    "tooltip": "Erkennung davon, ob der AS5600 den Magneten erkennt"
+  },
+  "seeed_as5600_magnet_status": {
+    "message0": "Encoder %1 Magnetzustand ist %2",
+    "tooltip": "Beurteile den Stärkestatus des Magneten: 0 Nicht erkannt, 1 Zu schwach, 2 Geeignet, 3 Zu stark",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Nicht entdeckt",
+            "NONE"
+          ],
+          [
+            "Zu schwach",
+            "WEAK"
+          ],
+          [
+            "good",
+            "GOOD"
+          ],
+          [
+            "Zu stark",
+            "STRONG"
+          ]
+        ]
+      }
+    ]
+  },
+  "seeed_as5600_get_magnet_strength": {
+    "message0": "Encoder %1 Magnetstärkezustandswert",
+    "tooltip": "Lies die Stärkezustandswerte des Magneten ab: 0 Nicht erkannt, 1 zu schwach, 2 geeignet, 3 zu stark"
+  },
+  "seeed_as5600_get_magnitude": {
+    "message0": "Encoder %1 Magnetfeldamplitude",
+    "tooltip": "Lesen Sie die Amplitude des internen CORDIC-Magnetfeldes der AS5600 ab"
+  },
+  "seeed_as5600_get_agc": {
+    "message0": "Encoder %1 Automatische Verstärkungs-AGC",
+    "tooltip": "Lesen Sie den Wert des automatischen Verstärkungsregisters der AS5600"
+  },
+  "seeed_as5600_set_position_current": {
+    "message0": "Der Encoder %1 setzt die aktuelle Position auf %2",
+    "tooltip": "Stellen Sie den Start-, End- oder Maximalwinkel mit der aktuellen Magnetposition ein",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Startposition",
+            "START"
+          ],
+          [
+            "Endposition",
+            "END"
+          ],
+          [
+            "Maximaler Winkel",
+            "MAX"
+          ]
+        ]
+      }
+    ]
+  },
+  "seeed_as5600_set_position": {
+    "message0": "Encoder %1 setzt %2 auf das ursprüngliche value%3",
+    "tooltip": "Stellen Sie die Startposition, Endposition oder das maximale Winkelregister ein, wobei die Werte üblicherweise von 0 bis 4095 reichen",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Startposition",
+            "START"
+          ],
+          [
+            "Endposition",
+            "END"
+          ],
+          [
+            "Maximaler Winkel",
+            "MAX"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "seeed_as5600_get_position": {
+    "message0": "Encoder %1 lesen %2",
+    "tooltip": "Lesen Sie den ursprünglichen Wert der Startposition, Endposition oder des maximalen Winkelregisters ab",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Startposition",
+            "START"
+          ],
+          [
+            "Endposition",
+            "END"
+          ],
+          [
+            "Maximaler Winkel",
+            "MAX"
+          ]
+        ]
+      }
+    ]
+  },
+  "seeed_as5600_set_output_mode": {
+    "message0": "Encoder %1 Ausgabemodus %2",
+    "tooltip": "Stellen Sie den Ausgangsmodus des AS5600 OUT Pins ein",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "PWM",
+            "0"
+          ],
+          [
+            "analog 0-100%",
+            "1"
+          ],
+          [
+            "analog 10-90%",
+            "2"
+          ]
+        ]
+      }
+    ]
+  },
+  "seeed_as5600_get_conf": {
+    "message0": "Encoder %1 Register konfigurieren",
+    "tooltip": "Lesen Sie den ursprünglichen Wert des AS5600 CONF-Konfigurationsregisters"
+  },
+  "seeed_as5600_set_conf": {
+    "message0": "Encoder %1 Register konfigurieren %2",
+    "tooltip": "Schreiben Sie den ursprünglichen Wert des AS5600 CONF-Konfigurationsregisters"
+  },
+  "seeed_as5600_get_burn_count": {
+    "message0": "Encoder %1 Anzahl der verbrannten Schläge",
+    "tooltip": "ZMCO-Burn-Counts lesen; die Start- und Endpositionen können bis zu 3 Mal programmiert werden"
+  },
+  "seeed_as5600_burn_angle": {
+    "message0": "Encoder %1 Brennt die Start- und Endwinkel und gibt den Statuscode zurück",
+    "tooltip": "Blinke die Start-/Endpositionen dauerhaft auf dem Chip, gib 1 für Erfolg zurück, negative Zahlen zeigen Fehlercodes an. Diese Operation ist in der Anzahl der Male begrenzt"
+  },
+  "seeed_as5600_burn_settings": {
+    "message0": "Encoder %1 brennt den maximalen Winkel und die maximale Konfiguration und gibt den Statuscode zurück",
+    "tooltip": "Flashe den maximalen Winkel und die Konfiguration dauerhaft auf den Chip; es kann nur einmal ausgeführt werden, gibt 1 Erfolg zurück, negative Zahlen zeigen Fehlercodes an"
+  }
+}

@@ -1,0 +1,314 @@
+{
+  "toolbox_name": "C4001 밀리미터파 레이더",
+  "c4001_init_i2c": {
+    "message0": "C4001 I2C %1 버스 %2 주소를 초기화하세요 %3",
+    "tooltip": "I2C를 통해 C4001 레이더를 초기화하세요.",
+    "args0": [
+      null,
+      {
+        "options": "${board.i2c}"
+      },
+      {
+        "options": [
+          [
+            "0x2A",
+            "DEVICE_ADDR_0"
+          ],
+          [
+            "0x2B",
+            "DEVICE_ADDR_1"
+          ]
+        ]
+      }
+    ]
+  },
+  "c4001_init_uart": {
+    "message0": "C4001 UART %1 시리얼 포트를 RX %2%3 TX %4 초기화하세요",
+    "tooltip": "UART를 통해 C4001 레이더를 초기화하면 보드 속도는 9600으로 고정됩니다.",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Serial1",
+            "Serial1"
+          ],
+          [
+            "Serial2",
+            "Serial2"
+          ],
+          [
+            "Serial",
+            "Serial"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "c4001_motion_detected": {
+    "message0": "C4001%1 인간의 존재를 감지했습니다",
+    "tooltip": "탐지 모드에서는 인체나 움직이는 표적이 감지되는지 읽습니다."
+  },
+  "c4001_set_mode": {
+    "message0": "C4001 %1 설정 작동 모드 %2",
+    "tooltip": "C4001 작동 모드로 전환하세요.",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "presence",
+            "eExitMode"
+          ],
+          [
+            "거리 및 속도 측정",
+            "eSpeedMode"
+          ]
+        ]
+      }
+    ]
+  },
+  "c4001_sensor_command": {
+    "message0": "C4001 %1 run %2",
+    "tooltip": "C4001 센서 제어 명령 실행.",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "수집을 시작하세요",
+            "eStartSen"
+          ],
+          [
+            "수집 그만하세요",
+            "eStopSen"
+          ],
+          [
+            "센서 리셋",
+            "eResetSen"
+          ],
+          [
+            "기본 매개변수 복원",
+            "eRecoverSen"
+          ],
+          [
+            "구성 저장",
+            "eSaveParams"
+          ],
+          [
+            "스위치 모드",
+            "eChangeMode"
+          ]
+        ]
+      }
+    ]
+  },
+  "c4001_get_status": {
+    "message0": "C4001 %1 Status%2",
+    "tooltip": "읽기 상태: 작동 상태 0/1, 작동 모드 0/1, 초기화 상태 0/1.",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "작동 현황",
+            "WORK"
+          ],
+          [
+            "동작 모드",
+            "MODE"
+          ],
+          [
+            "초기화 상태",
+            "INIT"
+          ]
+        ]
+      }
+    ]
+  },
+  "c4001_set_presence_range": {
+    "message0": "C4001 %1 탐지 범위 최소 cm %2 최대 cm %3 트리거 cm %4",
+    "tooltip": "존재감 탐지 범위를 최소 30-2000cm, 최대 240-2000cm로 설정하고, 트리거 거리는 범위를 초과해서는 안 됩니다."
+  },
+  "c4001_set_sensitivity": {
+    "message0": "C4001 %1 감도 %2 설정%3",
+    "tooltip": "트리거 설정하거나 감도 유지, 범위 0-9.",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "trigger",
+            "TRIG"
+          ],
+          [
+            "keep",
+            "KEEP"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "c4001_set_delay": {
+    "message0": "C4001 %1 지연 트리거 (0.01초) %2 홀드(0.5초) %3",
+    "tooltip": "트리거 딜레이를 설정하고 타임아웃을 유지하세요. 트리거 유닛 0.01초, 유닛 대기 0.5초."
+  },
+  "c4001_get_presence_config": {
+    "message0": "C4001 %1 프레즌스 구성 %2",
+    "tooltip": "읽기 감지 관련 구성.",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "최소 거리 cm",
+            "MIN"
+          ],
+          [
+            "최대 거리 cm",
+            "MAX"
+          ],
+          [
+            "트리거 거리 cm",
+            "TRIG_RANGE"
+          ],
+          [
+            "트리거 민감도",
+            "TRIG_SENS"
+          ],
+          [
+            "경계 태세해.",
+            "KEEP_SENS"
+          ],
+          [
+            "트리거 딜레이",
+            "TRIG_DELAY"
+          ],
+          [
+            "타임아웃을 유지하세요",
+            "KEEP_TIMEOUT"
+          ],
+          [
+            "IO polarity",
+            "IO_POLARITY"
+          ],
+          [
+            "PWM1",
+            "PWM1"
+          ],
+          [
+            "PWM2",
+            "PWM2"
+          ],
+          [
+            "PWM period",
+            "PWM_TIMER"
+          ]
+        ]
+      }
+    ]
+  },
+  "c4001_set_io_polarity": {
+    "message0": "C4001 %1 IO 극성 설정 %2",
+    "tooltip": "타겟을 감지한 후 OUT 핀의 출력 극성을 설정하세요. UART 모드는 작동합니다.",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "active low",
+            "0"
+          ],
+          [
+            "active high",
+            "1"
+          ]
+        ]
+      }
+    ]
+  },
+  "c4001_set_pwm": {
+    "message0": "C4001 %1 PWM을 타겟 %2 타겟 %3 그라디언트 시간 %4 설정했습니다",
+    "tooltip": "OUT 핀 PWM을 0-100의 듀티 사이클로 설정하고, 그라디언트 시간 단위는 64ms로 설정하세요. UART 모드는 작동합니다."
+  },
+  "c4001_get_target": {
+    "message0": "C4001 %1 target %2",
+    "tooltip": "거리 및 속도 측정 모드에서 목표물 수, 속도, 거리, 에너지를 읽어라. 대상 수량을 먼저 읽으면 내부 캐시가 새로고침될 수 있습니다.",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "count",
+            "NUMBER"
+          ],
+          [
+            "speed",
+            "SPEED"
+          ],
+          [
+            "range",
+            "RANGE"
+          ],
+          [
+            "energy",
+            "ENERGY"
+          ]
+        ]
+      }
+    ]
+  },
+  "c4001_set_speed_threshold": {
+    "message0": "C4001 %1 거리 및 속도 측정 임계값 최소 cm %2 최대 cm %3 임계값 %4",
+    "tooltip": "거리 및 속도 측정 모드에서 거리와 목표물 탐지 임계값을 설정하세요."
+  },
+  "c4001_set_micro_motion": {
+    "message0": "C4001 %1 미세 움직임 감지 %2",
+    "tooltip": "거리 및 속도 측정 모드에서 마이크로 모션 감지를 활성화하거나 비활성화할 수 있습니다.",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "켜기",
+            "eON"
+          ],
+          [
+            "끄기",
+            "eOFF"
+          ]
+        ]
+      }
+    ]
+  },
+  "c4001_get_speed_config": {
+    "message0": "C4001 %1 거리 및 속도 측정 구성 %2",
+    "tooltip": "거리 및 속도 측정 모드 구성을 읽으세요.",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "최소 거리 cm",
+            "MIN"
+          ],
+          [
+            "최대 거리 cm",
+            "MAX"
+          ],
+          [
+            "threshold",
+            "THRESHOLD"
+          ],
+          [
+            "micro-motion",
+            "MICRO_MOTION"
+          ]
+        ]
+      }
+    ]
+  }
+}

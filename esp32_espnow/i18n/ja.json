@@ -1,0 +1,227 @@
+{
+  "toolbox_name": "ESP-NOW",
+  "toolbox_labels": {
+    "ESP-NOW极简模式": "ESP-NOW ミニマリスト モード",
+    "ESP-NOW串口模式": "ESP-NOWシリアルポートモード",
+    "ESP-NOW标准模式": "ESP-NOW標準モード",
+    "初始化": "初期化",
+    "创建对等设备": "ピアデバイスの作成",
+    "发送消息": "メッセージを送信する",
+    "接收事件": "イベントを受信する",
+    "回调变量": "コールバック変数",
+    "快速操作": "素早い操作",
+    "状态查询": "ステータスクエリ"
+  },
+  "esp_now_master_init": {
+    "message0": "ESP-NOWはホスト(送信者)チャネルに初期化します%1",
+    "tooltip": "ESP-NOWホスト(ブロードキャスト送信者)へのワンクリック初期化、WiFiおよびESP-NOWの自動設定"
+  },
+  "esp_now_slave_init": {
+    "message0": "ESP-NOWはスレーブ(受信機)channel%1に初期化します",
+    "tooltip": "ESP-NOWスレーブ(受信機)へのワンクリック初期化、WiFiの自動設定、ESP-NOWの自動設定、新しいデバイスの登録"
+  },
+  "esp_now_broadcast_message": {
+    "message0": "放送メッセージ%1",
+    "tooltip": "ネットワーク上のすべてのデバイスへのメッセージブロードキャスト(まずホストとして初期化する必要があります)"
+  },
+  "esp_now_on_message_received": {
+    "message0": "ESP-NOWからのメッセージを受け取ったとき",
+    "tooltip": "グローバル受信コールバックは任意のESP-NOWメッセージをトリガーします。 コールバックには、受信したメッセージ内容、メッセージの長さ、ブロードキャスト状態、送信者のMACアドレスが含まれます",
+    "message1": "%1 を実行します"
+  },
+  "esp_now_received_message": {
+    "message0": "受信したニュース",
+    "tooltip": "グローバル受信コールバックで受信したメッセージの内容を取得する"
+  },
+  "esp_now_received_message_len": {
+    "message0": "メッセージ長",
+    "tooltip": "グローバル受信コールバックでメッセージの長さを取得します"
+  },
+  "esp_now_received_is_broadcast": {
+    "message0": "それは放送されたメッセージでした",
+    "tooltip": "グローバル受信コールバック中にメッセージが放送されているかどうかを確認してください"
+  },
+  "esp_now_received_sender_mac": {
+    "message0": "送信者MAC",
+    "tooltip": "グローバル受信コールバックで送信者のMACアドレスを取得します"
+  },
+  "esp_now_reply_message": {
+    "message0": "返信message%1",
+    "tooltip": "メッセージを最後に送ったデバイス(コールバックを受け取った時または受信後に使用)に返信してください。"
+  },
+  "esp_now_node_init": {
+    "message0": "ESP-NOWは双方向ノードチャネル%1として初期化されます",
+    "tooltip": "双方向ノードとして初期化され、メッセージの送信とブロードキャストの両方が可能です"
+  },
+  "esp_now_begin": {
+    "message0": "ESP-NOWを初期化してください",
+    "tooltip": "ESP-NOWプロトコルをデフォルト設定で初期化します"
+  },
+  "esp_now_begin_with_pmk": {
+    "message0": "ESP-NOWマスターキーの初期化%1",
+    "tooltip": "ESP-NOWプロトコルを初期化し、マスターキー(16バイト)を暗号化通信用に設定します"
+  },
+  "esp_now_end": {
+    "message0": "ESP-NOWをやめろ",
+    "tooltip": "ESP-NOW協定の終了"
+  },
+  "esp_now_wifi_init": {
+    "message0": "WiFiモードをチャンネル%1設定%2",
+    "tooltip": "WiFiモードとチャンネルを初期化してください(ESP-NOWはまずWiFi設定が必要です)",
+    "args0": [
+      {
+        "options": [
+          [
+            "STA(サイトモード)",
+            "WIFI_STA"
+          ],
+          [
+            "AP(ホットスポットモード)",
+            "WIFI_AP"
+          ],
+          [
+            "AP+STA(ハイブリッドモード)",
+            "WIFI_AP_STA"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "esp_now_create_peer": {
+    "message0": "MACアドレス%1ピアデバイスを作成する%2",
+    "tooltip": "ESP-NOWピアデバイスを作成します(相手のMACアドレスを指定する必要があります)"
+  },
+  "esp_now_create_peer_advanced": {
+    "message0": "MACアドレス%1ピアデバイスを作成する%2 \nチャネル%3暗号化鍵%4",
+    "tooltip": "暗号化されたESP-NOWピアデバイスを作成(LMKは16バイト必要)"
+  },
+  "esp_now_create_broadcast_peer": {
+    "message0": "ブロードキャストピアデバイスを作成する%1",
+    "tooltip": "ネットワーク内のすべてのデバイスにメッセージを送信するブロードキャストピアデバイスを作成します"
+  },
+  "esp_now_remove_peer": {
+    "message0": "ピアツーピアデバイスを%1",
+    "tooltip": "登録済みピアデバイスを削除する"
+  },
+  "esp_now_send": {
+    "message0": "ピアデバイス%1メッセージを送信%2",
+    "tooltip": "指定されたピアデバイスに文字列メッセージを送信します"
+  },
+  "esp_now_send_data": {
+    "message0": "ピアデバイス %1 Send data %2 Length %3",
+    "tooltip": "指定されたピアデバイスに生データを送る"
+  },
+  "esp_now_on_receive": {
+    "message0": "ピアデバイスがメッセージを受け取%1",
+    "tooltip": "ピアデバイスがメッセージを受け取るためのコールバック機能を設定します。 コールバックで利用可能な変数:esp_now_data(メッセージ内容)、esp_now_len(メッセージ長)、esp_now_broadcast(ブロードキャストの有無)",
+    "message1": "%1 を実行します"
+  },
+  "esp_now_on_sent": {
+    "message0": "ピアデバイス%1メッセージが完全に送信されたとき",
+    "tooltip": "メッセージ送信後にコールバック関数を設定します。 コールバックで利用可能な変数:esp_now_success(送信成功したかどうか)",
+    "message1": "%1 を実行します"
+  },
+  "esp_now_on_new_peer": {
+    "message0": "新しいピアデバイスメッセージが受信されたとき",
+    "tooltip": "未知のデバイスからのメッセージを受け取るとトリガーされます。 コールバックで利用可能な変数:esp_now_src_mac(送信者のMAC)、esp_now_data(メッセージ内容)、esp_now_len(メッセージの長さ)",
+    "message1": "%1 を実行します"
+  },
+  "esp_now_received_data": {
+    "message0": "受信したメッセージの内容",
+    "tooltip": "受信コールバックで受信したメッセージ内容(文字列)を取得します"
+  },
+  "esp_now_received_len": {
+    "message0": "受信したメッセージの長さ",
+    "tooltip": "受信コールバックで受信メッセージの長さを取得します"
+  },
+  "esp_now_is_broadcast": {
+    "message0": "それは放送メッセージですか?",
+    "tooltip": "受信コールバック中にブロードキャストメッセージかどうかを判断してください"
+  },
+  "esp_now_send_success": {
+    "message0": "送信が成功したかどうか",
+    "tooltip": "送信コールバック中にメッセージが正常に送信されたかどうか確認してください"
+  },
+  "esp_now_src_mac": {
+    "message0": "送信者のMACアドレス",
+    "tooltip": "新しいピアデバイスのコールバックで送信者のMACアドレスを取得する"
+  },
+  "esp_now_serial_create": {
+    "message0": "オペレーターの%2MACチャネル%1ESP-NOWシリアルポートを作成する%3オペレーティングモード%4",
+    "tooltip": "シリアルの使い方に似たESP-NOWシリアル通信オブジェクトを作成します",
+    "args0": [
+      null,
+      null,
+      null,
+      {
+        "options": [
+          [
+            "ステーションモード",
+            "WIFI_STA"
+          ],
+          [
+            "APモード",
+            "WIFI_AP"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp_now_serial_available": {
+    "message0": "ESP-NOW シリアルport%1読み取り可能なバイト",
+    "tooltip": "ESP-NOWシリアルポート受信バッファ内の読み取れるバイト数を取得します"
+  },
+  "esp_now_serial_available_for_write": {
+    "message0": "ESP-NOWシリアルポート %1 書き込み可能なバイト数",
+    "tooltip": "ESP-NOWシリアルポート伝送バッファの残りの空きスペースを取得します"
+  },
+  "esp_now_serial_read": {
+    "message0": "ESP-NOWシリアルポート%1は1バイトを読み取っています",
+    "tooltip": "ESP-NOWシリアルポートから1バイト読み取る"
+  },
+  "esp_now_serial_read_string": {
+    "message0": "ESP-NOWシリアルポート%1文字列を読み込みます",
+    "tooltip": "ESP-NOWシリアルポートから利用可能なすべてのデータを文字列として読み取る"
+  },
+  "esp_now_serial_read_string_until": {
+    "message0": "ESP-NOWシリアルポート %1文字列を読み込み%2",
+    "tooltip": "ESP-NOWシリアルポートから指定された文字に遭遇するまでデータを読み込みます"
+  },
+  "esp_now_serial_print": {
+    "message0": "ESP-NOWシリアルポート%1送信%2",
+    "tooltip": "データはESP-NOWシリアルポートを通じて送信されます"
+  },
+  "esp_now_serial_println": {
+    "message0": "ESP-NOWのシリアルポート%1%2を送信し、壊れます",
+    "tooltip": "データとラインブレークはESP-NOWシリアルポート経由で送信します"
+  },
+  "esp_now_serial_write": {
+    "message0": "生データを送るためのESP-NOWシリアルポート%1%2",
+    "tooltip": "生データはESP-NOWシリアルポート経由で送信されます"
+  },
+  "esp_now_quick_broadcast": {
+    "message0": "チャンネル%1クイックブロードキャストメッセージ%2",
+    "tooltip": "ネットワーク内のすべてのデバイスにメッセージを迅速にブロードキャスト(自動初期化)"
+  },
+  "esp_now_quick_send": {
+    "message0": "コンテンツMAC%1に素早くメッセージを送信%2 channels%3",
+    "tooltip": "指定されたMACアドレスを持つデバイスに素早くメッセージを送信(自動初期化)"
+  },
+  "esp_now_get_mac": {
+    "message0": "ローカルのMACアドレスを取得してください",
+    "tooltip": "ローカルWiFiのMACアドレスを取得してください"
+  },
+  "esp_now_get_max_data_len": {
+    "message0": "ESP-NOW最大データ長",
+    "tooltip": "ESP-NOWプロトコルでサポートされている最大データ長(通常250バイト)を取得します"
+  },
+  "esp_now_get_peer_count": {
+    "message0": "ESP-NOW相当デバイス数",
+    "tooltip": "登録済みピアデバイスの数を取得"
+  },
+  "esp_now_get_version": {
+    "message0": "ESP-NOWバージョン番号",
+    "tooltip": "ESP-NOWプロトコルのバージョン番号を取得する"
+  }
+}

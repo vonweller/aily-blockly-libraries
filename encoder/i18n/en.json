@@ -1,0 +1,99 @@
+{
+  "toolbox_name": "rotary encoder",
+  "encoder_init": {
+    "message0": "Initialize encoder %1 connected to pin A %2 pin B %3",
+    "tooltip": "Initializes a rotary encoder object, connected to the specified two pins",
+    "args0": [
+      null,
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": "${board.digitalPins}"
+      }
+    ]
+  },
+  "encoder_set_property": {
+    "message0": "Set %2 of encoder %1 to %3",
+    "tooltip": "Set various attribute values ​​of the encoder",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "location",
+            "position"
+          ],
+          [
+            "upper limit",
+            "upper_limit"
+          ],
+          [
+            "lower limit",
+            "lower_limit"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "encoder_value_changed": {
+    "message0": "Rotary encoder value changes",
+    "tooltip": "Determine whether the value of the rotary encoder has changed"
+  },
+  "encoder_state_change": {
+    "message0": "When the encoder status is %1 %2 executes %3",
+    "tooltip": "Perform corresponding operations when a specific status change occurs in the encoder",
+    "args0": [
+      {
+        "options": [
+          [
+            "Rotate left",
+            "LEFT"
+          ],
+          [
+            "Rotate right",
+            "RIGHT"
+          ],
+          [
+            "higher than upper limit",
+            "ABOVE_LIMIT"
+          ],
+          [
+            "below the lower limit",
+            "BELOW_LIMIT"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "encoder_get_property": {
+    "message0": "Get %2 of encoder %1",
+    "tooltip": "Get various attribute values ​​of the encoder",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "location",
+            "POSITION"
+          ],
+          [
+            "direction",
+            "DIRECTION"
+          ],
+          [
+            "upper limit",
+            "UPPER_LIMIT"
+          ],
+          [
+            "lower limit",
+            "LOWER_LIMIT"
+          ]
+        ]
+      }
+    ]
+  }
+}

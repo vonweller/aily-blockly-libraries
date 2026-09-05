@@ -1,0 +1,274 @@
+{
+  "toolbox_name": "ESP32 SPI",
+  "toolbox_labels": {
+    "初始化": "initialization",
+    "事务控制": "transaction control",
+    "数据传输": "Data transfer",
+    "参数设置": "Parameter settings",
+    "参数获取": "Parameter acquisition"
+  },
+  "esp32_spi_create": {
+    "message0": "Create SPI object %1 bus %2",
+    "tooltip": "Create SPI communication object",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "VSPI",
+            "VSPI"
+          ],
+          [
+            "HSPI",
+            "HSPI"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_spi_begin": {
+    "message0": "Initialize SPI %1 using %2 default pins",
+    "tooltip": "Initialize SPI bus using default pins",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "HardwareSPI",
+            "HSPI"
+          ],
+          [
+            "Virtual SPI",
+            "VSPI"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_spi_begin_custom": {
+    "message0": "Initialize SPI %1 using %2 custom pin SCK:%3 MISO:%4 MOSI:%5 SS:%6",
+    "tooltip": "Initialize the SPI bus and set the pins",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "HardwareSPI",
+            "HSPI"
+          ],
+          [
+            "Virtual SPI",
+            "VSPI"
+          ]
+        ]
+      },
+      null,
+      null,
+      null,
+      null
+    ]
+  },
+  "esp32_spi_settings": {
+    "message0": "SPI %1 Set frequency: %2 MHz Bit sequence: %3 Mode: %4",
+    "tooltip": "Set SPI communication parameters",
+    "args0": [
+      {
+        "options": "${board.spi}"
+      },
+      null,
+      {
+        "options": [
+          [
+            "MSB first",
+            "MSBFIRST"
+          ],
+          [
+            "LSB first",
+            "LSBFIRST"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "MODE0",
+            "0"
+          ],
+          [
+            "MODE1",
+            "1"
+          ],
+          [
+            "MODE2",
+            "2"
+          ],
+          [
+            "MODE3",
+            "3"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_spi_begin_transaction": {
+    "message0": "Start SPI %1 transaction Frequency: %2 MHz Bit sequence: %3 Mode: %4",
+    "tooltip": "Start SPI transaction",
+    "args0": [
+      {
+        "options": "${board.spi}"
+      },
+      null,
+      {
+        "options": [
+          [
+            "MSB first",
+            "MSBFIRST"
+          ],
+          [
+            "LSB first",
+            "LSBFIRST"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "MODE0",
+            "0"
+          ],
+          [
+            "MODE1",
+            "1"
+          ],
+          [
+            "MODE2",
+            "2"
+          ],
+          [
+            "MODE3",
+            "3"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_spi_end_transaction": {
+    "message0": "End SPI %1 transaction",
+    "tooltip": "End SPI transaction",
+    "args0": [
+      {
+        "options": "${board.spi}"
+      }
+    ]
+  },
+  "esp32_spi_transfer": {
+    "message0": "SPI %1 transfer data: %2",
+    "tooltip": "Transmits one byte of data and returns the received data",
+    "args0": [
+      {
+        "options": "${board.spi}"
+      },
+      null
+    ]
+  },
+  "esp32_spi_transfer16": {
+    "message0": "SPI %1 transmits 16-bit data: %2",
+    "tooltip": "Transmit 16-bit data and return the received data",
+    "args0": [
+      {
+        "options": "${board.spi}"
+      },
+      null
+    ]
+  },
+  "esp32_spi_write": {
+    "message0": "SPI %1 Write data: %2",
+    "tooltip": "Write one byte of data",
+    "args0": [
+      {
+        "options": "${board.spi}"
+      },
+      null
+    ]
+  },
+  "esp32_spi_write_bytes": {
+    "message0": "SPI %1 Write byte array Data: %2 Length: %3",
+    "tooltip": "Write byte array data",
+    "args0": [
+      {
+        "options": "${board.spi}"
+      },
+      null,
+      null
+    ]
+  },
+  "esp32_spi_set_frequency": {
+    "message0": "Set SPI %1 Frequency: %2 MHz",
+    "tooltip": "Set SPI communication frequency",
+    "args0": [
+      {
+        "options": "${board.spi}"
+      },
+      null
+    ]
+  },
+  "esp32_spi_set_bit_order": {
+    "message0": "Set SPI %1 bit order: %2",
+    "tooltip": "Set SPI data bit order",
+    "args0": [
+      {
+        "options": "${board.spi}"
+      },
+      {
+        "options": [
+          [
+            "MSB first",
+            "MSBFIRST"
+          ],
+          [
+            "LSB first",
+            "LSBFIRST"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_spi_set_data_mode": {
+    "message0": "Set SPI %1 mode: %2",
+    "tooltip": "Set SPI clock polarity and phase mode",
+    "args0": [
+      {
+        "options": "${board.spi}"
+      },
+      {
+        "options": [
+          [
+            "MODE0",
+            "0"
+          ],
+          [
+            "MODE1",
+            "1"
+          ],
+          [
+            "MODE2",
+            "2"
+          ],
+          [
+            "MODE3",
+            "3"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_spi_get_ss_pin": {
+    "message0": "Get SPI %1 chip select pin",
+    "tooltip": "Get SPI chip select pin number",
+    "args0": [
+      {
+        "options": "${board.spi}"
+      }
+    ]
+  }
+}

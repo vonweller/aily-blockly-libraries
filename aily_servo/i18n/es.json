@@ -1,0 +1,138 @@
+{
+  "toolbox_name": "Servo",
+  "toolbox_labels": {
+    "基础控制": "control básico",
+    "读取状态": "estado de lectura",
+    "高级控制": "Control avanzado",
+    "实用功能": "Funciones prácticas",
+    "角度值": "Valor del ángulo"
+  },
+  "servo_attach": {
+    "message0": "Inicializa el pasador %1 servo",
+    "tooltip": "Inicializa el servo con el pin especificado. ESP32 recomienda GPIO 4, 5, 12-19, 21-23, 25-27, 32 y 33. Evita usar GPIO 6-11 (flash) y 34-39 (solo entrada)",
+    "args0": [
+      {
+        "options": "${board.servoPins}"
+      }
+    ]
+  },
+  "servo_attach_advanced": {
+    "message0": "Inicializa el pasador %1 servo\nAncho mínimo de pulso %2 Ancho máximo de pulso %3",
+    "tooltip": "Inicializa el servo con los pines especificados y establece el rango de ancho de pulso. ESP32 asigna automáticamente canales PWM sin especificación manual",
+    "args0": [
+      {
+        "options": "${board.servoPins}"
+      },
+      null,
+      null
+    ]
+  },
+  "servo_attach_full": {
+    "message0": "Inicializa el pasador %1 servo\nÁngulo mínimo %2 ángulo máximo %3\nAncho mínimo de pulso %4 Ancho máximo de pulso %5",
+    "tooltip": "Inicializa el servo con los pines especificados y establece los parámetros completos (rango de ángulo, ancho de pulso). ESP32 asigna automáticamente canales PWM",
+    "args0": [
+      {
+        "options": "${board.servoPins}"
+      },
+      null,
+      null,
+      null,
+      null
+    ]
+  },
+  "servo_write": {
+    "message0": "Pasador de control %1 girar el servo en un ángulo de %2 grados",
+    "tooltip": "Ajusta el ángulo objetivo para el servo del pasador especificado (0-180 grados)",
+    "args0": [
+      {
+        "options": "${board.servoPins}"
+      },
+      null
+    ]
+  },
+  "servo_write_float": {
+    "message0": "Pasador de control %1 girar el servo en un ángulo de %2 grados",
+    "tooltip": "Establecer el ángulo exacto del servo de pasador especificado (soporta el conteo de punto flotante)",
+    "args0": [
+      {
+        "options": "${board.servoPins}"
+      },
+      null
+    ]
+  },
+  "servo_write_microseconds": {
+    "message0": "El pin de control %1 servo ajusta el ancho de pulso a %2 microsegundos",
+    "tooltip": "Establece directamente el valor de ancho de pulso del servo de pines especificado (normalmente 544-2400 microsegundos)",
+    "args0": [
+      {
+        "options": "${board.servoPins}"
+      },
+      null
+    ]
+  },
+  "servo_read": {
+    "message0": "Lee el ángulo actual del servo %1 el pie de intercambio",
+    "tooltip": "Lee el valor del ángulo actual del servo de pasador especificado",
+    "args0": [
+      {
+        "options": "${board.servoPins}"
+      }
+    ]
+  },
+  "servo_read_microseconds": {
+    "message0": "Lee la pata %1 el ancho de pulso de corriente del servo",
+    "tooltip": "Lee el valor actual de ancho de pulso (microsegundos) del servo de pines especificado",
+    "args0": [
+      {
+        "options": "${board.servoPins}"
+      }
+    ]
+  },
+  "servo_attached": {
+    "message0": "El pin %1 servo está conectado",
+    "tooltip": "Comprueba si el servo con los pines especificados está conectado",
+    "args0": [
+      {
+        "options": "${board.servoPins}"
+      }
+    ]
+  },
+  "servo_detach": {
+    "message0": "Desconexión de pasadores %1 servo",
+    "tooltip": "Desconecta la conexión entre el servo de pasadores especificado y el pin",
+    "args0": [
+      {
+        "options": "${board.servoPins}"
+      }
+    ]
+  },
+  "servo_get_pin": {
+    "message0": "Pin %1 Número de pin para la conexión servo",
+    "tooltip": "Recuperar el número de pin para la conexión servo especificada (devuelve el número de pin introducido)",
+    "args0": [
+      {
+        "options": "${board.servoPins}"
+      }
+    ]
+  },
+  "servo_map_angle": {
+    "message0": "Los valores de mapeo %1 de rango %2 a %3\nRango de ángulo de %4 a %5",
+    "tooltip": "Asigna el valor de un rango al rango de ángulo servo"
+  },
+  "servo_sweep": {
+    "message0": "Escaneo de %1 servo de pin\nDe %2 a %3 grados, con un retraso de %4 milisegundos",
+    "tooltip": "Permite que el servo con el pasador especificado escanee dentro de un rango de ángulo especificado",
+    "args0": [
+      {
+        "options": "${board.servoPins}"
+      },
+      null,
+      null,
+      null
+    ]
+  },
+  "servo_angle": {
+    "message0": "Ángulo %1 grados",
+    "tooltip": "Valor del ángulo del servo (0-180 grados)"
+  }
+}

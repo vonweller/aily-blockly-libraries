@@ -1,0 +1,1877 @@
+{
+  "toolbox_name": "LVGL",
+  "toolbox_labels": {
+    "标签": "التسمية",
+    "图像": "صورة",
+    "列表": "قائمة",
+    "选项卡": "علامة التبويب",
+    "按钮": "زر",
+    "滑动条": "المنزلق",
+    "开关": "التبديل",
+    "复选框": "خانة الاختيار",
+    "下拉框": "المربع المنسدل",
+    "文本框": "مربع النص",
+    "键盘": "لوحة المفاتيح",
+    "进度条": "شريط التقدم",
+    "圆弧": "قوس",
+    "加载动画": "تحميل الرسوم المتحركة",
+    "图表": "مخطط"
+  },
+  "lvgl_init": {
+    "message0": "تهيئة LVGL باستخدام مكتبة تعريفات العرض %1 عرض %2 ارتفاع %3 زاوية دوران الشاشة %4",
+    "tooltip": "تهيئة مكتبة LVGL",
+    "args0": [
+      {
+        "options": [
+          [
+            "TFT_eSPI",
+            "TFT_eSPI"
+          ],
+          [
+            "Lovyan GFX (مدعوم)",
+            "LovyanGFX"
+          ]
+        ]
+      },
+      null,
+      null,
+      {
+        "options": [
+          [
+            "0°",
+            "LV_DISPLAY_ROTATION_0"
+          ],
+          [
+            "90°",
+            "LV_DISPLAY_ROTATION_90"
+          ],
+          [
+            "180°",
+            "LV_DISPLAY_ROTATION_180"
+          ],
+          [
+            "270°",
+            "LV_DISPLAY_ROTATION_270"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_indev_create": {
+    "message0": "تهيئة جهاز الإدخال %1 %2 نوع دالة استرجاع البيانات %3",
+    "tooltip": "تهيئة جهاز الإدخال",
+    "args0": [
+      {
+        "options": [
+          [
+            "كل الوضع",
+            "global"
+          ],
+          [
+            "محلي",
+            "local"
+          ]
+        ]
+      },
+      null,
+      {
+        "options": [
+          [
+            "جهاز المؤشر (شاشة لمس/فأرة)",
+            "LV_INDEV_TYPE_POINTER"
+          ],
+          [
+            "أجهزة الأزرار",
+            "LV_INDEV_TYPE_KEYPAD"
+          ],
+          [
+            "أجهزة الأزرار",
+            "LV_INDEV_TYPE_BUTTON"
+          ],
+          [
+            "معدات التشفير",
+            "LV_INDEV_TYPE_ENCODER"
+          ]
+        ]
+      }
+    ],
+    "message1": "نفذ %1"
+  },
+  "lvgl_indev_data_param_set": {
+    "message0": "%1 تعيين معلمة البيانات على %2",
+    "tooltip": "الحصول على معلمات البيانات من جهاز الإدخال",
+    "args0": [
+      {
+        "options": [
+          [
+            "الحالة",
+            "state"
+          ],
+          [
+            "الإحداثي X",
+            "point.x"
+          ],
+          [
+            "الإحداثي Y",
+            "point.y"
+          ],
+          [
+            "القيم الرئيسية",
+            "key"
+          ],
+          [
+            "معرف الزر",
+            "btn_id"
+          ],
+          [
+            "زيادات المشفر",
+            "enc_diff"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "lvgl_indev_state_param": {
+    "message0": "أدخل حالة الجهاز الثابت %1",
+    "tooltip": "أدخل ثابت حالة الجهاز",
+    "args0": [
+      {
+        "options": [
+          [
+            "تحرير",
+            "LV_INDEV_STATE_REL"
+          ],
+          [
+            "ضغط",
+            "LV_INDEV_STATE_PR"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_label_create": {
+    "message0": "أنشئ %1 الوسوم %2 الكائنات الأب %3",
+    "tooltip": "إنشاء تحكم في وسم النص",
+    "args0": [
+      {
+        "options": [
+          [
+            "كل الوضع",
+            "global"
+          ],
+          [
+            "محلي",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_label_set_text": {
+    "message0": "اضبط الوسم %1 النص على %2",
+    "tooltip": "تعيين محتوى النص المعروض على الملصق"
+  },
+  "lv_label_set_text_fmt": {
+    "message0": "تعيين العلامات %1 تنسيق النص النصي %2 المعلمات %3",
+    "tooltip": "تعيين نص الوسوم باستخدام سلاسل نصية منسقة، تدعم تنسيق نمط printf (مثل \"Button: ٪d\")"
+  },
+  "lvgl_label_set_long_mode": {
+    "message0": "اضبط العلامات %1 وضع النص الطويل %2",
+    "tooltip": "قم بتعيين وضع معالجة النص الطويل للوسوم",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "لف الخط الأوتوماتيكي",
+            "LV_LABEL_LONG_MODE_WRAP"
+          ],
+          [
+            "نقاط العرض",
+            "LV_LABEL_LONG_MODE_DOTS"
+          ],
+          [
+            "يتدحرج ذهابا وإيابا",
+            "LV_LABEL_LONG_MODE_SCROLL"
+          ],
+          [
+            "تدوير الدراجة",
+            "LV_LABEL_LONG_MODE_SCROLL_CIRCULAR"
+          ],
+          [
+            "القطع",
+            "LV_LABEL_LONG_MODE_CLIP"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_button_create": {
+    "message0": "إنشاء زر %1 %2 كائن الأب %3",
+    "tooltip": "إنشاء زر تحكم",
+    "args0": [
+      {
+        "options": [
+          [
+            "كل الوضع",
+            "global"
+          ],
+          [
+            "محلي",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_slider_create": {
+    "message0": "إنشاء شريط %1 %2 كائن الأب %3",
+    "tooltip": "إنشاء تحكم منزلق",
+    "args0": [
+      {
+        "options": [
+          [
+            "كل الوضع",
+            "global"
+          ],
+          [
+            "محلي",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_slider_set_value": {
+    "message0": "اضبط قيمة %1 شريط التمرير على %2 %3",
+    "tooltip": "حدد القيمة الحالية للشريط",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "تشغيل",
+            "LV_ANIM_ON"
+          ],
+          [
+            "إيقاف",
+            "LV_ANIM_OFF"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_slider_set_range": {
+    "message0": "اضبط شريط التمرير %1 الحد الأدنى %2 الحد الأقصى %3",
+    "tooltip": "حدد نطاق القيم للشريط"
+  },
+  "lvgl_slider_get_value": {
+    "message0": "احصل على قيمة شريط الشريط %1",
+    "tooltip": "احصل على القيمة الحالية لشريط الانزلاق"
+  },
+  "lvgl_switch_create": {
+    "message0": "إنشاء %1 التبديل %2 كائن الأب %3",
+    "tooltip": "إنشاء تحكم في المفتاح",
+    "args0": [
+      {
+        "options": [
+          [
+            "كل الوضع",
+            "global"
+          ],
+          [
+            "محلي",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_checkbox_create": {
+    "message0": "إنشاء مربع اختيار %1 %2 كائن الأب %3 النص %4",
+    "tooltip": "إنشاء تحكم في مربع الاختيار",
+    "args0": [
+      {
+        "options": [
+          [
+            "كل الوضع",
+            "global"
+          ],
+          [
+            "محلي",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null,
+      null
+    ]
+  },
+  "lvgl_bar_create": {
+    "message0": "إنشاء شريط التقدم %1 %2 كائن الأب %3",
+    "tooltip": "أنشئ تحكم في شريط التقدم",
+    "args0": [
+      {
+        "options": [
+          [
+            "كل الوضع",
+            "global"
+          ],
+          [
+            "محلي",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_bar_set_value": {
+    "message0": "اضبط شريط التقدم %1 القيمة على %2 الرسوم المتحركة %3",
+    "tooltip": "حدد القيمة الحالية لشريط التقدم",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "تشغيل",
+            "LV_ANIM_ON"
+          ],
+          [
+            "إيقاف",
+            "LV_ANIM_OFF"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_bar_set_range": {
+    "message0": "اضبط شريط التقدم %1 الحد الأدنى %2 الحد الأقصى للنطاق %3",
+    "tooltip": "حدد نطاق القيم لشريط التقدم"
+  },
+  "lvgl_arc_create": {
+    "message0": "إنشاء %1 قوس %2 كائن الأب %3",
+    "tooltip": "أنشئ تحكم قوس",
+    "args0": [
+      {
+        "options": [
+          [
+            "كل الوضع",
+            "global"
+          ],
+          [
+            "محلي",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_arc_set_value": {
+    "message0": "اضبط قيمة القوس %1 على %2",
+    "tooltip": "اضبط القيمة الحالية للقوس"
+  },
+  "lvgl_arc_set_range": {
+    "message0": "اضبط مدى القوس %1 الحد الأدنى %2 الحد الأقصى %3",
+    "tooltip": "حدد نطاق قيم القوس"
+  },
+  "lvgl_spinner_create": {
+    "message0": "إنشاء %1 تحريك تحميل %2 كائن الأب %3",
+    "tooltip": "إنشاء تحكم في تحريك التحميل",
+    "args0": [
+      {
+        "options": [
+          [
+            "كل الوضع",
+            "global"
+          ],
+          [
+            "محلي",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_spinner_set_anim_params": {
+    "message0": "ضبط حركة التحميل %1 duration%2 مللي ثانية براديان %3°",
+    "tooltip": "حدد مدة التحميل وانحناء الحركة"
+  },
+  "lvgl_dropdown_create": {
+    "message0": "إنشاء قائمة منسدلة %1 %2 كائن الأب %3",
+    "tooltip": "إنشاء تحكم منسدلي",
+    "args0": [
+      {
+        "options": [
+          [
+            "كل الوضع",
+            "global"
+          ],
+          [
+            "محلي",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_dropdown_set_options": {
+    "message0": "اضبط مربع المنسدلي %1 الخيارات %2",
+    "tooltip": "اضبط خيارات القائمة المنسدلة، وفصل عدة خيارات باستخدام \\n"
+  },
+  "lvgl_dropdown_get_selected": {
+    "message0": "احصل على القائمة المنسدلة %1 اختر عنصر الفهرس",
+    "tooltip": "يحصل على فهرس العنصر المحدد حاليا في المربع المنسدلي"
+  },
+  "lvgl_textarea_create": {
+    "message0": "إنشاء %1 مربع نص %2 كائن الأب %3",
+    "tooltip": "إنشاء تحكم في صندوق إدخال نصي",
+    "args0": [
+      {
+        "options": [
+          [
+            "كل الوضع",
+            "global"
+          ],
+          [
+            "محلي",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_textarea_set_text": {
+    "message0": "تعيين مربع نص %1 النص على %2",
+    "tooltip": "تعيين محتوى مربع النص"
+  },
+  "lvgl_textarea_get_text": {
+    "message0": "يسترجع نص مربع النص %1",
+    "tooltip": "احصل على محتوى مربع النص"
+  },
+  "lvgl_textarea_set_placeholder": {
+    "message0": "قم بتعيين مربع النص %1 المؤقت على %2",
+    "tooltip": "حدد النص المؤقت لمربع النص"
+  },
+  "lvgl_obj_set_pos": {
+    "message0": "اضبط %1 الموضع X %2 Y %3",
+    "tooltip": "اضبط إحداثيات X و Y للجسم"
+  },
+  "lvgl_obj_set_size": {
+    "message0": "اضبط %1 الحجم والعرض %2 الارتفاع %3",
+    "tooltip": "حدد عرض وارتفاع الجسم"
+  },
+  "lvgl_obj_align": {
+    "message0": "قم %1 محاذاة %2 إزاحة X %3 Y %4",
+    "tooltip": "يحدد محاذاة وإزاحة الكائنات بالنسبة للكائنات الأم",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "مركز",
+            "LV_ALIGN_CENTER"
+          ],
+          [
+            "أعلى يسار",
+            "LV_ALIGN_TOP_LEFT"
+          ],
+          [
+            "فوق المتوسط",
+            "LV_ALIGN_TOP_MID"
+          ],
+          [
+            "أعلى يمين",
+            "LV_ALIGN_TOP_RIGHT"
+          ],
+          [
+            "الوسط الأيسر",
+            "LV_ALIGN_LEFT_MID"
+          ],
+          [
+            "الوسط الأيمن",
+            "LV_ALIGN_RIGHT_MID"
+          ],
+          [
+            "أسفل يسار",
+            "LV_ALIGN_BOTTOM_LEFT"
+          ],
+          [
+            "أقل من المتوسط",
+            "LV_ALIGN_BOTTOM_MID"
+          ],
+          [
+            "أسفل يمين",
+            "LV_ALIGN_BOTTOM_RIGHT"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_obj_center": {
+    "message0": "%1 مركزية",
+    "tooltip": "مركز الجسم"
+  },
+  "lvgl_obj_add_flag": {
+    "message0": "إضافة شعار إلى %1 %2",
+    "tooltip": "إضافة علم إلى الكائن",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "hide",
+            "LV_OBJ_FLAG_HIDDEN"
+          ],
+          [
+            "قابل للنقر",
+            "LV_OBJ_FLAG_CLICKABLE"
+          ],
+          [
+            "قابل للاختيار",
+            "LV_OBJ_FLAG_CHECKABLE"
+          ],
+          [
+            "قابلة للتدوير",
+            "LV_OBJ_FLAG_SCROLLABLE"
+          ],
+          [
+            "تعطيل",
+            "LV_OBJ_FLAG_DISABLED"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_obj_remove_flag": {
+    "message0": "أزل العلم من %1 %2",
+    "tooltip": "إزالة العلم من الكائن",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "hide",
+            "LV_OBJ_FLAG_HIDDEN"
+          ],
+          [
+            "قابل للنقر",
+            "LV_OBJ_FLAG_CLICKABLE"
+          ],
+          [
+            "قابل للاختيار",
+            "LV_OBJ_FLAG_CHECKABLE"
+          ],
+          [
+            "قابلة للتدوير",
+            "LV_OBJ_FLAG_SCROLLABLE"
+          ],
+          [
+            "تعطيل",
+            "LV_OBJ_FLAG_DISABLED"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_obj_add_state": {
+    "message0": "إضافة حالة إلى %1 %2",
+    "tooltip": "أضف حالة إلى كائن",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "المختار",
+            "LV_STATE_CHECKED"
+          ],
+          [
+            "التركيز",
+            "LV_STATE_FOCUSED"
+          ],
+          [
+            "ضغط",
+            "LV_STATE_PRESSED"
+          ],
+          [
+            "تعطيل",
+            "LV_STATE_DISABLED"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_obj_remove_state": {
+    "message0": "إزالة الحالة من %1%2",
+    "tooltip": "إزالة الحالة من الكائن",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "المختار",
+            "LV_STATE_CHECKED"
+          ],
+          [
+            "التركيز",
+            "LV_STATE_FOCUSED"
+          ],
+          [
+            "ضغط",
+            "LV_STATE_PRESSED"
+          ],
+          [
+            "تعطيل",
+            "LV_STATE_DISABLED"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_obj_has_state": {
+    "message0": "%1 Stated%2",
+    "tooltip": "تحقق مما إذا كان الكائن له حالة محددة",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "المختار",
+            "LV_STATE_CHECKED"
+          ],
+          [
+            "التركيز",
+            "LV_STATE_FOCUSED"
+          ],
+          [
+            "ضغط",
+            "LV_STATE_PRESSED"
+          ],
+          [
+            "تعطيل",
+            "LV_STATE_DISABLED"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_obj_delete": {
+    "message0": "احذف %1",
+    "tooltip": "حذف كائن وجميع كائناته الفرعية"
+  },
+  "lvgl_obj_set_style_text_font": {
+    "message0": "تعيين %1 الخط %2",
+    "tooltip": "تعيين خط النص للكائن",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "الخط الإنجليزي 8",
+            "LV_FONT_MONTSERRAT_8"
+          ],
+          [
+            "الخط الإنجليزي 10",
+            "LV_FONT_MONTSERRAT_10"
+          ],
+          [
+            "الخط الإنجليزي 12",
+            "LV_FONT_MONTSERRAT_12"
+          ],
+          [
+            "الخط الإنجليزي 14",
+            "LV_FONT_MONTSERRAT_14"
+          ],
+          [
+            "الخط الإنجليزي 16",
+            "LV_FONT_MONTSERRAT_16"
+          ],
+          [
+            "الخط الإنجليزي 18",
+            "LV_FONT_MONTSERRAT_18"
+          ],
+          [
+            "الخطوط الإنجليزية 20",
+            "LV_FONT_MONTSERRAT_20"
+          ],
+          [
+            "الخط الإنجليزي 22",
+            "LV_FONT_MONTSERRAT_22"
+          ],
+          [
+            "الخط الإنجليزي 24",
+            "LV_FONT_MONTSERRAT_24"
+          ],
+          [
+            "الخط الإنجليزي 26",
+            "LV_FONT_MONTSERRAT_26"
+          ],
+          [
+            "الخط الإنجليزي 28",
+            "LV_FONT_MONTSERRAT_28"
+          ],
+          [
+            "الخطوط الإنجليزية 30",
+            "LV_FONT_MONTSERRAT_30"
+          ],
+          [
+            "الخط الإنجليزي 32",
+            "LV_FONT_MONTSERRAT_32"
+          ],
+          [
+            "الخط الإنجليزي 34",
+            "LV_FONT_MONTSERRAT_34"
+          ],
+          [
+            "الخط الإنجليزي 36",
+            "LV_FONT_MONTSERRAT_36"
+          ],
+          [
+            "الخط الإنجليزي 38",
+            "LV_FONT_MONTSERRAT_38"
+          ],
+          [
+            "الخط الإنجليزي 40",
+            "LV_FONT_MONTSERRAT_40"
+          ],
+          [
+            "الخط الإنجليزي 42",
+            "LV_FONT_MONTSERRAT_42"
+          ],
+          [
+            "الخط الإنجليزي 44",
+            "LV_FONT_MONTSERRAT_44"
+          ],
+          [
+            "الخط الإنجليزي 46",
+            "LV_FONT_MONTSERRAT_46"
+          ],
+          [
+            "الخط الإنجليزي 48",
+            "LV_FONT_MONTSERRAT_48"
+          ],
+          [
+            "الخط الصيني 14",
+            "LV_FONT_SOURCE_HAN_SANS_SC_14_CJK"
+          ],
+          [
+            "خطوط صينية 16",
+            "LV_FONT_SOURCE_HAN_SANS_SC_16_CJK"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_obj_set_style_bg_color": {
+    "message0": "تعيين لون الخلفية %1 %2",
+    "tooltip": "تعيين لون الخلفية للكائن"
+  },
+  "lvgl_obj_set_style_text_color": {
+    "message0": "تعيين لون النص %1 %2",
+    "tooltip": "تعيين لون النص للكائن"
+  },
+  "lvgl_obj_set_style_border_color": {
+    "message0": "اضبط %1 لون الإطار %2",
+    "tooltip": "تعيين لون إطار الجسم"
+  },
+  "lvgl_obj_set_style_border_width": {
+    "message0": "تعيين عرض الحدود %1 %2",
+    "tooltip": "حدد عرض الحدود للكائن"
+  },
+  "lvgl_obj_set_style_radius": {
+    "message0": "اضبط نصف قطر %1 الفيليت %2",
+    "tooltip": "حدد نصف قطر الفيليت للجسم"
+  },
+  "lvgl_obj_set_style_pad_all": {
+    "message0": "تعيين %1 هامش %2",
+    "tooltip": "اضبط جميع الهوامش الداخلية لجسم معين"
+  },
+  "lvgl_obj_set_style_bg_opa": {
+    "message0": "تعيين %1 شفافية الخلفية %2",
+    "tooltip": "تعيين شفافية الخلفية للكائن",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "شفاف تماما",
+            "LV_OPA_TRANSP"
+          ],
+          [
+            "25%",
+            "LV_OPA_25"
+          ],
+          [
+            "50%",
+            "LV_OPA_50"
+          ],
+          [
+            "75%",
+            "LV_OPA_75"
+          ],
+          [
+            "عتيم",
+            "LV_OPA_COVER"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_event_add_cb": {
+    "message0": "عندما يحدث %1 %2 الحدث",
+    "tooltip": "حدد استدعاء الحدث للكائن",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "جميع الفعاليات",
+            "LV_EVENT_ALL"
+          ],
+          [
+            "ضغط",
+            "LV_EVENT_PRESSED"
+          ],
+          [
+            "استمر في الضغط",
+            "LV_EVENT_PRESSING"
+          ],
+          [
+            "اضغط ثم غادر",
+            "LV_EVENT_PRESS_LOST"
+          ],
+          [
+            "النشر القصير",
+            "LV_EVENT_SHORT_CLICKED"
+          ],
+          [
+            "نقرة مفردة",
+            "LV_EVENT_SINGLE_CLICKED"
+          ],
+          [
+            "نقرة مزدوجة",
+            "LV_EVENT_DOUBLE_CLICKED"
+          ],
+          [
+            "ثلاث ضربات",
+            "LV_EVENT_TRIPLE_CLICKED"
+          ],
+          [
+            "اضغط وتثبيت",
+            "LV_EVENT_LONG_PRESSED"
+          ],
+          [
+            "اضغط واضغط باستمرار للتكرار",
+            "LV_EVENT_LONG_PRESSED_REPEAT"
+          ],
+          [
+            "نقر",
+            "LV_EVENT_CLICKED"
+          ],
+          [
+            "تحرير",
+            "LV_EVENT_RELEASED"
+          ],
+          [
+            "تبدأ اللفافة",
+            "LV_EVENT_SCROLL_BEGIN"
+          ],
+          [
+            "تبدأ الرمية المتدحرجة",
+            "LV_EVENT_SCROLL_THROW_BEGIN"
+          ],
+          [
+            "نهاية اللفافة",
+            "LV_EVENT_SCROLL_END"
+          ],
+          [
+            "التمرير",
+            "LV_EVENT_SCROLL"
+          ],
+          [
+            "الإيماءات",
+            "LV_EVENT_GESTURE"
+          ],
+          [
+            "أزرار",
+            "LV_EVENT_KEY"
+          ],
+          [
+            "تدوير",
+            "LV_EVENT_ROTARY"
+          ],
+          [
+            "التركيز",
+            "LV_EVENT_FOCUSED"
+          ],
+          [
+            "فقدت تركيزها",
+            "LV_EVENT_DEFOCUSED"
+          ],
+          [
+            "غادر",
+            "LV_EVENT_LEAVE"
+          ],
+          [
+            "اختبارات التصادم",
+            "LV_EVENT_HIT_TEST"
+          ],
+          [
+            "إعادة ضبط جهاز الإدخال",
+            "LV_EVENT_INDEV_RESET"
+          ],
+          [
+            "الدوران للدخول",
+            "LV_EVENT_HOVER_OVER"
+          ],
+          [
+            "تحوم ومغادرة",
+            "LV_EVENT_HOVER_LEAVE"
+          ],
+          [
+            "فحوصات التغطية",
+            "LV_EVENT_COVER_CHECK"
+          ],
+          [
+            "تحديث حجم السحب الممتد",
+            "LV_EVENT_REFR_EXT_DRAW_SIZE"
+          ],
+          [
+            "يبدأ الرسم الرئيسي",
+            "LV_EVENT_DRAW_MAIN_BEGIN"
+          ],
+          [
+            "رئيسيا رسام توضيحي",
+            "LV_EVENT_DRAW_MAIN"
+          ],
+          [
+            "السحب الرئيسي اكتمل",
+            "LV_EVENT_DRAW_MAIN_END"
+          ],
+          [
+            "يبدأ الرسم",
+            "LV_EVENT_DRAW_POST_BEGIN"
+          ],
+          [
+            "الرسم لاحقا",
+            "LV_EVENT_DRAW_POST"
+          ],
+          [
+            "ثم ينتهي الرسم",
+            "LV_EVENT_DRAW_POST_END"
+          ],
+          [
+            "أضف مهمة الرسم",
+            "LV_EVENT_DRAW_TASK_ADDED"
+          ],
+          [
+            "القيم تتغير",
+            "LV_EVENT_VALUE_CHANGED"
+          ],
+          [
+            "إدراج",
+            "LV_EVENT_INSERT"
+          ],
+          [
+            "تحديث",
+            "LV_EVENT_REFRESH"
+          ],
+          [
+            "جاهز",
+            "LV_EVENT_READY"
+          ],
+          [
+            "تم الإلغاء",
+            "LV_EVENT_CANCEL"
+          ],
+          [
+            "تغييرات الولاية",
+            "LV_EVENT_STATE_CHANGED"
+          ],
+          [
+            "تأسيس",
+            "LV_EVENT_CREATE"
+          ],
+          [
+            "حذف",
+            "LV_EVENT_DELETE"
+          ],
+          [
+            "تغييرات الكائنات الفرعية",
+            "LV_EVENT_CHILD_CHANGED"
+          ],
+          [
+            "إنشاء كائن فرعي",
+            "LV_EVENT_CHILD_CREATED"
+          ],
+          [
+            "حذف الكائنات الفرعية",
+            "LV_EVENT_CHILD_DELETED"
+          ],
+          [
+            "بدء إزالة تثبيت الشاشة",
+            "LV_EVENT_SCREEN_UNLOAD_START"
+          ],
+          [
+            "يبدأ تحميل الشاشة",
+            "LV_EVENT_SCREEN_LOAD_START"
+          ],
+          [
+            "الشاشة بدأت التحميل",
+            "LV_EVENT_SCREEN_LOADED"
+          ],
+          [
+            "تم إلغاء تثبيت الشاشة",
+            "LV_EVENT_SCREEN_UNLOADED"
+          ],
+          [
+            "تغييرات الحجم",
+            "LV_EVENT_SIZE_CHANGED"
+          ],
+          [
+            "تغييرات الأسلوب",
+            "LV_EVENT_STYLE_CHANGED"
+          ],
+          [
+            "تغييرات التصميم",
+            "LV_EVENT_LAYOUT_CHANGED"
+          ],
+          [
+            "احصل على مقاسك الخاص",
+            "LV_EVENT_GET_SELF_SIZE"
+          ],
+          [
+            "فشل المنطقة",
+            "LV_EVENT_INVALIDATE_AREA"
+          ],
+          [
+            "تغييرات الدقة",
+            "LV_EVENT_RESOLUTION_CHANGED"
+          ],
+          [
+            "تغييرات تنسيق الألوان",
+            "LV_EVENT_COLOR_FORMAT_CHANGED"
+          ],
+          [
+            "طلبات التحديث",
+            "LV_EVENT_REFR_REQUEST"
+          ],
+          [
+            "بداية التحديث",
+            "LV_EVENT_REFR_START"
+          ],
+          [
+            "منعش وجاهز",
+            "LV_EVENT_REFR_READY"
+          ],
+          [
+            "بدء التصيير",
+            "LV_EVENT_RENDER_START"
+          ],
+          [
+            "التصيير جاهز",
+            "LV_EVENT_RENDER_READY"
+          ],
+          [
+            "بداية مسطحة",
+            "LV_EVENT_FLUSH_START"
+          ],
+          [
+            "تم الانتهاء من التحديث (تدفق)",
+            "LV_EVENT_FLUSH_FINISH"
+          ],
+          [
+            "بدء الانتظار في التحديث.",
+            "LV_EVENT_FLUSH_WAIT_START"
+          ],
+          [
+            "تحديث العمل وانتظر الانتهاء",
+            "LV_EVENT_FLUSH_WAIT_FINISH"
+          ],
+          [
+            "اكتمل تحديث التصميم",
+            "LV_EVENT_UPDATE_LAYOUT_COMPLETED"
+          ],
+          [
+            "التزامن الرأسي",
+            "LV_EVENT_VSYNC"
+          ],
+          [
+            "طلب التزامن الرأسي",
+            "LV_EVENT_VSYNC_REQUEST"
+          ]
+        ]
+      }
+    ],
+    "message1": "نفذ %1"
+  },
+  "lvgl_event_code": {
+    "message0": "ثوابت رموز الأحداث %1",
+    "tooltip": "يسترجع القيمة الثابتة لرمز الحدث",
+    "args0": [
+      {
+        "options": [
+          [
+            "جميع الفعاليات",
+            "LV_EVENT_ALL"
+          ],
+          [
+            "ضغط",
+            "LV_EVENT_PRESSED"
+          ],
+          [
+            "استمر في الضغط",
+            "LV_EVENT_PRESSING"
+          ],
+          [
+            "اضغط ثم غادر",
+            "LV_EVENT_PRESS_LOST"
+          ],
+          [
+            "النشر القصير",
+            "LV_EVENT_SHORT_CLICKED"
+          ],
+          [
+            "نقرة مفردة",
+            "LV_EVENT_SINGLE_CLICKED"
+          ],
+          [
+            "نقرة مزدوجة",
+            "LV_EVENT_DOUBLE_CLICKED"
+          ],
+          [
+            "ثلاث ضربات",
+            "LV_EVENT_TRIPLE_CLICKED"
+          ],
+          [
+            "اضغط وتثبيت",
+            "LV_EVENT_LONG_PRESSED"
+          ],
+          [
+            "اضغط واضغط باستمرار للتكرار",
+            "LV_EVENT_LONG_PRESSED_REPEAT"
+          ],
+          [
+            "نقر",
+            "LV_EVENT_CLICKED"
+          ],
+          [
+            "تحرير",
+            "LV_EVENT_RELEASED"
+          ],
+          [
+            "تبدأ اللفافة",
+            "LV_EVENT_SCROLL_BEGIN"
+          ],
+          [
+            "تبدأ الرمية المتدحرجة",
+            "LV_EVENT_SCROLL_THROW_BEGIN"
+          ],
+          [
+            "نهاية اللفافة",
+            "LV_EVENT_SCROLL_END"
+          ],
+          [
+            "التمرير",
+            "LV_EVENT_SCROLL"
+          ],
+          [
+            "الإيماءات",
+            "LV_EVENT_GESTURE"
+          ],
+          [
+            "أزرار",
+            "LV_EVENT_KEY"
+          ],
+          [
+            "تدوير",
+            "LV_EVENT_ROTARY"
+          ],
+          [
+            "التركيز",
+            "LV_EVENT_FOCUSED"
+          ],
+          [
+            "فقدت تركيزها",
+            "LV_EVENT_DEFOCUSED"
+          ],
+          [
+            "غادر",
+            "LV_EVENT_LEAVE"
+          ],
+          [
+            "اختبارات التصادم",
+            "LV_EVENT_HIT_TEST"
+          ],
+          [
+            "إعادة ضبط جهاز الإدخال",
+            "LV_EVENT_INDEV_RESET"
+          ],
+          [
+            "الدوران للدخول",
+            "LV_EVENT_HOVER_OVER"
+          ],
+          [
+            "تحوم ومغادرة",
+            "LV_EVENT_HOVER_LEAVE"
+          ],
+          [
+            "فحوصات التغطية",
+            "LV_EVENT_COVER_CHECK"
+          ],
+          [
+            "تحديث حجم السحب الممتد",
+            "LV_EVENT_REFR_EXT_DRAW_SIZE"
+          ],
+          [
+            "يبدأ الرسم الرئيسي",
+            "LV_EVENT_DRAW_MAIN_BEGIN"
+          ],
+          [
+            "رئيسيا رسام توضيحي",
+            "LV_EVENT_DRAW_MAIN"
+          ],
+          [
+            "السحب الرئيسي اكتمل",
+            "LV_EVENT_DRAW_MAIN_END"
+          ],
+          [
+            "يبدأ الرسم",
+            "LV_EVENT_DRAW_POST_BEGIN"
+          ],
+          [
+            "الرسم لاحقا",
+            "LV_EVENT_DRAW_POST"
+          ],
+          [
+            "ثم ينتهي الرسم",
+            "LV_EVENT_DRAW_POST_END"
+          ],
+          [
+            "أضف مهمة الرسم",
+            "LV_EVENT_DRAW_TASK_ADDED"
+          ],
+          [
+            "القيم تتغير",
+            "LV_EVENT_VALUE_CHANGED"
+          ],
+          [
+            "إدراج",
+            "LV_EVENT_INSERT"
+          ],
+          [
+            "تحديث",
+            "LV_EVENT_REFRESH"
+          ],
+          [
+            "جاهز",
+            "LV_EVENT_READY"
+          ],
+          [
+            "تم الإلغاء",
+            "LV_EVENT_CANCEL"
+          ],
+          [
+            "تغييرات الولاية",
+            "LV_EVENT_STATE_CHANGED"
+          ],
+          [
+            "تأسيس",
+            "LV_EVENT_CREATE"
+          ],
+          [
+            "حذف",
+            "LV_EVENT_DELETE"
+          ],
+          [
+            "تغييرات الكائنات الفرعية",
+            "LV_EVENT_CHILD_CHANGED"
+          ],
+          [
+            "إنشاء كائن فرعي",
+            "LV_EVENT_CHILD_CREATED"
+          ],
+          [
+            "حذف الكائنات الفرعية",
+            "LV_EVENT_CHILD_DELETED"
+          ],
+          [
+            "بدء إزالة تثبيت الشاشة",
+            "LV_EVENT_SCREEN_UNLOAD_START"
+          ],
+          [
+            "يبدأ تحميل الشاشة",
+            "LV_EVENT_SCREEN_LOAD_START"
+          ],
+          [
+            "الشاشة بدأت التحميل",
+            "LV_EVENT_SCREEN_LOADED"
+          ],
+          [
+            "تم إلغاء تثبيت الشاشة",
+            "LV_EVENT_SCREEN_UNLOADED"
+          ],
+          [
+            "تغييرات الحجم",
+            "LV_EVENT_SIZE_CHANGED"
+          ],
+          [
+            "تغييرات الأسلوب",
+            "LV_EVENT_STYLE_CHANGED"
+          ],
+          [
+            "تغييرات التصميم",
+            "LV_EVENT_LAYOUT_CHANGED"
+          ],
+          [
+            "احصل على مقاسك الخاص",
+            "LV_EVENT_GET_SELF_SIZE"
+          ],
+          [
+            "فشل المنطقة",
+            "LV_EVENT_INVALIDATE_AREA"
+          ],
+          [
+            "تغييرات الدقة",
+            "LV_EVENT_RESOLUTION_CHANGED"
+          ],
+          [
+            "تغييرات تنسيق الألوان",
+            "LV_EVENT_COLOR_FORMAT_CHANGED"
+          ],
+          [
+            "طلبات التحديث",
+            "LV_EVENT_REFR_REQUEST"
+          ],
+          [
+            "بداية التحديث",
+            "LV_EVENT_REFR_START"
+          ],
+          [
+            "منعش وجاهز",
+            "LV_EVENT_REFR_READY"
+          ],
+          [
+            "بدء التصيير",
+            "LV_EVENT_RENDER_START"
+          ],
+          [
+            "التصيير جاهز",
+            "LV_EVENT_RENDER_READY"
+          ],
+          [
+            "بداية مسطحة",
+            "LV_EVENT_FLUSH_START"
+          ],
+          [
+            "تم الانتهاء من التحديث (تدفق)",
+            "LV_EVENT_FLUSH_FINISH"
+          ],
+          [
+            "بدء الانتظار في التحديث.",
+            "LV_EVENT_FLUSH_WAIT_START"
+          ],
+          [
+            "تحديث العمل وانتظر الانتهاء",
+            "LV_EVENT_FLUSH_WAIT_FINISH"
+          ],
+          [
+            "اكتمل تحديث التصميم",
+            "LV_EVENT_UPDATE_LAYOUT_COMPLETED"
+          ],
+          [
+            "التزامن الرأسي",
+            "LV_EVENT_VSYNC"
+          ],
+          [
+            "طلب التزامن الرأسي",
+            "LV_EVENT_VSYNC_REQUEST"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_obj_get_child": {
+    "message0": "إنشاء %1 فهرس باستخدام كائن الابن %2 %3",
+    "tooltip": "يسترجع الكائن الابن للفهرس المحدد للكائن الأب"
+  },
+  "lvgl_screen_active": {
+    "message0": "احصل على الشاشة الحالية",
+    "tooltip": "احصل على كائن الشاشة النشط الحالي"
+  },
+  "lvgl_screen_load": {
+    "message0": "شاشة التحميل %1",
+    "tooltip": "التبديل إلى الشاشة المحددة"
+  },
+  "lvgl_obj_create": {
+    "message0": "إنشاء %1 كائن أساسي %2 كائن الأب %3",
+    "tooltip": "إنشاء كائن حاوية أساسية",
+    "args0": [
+      {
+        "options": [
+          [
+            "كل الوضع",
+            "global"
+          ],
+          [
+            "محلي",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_screen_create": {
+    "message0": "أنشئ %1 شاشات جديدة %2",
+    "tooltip": "إنشاء كائن شاشة جديد",
+    "args0": [
+      {
+        "options": [
+          [
+            "كل الوضع",
+            "global"
+          ],
+          [
+            "محلي",
+            "local"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "lvgl_image_create": {
+    "message0": "إنشاء صورة %1 %2 كائن الأب %3",
+    "tooltip": "إنشاء تحكم في الصورة",
+    "args0": [
+      {
+        "options": [
+          [
+            "كل الوضع",
+            "global"
+          ],
+          [
+            "محلي",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_image_set_src": {
+    "message0": "اضبط الصورة %1 المصدر على %2",
+    "tooltip": "حدد مسار أو رمز الملف المصدر للصورة"
+  },
+  "lvgl_image_set_zoom": {
+    "message0": "اضبط الصورة %1 المقياس على %2",
+    "tooltip": "اضبط تكبير الصورة (256 هو الحجم الأصلي)"
+  },
+  "lvgl_image_set_angle": {
+    "message0": "اضبط زاوية الدوران %1 الصورة على %2",
+    "tooltip": "اضبط زاوية دوران الصورة (بوحدات 0.1 درجة)"
+  },
+  "lvgl_image_set_offset": {
+    "message0": "الصورة %1 الإزاحة X %2 Y %3",
+    "tooltip": "تعيين الإزاحة في الصورة"
+  },
+  "lvgl_chart_create": {
+    "message0": "إنشاء %1 مخطط %2 الكائن الأب %3",
+    "tooltip": "إنشاء تحكم في المخطط",
+    "args0": [
+      {
+        "options": [
+          [
+            "كل الوضع",
+            "global"
+          ],
+          [
+            "محلي",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_chart_set_type": {
+    "message0": "مخطط المجموعات %1 النوع %2",
+    "tooltip": "حدد نوع المخطط",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "مخطط الشريط",
+            "LV_CHART_TYPE_BAR"
+          ],
+          [
+            "مخطط الخط",
+            "LV_CHART_TYPE_LINE"
+          ],
+          [
+            "مخطط التشتت",
+            "LV_CHART_TYPE_SCATTER"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_chart_set_point_count": {
+    "message0": "تحديد المخطط %1 نقاط %2",
+    "tooltip": "حدد عدد نقاط البيانات المعروضة على الرسم البياني"
+  },
+  "lvgl_chart_add_series": {
+    "message0": "الجدول %1 إضافة سلسلة %2 الألوان %3",
+    "tooltip": "أضف سلسلة بيانات إلى المخطط",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "أحمر",
+            "lv_palette_main(LV_PALETTE_RED)"
+          ],
+          [
+            "أزرق",
+            "lv_palette_main(LV_PALETTE_BLUE)"
+          ],
+          [
+            "أخضر",
+            "lv_palette_main(LV_PALETTE_GREEN)"
+          ],
+          [
+            "برتقالي",
+            "lv_palette_main(LV_PALETTE_ORANGE)"
+          ],
+          [
+            "بنفسجي",
+            "lv_palette_main(LV_PALETTE_PURPLE)"
+          ],
+          [
+            "cyan",
+            "lv_palette_main(LV_PALETTE_CYAN)"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_chart_set_next_value": {
+    "message0": "اضبط المخطط %1 سلسلة %2 القيمة التالية إلى %3",
+    "tooltip": "قم بتعيين قيمة نقطة البيانات التالية للسلسلة"
+  },
+  "lvgl_chart_set_range": {
+    "message0": "مخطط المجموعات %1 سلسلة %2 النطاق الحد الأدنى %3 الحد الأقصى %4",
+    "tooltip": "اضبط نطاق محور السلسلة على شكل Y"
+  },
+  "lvgl_chart_set_update_mode": {
+    "message0": "وضع التحديث %1 الجدول المخطط %2",
+    "tooltip": "ضبط وضع تحديث البيانات للمخطط",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "التحول",
+            "LV_CHART_UPDATE_MODE_SHIFT"
+          ],
+          [
+            "الحلقات",
+            "LV_CHART_UPDATE_MODE_CIRCULAR"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_chart_refresh": {
+    "message0": "تحديث مخطط %1",
+    "tooltip": "تحديث عرض المخطط"
+  },
+  "lvgl_keyboard_create": {
+    "message0": "إنشاء %1 لوحة مفاتيح %2 كائن الأب %3",
+    "tooltip": "إنشاء تحكم لوحة مفاتيح",
+    "args0": [
+      {
+        "options": [
+          [
+            "كل الوضع",
+            "global"
+          ],
+          [
+            "محلي",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_keyboard_set_textarea": {
+    "message0": "تعيين لوحة المفاتيح %1 مربع نص Associate %2",
+    "tooltip": "تعيين مربع النص المرتبط بلوحة المفاتيح"
+  },
+  "lvgl_keyboard_set_mode": {
+    "message0": "ضبط وضع %1 لوحة المفاتيح %2",
+    "tooltip": "ضبط وضع لوحة المفاتيح",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "نص",
+            "LV_KEYBOARD_MODE_TEXT_LOWER"
+          ],
+          [
+            "رقم",
+            "LV_KEYBOARD_MODE_NUMBER"
+          ],
+          [
+            "الشخصيات الخاصة",
+            "LV_KEYBOARD_MODE_SPECIAL"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_keyboard_set_popovers": {
+    "message0": "تعيين لوحة المفاتيح %1 موجه النوافذ المنبثقة %2",
+    "tooltip": "قم بتعيين نافذة نافذة مفاتيح لوحة المفاتيح",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "تشغيل",
+            "true"
+          ],
+          [
+            "إيقاف",
+            "false"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_list_create": {
+    "message0": "إنشاء قائمة %1 %2 كائن الأب %3",
+    "tooltip": "إنشاء تحكم قائمة",
+    "args0": [
+      {
+        "options": [
+          [
+            "كل الوضع",
+            "global"
+          ],
+          [
+            "محلي",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_list_add_text": {
+    "message0": "قائمة %1 إضافة نص %2",
+    "tooltip": "إضافة عناصر نصية إلى القائمة"
+  },
+  "lvgl_list_add_btn": {
+    "message0": "قائمة %1 زر إضافة %2 أيقونة %3",
+    "tooltip": "أضف عناصر الأزرار إلى القائمة",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "بدون",
+            "NULL"
+          ],
+          [
+            "تشغيل",
+            "LV_SYMBOL_PLAY"
+          ],
+          [
+            "إيقاف مؤقت",
+            "LV_SYMBOL_PAUSE"
+          ],
+          [
+            "إيقاف",
+            "LV_SYMBOL_STOP"
+          ],
+          [
+            "الإعدادات",
+            "LV_SYMBOL_SETTINGS"
+          ],
+          [
+            "مستوى الصوت",
+            "LV_SYMBOL_VOLUME_MAX"
+          ],
+          [
+            "WiFi",
+            "LV_SYMBOL_WIFI"
+          ],
+          [
+            "بلوتوث",
+            "LV_SYMBOL_BLUETOOTH"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_tabview_create": {
+    "message0": "إنشاء %1 عرض التبويب %2 كائن الأب %3",
+    "tooltip": "إنشاء تحكم عرض التبويب",
+    "args0": [
+      {
+        "options": [
+          [
+            "كل الوضع",
+            "global"
+          ],
+          [
+            "محلي",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_tabview_add_tab": {
+    "message0": "عرض التبويب %1 إضافة التبويب %2",
+    "tooltip": "أضف علامة تبويب وأعد كائن محتوى التبويب"
+  },
+  "lvgl_set_img_font": {
+    "message0": "خط صورة الضبط %1",
+    "tooltip": "حدد ما إذا كنت سأفعل دعم خطوط الصورة",
+    "args0": [
+      {
+        "options": [
+          [
+            "تشغيل",
+            "true"
+          ],
+          [
+            "إيقاف",
+            "false"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_set_stdlib_malloc": {
+    "message0": "حدد نوع المكتبة القياسي %1",
+    "tooltip": "تعيين نوع المكتبة القياسي للاستخدام",
+    "args0": [
+      {
+        "options": [
+          [
+            "مدمج",
+            "LV_STDLIB_BUILTIN"
+          ],
+          [
+            "مكتبة C Standard",
+            "LV_STDLIB_CLIB"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_set_stdlib_string": {
+    "message0": "تعيين مكتبة السلاسل النصية من نوع %1",
+    "tooltip": "حدد نوع مكتبة السلاسل النصية المستخدمة",
+    "args0": [
+      {
+        "options": [
+          [
+            "مدمج",
+            "LV_STDLIB_BUILTIN"
+          ],
+          [
+            "مكتبة C Standard",
+            "LV_STDLIB_CLIB"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_set_stdlib_sprintf": {
+    "message0": "تعيين نوع دالة الإخراج في التنسيق %1",
+    "tooltip": "حدد نوع دالة الإخراج المهيأة المستخدمة",
+    "args0": [
+      {
+        "options": [
+          [
+            "مدمج",
+            "LV_STDLIB_BUILTIN"
+          ],
+          [
+            "مكتبة C Standard",
+            "LV_STDLIB_CLIB"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_set_theme": {
+    "message0": "موضوع الإعداد %1",
+    "tooltip": "حدد نمط الموضوع العالمي",
+    "args0": [
+      {
+        "options": [
+          [
+            "اللون الفاتح",
+            "light"
+          ],
+          [
+            "داكن",
+            "dark"
+          ]
+        ]
+      }
+    ]
+  },
+  "toolbox_categories": [
+    "التهيئة",
+    "شاشة",
+    "ضوابط العرض",
+    "التحكم في الإدخال",
+    "التحكم بالمراقبة",
+    "التصميم",
+    "الأسلوب",
+    "Events",
+    "الوضع والإشارات"
+  ]
+}

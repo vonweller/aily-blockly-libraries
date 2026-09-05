@@ -1,0 +1,156 @@
+{
+  "toolbox_name": "ESP32 I2C",
+  "toolbox_labels": {
+    "I2C主模式": "I2C 마스터 모드",
+    "数据传输（基础）": "데이터 전송(기본)",
+    "数据接收（基础）": "데이터 수신(기본)",
+    "简化操作": "운영 단순화",
+    "I2C从模式": "I2C 슬레이브 모드"
+  },
+  "esp32_i2c_begin": {
+    "message0": "I2C 통신 SDA 핀 %1 SCL 핀 %2 주파수 %3 초기화",
+    "tooltip": "ESP32의 I2C 통신을 초기화하고, SDA 및 SCL 핀과 통신 주파수를 설정하세요",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "100 (표준 모드)",
+            "100000"
+          ],
+          [
+            "400 (퀵 모드)",
+            "400000"
+          ],
+          [
+            "1000 (퀵 모드+)",
+            "1000000"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_i2c_begin_simple": {
+    "message0": "I2C 통신 초기화 (기본 핀 사용)",
+    "tooltip": "ESP32의 I2C 통신을 기본 핀으로 초기화하세요"
+  },
+  "esp32_i2c_scan_devices": {
+    "message0": "I2C 장치 스캐닝",
+    "tooltip": "발견한 I2C 장치 수를 스캔하고 반환하세요"
+  },
+  "esp32_i2c_begin_transmission": {
+    "message0": "기기로 데이터를 보내기 시작하세요%1",
+    "tooltip": "지정된 I2C 주소를 가진 장치로 데이터를 전송하기 시작하세요"
+  },
+  "esp32_i2c_write_byte": {
+    "message0": "바이트 data%1 쓰기",
+    "tooltip": "I2C 장치에 1바이트 데이터를 쓰세요"
+  },
+  "esp32_i2c_write_string": {
+    "message0": "string%1 작성해 보세요",
+    "tooltip": "I2C 장치에 문자열 데이터를 쓰기"
+  },
+  "esp32_i2c_end_transmission": {
+    "message0": "최종 데이터 전송",
+    "tooltip": "I2C 데이터 전송 종료, 오류 코드 반환 (0은 성공)"
+  },
+  "esp32_i2c_request_from": {
+    "message0": "기기에서 %2byte 데이터를 요청하세요%1",
+    "tooltip": "지정된 I2C 장치에서 지정된 바이트 수의 데이터를 요청합니다"
+  },
+  "esp32_i2c_available": {
+    "message0": "I2C는 바이트를 읽을 수 있습니다",
+    "tooltip": "I2C 수신 버퍼에서 읽을 수 있는 바이트 수를 반환합니다"
+  },
+  "esp32_i2c_read": {
+    "message0": "I2C 데이터 읽기",
+    "tooltip": "I2C 수신 버퍼에서 1바이트 데이터를 읽습니다"
+  },
+  "esp32_i2c_slave_begin": {
+    "message0": "I2C 슬레이브 모드 주소를 초기화하세요 SDA 핀 %2 SCL 핀 %1 주소 %3",
+    "tooltip": "ESP32의 I2C 슬레이브 모드를 초기화하고, 슬레이브 장치 주소와 핀을 설정하세요"
+  },
+  "esp32_i2c_on_receive": {
+    "message0": "데이터가 received%1 %2",
+    "tooltip": "I2C가 장치에서 데이터를 받을 때 콜백 기능을 설정하세요"
+  },
+  "esp32_i2c_on_request": {
+    "message0": "마스터 장치가 데이터를 요청할 때%1 %2",
+    "tooltip": "I2C 슬레이브 장치가 마스터 장치의 요청에 응답할 때 콜백 기능을 설정하세요"
+  },
+  "esp32_i2c_slave_print": {
+    "message0": "device%1에서 문자열을 보내기",
+    "tooltip": "I2C는 슬레이브 장치에서 마스터 장치로 문자열 데이터를 전송합니다"
+  },
+  "esp32_i2c_write_to_device": {
+    "message0": "%1에 데이터를 쓰device%2",
+    "tooltip": "지정된 I2C 장치에 데이터를 쓰는 간소화된 버전",
+    "args0": [
+      {
+        "options": [
+          [
+            "0x3C (OLED 디스플레이)",
+            "0x3C"
+          ],
+          [
+            "0x48 (ADS1115)",
+            "0x48"
+          ],
+          [
+            "0x68 (MPU6050)",
+            "0x68"
+          ],
+          [
+            "0x76 (BMP280)",
+            "0x76"
+          ],
+          [
+            "0x77 (BMP280 백업)",
+            "0x77"
+          ],
+          [
+            "사용자 지정 주소",
+            "CUSTOM"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "esp32_i2c_read_from_device": {
+    "message0": "기기에서 %2바이트의 데이터를 읽어%1",
+    "tooltip": "지정된 I2C 장치에서 지정된 바이트 수의 데이터를 읽습니다",
+    "args0": [
+      {
+        "options": [
+          [
+            "0x3C (OLED 디스플레이)",
+            "0x3C"
+          ],
+          [
+            "0x48 (ADS1115)",
+            "0x48"
+          ],
+          [
+            "0x68 (MPU6050)",
+            "0x68"
+          ],
+          [
+            "0x76 (BMP280)",
+            "0x76"
+          ],
+          [
+            "0x77 (BMP280 백업)",
+            "0x77"
+          ],
+          [
+            "사용자 지정 주소",
+            "CUSTOM"
+          ]
+        ]
+      },
+      null
+    ]
+  }
+}

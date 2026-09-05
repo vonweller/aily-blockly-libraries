@@ -1,0 +1,164 @@
+{
+  "toolbox_name": "AccelStepper",
+  "toolbox_labels": {
+    "初始化": "Initialisierung",
+    "运动控制": "Bewegungssteuerung",
+    "速度与加速度": "Geschwindigkeit und Beschleunigung",
+    "状态查询": "Statusabfrage",
+    "位置控制": "Positionskontrolle",
+    "输出控制": "Ausgangskontrolle",
+    "阻塞模式": "Sperrmodus",
+    "多电机同步控制 (MultiStepper)": "Synchronsteuerung mehrerer Motoren (MultiStepper)"
+  },
+  "accelstepper_setup": {
+    "message0": "Erstellen Sie einen Schrittmotor %1 Interface type%2 Pin-%3 %4 %5 %6",
+    "tooltip": "Erstellen Sie Schrittmotorobjekte, die mehrere Schnittstellentypen unterstützen",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "4 Zeilen im vollen Takt",
+            "4"
+          ],
+          [
+            "Zwei Zeilen im vollen Takt",
+            "2"
+          ],
+          [
+            "3 Zeilen im vollen Takt",
+            "3"
+          ],
+          [
+            "3. Ein halber Schritt in der Reihe",
+            "6"
+          ],
+          [
+            "4 Zeilen und ein halber Schritt",
+            "8"
+          ]
+        ]
+      },
+      null,
+      null,
+      null,
+      null
+    ]
+  },
+  "accelstepper_setup_driver": {
+    "message0": "Erstellen Sie einen Schrittmotor %1 Antriebsmodus (Step + Direction), Stufenstift %2 Richtung pin%3",
+    "tooltip": "Erstellen Sie Schrittmotorobjekte im Treibermodus (Step + Richtung)"
+  },
+  "accelstepper_move_to": {
+    "message0": "Stell den Schrittmotor %1 in Position %2",
+    "tooltip": "Stellen Sie die Zielposition ein (absolute Position)"
+  },
+  "accelstepper_move": {
+    "message0": "Lassen Sie den Schrittmotor %1 %2 Schritte zueinander bewegen",
+    "tooltip": "Die relative Bewegung legt die Anzahl der Schritte fest"
+  },
+  "accelstepper_run": {
+    "message0": "Schrittmotor %1 führt einen Schritt (mit Beschleunigung) aus.",
+    "tooltip": "Führen Sie einen Schritt mit Beschleunigung/Verzögerung aus (erfordert häufige Aufrufe in der Schleife)"
+  },
+  "accelstepper_run_speed": {
+    "message0": "Lass den Schrittmotor %1 einen Schritt bei konstanter Geschwindigkeit ausführen",
+    "tooltip": "Ausführung eines Schrittes mit konstanter Geschwindigkeit (erfordert häufige Aufrufe in der Schleife)"
+  },
+  "accelstepper_stop": {
+    "message0": "Stopp den Schrittmotor %1",
+    "tooltip": "Stoppen Sie den Motor so schnell wie möglich"
+  },
+  "accelstepper_set_max_speed": {
+    "message0": "Stellen Sie die maximale Geschwindigkeit des Schrittmotors %1 auf %2 Schritten pro Sekunde ein",
+    "tooltip": "Maximale Geschwindigkeit einstellen (Einheit: Schritte pro Sekunde)"
+  },
+  "accelstepper_set_speed": {
+    "message0": "Stellen Sie den Schrittmotor %1 auf eine konstante Geschwindigkeit von %2 Schritten pro Sekunde ein",
+    "tooltip": "Stellen Sie eine konstante Geschwindigkeit ein (Einheit: Schritte pro Sekunde, für runSpeed-Modus)"
+  },
+  "accelstepper_get_speed": {
+    "message0": "Ermitteln Sie die aktuelle Drehzahl des Schrittmotors %1",
+    "tooltip": "Erfassen Sie die aktuelle Geschwindigkeit (Einheit: Schritte/Sekunde)"
+  },
+  "accelstepper_set_acceleration": {
+    "message0": "Stellen Sie die Beschleunigung des Schrittmotors %1 auf %2 Schritte pro Sekunde ein²",
+    "tooltip": "Eingestellte Beschleunigung (Einheit: Schritte/Sekunde²)"
+  },
+  "accelstepper_get_current_position": {
+    "message0": "Finde die aktuelle Position des Schrittmotors %1",
+    "tooltip": "Erhalten Sie Ihren aktuellen Standort (Einheit: Schritte)"
+  },
+  "accelstepper_set_current_position": {
+    "message0": "Stellen Sie die aktuelle Position des Schrittmotors %1 auf %2",
+    "tooltip": "Stellen Sie die aktuelle Position ein (für Operationen wie Nullstellen)"
+  },
+  "accelstepper_distance_to_go": {
+    "message0": "Ermitteln Sie die Entfernung vom Schrittmotor %1 zum Zielort",
+    "tooltip": "Entfernung zum Zielort (Einheit: Schritte)"
+  },
+  "accelstepper_is_running": {
+    "message0": "Ob der Schrittmotor %1 läuft",
+    "tooltip": "Prüft, ob der Motor gerade läuft."
+  },
+  "accelstepper_enable_outputs": {
+    "message0": "Aktivieren Sie den Ausgang des Schrittmotors %1",
+    "tooltip": "Motorausgang aktivieren"
+  },
+  "accelstepper_disable_outputs": {
+    "message0": "Deaktiviere die Ausgabe des Schrittmotors %1",
+    "tooltip": "Motorausgang deaktivieren (Energiesparen)"
+  },
+  "accelstepper_run_to_position": {
+    "message0": "Ermöglicht es dem Schrittmotor, %1 die Zielposition zu erreichen (Blocken)",
+    "tooltip": "Laufe zur Zielposition (Blockmodus, warte bis zur Ankunft)"
+  },
+  "accelstepper_run_to_new_position": {
+    "message0": "So kann der Schrittmotor %1 auf eine neue Position laufen %2 (Blockade)",
+    "tooltip": "Laufe zu einem neuen Ort (Blockmodus, warte bis zur Ankunft)"
+  },
+  "accelstepper_run_speed_to_position": {
+    "message0": "Ermöglicht es, dass der Schrittmotor %1 mit konstanter Geschwindigkeit bis zur Zielposition läuft",
+    "tooltip": "Läuft mit konstanter Geschwindigkeit bis zur Zielposition (erfordert häufige Anrufe in der Schleife)"
+  },
+  "accelstepper_set_enable_pin": {
+    "message0": "Stell den Enable Pin für den Schrittmotor %1 auf %2",
+    "tooltip": "Setze den Enable-Pin (für den Treiber)"
+  },
+  "multistepper_create": {
+    "message0": "Erstellung von multimotorischen synchronen Steuerungen %1",
+    "tooltip": "Erstellen Sie MultiStepper-Objekte, die bis zu 10 Schrittmotoren verwalten können"
+  },
+  "multistepper_add_stepper": {
+    "message0": "Fügen Sie dem Mehrmotor-Controller %1 Schrittmotor hinzu%2",
+    "tooltip": "Fügen Sie dem Mehrmotor-Controller einen einzelnen Schrittmotor hinzu"
+  },
+  "multistepper_move_to": {
+    "message0": "Synchronisieren Sie alle Motoren im Multimotor-Controller %1 mit ihrem positions%2",
+    "tooltip": "Stellen Sie das Array der Zielpositionen für alle Motoren {pos1, pos2, ...} ein, und sie kommen gleichzeitig mit konstanter Geschwindigkeit an"
+  },
+  "multistepper_move_to_2": {
+    "message0": "Lassen Sie die beiden Motoren im Mehrmotorencontroller synchron %1 bewegen: Motor 1 Position %2 Motor 2 Position %3",
+    "tooltip": "Stellen Sie die Zielpositionen für zwei Motoren fest, geeignet für Doppelachsenanwendungen wie XY-Plattformen"
+  },
+  "multistepper_move_to_3": {
+    "message0": "Synchronisieren Sie die drei Motoren im Mehrmotoren-Controller %1: Motor 1 bei %2, Motor 2 bei %3, Motor 3 bei %4",
+    "tooltip": "Stellen Sie die Zielpositionen für drei Motoren fest, geeignet für dreiachsige Anwendungen wie die XYZ-Plattform"
+  },
+  "multistepper_move_to_4": {
+    "message0": "Multimotor-Controller %1 Synchronisiert die Bewegung von 4 Motoren: Motor 1 position%2 Motor 2 Position %3, Motor 3 Position %4, Motor 4 Position %5",
+    "tooltip": "Stellen Sie die Zielpositionen für vier Motoren ein"
+  },
+  "multistepper_run": {
+    "message0": "Lass den Multimotor-Controller %1 einen Schritt ausführen (nicht blockierend)",
+    "tooltip": "Um einen Schritt auszuführen, muss man ihn häufig in der Schleife aufrufen"
+  },
+  "multistepper_run_speed_to_position": {
+    "message0": "So kann der Multimotor-Controller %1 zur Zielposition laufen (Blocken)",
+    "tooltip": "Laufe zur Zielposition (Blockmodus, warte bis zur Ankunft)"
+  },
+  "multistepper_positions_array": {
+    "message0": "Erstellen Sie ein Positionsarray %1",
+    "tooltip": "Erstellen Sie ein Positionsarray für multistepper_move_to"
+  }
+}

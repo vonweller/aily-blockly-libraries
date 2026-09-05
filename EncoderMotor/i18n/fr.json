@@ -1,0 +1,69 @@
+{
+  "toolbox_name": "Moteurs de codage",
+  "toolbox_labels": {
+    "电机配置": "Configuration du moteur",
+    "电机控制": "Contrôle du moteur",
+    "状态查询": "Requête d'état"
+  },
+  "encoder_motor_create": {
+    "message0": "Créer un moteur codé %1 broches moteur A %2 B %3 broches encodeurs A %4 B %5 PPR%6 Rapport de réduction %7 Phase de %8",
+    "tooltip": "Créer des objets moteurs encodés, configurer les broches moteur et encodeur, le PPR et le rapport de réduction",
+    "args0": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      {
+        "options": [
+          [
+            "L’aspect A mène",
+            "em::EncoderMotor::kAPhaseLeads"
+          ],
+          [
+            "B ouvre la voie",
+            "em::EncoderMotor::kBPhaseLeads"
+          ]
+        ]
+      }
+    ]
+  },
+  "encoder_motor_set_pid": {
+    "message0": "Réglez les paramètres du moteur encodé %1 PID P%2 I%3 D%4",
+    "tooltip": "Définir les paramètres du contrôleur PID de l’anneau de vitesse"
+  },
+  "encoder_motor_run_pwm": {
+    "message0": "Moteur codé %1 fonctionne avec %2 de puissance (-1023~1023)",
+    "tooltip": "Moteurs à entraînement PWM réglés directement, plage de -1023 à 1023, inversion de valeur négative"
+  },
+  "encoder_motor_run_speed": {
+    "message0": "Moteur de codage %1 Fonctionne à une vitesse %2 régime (-300~300)",
+    "tooltip": "La vitesse du moteur est contrôlée via une boucle de vitesse, allant de -300 à 300 tr/min, avec inversion négative"
+  },
+  "encoder_motor_stop": {
+    "message0": "Arrêtez le codage du moteur %1",
+    "tooltip": "Arrêtez le moteur"
+  },
+  "encoder_motor_get_speed": {
+    "message0": "Moteur encodé %1 Vitesse de courant (RPM)",
+    "tooltip": "Obtenir la vitesse actuelle du moteur"
+  },
+  "encoder_motor_get_pwm": {
+    "message0": "Moteur codé %1 cycle de fonctionnement PWM actuel",
+    "tooltip": "Obtenir le cycle de travail PWM actuel du moteur"
+  },
+  "encoder_motor_get_pulse": {
+    "message0": "Moteur encodé %1 nombre d’impulsions codé",
+    "tooltip": "Obtenir le nombre d’impulsions de l’encodeur"
+  },
+  "encoder_motor_get_revolutions": {
+    "message0": "Moteur de codage %1 Nombre de rotations",
+    "tooltip": "Obtenir le nombre de rotations que le moteur a tournées ; les chiffres positifs indiquent la rotation avant, les chiffres négatifs indiquent la rotation inverse"
+  },
+  "encoder_motor_reset_pulse": {
+    "message0": "Réinitialisez le moteur de codage %1 le nombre d’impulsions",
+    "tooltip": "Réinitialisez le nombre d’impulsions de l’encodeur à 0 (réinitialisez le nombre de tours simultanément)."
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "toolbox_name": "MAX31865温度センサー",
+  "max31865_init": {
+    "message0": "温度センサーCSピンの初期化 %1 接続方法 %2 センサータイプ %3",
+    "args0": [
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": [
+          [
+            "2線式",
+            "MAX31865_2WIRE"
+          ],
+          [
+            "3線式",
+            "MAX31865_3WIRE"
+          ],
+          [
+            "4線式",
+            "MAX31865_4WIRE"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "PT100",
+            "MAX31865_PT100"
+          ],
+          [
+            "PT1000",
+            "MAX31865_PT1000"
+          ]
+        ]
+      }
+    ]
+  },
+  "max31865_read": {
+    "message0": "温度センサーを読み取る 温度を取得する %1 抵抗を取得する %2 ステータスを取得する %3"
+  },
+  "max31865_set_low_threshold": {
+    "message0": "温度センサーの下限障害しきい値を設定 %1"
+  },
+  "max31865_set_high_threshold": {
+    "message0": "温度センサーの高故障しきい値を設定 %1"
+  },
+  "max31865_check_fault": {
+    "message0": "温度センサーの障害を確認してください %1",
+    "args0": [
+      {
+        "options": [
+          [
+            "高温障害",
+            "MAX31865_FAULT_TEMP_HIGH"
+          ],
+          [
+            "低温障害",
+            "MAX31865_FAULT_TEMP_LOW"
+          ],
+          [
+            "基準抵抗高故障",
+            "MAX31865_FAULT_REFIN_HIGH"
+          ],
+          [
+            "基準抵抗低下/オープン故障",
+            "MAX31865_FAULT_REFIN_LOW_OPEN"
+          ],
+          [
+            "温度センサー低下/オープン故障",
+            "MAX31865_FAULT_RTDIN_LOW_OPEN"
+          ],
+          [
+            "電圧範囲外故障",
+            "MAX31865_FAULT_VOLTAGE_OOR"
+          ]
+        ]
+      }
+    ]
+  }
+}

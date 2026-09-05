@@ -1,0 +1,312 @@
+{
+  "toolbox_name": "رادار الموجة المليمترية C4002",
+  "dfrobot_c4002_init": {
+    "message0": "تهيئة رادار C4002 %1 منفذ تسلسلي %2 معدل التردد %3 دبوس RX %4 TX %5 OUT %6",
+    "tooltip": "قم بتهيئة DFRobot C4002. يستخدم ESP32 المنفذ التسلسلي الصلب المحدد ودبابيس RX/TX، ويستخدم UNO/ESP8266 SoftwareSerial، وOUT pin 255 يشير إلى عدم الاستخدام."
+  },
+  "dfrobot_c4002_update": {
+    "message0": "تحديث بيانات إشعارات C4002 %1",
+    "tooltip": "اتصل ب getNoteInfo لتحديث أنواع الإشعارات، ومعايرة العد التنازلي، واكتشاف النتائج."
+  },
+  "dfrobot_c4002_get_note": {
+    "message0": "C4002 %1 note %2",
+    "tooltip": "اقرأ نوع الإشعار أو العد التنازلي للمعايرة من آخر تحديث.",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "نوع الإشعار",
+            "NOTE_TYPE"
+          ],
+          [
+            "معايرة العد التنازلي",
+            "CALIB_COUNTDOWN"
+          ]
+        ]
+      }
+    ]
+  },
+  "dfrobot_c4002_get_value": {
+    "message0": "C4002 %1 اقرأ %2",
+    "tooltip": "اقرأ نتائج اكتشاف الرادار أو قيم التكوين.",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "حالة الهدف",
+            "TARGET_STATE"
+          ],
+          [
+            "لوكس شدة الضوء",
+            "LIGHT"
+          ],
+          [
+            "هناك عد تنازلي ل s",
+            "PRESENCE_COUNTDOWN"
+          ],
+          [
+            "هناك مؤشر بوابة المسافة",
+            "PRESENCE_GATE_INDEX"
+          ],
+          [
+            "هناك مسافة هدف تبلغ m",
+            "PRESENCE_DISTANCE"
+          ],
+          [
+            "هناك طاقة مستهدفة",
+            "PRESENCE_ENERGY"
+          ],
+          [
+            "المسافة إلى هدف الحركة m",
+            "MOTION_DISTANCE"
+          ],
+          [
+            "السرعة المستهدفة بالمتر/ثانية",
+            "MOTION_SPEED"
+          ],
+          [
+            "طاقة الهدف في التمرين",
+            "MOTION_ENERGY"
+          ],
+          [
+            "اتجاه الحركة",
+            "MOTION_DIRECTION"
+          ],
+          [
+            "حالة هدف OUT",
+            "OUT_TARGET_STATE"
+          ],
+          [
+            "عتبة الإضاءة",
+            "LIGHT_THRESHOLD"
+          ],
+          [
+            "أقرب مسافة كشف سم",
+            "RANGE_CLOSEST"
+          ],
+          [
+            "أقصى مسافة كشف بالسنتيمترات",
+            "RANGE_FARTHEST"
+          ],
+          [
+            "تأخير اختفاء الهدف s",
+            "DISAPPEAR_DELAY"
+          ],
+          [
+            "وضع دبوس الخروج",
+            "OUT_PIN_MODE"
+          ],
+          [
+            "وضع الدقة",
+            "RESOLUTION_MODE"
+          ],
+          [
+            "حساسية الحركة",
+            "MOTION_SENSITIVITY"
+          ],
+          [
+            "الحساسية موجودة",
+            "PRESENCE_SENSITIVITY"
+          ]
+        ]
+      }
+    ]
+  },
+  "dfrobot_c4002_set_led": {
+    "message0": "إعداد C4002 %1 %2 LED %3",
+    "tooltip": "قم بإعداد مفتاح لتشغيل أو إخراج الأضواء.",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "run",
+            "RUN"
+          ],
+          [
+            "الإنتاج",
+            "OUT"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "إيقاف",
+            "eLedOff"
+          ],
+          [
+            "تشغيل",
+            "eLedOn"
+          ]
+        ]
+      }
+    ]
+  },
+  "dfrobot_c4002_set_out_pin_mode": {
+    "message0": "وضع Set OUT %1 C4002 %2",
+    "tooltip": "حدد شرط إخراج دبوس الخروج.",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "التمارين فقط",
+            "eOutpinMode1"
+          ],
+          [
+            "هو موجود فقط",
+            "eOutpinMode2"
+          ],
+          [
+            "الحركة أو الوجود",
+            "eOutpinMode3"
+          ]
+        ]
+      }
+    ]
+  },
+  "dfrobot_c4002_set_resolution": {
+    "message0": "دقة إعداد C4002 %1 %2",
+    "tooltip": "اضبط دقة بوابة المسافة.",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "80 cm",
+            "eResolution80Cm"
+          ],
+          [
+            "20 cm",
+            "eResolution20Cm"
+          ]
+        ]
+      }
+    ]
+  },
+  "dfrobot_c4002_set_detect_range": {
+    "message0": "C4002 %1 نطاق الكشف أقرب سم %2 أبعد سم %3",
+    "tooltip": "اضبط نطاق مسافة الكشف، وحدة السم، عادة من 0 إلى 1100."
+  },
+  "dfrobot_c4002_set_report_period": {
+    "message0": "دورة التقارير %1 C4002 0.1 ثانية متعددة %2",
+    "tooltip": "اضبط دورة تقارير الإشعارات: 10 تعني ثانية واحدة."
+  },
+  "dfrobot_c4002_set_light_threshold": {
+    "message0": "C4002 %1 عتبة إضاءة لوكس %2",
+    "tooltip": "اضبط عتبة الضوء المحيط؛ 0 تعني أنها غير محدودة بالضوء."
+  },
+  "dfrobot_c4002_set_target_disappear_delay": {
+    "message0": "C4002 %1 تأخير اختفاء الهدف %2",
+    "tooltip": "حدد مدة الحالة بعد اختفاء الهدف."
+  },
+  "dfrobot_c4002_set_lock_time": {
+    "message0": "C4002 %1 أوقات القفل %2",
+    "tooltip": "اضبط وقت قفل الكشف من مأهول إلى غير مأهول."
+  },
+  "dfrobot_c4002_set_sensitivity": {
+    "message0": "إعداد C4002 %1 الحساسية %2 %3",
+    "tooltip": "قم بإعداد مجموعة حساسية للحركة أو الكشف عن وجود مجموعة.",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "أبواب الرياضة",
+            "eMotionDistGate"
+          ],
+          [
+            "بوابة الوجود",
+            "ePresenceDistGate"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "منخفض",
+            "eLowThreshGroup"
+          ],
+          [
+            "mid",
+            "eMidThreshGroup"
+          ],
+          [
+            "عال",
+            "eHighThreshGroup"
+          ],
+          [
+            "custom",
+            "eCustomThreshGroup"
+          ]
+        ]
+      }
+    ]
+  },
+  "dfrobot_c4002_configure_all_gates": {
+    "message0": "C4002 %1 اضبط كل %2 على %3",
+    "tooltip": "تفعيل أو عطل 25 بوابة مسافة دفعة.",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "أبواب الرياضة",
+            "eMotionDistGate"
+          ],
+          [
+            "بوابة الوجود",
+            "ePresenceDistGate"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "تمكين",
+            "C4002_ENABLE"
+          ],
+          [
+            "تعطيل",
+            "C4002_DISABLE"
+          ]
+        ]
+      }
+    ]
+  },
+  "dfrobot_c4002_set_gate_threshold_all": {
+    "message0": "C4002 %1 جميع %2 العتبة %3",
+    "tooltip": "اضبط 25 عتبة مسافة بالجملة، تتراوح من 0 إلى 99.",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "أبواب الرياضة",
+            "eMotionDistGate"
+          ],
+          [
+            "بوابة الوجود",
+            "ePresenceDistGate"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "dfrobot_c4002_start_calibration": {
+    "message0": "C4002 %1 تأخير المعايرة البيئية %2 مستمر %3",
+    "tooltip": "ابدأ معايرة الضوضاء البيئية."
+  },
+  "dfrobot_c4002_factory_reset": {
+    "message0": "إعادة ضبط المصنع %1 C4002",
+    "tooltip": "أعد المستشعر إلى إعدادات المصنع."
+  },
+  "dfrobot_c4002_set_baudrate": {
+    "message0": "C4002 %1 ضبط معدل بود%2",
+    "tooltip": "قم بتعديل معدل البودد لمنفذ المستشعر التسلسلي؛ بعد إعادة التشغيل الناجحة، يبدأ المفعول."
+  }
+}

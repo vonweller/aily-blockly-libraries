@@ -1,0 +1,274 @@
+{
+  "toolbox_name": "Piloto de Verão",
+  "toolbox_labels": {
+    "按键和传感器": "Botões e sensores",
+    "JY61P六轴传感器": "Sensor de seis eixos JY61P",
+    "舵机控制": "Servocontrole",
+    "TT马达": "Motor TT",
+    "步进电机": "motor de passo"
+  },
+  "car_is_key_pressed": {
+    "message0": "o botão %1 está pressionado",
+    "tooltip": "Verifique se os botões integrados foram pressionados",
+    "args0": [
+      {
+        "options": [
+          [
+            "A",
+            "0"
+          ],
+          [
+            "B",
+            "1"
+          ],
+          [
+            "C",
+            "2"
+          ]
+        ]
+      }
+    ]
+  },
+  "car_servo_angle": {
+    "message0": "Ajuste o servo %1 ângulo para %2 graus",
+    "tooltip": "Ajuste o ângulo servo do STM32 (0-180°)",
+    "args0": [
+      {
+        "options": [
+          [
+            "S1",
+            "0"
+          ],
+          [
+            "S2",
+            "1"
+          ],
+          [
+            "S3",
+            "2"
+          ],
+          [
+            "S4",
+            "3"
+          ],
+          [
+            "S5",
+            "4"
+          ],
+          [
+            "S6",
+            "5"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "car_motor_control_single": {
+    "message0": "Controle do motor TT %1 direção %2 velocidade %3 (0-255)",
+    "tooltip": "Motor TT controlado via STM32 (faixa de velocidades 0-255)",
+    "args0": [
+      {
+        "options": [
+          [
+            "EL1",
+            "0"
+          ],
+          [
+            "ER1",
+            "1"
+          ],
+          [
+            "EL2",
+            "2"
+          ],
+          [
+            "ER2",
+            "3"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "Parar",
+            "0"
+          ],
+          [
+            "Para frente",
+            "1"
+          ],
+          [
+            "reverse",
+            "2"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "car_motor_stop_single": {
+    "message0": "Pare o motor TT %1",
+    "tooltip": "Parar um único motor TT",
+    "args0": [
+      {
+        "options": [
+          [
+            "EL1",
+            "0"
+          ],
+          [
+            "ER1",
+            "1"
+          ],
+          [
+            "EL2",
+            "2"
+          ],
+          [
+            "ER2",
+            "3"
+          ]
+        ]
+      }
+    ]
+  },
+  "car_stepper_control": {
+    "message0": "Motor de passo %1 %2 rotação %3 graus, velocidade %4 ms/batimento",
+    "tooltip": "Controle o motor de passo (0-65535 graus) via STM32, com velocidades de 1-10ms por batida, quanto menor a velocidade",
+    "args0": [
+      {
+        "options": [
+          [
+            "L",
+            "0"
+          ],
+          [
+            "R",
+            "1"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "Sentido horário",
+            "0"
+          ],
+          [
+            "Sentido anti-horário",
+            "1"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "car_stepper_control_turns": {
+    "message0": "Motor de passo %1 %2 rotação %3 rotações, velocidade %4 ms/batida",
+    "tooltip": "Controle o motor de passo com STM32 por um número especificado de voltas (1 volta = 360 graus), com uma velocidade de 1 a 10ms por batida, menor a velocidade",
+    "args0": [
+      {
+        "options": [
+          [
+            "L",
+            "0"
+          ],
+          [
+            "R",
+            "1"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "Sentido horário",
+            "0"
+          ],
+          [
+            "Sentido anti-horário",
+            "1"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "jy61p_set_zero": {
+    "message0": "Defina o ângulo de atitude ponto zero",
+    "tooltip": "Defina o ângulo de atitude atual para zero (posição de referência)"
+  },
+  "jy61p_get_angle": {
+    "message0": "Obtenha o Ângulo da Postura %1",
+    "tooltip": "Obtenha o ângulo de atitude JY61P, retornando de 0 a 360 graus",
+    "args0": [
+      {
+        "options": [
+          [
+            "Guiada (ângulo de rumo)",
+            "YAW"
+          ],
+          [
+            "Ângulo de Afinação (Pitch)",
+            "PITCH"
+          ],
+          [
+            "Roll",
+            "ROLL"
+          ]
+        ]
+      }
+    ]
+  },
+  "jy61p_get_acceleration": {
+    "message0": "Obtendo aceleração %1",
+    "tooltip": "Obtenha aceleração JY61P, unidade: g, alcance: -16~16",
+    "args0": [
+      {
+        "options": [
+          [
+            "Eixo X",
+            "X"
+          ],
+          [
+            "Eixo Y",
+            "Y"
+          ],
+          [
+            "Eixo Z",
+            "Z"
+          ]
+        ]
+      }
+    ]
+  },
+  "jy61p_get_gyro": {
+    "message0": "Obtenção da velocidade angular %1",
+    "tooltip": "Obtenha a velocidade angular do JY61P, unidade: °/s, alcance: -2000~2000",
+    "args0": [
+      {
+        "options": [
+          [
+            "Eixo X",
+            "X"
+          ],
+          [
+            "Eixo Y",
+            "Y"
+          ],
+          [
+            "Eixo Z",
+            "Z"
+          ]
+        ]
+      }
+    ]
+  },
+  "car_servo_angle_value": {
+    "message0": "Ângulo %1 graus",
+    "tooltip": "Valor do ângulo servo (0-180 graus)"
+  }
+}

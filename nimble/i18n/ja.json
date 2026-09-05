@@ -1,0 +1,247 @@
+{
+  "toolbox_name": "NimBLE Bluetooth",
+  "toolbox_labels": {
+    "初始化": "初期化",
+    "服务端": "サーバー",
+    "广播": "放送",
+    "服务端事件": "サーバー側のイベント",
+    "扫描": "スキャン",
+    "客户端": "クライアント"
+  },
+  "nimble_init": {
+    "message0": "NimBLEデバイス名の初期化%1",
+    "tooltip": "NimBLE Bluetoothスタックを初期化し、デバイスのブロードキャスト名を設定します"
+  },
+  "nimble_deinit": {
+    "message0": "NimBLEをシャットダウンしてリソースを解放%1",
+    "tooltip": "NimBLE Bluetoothスタックを閉じて、すべての設定をクリアするかどうかを選びます"
+  },
+  "nimble_create_server": {
+    "message0": "BLEサーバーの作成%1",
+    "tooltip": "BLEサーバーインスタンスを作成する"
+  },
+  "nimble_server_create_service": {
+    "message0": "サーバー%1サービスUUIDを作成%2保存%3",
+    "tooltip": "サーバー上でBLEサービスを作成します"
+  },
+  "nimble_service_create_characteristic": {
+    "message0": "サービス %1 機能UUIDの作成 %2 保存して%3",
+    "tooltip": "サービス内で読みやすく書きやすい特徴値を作成します"
+  },
+  "nimble_service_create_characteristic_props": {
+    "message0": "サービス %1 機能の作成 UUID %2属性 %3 保存 to %4",
+    "tooltip": "サービス内で指定された属性を持つ固有値を作成します",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "読み取る + 書き込み",
+            "READ_WRITE"
+          ],
+          [
+            "リード・オンリー",
+            "READ"
+          ],
+          [
+            "ただ書いてくれ",
+            "WRITE"
+          ],
+          [
+            "読む + 通知",
+            "READ_NOTIFY"
+          ],
+          [
+            "Read + Write + notify",
+            "READ_WRITE_NOTIFY"
+          ],
+          [
+            "読み込み+書き込み+表示",
+            "READ_WRITE_INDICATE"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "nimble_characteristic_set_value": {
+    "message0": "特徴%1セット値%2",
+    "tooltip": "固有値のデータを設定します"
+  },
+  "nimble_characteristic_get_value": {
+    "message0": "特徴の価値を%1",
+    "tooltip": "固有値を取得するためのデータ"
+  },
+  "nimble_characteristic_notify": {
+    "message0": "機能 %1通知を送信",
+    "tooltip": "通知は加入クライアントに送信されます"
+  },
+  "nimble_service_start": {
+    "message0": "打ち上げサービス%1",
+    "tooltip": "BLEサービス開始"
+  },
+  "nimble_start_advertising": {
+    "message0": "放送開始",
+    "tooltip": "デバイスを発見できるようにBLEブロードキャストを開始してください"
+  },
+  "nimble_stop_advertising": {
+    "message0": "放送をやめろ",
+    "tooltip": "BLE放送を停止せよ"
+  },
+  "nimble_advertising_add_service": {
+    "message0": "ブロードキャストサービス追加UUID%1",
+    "tooltip": "サービスUUIDをブロードキャストデータに追加する"
+  },
+  "nimble_advertising_set_name": {
+    "message0": "放送設定Name%1",
+    "tooltip": "ブロードキャスト表示用のデバイス名を設定する"
+  },
+  "nimble_server_connected_count": {
+    "message0": "サーバー%1接続されたクライアント数",
+    "tooltip": "現在接続されているクライアント数を把握してください"
+  },
+  "nimble_on_connect": {
+    "message0": "クライアントがサーバーに接続したとき%1",
+    "tooltip": "クライアント接続時に実行されるコード",
+    "message1": "%1 を実行します"
+  },
+  "nimble_on_disconnect": {
+    "message0": "クライアントがサーバーから切断されると、接続%1",
+    "tooltip": "クライアントが切断されたときに実行されるコード",
+    "message1": "%1 を実行します"
+  },
+  "nimble_on_characteristic_write": {
+    "message0": "特徴%1が書かれるとき",
+    "tooltip": "クライアントが特徴値を書いたときに実行されるコード",
+    "message1": "%1 を実行します"
+  },
+  "nimble_start_scan": {
+    "message0": "%1秒間スキャンを始めてください",
+    "tooltip": "BLEデバイスのスキャンを開始します。0は連続スキャンを意味します。"
+  },
+  "nimble_stop_scan": {
+    "message0": "スキャンをやめろ",
+    "tooltip": "BLEスキャンを停止"
+  },
+  "nimble_is_scanning": {
+    "message0": "スキャン中",
+    "tooltip": "スキャンが進行中かどうか確認してください"
+  },
+  "nimble_on_scan_result": {
+    "message0": "デバイスにスキャンする際",
+    "tooltip": "BLEデバイスをスキャンする際、実行されるコードはscanDevice変数を用いて取得できます",
+    "message1": "%1 を実行します"
+  },
+  "nimble_scan_device_name": {
+    "message0": "スキャンされた装置の名前",
+    "tooltip": "スキャンされたデバイス名(スキャンコールバックで使われる)を取得します"
+  },
+  "nimble_scan_device_address": {
+    "message0": "スキャンされたデバイスのアドレス",
+    "tooltip": "スキャンされたデバイスのアドレスを取得する(スキャンコールバックに使用)"
+  },
+  "nimble_scan_device_rssi": {
+    "message0": "スキャンされたデバイスの信号強度",
+    "tooltip": "スキャンされたデバイスのRSSI信号強度を取得する(スキャンコールバックに使用)"
+  },
+  "nimble_scan_device_has_service": {
+    "message0": "スキャンされたデバイスにはサービスが含まれています%1",
+    "tooltip": "スキャンされたデバイスが指定されたサービスUUIDをブロードキャストしているか確認してください"
+  },
+  "nimble_create_client": {
+    "message0": "BLEクライアントの作成%1",
+    "tooltip": "BLEクライアントインスタンスを作成します"
+  },
+  "nimble_client_connect_address": {
+    "message0": "クライアント%1アドレス%2に接続します",
+    "tooltip": "指定されたアドレスでBLEデバイスに接続し、成功したかどうかを返します"
+  },
+  "nimble_client_connect_device": {
+    "message0": "クライアント%1スキャンデバイスに接続されています",
+    "tooltip": "スキャンコールバックでデバイスに接続されている場合"
+  },
+  "nimble_client_disconnect": {
+    "message0": "クライアント%1切断",
+    "tooltip": "サーバーへの接続を切断してください"
+  },
+  "nimble_client_is_connected": {
+    "message0": "クライアント%1接続されています",
+    "tooltip": "クライアントが接続されているか確認してください"
+  },
+  "nimble_client_get_service": {
+    "message0": "クライアント%1サービス取得 UUID %2 保存して%3",
+    "tooltip": "リモートサーバー用の指定されたサービスを取得する"
+  },
+  "nimble_remote_service_get_characteristic": {
+    "message0": "リモートサービス%1 機能の取得 UUID %2保存%3",
+    "tooltip": "リモートサービスで指定された機能を取得"
+  },
+  "nimble_remote_char_read": {
+    "message0": "リモート機能の価値を読み%1",
+    "tooltip": "リモート機能の価値を読みましょう"
+  },
+  "nimble_remote_char_write": {
+    "message0": "リモート機能への書き込み%1 %2",
+    "tooltip": "リモート機能への書き込み"
+  },
+  "nimble_remote_char_subscribe": {
+    "message0": "リモート機能%1通知を購読する",
+    "tooltip": "リモート機能の通知に加入し、データ受信時にコールバックを実行し、notifyData変数を使ってデータを取得する",
+    "message1": "データ受信時に実行%1"
+  },
+  "nimble_notify_data": {
+    "message0": "受信した通知データ",
+    "tooltip": "通知コールバックで受信したデータ(サブスクリプションコールバックで使用)"
+  },
+  "nimble_get_address": {
+    "message0": "ローカルBLEアドレスを取得する",
+    "tooltip": "地元のBLE住所を取得しましょう"
+  },
+  "nimble_set_mtu": {
+    "message0": "MTUサイズを%1設定してください",
+    "tooltip": "BLEパケットの最大伝送ユニットサイズを設定します"
+  },
+  "nimble_set_power": {
+    "message0": "送信出力を設定%1",
+    "tooltip": "BLE送信出力を設定してください",
+    "args0": [
+      {
+        "options": [
+          [
+            "-12 dBm",
+            "-12"
+          ],
+          [
+            "-9 dBm",
+            "-9"
+          ],
+          [
+            "-6 dBm",
+            "-6"
+          ],
+          [
+            "-3 dBm",
+            "-3"
+          ],
+          [
+            "0 dBm",
+            "0"
+          ],
+          [
+            "3 dBm",
+            "3"
+          ],
+          [
+            "6 dBm",
+            "6"
+          ],
+          [
+            "9 dBm",
+            "9"
+          ]
+        ]
+      }
+    ]
+  }
+}

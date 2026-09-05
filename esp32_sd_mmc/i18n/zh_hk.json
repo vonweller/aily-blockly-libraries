@@ -1,0 +1,88 @@
+{
+  "toolbox_name": "SD卡",
+  "toolbox_labels": {
+    "初始化": "初始化",
+    "文件操作": "檔案操作",
+    "目录操作": "目錄操作"
+  },
+  "esp32_sd_mmc_begin": {
+    "message0": "初始化SD_MMC模式%1",
+    "tooltip": "初始化SD_MMC(SDIO模式),1位元模式相容性更好",
+    "args0": [
+      {
+        "options": [
+          [
+            "4位元模式",
+            "false"
+          ],
+          [
+            "1位元模式",
+            "true"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_sd_mmc_set_pins": {
+    "message0": "SD_MMC設定腳位 CLK %1 CMD %2 D0 %3",
+    "tooltip": "設定SD_MMC的引腳(1位元模式)"
+  },
+  "esp32_sd_mmc_end": {
+    "message0": "卸載SD_MMC",
+    "tooltip": "卸載SD_MMC檔案系統"
+  },
+  "esp32_sd_mmc_info": {
+    "message0": "SD_MMC %1",
+    "tooltip": "取得SD_MMC卡信息",
+    "args0": [
+      {
+        "options": [
+          [
+            "卡片類型",
+            "cardType"
+          ],
+          [
+            "卡片大小（MB）",
+            "cardSize"
+          ],
+          [
+            "總空間(MB)",
+            "totalBytes"
+          ],
+          [
+            "已用空間(MB)",
+            "usedBytes"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_sd_mmc_write_file": {
+    "message0": "SD_MMC寫入檔案 路徑 %1 內容 %2",
+    "tooltip": "向SD_MMC寫入檔案(覆蓋)"
+  },
+  "esp32_sd_mmc_append_file": {
+    "message0": "SD_MMC追加檔 路徑 %1 內容 %2",
+    "tooltip": "向SD_MMC檔案追加內容"
+  },
+  "esp32_sd_mmc_read_file": {
+    "message0": "SD_MMC讀取檔 路徑 %1",
+    "tooltip": "從SD_MMC讀取檔案內容"
+  },
+  "esp32_sd_mmc_delete_file": {
+    "message0": "SD_MMC刪除檔案 路徑 %1",
+    "tooltip": "刪除SD_MMC中的文件"
+  },
+  "esp32_sd_mmc_exists": {
+    "message0": "SD_MMC檔案存在 路徑 %1",
+    "tooltip": "檢查SD_MMC中檔案是否存在"
+  },
+  "esp32_sd_mmc_mkdir": {
+    "message0": "SD_MMC建立目錄 路徑 %1",
+    "tooltip": "在SD_MMC中建立目錄"
+  },
+  "esp32_sd_mmc_rmdir": {
+    "message0": "SD_MMC刪除目錄 路徑 %1",
+    "tooltip": "刪除SD_MMC中的目錄"
+  }
+}

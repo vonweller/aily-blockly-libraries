@@ -1,0 +1,46 @@
+{
+  "toolbox_name": "静電容量センサー",
+  "toolbox_labels": {
+    "初始化": "初期化",
+    "读数": "読み取り",
+    "校准配置": "キャリブレーション設定",
+    "接线参考": "配線リファレンス"
+  },
+  "capacitivesensor_create": {
+    "message0": "ピンを送%1受信する容量センサーを作成し%2%3",
+    "tooltip": "静電容量式タッチセンサーオブジェクトを作成し、送受信ピンを指定します",
+    "args0": [
+      null,
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": "${board.digitalPins}"
+      }
+    ]
+  },
+  "capacitivesensor_read": {
+    "message0": "容量センサー%1フィルター値の読み取りサンプルサイズ%2",
+    "tooltip": "基準値を除去した後にタッチ値を読み上げます。サンプルサイズが大きいほど安定性が高いです"
+  },
+  "capacitivesensor_read_raw": {
+    "message0": "容量センサー%1生値のサンプルサイズを読み取る%2",
+    "tooltip": "ベースラインキャリブレーションなしで生の容量値を読み取る"
+  },
+  "capacitivesensor_set_timeout": {
+    "message0": "静電容量センサー%1タイムアウトは%2ミリ秒に設定されています",
+    "tooltip": "強い干渉による無限の待ち時間を防ぐために、充電/放電サイクルのタイムアウトを設定しましょう"
+  },
+  "capacitivesensor_set_autocal": {
+    "message0": "静電容量センサー%1自動キャリブレーション間隔を%2ミリ秒設定します",
+    "tooltip": "自動基準キャリブレーション間隔を設定してください。0は自動キャリブレーションがオフであることを示します"
+  },
+  "capacitivesensor_reset_autocal": {
+    "message0": "自動キャリブレーションリセット%1容量式センサー",
+    "tooltip": "起動時やセンサーの状態変更後によく使われるベースラインを即座にリセットしてください"
+  },
+  "capacitivesensor_wiring_hint": {
+    "message0": "配線参照%1",
+    "tooltip": "コード生成は不要で、容量式タッチセンサーと抵抗の送受信ピン接続方式を参照してください"
+  }
+}

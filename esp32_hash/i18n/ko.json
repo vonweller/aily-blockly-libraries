@@ -1,0 +1,115 @@
+{
+  "toolbox_name": "해시 컴퓨팅",
+  "toolbox_labels": {
+    "快速哈希": "빠른 해시",
+    "分步哈希（大数据）": "단계별 해싱(빅데이터)",
+    "密钥派生": "키 파생"
+  },
+  "esp32_hash_compute": {
+    "message0": "해시 값 데이터 %1 계산 %2",
+    "tooltip": "문자열의 해시 값을 계산하고 16진수 문자열을 반환합니다",
+    "args0": [
+      {
+        "options": [
+          [
+            "SHA1",
+            "SHA1"
+          ],
+          [
+            "SHA224",
+            "SHA224"
+          ],
+          [
+            "SHA256",
+            "SHA256"
+          ],
+          [
+            "SHA384",
+            "SHA384"
+          ],
+          [
+            "SHA512",
+            "SHA512"
+          ],
+          [
+            "SHA3-256",
+            "SHA3_256"
+          ],
+          [
+            "SHA3-512",
+            "SHA3_512"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "esp32_hash_create": {
+    "message0": "해시 빌더 %1 %2 만들기",
+    "tooltip": "해시 빌더 객체 생성 (단계별 빅데이터 해시 계산용)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "SHA1",
+            "SHA1"
+          ],
+          [
+            "SHA256",
+            "SHA256"
+          ],
+          [
+            "SHA512",
+            "SHA512"
+          ],
+          [
+            "SHA3-256",
+            "SHA3_256"
+          ],
+          [
+            "SHA3-512",
+            "SHA3_512"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_hash_begin": {
+    "message0": "해시 빌더의 %1 시작",
+    "tooltip": "해시 빌더를 초기화하고 새 계산을 시작하세요"
+  },
+  "esp32_hash_add": {
+    "message0": "해시 빌더%1 데이터 추가%2",
+    "tooltip": "해시 빌더에 데이터를 추가하세요"
+  },
+  "esp32_hash_calculate": {
+    "message0": "해시 빌더%1 계산을 완성합니다",
+    "tooltip": "해시 계산을 완료하세요"
+  },
+  "esp32_hash_result": {
+    "message0": "해시 빌더%1 결과 얻기",
+    "tooltip": "해시 계산 결과(16진수 문자열)를 얻습니다."
+  },
+  "esp32_hash_pbkdf2": {
+    "message0": "PBKDF2 키 유도 알고리즘 %1 비밀번호 %2 솔트 값 %3 반복 횟수 %4",
+    "tooltip": "PBKDF2-HMAC는 키 파생에 사용됩니다",
+    "args0": [
+      {
+        "options": [
+          [
+            "SHA256",
+            "SHA256"
+          ],
+          [
+            "SHA512",
+            "SHA512"
+          ]
+        ]
+      },
+      null,
+      null,
+      null
+    ]
+  }
+}

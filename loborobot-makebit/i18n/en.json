@@ -1,0 +1,283 @@
+{
+  "toolbox_name": "MakeBit",
+  "toolbox_categories": [
+    "Car",
+    "Servo & Fan",
+    "Buzzer",
+    "Lights"
+  ],
+  "makebit_car_init": {
+    "message0": "Initialize car (driver board I2C address 0x41) ",
+    "tooltip": "Initialize the MakeBit car PCA9685 motor driver (I2C address 0x41, 50Hz PWM). Place this block in setup before using car/servo/fan/LED blocks."
+  },
+  "makebit_car_ctrl": {
+    "message0": "Car %1 ",
+    "tooltip": "Control the car at default speed 255: forward, backward, turn left, turn right, stop, spin left, spin right.",
+    "args0": [
+      {
+        "options": [
+          [
+            "Forward",
+            "FORWARD"
+          ],
+          [
+            "Backward",
+            "BACKWARD"
+          ],
+          [
+            "Turn left",
+            "LEFT"
+          ],
+          [
+            "Turn right",
+            "RIGHT"
+          ],
+          [
+            "Stop",
+            "STOP"
+          ],
+          [
+            "Spin left",
+            "SPIN_LEFT"
+          ],
+          [
+            "Spin right",
+            "SPIN_RIGHT"
+          ]
+        ]
+      }
+    ]
+  },
+  "makebit_car_ctrl_speed": {
+    "message0": "Car %1 speed %2",
+    "tooltip": "Control the car at the given speed (0-255): forward, backward, turn left, turn right, stop, spin left, spin right.",
+    "args0": [
+      {
+        "options": [
+          [
+            "Forward",
+            "FORWARD"
+          ],
+          [
+            "Backward",
+            "BACKWARD"
+          ],
+          [
+            "Turn left",
+            "LEFT"
+          ],
+          [
+            "Turn right",
+            "RIGHT"
+          ],
+          [
+            "Stop",
+            "STOP"
+          ],
+          [
+            "Spin left",
+            "SPIN_LEFT"
+          ],
+          [
+            "Spin right",
+            "SPIN_RIGHT"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "makebit_motor": {
+    "message0": "Motor %1 %2 speed %3",
+    "tooltip": "Control the left or right motor independently, forward or reverse, speed 0-255; speed 0 stops that motor.",
+    "args0": [
+      {
+        "options": [
+          [
+            "Left motor",
+            "LEFT"
+          ],
+          [
+            "Right motor",
+            "RIGHT"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "Forward",
+            "FWD"
+          ],
+          [
+            "Reverse",
+            "REV"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "makebit_car_servo": {
+    "message0": "Car servo angle %1",
+    "tooltip": "Set the on-board servo (PCA9685 channel 3) angle, 0-180 degrees, pulse width 600-2400 microseconds."
+  },
+  "makebit_car_fan": {
+    "message0": "On-board fan %1 speed %2",
+    "tooltip": "Control the on-board fan motor (PCA9685 channels 4/5): forward, reverse or stop, speed 0-255; speed is ignored when Stop is selected.",
+    "args0": [
+      {
+        "options": [
+          [
+            "Forward",
+            "FWD"
+          ],
+          [
+            "Reverse",
+            "REV"
+          ],
+          [
+            "Stop",
+            "STOP"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "makebit_buzzer": {
+    "message0": "Buzzer pin %1 %2",
+    "tooltip": "Control the active buzzer module (triggered by LOW level): on or off.",
+    "args0": [
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": [
+          [
+            "On",
+            "ON"
+          ],
+          [
+            "Off",
+            "OFF"
+          ]
+        ]
+      }
+    ]
+  },
+  "makebit_car_led": {
+    "message0": "Headlight %1",
+    "tooltip": "Headlight switch: on = white light at the global brightness (set with the headlight brightness block), off = off. Both headlights are wired in parallel on the same RGB channels and act together.",
+    "args0": [
+      {
+        "options": [
+          [
+            "on",
+            "ON"
+          ],
+          [
+            "off",
+            "OFF"
+          ]
+        ]
+      }
+    ]
+  },
+  "makebit_car_rgb": {
+    "message0": "Headlight color %1",
+    "tooltip": "Set a preset color for the car RGB headlight (PCA9685 channels 0/1/2).",
+    "args0": [
+      {
+        "options": [
+          [
+            "Off",
+            "OFF"
+          ],
+          [
+            "Red",
+            "RED"
+          ],
+          [
+            "Green",
+            "GREEN"
+          ],
+          [
+            "Blue",
+            "BLUE"
+          ],
+          [
+            "White",
+            "WHITE"
+          ],
+          [
+            "Cyan",
+            "CYAN"
+          ],
+          [
+            "Magenta",
+            "MAGENTA"
+          ],
+          [
+            "Yellow",
+            "YELLOW"
+          ]
+        ]
+      }
+    ]
+  },
+  "makebit_car_rgb_val": {
+    "message0": "Headlight red %1 green %2 blue %3",
+    "tooltip": "Set a custom headlight color from RGB components (0-255); output is scaled by the global brightness."
+  },
+  "makebit_ultrasonic": {
+    "message0": "Ultrasonic trigger %1 echo %2 distance(cm)",
+    "tooltip": "Measure distance with an external SR04 ultrasonic module (trigger/echo pins selectable). Returns centimeters; returns 0 on timeout (no echo within ~30ms, about 5m).",
+    "args0": [
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": "${board.digitalPins}"
+      }
+    ]
+  },
+  "makebit_rgb_effect": {
+    "message0": "Headlight effect %1",
+    "tooltip": "Run an effect on the RGB headlight: flow (six-color cycle), rainbow (hue sweep), breath, blink or off. Blocking until finished.",
+    "args0": [
+      {
+        "options": [
+          [
+            "flow",
+            "FLOW"
+          ],
+          [
+            "rainbow",
+            "RAINBOW"
+          ],
+          [
+            "breath",
+            "BREATH"
+          ],
+          [
+            "blink",
+            "BLINK"
+          ],
+          [
+            "off",
+            "OFF"
+          ]
+        ]
+      }
+    ]
+  },
+  "makebit_car_trim": {
+    "message0": "Car forward trim left %1 right %2",
+    "tooltip": "Correct forward drift: set left/right motor forward output percentage (0-100, default 100 = no trim). Drifting right -> decrease the left value; drifting left -> decrease the right value. Affects forward-driving wheels in forward/turn/spin; reverse unchanged."
+  },
+  "makebit_rgb_brightness": {
+    "message0": "Headlight brightness %1",
+    "tooltip": "Set the global brightness (0-255, default 255 = full): subsequent headlight color, effect, on and custom RGB blocks render at this brightness."
+  }
+}

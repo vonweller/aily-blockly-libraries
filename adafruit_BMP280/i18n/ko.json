@@ -1,0 +1,169 @@
+{
+  "toolbox_name": "BMP280 센서",
+  "bmp280_init": {
+    "message0": "BMP280 센서 I2C 주소를 초기화%1 %2",
+    "args0": [
+      {
+        "options": [
+          [
+            "0x76 (기본값)",
+            "0x76"
+          ],
+          [
+            "0x77 (대안)",
+            "0x77"
+          ]
+        ]
+      },
+      {
+        "options": "${board.i2c}"
+      }
+    ]
+  },
+  "bmp280_read_temperature": {
+    "message0": "BMP280 온도(°C) 읽기"
+  },
+  "bmp280_read_pressure": {
+    "message0": "BMP280 기압(hPa)을 읽어보세요"
+  },
+  "bmp280_read_altitude": {
+    "message0": "BMP280 고도(미터) 기준 공기압 %1 hPa를 읽어보세요"
+  },
+  "bmp280_set_sampling": {
+    "message0": "BMP280 샘플링 모드 설정 %1 온도 과채 %2 압력 과다 %3 필터링 %4 절전 시간 %5",
+    "args0": [
+      {
+        "options": [
+          [
+            "보통",
+            "MODE_NORMAL"
+          ],
+          [
+            "강제",
+            "MODE_FORCED"
+          ],
+          [
+            "sleep",
+            "MODE_SLEEP"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "4회",
+            "SAMPLING_X4"
+          ],
+          [
+            "과도한 샘플링 금지",
+            "SAMPLING_NONE"
+          ],
+          [
+            "1회",
+            "SAMPLING_X1"
+          ],
+          [
+            "두 배 정도",
+            "SAMPLING_X2"
+          ],
+          [
+            "8회",
+            "SAMPLING_X8"
+          ],
+          [
+            "16번",
+            "SAMPLING_X16"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "4회",
+            "SAMPLING_X4"
+          ],
+          [
+            "과도한 샘플링 금지",
+            "SAMPLING_NONE"
+          ],
+          [
+            "1회",
+            "SAMPLING_X1"
+          ],
+          [
+            "두 배 정도",
+            "SAMPLING_X2"
+          ],
+          [
+            "8회",
+            "SAMPLING_X8"
+          ],
+          [
+            "16번",
+            "SAMPLING_X16"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "4회",
+            "FILTER_X4"
+          ],
+          [
+            "끄기",
+            "FILTER_OFF"
+          ],
+          [
+            "두 배 정도",
+            "FILTER_X2"
+          ],
+          [
+            "8회",
+            "FILTER_X8"
+          ],
+          [
+            "16번",
+            "FILTER_X16"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "1ms",
+            "STANDBY_MS_1"
+          ],
+          [
+            "63ms",
+            "STANDBY_MS_63"
+          ],
+          [
+            "125ms",
+            "STANDBY_MS_125"
+          ],
+          [
+            "250ms",
+            "STANDBY_MS_250"
+          ],
+          [
+            "500ms",
+            "STANDBY_MS_500"
+          ],
+          [
+            "1000ms",
+            "STANDBY_MS_1000"
+          ],
+          [
+            "2000ms",
+            "STANDBY_MS_2000"
+          ],
+          [
+            "4000ms",
+            "STANDBY_MS_4000"
+          ]
+        ]
+      }
+    ]
+  }
+}

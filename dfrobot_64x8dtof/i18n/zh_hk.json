@@ -1,0 +1,76 @@
+{
+  "toolbox_name": "64x8 dTOF 矩陣測距",
+  "dtof64x8_init_uart": {
+    "message0": "初始化 64x8 dTOF %1序列埠%2 RX %3 TX %4",
+    "tooltip": "透過 ESP32 硬體序列埠初始化 64x8 dTOF，感測器波特率固定為 921600。",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Serial1",
+            "Serial1"
+          ],
+          [
+            "Serial2",
+            "Serial2"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "dtof64x8_config_frame_single": {
+    "message0": "64x8 dTOF %1設定為單影格模式",
+    "tooltip": "感光元件設定為單幀模式。 官方圖書館尚未實作連續模式。"
+  },
+  "dtof64x8_config_full": {
+    "message0": "64x8 dTOF %1全畫幅輸出",
+    "tooltip": "為所有 64*8 測距點設定輸出。"
+  },
+  "dtof64x8_config_line": {
+    "message0": "64x8 dTO %1 配置 單線輸出線路%2",
+    "tooltip": "將輸出配置為指定列的 64 個點，行號範圍為 1 到 8。"
+  },
+  "dtof64x8_config_point": {
+    "message0": "64x8 dOF %1 配置 單點輸出線路%2點%3",
+    "tooltip": "設定指定列與欄（第 1-8 行，第 1-64 點）的單點輸出。"
+  },
+  "dtof64x8_config_points": {
+    "message0": "64x8 dTOF %1 配置單點輸出線路%2開始%3結束%4",
+    "tooltip": "設定輸出以指定線內連續的點段，線號 1-8，點 1-64。"
+  },
+  "dtof64x8_read_data": {
+    "message0": "64x8 dTOF %1資料刷新逾時 %2 毫秒",
+    "tooltip": "觸發並讀取一幀資料，回傳解析點數; 失敗或超時則會回傳負數值。"
+  },
+  "dtof64x8_point_value": {
+    "message0": "64x8 dOF %1快取索引%2 %3",
+    "tooltip": "在最後一次刷新後，從快取讀取點資料。 索引從 0 開始。",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "X mm",
+            "X"
+          ],
+          [
+            "Y mm",
+            "Y"
+          ],
+          [
+            "Z 距離（毫米）",
+            "Z"
+          ],
+          [
+            "intensity",
+            "I"
+          ]
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,137 @@
+{
+  "toolbox_name": "AutoDriver",
+  "autodriver_init": {
+    "message0": "Инициализировать AutoDriver %1 позиция цепи %2 CS %3 сброс %4 busy %5",
+    "tooltip": "Создайте объект AutoDriver и инициализируйте выводы SPI, CS и RESET"
+  },
+  "autodriver_config_step_mode": {
+    "message0": "AutoDriver %1 режим шага %2",
+    "tooltip": "Установите микрошаговый режим L6470"
+  },
+  "autodriver_set_speed": {
+    "message0": "Установить AutoDriver %1 %2 скорость %3 steps/s",
+    "tooltip": "Установите максимальную, минимальную или полноступенчатую скорость переключения"
+  },
+  "autodriver_set_accel": {
+    "message0": "Установить AutoDriver %1 %2 скорость %3",
+    "tooltip": "Задайте ускорение или замедление",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Ускорение",
+            "ACC"
+          ],
+          [
+            "Помедленнее",
+            "DEC"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "autodriver_set_kval": {
+    "message0": "Установить AutoDriver %1 KVAL %2 %3",
+    "tooltip": "Настройте на бег, ускорение, замедление или удержание KVAL"
+  },
+  "autodriver_run": {
+    "message0": "AutoDriver %1 запуск направление скорость %2 %3",
+    "tooltip": "Непрерывное управление шаговым двигателем в заданном направлении и скорости",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Вперед",
+            "FWD"
+          ],
+          [
+            "Назад",
+            "REV"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "autodriver_move": {
+    "message0": "AutoDriver %1 движение направление шаги %2 %3",
+    "tooltip": "Переместите фиксированное количество шагов в указанном направлении",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Вперед",
+            "FWD"
+          ],
+          [
+            "Назад",
+            "REV"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "autodriver_go_to": {
+    "message0": "AutoDriver %1 перейти к позиции %2",
+    "tooltip": "Перейти в абсолютное положение"
+  },
+  "autodriver_get_position": {
+    "message0": "AutoDriver %1 получить позицию",
+    "tooltip": "Прочитайте текущее местоположение"
+  },
+  "autodriver_get_status": {
+    "message0": "AutoDriver %1 получить статус",
+    "tooltip": "Прочитайте регистр статуса L6470"
+  },
+  "autodriver_stop": {
+    "message0": "AutoDriver %1 стоп %2",
+    "tooltip": "Мотор с мягким или жёстким стопом",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Мягкий стоп",
+            "SOFT"
+          ],
+          [
+            "Жёсткая остановка",
+            "HARD"
+          ]
+        ]
+      }
+    ]
+  },
+  "autodriver_hiz": {
+    "message0": "AutoDriver %1 высокоимпедансный %2",
+    "tooltip": "Переходит в состояние высокого сопротивления, отпуская моторный привод",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Мягкий",
+            "SOFT"
+          ],
+          [
+            "Жёстко",
+            "HARD"
+          ]
+        ]
+      }
+    ]
+  },
+  "autodriver_reset_position": {
+    "message0": "AutoDriver %1 сбросить позицию",
+    "tooltip": "Сбросьте текущий регистр местоположения"
+  },
+  "autodriver_reset_device": {
+    "message0": "AutoDriver %1 сбросить устройство",
+    "tooltip": "Запустите команду L6470 resetDev"
+  }
+}

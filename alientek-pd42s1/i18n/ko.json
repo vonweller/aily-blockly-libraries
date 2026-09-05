@@ -1,0 +1,809 @@
+{
+  "toolbox_name": "PD42S1 스테핑 모터",
+  "toolbox_labels": {
+    "初始化与应答": "초기화·응답",
+    "运动控制": "동작 제어",
+    "立即控制": "즉시 제어",
+    "参数设置": "파라미터 설정",
+    "回零与限位": "원점 복귀·리밋",
+    "系统维护": "시스템",
+    "脉冲与IO输出": "펄스·IO 출력"
+  },
+  "pd42s1_init": {
+    "message0": "PD42S1 초기화 TX 핀 %1 RX 핀 %2 보레이트 %3",
+    "tooltip": "PD42S1 통신용 시리얼1 초기화. 기본 핀 19/20(DNESP32S3 배선), 다른 보드는 배선에 맞게 변경. 기본 115200"
+  },
+  "pd42s1_read": {
+    "message0": "읽기 %1 모터 주소 %2 응답 시간 초과 %3 ms",
+    "tooltip": "읽기 명령을 보내고 응답을 대기한 뒤 해석 결과를 시리얼0에 출력. 위치는 51200당 1회전",
+    "args0": [
+      {
+        "options": [
+          [
+            "소프트/하드웨어 버전",
+            "VER"
+          ],
+          [
+            "자속 링키지",
+            "PSI"
+          ],
+          [
+            "상 저항·인덕턴스",
+            "RES_IND"
+          ],
+          [
+            "상 전류",
+            "PHASE_MA"
+          ],
+          [
+            "버스 전압",
+            "VOL"
+          ],
+          [
+            "전류 루프 PID",
+            "MA_PID"
+          ],
+          [
+            "속도 루프 PID",
+            "SPEED_PID"
+          ],
+          [
+            "위치 루프 PID",
+            "POS_PID"
+          ],
+          [
+            "누적 펄스 수",
+            "TOTAL_PULSE"
+          ],
+          [
+            "실시간 속도",
+            "RPM"
+          ],
+          [
+            "실시간 위치",
+            "POS"
+          ],
+          [
+            "위치 오차",
+            "POS_ERR"
+          ],
+          [
+            "작동 상태",
+            "MOTOR_STA"
+          ],
+          [
+            "스톨 플래그",
+            "CLOG_FLAG"
+          ],
+          [
+            "스톨 전류",
+            "CLOG_MA"
+          ],
+          [
+            "인에이블 상태",
+            "EN_STA"
+          ],
+          [
+            "위치 도달 상태",
+            "ARRIVED"
+          ],
+          [
+            "시스템 파라미터",
+            "SYS_PARAMS"
+          ],
+          [
+            "드라이브 파라미터",
+            "DRIVE_PARAMS"
+          ],
+          [
+            "원점 복귀 파라미터",
+            "HOME_PARAMS"
+          ],
+          [
+            "원점 복귀 상태",
+            "HOME_STA"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "pd42s1_handle_ack": {
+    "message0": "드라이버 응답 대기·처리 시간 초과 %1 ms",
+    "tooltip": "드라이버 응답 프레임을 대기하고 해석 출력(시간 초과 시 종료). 전송 계열 명령과 함께 사용"
+  },
+  "pd42s1_torque_mode": {
+    "message0": "모터 주소 %1 토크 모드 방향 %2 전류 %3 mA",
+    "tooltip": "폐루프 토크 제어: 방향+목표 전류 0~3000mA. 부하 시에만 전류가 목표치로 상승",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "시계 방향 CW",
+            "CW"
+          ],
+          [
+            "반시계 방향 CCW",
+            "CCW"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "pd42s1_speed_mode": {
+    "message0": "모터 주소 %1 속도 모드 방향 %2 가속도 %3 속도 %4 RPM",
+    "tooltip": "폐루프 속도 제어: 방향+가속도 0~200RPM/s(0은 즉시 시작)+속도 0.1~3000RPM",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "시계 방향 CW",
+            "CW"
+          ],
+          [
+            "반시계 방향 CCW",
+            "CCW"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "pd42s1_pos_mode": {
+    "message0": "모터 주소 %1 절대 위치 모드 방향 %2 가속도 %3 속도 %4 RPM 펄스 수 %5",
+    "tooltip": "폐루프 절대 위치: 방향+가속도+최대 속도 0~3000RPM+목표 펄스 수(51200당 1회전)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "시계 방향 CW",
+            "CW"
+          ],
+          [
+            "반시계 방향 CCW",
+            "CCW"
+          ]
+        ]
+      },
+      null,
+      null,
+      null
+    ]
+  },
+  "pd42s1_pos_rel_mode": {
+    "message0": "모터 주소 %1 상대 위치 모드 방향 %2 가속도 %3 속도 %4 RPM 펄스 수 %5",
+    "tooltip": "폐루프 상대 위치: 현재 위치에서 지정 펄스 수만큼 이동(51200당 1회전), 반복 가능",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "시계 방향 CW",
+            "CW"
+          ],
+          [
+            "반시계 방향 CCW",
+            "CCW"
+          ]
+        ]
+      },
+      null,
+      null,
+      null
+    ]
+  },
+  "pd42s1_pulse_mode": {
+    "message0": "모터 주소 %1 펄스 모드",
+    "tooltip": "펄스 모드로 전환: EN/STP/DIR 핀으로 제어(펄스는 별도 출력)"
+  },
+  "pd42s1_pw_pos_mode": {
+    "message0": "모터 주소 %1 펄스폭 위치 모드 최대 펄스폭 %2 us 최소 펄스폭 %3 us 최대 폭 위치 %4 최소 폭 위치 %5",
+    "tooltip": "펄스폭 위치 모드(서보 유사): PWM High 폭을 위치에 선형 매핑. 폭 0은 불가"
+  },
+  "pd42s1_pw_ma_mode": {
+    "message0": "모터 주소 %1 펄스폭 토크 모드 최대 펄스폭 %2 us 최소 펄스폭 %3 us 최대 폭 전류 %4 mA 최소 폭 전류 %5 mA",
+    "tooltip": "펄스폭 토크(전류) 모드: PWM High 폭을 전류 0~3000mA에 선형 매핑. 폭 0은 불가"
+  },
+  "pd42s1_pw_speed_mode": {
+    "message0": "모터 주소 %1 펄스폭 속도 모드 최대 펄스폭 %2 us 최소 펄스폭 %3 us 최대 폭 속도 %4 RPM 최소 폭 속도 %5 RPM",
+    "tooltip": "펄스폭 속도 모드: PWM High 폭을 속도에 선형 매핑. 폭 0은 불가"
+  },
+  "pd42s1_ol_speed_mode": {
+    "message0": "모터 주소 %1 개루프 속도 모드 방향 %2 가속도 %3 속도 %4 RPM",
+    "tooltip": "개루프 속도 제어(위치 피드백 없음): 방향+가속도+0.1~3000RPM",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "시계 방향 CW",
+            "CW"
+          ],
+          [
+            "반시계 방향 CCW",
+            "CCW"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "pd42s1_ol_pos_mode": {
+    "message0": "모터 주소 %1 개루프 절대 위치 모드 방향 %2 가속도 %3 속도 %4 RPM 펄스 수 %5",
+    "tooltip": "개루프 절대 위치: 엔코더 없이 펄스 수로 목표까지 구동",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "시계 방향 CW",
+            "CW"
+          ],
+          [
+            "반시계 방향 CCW",
+            "CCW"
+          ]
+        ]
+      },
+      null,
+      null,
+      null
+    ]
+  },
+  "pd42s1_ol_pos_rel_mode": {
+    "message0": "모터 주소 %1 개루프 상대 위치 모드 방향 %2 가속도 %3 속도 %4 RPM 펄스 수 %5",
+    "tooltip": "개루프 상대 위치: 현재 위치에서 펄스 수만큼 상대 이동(엔코더 없음)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "시계 방향 CW",
+            "CW"
+          ],
+          [
+            "반시계 방향 CCW",
+            "CCW"
+          ]
+        ]
+      },
+      null,
+      null,
+      null
+    ]
+  },
+  "pd42s1_ol_pulse_mode": {
+    "message0": "모터 주소 %1 개루프 펄스 모드",
+    "tooltip": "개루프 펄스 모드로 전환: EN/STP/DIR 핀으로 제어(펄스는 별도 출력)"
+  },
+  "pd42s1_io_run_ctrl": {
+    "message0": "모터 주소 %1 IO 시작/정지 모드 방향 %2 가속도 %3 속도 %4 RPM",
+    "tooltip": "IO 시작/정지 모드: 설정한 방향/가속도/속도로 구동하며 IO 핀 레벨로 시작/정지(IO 시작 레벨 먼저 설정)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "시계 방향 CW",
+            "CW"
+          ],
+          [
+            "반시계 방향 CCW",
+            "CCW"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "pd42s1_stop_now": {
+    "message0": "모터 주소 %1 즉시 정지(브레이크)",
+    "tooltip": "즉시 브레이크 정지. 정지 후 상태를 신속히 초기화하지 않으면 모터 과열 우려"
+  },
+  "pd42s1_clear_sta": {
+    "message0": "모터 주소 %1 모터 상태 초기화(스톨/비활성/브레이크)",
+    "tooltip": "스톨, 비활성, 브레이크 등 비정상 상태 플래그 초기화"
+  },
+  "pd42s1_motor_enable": {
+    "message0": "모터 주소 %1 인에이블 제어 %2",
+    "tooltip": "모터를 인에이블/디세이블. 디세이블 시 축이 자유 회전",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "모터 인에이블",
+            "ENABLE"
+          ],
+          [
+            "모터 디세이블",
+            "DISABLE"
+          ]
+        ]
+      }
+    ]
+  },
+  "pd42s1_angle_zero": {
+    "message0": "모터 주소 %1 현재 위치 0으로",
+    "tooltip": "현재 실시간 위치를 0으로(정지 후 실행 권장)"
+  },
+  "pd42s1_remove_clog": {
+    "message0": "모터 주소 %1 스톨 보호 해제",
+    "tooltip": "스톨 보호 잠금을 해제하고 모터 동작을 복원"
+  },
+  "pd42s1_cal_encoder": {
+    "message0": "모터 주소 %1 엔코더 교정",
+    "tooltip": "엔코더 영점을 교정. 교정 중 모터가 약간 움직이니 전원을 끄지 말 것"
+  },
+  "pd42s1_restart": {
+    "message0": "모터 주소 %1 재시작",
+    "tooltip": "드라이버 재시작"
+  },
+  "pd42s1_reset_factory": {
+    "message0": "모터 주소 %1 공장 초기화",
+    "tooltip": "공장 초기화. 완료 후 모터가 정지할 때까지 대기(파라미터 재식별)"
+  },
+  "pd42s1_param_save": {
+    "message0": "모터 주소 %1 파라미터 저장(비휘발성)",
+    "tooltip": "현재 파라미터를 비휘발성 메모리에 저장(전원 유지)"
+  },
+  "pd42s1_set_slave_add": {
+    "message0": "모터 주소 %1 슬레이브 주소 설정 %2",
+    "tooltip": "슬레이브 주소(1~255) 설정. 이후 새 주소로 통신"
+  },
+  "pd42s1_set_group_add": {
+    "message0": "모터 주소 %1 그룹 주소 설정 %2",
+    "tooltip": "그룹 주소 설정. 하나의 명령으로 여러 모터 제어 가능"
+  },
+  "pd42s1_set_mode": {
+    "message0": "모터 주소 %1 작동 모드 설정 %2",
+    "tooltip": "드라이버 작동 모드 설정(통신/펄스/펄스폭/원점 복귀/개루프 계열)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "통신 위치 모드",
+            "COMM_POS"
+          ],
+          [
+            "통신 속도 모드",
+            "COMM_SPEED"
+          ],
+          [
+            "통신 토크 모드",
+            "COMM_TORQUE"
+          ],
+          [
+            "펄스 모드",
+            "PULSE"
+          ],
+          [
+            "펄스폭 위치 모드",
+            "PW_POS"
+          ],
+          [
+            "펄스폭 속도 모드",
+            "PW_SPEED"
+          ],
+          [
+            "펄스폭 토크 모드",
+            "PW_TORQUE"
+          ],
+          [
+            "원점 복귀 모드",
+            "HOME"
+          ],
+          [
+            "개루프 속도 모드",
+            "OL_SPEED"
+          ],
+          [
+            "개루프 위치 모드",
+            "OL_POS"
+          ],
+          [
+            "개루프 펄스 모드",
+            "OL_PULSE"
+          ]
+        ]
+      }
+    ]
+  },
+  "pd42s1_set_pos_pid": {
+    "message0": "모터 주소 %1 위치 루프 PID 설정 Kp %2 Ki %3 Kd %4",
+    "tooltip": "위치 루프 PID 게인 설정(Kp/Ki/Kd, 32비트 정수)"
+  },
+  "pd42s1_set_speed_pid": {
+    "message0": "모터 주소 %1 속도 루프 PID 설정 Kp %2 Ki %3 Kd %4",
+    "tooltip": "속도 루프 PID 게인 설정(Kp/Ki/Kd, 32비트 정수)"
+  },
+  "pd42s1_set_pos_torque": {
+    "message0": "모터 주소 %1 위치 루프 최대 토크 %2 mA",
+    "tooltip": "위치 루프 최대 토크 제한(100~3000mA)"
+  },
+  "pd42s1_set_step": {
+    "message0": "모터 주소 %1 마이크로스텝 설정 %2",
+    "tooltip": "드라이버 마이크로스텝 설정(1~256). 클수록 부드럽지만 토크 감소"
+  },
+  "pd42s1_set_ma": {
+    "message0": "모터 주소 %1 목표 전류 설정(토크 모드) %2 mA",
+    "tooltip": "목표 전류 설정(토크 모드에서만 유효, 0~3000mA)"
+  },
+  "pd42s1_set_uart_baud": {
+    "message0": "모터 주소 %1 드라이버 UART 보레이트 설정 %2",
+    "tooltip": "드라이버 UART 보레이트 설정. 변경 후 새 보레이트로 재초기화"
+  },
+  "pd42s1_set_can_baud": {
+    "message0": "모터 주소 %1 CAN 보레이트 설정 %2 Kbps",
+    "tooltip": "드라이버 CAN 보레이트 설정(단위 Kbps)"
+  },
+  "pd42s1_set_modbus": {
+    "message0": "모터 주소 %1 통신 프로토콜 %2",
+    "tooltip": "사용자 정의 프로토콜 또는 MODBUS 선택",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "사용자 정의 프로토콜",
+            "CUSTOM"
+          ],
+          [
+            "MODBUS 프로토콜",
+            "MODBUS"
+          ]
+        ]
+      }
+    ]
+  },
+  "pd42s1_set_clog_pro": {
+    "message0": "모터 주소 %1 스톨 보호 %2",
+    "tooltip": "스톨 보호 기능 켜기/끄기",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "끄기",
+            "OFF"
+          ],
+          [
+            "켜기",
+            "ON"
+          ]
+        ]
+      }
+    ]
+  },
+  "pd42s1_set_clog_current": {
+    "message0": "모터 주소 %1 스톨 전류 설정 %2 mA",
+    "tooltip": "스톨 전류 설정(0~3000mA)"
+  },
+  "pd42s1_set_can_id": {
+    "message0": "모터 주소 %1 CAN ID 설정 %2",
+    "tooltip": "CAN 송신 ID 설정(29비트 확장)"
+  },
+  "pd42s1_set_dir_level": {
+    "message0": "모터 주소 %1 DIR 정회전 레벨 %2",
+    "tooltip": "DIR 핀 정회전 레벨 설정(펄스/방향 제어용)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "High 레벨 정회전",
+            "HIGH"
+          ],
+          [
+            "Low 레벨 정회전",
+            "LOW"
+          ]
+        ]
+      }
+    ]
+  },
+  "pd42s1_set_en_level": {
+    "message0": "모터 주소 %1 EN 유효 레벨 %2",
+    "tooltip": "EN 핀 유효 레벨 설정(Low/High/상시 유효)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Low 유효",
+            "LOW"
+          ],
+          [
+            "High 유효",
+            "HIGH"
+          ],
+          [
+            "상시 유효",
+            "ALWAYS"
+          ]
+        ]
+      }
+    ]
+  },
+  "pd42s1_set_cmd_echo": {
+    "message0": "모터 주소 %1 명령 응답 %2",
+    "tooltip": "시리얼 명령 응답 여부 설정",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "응답함",
+            "ECHO"
+          ],
+          [
+            "응답 안 함",
+            "NO_ECHO"
+          ]
+        ]
+      }
+    ]
+  },
+  "pd42s1_set_key_lock": {
+    "message0": "모터 주소 %1 패널 키 %2",
+    "tooltip": "드라이버 패널 키 잠금/해제",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "잠금 해제",
+            "UNLOCK"
+          ],
+          [
+            "잠금",
+            "LOCK"
+          ]
+        ]
+      }
+    ]
+  },
+  "pd42s1_set_auto_display": {
+    "message0": "모터 주소 %1 자동 화면 꺼짐 %2",
+    "tooltip": "드라이버 화면 자동 꺼짐 켜기/끄기",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "끄기",
+            "OFF"
+          ],
+          [
+            "켜기",
+            "ON"
+          ]
+        ]
+      }
+    ]
+  },
+  "pd42s1_set_io_start_level": {
+    "message0": "모터 주소 %1 IO 시작 레벨 %2",
+    "tooltip": "IO 시작/정지 모드의 시작 레벨 설정(Low 또는 High)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Low 레벨 시작",
+            "LOW"
+          ],
+          [
+            "High 레벨 시작",
+            "HIGH"
+          ]
+        ]
+      }
+    ]
+  },
+  "pd42s1_origin_left_pos": {
+    "message0": "모터 주소 %1 좌 리밋 원점 설정 %2",
+    "tooltip": "좌 리밋 원점 위치 설정(51200당 1회전)"
+  },
+  "pd42s1_origin_right_pos": {
+    "message0": "모터 주소 %1 우 리밋 원점 설정 %2",
+    "tooltip": "우 리밋 원점 위치 설정(51200당 1회전)"
+  },
+  "pd42s1_origin_homing": {
+    "message0": "모터 주소 %1 영점 찾기 %2 방향 %3 회전 속도 %4 RPM 도달 전류 %5 mA",
+    "tooltip": "영점 찾기: 리밋 없음은 스톨 전류로 판정(200~1000mA 권장), 있음은 스위치로 판정. 속도는 100RPM 이하 권장",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "리밋 없음",
+            "NO_LIMIT"
+          ],
+          [
+            "리밋 있음",
+            "WITH_LIMIT"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "시계 방향 CW",
+            "CW"
+          ],
+          [
+            "반시계 방향 CCW",
+            "CCW"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "pd42s1_origin_trig": {
+    "message0": "모터 주소 %1 원점 복귀 시작 %2",
+    "tooltip": "원점 복귀 동작 시작: 1회전/최단/다회전 3가지 방식",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "1회전 원점",
+            "SINGLE"
+          ],
+          [
+            "최단 원점",
+            "NEAREST"
+          ],
+          [
+            "다회전 원점",
+            "MULTI"
+          ]
+        ]
+      }
+    ]
+  },
+  "pd42s1_origin_break": {
+    "message0": "모터 주소 %1 원점 복귀 중단",
+    "tooltip": "진행 중인 원점 복귀 작업을 강제 중단·종료"
+  },
+  "pd42s1_origin_timeout": {
+    "message0": "모터 주소 %1 원점 복귀 시간초과 설정 %2 ms",
+    "tooltip": "영점 찾기 시간초과 설정(단위 ms)"
+  },
+  "pd42s1_origin_auto": {
+    "message0": "모터 주소 %1 전원 인가 시 자동 원점 복귀 %2",
+    "tooltip": "드라이버 전원 인가 시 자동 원점 복귀 여부 설정",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "끄기",
+            "OFF"
+          ],
+          [
+            "켜기",
+            "ON"
+          ]
+        ]
+      }
+    ]
+  },
+  "pd42s1_origin_switch": {
+    "message0": "모터 주소 %1 좌우 리밋 스위치 %2",
+    "tooltip": "켜면 모터 이동 범위가 좌우 리밋 원점으로 제한",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "끄기",
+            "OFF"
+          ],
+          [
+            "켜기",
+            "ON"
+          ]
+        ]
+      }
+    ]
+  },
+  "pd42s1_pulse_pin_init": {
+    "message0": "펄스 핀 초기화 EN %1 STEP %2 DIR %3",
+    "tooltip": "EN/STEP/DIR 출력 핀 초기화(기본 35/36/37은 DNESP32S3 배선, 다른 보드는 변경). 펄스 모드 블록과 함께 사용"
+  },
+  "pd42s1_pulse_en": {
+    "message0": "EN 레벨 설정 %1",
+    "tooltip": "펄스 모드 EN 핀 레벨 설정(먼저 EN 유효 레벨 프로토콜 블록 설정 필요)",
+    "args0": [
+      {
+        "options": [
+          [
+            "High",
+            "HIGH"
+          ],
+          [
+            "Low",
+            "LOW"
+          ]
+        ]
+      }
+    ]
+  },
+  "pd42s1_pulse_en_toggle": {
+    "message0": "EN 레벨 토글",
+    "tooltip": "EN 인에이블 핀 레벨 토글"
+  },
+  "pd42s1_pulse_dir": {
+    "message0": "DIR 레벨 설정 %1",
+    "tooltip": "펄스 모드 DIR 핀 레벨 설정(정/역 방향은 DIR 레벨 프로토콜 블록으로 정의)",
+    "args0": [
+      {
+        "options": [
+          [
+            "High",
+            "HIGH"
+          ],
+          [
+            "Low",
+            "LOW"
+          ]
+        ]
+      }
+    ]
+  },
+  "pd42s1_pulse_dir_toggle": {
+    "message0": "DIR 레벨 토글",
+    "tooltip": "DIR 핀 레벨 토글(방향 전환)"
+  },
+  "pd42s1_pulse_output": {
+    "message0": "펄스 %1개 출력 반주기 %2 us",
+    "tooltip": "STEP 핀에 지정 개수의 펄스 출력(소프트웨어 지연, 속도 부정확). 16마이크로스텝에서 3200펄스=1회전"
+  },
+  "pd42s1_pulse_freq_from_rpm": {
+    "message0": "마이크로스텝 %1 속도 %2 RPM 의 펄스 주파수 Hz",
+    "tooltip": "목표 속도에 필요한 펄스 주파수: 주파수=RPM×200×마이크로스텝÷60(숫자 출력)"
+  },
+  "pd42s1_pulse_rpm_from_freq": {
+    "message0": "주파수 %1 Hz 마이크로스텝 %2 의 속도 RPM",
+    "tooltip": "펄스 주파수에 해당하는 실제 속도: RPM=주파수×60÷(200×마이크로스텝)(숫자 출력)"
+  },
+  "pd42s1_io_pin_init": {
+    "message0": "IO 시작/정지 핀 초기화 핀 %1",
+    "tooltip": "IO 시작/정지 출력 핀 초기화(기본 39는 DNESP32S3 배선, 다른 보드는 변경). IO 시작/정지 모드 블록과 함께 사용"
+  },
+  "pd42s1_io_pin_set": {
+    "message0": "IO 시작/정지 출력 레벨 %1",
+    "tooltip": "IO 시작/정지 핀 레벨 설정(시작 레벨은 IO 시작 레벨 프로토콜 블록으로 정의)",
+    "args0": [
+      {
+        "options": [
+          [
+            "High",
+            "HIGH"
+          ],
+          [
+            "Low",
+            "LOW"
+          ]
+        ]
+      }
+    ]
+  },
+  "pd42s1_io_pin_toggle": {
+    "message0": "IO 시작/정지 레벨 토글",
+    "tooltip": "IO 시작/정지 핀 레벨 토글(시작/정지 전환)"
+  }
+}

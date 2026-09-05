@@ -1,0 +1,177 @@
+{
+  "toolbox_name": "Modbus通信",
+  "toolbox_labels": {
+    "客户端初始化": "クライアントの初期化",
+    "服务器初始化": "サーバーの初期化",
+    "服务器配置": "サーバー構成",
+    "客户端读写操作": "クライアントの読み取りおよび書き込み操作",
+    "服务器读写操作": "サーバーの読み取りおよび書き込み操作",
+    "错误处理": "エラー処理",
+    "快速操作": "素早い操作"
+  },
+  "modbus_rtu_client_begin": {
+    "message0": "Modbus RTU client baud rate%1 を初期化してください",
+    "tooltip": "Modbus RTUクライアントを初期化し、ボーレートを設定します",
+    "args0": [
+      {
+        "options": [
+          [
+            "9600",
+            "9600"
+          ],
+          [
+            "19200",
+            "19200"
+          ],
+          [
+            "38400",
+            "38400"
+          ],
+          [
+            "57600",
+            "57600"
+          ],
+          [
+            "115200",
+            "115200"
+          ]
+        ]
+      }
+    ]
+  },
+  "modbus_rtu_server_begin": {
+    "message0": "Modbus RTUサーバーデバイスを初期化ID%1ボー rate%2",
+    "tooltip": "Modbus RTUサーバーを初期化し、デバイスIDとボーレートを設定します",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "9600",
+            "9600"
+          ],
+          [
+            "19200",
+            "19200"
+          ],
+          [
+            "38400",
+            "38400"
+          ],
+          [
+            "57600",
+            "57600"
+          ],
+          [
+            "115200",
+            "115200"
+          ]
+        ]
+      }
+    ]
+  },
+  "modbus_tcp_client_begin": {
+    "message0": "Modbus TCPクライアントのIPアドレスを初期化%1 port%2",
+    "tooltip": "Modbus TCPクライアントを初期化し、指定されたIPとポートに接続します"
+  },
+  "modbus_tcp_server_begin": {
+    "message0": "Modbus TCPサーバーデバイスID%1を初期化します",
+    "tooltip": "Modbus TCPサーバーの初期化"
+  },
+  "modbus_coil_read": {
+    "message0": "コイルデバイスは読めID%1 address%2",
+    "tooltip": "指定されたアドレスでコイルの状態を読み取り、0または1を返すか、失敗した場合は-1を返します"
+  },
+  "modbus_coil_write": {
+    "message0": "アドレスID%1コイルデバイスを書き込み%2 value%3",
+    "tooltip": "指定されたアドレスにコイルの値(0または1)を書きます"
+  },
+  "modbus_discrete_input_read": {
+    "message0": "離散入力デバイスID%1 address%2",
+    "tooltip": "指定されたアドレスの離散入力状態を読み取り、0または1を返し、故障時には-1を返します"
+  },
+  "modbus_holding_register_read": {
+    "message0": "保持レジスタ装置を読み取るID%1 address%2",
+    "tooltip": "指定されたアドレスでホールディングレジスタの値を読み込み、故障時に-1を返します"
+  },
+  "modbus_holding_register_write": {
+    "message0": "ホールディングレジスタデバイスにアドレスID%1書き込み%2 value%3",
+    "tooltip": "保持レジスタの値を指定されたアドレス(0-65535)に書き込みます"
+  },
+  "modbus_input_register_read": {
+    "message0": "読み取り入力レジスタ デバイスID%1 address%2",
+    "tooltip": "指定されたアドレスの入力レジスタ値を読み込みます。失敗は-1を返します"
+  },
+  "modbus_server_configure_coils": {
+    "message0": "サーバーコイルの設定 スタートアドレス%1 quantity%2",
+    "tooltip": "Modbusサーバーのコイルアドレス範囲を設定する"
+  },
+  "modbus_server_configure_discrete_inputs": {
+    "message0": "サーバーの離散入力開始アドレスの設定%1 quantity%2",
+    "tooltip": "Modbusサーバーの離散的な入力アドレス範囲を設定する"
+  },
+  "modbus_server_configure_holding_registers": {
+    "message0": "サーバーホールディングレジスタを設定し、address%1 quantity%2",
+    "tooltip": "Modbusサーバーのレジスタアドレス範囲を設定する"
+  },
+  "modbus_server_configure_input_registers": {
+    "message0": "サーバー入力レジスタの設定 アドレス開始%1 quantity%2",
+    "tooltip": "Modbusサーバーの入力レジスタアドレス範囲を設定する"
+  },
+  "modbus_server_poll": {
+    "message0": "Modbusサーバーポーリング",
+    "tooltip": "Modbusサーバーのリクエストをポーリングするとtrueが返されます"
+  },
+  "modbus_server_coil_read": {
+    "message0": "サーバーはコイルaddress%1を読み込みます",
+    "tooltip": "サーバーコイルの現在の値を読み取ってください"
+  },
+  "modbus_server_coil_write": {
+    "message0": "サーバーはコイルアドレスを書き込みます%1 value%2",
+    "tooltip": "サーバーコイルの値を設定します"
+  },
+  "modbus_server_discrete_input_write": {
+    "message0": "サーバーは離散的な入力アドレスを書き込む%1 values%2",
+    "tooltip": "サーバーの離散入力値を設定します"
+  },
+  "modbus_server_holding_register_read": {
+    "message0": "サーバーはレジスタを読み込み、保持しますaddress%1",
+    "tooltip": "サーバー保持レジスタの現在の値を読み取る"
+  },
+  "modbus_server_holding_register_write": {
+    "message0": "サーバーはレジスタアドレスに書き込みます%1 value%2",
+    "tooltip": "サーバーホールドレジスタの値を設定します"
+  },
+  "modbus_server_input_register_write": {
+    "message0": "サーバーは入力レジスタアドレスを書き込みます%1 value%2",
+    "tooltip": "サーバー入力レジスタの値を設定します"
+  },
+  "modbus_last_error": {
+    "message0": "Modbusから最終エラーメッセージを受け取る",
+    "tooltip": "直近のModbus操作からエラーメッセージを取得する"
+  },
+  "modbus_quick_coil_control": {
+    "message0": "ModbusクイックコントロールコイルデバイスID%1アドレス%2値%3",
+    "tooltip": "Modbusデバイスのコイルを迅速に制御し、初期化を自動的に処理します",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "オンにする",
+            "1"
+          ],
+          [
+            "閉じる",
+            "0"
+          ]
+        ]
+      }
+    ]
+  },
+  "modbus_quick_register_read": {
+    "message0": "ModbusファストリードレジスタデバイスID%1 Address%2",
+    "tooltip": "Modbusデバイスのホールディングレジスタ値を素早く読み取る"
+  }
+}

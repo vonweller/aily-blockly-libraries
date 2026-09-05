@@ -1,21 +1,27 @@
-
 /**
- * Generator functions for OpenJumperTTS library blocks.
+ * OpenJumper TTS语音合成模块 Generator
+ * 支持文本转语音、数字播报、内置音效
+ * 
+ * @note 本库不使用field_variable，无需registerVariableToBlockly/renameVariableInBlockly
+ * @note 本库不输出调试信息到Serial，无需Serial.begin
+ * @note 变量监听机制: 本库所有字段均为field_dropdown和input_value类型，不包含field_variable
+ *       因此无需实现setValidator监听变量重命名。若将来添加field_variable字段，
+ *       需在init中通过field.setValidator()实现变量名变化监听
  */
 
 // TTS初始化块
 Arduino.forBlock['openjumper_tts_init'] = function(block, generator) {
-  var rxPin = block.getFieldValue('RX_PIN');
-  var txPin = block.getFieldValue('TX_PIN');
+  const rxPin = block.getFieldValue('RX_PIN');
+  const txPin = block.getFieldValue('TX_PIN');
   
-  // 添加库引用
+  // 添加TTS库引用（串口库由OpenJumperTTS.h内部根据平台自动引用）
   generator.addLibrary('OpenJumperTTS', '#include <OpenJumperTTS.h>');
   
-  // 创建TTS对象
-  generator.addVariable('TTS', '/*在文本前添加标识符可按相应方式播报特定字符串，\n比如在文本前\n添加[n1]:表示按数字播报\n添加[n2]：按数值播报；\n添加[n3]:按电话号码播报\n添加[w0]：表示停顿符\n播放数字*/\nOpenJumperTTS TTS(' + rxPin + ', ' + txPin + ');');
+  // 创建全局TTS对象
+  generator.addObject('TTS_Object', 'OpenJumperTTS TTS(' + rxPin + ', ' + txPin + ');');
   
-  // 添加begin函数到setup
-  generator.addSetupBegin('TTS_begin', 'TTS.begin(115200);\n');
+  // 在setup开始处初始化TTS模块（波特率115200）
+  generator.addSetupBegin('TTS_Init', '  TTS.begin(115200);');
   
   return '';
 };
@@ -41,9 +47,7 @@ Arduino.forBlock['openjumper_tts_play_invoice'] = function(block, generator) {
 Arduino.forBlock['openjumper_tts_play_control'] = function(block, generator) {
   var controlAction = block.getFieldValue('CONTROL_ACTION');
   
-  // 定义控制常量（如果在库中未定义）
-  generator.addMacro('PLAY_CONTROLS', '#define PLAY_STOP 0\n#define PLAY_PAUSE 1\n#define PLAY_CONTINUE 2');
-  
+  // 注意：PLAY_STOP、PLAY_PAUSE、PLAY_CONTINUE 常量应该在 OpenJumperTTS.h 中定义
   var code = 'TTS.playcontrol(' + controlAction + ');\n';
   return code;
 };

@@ -1,0 +1,161 @@
+{
+  "toolbox_name": "Seeed RPC mDNS",
+  "toolbox_categories": [
+    "Startup e Exemplos",
+    "Radiodifusão de serviço",
+    "Descobertas e resultados"
+  ],
+  "seeed_rpcmdns_begin": {
+    "message0": "Iniciar o nome do hostname do serviço mDNS %1",
+    "tooltip": "Inicie o respondente mDNS RPC do Wio Terminal, e o host pode acessá-lo via hostname.local"
+  },
+  "seeed_rpcmdns_begin_or_print": {
+    "message0": "Erro de impressão ao iniciar o nome de host do serviço mDNS %1 falha",
+    "tooltip": "Inicia o respondente mDNS e envia mensagens de erro via Serial caso a inicialização falhasse"
+  },
+  "seeed_rpcmdns_end": {
+    "message0": "Interrompa serviços mDNS",
+    "tooltip": "Liberar e parar serviços mDNS"
+  },
+  "seeed_rpcmdns_set_instance_name": {
+    "message0": "Defina o nome da instância mDNS %1",
+    "tooltip": "Defina o nome de exibição da instância de serviço, com um comprimento não excedente de 63 caracteres"
+  },
+  "seeed_rpcmdns_add_service": {
+    "message0": "Registro do Serviço mDNS Tipo %1 Protocolo %2 Porta %3",
+    "tooltip": "Registre um serviço mDNS-SD, como http/tcp/80",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "TCP",
+            "tcp"
+          ],
+          [
+            "UDP",
+            "udp"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "seeed_rpcmdns_add_service_txt": {
+    "message0": "Adicionar serviço mDNS TXT serviço %1 protocolo %2 chave %3 valor %4",
+    "tooltip": "Adicionar registros TXT aos serviços mDNS registrados",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "TCP",
+            "tcp"
+          ],
+          [
+            "UDP",
+            "udp"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "seeed_rpcmdns_enable_arduino": {
+    "message0": "Ative a porta do serviço Arduino OTA mDNS %1 %2",
+    "tooltip": "Serviço de broadcast _arduino._tcp para descoberta pelas ferramentas de upload da rede Arduino",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Não é necessário certificação",
+            "FALSE"
+          ],
+          [
+            "A certificação é necessária",
+            "TRUE"
+          ]
+        ]
+      }
+    ]
+  },
+  "seeed_rpcmdns_disable_arduino": {
+    "message0": "Desabilitando o serviço Arduino OTA mDNS",
+    "tooltip": "Remover _arduino._tcp broadcast do serviço mDNS"
+  },
+  "seeed_rpcmdns_enable_workstation": {
+    "message0": "Ativar o serviço mDNS da estação de trabalho %1",
+    "tooltip": "Serviço de broadcast _workstation._tcp, usado para descoberta de dispositivos de rede",
+    "args0": [
+      {
+        "options": [
+          [
+            "STA",
+            "ESP_IF_WIFI_STA"
+          ],
+          [
+            "AP",
+            "ESP_IF_WIFI_AP"
+          ]
+        ]
+      }
+    ]
+  },
+  "seeed_rpcmdns_disable_workstation": {
+    "message0": "Desabilite os serviços mDNS da estação de trabalho",
+    "tooltip": "Remover _workstation._tcp broadcast do serviço mDNS"
+  },
+  "seeed_rpcmdns_query_host": {
+    "message0": "Consulte o host mDNS %1 IP com um tempo limite de %2 milissegundos",
+    "tooltip": "Consulte hostname.local via mDNS e retorne a string de endereço IPv4"
+  },
+  "seeed_rpcmdns_query_service": {
+    "message0": "Consulta ao Tipo de Serviço mDNS %1 Protocolo %2",
+    "tooltip": "Consulte o serviço mDNS-SD especificado, retorne o número de serviços descobertos e armazene em cache os resultados para que o bloco de resultados leia",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "TCP",
+            "tcp"
+          ],
+          [
+            "UDP",
+            "udp"
+          ]
+        ]
+      }
+    ]
+  },
+  "seeed_rpcmdns_result_hostname": {
+    "message0": "resultado mDNS %1 nome de host",
+    "tooltip": "Leia o nome de host do índice especificado na consulta de serviço mais recente"
+  },
+  "seeed_rpcmdns_result_ip": {
+    "message0": "Resultados do mDNS %1 endereço IPv4",
+    "tooltip": "Leia o endereço IPv4 especificado no resultado mais recente da consulta de serviço para o índice especificado"
+  },
+  "seeed_rpcmdns_result_port": {
+    "message0": "Resultados %1 portas do mDNS",
+    "tooltip": "Leia o número da porta do índice especificado no resultado mais recente da consulta de serviço"
+  },
+  "seeed_rpcmdns_result_txt_count": {
+    "message0": "Resultados do mDNS %1 contagem de TXT",
+    "tooltip": "Leia o número de registros TXT especificados no índice da consulta de serviço mais recente"
+  },
+  "seeed_rpcmdns_result_has_txt": {
+    "message0": "O resultado mDNS %1 contém a chave TXT %2",
+    "tooltip": "Verifique se o resultado especificado contém uma determinada chave TXT"
+  },
+  "seeed_rpcmdns_result_txt_by_key": {
+    "message0": "Resultado mDNS %1 valor da chave TXT %2",
+    "tooltip": "Leia o valor correspondente a uma determinada chave TXT no resultado especificado"
+  },
+  "seeed_rpcmdns_result_txt_by_index": {
+    "message0": "Resultado mDNS %1 o valor %2th TXT",
+    "tooltip": "Leia o valor TXT do resultado especificado pelo índice TXT"
+  }
+}

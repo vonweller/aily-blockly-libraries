@@ -1,0 +1,81 @@
+{
+  "toolbox_name": "MAX31865溫度感測器",
+  "max31865_init": {
+    "message0": "初始化溫度感測器 CS接腳 %1 連接方式 %2 感測器類型 %3",
+    "args0": [
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": [
+          [
+            "2線制",
+            "MAX31865_2WIRE"
+          ],
+          [
+            "3線制",
+            "MAX31865_3WIRE"
+          ],
+          [
+            "4線制",
+            "MAX31865_4WIRE"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "PT100",
+            "MAX31865_PT100"
+          ],
+          [
+            "PT1000",
+            "MAX31865_PT1000"
+          ]
+        ]
+      }
+    ]
+  },
+  "max31865_read": {
+    "message0": "讀取溫度感測器 取得溫度 %1 取得電阻 %2 取得狀態 %3"
+  },
+  "max31865_set_low_threshold": {
+    "message0": "設定溫度感測器低故障閾值 %1"
+  },
+  "max31865_set_high_threshold": {
+    "message0": "設定溫度感測器高故障閾值 %1"
+  },
+  "max31865_check_fault": {
+    "message0": "檢查溫度感測器故障 %1",
+    "args0": [
+      {
+        "options": [
+          [
+            "高溫故障",
+            "MAX31865_FAULT_TEMP_HIGH"
+          ],
+          [
+            "低溫故障",
+            "MAX31865_FAULT_TEMP_LOW"
+          ],
+          [
+            "基準電阻高故障",
+            "MAX31865_FAULT_REFIN_HIGH"
+          ],
+          [
+            "基準電阻低/開路故障",
+            "MAX31865_FAULT_REFIN_LOW_OPEN"
+          ],
+          [
+            "溫度感測器低/開路故障",
+            "MAX31865_FAULT_RTDIN_LOW_OPEN"
+          ],
+          [
+            "電壓超出範圍故障",
+            "MAX31865_FAULT_VOLTAGE_OOR"
+          ]
+        ]
+      }
+    ]
+  }
+}

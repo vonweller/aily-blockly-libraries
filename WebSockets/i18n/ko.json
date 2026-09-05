@@ -1,0 +1,162 @@
+{
+  "toolbox_name": "WebSockets",
+  "toolbox_labels": {
+    "WebSocket客户端": "웹소켓 클라이언트",
+    "WebSocket服务器": "웹소켓 서버",
+    "事件处理": "이벤트 처리"
+  },
+  "websocket_client_create": {
+    "message0": "WebSocket 클라이언트 생성 %1",
+    "tooltip": "WebSocket 클라이언트 객체를 생성하세요"
+  },
+  "websocket_client_begin": {
+    "message0": "WebSocket 클라이언트 %1 포트 %3 경로 %4 %2 연결됩니다",
+    "tooltip": "WebSocket 서버에 접속하세요"
+  },
+  "websocket_client_begin_ssl": {
+    "message0": "WebSocket 클라이언트는 SSL%1 포트 %3 경로 %4에 %2 연결합니다",
+    "tooltip": "SSL은 WebSocket 서버에 안전하게 연결됩니다"
+  },
+  "websocket_client_on_event": {
+    "message0": "WebSocket 클라이언트가 이벤트를 %1 받을 때",
+    "tooltip": "WebSocket 클라이언트 이벤트 처리 설정",
+    "message1": "실행 %1"
+  },
+  "websocket_client_send_text": {
+    "message0": "WebSocket 클라이언트가 텍스트를 %1 보내%2",
+    "tooltip": "WebSocket 서버로 문자 메시지 전송"
+  },
+  "websocket_client_send_binary": {
+    "message0": "WebSocket 클라이언트는 %1 이진 데이터를 전송%2",
+    "tooltip": "이진 데이터를 WebSocket 서버로 전송"
+  },
+  "websocket_client_disconnect": {
+    "message0": "WebSocket 클라이언트 %1 디스커넥트",
+    "tooltip": "WebSocket 클라이언트 연결을 해제하세요"
+  },
+  "websocket_client_is_connected": {
+    "message0": "WebSocket 클라이언트 %1가 연결되어 있는지 확인하세요",
+    "tooltip": "WebSocket 클라이언트가 연결되어 있는지 확인하세요"
+  },
+  "websocket_client_set_reconnect": {
+    "message0": "WebSocket 클라이언트는 재연결 간격을 %2밀리초로 설정%1",
+    "tooltip": "WebSocket 클라이언트 재연결 간격을 설정하세요"
+  },
+  "websocket_client_enable_heartbeat": {
+    "message0": "WebSocket 클라이언트 %1 Heart beat Interval %2ms Timeout %3ms 연결 해제 count%4",
+    "tooltip": "WebSocket 클라이언트에서 심장박동 감지를 활성화하세요"
+  },
+  "websocket_server_create": {
+    "message0": "포트 %1 WebSocket 서버를 생성하세요%2",
+    "tooltip": "WebSocket 서버 객체 생성"
+  },
+  "websocket_server_begin": {
+    "message0": "WebSocket 서버 시작 %1",
+    "tooltip": "WebSocket 서버 시작"
+  },
+  "websocket_server_on_event": {
+    "message0": "WebSocket 서버가 이벤트를 %1 받을 때",
+    "tooltip": "WebSocket 서버 이벤트 처리 설정",
+    "message1": "실행 %1"
+  },
+  "websocket_server_send_text": {
+    "message0": "WebSocket 서버가 클라이언트 %2%3에 텍스트를 전송하는 %1",
+    "tooltip": "지정된 클라이언트에게 문자 메시지를 보내세요"
+  },
+  "websocket_server_broadcast_text": {
+    "message0": "WebSocket 서버 %1 브로드캐스트 텍스트 %2",
+    "tooltip": "연결된 모든 클라이언트에게 문자 메시지를 방송합니다"
+  },
+  "websocket_server_send_binary": {
+    "message0": "WebSocket 서버%1 클라이언트 %2 %3에 이진 데이터를 전송합니다",
+    "tooltip": "이진 데이터는 지정된 클라이언트로 전송됩니다"
+  },
+  "websocket_server_broadcast_binary": {
+    "message0": "WebSocket Server %1 브로드캐스트 바이너리 데이터 %2",
+    "tooltip": "연결된 모든 클라이언트에 이진 데이터를 방송합니다"
+  },
+  "websocket_server_disconnect": {
+    "message0": "WebSocket 서버 %1 클라이언트 %2 연결 해제",
+    "tooltip": "지정된 클라이언트 연결을 해제합니다"
+  },
+  "websocket_server_disconnect_all": {
+    "message0": "WebSocket 서버 %1 모든 클라이언트를 차단합니다",
+    "tooltip": "모든 클라이언트 연결을 해제합니다"
+  },
+  "websocket_server_connected_clients": {
+    "message0": "WebSocket 서버 %1 연결된 클라이언트 수",
+    "tooltip": "연결된 고객 수를 확인하세요"
+  },
+  "websocket_server_client_connected": {
+    "message0": "WebSocket 서버%1 클라이언트 %2가 연결되어 있는지 여부",
+    "tooltip": "지정된 클라이언트가 연결되어 있는지 확인해 보세요"
+  },
+  "websocket_event_type": {
+    "message0": "이벤트 유형 %1",
+    "tooltip": "WebSocket 이벤트 유형",
+    "args0": [
+      {
+        "options": [
+          [
+            "연결을 끊으세요",
+            "WStype_DISCONNECTED"
+          ],
+          [
+            "연결",
+            "WStype_CONNECTED"
+          ],
+          [
+            "문자 메시지",
+            "WStype_TEXT"
+          ],
+          [
+            "이진 메시지",
+            "WStype_BIN"
+          ],
+          [
+            "Ping",
+            "WStype_PING"
+          ],
+          [
+            "Pong",
+            "WStype_PONG"
+          ],
+          [
+            "오류",
+            "WStype_ERROR"
+          ]
+        ]
+      }
+    ]
+  },
+  "websocket_event_payload": {
+    "message0": "이벤트 데이터 %1",
+    "tooltip": "WebSocket 이벤트 데이터",
+    "args0": [
+      {
+        "options": [
+          [
+            "이벤트 종류",
+            "TYPE"
+          ],
+          [
+            "이벤트 데이터 (uint8_t*)",
+            "PAYLOAD"
+          ],
+          [
+            "이벤트 데이터 (char*)",
+            "PAYLOAD_CHAR"
+          ]
+        ]
+      }
+    ]
+  },
+  "websocket_event_payload_length": {
+    "message0": "이벤트 데이터 길이",
+    "tooltip": "이벤트 데이터 길이를 가져오세요"
+  },
+  "websocket_event_client_num": {
+    "message0": "이벤트 클라이언트 번호",
+    "tooltip": "이벤트의 클라이언트 측 번호를 얻으세요"
+  }
+}

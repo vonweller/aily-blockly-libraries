@@ -1,0 +1,111 @@
+{
+  "toolbox_name": "GM60 QR 코드 스캐너",
+  "toolbox_labels": {
+    "初始化": "초기화",
+    "配置": "구성",
+    "读取": "읽다"
+  },
+  "gm60_init_i2c": {
+    "message0": "QR 코드 스캐너(I2C) 초기화 %1\nAddress%2\n사용 %3",
+    "tooltip": "I2C를 통해 DFRobot GM60 QR 코드 스캐너 모듈을 초기화하세요",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "0x1A (기본값)",
+            "0x1A"
+          ]
+        ]
+      },
+      {
+        "options": "${board.i2c}"
+      }
+    ]
+  },
+  "gm60_init_uart": {
+    "message0": "QR 코드 스캐너(직렬 포트)를 RX 핀 %2 TX 핀 %1 초기화하세요%3",
+    "tooltip": "RX 및 TX 핀을 지정하여 UART 시리얼 포트를 통해 DFRobot GM60 QR 코드 스캐너 모듈을 초기화하세요"
+  },
+  "gm60_set_encode": {
+    "message0": "QR 코드 스캐너%1 인코딩을 %2로 설정할 수 있습니다.",
+    "tooltip": "QR 코드 스캐너의 출력 데이터의 인코딩 형식을 설정하세요",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "UTF-8",
+            "eUTF8"
+          ],
+          [
+            "GBK",
+            "eGBK"
+          ]
+        ]
+      }
+    ]
+  },
+  "gm60_setup_code": {
+    "message0": "QR 코드 스캐너 %1 %2 코드 설정 %3 구성 코드 내용 출력",
+    "tooltip": "QR 코드를 스캔하여 칩 레지스터 값을 변경할 수 있도록 코드 구성을 설정하세요",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "켜기",
+            "true"
+          ],
+          [
+            "끄기",
+            "false"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "출력",
+            "true"
+          ],
+          [
+            "출력 없음",
+            "false"
+          ]
+        ]
+      }
+    ]
+  },
+  "gm60_set_identify": {
+    "message0": "QR 코드 스캐너%1 인식 모드 %2",
+    "tooltip": "QR 코드/바코드, 지원 QR 코드, EAN13, Code128 등의 인식 유형을 설정하세요",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "모든 바코드 인식 활성화",
+            "eEnableAllBarcode"
+          ],
+          [
+            "기본 바코드 인식 활성화",
+            "eEnableDefaultcode"
+          ],
+          [
+            "모든 바코드 인식은 금지되어 있습니다",
+            "eForbidAllBarcode"
+          ]
+        ]
+      }
+    ]
+  },
+  "gm60_reset": {
+    "message0": "QR 코드 스캐너 %1 공장 초기화",
+    "tooltip": "QR 코드 스캐너를 공장 초기로 복원하세요"
+  },
+  "gm60_detection": {
+    "message0": "QR 코드 스캐너 %1 스캔 데이터를 읽습니다",
+    "tooltip": "스캔된 QR 코드/바코드 데이터를 감지하고 문자열로 반환합니다"
+  }
+}

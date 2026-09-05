@@ -1,0 +1,111 @@
+{
+  "toolbox_name": "Escáner de códigos QR GM60",
+  "toolbox_labels": {
+    "初始化": "inicialización",
+    "配置": "Configuración",
+    "读取": "leer"
+  },
+  "gm60_init_i2c": {
+    "message0": "Inicializar el Escáner de Códigos QR (I2C) %1\nAddress%2\nUso %3",
+    "tooltip": "Inicializar el módulo de escáner de códigos QR DFRobot GM60 vía I2C",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "0x1A (por defecto)",
+            "0x1A"
+          ]
+        ]
+      },
+      {
+        "options": "${board.i2c}"
+      }
+    ]
+  },
+  "gm60_init_uart": {
+    "message0": "Inicializar el escáner de códigos QR (puerto serie) %1 PIN RX %2 PIN TX %3",
+    "tooltip": "Inicializa el módulo de escáner de códigos QR DFRobot GM60 a través del puerto serie UART, especificando los pines RX y TX"
+  },
+  "gm60_set_encode": {
+    "message0": "El escáner de códigos QR %1 configurar la codificación a %2",
+    "tooltip": "Establece el formato de codificación para los datos de salida del escáner de códigos QR",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "UTF-8",
+            "eUTF8"
+          ],
+          [
+            "GBK",
+            "eGBK"
+          ]
+        ]
+      }
+    ]
+  },
+  "gm60_setup_code": {
+    "message0": "Escáner de códigos QR %1 %2 Configuración del código %3 Salida del contenido del código de configuración",
+    "tooltip": "Configurar el código, permitiéndote cambiar el valor del registro del chip escaneando un código QR",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Activado",
+            "true"
+          ],
+          [
+            "Desactivado",
+            "false"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "Producción",
+            "true"
+          ],
+          [
+            "Sin salida",
+            "false"
+          ]
+        ]
+      }
+    ]
+  },
+  "gm60_set_identify": {
+    "message0": "Modo de reconocimiento de %1 de código QR %2",
+    "tooltip": "Configura el tipo de reconocimiento para código QR/código de barras, soporte de código QR, EAN13, Código 128, etc",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Activar todo el reconocimiento de códigos de barras",
+            "eEnableAllBarcode"
+          ],
+          [
+            "Activar el reconocimiento de códigos de barras por defecto",
+            "eEnableDefaultcode"
+          ],
+          [
+            "Está prohibido todo reconocimiento de códigos de barras",
+            "eForbidAllBarcode"
+          ]
+        ]
+      }
+    ]
+  },
+  "gm60_reset": {
+    "message0": "Escáner de códigos QR %1 restablecimiento de fábrica",
+    "tooltip": "Restaura el escáner de códigos QR a los ajustes de fábrica"
+  },
+  "gm60_detection": {
+    "message0": "Un escáner de códigos QR %1 lee los datos de escaneo",
+    "tooltip": "Detecta y devuelve datos escaneados de código QR o código de barras, devolviéndolos como cadena"
+  }
+}

@@ -1,0 +1,181 @@
+{
+  "toolbox_name": "ICM20948",
+  "toolbox_labels": {
+    "初始化": "初始化",
+    "基础读取": "基礎讀取",
+    "AHRS姿态解算": "AHRS姿態解算",
+    "校准和配置": "校準和配置"
+  },
+  "icm20948_init": {
+    "message0": "初始化ICM20948感測器 I2C位址%1",
+    "tooltip": "初始化ICM20948九軸感知器",
+    "args0": [
+      {
+        "options": [
+          [
+            "0x69 (預設)",
+            "1"
+          ],
+          [
+            "0x68（ADR 接地）",
+            "0"
+          ]
+        ]
+      }
+    ]
+  },
+  "icm20948_read_accel": {
+    "message0": "讀取加速度計%1軸數值",
+    "tooltip": "讀取加速度計指定軸的數值 (mg)",
+    "args0": [
+      {
+        "options": [
+          [
+            "X",
+            "X"
+          ],
+          [
+            "Y",
+            "Y"
+          ],
+          [
+            "Z",
+            "Z"
+          ]
+        ]
+      }
+    ]
+  },
+  "icm20948_read_gyro": {
+    "message0": "讀取陀螺儀%1軸數值",
+    "tooltip": "讀取陀螺儀指定軸的數值 (度/秒)",
+    "args0": [
+      {
+        "options": [
+          [
+            "X",
+            "X"
+          ],
+          [
+            "Y",
+            "Y"
+          ],
+          [
+            "Z",
+            "Z"
+          ]
+        ]
+      }
+    ]
+  },
+  "icm20948_read_mag": {
+    "message0": "讀取磁力計%1軸數值",
+    "tooltip": "讀取磁力計指定軸的數值 (μT)",
+    "args0": [
+      {
+        "options": [
+          [
+            "X",
+            "X"
+          ],
+          [
+            "Y",
+            "Y"
+          ],
+          [
+            "Z",
+            "Z"
+          ]
+        ]
+      }
+    ]
+  },
+  "icm20948_read_temp": {
+    "message0": "讀取溫度",
+    "tooltip": "讀取感測器溫度 (°C)"
+  },
+  "icm20948_data_ready": {
+    "message0": "ICM20948資料就緒",
+    "tooltip": "檢查感測器是否有新數據可讀"
+  },
+  "icm20948_ahrs_init": {
+    "message0": "初始化AHRS姿態解算 取樣頻率%1Hz",
+    "tooltip": "初始化AHRS姿態解算演算法"
+  },
+  "icm20948_ahrs_update": {
+    "message0": "更新AHRS姿態解算",
+    "tooltip": "使用最新的感測器數據更新AHRS解算"
+  },
+  "icm20948_get_roll": {
+    "message0": "取得橫滾角Roll",
+    "tooltip": "取得AHRS解算的橫滾角 (度)"
+  },
+  "icm20948_get_pitch": {
+    "message0": "獲取俯仰角Pitch",
+    "tooltip": "取得AHRS解算的俯仰角 (度)"
+  },
+  "icm20948_get_yaw": {
+    "message0": "獲取偏航角Yaw",
+    "tooltip": "取得AHRS解算的偏航角 (度)"
+  },
+  "icm20948_calibrate_gyro": {
+    "message0": "校準陀螺儀 採樣次數%1",
+    "tooltip": "校準陀螺儀零點偏移，感測器需保持靜止"
+  },
+  "icm20948_set_gyro_offset": {
+    "message0": "設定陀螺儀偏移 X%1 Y%2 Z%3",
+    "tooltip": "手動設定陀螺儀三軸偏移值"
+  },
+  "icm20948_set_accel_range": {
+    "message0": "設定加速度計量程%1",
+    "tooltip": "設定加速度計測量量程",
+    "args0": [
+      {
+        "options": [
+          [
+            "±2g",
+            "gpm2"
+          ],
+          [
+            "±4g",
+            "gpm4"
+          ],
+          [
+            "±8g",
+            "gpm8"
+          ],
+          [
+            "±16g",
+            "gpm16"
+          ]
+        ]
+      }
+    ]
+  },
+  "icm20948_set_gyro_range": {
+    "message0": "設定陀螺儀量程%1",
+    "tooltip": "設定陀螺儀測量量程",
+    "args0": [
+      {
+        "options": [
+          [
+            "±250°/s",
+            "dps250"
+          ],
+          [
+            "±500°/s",
+            "dps500"
+          ],
+          [
+            "±1000°/s",
+            "dps1000"
+          ],
+          [
+            "±2000°/s",
+            "dps2000"
+          ]
+        ]
+      }
+    ]
+  }
+}

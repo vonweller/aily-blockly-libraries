@@ -1,0 +1,139 @@
+{
+  "toolbox_name": "Modbus RTU slave",
+  "toolbox_labels": {
+    "初始化": "initialization",
+    "数据配置": "Data configuration",
+    "线圈与离散量": "Coils and discrete quantities",
+    "寄存器": "register",
+    "运行": "run"
+  },
+  "modbus_rtu_slave_create": {
+    "message0": "Create Modbus RTU slave %1 Serial port %2 Transmit enable pin %3 Receive enable pin %4",
+    "tooltip": "Create a Modbus RTU slave instance. Fill in the DE/RE pin with -1 to indicate automatic hardware switching.",
+    "args0": [
+      null,
+      {
+        "options": "${board.serialPort}"
+      },
+      null,
+      null
+    ]
+  },
+  "modbus_rtu_slave_set_response_delay": {
+    "message0": "Modbus slave %1 Set response delay %2 milliseconds",
+    "tooltip": "Set the response delay to avoid the host DE pin releasing too slowly"
+  },
+  "modbus_rtu_slave_begin": {
+    "message0": "Modbus slave %1 Start Device ID %2 Baud rate %3 Serial port format %4",
+    "tooltip": "Set the slave address, baud rate and serial port verification format",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "9600",
+            "9600"
+          ],
+          [
+            "19200",
+            "19200"
+          ],
+          [
+            "38400",
+            "38400"
+          ],
+          [
+            "57600",
+            "57600"
+          ],
+          [
+            "115200",
+            "115200"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "8N1",
+            "SERIAL_8N1"
+          ],
+          [
+            "8N2",
+            "SERIAL_8N2"
+          ],
+          [
+            "8E1",
+            "SERIAL_8E1"
+          ],
+          [
+            "8E2",
+            "SERIAL_8E2"
+          ],
+          [
+            "8O1",
+            "SERIAL_8O1"
+          ],
+          [
+            "8O2",
+            "SERIAL_8O2"
+          ]
+        ]
+      }
+    ]
+  },
+  "modbus_rtu_slave_poll": {
+    "message0": "Modbus slave %1 polling request",
+    "tooltip": "Frequently called to handle primary site read and write requests",
+    "message1": "Executed when receiving a valid request %1"
+  },
+  "modbus_rtu_slave_bind_coils": {
+    "message0": "Modbus slave %1 Configuration coil array %2 Length %3",
+    "tooltip": "Create an array of boolean coils and tell the library its length"
+  },
+  "modbus_rtu_slave_bind_discrete": {
+    "message0": "Modbus slave %1 Configure discrete input array %2 Length %3",
+    "tooltip": "Create a Boolean discrete input array for reporting to the main station"
+  },
+  "modbus_rtu_slave_bind_holding": {
+    "message0": "Modbus slave %1 Configuration holding register %2 Length %3",
+    "tooltip": "Create a 16-bit holding register array for master station reading and writing"
+  },
+  "modbus_rtu_slave_bind_input": {
+    "message0": "Modbus slave %1 Configuration input register %2 Length %3",
+    "tooltip": "Create a 16-bit input register array for reporting analog values"
+  },
+  "modbus_rtu_slave_coils_set": {
+    "message0": "Coil Array %1 Index %2 Write %3",
+    "tooltip": "Writes the specified coil value, which can be used for initialization or local forcing"
+  },
+  "modbus_rtu_slave_coils_get": {
+    "message0": "Value of coil array %1 index %2",
+    "tooltip": "Read coil status for driving output"
+  },
+  "modbus_rtu_slave_discrete_set": {
+    "message0": "Discrete input array %1 index %2 write %3",
+    "tooltip": "Update discrete input status and report switch value"
+  },
+  "modbus_rtu_slave_discrete_get": {
+    "message0": "Value of discrete input array %1 index %2",
+    "tooltip": "Read discrete input array, mostly used for debugging"
+  },
+  "modbus_rtu_slave_holding_set": {
+    "message0": "Holding register array %1 Index %2 Write %3",
+    "tooltip": "Write to 16-bit holding register to provide default value"
+  },
+  "modbus_rtu_slave_holding_get": {
+    "message0": "Holds the value of register array %1 index %2",
+    "tooltip": "Read holding register value for analog output"
+  },
+  "modbus_rtu_slave_input_set": {
+    "message0": "Input register array %1 Index %2 Write %3",
+    "tooltip": "Write to the 16-bit input register and report the analog value"
+  },
+  "modbus_rtu_slave_input_get": {
+    "message0": "Value of input register array %1 index %2",
+    "tooltip": "Read the input register value to facilitate debugging"
+  }
+}

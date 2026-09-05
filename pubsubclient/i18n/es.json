@@ -1,0 +1,135 @@
+{
+  "toolbox_name": "MQTT",
+  "toolbox_labels": {
+    "初始化": "inicialización",
+    "连接": "conectar",
+    "通信": "comunicación",
+    "设置": "ajustes"
+  },
+  "pubsub_create": {
+    "message0": "Crea un cliente MQTT %1 Usa el cliente %2 %3\nPuerto %4 servidor %5",
+    "tooltip": "Crear un objeto cliente MQTT",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "No",
+            "FALSE"
+          ],
+          [
+            "Si",
+            "TRUE"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "pubsub_set_callback": {
+    "message0": "Cuando el cliente MQTT %1 recibe un mensaje",
+    "tooltip": "Configurar la función de recepción de llamadas de recepción de mensajes MQTT",
+    "message1": "ejecutar %1"
+  },
+  "pubsub_set_callback_with_topic": {
+    "message0": "Cuando recibas un mensaje sobre el tema %1",
+    "tooltip": "Configura la función de recepción de llamadas de mensaje MQTT para temas específicos",
+    "message1": "ejecutar %1"
+  },
+  "pubsub_get_topic_callback_payload": {
+    "message0": "Recupera el contenido del mensaje MQTT recibido",
+    "tooltip": "Recupera el contenido del mensaje MQTT recibido en la función de callback"
+  },
+  "pubsub_connect": {
+    "message0": "El cliente MQTT %1 conectarse al ID del cliente %2",
+    "tooltip": "Conéctate al servidor MQTT"
+  },
+  "pubsub_connect_auth": {
+    "message0": "ID del cliente %1 MQTT Connect Cliente %2 Nombre de usuario %3 contraseña %4",
+    "tooltip": "Conéctate al servidor MQTT usando tu nombre de usuario y contraseña"
+  },
+  "pubsub_publish": {
+    "message0": "Cliente MQTT %1 Publicar Asunto %2 Contenido del Mensaje %3",
+    "tooltip": "Liberar mensajes MQTT"
+  },
+  "pubsub_subscribe": {
+    "message0": "Cliente MQTT %1 tema de suscripción %2",
+    "tooltip": "Suscríbete a temas de MQTT"
+  },
+  "pubsub_unsubscribe": {
+    "message0": "Cliente MQTT %1 Cancelar suscripción al tema %2",
+    "tooltip": "Darse de baja de temas de MQTT"
+  },
+  "pubsub_loop": {
+    "message0": "Gestiona las comunicaciones %1 cliente MQTT",
+    "tooltip": "La comunicación MQTT debe llamarse en un bucle"
+  },
+  "pubsub_connected": {
+    "message0": "Comprueba si el %1 cliente MQTT está conectado",
+    "tooltip": "Comprueba el estado de la conexión MQTT"
+  },
+  "pubsub_state": {
+    "message0": "El cliente MQTT %1 obtiene el estado de la conexión",
+    "tooltip": "Obtener el código de estado de la conexión MQTT"
+  },
+  "pubsub_state_code": {
+    "message0": "Código de estado MQTT %1",
+    "tooltip": "Constante del código de estado MQTT",
+    "args0": [
+      {
+        "options": [
+          [
+            "Conexión exitosa",
+            "MQTT_CONNECTED"
+          ],
+          [
+            "Fallo de conexión",
+            "MQTT_CONNECT_FAILED"
+          ],
+          [
+            "Desconecta la conexión",
+            "MQTT_DISCONNECTED"
+          ],
+          [
+            "Pérdida de conexión",
+            "MQTT_CONNECTION_LOST"
+          ],
+          [
+            "Tiempo de espera de conexión",
+            "MQTT_CONNECTION_TIMEOUT"
+          ],
+          [
+            "Error de protocolo",
+            "MQTT_CONNECT_BAD_PROTOCOL"
+          ],
+          [
+            "Error de ID de cliente",
+            "MQTT_CONNECT_BAD_CLIENT_ID"
+          ],
+          [
+            "El servicio no está disponible",
+            "MQTT_CONNECT_UNAVAILABLE"
+          ],
+          [
+            "Error de vales",
+            "MQTT_CONNECT_BAD_CREDENTIALS"
+          ],
+          [
+            "No autorizado",
+            "MQTT_CONNECT_UNAUTHORIZED"
+          ]
+        ]
+      }
+    ]
+  },
+  "pubsub_disconnect": {
+    "message0": "Desconecta el cliente MQTT %1 la conexión",
+    "tooltip": "Desconecta la conexión MQTT"
+  },
+  "pubsub_setBufferSize": {
+    "message0": "Establece el tamaño del buffer del cliente %1 MQTT a %2 bytes",
+    "tooltip": "Establecer el tamaño del buffer del cliente MQTT"
+  }
+}

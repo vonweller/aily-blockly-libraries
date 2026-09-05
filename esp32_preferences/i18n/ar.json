@@ -1,0 +1,205 @@
+{
+  "toolbox_name": "تخزين التفضيلات",
+  "toolbox_labels": {
+    "命名空间": "Namespace",
+    "写入标量": "اكتب القياسات",
+    "读取标量": "اقرأ الرقم القياسي",
+    "字节与长度": "البايتات والطول",
+    "查询与维护": "الاستعلام والصيانة"
+  },
+  "esp32_preferences_begin": {
+    "message0": "افتح مساحة أسماء التفضيلات %1 %2 القراءة فقط",
+    "tooltip": "استدعي Preferences.begin(name, readOnly) لفتح مساحة الأسماء في قسم NVS الافتراضي.",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "No",
+            "false"
+          ],
+          [
+            "Yes",
+            "true"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_preferences_begin_partition": {
+    "message0": "افتح مساحة أسماء التفضيلات %1 %2 partition%3 القراءة فقط",
+    "tooltip": "استدعي Preferences.begin(name, readOnly, partition_label) لفتح مساحة الأسماء في قسم NVS المحدد.",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "No",
+            "false"
+          ],
+          [
+            "Yes",
+            "true"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "esp32_preferences_end": {
+    "message0": "إغلاق التفضيلات",
+    "tooltip": "استدعاء Preferences.end() لإغلاق مساحة الأسماء الحالية."
+  },
+  "esp32_preferences_clear": {
+    "message0": "امسح مساحة الأسماء الحالية",
+    "tooltip": "استدعي Preferences.clear() لحذف جميع المفاتيح في مساحة الأسماء الحالية."
+  },
+  "esp32_preferences_remove": {
+    "message0": "حذف %1 المفتاح",
+    "tooltip": "استدعي Preferences.remove(key) لحذف المفتاح المحدد."
+  },
+  "esp32_preferences_put_char": {
+    "message0": "اكتب قيمة %1 لمفتاح int8 %2",
+    "tooltip": "اتصل ب Preferences.putChar() للكتابة إلى int8."
+  },
+  "esp32_preferences_put_uchar": {
+    "message0": "اكتب قيمة مفتاح uint8 %1 %2",
+    "tooltip": "اتصل ب Preferences.putUChar() للكتابة إلى uint8."
+  },
+  "esp32_preferences_put_short": {
+    "message0": "اكتب قيمة %1 لمفتاح int16 %2",
+    "tooltip": "اتصل ب Preferences.putShort() للكتابة إلى int16."
+  },
+  "esp32_preferences_put_ushort": {
+    "message0": "اكتب قيمة %1 لمفتاح uint16 %2",
+    "tooltip": "اتصل ب Preferences.putUShort() للكتابة إلى uint16."
+  },
+  "esp32_preferences_put_int": {
+    "message0": "اكتب قيمة %1 لمفتاح int32 %2",
+    "tooltip": "اتصل ب Preferences.putInt() لكتابة int32."
+  },
+  "esp32_preferences_put_uint": {
+    "message0": "اكتب قيمة مفتاح uint32 %1 %2",
+    "tooltip": "اتصل ب Preferences.putUInt() للكتابة إلى uint32."
+  },
+  "esp32_preferences_put_long": {
+    "message0": "اكتب القيمة %1 للمفتاح الطويل %2",
+    "tooltip": "اتصل ب Preferences.putLong() لكتابة الكتابة."
+  },
+  "esp32_preferences_put_ulong": {
+    "message0": "اكتب قيمة المفتاح الطويل غير الموقع %1 %2",
+    "tooltip": "اتصل ب Preferences.putULong() لكتابة ملف طويل غير موقع."
+  },
+  "esp32_preferences_put_long64": {
+    "message0": "اكتب قيمة %1 لمفتاح int64 %2",
+    "tooltip": "اتصل ب Preferences.putLong64() للكتابة إلى int64."
+  },
+  "esp32_preferences_put_ulong64": {
+    "message0": "اكتب قيمة %1 لمفتاح uint64 %2",
+    "tooltip": "اتصل ب Preferences.putULong64() للكتابة إلى uint64."
+  },
+  "esp32_preferences_put_float": {
+    "message0": "اكتب مفتاح التعويم %1 قيمة %2",
+    "tooltip": "استدعي Preferences.putFloat() لكتابة تعويم."
+  },
+  "esp32_preferences_put_double": {
+    "message0": "اكتب مفتاحا مزدوجا %1 قيمة %2",
+    "tooltip": "استدعي Preferences.putDouble() لكتابة double"
+  },
+  "esp32_preferences_put_bool": {
+    "message0": "اكتب مفتاح القيمة البوليانية %1 القيمة %2",
+    "tooltip": "استدعي Preferences.putBool() لكتابة القيمة البوليانية."
+  },
+  "esp32_preferences_put_string": {
+    "message0": "اكتب مفتاح السلسلة %1 القيمة %2",
+    "tooltip": "استدعي Preferences.putString() لكتابة السلسلة."
+  },
+  "esp32_preferences_put_bytes": {
+    "message0": "مفتاح كتابة بايت %1 مخزن تخزين %2 طول %3",
+    "tooltip": "استدعي Preferences.putBytes(key, buffer, len) للكتابة إلى مخزن البايتات؛ يتم ملء المخزن المؤقت باسم أو تعبير متغير C++."
+  },
+  "esp32_preferences_get_char": {
+    "message0": "اقرأ مفتاح INT8 %1 %2 الافتراضي",
+    "tooltip": "اتصل ب Preferences.getChar() لقراءة int8؛ يرجع القيمة الافتراضية عندما يكون المفتاح."
+  },
+  "esp32_preferences_get_uchar": {
+    "message0": "اقرأ مفتاح UINT8 %1 الافتراضي %2",
+    "tooltip": "اتصل ب Preferences.getUChar() لقراءة uint8؛ يرجع القيمة الافتراضية عندما يكون المفتاح."
+  },
+  "esp32_preferences_get_short": {
+    "message0": "اقرأ مفتاح int16 %1 الافتراضي %2",
+    "tooltip": "اتصل ب Preferences.getShort() لقراءة int16؛ يرجع القيمة الافتراضية عندما يكون المفتاح."
+  },
+  "esp32_preferences_get_ushort": {
+    "message0": "اقرأ مفتاح UINT16 %1 الافتراضي %2",
+    "tooltip": "اتصل ب Preferences.getUShort() لقراءة uint16؛ يرجع القيمة الافتراضية عندما يكون المفتاح."
+  },
+  "esp32_preferences_get_int": {
+    "message0": "اقرأ مفتاح int32 %1 الافتراضي %2",
+    "tooltip": "اتصل ب Preferences.getInt() لقراءة int32؛ يرجع القيمة الافتراضية عندما يكون المفتاح."
+  },
+  "esp32_preferences_get_uint": {
+    "message0": "اقرأ مفتاح uint32 %1 %2 الافتراضي",
+    "tooltip": "اتصل ب Preferences.getUInt() لقراءة uint32؛ يرجع القيمة الافتراضية عندما يكون المفتاح."
+  },
+  "esp32_preferences_get_long": {
+    "message0": "اقرأ المفتاح الطويل %1 الافتراضي %2",
+    "tooltip": "اتصل ب Preferences.getLong() للقراءة الطويلة؛ يرجع القيمة الافتراضية عندما يكون المفتاح."
+  },
+  "esp32_preferences_get_ulong": {
+    "message0": "اقرأ المفتاح الطويل غير الموقع %1 %2 الافتراضي",
+    "tooltip": "اتصل ب Preferences.getULong() لقراءة النص غير الموقع؛ يرجع القيمة الافتراضية عندما يكون المفتاح."
+  },
+  "esp32_preferences_get_long64": {
+    "message0": "اقرأ مفتاح int64 %1 الافتراضي %2",
+    "tooltip": "اتصل ب Preferences.getLong64() لقراءة int64؛ يرجع القيمة الافتراضية عندما يكون المفتاح."
+  },
+  "esp32_preferences_get_ulong64": {
+    "message0": "اقرأ مفتاح UINT64 %1 %2 الافتراضي",
+    "tooltip": "اتصل ب Preferences.getULong64() لقراءة uint64؛ يرجع القيمة الافتراضية عندما يكون المفتاح."
+  },
+  "esp32_preferences_get_float": {
+    "message0": "قراءة مفتاح الطفو %1 الافتراضي %2",
+    "tooltip": "اتصل ب Preferences.getFloat() لقراءة العوامة؛ يرجع القيمة الافتراضية عندما يكون المفتاح."
+  },
+  "esp32_preferences_get_double": {
+    "message0": "اقرأ المفتاح المزدوج %1 %2 الافتراضي",
+    "tooltip": "اتصل ب Preferences.getDouble() لقراءة القراءة مرتين؛ يرجع القيمة الافتراضية عندما يكون المفتاح."
+  },
+  "esp32_preferences_get_bool": {
+    "message0": "اقرأ مفتاح بوليان %1 الافتراضي %2",
+    "tooltip": "استدعي Preferences.getBool() لقراءة القيمة البوليانية؛ يرجع القيمة الافتراضية عندما يكون المفتاح."
+  },
+  "esp32_preferences_get_string": {
+    "message0": "قراءة مفتاح الأوتار %1 %2 الافتراضي",
+    "tooltip": "استدعي Preferences.getString() لقراءة السلسلة؛ يرجع القيمة الافتراضية عندما يكون المفتاح."
+  },
+  "esp32_preferences_get_bytes": {
+    "message0": "قراءة بايت: مفتاح %1 لتخزين %2 الحد الأقصى للطول %3",
+    "tooltip": "استدعي Preferences.getBytes(key, buffer, maxLen) لقراءة مخزن البايت وإرجاع طول القراءة."
+  },
+  "esp32_preferences_get_string_length": {
+    "message0": "مفتاح الوتر %1 الطول",
+    "tooltip": "استدعي Preferences.getStringLength(key) للحصول على طول السلسلة."
+  },
+  "esp32_preferences_get_bytes_length": {
+    "message0": "مفتاح بايت %1 طول",
+    "tooltip": "اتصل ب Preferences.getBytesLength(key) للحصول على طول بيانات البايت."
+  },
+  "esp32_preferences_is_key": {
+    "message0": "هل يوجد %1 المفتاح",
+    "tooltip": "اتصل ب Preferences.isKey(key) للتحقق مما إذا كان المفتاح موجودا."
+  },
+  "esp32_preferences_get_type": {
+    "message0": "نوع المفتاح التفضيلية %1",
+    "tooltip": "اتصل ب Preferences.getType(key) للحصول على قيمة التعداد PreferenceType."
+  },
+  "esp32_preferences_type_constant": {
+    "message0": "التفضيلات Type%1",
+    "tooltip": "يخرج ثابت تعداد نوع التفضيل المحدد في Preferences.h."
+  },
+  "esp32_preferences_free_entries": {
+    "message0": "المشاركات المتبقية المتاحة في NVS",
+    "tooltip": "اتصل ب Preferences.freeEntries() للحصول على الإدخالات المتبقية المتاحة في قسم NVS الافتراضي."
+  }
+}

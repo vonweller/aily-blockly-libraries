@@ -1,0 +1,173 @@
+{
+  "toolbox_name": "Pico BLE",
+  "toolbox_labels": {
+    "初始化": "initialisation",
+    "广播管理": "gestion de diffusion",
+    "扫描设备": "Appareil de numérisation",
+    "GATT服务": "Services du GATT",
+    "事件回调": "rappel d'événement",
+    "连接管理": "Gestion des connexions"
+  },
+  "rp_ble_setup": {
+    "message0": "Initialiser le nom de l’appareil BLE : %1",
+    "tooltip": "Initialisez BLE Bluetooth et définissez le nom de l’appareil"
+  },
+  "rp_ble_setup_simple": {
+    "message0": "Initialiser BLE (en utilisant le nom par défaut)",
+    "tooltip": "Initialiser BLE Bluetooth en utilisant le nom par défaut"
+  },
+  "rp_ble_start_advertising": {
+    "message0": "Démarrez BLE Radio",
+    "tooltip": "Démarrez les diffusions BLE pour que d’autres appareils puissent les détecter"
+  },
+  "rp_ble_stop_advertising": {
+    "message0": "Arrêter la diffusion de BLE",
+    "tooltip": "Arrêter la diffusion de BLE"
+  },
+  "rp_ble_ibeacon_configure": {
+    "message0": "Configurez l’UUID iBeacon %1 ID principal %2 ID secondaire %3",
+    "tooltip": "Configurez les paramètres de l’iBeacon"
+  },
+  "rp_ble_start_scanning": {
+    "message0": "Commencez le scan BLE",
+    "tooltip": "Commencez à scanner l’équipement BLE environnant"
+  },
+  "rp_ble_stop_scanning": {
+    "message0": "Arrêter la balayage BLE",
+    "tooltip": "Arrêtez de scanner les équipements BLE"
+  },
+  "rp_ble_on_advertisement": {
+    "message0": "Lors du scan vers la diffusion BLE, les informations de l’appareil sont stockées %1",
+    "tooltip": "Exécuter le code lors de la diffusion vers un appareil BLE",
+    "message1": "exécuter %1"
+  },
+  "rp_ble_adv_get_address": {
+    "message0": "Obtenez l’adresse de l’appareil de la %1 de diffusion",
+    "tooltip": "Obtenir l’adresse MAC de l’appareil de diffusion"
+  },
+  "rp_ble_adv_get_rssi": {
+    "message0": "Obtenir la puissance du signal (RSSI) de la %1 de diffusion",
+    "tooltip": "Obtenir la puissance du signal RSSI de l’équipement de diffusion"
+  },
+  "rp_ble_adv_is_ibeacon": {
+    "message0": "Le %1 de diffusion est iBeacon",
+    "tooltip": "Vérifie si la diffusion utilise iBeacon"
+  },
+  "rp_ble_adv_name_has_prefix": {
+    "message0": "Les noms d’appareils de diffusion %1 commencent par %2",
+    "tooltip": "Vérifiez si le nom de l’appareil de diffusion commence par le préfixe spécifié"
+  },
+  "rp_ble_add_service": {
+    "message0": "Ajouter des UUID de service GATT %1",
+    "tooltip": "Ajouter un service GATT"
+  },
+  "rp_ble_add_characteristic": {
+    "message0": "Ajouter des caractéristiques UUID %1 attributs %2 valeurs initiales %3",
+    "tooltip": "Ajouter une valeur propre statique",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Lecture seule",
+            "ATT_PROPERTY_READ"
+          ],
+          [
+            "Écris simplement",
+            "ATT_PROPERTY_WRITE"
+          ],
+          [
+            "Lecture/écriture",
+            "ATT_PROPERTY_READ | ATT_PROPERTY_WRITE"
+          ],
+          [
+            "Notification",
+            "ATT_PROPERTY_NOTIFY"
+          ],
+          [
+            "Lire + notifier",
+            "ATT_PROPERTY_READ | ATT_PROPERTY_NOTIFY"
+          ],
+          [
+            "Lecture/écriture+notification",
+            "ATT_PROPERTY_READ | ATT_PROPERTY_WRITE | ATT_PROPERTY_NOTIFY"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "rp_ble_add_characteristic_dynamic": {
+    "message0": "Ajouter des fonctionnalités dynamiques UUID %1 attributs %2 ID %3",
+    "tooltip": "Ajoutez une fonctionnalité dynamique, et la lecture et l’écriture sont traitées via des rappels",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Lecture seule",
+            "ATT_PROPERTY_READ"
+          ],
+          [
+            "Écris simplement",
+            "ATT_PROPERTY_WRITE"
+          ],
+          [
+            "Lecture/écriture",
+            "ATT_PROPERTY_READ | ATT_PROPERTY_WRITE"
+          ],
+          [
+            "Notification",
+            "ATT_PROPERTY_NOTIFY"
+          ],
+          [
+            "Lire + notifier",
+            "ATT_PROPERTY_READ | ATT_PROPERTY_NOTIFY"
+          ],
+          [
+            "Lecture/écriture+notification",
+            "ATT_PROPERTY_READ | ATT_PROPERTY_WRITE | ATT_PROPERTY_NOTIFY"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "rp_ble_on_device_connected": {
+    "message0": "Lorsque les appareils BLE sont connectés, l’appareil est stocké dans %1",
+    "tooltip": "Exécutez le code lorsque l’appareil BLE se connecte avec succès",
+    "message1": "exécuter %1"
+  },
+  "rp_ble_on_device_disconnected": {
+    "message0": "Lorsque le dispositif BLE est déconnecté",
+    "tooltip": "Exécute le code lorsque le périphérique BLE est déconnecté",
+    "message1": "exécuter %1"
+  },
+  "rp_ble_on_characteristic_read": {
+    "message0": "Lorsqu’une fonctionnalité est lue, l’ID de la caractéristique %1 le tampon %2 la taille du tampon %3",
+    "tooltip": "Lorsque des fonctionnalités dynamiques sont lues, le code est exécuté et la longueur des données doit être retournée",
+    "message1": "exécuter %1",
+    "message2": "Retour de la longueur des données %1"
+  },
+  "rp_ble_on_characteristic_write": {
+    "message0": "Lorsqu’une fonctionnalité est écrite : ID de fonctionnalité %1 Données %2 Longueur des données %3",
+    "tooltip": "Le code est exécuté lors de l’écriture de fonctionnalités dynamiques",
+    "message1": "exécuter %1"
+  },
+  "rp_ble_write_buffer": {
+    "message0": "Tampon d’écriture %1 données %2",
+    "tooltip": "Écrire les données dans le tampon (pour le rappel de lecture de fonctionnalités)"
+  },
+  "rp_ble_connect": {
+    "message0": "Connexion des appareils BLE pour traiter %1 délai d’attente %2 millisecondes",
+    "tooltip": "Connectez des appareils BLE à des adresses spécifiées"
+  },
+  "rp_ble_connect_adv": {
+    "message0": "Connexion des dispositifs de diffusion BLE %1 délai d’attente %2 millisecondes",
+    "tooltip": "Connectez le dispositif de diffusion BLE balayé"
+  },
+  "rp_ble_disconnect": {
+    "message0": "Déconnecter l’équipement BLE %1",
+    "tooltip": "Déconnexion de l’appareil BLE"
+  }
+}

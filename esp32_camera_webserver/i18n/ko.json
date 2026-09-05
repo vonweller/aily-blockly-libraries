@@ -1,0 +1,176 @@
+{
+  "toolbox_name": "카메라 서버",
+  "toolbox_labels": {
+    "基础配置": "기본 구성",
+    "高级配置": "고급 구성",
+    "画质调整": "이미지 품질 조정",
+    "拍摄与数据访问": "사진 및 데이터 액세스"
+  },
+  "esp32_camera_webserver_init": {
+    "message0": "ESP32 카메라 서버 초기화 카메라 모델 %1%2 해상도 %3 픽셀 포맷 %4",
+    "tooltip": "ESP32 카메라를 초기화하고 카메라 파라미터를 설정하세요",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "AI Thinker",
+            "CAMERA_MODEL_AI_THINKER"
+          ],
+          [
+            "M5Stack PSRAM",
+            "CAMERA_MODEL_M5STACK_PSRAM"
+          ],
+          [
+            "M5Stack 와이드",
+            "CAMERA_MODEL_M5STACK_WIDE"
+          ],
+          [
+            "ESP Eye",
+            "CAMERA_MODEL_ESP_EYE"
+          ],
+          [
+            "FireBeetle 2 ESP32S3",
+            "CAMERA_MODEL_DFRobot_FireBeetle2_ESP32S3"
+          ],
+          [
+            "ESP32S3 EYE / NL-ESP32-S3-CAM",
+            "CAMERA_MODEL_ESP32S3_EYE"
+          ],
+          [
+            "XIAO ESP32S3",
+            "CAMERA_MODEL_XIAO_ESP32S3"
+          ],
+          [
+            "ESP32-S3-WROOM-CAM",
+            "CAMERA_MODEL_ESP32S3_WROOM_CAM"
+          ],
+          [
+            "ESP32_AIOT_Kit",
+            "CAMERA_MODEL_ESP32_AIOT_KIT"
+          ],
+          [
+            "ESP32_AIOT_Kit GC2145 DVP",
+            "CAMERA_MODEL_ESP32_AIOT_KIT_GC2145"
+          ],
+          [
+            "맞춤 핀",
+            "CUSTOM"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "UXGA (1600x1200)",
+            "FRAMESIZE_UXGA"
+          ],
+          [
+            "SXGA (1280x1024)",
+            "FRAMESIZE_SXGA"
+          ],
+          [
+            "XGA (1024x768)",
+            "FRAMESIZE_XGA"
+          ],
+          [
+            "SVGA (800x600)",
+            "FRAMESIZE_SVGA"
+          ],
+          [
+            "VGA (640x480)",
+            "FRAMESIZE_VGA"
+          ],
+          [
+            "CIF (400x296)",
+            "FRAMESIZE_CIF"
+          ],
+          [
+            "QVGA (320x240)",
+            "FRAMESIZE_QVGA"
+          ],
+          [
+            "HQVGA (240x176)",
+            "FRAMESIZE_HQVGA"
+          ],
+          [
+            "QQVGA (160x120)",
+            "FRAMESIZE_QQVGA"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "JPEG",
+            "PIXFORMAT_JPEG"
+          ],
+          [
+            "RGB565",
+            "PIXFORMAT_RGB565"
+          ],
+          [
+            "YUV422",
+            "PIXFORMAT_YUV422"
+          ],
+          [
+            "GRAYSCALE",
+            "PIXFORMAT_GRAYSCALE"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_camera_custom_pins": {
+    "message0": "커스텀 카메라 핀 구성: %1 데이터 핀 D0-D7 %2 XCLK 핀 %3 PCLK 핀 %4 VSYNC 핀 %5 HREF 핀 %6 SDA 핀%7 SCL 핀%8 PWDN 핀%9 RESET 핀%10",
+    "tooltip": "'커스텀 핀'을 선택할 때, 이 블록을 사용해 카메라 핀을 설정하세요. 데이터 핀 형식: '11, 12, 13, 14, 15, 16, 17, 18'"
+  },
+  "esp32_camera_set_quality": {
+    "message0": "카메라 JPEG 화질 설정 %1",
+    "tooltip": "JPEG 압축 품질 설정(0-63; 값이 작을수록 품질이 높음)"
+  },
+  "esp32_camera_set_flip": {
+    "message0": "카메라 플립을 수직 뒤집기%1 수평 미러링 %2 설정%3",
+    "tooltip": "카메라 이미지 플립과 미러링 설정하세요"
+  },
+  "esp32_camera_set_brightness": {
+    "message0": "카메라 밝기%1 명암비%2 채도 %3 설정하세요%4",
+    "tooltip": "카메라 밝기, 명암비, 채도 조절(-2에서 2)"
+  },
+  "esp32_camera_capture": {
+    "message0": "사진 찍어",
+    "tooltip": "카메라 이미지 데이터의 프레임을 가져와 프레임 객체를 반환합니다(⚠️'부호 없는 긴 정수' 변수와 함께 사용; 사용 후에는 릴리스 프레임 블록을 호출해야 합니다)"
+  },
+  "esp32_camera_frame_buffer": {
+    "message0": "프레임 %1용 데이터 포인터",
+    "tooltip": "프레임 데이터를 검색하기 위한 메모리 포인터(uint8_t*)는 표시 또는 전송에 사용할 수 있습니다"
+  },
+  "esp32_camera_frame_len": {
+    "message0": "프레임의 데이터 길이가 %1",
+    "tooltip": "프레임 데이터의 바이트 길이를 얻으세요"
+  },
+  "esp32_camera_frame_width": {
+    "message0": "프레임 %1 너비",
+    "tooltip": "프레임 이미지의 너비(픽셀)를 얻습니다"
+  },
+  "esp32_camera_frame_height": {
+    "message0": "프레임 높이%1",
+    "tooltip": "얻은 프레임 이미지의 높이(픽셀)"
+  },
+  "esp32_camera_release": {
+    "message0": "릴리즈 프레임 %1",
+    "tooltip": "프레임 버퍼 메모리 해제 (프레임을 사용한 후 호출해야 하며, send_serial 블록이 자동으로 해제됩니다)"
+  },
+  "esp32_camera_send_serial": {
+    "message0": "시리얼 port%1를 통한 프레임 전송",
+    "tooltip": "JPEG 이미지 데이터를 시리얼 포트로 전송하기(프레임 식별자 포함, 호스트 컴퓨터 디스플레이에 사용 가능)"
+  },
+  "esp32_camera_capture_and_encode_base64": {
+    "message0": "사진을 찍고 Base64로 변환하세요",
+    "tooltip": "사진을 찍어 JPEG 데이터를 Base64 형식으로 인코딩하세요"
+  },
+  "esp32_camera_print_diagnostics": {
+    "message0": "인쇄 카메라 진단 정보",
+    "tooltip": "직렬 포트는 카메라 초기화 상태, 센서 PID, 그리고 일반적인 오류 문제 해결 프롬프트를 출력합니다"
+  }
+}

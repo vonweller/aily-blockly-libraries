@@ -1,0 +1,269 @@
+{
+  "toolbox_name": "Placa de expansión GPIO",
+  "toolbox_labels": {
+    "初始化": "inicialización",
+    "GPIO控制": "Control GPIO",
+    "PWM控制": "control pwm",
+    "舵机控制": "servocontrol"
+  },
+  "gpio_expansion_board_init": {
+    "message0": "La placa de expansión GPIO %1 inicializar la dirección I2C %2",
+    "tooltip": "Creación de una instancia de placa de expansión GPIO, dirección I2C por defecto 0x24(36)"
+  },
+  "gpio_expansion_board_set_mode": {
+    "message0": "La placa de expansión GPIO %1 los pines %2 están configurados en modo %3",
+    "tooltip": "Configurar el modo de funcionamiento del pin GPIO",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "E0",
+            "0"
+          ],
+          [
+            "E1",
+            "1"
+          ],
+          [
+            "E2",
+            "2"
+          ],
+          [
+            "E3",
+            "3"
+          ],
+          [
+            "E4",
+            "4"
+          ],
+          [
+            "E5",
+            "5"
+          ],
+          [
+            "E6",
+            "6"
+          ],
+          [
+            "E7",
+            "7"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "Enter (pull up)",
+            "1"
+          ],
+          [
+            "Enter (tirar hacia abajo)",
+            "2"
+          ],
+          [
+            "Entrada (aérea)",
+            "4"
+          ],
+          [
+            "Producción",
+            "8"
+          ],
+          [
+            "ADC",
+            "16"
+          ],
+          [
+            "PWM",
+            "32"
+          ]
+        ]
+      }
+    ]
+  },
+  "gpio_expansion_board_set_level": {
+    "message0": "La placa de expansión GPIO %1 pines %2 salida %3",
+    "tooltip": "Establece el nivel de salida del pin GPIO",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "E0",
+            "0"
+          ],
+          [
+            "E1",
+            "1"
+          ],
+          [
+            "E2",
+            "2"
+          ],
+          [
+            "E3",
+            "3"
+          ],
+          [
+            "E4",
+            "4"
+          ],
+          [
+            "E5",
+            "5"
+          ],
+          [
+            "E6",
+            "6"
+          ],
+          [
+            "E7",
+            "7"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "nivel bajo",
+            "0"
+          ],
+          [
+            "nivel alto",
+            "1"
+          ]
+        ]
+      }
+    ]
+  },
+  "gpio_expansion_board_get_level": {
+    "message0": "Placa de expansión GPIO %1 pines %2 niveles",
+    "tooltip": "Lee el valor digital del pin GPIO",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "E0",
+            "0"
+          ],
+          [
+            "E1",
+            "1"
+          ],
+          [
+            "E2",
+            "2"
+          ],
+          [
+            "E3",
+            "3"
+          ],
+          [
+            "E4",
+            "4"
+          ],
+          [
+            "E5",
+            "5"
+          ],
+          [
+            "E6",
+            "6"
+          ],
+          [
+            "E7",
+            "7"
+          ]
+        ]
+      }
+    ]
+  },
+  "gpio_expansion_board_get_adc": {
+    "message0": "Placa de expansión %1 pines %2 valores de ADC de la placa de expansión GPIO",
+    "tooltip": "Lee el valor ADC del pin GPIO (0-1023)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "E0",
+            "0"
+          ],
+          [
+            "E1",
+            "1"
+          ],
+          [
+            "E2",
+            "2"
+          ],
+          [
+            "E3",
+            "3"
+          ],
+          [
+            "E4",
+            "4"
+          ],
+          [
+            "E5",
+            "5"
+          ],
+          [
+            "E6",
+            "6"
+          ],
+          [
+            "E7",
+            "7"
+          ]
+        ]
+      }
+    ]
+  },
+  "gpio_expansion_board_set_pwm_frequency": {
+    "message0": "La placa de expansión GPIO %1 establece la frecuencia PWM a %2 Hz",
+    "tooltip": "Ajustar la frecuencia PWM (1-10000Hz)"
+  },
+  "gpio_expansion_board_set_pwm_duty": {
+    "message0": "Placa de expansión GPIO %1 pines %2 ciclo de trabajo PWM %3",
+    "tooltip": "Establecer el ciclo de trabajo PWM (0-4095), soportando solo los pines E1 y E2",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "E1",
+            "1"
+          ],
+          [
+            "E2",
+            "2"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "gpio_expansion_board_set_servo_angle": {
+    "message0": "La placa de expansión GPIO %1 los pines %2 el servo %3 grados",
+    "tooltip": "Ajusta el ángulo del servo (0-180 grados), soportando solo los pines E1 y E2",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "E1",
+            "1"
+          ],
+          [
+            "E2",
+            "2"
+          ]
+        ]
+      },
+      null
+    ]
+  }
+}

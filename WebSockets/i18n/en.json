@@ -1,0 +1,162 @@
+{
+  "toolbox_name": "WebSockets",
+  "toolbox_labels": {
+    "WebSocket客户端": "WebSocket client",
+    "WebSocket服务器": "WebSocket server",
+    "事件处理": "event handling"
+  },
+  "websocket_client_create": {
+    "message0": "Create WebSocket client %1",
+    "tooltip": "Create WebSocket client object"
+  },
+  "websocket_client_begin": {
+    "message0": "WebSocket client %1 connects to %2 port %3 path %4",
+    "tooltip": "Connect to WebSocket server"
+  },
+  "websocket_client_begin_ssl": {
+    "message0": "WebSocket client %1 SSL connection to %2 port %3 path %4",
+    "tooltip": "SSL secure connection to WebSocket server"
+  },
+  "websocket_client_on_event": {
+    "message0": "When the WebSocket client %1 receives the event",
+    "tooltip": "Set up WebSocket client event handling",
+    "message1": "Execute %1"
+  },
+  "websocket_client_send_text": {
+    "message0": "WebSocket client %1 Send text %2",
+    "tooltip": "Send text message to WebSocket server"
+  },
+  "websocket_client_send_binary": {
+    "message0": "WebSocket client %1 sends binary data %2",
+    "tooltip": "Send binary data to WebSocket server"
+  },
+  "websocket_client_disconnect": {
+    "message0": "WebSocket client %1 disconnected",
+    "tooltip": "Disconnect WebSocket client"
+  },
+  "websocket_client_is_connected": {
+    "message0": "WebSocket client %1 is connected",
+    "tooltip": "Check if WebSocket client is connected"
+  },
+  "websocket_client_set_reconnect": {
+    "message0": "WebSocket client %1 Set reconnection interval %2 milliseconds",
+    "tooltip": "Set the WebSocket client reconnection interval"
+  },
+  "websocket_client_enable_heartbeat": {
+    "message0": "WebSocket client %1 Enable heartbeat Interval %2 milliseconds Timeout %3 milliseconds Disconnect count %4",
+    "tooltip": "Enable WebSocket client heartbeat detection"
+  },
+  "websocket_server_create": {
+    "message0": "Create WebSocket server %1 port %2",
+    "tooltip": "Create WebSocket server object"
+  },
+  "websocket_server_begin": {
+    "message0": "WebSocket server %1 starts",
+    "tooltip": "Start the WebSocket server"
+  },
+  "websocket_server_on_event": {
+    "message0": "When the WebSocket server %1 receives the event",
+    "tooltip": "Set up WebSocket server event handling",
+    "message1": "Execute %1"
+  },
+  "websocket_server_send_text": {
+    "message0": "WebSocket server %1 sends text %3 to client %2",
+    "tooltip": "Send text message to specified client"
+  },
+  "websocket_server_broadcast_text": {
+    "message0": "WebSocket server %1 Broadcast text %2",
+    "tooltip": "Broadcast a text message to all connected clients"
+  },
+  "websocket_server_send_binary": {
+    "message0": "WebSocket server %1 sends binary data %3 to client %2",
+    "tooltip": "Send binary data to the specified client"
+  },
+  "websocket_server_broadcast_binary": {
+    "message0": "WebSocket server %1 broadcasts binary data %2",
+    "tooltip": "Broadcast binary data to all connected clients"
+  },
+  "websocket_server_disconnect": {
+    "message0": "WebSocket server %1 disconnect client %2",
+    "tooltip": "Disconnect the specified client connection"
+  },
+  "websocket_server_disconnect_all": {
+    "message0": "WebSocket server %1 disconnects all clients",
+    "tooltip": "Disconnect all clients"
+  },
+  "websocket_server_connected_clients": {
+    "message0": "WebSocket server %1 Number of connected clients",
+    "tooltip": "Get the number of connected clients"
+  },
+  "websocket_server_client_connected": {
+    "message0": "WebSocket server %1 client %2 is connected",
+    "tooltip": "Checks whether the specified client is connected"
+  },
+  "websocket_event_type": {
+    "message0": "Event type %1",
+    "tooltip": "WebSocket event types",
+    "args0": [
+      {
+        "options": [
+          [
+            "Disconnect",
+            "WStype_DISCONNECTED"
+          ],
+          [
+            "Connected",
+            "WStype_CONNECTED"
+          ],
+          [
+            "text message",
+            "WStype_TEXT"
+          ],
+          [
+            "binary message",
+            "WStype_BIN"
+          ],
+          [
+            "Ping",
+            "WStype_PING"
+          ],
+          [
+            "Pong",
+            "WStype_PONG"
+          ],
+          [
+            "Error",
+            "WStype_ERROR"
+          ]
+        ]
+      }
+    ]
+  },
+  "websocket_event_payload": {
+    "message0": "Event data %1",
+    "tooltip": "WebSocket event data",
+    "args0": [
+      {
+        "options": [
+          [
+            "event type",
+            "TYPE"
+          ],
+          [
+            "Event data (uint8_t*)",
+            "PAYLOAD"
+          ],
+          [
+            "Event data (char*)",
+            "PAYLOAD_CHAR"
+          ]
+        ]
+      }
+    ]
+  },
+  "websocket_event_payload_length": {
+    "message0": "Event data length",
+    "tooltip": "Get the length of event data"
+  },
+  "websocket_event_client_num": {
+    "message0": "Event client number",
+    "tooltip": "Get the client number of the event"
+  }
+}

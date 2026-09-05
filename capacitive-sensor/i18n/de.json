@@ -1,0 +1,46 @@
+{
+  "toolbox_name": "Kapazitiver Sensor",
+  "toolbox_labels": {
+    "初始化": "Initialisierung",
+    "读数": "Messwerte",
+    "校准配置": "Kalibrierungseinstellungen",
+    "接线参考": "Verdrahtungsreferenz"
+  },
+  "capacitivesensor_create": {
+    "message0": "Erstelle kapazitive Sensoren %1 Sendepins %2 Empfangspins %3",
+    "tooltip": "Erstellen Sie kapazitive Berührungssensorobjekte und spezifizieren Sie Sende- und Empfangspins",
+    "args0": [
+      null,
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": "${board.digitalPins}"
+      }
+    ]
+  },
+  "capacitivesensor_read": {
+    "message0": "Kapazitive Sensor- %1 Lesefilterwerte Stichprobengröße %2",
+    "tooltip": "Lesen Sie den Touch-Wert nach der Baseline-Entfernung; je größer die Stichprobengröße, desto stabiler ist sie"
+  },
+  "capacitivesensor_read_raw": {
+    "message0": "Kapazitiver Sensor %1 Rohwert-Stichprobengröße %2",
+    "tooltip": "Lesen Sie den rohen Kapazitätswert ohne Basiskalibrierung ab"
+  },
+  "capacitivesensor_set_timeout": {
+    "message0": "Kapazitiver Sensor %1 Timeout auf %2 Millisekunden eingestellt",
+    "tooltip": "Konfigurieren Sie Lade-/Entladezyklus-Timeouts, um endloses Warten unter starker Einwirkung zu verhindern"
+  },
+  "capacitivesensor_set_autocal": {
+    "message0": "Der kapazittive Sensor %1 ein automatisches Kalibrierungsintervall von %2 Millisekunden eingestellt",
+    "tooltip": "Stellen Sie das automatische Baseline-Kalibrierungsintervall ein; 0 bedeutet, dass die automatische Kalibrierung ausgeschaltet ist"
+  },
+  "capacitivesensor_reset_autocal": {
+    "message0": "Kapazitiver Sensor %1 automatischer Kalibrierungsreset",
+    "tooltip": "Setzen Sie sofort die Basislinie zurück, die häufig beim Start oder nach Sensorstatusänderungen verwendet wird"
+  },
+  "capacitivesensor_wiring_hint": {
+    "message0": "Verkabelungsreferenz %1",
+    "tooltip": "Beziehen Sie sich auf die Sende-/Empfangsverbindungsmethode des kapazitiven Berührungssensors und Widerstands, ohne Code zu erzeugen"
+  }
+}

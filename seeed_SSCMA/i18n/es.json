@@ -1,0 +1,299 @@
+{
+  "toolbox_name": "SSCMA AI",
+  "toolbox_labels": {
+    "初始化": "inicialización",
+    "AI推理": "razonamiento de IA",
+    "检测结果": "Resultados de la prueba",
+    "性能信息": "Información de rendimiento",
+    "数据传输": "Transferencia de datos",
+    "设备信息": "Información del dispositivo",
+    "控制操作": "operaciones de control"
+  },
+  "sscma_begin_i2c": {
+    "message0": "Inicializar el módulo IA SSCMA %1 interfaz I2C %2 \nRestablecer el PIN %3 dirección I2C %4",
+    "tooltip": "Inicializa el módulo de IA SSCMA y comunícate a través de la interfaz I2C",
+    "args0": [
+      null,
+      {
+        "options": "${board.i2c}"
+      },
+      null,
+      null
+    ]
+  },
+  "sscma_begin_serial": {
+    "message0": "Inicializar el módulo SSCMA AI %1 la interfaz de puerto serie %2 \nRestablecer el pasador %3 Baud rate%4",
+    "tooltip": "Inicializar el módulo IA SSCMA y comunicarse mediante interfaz serial",
+    "args0": [
+      null,
+      {
+        "options": "${board.serialPort}"
+      },
+      null,
+      null
+    ]
+  },
+  "sscma_begin_spi": {
+    "message0": "Inicializar el módulo IA SSCMA %1 interfaz SPI %2 \nPines CS %3 pines SYNC %4 \nRestablecer la frecuencia del pin %5 del reloj %6 MHz",
+    "tooltip": "Inicializa el módulo IA de SSCMA y comunícate usando la interfaz SPI",
+    "args0": [
+      null,
+      {
+        "options": "${board.spi}"
+      },
+      null,
+      null,
+      null,
+      null
+    ]
+  },
+  "sscma_invoke": {
+    "message0": "%1 Obtener resultados de inferencias de IA Ejecutar el recuento de inferencias %2 Filtrar %3 Display%4",
+    "tooltip": "Realizar razonamiento de IA para obtener resultados de detección",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "Si",
+            "true"
+          ],
+          [
+            "No",
+            "false"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "No",
+            "false"
+          ],
+          [
+            "Si",
+            "true"
+          ]
+        ]
+      }
+    ]
+  },
+  "sscma_return_status": {
+    "message0": "Estado constante de ejecución de la IA %1",
+    "tooltip": "Los comandos SSCMA ejecutan constantes de estado de resultado",
+    "args0": [
+      {
+        "options": [
+          [
+            "éxito",
+            "CMD_OK"
+          ],
+          [
+            "Inténtalo de nuevo",
+            "CMD_AGAIN"
+          ],
+          [
+            "Error de registro",
+            "CMD_ELOG"
+          ],
+          [
+            "Prórroga",
+            "CMD_ETIMEDOUT"
+          ],
+          [
+            "Error de IO",
+            "CMD_EIO"
+          ],
+          [
+            "Parámetros inválidos",
+            "CMD_EINVAL"
+          ],
+          [
+            "Memoria interna insuficiente",
+            "CMD_ENOMEM"
+          ],
+          [
+            "Ocupado",
+            "CMD_EBUSY"
+          ],
+          [
+            "Sin soporte",
+            "CMD_ENOTSUP"
+          ],
+          [
+            "Error de permiso",
+            "CMD_EPERM"
+          ],
+          [
+            "Errores desconocidos",
+            "CMD_EUNKNOWN"
+          ]
+        ]
+      }
+    ]
+  },
+  "sscma_get_boxes_count": {
+    "message0": "%1 obtener el número de resultados de detección de objetivos",
+    "tooltip": "Averigua el número de cajas objetivo detectadas"
+  },
+  "sscma_get_box_info": {
+    "message0": "%1 Obtener información de detección de objetos Index%2 Atributos %3",
+    "tooltip": "Recupera la información de propiedades de la caja de detección especificada",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "Coordenada X",
+            "x"
+          ],
+          [
+            "Coordenada Y",
+            "y"
+          ],
+          [
+            "width",
+            "w"
+          ],
+          [
+            "Altitud",
+            "h"
+          ],
+          [
+            "Nivel de confianza",
+            "score"
+          ],
+          [
+            "Categorías objetivo",
+            "target"
+          ]
+        ]
+      }
+    ]
+  },
+  "sscma_get_classes_count": {
+    "message0": "%1 el número de resultados clasificados de pruebas a obtener",
+    "tooltip": "Recuperar el número de resultados de clasificación"
+  },
+  "sscma_get_class_info": {
+    "message0": "%1 Recuperar información de detección de clasificación Index%2 Atributo %3",
+    "tooltip": "Obtener información de atributos para los resultados de clasificación especificados",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "Nivel de confianza",
+            "score"
+          ],
+          [
+            "Categorías objetivo",
+            "target"
+          ]
+        ]
+      }
+    ]
+  },
+  "sscma_get_points_count": {
+    "message0": "%1 obtener el número de puntos clave",
+    "tooltip": "Obtener el número de puntos clave"
+  },
+  "sscma_get_point_info": {
+    "message0": "%1 Obtener información clave Index%2 atributos %3",
+    "tooltip": "Recupera la información de atributos de puntos clave especificados",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "Coordenada X",
+            "x"
+          ],
+          [
+            "Coordenada Y",
+            "y"
+          ],
+          [
+            "Nivel de confianza",
+            "score"
+          ],
+          [
+            "Categorías objetivo",
+            "target"
+          ]
+        ]
+      }
+    ]
+  },
+  "sscma_check_last_image": {
+    "message0": "%1 si hay datos en el fotograma más reciente",
+    "tooltip": "Comprueba si SSCMA dispone de los datos de imágenes de fotogramas más recientes disponibles"
+  },
+  "sscma_get_last_image": {
+    "message0": "%1 recuperar el fotograma de datos de imagen más reciente",
+    "tooltip": "Recuperar los datos de imagen de fotograma más recientes procesados por SSCMA"
+  },
+  "sscma_get_performance": {
+    "message0": "%1 Obtención de información sobre el rendimiento Stage%2",
+    "tooltip": "Recuperar el tiempo de procesamiento para una etapa específica (en milisegundos)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Pretratamiento",
+            "prepocess"
+          ],
+          [
+            "Razonamiento",
+            "inference"
+          ],
+          [
+            "Postprocesamiento",
+            "postprocess"
+          ]
+        ]
+      }
+    ]
+  },
+  "sscma_available": {
+    "message0": "%1 si hay datos legibles",
+    "tooltip": "Comprueba si SSCMA tiene datos legibles"
+  },
+  "sscma_read": {
+    "message0": "%1Read Datos %2 Length%3",
+    "tooltip": "Datos de lectura de SSCMA"
+  },
+  "sscma_write": {
+    "message0": "%1 Escribir datos %2 Length%3",
+    "tooltip": "Escribir datos en SSCMA"
+  },
+  "sscma_get_device_id": {
+    "message0": "%1 obtener el ID del dispositivo",
+    "tooltip": "Obtener el ID único del dispositivo SSCMA"
+  },
+  "sscma_get_device_name": {
+    "message0": "%1 Averigua el nombre del dispositivo",
+    "tooltip": "Obtén el nombre del dispositivo SSCMA"
+  },
+  "sscma_get_device_info": {
+    "message0": "%1 obtener información sobre el equipo",
+    "tooltip": "Obtén información detallada sobre el equipo SSCMA"
+  },
+  "sscma_reset": {
+    "message0": "%1 reinicio del equipo SSCMA",
+    "tooltip": "Reiniciar el equipo SSCMA"
+  },
+  "sscma_save_jpeg": {
+    "message0": "%1 guardar imágenes JPEG",
+    "tooltip": "Guarda la imagen actual en formato JPEG"
+  },
+  "sscma_clean_actions": {
+    "message0": "%1 acciones de limpieza",
+    "tooltip": "Limpiar todas las acciones establecidas"
+  }
+}

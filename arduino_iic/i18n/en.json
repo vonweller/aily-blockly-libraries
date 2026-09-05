@@ -1,0 +1,141 @@
+{
+  "toolbox_name": "I2C",
+  "toolbox_labels": {
+    "I2C扫描模板": "I2C scan template"
+  },
+  "wire_begin": {
+    "message0": "Initialize I2C communication",
+    "tooltip": "Initialize I2C communication"
+  },
+  "wire_begin_address": {
+    "message0": "Initialize I2C communication with slave address %1",
+    "tooltip": "Initialize I2C communication at the specified address"
+  },
+  "wire_set_clock": {
+    "message0": "Set the I2C clock frequency to %1 kHz",
+    "tooltip": "Set I2C communication clock frequency"
+  },
+  "wire_end": {
+    "message0": "End I2C communication",
+    "tooltip": "End I2C communication"
+  },
+  "wire_begin_transmission": {
+    "message0": "Start transfer to address %1",
+    "tooltip": "Starts a transfer to the specified device"
+  },
+  "wire_end_transmission": {
+    "message0": "End transfer, stop? %1",
+    "tooltip": "End the transfer and send a stop signal if necessary",
+    "args0": [
+      {
+        "options": [
+          [
+            "true",
+            "TRUE"
+          ],
+          [
+            "false",
+            "FALSE"
+          ]
+        ]
+      }
+    ]
+  },
+  "wire_end_transmission_result": {
+    "message0": "End transmission and return error code, stop? %1",
+    "tooltip": "End I2C transmission and return status code, 0 means success, 4 means unknown error",
+    "args0": [
+      {
+        "options": [
+          [
+            "true",
+            "TRUE"
+          ],
+          [
+            "false",
+            "FALSE"
+          ]
+        ]
+      }
+    ]
+  },
+  "wire_write": {
+    "message0": "Write data %1",
+    "tooltip": "Send a single data byte"
+  },
+  "wire_write_bytes": {
+    "message0": "Write multiple bytes of data %1, length %2",
+    "tooltip": "Write a set of data bytes"
+  },
+  "wire_request_from": {
+    "message0": "Request %2 data from address %1, stop? %3",
+    "tooltip": "Request a specified amount of data",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "true",
+            "TRUE"
+          ],
+          [
+            "false",
+            "FALSE"
+          ]
+        ]
+      }
+    ]
+  },
+  "wire_available": {
+    "message0": "I2C available data quantity",
+    "tooltip": "Returns the amount of data available in the receive buffer"
+  },
+  "wire_read": {
+    "message0": "Read I2C data",
+    "tooltip": "Read data from I2C buffer"
+  },
+  "wire_peek": {
+    "message0": "Preview I2C data",
+    "tooltip": "Preview next I2C data without removing it"
+  },
+  "wire_flush": {
+    "message0": "Flush I2C buffer",
+    "tooltip": "Flush I2C data buffer"
+  },
+  "wire_on_receive": {
+    "message0": "Execute function %1 %2 when I2C receives data",
+    "tooltip": "Set the I2C receive callback function"
+  },
+  "wire_on_request": {
+    "message0": "Execute function %1 %2 when I2C requests data",
+    "tooltip": "Set I2C request callback function"
+  },
+  "wire_set_timeout": {
+    "message0": "Set the I2C timeout to %1 milliseconds and reset the flag to %2",
+    "tooltip": "Set I2C timeout and reset behavior",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "true",
+            "TRUE"
+          ],
+          [
+            "false",
+            "FALSE"
+          ]
+        ]
+      }
+    ]
+  },
+  "wire_get_timeout_flag": {
+    "message0": "Get I2C timeout flag",
+    "tooltip": "Get the current I2C timeout flag status"
+  },
+  "wire_clear_timeout_flag": {
+    "message0": "Clear I2C timeout flag",
+    "tooltip": "Clear I2C timeout flag"
+  }
+}

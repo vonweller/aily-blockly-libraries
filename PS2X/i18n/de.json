@@ -1,0 +1,511 @@
+{
+  "toolbox_name": "PS2-Controller",
+  "toolbox_labels": {
+    "简化版本": "Vereinfachte Version",
+    "完整版本": "Vollversion",
+    "按钮检测": "Tastenerkennung",
+    "模拟量读取": "Analoges Lesen",
+    "控制器信息": "Controller-Informationen"
+  },
+  "ps2x_init": {
+    "message0": "Initialisieren Sie den PS2-Controller CLK%1 CMD%2 ATT%3 DAT%4 Druckmodus %5 Vibration mode%6",
+    "args0": [
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": [
+          [
+            "Ein",
+            "true"
+          ],
+          [
+            "Aus",
+            "false"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "Ein",
+            "true"
+          ],
+          [
+            "Aus",
+            "false"
+          ]
+        ]
+      }
+    ]
+  },
+  "ps2x_read": {
+    "message0": "Lesen Sie den Status der Vibrationsintensität des PS2-Controllers %1"
+  },
+  "ps2x_button": {
+    "message0": "Die PS2-Taste %1 gedrückt",
+    "args0": [
+      {
+        "options": [
+          [
+            "Oben",
+            "PSB_PAD_UP"
+          ],
+          [
+            "Unten",
+            "PSB_PAD_DOWN"
+          ],
+          [
+            "Links",
+            "PSB_PAD_LEFT"
+          ],
+          [
+            "Rechts",
+            "PSB_PAD_RIGHT"
+          ],
+          [
+            "Dreieck",
+            "PSB_TRIANGLE"
+          ],
+          [
+            "rund",
+            "PSB_CIRCLE"
+          ],
+          [
+            "Kreuz",
+            "PSB_CROSS"
+          ],
+          [
+            "Platz",
+            "PSB_SQUARE"
+          ],
+          [
+            "L1",
+            "PSB_L1"
+          ],
+          [
+            "L2",
+            "PSB_L2"
+          ],
+          [
+            "L3",
+            "PSB_L3"
+          ],
+          [
+            "R1",
+            "PSB_R1"
+          ],
+          [
+            "R2",
+            "PSB_R2"
+          ],
+          [
+            "R3",
+            "PSB_R3"
+          ],
+          [
+            "SELECT",
+            "PSB_SELECT"
+          ],
+          [
+            "START",
+            "PSB_START"
+          ]
+        ]
+      }
+    ]
+  },
+  "ps2x_button_pressed": {
+    "message0": "Die PS2-Taste %1 einfach gedrückt",
+    "args0": [
+      {
+        "options": [
+          [
+            "Oben",
+            "PSB_PAD_UP"
+          ],
+          [
+            "Unten",
+            "PSB_PAD_DOWN"
+          ],
+          [
+            "Links",
+            "PSB_PAD_LEFT"
+          ],
+          [
+            "Rechts",
+            "PSB_PAD_RIGHT"
+          ],
+          [
+            "Dreieck",
+            "PSB_TRIANGLE"
+          ],
+          [
+            "rund",
+            "PSB_CIRCLE"
+          ],
+          [
+            "Kreuz",
+            "PSB_CROSS"
+          ],
+          [
+            "Platz",
+            "PSB_SQUARE"
+          ],
+          [
+            "L1",
+            "PSB_L1"
+          ],
+          [
+            "L2",
+            "PSB_L2"
+          ],
+          [
+            "L3",
+            "PSB_L3"
+          ],
+          [
+            "R1",
+            "PSB_R1"
+          ],
+          [
+            "R2",
+            "PSB_R2"
+          ],
+          [
+            "R3",
+            "PSB_R3"
+          ],
+          [
+            "SELECT",
+            "PSB_SELECT"
+          ],
+          [
+            "START",
+            "PSB_START"
+          ],
+          [
+            "Rot",
+            "PSB_RED"
+          ],
+          [
+            "Blau",
+            "PSB_BLUE"
+          ]
+        ]
+      }
+    ]
+  },
+  "ps2x_button_released": {
+    "message0": "Der PS2-Knopf %1 gerade erst veröffentlicht worden",
+    "args0": [
+      {
+        "options": [
+          [
+            "Oben",
+            "PSB_PAD_UP"
+          ],
+          [
+            "Unten",
+            "PSB_PAD_DOWN"
+          ],
+          [
+            "Links",
+            "PSB_PAD_LEFT"
+          ],
+          [
+            "Rechts",
+            "PSB_PAD_RIGHT"
+          ],
+          [
+            "Dreieck",
+            "PSB_TRIANGLE"
+          ],
+          [
+            "rund",
+            "PSB_CIRCLE"
+          ],
+          [
+            "Kreuz",
+            "PSB_CROSS"
+          ],
+          [
+            "Platz",
+            "PSB_SQUARE"
+          ],
+          [
+            "L1",
+            "PSB_L1"
+          ],
+          [
+            "L2",
+            "PSB_L2"
+          ],
+          [
+            "L3",
+            "PSB_L3"
+          ],
+          [
+            "R1",
+            "PSB_R1"
+          ],
+          [
+            "R2",
+            "PSB_R2"
+          ],
+          [
+            "R3",
+            "PSB_R3"
+          ],
+          [
+            "SELECT",
+            "PSB_SELECT"
+          ],
+          [
+            "START",
+            "PSB_START"
+          ]
+        ]
+      }
+    ]
+  },
+  "ps2x_analog": {
+    "message0": "PS2 Analog %1",
+    "args0": [
+      {
+        "options": [
+          [
+            "Rechter Stick X",
+            "PSS_RX"
+          ],
+          [
+            "Rechter Joystick Y",
+            "PSS_RY"
+          ],
+          [
+            "Linker Joystick X",
+            "PSS_LX"
+          ],
+          [
+            "Linker Joystick Y",
+            "PSS_LY"
+          ]
+        ]
+      }
+    ]
+  },
+  "ps2x_analog_button": {
+    "message0": "PS2-Tasten %1 Druckwerte",
+    "args0": [
+      {
+        "options": [
+          [
+            "Oben",
+            "PSAB_PAD_UP"
+          ],
+          [
+            "Unten",
+            "PSAB_PAD_DOWN"
+          ],
+          [
+            "Links",
+            "PSAB_PAD_LEFT"
+          ],
+          [
+            "Rechts",
+            "PSAB_PAD_RIGHT"
+          ],
+          [
+            "Dreieck",
+            "PSAB_TRIANGLE"
+          ],
+          [
+            "rund",
+            "PSAB_CIRCLE"
+          ],
+          [
+            "Kreuz",
+            "PSAB_CROSS"
+          ],
+          [
+            "Platz",
+            "PSAB_SQUARE"
+          ],
+          [
+            "L1",
+            "PSAB_L1"
+          ],
+          [
+            "L2",
+            "PSAB_L2"
+          ],
+          [
+            "R1",
+            "PSAB_R1"
+          ],
+          [
+            "R2",
+            "PSAB_R2"
+          ]
+        ]
+      }
+    ]
+  },
+  "ps2x_controller_type": {
+    "message0": "PS2-Controller-Typ"
+  },
+  "ps2x_new_button_state": {
+    "message0": "Der Status der PS2-Tasten hat sich geändert"
+  },
+  "ps2x_new_button_state_specific": {
+    "message0": "Der Status der PS2 button%1 hat sich geändert",
+    "args0": [
+      {
+        "options": [
+          [
+            "Oben",
+            "PSB_PAD_UP"
+          ],
+          [
+            "Unten",
+            "PSB_PAD_DOWN"
+          ],
+          [
+            "Links",
+            "PSB_PAD_LEFT"
+          ],
+          [
+            "Rechts",
+            "PSB_PAD_RIGHT"
+          ],
+          [
+            "Dreieck",
+            "PSB_TRIANGLE"
+          ],
+          [
+            "rund",
+            "PSB_CIRCLE"
+          ],
+          [
+            "Kreuz",
+            "PSB_CROSS"
+          ],
+          [
+            "Platz",
+            "PSB_SQUARE"
+          ],
+          [
+            "L1",
+            "PSB_L1"
+          ],
+          [
+            "L2",
+            "PSB_L2"
+          ],
+          [
+            "L3",
+            "PSB_L3"
+          ],
+          [
+            "R1",
+            "PSB_R1"
+          ],
+          [
+            "R2",
+            "PSB_R2"
+          ],
+          [
+            "R3",
+            "PSB_R3"
+          ],
+          [
+            "SELECT",
+            "PSB_SELECT"
+          ],
+          [
+            "START",
+            "PSB_START"
+          ]
+        ]
+      }
+    ]
+  },
+  "ps2x_is_connected": {
+    "message0": "Der PS2-Controller ist angeschlossen"
+  },
+  "ps2x_simple_init": {
+    "message0": "Einfache Initialisierung des PS2-Controllers CLK%1 CMD%2 ATT%3 DAT%4",
+    "args0": [
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": "${board.digitalPins}"
+      }
+    ]
+  },
+  "ps2x_simple_read": {
+    "message0": "Lies den PS2-Controller"
+  },
+  "ps2x_joystick_moved": {
+    "message0": "Der Joystick %1 sich bewegen",
+    "args0": [
+      {
+        "options": [
+          [
+            "Links",
+            "LEFT"
+          ],
+          [
+            "Rechts",
+            "RIGHT"
+          ]
+        ]
+      }
+    ]
+  },
+  "ps2x_joystick_position": {
+    "message0": "Die %2 Achse des Joysticks %1",
+    "args0": [
+      {
+        "options": [
+          [
+            "Links",
+            "LEFT"
+          ],
+          [
+            "Rechts",
+            "RIGHT"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "X",
+            "X"
+          ],
+          [
+            "Y",
+            "Y"
+          ]
+        ]
+      }
+    ]
+  }
+}

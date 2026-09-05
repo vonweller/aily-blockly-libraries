@@ -1,7 +1,7 @@
 [
   {
     "type": "controls_if",
-    "message0": "🔀如果 %1",
+    "message0": "如果 %1",
     "args0": [
       {
         "type": "input_value",
@@ -19,13 +19,15 @@
     "nextStatement": null,
     "style": "logic_blocks",
     "helpUrl": "%{BKY_CONTROLS_IF_HELPURL}",
+    "mutator": "controls_if_mutator",
     "extensions": [
       "controls_if_tooltip"
-    ]
+    ],
+    "icon": "fa-regular fa-split"
   },
   {
     "type": "controls_ifelse",
-    "message0": "🔀如果 %1",
+    "message0": "如果 %1",
     "args0": [
       {
         "type": "input_value",
@@ -55,7 +57,44 @@
     "mutator": "controls_if_mutator",
     "extensions": [
       "controls_if_tooltip"
-    ]
+    ],
+    "icon": "fa-regular fa-split"
+  },
+  {
+    "type": "controls_switch",
+    "message0": "选择 %1",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "SWITCH"
+      }
+    ],
+    "message1": "情况 %1",
+    "args1": [
+      {
+        "type": "input_value",
+        "name": "CASE0"
+      }
+    ],
+    "message2": "执行 %1",
+    "args2": [
+      {
+        "type": "input_statement",
+        "name": "DO0"
+      }
+    ],
+    "message3": "默认执行 %1",
+    "args3": [
+      {
+        "type": "input_statement",
+        "name": "DEFAULT"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "style": "logic_blocks",
+    "mutator": "switch_case_mutator",
+    "icon": "fa-regular fa-split"
   },
   {
     "type": "logic_compare",
@@ -103,7 +142,8 @@
     "inputsInline": true,
     "output": "Boolean",
     "style": "logic_blocks",
-    "helpUrl": "%{BKY_LOGIC_COMPARE_HELPURL}"
+    "helpUrl": "%{BKY_LOGIC_COMPARE_HELPURL}",
+    "icon": "fa-regular fa-split"
   },
   {
     "type": "logic_operation",
@@ -138,7 +178,8 @@
     "helpUrl": "%{BKY_LOGIC_OPERATION_HELPURL}",
     "extensions": [
       "logic_op_tooltip"
-    ]
+    ],
+    "icon": "fa-regular fa-split"
   },
   {
     "type": "logic_negate",
@@ -146,14 +187,14 @@
     "args0": [
       {
         "type": "input_value",
-        "name": "BOOL",
-        "check": "Boolean"
+        "name": "BOOL"
       }
     ],
     "output": "Boolean",
     "style": "logic_blocks",
     "tooltip": "%{BKY_LOGIC_NEGATE_TOOLTIP}",
-    "helpUrl": "%{BKY_LOGIC_NEGATE_HELPURL}"
+    "helpUrl": "%{BKY_LOGIC_NEGATE_HELPURL}",
+    "icon": "fa-regular fa-split"
   },
   {
     "type": "logic_boolean",
@@ -177,7 +218,8 @@
     "output": "Boolean",
     "style": "logic_blocks",
     "tooltip": "%{BKY_LOGIC_BOOLEAN_TOOLTIP}",
-    "helpUrl": "%{BKY_LOGIC_BOOLEAN_HELPURL}"
+    "helpUrl": "%{BKY_LOGIC_BOOLEAN_HELPURL}",
+    "icon": "fa-regular fa-split"
   },
   {
     "type": "logic_ternary",
@@ -209,6 +251,7 @@
     "helpUrl": "%{BKY_LOGIC_TERNARY_HELPURL}",
     "extensions": [
       "logic_ternary"
-    ]
+    ],
+    "icon": "fa-regular fa-split"
   }
 ]

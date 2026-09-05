@@ -1,0 +1,141 @@
+{
+  "toolbox_name": "I2C",
+  "toolbox_labels": {
+    "I2C扫描模板": "I2C 스캔 템플릿"
+  },
+  "wire_begin": {
+    "message0": "I2C 통신 초기화",
+    "tooltip": "I2C 통신 초기화"
+  },
+  "wire_begin_address": {
+    "message0": "슬레이브 주소 %1을 사용하여 I2C 통신을 초기화합니다",
+    "tooltip": "지정된 주소로 I2C 통신을 초기화합니다"
+  },
+  "wire_set_clock": {
+    "message0": "I2C 클럭 주파수를 %1 kHz로 설정하세요",
+    "tooltip": "I2C 통신 클럭 주파수를 설정하세요"
+  },
+  "wire_end": {
+    "message0": "I2C 통신 종료",
+    "tooltip": "I2C 통신 종료"
+  },
+  "wire_begin_transmission": {
+    "message0": "전송 시작address%1",
+    "tooltip": "지정된 장비로 이동을 시작하세요"
+  },
+  "wire_end_transmission": {
+    "message0": "전송 종료, 멈춰? %1",
+    "tooltip": "전송을 종료하고 필요시 정지 신호를 보냅니다",
+    "args0": [
+      {
+        "options": [
+          [
+            "true",
+            "TRUE"
+          ],
+          [
+            "false",
+            "FALSE"
+          ]
+        ]
+      }
+    ]
+  },
+  "wire_end_transmission_result": {
+    "message0": "전송이 종료되고 오류 코드가 반환되는데, 멈춰야 하나요? %1",
+    "tooltip": "I2C 전송을 완료하고 상태 코드를 반환한 후, 0은 성공, 4는 알 수 없는 오류입니다",
+    "args0": [
+      {
+        "options": [
+          [
+            "true",
+            "TRUE"
+          ],
+          [
+            "false",
+            "FALSE"
+          ]
+        ]
+      }
+    ]
+  },
+  "wire_write": {
+    "message0": "데이터 쓰기 %1",
+    "tooltip": "단일 데이터 바이트를 전송하세요"
+  },
+  "wire_write_bytes": {
+    "message0": "여러 바이트의 데이터 %1 쓰기, 길이 %2",
+    "tooltip": "데이터 바이트 집합을 쓰세요"
+  },
+  "wire_request_from": {
+    "message0": "주소 %1에서 %2 데이터를 요청하면 멈추나요? %3",
+    "tooltip": "지정된 양의 데이터를 요청합니다",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "true",
+            "TRUE"
+          ],
+          [
+            "false",
+            "FALSE"
+          ]
+        ]
+      }
+    ]
+  },
+  "wire_available": {
+    "message0": "I2C에 대한 이용 가능한 데이터 양",
+    "tooltip": "수신 버퍼에 있는 사용 가능한 데이터 양을 반환합니다"
+  },
+  "wire_read": {
+    "message0": "I2C 데이터 읽기",
+    "tooltip": "I2C 버퍼에서 데이터를 읽습니다"
+  },
+  "wire_peek": {
+    "message0": "미리보기 I2C 데이터",
+    "tooltip": "삭제하지 않고 다음 I2C 데이터를 미리 보기"
+  },
+  "wire_flush": {
+    "message0": "I2C 버퍼를 새로고침하세요",
+    "tooltip": "I2C 데이터 버퍼를 새로고침하세요"
+  },
+  "wire_on_receive": {
+    "message0": "I2C가 데이터를 받으면 함수를 실행%1 %2",
+    "tooltip": "I2C 수신 콜백 기능을 설정하세요"
+  },
+  "wire_on_request": {
+    "message0": "I2C가 데이터를 요청할 때 함수를 실행%1 %2",
+    "tooltip": "I2C 요청 콜백 함수를 설정하세요"
+  },
+  "wire_set_timeout": {
+    "message0": "I2C 타임아웃을 %1밀리초로 설정하고, 플래그를 초기화하세요%2",
+    "tooltip": "I2C 타임아웃 시간과 동작 재설정",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "true",
+            "TRUE"
+          ],
+          [
+            "false",
+            "FALSE"
+          ]
+        ]
+      }
+    ]
+  },
+  "wire_get_timeout_flag": {
+    "message0": "I2C 타임아웃 플래그를 받아보세요",
+    "tooltip": "현재 I2C 타임아웃 플래그 상태를 확인하세요"
+  },
+  "wire_clear_timeout_flag": {
+    "message0": "I2C 타임아웃 표지판을 제거하세요",
+    "tooltip": "I2C 타임아웃 표지판을 제거하세요"
+  }
+}

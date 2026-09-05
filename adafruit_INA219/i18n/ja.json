@@ -1,0 +1,41 @@
+{
+  "toolbox_name": "電流検出 INA219",
+  "ina219_init_with_wire": {
+    "message0": "IN219モジュール%1アドレスを初期化%2%3",
+    "tooltip": "INA219センサーを初期化し、使用するI2CアドレスとI2Cバスを指定します",
+    "args0": [
+      null,
+      null,
+      {
+        "options": "${board.i2c}"
+      }
+    ]
+  },
+  "ina219_read_value": {
+    "message0": "IN219モジュールの読み%1 %2",
+    "tooltip": "INA219センサーから電圧、電流、または電力値を読み取ります",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "バス電圧(V)",
+            "BUS_VOLTAGE"
+          ],
+          [
+            "シャント電圧(mV)",
+            "SHUNT_VOLTAGE"
+          ],
+          [
+            "電流(mA)",
+            "CURRENT"
+          ],
+          [
+            "パワー(mW)",
+            "POWER"
+          ]
+        ]
+      }
+    ]
+  }
+}

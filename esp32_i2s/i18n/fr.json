@@ -1,0 +1,280 @@
+{
+  "toolbox_name": "ESP32 I2S",
+  "toolbox_labels": {
+    "基本操作": "Opérations de base",
+    "引脚配置": "Configuration des broches",
+    "初始化配置": "Configuration initiale",
+    "数据读写": "Lecture et écriture de données",
+    "音调生成": "génération de tonalité",
+    "WAV音频": "Audio WAV",
+    "状态查询": "Requête d'état"
+  },
+  "esp32_i2s_create": {
+    "message0": "Créez un objet I2S nommé %1",
+    "tooltip": "Créer un objet d’interface audio I2S"
+  },
+  "esp32_i2s_set_pins_std": {
+    "message0": "Objet i2S %1 Définir la broche de mode standard BCLK%2 WS/LRC%3 DOUT%4 DIN%5 MCLK%6",
+    "tooltip": "Réglez les broches en mode I2S standard ; DIN et MCLK sont optionnels ; si elles ne sont pas utilisées, réglées à -1"
+  },
+  "esp32_i2s_set_pins_pdm_tx": {
+    "message0": "Objet i2S %1 définir PDM Send Pin CLK%2 DOUT0%3 DOUT1%4",
+    "tooltip": "Régler les broches pour le mode de transmission PDM"
+  },
+  "esp32_i2s_set_pins_pdm_rx": {
+    "message0": "Objet i2S %1 Définir la broche de réception PDM CLK%2 DIN0%3 DIN1%4 DIN2%5 DIN3%6",
+    "tooltip": "Régler les broches pour le mode réception PDM"
+  },
+  "esp32_i2s_begin": {
+    "message0": "Initialiser les objets I2S %1 mode %2 fréquence d’échantillonnage %3Hz largeur de bits %4 emplacements de canal %5 %6",
+    "tooltip": "Pour initialiser l’interface I2S, il faut d’abord définir les broches. Les paramètres de la fente peuvent être sélectionnés en canaux gauche/droite/double",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Standard I2S",
+            "I2S_MODE_STD"
+          ],
+          [
+            "Mode TDM",
+            "I2S_MODE_TDM"
+          ],
+          [
+            "Envoi PDM",
+            "I2S_MODE_PDM_TX"
+          ],
+          [
+            "Réception PDM",
+            "I2S_MODE_PDM_RX"
+          ]
+        ]
+      },
+      null,
+      {
+        "options": [
+          [
+            "16 postes",
+            "I2S_DATA_BIT_WIDTH_16BIT"
+          ],
+          [
+            "32e place",
+            "I2S_DATA_BIT_WIDTH_32BIT"
+          ],
+          [
+            "24 personnes",
+            "I2S_DATA_BIT_WIDTH_24BIT"
+          ],
+          [
+            "8 bits",
+            "I2S_DATA_BIT_WIDTH_8BIT"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "Stéréo",
+            "I2S_SLOT_MODE_STEREO"
+          ],
+          [
+            "Monotone",
+            "I2S_SLOT_MODE_MONO"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "Automatique",
+            "-1"
+          ],
+          [
+            "dit Zuo Sheng",
+            "I2S_STD_SLOT_LEFT"
+          ],
+          [
+            "dit la voix de droite",
+            "I2S_STD_SLOT_RIGHT"
+          ],
+          [
+            "dit Shuangsheng",
+            "I2S_STD_SLOT_BOTH"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_i2s_configure_tx": {
+    "message0": "Configurez l’objet I2S %1 la fréquence d’échantillonnage TX %2Hz la largeur du bit %3 le canal %4 la fente %5",
+    "tooltip": "Configurez les paramètres du canal de transmission I2S",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "16 postes",
+            "I2S_DATA_BIT_WIDTH_16BIT"
+          ],
+          [
+            "32e place",
+            "I2S_DATA_BIT_WIDTH_32BIT"
+          ],
+          [
+            "24 personnes",
+            "I2S_DATA_BIT_WIDTH_24BIT"
+          ],
+          [
+            "8 bits",
+            "I2S_DATA_BIT_WIDTH_8BIT"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "Stéréo",
+            "I2S_SLOT_MODE_STEREO"
+          ],
+          [
+            "Monotone",
+            "I2S_SLOT_MODE_MONO"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "Automatique",
+            "-1"
+          ],
+          [
+            "dit Zuo Sheng",
+            "I2S_STD_SLOT_LEFT"
+          ],
+          [
+            "dit la voix de droite",
+            "I2S_STD_SLOT_RIGHT"
+          ],
+          [
+            "dit Shuangsheng",
+            "I2S_STD_SLOT_BOTH"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_i2s_configure_rx": {
+    "message0": "Configurez l’objet I2S %1 la fréquence d’échantillonnage RX %2Hz la largeur de bits %3 la conversion %4 canal %5",
+    "tooltip": "Configurer les paramètres du canal de réception I2S",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "16 postes",
+            "I2S_DATA_BIT_WIDTH_16BIT"
+          ],
+          [
+            "32e place",
+            "I2S_DATA_BIT_WIDTH_32BIT"
+          ],
+          [
+            "24 personnes",
+            "I2S_DATA_BIT_WIDTH_24BIT"
+          ],
+          [
+            "8 bits",
+            "I2S_DATA_BIT_WIDTH_8BIT"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "Stéréo",
+            "I2S_SLOT_MODE_STEREO"
+          ],
+          [
+            "Monotone",
+            "I2S_SLOT_MODE_MONO"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "Pas de conversion",
+            "I2S_RX_TRANSFORM_NONE"
+          ],
+          [
+            "32 spins, 16 bits",
+            "I2S_RX_TRANSFORM_32_TO_16"
+          ],
+          [
+            "Du stéréo au mono",
+            "I2S_RX_TRANSFORM_16_STEREO_TO_MONO"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_i2s_write_byte": {
+    "message0": "Objet I2S %1 Octets d’écriture %2",
+    "tooltip": "Écrire un seul octet sur I2S, généralement en boucle"
+  },
+  "esp32_i2s_read_bytes": {
+    "message0": "Objet I2S %1 Octets de lecture dans un tableau %2 quantité de lecture %3",
+    "tooltip": "Lire un nombre spécifié d’octets d’I2S dans un tableau, en retournant le nombre réel d’octets lus"
+  },
+  "esp32_i2s_record_wav": {
+    "message0": "Objet i2S %1 Enregistrer l’audio WAV Durée %2 secondes Enregistrer la taille à %3",
+    "tooltip": "Enregistrez l’audio WAV pendant une durée spécifiée, retournez le pointeur du tableau d’octets, et enregistrez la taille dans la variable spécifiée. Après utilisation, veuillez utiliser free() pour libérer la mémoire"
+  },
+  "esp32_i2s_play_wav": {
+    "message0": "Objet i2S %1 lecture des données audio WAV %2 longueur %3",
+    "tooltip": "Lorsque vous lisez des données audio WAV, spécifiez la longueur des données"
+  },
+  "esp32_i2s_end": {
+    "message0": "Fin de l’objet I2S %1",
+    "tooltip": "Arrêtez l’I2S et libérez les ressources"
+  },
+  "esp32_i2s_get_last_error": {
+    "message0": "Obtenez le dernier code d’erreur pour l’objet I2S %1",
+    "tooltip": "Récupérer le code d’erreur pour la dernière opération I2S ; 0 signifie réussi"
+  },
+  "esp32_i2s_write_sample": {
+    "message0": "I2S objet %1 Valeur d’échantillonnage d’écriture %2 (stéréo écrit les canaux gauche et droit)",
+    "tooltip": "Écrire une valeur d’échantillon 16 bits sur l’I2S écrira automatiquement sur les canaux gauche et droit"
+  },
+  "esp32_i2s_write_buffer": {
+    "message0": "Objet %1 I2S Mémoire tampon %2 longueur %3",
+    "tooltip": "Écrit les données tampons sur I2S, en retournant le nombre réel d’octets écrits"
+  },
+  "esp32_i2s_available": {
+    "message0": "Objet I2S %1 Nombre d’octets lisibles",
+    "tooltip": "Reçoit le nombre d’octets lisibles dans le tampon de réception I2S"
+  },
+  "esp32_i2s_tx_sample_rate": {
+    "message0": "Taux d’échantillonnage %1 objet I2S",
+    "tooltip": "Obtenir la fréquence d’échantillonnage du canal de transmission I2S"
+  },
+  "esp32_i2s_rx_sample_rate": {
+    "message0": "Taux d’échantillonnage %1 objet I2S",
+    "tooltip": "Obtenir la fréquence d’échantillonnage du canal de réception I2S"
+  },
+  "esp32_i2s_set_inverted": {
+    "message0": "Objet I2S %1 Définir l’Inversion du Signal BCLK%2 WS%3 MCLK%4",
+    "tooltip": "Configurez l’option d’inversion du signal I2S pour la compatibilité avec différentes puces audio"
+  },
+  "esp32_i2s_generate_tone": {
+    "message0": "Les objets i2S %1 générer une fréquence tonale d’ondes carrées %2 Hz soutenue %3 millisecondes d’amplitude %4",
+    "tooltip": "Générez des tonalités d’ondes carrées à des fréquences spécifiées et jouez-les via I2S"
+  },
+  "esp32_i2s_free_wav_buffer": {
+    "message0": "Libérez les tampons WAV %1",
+    "tooltip": "Libérez le tampon mémoire alloué par RecordWAV"
+  }
+}

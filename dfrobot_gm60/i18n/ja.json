@@ -1,0 +1,111 @@
+{
+  "toolbox_name": "GM60 QRコードスキャナー",
+  "toolbox_labels": {
+    "初始化": "初期化",
+    "配置": "構成",
+    "读取": "読む"
+  },
+  "gm60_init_i2c": {
+    "message0": "QRコードスキャナー(I2C)の初期化%1\nAddress%2\n使用%3",
+    "tooltip": "I2C経由でDFRobot GM60 QRコードスキャナーモジュールを初期化します",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "0x1A(デフォルト)",
+            "0x1A"
+          ]
+        ]
+      },
+      {
+        "options": "${board.i2c}"
+      }
+    ]
+  },
+  "gm60_init_uart": {
+    "message0": "QRコードスキャナー(シリアルポート)を初期化%1RXピン%2TXピン%3",
+    "tooltip": "UARTシリアルポート経由でDFRobot GM60 QRコードスキャナーモジュールを初期化し、RXピンとTXピンを指定します"
+  },
+  "gm60_set_encode": {
+    "message0": "QRコードスキャナー%1エンコーディングを%2に設定できます。",
+    "tooltip": "QRコードスキャナーの出力データのエンコーディングフォーマットを設定する",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "UTF-8",
+            "eUTF8"
+          ],
+          [
+            "GBK",
+            "eGBK"
+          ]
+        ]
+      }
+    ]
+  },
+  "gm60_setup_code": {
+    "message0": "QRコードスキャナー%1 %2 コード設定 %3 設定コードの内容を出力する",
+    "tooltip": "QRコードをスキャンしてチップレジスタの値を変更するためのセットコード設定",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "オンにする",
+            "true"
+          ],
+          [
+            "閉じる",
+            "false"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "出力",
+            "true"
+          ],
+          [
+            "出力なし",
+            "false"
+          ]
+        ]
+      }
+    ]
+  },
+  "gm60_set_identify": {
+    "message0": "認識モード%1QRコードスキャナー%2",
+    "tooltip": "QRコード/バーコードの認識タイプを設定し、対応するQRコード、EAN13、Code128などを行ってください",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "すべてのバーコード認識を有効にしてください",
+            "eEnableAllBarcode"
+          ],
+          [
+            "デフォルトのバーコード認識を有効にする",
+            "eEnableDefaultcode"
+          ],
+          [
+            "バーコード認識は禁止されています",
+            "eForbidAllBarcode"
+          ]
+        ]
+      }
+    ]
+  },
+  "gm60_reset": {
+    "message0": "QRコードスキャナー%1工場出荷時リセット",
+    "tooltip": "QRコードスキャナーを工場出荷時設定に戻してください"
+  },
+  "gm60_detection": {
+    "message0": "QRコードスキャナー%1スキャンデータを読み取ります",
+    "tooltip": "スキャンされたQRコード/バーコードデータを検出し、文字列として返します"
+  }
+}

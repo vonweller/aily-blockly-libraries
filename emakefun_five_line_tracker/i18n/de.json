@@ -1,0 +1,194 @@
+{
+  "toolbox_name": "Fünfkanalige Linienpatrouillensensoren",
+  "toolbox_labels": {
+    "初始化": "Initialisierung",
+    "信息查询": "Informationsanfrage",
+    "阈值设置": "Schwellenwerteinstellung",
+    "数据读取": "Datenlesen"
+  },
+  "five_line_tracker_v3_setup": {
+    "message0": "Initialisieren Sie den Leitungsverfolgungssensor %1 I2C-Adresse %2",
+    "tooltip": "Erstellen und initialisieren Sie den Linienpatrouillensensor, die I2C-Schnittstelle und die Standardadresse 0x50",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "0x50 (Standard)",
+            "0x50"
+          ],
+          [
+            "0x51",
+            "0x51"
+          ],
+          [
+            "0x52",
+            "0x52"
+          ],
+          [
+            "0x53",
+            "0x53"
+          ],
+          [
+            "0x54",
+            "0x54"
+          ],
+          [
+            "0x55",
+            "0x55"
+          ],
+          [
+            "0x56",
+            "0x56"
+          ],
+          [
+            "0x57",
+            "0x57"
+          ]
+        ]
+      }
+    ]
+  },
+  "five_line_tracker_v3_get_device_id": {
+    "message0": "Linienverfolgungssensor %1 Erhalt der Geräte-ID",
+    "tooltip": "Erhalten Sie die Geräte-IDs der fünfkanaligen Linienpatrouillensensoren"
+  },
+  "five_line_tracker_v3_get_firmware_version": {
+    "message0": "Trace Sensor %1 Hol die Firmware-Version",
+    "tooltip": "Erhalten Sie die Firmware-Versionsnummer des fünfkanaligen Linienpatrouillensensors"
+  },
+  "five_line_tracker_v3_set_high_threshold": {
+    "message0": "Linien-Tracking-Sensor %1 Kanaleinstellungen %2 hohen Schwellenwert %3",
+    "tooltip": "Setze eine hohe Schwelle für festgelegte Kanäle (0-1023) für die digitale Konvertierung",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Kanal 0",
+            "0"
+          ],
+          [
+            "Kanal 1",
+            "1"
+          ],
+          [
+            "Kanal 2",
+            "2"
+          ],
+          [
+            "Kanal 3",
+            "3"
+          ],
+          [
+            "Kanal 4",
+            "4"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "five_line_tracker_v3_set_low_threshold": {
+    "message0": "Line-Tracking-Sensor %1 Kanaleinstellungen %2 niedrigen Schwellenwert %3",
+    "tooltip": "Setzen Sie für den angegebenen Kanal einen niedrigen Schwellenwert (0-1023) für die digitale Konvertierung ein",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Kanal 0",
+            "0"
+          ],
+          [
+            "Kanal 1",
+            "1"
+          ],
+          [
+            "Kanal 2",
+            "2"
+          ],
+          [
+            "Kanal 3",
+            "3"
+          ],
+          [
+            "Kanal 4",
+            "4"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "five_line_tracker_v3_get_analog_value": {
+    "message0": "Routenverfolgungssensor %1 Lesekanal %2 Analogwert",
+    "tooltip": "Lesen Sie den analogen Wert des angegebenen Kanals (0-1023) ab",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Kanal 0",
+            "0"
+          ],
+          [
+            "Kanal 1",
+            "1"
+          ],
+          [
+            "Kanal 2",
+            "2"
+          ],
+          [
+            "Kanal 3",
+            "3"
+          ],
+          [
+            "Kanal 4",
+            "4"
+          ]
+        ]
+      }
+    ]
+  },
+  "five_line_tracker_v3_get_digital_value": {
+    "message0": "Der Linienverfolgungssensor %1 liest Kanal- %2 digitale Werte aus",
+    "tooltip": "Liest den numerischen Wert (0 oder 1) des angegebenen Kanals und konvertiert automatisch basierend auf dem Schwellenwert",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Kanal 0",
+            "0"
+          ],
+          [
+            "Kanal 1",
+            "1"
+          ],
+          [
+            "Kanal 2",
+            "2"
+          ],
+          [
+            "Kanal 3",
+            "3"
+          ],
+          [
+            "Kanal 4",
+            "4"
+          ]
+        ]
+      }
+    ]
+  },
+  "five_line_tracker_v3_get_all_digital_values": {
+    "message0": "Der Linienverfolgungssensor liest %1 alle Zahlenwerte aus.",
+    "tooltip": "Lesen Sie die numerischen Werte aller Kanäle aus, geben Sie ein Byte zurück, wobei jedes Bit den Status eines Kanals repräsentiert"
+  },
+  "five_line_tracker_v3_check_error": {
+    "message0": "Track-Sensor %1 Ob die Initialisierung erfolgreich ist",
+    "tooltip": "Überprüfen Sie, ob die Sensorinitialisierung erfolgreich war"
+  }
+}

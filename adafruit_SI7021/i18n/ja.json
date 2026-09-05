@@ -1,0 +1,91 @@
+{
+  "toolbox_name": "Si7021センサー",
+  "toolbox_labels": {
+    "基础操作": "基本操作",
+    "数据读取": "データ読み取り",
+    "加热器控制": "ヒーター制御",
+    "设备信息": "デバイス情報"
+  },
+  "si7021_begin": {
+    "message0": "Si7021センサーの初期化%1%2",
+    "args0": [
+      null,
+      {
+        "options": "${board.i2c}"
+      }
+    ]
+  },
+  "si7021_read_temperature": {
+    "message0": "Si7021センサー%1温度を測定してください"
+  },
+  "si7021_read_humidity": {
+    "message0": "Si7021センサー%1湿度を測定してください"
+  },
+  "si7021_heater_control": {
+    "message0": "Si7021センサー%1 heater%2",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "有効にする",
+            "true"
+          ],
+          [
+            "無効にする",
+            "false"
+          ]
+        ]
+      }
+    ]
+  },
+  "si7021_is_heater_enabled": {
+    "message0": "Si7021センサーはヒーターが有効かどうかを%1します"
+  },
+  "si7021_set_heat_level": {
+    "message0": "Si7021センサーをヒーター%1設定してくださいgrade%2",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "minimum",
+            "SI_HEATLEVEL_LOWEST"
+          ],
+          [
+            "低い",
+            "SI_HEATLEVEL_LOW"
+          ],
+          [
+            "で",
+            "SI_HEATLEVEL_MEDIUM"
+          ],
+          [
+            "高い",
+            "SI_HEATLEVEL_HIGH"
+          ],
+          [
+            "高く",
+            "SI_HEATLEVEL_HIGHER"
+          ],
+          [
+            "maximum",
+            "SI_HEATLEVEL_HIGHEST"
+          ]
+        ]
+      }
+    ]
+  },
+  "si7021_get_model": {
+    "message0": "Si7021センサー%1モデルを入手しましょう"
+  },
+  "si7021_get_revision": {
+    "message0": "Si7021センサーの%1バージョンを入手してください"
+  },
+  "si7021_reset": {
+    "message0": "Si7021センサーをリセット%1"
+  },
+  "si7021_read_serial_number": {
+    "message0": "Si7021センサー%1シリアル番号を読み取ってください"
+  }
+}

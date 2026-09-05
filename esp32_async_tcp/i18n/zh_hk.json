@@ -1,0 +1,120 @@
+{
+  "toolbox_name": "異步TCP",
+  "toolbox_labels": {
+    "TCP客户端": "TCP客戶端",
+    "客户端事件": "客戶端事件",
+    "TCP服务器": "TCP伺服器"
+  },
+  "async_tcp_client_create": {
+    "message0": "建立非同步TCP客戶端 %1",
+    "tooltip": "建立一個新的非同步TCP客戶端對象"
+  },
+  "async_tcp_client_connect": {
+    "message0": "TCP客戶端 %1 連接到 主機 %2 連接埠 %3",
+    "tooltip": "連接到指定的TCP伺服器"
+  },
+  "async_tcp_client_close": {
+    "message0": "TCP客戶端 %1 關閉連線",
+    "tooltip": "關閉TCP連接"
+  },
+  "async_tcp_client_write": {
+    "message0": "TCP客戶端 %1 發送資料 %2",
+    "tooltip": "透過TCP連接發送數據"
+  },
+  "async_tcp_client_connected": {
+    "message0": "TCP客戶端 %1 已連接",
+    "tooltip": "檢查TCP客戶端是否已連接"
+  },
+  "async_tcp_client_connecting": {
+    "message0": "TCP客戶端 %1 正在連接",
+    "tooltip": "檢查TCP客戶端是否正在連接"
+  },
+  "async_tcp_client_space": {
+    "message0": "TCP客戶端 %1 可傳送空間",
+    "tooltip": "取得TCP緩衝區可用空間大小"
+  },
+  "async_tcp_client_can_send": {
+    "message0": "TCP客戶端 %1 可以發送",
+    "tooltip": "檢查是否可以傳送資料（無待確認資料）"
+  },
+  "async_tcp_client_set_no_delay": {
+    "message0": "TCP客戶端 %1 設定無延遲 %2",
+    "tooltip": "設定TCP無延遲模式（Nagle演算法）"
+  },
+  "async_tcp_client_set_rx_timeout": {
+    "message0": "TCP客戶端 %1 設定接收逾時 %2 秒",
+    "tooltip": "設定接收資料超時時間（秒）"
+  },
+  "async_tcp_client_remote_ip": {
+    "message0": "TCP客戶端 %1 遠端IP位址",
+    "tooltip": "取得遠端主機的IP位址"
+  },
+  "async_tcp_client_remote_port": {
+    "message0": "TCP客戶端 %1 遠端連接埠",
+    "tooltip": "取得遠端主機的連接埠號"
+  },
+  "async_tcp_client_local_port": {
+    "message0": "TCP客戶端 %1 本機連接埠",
+    "tooltip": "取得本機連接埠號"
+  },
+  "async_tcp_client_on_connect": {
+    "message0": "當 TCP客戶端 %1 連線成功時",
+    "tooltip": "設定TCP連線成功時的回調處理",
+    "message1": "執行 %1"
+  },
+  "async_tcp_client_on_disconnect": {
+    "message0": "當 TCP客戶端 %1 斷開連線時",
+    "tooltip": "設定TCP連線斷開時的回呼處理",
+    "message1": "執行 %1"
+  },
+  "async_tcp_client_on_data": {
+    "message0": "當 TCP客戶端 %1 收到資料時",
+    "tooltip": "設定TCP收到資料時的回呼處理，資料和長度會存入指定變數",
+    "message1": "資料存入 %1 長度存入 %2",
+    "message2": "執行 %1"
+  },
+  "async_tcp_client_on_error": {
+    "message0": "當 TCP客戶端 %1 發生錯誤時",
+    "tooltip": "設定TCP發生錯誤時的回調處理",
+    "message1": "錯誤碼存入 %1",
+    "message2": "執行 %1"
+  },
+  "async_tcp_client_on_ack": {
+    "message0": "當 TCP客戶端 %1 收到確認時",
+    "tooltip": "設定TCP收到ACK確認時的回呼處理",
+    "message1": "確認長度存入 %1 耗時存入 %2 (毫秒)",
+    "message2": "執行 %1"
+  },
+  "async_tcp_client_on_timeout": {
+    "message0": "當 TCP客戶端 %1 逾時時",
+    "tooltip": "設定TCP超時時的回調處理",
+    "message1": "超時時間存入 %1 (毫秒)",
+    "message2": "執行 %1"
+  },
+  "async_tcp_client_error_to_string": {
+    "message0": "TCP錯誤碼 %1 轉為文字",
+    "tooltip": "將TCP錯誤碼轉換為可讀的錯誤描述"
+  },
+  "async_tcp_server_create": {
+    "message0": "建立非同步TCP伺服器 %1 連接埠 %2",
+    "tooltip": "建立一個新的非同步TCP伺服器"
+  },
+  "async_tcp_server_begin": {
+    "message0": "TCP伺服器 %1 啟動",
+    "tooltip": "啟動TCP伺服器，開始監聽連接"
+  },
+  "async_tcp_server_end": {
+    "message0": "TCP伺服器 %1 停止",
+    "tooltip": "停止TCP伺服器"
+  },
+  "async_tcp_server_set_no_delay": {
+    "message0": "TCP伺服器 %1 設定無延遲 %2",
+    "tooltip": "設定伺服器的TCP無延遲模式"
+  },
+  "async_tcp_server_on_client": {
+    "message0": "當 TCP伺服器 %1 有客戶端連線時",
+    "tooltip": "設定有新客戶端連線時的回調處理",
+    "message1": "客戶端存入 %1",
+    "message2": "執行 %1"
+  }
+}

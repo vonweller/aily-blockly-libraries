@@ -1,0 +1,35 @@
+{
+  "toolbox_name": "Capteurs HCHO",
+  "toolbox_labels": {
+    "初始化": "initialisation",
+    "读取数据": "Lire des données",
+    "校准": "Calibrage"
+  },
+  "grove_hcho_init": {
+    "message0": "Initialiser les broches de %1 capteur HCHO %2 valeur de calibration R0 %3",
+    "tooltip": "Initialisez le capteur HCHO et définissez les valeurs de calibration des broches et R0. R0 doit être pré-calibré dans de l’air pur.",
+    "args0": [
+      null,
+      {
+        "options": "${board.analogPins}"
+      },
+      null
+    ]
+  },
+  "grove_hcho_read_raw": {
+    "message0": "Lisez la valeur brute de la simulation %1 HCHO",
+    "tooltip": "Lisez la valeur analogique brute du capteur (0-1023)"
+  },
+  "grove_hcho_read_rs": {
+    "message0": "Lisez la valeur de résistance Rs du capteur de %1 HCHO",
+    "tooltip": "Calculer la valeur de résistance du capteur Rs"
+  },
+  "grove_hcho_read_ppm": {
+    "message0": "Lire la concentration de %1 HCHO (ppm)",
+    "tooltip": "Calculez la concentration de HCHO (ppm), avec une plage de détection de 1 à 50 ppm"
+  },
+  "grove_hcho_calibrate_r0": {
+    "message0": "Calibrez les %1 HCHO pour obtenir la valeur R0",
+    "tooltip": "Calibrez le capteur dans de l’air propre et renvoyez la valeur R0. Remplissez cette valeur dans le paramètre R0 du bloc d’initialisation."
+  }
+}

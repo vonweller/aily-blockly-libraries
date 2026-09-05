@@ -64,24 +64,22 @@ Arduino.forBlock['ina219_init_with_wire'] = function(block, generator) {
   if (!block._ina219VarMonitorAttached) {
     block._ina219VarMonitorAttached = true;
     block._ina219VarLastName = block.getFieldValue('VAR') || 'ina219';
+    // 初次注册变量到 Blockly 系统（仅执行一次）
+    registerVariableToBlockly(block._ina219VarLastName, 'INA219');
     const varField = block.getField('VAR');
-    if (varField && typeof varField.setValidator === 'function') {
-      varField.setValidator(function(newName) {
+    if (varField) {
+      const originalFinishEditing = varField.onFinishEditing_;
+      varField.onFinishEditing_ = function(newName) {
+        if (typeof originalFinishEditing === 'function') {
+          originalFinishEditing.call(this, newName);
+        }
         const workspace = block.workspace || (typeof Blockly !== 'undefined' && Blockly.getMainWorkspace && Blockly.getMainWorkspace());
         const oldName = block._ina219VarLastName;
         if (workspace && newName && newName !== oldName) {
           renameVariableInBlockly(block, oldName, newName, 'INA219');
-          // const oldVar = workspace.getVariable(oldName, 'INA219');
-          // const existVar = workspace.getVariable(newName, 'INA219');
-          // console.log("Renaming INA219 variable from", oldName, "to", newName);
-          // if (oldVar && !existVar) {
-          //   workspace.renameVariableById(oldVar.getId(), newName);
-          //   if (typeof refreshToolbox === 'function') refreshToolbox(workspace, false);
-          // }
           block._ina219VarLastName = newName;
         }
-        return newName;
-      });
+      };
     }
   }
 
@@ -98,7 +96,6 @@ Arduino.forBlock['ina219_init_with_wire'] = function(block, generator) {
   //     if (typeof refreshToolbox === 'function') refreshToolbox(workspace, false);
   //   }
   // }
-  registerVariableToBlockly(varName, 'INA219');
 
   // 添加必要的库
   ensureINA219Libraries(generator);
@@ -119,7 +116,7 @@ Arduino.forBlock['ina219_init_with_wire'] = function(block, generator) {
   // 如果指定了特定的Wire实例，使用该实例初始化
   if (wire && wire !== 'Wire' && wire !== '') {
     // 统一使用与new_iic库相同的setupKey命名规范
-    const wireBeginKey = 'wire_begin_' + wire;
+    const wireBeginKey = `wire_${wire}_begin`;
     
     // 检查是否已经初始化过这个Wire实例（包括wire_begin_with_settings的初始化）
     var isAlreadyInitialized = false;
@@ -130,7 +127,7 @@ Arduino.forBlock['ina219_init_with_wire'] = function(block, generator) {
       } else {
         // 检查是否存在该Wire实例的wire_begin_with_settings初始化记录
         for (var key in generator.setupCodes_) {
-          if (key.startsWith('wire_begin_' + wire + '_') && key !== wireBeginKey) {
+          if (key.startsWith(`wire_begin_${wire}_`) && key !== wireBeginKey) {
             isAlreadyInitialized = true;
             break;
           }
@@ -174,7 +171,7 @@ Arduino.forBlock['ina219_init_with_wire'] = function(block, generator) {
     setupCode += 'if (' + varName + '.begin(&' + wire + ')) {\n';
   } else {
     // 统一使用与new_iic库相同的setupKey命名规范
-    const wireBeginKey = 'wire_begin_Wire';
+    const wireBeginKey = `wire_${wire}_begin`;
     
     // 检查是否已经初始化过Wire实例（包括wire_begin_with_settings的初始化）
     var isAlreadyInitialized = false;
@@ -185,7 +182,7 @@ Arduino.forBlock['ina219_init_with_wire'] = function(block, generator) {
       } else {
         // 检查是否存在Wire实例的wire_begin_with_settings初始化记录
         for (var key in generator.setupCodes_) {
-          if (key.startsWith('wire_begin_Wire_') && key !== wireBeginKey) {
+          if (key.startsWith(`wire_${wire}_begin`) && key !== wireBeginKey) {
             isAlreadyInitialized = true;
             break;
           }

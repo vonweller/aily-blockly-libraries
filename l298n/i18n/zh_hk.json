@@ -1,0 +1,106 @@
+{
+  "toolbox_name": "L298N電機",
+  "toolbox_labels": {
+    "初始化": "初始化",
+    "速度控制": "速度控制",
+    "方向控制": "方向控制",
+    "定时运行": "定時運行",
+    "状态查询": "狀態查詢",
+    "高级功能": "進階功能"
+  },
+  "l298n_setup": {
+    "message0": "初始化馬達 %1 EN腳位 %2 IN1腳位 %3 IN2接腳 %4",
+    "tooltip": "初始化L298N馬達驅動（含PWM調速）"
+  },
+  "l298n_setup_no_enable": {
+    "message0": "初始化馬達 %1 IN1腳位 %2 IN2腳位 %3（無調速）",
+    "tooltip": "初始化L298N馬達驅動（無PWM調速，Enable接腳接高電平）"
+  },
+  "l298n_set_speed": {
+    "message0": "馬達 %1 設定速度 %2",
+    "tooltip": "設定馬達速度（0-255）"
+  },
+  "l298n_forward": {
+    "message0": "馬達 %1 前進",
+    "tooltip": "馬達前進"
+  },
+  "l298n_backward": {
+    "message0": "電機 %1 後退",
+    "tooltip": "馬達後退"
+  },
+  "l298n_stop": {
+    "message0": "馬達 %1 停止",
+    "tooltip": "停止馬達"
+  },
+  "l298n_run": {
+    "message0": "馬達 %1 運轉 %2",
+    "tooltip": "控制馬達運轉方向",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "前進",
+            "FORWARD"
+          ],
+          [
+            "後退",
+            "BACKWARD"
+          ],
+          [
+            "停下",
+            "STOP"
+          ]
+        ]
+      }
+    ]
+  },
+  "l298n_forward_for": {
+    "message0": "馬達 %1 前進 %2 毫秒",
+    "tooltip": "馬達前進指定時間後自動停止"
+  },
+  "l298n_backward_for": {
+    "message0": "馬達 %1 後退 %2 毫秒",
+    "tooltip": "馬達後退指定時間後自動停止"
+  },
+  "l298n_run_for": {
+    "message0": "馬達 %1 運轉 %2 持續 %3 毫秒",
+    "tooltip": "馬達依指定方向運轉指定時間",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "前進",
+            "FORWARD"
+          ],
+          [
+            "後退",
+            "BACKWARD"
+          ],
+          [
+            "停下",
+            "STOP"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "l298n_get_speed": {
+    "message0": "馬達 %1 的速度",
+    "tooltip": "取得馬達當前速度值（0-255）"
+  },
+  "l298n_is_moving": {
+    "message0": "馬達 %1 正在移動",
+    "tooltip": "檢查馬達是否正在移動"
+  },
+  "l298n_get_direction": {
+    "message0": "電機 %1 的方向",
+    "tooltip": "取得馬達目前運轉方向（0=前進, 1=後退, -1=停止）"
+  },
+  "l298n_reset": {
+    "message0": "馬達 %1 重設",
+    "tooltip": "使用定時運轉後重新啟用馬達運動"
+  }
+}

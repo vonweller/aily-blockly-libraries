@@ -1,0 +1,57 @@
+{
+  "toolbox_name": "DFRobot speech recognition",
+  "dfrobot_asr_init": {
+    "message0": "Initialize the speech recognition module\nRecognition pattern %1\nMicrophone mode %2\nI2C address %3\nUse %4",
+    "tooltip": "Initialize DFRobot speech recognition module, supporting three recognition modes",
+    "args0": [
+      {
+        "options": [
+          [
+            "Loop mode (LOOP)",
+            "LOOP"
+          ],
+          [
+            "Command mode (PASSWORD)",
+            "PASSWORD"
+          ],
+          [
+            "Button mode (BUTTON)",
+            "BUTTON"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "Microphone (MIC)",
+            "MIC"
+          ],
+          [
+            "Mono (MONO)",
+            "MONO"
+          ]
+        ]
+      },
+      null,
+      {
+        "options": "${board.i2c}"
+      }
+    ]
+  },
+  "dfrobot_asr_add_command": {
+    "message0": "Add voice keyword %1 numbered %2",
+    "tooltip": "Add a phonetic entry. The entry uses pinyin (such as: kai deng), and the identification number range is 1-255."
+  },
+  "dfrobot_asr_start": {
+    "message0": "Start speech recognition",
+    "tooltip": "Activate speech recognition"
+  },
+  "dfrobot_asr_read": {
+    "message0": "Read the speech recognition result number",
+    "tooltip": "Read the recognized entry number and return -1 to indicate that it has not been recognized."
+  },
+  "dfrobot_asr_set_i2c_addr": {
+    "message0": "Set the voice module I2C address %1",
+    "tooltip": "Set the I2C address of the voice module (0-127), which will take effect after powering on again."
+  }
+}

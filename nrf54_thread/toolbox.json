@@ -1,0 +1,262 @@
+{
+  "kind": "category",
+  "name": "nRF54 Thread",
+  "colour": "#2E7D32",
+  "icon": "fa-regular fa-diagram-project",
+  "contents": [
+    {
+      "kind": "label",
+      "text": "网络配置"
+    },
+    {
+      "kind": "block",
+      "type": "nrf54_thread_begin"
+    },
+    {
+      "kind": "block",
+      "type": "nrf54_thread_stop"
+    },
+    {
+      "kind": "block",
+      "type": "nrf54_thread_restart"
+    },
+    {
+      "kind": "block",
+      "type": "nrf54_thread_wipe_settings"
+    },
+    {
+      "kind": "block",
+      "type": "nrf54_thread_use_demo_dataset"
+    },
+    {
+      "kind": "block",
+      "type": "nrf54_thread_set_dataset_hex",
+      "inputs": {
+        "DATASET": {
+          "shadow": {
+            "type": "text",
+            "fields": {
+              "TEXT": ""
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "nrf54_thread_set_router_eligible"
+    },
+    {
+      "kind": "block",
+      "type": "nrf54_thread_request_router"
+    },
+    {
+      "kind": "block",
+      "type": "nrf54_thread_set_poll_period",
+      "inputs": {
+        "POLL_MS": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 1000
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "label",
+      "text": "网络状态"
+    },
+    {
+      "kind": "block",
+      "type": "nrf54_thread_started"
+    },
+    {
+      "kind": "block",
+      "type": "nrf54_thread_attached"
+    },
+    {
+      "kind": "block",
+      "type": "nrf54_thread_role_name"
+    },
+    {
+      "kind": "block",
+      "type": "nrf54_thread_rloc16"
+    },
+    {
+      "kind": "block",
+      "type": "nrf54_thread_partition_id"
+    },
+    {
+      "kind": "block",
+      "type": "nrf54_thread_dataset_configured"
+    },
+    {
+      "kind": "block",
+      "type": "nrf54_thread_last_error"
+    },
+    {
+      "kind": "label",
+      "text": "Commissioner与Joiner"
+    },
+    {
+      "kind": "block",
+      "type": "nrf54_thread_commissioner_start"
+    },
+    {
+      "kind": "block",
+      "type": "nrf54_thread_commissioner_stop"
+    },
+    {
+      "kind": "block",
+      "type": "nrf54_thread_commissioner_add_joiner",
+      "inputs": {
+        "PSKD": {
+          "shadow": {
+            "type": "text",
+            "fields": {
+              "TEXT": "J01NME"
+            }
+          }
+        },
+        "SECONDS": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 120
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "nrf54_thread_commissioner_active"
+    },
+    {
+      "kind": "block",
+      "type": "nrf54_thread_joiner_start",
+      "inputs": {
+        "PSKD": {
+          "shadow": {
+            "type": "text",
+            "fields": {
+              "TEXT": "J01NME"
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "nrf54_thread_joiner_stop"
+    },
+    {
+      "kind": "block",
+      "type": "nrf54_thread_joiner_active"
+    },
+    {
+      "kind": "block",
+      "type": "nrf54_thread_joiner_state"
+    },
+    {
+      "kind": "label",
+      "text": "UDP通信"
+    },
+    {
+      "kind": "block",
+      "type": "nrf54_thread_open_udp",
+      "inputs": {
+        "LOCAL_PORT": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 12345
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "nrf54_thread_close_udp",
+      "inputs": {
+        "LOCAL_PORT": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 12345
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "nrf54_thread_send_udp",
+      "inputs": {
+        "LOCAL_PORT": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 12345
+            }
+          }
+        },
+        "PEER_ADDRESS": {
+          "shadow": {
+            "type": "text",
+            "fields": {
+              "TEXT": "ff03::1"
+            }
+          }
+        },
+        "PEER_PORT": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 12345
+            }
+          }
+        },
+        "DATA": {
+          "shadow": {
+            "type": "text",
+            "fields": {
+              "TEXT": "hello"
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "nrf54_thread_udp_data"
+    },
+    {
+      "kind": "block",
+      "type": "nrf54_thread_udp_peer_address"
+    },
+    {
+      "kind": "block",
+      "type": "nrf54_thread_udp_peer_port"
+    },
+    {
+      "kind": "label",
+      "text": "事件"
+    },
+    {
+      "kind": "block",
+      "type": "nrf54_thread_on_state_changed"
+    },
+    {
+      "kind": "block",
+      "type": "nrf54_thread_callback_role"
+    },
+    {
+      "kind": "block",
+      "type": "nrf54_thread_callback_flags"
+    }
+  ]
+}

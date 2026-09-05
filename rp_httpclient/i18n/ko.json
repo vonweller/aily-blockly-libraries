@@ -1,0 +1,220 @@
+{
+  "toolbox_name": "Pico HTTPClient",
+  "toolbox_labels": {
+    "初始化": "초기화",
+    "连接": "연결하다",
+    "配置": "구성",
+    "请求": "요청",
+    "响应": "응답",
+    "状态": "상태",
+    "快速操作": "빠른 작동"
+  },
+  "rp_httpclient_create": {
+    "message0": "HTTP 클라이언트 %1 생성",
+    "tooltip": "새로운 HTTPClient 객체 생성"
+  },
+  "rp_httpclient_begin_url": {
+    "message0": "URL %1 연결%2",
+    "tooltip": "지정된 URL에 연결하세요"
+  },
+  "rp_httpclient_begin_host": {
+    "message0": "호스트에 %1 연결하세요 포트 %2 경로 %3 %4",
+    "tooltip": "지정된 호스트, 포트, 경로에 연결하세요"
+  },
+  "rp_httpclient_begin_https": {
+    "message0": "URL %2에 대한 보안 연결 %1 (인증서 검증 건너뛰기)",
+    "tooltip": "HTTPS URL에 대한 보안 연결 (인증서 검증 우회)"
+  },
+  "rp_httpclient_end": {
+    "message0": "연결을 끊%1",
+    "tooltip": "HTTP 연결을 끊으세요"
+  },
+  "rp_httpclient_set_timeout": {
+    "message0": "타임아웃 타임아웃%1 %2밀리초로 설정하세요",
+    "tooltip": "연결 타임아웃 설정(밀리초 단위)"
+  },
+  "rp_httpclient_set_reuse": {
+    "message0": "멀티플렉스 연결 %1 설정%2",
+    "tooltip": "TCP 연결을 재사용할지 설정하세요 (keep-alive)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "활성화",
+            "true"
+          ],
+          [
+            "비활성화",
+            "false"
+          ]
+        ]
+      }
+    ]
+  },
+  "rp_httpclient_set_user_agent": {
+    "message0": "사용자 에이전트 %1 설정%2",
+    "tooltip": "HTTP 사용자 프록시 문자열을 설정하세요"
+  },
+  "rp_httpclient_set_authorization": {
+    "message0": "인증 사용자 이름 %2 비밀번호 설정 %1 %3",
+    "tooltip": "기본 HTTP 인증 설정"
+  },
+  "rp_httpclient_set_authorization_token": {
+    "message0": "인증 토큰 %1 설정%2",
+    "tooltip": "HTTP 베어러 토큰 인증 설정"
+  },
+  "rp_httpclient_set_follow_redirects": {
+    "message0": "설정 %1 리다이렉트 팔로우 %2",
+    "tooltip": "HTTP 리디렉션 팔로우 모드를 설정하세요",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "비활성화",
+            "HTTPC_DISABLE_FOLLOW_REDIRECTS"
+          ],
+          [
+            "Strict 모드 (GET/HEAD만)",
+            "HTTPC_STRICT_FOLLOW_REDIRECTS"
+          ],
+          [
+            "강제 모드 (모든 메서드)",
+            "HTTPC_FORCE_FOLLOW_REDIRECTS"
+          ]
+        ]
+      }
+    ]
+  },
+  "rp_httpclient_set_redirect_limit": {
+    "message0": "Set %1 최대 리디렉션 수 %2",
+    "tooltip": "최대 리디렉션 수를 설정하세요"
+  },
+  "rp_httpclient_add_header": {
+    "message0": "요청 헤더%1 값%2 추가하세요%3",
+    "tooltip": "HTTP 요청 헤더 추가"
+  },
+  "rp_httpclient_get": {
+    "message0": "GET 요청 전송 %1",
+    "tooltip": "HTTP GET 요청을 보내기"
+  },
+  "rp_httpclient_post": {
+    "message0": "데이터 %1 POST 요청 전송%2",
+    "tooltip": "HTTP POST 요청을 보내기"
+  },
+  "rp_httpclient_put": {
+    "message0": "데이터 %1 PUT 요청을 보내%2",
+    "tooltip": "HTTP PUT 요청을 보내기"
+  },
+  "rp_httpclient_patch": {
+    "message0": "PATCH 요청을 데이터 %1 전송%2",
+    "tooltip": "HTTP PATCH 요청을 보내세요"
+  },
+  "rp_httpclient_delete": {
+    "message0": "DELETE 요청을 보내%1",
+    "tooltip": "HTTP DELETE 요청을 보내세요"
+  },
+  "rp_httpclient_get_response_code": {
+    "message0": "응답 상태 코드를 얻으세요",
+    "tooltip": "마지막 요청에 대한 HTTP 응답 상태 코드를 얻으세요"
+  },
+  "rp_httpclient_code_list": {
+    "message0": "HTTP 상태 코드 %1",
+    "tooltip": "HTTP 상태 코드 상수",
+    "args0": [
+      {
+        "options": [
+          [
+            "200 OK",
+            "HTTP_CODE_OK"
+          ],
+          [
+            "201 Created",
+            "HTTP_CODE_CREATED"
+          ],
+          [
+            "204 무콘텐츠",
+            "HTTP_CODE_NO_CONTENT"
+          ],
+          [
+            "301 영구 이동",
+            "HTTP_CODE_MOVED_PERMANENTLY"
+          ],
+          [
+            "302 Found",
+            "HTTP_CODE_FOUND"
+          ],
+          [
+            "304 수정되지 않음",
+            "HTTP_CODE_NOT_MODIFIED"
+          ],
+          [
+            "400 나쁜 요청",
+            "HTTP_CODE_BAD_REQUEST"
+          ],
+          [
+            "401 Unauthorized",
+            "HTTP_CODE_UNAUTHORIZED"
+          ],
+          [
+            "403 Forbidden",
+            "HTTP_CODE_FORBIDDEN"
+          ],
+          [
+            "404 찾지 못함",
+            "HTTP_CODE_NOT_FOUND"
+          ],
+          [
+            "500 서버 오류",
+            "HTTP_CODE_INTERNAL_SERVER_ERROR"
+          ],
+          [
+            "502 배드 게이트웨이",
+            "HTTP_CODE_BAD_GATEWAY"
+          ],
+          [
+            "503 서비스 불가",
+            "HTTP_CODE_SERVICE_UNAVAILABLE"
+          ]
+        ]
+      }
+    ]
+  },
+  "rp_httpclient_get_size": {
+    "message0": "%1 응답 크기를 확인하세요",
+    "tooltip": "응답 내용의 크기(바이트)를 얻습니다."
+  },
+  "rp_httpclient_get_string": {
+    "message0": "%1 답변 콘텐츠를 받아보세요",
+    "tooltip": "응답 문자열을 불러옵니다"
+  },
+  "rp_httpclient_get_header": {
+    "message0": "%1 답변을 받아head%2",
+    "tooltip": "지정된 응답 헤더의 값을 가져옵니다"
+  },
+  "rp_httpclient_get_location": {
+    "message0": "리다이렉션 위치를 %1 받아보세요",
+    "tooltip": "리디렉션된 Location의 헤더 값을 가져옵시다"
+  },
+  "rp_httpclient_connected": {
+    "message0": "%1 연결되어 있습니다",
+    "tooltip": "HTTP 연결이 확립되었는지 확인해 보세요"
+  },
+  "rp_httpclient_error_to_string": {
+    "message0": "%1 오류 코드 %2 텍스트로 변환",
+    "tooltip": "오류 코드를 읽기 쉬운 오류 메시지로 변환합니다"
+  },
+  "rp_httpclient_quick_get": {
+    "message0": "빠른 GET 요청 URL %1",
+    "tooltip": "GET 요청을 빠르게 보내고 응답을 받으세요"
+  },
+  "rp_httpclient_quick_post": {
+    "message0": "빠른 POST 요청 URL %1 데이터 %2",
+    "tooltip": "POST 요청을 빠르게 보내고 응답을 받으세요"
+  },
+  "rp_httpclient_quick_post_json": {
+    "message0": "Fast POST JSON URL %1 JSON %2",
+    "tooltip": "빠르게 JSON POST 요청을 보내고 응답 내용을 반환하세요"
+  }
+}

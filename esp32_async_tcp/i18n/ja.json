@@ -1,0 +1,120 @@
+{
+  "toolbox_name": "非同期TCP",
+  "toolbox_labels": {
+    "TCP客户端": "TCPクライアント",
+    "客户端事件": "クライアントイベント",
+    "TCP服务器": "TCPサーバー"
+  },
+  "async_tcp_client_create": {
+    "message0": "非同期TCPクライアント%1の作成",
+    "tooltip": "新しい非同期TCPクライアントオブジェクトを作成する"
+  },
+  "async_tcp_client_connect": {
+    "message0": "TCPクライアント%1ホスト%2ポート%3に接続します",
+    "tooltip": "指定されたTCPサーバーに接続します"
+  },
+  "async_tcp_client_close": {
+    "message0": "TCPクライアント%1接続を閉じます",
+    "tooltip": "TCP接続をオフにしてください"
+  },
+  "async_tcp_client_write": {
+    "message0": "TCPクライアントはデータを%1送信%2",
+    "tooltip": "データはTCP接続を通じて送信されます"
+  },
+  "async_tcp_client_connected": {
+    "message0": "TCPクライアント%1接続されています",
+    "tooltip": "TCPクライアントが接続されているか確認してください"
+  },
+  "async_tcp_client_connecting": {
+    "message0": "TCPクライアント%1接続中",
+    "tooltip": "TCPクライアントが接続しているか確認してください"
+  },
+  "async_tcp_client_space": {
+    "message0": "TCPクライアント%1空間を送信できます",
+    "tooltip": "TCPバッファの利用可能な空間サイズを取得します"
+  },
+  "async_tcp_client_can_send": {
+    "message0": "TCPクライアント%1メッセージを送信できます",
+    "tooltip": "データ送信可能か確認してください(データ未確認)"
+  },
+  "async_tcp_client_set_no_delay": {
+    "message0": "TCPクライアント %1 ゼロレイテンシ%2に設定",
+    "tooltip": "TCPのノーレイテンシモードを設定する(Nagleアルゴリズム)"
+  },
+  "async_tcp_client_set_rx_timeout": {
+    "message0": "TCPクライアント%1受信タイムアウトを%2秒に設定します",
+    "tooltip": "データ受信タイムアウト(秒)を設定してください"
+  },
+  "async_tcp_client_remote_ip": {
+    "message0": "TCPクライアント%1リモートIPアドレス",
+    "tooltip": "リモートホストのIPアドレスを取得する"
+  },
+  "async_tcp_client_remote_port": {
+    "message0": "TCPクライアント%1リモートポート",
+    "tooltip": "リモートホストのポート番号を取得する"
+  },
+  "async_tcp_client_local_port": {
+    "message0": "TCPクライアント%1ローカルポート",
+    "tooltip": "ローカルポート番号を取得してください"
+  },
+  "async_tcp_client_on_connect": {
+    "message0": "TCPクライアントが%1に接続成功した場合",
+    "tooltip": "TCP接続が成功した際のコールバック処理を設定します",
+    "message1": "%1 を実行します"
+  },
+  "async_tcp_client_on_disconnect": {
+    "message0": "TCPクライアントが切断%1",
+    "tooltip": "TCP接続が切断されたときのコールバック処理を設定してください",
+    "message1": "%1 を実行します"
+  },
+  "async_tcp_client_on_data": {
+    "message0": "TCPクライアントがデータを受信%1",
+    "tooltip": "TCPがデータを受信した際のコールバック処理を設定します。データと長さは指定された変数に格納されます",
+    "message1": "データストレージ%1長さストレージ%2",
+    "message2": "%1 を実行します"
+  },
+  "async_tcp_client_on_error": {
+    "message0": "TCPクライアントでエラーが発生した場合%1",
+    "tooltip": "TCPエラーが発生した場合のコールバック処理を設定します",
+    "message1": "エラーコードは%1保存されます",
+    "message2": "%1 を実行します"
+  },
+  "async_tcp_client_on_ack": {
+    "message0": "TCPクライアントが%1確認応答を受け取ったとき",
+    "tooltip": "TCPがACK確認応答を受けた際のコールバック処理を設定します",
+    "message1": "預金時間を確認する %1 預金までの時間%2(ミリ秒)",
+    "message2": "%1 を実行します"
+  },
+  "async_tcp_client_on_timeout": {
+    "message0": "TCPクライアントがタイムアウト%1",
+    "tooltip": "TCPタイムアウト時のコールバック処理を設定します",
+    "message1": "タイムアウト時間の保存時間%1(ミリ秒)",
+    "message2": "%1 を実行します"
+  },
+  "async_tcp_client_error_to_string": {
+    "message0": "TCPエラーコード%1テキストに変換されます",
+    "tooltip": "TCPエラーコードを読みやすいエラー記述に変換します"
+  },
+  "async_tcp_server_create": {
+    "message0": "非同期TCPサーバーをポート%1作成%2",
+    "tooltip": "新しい非同期TCPサーバーを作成する"
+  },
+  "async_tcp_server_begin": {
+    "message0": "TCPサーバー%1起動",
+    "tooltip": "TCPサーバーを起動して接続の受信を開始します"
+  },
+  "async_tcp_server_end": {
+    "message0": "TCPサーバー%1停止しました",
+    "tooltip": "TCPサーバーを停止してください"
+  },
+  "async_tcp_server_set_no_delay": {
+    "message0": "TCPサーバー%1ゼロレイテンシ設定%2",
+    "tooltip": "サーバーのTCPノーレイテンシモードを設定する"
+  },
+  "async_tcp_server_on_client": {
+    "message0": "TCPサーバー%1クライアント接続がある場合",
+    "tooltip": "新規クライアント接続時のコールバック処理も含まれます",
+    "message1": "顧客デポジット%1",
+    "message2": "%1 を実行します"
+  }
+}

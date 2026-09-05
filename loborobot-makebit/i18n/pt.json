@@ -1,0 +1,283 @@
+{
+  "toolbox_name": "MakeBit",
+  "toolbox_categories": [
+    "Carrinho",
+    "Servo e ventilador",
+    "Buzzer",
+    "Luzes"
+  ],
+  "makebit_car_init": {
+    "message0": "Inicializar carrinho (placa de driver I2C endereço 0x41) ",
+    "tooltip": "Inicializa o driver de motores PCA9685 do carrinho MakeBit (endereço I2C 0x41, PWM 50Hz). Coloque no setup antes de usar blocos de carrinho/servo/ventilador/LED."
+  },
+  "makebit_car_ctrl": {
+    "message0": "Carrinho %1 ",
+    "tooltip": "Controla o carrinho na velocidade padrão 255: avançar, ré, esquerda, direita, parar, girar à esquerda, girar à direita.",
+    "args0": [
+      {
+        "options": [
+          [
+            "Avançar",
+            "FORWARD"
+          ],
+          [
+            "Ré",
+            "BACKWARD"
+          ],
+          [
+            "Esquerda",
+            "LEFT"
+          ],
+          [
+            "Direita",
+            "RIGHT"
+          ],
+          [
+            "Parar",
+            "STOP"
+          ],
+          [
+            "Girar à esquerda",
+            "SPIN_LEFT"
+          ],
+          [
+            "Girar à direita",
+            "SPIN_RIGHT"
+          ]
+        ]
+      }
+    ]
+  },
+  "makebit_car_ctrl_speed": {
+    "message0": "Carrinho %1 velocidade %2",
+    "tooltip": "Controla o carrinho na velocidade indicada (0-255): avançar, ré, esquerda, direita, parar, girar à esquerda, girar à direita.",
+    "args0": [
+      {
+        "options": [
+          [
+            "Avançar",
+            "FORWARD"
+          ],
+          [
+            "Ré",
+            "BACKWARD"
+          ],
+          [
+            "Esquerda",
+            "LEFT"
+          ],
+          [
+            "Direita",
+            "RIGHT"
+          ],
+          [
+            "Parar",
+            "STOP"
+          ],
+          [
+            "Girar à esquerda",
+            "SPIN_LEFT"
+          ],
+          [
+            "Girar à direita",
+            "SPIN_RIGHT"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "makebit_motor": {
+    "message0": "Motor %1 %2 velocidade %3",
+    "tooltip": "Controla o motor esquerdo ou direito individualmente, para frente ou para trás, velocidade 0-255; velocidade 0 para esse motor.",
+    "args0": [
+      {
+        "options": [
+          [
+            "Motor esquerdo",
+            "LEFT"
+          ],
+          [
+            "Motor direito",
+            "RIGHT"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "Frente",
+            "FWD"
+          ],
+          [
+            "Trás",
+            "REV"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "makebit_car_servo": {
+    "message0": "Servo do carrinho ângulo %1",
+    "tooltip": "Define o ângulo do servo de bordo (canal 3 do PCA9685) de 0 a 180 graus, largura de pulso 600-2400 microssegundos."
+  },
+  "makebit_car_fan": {
+    "message0": "Ventilador de bordo %1 velocidade %2",
+    "tooltip": "Controla o motor do ventilador de bordo (canais 4/5 do PCA9685): frente, trás ou parar, velocidade 0-255; em Parar a velocidade é ignorada.",
+    "args0": [
+      {
+        "options": [
+          [
+            "Frente",
+            "FWD"
+          ],
+          [
+            "Trás",
+            "REV"
+          ],
+          [
+            "Parar",
+            "STOP"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "makebit_buzzer": {
+    "message0": "Buzzer pino %1 %2",
+    "tooltip": "Controla o módulo de buzzer ativo (acionado por nível BAIXO): ligado ou desligado.",
+    "args0": [
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": [
+          [
+            "Ligado",
+            "ON"
+          ],
+          [
+            "Desligado",
+            "OFF"
+          ]
+        ]
+      }
+    ]
+  },
+  "makebit_car_led": {
+    "message0": "Farol %1",
+    "tooltip": "Interruptor do farol: ligado = luz branca no brilho global (definido com o bloco de brilho do farol), desligado = desligado. Os dois faróis estão em paralelo nos mesmos canais RGB e agem juntos.",
+    "args0": [
+      {
+        "options": [
+          [
+            "ligado",
+            "ON"
+          ],
+          [
+            "desligado",
+            "OFF"
+          ]
+        ]
+      }
+    ]
+  },
+  "makebit_car_rgb": {
+    "message0": "Farol cor %1",
+    "tooltip": "Define uma cor predefinida do farol RGB do carrinho (canais 0/1/2 do PCA9685).",
+    "args0": [
+      {
+        "options": [
+          [
+            "Apagada",
+            "OFF"
+          ],
+          [
+            "Vermelho",
+            "RED"
+          ],
+          [
+            "Verde",
+            "GREEN"
+          ],
+          [
+            "Azul",
+            "BLUE"
+          ],
+          [
+            "Branco",
+            "WHITE"
+          ],
+          [
+            "Ciano",
+            "CYAN"
+          ],
+          [
+            "Magenta",
+            "MAGENTA"
+          ],
+          [
+            "Amarelo",
+            "YELLOW"
+          ]
+        ]
+      }
+    ]
+  },
+  "makebit_car_rgb_val": {
+    "message0": "Farol vermelho %1 verde %2 azul %3",
+    "tooltip": "Define uma cor personalizada do farol com componentes RGB (0-255); a saída é escalada pelo brilho global."
+  },
+  "makebit_ultrasonic": {
+    "message0": "Ultrassom disparador %1 eco %2 distância(cm)",
+    "tooltip": "Medição de distância com módulo ultrassônico SR04 externo (pinos disparador/eco selecionáveis). Retorna centímetros; retorna 0 se não houver eco em ~30ms (cerca de 5m).",
+    "args0": [
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": "${board.digitalPins}"
+      }
+    ]
+  },
+  "makebit_rgb_effect": {
+    "message0": "Efeito do farol %1",
+    "tooltip": "Executa uma vez um efeito no farol RGB: fluxo (ciclo de seis cores), arco-íris (degradê), respiração, piscar ou desligar. Bloqueante até terminar.",
+    "args0": [
+      {
+        "options": [
+          [
+            "fluxo",
+            "FLOW"
+          ],
+          [
+            "arco-íris",
+            "RAINBOW"
+          ],
+          [
+            "respiração",
+            "BREATH"
+          ],
+          [
+            "piscar",
+            "BLINK"
+          ],
+          [
+            "desligar",
+            "OFF"
+          ]
+        ]
+      }
+    ]
+  },
+  "makebit_car_trim": {
+    "message0": "Carro correção avançar esq %1 dir %2",
+    "tooltip": "Corrige o desvio ao avançar: percentagem de saída dos motores esquerdo/direito no avanço (0-100, 100 predefinido = sem correção). Desviar para a direita -> diminuir o valor esquerdo; desviar para a esquerda -> diminuir o direito. Afeta as rodas que avançam em avanço/curva/rotação no lugar; a ré não muda."
+  },
+  "makebit_rgb_brightness": {
+    "message0": "Brilho do farol %1",
+    "tooltip": "Define o brilho global (0-255, 255 predefinido = total): os blocos seguintes de cor, efeito, ligar e RGB personalizado são exibidos com este brilho."
+  }
+}

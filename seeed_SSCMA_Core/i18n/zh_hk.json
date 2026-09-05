@@ -1,0 +1,252 @@
+{
+  "toolbox_name": "SSCMA Core",
+  "toolbox_labels": {
+    "初始化": "初始化",
+    "推理处理": "推理處理",
+    "回调注册": "回調註冊",
+    "检测结果": "檢測結果",
+    "分类结果": "分類結果",
+    "关键点结果": "關鍵點結果",
+    "关键点组结果": "關鍵點組結果",
+    "性能指标": "性能指標"
+  },
+  "sscma_core_begin": {
+    "message0": "初始化SSCMA使用XIAO ESP32S3預設配置",
+    "tooltip": "初始化SSCMA實例"
+  },
+  "sscma_core_set_loop_task_stack_size": {
+    "message0": "設定SSCMA循環任務堆疊大小 %1 位元組",
+    "tooltip": "設定SSCMA循環任務堆疊大小"
+  },
+  "sscma_core_invoke": {
+    "message0": "SSCMA推理處理訊框 %1",
+    "tooltip": "執行AI推理"
+  },
+  "sscma_core_get_managed_frame": {
+    "message0": "取得管理幀",
+    "tooltip": "從視訊擷取取得管理幀"
+  },
+  "sscma_core_register_boxes_callback": {
+    "message0": "SSCMA目標偵測回調",
+    "tooltip": "註冊目標偵測回調",
+    "message1": "執行 %1"
+  },
+  "sscma_core_register_classes_callback": {
+    "message0": "SSCMA分類檢測回調",
+    "tooltip": "註冊分類檢測回調",
+    "message1": "執行 %1"
+  },
+  "sscma_core_register_points_callback": {
+    "message0": "SSCMA關鍵點偵測回調",
+    "tooltip": "註冊關鍵點偵測回調",
+    "message1": "執行 %1"
+  },
+  "sscma_core_register_keypoints_callback": {
+    "message0": "SSCMA關鍵點組偵測回調",
+    "tooltip": "註冊關鍵點組偵測回調",
+    "message1": "執行 %1"
+  },
+  "sscma_core_register_perf_callback": {
+    "message0": "SSCMA性能回調",
+    "tooltip": "註冊性能指標回調",
+    "message1": "執行 %1"
+  },
+  "sscma_core_get_boxes": {
+    "message0": "SSCMA遍歷取得目標偵測結果",
+    "tooltip": "遍歷取得偵測到的目標框結果",
+    "message1": "%1"
+  },
+  "sscma_core_get_boxes_info": {
+    "message0": "取得目標偵測資訊 屬性 %1",
+    "tooltip": "遍歷取得目標偵測訊息",
+    "args0": [
+      {
+        "options": [
+          [
+            "X座標",
+            "x"
+          ],
+          [
+            "Y座標",
+            "y"
+          ],
+          [
+            "寬度",
+            "w"
+          ],
+          [
+            "高度",
+            "h"
+          ],
+          [
+            "信心水準",
+            "score"
+          ],
+          [
+            "目標類別",
+            "target"
+          ]
+        ]
+      }
+    ]
+  },
+  "sscma_core_get_classes": {
+    "message0": "SSCMA遍歷取得分類檢測結果",
+    "tooltip": "取得分類檢測結果",
+    "message1": "%1"
+  },
+  "sscma_core_get_classes_info": {
+    "message0": "取得分類檢測資訊 屬性 %1",
+    "tooltip": "取得分類檢測訊息",
+    "args0": [
+      {
+        "options": [
+          [
+            "信心水準",
+            "score"
+          ],
+          [
+            "目標類別",
+            "target"
+          ]
+        ]
+      }
+    ]
+  },
+  "sscma_core_get_points": {
+    "message0": "SSCMA遍歷取得關鍵點偵測結果",
+    "tooltip": "遍歷取得關鍵點檢測結果",
+    "message1": "%1"
+  },
+  "sscma_core_get_points_info": {
+    "message0": "取得關鍵點資訊 屬性 %1",
+    "tooltip": "獲取關鍵點信息",
+    "args0": [
+      {
+        "options": [
+          [
+            "X座標",
+            "x"
+          ],
+          [
+            "Y座標",
+            "y"
+          ],
+          [
+            "Z座標",
+            "z"
+          ],
+          [
+            "信心水準",
+            "score"
+          ],
+          [
+            "目標類別",
+            "target"
+          ]
+        ]
+      }
+    ]
+  },
+  "sscma_core_get_keypoints": {
+    "message0": "SSCMA遍歷取得關鍵點組偵測結果",
+    "tooltip": "遍歷取得關鍵點組檢測結果",
+    "message1": "%1"
+  },
+  "sscma_core_get_keypoints_info": {
+    "message0": "取得關鍵點組資訊 屬性 %1",
+    "tooltip": "獲取關鍵點組信息",
+    "args0": [
+      {
+        "options": [
+          [
+            "X座標",
+            "x"
+          ],
+          [
+            "Y座標",
+            "y"
+          ],
+          [
+            "高度",
+            "h"
+          ],
+          [
+            "寬度",
+            "w"
+          ],
+          [
+            "信心水準",
+            "score"
+          ],
+          [
+            "目標類別",
+            "target"
+          ]
+        ]
+      }
+    ]
+  },
+  "sscma_core_get_keypoints_points": {
+    "message0": "遍歷獲取關鍵點組中的點信息",
+    "tooltip": "遍歷獲取關鍵點組中的點信息",
+    "message1": "%1"
+  },
+  "sscma_core_get_keypoints_points_info": {
+    "message0": "取得關鍵點群組中的點資訊 屬性 %1",
+    "tooltip": "獲取關鍵點組中的點信息",
+    "args0": [
+      {
+        "options": [
+          [
+            "X座標",
+            "x"
+          ],
+          [
+            "Y座標",
+            "y"
+          ],
+          [
+            "Z座標",
+            "z"
+          ],
+          [
+            "信心水準",
+            "score"
+          ],
+          [
+            "目標類別",
+            "target"
+          ]
+        ]
+      }
+    ]
+  },
+  "sscma_core_get_perf": {
+    "message0": "SSCMA取得效能指標到 %1",
+    "tooltip": "取得效能指標到變數"
+  },
+  "sscma_core_get_perf_info": {
+    "message0": "取得 %1 效能資訊 屬性 %2",
+    "tooltip": "獲取性能資訊",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "預處理時間",
+            "preprocess"
+          ],
+          [
+            "推理時間",
+            "inference"
+          ],
+          [
+            "後處理時間",
+            "postprocess"
+          ]
+        ]
+      }
+    ]
+  }
+}

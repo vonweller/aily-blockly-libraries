@@ -1,0 +1,173 @@
+{
+  "toolbox_name": "ESP32 Network",
+  "toolbox_labels": {
+    "TCP客户端": "TCP-клиент",
+    "TCP安全客户端": "TCP безопасный клиент",
+    "TCP客户端通用功能": "Общие функции TCP-клиента",
+    "TCP服务器": "TCP-сервер",
+    "UDP通信": "UDP-связь"
+  },
+  "esp32_network_client_create": {
+    "message0": "Создайте сетевой клиент %1",
+    "tooltip": "Создать объект веб-клиента"
+  },
+  "esp32_network_client_connect_ip": {
+    "message0": "Клиентский %1 подключается к IP %2 порту %3",
+    "tooltip": "Подключитесь к указанному IP-адресу и порту"
+  },
+  "esp32_network_client_connect_host": {
+    "message0": "Клиентский %1 подключается к хосту %2 порту %3",
+    "tooltip": "Подключитесь к указанному имени хоста и порту"
+  },
+  "esp32_networkclientsecure_create": {
+    "message0": "Создайте защищённый сетевой клиент %1",
+    "tooltip": "Создать новый объект защищённого сетевого клиента NetworkClientSecure"
+  },
+  "esp32_networkclientsecure_set_insecure": {
+    "message0": "Установите %1 режим Unsafe",
+    "tooltip": "В режиме небезопасности не проверяйте цепочку сертификатов (только для тестирования)"
+  },
+  "esp32_networkclientsecure_set_ca_cert": {
+    "message0": "Установите сертификат CA %1 %2",
+    "tooltip": "Установите корневый сертификат CA для проверки сервера"
+  },
+  "esp32_networkclientsecure_set_certificate": {
+    "message0": "Установите %1 клиентский сертификат %2",
+    "tooltip": "Задайте сертификаты клиента для двусторонней аутентификации"
+  },
+  "esp32_networkclientsecure_set_private_key": {
+    "message0": "Установи приватный ключ %1 %2",
+    "tooltip": "Установите приватный ключ клиента для двусторонней аутентификации"
+  },
+  "esp32_networkclientsecure_set_psk": {
+    "message0": "Установите идентификацию PSK %1 %2 ключ %3",
+    "tooltip": "Настройте аутентификацию с предварительным использованием ключа (PSK)"
+  },
+  "esp32_networkclientsecure_set_plain_start": {
+    "message0": "Установите %1 режим запуска открытого текста",
+    "tooltip": "Для обновлений протокола (например, STARTTLS) установлен режим загрузки открытого текста"
+  },
+  "esp32_networkclientsecure_start_tls": {
+    "message0": "Запустите TLS-соединение %1",
+    "tooltip": "Обновите открытое сообщение до TLS-соединения; возврат 0 означает отказ, не 0 — успешный"
+  },
+  "esp32_networkclientsecure_set_handshake_timeout": {
+    "message0": "Установите тайм-аут %1 рукопожатия на %2 секунд",
+    "tooltip": "Установите тайм-аут SSL для рукопожатия"
+  },
+  "esp32_networkclientsecure_verify_fingerprint": {
+    "message0": "Проверьте %1 отпечаток пальца %2 домене %3",
+    "tooltip": "Проверьте сертификат сервера, отпечаток пальца и доменное имя"
+  },
+  "esp32_networkclientsecure_get_peer_fingerprint": {
+    "message0": "Получите отпечаток пальца сертификата %1",
+    "tooltip": "Получите отпечаток пальца SHA256 (шестернадцатеричная строка) для сертификата пира."
+  },
+  "esp32_networkclientsecure_last_error": {
+    "message0": "Получите последнюю ошибку %1",
+    "tooltip": "Извлечение сообщений об ошибке из последнего соединения или операции"
+  },
+  "esp32_network_client_print": {
+    "message0": "Клиент %1 отправить данные %2",
+    "tooltip": "Отправить данные на сервер"
+  },
+  "esp32_network_client_println": {
+    "message0": "Клиент %1 отправляет данные и разрывает lines%2",
+    "tooltip": "Отправляйте данные на сервер и добавляйте разрывы строк"
+  },
+  "esp32_network_client_available": {
+    "message0": "Клиентский %1 может читать байты данных",
+    "tooltip": "Получает количество байт данных, которые можно прочитать"
+  },
+  "esp32_network_client_read": {
+    "message0": "Клиент %1 чтение данных %2",
+    "tooltip": "Чтение данных с сервера",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Один байт",
+            "BYTE"
+          ],
+          [
+            "строка",
+            "STRING"
+          ],
+          [
+            "Прочитай разрыв строки",
+            "LINE"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_network_client_connected": {
+    "message0": "Клиент %1 подключен",
+    "tooltip": "Проверьте, подключен ли клиент"
+  },
+  "esp32_network_client_stop": {
+    "message0": "Отключение %1 клиента",
+    "tooltip": "Отключите клиентское соединение"
+  },
+  "esp32_network_server_create": {
+    "message0": "Создать сетевой сервер %1 Порты %2 Максимальное количество соединений %3",
+    "tooltip": "Создание объекта веб-сервера"
+  },
+  "esp32_network_server_begin": {
+    "message0": "Сервер %1 начинает слушать",
+    "tooltip": "Начните прислушиваться к клиентским связям"
+  },
+  "esp32_network_server_accept": {
+    "message0": "Серверный %1 прослушивает клиентские %2 соединения",
+    "tooltip": "Принимает клиентские соединения и возвращает клиентские объекты"
+  },
+  "esp32_network_server_stop": {
+    "message0": "Сервер %1 перестаёт слушать",
+    "tooltip": "Прекратите слушание сервера"
+  },
+  "esp32_network_udp_create": {
+    "message0": "Создание UDP-объектов %1",
+    "tooltip": "Создать объект UDP"
+  },
+  "esp32_network_udp_begin": {
+    "message0": "UDP %1 Начните слушать порт %2",
+    "tooltip": "Начните слушать UDP-пакеты на указанном порте"
+  },
+  "esp32_network_udp_begin_packet": {
+    "message0": "UDP %1 начинает отправлять пакеты на порт %2%3",
+    "tooltip": "Начните готовиться к отправке UDP-пакетов"
+  },
+  "esp32_network_udp_write": {
+    "message0": "UDP %1 Запись данных %2",
+    "tooltip": "Запись данных в UDP-пакеты"
+  },
+  "esp32_network_udp_end_packet": {
+    "message0": "UDP %1 отправляет пакеты данных",
+    "tooltip": "Отправка UDP-пакетов"
+  },
+  "esp32_network_udp_parse_packet": {
+    "message0": "UDP %1 парсирования получаемых пакетов данных",
+    "tooltip": "Анализ полученного UDP-пакета и возврат размера пакета"
+  },
+  "esp32_network_udp_available": {
+    "message0": "UDP %1 количество доступных байт данных",
+    "tooltip": "Получает количество байт данных, которые можно прочитать"
+  },
+  "esp32_network_udp_read": {
+    "message0": "UDP %1 считывает данные",
+    "tooltip": "Чтение данных из буфера UDP"
+  },
+  "esp32_network_udp_remote_ip": {
+    "message0": "UDP %1 удалённый IP-адрес",
+    "tooltip": "Получите удалённый IP-адрес для отправки пакета данных"
+  },
+  "esp32_network_udp_remote_port": {
+    "message0": "UDP %1 удалённый порт",
+    "tooltip": "Получите удалённый порт для отправки пакета"
+  },
+  "esp32_network_udp_stop": {
+    "message0": "UDP %1 прекратил мониторинг",
+    "tooltip": "Прекратите мониторинг UDP"
+  }
+}

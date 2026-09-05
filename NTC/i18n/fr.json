@@ -1,0 +1,43 @@
+{
+  "toolbox_name": "Température thermique NTC",
+  "ntc_init": {
+    "message0": "Capteur thermique NTC relié à des broches %1reference resistor%2Ω température nominale resistor%3Ω nominale %4°C B value%5",
+    "tooltip": "Initialiser le capteur thermique de température NTC, définir les broches et paramètres",
+    "args0": [
+      {
+        "options": "${board.analogPins}"
+      },
+      null,
+      null,
+      null,
+      null
+    ]
+  },
+  "ntc_read_celsius": {
+    "message0": "Lire la température NTC de %1 broche jusqu’à la température Celsius",
+    "tooltip": "Lisez la valeur de température Celsius du capteur NTC",
+    "args0": [
+      {
+        "options": "${board.analogPins}"
+      }
+    ]
+  },
+  "ntc_read_fahrenheit": {
+    "message0": "Lire la température NTC Fahrenheit à partir de %1 broche",
+    "tooltip": "Lisez la valeur de température Fahrenheit du capteur NTC",
+    "args0": [
+      {
+        "options": "${board.analogPins}"
+      }
+    ]
+  },
+  "ntc_read_kelvin": {
+    "message0": "Lisez la température en kelvin du NTC depuis la broche %1",
+    "tooltip": "Lisez la valeur de température en kelvin du capteur NTC",
+    "args0": [
+      {
+        "options": "${board.analogPins}"
+      }
+    ]
+  }
+}

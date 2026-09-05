@@ -1,0 +1,46 @@
+{
+  "toolbox_name": "Capteur capacitif",
+  "toolbox_labels": {
+    "初始化": "Initialisation",
+    "读数": "Lectures",
+    "校准配置": "Configuration de l’étalonnage",
+    "接线参考": "Référence de câblage"
+  },
+  "capacitivesensor_create": {
+    "message0": "Créez des capteurs capacitifs %1 des broches d’envoi %2 des broches de réception %3",
+    "tooltip": "Créer des capteurs tactiles capacitifs et spécifier les broches d’envoi et de réception",
+    "args0": [
+      null,
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": "${board.digitalPins}"
+      }
+    ]
+  },
+  "capacitivesensor_read": {
+    "message0": "Le capteur capacitif %1 lire les valeurs des filtres de taille d’échantillon %2",
+    "tooltip": "Lisez la valeur de contact après le retrait de la ligne de base ; plus la taille de l’échantillon est grande, plus elle est stable"
+  },
+  "capacitivesensor_read_raw": {
+    "message0": "Capteur capacitif %1 lecture de la taille brute de l’échantillon %2",
+    "tooltip": "Lire la valeur brute de la capacité sans calibration de base"
+  },
+  "capacitivesensor_set_timeout": {
+    "message0": "Le capteur capacitif %1 délai d’attente réglé à %2 millisecondes",
+    "tooltip": "Configurez les délais de charge/décharge pour éviter une attente interminable en cas d’interférences fortes"
+  },
+  "capacitivesensor_set_autocal": {
+    "message0": "Le capteur capacitif %1 régler un intervalle d’étalonnage automatique de %2 millisecondes",
+    "tooltip": "Régler l’intervalle d’étalonnage de base automatique ; 0 signifie que l’auto-calibration est désactivée"
+  },
+  "capacitivesensor_reset_autocal": {
+    "message0": "Capteur capacitif %1 réinitialisation automatique de la calibration",
+    "tooltip": "Réinitialisez immédiatement la ligne de base, couramment utilisée au démarrage ou après des changements d’état du capteur"
+  },
+  "capacitivesensor_wiring_hint": {
+    "message0": "Référence de câblage %1",
+    "tooltip": "Référez-vous à la méthode de connexion par broche d’envoi/réception du capteur tactile capacitif et de la résistance, sans générer de code"
+  }
+}

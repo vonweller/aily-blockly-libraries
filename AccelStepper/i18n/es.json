@@ -1,0 +1,164 @@
+{
+  "toolbox_name": "AccelStepper",
+  "toolbox_labels": {
+    "初始化": "inicialización",
+    "运动控制": "control de movimiento",
+    "速度与加速度": "Velocidad y aceleración",
+    "状态查询": "Consulta de estado",
+    "位置控制": "control de posición",
+    "输出控制": "control de salida",
+    "阻塞模式": "modo de bloqueo",
+    "多电机同步控制 (MultiStepper)": "Control síncrono multimotor (MultiStepper)"
+  },
+  "accelstepper_setup": {
+    "message0": "Crea un motor paso a paso %1 Interfaz type%2 %3 %4 %5 %6",
+    "tooltip": "Crea objetos de motor paso a paso que soporten múltiples tipos de interfaz",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "4 líneas en paso completo",
+            "4"
+          ],
+          [
+            "Dos líneas en paso completo",
+            "2"
+          ],
+          [
+            "3 líneas en paso completo",
+            "3"
+          ],
+          [
+            "3. Medio paso en la línea",
+            "6"
+          ],
+          [
+            "4 líneas y medio tono",
+            "8"
+          ]
+        ]
+      },
+      null,
+      null,
+      null,
+      null
+    ]
+  },
+  "accelstepper_setup_driver": {
+    "message0": "Crea un motor paso a paso %1 modo de conducción (Paso + Dirección) Pasador %2 Dirección pin%3",
+    "tooltip": "Crea objetos con motor paso a paso usando el modo driver (Paso + Dirección)"
+  },
+  "accelstepper_move_to": {
+    "message0": "Mueve el motor paso a paso %1 a la posición %2",
+    "tooltip": "Establece la posición objetivo (posición absoluta)"
+  },
+  "accelstepper_move": {
+    "message0": "Permite que el motor paso a paso %1 se mueva %2 pasos entre sí",
+    "tooltip": "El movimiento relativo especifica el número de pasos"
+  },
+  "accelstepper_run": {
+    "message0": "El motor paso a paso %1 ejecuta un paso (con aceleración)",
+    "tooltip": "Ejecuta un paso con aceleración/desaceleración (requiere llamadas frecuentes en el bucle)"
+  },
+  "accelstepper_run_speed": {
+    "message0": "Deja que el motor paso a paso %1 realice un paso a velocidad constante",
+    "tooltip": "Ejecutar un paso a velocidad constante (requiere llamadas frecuentes en el bucle)"
+  },
+  "accelstepper_stop": {
+    "message0": "Para el motor paso a paso %1",
+    "tooltip": "Para el motor lo antes posible"
+  },
+  "accelstepper_set_max_speed": {
+    "message0": "Ajusta la velocidad máxima del motor paso a paso %1 a %2 pasos por segundo",
+    "tooltip": "Establecer velocidad máxima (unidad: pasos/segundo)"
+  },
+  "accelstepper_set_speed": {
+    "message0": "Ajusta el motor paso a paso %1 a una velocidad constante de %2 pasos por segundo",
+    "tooltip": "Establece una velocidad constante (unidad: pasos por segundo, para el modo runSpeed)"
+  },
+  "accelstepper_get_speed": {
+    "message0": "Averigua la velocidad actual del motor paso a paso %1",
+    "tooltip": "Obtén la velocidad actual (unidad: pasos/segundo)"
+  },
+  "accelstepper_set_acceleration": {
+    "message0": "Ajusta la aceleración del %1 del motor paso a %2 pasos por segundo²",
+    "tooltip": "Aceleración de ajuste (unidad: pasos/segundo²)"
+  },
+  "accelstepper_get_current_position": {
+    "message0": "Asegúrate de la posición actual del motor paso a paso %1",
+    "tooltip": "Asegúrate de tu ubicación actual (unidad: escalones)"
+  },
+  "accelstepper_set_current_position": {
+    "message0": "Ajusta la posición actual del motor paso a paso %1 a %2",
+    "tooltip": "Establecer posición actual (para operaciones como el cero)"
+  },
+  "accelstepper_distance_to_go": {
+    "message0": "Obtén la distancia desde el motor paso a paso %1 hasta la ubicación objetivo",
+    "tooltip": "Distancia hasta la ubicación objetivo (unidad: escalones)"
+  },
+  "accelstepper_is_running": {
+    "message0": "Si el motor paso a paso %1 está funcionando",
+    "tooltip": "Comprueba si el motor está funcionando actualmente."
+  },
+  "accelstepper_enable_outputs": {
+    "message0": "Activa la salida del motor paso a paso %1",
+    "tooltip": "Habilitar la salida del motor"
+  },
+  "accelstepper_disable_outputs": {
+    "message0": "Desactiva la salida del motor paso a paso %1",
+    "tooltip": "Desactivar la salida del motor (ahorro de energía)"
+  },
+  "accelstepper_run_to_position": {
+    "message0": "Permitir que el motor paso a paso %1 alcance la posición objetivo (bloqueo)",
+    "tooltip": "Corre hasta la posición objetivo (modo bloqueo, esperaré hasta la llegada)"
+  },
+  "accelstepper_run_to_new_position": {
+    "message0": "Permitir que el motor paso a paso %1 funcione a una nueva posición %2 (obstrucción)",
+    "tooltip": "Corre a una nueva ubicación (modo bloqueo, esperaré hasta la llegada)"
+  },
+  "accelstepper_run_speed_to_position": {
+    "message0": "Permite que el motor paso a paso %1 funcione a velocidad constante hasta la posición objetivo",
+    "tooltip": "Funciona a velocidad constante hasta la posición objetivo (requiere llamadas frecuentes en el bucle)"
+  },
+  "accelstepper_set_enable_pin": {
+    "message0": "Configura el pin de habilitar para el %1 del motor paso a paso a %2",
+    "tooltip": "Configurar el pin de habilitar (para el controlador)"
+  },
+  "multistepper_create": {
+    "message0": "Creación de controladores síncronos multimotor %1",
+    "tooltip": "Crea objetos MultiStepper que puedan gestionar hasta 10 motores paso a paso"
+  },
+  "multistepper_add_stepper": {
+    "message0": "Añadir %1 de motor paso a paso a un controlador multimotor %2",
+    "tooltip": "Añadir un solo motor paso a paso al controlador multimotor"
+  },
+  "multistepper_move_to": {
+    "message0": "Sincroniza todos los motores del controlador multimotor %1 a su positions%2",
+    "tooltip": "Establece el array de posiciones de los objetivos para todos los motores {pos1, pos2, ...}, y llegarán simultáneamente a velocidad constante"
+  },
+  "multistepper_move_to_2": {
+    "message0": "Haz que los dos motores del controlador multimotor %1 se muevan de forma sincrónica: posición del motor 1 %2 posición del motor 2 %3",
+    "tooltip": "Establece las posiciones objetivo para dos motores, adecuadas para aplicaciones de doble eje como plataformas XY"
+  },
+  "multistepper_move_to_3": {
+    "message0": "Sincroniza los tres motores en el controlador multimotor %1: Motor 1 en %2, Motor 2 en %3, Motor 3 en %4",
+    "tooltip": "Establece las posiciones objetivo para tres motores, adecuadas para aplicaciones de tres ejes como la plataforma XYZ"
+  },
+  "multistepper_move_to_4": {
+    "message0": "Controlador multimotor %1 Sincroniza el movimiento de 4 motores: Motor 1 position%2 Motor 2 posición %3, Motor 3 posición %4, Motor 4 posición %5",
+    "tooltip": "Establece las posiciones objetivo para cuatro motores"
+  },
+  "multistepper_run": {
+    "message0": "Deja que el controlador multimotor %1 ejecute un paso (no bloqueador)",
+    "tooltip": "Para ejecutar un paso, con frecuencia debes llamarlo al bucle"
+  },
+  "multistepper_run_speed_to_position": {
+    "message0": "Permitir que el controlador multimotor %1 funcione hasta la posición objetivo (bloqueo)",
+    "tooltip": "Corre hasta la posición objetivo (modo bloqueo, esperaré hasta la llegada)"
+  },
+  "multistepper_positions_array": {
+    "message0": "Crea un array de posiciones %1",
+    "tooltip": "Crea un array de posiciones para multistepper_move_to"
+  }
+}

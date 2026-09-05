@@ -1,0 +1,274 @@
+{
+  "toolbox_name": "Summer Driver",
+  "toolbox_labels": {
+    "按键和传感器": "Buttons and sensors",
+    "JY61P六轴传感器": "JY61P six-axis sensor",
+    "舵机控制": "Servo control",
+    "TT马达": "TT motor",
+    "步进电机": "stepper motor"
+  },
+  "car_is_key_pressed": {
+    "message0": "Button %1 is pressed",
+    "tooltip": "Determine whether the onboard button is pressed",
+    "args0": [
+      {
+        "options": [
+          [
+            "A",
+            "0"
+          ],
+          [
+            "B",
+            "1"
+          ],
+          [
+            "C",
+            "2"
+          ]
+        ]
+      }
+    ]
+  },
+  "car_servo_angle": {
+    "message0": "Set the servo %1 angle to %2 degrees",
+    "tooltip": "Set STM32 servo angle (0-180)",
+    "args0": [
+      {
+        "options": [
+          [
+            "S1",
+            "0"
+          ],
+          [
+            "S2",
+            "1"
+          ],
+          [
+            "S3",
+            "2"
+          ],
+          [
+            "S4",
+            "3"
+          ],
+          [
+            "S5",
+            "4"
+          ],
+          [
+            "S6",
+            "5"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "car_motor_control_single": {
+    "message0": "Control TT motor %1 direction %2 speed %3(0-255)",
+    "tooltip": "Control TT motor through STM32 (speed range 0-255)",
+    "args0": [
+      {
+        "options": [
+          [
+            "EL1",
+            "0"
+          ],
+          [
+            "ER1",
+            "1"
+          ],
+          [
+            "EL2",
+            "2"
+          ],
+          [
+            "ER2",
+            "3"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "stop",
+            "0"
+          ],
+          [
+            "Forward rotation",
+            "1"
+          ],
+          [
+            "reverse",
+            "2"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "car_motor_stop_single": {
+    "message0": "Stop TT motor %1",
+    "tooltip": "Stop a single TT motor",
+    "args0": [
+      {
+        "options": [
+          [
+            "EL1",
+            "0"
+          ],
+          [
+            "ER1",
+            "1"
+          ],
+          [
+            "EL2",
+            "2"
+          ],
+          [
+            "ER2",
+            "3"
+          ]
+        ]
+      }
+    ]
+  },
+  "car_stepper_control": {
+    "message0": "Stepper motor %1 %2 Rotation %3 degrees Speed %4 ms/beat",
+    "tooltip": "Control stepper motor (0-65535 degrees) through STM32, speed 1-10ms/beat, the smaller the faster",
+    "args0": [
+      {
+        "options": [
+          [
+            "L",
+            "0"
+          ],
+          [
+            "R",
+            "1"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "clockwise",
+            "0"
+          ],
+          [
+            "Counterclockwise",
+            "1"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "car_stepper_control_turns": {
+    "message0": "Stepper motor %1 %2 Rotation %3 Circle Speed %4 ms/beat",
+    "tooltip": "Control the stepper motor to rotate a specified number of turns (1 turn = 360 degrees) through STM32, with a speed of 1-10ms/beat, the smaller the faster it is",
+    "args0": [
+      {
+        "options": [
+          [
+            "L",
+            "0"
+          ],
+          [
+            "R",
+            "1"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "clockwise",
+            "0"
+          ],
+          [
+            "Counterclockwise",
+            "1"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "jy61p_set_zero": {
+    "message0": "Set attitude angle zero point",
+    "tooltip": "Set the current attitude angle to zero point (reference position)"
+  },
+  "jy61p_get_angle": {
+    "message0": "Get attitude angle %1",
+    "tooltip": "Get the attitude angle of JY61P and return 0-360 degrees",
+    "args0": [
+      {
+        "options": [
+          [
+            "Yaw (heading angle)",
+            "YAW"
+          ],
+          [
+            "Pitch",
+            "PITCH"
+          ],
+          [
+            "Roll (roll angle)",
+            "ROLL"
+          ]
+        ]
+      }
+    ]
+  },
+  "jy61p_get_acceleration": {
+    "message0": "Get acceleration %1",
+    "tooltip": "Get JY61P acceleration, unit: g, range: -16~16",
+    "args0": [
+      {
+        "options": [
+          [
+            "X-axis",
+            "X"
+          ],
+          [
+            "Y axis",
+            "Y"
+          ],
+          [
+            "Z axis",
+            "Z"
+          ]
+        ]
+      }
+    ]
+  },
+  "jy61p_get_gyro": {
+    "message0": "Get angular velocity %1",
+    "tooltip": "Get JY61P angular velocity, unit: °/s, range: -2000~2000",
+    "args0": [
+      {
+        "options": [
+          [
+            "X-axis",
+            "X"
+          ],
+          [
+            "Y axis",
+            "Y"
+          ],
+          [
+            "Z axis",
+            "Z"
+          ]
+        ]
+      }
+    ]
+  },
+  "car_servo_angle_value": {
+    "message0": "Angle %1 degrees",
+    "tooltip": "Servo angle value (0-180 degrees)"
+  }
+}

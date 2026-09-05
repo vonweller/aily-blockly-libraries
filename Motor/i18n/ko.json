@@ -1,0 +1,261 @@
+{
+  "toolbox_name": "AFMotor",
+  "toolbox_labels": {
+    "直流电机控制": "DC 모터 제어",
+    "步进电机控制": "스테퍼 모터 제어"
+  },
+  "afmotor_dc_init": {
+    "message0": "DC 모터 초기화 주파수 %1 %2",
+    "tooltip": "Adafruit 모터 구동 보드의 DC 모터를 초기화하세요",
+    "args0": [
+      {
+        "options": [
+          [
+            "M1",
+            "1"
+          ],
+          [
+            "M2",
+            "2"
+          ],
+          [
+            "M3",
+            "3"
+          ],
+          [
+            "M4",
+            "4"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "기본",
+            "DC_MOTOR_PWM_RATE"
+          ],
+          [
+            "64KHz",
+            "MOTOR12_64KHZ"
+          ],
+          [
+            "8KHz",
+            "MOTOR12_8KHZ"
+          ],
+          [
+            "2KHz",
+            "MOTOR12_2KHZ"
+          ],
+          [
+            "1KHz",
+            "MOTOR12_1KHZ"
+          ]
+        ]
+      }
+    ]
+  },
+  "afmotor_dc_run": {
+    "message0": "DC 모터 %1 작동 방향 %2 속도 %3",
+    "tooltip": "DC 모터의 방향과 속도를 제어합니다",
+    "args0": [
+      {
+        "options": [
+          [
+            "M1",
+            "1"
+          ],
+          [
+            "M2",
+            "2"
+          ],
+          [
+            "M3",
+            "3"
+          ],
+          [
+            "M4",
+            "4"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "앞으로",
+            "FORWARD"
+          ],
+          [
+            "뒤로",
+            "BACKWARD"
+          ],
+          [
+            "브레이크",
+            "BRAKE"
+          ],
+          [
+            "해제",
+            "RELEASE"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "afmotor_stepper_init": {
+    "message0": "스테퍼 모터 초기화 %1 회전당 스텝 %2",
+    "tooltip": "스테퍼 모터를 초기화하고 회전당 스텝 수를 지정합니다",
+    "args0": [
+      {
+        "options": [
+          [
+            "1(M1+M2)",
+            "1"
+          ],
+          [
+            "2(M3+M4)",
+            "2"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "afmotor_stepper_setspeed": {
+    "message0": "스테퍼 모터%1 속도를 %2 RPM으로 설정합니다",
+    "tooltip": "스테퍼 모터 속도(RPM)를 설정하세요",
+    "args0": [
+      {
+        "options": [
+          [
+            "1(M1+M2)",
+            "1"
+          ],
+          [
+            "2(M3+M4)",
+            "2"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "afmotor_stepper_step": {
+    "message0": "스테퍼 모터 %1 이동 %2 스텝 방향 %3 모드 %4",
+    "tooltip": "스테퍼 모터를 제어하여 지정된 스텝 수를 움직일 수 있게 합니다",
+    "args0": [
+      {
+        "options": [
+          [
+            "1(M1+M2)",
+            "1"
+          ],
+          [
+            "2(M3+M4)",
+            "2"
+          ]
+        ]
+      },
+      null,
+      {
+        "options": [
+          [
+            "앞으로",
+            "FORWARD"
+          ],
+          [
+            "뒤로",
+            "BACKWARD"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "단상",
+            "SINGLE"
+          ],
+          [
+            "이성",
+            "DOUBLE"
+          ],
+          [
+            "얽혀 있다",
+            "INTERLEAVE"
+          ],
+          [
+            "마이크로 스테핑",
+            "MICROSTEP"
+          ]
+        ]
+      }
+    ]
+  },
+  "afmotor_stepper_onestep": {
+    "message0": "스테퍼 모터 %1 단일 단계 이동 방향 %2 모드 %3",
+    "tooltip": "스테퍼 모터를 한 단계로 움직이게 제어",
+    "args0": [
+      {
+        "options": [
+          [
+            "1(M1+M2)",
+            "1"
+          ],
+          [
+            "2(M3+M4)",
+            "2"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "앞으로",
+            "FORWARD"
+          ],
+          [
+            "뒤로",
+            "BACKWARD"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "단상",
+            "SINGLE"
+          ],
+          [
+            "이성",
+            "DOUBLE"
+          ],
+          [
+            "얽혀 있다",
+            "INTERLEAVE"
+          ],
+          [
+            "마이크로 스테핑",
+            "MICROSTEP"
+          ]
+        ]
+      }
+    ]
+  },
+  "afmotor_stepper_release": {
+    "message0": "스테퍼 모터 %1 해제",
+    "tooltip": "스테퍼 모터를 놓고 전원 공급 장치를 정지하세요",
+    "args0": [
+      {
+        "options": [
+          [
+            "1(M1+M2)",
+            "1"
+          ],
+          [
+            "2(M3+M4)",
+            "2"
+          ]
+        ]
+      }
+    ]
+  }
+}

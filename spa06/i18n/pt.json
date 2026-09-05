@@ -1,0 +1,321 @@
+{
+  "toolbox_name": "Sensor de pressão e temperatura do ar SPA06",
+  "toolbox_labels": {
+    "初始化": "inicialização",
+    "配置": "Configuração",
+    "数据读取": "Leitura de dados",
+    "状态检查": "verificação de status",
+    "中断": "interromper",
+    "校准": "Calibração"
+  },
+  "spa06_create_i2c": {
+    "message0": "Crie sensores SPA06 %1 use endereços i2C %2",
+    "tooltip": "Crie objetos sensores de temperatura barométricos SPA06-003 usando comunicação I2C",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "0x76 (padrão)",
+            "0x76"
+          ],
+          [
+            "0x77",
+            "0x77"
+          ]
+        ]
+      }
+    ]
+  },
+  "spa06_create_spi": {
+    "message0": "Criando sensores SPA06 %1 Usando pinos SPI %2",
+    "tooltip": "Crie o objeto sensor de temperatura barométrico SPA06-003 usando comunicação SPI"
+  },
+  "spa06_set_pressure_sampling": {
+    "message0": "Defina %1 taxa de amostragem por pressão %2 taxa de superamostragem %3",
+    "tooltip": "Configure a taxa de amostragem e a taxa de superamostragem do sensor de pressão",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "1 Hz",
+            "SPL07_1HZ"
+          ],
+          [
+            "2 Hz",
+            "SPL07_2HZ"
+          ],
+          [
+            "4 Hz",
+            "SPL07_4HZ"
+          ],
+          [
+            "8 Hz",
+            "SPL07_8HZ"
+          ],
+          [
+            "16 Hz",
+            "SPL07_16HZ"
+          ],
+          [
+            "32 Hz",
+            "SPL07_32HZ"
+          ],
+          [
+            "64 Hz",
+            "SPL07_64HZ"
+          ],
+          [
+            "128 Hz",
+            "SPL07_128HZ"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "1x",
+            "SPL07_1SAMPLE"
+          ],
+          [
+            "2x",
+            "SPL07_2SAMPLES"
+          ],
+          [
+            "4x",
+            "SPL07_4SAMPLES"
+          ],
+          [
+            "8x",
+            "SPL07_8SAMPLES"
+          ],
+          [
+            "16x",
+            "SPL07_16SAMPLES"
+          ],
+          [
+            "32x",
+            "SPL07_32SAMPLES"
+          ],
+          [
+            "64x",
+            "SPL07_64SAMPLES"
+          ],
+          [
+            "128x",
+            "SPL07_128SAMPLES"
+          ]
+        ]
+      }
+    ]
+  },
+  "spa06_set_temperature_sampling": {
+    "message0": "Defina %1 taxa de amostragem de temperatura %2 taxa de superamostragem %3",
+    "tooltip": "Configure a taxa de amostragem e a taxa de superamostragem do sensor de temperatura",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "1 Hz",
+            "SPL07_1HZ"
+          ],
+          [
+            "2 Hz",
+            "SPL07_2HZ"
+          ],
+          [
+            "4 Hz",
+            "SPL07_4HZ"
+          ],
+          [
+            "8 Hz",
+            "SPL07_8HZ"
+          ],
+          [
+            "16 Hz",
+            "SPL07_16HZ"
+          ],
+          [
+            "32 Hz",
+            "SPL07_32HZ"
+          ],
+          [
+            "64 Hz",
+            "SPL07_64HZ"
+          ],
+          [
+            "128 Hz",
+            "SPL07_128HZ"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "1x",
+            "SPL07_1SAMPLE"
+          ],
+          [
+            "2x",
+            "SPL07_2SAMPLES"
+          ],
+          [
+            "4x",
+            "SPL07_4SAMPLES"
+          ],
+          [
+            "8x",
+            "SPL07_8SAMPLES"
+          ],
+          [
+            "16x",
+            "SPL07_16SAMPLES"
+          ],
+          [
+            "32x",
+            "SPL07_32SAMPLES"
+          ],
+          [
+            "64x",
+            "SPL07_64SAMPLES"
+          ],
+          [
+            "128x",
+            "SPL07_128SAMPLES"
+          ]
+        ]
+      }
+    ]
+  },
+  "spa06_set_mode": {
+    "message0": "Defina %1 modo de operação %2",
+    "tooltip": "Defina o modo de funcionamento do sensor",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Inativo",
+            "SPL07_IDLE"
+          ],
+          [
+            "Pressão simples",
+            "SPL07_ONE_PRESSURE"
+          ],
+          [
+            "Temperatura única",
+            "SPL07_ONE_TEMPERATURE"
+          ],
+          [
+            "Pressão contínua",
+            "SPL07_CONT_PRESSURE"
+          ],
+          [
+            "Temperatura contínua",
+            "SPL07_CONT_TEMPERATURE"
+          ],
+          [
+            "Temperatura de pressão contínua",
+            "SPL07_CONT_PRES_TEMP"
+          ]
+        ]
+      }
+    ]
+  },
+  "spa06_set_temperature_source": {
+    "message0": "Defina %1 fonte de temperatura %2",
+    "tooltip": "Configure a fonte do sensor de temperatura",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Dentro do ASIC",
+            "SPL07_TSRC_ASIC"
+          ],
+          [
+            "MEMS externo",
+            "SPL07_TSRC_MEMS"
+          ]
+        ]
+      }
+    ]
+  },
+  "spa06_read_pressure": {
+    "message0": "%1 Leia o valor da pressão",
+    "tooltip": "Leia o valor da pressão atual (Pascal)"
+  },
+  "spa06_read_temperature": {
+    "message0": "%1 Leia o valor da temperatura",
+    "tooltip": "Leia o valor atual da temperatura (graus Celsius)"
+  },
+  "spa06_calc_altitude": {
+    "message0": "%1 Calcular altitude",
+    "tooltip": "A altitude (metros) é calculada com base nos valores de pressão."
+  },
+  "spa06_pressure_available": {
+    "message0": "%1 Dados de pressão disponíveis",
+    "tooltip": "Verifique se há novos dados de pressão disponíveis"
+  },
+  "spa06_temperature_available": {
+    "message0": "%1 Dados de temperatura disponíveis",
+    "tooltip": "Verifique se há novos dados de temperatura disponíveis"
+  },
+  "spa06_set_interrupt": {
+    "message0": "Defina %1 modo de interrupção %2",
+    "tooltip": "Configurar modo de interrupção",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Desligado",
+            "SPL07_INT_OFF"
+          ],
+          [
+            "Pressão pronta",
+            "SPL07_INT_PRES"
+          ],
+          [
+            "Temperatura pronta",
+            "SPL07_INT_TEMP"
+          ],
+          [
+            "Pressão ou temperatura pronta",
+            "SPL07_INT_PRES_TEMP"
+          ],
+          [
+            "FIFO no máximo",
+            "SPL07_INT_FIFO"
+          ],
+          [
+            "FIFO é cheio ou pronto para pressão",
+            "SPL07_INT_FIFO_PRES"
+          ],
+          [
+            "O FIFO está totalmente definido ou pronto para temperatura",
+            "SPL07_INT_FIFO_TEMP"
+          ],
+          [
+            "Todas as interrupções",
+            "SPL07_INT_ALL"
+          ]
+        ]
+      }
+    ]
+  },
+  "spa06_get_interrupt_status": {
+    "message0": "%1 Recuperar o status da interrupção",
+    "tooltip": "Recupera o valor atual do registro de status de interrupção"
+  },
+  "spa06_set_pressure_offset": {
+    "message0": "Ajuste %1 deslocamento de pressão %2 Pa",
+    "tooltip": "Defina o valor de deslocamento da medida de pressão"
+  },
+  "spa06_set_temperature_offset": {
+    "message0": "Ajuste %1 temperatura desligada em %2 °C",
+    "tooltip": "Defina o valor de deslocamento da medição de temperatura"
+  }
+}

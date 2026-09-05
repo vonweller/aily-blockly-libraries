@@ -1,0 +1,371 @@
+[
+  {
+    "type": "nrf54_preferences_begin",
+    "message0": "打开存储命名空间 %1 只读 %2",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "NAMESPACE",
+        "check": "String"
+      },
+      {
+        "type": "field_dropdown",
+        "name": "READONLY",
+        "options": [
+          [
+            "否",
+            "false"
+          ],
+          [
+            "是",
+            "true"
+          ]
+        ]
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#7E57C2",
+    "tooltip": "打开一个持久化键值命名空间。"
+  },
+  {
+    "type": "nrf54_preferences_end",
+    "message0": "关闭存储命名空间",
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#7E57C2",
+    "tooltip": "关闭当前命名空间。"
+  },
+  {
+    "type": "nrf54_preferences_clear",
+    "message0": "清空当前命名空间",
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#7E57C2",
+    "tooltip": "删除当前命名空间中的全部键。"
+  },
+  {
+    "type": "nrf54_preferences_remove",
+    "message0": "删除键 %1",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "KEY",
+        "check": "String"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#7E57C2",
+    "tooltip": "删除指定键。"
+  },
+  {
+    "type": "nrf54_preferences_is_key",
+    "message0": "键 %1 是否存在",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "KEY",
+        "check": "String"
+      }
+    ],
+    "output": "Boolean",
+    "colour": "#7E57C2",
+    "tooltip": "检查指定键是否存在。"
+  },
+  {
+    "type": "nrf54_preferences_free_entries",
+    "message0": "剩余可用条目数",
+    "output": "Number",
+    "colour": "#7E57C2",
+    "tooltip": "返回当前存储区剩余条目数。"
+  },
+  {
+    "type": "nrf54_preferences_put_number",
+    "message0": "写入数值 键 %1 类型 %2 值 %3",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "KEY",
+        "check": "String"
+      },
+      {
+        "type": "field_dropdown",
+        "name": "TYPE",
+        "options": [
+          [
+            "int8",
+            "putChar"
+          ],
+          [
+            "uint8",
+            "putUChar"
+          ],
+          [
+            "int16",
+            "putShort"
+          ],
+          [
+            "uint16",
+            "putUShort"
+          ],
+          [
+            "int32",
+            "putInt"
+          ],
+          [
+            "uint32",
+            "putUInt"
+          ],
+          [
+            "long",
+            "putLong"
+          ],
+          [
+            "unsigned long",
+            "putULong"
+          ],
+          [
+            "int64",
+            "putLong64"
+          ],
+          [
+            "uint64",
+            "putULong64"
+          ],
+          [
+            "float",
+            "putFloat"
+          ],
+          [
+            "double",
+            "putDouble"
+          ]
+        ]
+      },
+      {
+        "type": "input_value",
+        "name": "VALUE",
+        "check": "Number"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#7E57C2",
+    "tooltip": "按选择的数值类型写入键值。"
+  },
+  {
+    "type": "nrf54_preferences_get_number",
+    "message0": "读取数值 键 %1 类型 %2 默认 %3",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "KEY",
+        "check": "String"
+      },
+      {
+        "type": "field_dropdown",
+        "name": "TYPE",
+        "options": [
+          [
+            "int8",
+            "getChar"
+          ],
+          [
+            "uint8",
+            "getUChar"
+          ],
+          [
+            "int16",
+            "getShort"
+          ],
+          [
+            "uint16",
+            "getUShort"
+          ],
+          [
+            "int32",
+            "getInt"
+          ],
+          [
+            "uint32",
+            "getUInt"
+          ],
+          [
+            "long",
+            "getLong"
+          ],
+          [
+            "unsigned long",
+            "getULong"
+          ],
+          [
+            "int64",
+            "getLong64"
+          ],
+          [
+            "uint64",
+            "getULong64"
+          ],
+          [
+            "float",
+            "getFloat"
+          ],
+          [
+            "double",
+            "getDouble"
+          ]
+        ]
+      },
+      {
+        "type": "input_value",
+        "name": "DEFAULT",
+        "check": "Number"
+      }
+    ],
+    "output": "Number",
+    "colour": "#7E57C2",
+    "tooltip": "按选择的数值类型读取键值。"
+  },
+  {
+    "type": "nrf54_preferences_put_bool",
+    "message0": "写入布尔值 键 %1 值 %2",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "KEY",
+        "check": "String"
+      },
+      {
+        "type": "input_value",
+        "name": "VALUE",
+        "check": "Boolean"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#7E57C2",
+    "tooltip": "写入布尔值。"
+  },
+  {
+    "type": "nrf54_preferences_get_bool",
+    "message0": "读取布尔值 键 %1 默认 %2",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "KEY",
+        "check": "String"
+      },
+      {
+        "type": "input_value",
+        "name": "DEFAULT",
+        "check": "Boolean"
+      }
+    ],
+    "output": "Boolean",
+    "colour": "#7E57C2",
+    "tooltip": "读取布尔值。"
+  },
+  {
+    "type": "nrf54_preferences_put_string",
+    "message0": "写入文本 键 %1 值 %2",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "KEY",
+        "check": "String"
+      },
+      {
+        "type": "input_value",
+        "name": "VALUE",
+        "check": "String"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#7E57C2",
+    "tooltip": "写入String文本。"
+  },
+  {
+    "type": "nrf54_preferences_get_string",
+    "message0": "读取文本 键 %1 默认 %2",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "KEY",
+        "check": "String"
+      },
+      {
+        "type": "input_value",
+        "name": "DEFAULT",
+        "check": "String"
+      }
+    ],
+    "output": "String",
+    "colour": "#7E57C2",
+    "tooltip": "读取String文本。"
+  },
+  {
+    "type": "nrf54_preferences_put_bytes",
+    "message0": "写入字节 键 %1 缓冲区 %2 长度 %3",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "KEY",
+        "check": "String"
+      },
+      {
+        "type": "field_input",
+        "name": "BUFFER",
+        "text": "buffer"
+      },
+      {
+        "type": "input_value",
+        "name": "LENGTH",
+        "check": "Number"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#7E57C2",
+    "tooltip": "将C++字节缓冲区写入存储。"
+  },
+  {
+    "type": "nrf54_preferences_get_bytes",
+    "message0": "读取字节 键 %1 到缓冲区 %2 最大长度 %3",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "KEY",
+        "check": "String"
+      },
+      {
+        "type": "field_input",
+        "name": "BUFFER",
+        "text": "buffer"
+      },
+      {
+        "type": "input_value",
+        "name": "MAX_LENGTH",
+        "check": "Number"
+      }
+    ],
+    "output": "Number",
+    "colour": "#7E57C2",
+    "tooltip": "读取字节到C++缓冲区并返回长度。"
+  },
+  {
+    "type": "nrf54_preferences_get_bytes_length",
+    "message0": "字节键 %1 的长度",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "KEY",
+        "check": "String"
+      }
+    ],
+    "output": "Number",
+    "colour": "#7E57C2",
+    "tooltip": "返回字节数据长度。"
+  }
+]

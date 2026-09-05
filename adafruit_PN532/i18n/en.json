@@ -1,0 +1,205 @@
+{
+  "toolbox_name": "PN532 NFC",
+  "toolbox_labels": {
+    "模块初始化": "Module initialization",
+    "基本配置": "Basic configuration",
+    "读取卡片信息": "Read card information",
+    "Mifare Classic操作": "Mifare Classic operation",
+    "Mifare Ultralight操作": "Mifare Ultralight Operation",
+    "NTAG2xx操作": "NTAG2xx operation"
+  },
+  "pn532_create_spi": {
+    "message0": "Create PN532 NFC module %1 using SPI interface SCK:%2 MISO:%3 MOSI:%4 SS:%5",
+    "tooltip": "Create PN532 NFC module object, using software SPI interface"
+  },
+  "pn532_create_spi_hw": {
+    "message0": "Create PN532 NFC module %1 using hardware SPI interface SS:%2",
+    "tooltip": "Create a PN532 NFC module object, using the hardware SPI interface"
+  },
+  "pn532_create_i2c": {
+    "message0": "Create PN532 NFC module %1 using I2C interface (simplified version)",
+    "tooltip": "Create a PN532 NFC module object, using the I2C interface (without connecting the IRQ and RESET pins)"
+  },
+  "pn532_create_i2c_pins": {
+    "message0": "Create PN532 NFC module %1 using I2C interface IRQ:%2 RESET:%3",
+    "tooltip": "Create PN532 NFC module object, using I2C interface (with IRQ and RESET pins)"
+  },
+  "pn532_begin": {
+    "message0": "Initialize PN532 module %1",
+    "tooltip": "Initialize the PN532 module, which must be called in setup"
+  },
+  "pn532_get_firmware_version": {
+    "message0": "Get the PN532 module %1 firmware version",
+    "tooltip": "Get the firmware version number of the PN532 module"
+  },
+  "pn532_sam_config": {
+    "message0": "Configure PN532 module %1 SAM",
+    "tooltip": "Configuring the SAM (Secure Access Module) of the PN532 module"
+  },
+  "pn532_set_passive_retries": {
+    "message0": "Set the PN532 module %1 and the number of passive activation retries %2",
+    "tooltip": "Set the maximum number of retries when reading a card"
+  },
+  "pn532_read_passive_target": {
+    "message0": "Read PN532 module %1 Passive target ID Card type %2 Timeout %3 milliseconds",
+    "tooltip": "Read the ID of the passive target and return whether the reading is successful.",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "MIFARE ISO14443A",
+            "PN532_MIFARE_ISO14443A"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "pn532_get_uid_length": {
+    "message0": "Get the length of the most recently read UID",
+    "tooltip": "Get the last successfully read UID length (bytes)"
+  },
+  "pn532_get_uid_byte": {
+    "message0": "Get the %1 byte of UID",
+    "tooltip": "Get the byte value at the position specified by UID"
+  },
+  "pn532_mifare_classic_authenticate": {
+    "message0": "Mifare Classic Authentication %1 Sector %2 Key Type %3 Key %4",
+    "tooltip": "Authenticate designated sectors of Mifare Classic cards",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "A key",
+            "MIFARE_CMD_AUTH_A"
+          ],
+          [
+            "B key",
+            "MIFARE_CMD_AUTH_B"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "pn532_mifare_classic_read_block": {
+    "message0": "Read Mifare Classic %1 data block %2",
+    "tooltip": "Read the contents of the specified data block of the Mifare Classic card"
+  },
+  "pn532_mifare_classic_write_block": {
+    "message0": "Write Mifare Classic %1 data block %2 data %3",
+    "tooltip": "Write data to the specified data block of the Mifare Classic card"
+  },
+  "pn532_mifare_ultralight_read_page": {
+    "message0": "Read Mifare Ultralight %1 page %2",
+    "tooltip": "Read the contents of the specified page of the Mifare Ultralight card"
+  },
+  "pn532_mifare_ultralight_write_page": {
+    "message0": "Write Mifare Ultralight %1 page %2 data %3",
+    "tooltip": "Write data to the specified page of the Mifare Ultralight card"
+  },
+  "pn532_ntag2xx_read_page": {
+    "message0": "Read NTAG2xx %1 page %2",
+    "tooltip": "Read the content of the page specified by the NTAG2xx tag"
+  },
+  "pn532_ntag2xx_write_page": {
+    "message0": "Write NTAG2xx %1 page %2 data %3",
+    "tooltip": "Write data to the page specified by the NTAG2xx tag"
+  },
+  "pn532_mifare_classic_write_ndef_uri": {
+    "message0": "Write Mifare Classic %1 NDEF URI Sector %2 URI Prefix %3 URL %4",
+    "tooltip": "Write URI record in NDEF format to Mifare Classic card",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "None",
+            "NDEF_URIPREFIX_NONE"
+          ],
+          [
+            "http://www.",
+            "NDEF_URIPREFIX_HTTP_WWWDOT"
+          ],
+          [
+            "https://www.",
+            "NDEF_URIPREFIX_HTTPS_WWWDOT"
+          ],
+          [
+            "http://",
+            "NDEF_URIPREFIX_HTTP"
+          ],
+          [
+            "https://",
+            "NDEF_URIPREFIX_HTTPS"
+          ],
+          [
+            "tel:",
+            "NDEF_URIPREFIX_TEL"
+          ],
+          [
+            "mailto:",
+            "NDEF_URIPREFIX_MAILTO"
+          ],
+          [
+            "ftp://anonymous@",
+            "NDEF_URIPREFIX_FTP_ANONAT"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "pn532_ntag2xx_write_ndef_uri": {
+    "message0": "Write NTAG2xx %1 NDEF URI URI prefix %2 URL %3",
+    "tooltip": "Write NDEF-formatted URI records to NTAG2xx tags",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "None",
+            "NDEF_URIPREFIX_NONE"
+          ],
+          [
+            "http://www.",
+            "NDEF_URIPREFIX_HTTP_WWWDOT"
+          ],
+          [
+            "https://www.",
+            "NDEF_URIPREFIX_HTTPS_WWWDOT"
+          ],
+          [
+            "http://",
+            "NDEF_URIPREFIX_HTTP"
+          ],
+          [
+            "https://",
+            "NDEF_URIPREFIX_HTTPS"
+          ],
+          [
+            "tel:",
+            "NDEF_URIPREFIX_TEL"
+          ],
+          [
+            "mailto:",
+            "NDEF_URIPREFIX_MAILTO"
+          ],
+          [
+            "ftp://anonymous@",
+            "NDEF_URIPREFIX_FTP_ANONAT"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "pn532_mifare_classic_format_ndef": {
+    "message0": "Format Mifare Classic %1 to NDEF format",
+    "tooltip": "Format Mifare Classic card to NDEF format"
+  }
+}

@@ -1,0 +1,1877 @@
+{
+  "toolbox_name": "LVGL",
+  "toolbox_labels": {
+    "标签": "標籤",
+    "图像": "影像",
+    "列表": "清單",
+    "选项卡": "選項卡",
+    "按钮": "按鈕",
+    "滑动条": "滑動條",
+    "开关": "開關",
+    "复选框": "複選框",
+    "下拉框": "下拉框架",
+    "文本框": "文字方塊",
+    "键盘": "鍵盤",
+    "进度条": "進度條",
+    "圆弧": "圓弧",
+    "加载动画": "載入動畫",
+    "图表": "圖表"
+  },
+  "lvgl_init": {
+    "message0": "初始化 LVGL 使用顯示驅動程式庫 %1 螢幕解析度 寬 %2 高 %3 旋轉角度 %4",
+    "tooltip": "初始化 LVGL 函式庫",
+    "args0": [
+      {
+        "options": [
+          [
+            "TFT_eSPI",
+            "TFT_eSPI"
+          ],
+          [
+            "Lovyan GFX（待支援）",
+            "LovyanGFX"
+          ]
+        ]
+      },
+      null,
+      null,
+      {
+        "options": [
+          [
+            "0°",
+            "LV_DISPLAY_ROTATION_0"
+          ],
+          [
+            "90°",
+            "LV_DISPLAY_ROTATION_90"
+          ],
+          [
+            "180°",
+            "LV_DISPLAY_ROTATION_180"
+          ],
+          [
+            "270°",
+            "LV_DISPLAY_ROTATION_270"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_indev_create": {
+    "message0": "初始化 %1 輸入裝置 %2 類型 %3 資料取得回呼函數",
+    "tooltip": "初始化輸入設備",
+    "args0": [
+      {
+        "options": [
+          [
+            "全域",
+            "global"
+          ],
+          [
+            "地方",
+            "local"
+          ]
+        ]
+      },
+      null,
+      {
+        "options": [
+          [
+            "指標設備(觸控螢幕/滑鼠)",
+            "LV_INDEV_TYPE_POINTER"
+          ],
+          [
+            "按鍵設備",
+            "LV_INDEV_TYPE_KEYPAD"
+          ],
+          [
+            "按鈕設備",
+            "LV_INDEV_TYPE_BUTTON"
+          ],
+          [
+            "編碼器設備",
+            "LV_INDEV_TYPE_ENCODER"
+          ]
+        ]
+      }
+    ],
+    "message1": "執行 %1"
+  },
+  "lvgl_indev_data_param_set": {
+    "message0": "資料參數 %1 設定為 %2",
+    "tooltip": "取得輸入設備的資料參數",
+    "args0": [
+      {
+        "options": [
+          [
+            "狀態",
+            "state"
+          ],
+          [
+            "座標 X",
+            "point.x"
+          ],
+          [
+            "座標 Y",
+            "point.y"
+          ],
+          [
+            "按鍵值",
+            "key"
+          ],
+          [
+            "按鈕 ID",
+            "btn_id"
+          ],
+          [
+            "編碼器增量",
+            "enc_diff"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "lvgl_indev_state_param": {
+    "message0": "輸入設備狀態常數 %1",
+    "tooltip": "輸入設備狀態常數",
+    "args0": [
+      {
+        "options": [
+          [
+            "釋放",
+            "LV_INDEV_STATE_REL"
+          ],
+          [
+            "媒體報導",
+            "LV_INDEV_STATE_PR"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_label_create": {
+    "message0": "建立 %1 標籤 %2 父物件 %3",
+    "tooltip": "建立一個文字標籤控制項",
+    "args0": [
+      {
+        "options": [
+          [
+            "全域",
+            "global"
+          ],
+          [
+            "地方",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_label_set_text": {
+    "message0": "設定標籤 %1 文字為 %2",
+    "tooltip": "設定標籤顯示的文字內容"
+  },
+  "lv_label_set_text_fmt": {
+    "message0": "設定標籤 %1 格式化文字 格式字串 %2 參數 %3",
+    "tooltip": "使用格式化字串設定標籤文本，支援 printf 風格的格式化（如 \"Button: %d\"）"
+  },
+  "lvgl_label_set_long_mode": {
+    "message0": "設定標籤 %1 長文字模式 %2",
+    "tooltip": "設定標籤的長文本處理模式",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "自動換行",
+            "LV_LABEL_LONG_MODE_WRAP"
+          ],
+          [
+            "顯示省略號",
+            "LV_LABEL_LONG_MODE_DOTS"
+          ],
+          [
+            "來回滾動",
+            "LV_LABEL_LONG_MODE_SCROLL"
+          ],
+          [
+            "循環滾動",
+            "LV_LABEL_LONG_MODE_SCROLL_CIRCULAR"
+          ],
+          [
+            "裁切",
+            "LV_LABEL_LONG_MODE_CLIP"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_button_create": {
+    "message0": "建立 %1 按鈕 %2 父物件 %3",
+    "tooltip": "建立一個按鈕控件",
+    "args0": [
+      {
+        "options": [
+          [
+            "全域",
+            "global"
+          ],
+          [
+            "地方",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_slider_create": {
+    "message0": "建立 %1 滑動條 %2 父物件 %3",
+    "tooltip": "建立一個滑動條控件",
+    "args0": [
+      {
+        "options": [
+          [
+            "全域",
+            "global"
+          ],
+          [
+            "地方",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_slider_set_value": {
+    "message0": "設定滑動條 %1 值為 %2 動畫 %3",
+    "tooltip": "設定滑動條的目前值",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "開啟",
+            "LV_ANIM_ON"
+          ],
+          [
+            "關閉",
+            "LV_ANIM_OFF"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_slider_set_range": {
+    "message0": "設定滑動條 %1 範圍 最小 %2 最大 %3",
+    "tooltip": "設定滑動條的取值範圍"
+  },
+  "lvgl_slider_get_value": {
+    "message0": "取得滑動條 %1 的值",
+    "tooltip": "取得滑動條的目前值"
+  },
+  "lvgl_switch_create": {
+    "message0": "建立 %1 開關 %2 父物件 %3",
+    "tooltip": "建立一個開關控件",
+    "args0": [
+      {
+        "options": [
+          [
+            "全域",
+            "global"
+          ],
+          [
+            "地方",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_checkbox_create": {
+    "message0": "建立 %1 複選框 %2 父物件 %3 文字 %4",
+    "tooltip": "建立一個複選框控件",
+    "args0": [
+      {
+        "options": [
+          [
+            "全域",
+            "global"
+          ],
+          [
+            "地方",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null,
+      null
+    ]
+  },
+  "lvgl_bar_create": {
+    "message0": "建立 %1 進度列 %2 父物件 %3",
+    "tooltip": "建立一個進度條控件",
+    "args0": [
+      {
+        "options": [
+          [
+            "全域",
+            "global"
+          ],
+          [
+            "地方",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_bar_set_value": {
+    "message0": "設定進度條 %1 值為 %2 動畫 %3",
+    "tooltip": "設定進度條的目前值",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "開啟",
+            "LV_ANIM_ON"
+          ],
+          [
+            "關閉",
+            "LV_ANIM_OFF"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_bar_set_range": {
+    "message0": "設定進度條 %1 範圍 最小 %2 最大 %3",
+    "tooltip": "設定進度條的取值範圍"
+  },
+  "lvgl_arc_create": {
+    "message0": "建立 %1 圓弧 %2 父物件 %3",
+    "tooltip": "建立一個圓弧控件",
+    "args0": [
+      {
+        "options": [
+          [
+            "全域",
+            "global"
+          ],
+          [
+            "地方",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_arc_set_value": {
+    "message0": "設定圓弧 %1 值為 %2",
+    "tooltip": "設定圓弧的當前值"
+  },
+  "lvgl_arc_set_range": {
+    "message0": "設定圓弧 %1 範圍 最小 %2 最大 %3",
+    "tooltip": "設定圓弧的取值範圍"
+  },
+  "lvgl_spinner_create": {
+    "message0": "建立 %1 載入動畫 %2 父物件 %3",
+    "tooltip": "建立一個載入動畫控件",
+    "args0": [
+      {
+        "options": [
+          [
+            "全域",
+            "global"
+          ],
+          [
+            "地方",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_spinner_set_anim_params": {
+    "message0": "設定載入動畫 %1 長度 %2 ms 弧度 %3 °",
+    "tooltip": "設定載入動畫的長度和弧度"
+  },
+  "lvgl_dropdown_create": {
+    "message0": "建立 %1 下拉方塊 %2 父物件 %3",
+    "tooltip": "建立一個下拉框控件",
+    "args0": [
+      {
+        "options": [
+          [
+            "全域",
+            "global"
+          ],
+          [
+            "地方",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_dropdown_set_options": {
+    "message0": "設定下拉框 %1 選項 %2",
+    "tooltip": "設定下拉框選項，用\\n分隔多個選項"
+  },
+  "lvgl_dropdown_get_selected": {
+    "message0": "取得下拉方塊 %1 選取項目索引",
+    "tooltip": "取得下拉方塊目前選取項目的索引"
+  },
+  "lvgl_textarea_create": {
+    "message0": "建立 %1 文字方塊 %2 父物件 %3",
+    "tooltip": "建立一個文字輸入框控件",
+    "args0": [
+      {
+        "options": [
+          [
+            "全域",
+            "global"
+          ],
+          [
+            "地方",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_textarea_set_text": {
+    "message0": "設定文字方塊 %1 文字為 %2",
+    "tooltip": "設定文字方塊的內容"
+  },
+  "lvgl_textarea_get_text": {
+    "message0": "取得文字方塊 %1 的文本",
+    "tooltip": "取得文字方塊的內容"
+  },
+  "lvgl_textarea_set_placeholder": {
+    "message0": "設定文字方塊 %1 佔位符為 %2",
+    "tooltip": "設定文字方塊的佔位符文本"
+  },
+  "lvgl_obj_set_pos": {
+    "message0": "設定 %1 位置 X %2 Y %3",
+    "tooltip": "設定物件的X和Y座標位置"
+  },
+  "lvgl_obj_set_size": {
+    "message0": "設定 %1 大小 寬 %2 高 %3",
+    "tooltip": "設定對象的寬度和高度"
+  },
+  "lvgl_obj_align": {
+    "message0": "設定 %1 對齊 %2 偏移 X %3 Y %4",
+    "tooltip": "設定物件相對於父物件的對齊方式和偏移",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "並擔任中間位置",
+            "LV_ALIGN_CENTER"
+          ],
+          [
+            "左上角",
+            "LV_ALIGN_TOP_LEFT"
+          ],
+          [
+            "高於平均",
+            "LV_ALIGN_TOP_MID"
+          ],
+          [
+            "右上角",
+            "LV_ALIGN_TOP_RIGHT"
+          ],
+          [
+            "左中外野",
+            "LV_ALIGN_LEFT_MID"
+          ],
+          [
+            "右中外",
+            "LV_ALIGN_RIGHT_MID"
+          ],
+          [
+            "左下角",
+            "LV_ALIGN_BOTTOM_LEFT"
+          ],
+          [
+            "低於平均水準",
+            "LV_ALIGN_BOTTOM_MID"
+          ],
+          [
+            "右下角",
+            "LV_ALIGN_BOTTOM_RIGHT"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_obj_center": {
+    "message0": "居中%1",
+    "tooltip": "將物件置中顯示"
+  },
+  "lvgl_obj_add_flag": {
+    "message0": "為 %1 新增標誌 %2",
+    "tooltip": "為物件添加標誌",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "隱藏",
+            "LV_OBJ_FLAG_HIDDEN"
+          ],
+          [
+            "可點擊",
+            "LV_OBJ_FLAG_CLICKABLE"
+          ],
+          [
+            "可選中",
+            "LV_OBJ_FLAG_CHECKABLE"
+          ],
+          [
+            "可捲動",
+            "LV_OBJ_FLAG_SCROLLABLE"
+          ],
+          [
+            "停用",
+            "LV_OBJ_FLAG_DISABLED"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_obj_remove_flag": {
+    "message0": "從 %1 移除標誌 %2",
+    "tooltip": "從物件移除標誌",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "隱藏",
+            "LV_OBJ_FLAG_HIDDEN"
+          ],
+          [
+            "可點擊",
+            "LV_OBJ_FLAG_CLICKABLE"
+          ],
+          [
+            "可選中",
+            "LV_OBJ_FLAG_CHECKABLE"
+          ],
+          [
+            "可捲動",
+            "LV_OBJ_FLAG_SCROLLABLE"
+          ],
+          [
+            "停用",
+            "LV_OBJ_FLAG_DISABLED"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_obj_add_state": {
+    "message0": "為 %1 新增狀態 %2",
+    "tooltip": "為物件新增狀態",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "選取",
+            "LV_STATE_CHECKED"
+          ],
+          [
+            "焦點",
+            "LV_STATE_FOCUSED"
+          ],
+          [
+            "媒體報導",
+            "LV_STATE_PRESSED"
+          ],
+          [
+            "停用",
+            "LV_STATE_DISABLED"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_obj_remove_state": {
+    "message0": "從 %1 移除狀態 %2",
+    "tooltip": "從物件移除狀態",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "選取",
+            "LV_STATE_CHECKED"
+          ],
+          [
+            "焦點",
+            "LV_STATE_FOCUSED"
+          ],
+          [
+            "媒體報導",
+            "LV_STATE_PRESSED"
+          ],
+          [
+            "停用",
+            "LV_STATE_DISABLED"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_obj_has_state": {
+    "message0": "%1 有狀態 %2",
+    "tooltip": "檢查物件是否有指定狀態",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "選取",
+            "LV_STATE_CHECKED"
+          ],
+          [
+            "焦點",
+            "LV_STATE_FOCUSED"
+          ],
+          [
+            "媒體報導",
+            "LV_STATE_PRESSED"
+          ],
+          [
+            "停用",
+            "LV_STATE_DISABLED"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_obj_delete": {
+    "message0": "刪除 %1",
+    "tooltip": "刪除對象及其所有子對象"
+  },
+  "lvgl_obj_set_style_text_font": {
+    "message0": "設定 %1 字體 %2",
+    "tooltip": "設定物件的文字字體",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "英文字體 8",
+            "LV_FONT_MONTSERRAT_8"
+          ],
+          [
+            "英文字體 10",
+            "LV_FONT_MONTSERRAT_10"
+          ],
+          [
+            "英文字體 12",
+            "LV_FONT_MONTSERRAT_12"
+          ],
+          [
+            "英文字體 14",
+            "LV_FONT_MONTSERRAT_14"
+          ],
+          [
+            "英文字體 16",
+            "LV_FONT_MONTSERRAT_16"
+          ],
+          [
+            "英文字體 18",
+            "LV_FONT_MONTSERRAT_18"
+          ],
+          [
+            "英文字體 20",
+            "LV_FONT_MONTSERRAT_20"
+          ],
+          [
+            "英文字體 22",
+            "LV_FONT_MONTSERRAT_22"
+          ],
+          [
+            "英文字體 24",
+            "LV_FONT_MONTSERRAT_24"
+          ],
+          [
+            "英文字體 26",
+            "LV_FONT_MONTSERRAT_26"
+          ],
+          [
+            "英文字體 28",
+            "LV_FONT_MONTSERRAT_28"
+          ],
+          [
+            "英文字體 30",
+            "LV_FONT_MONTSERRAT_30"
+          ],
+          [
+            "英文字體 32",
+            "LV_FONT_MONTSERRAT_32"
+          ],
+          [
+            "英文字體 34",
+            "LV_FONT_MONTSERRAT_34"
+          ],
+          [
+            "英文字體 36",
+            "LV_FONT_MONTSERRAT_36"
+          ],
+          [
+            "英文字體 38",
+            "LV_FONT_MONTSERRAT_38"
+          ],
+          [
+            "英文字體 40",
+            "LV_FONT_MONTSERRAT_40"
+          ],
+          [
+            "英文字體 42",
+            "LV_FONT_MONTSERRAT_42"
+          ],
+          [
+            "英文字體 44",
+            "LV_FONT_MONTSERRAT_44"
+          ],
+          [
+            "英文字體 46",
+            "LV_FONT_MONTSERRAT_46"
+          ],
+          [
+            "英文字體 48",
+            "LV_FONT_MONTSERRAT_48"
+          ],
+          [
+            "中文字體 14",
+            "LV_FONT_SOURCE_HAN_SANS_SC_14_CJK"
+          ],
+          [
+            "中文文字體 16",
+            "LV_FONT_SOURCE_HAN_SANS_SC_16_CJK"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_obj_set_style_bg_color": {
+    "message0": "設定 %1 背景顏色 %2",
+    "tooltip": "設定物件的背景顏色"
+  },
+  "lvgl_obj_set_style_text_color": {
+    "message0": "設定 %1 文字顏色 %2",
+    "tooltip": "設定物件的文字顏色"
+  },
+  "lvgl_obj_set_style_border_color": {
+    "message0": "設定 %1 邊框顏色 %2",
+    "tooltip": "設定物件的邊框顏色"
+  },
+  "lvgl_obj_set_style_border_width": {
+    "message0": "設定 %1 邊框寬度 %2",
+    "tooltip": "設定物件的邊框寬度"
+  },
+  "lvgl_obj_set_style_radius": {
+    "message0": "設定 %1 圓角半徑 %2",
+    "tooltip": "設定物件的圓角半徑"
+  },
+  "lvgl_obj_set_style_pad_all": {
+    "message0": "設定 %1 內邊距 %2",
+    "tooltip": "設定物件的所有內邊距"
+  },
+  "lvgl_obj_set_style_bg_opa": {
+    "message0": "設定 %1 背景透明度 %2",
+    "tooltip": "設定物件的背景透明度",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "完全透明",
+            "LV_OPA_TRANSP"
+          ],
+          [
+            "25%",
+            "LV_OPA_25"
+          ],
+          [
+            "50%",
+            "LV_OPA_50"
+          ],
+          [
+            "75%",
+            "LV_OPA_75"
+          ],
+          [
+            "不透明",
+            "LV_OPA_COVER"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_event_add_cb": {
+    "message0": "當 %1 發生 %2 事件時",
+    "tooltip": "設定物件的事件回調",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "所有活動",
+            "LV_EVENT_ALL"
+          ],
+          [
+            "媒體報導",
+            "LV_EVENT_PRESSED"
+          ],
+          [
+            "持續按下",
+            "LV_EVENT_PRESSING"
+          ],
+          [
+            "按下後移出",
+            "LV_EVENT_PRESS_LOST"
+          ],
+          [
+            "短版印刷",
+            "LV_EVENT_SHORT_CLICKED"
+          ],
+          [
+            "點選",
+            "LV_EVENT_SINGLE_CLICKED"
+          ],
+          [
+            "按兩下",
+            "LV_EVENT_DOUBLE_CLICKED"
+          ],
+          [
+            "三擊",
+            "LV_EVENT_TRIPLE_CLICKED"
+          ],
+          [
+            "長按",
+            "LV_EVENT_LONG_PRESSED"
+          ],
+          [
+            "長按重複",
+            "LV_EVENT_LONG_PRESSED_REPEAT"
+          ],
+          [
+            "點選",
+            "LV_EVENT_CLICKED"
+          ],
+          [
+            "釋放",
+            "LV_EVENT_RELEASED"
+          ],
+          [
+            "滾動開始",
+            "LV_EVENT_SCROLL_BEGIN"
+          ],
+          [
+            "滾動投擲開始",
+            "LV_EVENT_SCROLL_THROW_BEGIN"
+          ],
+          [
+            "滾動結束",
+            "LV_EVENT_SCROLL_END"
+          ],
+          [
+            "捲動",
+            "LV_EVENT_SCROLL"
+          ],
+          [
+            "手勢",
+            "LV_EVENT_GESTURE"
+          ],
+          [
+            "按鍵",
+            "LV_EVENT_KEY"
+          ],
+          [
+            "旋轉",
+            "LV_EVENT_ROTARY"
+          ],
+          [
+            "焦點",
+            "LV_EVENT_FOCUSED"
+          ],
+          [
+            "失去焦點",
+            "LV_EVENT_DEFOCUSED"
+          ],
+          [
+            "離開",
+            "LV_EVENT_LEAVE"
+          ],
+          [
+            "碰撞測試",
+            "LV_EVENT_HIT_TEST"
+          ],
+          [
+            "輸入設備重置",
+            "LV_EVENT_INDEV_RESET"
+          ],
+          [
+            "懸停進入",
+            "LV_EVENT_HOVER_OVER"
+          ],
+          [
+            "懸停離開",
+            "LV_EVENT_HOVER_LEAVE"
+          ],
+          [
+            "覆蓋檢查",
+            "LV_EVENT_COVER_CHECK"
+          ],
+          [
+            "刷新擴展繪製尺寸",
+            "LV_EVENT_REFR_EXT_DRAW_SIZE"
+          ],
+          [
+            "主繪製開始",
+            "LV_EVENT_DRAW_MAIN_BEGIN"
+          ],
+          [
+            "主繪製",
+            "LV_EVENT_DRAW_MAIN"
+          ],
+          [
+            "主繪製結束",
+            "LV_EVENT_DRAW_MAIN_END"
+          ],
+          [
+            "後繪製開始",
+            "LV_EVENT_DRAW_POST_BEGIN"
+          ],
+          [
+            "後繪製",
+            "LV_EVENT_DRAW_POST"
+          ],
+          [
+            "後繪製結束",
+            "LV_EVENT_DRAW_POST_END"
+          ],
+          [
+            "繪製任務添加",
+            "LV_EVENT_DRAW_TASK_ADDED"
+          ],
+          [
+            "值改變",
+            "LV_EVENT_VALUE_CHANGED"
+          ],
+          [
+            "插入",
+            "LV_EVENT_INSERT"
+          ],
+          [
+            "重新整理",
+            "LV_EVENT_REFRESH"
+          ],
+          [
+            "就緒",
+            "LV_EVENT_READY"
+          ],
+          [
+            "取消",
+            "LV_EVENT_CANCEL"
+          ],
+          [
+            "狀態改變",
+            "LV_EVENT_STATE_CHANGED"
+          ],
+          [
+            "創建",
+            "LV_EVENT_CREATE"
+          ],
+          [
+            "刪除",
+            "LV_EVENT_DELETE"
+          ],
+          [
+            "子對象改變",
+            "LV_EVENT_CHILD_CHANGED"
+          ],
+          [
+            "子物件創建",
+            "LV_EVENT_CHILD_CREATED"
+          ],
+          [
+            "子物件刪除",
+            "LV_EVENT_CHILD_DELETED"
+          ],
+          [
+            "螢幕卸載開始",
+            "LV_EVENT_SCREEN_UNLOAD_START"
+          ],
+          [
+            "螢幕載入開始",
+            "LV_EVENT_SCREEN_LOAD_START"
+          ],
+          [
+            "螢幕已載入",
+            "LV_EVENT_SCREEN_LOADED"
+          ],
+          [
+            "螢幕已解除安裝",
+            "LV_EVENT_SCREEN_UNLOADED"
+          ],
+          [
+            "尺寸改變",
+            "LV_EVENT_SIZE_CHANGED"
+          ],
+          [
+            "樣式改變",
+            "LV_EVENT_STYLE_CHANGED"
+          ],
+          [
+            "佈局改變",
+            "LV_EVENT_LAYOUT_CHANGED"
+          ],
+          [
+            "取得自身尺寸",
+            "LV_EVENT_GET_SELF_SIZE"
+          ],
+          [
+            "區域失效",
+            "LV_EVENT_INVALIDATE_AREA"
+          ],
+          [
+            "解析度改變",
+            "LV_EVENT_RESOLUTION_CHANGED"
+          ],
+          [
+            "顏色格式改變",
+            "LV_EVENT_COLOR_FORMAT_CHANGED"
+          ],
+          [
+            "刷新請求",
+            "LV_EVENT_REFR_REQUEST"
+          ],
+          [
+            "刷新開始",
+            "LV_EVENT_REFR_START"
+          ],
+          [
+            "重新整理就緒",
+            "LV_EVENT_REFR_READY"
+          ],
+          [
+            "渲染開始",
+            "LV_EVENT_RENDER_START"
+          ],
+          [
+            "渲染就緒",
+            "LV_EVENT_RENDER_READY"
+          ],
+          [
+            "刷新開始(flush)",
+            "LV_EVENT_FLUSH_START"
+          ],
+          [
+            "刷新完成（洗牌）",
+            "LV_EVENT_FLUSH_FINISH"
+          ],
+          [
+            "刷新等待開始",
+            "LV_EVENT_FLUSH_WAIT_START"
+          ],
+          [
+            "重新整理並等待完成",
+            "LV_EVENT_FLUSH_WAIT_FINISH"
+          ],
+          [
+            "佈局更新完成",
+            "LV_EVENT_UPDATE_LAYOUT_COMPLETED"
+          ],
+          [
+            "垂直同步",
+            "LV_EVENT_VSYNC"
+          ],
+          [
+            "垂直同步請求",
+            "LV_EVENT_VSYNC_REQUEST"
+          ]
+        ]
+      }
+    ],
+    "message1": "執行 %1"
+  },
+  "lvgl_event_code": {
+    "message0": "事件代碼常數 %1",
+    "tooltip": "取得事件代碼的常數值",
+    "args0": [
+      {
+        "options": [
+          [
+            "所有活動",
+            "LV_EVENT_ALL"
+          ],
+          [
+            "媒體報導",
+            "LV_EVENT_PRESSED"
+          ],
+          [
+            "持續按下",
+            "LV_EVENT_PRESSING"
+          ],
+          [
+            "按下後移出",
+            "LV_EVENT_PRESS_LOST"
+          ],
+          [
+            "短版印刷",
+            "LV_EVENT_SHORT_CLICKED"
+          ],
+          [
+            "點選",
+            "LV_EVENT_SINGLE_CLICKED"
+          ],
+          [
+            "按兩下",
+            "LV_EVENT_DOUBLE_CLICKED"
+          ],
+          [
+            "三擊",
+            "LV_EVENT_TRIPLE_CLICKED"
+          ],
+          [
+            "長按",
+            "LV_EVENT_LONG_PRESSED"
+          ],
+          [
+            "長按重複",
+            "LV_EVENT_LONG_PRESSED_REPEAT"
+          ],
+          [
+            "點選",
+            "LV_EVENT_CLICKED"
+          ],
+          [
+            "釋放",
+            "LV_EVENT_RELEASED"
+          ],
+          [
+            "滾動開始",
+            "LV_EVENT_SCROLL_BEGIN"
+          ],
+          [
+            "滾動投擲開始",
+            "LV_EVENT_SCROLL_THROW_BEGIN"
+          ],
+          [
+            "滾動結束",
+            "LV_EVENT_SCROLL_END"
+          ],
+          [
+            "捲動",
+            "LV_EVENT_SCROLL"
+          ],
+          [
+            "手勢",
+            "LV_EVENT_GESTURE"
+          ],
+          [
+            "按鍵",
+            "LV_EVENT_KEY"
+          ],
+          [
+            "旋轉",
+            "LV_EVENT_ROTARY"
+          ],
+          [
+            "焦點",
+            "LV_EVENT_FOCUSED"
+          ],
+          [
+            "失去焦點",
+            "LV_EVENT_DEFOCUSED"
+          ],
+          [
+            "離開",
+            "LV_EVENT_LEAVE"
+          ],
+          [
+            "碰撞測試",
+            "LV_EVENT_HIT_TEST"
+          ],
+          [
+            "輸入設備重置",
+            "LV_EVENT_INDEV_RESET"
+          ],
+          [
+            "懸停進入",
+            "LV_EVENT_HOVER_OVER"
+          ],
+          [
+            "懸停離開",
+            "LV_EVENT_HOVER_LEAVE"
+          ],
+          [
+            "覆蓋檢查",
+            "LV_EVENT_COVER_CHECK"
+          ],
+          [
+            "刷新擴展繪製尺寸",
+            "LV_EVENT_REFR_EXT_DRAW_SIZE"
+          ],
+          [
+            "主繪製開始",
+            "LV_EVENT_DRAW_MAIN_BEGIN"
+          ],
+          [
+            "主繪製",
+            "LV_EVENT_DRAW_MAIN"
+          ],
+          [
+            "主繪製結束",
+            "LV_EVENT_DRAW_MAIN_END"
+          ],
+          [
+            "後繪製開始",
+            "LV_EVENT_DRAW_POST_BEGIN"
+          ],
+          [
+            "後繪製",
+            "LV_EVENT_DRAW_POST"
+          ],
+          [
+            "後繪製結束",
+            "LV_EVENT_DRAW_POST_END"
+          ],
+          [
+            "繪製任務添加",
+            "LV_EVENT_DRAW_TASK_ADDED"
+          ],
+          [
+            "值改變",
+            "LV_EVENT_VALUE_CHANGED"
+          ],
+          [
+            "插入",
+            "LV_EVENT_INSERT"
+          ],
+          [
+            "重新整理",
+            "LV_EVENT_REFRESH"
+          ],
+          [
+            "就緒",
+            "LV_EVENT_READY"
+          ],
+          [
+            "取消",
+            "LV_EVENT_CANCEL"
+          ],
+          [
+            "狀態改變",
+            "LV_EVENT_STATE_CHANGED"
+          ],
+          [
+            "創建",
+            "LV_EVENT_CREATE"
+          ],
+          [
+            "刪除",
+            "LV_EVENT_DELETE"
+          ],
+          [
+            "子對象改變",
+            "LV_EVENT_CHILD_CHANGED"
+          ],
+          [
+            "子物件創建",
+            "LV_EVENT_CHILD_CREATED"
+          ],
+          [
+            "子物件刪除",
+            "LV_EVENT_CHILD_DELETED"
+          ],
+          [
+            "螢幕卸載開始",
+            "LV_EVENT_SCREEN_UNLOAD_START"
+          ],
+          [
+            "螢幕載入開始",
+            "LV_EVENT_SCREEN_LOAD_START"
+          ],
+          [
+            "螢幕已載入",
+            "LV_EVENT_SCREEN_LOADED"
+          ],
+          [
+            "螢幕已解除安裝",
+            "LV_EVENT_SCREEN_UNLOADED"
+          ],
+          [
+            "尺寸改變",
+            "LV_EVENT_SIZE_CHANGED"
+          ],
+          [
+            "樣式改變",
+            "LV_EVENT_STYLE_CHANGED"
+          ],
+          [
+            "佈局改變",
+            "LV_EVENT_LAYOUT_CHANGED"
+          ],
+          [
+            "取得自身尺寸",
+            "LV_EVENT_GET_SELF_SIZE"
+          ],
+          [
+            "區域失效",
+            "LV_EVENT_INVALIDATE_AREA"
+          ],
+          [
+            "解析度改變",
+            "LV_EVENT_RESOLUTION_CHANGED"
+          ],
+          [
+            "顏色格式改變",
+            "LV_EVENT_COLOR_FORMAT_CHANGED"
+          ],
+          [
+            "刷新請求",
+            "LV_EVENT_REFR_REQUEST"
+          ],
+          [
+            "刷新開始",
+            "LV_EVENT_REFR_START"
+          ],
+          [
+            "重新整理就緒",
+            "LV_EVENT_REFR_READY"
+          ],
+          [
+            "渲染開始",
+            "LV_EVENT_RENDER_START"
+          ],
+          [
+            "渲染就緒",
+            "LV_EVENT_RENDER_READY"
+          ],
+          [
+            "刷新開始(flush)",
+            "LV_EVENT_FLUSH_START"
+          ],
+          [
+            "刷新完成（洗牌）",
+            "LV_EVENT_FLUSH_FINISH"
+          ],
+          [
+            "刷新等待開始",
+            "LV_EVENT_FLUSH_WAIT_START"
+          ],
+          [
+            "重新整理並等待完成",
+            "LV_EVENT_FLUSH_WAIT_FINISH"
+          ],
+          [
+            "佈局更新完成",
+            "LV_EVENT_UPDATE_LAYOUT_COMPLETED"
+          ],
+          [
+            "垂直同步",
+            "LV_EVENT_VSYNC"
+          ],
+          [
+            "垂直同步請求",
+            "LV_EVENT_VSYNC_REQUEST"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_obj_get_child": {
+    "message0": "建立 %1 使用 %2 的子物件 索引 %3",
+    "tooltip": "取得父對象的指定索引的子對象"
+  },
+  "lvgl_screen_active": {
+    "message0": "取得當前螢幕",
+    "tooltip": "取得目前活動的螢幕對象"
+  },
+  "lvgl_screen_load": {
+    "message0": "載入畫面 %1",
+    "tooltip": "切換到指定的螢幕"
+  },
+  "lvgl_obj_create": {
+    "message0": "建立 %1 基礎物件 %2 父物件 %3",
+    "tooltip": "建立一個基礎容器對象",
+    "args0": [
+      {
+        "options": [
+          [
+            "全域",
+            "global"
+          ],
+          [
+            "地方",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_screen_create": {
+    "message0": "建立 %1 新畫面 %2",
+    "tooltip": "建立一個新的螢幕對象",
+    "args0": [
+      {
+        "options": [
+          [
+            "全域",
+            "global"
+          ],
+          [
+            "地方",
+            "local"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "lvgl_image_create": {
+    "message0": "建立 %1 圖片 %2 父物件 %3",
+    "tooltip": "建立一個圖像控件",
+    "args0": [
+      {
+        "options": [
+          [
+            "全域",
+            "global"
+          ],
+          [
+            "地方",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_image_set_src": {
+    "message0": "設定影像 %1 來源為 %2",
+    "tooltip": "設定影像的來源檔案路徑或符號"
+  },
+  "lvgl_image_set_zoom": {
+    "message0": "設定影像 %1 縮放為 %2",
+    "tooltip": "設定影像的縮放比例（256為原始大小）"
+  },
+  "lvgl_image_set_angle": {
+    "message0": "設定影像 %1 旋轉角度為 %2",
+    "tooltip": "設定影像的旋轉角度（0.1度單位）"
+  },
+  "lvgl_image_set_offset": {
+    "message0": "設定影像 %1 偏移量 X %2 Y %3",
+    "tooltip": "設定影像的偏移量"
+  },
+  "lvgl_chart_create": {
+    "message0": "建立 %1 圖表 %2 父物件 %3",
+    "tooltip": "建立一個圖表控件",
+    "args0": [
+      {
+        "options": [
+          [
+            "全域",
+            "global"
+          ],
+          [
+            "地方",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_chart_set_type": {
+    "message0": "設定圖表 %1 類型 %2",
+    "tooltip": "設定圖表的類型",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "長條圖",
+            "LV_CHART_TYPE_BAR"
+          ],
+          [
+            "折線圖",
+            "LV_CHART_TYPE_LINE"
+          ],
+          [
+            "散點圖",
+            "LV_CHART_TYPE_SCATTER"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_chart_set_point_count": {
+    "message0": "設定圖表 %1 點數 %2",
+    "tooltip": "設定圖表顯示的數據點數量"
+  },
+  "lvgl_chart_add_series": {
+    "message0": "圖表 %1 新增系列 %2 顏色 %3",
+    "tooltip": "新增一個資料系列到圖表",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "紅色",
+            "lv_palette_main(LV_PALETTE_RED)"
+          ],
+          [
+            "藍色",
+            "lv_palette_main(LV_PALETTE_BLUE)"
+          ],
+          [
+            "綠色",
+            "lv_palette_main(LV_PALETTE_GREEN)"
+          ],
+          [
+            "橘色",
+            "lv_palette_main(LV_PALETTE_ORANGE)"
+          ],
+          [
+            "紫色",
+            "lv_palette_main(LV_PALETTE_PURPLE)"
+          ],
+          [
+            "藍色",
+            "lv_palette_main(LV_PALETTE_CYAN)"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_chart_set_next_value": {
+    "message0": "設定圖表 %1 系列 %2 下一個值為 %3",
+    "tooltip": "設定係列的下一個數據點值"
+  },
+  "lvgl_chart_set_range": {
+    "message0": "設定圖表 %1 系列 %2 範圍 最小 %3 最大 %4",
+    "tooltip": "設定係列的Y軸範圍"
+  },
+  "lvgl_chart_set_update_mode": {
+    "message0": "設定圖表 %1 更新模式 %2",
+    "tooltip": "設定圖表的數據更新模式",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "轉移",
+            "LV_CHART_UPDATE_MODE_SHIFT"
+          ],
+          [
+            "循環",
+            "LV_CHART_UPDATE_MODE_CIRCULAR"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_chart_refresh": {
+    "message0": "刷新圖表 %1",
+    "tooltip": "刷新圖表顯示"
+  },
+  "lvgl_keyboard_create": {
+    "message0": "建立 %1 鍵盤 %2 父物件 %3",
+    "tooltip": "建立一個鍵盤控件",
+    "args0": [
+      {
+        "options": [
+          [
+            "全域",
+            "global"
+          ],
+          [
+            "地方",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_keyboard_set_textarea": {
+    "message0": "設定鍵盤 %1 關聯文字方塊 %2",
+    "tooltip": "設定鍵盤關聯的文字方塊"
+  },
+  "lvgl_keyboard_set_mode": {
+    "message0": "設定鍵盤 %1 模式 %2",
+    "tooltip": "設定鍵盤的模式",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "文字",
+            "LV_KEYBOARD_MODE_TEXT_LOWER"
+          ],
+          [
+            "數位",
+            "LV_KEYBOARD_MODE_NUMBER"
+          ],
+          [
+            "特殊字元",
+            "LV_KEYBOARD_MODE_SPECIAL"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_keyboard_set_popovers": {
+    "message0": "設定鍵盤 %1 彈出提示 %2",
+    "tooltip": "設定鍵盤按鍵彈出提示",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "開啟",
+            "true"
+          ],
+          [
+            "關閉",
+            "false"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_list_create": {
+    "message0": "建立 %1 清單 %2 父物件 %3",
+    "tooltip": "建立一個列表控件",
+    "args0": [
+      {
+        "options": [
+          [
+            "全域",
+            "global"
+          ],
+          [
+            "地方",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_list_add_text": {
+    "message0": "列表 %1 新增文字 %2",
+    "tooltip": "在清單中新增文字項"
+  },
+  "lvgl_list_add_btn": {
+    "message0": "清單 %1 新增按鈕 %2 圖示 %3",
+    "tooltip": "在清單中新增按鈕項",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "無",
+            "NULL"
+          ],
+          [
+            "遊戲",
+            "LV_SYMBOL_PLAY"
+          ],
+          [
+            "暫停",
+            "LV_SYMBOL_PAUSE"
+          ],
+          [
+            "停下",
+            "LV_SYMBOL_STOP"
+          ],
+          [
+            "設定",
+            "LV_SYMBOL_SETTINGS"
+          ],
+          [
+            "音量",
+            "LV_SYMBOL_VOLUME_MAX"
+          ],
+          [
+            "WiFi",
+            "LV_SYMBOL_WIFI"
+          ],
+          [
+            "藍牙",
+            "LV_SYMBOL_BLUETOOTH"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_tabview_create": {
+    "message0": "建立 %1 標籤檢視 %2 父物件 %3",
+    "tooltip": "建立一個選項卡視圖控件",
+    "args0": [
+      {
+        "options": [
+          [
+            "全域",
+            "global"
+          ],
+          [
+            "地方",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_tabview_add_tab": {
+    "message0": "選項卡視圖 %1 新增選項卡 %2",
+    "tooltip": "新增一個選項卡並返回選項卡內容對象"
+  },
+  "lvgl_set_img_font": {
+    "message0": "設定圖片字體 %1",
+    "tooltip": "設定是否啟用圖像字體支持",
+    "args0": [
+      {
+        "options": [
+          [
+            "開啟",
+            "true"
+          ],
+          [
+            "關閉",
+            "false"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_set_stdlib_malloc": {
+    "message0": "設定標準庫類型 %1",
+    "tooltip": "設定使用的標準庫類型",
+    "args0": [
+      {
+        "options": [
+          [
+            "內建",
+            "LV_STDLIB_BUILTIN"
+          ],
+          [
+            "C標準庫",
+            "LV_STDLIB_CLIB"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_set_stdlib_string": {
+    "message0": "設定字串庫類型 %1",
+    "tooltip": "設定使用的字串庫類型",
+    "args0": [
+      {
+        "options": [
+          [
+            "內建",
+            "LV_STDLIB_BUILTIN"
+          ],
+          [
+            "C標準庫",
+            "LV_STDLIB_CLIB"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_set_stdlib_sprintf": {
+    "message0": "設定格式化輸出函數類型 %1",
+    "tooltip": "設定使用的格式化輸出函數類型",
+    "args0": [
+      {
+        "options": [
+          [
+            "內建",
+            "LV_STDLIB_BUILTIN"
+          ],
+          [
+            "C標準庫",
+            "LV_STDLIB_CLIB"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_set_theme": {
+    "message0": "設定主題 %1",
+    "tooltip": "設定全域主題風格",
+    "args0": [
+      {
+        "options": [
+          [
+            "淺色",
+            "light"
+          ],
+          [
+            "深色",
+            "dark"
+          ]
+        ]
+      }
+    ]
+  },
+  "toolbox_categories": [
+    "初始化",
+    "螢幕",
+    "顯示控制項",
+    "輸入控件",
+    "顯示器控制",
+    "佈局",
+    "樣式",
+    "活動",
+    "狀態與標誌"
+  ]
+}

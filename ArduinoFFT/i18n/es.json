@@ -1,0 +1,82 @@
+{
+  "toolbox_name": "ArduinoFFT",
+  "toolbox_labels": {
+    "Setup": "Configuración",
+    "Sampling": "Muestreo",
+    "Processing": "Procesamiento",
+    "Results": "Resultados",
+    "Debug": "Depurar"
+  },
+  "arduino_fft_init": {
+    "message0": "crear FFT %1 tipo %2 muestras %3 frecuencia de muestreo %4 Hz",
+    "tooltip": "Crea un objeto arduinoFFT y sus búferes de muestra reales/imaginarios."
+  },
+  "arduino_fft_set_sample": {
+    "message0": "FFT %1 conjunto de muestras %2 real %3 imaginario %4",
+    "tooltip": "Escribe una muestra real/imaginaria en los buffers FFT."
+  },
+  "arduino_fft_clear_samples": {
+    "message0": "FFT %1 limpiar todas las muestras",
+    "tooltip": "Pon todas las muestras reales e imaginarias a cero."
+  },
+  "arduino_fft_sample_analog": {
+    "message0": "FFT %1 muestra de pin analógico %2 desplazamiento %3 escala %4",
+    "tooltip": "Llena los búferes FFT desde analogRead en la frecuencia de muestreo configurada."
+  },
+  "arduino_fft_generate_tone": {
+    "message0": "Las FFT %1 generar frecuencia de tono %2 amplitud %3 desplazamiento %4",
+    "tooltip": "Genera una señal de prueba de onda sinusoidal en los buffers FFT."
+  },
+  "arduino_fft_dc_removal": {
+    "message0": "FFT %1 eliminar el desplazamiento DC",
+    "tooltip": "Resta el valor medio del búfer real de la muestra."
+  },
+  "arduino_fft_windowing": {
+    "message0": "FFT %1 aplicar ventana %2 dirección %3 compensar %4",
+    "tooltip": "Aplica una de las funciones de ventana arduinoFFT al búfer real."
+  },
+  "arduino_fft_compute": {
+    "message0": "FFT %1 dirección de cálculo %2",
+    "tooltip": "Ejecuta el cálculo FFT en los buffers configurados."
+  },
+  "arduino_fft_complex_to_magnitude": {
+    "message0": "FFT %1 complejo a magnitud",
+    "tooltip": "Convierte el resultado complejo de FFT en magnitudes almacenadas en el búfer real."
+  },
+  "arduino_fft_process": {
+    "message0": "FFT %1 ejecutar ventanas de pipeline hacia adelante %2 eliminar DC %3 compensar %4",
+    "tooltip": "Ejecuta las secuencias comunes de dcRemoval, windowing, compute y complexToMagnitud."
+  },
+  "arduino_fft_major_peak": {
+    "message0": "FFT %1 frecuencia máxima principal",
+    "tooltip": "Devuelve la frecuencia dominante tras la conversión de magnitud."
+  },
+  "arduino_fft_major_peak_parabola": {
+    "message0": "FFT %1 frecuencia máxima parabólica",
+    "tooltip": "Devuelve la frecuencia dominante mediante interpolación parabólica."
+  },
+  "arduino_fft_peak_magnitude": {
+    "message0": "FFT %1 máxima magnitud",
+    "tooltip": "Devuelva la estimación de magnitud para el pico dominante."
+  },
+  "arduino_fft_bin_frequency": {
+    "message0": "FFT %1 frecuencia de %2 de contenedores",
+    "tooltip": "Convierte un índice de bines FFT en su frecuencia en Hz."
+  },
+  "arduino_fft_bin_magnitude": {
+    "message0": "FFT %1 magnitud de la %2",
+    "tooltip": "Lee un valor de magnitud del búfer real por índice de contenedores FFT."
+  },
+  "arduino_fft_band_magnitude": {
+    "message0": "FFT %1 magnitud de la banda %2 en %3 bandas",
+    "tooltip": "Devuelve la magnitud máxima dentro de una banda de frecuencia gruesa."
+  },
+  "arduino_fft_print_bins": {
+    "message0": "FFT %1 imprimir contenedores para %2 de %3 a %4",
+    "tooltip": "Pares de frecuencia y magnitud de impresión para una gama de contenedores FFT."
+  },
+  "arduino_fft_revision": {
+    "message0": "Revisión de la biblioteca arduinoFFT",
+    "tooltip": "Devuelve el valor macro de la revisión arduinoFFT."
+  }
+}

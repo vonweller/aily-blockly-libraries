@@ -1,0 +1,1877 @@
+{
+  "toolbox_name": "LVGL",
+  "toolbox_labels": {
+    "标签": "label",
+    "图像": "image",
+    "列表": "list",
+    "选项卡": "tab",
+    "按钮": "button",
+    "滑动条": "Slider",
+    "开关": "switch",
+    "复选框": "checkbox",
+    "下拉框": "drop down box",
+    "文本框": "text box",
+    "键盘": "keyboard",
+    "进度条": "progress bar",
+    "圆弧": "Arc",
+    "加载动画": "loading animation",
+    "图表": "chart"
+  },
+  "lvgl_init": {
+    "message0": "Initialize LVGL using display driver library %1 Screen resolution Width %2 Height %3 Rotation angle %4",
+    "tooltip": "Initialize the LVGL library",
+    "args0": [
+      {
+        "options": [
+          [
+            "TFT_eSPI",
+            "TFT_eSPI"
+          ],
+          [
+            "LovyanGFX (to be supported)",
+            "LovyanGFX"
+          ]
+        ]
+      },
+      null,
+      null,
+      {
+        "options": [
+          [
+            "0°",
+            "LV_DISPLAY_ROTATION_0"
+          ],
+          [
+            "90°",
+            "LV_DISPLAY_ROTATION_90"
+          ],
+          [
+            "180°",
+            "LV_DISPLAY_ROTATION_180"
+          ],
+          [
+            "270°",
+            "LV_DISPLAY_ROTATION_270"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_indev_create": {
+    "message0": "Initialization %1 input device %2 type %3 data acquisition callback function",
+    "tooltip": "Initialize input device",
+    "args0": [
+      {
+        "options": [
+          [
+            "overall situation",
+            "global"
+          ],
+          [
+            "local",
+            "local"
+          ]
+        ]
+      },
+      null,
+      {
+        "options": [
+          [
+            "Pointing device (touch screen/mouse)",
+            "LV_INDEV_TYPE_POINTER"
+          ],
+          [
+            "key device",
+            "LV_INDEV_TYPE_KEYPAD"
+          ],
+          [
+            "button device",
+            "LV_INDEV_TYPE_BUTTON"
+          ],
+          [
+            "Encoder equipment",
+            "LV_INDEV_TYPE_ENCODER"
+          ]
+        ]
+      }
+    ],
+    "message1": "Execute %1"
+  },
+  "lvgl_indev_data_param_set": {
+    "message0": "Data parameter %1 is set to %2",
+    "tooltip": "Get the data parameters of the input device",
+    "args0": [
+      {
+        "options": [
+          [
+            "Status",
+            "state"
+          ],
+          [
+            "Coordinate X",
+            "point.x"
+          ],
+          [
+            "Coordinate Y",
+            "point.y"
+          ],
+          [
+            "Key value",
+            "key"
+          ],
+          [
+            "Button ID",
+            "btn_id"
+          ],
+          [
+            "Encoder increment",
+            "enc_diff"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "lvgl_indev_state_param": {
+    "message0": "Input device status constant %1",
+    "tooltip": "Enter device status constants",
+    "args0": [
+      {
+        "options": [
+          [
+            "release",
+            "LV_INDEV_STATE_REL"
+          ],
+          [
+            "press",
+            "LV_INDEV_STATE_PR"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_label_create": {
+    "message0": "Create %1 tag %2 parent object %3",
+    "tooltip": "Create a text label control",
+    "args0": [
+      {
+        "options": [
+          [
+            "overall situation",
+            "global"
+          ],
+          [
+            "local",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_label_set_text": {
+    "message0": "Set the label %1 with the text %2",
+    "tooltip": "Set the text content displayed by the label"
+  },
+  "lv_label_set_text_fmt": {
+    "message0": "Set tag %1 Format text Format string %2 Parameter %3",
+    "tooltip": "Use formatting strings to set label text, supporting printf-style formatting (such as \"Button: %d\")"
+  },
+  "lvgl_label_set_long_mode": {
+    "message0": "Set tag %1 long text mode %2",
+    "tooltip": "Set long text processing mode for labels",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Automatic line wrapping",
+            "LV_LABEL_LONG_MODE_WRAP"
+          ],
+          [
+            "Show ellipses",
+            "LV_LABEL_LONG_MODE_DOTS"
+          ],
+          [
+            "scroll back and forth",
+            "LV_LABEL_LONG_MODE_SCROLL"
+          ],
+          [
+            "Scroll cycle",
+            "LV_LABEL_LONG_MODE_SCROLL_CIRCULAR"
+          ],
+          [
+            "Crop",
+            "LV_LABEL_LONG_MODE_CLIP"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_button_create": {
+    "message0": "Create %1 button %2 parent object %3",
+    "tooltip": "Create a button control",
+    "args0": [
+      {
+        "options": [
+          [
+            "overall situation",
+            "global"
+          ],
+          [
+            "local",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_slider_create": {
+    "message0": "Create %1 slider %2 parent object %3",
+    "tooltip": "Create a slider control",
+    "args0": [
+      {
+        "options": [
+          [
+            "overall situation",
+            "global"
+          ],
+          [
+            "local",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_slider_set_value": {
+    "message0": "Set slider %1 to value %2 Animation %3",
+    "tooltip": "Set the current value of the slider",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "turn on",
+            "LV_ANIM_ON"
+          ],
+          [
+            "Close",
+            "LV_ANIM_OFF"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_slider_set_range": {
+    "message0": "Set the slider %1 range minimum %2 maximum %3",
+    "tooltip": "Set the value range of the slider"
+  },
+  "lvgl_slider_get_value": {
+    "message0": "Get the value of slider %1",
+    "tooltip": "Get the current value of the slider"
+  },
+  "lvgl_switch_create": {
+    "message0": "Create %1 switch %2 parent object %3",
+    "tooltip": "Create a switch control",
+    "args0": [
+      {
+        "options": [
+          [
+            "overall situation",
+            "global"
+          ],
+          [
+            "local",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_checkbox_create": {
+    "message0": "Create %1 checkbox %2 parent %3 text %4",
+    "tooltip": "Create a checkbox control",
+    "args0": [
+      {
+        "options": [
+          [
+            "overall situation",
+            "global"
+          ],
+          [
+            "local",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null,
+      null
+    ]
+  },
+  "lvgl_bar_create": {
+    "message0": "Create %1 progress bar %2 parent object %3",
+    "tooltip": "Create a progress bar control",
+    "args0": [
+      {
+        "options": [
+          [
+            "overall situation",
+            "global"
+          ],
+          [
+            "local",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_bar_set_value": {
+    "message0": "Set progress bar %1 value to %2 animation %3",
+    "tooltip": "Set the current value of the progress bar",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "turn on",
+            "LV_ANIM_ON"
+          ],
+          [
+            "Close",
+            "LV_ANIM_OFF"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_bar_set_range": {
+    "message0": "Set progress bar %1 Range Minimum %2 Maximum %3",
+    "tooltip": "Set the value range of the progress bar"
+  },
+  "lvgl_arc_create": {
+    "message0": "Create %1 arc %2 parent object %3",
+    "tooltip": "Create an arc control",
+    "args0": [
+      {
+        "options": [
+          [
+            "overall situation",
+            "global"
+          ],
+          [
+            "local",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_arc_set_value": {
+    "message0": "Set arc %1 value to %2",
+    "tooltip": "Sets the current value of the arc"
+  },
+  "lvgl_arc_set_range": {
+    "message0": "Set Arc %1 Range Minimum %2 Maximum %3",
+    "tooltip": "Set the value range of the arc"
+  },
+  "lvgl_spinner_create": {
+    "message0": "Create %1 loading animation %2 parent object %3",
+    "tooltip": "Create a loading animation control",
+    "args0": [
+      {
+        "options": [
+          [
+            "overall situation",
+            "global"
+          ],
+          [
+            "local",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_spinner_set_anim_params": {
+    "message0": "Set loading animation %1 Duration %2 ms Radians %3 °",
+    "tooltip": "Set the duration and arc of the loading animation"
+  },
+  "lvgl_dropdown_create": {
+    "message0": "Create %1 drop-down box %2 parent object %3",
+    "tooltip": "Create a drop-down box control",
+    "args0": [
+      {
+        "options": [
+          [
+            "overall situation",
+            "global"
+          ],
+          [
+            "local",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_dropdown_set_options": {
+    "message0": "Set the drop-down box %1 option %2",
+    "tooltip": "Set drop-down box options and separate multiple options with \\n"
+  },
+  "lvgl_dropdown_get_selected": {
+    "message0": "Get the index of the selected item in the drop-down box %1",
+    "tooltip": "Get the index of the currently selected item in the drop-down box"
+  },
+  "lvgl_textarea_create": {
+    "message0": "Create %1 text box %2 parent object %3",
+    "tooltip": "Create a text input box control",
+    "args0": [
+      {
+        "options": [
+          [
+            "overall situation",
+            "global"
+          ],
+          [
+            "local",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_textarea_set_text": {
+    "message0": "Set the text box %1 text to %2",
+    "tooltip": "Set the content of the text box"
+  },
+  "lvgl_textarea_get_text": {
+    "message0": "Get the text of text box %1",
+    "tooltip": "Get the contents of the text box"
+  },
+  "lvgl_textarea_set_placeholder": {
+    "message0": "Set the text box %1 and the placeholder to %2",
+    "tooltip": "Set the placeholder text of a text box"
+  },
+  "lvgl_obj_set_pos": {
+    "message0": "Set %1 location X %2 Y %3",
+    "tooltip": "Set the X and Y coordinate position of the object"
+  },
+  "lvgl_obj_set_size": {
+    "message0": "Settings %1 Size Width %2 Height %3",
+    "tooltip": "Set the width and height of an object"
+  },
+  "lvgl_obj_align": {
+    "message0": "Set %1 Alignment %2 Offset X %3 Y %4",
+    "tooltip": "Set the alignment and offset of an object relative to its parent object",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "center",
+            "LV_ALIGN_CENTER"
+          ],
+          [
+            "upper left",
+            "LV_ALIGN_TOP_LEFT"
+          ],
+          [
+            "Upper middle",
+            "LV_ALIGN_TOP_MID"
+          ],
+          [
+            "upper right",
+            "LV_ALIGN_TOP_RIGHT"
+          ],
+          [
+            "middle left",
+            "LV_ALIGN_LEFT_MID"
+          ],
+          [
+            "middle right",
+            "LV_ALIGN_RIGHT_MID"
+          ],
+          [
+            "lower left",
+            "LV_ALIGN_BOTTOM_LEFT"
+          ],
+          [
+            "middle to lower",
+            "LV_ALIGN_BOTTOM_MID"
+          ],
+          [
+            "lower right",
+            "LV_ALIGN_BOTTOM_RIGHT"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_obj_center": {
+    "message0": "Centered %1",
+    "tooltip": "Center object"
+  },
+  "lvgl_obj_add_flag": {
+    "message0": "Add flag %2 for %1",
+    "tooltip": "Add a flag to an object",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "hide",
+            "LV_OBJ_FLAG_HIDDEN"
+          ],
+          [
+            "Clickable",
+            "LV_OBJ_FLAG_CLICKABLE"
+          ],
+          [
+            "Selectable",
+            "LV_OBJ_FLAG_CHECKABLE"
+          ],
+          [
+            "scrollable",
+            "LV_OBJ_FLAG_SCROLLABLE"
+          ],
+          [
+            "Disable",
+            "LV_OBJ_FLAG_DISABLED"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_obj_remove_flag": {
+    "message0": "Remove flag %2 from %1",
+    "tooltip": "Remove flag from object",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "hide",
+            "LV_OBJ_FLAG_HIDDEN"
+          ],
+          [
+            "Clickable",
+            "LV_OBJ_FLAG_CLICKABLE"
+          ],
+          [
+            "Selectable",
+            "LV_OBJ_FLAG_CHECKABLE"
+          ],
+          [
+            "scrollable",
+            "LV_OBJ_FLAG_SCROLLABLE"
+          ],
+          [
+            "Disable",
+            "LV_OBJ_FLAG_DISABLED"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_obj_add_state": {
+    "message0": "Add status %2 for %1",
+    "tooltip": "Add state to objects",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "selected",
+            "LV_STATE_CHECKED"
+          ],
+          [
+            "focus",
+            "LV_STATE_FOCUSED"
+          ],
+          [
+            "press",
+            "LV_STATE_PRESSED"
+          ],
+          [
+            "Disable",
+            "LV_STATE_DISABLED"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_obj_remove_state": {
+    "message0": "Remove state %2 from %1",
+    "tooltip": "Remove state from an object",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "selected",
+            "LV_STATE_CHECKED"
+          ],
+          [
+            "focus",
+            "LV_STATE_FOCUSED"
+          ],
+          [
+            "press",
+            "LV_STATE_PRESSED"
+          ],
+          [
+            "Disable",
+            "LV_STATE_DISABLED"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_obj_has_state": {
+    "message0": "%1 Status %2",
+    "tooltip": "Checks whether an object has a specified state",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "selected",
+            "LV_STATE_CHECKED"
+          ],
+          [
+            "focus",
+            "LV_STATE_FOCUSED"
+          ],
+          [
+            "press",
+            "LV_STATE_PRESSED"
+          ],
+          [
+            "Disable",
+            "LV_STATE_DISABLED"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_obj_delete": {
+    "message0": "Delete %1",
+    "tooltip": "Delete an object and all its child objects"
+  },
+  "lvgl_obj_set_style_text_font": {
+    "message0": "Set %1 font %2",
+    "tooltip": "Set the object's text font",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "English font 8",
+            "LV_FONT_MONTSERRAT_8"
+          ],
+          [
+            "English font 10",
+            "LV_FONT_MONTSERRAT_10"
+          ],
+          [
+            "English font 12",
+            "LV_FONT_MONTSERRAT_12"
+          ],
+          [
+            "English font 14",
+            "LV_FONT_MONTSERRAT_14"
+          ],
+          [
+            "English font 16",
+            "LV_FONT_MONTSERRAT_16"
+          ],
+          [
+            "English font 18",
+            "LV_FONT_MONTSERRAT_18"
+          ],
+          [
+            "English font 20",
+            "LV_FONT_MONTSERRAT_20"
+          ],
+          [
+            "English font 22",
+            "LV_FONT_MONTSERRAT_22"
+          ],
+          [
+            "English font 24",
+            "LV_FONT_MONTSERRAT_24"
+          ],
+          [
+            "English font 26",
+            "LV_FONT_MONTSERRAT_26"
+          ],
+          [
+            "English font 28",
+            "LV_FONT_MONTSERRAT_28"
+          ],
+          [
+            "English font 30",
+            "LV_FONT_MONTSERRAT_30"
+          ],
+          [
+            "English font 32",
+            "LV_FONT_MONTSERRAT_32"
+          ],
+          [
+            "English font 34",
+            "LV_FONT_MONTSERRAT_34"
+          ],
+          [
+            "English font 36",
+            "LV_FONT_MONTSERRAT_36"
+          ],
+          [
+            "English font 38",
+            "LV_FONT_MONTSERRAT_38"
+          ],
+          [
+            "English font 40",
+            "LV_FONT_MONTSERRAT_40"
+          ],
+          [
+            "English font 42",
+            "LV_FONT_MONTSERRAT_42"
+          ],
+          [
+            "English font 44",
+            "LV_FONT_MONTSERRAT_44"
+          ],
+          [
+            "English font 46",
+            "LV_FONT_MONTSERRAT_46"
+          ],
+          [
+            "English font 48",
+            "LV_FONT_MONTSERRAT_48"
+          ],
+          [
+            "Chinese font 14",
+            "LV_FONT_SOURCE_HAN_SANS_SC_14_CJK"
+          ],
+          [
+            "Chinese font 16",
+            "LV_FONT_SOURCE_HAN_SANS_SC_16_CJK"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_obj_set_style_bg_color": {
+    "message0": "Set %1 background color %2",
+    "tooltip": "Set the background color of an object"
+  },
+  "lvgl_obj_set_style_text_color": {
+    "message0": "Set %1 text color %2",
+    "tooltip": "Set the text color of an object"
+  },
+  "lvgl_obj_set_style_border_color": {
+    "message0": "Set %1 border color %2",
+    "tooltip": "Set the border color of an object"
+  },
+  "lvgl_obj_set_style_border_width": {
+    "message0": "Set %1 border width %2",
+    "tooltip": "Set the border width of the object"
+  },
+  "lvgl_obj_set_style_radius": {
+    "message0": "Set %1 corner radius %2",
+    "tooltip": "Sets the corner radius of an object"
+  },
+  "lvgl_obj_set_style_pad_all": {
+    "message0": "Set %1 padding %2",
+    "tooltip": "Sets all padding of an object"
+  },
+  "lvgl_obj_set_style_bg_opa": {
+    "message0": "Set %1 background transparency %2",
+    "tooltip": "Set the background transparency of an object",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "completely transparent",
+            "LV_OPA_TRANSP"
+          ],
+          [
+            "25%",
+            "LV_OPA_25"
+          ],
+          [
+            "50%",
+            "LV_OPA_50"
+          ],
+          [
+            "75%",
+            "LV_OPA_75"
+          ],
+          [
+            "Opaque",
+            "LV_OPA_COVER"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_event_add_cb": {
+    "message0": "When the %2 event occurs in %1",
+    "tooltip": "Set event callbacks for objects",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "All events",
+            "LV_EVENT_ALL"
+          ],
+          [
+            "press",
+            "LV_EVENT_PRESSED"
+          ],
+          [
+            "Keep pressing",
+            "LV_EVENT_PRESSING"
+          ],
+          [
+            "Move out after pressing",
+            "LV_EVENT_PRESS_LOST"
+          ],
+          [
+            "Short press",
+            "LV_EVENT_SHORT_CLICKED"
+          ],
+          [
+            "click",
+            "LV_EVENT_SINGLE_CLICKED"
+          ],
+          [
+            "Double click",
+            "LV_EVENT_DOUBLE_CLICKED"
+          ],
+          [
+            "three strikes",
+            "LV_EVENT_TRIPLE_CLICKED"
+          ],
+          [
+            "Long press",
+            "LV_EVENT_LONG_PRESSED"
+          ],
+          [
+            "Long press to repeat",
+            "LV_EVENT_LONG_PRESSED_REPEAT"
+          ],
+          [
+            "Click",
+            "LV_EVENT_CLICKED"
+          ],
+          [
+            "release",
+            "LV_EVENT_RELEASED"
+          ],
+          [
+            "scroll to start",
+            "LV_EVENT_SCROLL_BEGIN"
+          ],
+          [
+            "Rolling throw begins",
+            "LV_EVENT_SCROLL_THROW_BEGIN"
+          ],
+          [
+            "end of scroll",
+            "LV_EVENT_SCROLL_END"
+          ],
+          [
+            "scroll",
+            "LV_EVENT_SCROLL"
+          ],
+          [
+            "gesture",
+            "LV_EVENT_GESTURE"
+          ],
+          [
+            "Button",
+            "LV_EVENT_KEY"
+          ],
+          [
+            "rotate",
+            "LV_EVENT_ROTARY"
+          ],
+          [
+            "focus",
+            "LV_EVENT_FOCUSED"
+          ],
+          [
+            "Out of focus",
+            "LV_EVENT_DEFOCUSED"
+          ],
+          [
+            "leave",
+            "LV_EVENT_LEAVE"
+          ],
+          [
+            "crash test",
+            "LV_EVENT_HIT_TEST"
+          ],
+          [
+            "Input device reset",
+            "LV_EVENT_INDEV_RESET"
+          ],
+          [
+            "Hover to enter",
+            "LV_EVENT_HOVER_OVER"
+          ],
+          [
+            "Hover away",
+            "LV_EVENT_HOVER_LEAVE"
+          ],
+          [
+            "coverage check",
+            "LV_EVENT_COVER_CHECK"
+          ],
+          [
+            "Refresh extended drawing size",
+            "LV_EVENT_REFR_EXT_DRAW_SIZE"
+          ],
+          [
+            "Main drawing starts",
+            "LV_EVENT_DRAW_MAIN_BEGIN"
+          ],
+          [
+            "main drawing",
+            "LV_EVENT_DRAW_MAIN"
+          ],
+          [
+            "Main drawing ends",
+            "LV_EVENT_DRAW_MAIN_END"
+          ],
+          [
+            "After drawing starts",
+            "LV_EVENT_DRAW_POST_BEGIN"
+          ],
+          [
+            "draw after",
+            "LV_EVENT_DRAW_POST"
+          ],
+          [
+            "After drawing ends",
+            "LV_EVENT_DRAW_POST_END"
+          ],
+          [
+            "Add drawing task",
+            "LV_EVENT_DRAW_TASK_ADDED"
+          ],
+          [
+            "value changes",
+            "LV_EVENT_VALUE_CHANGED"
+          ],
+          [
+            "Insert",
+            "LV_EVENT_INSERT"
+          ],
+          [
+            "Refresh",
+            "LV_EVENT_REFRESH"
+          ],
+          [
+            "ready",
+            "LV_EVENT_READY"
+          ],
+          [
+            "Cancel",
+            "LV_EVENT_CANCEL"
+          ],
+          [
+            "status change",
+            "LV_EVENT_STATE_CHANGED"
+          ],
+          [
+            "create",
+            "LV_EVENT_CREATE"
+          ],
+          [
+            "Delete",
+            "LV_EVENT_DELETE"
+          ],
+          [
+            "Sub-object changes",
+            "LV_EVENT_CHILD_CHANGED"
+          ],
+          [
+            "Sub-object creation",
+            "LV_EVENT_CHILD_CREATED"
+          ],
+          [
+            "Sub-object deletion",
+            "LV_EVENT_CHILD_DELETED"
+          ],
+          [
+            "Screen offloading begins",
+            "LV_EVENT_SCREEN_UNLOAD_START"
+          ],
+          [
+            "Screen loading begins",
+            "LV_EVENT_SCREEN_LOAD_START"
+          ],
+          [
+            "screen loaded",
+            "LV_EVENT_SCREEN_LOADED"
+          ],
+          [
+            "screen uninstalled",
+            "LV_EVENT_SCREEN_UNLOADED"
+          ],
+          [
+            "size change",
+            "LV_EVENT_SIZE_CHANGED"
+          ],
+          [
+            "style change",
+            "LV_EVENT_STYLE_CHANGED"
+          ],
+          [
+            "Layout changes",
+            "LV_EVENT_LAYOUT_CHANGED"
+          ],
+          [
+            "Get own size",
+            "LV_EVENT_GET_SELF_SIZE"
+          ],
+          [
+            "Zone failure",
+            "LV_EVENT_INVALIDATE_AREA"
+          ],
+          [
+            "resolution change",
+            "LV_EVENT_RESOLUTION_CHANGED"
+          ],
+          [
+            "color format change",
+            "LV_EVENT_COLOR_FORMAT_CHANGED"
+          ],
+          [
+            "refresh request",
+            "LV_EVENT_REFR_REQUEST"
+          ],
+          [
+            "Refresh starts",
+            "LV_EVENT_REFR_START"
+          ],
+          [
+            "Ready to refresh",
+            "LV_EVENT_REFR_READY"
+          ],
+          [
+            "Rendering starts",
+            "LV_EVENT_RENDER_START"
+          ],
+          [
+            "Ready to render",
+            "LV_EVENT_RENDER_READY"
+          ],
+          [
+            "flush start(flush)",
+            "LV_EVENT_FLUSH_START"
+          ],
+          [
+            "Refresh completed (flush)",
+            "LV_EVENT_FLUSH_FINISH"
+          ],
+          [
+            "Refresh wait to start",
+            "LV_EVENT_FLUSH_WAIT_START"
+          ],
+          [
+            "Refresh waiting for completion",
+            "LV_EVENT_FLUSH_WAIT_FINISH"
+          ],
+          [
+            "Layout update completed",
+            "LV_EVENT_UPDATE_LAYOUT_COMPLETED"
+          ],
+          [
+            "vertical sync",
+            "LV_EVENT_VSYNC"
+          ],
+          [
+            "vertical sync request",
+            "LV_EVENT_VSYNC_REQUEST"
+          ]
+        ]
+      }
+    ],
+    "message1": "Execute %1"
+  },
+  "lvgl_event_code": {
+    "message0": "Event code constant %1",
+    "tooltip": "Get the constant value of the event code",
+    "args0": [
+      {
+        "options": [
+          [
+            "All events",
+            "LV_EVENT_ALL"
+          ],
+          [
+            "press",
+            "LV_EVENT_PRESSED"
+          ],
+          [
+            "Keep pressing",
+            "LV_EVENT_PRESSING"
+          ],
+          [
+            "Move out after pressing",
+            "LV_EVENT_PRESS_LOST"
+          ],
+          [
+            "Short press",
+            "LV_EVENT_SHORT_CLICKED"
+          ],
+          [
+            "click",
+            "LV_EVENT_SINGLE_CLICKED"
+          ],
+          [
+            "Double click",
+            "LV_EVENT_DOUBLE_CLICKED"
+          ],
+          [
+            "three strikes",
+            "LV_EVENT_TRIPLE_CLICKED"
+          ],
+          [
+            "Long press",
+            "LV_EVENT_LONG_PRESSED"
+          ],
+          [
+            "Long press to repeat",
+            "LV_EVENT_LONG_PRESSED_REPEAT"
+          ],
+          [
+            "Click",
+            "LV_EVENT_CLICKED"
+          ],
+          [
+            "release",
+            "LV_EVENT_RELEASED"
+          ],
+          [
+            "scroll to start",
+            "LV_EVENT_SCROLL_BEGIN"
+          ],
+          [
+            "Rolling throw begins",
+            "LV_EVENT_SCROLL_THROW_BEGIN"
+          ],
+          [
+            "end of scroll",
+            "LV_EVENT_SCROLL_END"
+          ],
+          [
+            "scroll",
+            "LV_EVENT_SCROLL"
+          ],
+          [
+            "gesture",
+            "LV_EVENT_GESTURE"
+          ],
+          [
+            "Button",
+            "LV_EVENT_KEY"
+          ],
+          [
+            "rotate",
+            "LV_EVENT_ROTARY"
+          ],
+          [
+            "focus",
+            "LV_EVENT_FOCUSED"
+          ],
+          [
+            "Out of focus",
+            "LV_EVENT_DEFOCUSED"
+          ],
+          [
+            "leave",
+            "LV_EVENT_LEAVE"
+          ],
+          [
+            "crash test",
+            "LV_EVENT_HIT_TEST"
+          ],
+          [
+            "Input device reset",
+            "LV_EVENT_INDEV_RESET"
+          ],
+          [
+            "Hover to enter",
+            "LV_EVENT_HOVER_OVER"
+          ],
+          [
+            "Hover away",
+            "LV_EVENT_HOVER_LEAVE"
+          ],
+          [
+            "coverage check",
+            "LV_EVENT_COVER_CHECK"
+          ],
+          [
+            "Refresh extended drawing size",
+            "LV_EVENT_REFR_EXT_DRAW_SIZE"
+          ],
+          [
+            "Main drawing starts",
+            "LV_EVENT_DRAW_MAIN_BEGIN"
+          ],
+          [
+            "main drawing",
+            "LV_EVENT_DRAW_MAIN"
+          ],
+          [
+            "Main drawing ends",
+            "LV_EVENT_DRAW_MAIN_END"
+          ],
+          [
+            "After drawing starts",
+            "LV_EVENT_DRAW_POST_BEGIN"
+          ],
+          [
+            "draw after",
+            "LV_EVENT_DRAW_POST"
+          ],
+          [
+            "After drawing ends",
+            "LV_EVENT_DRAW_POST_END"
+          ],
+          [
+            "Add drawing task",
+            "LV_EVENT_DRAW_TASK_ADDED"
+          ],
+          [
+            "value changes",
+            "LV_EVENT_VALUE_CHANGED"
+          ],
+          [
+            "Insert",
+            "LV_EVENT_INSERT"
+          ],
+          [
+            "Refresh",
+            "LV_EVENT_REFRESH"
+          ],
+          [
+            "ready",
+            "LV_EVENT_READY"
+          ],
+          [
+            "Cancel",
+            "LV_EVENT_CANCEL"
+          ],
+          [
+            "status change",
+            "LV_EVENT_STATE_CHANGED"
+          ],
+          [
+            "create",
+            "LV_EVENT_CREATE"
+          ],
+          [
+            "Delete",
+            "LV_EVENT_DELETE"
+          ],
+          [
+            "Sub-object changes",
+            "LV_EVENT_CHILD_CHANGED"
+          ],
+          [
+            "Sub-object creation",
+            "LV_EVENT_CHILD_CREATED"
+          ],
+          [
+            "Sub-object deletion",
+            "LV_EVENT_CHILD_DELETED"
+          ],
+          [
+            "Screen offloading begins",
+            "LV_EVENT_SCREEN_UNLOAD_START"
+          ],
+          [
+            "Screen loading begins",
+            "LV_EVENT_SCREEN_LOAD_START"
+          ],
+          [
+            "screen loaded",
+            "LV_EVENT_SCREEN_LOADED"
+          ],
+          [
+            "screen uninstalled",
+            "LV_EVENT_SCREEN_UNLOADED"
+          ],
+          [
+            "size change",
+            "LV_EVENT_SIZE_CHANGED"
+          ],
+          [
+            "style change",
+            "LV_EVENT_STYLE_CHANGED"
+          ],
+          [
+            "Layout changes",
+            "LV_EVENT_LAYOUT_CHANGED"
+          ],
+          [
+            "Get own size",
+            "LV_EVENT_GET_SELF_SIZE"
+          ],
+          [
+            "Zone failure",
+            "LV_EVENT_INVALIDATE_AREA"
+          ],
+          [
+            "resolution change",
+            "LV_EVENT_RESOLUTION_CHANGED"
+          ],
+          [
+            "color format change",
+            "LV_EVENT_COLOR_FORMAT_CHANGED"
+          ],
+          [
+            "refresh request",
+            "LV_EVENT_REFR_REQUEST"
+          ],
+          [
+            "Refresh starts",
+            "LV_EVENT_REFR_START"
+          ],
+          [
+            "Ready to refresh",
+            "LV_EVENT_REFR_READY"
+          ],
+          [
+            "Rendering starts",
+            "LV_EVENT_RENDER_START"
+          ],
+          [
+            "Ready to render",
+            "LV_EVENT_RENDER_READY"
+          ],
+          [
+            "flush start(flush)",
+            "LV_EVENT_FLUSH_START"
+          ],
+          [
+            "Refresh completed (flush)",
+            "LV_EVENT_FLUSH_FINISH"
+          ],
+          [
+            "Refresh wait to start",
+            "LV_EVENT_FLUSH_WAIT_START"
+          ],
+          [
+            "Refresh waiting for completion",
+            "LV_EVENT_FLUSH_WAIT_FINISH"
+          ],
+          [
+            "Layout update completed",
+            "LV_EVENT_UPDATE_LAYOUT_COMPLETED"
+          ],
+          [
+            "vertical sync",
+            "LV_EVENT_VSYNC"
+          ],
+          [
+            "vertical sync request",
+            "LV_EVENT_VSYNC_REQUEST"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_obj_get_child": {
+    "message0": "Create %1 using subobject of %2 index %3",
+    "tooltip": "Get the child object of the specified index of the parent object"
+  },
+  "lvgl_screen_active": {
+    "message0": "Get the current screen",
+    "tooltip": "Get the currently active screen object"
+  },
+  "lvgl_screen_load": {
+    "message0": "Loading screen %1",
+    "tooltip": "Switch to the specified screen"
+  },
+  "lvgl_obj_create": {
+    "message0": "Create %1 base object %2 parent object %3",
+    "tooltip": "Create a base container object",
+    "args0": [
+      {
+        "options": [
+          [
+            "overall situation",
+            "global"
+          ],
+          [
+            "local",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_screen_create": {
+    "message0": "Create %1 new screen %2",
+    "tooltip": "Create a new screen object",
+    "args0": [
+      {
+        "options": [
+          [
+            "overall situation",
+            "global"
+          ],
+          [
+            "local",
+            "local"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "lvgl_image_create": {
+    "message0": "Create %1 image %2 parent object %3",
+    "tooltip": "Create an image control",
+    "args0": [
+      {
+        "options": [
+          [
+            "overall situation",
+            "global"
+          ],
+          [
+            "local",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_image_set_src": {
+    "message0": "Set image %1 source to %2",
+    "tooltip": "Set the source file path or symbol of the image"
+  },
+  "lvgl_image_set_zoom": {
+    "message0": "Set image %1 scaled to %2",
+    "tooltip": "Set the zoom ratio of the image (256 is the original size)"
+  },
+  "lvgl_image_set_angle": {
+    "message0": "Set image %1 rotation angle to %2",
+    "tooltip": "Set the rotation angle of the image (in 0.1 degree units)"
+  },
+  "lvgl_image_set_offset": {
+    "message0": "Set image %1 offset X %2 Y %3",
+    "tooltip": "Set the offset of the image"
+  },
+  "lvgl_chart_create": {
+    "message0": "Create %1 chart %2 parent object %3",
+    "tooltip": "Create a chart control",
+    "args0": [
+      {
+        "options": [
+          [
+            "overall situation",
+            "global"
+          ],
+          [
+            "local",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_chart_set_type": {
+    "message0": "Set chart %1 type %2",
+    "tooltip": "Set chart type",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "bar chart",
+            "LV_CHART_TYPE_BAR"
+          ],
+          [
+            "Line chart",
+            "LV_CHART_TYPE_LINE"
+          ],
+          [
+            "Scatter plot",
+            "LV_CHART_TYPE_SCATTER"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_chart_set_point_count": {
+    "message0": "Set Chart %1 Points %2",
+    "tooltip": "Set the number of data points displayed on the chart"
+  },
+  "lvgl_chart_add_series": {
+    "message0": "Chart %1 Add Series %2 Color %3",
+    "tooltip": "Add a data series to the chart",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "red",
+            "lv_palette_main(LV_PALETTE_RED)"
+          ],
+          [
+            "blue",
+            "lv_palette_main(LV_PALETTE_BLUE)"
+          ],
+          [
+            "green",
+            "lv_palette_main(LV_PALETTE_GREEN)"
+          ],
+          [
+            "orange",
+            "lv_palette_main(LV_PALETTE_ORANGE)"
+          ],
+          [
+            "purple",
+            "lv_palette_main(LV_PALETTE_PURPLE)"
+          ],
+          [
+            "cyan",
+            "lv_palette_main(LV_PALETTE_CYAN)"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_chart_set_next_value": {
+    "message0": "Set chart %1 Series %2 Next value is %3",
+    "tooltip": "Sets the next data point value of the series"
+  },
+  "lvgl_chart_set_range": {
+    "message0": "Set Chart %1 Series %2 Range Min %3 Max %4",
+    "tooltip": "Set the Y-axis range of the series"
+  },
+  "lvgl_chart_set_update_mode": {
+    "message0": "Set chart %1 Update mode %2",
+    "tooltip": "Set the data update mode of the chart",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "shift",
+            "LV_CHART_UPDATE_MODE_SHIFT"
+          ],
+          [
+            "loop",
+            "LV_CHART_UPDATE_MODE_CIRCULAR"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_chart_refresh": {
+    "message0": "Refresh chart %1",
+    "tooltip": "Refresh chart display"
+  },
+  "lvgl_keyboard_create": {
+    "message0": "Create %1 keyboard %2 parent object %3",
+    "tooltip": "Create a keyboard control",
+    "args0": [
+      {
+        "options": [
+          [
+            "overall situation",
+            "global"
+          ],
+          [
+            "local",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_keyboard_set_textarea": {
+    "message0": "Set keyboard %1 Associated text box %2",
+    "tooltip": "Set the text box associated with the keyboard"
+  },
+  "lvgl_keyboard_set_mode": {
+    "message0": "Set keyboard %1 mode %2",
+    "tooltip": "Set the keyboard mode",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "text",
+            "LV_KEYBOARD_MODE_TEXT_LOWER"
+          ],
+          [
+            "numbers",
+            "LV_KEYBOARD_MODE_NUMBER"
+          ],
+          [
+            "special characters",
+            "LV_KEYBOARD_MODE_SPECIAL"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_keyboard_set_popovers": {
+    "message0": "Set keyboard %1 Pop-up prompt %2",
+    "tooltip": "Set keyboard key pop-up prompts",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "turn on",
+            "true"
+          ],
+          [
+            "Close",
+            "false"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_list_create": {
+    "message0": "Create %1 list %2 parent object %3",
+    "tooltip": "Create a list control",
+    "args0": [
+      {
+        "options": [
+          [
+            "overall situation",
+            "global"
+          ],
+          [
+            "local",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_list_add_text": {
+    "message0": "List %1 Add text %2",
+    "tooltip": "Add text item to list"
+  },
+  "lvgl_list_add_btn": {
+    "message0": "List %1 Add button %2 Icon %3",
+    "tooltip": "Add button item to list",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "None",
+            "NULL"
+          ],
+          [
+            "play",
+            "LV_SYMBOL_PLAY"
+          ],
+          [
+            "pause",
+            "LV_SYMBOL_PAUSE"
+          ],
+          [
+            "stop",
+            "LV_SYMBOL_STOP"
+          ],
+          [
+            "settings",
+            "LV_SYMBOL_SETTINGS"
+          ],
+          [
+            "Volume",
+            "LV_SYMBOL_VOLUME_MAX"
+          ],
+          [
+            "WiFi",
+            "LV_SYMBOL_WIFI"
+          ],
+          [
+            "Bluetooth",
+            "LV_SYMBOL_BLUETOOTH"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_tabview_create": {
+    "message0": "Create %1 tab view %2 parent object %3",
+    "tooltip": "Create a tab view control",
+    "args0": [
+      {
+        "options": [
+          [
+            "overall situation",
+            "global"
+          ],
+          [
+            "local",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_tabview_add_tab": {
+    "message0": "Tab view %1 Add tab %2",
+    "tooltip": "Adds a tab and returns the tab content object"
+  },
+  "lvgl_set_img_font": {
+    "message0": "Set image font %1",
+    "tooltip": "Set whether to enable image font support",
+    "args0": [
+      {
+        "options": [
+          [
+            "turn on",
+            "true"
+          ],
+          [
+            "Close",
+            "false"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_set_stdlib_malloc": {
+    "message0": "Set the standard library type %1",
+    "tooltip": "Set the standard library type used",
+    "args0": [
+      {
+        "options": [
+          [
+            "Built-in",
+            "LV_STDLIB_BUILTIN"
+          ],
+          [
+            "C standard library",
+            "LV_STDLIB_CLIB"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_set_stdlib_string": {
+    "message0": "Set the string library type %1",
+    "tooltip": "Set the type of string library used",
+    "args0": [
+      {
+        "options": [
+          [
+            "Built-in",
+            "LV_STDLIB_BUILTIN"
+          ],
+          [
+            "C standard library",
+            "LV_STDLIB_CLIB"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_set_stdlib_sprintf": {
+    "message0": "Set the formatted output function type %1",
+    "tooltip": "Set the type of formatted output function used",
+    "args0": [
+      {
+        "options": [
+          [
+            "Built-in",
+            "LV_STDLIB_BUILTIN"
+          ],
+          [
+            "C standard library",
+            "LV_STDLIB_CLIB"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_set_theme": {
+    "message0": "Set theme %1",
+    "tooltip": "Set global theme style",
+    "args0": [
+      {
+        "options": [
+          [
+            "light color",
+            "light"
+          ],
+          [
+            "Dark",
+            "dark"
+          ]
+        ]
+      }
+    ]
+  },
+  "toolbox_categories": [
+    "initialization",
+    "screen",
+    "Display control",
+    "input control",
+    "monitor controls",
+    "Layout",
+    "style",
+    "event",
+    "status and flags"
+  ]
+}

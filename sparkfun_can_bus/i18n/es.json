@@ -1,0 +1,87 @@
+{
+  "toolbox_name": "CAN-Bus",
+  "canbus_init": {
+    "message0": "Inicializar CAN-Bus velocidad %1",
+    "tooltip": "Inicializar el módulo CAN Bus SparkFun con velocidad",
+    "args0": [
+      {
+        "options": [
+          [
+            "500 kbps",
+            "CANSPEED_500"
+          ],
+          [
+            "250 kbps",
+            "CANSPEED_250"
+          ],
+          [
+            "125 kbps",
+            "CANSPEED_125"
+          ]
+        ]
+      }
+    ]
+  },
+  "canbus_is_ready": {
+    "message0": "Inicialización del CAN-Bus exitosa",
+    "tooltip": "Estado init CAN Bus"
+  },
+  "canbus_send_test": {
+    "message0": "CAN-Bus envía con éxito mensajes de prueba",
+    "tooltip": "Enviar un mensaje CAN de prueba"
+  },
+  "canbus_read_message": {
+    "message0": "CAN-Bus lee el mensaje",
+    "tooltip": "Leer el mensaje CAN entrante"
+  },
+  "canbus_last_id": {
+    "message0": "Identificación reciente de noticias de CAN-Bus",
+    "tooltip": "Obtener el ID del último mensaje CAN recibido"
+  },
+  "canbus_last_length": {
+    "message0": "Longitud reciente del mensaje en CAN-Bus",
+    "tooltip": "Longitud del último mensaje CAN recibido"
+  },
+  "canbus_data_byte": {
+    "message0": "CAN-Bus byte de datos del último mensaje %1",
+    "tooltip": "Obtener byte de datos del último mensaje CAN"
+  },
+  "canbus_obd_request": {
+    "message0": "CAN-Bus solicitud OBD %1 texto",
+    "tooltip": "Enviar solicitud OBD2 PID vía CAN Bus",
+    "args0": [
+      {
+        "options": [
+          [
+            "Temperatura del refrigerante",
+            "ENGINE_COOLANT_TEMP"
+          ],
+          [
+            "Velocidad de rotación",
+            "ENGINE_RPM"
+          ],
+          [
+            "Velocidad",
+            "VEHICLE_SPEED"
+          ],
+          [
+            "Flujo de aire",
+            "MAF_SENSOR"
+          ],
+          [
+            "Sensor de oxígeno",
+            "O2_VOLTAGE"
+          ],
+          [
+            "Término solar",
+            "THROTTLE"
+          ]
+        ]
+      }
+    ]
+  },
+  "canbus_send_message": {
+    "message0": "Enviar mensaje CAN ID %1 longitud %2 datos %3 %4 %5 %6 %7 %8 %9 %10",
+    "tooltip": "Enviar mensaje CAN con ID y datos"
+  }
+}

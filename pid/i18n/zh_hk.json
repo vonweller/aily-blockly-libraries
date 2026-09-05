@@ -1,0 +1,173 @@
+{
+  "toolbox_name": "PID 控制器",
+  "toolbox_labels": {
+    "快速开始": "快速開始",
+    "基础控制": "基礎控制",
+    "参数设置": "參數設定",
+    "值设置与获取": "值設定與獲取",
+    "高级控制": "進階控制",
+    "条件判断": "條件判斷"
+  },
+  "pid_init": {
+    "message0": "初始化 PID 控制器 %1 輸入變數 %2 輸出變數 %3 目標值 %4 參數預設 %5P 參數 %6 I 參數 %7D 參數 %8 控制方向 %9",
+    "args0": [
+      null,
+      null,
+      null,
+      null,
+      {
+        "options": [
+          [
+            "自訂",
+            "custom"
+          ],
+          [
+            "溫度控制",
+            "temperature"
+          ],
+          [
+            "馬達速度",
+            "motor_speed"
+          ],
+          [
+            "位置控制",
+            "position"
+          ],
+          [
+            "液位控制",
+            "level"
+          ]
+        ]
+      },
+      null,
+      null,
+      null,
+      {
+        "options": [
+          [
+            "正向對照",
+            "DIRECT"
+          ],
+          [
+            "反向控制",
+            "REVERSE"
+          ]
+        ]
+      }
+    ]
+  },
+  "pid_quick_setup": {
+    "message0": "快速PID控制%1輸入腳%2輸出腳%3目標值%4應用場景%5",
+    "args0": [
+      null,
+      {
+        "options": "${board.analogPins}"
+      },
+      {
+        "options": "${board.pwmPins}"
+      },
+      null,
+      {
+        "options": [
+          [
+            "溫度控制",
+            "temperature"
+          ],
+          [
+            "馬達速度",
+            "motor_speed"
+          ],
+          [
+            "位置控制",
+            "position"
+          ],
+          [
+            "液位控制",
+            "level"
+          ],
+          [
+            "自訂",
+            "custom"
+          ]
+        ]
+      }
+    ]
+  },
+  "pid_compute": {
+    "message0": "PID控制器%1計算"
+  },
+  "pid_control_loop": {
+    "message0": "執行PID控制循環%1控制器%2讀取輸入%3執行輸出%4"
+  },
+  "pid_temperature_control": {
+    "message0": "溫度PID控制%1溫度感知器接腳%2加熱器接腳%3目標溫度%4",
+    "args0": [
+      null,
+      {
+        "options": "${board.analogPins}"
+      },
+      {
+        "options": "${board.pwmPins}"
+      },
+      null
+    ]
+  },
+  "pid_motor_speed_control": {
+    "message0": "馬達速度PID控制%1編碼器接腳%2馬達PWM接腳%3目標轉速(RPM)%4",
+    "args0": [
+      null,
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": "${board.pwmPins}"
+      },
+      null
+    ]
+  },
+  "pid_set_mode": {
+    "message0": "設定PID控制器%1模式為%2",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "自動",
+            "AUTOMATIC"
+          ],
+          [
+            "手動",
+            "MANUAL"
+          ]
+        ]
+      }
+    ]
+  },
+  "pid_set_tunings": {
+    "message0": "設定PID控制器%1參數%2P參數%3I參數%4D參數%5"
+  },
+  "pid_set_output_limits": {
+    "message0": "設定PID控制器%1輸出限制%2最小值%3最大值%4"
+  },
+  "pid_get_input": {
+    "message0": "取得PID輸入值%1"
+  },
+  "pid_get_output": {
+    "message0": "取得PID輸出值%1"
+  },
+  "pid_set_setpoint": {
+    "message0": "設定PID目標值%1為%2"
+  },
+  "pid_set_input": {
+    "message0": "設定PID輸入值%1為%2"
+  },
+  "pid_adaptive_control": {
+    "message0": "自適應 PID 控制 %1PID 控制器 %2 輸入變數 %3 目標值 %4 閾值 %5 激進參數 P%6I%7D%8 保守參數 P%9I%10D%11"
+  },
+  "pid_is_at_setpoint": {
+    "message0": "PID是否達到目標值%1目標值%2容差%3"
+  },
+  "pid_get_error": {
+    "message0": "取得PID誤差值%1目標值%2"
+  }
+}

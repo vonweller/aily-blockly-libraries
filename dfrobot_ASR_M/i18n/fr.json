@@ -1,0 +1,57 @@
+{
+  "toolbox_name": "Reconnaissance vocale DFRobot",
+  "dfrobot_asr_init": {
+    "message0": "Initialiser le module de reconnaissance vocale\nMode de reconnaissance %1\nModes du microphone %2\nI2C Address%3\nUtilisation %4",
+    "tooltip": "Initialiser le module de reconnaissance vocale DFRobot, prenant en charge trois modes de reconnaissance",
+    "args0": [
+      {
+        "options": [
+          [
+            "Mode boucle (LOOP)",
+            "LOOP"
+          ],
+          [
+            "Mode de commande (MOT de passe)",
+            "PASSWORD"
+          ],
+          [
+            "Mode bouton (BOUTON)",
+            "BUTTON"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "Microphone (MIC)",
+            "MIC"
+          ],
+          [
+            "Mono (MONO)",
+            "MONO"
+          ]
+        ]
+      },
+      null,
+      {
+        "options": "${board.i2c}"
+      }
+    ]
+  },
+  "dfrobot_asr_add_command": {
+    "message0": "Ajoutez des mots-clés vocaux %1 numérotés %2",
+    "tooltip": "Ajoutez des entrées vocales en pinyin (par exemple, kai deng), avec des numéros d’identification allant de 1 à 255"
+  },
+  "dfrobot_asr_start": {
+    "message0": "Début de la reconnaissance vocale",
+    "tooltip": "Activez la reconnaissance vocale"
+  },
+  "dfrobot_asr_read": {
+    "message0": "Lit le numéro de résultat de reconnaissance vocale",
+    "tooltip": "Lire le numéro d’entrée reconnu ; retourner -1 signifie qu’il n’a pas été reconnu"
+  },
+  "dfrobot_asr_set_i2c_addr": {
+    "message0": "Définir l’adresse I2C pour le module vocal %1",
+    "tooltip": "Régler l’adresse I2C pour le module vocal (0-127), qui prend effet après la réactivation"
+  }
+}

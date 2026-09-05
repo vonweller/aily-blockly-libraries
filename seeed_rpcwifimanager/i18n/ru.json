@@ -1,0 +1,165 @@
+{
+  "toolbox_name": "Seeed RPC WiFiManager",
+  "toolbox_categories": [
+    "Объекты и связи",
+    "Настройка портала",
+    "чтение статуса",
+    "Пользовательские параметры",
+    "Callbacks"
+  ],
+  "seeed_rpcwifimanager_create": {
+    "message0": "Создание объектов WiFiManager %1",
+    "tooltip": "Создайте объект Seeed RPC WiFiManager для автоматического подключения и настройки портала"
+  },
+  "seeed_rpcwifimanager_auto_connect": {
+    "message0": "WiFiManager %1 настройка точки доступа %2 %3пароля WiFiManager",
+    "tooltip": "Попытка подключиться к сохранённому WiFi-устройству запустит портал конфигурации с указанным именем, если не удаётся"
+  },
+  "seeed_rpcwifimanager_auto_connect_default": {
+    "message0": "WiFiManager %1 конфигурация автоматического подключения по умолчанию точка доступа",
+    "tooltip": "Попытка подключиться к сохранённому Wi-Fi устройству; если это не удаётся, идентификатор устройства генерирует хотспот по умолчанию"
+  },
+  "seeed_rpcwifimanager_start_portal": {
+    "message0": "WiFiManager %1 Launch Configuration Portal Hotspot %2 Password %3",
+    "tooltip": "Запускайте портал конфигурации напрямую, не пытаясь подключиться к сохранённому Wi-Fi"
+  },
+  "seeed_rpcwifimanager_start_portal_default": {
+    "message0": "WiFiManager %1 запускает стандартный портал конфигурации",
+    "tooltip": "Сгенерируйте имя хотспота по умолчанию с помощью идентификатора устройства и запустите портал конфигурации"
+  },
+  "seeed_rpcwifimanager_reset_settings": {
+    "message0": "WiFiManager %1 очистить сохранённые настройки WiFi",
+    "tooltip": "Чистые настройки WiFi, сохраненные WiFiManager"
+  },
+  "seeed_rpcwifimanager_set_portal_timeout": {
+    "message0": "Тайм-аут %1 настройки WiFiManager  настройки портала %2 секунд",
+    "tooltip": "Установите максимальное время, в течение которого портал конфигурации ожидает настройки пользователей за секунды"
+  },
+  "seeed_rpcwifimanager_set_connect_timeout": {
+    "message0": "WiFiManager %1 устанавливает тайм-аут соединения на %2 секунд",
+    "tooltip": "Установите максимальное время подключения к WiFi, измеряемое в секундах"
+  },
+  "seeed_rpcwifimanager_set_debug_output": {
+    "message0": "WiFiManager %1 отладка вывода %2",
+    "tooltip": "Включите или отключите выход последовательной отладки WiFiManager",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "enabled",
+            "TRUE"
+          ],
+          [
+            "disabled",
+            "FALSE"
+          ]
+        ]
+      }
+    ]
+  },
+  "seeed_rpcwifimanager_set_min_quality": {
+    "message0": "WiFiManager %1 минимальное качество сигнала %2%",
+    "tooltip": "Фильтрует WiFi-сети на странице конфигурации ниже указанного качества сигнала"
+  },
+  "seeed_rpcwifimanager_set_remove_duplicate_aps": {
+    "message0": "WiFiManager %1 повторная точка доступа %2",
+    "tooltip": "Настройте, удаляются ли дублирующиеся точки доступа с одинаковым SSID из списка сканирования",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "hide",
+            "TRUE"
+          ],
+          [
+            "show",
+            "FALSE"
+          ]
+        ]
+      }
+    ]
+  },
+  "seeed_rpcwifimanager_set_break_after_save": {
+    "message0": "Выйти из портала после настройки WiFiManager %1 %2",
+    "tooltip": "После сохранения конфигурации, даже если соединение не работает, выходите из портала конфигурации",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "yes",
+            "TRUE"
+          ],
+          [
+            "no",
+            "FALSE"
+          ]
+        ]
+      }
+    ]
+  },
+  "seeed_rpcwifimanager_set_ap_static_ip": {
+    "message0": "WiFiManager %1 настройка IP портала %2 шлюза %3 маски подсети %4",
+    "tooltip": "Настройте статические IP, шлюзы и маски подсети в режиме Portal AP"
+  },
+  "seeed_rpcwifimanager_set_sta_static_ip": {
+    "message0": "WiFiManager %1 настраивает шлюз %2 %3 маску подсети после connection%4",
+    "tooltip": "Установите статический IP, шлюз и маску подсети, используемые после подключения к целевой WiFi"
+  },
+  "seeed_rpcwifimanager_set_custom_head": {
+    "message0": "WiFiManager %1 Настройки заголовка страницы HTML %2",
+    "tooltip": "Внедрите кастомные HTML, CSS или скриптовые фрагменты в голову страницы портала конфигурации"
+  },
+  "seeed_rpcwifimanager_get_portal_ssid": {
+    "message0": "WiFiManager %1 Конфигурация SSID портала",
+    "tooltip": "Получите текущее имя портала доступа конфигурации"
+  },
+  "seeed_rpcwifimanager_get_ssid": {
+    "message0": "WiFiManager %1 настроен с SSID",
+    "tooltip": "Читайте SSID, который сейчас сохранён или только что введён WiFiManager"
+  },
+  "seeed_rpcwifimanager_get_password": {
+    "message0": "WiFiManager %1 настроен с паролем",
+    "tooltip": "Читайте пароль WiFi, который сейчас сохранён или только что введён WiFiManager"
+  },
+  "seeed_rpcwifimanager_parameter_create": {
+    "message0": "Создайте параметры WiFiManager %1 ID %2 метку %3 значение по умолчанию %4 длину %5",
+    "tooltip": "Создайте пользовательский входный параметр, который можно добавить в форму конфигурационного портала"
+  },
+  "seeed_rpcwifimanager_parameter_create_html": {
+    "message0": "Создание параметров WiFiManager HTML %1 HTML %2",
+    "tooltip": "Создайте портал конфигурации, который содержит только пользовательские параметры HTML"
+  },
+  "seeed_rpcwifimanager_add_parameter": {
+    "message0": "WiFiManager %1 добавление параметров %2",
+    "tooltip": "Добавьте пользовательские параметры в форму конфигурационного портала WiFiManager"
+  },
+  "seeed_rpcwifimanager_parameter_value": {
+    "message0": "Значение параметра WiFiManager %1",
+    "tooltip": "Читайте пользовательские значения параметров, приведённые порталом конфигурации"
+  },
+  "seeed_rpcwifimanager_parameter_id": {
+    "message0": "ID параметра WiFiManager %1",
+    "tooltip": "Прочитайте пользовательский идентификатор параметра"
+  },
+  "seeed_rpcwifimanager_parameter_placeholder": {
+    "message0": "Метка параметра WiFiManager %1",
+    "tooltip": "Прочитайте метку, отображаемую на странице, чтобы узнать пользовательские параметры"
+  },
+  "seeed_rpcwifimanager_parameter_length": {
+    "message0": "Длина параметра WiFiManager %1",
+    "tooltip": "Читайте максимальную длину, разрешённую пользовательскими параметрами"
+  },
+  "seeed_rpcwifimanager_on_portal_start": {
+    "message0": "Когда WiFiManager %1 входит в портал конфигурации",
+    "tooltip": "Зарегистрируйте обратный вызов, срабатывающий при входе в портал конфигурации точки доступа",
+    "message1": "run %1"
+  },
+  "seeed_rpcwifimanager_on_save_success": {
+    "message0": "Когда WiFiManager %1 сохраняет конфигурацию и успешно подключается",
+    "tooltip": "Зарегистрированные пользователи сохраняют пользовательские конфигурации и обратные звонки после успешного подключения к WiFi",
+    "message1": "run %1"
+  }
+}

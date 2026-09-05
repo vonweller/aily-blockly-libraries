@@ -1,0 +1,398 @@
+{
+  "toolbox_name": "speech synthesis",
+  "toolbox_labels": {
+    "初始化": "initialization",
+    "语音播报": "Voice broadcast",
+    "音量/语速/语调": "Volume/speed/intonation",
+    "发音设置": "pronunciation settings",
+    "高级设置": "Advanced settings",
+    "播放控制": "Playback controls",
+    "其他": "Others"
+  },
+  "speech_init_i2c": {
+    "message0": "Initialize speech synthesis module %1 I2C interface %2 Version %3",
+    "tooltip": "To initialize the speech synthesis module through the I2C interface, you need to first use the I2C initialization block to set the pins",
+    "args0": [
+      null,
+      {
+        "options": "${board.i2c}"
+      },
+      {
+        "options": [
+          [
+            "V1",
+            "eV1"
+          ],
+          [
+            "V2",
+            "eV2"
+          ]
+        ]
+      }
+    ]
+  },
+  "speech_init_uart": {
+    "message0": "Initialize speech synthesis module %1 Serial port %2 Version %3",
+    "tooltip": "Initialize the speech synthesis module through the serial port",
+    "args0": [
+      null,
+      {
+        "options": "${board.serialPort}"
+      },
+      {
+        "options": [
+          [
+            "V1",
+            "eV1"
+          ],
+          [
+            "V2",
+            "eV2"
+          ]
+        ]
+      }
+    ]
+  },
+  "speech_speak": {
+    "message0": "Speech synthesis %1 Broadcasting %2",
+    "tooltip": "Broadcast specified text content, supporting a mix of Chinese and English"
+  },
+  "speech_set_volume": {
+    "message0": "Speech synthesis %1 Set volume %2",
+    "tooltip": "Set the voice broadcast volume (0-9)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "0 (mute)",
+            "0"
+          ],
+          [
+            "1",
+            "1"
+          ],
+          [
+            "2",
+            "2"
+          ],
+          [
+            "3",
+            "3"
+          ],
+          [
+            "4",
+            "4"
+          ],
+          [
+            "5 (default)",
+            "5"
+          ],
+          [
+            "6",
+            "6"
+          ],
+          [
+            "7",
+            "7"
+          ],
+          [
+            "8",
+            "8"
+          ],
+          [
+            "9 (maximum)",
+            "9"
+          ]
+        ]
+      }
+    ]
+  },
+  "speech_set_speed": {
+    "message0": "Speech synthesis %1 Set speech rate %2",
+    "tooltip": "Set voice broadcast speed (0-9)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "0 (slowest)",
+            "0"
+          ],
+          [
+            "1",
+            "1"
+          ],
+          [
+            "2",
+            "2"
+          ],
+          [
+            "3",
+            "3"
+          ],
+          [
+            "4",
+            "4"
+          ],
+          [
+            "5 (default)",
+            "5"
+          ],
+          [
+            "6",
+            "6"
+          ],
+          [
+            "7",
+            "7"
+          ],
+          [
+            "8",
+            "8"
+          ],
+          [
+            "9 (fastest)",
+            "9"
+          ]
+        ]
+      }
+    ]
+  },
+  "speech_set_tone": {
+    "message0": "Speech synthesis %1 Set intonation %2",
+    "tooltip": "Set the tone of voice broadcast (0-9)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "0 (lowest)",
+            "0"
+          ],
+          [
+            "1",
+            "1"
+          ],
+          [
+            "2",
+            "2"
+          ],
+          [
+            "3",
+            "3"
+          ],
+          [
+            "4",
+            "4"
+          ],
+          [
+            "5 (default)",
+            "5"
+          ],
+          [
+            "6",
+            "6"
+          ],
+          [
+            "7",
+            "7"
+          ],
+          [
+            "8",
+            "8"
+          ],
+          [
+            "9 (highest)",
+            "9"
+          ]
+        ]
+      }
+    ]
+  },
+  "speech_set_sound_type": {
+    "message0": "Speech synthesis %1 Set speaker %2",
+    "tooltip": "Set voice speaker type",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Female Voice 1 (recommended)",
+            "eFemale1"
+          ],
+          [
+            "Male Voice 1 (recommended)",
+            "eMale1"
+          ],
+          [
+            "Male voice 2",
+            "eMale2"
+          ],
+          [
+            "Female Voice 2",
+            "eFemale2"
+          ],
+          [
+            "donald duck",
+            "eDonaldDuck"
+          ],
+          [
+            "Female Voice 3",
+            "eFemale3"
+          ]
+        ]
+      }
+    ]
+  },
+  "speech_set_english_pron": {
+    "message0": "Speech synthesis %1 English pronunciation %2",
+    "tooltip": "Set English pronunciation mode: by word or by letter",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "word",
+            "eWord"
+          ],
+          [
+            "letters",
+            "eAlphabet"
+          ]
+        ]
+      }
+    ]
+  },
+  "speech_set_language": {
+    "message0": "Speech synthesis %1 Digital language %2",
+    "tooltip": "Set the pronunciation language for numbers, units, and special characters",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Automatic judgment",
+            "eAutoJudgel"
+          ],
+          [
+            "Chinese",
+            "eChinesel"
+          ],
+          [
+            "English",
+            "eEnglishl"
+          ]
+        ]
+      }
+    ]
+  },
+  "speech_set_digital_pron": {
+    "message0": "Speech synthesis %1 Number reading %2",
+    "tooltip": "Set the reading method for long numbers",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Automatic judgment",
+            "eAutoJudged"
+          ],
+          [
+            "phone number",
+            "eNumber"
+          ],
+          [
+            "numerical value",
+            "eNumeric"
+          ]
+        ]
+      }
+    ]
+  },
+  "speech_set_style": {
+    "message0": "Speech synthesis %1 Synthesis style %2",
+    "tooltip": "Set speech synthesis style",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Smooth",
+            "eSmooth"
+          ],
+          [
+            "verbatim",
+            "eCaton"
+          ]
+        ]
+      }
+    ]
+  },
+  "speech_enable_rhythm": {
+    "message0": "Speech synthesis %1 %2 Rhythm",
+    "tooltip": "Enable or disable Chinese prosody feature",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "enable",
+            "true"
+          ],
+          [
+            "Disable",
+            "false"
+          ]
+        ]
+      }
+    ]
+  },
+  "speech_enable_pinyin": {
+    "message0": "Speech synthesis %1 %2 Pinyin synthesis",
+    "tooltip": "Enable or disable pinyin synthesis function",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "enable",
+            "true"
+          ],
+          [
+            "Disable",
+            "false"
+          ]
+        ]
+      }
+    ]
+  },
+  "speech_stop": {
+    "message0": "Speech synthesis %1 Stop broadcasting",
+    "tooltip": "Stop current voice broadcast"
+  },
+  "speech_pause": {
+    "message0": "Speech synthesis %1 Pause broadcast",
+    "tooltip": "Pause current voice broadcast"
+  },
+  "speech_resume": {
+    "message0": "Speech synthesis %1 resume broadcasting",
+    "tooltip": "Resume paused voice broadcast"
+  },
+  "speech_wait": {
+    "message0": "Speech synthesis %1 Waiting for the broadcast to be completed",
+    "tooltip": "Wait for the current voice broadcast to be completed"
+  },
+  "speech_reset": {
+    "message0": "Speech synthesis %1 Restore default settings",
+    "tooltip": "Restore all settings to default"
+  },
+  "speech_sleep": {
+    "message0": "Speech synthesis %1 goes to sleep",
+    "tooltip": "Let the speech synthesis module enter sleep mode"
+  },
+  "speech_wakeup": {
+    "message0": "Speech synthesis %1 wake up",
+    "tooltip": "Wake up the speech synthesis module from sleep mode"
+  }
+}

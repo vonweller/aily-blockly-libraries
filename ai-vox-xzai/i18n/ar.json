@@ -1,0 +1,882 @@
+{
+  "toolbox_name": "XiaoZhi AI",
+  "toolbox_labels": {
+    "说明:小智事件中禁用delay阻塞编程，简单定时器不如多线程": "ملاحظة: قم بتعطيل برمجة حظر التأخير في أحداث Xiaozhi. الموقتات البسيطة ليست جيدة مثل الخيوط المتعددة.",
+    "说明:1. 预内置和自定义不可混用": "ملحوظة: 1. لا يمكن الخلط بين المدمج مسبقًا والمخصص.",
+    "   2. 自定义需要自己画界面,内容可自定，灵活但麻烦": "2. يتطلب التخصيص منك رسم الواجهة بنفسك، ويمكن تخصيص المحتوى، وهو أمر مرن ولكنه مزعج.",
+    "   3. 预内置是定死的，但直接可用": "3. تم إصلاح الجهاز المدمج مسبقًا، ولكن يمكن استخدامه مباشرة.",
+    "*特别声明1. 屏显功能需要加载LVGL库": "*بيان خاص 1. تحتاج وظيفة عرض الشاشة إلى تحميل مكتبة LVGL",
+    "*特别声明2. 在LVGL库初始化中需‘设置图像字体开启’": "*بيان خاص 2. من الضروري \"ضبط خط الصورة\" أثناء تهيئة مكتبة LVGL",
+    "*特别声明3. 需自绘界面的，一般用TFT_eSPI库，按例程": "*بيان خاص 3. إذا كنت بحاجة إلى رسم الواجهة الخاصة بك، فاستخدم بشكل عام مكتبة TFT_eSPI واتبع الروتين",
+    " 就行，这里的自定义一般不需要，单色屏时可考虑使用": "هذا جيّد. التخصيص هنا ليس مطلوبًا بشكل عام. يمكنك التفكير في استخدامه عند استخدام شاشة أحادية اللون.",
+    "说明:操作设备代码放设置，服务器读取代码放上报": "الوصف: يتم تعيين رمز جهاز التشغيل، ويقرأ الخادم الرمز ويبلغ عنه."
+  },
+  "toolbox_categories": [
+    "تهيئة",
+    "الشاشة",
+    "مدمج",
+    "مخصص",
+    "تحكم",
+    "زر AI",
+    "الحالة والتفعيل",
+    "رموز تعبيرية ودردشة",
+    "MCP"
+  ],
+  "esp32_task": {
+    "message0": "تخصيص المساحات task%1 Core%2 ESP32 %3",
+    "tooltip": "حدد على أي نواة يعمل الخيط",
+    "args0": [
+      {
+        "options": [
+          [
+            "المهمة 1",
+            "1"
+          ],
+          [
+            "المهمة 2",
+            "2"
+          ],
+          [
+            "المهمة 3",
+            "3"
+          ],
+          [
+            "المهمة 4",
+            "4"
+          ],
+          [
+            "المهمة 5",
+            "5"
+          ],
+          [
+            "المهمة 6",
+            "6"
+          ],
+          [
+            "المهمة 7",
+            "7"
+          ],
+          [
+            "المهمة 8",
+            "8"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "النواة 0",
+            "0"
+          ],
+          [
+            "النواة 1",
+            "1"
+          ]
+        ]
+      },
+      null
+    ],
+    "message1": "تهيئة %1",
+    "message2": "%1 الدائرية"
+  },
+  "esp32_serial_init": {
+    "message0": "تهيئة منفذ ESP32 التسلسلي %1 دبوس RX %2 دبوس TX %3 rate%4",
+    "tooltip": "قم بتهيئة ESP32 لتحديد تكوين المنفذ التسلسلي والدبوس",
+    "args0": [
+      {
+        "options": [
+          [
+            "Serial",
+            "Serial"
+          ],
+          [
+            "Serial1",
+            "Serial1"
+          ],
+          [
+            "Serial2",
+            "Serial2"
+          ]
+        ]
+      },
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": [
+          [
+            "9600",
+            "9600"
+          ],
+          [
+            "19200",
+            "19200"
+          ],
+          [
+            "38400",
+            "38400"
+          ],
+          [
+            "57600",
+            "57600"
+          ],
+          [
+            "115200",
+            "115200"
+          ],
+          [
+            "256000",
+            "256000"
+          ],
+          [
+            "500000",
+            "500000"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32ai_button_setup": {
+    "message0": "وضع تثبيت زر الزناد بالذكاء الاصطناعي %1 %2 %3 النشط منخفض المستوى",
+    "tooltip": "إنشاء وتهيئة أزرار التفاعل الصوتي بالذكاء الاصطناعي في ESP32 (مكيفة مع مكتبة أزرار Espressif)",
+    "args0": [
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": [
+          [
+            "المدخل المنتظم",
+            "INPUT"
+          ],
+          [
+            "اسحب الإدخال للأعلى",
+            "INPUT_PULLUP"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "نعم",
+            "TRUE"
+          ],
+          [
+            "لا",
+            "FALSE"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32ai_init_wifi": {
+    "message0": "تهيئة وضع الواي فاي ESP32_ شياوزي AI %1",
+    "args0": [
+      {
+        "options": [
+          [
+            "إعداد الشبكة اليدوي",
+            "Manual"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32ai_button_click": {
+    "message0": "عندما يفعل الذكاء الاصطناعي الزر وينقر",
+    "tooltip": "انقر على الزر لتنفيذ الإجراء عند تفعيل الحدث",
+    "message1": "%1"
+  },
+  "esp32ai_button_double_click": {
+    "message0": "عندما يفعل الذكاء الاصطناعي الزر بنقرة مزدوجة",
+    "tooltip": "انقر مرتين على الزر لتنفيذ الإجراء عند تفعيل الحدث",
+    "message1": "%1"
+  },
+  "esp32ai_button_long_pressing": {
+    "message0": "اضغط مع الاستمرار على زر الزناد الذكي",
+    "tooltip": "الإجراءات التي يتم تفعيلها باستمرار أثناء الضغط الطويل على الزر",
+    "message1": "%1"
+  },
+  "esp32_i2s_mic_setup": {
+    "message0": "نوع ميكروفون الذكاء الاصطناعي: %1",
+    "tooltip": "تهيئة ميكروفونات I2S/PDM (معدلة لإدخال الصوت ai_vox_engine)",
+    "args0": [
+      {
+        "options": [
+          [
+            "معيار I2S",
+            "AUDIO_INPUT_DEVICE_TYPE_I2S_STD"
+          ],
+          [
+            "PDM",
+            "AUDIO_INPUT_DEVICE_TYPE_PDM"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32ai_i2s_speaker_setup": {
+    "message0": "مكبرات الصوت بالذكاء الاصطناعي SCK/BCLK %1 WS/LRCLK %2 SD/DIN %3",
+    "tooltip": "تهيئة مكبر صوت I2S (الرقم المرتبط بثابت kSpeakerPin* في main.cpp)",
+    "args0": [
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": "${board.digitalPins}"
+      }
+    ]
+  },
+  "esp32ai_init_display": {
+    "message0": "عرض تهيئة الواجهة الأصلية: %1",
+    "tooltip": "تهيئة نوع العرض المحدد",
+    "args0": [
+      {
+        "options": [
+          [
+            "ST7789 (SPI，240x240)",
+            "ST7789"
+          ],
+          [
+            "SSD1306 (I2C, 128x64)",
+            "SSD1306"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32ai_init_nlvgl_display": {
+    "message0": "عرض تهيئة VGL قابل للتخصيص: %1 زاوية الدوران: %2",
+    "tooltip": "تهيئة نوع العرض المحدد",
+    "args0": [
+      {
+        "options": [
+          [
+            "ST7789 (SPI)",
+            "nST7789"
+          ],
+          [
+            "SSD1306 (I2C)",
+            "nSSD1306"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "0°",
+            "LV_DISPLAY_ROTATION_0"
+          ],
+          [
+            "90°",
+            "LV_DISPLAY_ROTATION_90"
+          ],
+          [
+            "180°",
+            "LV_DISPLAY_ROTATION_180"
+          ],
+          [
+            "270°",
+            "LV_DISPLAY_ROTATION_270"
+          ]
+        ]
+      }
+    ]
+  },
+  "aivox_config_ota_url": {
+    "message0": "روابط OTA مخصصة %1",
+    "tooltip": "استخدام خادم الجمبري لا يتطلب استدعاء هذه الكتلة؛ يمكن لبروتوكول خادم الجمبري المتوافق مخصصا استدعاء هذه الكتلة"
+  },
+  "aivox_config_websocket": {
+    "message0": "روابط ويب سوكيت المخصصة %1",
+    "tooltip": "استخدام خادم الجمبري لا يتطلب استدعاء هذه الكتلة؛ يمكن لبروتوكول خادم الجمبري المتوافق مخصصا استدعاء هذه الكتلة",
+    "message1": "رأس الطلب (صيغة مصفوفة لغة C) %1"
+  },
+  "esp32ai_start_engine": {
+    "message0": "إطلاق محرك ESP32-AI"
+  },
+  "aivox_display_mode": {
+    "message0": "قم بتهيئة نمط عرض الجلسة حسب %1",
+    "args0": [
+      {
+        "options": [
+          [
+            "عادي",
+            "normal"
+          ],
+          [
+            "محادثات وي تشات",
+            "wechat"
+          ]
+        ]
+      }
+    ]
+  },
+  "aivox3_set_es8311_volume": {
+    "message0": "اضبط مستوى صوت الذكاء الاصطناعي على %1",
+    "tooltip": "اضبط مستوى صوت جهاز الذكاء الاصطناعي"
+  },
+  "aivox3_set_screen_light": {
+    "message0": "قم بضبط سطوع شاشة ST7789 على %1",
+    "tooltip": "ضبط سطوع شاشة ST7789"
+  },
+  "esp32ai_wake_engine": {
+    "message0": "أيقظ ESP32-AI"
+  },
+  "esp32ai_sendtext": {
+    "message0": "إرسال الرسائل بشكل استباقي %1",
+    "tooltip": "أرسل رسالة استباقية إلى شياو تشي ليطلب منه العمل"
+  },
+  "aivox_lcd_show_status": {
+    "message0": "عرض %2 في %1",
+    "args0": [
+      {
+        "options": [
+          [
+            "صندوق الحالة",
+            "ShowStatus"
+          ],
+          [
+            "صندوق الإيموجي",
+            "SetEmotion"
+          ],
+          [
+            "صندوق المحتوى",
+            "SetChatMessage"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "esp32ai_state_change_root": {
+    "message0": "عندما يتغير حالة جهاز الذكاء الاصطناعي",
+    "tooltip": "البوابة الرئيسية للتعامل مع جميع أحداث تغير الحالة في أجهزة الذكاء الاصطناعي",
+    "message1": "%1"
+  },
+  "esp32ai_state_change_case": {
+    "message0": "عندما تكون الولاية %1",
+    "tooltip": "عندما يدخل جهاز الذكاء الاصطناعي الحالة المحددة، نفذ الكود هنا",
+    "args0": [
+      {
+        "options": [
+          [
+            "خمول",
+            "kIdle"
+          ],
+          [
+            "بدأ",
+            "kInitted"
+          ],
+          [
+            "التحميل",
+            "kLoading"
+          ],
+          [
+            "فشل التحميل.",
+            "kLoadingFailed"
+          ],
+          [
+            "الاستعداد",
+            "kStandby"
+          ],
+          [
+            "الاتصال",
+            "kConnecting"
+          ],
+          [
+            "الاستماع",
+            "kListening"
+          ],
+          [
+            "الحديث",
+            "kSpeaking"
+          ]
+        ]
+      }
+    ],
+    "message1": "%1"
+  },
+  "aivox3_ST77789TurnOnBacklight_engine": {
+    "message0": "إضاءة الشاشة ST77789"
+  },
+  "aivox3_ST77789TurnOffBacklight_engine": {
+    "message0": "أطفئ ST77789 الشاشة"
+  },
+  "esp32ai_loop_activation": {
+    "message0": "عندما يستقبل الذكاء الاصطناعي رسالة التفعيل",
+    "tooltip": "الذكاء الاصطناعي يفعل منطق الأحداث",
+    "message1": "%1"
+  },
+  "get_aivox_activation_message": {
+    "message0": "تم استلام %1",
+    "tooltip": "احصل على رمز تفعيل الجهاز",
+    "args0": [
+      {
+        "options": [
+          [
+            "رمز التفعيل",
+            "code"
+          ],
+          [
+            "تفعيل الموقع",
+            "message"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32ai_loop_emotion": {
+    "message0": "عندما يستقبل الذكاء الاصطناعي رمز تعبيري",
+    "tooltip": "المنطق وراء حادثة رموز AI-VOX",
+    "message1": "%1"
+  },
+  "get_aivox_emotion_result": {
+    "message0": "رموز الرموز التعبيرية المستلمة",
+    "tooltip": "احصل على التعبير العاطفي الحالي"
+  },
+  "aivox_emotion": {
+    "message0": "ما نوع الإيموجي الذي receive%1؟",
+    "tooltip": "التعبيرات العاطفية",
+    "args0": [
+      {
+        "options": [
+          [
+            "سعيد",
+            "happy"
+          ],
+          [
+            "رائع",
+            "cool"
+          ],
+          [
+            "يضحك بحرارة",
+            "laughing"
+          ],
+          [
+            "مضحك",
+            "funny"
+          ],
+          [
+            "حزين",
+            "sad"
+          ],
+          [
+            "غاضب",
+            "angry"
+          ],
+          [
+            "بكاء",
+            "crying"
+          ],
+          [
+            "أعجبني ذلك",
+            "loving"
+          ],
+          [
+            "محرج",
+            "embarrassed"
+          ],
+          [
+            "مندهش",
+            "surprised"
+          ],
+          [
+            "مصدومة",
+            "shocked"
+          ],
+          [
+            "التفكير",
+            "thinking"
+          ],
+          [
+            "مشاغب",
+            "winking"
+          ],
+          [
+            "اهدأ",
+            "relaxed"
+          ],
+          [
+            "استمتع",
+            "delicious"
+          ],
+          [
+            "حنون",
+            "kissy"
+          ],
+          [
+            "الثقة بالنفس",
+            "confident"
+          ],
+          [
+            "الإرهاق",
+            "sleepy"
+          ],
+          [
+            "مضحك",
+            "silly"
+          ],
+          [
+            "مرتبك",
+            "confused"
+          ]
+        ]
+      }
+    ]
+  },
+  "aivox_emotion_list": {
+    "message0": "ميم %1",
+    "tooltip": "التعبيرات العاطفية",
+    "args0": [
+      {
+        "options": [
+          [
+            "سعيد",
+            "happy"
+          ],
+          [
+            "رائع",
+            "cool"
+          ],
+          [
+            "يضحك بحرارة",
+            "laughing"
+          ],
+          [
+            "مضحك",
+            "funny"
+          ],
+          [
+            "حزين",
+            "sad"
+          ],
+          [
+            "غاضب",
+            "angry"
+          ],
+          [
+            "بكاء",
+            "crying"
+          ],
+          [
+            "أعجبني ذلك",
+            "loving"
+          ],
+          [
+            "محرج",
+            "embarrassed"
+          ],
+          [
+            "مندهش",
+            "surprised"
+          ],
+          [
+            "مصدومة",
+            "shocked"
+          ],
+          [
+            "التفكير",
+            "thinking"
+          ],
+          [
+            "مشاغب",
+            "winking"
+          ],
+          [
+            "اهدأ",
+            "relaxed"
+          ],
+          [
+            "استمتع",
+            "delicious"
+          ],
+          [
+            "حنون",
+            "kissy"
+          ],
+          [
+            "الثقة بالنفس",
+            "confident"
+          ],
+          [
+            "الإرهاق",
+            "sleepy"
+          ],
+          [
+            "مضحك",
+            "silly"
+          ],
+          [
+            "مرتبك",
+            "confused"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32ai_loop_chat_message": {
+    "message0": "عندما يتلقى الذكاء الاصطناعي رسالة دردشة",
+    "tooltip": "يتعامل مع أحداث رسائل تفاعل AI-VOX",
+    "message1": "%1"
+  },
+  "aivox_loop_chat_message_role_var": {
+    "message0": "هل وصلت أخبار من %1؟",
+    "tooltip": "دور جهاز AI-VOX في الرسائل الحالية",
+    "args0": [
+      {
+        "options": [
+          [
+            "أجاب المساعد",
+            "Assistant"
+          ],
+          [
+            "استفسار المستخدم",
+            "User"
+          ]
+        ]
+      }
+    ]
+  },
+  "aivox_mcp_register_control_command": {
+    "message0": "%1 التسجيل لخدمة التحكم في MCP %2",
+    "args0": [
+      {
+        "options": [
+          [
+            "عادي",
+            "regular"
+          ],
+          [
+            "فقط الإعداد",
+            "set_only"
+          ],
+          [
+            "أبلغ السلطات فقط",
+            "report_only"
+          ]
+        ]
+      },
+      null
+    ],
+    "message1": "Parameters%1"
+  },
+  "aivox_mcp_control_param": {
+    "message0": "معلمات خدمة MCP %1 Types%2",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "بوليان",
+            "Boolean"
+          ],
+          [
+            "الرقم",
+            "Number"
+          ],
+          [
+            "الوتر",
+            "String"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32ai_mcp_control_param": {
+    "message0": "معلمات خدمة MCP %1 Types%2",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "بوليان",
+            "Boolean"
+          ],
+          [
+            "الرقم",
+            "Number"
+          ],
+          [
+            "الوتر",
+            "String"
+          ]
+        ]
+      }
+    ]
+  },
+  "aivox_mcp_control": {
+    "message0": "خدمة MCP Name%1 Description%2"
+  },
+  "aivox_loop_chat_message_msg_var": {
+    "message0": "محتوى الرسالة المستلمة",
+    "tooltip": "محتوى الدردشة الحالي لجهاز AI-VOX"
+  },
+  "esp32ai_loop_mcp": {
+    "message0": "عندما يستقبل الذكاء الاصطناعي رسالة MCP",
+    "tooltip": "معالجة معلومات AI-VOX MCP",
+    "message1": "%1"
+  },
+  "esp32ai_loop_mcp_new": {
+    "message0": "%1 سجل لخدمات التحكم في MCP",
+    "tooltip": "تسجيل خدمة MCP ومعالجة الرسائل",
+    "args0": [
+      {
+        "options": [
+          [
+            "عادي",
+            "regular"
+          ],
+          [
+            "فقط الإعداد",
+            "set_only"
+          ],
+          [
+            "أبلغ السلطات فقط",
+            "report_only"
+          ]
+        ]
+      }
+    ],
+    "message1": "Name%1 Description%2 الخدمة",
+    "message2": "Parameters%1",
+    "message3": "معالجة الرسائل"
+  },
+  "aivox_get_iot_message_event_name": {
+    "message0": "اسم الجهاز: %1"
+  },
+  "aivox_get_iot_message_event_name_new": {
+    "message0": "اسم خدمة MCP هو %1؟"
+  },
+  "aivox_state_control_message_event_fuction": {
+    "message0": "احصل على نتيجة اسم الجهاز %1 معامل الحالة %2"
+  },
+  "aivox_control_message_event_fuction": {
+    "message0": "احصل على نتيجة %1 معامل خدمة MCP %2"
+  },
+  "aivox_response_mcp_control_result": {
+    "message0": "أبلغ عن نتائج المعدات %1 التحكم"
+  },
+  "aivox_response_mcp_control_result_new": {
+    "message0": "تقرير اسم خدمة MCP %1 اكتمال التنفيذ"
+  },
+  "aivox_update_mcp_control_state_new": {
+    "message0": "فقط أبلغ عن اسم خدمة MCP %1 معامل %2 القيمة هي %3"
+  },
+  "aivox_calculateupdate_mcp_control_state": {
+    "message0": "حساب وتقرير أسماء خدمة MCP %1 المعلمات %2",
+    "message1": "%1"
+  },
+  "esp32ai_selget_mcp_control": {
+    "message0": "اسم خدمة MCP: %1"
+  },
+  "lvgl_port_lock": {
+    "message0": "احصل على مهلة قفل LVGL %1ms",
+    "tooltip": "احصل على mutex ل LVGL"
+  },
+  "lvgl_port_unlock": {
+    "message0": "تحرير قفل LVGL",
+    "tooltip": "إصدار LVGL mutex"
+  },
+  "esp32ai_lvgl_obj_set_style_text_font": {
+    "message0": "تم ضبطه %1 خط شياوزي %2",
+    "tooltip": "تعيين خط النص للكائن",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "خط نص شاشة أحادي اللون بحجم 14",
+            "font_puhui_14_1"
+          ],
+          [
+            "شاشة أحادية اللون مع أيقونة كبيرة بحجم 30 بوصة",
+            "font_awesome_30_1"
+          ],
+          [
+            "شاشة أحادية اللون رقم 14 أيقونة صغيرة",
+            "font_awesome_14_1"
+          ],
+          [
+            "حجم خط نص الشاشة الملونة: 16",
+            "font_puhui_16_4"
+          ],
+          [
+            "أيقونة وظيفة الشاشة السوداء رقم 30",
+            "font_awesome_30_4"
+          ],
+          [
+            "أيقونة وظيفة الشاشة السوداء رقم 16",
+            "font_awesome_16_4"
+          ],
+          [
+            "مود الشاشة الملونة رقم 32",
+            "font_emoji_32_init()"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32ai_emotion_select": {
+    "message0": "العودة إلى خط الصورة الفئة: %1",
+    "tooltip": "اختر الفئات والأيقونات لإرجاع ماكرو الخط الرسومي المقابل",
+    "args0": [
+      {
+        "options": [
+          [
+            "نوع التعبير",
+            "EMOJI"
+          ],
+          [
+            "البطاريات",
+            "BATTERY"
+          ],
+          [
+            "نوع الواي فاي",
+            "WIFI"
+          ],
+          [
+            "فئة الإشارات",
+            "SIGNAL"
+          ],
+          [
+            "فئة المجلد",
+            "VOLUME"
+          ],
+          [
+            "فئة التحكم في الوسائط",
+            "MEDIA"
+          ],
+          [
+            "نوع السهم",
+            "ARROW"
+          ],
+          [
+            "فئة أيقونة الدوال",
+            "FUNCTION"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_label_set_text_emotion": {
+    "message0": "اضبط التبويب %1 النص على الأيقونة على %2",
+    "tooltip": "تعيين الأيقونة المعروضة على الملصق"
+  },
+  "lvgl_label_set_text_cpemotion": {
+    "message0": "قم بتعيين الوسوم %1 رموز شياوزي الملونة للشاشة %2",
+    "tooltip": "قم بضبط عرض رمز شاشة الألوان Xiaozhi الخاص بالوسم"
+  },
+  "aivox3_init_es8311": {
+    "tooltip": "تهيئة وحدة محرك AI-VOX3 ES8311"
+  },
+  "esp32ai_init_es8388": {
+    "tooltip": "تهيئة وحدة ES8388 من محرك الصوت شياوزي"
+  }
+}

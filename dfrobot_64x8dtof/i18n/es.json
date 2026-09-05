@@ -1,0 +1,76 @@
+{
+  "toolbox_name": "Rango de matriz dTOF 64x8",
+  "dtof64x8_init_uart": {
+    "message0": "Inicializar 64x8 dTOF %1 puerto serie %2 RX %3 TX %4",
+    "tooltip": "Inicializando 64x8 dTOF a través del puerto serie hardware ESP32, la tasa de baudios del sensor se mantiene fija en 921600.",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Serial1",
+            "Serial1"
+          ],
+          [
+            "Serial2",
+            "Serial2"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "dtof64x8_config_frame_single": {
+    "message0": "64x8 dTOF %1 configurado en modo de fotograma único",
+    "tooltip": "El sensor está configurado en modo de fotograma único. La biblioteca oficial aún no ha implementado un modo continuo."
+  },
+  "dtof64x8_config_full": {
+    "message0": "64x8 dTOF %1 configurados con salida de fotograma completo",
+    "tooltip": "Configura la salida para todos los puntos de telémetro de 64*8."
+  },
+  "dtof64x8_config_line": {
+    "message0": "64x8 dTOF %1 Configuración de línea de salida de línea única %2",
+    "tooltip": "Configura la salida a 64 puntos en la fila especificada, con números de línea que van del 1 al 8."
+  },
+  "dtof64x8_config_point": {
+    "message0": "64x8 dTOF %1 Configuración de línea de salida de punto único %2 punto %3",
+    "tooltip": "Configura la salida de puntos individuales en la fila y columna especificadas, línea 1-8, punto 1-64."
+  },
+  "dtof64x8_config_points": {
+    "message0": "64x8 dTOF %1 Configurar un punto único de salida Línea %2 Inicio %3 Fin %4",
+    "tooltip": "Configura la salida para especificar un segmento continuo de puntos dentro de la línea, números de línea 1-8, puntos 1-64."
+  },
+  "dtof64x8_read_data": {
+    "message0": "64x8 dTOF %1 tiempo de espera de refresco de datos %2 ms",
+    "tooltip": "Activar y leer un fotograma de datos, devolviendo el número de puntos analizados; Fallar o dejar de funcionar devuelve un número negativo."
+  },
+  "dtof64x8_point_value": {
+    "message0": "64x8 dTOF %1 Índice de caché %2 %3",
+    "tooltip": "Lee los datos de puntos de la caché tras la última actualización. Los índices comienzan desde 0.",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "X mm",
+            "X"
+          ],
+          [
+            "Y mm",
+            "Y"
+          ],
+          [
+            "Z distancia en mm",
+            "Z"
+          ],
+          [
+            "intensity",
+            "I"
+          ]
+        ]
+      }
+    ]
+  }
+}

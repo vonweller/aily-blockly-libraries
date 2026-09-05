@@ -1,0 +1,96 @@
+{
+  "toolbox_name": "DS1302 시계",
+  "toolbox_labels": {
+    "初始化与配置": "초기화 및 구성",
+    "时间读取": "독서시간",
+    "时间设置": "시간 설정",
+    "时间组件": "시간 구성요소",
+    "RAM操作": "RAM 작업"
+  },
+  "ds1302_setup": {
+    "message0": "DS1302 초기화 %1 CE 핀 %2 IO 핀 %3 SCLK 핀 %4",
+    "tooltip": "DS1302 RTC 클럭 모듈을 초기화하고 CE, IO, SCLK 핀을 설정하세요"
+  },
+  "ds1302_set_write_protect": {
+    "message0": "%1 쓰기 보호 설정 %2",
+    "tooltip": "DS1302의 쓰기 보호를 활성화 또는 비활성화",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "활성화",
+            "TRUE"
+          ],
+          [
+            "비활성화",
+            "FALSE"
+          ]
+        ]
+      }
+    ]
+  },
+  "ds1302_set_halt": {
+    "message0": "%1 시계 정지 %2",
+    "tooltip": "DS1302의 클럭 발진기를 정지 또는 시작",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "중지",
+            "TRUE"
+          ],
+          [
+            "Runtime",
+            "FALSE"
+          ]
+        ]
+      }
+    ]
+  },
+  "ds1302_get_time": {
+    "message0": "%1 현재 시간 가져오기",
+    "tooltip": "DS1302에서 현재 시간을 읽고 시간 객체를 반환합니다"
+  },
+  "ds1302_set_time": {
+    "message0": "%1 설정 시간 연도 %2월 %3 하루 %4시간 %5분 %6초 %7주 %8",
+    "tooltip": "DS1302 시간을 설정하세요 (연도, 월, 일, 시간, 분, 초, 평일)"
+  },
+  "ds1302_get_year": {
+    "message0": "시간 %1 의 연도",
+    "tooltip": "시간의 연도 객체 (2000-2099) 조회하기"
+  },
+  "ds1302_get_month": {
+    "message0": "시간 %1 의 월",
+    "tooltip": "시간의 달 객체 획득 (1-12)"
+  },
+  "ds1302_get_day": {
+    "message0": "시간 %1 의 일",
+    "tooltip": "시간 객체의 날짜 (1-31) 조회하기"
+  },
+  "ds1302_get_hour": {
+    "message0": "시간 %1 의 시",
+    "tooltip": "시간 객체의 시를 가져옴 (0-23)"
+  },
+  "ds1302_get_minute": {
+    "message0": "시간 %1 의 분",
+    "tooltip": "시간의 분(Minutes of Time) 객체 (0-59)"
+  },
+  "ds1302_get_second": {
+    "message0": "시간 %1 의 초",
+    "tooltip": "시간 객체를 가져오는 데 걸린 초 (0-59)"
+  },
+  "ds1302_get_weekday": {
+    "message0": "시간 %1 의 요일",
+    "tooltip": "시간 객체의 주를 얻습니다 (1=일요일, 2=월요일, ..., 7=토요일)"
+  },
+  "ds1302_write_ram": {
+    "message0": "%1 값 %2 RAM 주소 쓰기 %3",
+    "tooltip": "DS1302의 RAM에 1바이트를 기록하세요 (주소 범위 0-30)"
+  },
+  "ds1302_read_ram": {
+    "message0": "%1 읽기 RAM 주소 %2",
+    "tooltip": "DS1302 RAM에서 1바이트를 읽습니다 (주소 범위 0-30)"
+  }
+}

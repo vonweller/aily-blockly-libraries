@@ -1,0 +1,180 @@
+{
+  "toolbox_name": "TM16xx digital tube",
+  "toolbox_labels": {
+    "初始化": "initialization",
+    "显示控制": "display control",
+    "高级功能": "Advanced features",
+    "按键检测": "Key detection"
+  },
+  "tm16xx_init": {
+    "message0": "Initialization%1Digital tube DIO pin%2 CLK pin%3 STB pin%4 Number of digits%5",
+    "args0": [
+      {
+        "options": [
+          [
+            "TM1637",
+            "TM1637"
+          ],
+          [
+            "TM1638",
+            "TM1638"
+          ],
+          [
+            "TM1640",
+            "TM1640"
+          ],
+          [
+            "TM1650",
+            "TM1650"
+          ],
+          [
+            "TM1668",
+            "TM1668"
+          ]
+        ]
+      },
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": "${board.digitalPins}"
+      },
+      null
+    ]
+  },
+  "tm16xx_simple_init": {
+    "message0": "Initialization%1 digital tube DIO pin%2 CLK pin%3",
+    "args0": [
+      {
+        "options": [
+          [
+            "TM1637",
+            "TM1637"
+          ],
+          [
+            "TM1640",
+            "TM1640"
+          ],
+          [
+            "TM1650",
+            "TM1650"
+          ]
+        ]
+      },
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": "${board.digitalPins}"
+      }
+    ]
+  },
+  "tm16xx_display_string": {
+    "message0": "Display text%1"
+  },
+  "tm16xx_display_number": {
+    "message0": "Display number%1 Decimal point position%2",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "None",
+            "0"
+          ],
+          [
+            "No. 1",
+            "1"
+          ],
+          [
+            "No. 2",
+            "2"
+          ],
+          [
+            "No. 3",
+            "3"
+          ],
+          [
+            "No. 4",
+            "4"
+          ],
+          [
+            "No. 5",
+            "5"
+          ],
+          [
+            "No. 6",
+            "6"
+          ],
+          [
+            "No. 7",
+            "7"
+          ],
+          [
+            "No. 8",
+            "8"
+          ]
+        ]
+      }
+    ]
+  },
+  "tm16xx_clear_display": {
+    "message0": "clear display"
+  },
+  "tm16xx_set_brightness": {
+    "message0": "Set brightness%1",
+    "args0": [
+      {
+        "options": [
+          [
+            "Darkest(0)",
+            "0"
+          ],
+          [
+            "1",
+            "1"
+          ],
+          [
+            "2",
+            "2"
+          ],
+          [
+            "3",
+            "3"
+          ],
+          [
+            "4",
+            "4"
+          ],
+          [
+            "5",
+            "5"
+          ],
+          [
+            "6",
+            "6"
+          ],
+          [
+            "Brightest(7)",
+            "7"
+          ]
+        ]
+      }
+    ]
+  },
+  "tm16xx_set_segment": {
+    "message0": "Set the %1 bit to display the segment code %2"
+  },
+  "tm16xx_get_buttons": {
+    "message0": "Get button status"
+  },
+  "tm16xx_is_button_pressed": {
+    "message0": "Button %1 is pressed"
+  },
+  "tm16xx_display_time": {
+    "message0": "Display time hours %1 minutes %2 Display colon %3"
+  }
+}

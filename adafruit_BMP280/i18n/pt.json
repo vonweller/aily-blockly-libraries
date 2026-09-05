@@ -1,0 +1,169 @@
+{
+  "toolbox_name": "Sensor BMP280",
+  "bmp280_init": {
+    "message0": "Inicialize o endereço I2C do sensor BMP280 %1 use %2",
+    "args0": [
+      {
+        "options": [
+          [
+            "0x76 (padrão)",
+            "0x76"
+          ],
+          [
+            "0x77 (Alternativa)",
+            "0x77"
+          ]
+        ]
+      },
+      {
+        "options": "${board.i2c}"
+      }
+    ]
+  },
+  "bmp280_read_temperature": {
+    "message0": "Leia temperatura BMP280 (°C)"
+  },
+  "bmp280_read_pressure": {
+    "message0": "Leia pressão barométrica (hPa) do BMP280"
+  },
+  "bmp280_read_altitude": {
+    "message0": "Leia a pressão de ar de referência da altitude (metros) do BMP280 %1 hPa"
+  },
+  "bmp280_set_sampling": {
+    "message0": "Definir modo de amostragem BMP280 Modo de operação %1 Superamostragem de temperatura %2 Superamostragem de pressão %3 Filtragem %4 Tempo de sono %5",
+    "args0": [
+      {
+        "options": [
+          [
+            "normal",
+            "MODE_NORMAL"
+          ],
+          [
+            "Forçado",
+            "MODE_FORCED"
+          ],
+          [
+            "sleep",
+            "MODE_SLEEP"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "4 vezes",
+            "SAMPLING_X4"
+          ],
+          [
+            "Sem amostragem excessiva",
+            "SAMPLING_NONE"
+          ],
+          [
+            "1 vezes",
+            "SAMPLING_X1"
+          ],
+          [
+            "O dobro",
+            "SAMPLING_X2"
+          ],
+          [
+            "8 vezes",
+            "SAMPLING_X8"
+          ],
+          [
+            "16 vezes",
+            "SAMPLING_X16"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "4 vezes",
+            "SAMPLING_X4"
+          ],
+          [
+            "Sem amostragem excessiva",
+            "SAMPLING_NONE"
+          ],
+          [
+            "1 vezes",
+            "SAMPLING_X1"
+          ],
+          [
+            "O dobro",
+            "SAMPLING_X2"
+          ],
+          [
+            "8 vezes",
+            "SAMPLING_X8"
+          ],
+          [
+            "16 vezes",
+            "SAMPLING_X16"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "4 vezes",
+            "FILTER_X4"
+          ],
+          [
+            "Desligado",
+            "FILTER_OFF"
+          ],
+          [
+            "O dobro",
+            "FILTER_X2"
+          ],
+          [
+            "8 vezes",
+            "FILTER_X8"
+          ],
+          [
+            "16 vezes",
+            "FILTER_X16"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "1ms",
+            "STANDBY_MS_1"
+          ],
+          [
+            "63ms",
+            "STANDBY_MS_63"
+          ],
+          [
+            "125ms",
+            "STANDBY_MS_125"
+          ],
+          [
+            "250ms",
+            "STANDBY_MS_250"
+          ],
+          [
+            "500ms",
+            "STANDBY_MS_500"
+          ],
+          [
+            "1000ms",
+            "STANDBY_MS_1000"
+          ],
+          [
+            "2000ms",
+            "STANDBY_MS_2000"
+          ],
+          [
+            "4000ms",
+            "STANDBY_MS_4000"
+          ]
+        ]
+      }
+    ]
+  }
+}

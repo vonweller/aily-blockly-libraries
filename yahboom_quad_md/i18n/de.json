@@ -1,0 +1,335 @@
+{
+  "toolbox_name": "Vierfachmotorantrieb",
+  "toolbox_labels": {
+    "── I2C模式 ──": "── I2C-Modus ──",
+    "初始化": "Initialisierung",
+    "参数配置": "Parameterkonfiguration",
+    "电机控制": "Motorsteuerung",
+    "编码器": "Encoder",
+    "── 串口模式 ──": "── Serieller Port-Modus ──",
+    "数据读取": "Datenlesen"
+  },
+  "yahboom_md_iic_init": {
+    "message0": "Initialisieren Sie den I2C-Motortreiber %1 Adresse %2 Motortyp %3",
+    "tooltip": "Initialisieren Sie die Yahboom I2C-Vierweg-Motortreiberplatine, stellen Sie die I2C-Adresse und den Motortyp ein",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "0x26 (Standard)",
+            "0x26"
+          ],
+          [
+            "0x27",
+            "0x27"
+          ],
+          [
+            "0x28",
+            "0x28"
+          ],
+          [
+            "0x29",
+            "0x29"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "520-Motor",
+            "MOTOR_520"
+          ],
+          [
+            "310-Motoren",
+            "MOTOR_310"
+          ],
+          [
+            "TT-codierter Motor",
+            "MOTOR_TT_ENCODER"
+          ],
+          [
+            "TT-Gleichstrommotor",
+            "MOTOR_TT"
+          ],
+          [
+            "520-Liter-Motor",
+            "MOTOR_520_L"
+          ]
+        ]
+      }
+    ]
+  },
+  "yahboom_md_iic_set_deadzone": {
+    "message0": "I2C-Motorantrieb %1 Stelle Totzonen %2",
+    "tooltip": "Stellen Sie den Totzonenwert des Motors ein"
+  },
+  "yahboom_md_iic_set_pulse_line": {
+    "message0": "I2C-Motorantrieb %1 Pulsleitungszählung %2",
+    "tooltip": "Stellen Sie die Anzahl der magnetischen Ringpulslinien ein"
+  },
+  "yahboom_md_iic_set_pulse_phase": {
+    "message0": "I2C-Motorantrieb %1 Einbauverhältnis %2",
+    "tooltip": "Stellen Sie das Motorreduktionsverhältnis ein"
+  },
+  "yahboom_md_iic_set_wheel_diameter": {
+    "message0": "I2C-Motorantrieb %1 Raddurchmesser (mm) %2",
+    "tooltip": "Stellraddurchmesser (mm)"
+  },
+  "yahboom_md_iic_control_speed": {
+    "message0": "I2C-Motorantrieb %1 Drehzahlregelung M1 %2 M2 %3 M3 %4 M4 %5",
+    "tooltip": "Regelt die Drehzahl von 4 Motoren (Encoder-Motoren erforderlich), Bereich -1000~1000"
+  },
+  "yahboom_md_iic_control_pwm": {
+    "message0": "I2C-Motorantrieb %1 PWM-Steuerung M1 %2 M2 %3 M3 %4 M4 %5",
+    "tooltip": "Kontrolliert direkt die PWM-Werte von vier Motoren"
+  },
+  "yahboom_md_iic_encoder_offset": {
+    "message0": "Der I2C-Motorantrieb %1, um 10 ms Encoder-Offset %2",
+    "tooltip": "Lesen Sie den 10-ms-Echtzeit-Encoder-Offset des angegebenen Motors ab",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "M1",
+            "0"
+          ],
+          [
+            "M2",
+            "1"
+          ],
+          [
+            "M3",
+            "2"
+          ],
+          [
+            "M4",
+            "3"
+          ]
+        ]
+      }
+    ]
+  },
+  "yahboom_md_iic_encoder_total": {
+    "message0": "I2C-Motorantrieb %1 Ermitteln Sie die Gesamtzahl der Encoder %2",
+    "tooltip": "Lesen Sie die Gesamtzahl der Encoder für den angegebenen Motor ab",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "M1",
+            "0"
+          ],
+          [
+            "M2",
+            "1"
+          ],
+          [
+            "M3",
+            "2"
+          ],
+          [
+            "M4",
+            "3"
+          ]
+        ]
+      }
+    ]
+  },
+  "yahboom_md_usart_init": {
+    "message0": "Initialisieren Sie das serielle Motorantrieb %1 serielle Port %2 Motortyp %3",
+    "tooltip": "Initialisieren Sie die Yahboom-Seriellport-Vierfach-Motortreiberplatine",
+    "args0": [
+      null,
+      {
+        "options": "${board.serialPort}"
+      },
+      {
+        "options": [
+          [
+            "520-Motor",
+            "MOTOR_520"
+          ],
+          [
+            "310-Motoren",
+            "MOTOR_310"
+          ],
+          [
+            "TT-codierter Motor",
+            "MOTOR_TT_ENCODER"
+          ],
+          [
+            "TT-Gleichstrommotor",
+            "MOTOR_TT"
+          ],
+          [
+            "520-Liter-Motor",
+            "MOTOR_520_L"
+          ]
+        ]
+      }
+    ]
+  },
+  "yahboom_md_usart_set_deadzone": {
+    "message0": "Serielles Motorantrieb %1 Stelle Totzonen %2",
+    "tooltip": "Stellen Sie den Totzonenwert des Motors ein"
+  },
+  "yahboom_md_usart_set_pulse_line": {
+    "message0": "Serieller Motorantrieb %1 Pulsleitungszählung %2",
+    "tooltip": "Stellen Sie die Anzahl der magnetischen Ringpulslinien ein"
+  },
+  "yahboom_md_usart_set_pulse_phase": {
+    "message0": "Serieller Motorantrieb %1 Einstellen-Reduktionsverhältnis %2",
+    "tooltip": "Stellen Sie das Motorreduktionsverhältnis ein"
+  },
+  "yahboom_md_usart_set_wheel_diameter": {
+    "message0": "Seriell-Port-Motorantrieb %1 Raddurchmesser (mm) eingestellt %2",
+    "tooltip": "Stellraddurchmesser (mm)"
+  },
+  "yahboom_md_usart_set_pid": {
+    "message0": "Serieller Motorantrieb %1 PID P eingestellt %2 ich %3 D %4",
+    "tooltip": "Stellen Sie die Motor-PID-Parameter ein"
+  },
+  "yahboom_md_usart_set_upload_data": {
+    "message0": "Serieller Motorantrieb %1 Daten melden Gesamtencoder %2 10-ms-Encoder %3 Geschwindigkeit %4",
+    "tooltip": "Datentypen, die vom Motormodul gemeldet werden: Gesamtzahl der Encoder, 10 ms Echtzeit-Encoder, Geschwindigkeit (mm/s)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Aus",
+            "false"
+          ],
+          [
+            "Ein",
+            "true"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "Aus",
+            "false"
+          ],
+          [
+            "Ein",
+            "true"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "Aus",
+            "false"
+          ],
+          [
+            "Ein",
+            "true"
+          ]
+        ]
+      }
+    ]
+  },
+  "yahboom_md_usart_control_speed": {
+    "message0": "Seriellmotorantrieb %1 Geschwindigkeitsregelung M1 %2 M2 %3 M3 %4 M4 %5",
+    "tooltip": "Regelt die Drehzahl von 4 Motoren (Encoder-Motoren erforderlich), Bereich -1000~1000"
+  },
+  "yahboom_md_usart_control_pwm": {
+    "message0": "Seriellmotorantrieb %1 PWM-Steuerung M1 %2 M2 %3 M3 %4 M4 %5",
+    "tooltip": "Kontrolliert direkt die PWM-Werte von vier Motoren"
+  },
+  "yahboom_md_usart_data_available": {
+    "message0": "Der serielle Motor treibt %1 an, Daten zu empfangen",
+    "tooltip": "Überprüfen Sie, ob vom Motormodul zurückgegebene Daten empfangen wurden (es empfängt automatisch Daten in der Schleife)"
+  },
+  "yahboom_md_usart_parse_data": {
+    "message0": "Seriellmotor-Laufwerke %1 Parse-Daten",
+    "tooltip": "Das Parsen der empfangenen Daten und das Löschen des Empfangsflags sollten nach Bestätigung der verfügbaren Daten aufgerufen werden"
+  },
+  "yahboom_md_usart_encoder_offset": {
+    "message0": "Seriell-Port-Motorantrieb %1, um 10 ms Encoder-Offset %2",
+    "tooltip": "Erhalten Sie den 10-ms-Echtzeit-Encoder-Offset für den angegebenen Motor",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "M1",
+            "0"
+          ],
+          [
+            "M2",
+            "1"
+          ],
+          [
+            "M3",
+            "2"
+          ],
+          [
+            "M4",
+            "3"
+          ]
+        ]
+      }
+    ]
+  },
+  "yahboom_md_usart_encoder_total": {
+    "message0": "Serielles Motorantrieb %1 Ermitteln der Gesamtanzahl der Encoder %2",
+    "tooltip": "Ermitteln Sie die Gesamtzahl der Encoder für den angegebenen Motor",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "M1",
+            "0"
+          ],
+          [
+            "M2",
+            "1"
+          ],
+          [
+            "M3",
+            "2"
+          ],
+          [
+            "M4",
+            "3"
+          ]
+        ]
+      }
+    ]
+  },
+  "yahboom_md_usart_speed": {
+    "message0": "Serieller Motorantrieb %1 Aufnahmegeschwindigkeit (mm/s) %2",
+    "tooltip": "Erhalten Sie die aktuelle Drehzahl des angegebenen Motors (mm/s)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "M1",
+            "0"
+          ],
+          [
+            "M2",
+            "1"
+          ],
+          [
+            "M3",
+            "2"
+          ],
+          [
+            "M4",
+            "3"
+          ]
+        ]
+      }
+    ]
+  }
+}

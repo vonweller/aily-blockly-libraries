@@ -1,0 +1,58 @@
+{
+  "toolbox_name": "RFIDカードリーダー",
+  "toolbox_labels": {
+    "初始化": "初期化",
+    "事件": "イベント",
+    "控制": "コントロール",
+    "读取": "読む"
+  },
+  "rfid_setup": {
+    "message0": "RFIDカードリーダーをRXピン%2TXピン%1初期化%3ピン%4を有効にしてください",
+    "tooltip": "RFIDカードリーダーを初期化し、RX、TXを設定し、ピンを有効にする",
+    "args0": [
+      null,
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": "${board.digitalPins}"
+      }
+    ]
+  },
+  "rfid_on_tag_read": {
+    "message0": "RFIDカードリーダーがタグを読み取る%1",
+    "tooltip": "RFIDタグが読み取られたときに実行されるコード",
+    "message1": "タグID%1",
+    "message2": "%1 を実行します"
+  },
+  "rfid_available": {
+    "message0": "RFIDカードリーダー%1データを読み取ることができます",
+    "tooltip": "RFIDカードリーダーが読み取れるデータかどうかを確認してください"
+  },
+  "rfid_read_tag": {
+    "message0": "RFIDカードリーダー%1タグIDを読み取る",
+    "tooltip": "RFIDタグのIDを読み取る(10ビット文字列)"
+  },
+  "rfid_enable": {
+    "message0": "RFIDカードリーダー%1 %2",
+    "tooltip": "RFIDカードリーダーの有効化または無効化",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "有効にする",
+            "LOW"
+          ],
+          [
+            "無効にする",
+            "HIGH"
+          ]
+        ]
+      }
+    ]
+  }
+}

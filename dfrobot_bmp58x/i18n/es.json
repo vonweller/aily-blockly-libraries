@@ -1,0 +1,144 @@
+{
+  "toolbox_name": "BMP58X Barometer",
+  "bmp58x_init_i2c": {
+    "message0": "Inicializar el bus %1 del bus  del I2C BMP58X %2 dirección %3",
+    "tooltip": "Inicializa el sensor barométrico de temperatura BMP58X mediante I2C.",
+    "args0": [
+      null,
+      {
+        "options": "${board.i2c}"
+      },
+      {
+        "options": [
+          [
+            "0x47",
+            "0x47"
+          ],
+          [
+            "0x46",
+            "0x46"
+          ]
+        ]
+      }
+    ]
+  },
+  "bmp58x_init_spi": {
+    "message0": "Inicializar el bus SPI %1 BMP58X %2 CS %3",
+    "tooltip": "Inicializa el sensor barométrico de temperatura BMP58X mediante SPI."
+  },
+  "bmp58x_init_uart": {
+    "message0": "Inicializar BMP58X UART %1 dirección %2 %3 RX %4 TX %5",
+    "tooltip": "Inicializar BMP58X vía UART/Modbus RTU, tasa de baudios por defecto 9600.",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Serial1",
+            "Serial1"
+          ],
+          [
+            "Serial2",
+            "Serial2"
+          ],
+          [
+            "Serial",
+            "Serial"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "0x47",
+            "0x47"
+          ],
+          [
+            "0x46",
+            "0x46"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "bmp58x_read_value": {
+    "message0": "BMP58X %1 Leer %2",
+    "tooltip": "Lee temperatura, presión o altitud calculadas en función de la presión del aire.",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Temperatura C",
+            "TEMP"
+          ],
+          [
+            "Presión atmosférica Pa",
+            "PRESS"
+          ],
+          [
+            "Elevación m",
+            "ALT"
+          ]
+        ]
+      }
+    ]
+  },
+  "bmp58x_set_measure_mode": {
+    "message0": "BMP58X %1 Configuración del modo de medición %2",
+    "tooltip": "Configura el modo de medición/potencia del BMP58X.",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "normal",
+            "eNormal"
+          ],
+          [
+            "Medición simple",
+            "eSingleShot"
+          ],
+          [
+            "continuous",
+            "eContinuous"
+          ],
+          [
+            "sleep",
+            "eSleep"
+          ],
+          [
+            "Sueño profundo",
+            "eDeepSleep"
+          ]
+        ]
+      }
+    ]
+  },
+  "bmp58x_set_odr": {
+    "message0": "BMP58X %1 Establecer la Tasa de Salida %2",
+    "tooltip": "Configura la tasa de salida de datos en ODR."
+  },
+  "bmp58x_set_osr": {
+    "message0": "BMP58X %1 Ajustar la temperatura de sobremuestreo %2 la presión %3",
+    "tooltip": "Establece la tasa de sobremuestreo de temperatura y presión."
+  },
+  "bmp58x_set_iir": {
+    "message0": "El BMP58X %1 establece la temperatura %2 presión IIR %3",
+    "tooltip": "Ajusta los coeficientes de filtro IIR de temperatura y presión."
+  },
+  "bmp58x_calibrate_altitude": {
+    "message0": "El BMP58X %1 está calibrado a una altitud de corriente absolutamente pobre de %2 m",
+    "tooltip": "La diferencia absoluta de medición se calibra usando la elevación conocida actualmente."
+  },
+  "bmp58x_set_uart_baud": {
+    "message0": "BMP58X UART %1 Configuración de la velocidad de baud %2",
+    "tooltip": "Solo está disponible la versión UART, modificando la velocidad de baudios UART del sensor."
+  },
+  "bmp58x_reset": {
+    "message0": "Reinicio de software %1 BMP58X",
+    "tooltip": "Realiza el reinicio del software BMP58X."
+  }
+}

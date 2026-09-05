@@ -1,0 +1,194 @@
+{
+  "toolbox_name": "Pico Web Server",
+  "toolbox_labels": {
+    "初始化": "initialisation",
+    "路由处理": "traitement du routage",
+    "发送响应": "Envoyer la réponse",
+    "请求信息": "demander des informations",
+    "请求参数": "Paramètres de la demande",
+    "请求头": "En-tête de requête",
+    "高级功能": "Fonctionnalités avancées"
+  },
+  "rp_webserver_create": {
+    "message0": "Créer un serveur Web %1 port %2",
+    "tooltip": "Créer un objet serveur web"
+  },
+  "rp_webserver_begin": {
+    "message0": "Démarrez le serveur %1",
+    "tooltip": "Lance le serveur web et commence à écouter"
+  },
+  "rp_webserver_handle_client": {
+    "message0": "Gérer %1 demandes clients",
+    "tooltip": "Gérer les requêtes clients (doivent être placées en boucle)"
+  },
+  "rp_webserver_on": {
+    "message0": "Quand %1 reçoit %2 chemin %3",
+    "tooltip": "Enregistrer une fonction gestionnaire de requête pour le chemin spécifié",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "N'importe",
+            "HTTP_ANY"
+          ],
+          [
+            "GET",
+            "HTTP_GET"
+          ],
+          [
+            "POST",
+            "HTTP_POST"
+          ],
+          [
+            "PUT",
+            "HTTP_PUT"
+          ],
+          [
+            "DELETE",
+            "HTTP_DELETE"
+          ],
+          [
+            "PATCH",
+            "HTTP_PATCH"
+          ]
+        ]
+      },
+      null
+    ],
+    "message1": "exécuter %1"
+  },
+  "rp_webserver_on_not_found": {
+    "message0": "Quand %1 reçoit une requête de chemin inconnue",
+    "tooltip": "Gestion des requêtes qui ne correspondent à aucune route (404)",
+    "message1": "exécuter %1"
+  },
+  "rp_webserver_send": {
+    "message0": "%1 Code d’état de réponse %2 Type %3 contenu %4",
+    "tooltip": "Envoyer une réponse HTTP au client",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "Texte brut/texte clair",
+            "text/plain"
+          ],
+          [
+            "Texte/html HTML",
+            "text/html"
+          ],
+          [
+            "Application JSON/json",
+            "application/json"
+          ],
+          [
+            "Application XML/xml",
+            "application/xml"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "rp_webserver_send_custom_type": {
+    "message0": "%1 Code d’état de réponse %2 Type personnalisé %3 %4",
+    "tooltip": "Envoyer des réponses HTTP avec un type de contenu personnalisé"
+  },
+  "rp_webserver_send_header": {
+    "message0": "%1 Envoi de la tête de réponse %2 valeur %3",
+    "tooltip": "Envoi d’en-têtes de réponse personnalisés"
+  },
+  "rp_webserver_uri": {
+    "message0": "%1 L’URI demandé",
+    "tooltip": "Obtenir le chemin URI de la requête actuelle"
+  },
+  "rp_webserver_method": {
+    "message0": "%1 Méthodes de demande",
+    "tooltip": "Obtenez la méthode HTTP pour la requête courante (GET/POST, etc.)"
+  },
+  "rp_webserver_method_is": {
+    "message0": "%1 La méthode pour demander est %2",
+    "tooltip": "Vérifiez si la requête actuelle est une méthode HTTP spécifiée",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "GET",
+            "HTTP_GET"
+          ],
+          [
+            "POST",
+            "HTTP_POST"
+          ],
+          [
+            "PUT",
+            "HTTP_PUT"
+          ],
+          [
+            "DELETE",
+            "HTTP_DELETE"
+          ],
+          [
+            "PATCH",
+            "HTTP_PATCH"
+          ]
+        ]
+      }
+    ]
+  },
+  "rp_webserver_arg_by_name": {
+    "message0": "%1 Obtenir valeur paramètre %2",
+    "tooltip": "Obtenez la valeur du paramètre de requête en fonction du nom du paramètre"
+  },
+  "rp_webserver_arg_by_index": {
+    "message0": "%1 Obtenir valeur du paramètre %2 par index",
+    "tooltip": "Récupérer les valeurs des paramètres de requête basées sur l’index (à partir de 0)"
+  },
+  "rp_webserver_arg_name": {
+    "message0": "%1 Obtenir nom du paramètre %2 par index",
+    "tooltip": "Récupérer les noms des paramètres de requête basés sur l’index (à partir de 0)"
+  },
+  "rp_webserver_args_count": {
+    "message0": "%1 Nombre de paramètres",
+    "tooltip": "Récupère le nombre de paramètres de requête"
+  },
+  "rp_webserver_has_arg": {
+    "message0": "%1 Paramètre %2 existe",
+    "tooltip": "Vérifiez s’il existe des paramètres avec des noms spécifiés"
+  },
+  "rp_webserver_header": {
+    "message0": "%1 Obtenir valeur en-tête %2",
+    "tooltip": "Récupère la valeur de l’en-tête de requête pour le nom spécifié"
+  },
+  "rp_webserver_has_header": {
+    "message0": "%1 En-tête %2 existe",
+    "tooltip": "Vérifiez la présence d’un en-tête de requête avec le nom spécifié"
+  },
+  "rp_webserver_host_header": {
+    "message0": "%1 En-tête de requête de l’hôte",
+    "tooltip": "Récupère l’en-tête Host pour la requête"
+  },
+  "rp_webserver_collect_headers": {
+    "message0": "%1 En-tête de requête Collect %2",
+    "tooltip": "Définissez les en-têtes de requête pour collecter (plusieurs séparés par des virgules)"
+  },
+  "rp_webserver_enable_cors": {
+    "message0": "%1 Activer l’origine croisée CORS",
+    "tooltip": "Activer le partage de ressources inter-domaines (CORS)"
+  },
+  "rp_webserver_stop": {
+    "message0": "Arrêtez le serveur %1",
+    "tooltip": "Arrêter le serveur Web"
+  },
+  "rp_webserver_authenticate": {
+    "message0": "%1 Vérifiez le nom d’utilisateur %2 le mot de passe %3",
+    "tooltip": "Vérifiez le nom d’utilisateur et le mot de passe pour une authentification HTTP de base"
+  },
+  "rp_webserver_request_authentication": {
+    "message0": "%1 Demande d’authentification %2",
+    "tooltip": "Demander au client d’effectuer une authentification HTTP"
+  }
+}

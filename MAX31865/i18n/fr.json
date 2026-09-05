@@ -1,0 +1,81 @@
+{
+  "toolbox_name": "MAX31865 capteur de température",
+  "max31865_init": {
+    "message0": "Initialisation du capteur de température : broche CS %1 méthode de connexion %2 type de capteur %3",
+    "args0": [
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": [
+          [
+            "Système à deux fils",
+            "MAX31865_2WIRE"
+          ],
+          [
+            "Système à 3 fils",
+            "MAX31865_3WIRE"
+          ],
+          [
+            "Système à 4 fils",
+            "MAX31865_4WIRE"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "PT100",
+            "MAX31865_PT100"
+          ],
+          [
+            "PT1000",
+            "MAX31865_PT1000"
+          ]
+        ]
+      }
+    ]
+  },
+  "max31865_read": {
+    "message0": "Lisez le capteur de température pour obtenir la température %1 obtenir la résistance %2 obtenir le statut %3"
+  },
+  "max31865_set_low_threshold": {
+    "message0": "Fixez un seuil de défaut bas pour la température sensors%1"
+  },
+  "max31865_set_high_threshold": {
+    "message0": "Fixez un seuil de défaut élevé pour la température sensors%1"
+  },
+  "max31865_check_fault": {
+    "message0": "Vérifiez les défauts des capteurs de température %1",
+    "args0": [
+      {
+        "options": [
+          [
+            "Défauts à haute température",
+            "MAX31865_FAULT_TEMP_HIGH"
+          ],
+          [
+            "Défauts de basse température",
+            "MAX31865_FAULT_TEMP_LOW"
+          ],
+          [
+            "Résistance de référence avec défauts élevés",
+            "MAX31865_FAULT_REFIN_HIGH"
+          ],
+          [
+            "Résistance de référence basse / défaut en circuit ouvert",
+            "MAX31865_FAULT_REFIN_LOW_OPEN"
+          ],
+          [
+            "Défaillance basse / circuit ouvert du capteur de température",
+            "MAX31865_FAULT_RTDIN_LOW_OPEN"
+          ],
+          [
+            "La tension dépasse la panne de portée",
+            "MAX31865_FAULT_VOLTAGE_OOR"
+          ]
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,173 @@
+{
+  "toolbox_name": "PID-контроллер",
+  "toolbox_labels": {
+    "快速开始": "быстрый старт",
+    "基础控制": "базовый контроль",
+    "参数设置": "Настройки параметров",
+    "值设置与获取": "Установка и получение значения",
+    "高级控制": "Расширенный контроль",
+    "条件判断": "Условное суждение"
+  },
+  "pid_init": {
+    "message0": "Инициализация PID-контроллера %1 Входная переменная %2 Выходная переменная %3 Целевой значений %4 Предустановленный параметр %5P параметр %6 I параметр %7D параметр %8 Направление управления %9",
+    "args0": [
+      null,
+      null,
+      null,
+      null,
+      {
+        "options": [
+          [
+            "Настроить",
+            "custom"
+          ],
+          [
+            "Контроль температуры",
+            "temperature"
+          ],
+          [
+            "Скорость мотора",
+            "motor_speed"
+          ],
+          [
+            "контроль положения",
+            "position"
+          ],
+          [
+            "Регулирование уровня жидкости",
+            "level"
+          ]
+        ]
+      },
+      null,
+      null,
+      null,
+      {
+        "options": [
+          [
+            "Положительный контроль",
+            "DIRECT"
+          ],
+          [
+            "Реверсивное управление",
+            "REVERSE"
+          ]
+        ]
+      }
+    ]
+  },
+  "pid_quick_setup": {
+    "message0": "Быстрые PID-регуляторы %1 входных выводов %2 выходных pins%3 целевых значений %4 применения scenarios%5",
+    "args0": [
+      null,
+      {
+        "options": "${board.analogPins}"
+      },
+      {
+        "options": "${board.pwmPins}"
+      },
+      null,
+      {
+        "options": [
+          [
+            "Контроль температуры",
+            "temperature"
+          ],
+          [
+            "Скорость мотора",
+            "motor_speed"
+          ],
+          [
+            "контроль положения",
+            "position"
+          ],
+          [
+            "Регулирование уровня жидкости",
+            "level"
+          ],
+          [
+            "Настроить",
+            "custom"
+          ]
+        ]
+      }
+    ]
+  },
+  "pid_compute": {
+    "message0": "PID-контроллер %1 вычисления"
+  },
+  "pid_control_loop": {
+    "message0": "Запустите контроллер PID loop%1 контроллера %2 чтение входных данных %3 выполнение output%4"
+  },
+  "pid_temperature_control": {
+    "message0": "Регуляторы температуры PID %1 контакты температурного датчика %2 контакты нагревателя %3 целевой temperature%4",
+    "args0": [
+      null,
+      {
+        "options": "${board.analogPins}"
+      },
+      {
+        "options": "${board.pwmPins}"
+      },
+      null
+    ]
+  },
+  "pid_motor_speed_control": {
+    "message0": "Управление PID-контролем скорости мотора %1 выводами энкодера %2 PWM-контактами мотора %3 целевой скоростью (RPM) %4",
+    "args0": [
+      null,
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": "${board.pwmPins}"
+      },
+      null
+    ]
+  },
+  "pid_set_mode": {
+    "message0": "Установите PID-контроллер %1 режим на %2",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Авто",
+            "AUTOMATIC"
+          ],
+          [
+            "Manual",
+            "MANUAL"
+          ]
+        ]
+      }
+    ]
+  },
+  "pid_set_tunings": {
+    "message0": "Установите PID-контроллер %1 parameters%2P parameters%3I parameters%4D parameters%5"
+  },
+  "pid_set_output_limits": {
+    "message0": "Установите PID-контроллер %1 вывод limits%2 минимум %3 maximum%4"
+  },
+  "pid_get_input": {
+    "message0": "Получите PID-ввод values%1"
+  },
+  "pid_get_output": {
+    "message0": "Получите выход PID value%1"
+  },
+  "pid_set_setpoint": {
+    "message0": "Установите целевое значение PID %1 на %2"
+  },
+  "pid_set_input": {
+    "message0": "Установите входное значение PID %1 на %2"
+  },
+  "pid_adaptive_control": {
+    "message0": "Адаптивное управление PID %1PID-контроллер %2 входная переменная %3 целевой значений %4 порог %5 агрессивный параметр P%6I%7D%8 консервативный параметр P%9I%10D%11"
+  },
+  "pid_is_at_setpoint": {
+    "message0": "Достиг ли PID целевого значения %1 допуска %2 целевого value%3"
+  },
+  "pid_get_error": {
+    "message0": "Получите значения ошибки PID %1 целевой values%2"
+  }
+}

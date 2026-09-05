@@ -1,0 +1,169 @@
+{
+  "toolbox_name": "BMP280センサー",
+  "bmp280_init": {
+    "message0": "%2 を使用して BMP280 センサーの I2C アドレス %1 を初期化します",
+    "args0": [
+      {
+        "options": [
+          [
+            "0x76 (デフォルト)",
+            "0x76"
+          ],
+          [
+            "0x77 (代替)",
+            "0x77"
+          ]
+        ]
+      },
+      {
+        "options": "${board.i2c}"
+      }
+    ]
+  },
+  "bmp280_read_temperature": {
+    "message0": "BMP280 温度 (°C) を読み取る"
+  },
+  "bmp280_read_pressure": {
+    "message0": "BMP280 空気圧 (hPa) を読み取る"
+  },
+  "bmp280_read_altitude": {
+    "message0": "BMP280 高度 (メートル) 参照気圧 %1 hPa を読み取る"
+  },
+  "bmp280_set_sampling": {
+    "message0": "BMP280 サンプリング モードの設定 動作モード %1 温度オーバーサンプリング %2 気圧オーバーサンプリング %3 フィルタリング %4 スリープ時間 %5",
+    "args0": [
+      {
+        "options": [
+          [
+            "普通の",
+            "MODE_NORMAL"
+          ],
+          [
+            "力",
+            "MODE_FORCED"
+          ],
+          [
+            "寝る",
+            "MODE_SLEEP"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "4回",
+            "SAMPLING_X4"
+          ],
+          [
+            "オーバーサンプリングなし",
+            "SAMPLING_NONE"
+          ],
+          [
+            "1x",
+            "SAMPLING_X1"
+          ],
+          [
+            "2回",
+            "SAMPLING_X2"
+          ],
+          [
+            "8回",
+            "SAMPLING_X8"
+          ],
+          [
+            "16回",
+            "SAMPLING_X16"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "4回",
+            "SAMPLING_X4"
+          ],
+          [
+            "オーバーサンプリングなし",
+            "SAMPLING_NONE"
+          ],
+          [
+            "1x",
+            "SAMPLING_X1"
+          ],
+          [
+            "2回",
+            "SAMPLING_X2"
+          ],
+          [
+            "8回",
+            "SAMPLING_X8"
+          ],
+          [
+            "16回",
+            "SAMPLING_X16"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "4回",
+            "FILTER_X4"
+          ],
+          [
+            "閉じる",
+            "FILTER_OFF"
+          ],
+          [
+            "2回",
+            "FILTER_X2"
+          ],
+          [
+            "8回",
+            "FILTER_X8"
+          ],
+          [
+            "16回",
+            "FILTER_X16"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "1ms",
+            "STANDBY_MS_1"
+          ],
+          [
+            "63ms",
+            "STANDBY_MS_63"
+          ],
+          [
+            "125ms",
+            "STANDBY_MS_125"
+          ],
+          [
+            "250ms",
+            "STANDBY_MS_250"
+          ],
+          [
+            "500ms",
+            "STANDBY_MS_500"
+          ],
+          [
+            "1000ms",
+            "STANDBY_MS_1000"
+          ],
+          [
+            "2000ms",
+            "STANDBY_MS_2000"
+          ],
+          [
+            "4000ms",
+            "STANDBY_MS_4000"
+          ]
+        ]
+      }
+    ]
+  }
+}

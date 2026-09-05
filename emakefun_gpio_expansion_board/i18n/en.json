@@ -1,0 +1,269 @@
+{
+  "toolbox_name": "GPIO expansion board",
+  "toolbox_labels": {
+    "初始化": "initialization",
+    "GPIO控制": "GPIO control",
+    "PWM控制": "PWM control",
+    "舵机控制": "Servo control"
+  },
+  "gpio_expansion_board_init": {
+    "message0": "GPIO expansion board %1 Initialization I2C address %2",
+    "tooltip": "Create a GPIO expansion board instance, the default I2C address is 0x24(36)"
+  },
+  "gpio_expansion_board_set_mode": {
+    "message0": "GPIO expansion board %1 pin %2 is set to %3 mode",
+    "tooltip": "Set the working mode of the GPIO pin",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "E0",
+            "0"
+          ],
+          [
+            "E1",
+            "1"
+          ],
+          [
+            "E2",
+            "2"
+          ],
+          [
+            "E3",
+            "3"
+          ],
+          [
+            "E4",
+            "4"
+          ],
+          [
+            "E5",
+            "5"
+          ],
+          [
+            "E6",
+            "6"
+          ],
+          [
+            "E7",
+            "7"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "input(pull-up)",
+            "1"
+          ],
+          [
+            "Enter(drop down)",
+            "2"
+          ],
+          [
+            "Input (floating)",
+            "4"
+          ],
+          [
+            "output",
+            "8"
+          ],
+          [
+            "ADC",
+            "16"
+          ],
+          [
+            "PWM",
+            "32"
+          ]
+        ]
+      }
+    ]
+  },
+  "gpio_expansion_board_set_level": {
+    "message0": "GPIO expansion board %1 pin %2 output %3",
+    "tooltip": "Set the output level of the GPIO pin",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "E0",
+            "0"
+          ],
+          [
+            "E1",
+            "1"
+          ],
+          [
+            "E2",
+            "2"
+          ],
+          [
+            "E3",
+            "3"
+          ],
+          [
+            "E4",
+            "4"
+          ],
+          [
+            "E5",
+            "5"
+          ],
+          [
+            "E6",
+            "6"
+          ],
+          [
+            "E7",
+            "7"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "low level",
+            "0"
+          ],
+          [
+            "high level",
+            "1"
+          ]
+        ]
+      }
+    ]
+  },
+  "gpio_expansion_board_get_level": {
+    "message0": "GPIO expansion board %1 pin %2 level",
+    "tooltip": "Read the digital level value of the GPIO pin",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "E0",
+            "0"
+          ],
+          [
+            "E1",
+            "1"
+          ],
+          [
+            "E2",
+            "2"
+          ],
+          [
+            "E3",
+            "3"
+          ],
+          [
+            "E4",
+            "4"
+          ],
+          [
+            "E5",
+            "5"
+          ],
+          [
+            "E6",
+            "6"
+          ],
+          [
+            "E7",
+            "7"
+          ]
+        ]
+      }
+    ]
+  },
+  "gpio_expansion_board_get_adc": {
+    "message0": "GPIO expansion board %1 pin %2 ADC value",
+    "tooltip": "Read the ADC value of the GPIO pin (0-1023)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "E0",
+            "0"
+          ],
+          [
+            "E1",
+            "1"
+          ],
+          [
+            "E2",
+            "2"
+          ],
+          [
+            "E3",
+            "3"
+          ],
+          [
+            "E4",
+            "4"
+          ],
+          [
+            "E5",
+            "5"
+          ],
+          [
+            "E6",
+            "6"
+          ],
+          [
+            "E7",
+            "7"
+          ]
+        ]
+      }
+    ]
+  },
+  "gpio_expansion_board_set_pwm_frequency": {
+    "message0": "GPIO expansion board %1 Set PWM frequency %2 Hz",
+    "tooltip": "Set PWM frequency (1-10000Hz)"
+  },
+  "gpio_expansion_board_set_pwm_duty": {
+    "message0": "GPIO expansion board %1 Pin %2 PWM duty cycle %3",
+    "tooltip": "Set PWM duty cycle (0-4095), only supports E1 and E2 pins",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "E1",
+            "1"
+          ],
+          [
+            "E2",
+            "2"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "gpio_expansion_board_set_servo_angle": {
+    "message0": "GPIO expansion board %1 pin %2 servo angle %3 degrees",
+    "tooltip": "Set the servo angle (0-180 degrees), only supports E1 and E2 pins",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "E1",
+            "1"
+          ],
+          [
+            "E2",
+            "2"
+          ]
+        ]
+      },
+      null
+    ]
+  }
+}

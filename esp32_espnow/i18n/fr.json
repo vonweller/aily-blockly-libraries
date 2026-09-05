@@ -1,0 +1,227 @@
+{
+  "toolbox_name": "ESP-NOW",
+  "toolbox_labels": {
+    "ESP-NOW极简模式": "Mode minimaliste ESP-NOW",
+    "ESP-NOW串口模式": "Mode port série ESP-NOW",
+    "ESP-NOW标准模式": "Mode standard ESP-NOW",
+    "初始化": "initialisation",
+    "创建对等设备": "Créer un appareil homologue",
+    "发送消息": "Envoyer un message",
+    "接收事件": "recevoir des événements",
+    "回调变量": "variable de rappel",
+    "快速操作": "Fonctionnement rapide",
+    "状态查询": "Requête d'état"
+  },
+  "esp_now_master_init": {
+    "message0": "ESP-NOW initialise sur le canal hôte (émetteur) %1",
+    "tooltip": "Initialisation en un clic en tant qu’hôte ESP-NOW (émetteur de diffusion), configuration automatique du WiFi et d’ESP-NOW"
+  },
+  "esp_now_slave_init": {
+    "message0": "ESP-NOW initialise en esclave (récepteur) channel%1",
+    "tooltip": "Initialisation en un clic en tant qu’esclave ESP-NOW (récepteur), configuration automatique du WiFi, ESP-NOW et enregistrement des nouveaux appareils"
+  },
+  "esp_now_broadcast_message": {
+    "message0": "Message diffusé %1",
+    "tooltip": "Diffusion des messages à tous les appareils du réseau (doit d’abord être initialisée en tant qu’hôte)"
+  },
+  "esp_now_on_message_received": {
+    "message0": "Lorsque vous recevez un message d’ESP-NOW",
+    "tooltip": "Les rappels de réception globale déclenchent tout message ESP-NOW. Les rappels incluent : contenu du message reçu, longueur du message, statut de diffusion et MAC de l’expéditeur",
+    "message1": "exécuter %1"
+  },
+  "esp_now_received_message": {
+    "message0": "Nouvelles reçues",
+    "tooltip": "Récupérer le contenu des messages reçus dans le rappel de réception global"
+  },
+  "esp_now_received_message_len": {
+    "message0": "Longueur du message",
+    "tooltip": "Obtenez la longueur du message dans le rappel de réception global"
+  },
+  "esp_now_received_is_broadcast": {
+    "message0": "C’était des messages diffusés",
+    "tooltip": "Vérifiez si un message est diffusé lors du rappel de réception global"
+  },
+  "esp_now_received_sender_mac": {
+    "message0": "Émetteur MAC",
+    "tooltip": "Obtenir l’adresse MAC de l’expéditeur dans le rappel global de réception"
+  },
+  "esp_now_reply_message": {
+    "message0": "Répondre à la message%1",
+    "tooltip": "Répondre au dernier appareil qui a envoyé le message (utilisé pendant ou après avoir reçu des rappels)"
+  },
+  "esp_now_node_init": {
+    "message0": "ESP-NOW initialise comme un canal de nœud bidirectionnel %1",
+    "tooltip": "Initialisé comme un nœud bidirectionnel, il peut à la fois diffuser et envoyer des messages"
+  },
+  "esp_now_begin": {
+    "message0": "Initialiser ESP-NOW",
+    "tooltip": "Initialiser le protocole ESP-NOW en utilisant la configuration par défaut"
+  },
+  "esp_now_begin_with_pmk": {
+    "message0": "Initialiser la clé maîtresse ESP-NOW %1",
+    "tooltip": "Initialiser le protocole ESP-NOW et définir la clé maîtresse (16 octets) pour la communication chiffrée"
+  },
+  "esp_now_end": {
+    "message0": "Arrêtez ESP-NOW",
+    "tooltip": "Mettre fin à l’accord ESP-NOW"
+  },
+  "esp_now_wifi_init": {
+    "message0": "Régler le mode WiFi %1 le canal %2",
+    "tooltip": "Initialisez le mode et le canal WiFi (ESP-NOW nécessite d’abord la configuration WiFi)",
+    "args0": [
+      {
+        "options": [
+          [
+            "STA (Mode Site)",
+            "WIFI_STA"
+          ],
+          [
+            "AP (mode point d’accès rapide)",
+            "WIFI_AP"
+          ],
+          [
+            "AP+STA (Mode hybride)",
+            "WIFI_AP_STA"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "esp_now_create_peer": {
+    "message0": "Créer un périphérique pair %1 adresse MAC %2",
+    "tooltip": "Créez un périphérique pair ESP-NOW (vous devez spécifier l’adresse MAC de l’autre partie)"
+  },
+  "esp_now_create_peer_advanced": {
+    "message0": "Créer un périphérique pair %1 adresse MAC %2 \nClé de chiffrement du canal %3 %4",
+    "tooltip": "Créer un périphérique pair ESP-NOW avec chiffrement (LMK nécessite 16 octets)"
+  },
+  "esp_now_create_broadcast_peer": {
+    "message0": "Créez un appareil pair de diffusion %1",
+    "tooltip": "Créer un périphérique pair de diffusion pour envoyer des messages à tous les appareils du réseau"
+  },
+  "esp_now_remove_peer": {
+    "message0": "Supprimer les appareils pair-à-pair %1",
+    "tooltip": "Supprimer les appareils pairs enregistrés"
+  },
+  "esp_now_send": {
+    "message0": "Un appareil pair %1 envoyer des messages %2",
+    "tooltip": "Envoyer des messages de chaîne vers des périphériques pairs spécifiés"
+  },
+  "esp_now_send_data": {
+    "message0": "Périphérique pair %1 Envoyer des données %2 longueur %3",
+    "tooltip": "Envoyer les données brutes au périphérique pair spécifié"
+  },
+  "esp_now_on_receive": {
+    "message0": "Lorsque l’appareil pair %1 reçoit un message",
+    "tooltip": "Configurez la fonction de rappel pour que les appareils pairs reçoivent les messages. Variables disponibles dans les rappels : esp_now_data (contenu du message), esp_now_len (longueur du message), esp_now_broadcast (ou non diffusion)",
+    "message1": "exécuter %1"
+  },
+  "esp_now_on_sent": {
+    "message0": "Lorsque le message de %1 de l’appareil pair est complètement envoyé",
+    "tooltip": "Définissez la fonction de rappel pour le message après l’envoi du message. Variable disponible en rappel : esp_now_success (si envoyé avec succès)",
+    "message1": "exécuter %1"
+  },
+  "esp_now_on_new_peer": {
+    "message0": "Lorsqu’un nouvel appareil pair reçoit un message",
+    "tooltip": "Déclenché lors de la réception d’un message d’un appareil inconnu. Variable disponible dans les rappels : esp_now_src_mac (MAC de l’expéditeur), esp_now_data (contenu du message), esp_now_len (longueur du message)",
+    "message1": "exécuter %1"
+  },
+  "esp_now_received_data": {
+    "message0": "Le contenu du message reçu",
+    "tooltip": "Récupérer le contenu du message reçu (chaîne) dans le rappel de réception"
+  },
+  "esp_now_received_len": {
+    "message0": "La longueur du message reçu",
+    "tooltip": "Obtenez la longueur du message reçu dans le rappel de réception"
+  },
+  "esp_now_is_broadcast": {
+    "message0": "Est-ce un message diffusé ?",
+    "tooltip": "Déterminez s’il s’agit d’un message diffusé lors du rappel de réception"
+  },
+  "esp_now_send_success": {
+    "message0": "Savoir si l’envoi a été réussi",
+    "tooltip": "Vérifiez si le message a été envoyé avec succès lors du rappel d’envoi"
+  },
+  "esp_now_src_mac": {
+    "message0": "L’adresse MAC de l’expéditeur",
+    "tooltip": "Obtenir l’adresse MAC de l’expéditeur dans le nouveau rappel de périphérique pair"
+  },
+  "esp_now_serial_create": {
+    "message0": "Créer un port série ESP-NOW %1 canal %2 MAC contrepartie %3 mode de fonctionnement %4",
+    "tooltip": "Créer des objets de communication série ESP-NOW, similaire à l’utilisation des séries",
+    "args0": [
+      null,
+      null,
+      null,
+      {
+        "options": [
+          [
+            "Mode station",
+            "WIFI_STA"
+          ],
+          [
+            "Mode AP",
+            "WIFI_AP"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp_now_serial_available": {
+    "message0": "Octets port%1 sérieux lisibles ESP-NOW",
+    "tooltip": "Récupère le nombre d’octets lisibles dans le tampon de réception du port série ESP-NOW"
+  },
+  "esp_now_serial_available_for_write": {
+    "message0": "Port série ESP-NOW %1 Nombre d’octets écrivables",
+    "tooltip": "Obtenir l’espace restant dans le tampon de transmission du port série ESP-NOW"
+  },
+  "esp_now_serial_read": {
+    "message0": "Le port série ESP-NOW %1 lit un octet",
+    "tooltip": "Lit un octet depuis le port série ESP-NOW"
+  },
+  "esp_now_serial_read_string": {
+    "message0": "Le port série ESP-NOW %1 lit les chaînes",
+    "tooltip": "Lire toutes les données disponibles depuis le port série ESP-NOW sous forme de chaînes"
+  },
+  "esp_now_serial_read_string_until": {
+    "message0": "Ports série ESP-NOW %1 Lecture des chaînes jusqu’à %2",
+    "tooltip": "Lit les données du port série ESP-NOW jusqu’à ce qu’il rencontre le caractère spécifié"
+  },
+  "esp_now_serial_print": {
+    "message0": "Le port série ESP-NOW %1 envoyer %2",
+    "tooltip": "Les données sont transmises via le port série ESP-NOW"
+  },
+  "esp_now_serial_println": {
+    "message0": "Le port série ESP-NOW %1 envoie %2 et se casse",
+    "tooltip": "Envoi de données et coupures de ligne via le port série ESP-NOW"
+  },
+  "esp_now_serial_write": {
+    "message0": "Le port série ESP-NOW %1 pour envoyer les données brutes %2",
+    "tooltip": "Les données brutes sont envoyées via un port série ESP-NOW"
+  },
+  "esp_now_quick_broadcast": {
+    "message0": "Message de diffusion rapide %1 chaîne %2",
+    "tooltip": "Diffuser rapidement les messages à tous les appareils du réseau (initialisation automatique)"
+  },
+  "esp_now_quick_send": {
+    "message0": "Envoyez rapidement des messages à MAC%1 Contenu %2 channels%3",
+    "tooltip": "Envoyer rapidement des messages vers des appareils avec des adresses MAC spécifiées (initialisation automatique)"
+  },
+  "esp_now_get_mac": {
+    "message0": "Obtenez l’adresse MAC locale",
+    "tooltip": "Obtenez l’adresse MAC WiFi locale"
+  },
+  "esp_now_get_max_data_len": {
+    "message0": "Longueur maximale de données ESP-NOW",
+    "tooltip": "Obtenir la longueur maximale de données supportée par le protocole ESP-NOW (généralement 250 octets)"
+  },
+  "esp_now_get_peer_count": {
+    "message0": "Nombre d’appareils équivalent ESP-NOW",
+    "tooltip": "Obtenez le nombre d’appareils homologues enregistrés"
+  },
+  "esp_now_get_version": {
+    "message0": "Numéro de version ESP-NOW",
+    "tooltip": "Obtenir le numéro de version du protocole ESP-NOW"
+  }
+}

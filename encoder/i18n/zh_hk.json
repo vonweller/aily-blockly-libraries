@@ -1,0 +1,99 @@
+{
+  "toolbox_name": "旋轉編碼器",
+  "encoder_init": {
+    "message0": "初始化編碼器 %1 連接到腳位A %2 腳位B %3",
+    "tooltip": "初始化一個旋轉編碼器對象，連接到指定的兩個引腳",
+    "args0": [
+      null,
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": "${board.digitalPins}"
+      }
+    ]
+  },
+  "encoder_set_property": {
+    "message0": "將編碼器 %1 的 %2 設為 %3",
+    "tooltip": "設定編碼器的各種屬性值",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "地理位置",
+            "position"
+          ],
+          [
+            "上限",
+            "upper_limit"
+          ],
+          [
+            "下限",
+            "lower_limit"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "encoder_value_changed": {
+    "message0": "旋轉編碼器值變化",
+    "tooltip": "判斷旋轉編碼器的值是否發生了變化"
+  },
+  "encoder_state_change": {
+    "message0": "當編碼器狀態 %1 時 %2 執行 %3",
+    "tooltip": "當編碼器發生特定狀態變化時執行對應操作",
+    "args0": [
+      {
+        "options": [
+          [
+            "向左旋轉",
+            "LEFT"
+          ],
+          [
+            "向右旋轉",
+            "RIGHT"
+          ],
+          [
+            "高於上限",
+            "ABOVE_LIMIT"
+          ],
+          [
+            "低於下限",
+            "BELOW_LIMIT"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "encoder_get_property": {
+    "message0": "取得編碼器 %1 的 %2",
+    "tooltip": "取得編碼器的各種屬性值",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "地理位置",
+            "POSITION"
+          ],
+          [
+            "導演",
+            "DIRECTION"
+          ],
+          [
+            "上限",
+            "UPPER_LIMIT"
+          ],
+          [
+            "下限",
+            "LOWER_LIMIT"
+          ]
+        ]
+      }
+    ]
+  }
+}

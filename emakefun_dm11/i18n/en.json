@@ -1,0 +1,83 @@
+{
+  "toolbox_name": "DM11 motor driver",
+  "toolbox_labels": {
+    "初始化": "initialization",
+    "PWM控制": "PWM control",
+    "电机控制": "Motor control"
+  },
+  "dm11_init": {
+    "message0": "Initialize DM11 %1 I2C address %2 PWM frequency %3 Hz",
+    "tooltip": "Initialize the DM11 motor driver module, default I2C address 0x15, default PWM frequency 1000Hz"
+  },
+  "dm11_pwm_duty": {
+    "message0": "DM11 %1 Set channel %2 PWM duty cycle to %3",
+    "tooltip": "Set the duty cycle of the specified PWM channel, ranging from 0-4095",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Channel 0",
+            "0"
+          ],
+          [
+            "Channel 1",
+            "1"
+          ],
+          [
+            "Channel 2",
+            "2"
+          ],
+          [
+            "Channel 3",
+            "3"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "dm11_motor_control": {
+    "message0": "DM11 %1 Control %2 Speed %3",
+    "tooltip": "Control the motor speed, positive value for forward rotation, negative value for reverse rotation, range -4095 to 4095",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Motor A",
+            "A"
+          ],
+          [
+            "Motor B",
+            "B"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "dm11_motor_stop": {
+    "message0": "DM11 %1 Stop %2",
+    "tooltip": "Stop specified motor or all motors",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Motor A",
+            "A"
+          ],
+          [
+            "Motor B",
+            "B"
+          ],
+          [
+            "All motors",
+            "ALL"
+          ]
+        ]
+      }
+    ]
+  }
+}

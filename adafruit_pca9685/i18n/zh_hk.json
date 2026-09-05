@@ -1,0 +1,58 @@
+{
+  "toolbox_name": "PCA9685舵機驅動",
+  "toolbox_labels": {
+    "初始化": "初始化",
+    "舵机控制": "舵機控制",
+    "高级PWM控制": "進階PWM控制",
+    "舵机参数配置": "舵機參數配置",
+    "电源管理": "電源管理"
+  },
+  "pca9685_create": {
+    "message0": "建立 PCA9685 舵機驅動器 變數 %1",
+    "tooltip": "建立PCA9685舵機驅動器物件（16通道PWM控制器）"
+  },
+  "pca9685_begin": {
+    "message0": "初始化 %1 I2C位址0X %2",
+    "tooltip": "初始化PCA9685設備，預設位址0x40"
+  },
+  "pca9685_set_freq": {
+    "message0": "設定 %1 PWM頻率 %2 Hz",
+    "tooltip": "設定PWM輸出頻率（舵機通常使用50-60Hz）"
+  },
+  "pca9685_set_servo_angle": {
+    "message0": "設定 %1 頻道 %2 舵機角度 %3 度",
+    "tooltip": "設定指定通道舵機角度（0-180度）"
+  },
+  "pca9685_set_pwm": {
+    "message0": "設定 %1 頻道 %2 PWM值 開始 %3 結束 %4",
+    "tooltip": "直接設定PWM值（0-4095），進階使用者使用"
+  },
+  "pca9685_set_microseconds": {
+    "message0": "設定 %1 頻道 %2 脈寬 %3 微秒",
+    "tooltip": "設定脈衝寬度（微秒），舵機通常500-2500μs"
+  },
+  "pca9685_config_servo": {
+    "message0": "配置 %1 舵機參數 最小PWM %2 最大PWM %3",
+    "tooltip": "配置舵機PWM範圍（預設100-700）"
+  },
+  "pca9685_set_all_servos": {
+    "message0": "設定 %1 所有舵機角度 %2",
+    "tooltip": "將所有16個頻道設定為相同角度"
+  },
+  "pca9685_sleep": {
+    "message0": "使 %1 進入睡眠模式",
+    "tooltip": "進入低功耗睡眠模式"
+  },
+  "pca9685_wakeup": {
+    "message0": "喚醒 %1",
+    "tooltip": "從睡眠模式喚醒"
+  },
+  "pca9685_set_servo_range": {
+    "message0": "設定 %1 通道 %2 伺服範圍 最小角度 %3 對應 PWM %4 最大角度 %5 對應 PWM %6",
+    "tooltip": "為特定通道自訂舵機角度-PWM映射關係"
+  },
+  "pca9685_angle_to_pwm": {
+    "message0": "%1 將角度 %2 轉換為PWM值",
+    "tooltip": "將角度值轉換為對應的PWM值"
+  }
+}

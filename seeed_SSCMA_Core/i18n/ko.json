@@ -1,0 +1,252 @@
+{
+  "toolbox_name": "SSCMA Core",
+  "toolbox_labels": {
+    "初始化": "초기화",
+    "推理处理": "추론 처리",
+    "回调注册": "콜백 등록",
+    "检测结果": "테스트 결과",
+    "分类结果": "분류 결과",
+    "关键点结果": "핵심 결과",
+    "关键点组结果": "키포인트 그룹 결과",
+    "性能指标": "성과 지표"
+  },
+  "sscma_core_begin": {
+    "message0": "기본 구성ESP32S3 XIAO로 SSCMA를 초기화하세요",
+    "tooltip": "SSCMA 인스턴스를 초기화하세요"
+  },
+  "sscma_core_set_loop_task_stack_size": {
+    "message0": "SSCMA 루프 작업 스택 크기를 %1바이트로 설정하세요",
+    "tooltip": "SSCMA 루프 작업 스택의 크기를 설정합니다"
+  },
+  "sscma_core_invoke": {
+    "message0": "SSCMA 추론 처리 프레임 %1",
+    "tooltip": "AI 추론 실행"
+  },
+  "sscma_core_get_managed_frame": {
+    "message0": "관리 프레임 복구",
+    "tooltip": "비디오 캡처에서 관리 프레임을 얻기"
+  },
+  "sscma_core_register_boxes_callback": {
+    "message0": "SSCMA 객체 검출 콜백",
+    "tooltip": "레지스터 객체 검출 콜백",
+    "message1": "실행 %1"
+  },
+  "sscma_core_register_classes_callback": {
+    "message0": "SSCMA 분류 탐지 콜백",
+    "tooltip": "등록 분류 감지 콜백",
+    "message1": "실행 %1"
+  },
+  "sscma_core_register_points_callback": {
+    "message0": "SSCMA 핵심 지점 탐지 풀백",
+    "tooltip": "등록 키 포인트 탐지 콜백",
+    "message1": "실행 %1"
+  },
+  "sscma_core_register_keypoints_callback": {
+    "message0": "SSCMA 키 포인트 그룹 감지 콜백",
+    "tooltip": "레지스터 키 포인트 그룹 감지 콜백",
+    "message1": "실행 %1"
+  },
+  "sscma_core_register_perf_callback": {
+    "message0": "SSCMA 성능 콜백",
+    "tooltip": "등록 성과 지표 축소",
+    "message1": "실행 %1"
+  },
+  "sscma_core_get_boxes": {
+    "message0": "SSCMA는 물체 탐지 결과를 얻기 위해 횡단 처리합니다",
+    "tooltip": "탐지된 객체 박스 결과를 가져오기 위해 횡단합니다",
+    "message1": "%1"
+  },
+  "sscma_core_get_boxes_info": {
+    "message0": "객체 탐지 정보 획득 속성 %1",
+    "tooltip": "물체 탐지 정보를 얻기 위한 횡단",
+    "args0": [
+      {
+        "options": [
+          [
+            "X 좌표",
+            "x"
+          ],
+          [
+            "Y 좌표",
+            "y"
+          ],
+          [
+            "width",
+            "w"
+          ],
+          [
+            "고도",
+            "h"
+          ],
+          [
+            "신뢰 수준",
+            "score"
+          ],
+          [
+            "대상 카테고리",
+            "target"
+          ]
+        ]
+      }
+    ]
+  },
+  "sscma_core_get_classes": {
+    "message0": "SSCMA는 분류 시험 결과를 얻기 위해 횡단합니다",
+    "tooltip": "기밀 검사 결과 획득",
+    "message1": "%1"
+  },
+  "sscma_core_get_classes_info": {
+    "message0": "분류 감지 정보 속성 %1",
+    "tooltip": "기밀 탐지 정보 획득",
+    "args0": [
+      {
+        "options": [
+          [
+            "신뢰 수준",
+            "score"
+          ],
+          [
+            "대상 카테고리",
+            "target"
+          ]
+        ]
+      }
+    ]
+  },
+  "sscma_core_get_points": {
+    "message0": "SSCMA는 임계점 검출 결과를 얻기 위해 횡단합니다",
+    "tooltip": "핵심 지점 탐지 결과를 얻기 위한 횡단",
+    "message1": "%1"
+  },
+  "sscma_core_get_points_info": {
+    "message0": "핵심 정보 얻기 속성 %1",
+    "tooltip": "핵심 정보 획득",
+    "args0": [
+      {
+        "options": [
+          [
+            "X 좌표",
+            "x"
+          ],
+          [
+            "Y 좌표",
+            "y"
+          ],
+          [
+            "Z 좌표",
+            "z"
+          ],
+          [
+            "신뢰 수준",
+            "score"
+          ],
+          [
+            "대상 카테고리",
+            "target"
+          ]
+        ]
+      }
+    ]
+  },
+  "sscma_core_get_keypoints": {
+    "message0": "SSCMA는 주요 포인트 그룹의 검출 결과를 얻기 위해 횡단 처리합니다",
+    "tooltip": "주요 점 그룹의 검출 결과를 얻기 위한 트래버스",
+    "message1": "%1"
+  },
+  "sscma_core_get_keypoints_info": {
+    "message0": "핵심 포인트 그룹 정보 얻기 속성 %1",
+    "tooltip": "핵심 지점 그룹 정보 획득",
+    "args0": [
+      {
+        "options": [
+          [
+            "X 좌표",
+            "x"
+          ],
+          [
+            "Y 좌표",
+            "y"
+          ],
+          [
+            "고도",
+            "h"
+          ],
+          [
+            "width",
+            "w"
+          ],
+          [
+            "신뢰 수준",
+            "score"
+          ],
+          [
+            "대상 카테고리",
+            "target"
+          ]
+        ]
+      }
+    ]
+  },
+  "sscma_core_get_keypoints_points": {
+    "message0": "키 포인트 그룹 내 점 정보를 가져오기 위해 트래버스",
+    "tooltip": "키 포인트 그룹 내 점 정보를 가져오기 위해 트래버스",
+    "message1": "%1"
+  },
+  "sscma_core_get_keypoints_points_info": {
+    "message0": "핵심 점 그룹에서 점 정보를 조회하기 속성 %1",
+    "tooltip": "핵심 포인트 그룹에서 포인트 정보를 조회합니다",
+    "args0": [
+      {
+        "options": [
+          [
+            "X 좌표",
+            "x"
+          ],
+          [
+            "Y 좌표",
+            "y"
+          ],
+          [
+            "Z 좌표",
+            "z"
+          ],
+          [
+            "신뢰 수준",
+            "score"
+          ],
+          [
+            "대상 카테고리",
+            "target"
+          ]
+        ]
+      }
+    ]
+  },
+  "sscma_core_get_perf": {
+    "message0": "SSCMA가 %1 성능 지표를 확보합니다",
+    "tooltip": "성능 지표를 변수로 얻으세요"
+  },
+  "sscma_core_get_perf_info": {
+    "message0": "%1 성과 정보 속성 %2",
+    "tooltip": "성능 정보 획득",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "전처리 시간",
+            "preprocess"
+          ],
+          [
+            "추론 시간",
+            "inference"
+          ],
+          [
+            "후처리 시간",
+            "postprocess"
+          ]
+        ]
+      }
+    ]
+  }
+}

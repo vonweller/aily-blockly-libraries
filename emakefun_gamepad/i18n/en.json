@@ -1,0 +1,248 @@
+{
+  "toolbox_name": "remote control handle",
+  "toolbox_labels": {
+    "手柄初始化": "Handle initialization",
+    "按键事件": "key event",
+    "摇杆与传感器": "Joysticks and Sensors",
+    "2.4G无线通信": "2.4G wireless communication",
+    "BLE蓝牙通信": "BLE Bluetooth communication"
+  },
+  "emakefun_gamepad_initialize": {
+    "message0": "Initialize game controller %1 Enable gyroscope %2",
+    "tooltip": "Initialize Emakefun gamepad",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Yes",
+            "true"
+          ],
+          [
+            "No",
+            "false"
+          ]
+        ]
+      }
+    ]
+  },
+  "emakefun_gamepad_model_create": {
+    "message0": "Create game controller model %1",
+    "tooltip": "Create a gamepad data model"
+  },
+  "emakefun_gamepad_attach_model": {
+    "message0": "Handle %1 Binding model %2",
+    "tooltip": "Bind data model to handle"
+  },
+  "emakefun_gamepad_model_add_observer": {
+    "message0": "Model %1 Add data observer %2",
+    "tooltip": "Add an observer and automatically send it when the data changes"
+  },
+  "emakefun_gamepad_button_pressed": {
+    "message0": "When the button %2 of model %1 is pressed",
+    "tooltip": "key press event",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Joystick button",
+            "0"
+          ],
+          [
+            "L key",
+            "1"
+          ],
+          [
+            "R key",
+            "2"
+          ],
+          [
+            "Select key",
+            "3"
+          ],
+          [
+            "Mode key",
+            "4"
+          ],
+          [
+            "A key",
+            "5"
+          ],
+          [
+            "B key",
+            "6"
+          ],
+          [
+            "C key",
+            "7"
+          ],
+          [
+            "D key",
+            "8"
+          ]
+        ]
+      }
+    ],
+    "message1": "%1"
+  },
+  "emakefun_gamepad_button_released": {
+    "message0": "When the key %2 of model %1 is released",
+    "tooltip": "key release event",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Joystick button",
+            "0"
+          ],
+          [
+            "L key",
+            "1"
+          ],
+          [
+            "R key",
+            "2"
+          ],
+          [
+            "Select key",
+            "3"
+          ],
+          [
+            "Mode key",
+            "4"
+          ],
+          [
+            "A key",
+            "5"
+          ],
+          [
+            "B key",
+            "6"
+          ],
+          [
+            "C key",
+            "7"
+          ],
+          [
+            "D key",
+            "8"
+          ]
+        ]
+      }
+    ],
+    "message1": "%1"
+  },
+  "emakefun_gamepad_get_button_state": {
+    "message0": "Button %2 of model %1 is pressed",
+    "tooltip": "Check if the key is pressed",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Joystick button",
+            "0"
+          ],
+          [
+            "L key",
+            "1"
+          ],
+          [
+            "R key",
+            "2"
+          ],
+          [
+            "Select key",
+            "3"
+          ],
+          [
+            "Mode key",
+            "4"
+          ],
+          [
+            "A key",
+            "5"
+          ],
+          [
+            "B key",
+            "6"
+          ],
+          [
+            "C key",
+            "7"
+          ],
+          [
+            "D key",
+            "8"
+          ]
+        ]
+      }
+    ]
+  },
+  "emakefun_gamepad_get_joystick_x": {
+    "message0": "Joystick X value of model %1",
+    "tooltip": "Get the X-axis coordinate of the joystick (0-255)"
+  },
+  "emakefun_gamepad_get_joystick_y": {
+    "message0": "Joystick Y value of model %1",
+    "tooltip": "Get the Y-axis coordinate of the joystick (0-255)"
+  },
+  "emakefun_gamepad_get_gravity_x": {
+    "message0": "Gravity acceleration X value of model %1",
+    "tooltip": "Get the X value of gravity acceleration"
+  },
+  "emakefun_gamepad_get_gravity_y": {
+    "message0": "Gravity acceleration Y value of model %1",
+    "tooltip": "Get the Y value of gravity acceleration"
+  },
+  "emakefun_gamepad_get_gravity_z": {
+    "message0": "Gravity acceleration Z value of model %1",
+    "tooltip": "Get the Z value of gravity acceleration"
+  },
+  "emakefun_gamepad_new_joystick_coordinate": {
+    "message0": "Model %1 rocker coordinates change",
+    "tooltip": "Check whether the joystick coordinates have changed"
+  },
+  "emakefun_gamepad_new_gravity_acceleration": {
+    "message0": "Model %1 gravity acceleration change",
+    "tooltip": "Check if the acceleration due to gravity has changed"
+  },
+  "emakefun_gamepad_publisher_rf24_create": {
+    "message0": "Create RF24 transmitter %1 CE pin %2 CS pin %3 Channel %4 Address width %5 Address %6",
+    "tooltip": "Create a 2.4G wireless transmitter"
+  },
+  "emakefun_gamepad_subscriber_rf24_create": {
+    "message0": "Create RF24 Receiver %1 CE pin %2 CS pin %3 Channel %4 Address width %5 Address %6",
+    "tooltip": "Create a 2.4G wireless receiver"
+  },
+  "emakefun_gamepad_subscriber_rf24_attach_model": {
+    "message0": "RF24 receiver %1 binding model %2",
+    "tooltip": "Bind data model to RF24 receiver"
+  },
+  "emakefun_gamepad_publisher_ble_create": {
+    "message0": "Create BLE transmitter %1 serial port %2",
+    "tooltip": "Create a BLE Bluetooth transmitter",
+    "args0": [
+      null,
+      {
+        "options": "${board.serialPort}"
+      }
+    ]
+  },
+  "emakefun_gamepad_subscriber_ble_create": {
+    "message0": "Create BLE receiver %1 serial port %2",
+    "tooltip": "Create a BLE Bluetooth receiver",
+    "args0": [
+      null,
+      {
+        "options": "${board.serialPort}"
+      }
+    ]
+  },
+  "emakefun_gamepad_subscriber_ble_attach_model": {
+    "message0": "BLE receiver %1 Binding model %2",
+    "tooltip": "Bind data model to BLE receiver"
+  }
+}

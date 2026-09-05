@@ -1,0 +1,187 @@
+{
+  "toolbox_name": "مستشعر IMU ذو 9 محاور",
+  "imu9dof_init": {
+    "message0": "تهيئة مستشعر IMU ذو 9 محاور %1\nالاستخدام %2",
+    "tooltip": "قم بتهيئة مستشعر IMU ذو التسعة محاور على وحدة التحكم 3.0",
+    "args0": [
+      null,
+      {
+        "options": "${board.i2c}"
+      }
+    ]
+  },
+  "imu9dof_read_accel": {
+    "message0": "اقرأ التسارع (g) في IMU %1%2",
+    "tooltip": "اقرأ بيانات مقياس التسارع التي تقاس بالg",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "محور X",
+            "X"
+          ],
+          [
+            "محور Y",
+            "Y"
+          ],
+          [
+            "محور Z",
+            "Z"
+          ]
+        ]
+      }
+    ]
+  },
+  "imu9dof_read_gyro": {
+    "message0": "اقرأ السرعة الزاوية (°/ثانية) لوحدة IMU %1%2",
+    "tooltip": "اقرأ بيانات الجيروسكوب، مقاسة بالدرجات/الثانية",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "محور X",
+            "X"
+          ],
+          [
+            "محور Y",
+            "Y"
+          ],
+          [
+            "محور Z",
+            "Z"
+          ]
+        ]
+      }
+    ]
+  },
+  "imu9dof_read_mag": {
+    "message0": "اقرأ شدة المجال المغناطيسي (μT) لوحدة IMU %1%2",
+    "tooltip": "اقرأ بيانات مقياس المغناطيسية، المقاس بالميكروتسلا (μT)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "محور X",
+            "X"
+          ],
+          [
+            "محور Y",
+            "Y"
+          ],
+          [
+            "محور Z",
+            "Z"
+          ]
+        ]
+      }
+    ]
+  },
+  "imu9dof_read_temperature": {
+    "message0": "اقرأ درجة حرارة %1 IMU (°C)",
+    "tooltip": "اقرأ درجة حرارة حساس IMU، مقاسة بالدرجات المذهبية"
+  },
+  "imu9dof_compute_angles": {
+    "message0": "احسب زاوية الاتجاه لوحدة IMU %1",
+    "tooltip": "احسب زاوية وضعية IMU (زاوية الدوران، زاوية الميل، زاوية الاتجاه)"
+  },
+  "imu9dof_read_angle": {
+    "message0": "اقرأ زاوية %2 ل%1 IMU (°)",
+    "tooltip": "اقرأ زاوية الوضع في IMU، مقاس بالدرجات",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "ابدأ",
+            "ROLL"
+          ],
+          [
+            "الزاوية",
+            "PITCH"
+          ],
+          [
+            "المسار (ياو)",
+            "YAW"
+          ]
+        ]
+      }
+    ]
+  },
+  "imu9dof_calibrate_mag": {
+    "message0": "معايرة مقياس المغناطيسية في IMU %1",
+    "tooltip": "معايرة المقياس المغناطيسي لإزالة التداخل الناتج عن الحديد الصلب واللين"
+  },
+  "imu9dof_set_acc_range": {
+    "message0": "اضبط نطاق مقياس التسارع %1 IMU على %2",
+    "tooltip": "حدد نطاق قياس مقياس التسارع",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "±2g",
+            "QMI8658A_ACC_RANGE_2G"
+          ],
+          [
+            "±4g",
+            "QMI8658A_ACC_RANGE_4G"
+          ],
+          [
+            "±8g",
+            "QMI8658A_ACC_RANGE_8G"
+          ],
+          [
+            "±16g",
+            "QMI8658A_ACC_RANGE_16G"
+          ]
+        ]
+      }
+    ]
+  },
+  "imu9dof_set_gyro_range": {
+    "message0": "اضبط مدى الجيروسكوب %1 IMU على %2",
+    "tooltip": "حدد نطاق قياس الجيروسكوب",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "±16°/s",
+            "QMI8658A_GYRO_RANGE_16DPS"
+          ],
+          [
+            "±32°/s",
+            "QMI8658A_GYRO_RANGE_32DPS"
+          ],
+          [
+            "±64°/s",
+            "QMI8658A_GYRO_RANGE_64DPS"
+          ],
+          [
+            "±128°/s",
+            "QMI8658A_GYRO_RANGE_128DPS"
+          ],
+          [
+            "±256°/s",
+            "QMI8658A_GYRO_RANGE_256DPS"
+          ],
+          [
+            "±512°/s",
+            "QMI8658A_GYRO_RANGE_512DPS"
+          ],
+          [
+            "±1024°/s",
+            "QMI8658A_GYRO_RANGE_1024DPS"
+          ],
+          [
+            "±2048°/s",
+            "QMI8658A_GYRO_RANGE_2048DPS"
+          ]
+        ]
+      }
+    ]
+  }
+}

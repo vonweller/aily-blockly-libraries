@@ -1,0 +1,321 @@
+{
+  "toolbox_name": "SPA06 air pressure temperature sensor",
+  "toolbox_labels": {
+    "初始化": "initialization",
+    "配置": "Configuration",
+    "数据读取": "Data reading",
+    "状态检查": "status check",
+    "中断": "interrupt",
+    "校准": "Calibration"
+  },
+  "spa06_create_i2c": {
+    "message0": "Create SPA06 sensor %1 using I2C address %2",
+    "tooltip": "Create SPA06-003 air pressure and temperature sensor object and use I2C communication",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "0x76 (default)",
+            "0x76"
+          ],
+          [
+            "0x77",
+            "0x77"
+          ]
+        ]
+      }
+    ]
+  },
+  "spa06_create_spi": {
+    "message0": "Create SPA06 sensor %1 using SPI pins %2",
+    "tooltip": "Create SPA06-003 air pressure and temperature sensor object and use SPI communication"
+  },
+  "spa06_set_pressure_sampling": {
+    "message0": "Set %1 Pressure sampling rate %2 Oversampling rate %3",
+    "tooltip": "Configure the sampling rate and oversampling rate of the pressure sensor",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "1 Hz",
+            "SPL07_1HZ"
+          ],
+          [
+            "2 Hz",
+            "SPL07_2HZ"
+          ],
+          [
+            "4 Hz",
+            "SPL07_4HZ"
+          ],
+          [
+            "8 Hz",
+            "SPL07_8HZ"
+          ],
+          [
+            "16 Hz",
+            "SPL07_16HZ"
+          ],
+          [
+            "32 Hz",
+            "SPL07_32HZ"
+          ],
+          [
+            "64 Hz",
+            "SPL07_64HZ"
+          ],
+          [
+            "128 Hz",
+            "SPL07_128HZ"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "1 time",
+            "SPL07_1SAMPLE"
+          ],
+          [
+            "2 times",
+            "SPL07_2SAMPLES"
+          ],
+          [
+            "4 times",
+            "SPL07_4SAMPLES"
+          ],
+          [
+            "8 times",
+            "SPL07_8SAMPLES"
+          ],
+          [
+            "16 times",
+            "SPL07_16SAMPLES"
+          ],
+          [
+            "32 times",
+            "SPL07_32SAMPLES"
+          ],
+          [
+            "64 times",
+            "SPL07_64SAMPLES"
+          ],
+          [
+            "128 times",
+            "SPL07_128SAMPLES"
+          ]
+        ]
+      }
+    ]
+  },
+  "spa06_set_temperature_sampling": {
+    "message0": "Set %1 Temperature sampling rate %2 Oversampling rate %3",
+    "tooltip": "Configure the sampling rate and oversampling rate of the temperature sensor",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "1 Hz",
+            "SPL07_1HZ"
+          ],
+          [
+            "2 Hz",
+            "SPL07_2HZ"
+          ],
+          [
+            "4 Hz",
+            "SPL07_4HZ"
+          ],
+          [
+            "8 Hz",
+            "SPL07_8HZ"
+          ],
+          [
+            "16 Hz",
+            "SPL07_16HZ"
+          ],
+          [
+            "32 Hz",
+            "SPL07_32HZ"
+          ],
+          [
+            "64 Hz",
+            "SPL07_64HZ"
+          ],
+          [
+            "128 Hz",
+            "SPL07_128HZ"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "1 time",
+            "SPL07_1SAMPLE"
+          ],
+          [
+            "2 times",
+            "SPL07_2SAMPLES"
+          ],
+          [
+            "4 times",
+            "SPL07_4SAMPLES"
+          ],
+          [
+            "8 times",
+            "SPL07_8SAMPLES"
+          ],
+          [
+            "16 times",
+            "SPL07_16SAMPLES"
+          ],
+          [
+            "32 times",
+            "SPL07_32SAMPLES"
+          ],
+          [
+            "64 times",
+            "SPL07_64SAMPLES"
+          ],
+          [
+            "128 times",
+            "SPL07_128SAMPLES"
+          ]
+        ]
+      }
+    ]
+  },
+  "spa06_set_mode": {
+    "message0": "Set %1 working mode %2",
+    "tooltip": "Set the sensor working mode",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "free",
+            "SPL07_IDLE"
+          ],
+          [
+            "single pressure",
+            "SPL07_ONE_PRESSURE"
+          ],
+          [
+            "single temperature",
+            "SPL07_ONE_TEMPERATURE"
+          ],
+          [
+            "continuous pressure",
+            "SPL07_CONT_PRESSURE"
+          ],
+          [
+            "continuous temperature",
+            "SPL07_CONT_TEMPERATURE"
+          ],
+          [
+            "continuous pressure temperature",
+            "SPL07_CONT_PRES_TEMP"
+          ]
+        ]
+      }
+    ]
+  },
+  "spa06_set_temperature_source": {
+    "message0": "Set %1 Temperature source %2",
+    "tooltip": "Set temperature sensor source",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Inside the ASIC",
+            "SPL07_TSRC_ASIC"
+          ],
+          [
+            "MEMS external",
+            "SPL07_TSRC_MEMS"
+          ]
+        ]
+      }
+    ]
+  },
+  "spa06_read_pressure": {
+    "message0": "%1 Read pressure value",
+    "tooltip": "Read the current pressure value (Pascal)"
+  },
+  "spa06_read_temperature": {
+    "message0": "%1 Read the temperature value",
+    "tooltip": "Read the current temperature value (Celsius)"
+  },
+  "spa06_calc_altitude": {
+    "message0": "%1 Calculate altitude",
+    "tooltip": "Calculate altitude (meters) based on pressure value"
+  },
+  "spa06_pressure_available": {
+    "message0": "%1 Pressure data available",
+    "tooltip": "Check if new pressure data is available"
+  },
+  "spa06_temperature_available": {
+    "message0": "%1 Temperature data available",
+    "tooltip": "Check if new temperature data is available"
+  },
+  "spa06_set_interrupt": {
+    "message0": "Set %1 interrupt mode %2",
+    "tooltip": "Configure interrupt mode",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Close",
+            "SPL07_INT_OFF"
+          ],
+          [
+            "Pressure ready",
+            "SPL07_INT_PRES"
+          ],
+          [
+            "temperature ready",
+            "SPL07_INT_TEMP"
+          ],
+          [
+            "Pressure or temperature ready",
+            "SPL07_INT_PRES_TEMP"
+          ],
+          [
+            "FIFO full",
+            "SPL07_INT_FIFO"
+          ],
+          [
+            "FIFO full or pressure ready",
+            "SPL07_INT_FIFO_PRES"
+          ],
+          [
+            "FIFO full or temperature ready",
+            "SPL07_INT_FIFO_TEMP"
+          ],
+          [
+            "all interrupts",
+            "SPL07_INT_ALL"
+          ]
+        ]
+      }
+    ]
+  },
+  "spa06_get_interrupt_status": {
+    "message0": "%1 Get interrupt status",
+    "tooltip": "Get the current interrupt status register value"
+  },
+  "spa06_set_pressure_offset": {
+    "message0": "Set %1 Pressure Offset %2 Pa",
+    "tooltip": "Set pressure measurement offset value"
+  },
+  "spa06_set_temperature_offset": {
+    "message0": "Set %1 Temperature Offset %2 °C",
+    "tooltip": "Set temperature measurement offset value"
+  }
+}

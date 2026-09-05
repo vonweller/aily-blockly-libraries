@@ -1,0 +1,102 @@
+{
+  "toolbox_name": "RFID 모듈",
+  "toolbox_labels": {
+    "初始化": "초기화",
+    "卡片检测": "카드 감지",
+    "数据操作": "데이터 작업",
+    "控制": "제어"
+  },
+  "mfrc522_setup": {
+    "args0": [
+      null,
+      null
+    ],
+    "message0": "RFID 리더를 I2C 주소%1 초기화%2",
+    "tooltip": "RFID 리더/라이터MFRC522 초기화하고, I2C 주소와 핀을 설정하세요"
+  },
+  "mfrc522_is_new_card_present": {
+    "args0": [
+      null
+    ],
+    "message0": "RFID %1 신규 카드를 감지합니다",
+    "tooltip": "새로운 RFID 카드가 근처에 있는지 감지하세요"
+  },
+  "mfrc522_read_card_serial": {
+    "args0": [
+      null
+    ],
+    "message0": "RFID %1 카드 일련번호를 읽습니다",
+    "tooltip": "RFID 카드의 고유 일련번호를 읽으세요"
+  },
+  "mfrc522_read_uid": {
+    "args0": [
+      null
+    ],
+    "message0": "RFID %1는 UID 문자열을 획득합니다",
+    "tooltip": "RFID 카드의 UID 문자열을 얻으세요"
+  },
+  "mfrc522_when_card_detected": {
+    "args0": [
+      null
+    ],
+    "args1": [
+      null
+    ],
+    "message0": "RFID %1 카드를 감지할 때",
+    "message1": "실행 %1",
+    "tooltip": "RFID 카드가 감지될 때 발생하는 이벤트"
+  },
+  "mfrc522_authenticate": {
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "열쇠",
+            "A"
+          ],
+          [
+            "B 키",
+            "B"
+          ]
+        ]
+      },
+      null
+    ],
+    "message0": "RFID %1 인증 섹터 %2 키 유형 %3 키 %4",
+    "tooltip": "RFID 카드 인증에 지정된 섹터"
+  },
+  "mfrc522_read_block": {
+    "args0": [
+      null,
+      null,
+      null
+    ],
+    "message0": "RFID %1 읽기 블록 %2 %3",
+    "tooltip": "지정된 블록에서 배열로 데이터를 읽습니다"
+  },
+  "mfrc522_write_block": {
+    "args0": [
+      null,
+      null,
+      null
+    ],
+    "message0": "RFID %1 데이터를 %2 기록하여 차단%3",
+    "tooltip": "지정된 블록에 데이터를 쓰기"
+  },
+  "mfrc522_halt_card": {
+    "args0": [
+      null
+    ],
+    "message0": "RFID %1 카드 통신을 차단합니다",
+    "tooltip": "RFID 카드 통신 중단"
+  },
+  "mfrc522_get_data_string": {
+    "args0": [
+      null
+    ],
+    "message0": "16진수 %1 연속을 얻으세요",
+    "tooltip": "RFID 데이터 배열을 16진수 문자열 형식(예: 48, 65, 6c, 6c, 6f)으로 변환합니다."
+  }
+}

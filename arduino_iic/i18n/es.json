@@ -1,0 +1,141 @@
+{
+  "toolbox_name": "I2C",
+  "toolbox_labels": {
+    "I2C扫描模板": "plantilla de escaneo I2C"
+  },
+  "wire_begin": {
+    "message0": "Inicializar la comunicación I2C",
+    "tooltip": "Inicializar la comunicación I2C"
+  },
+  "wire_begin_address": {
+    "message0": "Inicializar la comunicación I2C usando la dirección esclava %1",
+    "tooltip": "Inicializar la comunicación I2C con una dirección especificada"
+  },
+  "wire_set_clock": {
+    "message0": "Ajusta la frecuencia del reloj I2C a %1 kHz",
+    "tooltip": "Configurar la frecuencia del reloj de comunicación I2C"
+  },
+  "wire_end": {
+    "message0": "Fin de la comunicación I2C",
+    "tooltip": "Fin de la comunicación I2C"
+  },
+  "wire_begin_transmission": {
+    "message0": "Empieza a transmitir a address%1",
+    "tooltip": "Empieza a transferir con el equipo designado"
+  },
+  "wire_end_transmission": {
+    "message0": "¿Fin de la transmisión, para? %1",
+    "tooltip": "Finalizar la transmisión y enviar una señal de parada según sea necesario",
+    "args0": [
+      {
+        "options": [
+          [
+            "true",
+            "TRUE"
+          ],
+          [
+            "false",
+            "FALSE"
+          ]
+        ]
+      }
+    ]
+  },
+  "wire_end_transmission_result": {
+    "message0": "¿La transmisión termina y devuelve un código de error, para? %1",
+    "tooltip": "Tras completar la transferencia I2C y devolver el código de estado, 0 significa exitoso, 4 significa error desconocido",
+    "args0": [
+      {
+        "options": [
+          [
+            "true",
+            "TRUE"
+          ],
+          [
+            "false",
+            "FALSE"
+          ]
+        ]
+      }
+    ]
+  },
+  "wire_write": {
+    "message0": "Escribir datos %1",
+    "tooltip": "Envía un solo byte de datos"
+  },
+  "wire_write_bytes": {
+    "message0": "Escribe varios bytes de datos %1, longitud %2",
+    "tooltip": "Escribe un conjunto de bytes de datos"
+  },
+  "wire_request_from": {
+    "message0": "¿Solicitar %2 datos de la dirección %1, para? %3",
+    "tooltip": "Solicita una cantidad específica de datos",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "true",
+            "TRUE"
+          ],
+          [
+            "false",
+            "FALSE"
+          ]
+        ]
+      }
+    ]
+  },
+  "wire_available": {
+    "message0": "La cantidad de datos disponibles para I2C",
+    "tooltip": "Devuelve la cantidad de datos disponibles en el búfer de recepción"
+  },
+  "wire_read": {
+    "message0": "Leer datos de I2C",
+    "tooltip": "Lee datos del búfer I2C"
+  },
+  "wire_peek": {
+    "message0": "Datos de I2C de vista previa",
+    "tooltip": "Previsualiza los siguientes datos I2C sin eliminarlos"
+  },
+  "wire_flush": {
+    "message0": "Actualizar el buffer I2C",
+    "tooltip": "Actualizar el búfer de datos I2C"
+  },
+  "wire_on_receive": {
+    "message0": "Cuando I2C recibe datos, ejecuta la función %1 %2",
+    "tooltip": "Configurar la función de devolución de llamada de recepción I2C"
+  },
+  "wire_on_request": {
+    "message0": "Ejecuta la función cuando I2C solicite datos %1 %2",
+    "tooltip": "Configurar la función de llamada de llamada de solicitud I2C"
+  },
+  "wire_set_timeout": {
+    "message0": "Pon el tiempo de espera del I2C a %1 milisegundos, la bandera de reinicio %2",
+    "tooltip": "Establece el tiempo de espera de I2C y el comportamiento de reinicio",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "true",
+            "TRUE"
+          ],
+          [
+            "false",
+            "FALSE"
+          ]
+        ]
+      }
+    ]
+  },
+  "wire_get_timeout_flag": {
+    "message0": "Activa la bandera de tiempo muerto del I2C",
+    "tooltip": "Obtén el estado actual de la bandera de tiempo de espera del I2C"
+  },
+  "wire_clear_timeout_flag": {
+    "message0": "Quita el cartel de tiempo de espera I2C",
+    "tooltip": "Quita el cartel de tiempo de espera I2C"
+  }
+}

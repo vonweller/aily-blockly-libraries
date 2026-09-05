@@ -1,0 +1,115 @@
+{
+  "toolbox_name": "APDS9301",
+  "apds9301_init": {
+    "message0": "Initialize APDS9301 %1 address %2",
+    "tooltip": "Initialize the SparkFun APDS9301 ambient light sensor"
+  },
+  "apds9301_is_ready": {
+    "message0": "APDS9301 %1 initialized",
+    "tooltip": "Returns APDS9301 init status"
+  },
+  "apds9301_read_lux": {
+    "message0": "APDS9301 %1 read lux",
+    "tooltip": "Read the APDS9301 calculated lux value"
+  },
+  "apds9301_read_channel": {
+    "message0": "APDS9301 %1 read raw channel %2",
+    "tooltip": "Read raw ADC value from APDS9301 channel",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "CH0 visible + infrared",
+            "readCH0Level"
+          ],
+          [
+            "CH1 infrared",
+            "readCH1Level"
+          ]
+        ]
+      }
+    ]
+  },
+  "apds9301_set_gain": {
+    "message0": "Set APDS9301 %1 gain %2",
+    "tooltip": "Set APDS9301 gain (low or high)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "low",
+            "APDS9301::LOW_GAIN"
+          ],
+          [
+            "high",
+            "APDS9301::HIGH_GAIN"
+          ]
+        ]
+      }
+    ]
+  },
+  "apds9301_set_integration_time": {
+    "message0": "Set APDS9301 %1 integration time %2",
+    "tooltip": "Set APDS9301 integration time"
+  },
+  "apds9301_enable_interrupt": {
+    "message0": "APDS9301 %1 interrupt %2",
+    "tooltip": "Enable or disable APDS9301 threshold interrupt with persistence setting",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "enable",
+            "APDS9301::INT_ON"
+          ],
+          [
+            "Disable",
+            "APDS9301::INT_OFF"
+          ]
+        ]
+      }
+    ]
+  },
+  "apds9301_set_threshold": {
+    "message0": "Set APDS9301 %1 %2 threshold %3",
+    "tooltip": "Set APDS9301 lower or upper interrupt threshold",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "lower limit",
+            "LOW"
+          ],
+          [
+            "upper limit",
+            "HIGH"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "apds9301_power": {
+    "message0": "APDS9301 %1 power %2",
+    "tooltip": "Turn APDS9301 power on or off",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "turn on",
+            "APDS9301::POW_ON"
+          ],
+          [
+            "Close",
+            "APDS9301::POW_OFF"
+          ]
+        ]
+      }
+    ]
+  }
+}

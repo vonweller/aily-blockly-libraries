@@ -1,0 +1,509 @@
+{
+  "toolbox_name": "Spracherkennung",
+  "openjumper_asr_init": {
+    "message0": "Spracherkennung Soft-Seriellport-Initialisierung: RX-Pins: %1 TX-Pins: %2",
+    "tooltip": "Initialisieren Sie das OpenJumper-Offline-Spracherkennungsmodul und setzen Sie die weichen seriellen Kommunikationspins ein",
+    "args0": [
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": "${board.digitalPins}"
+      }
+    ]
+  },
+  "openjumper_asr_data": {
+    "message0": "Spracherkennungsdatenparsing",
+    "tooltip": "Parsing von Daten, die vom Spracherkennungsmodul zurückgegeben werden, und Aktualisierung des Erkennungsstatus"
+  },
+  "openjumper_asr_rincmd": {
+    "message0": "Spracherkennung %1",
+    "tooltip": "Überprüfen Sie, ob der angegebene Sprachbefehl erkannt wird, und geben Sie einen boolschen Wert zurück",
+    "args0": [
+      {
+        "options": [
+          [
+            "0. Sprachassistent",
+            "0"
+          ],
+          [
+            "1. Schalte die Klimaanlage ein",
+            "1"
+          ],
+          [
+            "2. Schalte die Klimaanlage aus",
+            "2"
+          ],
+          [
+            "3. Vertikaler Schwungwind",
+            "3"
+          ],
+          [
+            "4. Links- und Rechtswindschwünge",
+            "4"
+          ],
+          [
+            "5. Kühlmodus",
+            "5"
+          ],
+          [
+            "6. Heizmodus",
+            "6"
+          ],
+          [
+            "7. Erhöhe die Temperatur",
+            "7"
+          ],
+          [
+            "8. Senke die Temperatur",
+            "8"
+          ],
+          [
+            "9. Nach einer halben Stunde schließen",
+            "9"
+          ],
+          [
+            "10. Nach einer Stunde schließen",
+            "10"
+          ],
+          [
+            "11. Nach zwei Stunden schließen",
+            "11"
+          ],
+          [
+            "12. Nach drei Stunden schließen",
+            "12"
+          ],
+          [
+            "13. Zehn Grad",
+            "13"
+          ],
+          [
+            "14. Elf Grad",
+            "14"
+          ],
+          [
+            "15. Zwölf Grad",
+            "15"
+          ],
+          [
+            "16. Dreizehn Grad",
+            "16"
+          ],
+          [
+            "17. Vierzehn Grad",
+            "17"
+          ],
+          [
+            "18. Fünfzehn Grad",
+            "18"
+          ],
+          [
+            "19. Sechzehn Grad",
+            "19"
+          ],
+          [
+            "20. Siebzehn Grad",
+            "20"
+          ],
+          [
+            "21. Achtzehn Grad",
+            "21"
+          ],
+          [
+            "22. Neunzehn Grad",
+            "22"
+          ],
+          [
+            "23. Zwanzig Grad",
+            "23"
+          ],
+          [
+            "24. Einundzwanzig Grad",
+            "24"
+          ],
+          [
+            "25. Zweiundzwanzig Grad",
+            "25"
+          ],
+          [
+            "26. Dreiundzwanzig Grad",
+            "26"
+          ],
+          [
+            "27. Vierundzwanzig Grad",
+            "27"
+          ],
+          [
+            "28. Fünfundzwanzig Grad",
+            "28"
+          ],
+          [
+            "29. Sechsundzwanzig Grad",
+            "29"
+          ],
+          [
+            "30. Siebenundzwanzig Grad",
+            "30"
+          ],
+          [
+            "31. Achtundzwanzig Grad",
+            "31"
+          ],
+          [
+            "32. Mach den Ventilator ein",
+            "32"
+          ],
+          [
+            "33. Schalte den Ventilator aus",
+            "33"
+          ],
+          [
+            "34. Fan schüttelt den Kopf",
+            "34"
+          ],
+          [
+            "35. Hör auf, den Kopf zu schütteln",
+            "35"
+          ],
+          [
+            "36. Natürlicher Wind",
+            "36"
+          ],
+          [
+            "37. Schlafwind",
+            "37"
+          ],
+          [
+            "38. Normaler Wind",
+            "38"
+          ],
+          [
+            "39. Mach das Wohnzimmerlicht an",
+            "39"
+          ],
+          [
+            "40. Mach das Wohnzimmerlicht aus",
+            "40"
+          ],
+          [
+            "41. Mach das Schlafzimmerlicht an",
+            "41"
+          ],
+          [
+            "42. Mach das Schlafzimmerlicht aus",
+            "42"
+          ],
+          [
+            "43. Mach das Küchenlicht an",
+            "43"
+          ],
+          [
+            "44. Mach das Küchenlicht aus",
+            "44"
+          ],
+          [
+            "45. Mach die Schreibtischlampe an",
+            "45"
+          ],
+          [
+            "46. Mach die Schreibtischlampe aus",
+            "46"
+          ],
+          [
+            "47. Schalten Sie den Mückenvernichter auf",
+            "47"
+          ],
+          [
+            "48. Mückenvernichter ausschalten",
+            "48"
+          ],
+          [
+            "49. Schalte den Luftbefeuchter ein",
+            "49"
+          ],
+          [
+            "50. Den Luftbefeuchter ausschalten",
+            "50"
+          ],
+          [
+            "51. Schalte den Luftreiniger ein",
+            "51"
+          ],
+          [
+            "52. Schalte den Luftreiniger aus",
+            "52"
+          ],
+          [
+            "53. Schalte die Umgebungsbeleuchtung ein",
+            "53"
+          ],
+          [
+            "54. Schalte die Umgebungsbeleuchtung aus",
+            "54"
+          ],
+          [
+            "55. Schalt den Fernseher ein",
+            "55"
+          ],
+          [
+            "56. Schalte den Fernseher aus",
+            "56"
+          ],
+          [
+            "57. Schalten Sie die Steckdose ein",
+            "57"
+          ],
+          [
+            "58. Schalte die Steckdose aus",
+            "58"
+          ],
+          [
+            "59. Mach die Tür auf.",
+            "59"
+          ],
+          [
+            "60. Tür schließen",
+            "60"
+          ],
+          [
+            "61. Mach den Warmwasserbereiter ein",
+            "61"
+          ],
+          [
+            "62. Schalten Sie den Warmwasserbereiter aus",
+            "62"
+          ],
+          [
+            "63. Gelbes Licht",
+            "63"
+          ],
+          [
+            "64. Rotes Licht",
+            "64"
+          ],
+          [
+            "65. Blu-ray",
+            "65"
+          ],
+          [
+            "66. Grünes Licht",
+            "66"
+          ],
+          [
+            "67. Buntes Licht",
+            "67"
+          ],
+          [
+            "68. Weißes Licht",
+            "68"
+          ],
+          [
+            "69. Warmes Licht",
+            "69"
+          ],
+          [
+            "70. Mach es ein bisschen heller.",
+            "70"
+          ],
+          [
+            "71. Etwas dunkler machen",
+            "71"
+          ],
+          [
+            "72. Starte das Auto",
+            "72"
+          ],
+          [
+            "73. Die Straßenbahn ausschalten",
+            "73"
+          ],
+          [
+            "74. Visueller Modus",
+            "74"
+          ],
+          [
+            "75. Linienpatrouillenmodus",
+            "75"
+          ],
+          [
+            "76. Dem Muster folgen",
+            "76"
+          ],
+          [
+            "77. Hindernisvermeidungsmodus",
+            "77"
+          ],
+          [
+            "78. Netzwerkmodus",
+            "78"
+          ],
+          [
+            "79. Infrarotmodus",
+            "79"
+          ],
+          [
+            "80. Drahtloser Modus",
+            "80"
+          ],
+          [
+            "81. Bluetooth-Modus",
+            "81"
+          ],
+          [
+            "82. Controller-Modus",
+            "82"
+          ],
+          [
+            "83. Beeil dich.",
+            "83"
+          ],
+          [
+            "84. Langsamer machen",
+            "84"
+          ],
+          [
+            "85. Schalten Sie die Scheinwerfer des Autos ein",
+            "85"
+          ],
+          [
+            "86. Schalten Sie die Scheinwerfer des Autos aus",
+            "86"
+          ],
+          [
+            "87. Vorwärts gehen",
+            "87"
+          ],
+          [
+            "88. Treten Sie zurück",
+            "88"
+          ],
+          [
+            "89. Links abbiegen",
+            "89"
+          ],
+          [
+            "90. Rechts abbiegen",
+            "90"
+          ],
+          [
+            "91. Bewegung nach links",
+            "91"
+          ],
+          [
+            "92. Nach rechts bewegen",
+            "92"
+          ],
+          [
+            "93. Linker Rückzug",
+            "93"
+          ],
+          [
+            "94. Rückzug nach rechts",
+            "94"
+          ],
+          [
+            "95. Hebt die Yuntai (Wolkenplattform) an.",
+            "95"
+          ],
+          [
+            "96. Yuntai (Wolkenplattform) absenken.",
+            "96"
+          ],
+          [
+            "97. Etwas erhöhen",
+            "97"
+          ],
+          [
+            "98. Senke es etwas",
+            "98"
+          ],
+          [
+            "99. Greif nach Gegenständen",
+            "99"
+          ],
+          [
+            "100. Leg Gegenstände ab",
+            "100"
+          ],
+          [
+            "101. Drücken Sie etwas fester",
+            "101"
+          ],
+          [
+            "102. Entspann dich ein bisschen",
+            "102"
+          ],
+          [
+            "103. Die Vorhänge öffnen",
+            "103"
+          ],
+          [
+            "104. Die Vorhänge schließen",
+            "104"
+          ],
+          [
+            "105. Mach ein wenig auf",
+            "105"
+          ],
+          [
+            "106. Mach ein bisschen zu",
+            "106"
+          ],
+          [
+            "107. Betrachtungsmodus",
+            "107"
+          ],
+          [
+            "108. Normalmodus",
+            "108"
+          ],
+          [
+            "109. Unterhaltungsmodus",
+            "109"
+          ],
+          [
+            "110. Arbeitsmodus",
+            "110"
+          ],
+          [
+            "111. Ich gehe zur Arbeit",
+            "111"
+          ],
+          [
+            "112. Ich bin zurück",
+            "112"
+          ],
+          [
+            "113. Guten Morgen",
+            "113"
+          ],
+          [
+            "114. Gute Nacht",
+            "114"
+          ],
+          [
+            "115. Öffne den Kleiderregal",
+            "115"
+          ],
+          [
+            "116. Räum den Wäscheregal weg",
+            "116"
+          ],
+          [
+            "117. Schalte den Projektor ein",
+            "117"
+          ],
+          [
+            "118. Schalte den Projektor aus",
+            "118"
+          ]
+        ]
+      }
+    ]
+  },
+  "openjumper_asr_state": {
+    "message0": "Spracherkennung weckt den Status auf",
+    "tooltip": "Ruft den Aufwachstatus des Spracherkennungsmoduls ab und gibt den boolschen Wert zurück"
+  }
+}

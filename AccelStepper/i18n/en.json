@@ -1,0 +1,164 @@
+{
+  "toolbox_name": "AccelStepper",
+  "toolbox_labels": {
+    "初始化": "initialization",
+    "运动控制": "motion control",
+    "速度与加速度": "Speed and acceleration",
+    "状态查询": "Status query",
+    "位置控制": "position control",
+    "输出控制": "Output control",
+    "阻塞模式": "blocking mode",
+    "多电机同步控制 (MultiStepper)": "Multi-motor synchronous control (MultiStepper)"
+  },
+  "accelstepper_setup": {
+    "message0": "Create stepper motor %1 Interface type %2 Pin %3 %4 %5 %6",
+    "tooltip": "Create stepper motor objects, supporting multiple interface types",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "4 lines full step",
+            "4"
+          ],
+          [
+            "2 lines full step",
+            "2"
+          ],
+          [
+            "3 lines full step",
+            "3"
+          ],
+          [
+            "3 lines half step",
+            "6"
+          ],
+          [
+            "4 lines half step",
+            "8"
+          ]
+        ]
+      },
+      null,
+      null,
+      null,
+      null
+    ]
+  },
+  "accelstepper_setup_driver": {
+    "message0": "Create stepper motor %1 drive mode (Step+Direction) Step pin%2 Direction pin%3",
+    "tooltip": "Create a stepper motor object using driver mode (Step+Direction)"
+  },
+  "accelstepper_move_to": {
+    "message0": "Let stepper motor %1 move to position %2",
+    "tooltip": "Set target position (absolute position)"
+  },
+  "accelstepper_move": {
+    "message0": "Let the stepper motor %1 move relative to %2 steps",
+    "tooltip": "Relative movement specified number of steps"
+  },
+  "accelstepper_run": {
+    "message0": "Let the stepper motor %1 execute one step (with acceleration)",
+    "tooltip": "Execute one step with acceleration/deceleration (needs to be called frequently in the loop)"
+  },
+  "accelstepper_run_speed": {
+    "message0": "Let the stepper motor %1 execute one step at a constant speed",
+    "tooltip": "Execute one step at a constant speed (needs to be called frequently in the loop)"
+  },
+  "accelstepper_stop": {
+    "message0": "Stop the stepper motor %1",
+    "tooltip": "Stop the motor as quickly as possible"
+  },
+  "accelstepper_set_max_speed": {
+    "message0": "Set the maximum speed of the stepper motor %1 to %2 steps/second",
+    "tooltip": "Set the maximum speed (unit: steps/second)"
+  },
+  "accelstepper_set_speed": {
+    "message0": "Set the constant speed of stepper motor %1 to %2 steps/second",
+    "tooltip": "Set constant speed (unit: steps/second, used in runSpeed mode)"
+  },
+  "accelstepper_get_speed": {
+    "message0": "Get the current speed of the stepper motor %1",
+    "tooltip": "Get the current speed (unit: steps/second)"
+  },
+  "accelstepper_set_acceleration": {
+    "message0": "Set the acceleration of stepper motor %1 to %2 steps/second²",
+    "tooltip": "Set acceleration (unit: steps/second²)"
+  },
+  "accelstepper_get_current_position": {
+    "message0": "Get the current position of stepper motor %1",
+    "tooltip": "Get the current position (unit: step)"
+  },
+  "accelstepper_set_current_position": {
+    "message0": "Set the current position of the stepper motor %1 to %2",
+    "tooltip": "Set the current position (for operations such as zeroing)"
+  },
+  "accelstepper_distance_to_go": {
+    "message0": "Get the distance from the stepper motor %1 to the target position",
+    "tooltip": "Get the distance to the target position (unit: steps)"
+  },
+  "accelstepper_is_running": {
+    "message0": "Is the stepper motor %1 running?",
+    "tooltip": "Check if the motor is running"
+  },
+  "accelstepper_enable_outputs": {
+    "message0": "Enable the output of stepper motor %1",
+    "tooltip": "Enable motor output"
+  },
+  "accelstepper_disable_outputs": {
+    "message0": "Disable the output of stepper motor %1",
+    "tooltip": "Disable motor output (power saving)"
+  },
+  "accelstepper_run_to_position": {
+    "message0": "Let the stepper motor %1 run to the target position (blocked)",
+    "tooltip": "Run to the target location (blocking mode, will wait until reached)"
+  },
+  "accelstepper_run_to_new_position": {
+    "message0": "Let the stepper motor %1 run to the new position %2 (blocked)",
+    "tooltip": "Run to new location (blocking mode, will wait until reached)"
+  },
+  "accelstepper_run_speed_to_position": {
+    "message0": "Let the stepper motor %1 run at a constant speed to the target position",
+    "tooltip": "Run to the target position at constant speed (needs to be called frequently in the loop)"
+  },
+  "accelstepper_set_enable_pin": {
+    "message0": "Set the enable pin of stepper motor %1 to %2",
+    "tooltip": "Set enable pin (for driver)"
+  },
+  "multistepper_create": {
+    "message0": "Create a multi-motor synchronous controller %1",
+    "tooltip": "Create a MultiStepper object that can manage up to 10 stepper motors"
+  },
+  "multistepper_add_stepper": {
+    "message0": "Add stepper motor %1 to multi-motor controller %2",
+    "tooltip": "Add a single stepper motor to a multi-motor controller"
+  },
+  "multistepper_move_to": {
+    "message0": "Let all motors in the multi-motor controller %1 move synchronously to position %2",
+    "tooltip": "Set the target position array {pos1, pos2, ...} of all motors, which will arrive at the same time at constant speed"
+  },
+  "multistepper_move_to_2": {
+    "message0": "Let the 2 motors in the multi-motor controller %1 move synchronously. Motor 1 position %2 Motor 2 position %3",
+    "tooltip": "Set the target position of 2 motors, suitable for dual-axis applications such as XY stages"
+  },
+  "multistepper_move_to_3": {
+    "message0": "Let the 3 motors in the multi-motor controller %1 move synchronously. Motor 1 position %2 Motor 2 position %3 Motor 3 position %4",
+    "tooltip": "Set the target position of 3 motors, suitable for three-axis applications such as XYZ platform"
+  },
+  "multistepper_move_to_4": {
+    "message0": "Let the 4 motors in the multi-motor controller %1 move synchronously. Motor 1 position%2 Motor 2 position%3 Motor 3 position%4 Motor 4 position%5",
+    "tooltip": "Set the target position of 4 motors"
+  },
+  "multistepper_run": {
+    "message0": "Let the multi-motor controller %1 execute a step (non-blocking)",
+    "tooltip": "To execute one step, it must be called frequently in the loop."
+  },
+  "multistepper_run_speed_to_position": {
+    "message0": "Let the multi-motor controller %1 run to the target position (blocking)",
+    "tooltip": "Run to the target location (blocking mode, will wait until reached)"
+  },
+  "multistepper_positions_array": {
+    "message0": "Create location array %1",
+    "tooltip": "Create position array for multistepper_move_to"
+  }
+}

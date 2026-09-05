@@ -1,0 +1,180 @@
+{
+  "toolbox_name": "TM16xx デジタル管",
+  "toolbox_labels": {
+    "初始化": "初期化",
+    "显示控制": "表示制御",
+    "高级功能": "高度な機能",
+    "按键检测": "キー検出"
+  },
+  "tm16xx_init": {
+    "message0": "初期化%1デジタル管DIOピン%2 CLKピン%3 STBピン%4 桁数%5",
+    "args0": [
+      {
+        "options": [
+          [
+            "TM1637",
+            "TM1637"
+          ],
+          [
+            "TM1638",
+            "TM1638"
+          ],
+          [
+            "TM1640",
+            "TM1640"
+          ],
+          [
+            "TM1650",
+            "TM1650"
+          ],
+          [
+            "TM1668",
+            "TM1668"
+          ]
+        ]
+      },
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": "${board.digitalPins}"
+      },
+      null
+    ]
+  },
+  "tm16xx_simple_init": {
+    "message0": "初期化%1 デジタル チューブ DIO ピン%2 CLK ピン%3",
+    "args0": [
+      {
+        "options": [
+          [
+            "TM1637",
+            "TM1637"
+          ],
+          [
+            "TM1640",
+            "TM1640"
+          ],
+          [
+            "TM1650",
+            "TM1650"
+          ]
+        ]
+      },
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": "${board.digitalPins}"
+      }
+    ]
+  },
+  "tm16xx_display_string": {
+    "message0": "表示テキスト%1"
+  },
+  "tm16xx_display_number": {
+    "message0": "表示番号%1 小数点位置%2",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "なし",
+            "0"
+          ],
+          [
+            "No.1",
+            "1"
+          ],
+          [
+            "No.2",
+            "2"
+          ],
+          [
+            "No.3",
+            "3"
+          ],
+          [
+            "No.4",
+            "4"
+          ],
+          [
+            "No.5",
+            "5"
+          ],
+          [
+            "No.6",
+            "6"
+          ],
+          [
+            "No.7",
+            "7"
+          ],
+          [
+            "No.8",
+            "8"
+          ]
+        ]
+      }
+    ]
+  },
+  "tm16xx_clear_display": {
+    "message0": "クリアなディスプレイ"
+  },
+  "tm16xx_set_brightness": {
+    "message0": "明るさを設定%1",
+    "args0": [
+      {
+        "options": [
+          [
+            "最も暗い(0)",
+            "0"
+          ],
+          [
+            "1",
+            "1"
+          ],
+          [
+            "2",
+            "2"
+          ],
+          [
+            "3",
+            "3"
+          ],
+          [
+            "4",
+            "4"
+          ],
+          [
+            "5",
+            "5"
+          ],
+          [
+            "6",
+            "6"
+          ],
+          [
+            "最も明るい(7)",
+            "7"
+          ]
+        ]
+      }
+    ]
+  },
+  "tm16xx_set_segment": {
+    "message0": "%1 ビットを設定してセグメント コード %2 を表示します"
+  },
+  "tm16xx_get_buttons": {
+    "message0": "ボタンのステータスを取得する"
+  },
+  "tm16xx_is_button_pressed": {
+    "message0": "ボタン %1 が押されました"
+  },
+  "tm16xx_display_time": {
+    "message0": "表示時間 時 %1 分 %2 表示コロン %3"
+  }
+}

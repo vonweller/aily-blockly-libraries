@@ -1,0 +1,450 @@
+{
+  "toolbox_name": "CodexPad-Controller",
+  "toolbox_labels": {
+    "初始化": "Initialisierung",
+    "按键检测": "Schlüsselerkennung",
+    "摇杆": "Joystick"
+  },
+  "codexpad_init": {
+    "message0": "Initialisieren Sie den CodexPad-Controller %1 MAC-Adresse %2",
+    "tooltip": "Initialisieren Sie den CodexPad Bluetooth-Controller und verbinden Sie ihn mit der angegebenen MAC-Adresse; Update() wird automatisch in die Hauptschleife aufgenommen"
+  },
+  "codexpad_is_connected": {
+    "message0": "CodexPad-%1 ist verbunden",
+    "tooltip": "Überprüfe, ob der CodexPad-Handle verbunden ist"
+  },
+  "codexpad_set_tx_power": {
+    "message0": "Setze CodexPad %1 Übertragungsleistung %2",
+    "tooltip": "Stellen Sie die Bluetooth-Senderleistung des Controllers ein; je höher die Leistung, desto größer die Kommunikationsdistanz, aber desto höher der Energieverbrauch",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "-16 dBm",
+            "kMinus16dBm"
+          ],
+          [
+            "-12 dBm",
+            "kMinus12dBm"
+          ],
+          [
+            "-8 dBm",
+            "kMinus8dBm"
+          ],
+          [
+            "-5 dBm",
+            "kMinus5dBm"
+          ],
+          [
+            "-3 dBm",
+            "kMinus3dBm"
+          ],
+          [
+            "-1 dBm",
+            "kMinus1dBm"
+          ],
+          [
+            "0 dBm",
+            "k0dBm"
+          ],
+          [
+            "1 dBm",
+            "k1dBm"
+          ],
+          [
+            "2 dBm",
+            "k2dBm"
+          ],
+          [
+            "3 dBm",
+            "k3dBm"
+          ],
+          [
+            "4 dBm",
+            "k4dBm"
+          ],
+          [
+            "5 dBm",
+            "k5dBm"
+          ],
+          [
+            "6 dBm",
+            "k6dBm"
+          ]
+        ]
+      }
+    ]
+  },
+  "codexpad_button_pressed": {
+    "message0": "Die CodexPad-%1-Taste %2 einfach gedrückt",
+    "tooltip": "Erkennt, ob der Knopf gerade gedrückt wurde (vom Öffnen bis zum Drücken des Knopfs).",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Oben",
+            "kUp"
+          ],
+          [
+            "Unten",
+            "kDown"
+          ],
+          [
+            "Links",
+            "kLeft"
+          ],
+          [
+            "Rechts",
+            "kRight"
+          ],
+          [
+            "X/□",
+            "kSquareX"
+          ],
+          [
+            "Y/△",
+            "kTriangleY"
+          ],
+          [
+            "A/×",
+            "kCrossA"
+          ],
+          [
+            "B/○",
+            "kCircleB"
+          ],
+          [
+            "L1",
+            "kL1"
+          ],
+          [
+            "L2",
+            "kL2"
+          ],
+          [
+            "L3",
+            "kL3"
+          ],
+          [
+            "R1",
+            "kR1"
+          ],
+          [
+            "R2",
+            "kR2"
+          ],
+          [
+            "R3",
+            "kR3"
+          ],
+          [
+            "Select",
+            "kSelect"
+          ],
+          [
+            "Start",
+            "kStart"
+          ],
+          [
+            "Home",
+            "kHome"
+          ]
+        ]
+      }
+    ]
+  },
+  "codexpad_button_released": {
+    "message0": "Der CodexPad-%1-Knopf %2 gerade veröffentlicht",
+    "tooltip": "Erkennt, ob der Knopf gerade losgelassen wurde (in dem Moment, in dem er vom Drücken zum Öffnen wechselt)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Oben",
+            "kUp"
+          ],
+          [
+            "Unten",
+            "kDown"
+          ],
+          [
+            "Links",
+            "kLeft"
+          ],
+          [
+            "Rechts",
+            "kRight"
+          ],
+          [
+            "X/□",
+            "kSquareX"
+          ],
+          [
+            "Y/△",
+            "kTriangleY"
+          ],
+          [
+            "A/×",
+            "kCrossA"
+          ],
+          [
+            "B/○",
+            "kCircleB"
+          ],
+          [
+            "L1",
+            "kL1"
+          ],
+          [
+            "L2",
+            "kL2"
+          ],
+          [
+            "L3",
+            "kL3"
+          ],
+          [
+            "R1",
+            "kR1"
+          ],
+          [
+            "R2",
+            "kR2"
+          ],
+          [
+            "R3",
+            "kR3"
+          ],
+          [
+            "Select",
+            "kSelect"
+          ],
+          [
+            "Start",
+            "kStart"
+          ],
+          [
+            "Home",
+            "kHome"
+          ]
+        ]
+      }
+    ]
+  },
+  "codexpad_button_holding": {
+    "message0": "Der CodexPad-%1-Knopf %2 gedrückt gehalten",
+    "tooltip": "Erkennt, ob die Taste kontinuierlich gedrückt wird (sowohl die vorherige als auch die aktuelle Frames werden gedrückt)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Oben",
+            "kUp"
+          ],
+          [
+            "Unten",
+            "kDown"
+          ],
+          [
+            "Links",
+            "kLeft"
+          ],
+          [
+            "Rechts",
+            "kRight"
+          ],
+          [
+            "X/□",
+            "kSquareX"
+          ],
+          [
+            "Y/△",
+            "kTriangleY"
+          ],
+          [
+            "A/×",
+            "kCrossA"
+          ],
+          [
+            "B/○",
+            "kCircleB"
+          ],
+          [
+            "L1",
+            "kL1"
+          ],
+          [
+            "L2",
+            "kL2"
+          ],
+          [
+            "L3",
+            "kL3"
+          ],
+          [
+            "R1",
+            "kR1"
+          ],
+          [
+            "R2",
+            "kR2"
+          ],
+          [
+            "R3",
+            "kR3"
+          ],
+          [
+            "Select",
+            "kSelect"
+          ],
+          [
+            "Start",
+            "kStart"
+          ],
+          [
+            "Home",
+            "kHome"
+          ]
+        ]
+      }
+    ]
+  },
+  "codexpad_button_state": {
+    "message0": "CodexPad %1 Schlüssel %2 Status",
+    "tooltip": "Erhalten Sie den aktuellen Zustand der Taste; wenn Sie ihn drücken, gibt es true zurück, das Pop-up ergibt false",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Oben",
+            "kUp"
+          ],
+          [
+            "Unten",
+            "kDown"
+          ],
+          [
+            "Links",
+            "kLeft"
+          ],
+          [
+            "Rechts",
+            "kRight"
+          ],
+          [
+            "X/□",
+            "kSquareX"
+          ],
+          [
+            "Y/△",
+            "kTriangleY"
+          ],
+          [
+            "A/×",
+            "kCrossA"
+          ],
+          [
+            "B/○",
+            "kCircleB"
+          ],
+          [
+            "L1",
+            "kL1"
+          ],
+          [
+            "L2",
+            "kL2"
+          ],
+          [
+            "L3",
+            "kL3"
+          ],
+          [
+            "R1",
+            "kR1"
+          ],
+          [
+            "R2",
+            "kR2"
+          ],
+          [
+            "R3",
+            "kR3"
+          ],
+          [
+            "Select",
+            "kSelect"
+          ],
+          [
+            "Start",
+            "kStart"
+          ],
+          [
+            "Home",
+            "kHome"
+          ]
+        ]
+      }
+    ]
+  },
+  "codexpad_axis_value": {
+    "message0": "CodexPad %1 Joystick %2 Werte",
+    "tooltip": "Erhalten Sie den Joystick-Wellenwert, Bereich 0~255, Mittelposition etwa 128",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Linker Joystick X-Achse",
+            "kLeftStickX"
+          ],
+          [
+            "Linker Steuerhebel Y-Achse",
+            "kLeftStickY"
+          ],
+          [
+            "Rechter Joystick X-Achse",
+            "kRightStickX"
+          ],
+          [
+            "Rechter Steuerhebel Y-Achse",
+            "kRightStickY"
+          ]
+        ]
+      }
+    ]
+  },
+  "codexpad_axis_changed": {
+    "message0": "CodexPad %1 Joystick %2 Wertänderungsschwellenwert %3",
+    "tooltip": "Erkennt, ob sich der Wert der Joystick-Welle deutlich über die Schwelle hinaus verändert hat, und wird verwendet, um leichte Zitterungen zu filtern.",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Linker Joystick X-Achse",
+            "kLeftStickX"
+          ],
+          [
+            "Linker Steuerhebel Y-Achse",
+            "kLeftStickY"
+          ],
+          [
+            "Rechter Joystick X-Achse",
+            "kRightStickX"
+          ],
+          [
+            "Rechter Steuerhebel Y-Achse",
+            "kRightStickY"
+          ]
+        ]
+      },
+      null
+    ]
+  }
+}

@@ -1,0 +1,115 @@
+{
+  "toolbox_name": "APDS9301",
+  "apds9301_init": {
+    "message0": "Inicializar APDS9301 %1 dirección %2",
+    "tooltip": "Inicializar el sensor de luz ambiental SparkFun APDS9301"
+  },
+  "apds9301_is_ready": {
+    "message0": "APDS9301 %1 inicializado",
+    "tooltip": "Devuelve el estado de init APDS9301"
+  },
+  "apds9301_read_lux": {
+    "message0": "APDS9301 %1 leer lux",
+    "tooltip": "Lee el valor lux calculado APDS9301"
+  },
+  "apds9301_read_channel": {
+    "message0": "APDS9301 %1 leer canal bruto %2",
+    "tooltip": "Lee el valor ADC bruto del canal APDS9301",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "CH0 Visible + Infrarrojos",
+            "readCH0Level"
+          ],
+          [
+            "CH1 Infrarrojo",
+            "readCH1Level"
+          ]
+        ]
+      }
+    ]
+  },
+  "apds9301_set_gain": {
+    "message0": "Configurar ganancia APDS9301 %1 %2",
+    "tooltip": "Establece la ganancia APDS9301 (baja o alta)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Bajo",
+            "APDS9301::LOW_GAIN"
+          ],
+          [
+            "Alto",
+            "APDS9301::HIGH_GAIN"
+          ]
+        ]
+      }
+    ]
+  },
+  "apds9301_set_integration_time": {
+    "message0": "Tiempo integración APDS9301 %1 %2",
+    "tooltip": "Establece el tiempo de integración APDS9301"
+  },
+  "apds9301_enable_interrupt": {
+    "message0": "APDS9301 %1 interrupción %2",
+    "tooltip": "Activar/desactivar la interrupción de umbral APDS9301",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Habilitar",
+            "APDS9301::INT_ON"
+          ],
+          [
+            "Deshabilitar",
+            "APDS9301::INT_OFF"
+          ]
+        ]
+      }
+    ]
+  },
+  "apds9301_set_threshold": {
+    "message0": "Umbral APDS9301 %1 %2 %3",
+    "tooltip": "Establece el umbral de interrupción APDS9301",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Inferior",
+            "LOW"
+          ],
+          [
+            "Superior",
+            "HIGH"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "apds9301_power": {
+    "message0": "APDS9301 %1 alimentación %2",
+    "tooltip": "Encender/apagar APDS9301",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Activado",
+            "APDS9301::POW_ON"
+          ],
+          [
+            "Desactivado",
+            "APDS9301::POW_OFF"
+          ]
+        ]
+      }
+    ]
+  }
+}

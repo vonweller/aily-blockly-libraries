@@ -1,0 +1,138 @@
+{
+  "toolbox_name": "Servo",
+  "toolbox_labels": {
+    "基础控制": "controle básico",
+    "读取状态": "leia o status",
+    "高级控制": "Controle avançado",
+    "实用功能": "Funções práticas",
+    "角度值": "Valor do ângulo"
+  },
+  "servo_attach": {
+    "message0": "Inicialize o pino %1 servo",
+    "tooltip": "Inicialize o servo com o pino especificado. O ESP32 recomenda GPIO 4, 5, 12-19, 21-23, 25-27, 32 e 33. Evite usar GPIO 6-11 (flash) e 34-39 (apenas entrada)",
+    "args0": [
+      {
+        "options": "${board.servoPins}"
+      }
+    ]
+  },
+  "servo_attach_advanced": {
+    "message0": "Inicialize o pino %1 servo\nLargura mínima de pulso %2 Largura máxima de pulso %3",
+    "tooltip": "Inicialize o servo com pinos especificados e defina a faixa de largura de pulso. O ESP32 atribui automaticamente canais PWM sem especificação manual",
+    "args0": [
+      {
+        "options": "${board.servoPins}"
+      },
+      null,
+      null
+    ]
+  },
+  "servo_attach_full": {
+    "message0": "Inicialize o pino %1 servo\nÂngulo mínimo %2 Ângulo máximo %3\nLargura mínima de pulso %4 Largura máxima de pulso %5",
+    "tooltip": "Inicialize o servo com pinos especificados e defina parâmetros completos (faixa de ângulo, faixa de largura de pulso). O ESP32 aloca automaticamente canais PWM",
+    "args0": [
+      {
+        "options": "${board.servoPins}"
+      },
+      null,
+      null,
+      null,
+      null
+    ]
+  },
+  "servo_write": {
+    "message0": "Pino de controle %1 girar o servo em um ângulo de %2 graus",
+    "tooltip": "Ajuste o ângulo alvo para o servo do pino especificado (0-180 graus)",
+    "args0": [
+      {
+        "options": "${board.servoPins}"
+      },
+      null
+    ]
+  },
+  "servo_write_float": {
+    "message0": "Pino de controle %1 girar o servo em um ângulo de %2 graus",
+    "tooltip": "Defina o ângulo exato do servo de pinos especificado (suporta contagem de ponto flutuante)",
+    "args0": [
+      {
+        "options": "${board.servoPins}"
+      },
+      null
+    ]
+  },
+  "servo_write_microseconds": {
+    "message0": "Pino de controle %1 servo ajustam a largura do pulso para %2 microssegundos",
+    "tooltip": "Definir diretamente o valor da largura de pulso do servo do pino especificado (geralmente 544-2400 microssegundos)",
+    "args0": [
+      {
+        "options": "${board.servoPins}"
+      },
+      null
+    ]
+  },
+  "servo_read": {
+    "message0": "Leia o ângulo atual do servo %1 o pé de troca",
+    "tooltip": "Leia o valor do ângulo atual do servo de pino especificado",
+    "args0": [
+      {
+        "options": "${board.servoPins}"
+      }
+    ]
+  },
+  "servo_read_microseconds": {
+    "message0": "Leia a perna %1 largura do pulso de corrente do servo",
+    "tooltip": "Leia o valor da largura do pulso atual (microssegundos) do servo de pino especificado",
+    "args0": [
+      {
+        "options": "${board.servoPins}"
+      }
+    ]
+  },
+  "servo_attached": {
+    "message0": "Pino %1 servo está conectado",
+    "tooltip": "Verifique se o servo com os pinos especificados está conectado",
+    "args0": [
+      {
+        "options": "${board.servoPins}"
+      }
+    ]
+  },
+  "servo_detach": {
+    "message0": "Desconexão de pinos %1 servo",
+    "tooltip": "Desconecte a conexão entre o servo de pinos especificado e o pino",
+    "args0": [
+      {
+        "options": "${board.servoPins}"
+      }
+    ]
+  },
+  "servo_get_pin": {
+    "message0": "Pino %1 Número do pino para conexão servo",
+    "tooltip": "Recupere o número do pino para a conexão servo especificada (devolva o número do pino inserido)",
+    "args0": [
+      {
+        "options": "${board.servoPins}"
+      }
+    ]
+  },
+  "servo_map_angle": {
+    "message0": "Os valores de mapeamento %1 de %2 de alcance para %3\nO ângulo varia de %4 a %5",
+    "tooltip": "Mapeie o valor de um alcance para o intervalo do ângulo servo"
+  },
+  "servo_sweep": {
+    "message0": "Escaneamento %1 servo de pino\nDe %2 a %3 graus, com um atraso de %4 milissegundos",
+    "tooltip": "Permite que o servo com o pino especificado escaneie dentro de uma faixa de ângulo determinada",
+    "args0": [
+      {
+        "options": "${board.servoPins}"
+      },
+      null,
+      null,
+      null
+    ]
+  },
+  "servo_angle": {
+    "message0": "Ângulo %1 graus",
+    "tooltip": "Valor do ângulo servo (0-180 graus)"
+  }
+}

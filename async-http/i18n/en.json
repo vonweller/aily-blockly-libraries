@@ -1,0 +1,88 @@
+{
+  "toolbox_name": "Asynchronous HTTP",
+  "toolbox_labels": {
+    "初始化": "initialization",
+    "发送请求": "Send request",
+    "响应数据（放在请求回调中）": "Response data (put in the request callback)",
+    "错误处理": "Error handling",
+    "管理": "management"
+  },
+  "async_http_create": {
+    "message0": "Create an asynchronous HTTP client %1",
+    "tooltip": "Create an asynchronous HTTP client object and initialize it, and update() will be automatically called in the loop."
+  },
+  "async_http_set_timeout": {
+    "message0": "Set %1 timeout to %2 milliseconds",
+    "tooltip": "Set HTTP request timeout (default 10000 milliseconds)"
+  },
+  "async_http_set_header": {
+    "message0": "%1 sets the default request header %2 value %3",
+    "tooltip": "Set default request headers that apply to all requests"
+  },
+  "async_http_clear_headers": {
+    "message0": "%1 Clear all default request headers",
+    "tooltip": "Clear all default request headers that have been set"
+  },
+  "async_http_get": {
+    "message0": "%1 Send GET request URL %2",
+    "tooltip": "Send an asynchronous GET request and execute the callback code after receiving the response (non-blocking)",
+    "message1": "After receiving the response %1"
+  },
+  "async_http_post_json": {
+    "message0": "%1 Send POST JSON request URL %2 JSON content %3",
+    "tooltip": "Send an asynchronous POST request with JSON data (Content-Type: application/json)",
+    "message1": "After receiving the response %1"
+  },
+  "async_http_post": {
+    "message0": "%1 Send POST request URL %2 Content %3 Type %4",
+    "tooltip": "Send an asynchronous POST request and specify the content type",
+    "message1": "After receiving the response %1"
+  },
+  "async_http_put_json": {
+    "message0": "%1 Send PUT JSON request URL %2 JSON content %3",
+    "tooltip": "Send an asynchronous PUT request with JSON data (Content-Type: application/json)",
+    "message1": "After receiving the response %1"
+  },
+  "async_http_del": {
+    "message0": "%1 Send DELETE request URL %2",
+    "tooltip": "Send an asynchronous DELETE request and execute the callback code after receiving the response",
+    "message1": "After receiving the response %1"
+  },
+  "async_http_on_error": {
+    "message0": "When an error occurs in %1",
+    "tooltip": "The callback code is executed when an error occurs in the HTTP request (error code and error message block can be used in the callback)",
+    "message1": "Execute %1"
+  },
+  "async_http_response_status": {
+    "message0": "HTTP response status code",
+    "tooltip": "Get the HTTP response status code (such as 200, 404, etc.), only used in request callbacks"
+  },
+  "async_http_response_body": {
+    "message0": "HTTP response content",
+    "tooltip": "Get the body content of the HTTP response, only used in request callbacks"
+  },
+  "async_http_response_is_success": {
+    "message0": "Is the HTTP response successful?",
+    "tooltip": "Determine whether the HTTP response is successful (status code 200-299), only used in request callbacks"
+  },
+  "async_http_response_header": {
+    "message0": "The value of HTTP response header %1",
+    "tooltip": "Gets the value of the specified HTTP response header, only used in request callbacks"
+  },
+  "async_http_error_code": {
+    "message0": "HTTP error code",
+    "tooltip": "Get the HTTP error code, only used in error callbacks"
+  },
+  "async_http_error_message": {
+    "message0": "HTTP error message",
+    "tooltip": "Get the HTTP error message text, only used in error callbacks"
+  },
+  "async_http_pending": {
+    "message0": "%1 Number of pending requests",
+    "tooltip": "Get the number of asynchronous requests currently being processed"
+  },
+  "async_http_abort_all": {
+    "message0": "%1 Cancel all requests",
+    "tooltip": "Cancel all ongoing asynchronous HTTP requests"
+  }
+}

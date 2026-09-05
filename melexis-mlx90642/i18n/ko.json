@@ -1,0 +1,129 @@
+{
+  "toolbox_name": "MLX90642 적외선 열화상",
+  "mlx90642_init": {
+    "message0": "SDA%2 SCL MLX90642 %1 주소를 주소 지정%3 %4 모드%5 %6 출력 %7",
+    "tooltip": "ESP32 I2C 핀을 통해 MLX90642 32x24 적외선 열화상 센서를 초기화하세요.",
+    "args0": [
+      null,
+      null,
+      null,
+      null,
+      {
+        "options": [
+          [
+            "continuous",
+            "MLX90642_CONT_MEAS_MODE"
+          ],
+          [
+            "step",
+            "MLX90642_STEP_MEAS_MODE"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "2 Hz",
+            "MLX90642_REF_RATE_2HZ"
+          ],
+          [
+            "4 Hz",
+            "MLX90642_REF_RATE_4HZ"
+          ],
+          [
+            "8 Hz",
+            "MLX90642_REF_RATE_8HZ"
+          ],
+          [
+            "16 Hz",
+            "MLX90642_REF_RATE_16HZ"
+          ],
+          [
+            "32 Hz",
+            "MLX90642_REF_RATE_32HZ"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "온도",
+            "MLX90642_TEMPERATURE_OUTPUT"
+          ],
+          [
+            "정규화된 데이터",
+            "MLX90642_NORMALIZED_DATA_OUTPUT"
+          ]
+        ]
+      }
+    ]
+  },
+  "mlx90642_data_ready": {
+    "message0": "MLX90642 %1 데이터가 준비됐다",
+    "tooltip": "MLX90642 읽을 수 있는 새로운 열화상 데이터 프레임이 있는지 감지합니다."
+  },
+  "mlx90642_read_frame": {
+    "message0": "MLX90642 %1 캐시에 한 프레임을 읽습니다",
+    "tooltip": "현재 32x24 이미지 프레임을 캐시에 읽으세요."
+  },
+  "mlx90642_measure_now": {
+    "message0": "MLX90642 %1 즉시 한 프레임을 측정하고 캐시하기",
+    "tooltip": "측정을 트리거하고 데이터가 반환될 때까지 기다립니다; 성공하면 true를 반환합니다."
+  },
+  "mlx90642_pixel_value": {
+    "message0": "MLX90642 %1 캐시 픽셀 x %2 Y %3 읽%4",
+    "tooltip": "이전 프레임 캐시에서 지정된 픽셀을 읽으며, X 범위는 0-31, Y 범위는 0-23입니다.",
+    "args0": [
+      null,
+      null,
+      null,
+      {
+        "options": [
+          [
+            "온도: °C",
+            "C"
+          ],
+          [
+            "원시 값",
+            "RAW"
+          ]
+        ]
+      }
+    ]
+  },
+  "mlx90642_frame_stat": {
+    "message0": "MLX90642 %1 온도 %2 °C  캐시 프레임",
+    "tooltip": "이전 프레임 캐시의 최소, 최대, 평균 온도를 계산합니다.",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "minimum",
+            "MIN"
+          ],
+          [
+            "maximum",
+            "MAX"
+          ],
+          [
+            "average",
+            "AVG"
+          ]
+        ]
+      }
+    ]
+  },
+  "mlx90642_progress": {
+    "message0": "MLX90642 %1 측정 진행 %",
+    "tooltip": "현재 측정된 진행 상황 비율을 읽어보세요."
+  },
+  "mlx90642_print_frame_csv": {
+    "message0": "MLX90642 %1 캐시 프레임을 CSV로 내보내서 %2 보드 rate%3",
+    "tooltip": "이전 프레임의 32x24 온도 캐시를 24줄의 CSV 파일로 시리얼 포트에 출력합니다."
+  },
+  "mlx90642_sleep": {
+    "message0": "MLX90642 %1 sleep",
+    "tooltip": "저전력 절전 모드로 MLX90642하세요."
+  }
+}

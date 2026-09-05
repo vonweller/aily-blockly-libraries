@@ -1,0 +1,96 @@
+{
+  "toolbox_name": "オンライン画像ローダー",
+  "toolbox_labels": {
+    "初始化": "初期化",
+    "图片加载": "画像読み込み",
+    "信息查询": "情報照会",
+    "错误处理": "エラー処理",
+    "资源管理": "リソース管理"
+  },
+  "lvgl_http_img_init": {
+    "message0": "LVGL HTTP画像ローダーの初期化 画面 %1 高%2 \nPSRAMモード%3ストレージモード%4 \nデバッグ%6ms最大ファイル%5KBタイムアウト%7",
+    "tooltip": "HTTPイメージローダーの初期化(グローバルシングルトン、1回の呼び出しだけで済みます)",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "自動検知",
+            "AUTO"
+          ],
+          [
+            "PSRAMがあります",
+            "AVAILABLE"
+          ],
+          [
+            "PSRAMは使いません",
+            "NONE"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "自動選考",
+            "AUTO"
+          ],
+          [
+            "強制リトルFS",
+            "LITTLEFS"
+          ],
+          [
+            "強制PSRAM",
+            "PSRAM"
+          ]
+        ]
+      },
+      null,
+      null,
+      {
+        "options": [
+          [
+            "閉じる",
+            "FALSE"
+          ],
+          [
+            "オンにする",
+            "TRUE"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_http_img_load": {
+    "message0": "HTTPから画像を読み込みURL%1表示%2",
+    "tooltip": "HTTPからJPEG画像をダウンロードし、LVGL Imageオブジェクトに表示します"
+  },
+  "lvgl_http_img_get_info": {
+    "message0": "HTTP画像情報を取得URL%1",
+    "tooltip": "リモート画像のサイズとタイプ情報を取得します(ファイルサイズを返します。-1は不明を示します)"
+  },
+  "lvgl_http_img_check": {
+    "message0": "画像が読み込めるか確認してくださいURL%1",
+    "tooltip": "画像が読み込めるか確認してください(true:loadable、false:大きすぎるか不正)"
+  },
+  "lvgl_http_img_has_psram": {
+    "message0": "PSRAM検出",
+    "tooltip": "システムにPSRAMがあるかどうかを検出します(PSRAMがあれば、より大きな画像を読み込めます)"
+  },
+  "lvgl_http_img_get_max_size": {
+    "message0": "現在の最大許容画像サイズを取得しましょう",
+    "tooltip": "現在の構成で許可される最大画像サイズ(バイト)を取得します"
+  },
+  "lvgl_http_img_get_last_error": {
+    "message0": "最終エラーコードを取得します",
+    "tooltip": "最後の操作のエラーコード(0=成功)を取得します"
+  },
+  "lvgl_http_img_err_to_string": {
+    "message0": "エラーコード%1記述文字列に変換されます",
+    "tooltip": "エラーコードを読みやすいエラー記述に変換します"
+  },
+  "lvgl_http_img_cleanup": {
+    "message0": "HTTP画像ローダーでの一時ファイルやキャッシュのクリーンアップ",
+    "tooltip": "一時ファイルやPSRAMキャッシュをクリアしてメモリを解放します"
+  }
+}

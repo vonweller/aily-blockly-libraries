@@ -1,0 +1,82 @@
+{
+  "toolbox_name": "ArduinoFFT",
+  "toolbox_labels": {
+    "Setup": "Configuração",
+    "Sampling": "Amostragem",
+    "Processing": "Processamento",
+    "Results": "Resultados",
+    "Debug": "Depurar"
+  },
+  "arduino_fft_init": {
+    "message0": "criar FFT %1 tipo %2 amostras %3 frequência de amostragem %4 Hz",
+    "tooltip": "Crie um objeto arduinoFFT e seus buffers de samples reais/imaginários."
+  },
+  "arduino_fft_set_sample": {
+    "message0": "FFT %1 índice amostral %2 real %3 imaginário %4",
+    "tooltip": "Escreva uma amostra real/imaginária nos buffers FFT."
+  },
+  "arduino_fft_clear_samples": {
+    "message0": "FFT %1 limpar todas as amostras",
+    "tooltip": "Defina todas as amostras reais e imaginárias em zero."
+  },
+  "arduino_fft_sample_analog": {
+    "message0": "FFT %1 pino analógico de amostra %2 deslocamento %3 escala %4",
+    "tooltip": "Preencha os buffers FFT a partir do analogRead na frequência de amostragem configurada."
+  },
+  "arduino_fft_generate_tone": {
+    "message0": "As FFT %1 geram frequência de tom %2 amplitude %3 deslocamento %4",
+    "tooltip": "Gerar um sinal de teste de onda senoidal nos buffers FFT."
+  },
+  "arduino_fft_dc_removal": {
+    "message0": "FFT %1 remover o deslocamento DC",
+    "tooltip": "Subtraia o valor médio do buffer real da amostra."
+  },
+  "arduino_fft_windowing": {
+    "message0": "FFT %1 aplicar janela %2 direção %3 compensar %4",
+    "tooltip": "Aplique uma das funções da janela arduinoFFT ao buffer real."
+  },
+  "arduino_fft_compute": {
+    "message0": "FFT %1 direção de computação %2",
+    "tooltip": "Execute o cálculo FFT nos buffers configurados."
+  },
+  "arduino_fft_complex_to_magnitude": {
+    "message0": "FFT %1 complexa a magnitude",
+    "tooltip": "Converta o resultado complexo da FFT em magnitudes armazenadas no buffer real."
+  },
+  "arduino_fft_process": {
+    "message0": "FFT %1 executar a janela de pipeline %2 remover DC %3 compensar %4",
+    "tooltip": "Execute as sequências comuns dcRemoval, windowing, compute e complexToMagnitude."
+  },
+  "arduino_fft_major_peak": {
+    "message0": "FFT %1 frequência de pico principal",
+    "tooltip": "Devolva a frequência dominante após a conversão de magnitude."
+  },
+  "arduino_fft_major_peak_parabola": {
+    "message0": "FFT %1 frequência de pico parabólica",
+    "tooltip": "Devolva a frequência dominante usando interpolação parabólica."
+  },
+  "arduino_fft_peak_magnitude": {
+    "message0": "FFT %1 maior magnitude máxima",
+    "tooltip": "Devolva a estimativa de magnitude para o pico dominante."
+  },
+  "arduino_fft_bin_frequency": {
+    "message0": "FFT %1 frequência de %2",
+    "tooltip": "Converta um índice de bins FFT em sua frequência em Hz."
+  },
+  "arduino_fft_bin_magnitude": {
+    "message0": "FFT %1 magnitude da %2",
+    "tooltip": "Leia um valor de magnitude do buffer real pelo índice de bin FFT."
+  },
+  "arduino_fft_band_magnitude": {
+    "message0": "FFT %1 magnitude da %2 de banda em %3 faixas",
+    "tooltip": "Retorne a magnitude máxima dentro de uma faixa de frequência grossa."
+  },
+  "arduino_fft_print_bins": {
+    "message0": "FFT %1 caixas de impressão para %2 de %3 a %4",
+    "tooltip": "Pares de frequência e magnitude de impressão para uma variedade de caixas FFT."
+  },
+  "arduino_fft_revision": {
+    "message0": "Revisão da biblioteca arduinoFFT",
+    "tooltip": "Devolva o valor da macro da revisão arduinoFFT."
+  }
+}

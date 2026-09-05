@@ -1,0 +1,75 @@
+{
+  "toolbox_name": "CHSC6X touch screen",
+  "toolbox_labels": {
+    "初始化": "initialization",
+    "触摸检测": "Touch detection",
+    "坐标获取": "Coordinate acquisition",
+    "配置": "Configuration"
+  },
+  "chsc6x_setup": {
+    "message0": "Create touch screen %1 using I2C %2 Address %3 Interrupt pin %4 Width %5 Height %6 Rotation %7",
+    "tooltip": "Create and initialize the CHSC6X touch screen object",
+    "args0": [
+      null,
+      {
+        "options": "${board.i2c}"
+      },
+      null,
+      null,
+      null,
+      null,
+      {
+        "options": [
+          [
+            "0 degrees",
+            "0"
+          ],
+          [
+            "90 degrees",
+            "1"
+          ],
+          [
+            "180 degrees",
+            "2"
+          ],
+          [
+            "270 degrees",
+            "3"
+          ]
+        ]
+      }
+    ]
+  },
+  "chsc6x_is_pressed": {
+    "message0": "Touch screen %1 is touched",
+    "tooltip": "Detect whether the touch screen is touched"
+  },
+  "chsc6x_get_x": {
+    "message0": "X coordinate of touch screen %1",
+    "tooltip": "Get the X coordinate of the touch point"
+  },
+  "chsc6x_get_y": {
+    "message0": "Y coordinate of touch screen %1",
+    "tooltip": "Get the Y coordinate of the touch point"
+  },
+  "chsc6x_get_xy": {
+    "message0": "Touch screen %1 Get coordinates to X %2 Y %3",
+    "tooltip": "Get the touch coordinates to the specified variable"
+  },
+  "chsc6x_set_rotation": {
+    "message0": "Touch screen %1 Set rotation to %2",
+    "tooltip": "Set the touch screen rotation angle (0-3)"
+  },
+  "chsc6x_get_rotation": {
+    "message0": "Rotation angle of touch screen %1",
+    "tooltip": "Get the current rotation angle (0-3)"
+  },
+  "chsc6x_set_screen_size": {
+    "message0": "Touch screen %1 Set screen size Width %2 Height %3",
+    "tooltip": "Set touch screen size"
+  },
+  "chsc6x_run": {
+    "message0": "Touch screen %1 running detection",
+    "tooltip": "Run touch detection and update internal coordinates"
+  }
+}

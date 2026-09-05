@@ -1,0 +1,314 @@
+{
+  "toolbox_name": "C4001 Millimeterwellenradar",
+  "c4001_init_i2c": {
+    "message0": "Initialisieren Sie C4001 I2C %1 Bus %2 Adresse %3",
+    "tooltip": "Initialisieren Sie das C4001-Radar über I2C.",
+    "args0": [
+      null,
+      {
+        "options": "${board.i2c}"
+      },
+      {
+        "options": [
+          [
+            "0x2A",
+            "DEVICE_ADDR_0"
+          ],
+          [
+            "0x2B",
+            "DEVICE_ADDR_1"
+          ]
+        ]
+      }
+    ]
+  },
+  "c4001_init_uart": {
+    "message0": "Initialisieren Sie C4001 UART %1 serielle Ports %2 RX %3 TX %4",
+    "tooltip": "Beim Initialisieren des C4001-Radars über UART ist die Baudrate auf 9600 festgelegt.",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Serial1",
+            "Serial1"
+          ],
+          [
+            "Serial2",
+            "Serial2"
+          ],
+          [
+            "Serial",
+            "Serial"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "c4001_motion_detected": {
+    "message0": "C4001 %1 die Anwesenheit menschlicher Körper festgestellt",
+    "tooltip": "Im Detektionsmodus wird gelesen, ob ein menschlicher Körper oder ein sich bewegendes Ziel erkannt wird."
+  },
+  "c4001_set_mode": {
+    "message0": "C4001 %1 Betriebsmodus %2",
+    "tooltip": "Wechsel in den C4001-Betriebsmodus.",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "presence",
+            "eExitMode"
+          ],
+          [
+            "Entfernungs- und Geschwindigkeitsmessung",
+            "eSpeedMode"
+          ]
+        ]
+      }
+    ]
+  },
+  "c4001_sensor_command": {
+    "message0": "C4001 %1 run %2",
+    "tooltip": "Führen Sie C4001-Sensorsteuerungsbefehle aus.",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Fang an zu sammeln",
+            "eStartSen"
+          ],
+          [
+            "Hör auf zu sammeln",
+            "eStopSen"
+          ],
+          [
+            "Sensor zurücksetzen",
+            "eResetSen"
+          ],
+          [
+            "Standardparameter wiederherstellen",
+            "eRecoverSen"
+          ],
+          [
+            "Speichere die Konfiguration",
+            "eSaveParams"
+          ],
+          [
+            "Schaltmodi",
+            "eChangeMode"
+          ]
+        ]
+      }
+    ]
+  },
+  "c4001_get_status": {
+    "message0": "C4001 %1 Status%2",
+    "tooltip": "Lesestatus: Betriebszustand 0/1, Betriebsmodus 0/1, Initialisierungszustand 0/1.",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Arbeitsstatus",
+            "WORK"
+          ],
+          [
+            "Arbeitsmodus",
+            "MODE"
+          ],
+          [
+            "Initialisierter Zustand",
+            "INIT"
+          ]
+        ]
+      }
+    ]
+  },
+  "c4001_set_presence_range": {
+    "message0": "C4001 %1 Erkennungsbereich Minimum cm %2 Maximal cm %3 Trigger cm %4",
+    "tooltip": "Stellen Sie die Erkennungsreichweite für die Präsenz ein, mindestens 30–2000 cm, maximal 240–2000 cm, und die Auslöserdistanz darf die Reichweite nicht überschreiten."
+  },
+  "c4001_set_sensitivity": {
+    "message0": "C4001 %1 Einstellung %2 Empfindlichkeit %3",
+    "tooltip": "Stelle den Trigger ein oder halte die Empfindlichkeit bei, Bereich 0-9.",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "trigger",
+            "TRIG"
+          ],
+          [
+            "keep",
+            "KEEP"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "c4001_set_delay": {
+    "message0": "C4001 %1 Verzögerungstrigger (0,01 s) %2 Halten (0,5 s) %3",
+    "tooltip": "Stellen Sie eine Abzugsverzögerung ein und halten Sie das Timeout bei. Abzugseinheit 0,01s, Halteeinheit 0,5s."
+  },
+  "c4001_get_presence_config": {
+    "message0": "C4001 %1 Präsenzkonfiguration %2",
+    "tooltip": "Erkennungsbezogene Konfigurationen lesen.",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Minimaler Abstand cm",
+            "MIN"
+          ],
+          [
+            "Maximale Entfernung cm",
+            "MAX"
+          ],
+          [
+            "Abzugsabstand cm",
+            "TRIG_RANGE"
+          ],
+          [
+            "Abzugsempfindlichkeit",
+            "TRIG_SENS"
+          ],
+          [
+            "Bleiben Sie wachsam",
+            "KEEP_SENS"
+          ],
+          [
+            "Auslöseverzögerung",
+            "TRIG_DELAY"
+          ],
+          [
+            "Halte eine Auszeit bei",
+            "KEEP_TIMEOUT"
+          ],
+          [
+            "IO polarity",
+            "IO_POLARITY"
+          ],
+          [
+            "PWM1",
+            "PWM1"
+          ],
+          [
+            "PWM2",
+            "PWM2"
+          ],
+          [
+            "PWM period",
+            "PWM_TIMER"
+          ]
+        ]
+      }
+    ]
+  },
+  "c4001_set_io_polarity": {
+    "message0": "C4001 %1 IO-Polarität %2",
+    "tooltip": "Stellen Sie nach der Erkennung des Ziels die Ausgangspolarität des OUT-Pins ein. UART-Modus funktioniert.",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "active low",
+            "0"
+          ],
+          [
+            "active high",
+            "1"
+          ]
+        ]
+      }
+    ]
+  },
+  "c4001_set_pwm": {
+    "message0": "C4001 %1 PWM so einstellen, dass %2 Ziel %3 Gradientenzeit %4",
+    "tooltip": "Stellen Sie das PWM des OUT-Pins auf einen Duty Cycle von 0-100 ein, mit einer Gradient Time Unit von 64 ms. UART-Modus funktioniert."
+  },
+  "c4001_get_target": {
+    "message0": "C4001 %1 target %2",
+    "tooltip": "Lesen Sie die Anzahl der Ziele, Geschwindigkeit, Entfernung und Energie im Entfernungs- und Geschwindigkeitsmessmodus. Das Lesen der Zielgröße zuerst kann den internen Cache auffrischen.",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "count",
+            "NUMBER"
+          ],
+          [
+            "speed",
+            "SPEED"
+          ],
+          [
+            "range",
+            "RANGE"
+          ],
+          [
+            "energy",
+            "ENERGY"
+          ]
+        ]
+      }
+    ]
+  },
+  "c4001_set_speed_threshold": {
+    "message0": "C4001 %1 Entfernungs- und Geschwindigkeitsmessungsschwellenwert Minimales cm %2 Maximal cm %3 Schwellenwert %4",
+    "tooltip": "Stellen Sie die Entfernungsreichweite und den Zielerkennungsschwellenwert für Entfernungs- und Geschwindigkeitsmessmodi ein."
+  },
+  "c4001_set_micro_motion": {
+    "message0": "C4001 %1 Mikrobewegungserkennung %2",
+    "tooltip": "Mikrobewegungserkennung in Entfernungs- und Geschwindigkeitsmessmodi aktivieren oder deaktivieren.",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Ein",
+            "eON"
+          ],
+          [
+            "Aus",
+            "eOFF"
+          ]
+        ]
+      }
+    ]
+  },
+  "c4001_get_speed_config": {
+    "message0": "C4001 %1 Konfiguration der Entfernungs- und Geschwindigkeitsmessung %2",
+    "tooltip": "Entfernungs- und Geschwindigkeitsmessmodus-Konfigurationen.",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Minimaler Abstand cm",
+            "MIN"
+          ],
+          [
+            "Maximale Entfernung cm",
+            "MAX"
+          ],
+          [
+            "threshold",
+            "THRESHOLD"
+          ],
+          [
+            "micro-motion",
+            "MICRO_MOTION"
+          ]
+        ]
+      }
+    ]
+  }
+}

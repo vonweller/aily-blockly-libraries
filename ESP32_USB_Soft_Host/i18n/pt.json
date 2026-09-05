@@ -1,0 +1,52 @@
+{
+  "toolbox_name": "ESP32 USB Soft Host",
+  "toolbox_labels": {
+    "Core": "Núcleo",
+    "Events": "Eventos",
+    "State": "Estado"
+  },
+  "esp32_usb_soft_host_begin": {
+    "message0": "ESP32 USB Soft Host começa D+0 %1 D-0 %2 D+1 %3 D-1 %4 D+2 %5 D-2 %6 D+3 %7 D-3 %8",
+    "tooltip": "Inicialize o host USB de software com até quatro pares D+/D- GPIO. Use -1 para desativar uma porta não utilizada."
+  },
+  "esp32_usb_soft_host_task_options": {
+    "message0": "O núcleo de tarefas USB Soft Host %1 prioridade %2 pino de piscar %3 interrupção %4",
+    "tooltip": "Configure o núcleo da tarefa, prioridade, pino do LED de atividade e flag de alocação de interrupções antes da inicialização."
+  },
+  "esp32_usb_soft_host_descriptor_log": {
+    "message0": "USB Soft Host habilita o registro de descritores",
+    "tooltip": "Anexe os callbacks de descritores padrão da biblioteca para imprimir configurações USB, interface, HID e descritores de endpoint."
+  },
+  "esp32_usb_soft_host_on_detect": {
+    "message0": "quando um dispositivo USB detectou porta %1 fornecedor %2 produto %3 classe %4 %5 %6",
+    "tooltip": "Registre um callback que roda quando o host USB de software detectar um dispositivo."
+  },
+  "esp32_usb_soft_host_on_disconnect": {
+    "message0": "quando o dispositivo USB desconectou a porta %1 %2 %3",
+    "tooltip": "Registre um callback que roda quando um dispositivo USB desconectar."
+  },
+  "esp32_usb_soft_host_on_data": {
+    "message0": "quando dados USB recebidos %1 comprimento %2 hex %3 %4 %5",
+    "tooltip": "Registre um callback que rode quando os bytes de relatório HID chegarem. O último relatório também está disponível por meio de blocos de valor."
+  },
+  "esp32_usb_soft_host_on_tick": {
+    "message0": "quando o Host Soft USB marca %1",
+    "tooltip": "Registre um callback chamado da tarefa do temporizador do host USB."
+  },
+  "esp32_usb_soft_host_timer": {
+    "message0": "Temporizador USB Soft Host %1",
+    "tooltip": "Pause ou retome o temporizador do soft-host USB em torno de sistemas de arquivos sensíveis a tempo ou trabalho em flash."
+  },
+  "esp32_usb_soft_host_last_value": {
+    "message0": "Host Soft USB na última %1",
+    "tooltip": "Leia um valor numérico do evento USB mais recente."
+  },
+  "esp32_usb_soft_host_last_data_hex": {
+    "message0": "Hexágono de dados do último host do Soft Host USB",
+    "tooltip": "Leia os bytes de relatório HID mais recentes como uma cadeia hexadecimal separada por espaço."
+  },
+  "esp32_usb_soft_host_data_byte": {
+    "message0": "Índice de bytes de dados do host Soft USB %1",
+    "tooltip": "Leia um byte do último buffer de relatório HID. O índice começa em 0."
+  }
+}

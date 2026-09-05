@@ -1,4 +1,3 @@
-
 [
   {
     "type": "wire_begin",
@@ -7,7 +6,8 @@
     "previousStatement": null,
     "nextStatement": null,
     "colour": "#03a9f4",
-    "tooltip": "初始化I2C通信"
+    "tooltip": "初始化I2C通信",
+    "icon": "fa-regular fa-network-wired"
   },
   {
     "type": "wire_begin_address",
@@ -22,11 +22,12 @@
     "previousStatement": null,
     "nextStatement": null,
     "colour": "#03a9f4",
-    "tooltip": "以指定地址初始化I2C通信"
+    "tooltip": "以指定地址初始化I2C通信",
+    "icon": "fa-regular fa-network-wired"
   },
   {
     "type": "wire_set_clock",
-    "message0": "设置I2C时钟频率为 %1",
+    "message0": "设置I2C时钟频率为 %1 kHz",
     "inputsInline": true,
     "args0": [
       {
@@ -38,7 +39,8 @@
     "previousStatement": null,
     "nextStatement": null,
     "colour": "#03a9f4",
-    "tooltip": "设置I2C通信时钟频率"
+    "tooltip": "设置I2C通信时钟频率",
+    "icon": "fa-regular fa-network-wired"
   },
   {
     "type": "wire_end",
@@ -47,7 +49,8 @@
     "previousStatement": null,
     "nextStatement": null,
     "colour": "#03a9f4",
-    "tooltip": "结束I2C通信"
+    "tooltip": "结束I2C通信",
+    "icon": "fa-regular fa-network-wired"
   },
   {
     "type": "wire_begin_transmission",
@@ -62,7 +65,8 @@
     "previousStatement": null,
     "nextStatement": null,
     "colour": "#03a9f4",
-    "tooltip": "开始与指定设备的传输"
+    "tooltip": "开始与指定设备的传输",
+    "icon": "fa-regular fa-network-wired"
   },
   {
     "type": "wire_end_transmission",
@@ -87,7 +91,33 @@
     "previousStatement": null,
     "nextStatement": null,
     "colour": "#03a9f4",
-    "tooltip": "结束传输并根据需要发送停止信号"
+    "tooltip": "结束传输并根据需要发送停止信号",
+    "icon": "fa-regular fa-network-wired"
+  },
+  {
+    "type": "wire_end_transmission_result",
+    "message0": "结束传输并返回错误码，停止? %1",
+    "inputsInline": true,
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "STOP",
+        "options": [
+          [
+            "true",
+            "TRUE"
+          ],
+          [
+            "false",
+            "FALSE"
+          ]
+        ]
+      }
+    ],
+    "output": "Number",
+    "colour": "#03a9f4",
+    "tooltip": "结束I2C传输并返回状态码，0表示成功，4表示未知错误",
+    "icon": "fa-regular fa-network-wired"
   },
   {
     "type": "wire_write",
@@ -102,7 +132,8 @@
     "previousStatement": null,
     "nextStatement": null,
     "colour": "#03a9f4",
-    "tooltip": "发送单个数据字节"
+    "tooltip": "发送单个数据字节",
+    "icon": "fa-regular fa-network-wired"
   },
   {
     "type": "wire_write_bytes",
@@ -122,7 +153,8 @@
     "previousStatement": null,
     "nextStatement": null,
     "colour": "#03a9f4",
-    "tooltip": "写入一组数据字节"
+    "tooltip": "写入一组数据字节",
+    "icon": "fa-regular fa-network-wired"
   },
   {
     "type": "wire_request_from",
@@ -156,7 +188,8 @@
     "previousStatement": null,
     "nextStatement": null,
     "colour": "#03a9f4",
-    "tooltip": "请求指定数量的数据"
+    "tooltip": "请求指定数量的数据",
+    "icon": "fa-regular fa-network-wired"
   },
   {
     "type": "wire_available",
@@ -164,7 +197,8 @@
     "inputsInline": true,
     "output": "Number",
     "colour": "#03a9f4",
-    "tooltip": "返回接收缓冲区中的可用数据数量"
+    "tooltip": "返回接收缓冲区中的可用数据数量",
+    "icon": "fa-regular fa-network-wired"
   },
   {
     "type": "wire_read",
@@ -172,7 +206,8 @@
     "inputsInline": true,
     "output": "Number",
     "colour": "#03a9f4",
-    "tooltip": "从I2C缓冲区中读取数据"
+    "tooltip": "从I2C缓冲区中读取数据",
+    "icon": "fa-regular fa-network-wired"
   },
   {
     "type": "wire_peek",
@@ -180,7 +215,8 @@
     "inputsInline": true,
     "output": "Number",
     "colour": "#03a9f4",
-    "tooltip": "预览下一个I2C数据，不移除它"
+    "tooltip": "预览下一个I2C数据，不移除它",
+    "icon": "fa-regular fa-network-wired"
   },
   {
     "type": "wire_flush",
@@ -189,7 +225,8 @@
     "previousStatement": null,
     "nextStatement": null,
     "colour": "#03a9f4",
-    "tooltip": "刷新I2C数据缓冲区"
+    "tooltip": "刷新I2C数据缓冲区",
+    "icon": "fa-regular fa-network-wired"
   },
   {
     "type": "wire_on_receive",
@@ -209,7 +246,8 @@
     "previousStatement": null,
     "nextStatement": null,
     "colour": "#03a9f4",
-    "tooltip": "设置I2C接收回调函数"
+    "tooltip": "设置I2C接收回调函数",
+    "icon": "fa-regular fa-network-wired"
   },
   {
     "type": "wire_on_request",
@@ -229,23 +267,8 @@
     "previousStatement": null,
     "nextStatement": null,
     "colour": "#03a9f4",
-    "tooltip": "设置I2C请求回调函数"
-  },
-  {
-    "type": "wire_scan_devices",
-    "message0": "扫描I2C设备，延时 %1 毫秒",
-    "inputsInline": true,
-    "args0": [
-      {
-        "type": "input_value",
-        "name": "DELAY",
-        "check": "Number"
-      }
-    ],
-    "previousStatement": null,
-    "nextStatement": null,
-    "colour": "#03a9f4",
-    "tooltip": "扫描并报告I2C设备地址"
+    "tooltip": "设置I2C请求回调函数",
+    "icon": "fa-regular fa-network-wired"
   },
   {
     "type": "wire_set_timeout",
@@ -275,7 +298,8 @@
     "previousStatement": null,
     "nextStatement": null,
     "colour": "#03a9f4",
-    "tooltip": "设置I2C超时时间及复位行为"
+    "tooltip": "设置I2C超时时间及复位行为",
+    "icon": "fa-regular fa-network-wired"
   },
   {
     "type": "wire_get_timeout_flag",
@@ -283,7 +307,8 @@
     "inputsInline": true,
     "output": "Boolean",
     "colour": "#03a9f4",
-    "tooltip": "获取当前I2C超时标志状态"
+    "tooltip": "获取当前I2C超时标志状态",
+    "icon": "fa-regular fa-network-wired"
   },
   {
     "type": "wire_clear_timeout_flag",
@@ -292,6 +317,7 @@
     "previousStatement": null,
     "nextStatement": null,
     "colour": "#03a9f4",
-    "tooltip": "清除I2C超时标志"
+    "tooltip": "清除I2C超时标志",
+    "icon": "fa-regular fa-network-wired"
   }
 ]

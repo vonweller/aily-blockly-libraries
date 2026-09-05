@@ -1,0 +1,57 @@
+# SparkFun AS7265X spectral triad
+
+Blockly wrapper for the SparkFun AS7265X 18-channel spectral triad.
+
+## Library Info
+- **Name**: @aily-project/lib-sparkfun-as7265x
+- **Version**: 0.0.1
+
+## Block Definitions
+
+| Block Type | Connection | Parameters (block.json order) | ABS Format | Generated Code |
+|------------|------------|--------------------------|------------|----------------|
+| `as7265x_init` | Statement | VAR(field_input) | `as7265x_init("as7265x")` | `Wire.begin(); ↵ as7265x_ready = as7265x.begin(Wire);` |
+| `as7265x_is_ready` | Value | VAR(field_variable) | `as7265x_is_ready($as7265x)` | `as7265x_ready` |
+| `as7265x_is_connected` | Value | VAR(field_variable) | `as7265x_is_connected($as7265x)` | `as7265x.isConnected()` |
+| `as7265x_take_measurements` | Statement | VAR(field_variable), BULB(dropdown) | `as7265x_take_measurements($as7265x, NO)` | `as7265x.takeMeasurements();` |
+| `as7265x_data_available` | Value | VAR(field_variable) | `as7265x_data_available($as7265x)` | `as7265x.dataAvailable()` |
+| `as7265x_read_calibrated` | Value | VAR(field_variable), CHANNEL(dropdown) | `as7265x_read_calibrated($as7265x, getCalibratedA)` | `as7265x.getCalibratedA()` |
+| `as7265x_read_raw` | Value | VAR(field_variable), CHANNEL(dropdown) | `as7265x_read_raw($as7265x, getA)` | `as7265x.getA()` |
+| `as7265x_read_temperature` | Value | VAR(field_variable), DEVICE(dropdown) | `as7265x_read_temperature($as7265x, AS72651_NIR)` | `as7265x.getTemperature(AS72651_NIR)` |
+| `as7265x_set_gain` | Statement | VAR(field_variable), GAIN(dropdown) | `as7265x_set_gain($as7265x, AS7265X_GAIN_1X)` | `as7265x.setGain(AS7265X_GAIN_1X);` |
+| `as7265x_set_measurement_mode` | Statement | VAR(field_variable), MODE(dropdown) | `as7265x_set_measurement_mode($as7265x, AS7265X_MEASUREMENT_MODE_4CHAN)` | `as7265x.setMeasurementMode(AS7265X_MEASUREMENT_MODE_4CHAN);` |
+| `as7265x_set_integration_cycles` | Statement | VAR(field_variable), CYCLES(input_value) | `as7265x_set_integration_cycles($as7265x, math_number(0))` | `as7265x.setIntegrationCycles(1);` |
+| `as7265x_bulb` | Statement | VAR(field_variable), DEVICE(dropdown), STATE(dropdown) | `as7265x_bulb($as7265x, AS72651_NIR, ON)` | `as7265x.enableBulb(AS72651_NIR);` |
+| `as7265x_set_bulb_current` | Statement | VAR(field_variable), DEVICE(dropdown), CURRENT(dropdown) | `as7265x_set_bulb_current($as7265x, AS72651_NIR, AS7265X_LED_CURRENT_LIMIT_12_5MA)` | `as7265x.setBulbCurrent(AS7265X_LED_CURRENT_LIMIT_12_5MA, AS72651_NIR);` |
+
+## Parameter Options
+
+| Parameter | Values | Description |
+|-----------|--------|-------------|
+| BULB | NO, YES | as7265x_take_measurements |
+| CHANNEL | getCalibratedA, getCalibratedB, getCalibratedC, getCalibratedD, getCalibratedE, getCalibratedF, getCalibratedG, getCalibratedH, getCalibratedI, getCalibratedJ, getCalibratedK, getCalibratedL, getCalibratedR, getCalibr... | as7265x_read_calibrated |
+| CHANNEL | getA, getB, getC, getD, getE, getF, getG, getH, getI, getJ, getK, getL, getR, getS, getT, getU, getV, getW | as7265x_read_raw |
+| DEVICE | AS72651_NIR, AS72652_VISIBLE, AS72653_UV | as7265x_read_temperature, as7265x_bulb, as7265x_set_bulb_current |
+| GAIN | AS7265X_GAIN_1X, AS7265X_GAIN_37X, AS7265X_GAIN_16X, AS7265X_GAIN_64X | as7265x_set_gain |
+| MODE | AS7265X_MEASUREMENT_MODE_4CHAN, AS7265X_MEASUREMENT_MODE_4CHAN_2, AS7265X_MEASUREMENT_MODE_6CHAN_CONTINUOUS, AS7265X_MEASUREMENT_MODE_6CHAN_ONE_SHOT | as7265x_set_measurement_mode |
+| STATE | ON, OFF | as7265x_bulb |
+| CURRENT | AS7265X_LED_CURRENT_LIMIT_12_5MA, AS7265X_LED_CURRENT_LIMIT_25MA, AS7265X_LED_CURRENT_LIMIT_50MA, AS7265X_LED_CURRENT_LIMIT_100MA | as7265x_set_bulb_current |
+
+## ABS Examples
+
+### Basic Usage
+```
+arduino_setup()
+    as7265x_init("as7265x")
+    serial_begin(Serial, 9600)
+
+arduino_loop()
+    serial_println(Serial, as7265x_is_ready($as7265x))
+    time_delay(math_number(1000))
+```
+
+## Notes
+
+1. **Variable**: `as7265x_init("varName", ...)` creates variable `$varName`; pass `$varName` directly to `field_variable` slots; use `variables_get($varName)` only for `input_value` slots.
+2. **Parameter order**: ABS parameters follow `block.json` args order.
+3. **Input values**: use `math_number(n)`, `text("s")`, `logic_boolean(TRUE/FALSE)`, variables, or nested value blocks.

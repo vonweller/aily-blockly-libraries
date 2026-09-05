@@ -1,0 +1,156 @@
+{
+  "toolbox_name": "ESP32 I2C",
+  "toolbox_labels": {
+    "I2C主模式": "I2C-Mastermodus",
+    "数据传输（基础）": "Datenübertragung (grundlegend)",
+    "数据接收（基础）": "Datenempfang (Grundkenntnisse)",
+    "简化操作": "Vereinfachen Sie den Betrieb",
+    "I2C从模式": "I2C-Slave-Modus"
+  },
+  "esp32_i2c_begin": {
+    "message0": "Initialisieren Sie die I2C-Kommunikation SDA-Pin %1 SCL-Pin %2 Frequenz %3 kHz",
+    "tooltip": "Initialisieren Sie die I2C-Kommunikation des ESP32, stellen Sie die SDA- und SCL-Pins sowie die Kommunikationsfrequenz ein",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "100 (Standardmodus)",
+            "100000"
+          ],
+          [
+            "400 (Schnellmodus)",
+            "400000"
+          ],
+          [
+            "1000 (Schnellmodus+)",
+            "1000000"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_i2c_begin_simple": {
+    "message0": "Initialisieren der I2C-Kommunikation (mit Standardpins)",
+    "tooltip": "Initialisieren Sie die I2C-Kommunikation des ESP32 mit den Standardpins"
+  },
+  "esp32_i2c_scan_devices": {
+    "message0": "Scannen von I2C-Geräten",
+    "tooltip": "Scannen Sie und geben Sie die Anzahl der gefundenen I2C-Geräte zurück"
+  },
+  "esp32_i2c_begin_transmission": {
+    "message0": "Fang an, Daten an das Gerät zu senden%1",
+    "tooltip": "Beginnen Sie, Daten an Geräte mit angegebenen I2C-Adressen zu senden."
+  },
+  "esp32_i2c_write_byte": {
+    "message0": "Schreibbyte data%1",
+    "tooltip": "Schreibe ein Byte Daten auf das I2C-Gerät"
+  },
+  "esp32_i2c_write_string": {
+    "message0": "Schreib ein string%1",
+    "tooltip": "Schreibe Stringdaten auf I2C-Geräte"
+  },
+  "esp32_i2c_end_transmission": {
+    "message0": "Datenübertragung am Ende",
+    "tooltip": "I2C-Datenübertragung beenden, Fehlercode zurückgeben (0 bedeutet erfolgreich)"
+  },
+  "esp32_i2c_request_from": {
+    "message0": "Fordern Sie %2byte Daten vom Gerät %1",
+    "tooltip": "Fordern Sie Daten mit einer festgelegten Anzahl von Bytes von einem spezifizierten I2C-Gerät an"
+  },
+  "esp32_i2c_available": {
+    "message0": "I2C kann Bytes lesen",
+    "tooltip": "Gibt die Anzahl der im I2C-Empfangspuffer lesbaren Bytes zurück"
+  },
+  "esp32_i2c_read": {
+    "message0": "I2C-Daten lesen",
+    "tooltip": "Lesen Sie ein Byte Daten aus dem I2C-Empfangspuffer aus"
+  },
+  "esp32_i2c_slave_begin": {
+    "message0": "Initialisieren Sie den I2C-Slave-Modus Adresse %1 SDA-Pin %2 SCL-Pin %3",
+    "tooltip": "Initialisieren Sie den I2C-Slave-Modus des ESP32, setzen Sie die Adressen und Pins des Slave-Geräts"
+  },
+  "esp32_i2c_on_receive": {
+    "message0": "Wenn Daten received%1 %2",
+    "tooltip": "Stellen Sie die Rückruffunktion ein, wenn I2C Daten vom Gerät empfängt"
+  },
+  "esp32_i2c_on_request": {
+    "message0": "Wenn das Mastergerät die Daten anfordert%1 %2",
+    "tooltip": "Stellen Sie die Rückruffunktion ein, wenn I2C-Slave-Geräte auf Anfragen vom Mastergerät reagieren"
+  },
+  "esp32_i2c_slave_print": {
+    "message0": "Strings vom Kurs device%1",
+    "tooltip": "I2C sendet String-Daten vom Slave-Gerät an das Master-Gerät"
+  },
+  "esp32_i2c_write_to_device": {
+    "message0": "Schreibe Daten %1 in die device%2",
+    "tooltip": "Eine vereinfachte Version des Schreibens von Daten auf bestimmte I2C-Geräte",
+    "args0": [
+      {
+        "options": [
+          [
+            "0x3C (OLED-Display)",
+            "0x3C"
+          ],
+          [
+            "0x48 (ADS1115)",
+            "0x48"
+          ],
+          [
+            "0x68 (MPU6050)",
+            "0x68"
+          ],
+          [
+            "0x76 (BMP280)",
+            "0x76"
+          ],
+          [
+            "0x77 (BMP280-Backup)",
+            "0x77"
+          ],
+          [
+            "Benutzerdefinierte Adresse",
+            "CUSTOM"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "esp32_i2c_read_from_device": {
+    "message0": "Lesen Sie %2 Bytes Daten vom Gerät %1",
+    "tooltip": "Lesen Sie eine bestimmte Anzahl von Datenbytes von einem spezifizierten I2C-Gerät aus",
+    "args0": [
+      {
+        "options": [
+          [
+            "0x3C (OLED-Display)",
+            "0x3C"
+          ],
+          [
+            "0x48 (ADS1115)",
+            "0x48"
+          ],
+          [
+            "0x68 (MPU6050)",
+            "0x68"
+          ],
+          [
+            "0x76 (BMP280)",
+            "0x76"
+          ],
+          [
+            "0x77 (BMP280-Backup)",
+            "0x77"
+          ],
+          [
+            "Benutzerdefinierte Adresse",
+            "CUSTOM"
+          ]
+        ]
+      },
+      null
+    ]
+  }
+}

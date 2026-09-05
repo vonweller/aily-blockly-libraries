@@ -1,0 +1,227 @@
+{
+  "toolbox_name": "ESP-NOW",
+  "toolbox_labels": {
+    "ESP-NOW极简模式": "ESP-NOW極簡模式",
+    "ESP-NOW串口模式": "ESP-NOW 序列埠模式",
+    "ESP-NOW标准模式": "ESP-NOW標準模式",
+    "初始化": "初始化",
+    "创建对等设备": "建立對等設備",
+    "发送消息": "發送訊息",
+    "接收事件": "接收活動",
+    "回调变量": "回呼變數",
+    "快速操作": "快速操作",
+    "状态查询": "狀態查詢"
+  },
+  "esp_now_master_init": {
+    "message0": "ESP-NOW 初始化為主機（傳送者）通道 %1",
+    "tooltip": "一鍵初始化為ESP-NOW主機（廣播發送方），自動配置WiFi和ESP-NOW"
+  },
+  "esp_now_slave_init": {
+    "message0": "ESP-NOW 初始化為從機（接收方）通道 %1",
+    "tooltip": "一鍵初始化為ESP-NOW從機（接收方），自動配置WiFi、ESP-NOW並註冊新設備"
+  },
+  "esp_now_broadcast_message": {
+    "message0": "廣播訊息 %1",
+    "tooltip": "向網路中所有設備廣播訊息（需先初始化為主機）"
+  },
+  "esp_now_on_message_received": {
+    "message0": "當收到 ESP-NOW 訊息時",
+    "tooltip": "全域接收回調，任何ESP-NOW訊息都會觸發。回呼中可用：收到的訊息內容、訊息長度、是否廣播、發送方MAC",
+    "message1": "執行 %1"
+  },
+  "esp_now_received_message": {
+    "message0": "收到的訊息",
+    "tooltip": "在全域接收回呼中取得收到的訊息內容"
+  },
+  "esp_now_received_message_len": {
+    "message0": "訊息長度",
+    "tooltip": "在全域接收回呼中獲取訊息長度"
+  },
+  "esp_now_received_is_broadcast": {
+    "message0": "是廣播訊息",
+    "tooltip": "在全域接收回呼中判斷是否為廣播訊息"
+  },
+  "esp_now_received_sender_mac": {
+    "message0": "發送方MAC",
+    "tooltip": "在全域接收回呼中取得發送方的MAC位址"
+  },
+  "esp_now_reply_message": {
+    "message0": "回覆訊息 %1",
+    "tooltip": "回覆最後一個發送訊息的裝置（在接收回呼中或之後使用）"
+  },
+  "esp_now_node_init": {
+    "message0": "ESP-NOW 初始化為雙向節點 通道 %1",
+    "tooltip": "初始化為雙向節點，既能廣播發送也能接收訊息"
+  },
+  "esp_now_begin": {
+    "message0": "初始化 ESP-NOW",
+    "tooltip": "初始化ESP-NOW協議，使用預設配置"
+  },
+  "esp_now_begin_with_pmk": {
+    "message0": "初始化 ESP-NOW 主密鑰 %1",
+    "tooltip": "初始化ESP-NOW協定並設定主密鑰（16位元組）用於加密通信"
+  },
+  "esp_now_end": {
+    "message0": "停止ESP-NO",
+    "tooltip": "停止ESP-NOW協議"
+  },
+  "esp_now_wifi_init": {
+    "message0": "設定WiFi模式 %1 頻道 %2",
+    "tooltip": "初始化WiFi模式和通道（ESP-NOW需要先設定WiFi）",
+    "args0": [
+      {
+        "options": [
+          [
+            "STA（站點模式）",
+            "WIFI_STA"
+          ],
+          [
+            "AP（熱點模式）",
+            "WIFI_AP"
+          ],
+          [
+            "AP+STA（混合模式）",
+            "WIFI_AP_STA"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "esp_now_create_peer": {
+    "message0": "建立對等設備 %1 MAC位址 %2",
+    "tooltip": "建立一個ESP-NOW對等設備（需要指定對方的MAC位址）"
+  },
+  "esp_now_create_peer_advanced": {
+    "message0": "建立對等設備 %1 MAC位址 %2\n頻道 %3 加密金鑰 %4",
+    "tooltip": "建立具有加密的ESP-NOW對等設備（LMK需要16位元組）"
+  },
+  "esp_now_create_broadcast_peer": {
+    "message0": "建立廣播對等設備 %1",
+    "tooltip": "建立一個廣播對等設備，用於向網路中所有設備發送訊息"
+  },
+  "esp_now_remove_peer": {
+    "message0": "移除對等設備 %1",
+    "tooltip": "移除已註冊的對等設備"
+  },
+  "esp_now_send": {
+    "message0": "對等設備 %1 發送訊息 %2",
+    "tooltip": "向指定對等設備發送字串訊息"
+  },
+  "esp_now_send_data": {
+    "message0": "對等設備 %1 傳送資料 %2 長度 %3",
+    "tooltip": "向指定對等設備發送原始數據"
+  },
+  "esp_now_on_receive": {
+    "message0": "當對等設備 %1 收到訊息時",
+    "tooltip": "設定對等設備接收訊息的回呼函數。回呼中可使用變數: esp_now_data(訊息內容), esp_now_len(訊息長度), esp_now_broadcast(是否廣播)",
+    "message1": "執行 %1"
+  },
+  "esp_now_on_sent": {
+    "message0": "當對等設備 %1 訊息發送完成時",
+    "tooltip": "設定訊息發送完成的回調函數。回呼中可使用變數: esp_now_success(是否發送成功)",
+    "message1": "執行 %1"
+  },
+  "esp_now_on_new_peer": {
+    "message0": "當收到新對等設備訊息時",
+    "tooltip": "當收到未知設備訊息時觸發。回呼中可使用變數: esp_now_src_mac(傳送者MAC), esp_now_data(訊息內容), esp_now_len(訊息長度)",
+    "message1": "執行 %1"
+  },
+  "esp_now_received_data": {
+    "message0": "收到的訊息內容",
+    "tooltip": "在接收回呼中取得收到的訊息內容（字串）"
+  },
+  "esp_now_received_len": {
+    "message0": "收到的訊息長度",
+    "tooltip": "在接收回呼中取得收到的訊息長度"
+  },
+  "esp_now_is_broadcast": {
+    "message0": "是否為廣播訊息",
+    "tooltip": "在接收回呼中判斷是否為廣播訊息"
+  },
+  "esp_now_send_success": {
+    "message0": "發送是否成功",
+    "tooltip": "在發送回調中判斷訊息是否發送成功"
+  },
+  "esp_now_src_mac": {
+    "message0": "發送方MAC位址",
+    "tooltip": "在新對等設備回呼中取得發送方MAC位址"
+  },
+  "esp_now_serial_create": {
+    "message0": "建立ESP-NOW串列埠 %1 對方MAC %2 頻道 %3 工作模式 %4",
+    "tooltip": "建立ESP-NOW串列埠通訊對象，類似Serial的使用方式",
+    "args0": [
+      null,
+      null,
+      null,
+      {
+        "options": [
+          [
+            "車站模式",
+            "WIFI_STA"
+          ],
+          [
+            "AP 模式",
+            "WIFI_AP"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp_now_serial_available": {
+    "message0": "ESP-NOW串列埠 %1 可讀位元組數",
+    "tooltip": "取得ESP-NOW串列埠接收緩衝區中可讀取的位元組數"
+  },
+  "esp_now_serial_available_for_write": {
+    "message0": "ESP-NOW串列埠 %1 可寫入位元組數",
+    "tooltip": "取得ESP-NOW串列埠發送緩衝區剩餘空間"
+  },
+  "esp_now_serial_read": {
+    "message0": "ESP-NOW串列埠 %1 讀取一個位元組",
+    "tooltip": "從ESP-NOW串列埠讀取一個位元組"
+  },
+  "esp_now_serial_read_string": {
+    "message0": "ESP-NOW串列埠 %1 讀取字串",
+    "tooltip": "從ESP-NOW串列埠讀取所有可用資料作為字串"
+  },
+  "esp_now_serial_read_string_until": {
+    "message0": "ESP-NOW串列埠 %1 讀取字串直到 %2",
+    "tooltip": "從ESP-NOW串列埠讀取資料直到遇到指定字符"
+  },
+  "esp_now_serial_print": {
+    "message0": "ESP-NOW串列埠 %1 發送 %2",
+    "tooltip": "透過ESP-NOW串列埠發送數據"
+  },
+  "esp_now_serial_println": {
+    "message0": "ESP-NOW串列埠 %1 發送 %2 並換行",
+    "tooltip": "透過ESP-NOW串列埠發送資料並換行"
+  },
+  "esp_now_serial_write": {
+    "message0": "ESP-NOW串列埠 %1 傳送原始資料 %2",
+    "tooltip": "透過ESP-NOW串列傳送原始數據"
+  },
+  "esp_now_quick_broadcast": {
+    "message0": "快速廣播訊息 %1 頻道 %2",
+    "tooltip": "快速向網路中的所有裝置廣播訊息（自動初始化）"
+  },
+  "esp_now_quick_send": {
+    "message0": "快速傳送訊息給 MAC %1 內容 %2 頻道 %3",
+    "tooltip": "快速向指定MAC位址設備發送訊息（自動初始化）"
+  },
+  "esp_now_get_mac": {
+    "message0": "取得本機MAC位址",
+    "tooltip": "取得本機的WiFi MAC位址"
+  },
+  "esp_now_get_max_data_len": {
+    "message0": "ESP-NOW 最大資料長度",
+    "tooltip": "取得ESP-NOW協定支援的最大資料長度（通常為250位元組）"
+  },
+  "esp_now_get_peer_count": {
+    "message0": "ESP-NOW 對等設備數量",
+    "tooltip": "取得已註冊的對等設備數量"
+  },
+  "esp_now_get_version": {
+    "message0": "ESP-NOW 版本號",
+    "tooltip": "取得ESP-NOW協定版本號"
+  }
+}

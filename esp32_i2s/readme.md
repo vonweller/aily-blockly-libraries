@@ -1,45 +1,26 @@
-# ESP32 I2S音频处理库
+# ESP32 I2S Audio Library
 
-## 简介
-这是一个专为ESP32设计的I2S数字麦克风音频采集与分析库，提供实时音频电平检测、频谱分析、声音检测等功能。
+ESP32 I2S audio interface library supports standard I2S, TDM, and PDM modes for audio playback and recording, providing fast operation and tone generation functions.
 
-## 功能特点
-- 支持I2S数字麦克风音频采集
-- 实时音频电平分析（平均、峰值、RMS）
-- 声音检测与阈值判断
-- 音质等级评估
-- 频谱分析（低频、中频、高频）
-- 信噪比计算
-- 噪声基准校准
+## Library Info
 
-## 简化使用
-库提供了简化的块，让用户能够通过最少的操作使用I2S功能：
+| Field | Value |
+|-------|-------|
+| Package | @aily-project/lib-esp32-i2s |
+| Version | 1.0.1 |
+| Author | ailyProject |
+| Source | https://github.com/espressif/arduino-esp32/tree/master/libraries/ESP_I2S |
+| License | Original license |
 
-### 一键初始化
-`使用I2S麦克风检测声音` - 自动完成麦克风初始化和配置
+## Supported Boards
 
-### 简化检测
-`引脚x,x,x的I2S麦克风检测到声音` - 直接返回是否检测到声音，无需手动初始化
+ESP32
 
-### 简化获取
-`引脚x,x,x的I2S麦克风音量百分比` - 直接获取音频电平，自动处理采样
+## Description
 
-## 高级控制
-对于需要精细控制的用户，提供完整的API：
-- 手动初始化和配置
-- 自定义采样率和缓冲区大小
-- 详细的音频分析功能
+ESP32 I2S audio interface library supports standard I2S, TDM, and PDM modes for audio playback and recording, providing fast operation and tone generation functions.
 
-## 硬件连接
-- BCLK: 位时钟引脚
-- WS: 字选择引脚  
-- DIN: 数据输入引脚
+## Quick Start
 
-## 兼容性
-仅支持ESP32系列开发板：
-- ESP32
-- ESP32-C3
-- ESP32-S3
-
-## 参考文档
-https://docs.espressif.com/projects/arduino-esp32/en/latest/libraries.html
+1. Enable `@aily-project/lib-esp32-i2s` in Aily Blockly.
+2. Add the library blocks, initialize hardware in `arduino_setup()`, then use read/write blocks in `arduino_loop()`.

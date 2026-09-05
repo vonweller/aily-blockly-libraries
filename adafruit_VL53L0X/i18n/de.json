@@ -1,0 +1,47 @@
+{
+  "toolbox_name": "VL53L0X Laserentfernungsmessung",
+  "vl53l0x_config_i2c": {
+    "message0": "Konfiguration VL53L0X I2C-Pin %1",
+    "tooltip": "Ausgestattet mit I2C-Pins, die von VL53L0X Sensoren verwendet werden,",
+    "args0": [
+      {
+        "options": [
+          [
+            "Wire1 (SDA:8, SCL:9)",
+            "WIRE1"
+          ],
+          [
+            "Wire2 (SDA:4, SCL:5)",
+            "WIRE2"
+          ]
+        ]
+      }
+    ]
+  },
+  "vl53l0x_init_with_wire": {
+    "message0": "Initialisieren VL53L0X Sensor %1 %2",
+    "tooltip": "Initialisieren Sie VL53L0X Laserdistanzsensor und geben Sie den verwendeten I2C-Bus an",
+    "args0": [
+      null,
+      {
+        "options": "${board.i2c}"
+      }
+    ]
+  },
+  "vl53l0x_begin": {
+    "message0": "Initialisieren VL53L0X Sensor %1 %2",
+    "tooltip": "Initialisieren Sie VL53L0X Laserdistanzsensor, konfigurieren Sie I2C-Pins und überprüfen Sie die Verbindung"
+  },
+  "vl53l0x_ranging_test": {
+    "message0": "Sensoren %1 Messungen durchführen und die results%2 speichern",
+    "tooltip": "Eine detaillierte Messung wird durchgeführt und die Ergebnisse werden in der angegebenen Variablen gespeichert"
+  },
+  "vl53l0x_check_range_valid": {
+    "message0": "Messergebnisse %1 gültig",
+    "tooltip": "Überprüfen Sie, ob das Messergebnis gültig ist; ist der Zustandswert nicht 4, ist es gültig"
+  },
+  "vl53l0x_get_range_mm": {
+    "message0": "Erhalten Sie den Abstand (mm) vom Messergebnis %1",
+    "tooltip": "Entfernungsdaten werden aus den Messergebnissen gewonnen, gemessen in Millimetern"
+  }
+}

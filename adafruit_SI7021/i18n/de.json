@@ -1,0 +1,91 @@
+{
+  "toolbox_name": "Si7021-Sensor",
+  "toolbox_labels": {
+    "基础操作": "Grundlegende Operationen",
+    "数据读取": "Datenlesen",
+    "加热器控制": "Heizungssteuerung",
+    "设备信息": "Geräteinformationen"
+  },
+  "si7021_begin": {
+    "message0": "Initialisierung des Si7021-Sensors %1 mit %2",
+    "args0": [
+      null,
+      {
+        "options": "${board.i2c}"
+      }
+    ]
+  },
+  "si7021_read_temperature": {
+    "message0": "Messen Sie die Temperatur %1 Si7021-Sensor ab"
+  },
+  "si7021_read_humidity": {
+    "message0": "Messe die Luftfeuchtigkeit %1 Si7021-Sensor ab"
+  },
+  "si7021_heater_control": {
+    "message0": "Si7021 Sensor %1 heater%2",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Aktivieren",
+            "true"
+          ],
+          [
+            "Deaktivieren",
+            "false"
+          ]
+        ]
+      }
+    ]
+  },
+  "si7021_is_heater_enabled": {
+    "message0": "Si7021-Sensor %1, ob die Heizung aktiviert ist"
+  },
+  "si7021_set_heat_level": {
+    "message0": "Stell den Si7021-Sensor %1 Heizung grade%2",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "minimum",
+            "SI_HEATLEVEL_LOWEST"
+          ],
+          [
+            "Niedrig",
+            "SI_HEATLEVEL_LOW"
+          ],
+          [
+            "Mittel",
+            "SI_HEATLEVEL_MEDIUM"
+          ],
+          [
+            "Hoch",
+            "SI_HEATLEVEL_HIGH"
+          ],
+          [
+            "Höher",
+            "SI_HEATLEVEL_HIGHER"
+          ],
+          [
+            "maximum",
+            "SI_HEATLEVEL_HIGHEST"
+          ]
+        ]
+      }
+    ]
+  },
+  "si7021_get_model": {
+    "message0": "Holen Sie sich das Si7021-Sensormodell %1 Modell"
+  },
+  "si7021_get_revision": {
+    "message0": "Hol dir die %1 Version des Si7021-Sensors"
+  },
+  "si7021_reset": {
+    "message0": "Den Si7021-Sensor zurückgesetzt %1"
+  },
+  "si7021_read_serial_number": {
+    "message0": "Lesen Sie die Seriennummer %1 Si7021-Sensor"
+  }
+}

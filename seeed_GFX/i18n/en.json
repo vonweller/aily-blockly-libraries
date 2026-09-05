@@ -1,0 +1,513 @@
+{
+  "toolbox_name": "GFX",
+  "toolbox_labels": {
+    "TFT显示": "TFT display",
+    "墨水屏显示": "Ink screen display",
+    "基本绘图": "basic drawing",
+    "文字显示": "text display",
+    "数据获取": "data acquisition",
+    "图片": "image",
+    "动画": "animation"
+  },
+  "seeed_gfx_create_tft": {
+    "message0": "Create TFT object %1",
+    "tooltip": "Create TFT display object"
+  },
+  "seeed_gfx_init": {
+    "message0": "Initialization TFT screen %1 Model %2 SPI frequency %3",
+    "tooltip": "Initialize TFT display",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Seeed_Wio_Terminal",
+            "500"
+          ],
+          [
+            "Seeed_XIAO_Round_Display",
+            "501"
+          ],
+          [
+            "Seeed_XIAO_ILI9341",
+            "666"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "10MHz",
+            "10000000"
+          ],
+          [
+            "20MHz",
+            "20000000"
+          ],
+          [
+            "27MHz",
+            "27000000"
+          ],
+          [
+            "40MHz",
+            "40000000"
+          ],
+          [
+            "55MHz",
+            "55000000"
+          ],
+          [
+            "80MHz",
+            "80000000"
+          ]
+        ]
+      }
+    ]
+  },
+  "seeed_gfx_fill_screen": {
+    "message0": "Fill screen %1 color %2",
+    "tooltip": "Fill the entire screen with the specified color"
+  },
+  "seeed_gfx_set_rotation": {
+    "message0": "Setting screen %1 Rotation angle %2",
+    "tooltip": "Set screen rotation direction",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "0 degrees",
+            "0"
+          ],
+          [
+            "90 degrees",
+            "1"
+          ],
+          [
+            "180 degrees",
+            "2"
+          ],
+          [
+            "270 degrees",
+            "3"
+          ],
+          [
+            "mirror level",
+            "4"
+          ],
+          [
+            "mirror vertical",
+            "5"
+          ],
+          [
+            "Swap XY axes",
+            "6"
+          ],
+          [
+            "Swap XY axes and mirror horizontally",
+            "7"
+          ]
+        ]
+      }
+    ]
+  },
+  "seeed_gfx_draw_pixel": {
+    "message0": "Draw points on the screen %1 X:%2 Y: %3 Color: %4",
+    "tooltip": "Draw a point at specified coordinates"
+  },
+  "seeed_gfx_draw_line": {
+    "message0": "On the screen %1 draw lines from X:%2 Y:%3 to X:%4 Y:%5 Color:%6",
+    "tooltip": "draw a line between two points"
+  },
+  "seeed_gfx_draw_rect": {
+    "message0": "On the screen %1, draw a rectangle X:%2 Y:%3 width:%4 height:%5 color:%6",
+    "tooltip": "Draw a rectangular border"
+  },
+  "seeed_gfx_fill_rect": {
+    "message0": "On the screen %1, fill rectangles X:%2 Y:%3 Width:%4 Height:%5 Color:%6",
+    "tooltip": "Draw a filled rectangle"
+  },
+  "seeed_gfx_draw_round_rect": {
+    "message0": "On the screen %1, draw rounded rectangles X:%2 Y:%3 Width:%4 Height:%5 Fillet radius:%6 Color:%7",
+    "tooltip": "Draw a rectangular border"
+  },
+  "seeed_gfx_fill_round_rect": {
+    "message0": "On the screen %1 fill the fillet rectangle X:%2 Y:%3 Width:%4 Height:%5 Fillet radius:%6 Color:%7",
+    "tooltip": "Draw a filled rectangle"
+  },
+  "seeed_gfx_draw_circle": {
+    "message0": "On the screen %1, draw a circle, center X:%2, Y:%3, radius:%4, color:%5",
+    "tooltip": "draw a circle"
+  },
+  "seeed_gfx_fill_circle": {
+    "message0": "On the screen %1 Fill circle Center X:%2 Y:%3 Radius:%4 Color:%5",
+    "tooltip": "Draw a filled circle"
+  },
+  "seeed_gfx_draw_triangle": {
+    "message0": "Draw a triangle on the screen %1 Point 1X: %2 Y: %3 Point 2X: %4 Y: %5 Point 3X: %6 Y:%7 Color:%8",
+    "tooltip": "Draw a triangular border"
+  },
+  "seeed_gfx_set_text_color": {
+    "message0": "Settings screen %1 Text color %2 Background color %3",
+    "tooltip": "Set text color and background color"
+  },
+  "seeed_gfx_set_text_size": {
+    "message0": "Settings screen %1 Text size %2",
+    "tooltip": "Set text size",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "1",
+            "1"
+          ],
+          [
+            "2",
+            "2"
+          ],
+          [
+            "3",
+            "3"
+          ],
+          [
+            "4",
+            "4"
+          ],
+          [
+            "5",
+            "5"
+          ],
+          [
+            "6",
+            "6"
+          ],
+          [
+            "7",
+            "7"
+          ]
+        ]
+      }
+    ]
+  },
+  "seeed_gfx_set_cursor": {
+    "message0": "Settings screen %1 Cursor position X:%2 Y:%3",
+    "tooltip": "Set text cursor position"
+  },
+  "seeed_gfx_print": {
+    "message0": "Display text %2 on screen %1",
+    "tooltip": "Print text at current location"
+  },
+  "seeed_gfx_draw_string": {
+    "message0": "On the screen, %1 displays text %2 X:%3 Y:%4 font:%5",
+    "tooltip": "Display text at specified location",
+    "args0": [
+      null,
+      null,
+      null,
+      null,
+      {
+        "options": [
+          [
+            "Font 1",
+            "1"
+          ],
+          [
+            "Font 2",
+            "2"
+          ],
+          [
+            "Font 4",
+            "4"
+          ],
+          [
+            "Font 6",
+            "6"
+          ],
+          [
+            "Font 7",
+            "7"
+          ]
+        ]
+      }
+    ]
+  },
+  "seeed_gfx_create_sprite": {
+    "message0": "Create Elf Width: %1 Height: %2 Variable: %3",
+    "tooltip": "Create a sprite object"
+  },
+  "seeed_gfx_epaper_begin": {
+    "message0": "Initialize ink screen %1 Model %2",
+    "tooltip": "Initialize the ink screen display",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Seeed_XIAO_EPaper_7inch5",
+            "502"
+          ],
+          [
+            "Seeed_reTerminal_E1001",
+            "520"
+          ],
+          [
+            "Seeed_reTerminal_E1002",
+            "521"
+          ],
+          [
+            "Seeed_reTerminal_E1003",
+            "522"
+          ],
+          [
+            "Seeed_reTerminal_E1004",
+            "523"
+          ]
+        ]
+      }
+    ]
+  },
+  "seeed_gfx_epaper_update": {
+    "message0": "Refresh the ink screen %1 display content",
+    "tooltip": "Refresh the ink screen display content"
+  },
+  "seeed_gfx_epaper_sleep": {
+    "message0": "Ink screen %1 enters sleep mode",
+    "tooltip": "Put Ink Screen into sleep mode to save power consumption"
+  },
+  "seeed_gfx_animation": {
+    "message0": "Seeed GFX animation %1",
+    "tooltip": "Upload a GIF or MP4 and convert it to Seeed GFX RGB565/RGB332 animation frames"
+  },
+  "seeed_gfx_play_animation": {
+    "message0": "Display %1 play animation x%2 y%3 animation %4 mode %5",
+    "message1": "Loop playback %1",
+    "tooltip": "Play a Seeed GFX animation; in non-blocking mode, the next frame is rendered when loop reaches the frame interval",
+    "args0": [
+      null,
+      null,
+      null,
+      null,
+      {
+        "options": [
+          [
+            "Blocking playback",
+            "BLOCKING"
+          ],
+          [
+            "Non-blocking playback",
+            "NON_BLOCKING"
+          ]
+        ]
+      }
+    ]
+  },
+  "seeed_gfx_play_sd_video": {
+    "message0": "Display %1 play AILY video from SD file %2 buffer %3 KB",
+    "tooltip": "Stream and play an AILY video from SD using the specified buffer limit; Wio Terminal can initialize its onboard SD card automatically"
+  },
+  "seeed_gfx_draw_animation_frame": {
+    "message0": "Display %1 draw animation frame x%2 y%3 animation %4 frame %5",
+    "tooltip": "Draw the specified Seeed GFX animation frame; the frame number is clamped to the valid range"
+  },
+  "seeed_gfx_animation_frame_count": {
+    "message0": "Get total frame count of Seeed GFX animation %1",
+    "tooltip": "Get the total frame count of a Seeed GFX animation"
+  },
+  "seeed_gfx_color": {
+    "message0": "Color %1",
+    "tooltip": "Commonly used color macro definitions for TFT and ink screens",
+    "args0": [
+      {
+        "options": [
+          [
+            "white",
+            "TFT_WHITE"
+          ],
+          [
+            "black",
+            "TFT_BLACK"
+          ],
+          [
+            "red",
+            "TFT_RED"
+          ],
+          [
+            "green",
+            "TFT_GREEN"
+          ],
+          [
+            "blue",
+            "TFT_BLUE"
+          ],
+          [
+            "yellow",
+            "TFT_YELLOW"
+          ],
+          [
+            "magenta",
+            "TFT_MAGENTA"
+          ],
+          [
+            "cyan",
+            "TFT_CYAN"
+          ],
+          [
+            "orange",
+            "TFT_ORANGE"
+          ],
+          [
+            "pink",
+            "TFT_PINK"
+          ],
+          [
+            "purple",
+            "TFT_PURPLE"
+          ],
+          [
+            "brown",
+            "TFT_BROWN"
+          ],
+          [
+            "gray",
+            "TFT_DARKGREY"
+          ],
+          [
+            "light gray",
+            "TFT_LIGHTGREY"
+          ],
+          [
+            "golden",
+            "TFT_GOLD"
+          ],
+          [
+            "silver",
+            "TFT_SILVER"
+          ],
+          [
+            "sky blue",
+            "TFT_SKYBLUE"
+          ],
+          [
+            "violet",
+            "TFT_VIOLET"
+          ],
+          [
+            "olive green",
+            "TFT_OLIVE"
+          ],
+          [
+            "Navy blue",
+            "TFT_NAVY"
+          ],
+          [
+            "dark green",
+            "TFT_DARKGREEN"
+          ],
+          [
+            "dark cyan",
+            "TFT_DARKCYAN"
+          ],
+          [
+            "brown red",
+            "TFT_MAROON"
+          ],
+          [
+            "Yellow-green",
+            "TFT_GREENYELLOW"
+          ]
+        ]
+      }
+    ]
+  },
+  "seeed_gfx_epaper_wake": {
+    "message0": "Ink screen %1 wake up",
+    "tooltip": "Wake up the ink screen"
+  },
+  "seeed_gfx_rgb565": {
+    "message0": "Screen %1 Color Conversion %2",
+    "tooltip": "Convert RGB colors to RGB565 format"
+  },
+  "seeed_gfx_get_width": {
+    "message0": "Screen %1 width",
+    "tooltip": "Get screen width"
+  },
+  "seeed_gfx_get_height": {
+    "message0": "Screen %1 height",
+    "tooltip": "Get screen height"
+  },
+  "seeed_gfx_fill_rect_v_gradient": {
+    "args0": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "message0": "On the screen %1, vertical gradient fills rectangles X:%2 Y:%3 Width:%4 Height:%5 Starting color: %6 End color: %7",
+    "tooltip": "Fill a rectangular area with a vertical gradient"
+  },
+  "seeed_gfx_fill_rect_h_gradient": {
+    "args0": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "message0": "On the screen %1 Horizontal gradient fills rectangles X:%2 Y:%3 Width:%4 Height:%5 Starting color:%6 End color:%7",
+    "tooltip": "Fill a rectangular area with a horizontal gradient"
+  },
+  "seeed_gfx_fill_triangle": {
+    "args0": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "message0": "Filled triangle in screen %1 Point 1X: %2 Y: %3 Point 2X: %4 Y: %5 Point 3X: %6 Y:%7 Color:%8",
+    "tooltip": "Fill a triangular area"
+  },
+  "seeed_gfx_draw_ellipse": {
+    "args0": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "message0": "On the screen %1 draw an ellipse, center X:%2 Y:%3 radius X:%4 radius Y:%5 Color:%6",
+    "tooltip": "Draw an elliptical border"
+  },
+  "seeed_gfx_image": {
+    "message0": "Image %1",
+    "tooltip": "Upload a PNG, JPEG, WebP, or BMP image and convert it to RGB565/RGB332 pixel data",
+    "args0": [null]
+  },
+  "seeed_gfx_draw_image": {
+    "message0": "On display %1 at X:%2 Y:%3 draw image %4",
+    "tooltip": "Draw converted RGB565/RGB332 image data at the specified coordinates",
+    "args0": [null, null, null, null]
+  },
+  "seeed_gfx_fill_ellipse": {
+    "args0": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "message0": "On the screen %1 fill the ellipse Center X:%2 Y:%3 Radius X:%4 Radius Y:%5 Color:%6",
+    "tooltip": "Fill an elliptical area"
+  }
+}

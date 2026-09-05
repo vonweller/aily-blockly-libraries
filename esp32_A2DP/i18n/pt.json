@@ -1,0 +1,137 @@
+{
+  "a2dp_sink_config_i2s_pins": {
+    "message0": "Configure o pino I2S do receiver %1 BCK %2 WS %3 DADOS %4",
+    "tooltip": "Defina o clock de bits, seleção de canal e pinos de dados do DAC externo do I2S"
+  },
+  "toolbox_name": "Áudio Bluetooth ESP32",
+  "toolbox_labels": {
+    "蓝牙音频接收器 (Sink)": "Receptor de áudio Bluetooth (dissipador)",
+    "播放控制": "Controles de reprodução",
+    "音量控制": "Controle de volume",
+    "状态和事件": "status e eventos",
+    "音频状态常量": "Constantes de status de áudio",
+    "蓝牙音频发送器 (Source)": "Transmissor de áudio Bluetooth (fonte)"
+  },
+  "a2dp_sink_create": {
+    "message0": "Crie um receptor de áudio Bluetooth %1 saída para %2",
+    "tooltip": "Crie um objeto receptor de áudio Bluetooth A2DP (Sink)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "DAC externo I2S",
+            "I2S"
+          ],
+          [
+            "DAC embutido",
+            "INTERNAL_DAC"
+          ]
+        ]
+      }
+    ]
+  },
+  "a2dp_sink_start": {
+    "message0": "Inicie o receptor de áudio Bluetooth %1 Nome do dispositivo: %2",
+    "tooltip": "Inicie o receptor de áudio Bluetooth e defina o nome Bluetooth"
+  },
+  "a2dp_sink_set_volume": {
+    "message0": "Defina o valor do volume %1 %2",
+    "tooltip": "Volume do set (0-127)"
+  },
+  "a2dp_sink_get_volume": {
+    "message0": "Obtendo o Volume %1",
+    "tooltip": "Obtenha o valor atual do volume (0-127)"
+  },
+  "a2dp_sink_play": {
+    "message0": "Jogar %1",
+    "tooltip": "Comando de envio de reprodução (AVRC)"
+  },
+  "a2dp_sink_pause": {
+    "message0": "Pausa %1",
+    "tooltip": "Comando de pausa de envio (AVRC)"
+  },
+  "a2dp_sink_stop": {
+    "message0": "Pare %1",
+    "tooltip": "Comando de Envio de Paragem (AVRC)"
+  },
+  "a2dp_sink_next": {
+    "message0": "Próxima Música %1",
+    "tooltip": "Comando de Enviar Próxima Música (AVRC)"
+  },
+  "a2dp_sink_previous": {
+    "message0": "Música Anterior %1",
+    "tooltip": "Enviar o comando da música anterior (AVRC)"
+  },
+  "a2dp_sink_on_metadata": {
+    "message0": "Receiver %1 executa quando os metadados são recebidos",
+    "tooltip": "Executado quando metadados musicais (título, artista, etc.) são recebidos",
+    "message2": "%1",
+    "message1": "ID: %1 Conteúdo: %2"
+  },
+  "a2dp_sink_on_connection_state": {
+    "message0": "Receiver %1 executado quando o estado da conexão muda",
+    "tooltip": "Executado quando o status da conexão Bluetooth muda",
+    "message2": "%1",
+    "message1": "Status: %1"
+  },
+  "a2dp_sink_on_audio_state": {
+    "message0": "Receiver %1 executa quando o status do áudio muda",
+    "tooltip": "Executado quando o status da reprodução de áudio muda",
+    "message2": "%1",
+    "message1": "Status: %1"
+  },
+  "a2dp_sink_get_audio_state": {
+    "message0": "Obter status de áudio %1",
+    "tooltip": "Veja o status atual da reprodução de áudio"
+  },
+  "a2dp_source_create": {
+    "message0": "Crie um transmissor de áudio Bluetooth %1",
+    "tooltip": "Crie um objeto transmissor de áudio Bluetooth A2DP (Fonte)"
+  },
+  "a2dp_source_start": {
+    "message0": "Iniciar transmissor de áudio Bluetooth %1 Nome do dispositivo alvo: %2",
+    "tooltip": "Ligue o transmissor de áudio Bluetooth e conecte-se ao dispositivo alvo"
+  },
+  "a2dp_source_set_volume": {
+    "message0": "Defina o volume %1 o valor do volume do transmissor %2",
+    "tooltip": "Ajuste o volume do transmissor de áudio (0-127)"
+  },
+  "a2dp_source_on_data_callback": {
+    "message0": "Transmissor %1 executa ao solicitar dados de áudio",
+    "tooltip": "Essa função de retorno de chamada é chamada quando dados de áudio precisam ser enviados",
+    "message2": "%1",
+    "message1": "Buffer de dados: %1 Frames: %2"
+  },
+  "a2dp_source_set_auto_reconnect": {
+    "message0": "Transmissor %1 Configurar Reconexão Automática %2",
+    "tooltip": "Defina se deve se reconectar automaticamente ao último dispositivo conectado",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Habilitar",
+            "TRUE"
+          ],
+          [
+            "Desabilitar",
+            "FALSE"
+          ]
+        ]
+      }
+    ]
+  },
+  "a2dp_audio_state_started": {
+    "message0": "Áudio status_Playing agora",
+    "tooltip": "ESP_A2D_AUDIO_STATE_STARTED"
+  },
+  "a2dp_audio_state_stopped": {
+    "message0": "O áudio status_has parou",
+    "tooltip": "ESP_A2D_AUDIO_STATE_STOPPED"
+  },
+  "a2dp_audio_state_remote_suspend": {
+    "message0": "Pausa status_Remote áudio",
+    "tooltip": "ESP_A2D_AUDIO_STATE_REMOTE_SUSPEND"
+  }
+}

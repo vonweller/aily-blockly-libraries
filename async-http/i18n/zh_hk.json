@@ -1,0 +1,88 @@
+{
+  "toolbox_name": "異步HTTP",
+  "toolbox_labels": {
+    "初始化": "初始化",
+    "发送请求": "發送請求",
+    "响应数据（放在请求回调中）": "回應資料（放在請求回調中）",
+    "错误处理": "錯誤處理",
+    "管理": "管理"
+  },
+  "async_http_create": {
+    "message0": "建立非同步HTTP客戶端 %1",
+    "tooltip": "建立非同步HTTP客戶端物件並初始化，會自動在loop中呼叫update()"
+  },
+  "async_http_set_timeout": {
+    "message0": "設定 %1 逾時時間為 %2 毫秒",
+    "tooltip": "設定HTTP請求超時時間（預設10000毫秒）"
+  },
+  "async_http_set_header": {
+    "message0": "%1 設定預設請求頭 %2 值 %3",
+    "tooltip": "設定應用到所有請求的預設請求頭"
+  },
+  "async_http_clear_headers": {
+    "message0": "%1 清除所有預設請求頭",
+    "tooltip": "清除所有已設定的預設請求頭"
+  },
+  "async_http_get": {
+    "message0": "%1 發送GET請求 URL %2",
+    "tooltip": "發送非同步GET請求，收到回應後執行回呼代碼（非阻塞）",
+    "message1": "收到回應後 %1"
+  },
+  "async_http_post_json": {
+    "message0": "%1 發送POST JSON請求 URL %2 JSON內容 %3",
+    "tooltip": "發送非同步POST請求並附帶JSON資料（Content-Type: application/json）",
+    "message1": "收到回應後 %1"
+  },
+  "async_http_post": {
+    "message0": "%1 發送POST請求 URL %2 內容 %3 類型 %4",
+    "tooltip": "發送非同步POST請求並指定內容類型",
+    "message1": "收到回應後 %1"
+  },
+  "async_http_put_json": {
+    "message0": "%1 發送PUT JSON請求 URL %2 JSON內容 %3",
+    "tooltip": "發送非同步PUT請求並附帶JSON資料（Content-Type: application/json）",
+    "message1": "收到回應後 %1"
+  },
+  "async_http_del": {
+    "message0": "%1 發送DELETE請求 URL %2",
+    "tooltip": "發送非同步DELETE請求，收到回應後執行回呼代碼",
+    "message1": "收到回應後 %1"
+  },
+  "async_http_on_error": {
+    "message0": "當 %1 發生錯誤時",
+    "tooltip": "當HTTP請求發生錯誤時執行回呼代碼（在回調中可使用錯誤代碼和錯誤訊息區塊）",
+    "message1": "執行 %1"
+  },
+  "async_http_response_status": {
+    "message0": "HTTP回應狀態碼",
+    "tooltip": "取得HTTP回應狀態碼（如200、404等），僅在請求回呼中使用"
+  },
+  "async_http_response_body": {
+    "message0": "HTTP回應內容",
+    "tooltip": "取得HTTP回應的正文內容，僅在請求回呼中使用"
+  },
+  "async_http_response_is_success": {
+    "message0": "HTTP回應是否成功",
+    "tooltip": "判斷HTTP回應是否成功（狀態碼200-299），僅在請求回呼中使用"
+  },
+  "async_http_response_header": {
+    "message0": "HTTP回應頭 %1 的值",
+    "tooltip": "取得指定HTTP回應頭的值，僅在請求回呼中使用"
+  },
+  "async_http_error_code": {
+    "message0": "HTTP錯誤代碼",
+    "tooltip": "取得HTTP錯誤代碼，僅在錯誤回呼中使用"
+  },
+  "async_http_error_message": {
+    "message0": "HTTP錯誤訊息",
+    "tooltip": "取得HTTP錯誤訊息文本，僅在錯誤回調中使用"
+  },
+  "async_http_pending": {
+    "message0": "%1 待處理請求數",
+    "tooltip": "取得目前正在處理中的非同步請求數量"
+  },
+  "async_http_abort_all": {
+    "message0": "%1 取消所有請求",
+    "tooltip": "取消所有正在進行的非同步HTTP請求"
+  }
+}

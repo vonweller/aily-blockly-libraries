@@ -1,0 +1,220 @@
+{
+  "toolbox_name": "بيكو HTTPClient",
+  "toolbox_labels": {
+    "初始化": "التهيئة",
+    "连接": "اتصال",
+    "配置": "التكوين",
+    "请求": "طلب",
+    "响应": "استجابة",
+    "状态": "الحالة",
+    "快速操作": "عملية سريعة"
+  },
+  "rp_httpclient_create": {
+    "message0": "إنشاء عميل HTTP %1",
+    "tooltip": "إنشاء كائن HTTPClient جديد"
+  },
+  "rp_httpclient_begin_url": {
+    "message0": "اربط %1 بعنوان %2",
+    "tooltip": "الاتصال بعنوان URL المحدد"
+  },
+  "rp_httpclient_begin_host": {
+    "message0": "توصيل %1 بالمضيف %2 المنفذ %3 المسار %4",
+    "tooltip": "اتصل بالمضيف والمنفذ والمسار المحدد"
+  },
+  "rp_httpclient_begin_https": {
+    "message0": "اتصال آمن %1 إلى %2 الرابط (تخطي التحقق من الشهادة)",
+    "tooltip": "اتصال آمن بعنوان URL HTTPS (تجاوز التحقق من الشهادة)"
+  },
+  "rp_httpclient_end": {
+    "message0": "افصل %1",
+    "tooltip": "افصل اتصال HTTP"
+  },
+  "rp_httpclient_set_timeout": {
+    "message0": "اضبط مهلة %1 الانتهاء على %2 مللي ثانية",
+    "tooltip": "اضبط مهلة الاتصال (ميلي ثانية)"
+  },
+  "rp_httpclient_set_reuse": {
+    "message0": "تعيين %1 اتصال متعدد الشبكات %2",
+    "tooltip": "حدد ما إذا كان يجب إعادة استخدام اتصالات TCP (مع الحفاظ على قيد الحياة)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "تمكين",
+            "true"
+          ],
+          [
+            "تعطيل",
+            "false"
+          ]
+        ]
+      }
+    ]
+  },
+  "rp_httpclient_set_user_agent": {
+    "message0": "تعيين %1 وكيل المستخدم %2",
+    "tooltip": "تعيين سلسلة بروكسي المستخدم HTTP"
+  },
+  "rp_httpclient_set_authorization": {
+    "message0": "تعيين اسم المستخدم %2 كلمة المرور %1 المصادقة %3",
+    "tooltip": "إعداد مصادقة HTTP الأساسية"
+  },
+  "rp_httpclient_set_authorization_token": {
+    "message0": "تعيين رمز المصادقة %1 %2",
+    "tooltip": "إعداد مصادقة رموز حامل HTTP"
+  },
+  "rp_httpclient_set_follow_redirects": {
+    "message0": "تعيين %1 إعادة التوجيه ومتابعة %2",
+    "tooltip": "قم بتعيين وضع تتبع إعادة توجيه HTTP",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "تعطيل",
+            "HTTPC_DISABLE_FOLLOW_REDIRECTS"
+          ],
+          [
+            "الوضع الصارم (GET/HEAD فقط)",
+            "HTTPC_STRICT_FOLLOW_REDIRECTS"
+          ],
+          [
+            "الوضع القسري (جميع الطرق)",
+            "HTTPC_FORCE_FOLLOW_REDIRECTS"
+          ]
+        ]
+      }
+    ]
+  },
+  "rp_httpclient_set_redirect_limit": {
+    "message0": "اضبط %1 الحد الأقصى لعدد إعادة التوجيه %2",
+    "tooltip": "حدد الحد الأقصى لعدد الإعادات"
+  },
+  "rp_httpclient_add_header": {
+    "message0": "إضافة رأس طلب %1 %2 قيمة %3",
+    "tooltip": "إضافة رؤوس طلبات HTTP"
+  },
+  "rp_httpclient_get": {
+    "message0": "أرسل طلب GET %1",
+    "tooltip": "إرسال طلبات HTTP GET"
+  },
+  "rp_httpclient_post": {
+    "message0": "أرسل طلب POST %1 بيانات %2",
+    "tooltip": "إرسال طلبات HTTP POST"
+  },
+  "rp_httpclient_put": {
+    "message0": "إرسال طلب PUT %1 البيانات %2",
+    "tooltip": "إرسال طلبات HTTP PUT"
+  },
+  "rp_httpclient_patch": {
+    "message0": "إرسال طلب تحديث %1 البيانات %2",
+    "tooltip": "إرسال طلب HTTP PATCH"
+  },
+  "rp_httpclient_delete": {
+    "message0": "أرسل طلب حذف %1",
+    "tooltip": "إرسال طلب حذف HTTP"
+  },
+  "rp_httpclient_get_response_code": {
+    "message0": "احصل على رمز حالة الاستجابة",
+    "tooltip": "احصل على رمز حالة استجابة HTTP للطلب الأخير"
+  },
+  "rp_httpclient_code_list": {
+    "message0": "رمز حالة HTTP %1",
+    "tooltip": "ثابت رمز حالة HTTP",
+    "args0": [
+      {
+        "options": [
+          [
+            "200 OK",
+            "HTTP_CODE_OK"
+          ],
+          [
+            "201 Created",
+            "HTTP_CODE_CREATED"
+          ],
+          [
+            "204 لا محتوى",
+            "HTTP_CODE_NO_CONTENT"
+          ],
+          [
+            "301 الحركة الدائمة",
+            "HTTP_CODE_MOVED_PERMANENTLY"
+          ],
+          [
+            "302 Found",
+            "HTTP_CODE_FOUND"
+          ],
+          [
+            "304 غير معدل",
+            "HTTP_CODE_NOT_MODIFIED"
+          ],
+          [
+            "400 طلب سيء",
+            "HTTP_CODE_BAD_REQUEST"
+          ],
+          [
+            "401 Unauthorized",
+            "HTTP_CODE_UNAUTHORIZED"
+          ],
+          [
+            "403 Forbidden",
+            "HTTP_CODE_FORBIDDEN"
+          ],
+          [
+            "404 غير موجودة",
+            "HTTP_CODE_NOT_FOUND"
+          ],
+          [
+            "خطأ في الخادم 500",
+            "HTTP_CODE_INTERNAL_SERVER_ERROR"
+          ],
+          [
+            "502 بوابة باد",
+            "HTTP_CODE_BAD_GATEWAY"
+          ],
+          [
+            "خدمة 503 غير متاحة",
+            "HTTP_CODE_SERVICE_UNAVAILABLE"
+          ]
+        ]
+      }
+    ]
+  },
+  "rp_httpclient_get_size": {
+    "message0": "احصل على حجم الاستجابة %1",
+    "tooltip": "احصل على حجم محتوى الاستجابة (بايتات)"
+  },
+  "rp_httpclient_get_string": {
+    "message0": "احصل على محتوى الرد %1",
+    "tooltip": "استرجاع سلسلة الاستجابة"
+  },
+  "rp_httpclient_get_header": {
+    "message0": "احصل على %1 الرد head%2",
+    "tooltip": "يسترجع قيمة رأس الاستجابة المحدد"
+  },
+  "rp_httpclient_get_location": {
+    "message0": "احصل %1 موقع إعادة التوجيه",
+    "tooltip": "استرجاع قيمة الرأس لموقع الإعادة توجيهه"
+  },
+  "rp_httpclient_connected": {
+    "message0": "%1 متصل",
+    "tooltip": "تحقق مما إذا كان اتصال HTTP قد تم تأسيسه"
+  },
+  "rp_httpclient_error_to_string": {
+    "message0": "%1 رمز خطأ %2 تحويل إلى نص",
+    "tooltip": "تحويل رموز الخطأ إلى رسائل خطأ قابلة للقراءة"
+  },
+  "rp_httpclient_quick_get": {
+    "message0": "رابط طلب GET السريع %1",
+    "tooltip": "أرسل طلبات GET بسرعة وأرد على الردود"
+  },
+  "rp_httpclient_quick_post": {
+    "message0": "طلب POST سريع %1 بيانات %2",
+    "tooltip": "أرسل طلبات POST بسرعة وأرد على الردود"
+  },
+  "rp_httpclient_quick_post_json": {
+    "message0": "رابط JSON سريع %1 JSON %2",
+    "tooltip": "أرسل بسرعة طلبات JSON POST وأعد محتوى الرد"
+  }
+}

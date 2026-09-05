@@ -1,0 +1,274 @@
+{
+  "toolbox_name": "CAN",
+  "toolbox_labels": {
+    "初始化": "초기화",
+    "消息发送": "메시지 보내기",
+    "消息接收": "메시지 수신",
+    "过滤器设置": "필터 설정",
+    "控制模式": "제어 모드",
+    "状态检查": "상태 확인"
+  },
+  "seeed_can_create": {
+    "message0": "CS 핀 %1 CAN 객체 생성%2",
+    "tooltip": "CAN 버스 객체를 만들고 SPI 칩 선택 핀을 지정합니다"
+  },
+  "seeed_can_begin": {
+    "message0": "CAN 초기화 %1 속도 %2 클럭 %3",
+    "tooltip": "CAN 버스를 초기화하고 통신 속도와 클럭 주파수를 설정하세요",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "5KBPS",
+            "CAN_5KBPS"
+          ],
+          [
+            "10KBPS",
+            "CAN_10KBPS"
+          ],
+          [
+            "20KBPS",
+            "CAN_20KBPS"
+          ],
+          [
+            "25KBPS",
+            "CAN_25KBPS"
+          ],
+          [
+            "31.25KBPS",
+            "CAN_31K25BPS"
+          ],
+          [
+            "33KBPS",
+            "CAN_33KBPS"
+          ],
+          [
+            "40KBPS",
+            "CAN_40KBPS"
+          ],
+          [
+            "50KBPS",
+            "CAN_50KBPS"
+          ],
+          [
+            "80KBPS",
+            "CAN_80KBPS"
+          ],
+          [
+            "83.3KBPS",
+            "CAN_83K3BPS"
+          ],
+          [
+            "95KBPS",
+            "CAN_95KBPS"
+          ],
+          [
+            "95.2KBPS",
+            "CAN_95K2BPS"
+          ],
+          [
+            "100KBPS",
+            "CAN_100KBPS"
+          ],
+          [
+            "125KBPS",
+            "CAN_125KBPS"
+          ],
+          [
+            "200KBPS",
+            "CAN_200KBPS"
+          ],
+          [
+            "250KBPS",
+            "CAN_250KBPS"
+          ],
+          [
+            "500KBPS",
+            "CAN_500KBPS"
+          ],
+          [
+            "666KBPS",
+            "CAN_666KBPS"
+          ],
+          [
+            "800KBPS",
+            "CAN_800KBPS"
+          ],
+          [
+            "1000KBPS",
+            "CAN_1000KBPS"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "8MHz",
+            "MCP_8MHz"
+          ],
+          [
+            "12MHz",
+            "MCP_12MHz"
+          ],
+          [
+            "16MHz",
+            "MCP_16MHz"
+          ]
+        ]
+      }
+    ]
+  },
+  "seeed_can_send": {
+    "message0": "CAN은 확장 프레임%2 %1 ID%3 데이터 %4 전송합니다",
+    "tooltip": "ID, 프레임 유형, 데이터를 지정한 CAN 메시지를 전송하세요",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "표준 프레임",
+            "0"
+          ],
+          [
+            "확장 프레임",
+            "1"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "seeed_can_receive_check": {
+    "message0": "메시지를 수신%1 할 수 있나요",
+    "tooltip": "CAN 메시지가 수신되었는지 확인해"
+  },
+  "seeed_can_receive": {
+    "message0": "CAN은 데이터 길이%2 메시지 ID%3 데이터 %1 수신%4",
+    "tooltip": "수신된 CAN 메시지를 읽어 그 길이, ID, 데이터를 얻습니다"
+  },
+  "seeed_can_get_id": {
+    "message0": "메시지 ID를 얻을 수 있나요%1",
+    "tooltip": "마지막으로 수신된 CAN 메시지 ID를 가져옵니다"
+  },
+  "seeed_can_init_mask": {
+    "message0": "마스크 값을 %1 설정%2 프레임 확장 %3 수 있나요%4",
+    "tooltip": "메시지를 필터링하기 위해 마스크를 받을 수 있는 설정이 가능합니다",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "마스크 0",
+            "0"
+          ],
+          [
+            "마스크 1",
+            "1"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "표준 프레임",
+            "0"
+          ],
+          [
+            "확장 프레임",
+            "1"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "seeed_can_init_filter": {
+    "message0": "필터 설정 %1 필터 설정 %2 프레임 확장 %3 필터 값 %4",
+    "tooltip": "특정 ID에서 메시지를 필터링하는 CAN RECEIVE 필터를 설정하세요",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "필터 0",
+            "0"
+          ],
+          [
+            "필터 1",
+            "1"
+          ],
+          [
+            "필터 2",
+            "2"
+          ],
+          [
+            "필터 3",
+            "3"
+          ],
+          [
+            "필터 4",
+            "4"
+          ],
+          [
+            "필터 5",
+            "5"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "표준 프레임",
+            "0"
+          ],
+          [
+            "확장 프레임",
+            "1"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "seeed_can_set_mode": {
+    "message0": "모드 설정 %1 할 수 있나요%2",
+    "tooltip": "CAN 컨트롤러 작동 모드를 설정하세요",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "노멀 모드",
+            "MODE_NORMAL"
+          ],
+          [
+            "절전 모드",
+            "MODE_SLEEP"
+          ],
+          [
+            "청취 모드",
+            "MODE_LISTEN"
+          ],
+          [
+            "구성 모드",
+            "MODE_CONFIG"
+          ]
+        ]
+      }
+    ]
+  },
+  "seeed_can_sleep": {
+    "message0": "절전 모드에 들어갈 수 %1 있습니다",
+    "tooltip": "CAN 컨트롤러를 절전 모드로 전환해 전력 절약하세요"
+  },
+  "seeed_can_wake": {
+    "message0": "%1 깨어날 수 있을까",
+    "tooltip": "CAN 컨트롤러를 깨워"
+  },
+  "seeed_can_check_error": {
+    "message0": "오류 검사 %1 할 수 있습니다",
+    "tooltip": "CAN 컨트롤러의 오류 상태 확인"
+  }
+}

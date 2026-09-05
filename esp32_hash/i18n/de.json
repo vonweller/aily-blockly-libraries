@@ -1,0 +1,115 @@
+{
+  "toolbox_name": "Hash-Berechnung",
+  "toolbox_labels": {
+    "快速哈希": "schneller Hash",
+    "分步哈希（大数据）": "Schrittweises Hashing (Big Data)",
+    "密钥派生": "Schlüsselableitung"
+  },
+  "esp32_hash_compute": {
+    "message0": "Berechnung %1 Hashwertdaten %2",
+    "tooltip": "Berechnen Sie den Hashwert der Zeichenkette und geben Sie die hexadezimale Zeichenkette zurück",
+    "args0": [
+      {
+        "options": [
+          [
+            "SHA1",
+            "SHA1"
+          ],
+          [
+            "SHA224",
+            "SHA224"
+          ],
+          [
+            "SHA256",
+            "SHA256"
+          ],
+          [
+            "SHA384",
+            "SHA384"
+          ],
+          [
+            "SHA512",
+            "SHA512"
+          ],
+          [
+            "SHA3-256",
+            "SHA3_256"
+          ],
+          [
+            "SHA3-512",
+            "SHA3_512"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "esp32_hash_create": {
+    "message0": "Erstellen eines Hash-Builders %1 %2",
+    "tooltip": "Erstellen Sie ein Hash-Builder-Objekt (für Schritt-für-Schritt-Big-Data-Hashberechnung)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "SHA1",
+            "SHA1"
+          ],
+          [
+            "SHA256",
+            "SHA256"
+          ],
+          [
+            "SHA512",
+            "SHA512"
+          ],
+          [
+            "SHA3-256",
+            "SHA3_256"
+          ],
+          [
+            "SHA3-512",
+            "SHA3_512"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_hash_begin": {
+    "message0": "Hash Builder %1 beginnt",
+    "tooltip": "Setze den Hash-Builder zurück und starte eine neue Berechnung"
+  },
+  "esp32_hash_add": {
+    "message0": "Hash Builder %1 Daten hinzufügen %2",
+    "tooltip": "Füge Daten zum Hash-Builder hinzu"
+  },
+  "esp32_hash_calculate": {
+    "message0": "Der Hash-Builder schließt %1 die Berechnung ab",
+    "tooltip": "Schließen Sie die Hash-Berechnung durch"
+  },
+  "esp32_hash_result": {
+    "message0": "Hash-Builder %1 Ergebnisse erzielen",
+    "tooltip": "Erhalten Sie das Hash-Berechnungsergebnis (hexadezimale Zeichenkette)"
+  },
+  "esp32_hash_pbkdf2": {
+    "message0": "PBKDF2-Schlüsselderivationsalgorithmus %1 Passwort %2 Salzwert %3 Anzahl der Iterationen %4",
+    "tooltip": "PBKDF2-HMAC wird für die Schlüsselableitung verwendet",
+    "args0": [
+      {
+        "options": [
+          [
+            "SHA256",
+            "SHA256"
+          ],
+          [
+            "SHA512",
+            "SHA512"
+          ]
+        ]
+      },
+      null,
+      null,
+      null
+    ]
+  }
+}

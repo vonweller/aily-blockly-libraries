@@ -1,0 +1,139 @@
+{
+  "toolbox_name": "Modbus RTU vom Bahnhof aus",
+  "toolbox_labels": {
+    "初始化": "Initialisierung",
+    "数据配置": "Datenkonfiguration",
+    "线圈与离散量": "Spulen und diskrete Mengen",
+    "寄存器": "registrieren",
+    "运行": "laufen"
+  },
+  "modbus_rtu_slave_create": {
+    "message0": "Erstellen Sie einen Modbus RTU-Slave %1 seriellen Port %2 Pin senden %3 Empfang Aktivieren Pin %4",
+    "tooltip": "Erstellen Sie eine Modbus RTU-Slave-Instanz und füllen Sie den DE/RE-Pin mit -1, um auf automatisches Hardware-Switching hinzuweisen",
+    "args0": [
+      null,
+      {
+        "options": "${board.serialPort}"
+      },
+      null,
+      null
+    ]
+  },
+  "modbus_rtu_slave_set_response_delay": {
+    "message0": "Der Modbus-Slave %1 die Antwortverzögerung auf %2 Millisekunden eingestellt",
+    "tooltip": "Stellen Sie die Antwortverzögerung ein, um zu verhindern, dass der DE-Pin des Hosts zu langsam loslässt"
+  },
+  "modbus_rtu_slave_begin": {
+    "message0": "Modbus-Slave %1 Startgerät-ID %2 Baudrate %3 serielle Port-Format%4",
+    "tooltip": "Setzen Sie die Slave-Adresse, Baudrate und das Format der seriellen Portverifizierung ein",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "9600",
+            "9600"
+          ],
+          [
+            "19200",
+            "19200"
+          ],
+          [
+            "38400",
+            "38400"
+          ],
+          [
+            "57600",
+            "57600"
+          ],
+          [
+            "115200",
+            "115200"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "8N1",
+            "SERIAL_8N1"
+          ],
+          [
+            "8N2",
+            "SERIAL_8N2"
+          ],
+          [
+            "8E1",
+            "SERIAL_8E1"
+          ],
+          [
+            "8E2",
+            "SERIAL_8E2"
+          ],
+          [
+            "8O1",
+            "SERIAL_8O1"
+          ],
+          [
+            "8O2",
+            "SERIAL_8O2"
+          ]
+        ]
+      }
+    ]
+  },
+  "modbus_rtu_slave_poll": {
+    "message0": "Modbus-Slave %1 Abfrageanfrage",
+    "tooltip": "Häufige Aufrufe zur Bearbeitung von Master-Lese-/Schreibanfragen",
+    "message1": "Führe %1 aus, sobald eine gültige Anfrage ergangen ist"
+  },
+  "modbus_rtu_slave_bind_coils": {
+    "message0": "Modbus-Slave %1 Konfiguration des Coil-Arrays %2 Länge %3",
+    "tooltip": "Erstellen Sie ein Array von Boolesche Spulen und sagen Sie der Bibliothek ihre Länge an"
+  },
+  "modbus_rtu_slave_bind_discrete": {
+    "message0": "Modbus-Slave %1 diskretes Eingangsarray %2 Länge %3 konfigurieren",
+    "tooltip": "Erstellen Sie ein boolsches diskretes Eingabearray, das dem Master gemeldet wird"
+  },
+  "modbus_rtu_slave_bind_holding": {
+    "message0": "Modbus-Slave %1 Konfigurationsaufbewahrungsregister %2 Länge %3",
+    "tooltip": "Erstellen Sie ein 16-Bit-Holding-Registerarray für Master-Lese/Schreiben"
+  },
+  "modbus_rtu_slave_bind_input": {
+    "message0": "Modbus-Slave %1 Konfigurations-Eingangsregister %2 Länge %3",
+    "tooltip": "Erstellen Sie ein Array von 16-Bit-Eingangsregistern zur Meldung analoger Werte"
+  },
+  "modbus_rtu_slave_coils_set": {
+    "message0": "Spulenarray %1 Index %2 %3",
+    "tooltip": "Schreibt den angegebenen Coil-Wert, der für Initialisierung oder lokale Durchsetzung verwendet werden kann"
+  },
+  "modbus_rtu_slave_coils_get": {
+    "message0": "Das Spulenarray %1 Index %2 Wert",
+    "tooltip": "Liest den Spulenstatus, um den Ausgang zu steuern"
+  },
+  "modbus_rtu_slave_discrete_set": {
+    "message0": "Diskretes Eingabearray %1 Index %2 Schreiben %3",
+    "tooltip": "Aktualisieren Sie den diskreten Eingangsstatus und melden Sie Schaltgrößen"
+  },
+  "modbus_rtu_slave_discrete_get": {
+    "message0": "Diskretes Eingabearray %1 Index %2 Wert",
+    "tooltip": "Lese diskrete Eingabearrays, die hauptsächlich zum Debuggen verwendet werden"
+  },
+  "modbus_rtu_slave_holding_set": {
+    "message0": "Registerarray %1 Indizes schreiben %2 %3",
+    "tooltip": "Schreiben Sie in ein 16-Bit-Retentionsregister, das Standardwerte bereitstellt"
+  },
+  "modbus_rtu_slave_holding_get": {
+    "message0": "Behält den Wert des Registerarrays %1 Index %2",
+    "tooltip": "Lesen Sie den Wert des Retentionsregisters für den analogen Ausgang ab"
+  },
+  "modbus_rtu_slave_input_set": {
+    "message0": "Eingaberegisterarray %1 Index %2 Schreiben %3",
+    "tooltip": "Schreiben Sie in ein 16-Bit-Eingaberegister und melden Sie den analogen Wert"
+  },
+  "modbus_rtu_slave_input_get": {
+    "message0": "Geben Sie den Wert des Registerarrays %1 Index %2 ein",
+    "tooltip": "Liest Eingaberegisterwerte aus, um das Debugging zu erleichtern"
+  }
+}

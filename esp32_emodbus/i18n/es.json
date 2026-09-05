@@ -1,0 +1,288 @@
+{
+  "toolbox_name": "Comunicación eModbus",
+  "toolbox_labels": {
+    "RTU客户端": "cliente RTU",
+    "TCP客户端": "Cliente TCP",
+    "客户端设置": "Configuración del cliente",
+    "异步读取": "Lectura asincrónica",
+    "同步读取": "Lectura sincrónica",
+    "写入操作": "operación de escritura",
+    "响应数据处理": "Procesamiento de datos de respuesta",
+    "错误处理": "Manejo de errores",
+    "客户端状态": "estado del cliente",
+    "RTU服务器": "servidor RTU",
+    "TCP服务器": "servidor TCP",
+    "服务器功能": "Funciones del servidor"
+  },
+  "emodbus_rtu_client_create": {
+    "message0": "Crear cliente RTU Modbus %1 pin de control RS485 %2",
+    "tooltip": "Para crear una instancia cliente Modbus RTU, necesitas especificar los pines de control DE/RE del módulo RS485",
+    "args0": [
+      null,
+      {
+        "options": "${board.digitalPins}"
+      }
+    ]
+  },
+  "emodbus_rtu_client_begin": {
+    "message0": "Cliente RTU de arranque %1 puerto serie %2 velocidad de baudios %3 PIN RX %4 PIN TX %5",
+    "tooltip": "Inicia el cliente Modbus RTU, configura el puerto serial y los pines",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Serial1",
+            "Serial1"
+          ],
+          [
+            "Serial2",
+            "Serial2"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "9600",
+            "9600"
+          ],
+          [
+            "19200",
+            "19200"
+          ],
+          [
+            "38400",
+            "38400"
+          ],
+          [
+            "57600",
+            "57600"
+          ],
+          [
+            "115200",
+            "115200"
+          ]
+        ]
+      },
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": "${board.digitalPins}"
+      }
+    ]
+  },
+  "emodbus_tcp_client_create": {
+    "message0": "Creación de un cliente Modbus TCP %1",
+    "tooltip": "Crear una instancia cliente Modbus TCP"
+  },
+  "emodbus_tcp_client_begin": {
+    "message0": "Inicia el cliente TCP %1",
+    "tooltip": "Inicia la tarea de backend del cliente Modbus TCP"
+  },
+  "emodbus_tcp_client_set_target": {
+    "message0": "Configurar el cliente TCP %1 la IP del servidor objetivo %2 puerto %3",
+    "tooltip": "Establecer la dirección IP y el puerto del servidor Modbus TCP"
+  },
+  "emodbus_client_set_timeout": {
+    "message0": "Establece el tiempo de espera %1 cliente a %2 milisegundos",
+    "tooltip": "Establece el tiempo de espera de comunicación del modebus"
+  },
+  "emodbus_client_on_data": {
+    "message0": "Cuando el cliente %1 recibe datos",
+    "tooltip": "Configura una función de llamada de recepción de datos para ejecutarse al recibir una respuesta",
+    "message1": "ejecutar %1"
+  },
+  "emodbus_client_on_error": {
+    "message0": "Cuando el cliente %1 encuentra un error",
+    "tooltip": "Configura una función de callback para gestionar errores para ejecutarse cuando ocurra un error de comunicación",
+    "message1": "ejecutar %1"
+  },
+  "emodbus_read_holding_registers": {
+    "message0": "Cliente %1 Lectura Mantener Registro ID de esclavo %2 Dirección de inicio %3 Cantidad %4",
+    "tooltip": "Lee asíncronamente el registro de retención (código de función 0x03) y devuelve el resultado mediante callback"
+  },
+  "emodbus_read_input_registers": {
+    "message0": "Registro de entrada de %1 de lectura del cliente ID de esclavo %2 dirección de inicio %3 cantidad %4",
+    "tooltip": "Lee asíncronamente el registro de entrada (código de función 0x04) y devuelve el resultado mediante callback"
+  },
+  "emodbus_read_coils": {
+    "message0": "Cliente %1 Lectura ID del esclavo de la bobina %2 dirección de inicio %3 cantidad %4",
+    "tooltip": "Lee asíncronamente el estado de la bobina (código de función 0x01) y devuelve el resultado mediante callback"
+  },
+  "emodbus_read_discrete_inputs": {
+    "message0": "Cliente %1 Lectura de entrada discreta ID de esclavo %2 dirección de inicio %3 Cantidad %4",
+    "tooltip": "Lee asíncronamente la entrada discreta (código de función 0x02) y devuelve el resultado mediante callback"
+  },
+  "emodbus_write_single_register": {
+    "message0": "Cliente %1 Escribe en un único registro ID de esclavo %2 dirección %3 valor %4",
+    "tooltip": "Escribe un solo registro de retención (código de función 0x06)"
+  },
+  "emodbus_write_single_coil": {
+    "message0": "El cliente %1 escribe en un ID de esclavo de bobina única %2 Dirección %3 valor %4",
+    "tooltip": "Escribe una bobina simple (código de función 0x05), con valores de 0 (OFF) o 1 (ON)"
+  },
+  "emodbus_write_multiple_registers": {
+    "message0": "Cliente %1 Escribir múltiples registros ID de esclavo %2 dirección de inicio %3 valor del array %4",
+    "tooltip": "Escribe múltiples registros de retención (código de función 0x10)"
+  },
+  "emodbus_sync_read_holding_registers": {
+    "message0": "Cliente %1 Lectura y retención sincrónicas de registros ID de esclavo %2 dirección %3",
+    "tooltip": "Lee síncronamente un solo registro de retención y devuelve un valor (código de utilidad 0x03)"
+  },
+  "emodbus_sync_read_input_register": {
+    "message0": "El cliente %1 lee síncronicamente los registros de entrada, el ID del esclavo %2 la dirección %3",
+    "tooltip": "Lee síncronamente un solo registro de entrada y devuelve valor (código de función 0x04)"
+  },
+  "emodbus_sync_read_coil": {
+    "message0": "Cliente %1 Lee de forma síncrona el ID del esclavo %2 la dirección %3",
+    "tooltip": "Lee síncronamente el estado de una bobina única y devuelve el valor (código de función 0x01)"
+  },
+  "emodbus_response_get_uint16": {
+    "message0": "Recuperar el valor del registro %1th (16 bits) de la respuesta",
+    "tooltip": "Lee el valor del registro de 16 bits en la posición especificada a partir de la respuesta de llamada (empezando desde 0)"
+  },
+  "emodbus_response_get_float": {
+    "message0": "Recuperar el valor %1th en coma flotante (32 bits) de la respuesta",
+    "tooltip": "Lee un valor de coma flotante de 32 bits en una posición especificada a partir de la respuesta de llamada (ocupando 2 registros)"
+  },
+  "emodbus_response_server_id": {
+    "message0": "ID esclavo respondiendo",
+    "tooltip": "Obtener el ID esclavo de la respuesta actual"
+  },
+  "emodbus_response_function_code": {
+    "message0": "Código de función de respuesta",
+    "tooltip": "Recuperar el código de función para la respuesta actual"
+  },
+  "emodbus_response_length": {
+    "message0": "Longitud de los datos de respuesta",
+    "tooltip": "Recupera el número de bytes de datos en la respuesta actual"
+  },
+  "emodbus_error_code": {
+    "message0": "Código de error",
+    "tooltip": "Recuperar el código de error del error actual"
+  },
+  "emodbus_error_message": {
+    "message0": "Información falsa",
+    "tooltip": "Recuperar mensajes de error legibles para el error actual"
+  },
+  "emodbus_rtu_server_create": {
+    "message0": "Crear un servidor Modbus RTU %1 tiempo de espera %2 ms RS485 de control %3",
+    "tooltip": "Crear una instancia de servidor Modbus RTU",
+    "args0": [
+      null,
+      null,
+      {
+        "options": "${board.digitalPins}"
+      }
+    ]
+  },
+  "emodbus_rtu_server_begin": {
+    "message0": "Iniciar el servidor RTU %1 puerto serie %2 velocidad de baudios %3 pin RX %4 pin TX %5",
+    "tooltip": "Inicia el servidor Modbus RTU",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Serial1",
+            "Serial1"
+          ],
+          [
+            "Serial2",
+            "Serial2"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "9600",
+            "9600"
+          ],
+          [
+            "19200",
+            "19200"
+          ],
+          [
+            "38400",
+            "38400"
+          ],
+          [
+            "57600",
+            "57600"
+          ],
+          [
+            "115200",
+            "115200"
+          ]
+        ]
+      },
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": "${board.digitalPins}"
+      }
+    ]
+  },
+  "emodbus_tcp_server_create": {
+    "message0": "Crea un servidor Modbus TCP %1 puertos %2 número máximo de clientes %3",
+    "tooltip": "Crear una instancia de servidor Modbus TCP"
+  },
+  "emodbus_tcp_server_begin": {
+    "message0": "Inicia el servidor TCP %1",
+    "tooltip": "Inicia el servidor Modbus TCP"
+  },
+  "emodbus_server_register_fc03": {
+    "message0": "Servidor %1 Registro Lectura, Mantenimiento del Registro Procesando ID de Esclavo %2",
+    "tooltip": "Registro para leer la función de maneo del registro de retención (FC03).",
+    "message1": "Dirección de inicio de la solicitud de procesamiento: %1 Cantidad: %2",
+    "message2": "Datos de retorno %1"
+  },
+  "emodbus_server_register_fc06": {
+    "message0": "Server %1 Registrar y escribir en un solo registro procesando el ID esclavo %2",
+    "tooltip": "Registrar un manejador para escribir un registro de un solo hold (FC06).",
+    "message1": "Dirección de procesamiento de la solicitud: %1 Valor: %2",
+    "message2": "Realiza la operación %1"
+  },
+  "emodbus_server_add_response_data": {
+    "message0": "Añadir datos de respuesta (16 bits) %1",
+    "tooltip": "Añadir un dato de 16 bits a la respuesta del servidor"
+  },
+  "emodbus_server_set_error": {
+    "message0": "Establecer código de error de respuesta %1",
+    "tooltip": "Configura la respuesta del servidor a respuesta de error",
+    "args0": [
+      {
+        "options": [
+          [
+            "Códigos de función ilegales",
+            "ILLEGAL_FUNCTION"
+          ],
+          [
+            "Direcciones de datos ilegales",
+            "ILLEGAL_DATA_ADDRESS"
+          ],
+          [
+            "Valores de datos ilegales",
+            "ILLEGAL_DATA_VALUE"
+          ],
+          [
+            "Fallo del equipo",
+            "SERVER_DEVICE_FAILURE"
+          ]
+        ]
+      }
+    ]
+  },
+  "emodbus_client_pending_requests": {
+    "message0": "Cliente %1 Número de solicitudes pendientes",
+    "tooltip": "Asegúrate el número de solicitudes pendientes en la cola"
+  },
+  "emodbus_client_clear_queue": {
+    "message0": "El cliente %1 limpia la cola de solicitudes",
+    "tooltip": "Elimina todas las solicitudes pendientes"
+  }
+}

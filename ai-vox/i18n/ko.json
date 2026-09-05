@@ -1,0 +1,1454 @@
+{
+  "toolbox_name": "AI-VOX3",
+  "toolbox_labels": {
+    "控制": "제어",
+    "初始化": "초기화",
+    "事件": "이벤트",
+    "MCP": "MCP",
+    "自定义": "사용자 정의"
+  },
+  "aivox3_init_wifi": {
+    "message0": "AI-VOX 와이파이 모드 초기화 %1",
+    "args0": [
+      {
+        "options": [
+          [
+            "수동 네트워크 설정",
+            "Manual"
+          ]
+        ]
+      }
+    ]
+  },
+  "aivox3_get_wifi_state": {
+    "message0": "AI-VOX 장치의 상태 확인",
+    "tooltip": "AI-VOX3 장치의 상태 확인"
+  },
+  "aivox3_wifi_state": {
+    "message0": "AI-VOX 네트워크 %1",
+    "tooltip": "AI-VOX3 네트워크 연결 상태",
+    "args0": [
+      {
+        "options": [
+          [
+            "와이파이 연결",
+            "kConnecting"
+          ],
+          [
+            "와이파이 연결 완료",
+            "kFinished"
+          ]
+        ]
+      }
+    ]
+  },
+  "aivox3_init_es8311": {
+    "tooltip": "AI-VOX3 엔진 ES8311 모듈을 초기화하세요"
+  },
+  "aivox3_set_es8311_volume": {
+    "message0": "AI-VOX 볼륨을 %1로 설정하세요",
+    "tooltip": "AI-VOX 장치의 볼륨 레벨을 설정하세요"
+  },
+  "aivox3_set_screen_light": {
+    "message0": "AI-VOX 화면 밝기를 %1로 설정하세요",
+    "tooltip": "AI-VOX 화면 밝기 설정"
+  },
+  "aivox_init_mic": {
+    "tooltip": "표준 I2S 마이크를 사용해 AI-VOX 엔진을 초기화하세요"
+  },
+  "aivox_init_audio": {
+    "tooltip": "표준 I2S 오디오 디코더를 사용하여 AI-VOX 엔진을 초기화합니다"
+  },
+  "aivox_init_lcd": {
+    "message0": "디스플레이 초기화 (ST7789)\n백라이트 핀 %1 \nMOSI 핀 %2\n CLK 핀 %3\n DC 핀 %4\n RST 핀 %5\n CS 핀 %6",
+    "tooltip": "ST7789 드라이버를 사용해 AI-VOX 화면을 초기화하세요\nAI-VOX3 핀: 백라이트: GPIO16, MOSI: GPIO21, CLK: GPIO17, DC: GPIO14, RST: 없음, CS: GPIO15\nAI-VOX 핀: 백라이트: GPIO11, MOSI: GPIO17, CLK: GPIO16, DC: GPIO12, RST: GPIO21, CS: GPIO15",
+    "args0": [
+      {
+        "options": [
+          [
+            "GPIO16",
+            "16"
+          ],
+          [
+            "GPIO0",
+            "0"
+          ],
+          [
+            "GPIO1",
+            "1"
+          ],
+          [
+            "GPIO2",
+            "2"
+          ],
+          [
+            "GPIO3",
+            "3"
+          ],
+          [
+            "GPIO4",
+            "4"
+          ],
+          [
+            "GPIO5",
+            "5"
+          ],
+          [
+            "GPIO6",
+            "6"
+          ],
+          [
+            "GPIO7",
+            "7"
+          ],
+          [
+            "GPIO8",
+            "8"
+          ],
+          [
+            "GPIO9",
+            "9"
+          ],
+          [
+            "GPIO10",
+            "10"
+          ],
+          [
+            "GPIO11",
+            "11"
+          ],
+          [
+            "GPIO12",
+            "12"
+          ],
+          [
+            "GPIO13",
+            "13"
+          ],
+          [
+            "GPIO14",
+            "14"
+          ],
+          [
+            "GPIO15",
+            "15"
+          ],
+          [
+            "GPIO16",
+            "16"
+          ],
+          [
+            "GPIO17",
+            "17"
+          ],
+          [
+            "GPIO18",
+            "18"
+          ],
+          [
+            "GPIO19",
+            "19"
+          ],
+          [
+            "GPIO20",
+            "20"
+          ],
+          [
+            "GPIO21",
+            "21"
+          ],
+          [
+            "GPIO35",
+            "35"
+          ],
+          [
+            "GPIO36",
+            "36"
+          ],
+          [
+            "GPIO37",
+            "37"
+          ],
+          [
+            "GPIO38",
+            "38"
+          ],
+          [
+            "GPIO39",
+            "39"
+          ],
+          [
+            "GPIO40",
+            "40"
+          ],
+          [
+            "GPIO41",
+            "41"
+          ],
+          [
+            "GPIO42",
+            "42"
+          ],
+          [
+            "GPIO43",
+            "43"
+          ],
+          [
+            "GPIO44",
+            "44"
+          ],
+          [
+            "GPIO45",
+            "45"
+          ],
+          [
+            "GPIO46",
+            "46"
+          ],
+          [
+            "GPIO47",
+            "47"
+          ],
+          [
+            "GPIO48",
+            "48"
+          ],
+          [
+            "없음",
+            "-1"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "GPIO21",
+            "21"
+          ],
+          [
+            "GPIO0",
+            "0"
+          ],
+          [
+            "GPIO1",
+            "1"
+          ],
+          [
+            "GPIO2",
+            "2"
+          ],
+          [
+            "GPIO3",
+            "3"
+          ],
+          [
+            "GPIO4",
+            "4"
+          ],
+          [
+            "GPIO5",
+            "5"
+          ],
+          [
+            "GPIO6",
+            "6"
+          ],
+          [
+            "GPIO7",
+            "7"
+          ],
+          [
+            "GPIO8",
+            "8"
+          ],
+          [
+            "GPIO9",
+            "9"
+          ],
+          [
+            "GPIO10",
+            "10"
+          ],
+          [
+            "GPIO11",
+            "11"
+          ],
+          [
+            "GPIO12",
+            "12"
+          ],
+          [
+            "GPIO13",
+            "13"
+          ],
+          [
+            "GPIO14",
+            "14"
+          ],
+          [
+            "GPIO15",
+            "15"
+          ],
+          [
+            "GPIO16",
+            "16"
+          ],
+          [
+            "GPIO17",
+            "17"
+          ],
+          [
+            "GPIO18",
+            "18"
+          ],
+          [
+            "GPIO19",
+            "19"
+          ],
+          [
+            "GPIO20",
+            "20"
+          ],
+          [
+            "GPIO21",
+            "21"
+          ],
+          [
+            "GPIO35",
+            "35"
+          ],
+          [
+            "GPIO36",
+            "36"
+          ],
+          [
+            "GPIO37",
+            "37"
+          ],
+          [
+            "GPIO38",
+            "38"
+          ],
+          [
+            "GPIO39",
+            "39"
+          ],
+          [
+            "GPIO40",
+            "40"
+          ],
+          [
+            "GPIO41",
+            "41"
+          ],
+          [
+            "GPIO42",
+            "42"
+          ],
+          [
+            "GPIO43",
+            "43"
+          ],
+          [
+            "GPIO44",
+            "44"
+          ],
+          [
+            "GPIO45",
+            "45"
+          ],
+          [
+            "GPIO46",
+            "46"
+          ],
+          [
+            "GPIO47",
+            "47"
+          ],
+          [
+            "GPIO48",
+            "48"
+          ],
+          [
+            "없음",
+            "-1"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "GPIO17",
+            "17"
+          ],
+          [
+            "GPIO0",
+            "0"
+          ],
+          [
+            "GPIO1",
+            "1"
+          ],
+          [
+            "GPIO2",
+            "2"
+          ],
+          [
+            "GPIO3",
+            "3"
+          ],
+          [
+            "GPIO4",
+            "4"
+          ],
+          [
+            "GPIO5",
+            "5"
+          ],
+          [
+            "GPIO6",
+            "6"
+          ],
+          [
+            "GPIO7",
+            "7"
+          ],
+          [
+            "GPIO8",
+            "8"
+          ],
+          [
+            "GPIO9",
+            "9"
+          ],
+          [
+            "GPIO10",
+            "10"
+          ],
+          [
+            "GPIO11",
+            "11"
+          ],
+          [
+            "GPIO12",
+            "12"
+          ],
+          [
+            "GPIO13",
+            "13"
+          ],
+          [
+            "GPIO14",
+            "14"
+          ],
+          [
+            "GPIO15",
+            "15"
+          ],
+          [
+            "GPIO16",
+            "16"
+          ],
+          [
+            "GPIO17",
+            "17"
+          ],
+          [
+            "GPIO18",
+            "18"
+          ],
+          [
+            "GPIO19",
+            "19"
+          ],
+          [
+            "GPIO20",
+            "20"
+          ],
+          [
+            "GPIO21",
+            "21"
+          ],
+          [
+            "GPIO35",
+            "35"
+          ],
+          [
+            "GPIO36",
+            "36"
+          ],
+          [
+            "GPIO37",
+            "37"
+          ],
+          [
+            "GPIO38",
+            "38"
+          ],
+          [
+            "GPIO39",
+            "39"
+          ],
+          [
+            "GPIO40",
+            "40"
+          ],
+          [
+            "GPIO41",
+            "41"
+          ],
+          [
+            "GPIO42",
+            "42"
+          ],
+          [
+            "GPIO43",
+            "43"
+          ],
+          [
+            "GPIO44",
+            "44"
+          ],
+          [
+            "GPIO45",
+            "45"
+          ],
+          [
+            "GPIO46",
+            "46"
+          ],
+          [
+            "GPIO47",
+            "47"
+          ],
+          [
+            "GPIO48",
+            "48"
+          ],
+          [
+            "없음",
+            "-1"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "GPIO14",
+            "14"
+          ],
+          [
+            "GPIO0",
+            "0"
+          ],
+          [
+            "GPIO1",
+            "1"
+          ],
+          [
+            "GPIO2",
+            "2"
+          ],
+          [
+            "GPIO3",
+            "3"
+          ],
+          [
+            "GPIO4",
+            "4"
+          ],
+          [
+            "GPIO5",
+            "5"
+          ],
+          [
+            "GPIO6",
+            "6"
+          ],
+          [
+            "GPIO7",
+            "7"
+          ],
+          [
+            "GPIO8",
+            "8"
+          ],
+          [
+            "GPIO9",
+            "9"
+          ],
+          [
+            "GPIO10",
+            "10"
+          ],
+          [
+            "GPIO11",
+            "11"
+          ],
+          [
+            "GPIO12",
+            "12"
+          ],
+          [
+            "GPIO13",
+            "13"
+          ],
+          [
+            "GPIO14",
+            "14"
+          ],
+          [
+            "GPIO15",
+            "15"
+          ],
+          [
+            "GPIO16",
+            "16"
+          ],
+          [
+            "GPIO17",
+            "17"
+          ],
+          [
+            "GPIO18",
+            "18"
+          ],
+          [
+            "GPIO19",
+            "19"
+          ],
+          [
+            "GPIO20",
+            "20"
+          ],
+          [
+            "GPIO21",
+            "21"
+          ],
+          [
+            "GPIO35",
+            "35"
+          ],
+          [
+            "GPIO36",
+            "36"
+          ],
+          [
+            "GPIO37",
+            "37"
+          ],
+          [
+            "GPIO38",
+            "38"
+          ],
+          [
+            "GPIO39",
+            "39"
+          ],
+          [
+            "GPIO40",
+            "40"
+          ],
+          [
+            "GPIO41",
+            "41"
+          ],
+          [
+            "GPIO42",
+            "42"
+          ],
+          [
+            "GPIO43",
+            "43"
+          ],
+          [
+            "GPIO44",
+            "44"
+          ],
+          [
+            "GPIO45",
+            "45"
+          ],
+          [
+            "GPIO46",
+            "46"
+          ],
+          [
+            "GPIO47",
+            "47"
+          ],
+          [
+            "GPIO48",
+            "48"
+          ],
+          [
+            "없음",
+            "-1"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "없음",
+            "-1"
+          ],
+          [
+            "GPIO0",
+            "0"
+          ],
+          [
+            "GPIO1",
+            "1"
+          ],
+          [
+            "GPIO2",
+            "2"
+          ],
+          [
+            "GPIO3",
+            "3"
+          ],
+          [
+            "GPIO4",
+            "4"
+          ],
+          [
+            "GPIO5",
+            "5"
+          ],
+          [
+            "GPIO6",
+            "6"
+          ],
+          [
+            "GPIO7",
+            "7"
+          ],
+          [
+            "GPIO8",
+            "8"
+          ],
+          [
+            "GPIO9",
+            "9"
+          ],
+          [
+            "GPIO10",
+            "10"
+          ],
+          [
+            "GPIO11",
+            "11"
+          ],
+          [
+            "GPIO12",
+            "12"
+          ],
+          [
+            "GPIO13",
+            "13"
+          ],
+          [
+            "GPIO14",
+            "14"
+          ],
+          [
+            "GPIO15",
+            "15"
+          ],
+          [
+            "GPIO16",
+            "16"
+          ],
+          [
+            "GPIO17",
+            "17"
+          ],
+          [
+            "GPIO18",
+            "18"
+          ],
+          [
+            "GPIO19",
+            "19"
+          ],
+          [
+            "GPIO20",
+            "20"
+          ],
+          [
+            "GPIO21",
+            "21"
+          ],
+          [
+            "GPIO35",
+            "35"
+          ],
+          [
+            "GPIO36",
+            "36"
+          ],
+          [
+            "GPIO37",
+            "37"
+          ],
+          [
+            "GPIO38",
+            "38"
+          ],
+          [
+            "GPIO39",
+            "39"
+          ],
+          [
+            "GPIO40",
+            "40"
+          ],
+          [
+            "GPIO41",
+            "41"
+          ],
+          [
+            "GPIO42",
+            "42"
+          ],
+          [
+            "GPIO43",
+            "43"
+          ],
+          [
+            "GPIO44",
+            "44"
+          ],
+          [
+            "GPIO45",
+            "45"
+          ],
+          [
+            "GPIO46",
+            "46"
+          ],
+          [
+            "GPIO47",
+            "47"
+          ],
+          [
+            "GPIO48",
+            "48"
+          ],
+          [
+            "없음",
+            "-1"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "GPIO15",
+            "15"
+          ],
+          [
+            "GPIO1",
+            "1"
+          ],
+          [
+            "GPIO2",
+            "2"
+          ],
+          [
+            "GPIO3",
+            "3"
+          ],
+          [
+            "GPIO4",
+            "4"
+          ],
+          [
+            "GPIO5",
+            "5"
+          ],
+          [
+            "GPIO6",
+            "6"
+          ],
+          [
+            "GPIO7",
+            "7"
+          ],
+          [
+            "GPIO8",
+            "8"
+          ],
+          [
+            "GPIO9",
+            "9"
+          ],
+          [
+            "GPIO10",
+            "10"
+          ],
+          [
+            "GPIO11",
+            "11"
+          ],
+          [
+            "GPIO12",
+            "12"
+          ],
+          [
+            "GPIO13",
+            "13"
+          ],
+          [
+            "GPIO14",
+            "14"
+          ],
+          [
+            "GPIO15",
+            "15"
+          ],
+          [
+            "GPIO16",
+            "16"
+          ],
+          [
+            "GPIO17",
+            "17"
+          ],
+          [
+            "GPIO18",
+            "18"
+          ],
+          [
+            "GPIO19",
+            "19"
+          ],
+          [
+            "GPIO20",
+            "20"
+          ],
+          [
+            "GPIO21",
+            "21"
+          ],
+          [
+            "GPIO35",
+            "35"
+          ],
+          [
+            "GPIO36",
+            "36"
+          ],
+          [
+            "GPIO37",
+            "37"
+          ],
+          [
+            "GPIO38",
+            "38"
+          ],
+          [
+            "GPIO39",
+            "39"
+          ],
+          [
+            "GPIO40",
+            "40"
+          ],
+          [
+            "GPIO41",
+            "41"
+          ],
+          [
+            "GPIO42",
+            "42"
+          ],
+          [
+            "GPIO43",
+            "43"
+          ],
+          [
+            "GPIO44",
+            "44"
+          ],
+          [
+            "GPIO45",
+            "45"
+          ],
+          [
+            "GPIO46",
+            "46"
+          ],
+          [
+            "GPIO47",
+            "47"
+          ],
+          [
+            "GPIO48",
+            "48"
+          ],
+          [
+            "없음",
+            "-1"
+          ]
+        ]
+      }
+    ]
+  },
+  "aivox_display_mode": {
+    "message0": "세션 표시 스타일을 %1 초기화하세요",
+    "args0": [
+      {
+        "options": [
+          [
+            "일반",
+            "normal"
+          ],
+          [
+            "위챗 대화",
+            "wechat"
+          ]
+        ]
+      }
+    ]
+  },
+  "aivox_lcd_show_status": {
+    "message0": "%1에서 %2 보여줘",
+    "args0": [
+      {
+        "options": [
+          [
+            "상태 상자",
+            "ShowStatus"
+          ],
+          [
+            "이모지 박스",
+            "SetEmotion"
+          ],
+          [
+            "콘텐츠 박스",
+            "SetChatMessage"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "aivox_config_ota_url": {
+    "message0": "맞춤형 OTA 링크 %1",
+    "tooltip": "Shrimp Server를 사용할 때 이 블록을 호출할 필요는 없습니다; 맞춤형 호환 Shrimp Server 프로토콜이 이 블록을 호출할 수 있습니다"
+  },
+  "aivox_config_websocket": {
+    "message0": "사용자 지정 웹소켓 링크 %1 요청 헤더 (C 배열 형식) %2",
+    "tooltip": "Shrimp Server를 사용할 때 이 블록을 호출할 필요는 없습니다; 맞춤형 호환 Shrimp Server 프로토콜이 이 블록을 호출할 수 있습니다"
+  },
+  "aivox3_start_engine": {
+    "message0": "AI-VOX 엔진 발사"
+  },
+  "aivox_lcd_show_chat_message": {
+    "message0": "장치 대화 %1 채팅 메시지 표시 %2",
+    "args0": [
+      {
+        "options": [
+          [
+            "시스템",
+            "Display::Role::kSystem"
+          ],
+          [
+            "조교",
+            "Display::Role::kAssistant"
+          ],
+          [
+            "사용자",
+            "Display::Role::kUser"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "aivox_lcd_show_emotion": {
+    "message0": "상태 표시 박스, 이모지 표시 %1"
+  },
+  "aivox_mcp_register_state_control_command": {
+    "message0": "레지스터 MCP 상태 제어 Name%1 매개변수 설명%2 %3"
+  },
+  "aivox_mcp_register_value_control_command": {
+    "message0": "레지스터 MCP 수치 제어 Name%1 매개변수 설명 %2%3 최소 값%4 최대값 %5"
+  },
+  "aivox_mcp_register_control_command": {
+    "message0": "MCP 제어 서비스 등록 %1",
+    "message1": "Parameters%1"
+  },
+  "aivox_mcp_control": {
+    "message0": "MCP 서비스 Name%1 Description%2"
+  },
+  "aivox_mcp_control_param": {
+    "message0": "MCP 서비스 매개변수 %1 매개변수 Types%2",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "불리언",
+            "Boolean"
+          ],
+          [
+            "번호",
+            "Number"
+          ]
+        ]
+      }
+    ]
+  },
+  "aivox_loop_activation": {
+    "message0": "AI-VOX가 활성화 신호를 받으면 message%1 %2",
+    "tooltip": "AI-VOX 활성화 이벤트의 논리"
+  },
+  "get_aivox_activation_message": {
+    "message0": "수령 %1",
+    "tooltip": "장치의 활성화 코드를 얻으세요",
+    "args0": [
+      {
+        "options": [
+          [
+            "활성화 코드",
+            "code"
+          ],
+          [
+            "웹사이트 활성화",
+            "message"
+          ]
+        ]
+      }
+    ]
+  },
+  "aivox_loop_emotion": {
+    "message0": "AI-VOX가 이모지를 받을 때code%1 %2",
+    "tooltip": "AI-VOX 이모지 사건의 논리"
+  },
+  "get_aivox_emotion_result": {
+    "message0": "수신된 이모지 코드",
+    "tooltip": "현재 감정 표현을 파악하세요"
+  },
+  "aivox_emotion": {
+    "message0": "어떤 이모지를 receive%1었나요?",
+    "tooltip": "감정 표현",
+    "args0": [
+      {
+        "options": [
+          [
+            "행복해",
+            "happy"
+          ],
+          [
+            "멋지네요",
+            "cool"
+          ],
+          [
+            "크게 웃으며",
+            "laughing"
+          ],
+          [
+            "재밌네",
+            "funny"
+          ],
+          [
+            "슬픔에 잠겼다",
+            "sad"
+          ],
+          [
+            "화가 났다",
+            "angry"
+          ],
+          [
+            "울음",
+            "crying"
+          ],
+          [
+            "좋아",
+            "loving"
+          ],
+          [
+            "어색하다",
+            "embarrassed"
+          ],
+          [
+            "놀랐다",
+            "surprised"
+          ],
+          [
+            "충격",
+            "shocked"
+          ],
+          [
+            "사고",
+            "thinking"
+          ],
+          [
+            "장난꾸러기",
+            "winking"
+          ],
+          [
+            "진정해.",
+            "relaxed"
+          ],
+          [
+            "즐기세요",
+            "delicious"
+          ],
+          [
+            "다정한 말",
+            "kissy"
+          ],
+          [
+            "자신감",
+            "confident"
+          ],
+          [
+            "피로",
+            "sleepy"
+          ],
+          [
+            "재밌네",
+            "silly"
+          ],
+          [
+            "혼란스러워",
+            "confused"
+          ]
+        ]
+      }
+    ]
+  },
+  "aivox_emotion_list": {
+    "message0": "밈 %1",
+    "tooltip": "감정 표현",
+    "args0": [
+      {
+        "options": [
+          [
+            "행복해",
+            "happy"
+          ],
+          [
+            "멋지네요",
+            "cool"
+          ],
+          [
+            "크게 웃으며",
+            "laughing"
+          ],
+          [
+            "재밌네",
+            "funny"
+          ],
+          [
+            "슬픔에 잠겼다",
+            "sad"
+          ],
+          [
+            "화가 났다",
+            "angry"
+          ],
+          [
+            "울음",
+            "crying"
+          ],
+          [
+            "좋아",
+            "loving"
+          ],
+          [
+            "어색하다",
+            "embarrassed"
+          ],
+          [
+            "놀랐다",
+            "surprised"
+          ],
+          [
+            "충격",
+            "shocked"
+          ],
+          [
+            "사고",
+            "thinking"
+          ],
+          [
+            "장난꾸러기",
+            "winking"
+          ],
+          [
+            "진정해.",
+            "relaxed"
+          ],
+          [
+            "즐기세요",
+            "delicious"
+          ],
+          [
+            "다정한 말",
+            "kissy"
+          ],
+          [
+            "자신감",
+            "confident"
+          ],
+          [
+            "피로",
+            "sleepy"
+          ],
+          [
+            "재밌네",
+            "silly"
+          ],
+          [
+            "혼란스러워",
+            "confused"
+          ]
+        ]
+      }
+    ]
+  },
+  "aivox_loop_state_change": {
+    "message0": "AI-VOX 장치 상태가 %1 %2 %3",
+    "tooltip": "AI-VOX 상호작용 상태 변경 이벤트를 처리합니다",
+    "args0": [
+      {
+        "options": [
+          [
+            "여가 한가운데서",
+            "Idle"
+          ],
+          [
+            "초기화 완료",
+            "Initted"
+          ],
+          [
+            "로딩 프로토콜",
+            "Loading"
+          ],
+          [
+            "프로토콜 로딩 실패",
+            "LoadingFailed"
+          ],
+          [
+            "명령 대기",
+            "Standby"
+          ],
+          [
+            "연결",
+            "Connecting"
+          ],
+          [
+            "경청",
+            "Listening"
+          ],
+          [
+            "말하는 동안",
+            "Speaking"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "aivox_state": {
+    "message0": "AI-VOX status%2의 %1은 무엇인가요?",
+    "tooltip": "장비의 현재 상태 확인",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "여가 한가운데서",
+            "ai_vox::ChatState::kIdle"
+          ],
+          [
+            "초기화 완료",
+            "ai_vox::ChatState::kInitted"
+          ],
+          [
+            "로딩 프로토콜",
+            "ai_vox::ChatState::kLoading"
+          ],
+          [
+            "프로토콜 로딩 실패",
+            "ai_vox::ChatState::kLoadingFailed"
+          ],
+          [
+            "명령 대기",
+            "ai_vox::ChatState::kStandby"
+          ],
+          [
+            "연결",
+            "ai_vox::ChatState::kConnecting"
+          ],
+          [
+            "경청",
+            "ai_vox::ChatState::kListening"
+          ],
+          [
+            "말하는 동안",
+            "ai_vox::ChatState::kSpeaking"
+          ]
+        ]
+      }
+    ]
+  },
+  "aivox_loop_chat_message": {
+    "message0": "AI-VOX가 채팅을 수신할 때messages%1 %2",
+    "tooltip": "AI-VOX 상호작용 메시지 이벤트 처리"
+  },
+  "aivox_loop_chat_message_role_var": {
+    "message0": "%1에게서 소식 받았나요?",
+    "tooltip": "현재 메시지에서 AI-VOX 장치의 역할",
+    "args0": [
+      {
+        "options": [
+          [
+            "조수가 대답했다",
+            "assistant"
+          ],
+          [
+            "사용자 문의",
+            "user"
+          ]
+        ]
+      }
+    ]
+  },
+  "aivox_loop_chat_message_msg_var": {
+    "message0": "수신된 메시지의 내용",
+    "tooltip": "AI-VOX 장치의 현재 채팅 콘텐츠"
+  },
+  "aivox_loop_mcp": {
+    "message0": "AI-VOX가 MCP message%1 %2을 수신할 때",
+    "tooltip": "AI-VOX MCP 정보 처리"
+  },
+  "aivox_get_iot_message_event_name": {
+    "message0": "장치 이름: %1"
+  },
+  "aivox_get_iot_message_event_name_new": {
+    "message0": "MCP 서비스 이름은 %1인가요?"
+  },
+  "aivox_state_control_message_event_fuction": {
+    "message0": "장치 이름%1 상태 매개변수의 결과를 얻으세요%2"
+  },
+  "aivox_control_message_event_fuction": {
+    "message0": "MCP 서비스 이름의 결과를 얻기 %1 매개변수 %2"
+  },
+  "aivox_response_mcp_control_result": {
+    "message0": "장비 %1 제어 결과 보고"
+  },
+  "aivox_response_mcp_control_result_new": {
+    "message0": "MCP 서비스 이름 보고%1 실행 완료"
+  },
+  "aivox_update_mcp_control_state_new": {
+    "message0": "MCP 서비스 이름의 값을 매개변수 %2%1 %3로 설정하세요"
+  }
+}

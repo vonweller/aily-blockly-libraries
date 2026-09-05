@@ -1,0 +1,194 @@
+{
+  "toolbox_name": "Pico Web伺服器",
+  "toolbox_labels": {
+    "初始化": "初始化",
+    "路由处理": "路由處理",
+    "发送响应": "發送回應",
+    "请求信息": "請求訊息",
+    "请求参数": "請求參數",
+    "请求头": "請求頭",
+    "高级功能": "進階功能"
+  },
+  "rp_webserver_create": {
+    "message0": "建立Web伺服器 %1 連接埠 %2",
+    "tooltip": "建立一個Web伺服器對象"
+  },
+  "rp_webserver_begin": {
+    "message0": "啟動伺服器 %1",
+    "tooltip": "啟動Web伺服器開始監聽"
+  },
+  "rp_webserver_handle_client": {
+    "message0": "處理 %1 客戶端請求",
+    "tooltip": "處理客戶端請求（應放在loop中）"
+  },
+  "rp_webserver_on": {
+    "message0": "當 %1 收到 %2 請求路徑 %3",
+    "tooltip": "註冊指定路徑的請求處理函數",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "任意",
+            "HTTP_ANY"
+          ],
+          [
+            "GET",
+            "HTTP_GET"
+          ],
+          [
+            "POST",
+            "HTTP_POST"
+          ],
+          [
+            "PUT",
+            "HTTP_PUT"
+          ],
+          [
+            "DELETE",
+            "HTTP_DELETE"
+          ],
+          [
+            "PATCH",
+            "HTTP_PATCH"
+          ]
+        ]
+      },
+      null
+    ],
+    "message1": "執行 %1"
+  },
+  "rp_webserver_on_not_found": {
+    "message0": "當 %1 收到未知路徑請求",
+    "tooltip": "處理未符合任何路由的請求（404）",
+    "message1": "執行 %1"
+  },
+  "rp_webserver_send": {
+    "message0": "%1 回應狀態碼 %2 類型 %3 內容 %4",
+    "tooltip": "發送HTTP回應給客戶端",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "純文字 text/plain",
+            "text/plain"
+          ],
+          [
+            "HTML 文字/HTML",
+            "text/html"
+          ],
+          [
+            "JSON application/json",
+            "application/json"
+          ],
+          [
+            "XML 應用程式/XML",
+            "application/xml"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "rp_webserver_send_custom_type": {
+    "message0": "%1 回應狀態碼 %2 自訂類型 %3 內容 %4",
+    "tooltip": "發送自訂Content-Type的HTTP回應"
+  },
+  "rp_webserver_send_header": {
+    "message0": "%1 發送回應頭 %2 值 %3",
+    "tooltip": "發送自訂回應頭"
+  },
+  "rp_webserver_uri": {
+    "message0": "%1 請求的URI",
+    "tooltip": "取得目前請求的URI路徑"
+  },
+  "rp_webserver_method": {
+    "message0": "%1 請求的方法",
+    "tooltip": "取得目前請求的HTTP方法（GET/POST等）"
+  },
+  "rp_webserver_method_is": {
+    "message0": "%1 請求方法是 %2",
+    "tooltip": "判斷目前請求是否為指定的HTTP方法",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "GET",
+            "HTTP_GET"
+          ],
+          [
+            "POST",
+            "HTTP_POST"
+          ],
+          [
+            "PUT",
+            "HTTP_PUT"
+          ],
+          [
+            "DELETE",
+            "HTTP_DELETE"
+          ],
+          [
+            "PATCH",
+            "HTTP_PATCH"
+          ]
+        ]
+      }
+    ]
+  },
+  "rp_webserver_arg_by_name": {
+    "message0": "%1 取得參數 %2 的值",
+    "tooltip": "根據參數名稱取得請求參數值"
+  },
+  "rp_webserver_arg_by_index": {
+    "message0": "%1 取得第 %2 個參數的值",
+    "tooltip": "根據索引取得請求參數值（從0開始）"
+  },
+  "rp_webserver_arg_name": {
+    "message0": "%1 取得第 %2 個參數的名稱",
+    "tooltip": "根據索引取得請求參數名稱（從0開始）"
+  },
+  "rp_webserver_args_count": {
+    "message0": "%1 參數數量",
+    "tooltip": "取得請求參數的數量"
+  },
+  "rp_webserver_has_arg": {
+    "message0": "%1 存在參數 %2",
+    "tooltip": "檢查是否存在指定名稱的參數"
+  },
+  "rp_webserver_header": {
+    "message0": "%1 取得請求頭 %2 的值",
+    "tooltip": "取得指定名稱的請求頭值"
+  },
+  "rp_webserver_has_header": {
+    "message0": "%1 存在請求頭 %2",
+    "tooltip": "檢查是否存在指定名稱的請求頭"
+  },
+  "rp_webserver_host_header": {
+    "message0": "%1 Host請求頭",
+    "tooltip": "取得請求的Host頭"
+  },
+  "rp_webserver_collect_headers": {
+    "message0": "%1 收集請求頭 %2",
+    "tooltip": "設定要收集的請求頭（多個以逗號分隔）"
+  },
+  "rp_webserver_enable_cors": {
+    "message0": "%1 啟用CORS跨域",
+    "tooltip": "啟用跨域資源共享（CORS）"
+  },
+  "rp_webserver_stop": {
+    "message0": "停止伺服器 %1",
+    "tooltip": "停止Web伺服器"
+  },
+  "rp_webserver_authenticate": {
+    "message0": "%1 驗證使用者名稱 %2 密碼 %3",
+    "tooltip": "驗證HTTP基本認證的使用者名稱和密碼"
+  },
+  "rp_webserver_request_authentication": {
+    "message0": "%1 請求認證 提示 %2",
+    "tooltip": "請求客戶端進行HTTP認證"
+  }
+}

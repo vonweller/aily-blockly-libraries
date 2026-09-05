@@ -1,0 +1,75 @@
+{
+  "toolbox_name": "Pantalla táctil del CHSC6X",
+  "toolbox_labels": {
+    "初始化": "inicialización",
+    "触摸检测": "Detección táctil",
+    "坐标获取": "Adquisición de coordenadas",
+    "配置": "Configuración"
+  },
+  "chsc6x_setup": {
+    "message0": "Crea una pantalla táctil %1 usa I2C %2 dirección %3 pin de interrupción %4 ancho %5 altura %6 gira %7",
+    "tooltip": "Crea e inicializa el objeto de pantalla táctil CHSC6X",
+    "args0": [
+      null,
+      {
+        "options": "${board.i2c}"
+      },
+      null,
+      null,
+      null,
+      null,
+      {
+        "options": [
+          [
+            "0°",
+            "0"
+          ],
+          [
+            "90°",
+            "1"
+          ],
+          [
+            "180°",
+            "2"
+          ],
+          [
+            "270°",
+            "3"
+          ]
+        ]
+      }
+    ]
+  },
+  "chsc6x_is_pressed": {
+    "message0": "Las pantallas táctiles %1 se tocan",
+    "tooltip": "Detecta si se ha tocado la pantalla táctil"
+  },
+  "chsc6x_get_x": {
+    "message0": "La coordenada X de la pantalla táctil %1",
+    "tooltip": "Obtén la coordenada X del punto de contacto"
+  },
+  "chsc6x_get_y": {
+    "message0": "Pantalla táctil %1 coordenada Y",
+    "tooltip": "Obtén la coordenada Y del punto de contacto"
+  },
+  "chsc6x_get_xy": {
+    "message0": "Pantalla táctil %1 Obtener coordenadas a X %2 Y %3",
+    "tooltip": "Obtén las coordenadas táctiles de la variable especificada"
+  },
+  "chsc6x_set_rotation": {
+    "message0": "Pantalla táctil %1 configurada para rotar a %2",
+    "tooltip": "Ajusta el ángulo de rotación de la pantalla táctil (0-3)"
+  },
+  "chsc6x_get_rotation": {
+    "message0": "El ángulo de rotación de la pantalla táctil %1",
+    "tooltip": "Averigua el ángulo de rotación actual (0-3)"
+  },
+  "chsc6x_set_screen_size": {
+    "message0": "Pantalla táctil %1 Ajusta tamaño de pantalla, ancho %2 altura %3",
+    "tooltip": "Establece el tamaño de la pantalla táctil"
+  },
+  "chsc6x_run": {
+    "message0": "Detección de %1 de funcionamiento en pantalla táctil",
+    "tooltip": "Ejecuta detección táctil y actualiza las coordenadas internas"
+  }
+}

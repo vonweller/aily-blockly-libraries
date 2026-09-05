@@ -1,0 +1,335 @@
+{
+  "toolbox_name": "Four-way motor drive",
+  "toolbox_labels": {
+    "── I2C模式 ──": "── I2C mode ──",
+    "初始化": "initialization",
+    "参数配置": "Parameter configuration",
+    "电机控制": "Motor control",
+    "编码器": "encoder",
+    "── 串口模式 ──": "── Serial port mode ──",
+    "数据读取": "Data reading"
+  },
+  "yahboom_md_iic_init": {
+    "message0": "Initialize I2C motor driver %1 Address %2 Motor type %3",
+    "tooltip": "Initialize Yahboom I2C four-way motor driver board, set I2C address and motor type",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "0x26 (default)",
+            "0x26"
+          ],
+          [
+            "0x27",
+            "0x27"
+          ],
+          [
+            "0x28",
+            "0x28"
+          ],
+          [
+            "0x29",
+            "0x29"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "520 motor",
+            "MOTOR_520"
+          ],
+          [
+            "310 motor",
+            "MOTOR_310"
+          ],
+          [
+            "TT coded motor",
+            "MOTOR_TT_ENCODER"
+          ],
+          [
+            "TT DC motor",
+            "MOTOR_TT"
+          ],
+          [
+            "520-L motor",
+            "MOTOR_520_L"
+          ]
+        ]
+      }
+    ]
+  },
+  "yahboom_md_iic_set_deadzone": {
+    "message0": "I2C motor driver %1 Set dead zone %2",
+    "tooltip": "Set the motor dead zone value"
+  },
+  "yahboom_md_iic_set_pulse_line": {
+    "message0": "I2C motor driver %1 Set the number of pulse lines %2",
+    "tooltip": "Set the number of magnetic ring pulse lines"
+  },
+  "yahboom_md_iic_set_pulse_phase": {
+    "message0": "I2C motor driver %1 Set reduction ratio %2",
+    "tooltip": "Set motor reduction ratio"
+  },
+  "yahboom_md_iic_set_wheel_diameter": {
+    "message0": "I2C motor driver %1 Set wheel diameter (mm) %2",
+    "tooltip": "Set wheel diameter (mm)"
+  },
+  "yahboom_md_iic_control_speed": {
+    "message0": "I2C motor driver %1 Speed control M1 %2 M2 %3 M3 %4 M4 %5",
+    "tooltip": "Control 4-way motor speed (encoder motor required), range -1000~1000"
+  },
+  "yahboom_md_iic_control_pwm": {
+    "message0": "I2C motor driver %1 PWM control M1 %2 M2 %3 M3 %4 M4 %5",
+    "tooltip": "Directly control 4-way motor PWM values"
+  },
+  "yahboom_md_iic_encoder_offset": {
+    "message0": "I2C motor driver %1 Get 10ms encoder offset %2",
+    "tooltip": "Read the 10ms real-time encoder offset of the specified motor",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "M1",
+            "0"
+          ],
+          [
+            "M2",
+            "1"
+          ],
+          [
+            "M3",
+            "2"
+          ],
+          [
+            "M4",
+            "3"
+          ]
+        ]
+      }
+    ]
+  },
+  "yahboom_md_iic_encoder_total": {
+    "message0": "I2C motor driver %1 Get total encoder count %2",
+    "tooltip": "Read the total encoder count of the specified motor",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "M1",
+            "0"
+          ],
+          [
+            "M2",
+            "1"
+          ],
+          [
+            "M3",
+            "2"
+          ],
+          [
+            "M4",
+            "3"
+          ]
+        ]
+      }
+    ]
+  },
+  "yahboom_md_usart_init": {
+    "message0": "Initialize serial port motor driver %1 Serial port %2 Motor type %3",
+    "tooltip": "Initialize Yahboom serial port four-way motor driver board",
+    "args0": [
+      null,
+      {
+        "options": "${board.serialPort}"
+      },
+      {
+        "options": [
+          [
+            "520 motor",
+            "MOTOR_520"
+          ],
+          [
+            "310 motor",
+            "MOTOR_310"
+          ],
+          [
+            "TT coded motor",
+            "MOTOR_TT_ENCODER"
+          ],
+          [
+            "TT DC motor",
+            "MOTOR_TT"
+          ],
+          [
+            "520-L motor",
+            "MOTOR_520_L"
+          ]
+        ]
+      }
+    ]
+  },
+  "yahboom_md_usart_set_deadzone": {
+    "message0": "Serial motor driver %1 Set dead zone %2",
+    "tooltip": "Set the motor dead zone value"
+  },
+  "yahboom_md_usart_set_pulse_line": {
+    "message0": "Serial motor driver %1 Set the number of pulse lines %2",
+    "tooltip": "Set the number of magnetic ring pulse lines"
+  },
+  "yahboom_md_usart_set_pulse_phase": {
+    "message0": "Serial motor driver %1 Set reduction ratio %2",
+    "tooltip": "Set motor reduction ratio"
+  },
+  "yahboom_md_usart_set_wheel_diameter": {
+    "message0": "Serial motor driver %1 Set wheel diameter (mm) %2",
+    "tooltip": "Set wheel diameter (mm)"
+  },
+  "yahboom_md_usart_set_pid": {
+    "message0": "Serial motor driver %1 Set PID P %2 I %3 D %4",
+    "tooltip": "Set motor PID parameters"
+  },
+  "yahboom_md_usart_set_upload_data": {
+    "message0": "Serial motor driver %1 Data reporting Total encoder %2 10ms encoder %3 Speed %4",
+    "tooltip": "Configure the data type reported by the motor module: total encoder count, 10ms real-time encoder, speed (mm/s)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Close",
+            "false"
+          ],
+          [
+            "turn on",
+            "true"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "Close",
+            "false"
+          ],
+          [
+            "turn on",
+            "true"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "Close",
+            "false"
+          ],
+          [
+            "turn on",
+            "true"
+          ]
+        ]
+      }
+    ]
+  },
+  "yahboom_md_usart_control_speed": {
+    "message0": "Serial motor driver %1 Speed control M1 %2 M2 %3 M3 %4 M4 %5",
+    "tooltip": "Control 4-way motor speed (encoder motor required), range -1000~1000"
+  },
+  "yahboom_md_usart_control_pwm": {
+    "message0": "Serial motor driver %1 PWM control M1 %2 M2 %3 M3 %4 M4 %5",
+    "tooltip": "Directly control 4-way motor PWM values"
+  },
+  "yahboom_md_usart_data_available": {
+    "message0": "Serial motor driver %1 receives data",
+    "tooltip": "Check whether the data returned by the motor module is received (data is automatically received in the loop)"
+  },
+  "yahboom_md_usart_parse_data": {
+    "message0": "Serial motor driver %1 parsed data",
+    "tooltip": "Parse the received data and clear the receive flag, should be called after checking that the data is available"
+  },
+  "yahboom_md_usart_encoder_offset": {
+    "message0": "Serial motor driver %1 Get 10ms encoder offset %2",
+    "tooltip": "Get the 10ms real-time encoder offset of the specified motor",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "M1",
+            "0"
+          ],
+          [
+            "M2",
+            "1"
+          ],
+          [
+            "M3",
+            "2"
+          ],
+          [
+            "M4",
+            "3"
+          ]
+        ]
+      }
+    ]
+  },
+  "yahboom_md_usart_encoder_total": {
+    "message0": "Serial motor driver %1 Get the total encoder count %2",
+    "tooltip": "Get the total encoder count for the specified motor",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "M1",
+            "0"
+          ],
+          [
+            "M2",
+            "1"
+          ],
+          [
+            "M3",
+            "2"
+          ],
+          [
+            "M4",
+            "3"
+          ]
+        ]
+      }
+    ]
+  },
+  "yahboom_md_usart_speed": {
+    "message0": "Serial motor driver %1 Get speed (mm/s) %2",
+    "tooltip": "Get the current speed of the specified motor (mm/s)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "M1",
+            "0"
+          ],
+          [
+            "M2",
+            "1"
+          ],
+          [
+            "M3",
+            "2"
+          ],
+          [
+            "M4",
+            "3"
+          ]
+        ]
+      }
+    ]
+  }
+}

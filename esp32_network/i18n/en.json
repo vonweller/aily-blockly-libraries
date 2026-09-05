@@ -1,0 +1,173 @@
+{
+  "toolbox_name": "ESP32 Network",
+  "toolbox_labels": {
+    "TCP客户端": "TCP client",
+    "TCP安全客户端": "TCP secure client",
+    "TCP客户端通用功能": "TCP client common functions",
+    "TCP服务器": "TCP server",
+    "UDP通信": "UDP communication"
+  },
+  "esp32_network_client_create": {
+    "message0": "Create network client %1",
+    "tooltip": "Create a network client object"
+  },
+  "esp32_network_client_connect_ip": {
+    "message0": "Client %1 connects to IP %2 port %3",
+    "tooltip": "Connect to the specified IP address and port"
+  },
+  "esp32_network_client_connect_host": {
+    "message0": "Client %1 connects to host %2 port %3",
+    "tooltip": "Connect to the specified hostname and port"
+  },
+  "esp32_networkclientsecure_create": {
+    "message0": "Create secure network client %1",
+    "tooltip": "Create a new NetworkClientSecure secure network client object"
+  },
+  "esp32_networkclientsecure_set_insecure": {
+    "message0": "Set %1 to unsafe mode",
+    "tooltip": "Set to insecure mode and do not verify the certificate chain (for testing only)"
+  },
+  "esp32_networkclientsecure_set_ca_cert": {
+    "message0": "Set the CA certificate of %1 %2",
+    "tooltip": "Set the root CA certificate used to authenticate the server"
+  },
+  "esp32_networkclientsecure_set_certificate": {
+    "message0": "Set client certificate %2 for %1",
+    "tooltip": "Set up client certificate for mutual authentication"
+  },
+  "esp32_networkclientsecure_set_private_key": {
+    "message0": "Set the private key of %1 %2",
+    "tooltip": "Set client private key for two-way authentication"
+  },
+  "esp32_networkclientsecure_set_psk": {
+    "message0": "Set PSK authentication of %1 Identity %2 Key %3",
+    "tooltip": "Set up preshared key (PSK) authentication"
+  },
+  "esp32_networkclientsecure_set_plain_start": {
+    "message0": "Set %1 to plain text startup mode",
+    "tooltip": "Set to plain text startup mode for protocol upgrades (such as STARTTLS)"
+  },
+  "esp32_networkclientsecure_start_tls": {
+    "message0": "Start TLS connection of %1",
+    "tooltip": "Upgrade the plaintext connection to a TLS connection. Return 0 to indicate failure and non-zero to indicate success."
+  },
+  "esp32_networkclientsecure_set_handshake_timeout": {
+    "message0": "Set %1 handshake timeout to %2 seconds",
+    "tooltip": "Set SSL handshake timeout"
+  },
+  "esp32_networkclientsecure_verify_fingerprint": {
+    "message0": "Verification %1 Fingerprint %2 Domain name %3",
+    "tooltip": "Verify server certificate fingerprint and domain name"
+  },
+  "esp32_networkclientsecure_get_peer_fingerprint": {
+    "message0": "Get the peer certificate fingerprint of %1",
+    "tooltip": "Get the SHA256 fingerprint (hex string) of the peer certificate"
+  },
+  "esp32_networkclientsecure_last_error": {
+    "message0": "Get the last error of %1",
+    "tooltip": "Get the error information of the last connection or operation"
+  },
+  "esp32_network_client_print": {
+    "message0": "Client %1 sends data %2",
+    "tooltip": "Send data to server"
+  },
+  "esp32_network_client_println": {
+    "message0": "Client %1 sends data and wraps %2",
+    "tooltip": "Send data to server and add newlines"
+  },
+  "esp32_network_client_available": {
+    "message0": "Client %1 Number of data bytes that can be read",
+    "tooltip": "Get the number of data bytes that can be read"
+  },
+  "esp32_network_client_read": {
+    "message0": "Client %1 reads data %2",
+    "tooltip": "Read data from server",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "single byte",
+            "BYTE"
+          ],
+          [
+            "string",
+            "STRING"
+          ],
+          [
+            "read newline character",
+            "LINE"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_network_client_connected": {
+    "message0": "Client %1 is connected",
+    "tooltip": "Check if the client is connected"
+  },
+  "esp32_network_client_stop": {
+    "message0": "Client %1 disconnected",
+    "tooltip": "Disconnect client"
+  },
+  "esp32_network_server_create": {
+    "message0": "Create web server %1 Port %2 Maximum number of connections %3",
+    "tooltip": "Create a web server object"
+  },
+  "esp32_network_server_begin": {
+    "message0": "Server %1 starts listening",
+    "tooltip": "Start listening for client connections"
+  },
+  "esp32_network_server_accept": {
+    "message0": "Server %1 listens for client %2 connections",
+    "tooltip": "Accepts client connections and returns client objects"
+  },
+  "esp32_network_server_stop": {
+    "message0": "Server %1 stops listening",
+    "tooltip": "Stop server listening"
+  },
+  "esp32_network_udp_create": {
+    "message0": "Create UDP object %1",
+    "tooltip": "Create a UDP object"
+  },
+  "esp32_network_udp_begin": {
+    "message0": "UDP %1 starts listening on port %2",
+    "tooltip": "Start listening for UDP packets on the specified port"
+  },
+  "esp32_network_udp_begin_packet": {
+    "message0": "UDP %1 starts sending packets to %2 port %3",
+    "tooltip": "Start preparing to send UDP packets"
+  },
+  "esp32_network_udp_write": {
+    "message0": "UDP %1 Write data %2",
+    "tooltip": "Write data to UDP packet"
+  },
+  "esp32_network_udp_end_packet": {
+    "message0": "UDP %1 Send data packet",
+    "tooltip": "Send UDP packet"
+  },
+  "esp32_network_udp_parse_packet": {
+    "message0": "UDP %1 parses the received data packet",
+    "tooltip": "Parse the received UDP packet and return the packet size"
+  },
+  "esp32_network_udp_available": {
+    "message0": "UDP %1 Number of available data bytes",
+    "tooltip": "Get the number of data bytes that can be read"
+  },
+  "esp32_network_udp_read": {
+    "message0": "UDP %1 read data",
+    "tooltip": "Read data from UDP buffer"
+  },
+  "esp32_network_udp_remote_ip": {
+    "message0": "UDP %1 remote IP address",
+    "tooltip": "Get the remote IP address from which packets are sent"
+  },
+  "esp32_network_udp_remote_port": {
+    "message0": "UDP %1 remote port",
+    "tooltip": "Get the remote port for sending packets"
+  },
+  "esp32_network_udp_stop": {
+    "message0": "UDP %1 Stop listening",
+    "tooltip": "Stop UDP listening"
+  }
+}

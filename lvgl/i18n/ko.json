@@ -1,0 +1,1877 @@
+{
+  "toolbox_name": "LVGL",
+  "toolbox_labels": {
+    "标签": "라벨",
+    "图像": "이미지",
+    "列表": "목록",
+    "选项卡": "탭",
+    "按钮": "버튼",
+    "滑动条": "슬라이더",
+    "开关": "스위치",
+    "复选框": "체크박스",
+    "下拉框": "드롭다운 상자",
+    "文本框": "텍스트 상자",
+    "键盘": "키보드",
+    "进度条": "진행률 표시줄",
+    "圆弧": "호",
+    "加载动画": "애니메이션 로딩",
+    "图表": "차트"
+  },
+  "lvgl_init": {
+    "message0": "디스플레이 드라이버 라이브러리를 사용하여 LVGL을 초기화하세요 %1 화면 해상도, 너비, 높이%2 회전 각도%3 %4",
+    "tooltip": "LVGL 라이브러리를 초기화하세요",
+    "args0": [
+      {
+        "options": [
+          [
+            "TFT_eSPI",
+            "TFT_eSPI"
+          ],
+          [
+            "로비언 GFX (지원 예정)",
+            "LovyanGFX"
+          ]
+        ]
+      },
+      null,
+      null,
+      {
+        "options": [
+          [
+            "0°",
+            "LV_DISPLAY_ROTATION_0"
+          ],
+          [
+            "90°",
+            "LV_DISPLAY_ROTATION_90"
+          ],
+          [
+            "180°",
+            "LV_DISPLAY_ROTATION_180"
+          ],
+          [
+            "270°",
+            "LV_DISPLAY_ROTATION_270"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_indev_create": {
+    "message0": "입력 장치를 초기%1화%2 데이터 검색 콜백 함수 유형%3",
+    "tooltip": "입력 장치 초기화",
+    "args0": [
+      {
+        "options": [
+          [
+            "전체 상황",
+            "global"
+          ],
+          [
+            "지역",
+            "local"
+          ]
+        ]
+      },
+      null,
+      {
+        "options": [
+          [
+            "포인터 장치 (터치스크린/마우스)",
+            "LV_INDEV_TYPE_POINTER"
+          ],
+          [
+            "버튼 장치",
+            "LV_INDEV_TYPE_KEYPAD"
+          ],
+          [
+            "버튼 장치",
+            "LV_INDEV_TYPE_BUTTON"
+          ],
+          [
+            "인코더 장비",
+            "LV_INDEV_TYPE_ENCODER"
+          ]
+        ]
+      }
+    ],
+    "message1": "실행 %1"
+  },
+  "lvgl_indev_data_param_set": {
+    "message0": "데이터 파라미터%1 %2로 설정되어 있습니다",
+    "tooltip": "입력 장치에서 데이터 매개변수를 얻습니다",
+    "args0": [
+      {
+        "options": [
+          [
+            "상태",
+            "state"
+          ],
+          [
+            "좌표 X",
+            "point.x"
+          ],
+          [
+            "좌표 Y",
+            "point.y"
+          ],
+          [
+            "주요 가치",
+            "key"
+          ],
+          [
+            "버튼 ID",
+            "btn_id"
+          ],
+          [
+            "인코더 증분",
+            "enc_diff"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "lvgl_indev_state_param": {
+    "message0": "장치 상태 상수를 입력%1",
+    "tooltip": "장치 상태 상수를 입력합니다",
+    "args0": [
+      {
+        "options": [
+          [
+            "해제",
+            "LV_INDEV_STATE_REL"
+          ],
+          [
+            "누르기",
+            "LV_INDEV_STATE_PR"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_label_create": {
+    "message0": "부모 객체%2 %1 태그를 생성하세요 %3",
+    "tooltip": "텍스트 태그 컨트롤 생성",
+    "args0": [
+      {
+        "options": [
+          [
+            "전체 상황",
+            "global"
+          ],
+          [
+            "지역",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_label_set_text": {
+    "message0": "텍스트 태그%1 %2로 설정하세요",
+    "tooltip": "라벨에 표시되는 텍스트 내용을 설정하세요"
+  },
+  "lv_label_set_text_fmt": {
+    "message0": "태그 설정: 형식 %1 텍스트 형식, 문자열 %2 매개변수 %3",
+    "tooltip": "태그 텍스트를 서식화된 문자열로 설정하며, printf 스타일 서식(예: \"Button: %d\")을 지원합니다"
+  },
+  "lvgl_label_set_long_mode": {
+    "message0": "태그를 긴 텍스트 모드%1 설정하세요%2",
+    "tooltip": "태그의 긴 텍스트 처리 모드를 설정하세요",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "자동 라인 감기",
+            "LV_LABEL_LONG_MODE_WRAP"
+          ],
+          [
+            "생략표 표시",
+            "LV_LABEL_LONG_MODE_DOTS"
+          ],
+          [
+            "앞뒤로 굴러가기",
+            "LV_LABEL_LONG_MODE_SCROLL"
+          ],
+          [
+            "사이클 롤링",
+            "LV_LABEL_LONG_MODE_SCROLL_CIRCULAR"
+          ],
+          [
+            "절단",
+            "LV_LABEL_LONG_MODE_CLIP"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_button_create": {
+    "message0": "%1 버튼 생성 %2 부모 객체 %3",
+    "tooltip": "버튼 컨트롤 생성",
+    "args0": [
+      {
+        "options": [
+          [
+            "전체 상황",
+            "global"
+          ],
+          [
+            "지역",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_slider_create": {
+    "message0": "부모 오브젝트%2 슬라이더%1 생성%3",
+    "tooltip": "슬라이더 컨트롤 생성",
+    "args0": [
+      {
+        "options": [
+          [
+            "전체 상황",
+            "global"
+          ],
+          [
+            "지역",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_slider_set_value": {
+    "message0": "슬라이더%1 %2 애니메이션 값으로 설정하세요%3",
+    "tooltip": "슬라이더의 현재 값을 설정하세요",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "켜기",
+            "LV_ANIM_ON"
+          ],
+          [
+            "끄기",
+            "LV_ANIM_OFF"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_slider_set_range": {
+    "message0": "슬라이더 %1 범위 최소 %2 최대 %3",
+    "tooltip": "슬라이더의 값 범위를 설정하세요"
+  },
+  "lvgl_slider_get_value": {
+    "message0": "슬라이더 값을 %1",
+    "tooltip": "슬라이드바의 현재 값을 확인하세요"
+  },
+  "lvgl_switch_create": {
+    "message0": "%1 스위치를 %2 부모 객체 %3 생성하세요",
+    "tooltip": "스위치 제어 생성",
+    "args0": [
+      {
+        "options": [
+          [
+            "전체 상황",
+            "global"
+          ],
+          [
+            "지역",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_checkbox_create": {
+    "message0": "텍스트 %2 부모 객체 체크박스 %3 생성%1%4",
+    "tooltip": "체크박스 컨트롤 생성",
+    "args0": [
+      {
+        "options": [
+          [
+            "전체 상황",
+            "global"
+          ],
+          [
+            "지역",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null,
+      null
+    ]
+  },
+  "lvgl_bar_create": {
+    "message0": "부모 오브젝트%1 진행 바%2 생성%3",
+    "tooltip": "진행 바 컨트롤 생성",
+    "args0": [
+      {
+        "options": [
+          [
+            "전체 상황",
+            "global"
+          ],
+          [
+            "지역",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_bar_set_value": {
+    "message0": "진행 바 %1 값을 애니메이션 %2로 설정하세요%3",
+    "tooltip": "진행 바의 현재 값을 설정하세요",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "켜기",
+            "LV_ANIM_ON"
+          ],
+          [
+            "끄기",
+            "LV_ANIM_OFF"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_bar_set_range": {
+    "message0": "진행 바를 최소 %2 최대 %1 범위로 설정%3",
+    "tooltip": "진행 바의 값 범위를 설정하세요"
+  },
+  "lvgl_arc_create": {
+    "message0": "부모 객체%2 %1 아크 생성 %3",
+    "tooltip": "아크 제어 생성",
+    "args0": [
+      {
+        "options": [
+          [
+            "전체 상황",
+            "global"
+          ],
+          [
+            "지역",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_arc_set_value": {
+    "message0": "아크 %1 값을 %2로 설정하세요",
+    "tooltip": "현재 호의 값을 설정하세요"
+  },
+  "lvgl_arc_set_range": {
+    "message0": "범위 %1 최소 %2 최대 %3",
+    "tooltip": "호 값의 범위를 설정하세요"
+  },
+  "lvgl_spinner_create": {
+    "message0": "%1 생성 %2 Parents 객체 %3",
+    "tooltip": "로딩 애니메이션 컨트롤을 생성하세요",
+    "args0": [
+      {
+        "options": [
+          [
+            "전체 상황",
+            "global"
+          ],
+          [
+            "지역",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_spinner_set_anim_params": {
+    "message0": "로딩 애니메이션을 %1 duration%2 ms 라디안 %3° 설정하세요",
+    "tooltip": "애니메이션의 로딩 시간과 곡률을 설정하세요"
+  },
+  "lvgl_dropdown_create": {
+    "message0": "부모 객체%2 드롭다운 %1 만%3",
+    "tooltip": "드롭다운 컨트롤을 생성하세요",
+    "args0": [
+      {
+        "options": [
+          [
+            "전체 상황",
+            "global"
+          ],
+          [
+            "지역",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_dropdown_set_options": {
+    "message0": "옵션 %1 드롭다운 박스를 설정%2",
+    "tooltip": "드롭다운 옵션을 설정하고, 여러 옵션을 \\n으로 구분하세요"
+  },
+  "lvgl_dropdown_get_selected": {
+    "message0": "드롭다운 %1 인덱스 항목 선택",
+    "tooltip": "드롭다운 박스에서 현재 선택된 항목의 인덱스를 얻습니다"
+  },
+  "lvgl_textarea_create": {
+    "message0": "%1 텍스트 박스 %2 부모 객체 %3 생성",
+    "tooltip": "텍스트 입력 박스 제어 생성",
+    "args0": [
+      {
+        "options": [
+          [
+            "전체 상황",
+            "global"
+          ],
+          [
+            "지역",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_textarea_set_text": {
+    "message0": "텍스트 박스%1 %2로 설정하세요",
+    "tooltip": "텍스트 박스의 내용을 설정하세요"
+  },
+  "lvgl_textarea_get_text": {
+    "message0": "텍스트 박스 텍스트를 %1",
+    "tooltip": "텍스트 박스의 내용을 확인하세요"
+  },
+  "lvgl_textarea_set_placeholder": {
+    "message0": "텍스트박스 %1 자리 표시자를 %2로 설정하세요",
+    "tooltip": "텍스트 박스의 자리 표시자 텍스트를 설정하세요"
+  },
+  "lvgl_obj_set_pos": {
+    "message0": "%1 위치 X %2 Y %3 설정하세요",
+    "tooltip": "객체의 X와 Y 좌표를 설정하세요"
+  },
+  "lvgl_obj_set_size": {
+    "message0": "크기 %1 너비 %2 높이 %3",
+    "tooltip": "객체의 너비와 높이를 설정하세요"
+  },
+  "lvgl_obj_align": {
+    "message0": "정렬 %1 X %2 %3 y %4",
+    "tooltip": "객체의 정렬과 오프셋을 부모 객체에 대해 설정합니다",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "중앙",
+            "LV_ALIGN_CENTER"
+          ],
+          [
+            "왼쪽 위",
+            "LV_ALIGN_TOP_LEFT"
+          ],
+          [
+            "평균 이상입니다",
+            "LV_ALIGN_TOP_MID"
+          ],
+          [
+            "오른쪽 위",
+            "LV_ALIGN_TOP_RIGHT"
+          ],
+          [
+            "좌중앙",
+            "LV_ALIGN_LEFT_MID"
+          ],
+          [
+            "우측 중앙",
+            "LV_ALIGN_RIGHT_MID"
+          ],
+          [
+            "왼쪽 아래",
+            "LV_ALIGN_BOTTOM_LEFT"
+          ],
+          [
+            "평균 이하",
+            "LV_ALIGN_BOTTOM_MID"
+          ],
+          [
+            "오른쪽 아래",
+            "LV_ALIGN_BOTTOM_RIGHT"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_obj_center": {
+    "message0": "중심 %1",
+    "tooltip": "물체를 중심에 넣었다"
+  },
+  "lvgl_obj_add_flag": {
+    "message0": "로고 추가%1 %2",
+    "tooltip": "객체에 플래그를 추가하세요",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "hide",
+            "LV_OBJ_FLAG_HIDDEN"
+          ],
+          [
+            "클릭 가능",
+            "LV_OBJ_FLAG_CLICKABLE"
+          ],
+          [
+            "선택 가능",
+            "LV_OBJ_FLAG_CHECKABLE"
+          ],
+          [
+            "롤러블",
+            "LV_OBJ_FLAG_SCROLLABLE"
+          ],
+          [
+            "비활성화",
+            "LV_OBJ_FLAG_DISABLED"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_obj_remove_flag": {
+    "message0": "%1 %2에서 깃발을 제거하세요",
+    "tooltip": "객체에서 플래그를 제거하세요",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "hide",
+            "LV_OBJ_FLAG_HIDDEN"
+          ],
+          [
+            "클릭 가능",
+            "LV_OBJ_FLAG_CLICKABLE"
+          ],
+          [
+            "선택 가능",
+            "LV_OBJ_FLAG_CHECKABLE"
+          ],
+          [
+            "롤러블",
+            "LV_OBJ_FLAG_SCROLLABLE"
+          ],
+          [
+            "비활성화",
+            "LV_OBJ_FLAG_DISABLED"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_obj_add_state": {
+    "message0": "%1 %2에 지위 부여",
+    "tooltip": "객체에 상태 추가",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "선정된",
+            "LV_STATE_CHECKED"
+          ],
+          [
+            "초점",
+            "LV_STATE_FOCUSED"
+          ],
+          [
+            "누르기",
+            "LV_STATE_PRESSED"
+          ],
+          [
+            "비활성화",
+            "LV_STATE_DISABLED"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_obj_remove_state": {
+    "message0": "%1%2에서 상태 삭제",
+    "tooltip": "객체에서 상태를 제거하세요",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "선정된",
+            "LV_STATE_CHECKED"
+          ],
+          [
+            "초점",
+            "LV_STATE_FOCUSED"
+          ],
+          [
+            "누르기",
+            "LV_STATE_PRESSED"
+          ],
+          [
+            "비활성화",
+            "LV_STATE_DISABLED"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_obj_has_state": {
+    "message0": "%1 Stated%2",
+    "tooltip": "객체가 지정된 상태를 가지고 있는지 확인해",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "선정된",
+            "LV_STATE_CHECKED"
+          ],
+          [
+            "초점",
+            "LV_STATE_FOCUSED"
+          ],
+          [
+            "누르기",
+            "LV_STATE_PRESSED"
+          ],
+          [
+            "비활성화",
+            "LV_STATE_DISABLED"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_obj_delete": {
+    "message0": "삭제%1",
+    "tooltip": "객체와 그 모든 하위 객체를 삭제하세요"
+  },
+  "lvgl_obj_set_style_text_font": {
+    "message0": "%1 글꼴 설정%2",
+    "tooltip": "객체의 텍스트 글꼴을 설정하세요",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "영어 폰트 8",
+            "LV_FONT_MONTSERRAT_8"
+          ],
+          [
+            "영어 폰트 10",
+            "LV_FONT_MONTSERRAT_10"
+          ],
+          [
+            "영어 폰트 12",
+            "LV_FONT_MONTSERRAT_12"
+          ],
+          [
+            "영어 폰트 14",
+            "LV_FONT_MONTSERRAT_14"
+          ],
+          [
+            "영어 폰트 16",
+            "LV_FONT_MONTSERRAT_16"
+          ],
+          [
+            "영어 폰트 18",
+            "LV_FONT_MONTSERRAT_18"
+          ],
+          [
+            "영어 글꼴 20",
+            "LV_FONT_MONTSERRAT_20"
+          ],
+          [
+            "영어 글꼴 22",
+            "LV_FONT_MONTSERRAT_22"
+          ],
+          [
+            "영어 폰트 24",
+            "LV_FONT_MONTSERRAT_24"
+          ],
+          [
+            "영어 폰트 26",
+            "LV_FONT_MONTSERRAT_26"
+          ],
+          [
+            "영어 폰트 28",
+            "LV_FONT_MONTSERRAT_28"
+          ],
+          [
+            "영어 글꼴 30",
+            "LV_FONT_MONTSERRAT_30"
+          ],
+          [
+            "영어 폰트 32",
+            "LV_FONT_MONTSERRAT_32"
+          ],
+          [
+            "영어 폰트 34",
+            "LV_FONT_MONTSERRAT_34"
+          ],
+          [
+            "영어 폰트 36",
+            "LV_FONT_MONTSERRAT_36"
+          ],
+          [
+            "영어 폰트 38",
+            "LV_FONT_MONTSERRAT_38"
+          ],
+          [
+            "영어 폰트 40",
+            "LV_FONT_MONTSERRAT_40"
+          ],
+          [
+            "영어 폰트 42",
+            "LV_FONT_MONTSERRAT_42"
+          ],
+          [
+            "영어 폰트 44",
+            "LV_FONT_MONTSERRAT_44"
+          ],
+          [
+            "영어 폰트 46",
+            "LV_FONT_MONTSERRAT_46"
+          ],
+          [
+            "영어 폰트 48",
+            "LV_FONT_MONTSERRAT_48"
+          ],
+          [
+            "중국어 폰트 14",
+            "LV_FONT_SOURCE_HAN_SANS_SC_14_CJK"
+          ],
+          [
+            "중국어 글꼴 16",
+            "LV_FONT_SOURCE_HAN_SANS_SC_16_CJK"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_obj_set_style_bg_color": {
+    "message0": "배경색 %1 설정%2",
+    "tooltip": "객체의 배경색을 설정하세요"
+  },
+  "lvgl_obj_set_style_text_color": {
+    "message0": "텍스트 색상 %1 설정%2",
+    "tooltip": "객체의 텍스트 색상을 설정하세요"
+  },
+  "lvgl_obj_set_style_border_color": {
+    "message0": "테두리 색상%1 설정하세요%2",
+    "tooltip": "객체 테두리 색상을 설정하세요"
+  },
+  "lvgl_obj_set_style_border_width": {
+    "message0": "테두리 너비%1 설정%2",
+    "tooltip": "객체의 테두리 너비를 설정하세요"
+  },
+  "lvgl_obj_set_style_radius": {
+    "message0": "필렛 반경 %1 설정%2",
+    "tooltip": "물체의 필렛 반경을 설정하세요"
+  },
+  "lvgl_obj_set_style_pad_all": {
+    "message0": "마진 %1 설정%2",
+    "tooltip": "객체의 모든 내부 여백을 설정하세요"
+  },
+  "lvgl_obj_set_style_bg_opa": {
+    "message0": "배경 투명%1 설정%2",
+    "tooltip": "오브젝트의 배경 투명도를 설정하세요",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "완전히 투명합니다",
+            "LV_OPA_TRANSP"
+          ],
+          [
+            "25%",
+            "LV_OPA_25"
+          ],
+          [
+            "50%",
+            "LV_OPA_50"
+          ],
+          [
+            "75%",
+            "LV_OPA_75"
+          ],
+          [
+            "불투명",
+            "LV_OPA_COVER"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_event_add_cb": {
+    "message0": "사건%1 %2 발생",
+    "tooltip": "객체에 대해 이벤트 콜백을 설정하세요",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "모든 행사",
+            "LV_EVENT_ALL"
+          ],
+          [
+            "누르기",
+            "LV_EVENT_PRESSED"
+          ],
+          [
+            "계속 눌러.",
+            "LV_EVENT_PRESSING"
+          ],
+          [
+            "누르고 나서 나가세요",
+            "LV_EVENT_PRESS_LOST"
+          ],
+          [
+            "단기 인쇄",
+            "LV_EVENT_SHORT_CLICKED"
+          ],
+          [
+            "싱글 탭",
+            "LV_EVENT_SINGLE_CLICKED"
+          ],
+          [
+            "더블 탭",
+            "LV_EVENT_DOUBLE_CLICKED"
+          ],
+          [
+            "세 번의 스트라이크",
+            "LV_EVENT_TRIPLE_CLICKED"
+          ],
+          [
+            "누르고 붙잡기",
+            "LV_EVENT_LONG_PRESSED"
+          ],
+          [
+            "버튼을 누르고 있으면 반복합니다",
+            "LV_EVENT_LONG_PRESSED_REPEAT"
+          ],
+          [
+            "클릭",
+            "LV_EVENT_CLICKED"
+          ],
+          [
+            "해제",
+            "LV_EVENT_RELEASED"
+          ],
+          [
+            "두루마리가 시작된다",
+            "LV_EVENT_SCROLL_BEGIN"
+          ],
+          [
+            "롤링 던지기 시작입니다",
+            "LV_EVENT_SCROLL_THROW_BEGIN"
+          ],
+          [
+            "두루마리 끝",
+            "LV_EVENT_SCROLL_END"
+          ],
+          [
+            "스크롤",
+            "LV_EVENT_SCROLL"
+          ],
+          [
+            "제스처",
+            "LV_EVENT_GESTURE"
+          ],
+          [
+            "버튼",
+            "LV_EVENT_KEY"
+          ],
+          [
+            "회전",
+            "LV_EVENT_ROTARY"
+          ],
+          [
+            "초점",
+            "LV_EVENT_FOCUSED"
+          ],
+          [
+            "초점을 잃었다",
+            "LV_EVENT_DEFOCUSED"
+          ],
+          [
+            "떠나세요",
+            "LV_EVENT_LEAVE"
+          ],
+          [
+            "충돌 테스트",
+            "LV_EVENT_HIT_TEST"
+          ],
+          [
+            "입력 장치 리셋",
+            "LV_EVENT_INDEV_RESET"
+          ],
+          [
+            "마우스를 올리면 진입",
+            "LV_EVENT_HOVER_OVER"
+          ],
+          [
+            "떠나다 떠나는 것",
+            "LV_EVENT_HOVER_LEAVE"
+          ],
+          [
+            "보장 조회",
+            "LV_EVENT_COVER_CHECK"
+          ],
+          [
+            "확장 드로우 사이즈를 새로고침하세요",
+            "LV_EVENT_REFR_EXT_DRAW_SIZE"
+          ],
+          [
+            "주요 그림이 시작된다",
+            "LV_EVENT_DRAW_MAIN_BEGIN"
+          ],
+          [
+            "주로 일러스트레이터입니다",
+            "LV_EVENT_DRAW_MAIN"
+          ],
+          [
+            "주요 도면은 완성되었습니다",
+            "LV_EVENT_DRAW_MAIN_END"
+          ],
+          [
+            "드로잉 시작",
+            "LV_EVENT_DRAW_POST_BEGIN"
+          ],
+          [
+            "이후 추첨",
+            "LV_EVENT_DRAW_POST"
+          ],
+          [
+            "그러면 그림이 완성됩니다",
+            "LV_EVENT_DRAW_POST_END"
+          ],
+          [
+            "그림 작업 추가하기",
+            "LV_EVENT_DRAW_TASK_ADDED"
+          ],
+          [
+            "가치 변화",
+            "LV_EVENT_VALUE_CHANGED"
+          ],
+          [
+            "삽입",
+            "LV_EVENT_INSERT"
+          ],
+          [
+            "새로고침",
+            "LV_EVENT_REFRESH"
+          ],
+          [
+            "준비됐어",
+            "LV_EVENT_READY"
+          ],
+          [
+            "취소됨",
+            "LV_EVENT_CANCEL"
+          ],
+          [
+            "주 변경",
+            "LV_EVENT_STATE_CHANGED"
+          ],
+          [
+            "설립",
+            "LV_EVENT_CREATE"
+          ],
+          [
+            "삭제",
+            "LV_EVENT_DELETE"
+          ],
+          [
+            "서브오브젝트 변경 사항",
+            "LV_EVENT_CHILD_CHANGED"
+          ],
+          [
+            "자식 객체 생성",
+            "LV_EVENT_CHILD_CREATED"
+          ],
+          [
+            "자식 객체 삭제",
+            "LV_EVENT_CHILD_DELETED"
+          ],
+          [
+            "화면 삭제 시작",
+            "LV_EVENT_SCREEN_UNLOAD_START"
+          ],
+          [
+            "화면 로딩 시작",
+            "LV_EVENT_SCREEN_LOAD_START"
+          ],
+          [
+            "화면이 로딩 중입니다",
+            "LV_EVENT_SCREEN_LOADED"
+          ],
+          [
+            "화면이 삭제되었습니다",
+            "LV_EVENT_SCREEN_UNLOADED"
+          ],
+          [
+            "크기 변화",
+            "LV_EVENT_SIZE_CHANGED"
+          ],
+          [
+            "스타일 변화",
+            "LV_EVENT_STYLE_CHANGED"
+          ],
+          [
+            "레이아웃 변경",
+            "LV_EVENT_LAYOUT_CHANGED"
+          ],
+          [
+            "자기 사이즈 고르세요",
+            "LV_EVENT_GET_SELF_SIZE"
+          ],
+          [
+            "존 실패",
+            "LV_EVENT_INVALIDATE_AREA"
+          ],
+          [
+            "해상도 변경",
+            "LV_EVENT_RESOLUTION_CHANGED"
+          ],
+          [
+            "컬러 포맷 변경",
+            "LV_EVENT_COLOR_FORMAT_CHANGED"
+          ],
+          [
+            "새로고침 요청",
+            "LV_EVENT_REFR_REQUEST"
+          ],
+          [
+            "리프레시 시작",
+            "LV_EVENT_REFR_START"
+          ],
+          [
+            "상쾌하고 준비됐다",
+            "LV_EVENT_REFR_READY"
+          ],
+          [
+            "렌더링 시작",
+            "LV_EVENT_RENDER_START"
+          ],
+          [
+            "렌더링 준비 완료",
+            "LV_EVENT_RENDER_READY"
+          ],
+          [
+            "플러시 스타트",
+            "LV_EVENT_FLUSH_START"
+          ],
+          [
+            "새로고침 완료 (플러시)",
+            "LV_EVENT_FLUSH_FINISH"
+          ],
+          [
+            "새로고침 대기 시작입니다",
+            "LV_EVENT_FLUSH_WAIT_START"
+          ],
+          [
+            "새로고침하고 완료를 기다립니다",
+            "LV_EVENT_FLUSH_WAIT_FINISH"
+          ],
+          [
+            "레이아웃 업데이트 완료",
+            "LV_EVENT_UPDATE_LAYOUT_COMPLETED"
+          ],
+          [
+            "수직 동기화",
+            "LV_EVENT_VSYNC"
+          ],
+          [
+            "수직 동기화 요청",
+            "LV_EVENT_VSYNC_REQUEST"
+          ]
+        ]
+      }
+    ],
+    "message1": "실행 %1"
+  },
+  "lvgl_event_code": {
+    "message0": "이벤트 코드 상수 %1",
+    "tooltip": "이벤트 코드의 상수 값을 가져옵십니다",
+    "args0": [
+      {
+        "options": [
+          [
+            "모든 행사",
+            "LV_EVENT_ALL"
+          ],
+          [
+            "누르기",
+            "LV_EVENT_PRESSED"
+          ],
+          [
+            "계속 눌러.",
+            "LV_EVENT_PRESSING"
+          ],
+          [
+            "누르고 나서 나가세요",
+            "LV_EVENT_PRESS_LOST"
+          ],
+          [
+            "단기 인쇄",
+            "LV_EVENT_SHORT_CLICKED"
+          ],
+          [
+            "싱글 탭",
+            "LV_EVENT_SINGLE_CLICKED"
+          ],
+          [
+            "더블 탭",
+            "LV_EVENT_DOUBLE_CLICKED"
+          ],
+          [
+            "세 번의 스트라이크",
+            "LV_EVENT_TRIPLE_CLICKED"
+          ],
+          [
+            "누르고 붙잡기",
+            "LV_EVENT_LONG_PRESSED"
+          ],
+          [
+            "버튼을 누르고 있으면 반복합니다",
+            "LV_EVENT_LONG_PRESSED_REPEAT"
+          ],
+          [
+            "클릭",
+            "LV_EVENT_CLICKED"
+          ],
+          [
+            "해제",
+            "LV_EVENT_RELEASED"
+          ],
+          [
+            "두루마리가 시작된다",
+            "LV_EVENT_SCROLL_BEGIN"
+          ],
+          [
+            "롤링 던지기 시작입니다",
+            "LV_EVENT_SCROLL_THROW_BEGIN"
+          ],
+          [
+            "두루마리 끝",
+            "LV_EVENT_SCROLL_END"
+          ],
+          [
+            "스크롤",
+            "LV_EVENT_SCROLL"
+          ],
+          [
+            "제스처",
+            "LV_EVENT_GESTURE"
+          ],
+          [
+            "버튼",
+            "LV_EVENT_KEY"
+          ],
+          [
+            "회전",
+            "LV_EVENT_ROTARY"
+          ],
+          [
+            "초점",
+            "LV_EVENT_FOCUSED"
+          ],
+          [
+            "초점을 잃었다",
+            "LV_EVENT_DEFOCUSED"
+          ],
+          [
+            "떠나세요",
+            "LV_EVENT_LEAVE"
+          ],
+          [
+            "충돌 테스트",
+            "LV_EVENT_HIT_TEST"
+          ],
+          [
+            "입력 장치 리셋",
+            "LV_EVENT_INDEV_RESET"
+          ],
+          [
+            "마우스를 올리면 진입",
+            "LV_EVENT_HOVER_OVER"
+          ],
+          [
+            "떠나다 떠나는 것",
+            "LV_EVENT_HOVER_LEAVE"
+          ],
+          [
+            "보장 조회",
+            "LV_EVENT_COVER_CHECK"
+          ],
+          [
+            "확장 드로우 사이즈를 새로고침하세요",
+            "LV_EVENT_REFR_EXT_DRAW_SIZE"
+          ],
+          [
+            "주요 그림이 시작된다",
+            "LV_EVENT_DRAW_MAIN_BEGIN"
+          ],
+          [
+            "주로 일러스트레이터입니다",
+            "LV_EVENT_DRAW_MAIN"
+          ],
+          [
+            "주요 도면은 완성되었습니다",
+            "LV_EVENT_DRAW_MAIN_END"
+          ],
+          [
+            "드로잉 시작",
+            "LV_EVENT_DRAW_POST_BEGIN"
+          ],
+          [
+            "이후 추첨",
+            "LV_EVENT_DRAW_POST"
+          ],
+          [
+            "그러면 그림이 완성됩니다",
+            "LV_EVENT_DRAW_POST_END"
+          ],
+          [
+            "그림 작업 추가하기",
+            "LV_EVENT_DRAW_TASK_ADDED"
+          ],
+          [
+            "가치 변화",
+            "LV_EVENT_VALUE_CHANGED"
+          ],
+          [
+            "삽입",
+            "LV_EVENT_INSERT"
+          ],
+          [
+            "새로고침",
+            "LV_EVENT_REFRESH"
+          ],
+          [
+            "준비됐어",
+            "LV_EVENT_READY"
+          ],
+          [
+            "취소됨",
+            "LV_EVENT_CANCEL"
+          ],
+          [
+            "주 변경",
+            "LV_EVENT_STATE_CHANGED"
+          ],
+          [
+            "설립",
+            "LV_EVENT_CREATE"
+          ],
+          [
+            "삭제",
+            "LV_EVENT_DELETE"
+          ],
+          [
+            "서브오브젝트 변경 사항",
+            "LV_EVENT_CHILD_CHANGED"
+          ],
+          [
+            "자식 객체 생성",
+            "LV_EVENT_CHILD_CREATED"
+          ],
+          [
+            "자식 객체 삭제",
+            "LV_EVENT_CHILD_DELETED"
+          ],
+          [
+            "화면 삭제 시작",
+            "LV_EVENT_SCREEN_UNLOAD_START"
+          ],
+          [
+            "화면 로딩 시작",
+            "LV_EVENT_SCREEN_LOAD_START"
+          ],
+          [
+            "화면이 로딩 중입니다",
+            "LV_EVENT_SCREEN_LOADED"
+          ],
+          [
+            "화면이 삭제되었습니다",
+            "LV_EVENT_SCREEN_UNLOADED"
+          ],
+          [
+            "크기 변화",
+            "LV_EVENT_SIZE_CHANGED"
+          ],
+          [
+            "스타일 변화",
+            "LV_EVENT_STYLE_CHANGED"
+          ],
+          [
+            "레이아웃 변경",
+            "LV_EVENT_LAYOUT_CHANGED"
+          ],
+          [
+            "자기 사이즈 고르세요",
+            "LV_EVENT_GET_SELF_SIZE"
+          ],
+          [
+            "존 실패",
+            "LV_EVENT_INVALIDATE_AREA"
+          ],
+          [
+            "해상도 변경",
+            "LV_EVENT_RESOLUTION_CHANGED"
+          ],
+          [
+            "컬러 포맷 변경",
+            "LV_EVENT_COLOR_FORMAT_CHANGED"
+          ],
+          [
+            "새로고침 요청",
+            "LV_EVENT_REFR_REQUEST"
+          ],
+          [
+            "리프레시 시작",
+            "LV_EVENT_REFR_START"
+          ],
+          [
+            "상쾌하고 준비됐다",
+            "LV_EVENT_REFR_READY"
+          ],
+          [
+            "렌더링 시작",
+            "LV_EVENT_RENDER_START"
+          ],
+          [
+            "렌더링 준비 완료",
+            "LV_EVENT_RENDER_READY"
+          ],
+          [
+            "플러시 스타트",
+            "LV_EVENT_FLUSH_START"
+          ],
+          [
+            "새로고침 완료 (플러시)",
+            "LV_EVENT_FLUSH_FINISH"
+          ],
+          [
+            "새로고침 대기 시작입니다",
+            "LV_EVENT_FLUSH_WAIT_START"
+          ],
+          [
+            "새로고침하고 완료를 기다립니다",
+            "LV_EVENT_FLUSH_WAIT_FINISH"
+          ],
+          [
+            "레이아웃 업데이트 완료",
+            "LV_EVENT_UPDATE_LAYOUT_COMPLETED"
+          ],
+          [
+            "수직 동기화",
+            "LV_EVENT_VSYNC"
+          ],
+          [
+            "수직 동기화 요청",
+            "LV_EVENT_VSYNC_REQUEST"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_obj_get_child": {
+    "message0": "%2의 자식 객체%1 인덱스 생성 %3",
+    "tooltip": "부모 객체가 지정한 인덱스의 자식 객체를 가져옵십니다"
+  },
+  "lvgl_screen_active": {
+    "message0": "현재 화면을 확인하세요",
+    "tooltip": "현재 활성 화면 객체를 얻으세요"
+  },
+  "lvgl_screen_load": {
+    "message0": "로딩 화면 %1",
+    "tooltip": "지정된 화면으로 전환하세요"
+  },
+  "lvgl_obj_create": {
+    "message0": "기본 객체%1 %2 부모 객체 %3 생성하세요",
+    "tooltip": "기본 컨테이너 객체를 생성하세요",
+    "args0": [
+      {
+        "options": [
+          [
+            "전체 상황",
+            "global"
+          ],
+          [
+            "지역",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_screen_create": {
+    "message0": "%1 새로운 화면을 생성하세요%2",
+    "tooltip": "새로운 스크린 객체 생성",
+    "args0": [
+      {
+        "options": [
+          [
+            "전체 상황",
+            "global"
+          ],
+          [
+            "지역",
+            "local"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "lvgl_image_create": {
+    "message0": "%1 이미지를 %2 부모 객체 %3 생성하세요",
+    "tooltip": "이미지 컨트롤 생성",
+    "args0": [
+      {
+        "options": [
+          [
+            "전체 상황",
+            "global"
+          ],
+          [
+            "지역",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_image_set_src": {
+    "message0": "이미지를 %1 소스로 설정%2",
+    "tooltip": "이미지 소스 파일 경로 또는 심볼을 설정하세요"
+  },
+  "lvgl_image_set_zoom": {
+    "message0": "이미지 %1 축척을 %2로 설정하세요",
+    "tooltip": "이미지 줌 설정하세요 (원래 크기는 256)"
+  },
+  "lvgl_image_set_angle": {
+    "message0": "이미지 %1 회전 각도를 %2로 설정하세요",
+    "tooltip": "이미지 회전 각도를 설정하세요 (0.1도 단위로)"
+  },
+  "lvgl_image_set_offset": {
+    "message0": "이미지 오프셋 x %1 %2 Y %3",
+    "tooltip": "이미지의 오프셋을 설정하세요"
+  },
+  "lvgl_chart_create": {
+    "message0": "%1 차트 %2 부모 객체 %3 생성하기",
+    "tooltip": "차트 컨트롤 생성",
+    "args0": [
+      {
+        "options": [
+          [
+            "전체 상황",
+            "global"
+          ],
+          [
+            "지역",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_chart_set_type": {
+    "message0": "차트 설정 %1 유형 %2",
+    "tooltip": "차트 유형을 설정하세요",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "바 차트",
+            "LV_CHART_TYPE_BAR"
+          ],
+          [
+            "선도표",
+            "LV_CHART_TYPE_LINE"
+          ],
+          [
+            "산점도",
+            "LV_CHART_TYPE_SCATTER"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_chart_set_point_count": {
+    "message0": "차트 설정 %1 포인트 %2",
+    "tooltip": "차트에 표시되는 데이터 포인트 수를 설정하세요"
+  },
+  "lvgl_chart_add_series": {
+    "message0": "차트 %1 시리즈 추가 %2 색상 %3",
+    "tooltip": "차트에 데이터 시리즈를 추가하세요",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "빨강",
+            "lv_palette_main(LV_PALETTE_RED)"
+          ],
+          [
+            "파랑",
+            "lv_palette_main(LV_PALETTE_BLUE)"
+          ],
+          [
+            "초록",
+            "lv_palette_main(LV_PALETTE_GREEN)"
+          ],
+          [
+            "주황색",
+            "lv_palette_main(LV_PALETTE_ORANGE)"
+          ],
+          [
+            "보라색",
+            "lv_palette_main(LV_PALETTE_PURPLE)"
+          ],
+          [
+            "cyan",
+            "lv_palette_main(LV_PALETTE_CYAN)"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_chart_set_next_value": {
+    "message0": "차트 %1 시리즈%2 다음 값을 %3로 설정하세요",
+    "tooltip": "다음 데이터 포인트 값을 시리즈에 설정하세요"
+  },
+  "lvgl_chart_set_range": {
+    "message0": "차트 설정 %1 시리즈 %2 범위 최소 %3 최대 %4",
+    "tooltip": "급수의 Y축 범위를 설정하세요"
+  },
+  "lvgl_chart_set_update_mode": {
+    "message0": "차트 설정 %1 업데이트 모드 %2",
+    "tooltip": "차트의 데이터 업데이트 모드를 설정하세요",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "시프트",
+            "LV_CHART_UPDATE_MODE_SHIFT"
+          ],
+          [
+            "반복",
+            "LV_CHART_UPDATE_MODE_CIRCULAR"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_chart_refresh": {
+    "message0": "차트 새로고침 %1",
+    "tooltip": "차트 표시 새로고침"
+  },
+  "lvgl_keyboard_create": {
+    "message0": "%1 키보드를 %2 부모 객체 %3 생성합니다",
+    "tooltip": "키보드 컨트롤을 생성하세요",
+    "args0": [
+      {
+        "options": [
+          [
+            "전체 상황",
+            "global"
+          ],
+          [
+            "지역",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_keyboard_set_textarea": {
+    "message0": "키보드 설정%1 텍스트 박스 연관 %2",
+    "tooltip": "키보드와 연관된 텍스트 박스를 설정하세요"
+  },
+  "lvgl_keyboard_set_mode": {
+    "message0": "키보드 %1 모드 설정%2",
+    "tooltip": "키보드 모드를 설정하세요",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "텍스트",
+            "LV_KEYBOARD_MODE_TEXT_LOWER"
+          ],
+          [
+            "숫자",
+            "LV_KEYBOARD_MODE_NUMBER"
+          ],
+          [
+            "특수 캐릭터",
+            "LV_KEYBOARD_MODE_SPECIAL"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_keyboard_set_popovers": {
+    "message0": "팝업 프롬프트 %1 키보드 설정%2",
+    "tooltip": "키보드 키 팝업 프롬프트를 설정하세요",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "켜기",
+            "true"
+          ],
+          [
+            "끄기",
+            "false"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_list_create": {
+    "message0": "%1 리스트 생성 %2 부모 객체 %3",
+    "tooltip": "리스트 컨트롤 생성",
+    "args0": [
+      {
+        "options": [
+          [
+            "전체 상황",
+            "global"
+          ],
+          [
+            "지역",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_list_add_text": {
+    "message0": "목록 %1 텍스트 추가 %2",
+    "tooltip": "목록에 텍스트 항목을 추가하세요"
+  },
+  "lvgl_list_add_btn": {
+    "message0": "리스트 %1 추가 버튼 %2 아이콘 %3",
+    "tooltip": "버튼 항목 추가하기",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "없음",
+            "NULL"
+          ],
+          [
+            "재생",
+            "LV_SYMBOL_PLAY"
+          ],
+          [
+            "일시정지",
+            "LV_SYMBOL_PAUSE"
+          ],
+          [
+            "중지",
+            "LV_SYMBOL_STOP"
+          ],
+          [
+            "설정",
+            "LV_SYMBOL_SETTINGS"
+          ],
+          [
+            "볼륨",
+            "LV_SYMBOL_VOLUME_MAX"
+          ],
+          [
+            "WiFi",
+            "LV_SYMBOL_WIFI"
+          ],
+          [
+            "블루투스",
+            "LV_SYMBOL_BLUETOOTH"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_tabview_create": {
+    "message0": "%1 탭 뷰 %2 부모 객체 %3 생성",
+    "tooltip": "탭 뷰 제어 생성",
+    "args0": [
+      {
+        "options": [
+          [
+            "전체 상황",
+            "global"
+          ],
+          [
+            "지역",
+            "local"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "lvgl_tabview_add_tab": {
+    "message0": "탭 보기 %1 탭 추가%2",
+    "tooltip": "탭을 추가하고 탭 콘텐츠 객체를 반환합니다"
+  },
+  "lvgl_set_img_font": {
+    "message0": "이미지 폰트 %1",
+    "tooltip": "이미지 폰트 지원 활성화 여부를 설정하세요",
+    "args0": [
+      {
+        "options": [
+          [
+            "켜기",
+            "true"
+          ],
+          [
+            "끄기",
+            "false"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_set_stdlib_malloc": {
+    "message0": "표준 라이브러리 타입을 설정하세요%1",
+    "tooltip": "표준 라이브러리 타입을 설정해 사용합니다",
+    "args0": [
+      {
+        "options": [
+          [
+            "내장형",
+            "LV_STDLIB_BUILTIN"
+          ],
+          [
+            "C 표준 라이브러리",
+            "LV_STDLIB_CLIB"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_set_stdlib_string": {
+    "message0": "문자열 라이브러리 타입을 %1 설정하세요",
+    "tooltip": "사용할 문자열 라이브러리 유형을 설정하세요",
+    "args0": [
+      {
+        "options": [
+          [
+            "내장형",
+            "LV_STDLIB_BUILTIN"
+          ],
+          [
+            "C 표준 라이브러리",
+            "LV_STDLIB_CLIB"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_set_stdlib_sprintf": {
+    "message0": "출력 함수의 형식 유형을 설정하세요%1",
+    "tooltip": "사용할 포맷화된 출력 함수 유형을 설정하세요",
+    "args0": [
+      {
+        "options": [
+          [
+            "내장형",
+            "LV_STDLIB_BUILTIN"
+          ],
+          [
+            "C 표준 라이브러리",
+            "LV_STDLIB_CLIB"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_set_theme": {
+    "message0": "세트 테마 %1",
+    "tooltip": "글로벌 테마 스타일 설정하세요",
+    "args0": [
+      {
+        "options": [
+          [
+            "밝은 색상",
+            "light"
+          ],
+          [
+            "어두움",
+            "dark"
+          ]
+        ]
+      }
+    ]
+  },
+  "toolbox_categories": [
+    "초기화",
+    "스크린",
+    "디스플레이 제어",
+    "입력 제어",
+    "모니터 제어",
+    "배치",
+    "스타일",
+    "Events",
+    "현황과 징후"
+  ]
+}

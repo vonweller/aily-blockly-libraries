@@ -1,0 +1,169 @@
+{
+  "toolbox_name": "BMP280感測器",
+  "bmp280_init": {
+    "message0": "初始化 BMP280 感測器 I2C位址 %1 使用 %2",
+    "args0": [
+      {
+        "options": [
+          [
+            "0x76 (預設)",
+            "0x76"
+          ],
+          [
+            "0x77 (備選)",
+            "0x77"
+          ]
+        ]
+      },
+      {
+        "options": "${board.i2c}"
+      }
+    ]
+  },
+  "bmp280_read_temperature": {
+    "message0": "讀取 BMP280 溫度 (°C)"
+  },
+  "bmp280_read_pressure": {
+    "message0": "讀取 BMP280 氣壓 (hPa)"
+  },
+  "bmp280_read_altitude": {
+    "message0": "讀取 BMP280 高度 (公尺) 基準氣壓 %1 hPa"
+  },
+  "bmp280_set_sampling": {
+    "message0": "設定 BMP280 取樣模式 操作模式 %1 溫度過取樣 %2 壓力過取樣 %3 過濾 %4 睡眠時間 %5",
+    "args0": [
+      {
+        "options": [
+          [
+            "正常",
+            "MODE_NORMAL"
+          ],
+          [
+            "強制",
+            "MODE_FORCED"
+          ],
+          [
+            "睡覺",
+            "MODE_SLEEP"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "4次",
+            "SAMPLING_X4"
+          ],
+          [
+            "無過採樣",
+            "SAMPLING_NONE"
+          ],
+          [
+            "1次",
+            "SAMPLING_X1"
+          ],
+          [
+            "是那雙倍",
+            "SAMPLING_X2"
+          ],
+          [
+            "8次",
+            "SAMPLING_X8"
+          ],
+          [
+            "16次",
+            "SAMPLING_X16"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "4次",
+            "SAMPLING_X4"
+          ],
+          [
+            "無過採樣",
+            "SAMPLING_NONE"
+          ],
+          [
+            "1次",
+            "SAMPLING_X1"
+          ],
+          [
+            "是那雙倍",
+            "SAMPLING_X2"
+          ],
+          [
+            "8次",
+            "SAMPLING_X8"
+          ],
+          [
+            "16次",
+            "SAMPLING_X16"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "4次",
+            "FILTER_X4"
+          ],
+          [
+            "關閉",
+            "FILTER_OFF"
+          ],
+          [
+            "是那雙倍",
+            "FILTER_X2"
+          ],
+          [
+            "8次",
+            "FILTER_X8"
+          ],
+          [
+            "16次",
+            "FILTER_X16"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "1ms",
+            "STANDBY_MS_1"
+          ],
+          [
+            "63ms",
+            "STANDBY_MS_63"
+          ],
+          [
+            "125ms",
+            "STANDBY_MS_125"
+          ],
+          [
+            "250ms",
+            "STANDBY_MS_250"
+          ],
+          [
+            "500ms",
+            "STANDBY_MS_500"
+          ],
+          [
+            "1000ms",
+            "STANDBY_MS_1000"
+          ],
+          [
+            "2000ms",
+            "STANDBY_MS_2000"
+          ],
+          [
+            "4000ms",
+            "STANDBY_MS_4000"
+          ]
+        ]
+      }
+    ]
+  }
+}

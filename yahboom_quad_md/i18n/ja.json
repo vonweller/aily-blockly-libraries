@@ -1,0 +1,335 @@
+{
+  "toolbox_name": "四方向モーター駆動",
+  "toolbox_labels": {
+    "── I2C模式 ──": "── I2Cモード ──",
+    "初始化": "初期化",
+    "参数配置": "パラメータ設定",
+    "电机控制": "モーター制御",
+    "编码器": "エンコーダ",
+    "── 串口模式 ──": "── シリアルポートモード ──",
+    "数据读取": "データ読み取り"
+  },
+  "yahboom_md_iic_init": {
+    "message0": "I2Cモータードライバーの初期化%1 %2モータータイプ%3",
+    "tooltip": "Yahboom I2Cの4ウェイモータードライバーボードを初期化し、I2Cアドレスとモータータイプを設定します",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "0x26(デフォルト)",
+            "0x26"
+          ],
+          [
+            "0x27",
+            "0x27"
+          ],
+          [
+            "0x28",
+            "0x28"
+          ],
+          [
+            "0x29",
+            "0x29"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "520エンジン",
+            "MOTOR_520"
+          ],
+          [
+            "310エンジン",
+            "MOTOR_310"
+          ],
+          [
+            "TTコードモーター",
+            "MOTOR_TT_ENCODER"
+          ],
+          [
+            "TT DCモーター",
+            "MOTOR_TT"
+          ],
+          [
+            "520リットルモーター",
+            "MOTOR_520_L"
+          ]
+        ]
+      }
+    ]
+  },
+  "yahboom_md_iic_set_deadzone": {
+    "message0": "I2Cモータードライブ %1デッドゾーンを%2",
+    "tooltip": "モーターのデッドゾーン値を設定します"
+  },
+  "yahboom_md_iic_set_pulse_line": {
+    "message0": "I2Cモータードライブ%1パルスラインカウントを%2設定",
+    "tooltip": "磁気リングパルスラインの数を設定します"
+  },
+  "yahboom_md_iic_set_pulse_phase": {
+    "message0": "I2Cモーター駆動%1減速比を%2設定",
+    "tooltip": "モーター減速比を設定します"
+  },
+  "yahboom_md_iic_set_wheel_diameter": {
+    "message0": "I2Cモーター駆動%1 ホイール直径(mm)%2",
+    "tooltip": "ホイール直径(mm)を設定"
+  },
+  "yahboom_md_iic_control_speed": {
+    "message0": "I2Cモータードライブ%1速度制御 M1 %2 M2 %3 M3 %4 M4 %5",
+    "tooltip": "4つのモーター(エンコーダモーターが必要)の速度を制御、範囲-1000~1000"
+  },
+  "yahboom_md_iic_control_pwm": {
+    "message0": "I2Cモータードライブ%1PWM制御M1%2M2%3M3%4M4%5",
+    "tooltip": "4つのモーターのPWM値を直接制御します"
+  },
+  "yahboom_md_iic_encoder_offset": {
+    "message0": "I2Cモーター駆動 %1 10msのエンコーダオフセット %2",
+    "tooltip": "指定されたモーターの10msリアルタイムエンコーダオフセットを読み出します",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "M1",
+            "0"
+          ],
+          [
+            "M2",
+            "1"
+          ],
+          [
+            "M3",
+            "2"
+          ],
+          [
+            "M4",
+            "3"
+          ]
+        ]
+      }
+    ]
+  },
+  "yahboom_md_iic_encoder_total": {
+    "message0": "I2Cモータードライブ%1エンコーダ総数を取得%2",
+    "tooltip": "指定されたモーターのエンコーダ総数を読み出します",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "M1",
+            "0"
+          ],
+          [
+            "M2",
+            "1"
+          ],
+          [
+            "M3",
+            "2"
+          ],
+          [
+            "M4",
+            "3"
+          ]
+        ]
+      }
+    ]
+  },
+  "yahboom_md_usart_init": {
+    "message0": "シリアルモータードライブをシリアルポート%1初期化%2モータータイプ%3",
+    "tooltip": "Yahboomシリアルポート4ウェイモータードライバーボードの初期化",
+    "args0": [
+      null,
+      {
+        "options": "${board.serialPort}"
+      },
+      {
+        "options": [
+          [
+            "520エンジン",
+            "MOTOR_520"
+          ],
+          [
+            "310エンジン",
+            "MOTOR_310"
+          ],
+          [
+            "TTコードモーター",
+            "MOTOR_TT_ENCODER"
+          ],
+          [
+            "TT DCモーター",
+            "MOTOR_TT"
+          ],
+          [
+            "520リットルモーター",
+            "MOTOR_520_L"
+          ]
+        ]
+      }
+    ]
+  },
+  "yahboom_md_usart_set_deadzone": {
+    "message0": "シリアルモーター駆動%1デッドゾーンを%2設定",
+    "tooltip": "モーターのデッドゾーン値を設定します"
+  },
+  "yahboom_md_usart_set_pulse_line": {
+    "message0": "直列モータードライブ %1 パルスラインカウントを%2設定",
+    "tooltip": "磁気リングパルスラインの数を設定します"
+  },
+  "yahboom_md_usart_set_pulse_phase": {
+    "message0": "直列電動駆動%1減速比を%2設定",
+    "tooltip": "モーター減速比を設定します"
+  },
+  "yahboom_md_usart_set_wheel_diameter": {
+    "message0": "シリアルポートモーター駆動 %1 ホイール直径(mm)設定%2",
+    "tooltip": "ホイール直径(mm)を設定"
+  },
+  "yahboom_md_usart_set_pid": {
+    "message0": "シリアルモータードライブ %1 設定PID P%2 I %3 D %4",
+    "tooltip": "モーターPIDパラメータを設定してください"
+  },
+  "yahboom_md_usart_set_upload_data": {
+    "message0": "シリアルモータードライブ %1 データ報告 総エンコーダ%2 10ms エンコーダ %3 速度%4",
+    "tooltip": "モーターモジュールが報告するデータタイプ:総エンコーダ数、10msリアルタイムエンコーダ、速度(mm/s)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "閉じる",
+            "false"
+          ],
+          [
+            "オンにする",
+            "true"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "閉じる",
+            "false"
+          ],
+          [
+            "オンにする",
+            "true"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "閉じる",
+            "false"
+          ],
+          [
+            "オンにする",
+            "true"
+          ]
+        ]
+      }
+    ]
+  },
+  "yahboom_md_usart_control_speed": {
+    "message0": "シリアルモーター駆動 %1 速度制御 M1 %2 M2 %3 M3 %4 M4 %5",
+    "tooltip": "4つのモーター(エンコーダモーターが必要)の速度を制御、範囲-1000~1000"
+  },
+  "yahboom_md_usart_control_pwm": {
+    "message0": "シリアルモーター駆動%1PWM制御M1%2M2%3M3%4M4%5",
+    "tooltip": "4つのモーターのPWM値を直接制御します"
+  },
+  "yahboom_md_usart_data_available": {
+    "message0": "シリアルモータードライブはデータ受信%1",
+    "tooltip": "モーターモジュールから返されたデータが受信されているか確認(ループ内で自動的にデータを受け取る)"
+  },
+  "yahboom_md_usart_parse_data": {
+    "message0": "データを解析%1直列モータードライブ",
+    "tooltip": "受信データの解析と受信フラグのクリアは、データが利用可能であることを確認した後に呼び出すべきです"
+  },
+  "yahboom_md_usart_encoder_offset": {
+    "message0": "直列モータードライブ %1 で10msのエンコーダオフセット %2",
+    "tooltip": "指定されたモーターに対して10msのリアルタイムエンコーダオフセットを取得します",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "M1",
+            "0"
+          ],
+          [
+            "M2",
+            "1"
+          ],
+          [
+            "M3",
+            "2"
+          ],
+          [
+            "M4",
+            "3"
+          ]
+        ]
+      }
+    ]
+  },
+  "yahboom_md_usart_encoder_total": {
+    "message0": "シリアルモータードライブ%1エンコーダの総数を取得%2",
+    "tooltip": "指定されたモーターのエンコーダ総数を取得します",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "M1",
+            "0"
+          ],
+          [
+            "M2",
+            "1"
+          ],
+          [
+            "M3",
+            "2"
+          ],
+          [
+            "M4",
+            "3"
+          ]
+        ]
+      }
+    ]
+  },
+  "yahboom_md_usart_speed": {
+    "message0": "シリアルモーター駆動 %1 取得速度(mm/s)%2",
+    "tooltip": "指定されたモーターの現在の速度(mm/s)を取得します。",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "M1",
+            "0"
+          ],
+          [
+            "M2",
+            "1"
+          ],
+          [
+            "M3",
+            "2"
+          ],
+          [
+            "M4",
+            "3"
+          ]
+        ]
+      }
+    ]
+  }
+}

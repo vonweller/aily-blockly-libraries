@@ -1,0 +1,712 @@
+{
+  "toolbox_name": "Bluefruit52 BLE",
+  "toolbox_categories": [
+    "クイックモード",
+    "初期化と状態",
+    "イベントコールバック",
+    "広告",
+    "BLE UART ペリフェラル",
+    "GATT サービス",
+    "標準サービス",
+    "スキャナーとセントラル",
+    "HID",
+    "ビーコン"
+  ],
+  "bluefruit52_init": {
+    "message0": "ブルーフルーツ周辺接続%1センター接続を初期化%2",
+    "tooltip": "Bluefruit BLEプロトコルスタックを初期化し、周辺/中央接続の数を設定します"
+  },
+  "bluefruit52_set_name": {
+    "message0": "BLE デバイス名を%1設定",
+    "tooltip": "放送およびGATTで使用されるBLEデバイスの名前を設定する"
+  },
+  "bluefruit52_set_tx_power": {
+    "message0": "BLE送信出力(dBm)を%1設定",
+    "tooltip": "BLE無線送信出力を設定してください",
+    "args0": [
+      {
+        "options": [
+          [
+            "+8",
+            "8"
+          ],
+          [
+            "+4",
+            "4"
+          ],
+          [
+            "0",
+            "0"
+          ],
+          [
+            "-4",
+            "-4"
+          ],
+          [
+            "-8",
+            "-8"
+          ],
+          [
+            "-12",
+            "-12"
+          ],
+          [
+            "-16",
+            "-16"
+          ],
+          [
+            "-20",
+            "-20"
+          ],
+          [
+            "-40",
+            "-40"
+          ]
+        ]
+      }
+    ]
+  },
+  "bluefruit52_auto_conn_led": {
+    "message0": "接続インジケーター light%1",
+    "tooltip": "Bluefruit接続ステータスインジケーターを有効または無効にする",
+    "args0": [
+      {
+        "options": [
+          [
+            "有効",
+            "true"
+          ],
+          [
+            "無効",
+            "false"
+          ]
+        ]
+      }
+    ]
+  },
+  "bluefruit52_config_bandwidth": {
+    "message0": "帯域幅%1設定%2",
+    "tooltip": "周辺接続または中央接続の帯域幅レベルを設定する",
+    "args0": [
+      {
+        "options": [
+          [
+            "ペリフェラル",
+            "Prph"
+          ],
+          [
+            "セントラル",
+            "Central"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "自動",
+            "BANDWIDTH_AUTO"
+          ],
+          [
+            "低い",
+            "BANDWIDTH_LOW"
+          ],
+          [
+            "標準",
+            "BANDWIDTH_NORMAL"
+          ],
+          [
+            "高い",
+            "BANDWIDTH_HIGH"
+          ],
+          [
+            "最大",
+            "BANDWIDTH_MAX"
+          ]
+        ]
+      }
+    ]
+  },
+  "bluefruit52_connected": {
+    "message0": "ブルーフルーツは関係していますか?",
+    "tooltip": "BLE接続が現在存在しているかどうかを返します。"
+  },
+  "bluefruit52_disconnect": {
+    "message0": "切断ハンドル%1",
+    "tooltip": "BLE接続を切断するには接続ハンドルを押してください"
+  },
+  "bluefruit52_callback_conn_handle": {
+    "message0": "現在のBLEコールバックはハンドルを接続します",
+    "tooltip": "現在のジョインハンドルをジョイン、ディスコネクト、UARTで読み取るか、コールバックを書くか"
+  },
+  "bluefruit52_callback_disconnect_reason": {
+    "message0": "BLE切断の現在の理由",
+    "tooltip": "切断コールバックの切断理由コードを読んでください"
+  },
+  "bluefruit52_callback_data": {
+    "message0": "現在のBLEプルバックデータ",
+    "tooltip": "BLE UARTを読み込むか、コールバックキャッシュからテキストデータを特徴書き込む"
+  },
+  "bluefruit52_on_periph_connect": {
+    "message0": "ブルーフルーツ周辺機器が接続されたとき",
+    "message1": "実行 %1",
+    "tooltip": "周辺機器のキャラクターに対して接続コールバックを登録します"
+  },
+  "bluefruit52_on_periph_disconnect": {
+    "message0": "ブルーフルーツ周辺機器が切断されたとき",
+    "message1": "実行 %1",
+    "tooltip": "登録済み周辺機器の役割に対するコールバック切断"
+  },
+  "bluefruit52_on_central_connect": {
+    "message0": "ブルーフルーツの中心端が接続されたとき",
+    "message1": "実行 %1",
+    "tooltip": "レジストリセンターの役割に対する接続コールバック"
+  },
+  "bluefruit52_on_central_disconnect": {
+    "message0": "ブルーフルーツの中央端が切り離されたとき",
+    "message1": "実行 %1",
+    "tooltip": "レジストリセンターの役割でコールバックを切断する"
+  },
+  "bluefruit52_adv_clear": {
+    "message0": "BLE放送データのクリア%1",
+    "tooltip": "ブロードキャストパケットまたはスキャン応答データのクリア",
+    "args0": [
+      {
+        "options": [
+          [
+            "広告パケット",
+            "Advertising"
+          ],
+          [
+            "スキャン応答",
+            "ScanResponse"
+          ],
+          [
+            "両方",
+            "Both"
+          ]
+        ]
+      }
+    ]
+  },
+  "bluefruit52_adv_add_flags": {
+    "message0": "放送にはユニバーサルディスカバリーフラッグが追加されます",
+    "tooltip": "ブロードキャストパケットにLEのみの一般検出可能ロゴを追加してください"
+  },
+  "bluefruit52_adv_add_tx_power": {
+    "message0": "放送は送信出力を増強します",
+    "tooltip": "送信電力フィールドをブロードキャストパケットに追加します"
+  },
+  "bluefruit52_adv_add_name": {
+    "message0": "%1 デバイス名を追加してください",
+    "tooltip": "ブロードキャストパケットやスキャン応答にデバイス名を追加する",
+    "args0": [
+      {
+        "options": [
+          [
+            "広告パケット",
+            "Advertising"
+          ],
+          [
+            "スキャン応答",
+            "ScanResponse"
+          ],
+          [
+            "両方",
+            "Both"
+          ]
+        ]
+      }
+    ]
+  },
+  "bluefruit52_adv_add_service": {
+    "message0": "放送サービス追加%1",
+    "tooltip": "作成したBLEサービスのUUIDをブロードキャストパケットに追加してください"
+  },
+  "bluefruit52_adv_add_uuid": {
+    "message0": "放送がUUID%1を加える",
+    "tooltip": "UUID文字列でブロードキャストパケットにサービスUUIDを追加する"
+  },
+  "bluefruit52_adv_add_appearance": {
+    "message0": "放送、登場%1",
+    "tooltip": "ブロードキャストパケットにBLEの外観値を追加します",
+    "args0": [
+      {
+        "options": [
+          [
+            "汎用時計",
+            "BLE_APPEARANCE_GENERIC_CLOCK"
+          ],
+          [
+            "キーボード",
+            "BLE_APPEARANCE_HID_KEYBOARD"
+          ],
+          [
+            "マウス",
+            "BLE_APPEARANCE_HID_MOUSE"
+          ],
+          [
+            "ゲームパッド",
+            "BLE_APPEARANCE_HID_GAMEPAD"
+          ]
+        ]
+      }
+    ]
+  },
+  "bluefruit52_adv_restart_on_disconnect": {
+    "message0": "disconnection%1後の自動再放送",
+    "tooltip": "切断後に放送が自動的に再開されるかどうか設定してください",
+    "args0": [
+      {
+        "options": [
+          [
+            "有効",
+            "true"
+          ],
+          [
+            "無効",
+            "false"
+          ]
+        ]
+      }
+    ]
+  },
+  "bluefruit52_adv_set_interval": {
+    "message0": "放送間隔を設定する 速%1遅%2",
+    "tooltip": "放送間隔を0.625msで設定します"
+  },
+  "bluefruit52_adv_set_initial_timeout": {
+    "message0": "初期放送タイムアウト(秒)を設定し%1",
+    "tooltip": "高速放送の時間を設定します"
+  },
+  "bluefruit52_adv_start": {
+    "message0": "BLE放送開始 タイムアウト(秒)%1",
+    "tooltip": "BLE放送開始、0は連続放送を意味します"
+  },
+  "bluefruit52_adv_stop": {
+    "message0": "BLE放送を停止せよ",
+    "tooltip": "現在のBLE放送を停止してください"
+  },
+  "bluefruit52_adv_is_running": {
+    "message0": "BLEが放送しているのですか?",
+    "tooltip": "放送が実行されているかどうかを返す"
+  },
+  "bluefruit52_bleuart_create": {
+    "message0": "BLE UARTの作成 %1受信バッファ%2",
+    "tooltip": "北欧UARTサービス周辺オブジェクトの作成"
+  },
+  "bluefruit52_bleuart_begin": {
+    "message0": "BLE UART %1のローンチ",
+    "tooltip": "BLEのUARTサービスを開始"
+  },
+  "bluefruit52_bleuart_write": {
+    "message0": "BLE UART %1 send %2",
+    "tooltip": "BLE UART経由でテキストまたはデータを送信"
+  },
+  "bluefruit52_bleuart_available": {
+    "message0": "BLE UART %1 可読バイト数",
+    "tooltip": "BLE UART受信バッファ内のバイト数を返します"
+  },
+  "bluefruit52_bleuart_read": {
+    "message0": "BLE UART %1 1バイトを読みます",
+    "tooltip": "BLE UARTから1バイトを読み取ると、失敗が-1に戻ります"
+  },
+  "bluefruit52_bleuart_read_string": {
+    "message0": "BLE UART %1 全文を読む",
+    "tooltip": "BLE UARTバッファ内のすべてのテキストを読みます"
+  },
+  "bluefruit52_bleuart_notify_enabled": {
+    "message0": "BLE UART %1通知を有効にしていますか?",
+    "tooltip": "中央端でBLE UART通知が有効になっているか確認してください"
+  },
+  "bluefruit52_bleuart_on_receive": {
+    "message0": "データ受信時にBLE UARTを%1設定",
+    "message1": "実行 %1",
+    "tooltip": "BLE UARTのコールバックをレジスタおよび受信し、コールバックデータは現在のBLEコールバックデータを使って読み取ることができます"
+  },
+  "bluefruit52_bleuart_peripheral_quick": {
+    "message0": "クイックスタート BLE UART 周辺名:%1",
+    "tooltip": "ブルーフルーツのワンクリック初期化、デバイス情報、BLE UART、標準放送"
+  },
+  "bluefruit52_bleuart_quick_send": {
+    "message0": "Fast BLE UART 送信中 %1",
+    "tooltip": "データはクイックモードで作成されたBLE UARTを使って送信されます"
+  },
+  "bluefruit52_bleuart_quick_received_data": {
+    "message0": "BLE UARTが迅速に受信したデータ",
+    "tooltip": "バッファで受信するBLE UARTを高速モードで読み取る"
+  },
+  "bluefruit52_bleuart_quick_connected": {
+    "message0": "Fast BLE UART接続?",
+    "tooltip": "高速モードのBLE UARTが接続されているか確認してください"
+  },
+  "bluefruit52_service_create": {
+    "message0": "BLEサービスの作成%1 UUID%2",
+    "tooltip": "カスタムGATTサービスオブジェクトの作成"
+  },
+  "bluefruit52_service_begin": {
+    "message0": "BLEサービスを開始%1",
+    "tooltip": "GATTサービスの登録と開始"
+  },
+  "bluefruit52_characteristic_create": {
+    "message0": "最大長さ%3 %1 UUID %2属性%4 BLE機能を作成",
+    "tooltip": "カスタムのGATTフィーチャーオブジェクトを作成し、そのプロパティや最大長さを設定する",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "読み取り",
+            "CHR_PROPS_READ"
+          ],
+          [
+            "書き込み",
+            "CHR_PROPS_WRITE"
+          ],
+          [
+            "応答なし書き込み",
+            "CHR_PROPS_WRITE_WO_RESP"
+          ],
+          [
+            "Notify",
+            "CHR_PROPS_NOTIFY"
+          ],
+          [
+            "Indicate",
+            "CHR_PROPS_INDICATE"
+          ],
+          [
+            "読み書き",
+            "CHR_PROPS_READ | CHR_PROPS_WRITE"
+          ],
+          [
+            "読み書き+通知",
+            "CHR_PROPS_READ | CHR_PROPS_WRITE | CHR_PROPS_NOTIFY"
+          ],
+          [
+            "読み取り+指示",
+            "CHR_PROPS_READ | CHR_PROPS_INDICATE"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "bluefruit52_characteristic_set_permission": {
+    "message0": "読み書き%1権限を特徴設定%2 %3",
+    "tooltip": "機能の読み書き権限を設定する",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "オープン",
+            "SECMODE_OPEN"
+          ],
+          [
+            "アクセス禁止",
+            "SECMODE_NO_ACCESS"
+          ],
+          [
+            "暗号化",
+            "SECMODE_ENC_NO_MITM"
+          ],
+          [
+            "暗号化+MITM",
+            "SECMODE_ENC_WITH_MITM"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "オープン",
+            "SECMODE_OPEN"
+          ],
+          [
+            "アクセス禁止",
+            "SECMODE_NO_ACCESS"
+          ],
+          [
+            "暗号化",
+            "SECMODE_ENC_NO_MITM"
+          ],
+          [
+            "暗号化+MITM",
+            "SECMODE_ENC_WITH_MITM"
+          ]
+        ]
+      }
+    ]
+  },
+  "bluefruit52_characteristic_begin": {
+    "message0": "BLE機能の有効化%1",
+    "tooltip": "最近開始されたGATTサービスへの機能追加"
+  },
+  "bluefruit52_characteristic_write_text": {
+    "message0": "特徴%1%2テキストを書く",
+    "tooltip": "特徴量の局所値を書きます"
+  },
+  "bluefruit52_characteristic_notify_text": {
+    "message0": "通知テキスト%1機能%2",
+    "tooltip": "テキスト通知は、購読通知の中央側に送信されます"
+  },
+  "bluefruit52_characteristic_indicate_text": {
+    "message0": "特徴%1インジケーターテキスト%2",
+    "tooltip": "確認するテキスト命令は、加入した命令の中央側に送信されます"
+  },
+  "bluefruit52_characteristic_read_string": {
+    "message0": "本文%1特集を読む",
+    "tooltip": "特徴の現在の価値を読み、それをテキストに変換してください"
+  },
+  "bluefruit52_characteristic_notify_enabled": {
+    "message0": "通知機能%1有効ですか?",
+    "tooltip": "この機能通知が中央側で有効になっているか確認してください"
+  },
+  "bluefruit52_characteristic_on_write": {
+    "message0": "セットフィーチャーは書かれた時に作成%1",
+    "message1": "実行 %1",
+    "tooltip": "機能起動前に機能書き込みコールバックを登録してください"
+  },
+  "bluefruit52_dis_create": {
+    "message0": "デバイス情報サービスの作成%1",
+    "tooltip": "BLEデバイス情報サービスオブジェクトを作成"
+  },
+  "bluefruit52_dis_set": {
+    "message0": "デバイス情報サービス%1 %2 %3 に設定",
+    "tooltip": "デバイス情報サービスフィールドの設定",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "メーカー",
+            "setManufacturer"
+          ],
+          [
+            "モデル",
+            "setModel"
+          ],
+          [
+            "シリアル番号",
+            "setSerialNum"
+          ],
+          [
+            "ファームウェア版",
+            "setFirmwareRev"
+          ],
+          [
+            "ハードウェア版",
+            "setHardwareRev"
+          ],
+          [
+            "ソフトウェア版",
+            "setSoftwareRev"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "bluefruit52_dis_begin": {
+    "message0": "発射装置情報サービス%1",
+    "tooltip": "BLE機器情報サービスを開始"
+  },
+  "bluefruit52_bas_create": {
+    "message0": "バッテリーサービスの創出%1",
+    "tooltip": "BLEバッテリーサービス目標の設定"
+  },
+  "bluefruit52_bas_begin": {
+    "message0": "バッテリーサービス開始 %1",
+    "tooltip": "BLEバッテリーサービス開始"
+  },
+  "bluefruit52_bas_write": {
+    "message0": "バッテリーサービス%1書き込み電力%2%",
+    "tooltip": "更新されたバッテリーサービス価値"
+  },
+  "bluefruit52_bas_notify": {
+    "message0": "バッテリーサービス%1通知バッテリー%2%",
+    "tooltip": "バッテリー残量の変化を通知します"
+  },
+  "bluefruit52_scanner_config": {
+    "message0": "アクティブスキャン%1ウィンドウ%2スキャンインターバルを設定し%3切断して再スキャン%4",
+    "tooltip": "センターエンドスキャンパラメータの設定、単位0.625ms",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "有効",
+            "true"
+          ],
+          [
+            "無効",
+            "false"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "有効",
+            "true"
+          ],
+          [
+            "無効",
+            "false"
+          ]
+        ]
+      }
+    ]
+  },
+  "bluefruit52_scanner_start": {
+    "message0": "タイムアウト(秒)をスキャン%1",
+    "tooltip": "BLEスキャン開始;0は連続スキャンを意味します"
+  },
+  "bluefruit52_scanner_stop": {
+    "message0": "スキャンをやめろ",
+    "tooltip": "BLEスキャンを停止"
+  },
+  "bluefruit52_scanner_resume": {
+    "message0": "スキャンを続けてください",
+    "tooltip": "スキャンコールバックでスキャンを復元してください"
+  },
+  "bluefruit52_scanner_filter_uuid": {
+    "message0": "UUIDのスキャンとフィルタリング%1",
+    "tooltip": "指定されたUUIDを含むデバイスのみをスキャンします"
+  },
+  "bluefruit52_on_scan_report": {
+    "message0": "BLE放送にスキャンする際",
+    "message1": "実行 %1",
+    "tooltip": "RSSI、アドレス、UUIDのマッチング結果を読み取れるレジスタスキャンコールバック"
+  },
+  "bluefruit52_scan_report_rssi": {
+    "message0": "RSSIのスキャンレポート",
+    "tooltip": "現在のスキャン報告書のRSSIをお読みください"
+  },
+  "bluefruit52_scan_report_address": {
+    "message0": "報告書のアドレスをスキャンしてください",
+    "tooltip": "現在のスキャン報告書のMACアドレスを読んでください"
+  },
+  "bluefruit52_scan_report_has_uuid": {
+    "message0": "UUIDを含むスキャンレポート%1?",
+    "tooltip": "現在のスキャンレポートに指定されたサービスUUIDが含まれているか確認してください"
+  },
+  "bluefruit52_central_connect_report": {
+    "message0": "現在のスキャンレポート装置を接続してください",
+    "tooltip": "センター端末は現在スキャンコールバック中のデバイスに接続されます"
+  },
+  "bluefruit52_central_connected": {
+    "message0": "中央ターミナルは接続されていますか?",
+    "tooltip": "中央の役割がつながっているか確認してください"
+  },
+  "bluefruit52_client_uart_create": {
+    "message0": "中央管理のBLE UART%1作成",
+    "tooltip": "BLE UART中央クライアントオブジェクトを作成する"
+  },
+  "bluefruit52_client_uart_begin": {
+    "message0": "スタートアップセンターBLE UART %1",
+    "tooltip": "BLE UARTクライアントの初期化"
+  },
+  "bluefruit52_client_uart_discover": {
+    "message0": "センターエンドBLE UART %1ディスカバリーサービス接続ハンドル%2",
+    "tooltip": "接続後、リモートの北欧UARTサービスを見つけました"
+  },
+  "bluefruit52_client_uart_enable_txd": {
+    "message0": "中央終端のBLE UART %1通知の受信を可能にします",
+    "tooltip": "データ受信のためにリモートTXD通知を有効にする"
+  },
+  "bluefruit52_client_uart_write": {
+    "message0": "セントラルBLE UART %1 送信%2",
+    "tooltip": "接続されたBLE UART周辺機器にデータを送信"
+  },
+  "bluefruit52_client_uart_read_string": {
+    "message0": "中央端のBLE UART%1すべてのテキストを読みます",
+    "tooltip": "BLE UARTクライアントが受信したすべてのテキストを読む"
+  },
+  "bluefruit52_client_uart_on_receive": {
+    "message0": "データ受信時に中央のBLE UART%1を設定します",
+    "message1": "実行 %1",
+    "tooltip": "BLE UARTクライアントをコールバック受信に設定してください"
+  },
+  "bluefruit52_hid_create": {
+    "message0": "BLE HIDの作成%1",
+    "tooltip": "BLE HIDキーボード/マウスサービスオブジェクトを作成する"
+  },
+  "bluefruit52_hid_begin": {
+    "message0": "BLEのHID%1起動中",
+    "tooltip": "BLE HIDサービスを開始"
+  },
+  "bluefruit52_hid_key_press": {
+    "message0": "BLEは%1 Press Character %2",
+    "tooltip": "キーパッドで報告してください"
+  },
+  "bluefruit52_hid_key_release": {
+    "message0": "BLE HID%1キーボードキーをリリース",
+    "tooltip": "現在のキーボードキーを離してください"
+  },
+  "bluefruit52_hid_key_sequence": {
+    "message0": "BLE HID %1 入力テキスト %2 間隔(ms) %3",
+    "tooltip": "キーボード入力は文字順に送信されます"
+  },
+  "bluefruit52_hid_mouse_move": {
+    "message0": "BLEはマウスの動き%1 %2Y%3",
+    "tooltip": "マウスの相対的な動きに関するレポートを送信してください"
+  },
+  "bluefruit52_hid_mouse_press": {
+    "message0": "BLEはマウス%1押し%2",
+    "tooltip": "マウスボタンを押してください",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "左ボタン",
+            "MOUSE_BUTTON_LEFT"
+          ],
+          [
+            "右ボタン",
+            "MOUSE_BUTTON_RIGHT"
+          ],
+          [
+            "中央ボタン",
+            "MOUSE_BUTTON_MIDDLE"
+          ],
+          [
+            "戻る",
+            "MOUSE_BUTTON_BACKWARD"
+          ],
+          [
+            "進む",
+            "MOUSE_BUTTON_FORWARD"
+          ]
+        ]
+      }
+    ]
+  },
+  "bluefruit52_hid_mouse_release": {
+    "message0": "BLE HID%1マウスボタンを解放します",
+    "tooltip": "すべてのマウスボタンを離してください"
+  },
+  "bluefruit52_hid_mouse_scroll": {
+    "message0": "BLEはマウスホイール%1隠れ%2",
+    "tooltip": "マウスホイールレポートを送信"
+  },
+  "bluefruit52_beacon_create": {
+    "message0": "RSSI%4%1 UUID%2主要%3マイナーiBeaconを作%5",
+    "tooltip": "iBeaconオブジェクトの作成および設定"
+  },
+  "bluefruit52_beacon_set_manufacturer": {
+    "message0": "iBeacon %1 Setting Vendor ID %2",
+    "tooltip": "iBeaconベンダーIDを設定する"
+  },
+  "bluefruit52_eddystone_create": {
+    "message0": "RSSI%3%1URL %2 Eddystone URL を作成する",
+    "tooltip": "Eddystone URLビーコンオブジェクトの作成および設定"
+  },
+  "bluefruit52_adv_set_beacon": {
+    "message0": "ブロードキャストセットアップビーコン%1",
+    "tooltip": "iBeaconまたはEddystoneオブジェクトをブロードキャストパケットに書き込む"
+  }
+}

@@ -1,0 +1,205 @@
+{
+  "toolbox_name": "Präferenzspeicher",
+  "toolbox_labels": {
+    "命名空间": "Namespace",
+    "写入标量": "Schreibe Skalare",
+    "读取标量": "Lies den Skalar",
+    "字节与长度": "Bytes und Länge",
+    "查询与维护": "Abfrage und Wartung"
+  },
+  "esp32_preferences_begin": {
+    "message0": "Öffnen Sie den Namensraum Preferences %1 schreibgeschützten %2",
+    "tooltip": "Rufe Preferences.begin(name, readOnly) auf, um den Namensraum in der Standard-NVS-Partition zu öffnen.",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "No",
+            "false"
+          ],
+          [
+            "Yes",
+            "true"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_preferences_begin_partition": {
+    "message0": "Öffnen Sie den Namensraum der Einstellungen %1 schreibgeschützten %2 partition%3",
+    "tooltip": "Rufen Sie Preferences.begin(name, readOnly, partition_label) auf, um den Namensraum in der angegebenen NVS-Partition zu öffnen.",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "No",
+            "false"
+          ],
+          [
+            "Yes",
+            "true"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "esp32_preferences_end": {
+    "message0": "Enge Präferenzen",
+    "tooltip": "Rufen Sie Preferences.end() auf, um den aktuellen Namensraum zu schließen."
+  },
+  "esp32_preferences_clear": {
+    "message0": "Lösche den aktuellen Namensraum",
+    "tooltip": "Rufen Sie Preferences.clear() auf, um alle Schlüssel im aktuellen Namensraum zu löschen."
+  },
+  "esp32_preferences_remove": {
+    "message0": "Löschtaste %1",
+    "tooltip": "Rufen Sie Preferences.remove(key) auf, um den angegebenen Schlüssel zu löschen."
+  },
+  "esp32_preferences_put_char": {
+    "message0": "Schreibe den %1-Wert des int8-Schlüssels %2",
+    "tooltip": "Ruf Preferences.putChar() auf, um an int8 zu schreiben."
+  },
+  "esp32_preferences_put_uchar": {
+    "message0": "Schreibe den Wert des uint8-Schlüssels %1 %2",
+    "tooltip": "Rufen Sie Preferences.putUChar() an, um an uint8 zu schreiben."
+  },
+  "esp32_preferences_put_short": {
+    "message0": "Schreibe den %1Wert des int16-Schlüssels %2",
+    "tooltip": "Rufen Sie Preferences.putShort() auf, um zu int16 zu schreiben."
+  },
+  "esp32_preferences_put_ushort": {
+    "message0": "Schreibe den %1Wert des uint16-Schlüssels %2",
+    "tooltip": "Rufen Sie Preferences.putUShort() an, um an uint16 zu schreiben."
+  },
+  "esp32_preferences_put_int": {
+    "message0": "Schreibe den %1Wert des int32-Schlüssels %2",
+    "tooltip": "Ruf Preferences.putInt() auf, um int32 zu schreiben."
+  },
+  "esp32_preferences_put_uint": {
+    "message0": "Schreibe den Wert des uint32-Schlüssels %1 %2",
+    "tooltip": "Rufen Sie Preferences.putUInt() auf, um auf uint32 zu schreiben."
+  },
+  "esp32_preferences_put_long": {
+    "message0": "Schreibe den %1Wert des langen Schlüssels %2",
+    "tooltip": "Ruf Preferences.putLong() auf, um lang zu schreiben."
+  },
+  "esp32_preferences_put_ulong": {
+    "message0": "Schreibe den Wert des unsignierten langen Schlüssels %1 %2",
+    "tooltip": "Ruf Preferences.putULong() auf, um ein unsigniertes Long zu schreiben."
+  },
+  "esp32_preferences_put_long64": {
+    "message0": "Schreibe den %1-Wert des int64-Schlüssels %2",
+    "tooltip": "Rufen Sie Preferences.putLong64() an, um zu int64 zu schreiben."
+  },
+  "esp32_preferences_put_ulong64": {
+    "message0": "Schreiben Sie den %1-Wert des uint64-Schlüssels %2",
+    "tooltip": "Rufen Sie Preferences.putULong64() auf, um an uint64 zu schreiben."
+  },
+  "esp32_preferences_put_float": {
+    "message0": "Schreibe den Float-Schlüssel %1 Wert %2",
+    "tooltip": "Ruf Preferences.putFloat() auf, um einen Float zu schreiben."
+  },
+  "esp32_preferences_put_double": {
+    "message0": "Schreibe Doppelschlüssel %1 Wert %2",
+    "tooltip": "Ruf Preferences.putDouble() auf, um double zu schreiben."
+  },
+  "esp32_preferences_put_bool": {
+    "message0": "Schreibe boolesche Wertschlüssel %1 Wert %2",
+    "tooltip": "Rufen Sie Preferences.putBool() auf, um den booleschen Wert zu schreiben."
+  },
+  "esp32_preferences_put_string": {
+    "message0": "Schreibe String-Key %1 Wert %2",
+    "tooltip": "Ruf Preferences.putString() auf, um den String zu schreiben."
+  },
+  "esp32_preferences_put_bytes": {
+    "message0": "Schreib-Byte-Schlüssel %1 Puffer %2 Länge %3",
+    "tooltip": "Aufrufe Preferences.putBytes(key, buffer, len), um in den Byte-Puffer zu schreiben; Der Puffer wird mit dem C++-Variablennamen oder -Ausdruck gefüllt."
+  },
+  "esp32_preferences_get_char": {
+    "message0": "Lesen Sie die INT8-Taste %1 Standard-%2",
+    "tooltip": "Rufen Sie Preferences.getChar() an, um int8 zu lesen; Gibt den Standardwert zurück, wenn der Schlüssel fehlt."
+  },
+  "esp32_preferences_get_uchar": {
+    "message0": "Lesen Sie die UINT8-Taste %1 Standard-%2",
+    "tooltip": "Rufen Sie Preferences.getUChar() an, um uint8 zu lesen; Gibt den Standardwert zurück, wenn der Schlüssel fehlt."
+  },
+  "esp32_preferences_get_short": {
+    "message0": "Lesen Sie die int16-Taste %1 Standard-%2",
+    "tooltip": "Rufen Sie Preferences.getShort() an, um int16 zu lesen; Gibt den Standardwert zurück, wenn der Schlüssel fehlt."
+  },
+  "esp32_preferences_get_ushort": {
+    "message0": "Lesen Sie die UINT16-Taste %1 Standard-%2",
+    "tooltip": "Rufen Sie Preferences.getUShort() an, um uint16 zu lesen; Gibt den Standardwert zurück, wenn der Schlüssel fehlt."
+  },
+  "esp32_preferences_get_int": {
+    "message0": "Lesen Sie die int32-Taste %1 Standard-%2",
+    "tooltip": "Ruf Preferences.getInt() an, um int32 zu lesen; Gibt den Standardwert zurück, wenn der Schlüssel fehlt."
+  },
+  "esp32_preferences_get_uint": {
+    "message0": "Lies die uint32-Taste %1 Standard-%2",
+    "tooltip": "Rufen Sie Preferences.getUInt() auf, um uint32 zu lesen; Gibt den Standardwert zurück, wenn der Schlüssel fehlt."
+  },
+  "esp32_preferences_get_long": {
+    "message0": "Lesen Sie die lange Taste %1 Standard-%2",
+    "tooltip": "Rufen Sie Preferences.getLong() an, um ausführlich zu lesen; Gibt den Standardwert zurück, wenn der Schlüssel fehlt."
+  },
+  "esp32_preferences_get_ulong": {
+    "message0": "Lesen Sie die unsignierte lange Taste %1 Standard%2",
+    "tooltip": "Rufen Sie Preferences.getULong() an, um das unsignierte lange Formular zu lesen; Gibt den Standardwert zurück, wenn der Schlüssel fehlt."
+  },
+  "esp32_preferences_get_long64": {
+    "message0": "Lies die Taste int64 %1 Standard-%2",
+    "tooltip": "Rufen Sie Preferences.getLong64() an, um int64 zu lesen; Gibt den Standardwert zurück, wenn der Schlüssel fehlt."
+  },
+  "esp32_preferences_get_ulong64": {
+    "message0": "Lesen Sie die UINT64-Taste %1 Standard-%2",
+    "tooltip": "Rufen Sie Preferences.getULong64() an, um uint64 zu lesen; Gibt den Standardwert zurück, wenn der Schlüssel fehlt."
+  },
+  "esp32_preferences_get_float": {
+    "message0": "Der Float-Taste %1 Standard-%2",
+    "tooltip": "Ruf Preferences.getFloat() auf, um den Float zu lesen; Gibt den Standardwert zurück, wenn der Schlüssel fehlt."
+  },
+  "esp32_preferences_get_double": {
+    "message0": "Doppeltaste lesen %1 Standard-%2",
+    "tooltip": "Ruf Preferences.getDouble() an, um Double zu lesen; Gibt den Standardwert zurück, wenn der Schlüssel fehlt."
+  },
+  "esp32_preferences_get_bool": {
+    "message0": "Lesen Sie den booleschen Schlüssel %1 Standard-%2",
+    "tooltip": "Ruf Preferences.getBool() auf, um den booleschen Wert auszulesen; Gibt den Standardwert zurück, wenn der Schlüssel fehlt."
+  },
+  "esp32_preferences_get_string": {
+    "message0": "Lese die Saitentaste %1 Standard-%2",
+    "tooltip": "Ruf Preferences.getString() auf, um den String zu lesen; Gibt den Standardwert zurück, wenn der Schlüssel fehlt."
+  },
+  "esp32_preferences_get_bytes": {
+    "message0": "Lesebyte-Schlüssel %1 zum Puffern %2 maximale Länge %3",
+    "tooltip": "Rufen Sie Preferences.getBytes(key, buffer, maxLen) auf, um den Byte-Buffer zu lesen und die Leselänge zurückzugeben."
+  },
+  "esp32_preferences_get_string_length": {
+    "message0": "Saitenschlüssel %1 Länge",
+    "tooltip": "Rufen Sie Preferences.getStringLength(key) auf, um die Saitenlänge zu erhalten."
+  },
+  "esp32_preferences_get_bytes_length": {
+    "message0": "Byte-Schlüssel %1 Länge",
+    "tooltip": "Rufen Sie Preferences.getBytesLength(key) auf, um die Byte-Datenlänge zu erhalten."
+  },
+  "esp32_preferences_is_key": {
+    "message0": "Ob der Schlüssel %1 existiert",
+    "tooltip": "Rufen Sie Preferences.isKey(key) auf, um zu prüfen, ob der Schlüssel existiert."
+  },
+  "esp32_preferences_get_type": {
+    "message0": "Präferenzen – Art des Schlüssels %1",
+    "tooltip": "Rufen Sie Preferences.getType(key) auf, um den PreferenceType-Enumerationswert zu erhalten."
+  },
+  "esp32_preferences_type_constant": {
+    "message0": "Präferenzen Type%1",
+    "tooltip": "Gibt die in Preferences.h definierte PreferenceType Enumerationskonstante aus."
+  },
+  "esp32_preferences_free_entries": {
+    "message0": "Verbleibende verfügbare NVS-Einträge",
+    "tooltip": "Rufen Sie Preferences.freeEntries() auf, um die verbleibenden verfügbaren Einträge in der Standard-NVS-Partition abzurufen."
+  }
+}

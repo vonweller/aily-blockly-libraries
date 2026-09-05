@@ -1,0 +1,118 @@
+{
+  "toolbox_name": "TCA8418 matriz de teclado",
+  "toolbox_labels": {
+    "初始化": "inicialização",
+    "键盘矩阵": "matriz de teclado",
+    "GPIO控制": "Controle GPIO",
+    "配置选项": "Opções de configuração"
+  },
+  "tca8418_create": {
+    "message0": "Crie TCA8418 Matriz de Teclado/Extensor GPIO variável %1",
+    "tooltip": "Criar TCA8418 matriz de teclado/objeto extensor GPIO"
+  },
+  "tca8418_begin": {
+    "message0": "Inicialize %1 endereço I2C %2",
+    "tooltip": "Inicializar TCA8418 equipamento"
+  },
+  "tca8418_matrix": {
+    "message0": "Defina %1 matriz de teclado número de linhas %2 número de colunas %3",
+    "tooltip": "Configure o número de linhas e colunas na matriz do teclado"
+  },
+  "tca8418_available": {
+    "message0": "%1 Número de eventos-chave disponíveis",
+    "tooltip": "Veja o número de eventos disponíveis no buffer FIFO"
+  },
+  "tca8418_get_event": {
+    "message0": "%1 Recuperar eventos-chave",
+    "tooltip": "Recuperar um evento-chave do buffer FIFO"
+  },
+  "tca8418_flush": {
+    "message0": "Esvazie o buffer de eventos %1",
+    "tooltip": "Limpar todos os eventos no buffer FIFO"
+  },
+  "tca8418_pin_mode": {
+    "message0": "Defina %1 modo pino %2 %3",
+    "tooltip": "Defina o modo de pinos GPIO",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "Entrada",
+            "INPUT"
+          ],
+          [
+            "Produção",
+            "OUTPUT"
+          ],
+          [
+            "Entrada e puxada para cima",
+            "INPUT_PULLUP"
+          ]
+        ]
+      }
+    ]
+  },
+  "tca8418_digital_read": {
+    "message0": "Leia %1 nível %2 pino",
+    "tooltip": "Leia o status do nível dos pinos do GPIO"
+  },
+  "tca8418_digital_write": {
+    "message0": "Defina %1 pino %2 level%3",
+    "tooltip": "Definir o nível de saída do pino GPIO",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "nivel alto",
+            "HIGH"
+          ],
+          [
+            "nivel baixo",
+            "LOW"
+          ]
+        ]
+      }
+    ]
+  },
+  "tca8418_enable_interrupts": {
+    "message0": "Ativear %1 interrupções",
+    "tooltip": "Habilitar interrupções para pinos matricial e GPIO"
+  },
+  "tca8418_disable_interrupts": {
+    "message0": "Desative %1 interrupções",
+    "tooltip": "Desative interrupções para pinos de matriz e GPIO"
+  },
+  "tca8418_enable_debounce": {
+    "message0": "Habilitar %1 estabilização de chaves",
+    "tooltip": "Habilitar estabilização de chaves"
+  },
+  "tca8418_disable_debounce": {
+    "message0": "Desativar %1 botão de deboque",
+    "tooltip": "Desativar estabilização de chave"
+  },
+  "tca8418_when_key_event": {
+    "message0": "Quando %1 tem um evento chave",
+    "tooltip": "Executar código quando houver um evento-chave",
+    "message1": "executar %1"
+  },
+  "tca8418_current_event": {
+    "message0": "%1 Evento chave atual",
+    "tooltip": "Obtenha o evento atual de chave salvo automaticamente (usado apenas dentro dos blocos de processamento de eventos)"
+  },
+  "tca8418_get_event_row": {
+    "message0": "O número da linha do evento chave %1",
+    "tooltip": "Extração de números de linha de eventos-chave (0-7)"
+  },
+  "tca8418_get_event_col": {
+    "message0": "Número da coluna do evento chave %1",
+    "tooltip": "Extração de números de colunas de eventos-chave (0-9)"
+  },
+  "tca8418_get_event_pressed": {
+    "message0": "O evento chave %1 é pressionar para baixo",
+    "tooltip": "Determine se deve pressionar (verdadeiro) ou liberar (falso) dos eventos-chave"
+  }
+}

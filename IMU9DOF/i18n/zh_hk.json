@@ -1,0 +1,187 @@
+{
+  "toolbox_name": "9軸IMU感測器",
+  "imu9dof_init": {
+    "message0": "初始化9軸IMU感知器 %1\n使用 %2",
+    "tooltip": "初始化掌控板3.0上的9軸IMU感知器",
+    "args0": [
+      null,
+      {
+        "options": "${board.i2c}"
+      }
+    ]
+  },
+  "imu9dof_read_accel": {
+    "message0": "讀取IMU %1 的加速度(g) %2",
+    "tooltip": "讀取加速度計數據，單位為g",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "X軸",
+            "X"
+          ],
+          [
+            "Y軸",
+            "Y"
+          ],
+          [
+            "Z軸",
+            "Z"
+          ]
+        ]
+      }
+    ]
+  },
+  "imu9dof_read_gyro": {
+    "message0": "讀取IMU %1 的角速度(°/s) %2",
+    "tooltip": "讀取陀螺儀數據，單位為度/秒",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "X軸",
+            "X"
+          ],
+          [
+            "Y軸",
+            "Y"
+          ],
+          [
+            "Z軸",
+            "Z"
+          ]
+        ]
+      }
+    ]
+  },
+  "imu9dof_read_mag": {
+    "message0": "讀取IMU %1 的磁場強度(μT) %2",
+    "tooltip": "讀取磁力計數據，單位為微特斯拉(μT)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "X軸",
+            "X"
+          ],
+          [
+            "Y軸",
+            "Y"
+          ],
+          [
+            "Z軸",
+            "Z"
+          ]
+        ]
+      }
+    ]
+  },
+  "imu9dof_read_temperature": {
+    "message0": "讀取IMU %1 的溫度(°C)",
+    "tooltip": "讀取IMU感測器的溫度，單位為攝氏度"
+  },
+  "imu9dof_compute_angles": {
+    "message0": "計算IMU %1 的姿態角",
+    "tooltip": "計算IMU的姿態角（橫滾角、俯仰角、航向角）"
+  },
+  "imu9dof_read_angle": {
+    "message0": "讀取IMU %1 的 %2 角度(°)",
+    "tooltip": "讀取IMU的姿態角，單位為度",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "橫滾(Roll)",
+            "ROLL"
+          ],
+          [
+            "音高",
+            "PITCH"
+          ],
+          [
+            "航向（偏航）",
+            "YAW"
+          ]
+        ]
+      }
+    ]
+  },
+  "imu9dof_calibrate_mag": {
+    "message0": "校準IMU %1 的磁力計",
+    "tooltip": "校正磁力計，消除硬鐵和軟鐵幹擾"
+  },
+  "imu9dof_set_acc_range": {
+    "message0": "設定IMU %1 加速度計量程為 %2",
+    "tooltip": "設定加速度計的測量範圍",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "±2g",
+            "QMI8658A_ACC_RANGE_2G"
+          ],
+          [
+            "±4g",
+            "QMI8658A_ACC_RANGE_4G"
+          ],
+          [
+            "±8g",
+            "QMI8658A_ACC_RANGE_8G"
+          ],
+          [
+            "±16g",
+            "QMI8658A_ACC_RANGE_16G"
+          ]
+        ]
+      }
+    ]
+  },
+  "imu9dof_set_gyro_range": {
+    "message0": "設定IMU %1 陀螺儀量程為 %2",
+    "tooltip": "設定陀螺儀的測量範圍",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "±16°/s",
+            "QMI8658A_GYRO_RANGE_16DPS"
+          ],
+          [
+            "±32°/s",
+            "QMI8658A_GYRO_RANGE_32DPS"
+          ],
+          [
+            "±64°/s",
+            "QMI8658A_GYRO_RANGE_64DPS"
+          ],
+          [
+            "±128°/s",
+            "QMI8658A_GYRO_RANGE_128DPS"
+          ],
+          [
+            "±256°/s",
+            "QMI8658A_GYRO_RANGE_256DPS"
+          ],
+          [
+            "±512°/s",
+            "QMI8658A_GYRO_RANGE_512DPS"
+          ],
+          [
+            "±1024°/s",
+            "QMI8658A_GYRO_RANGE_1024DPS"
+          ],
+          [
+            "±2048°/s",
+            "QMI8658A_GYRO_RANGE_2048DPS"
+          ]
+        ]
+      }
+    ]
+  }
+}

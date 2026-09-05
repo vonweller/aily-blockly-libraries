@@ -1,0 +1,194 @@
+{
+  "toolbox_name": "Pico Web Server",
+  "toolbox_labels": {
+    "初始化": "Initialisierung",
+    "路由处理": "Routing-Verarbeitung",
+    "发送响应": "Antwort senden",
+    "请求信息": "Informationen anfordern",
+    "请求参数": "Parameter anfordern",
+    "请求头": "Anforderungsheader",
+    "高级功能": "Erweiterte Funktionen"
+  },
+  "rp_webserver_create": {
+    "message0": "Webserver erstellen %1 Port %2",
+    "tooltip": "Erstellen Sie ein Webserver-Objekt"
+  },
+  "rp_webserver_begin": {
+    "message0": "Starte den Server %1",
+    "tooltip": "Starte den Webserver und fang an, zuzuhören"
+  },
+  "rp_webserver_handle_client": {
+    "message0": "Behandle %1 Client-Anfragen",
+    "tooltip": "Behandle Client-Anfragen (sollte in eine Schleife gebracht werden)"
+  },
+  "rp_webserver_on": {
+    "message0": "Wenn %1 %2 Anfragepfad %3 empfängt",
+    "tooltip": "Registrieren Sie eine Request-Handler-Funktion für den angegebenen Pfad",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Beliebig",
+            "HTTP_ANY"
+          ],
+          [
+            "GET",
+            "HTTP_GET"
+          ],
+          [
+            "POST",
+            "HTTP_POST"
+          ],
+          [
+            "PUT",
+            "HTTP_PUT"
+          ],
+          [
+            "DELETE",
+            "HTTP_DELETE"
+          ],
+          [
+            "PATCH",
+            "HTTP_PATCH"
+          ]
+        ]
+      },
+      null
+    ],
+    "message1": "ausführen %1"
+  },
+  "rp_webserver_on_not_found": {
+    "message0": "Wenn %1 eine Anfrage nach unbekanntem Pfad erhält.",
+    "tooltip": "Umgang mit Anfragen, die keiner Route entsprechen (404)",
+    "message1": "ausführen %1"
+  },
+  "rp_webserver_send": {
+    "message0": "%1 Antwortstatuscode %2 Typ %3 Inhalt %4",
+    "tooltip": "HTTP-Antwort an den Client senden",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "Klartext/Klartext",
+            "text/plain"
+          ],
+          [
+            "HTML-Text/HTML",
+            "text/html"
+          ],
+          [
+            "JSON-Anwendung/JSON",
+            "application/json"
+          ],
+          [
+            "XML-Anwendung/XML",
+            "application/xml"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "rp_webserver_send_custom_type": {
+    "message0": "%1 Antwortstatuscode %2 Benutzerdefinierter Typ %3 Inhalt %4",
+    "tooltip": "Senden Sie HTTP-Antworten mit benutzerdefiniertem Inhaltstyp"
+  },
+  "rp_webserver_send_header": {
+    "message0": "%1 senden Antwort Kopf %2 Wert %3",
+    "tooltip": "Benutzerdefinierte Antwortheader senden"
+  },
+  "rp_webserver_uri": {
+    "message0": "%1 Die angeforderte URI",
+    "tooltip": "URI-Pfad der aktuellen Anfrage abrufen"
+  },
+  "rp_webserver_method": {
+    "message0": "%1 Antragsmethoden",
+    "tooltip": "Holen Sie die HTTP-Methode für die aktuelle Anfrage (GET/POST usw.) ab."
+  },
+  "rp_webserver_method_is": {
+    "message0": "%1 Die Methode zur Anfrage ist %2",
+    "tooltip": "Überprüfen Sie, ob die aktuelle Anfrage eine spezifizierte HTTP-Methode ist.",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "GET",
+            "HTTP_GET"
+          ],
+          [
+            "POST",
+            "HTTP_POST"
+          ],
+          [
+            "PUT",
+            "HTTP_PUT"
+          ],
+          [
+            "DELETE",
+            "HTTP_DELETE"
+          ],
+          [
+            "PATCH",
+            "HTTP_PATCH"
+          ]
+        ]
+      }
+    ]
+  },
+  "rp_webserver_arg_by_name": {
+    "message0": "%1 Parameter %2 Wert abrufen",
+    "tooltip": "Erhalten Sie den Wert des Anfrageparameters basierend auf dem Parameternamen"
+  },
+  "rp_webserver_arg_by_index": {
+    "message0": "%1 Parameter %2 Wert nach Index",
+    "tooltip": "Abfrageparameterwerte basierend auf dem Index abrufen (beginnend bei 0)"
+  },
+  "rp_webserver_arg_name": {
+    "message0": "%1 Parameter %2 Name nach Index",
+    "tooltip": "Abfrageparameternamen basierend auf dem Index abrufen (beginnend bei 0)"
+  },
+  "rp_webserver_args_count": {
+    "message0": "%1 Anzahl der Parameter",
+    "tooltip": "Ruft die Anzahl der Anfrageparameter ab"
+  },
+  "rp_webserver_has_arg": {
+    "message0": "%1 Parameter %2 vorhanden",
+    "tooltip": "Überprüfen Sie, ob es Parameter mit festgelegten Namen gibt"
+  },
+  "rp_webserver_header": {
+    "message0": "%1 Anfrage-Header %2 Wert abrufen",
+    "tooltip": "Ruft den Request-Header-Wert für den angegebenen Namen ab"
+  },
+  "rp_webserver_has_header": {
+    "message0": "%1 Anfrage-Header %2 vorhanden",
+    "tooltip": "Überprüfen Sie das Vorhandensein eines Anfrage-Headers mit dem angegebenen Namen"
+  },
+  "rp_webserver_host_header": {
+    "message0": "%1 Host-Anfrage-Header",
+    "tooltip": "Ruft den Host-Header für die Anfrage ab"
+  },
+  "rp_webserver_collect_headers": {
+    "message0": "%1 Collect Request-Header %2",
+    "tooltip": "Stellen Sie die Anfrageheader so ein, dass sie sammeln (mehrere durch Kommas getrennt)"
+  },
+  "rp_webserver_enable_cors": {
+    "message0": "%1 CORS Cross-Origin aktivieren",
+    "tooltip": "Aktivieren Sie den bereichsübergreifenden Ressourcenaustausch (CORS)"
+  },
+  "rp_webserver_stop": {
+    "message0": "Stopp den Server %1",
+    "tooltip": "Webserver stoppen"
+  },
+  "rp_webserver_authenticate": {
+    "message0": "%1 Benutzernamen %2 Passwort %3",
+    "tooltip": "Überprüfen Sie Benutzername und Passwort für die grundlegende HTTP-Authentifizierung"
+  },
+  "rp_webserver_request_authentication": {
+    "message0": "%1 Authentifizierungsprompt anfordern %2",
+    "tooltip": "Fordern Sie den Client auf, eine HTTP-Authentifizierung durchzuführen"
+  }
+}

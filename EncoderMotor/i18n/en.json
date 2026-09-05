@@ -1,0 +1,69 @@
+{
+  "toolbox_name": "encoder motor",
+  "toolbox_labels": {
+    "电机配置": "Motor configuration",
+    "电机控制": "Motor control",
+    "状态查询": "Status query"
+  },
+  "encoder_motor_create": {
+    "message0": "Create encoded motor %1 Motor pin A %2 B %3 Encoder pin A %4 B %5 PPR%6 Reduction ratio %7 Phase relationship %8",
+    "tooltip": "Create an encoding motor object and configure the motor and encoder pins, PPR, and reduction ratio",
+    "args0": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      {
+        "options": [
+          [
+            "Phase A leads",
+            "em::EncoderMotor::kAPhaseLeads"
+          ],
+          [
+            "Phase B leads",
+            "em::EncoderMotor::kBPhaseLeads"
+          ]
+        ]
+      }
+    ]
+  },
+  "encoder_motor_set_pid": {
+    "message0": "Set encoding motor %1 PID parameters P%2 I%3 D%4",
+    "tooltip": "Set speed loop PID controller parameters"
+  },
+  "encoder_motor_run_pwm": {
+    "message0": "Encoding motor %1 runs with power %2 (-1023~1023)",
+    "tooltip": "Directly set the PWM duty cycle to drive the motor, ranging from -1023 to 1023, negative values reverse"
+  },
+  "encoder_motor_run_speed": {
+    "message0": "Encoding motor %1 operates at speed %2 RPM (-300~300)",
+    "tooltip": "Use speed loop to control motor speed, range -300 to 300RPM, negative value reverses"
+  },
+  "encoder_motor_stop": {
+    "message0": "Stop encoding motor %1",
+    "tooltip": "Stop the motor from running"
+  },
+  "encoder_motor_get_speed": {
+    "message0": "Encoding motor %1 current speed (RPM)",
+    "tooltip": "Get the current speed of the motor"
+  },
+  "encoder_motor_get_pwm": {
+    "message0": "Encoding motor %1 Current PWM duty cycle",
+    "tooltip": "Get the current PWM duty cycle of the motor"
+  },
+  "encoder_motor_get_pulse": {
+    "message0": "Encoding motor %1 encoding pulse count",
+    "tooltip": "Get encoder pulse count"
+  },
+  "encoder_motor_get_revolutions": {
+    "message0": "Encoding motor %1 Number of turns",
+    "tooltip": "Get the number of revolutions of the motor. A positive number indicates forward rotation, and a negative number indicates reverse rotation."
+  },
+  "encoder_motor_reset_pulse": {
+    "message0": "Reset encoding motor %1 pulse count",
+    "tooltip": "Reset the encoder pulse count to 0 (clear the number of revolutions at the same time)"
+  }
+}

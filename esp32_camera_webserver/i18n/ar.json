@@ -1,0 +1,176 @@
+{
+  "toolbox_name": "خادم الكاميرا",
+  "toolbox_labels": {
+    "基础配置": "التكوين الأساسي",
+    "高级配置": "التكوين المتقدم",
+    "画质调整": "تعديل جودة الصورة",
+    "拍摄与数据访问": "التصوير الفوتوغرافي والوصول إلى البيانات"
+  },
+  "esp32_camera_webserver_init": {
+    "message0": "تهيئة خادم كاميرا ESP32 %1 نموذج الكاميرا بدقة %2 %3 تنسيق البكسل %4",
+    "tooltip": "قم بتهيئة كاميرا ESP32 وضبط معلمات الكاميرا",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "AI Thinker",
+            "CAMERA_MODEL_AI_THINKER"
+          ],
+          [
+            "M5Stack PSRAM",
+            "CAMERA_MODEL_M5STACK_PSRAM"
+          ],
+          [
+            "M5Stack Wide",
+            "CAMERA_MODEL_M5STACK_WIDE"
+          ],
+          [
+            "ESP Eye",
+            "CAMERA_MODEL_ESP_EYE"
+          ],
+          [
+            "FireBeetle 2 ESP32S3",
+            "CAMERA_MODEL_DFRobot_FireBeetle2_ESP32S3"
+          ],
+          [
+            "ESP32S3 EYE / NL-ESP32-S3-CAM",
+            "CAMERA_MODEL_ESP32S3_EYE"
+          ],
+          [
+            "XIAO ESP32S3",
+            "CAMERA_MODEL_XIAO_ESP32S3"
+          ],
+          [
+            "ESP32-S3-WROOM-CAM",
+            "CAMERA_MODEL_ESP32S3_WROOM_CAM"
+          ],
+          [
+            "ESP32_AIOT_Kit",
+            "CAMERA_MODEL_ESP32_AIOT_KIT"
+          ],
+          [
+            "ESP32_AIOT_Kit GC2145 DVP",
+            "CAMERA_MODEL_ESP32_AIOT_KIT_GC2145"
+          ],
+          [
+            "الدبابيس المخصصة",
+            "CUSTOM"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "UXGA (1600x1200)",
+            "FRAMESIZE_UXGA"
+          ],
+          [
+            "SXGA (1280x1024)",
+            "FRAMESIZE_SXGA"
+          ],
+          [
+            "XGA (1024x768)",
+            "FRAMESIZE_XGA"
+          ],
+          [
+            "SVGA (800x600)",
+            "FRAMESIZE_SVGA"
+          ],
+          [
+            "VGA (640x480)",
+            "FRAMESIZE_VGA"
+          ],
+          [
+            "CIF (400x296)",
+            "FRAMESIZE_CIF"
+          ],
+          [
+            "QVGA (320x240)",
+            "FRAMESIZE_QVGA"
+          ],
+          [
+            "HQVGA (240x176)",
+            "FRAMESIZE_HQVGA"
+          ],
+          [
+            "QQVGA (160x120)",
+            "FRAMESIZE_QQVGA"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "JPEG",
+            "PIXFORMAT_JPEG"
+          ],
+          [
+            "RGB565",
+            "PIXFORMAT_RGB565"
+          ],
+          [
+            "YUV422",
+            "PIXFORMAT_YUV422"
+          ],
+          [
+            "GRAYSCALE",
+            "PIXFORMAT_GRAYSCALE"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_camera_custom_pins": {
+    "message0": "تكوين دبوس كاميرا مخصص: %1 دبابيس البيانات D0-D7 %2 دبوس XCLK %3 دبوس PCLK %4 دبوس VSYNC %5 دبوس HREF %6 دبابيس SDA %7 دبابيس SCL %8 دبابيس PWDN %9 دبابيس إعادة التعيين %10",
+    "tooltip": "عند اختيار 'دبابيس مخصصة'، استخدم هذه الكتلة لتكوين دبابيس الكاميرا. صيغ دبوس البيانات: '11، 12، 13، 14، 15، 16، 17، 18'"
+  },
+  "esp32_camera_set_quality": {
+    "message0": "ضبط جودة JPEG للكاميرا %1",
+    "tooltip": "اضبط جودة ضغط JPEG (من 0 إلى 63؛ كلما كانت القيمة أصغر، زادت الجودة)"
+  },
+  "esp32_camera_set_flip": {
+    "message0": "ضبط قلب الكاميرا %1 الانقلاب العمودي %2 الانعكاس الأفقي %3",
+    "tooltip": "إعداد قلب صورة الكاميرا ومرآها"
+  },
+  "esp32_camera_set_brightness": {
+    "message0": "اضبط الكاميرا %1 السطوع %2 التباين %3 التشبع %4",
+    "tooltip": "ضبط سطوع الكاميرا، والتباين، والتشبع (-2 إلى 2)"
+  },
+  "esp32_camera_capture": {
+    "message0": "التقط صورة",
+    "tooltip": "يسترجع إطارا من بيانات صورة الكاميرا ويعيد كائن الإطار (⚠️ يستخدم مع المتغير 'العدد الصحيح الطويل غير الموقع'؛ بعد الاستخدام، يجب استدعاء كتلة إطار التحرير)"
+  },
+  "esp32_camera_frame_buffer": {
+    "message0": "مؤشر البيانات لإطار %1",
+    "tooltip": "مؤشر الذاكرة (uint8_t*) لاسترجاع بيانات الإطارات، والتي يمكن استخدامها للعرض أو النقل"
+  },
+  "esp32_camera_frame_len": {
+    "message0": "طول بيانات الإطارات %1",
+    "tooltip": "الحصول على طول بايت بيانات الإطار"
+  },
+  "esp32_camera_frame_width": {
+    "message0": "عرض %1 الإطار",
+    "tooltip": "الحصول على عرض صورة الإطار (البكسلات)"
+  },
+  "esp32_camera_frame_height": {
+    "message0": "ارتفاع الإطار %1",
+    "tooltip": "ارتفاع صورة الإطار التي تم الحصول عليها (بكسل)"
+  },
+  "esp32_camera_release": {
+    "message0": "إطار الإصدار %1",
+    "tooltip": "ذاكرة مخزن الإطار لتحرير (يجب استدعاؤها بعد استخدام الإطار؛ send_serial الكتل سيتم تحريرها تلقائيا)"
+  },
+  "esp32_camera_send_serial": {
+    "message0": "إرسال الإطارات عبر port%1 التسلسلي",
+    "tooltip": "إرسال بيانات صورة JPEG عبر منفذ تسلسلي (مع معرف الإطار، قابل للاستخدام لعرض الكمبيوتر المضيف)"
+  },
+  "esp32_camera_capture_and_encode_base64": {
+    "message0": "التقط صورا وحولها إلى Base64",
+    "tooltip": "التقط صورة وقم بترميز بيانات JPEG الخاصة بها بصيغة Base64"
+  },
+  "esp32_camera_print_diagnostics": {
+    "message0": "معلومات تشخيصية لكاميرا الطباعة",
+    "tooltip": "يقوم المنفذ التسلسلي بطباعة حالة تهيئة الكاميرا، وبطاقة PID المستشعر، وتعليمات استكشاف الأخطاء الشائعة"
+  }
+}

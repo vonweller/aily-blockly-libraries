@@ -1,0 +1,511 @@
+{
+  "toolbox_name": "وحدة تحكم PS2",
+  "toolbox_labels": {
+    "简化版本": "نسخة مبسطة",
+    "完整版本": "النسخة الكاملة",
+    "按钮检测": "كشف الزر",
+    "模拟量读取": "القراءة التناظرية",
+    "控制器信息": "معلومات وحدة التحكم"
+  },
+  "ps2x_init": {
+    "message0": "قم بتهيئة وحدة تحكم PS2 CLK%1 CMD%2 ATT%3 DAT%4 وضع الضغط %5 الاهتزاز mode%6",
+    "args0": [
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": [
+          [
+            "تشغيل",
+            "true"
+          ],
+          [
+            "إيقاف",
+            "false"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "تشغيل",
+            "true"
+          ],
+          [
+            "إيقاف",
+            "false"
+          ]
+        ]
+      }
+    ]
+  },
+  "ps2x_read": {
+    "message0": "اقرأ حالة وحدة تحكم PS2 وشدة الاهتزاز %1"
+  },
+  "ps2x_button": {
+    "message0": "%1 الضغط على زر PS2",
+    "args0": [
+      {
+        "options": [
+          [
+            "أعلى",
+            "PSB_PAD_UP"
+          ],
+          [
+            "أسفل",
+            "PSB_PAD_DOWN"
+          ],
+          [
+            "يسار",
+            "PSB_PAD_LEFT"
+          ],
+          [
+            "يمين",
+            "PSB_PAD_RIGHT"
+          ],
+          [
+            "مثلث",
+            "PSB_TRIANGLE"
+          ],
+          [
+            "جولة",
+            "PSB_CIRCLE"
+          ],
+          [
+            "تقاطع",
+            "PSB_CROSS"
+          ],
+          [
+            "المربع",
+            "PSB_SQUARE"
+          ],
+          [
+            "L1",
+            "PSB_L1"
+          ],
+          [
+            "L2",
+            "PSB_L2"
+          ],
+          [
+            "L3",
+            "PSB_L3"
+          ],
+          [
+            "R1",
+            "PSB_R1"
+          ],
+          [
+            "R2",
+            "PSB_R2"
+          ],
+          [
+            "R3",
+            "PSB_R3"
+          ],
+          [
+            "SELECT",
+            "PSB_SELECT"
+          ],
+          [
+            "START",
+            "PSB_START"
+          ]
+        ]
+      }
+    ]
+  },
+  "ps2x_button_pressed": {
+    "message0": "زر PS2 %1 فقط الضغط عليه",
+    "args0": [
+      {
+        "options": [
+          [
+            "أعلى",
+            "PSB_PAD_UP"
+          ],
+          [
+            "أسفل",
+            "PSB_PAD_DOWN"
+          ],
+          [
+            "يسار",
+            "PSB_PAD_LEFT"
+          ],
+          [
+            "يمين",
+            "PSB_PAD_RIGHT"
+          ],
+          [
+            "مثلث",
+            "PSB_TRIANGLE"
+          ],
+          [
+            "جولة",
+            "PSB_CIRCLE"
+          ],
+          [
+            "تقاطع",
+            "PSB_CROSS"
+          ],
+          [
+            "المربع",
+            "PSB_SQUARE"
+          ],
+          [
+            "L1",
+            "PSB_L1"
+          ],
+          [
+            "L2",
+            "PSB_L2"
+          ],
+          [
+            "L3",
+            "PSB_L3"
+          ],
+          [
+            "R1",
+            "PSB_R1"
+          ],
+          [
+            "R2",
+            "PSB_R2"
+          ],
+          [
+            "R3",
+            "PSB_R3"
+          ],
+          [
+            "SELECT",
+            "PSB_SELECT"
+          ],
+          [
+            "START",
+            "PSB_START"
+          ],
+          [
+            "أحمر",
+            "PSB_RED"
+          ],
+          [
+            "أزرق",
+            "PSB_BLUE"
+          ]
+        ]
+      }
+    ]
+  },
+  "ps2x_button_released": {
+    "message0": "زر PS2 %1 تم إصداره للتو",
+    "args0": [
+      {
+        "options": [
+          [
+            "أعلى",
+            "PSB_PAD_UP"
+          ],
+          [
+            "أسفل",
+            "PSB_PAD_DOWN"
+          ],
+          [
+            "يسار",
+            "PSB_PAD_LEFT"
+          ],
+          [
+            "يمين",
+            "PSB_PAD_RIGHT"
+          ],
+          [
+            "مثلث",
+            "PSB_TRIANGLE"
+          ],
+          [
+            "جولة",
+            "PSB_CIRCLE"
+          ],
+          [
+            "تقاطع",
+            "PSB_CROSS"
+          ],
+          [
+            "المربع",
+            "PSB_SQUARE"
+          ],
+          [
+            "L1",
+            "PSB_L1"
+          ],
+          [
+            "L2",
+            "PSB_L2"
+          ],
+          [
+            "L3",
+            "PSB_L3"
+          ],
+          [
+            "R1",
+            "PSB_R1"
+          ],
+          [
+            "R2",
+            "PSB_R2"
+          ],
+          [
+            "R3",
+            "PSB_R3"
+          ],
+          [
+            "SELECT",
+            "PSB_SELECT"
+          ],
+          [
+            "START",
+            "PSB_START"
+          ]
+        ]
+      }
+    ]
+  },
+  "ps2x_analog": {
+    "message0": "%1 PS2 التناظري",
+    "args0": [
+      {
+        "options": [
+          [
+            "العصا اليمنى X",
+            "PSS_RX"
+          ],
+          [
+            "عصا التحكم اليمنى Y",
+            "PSS_RY"
+          ],
+          [
+            "عصا التحكم اليسرى X",
+            "PSS_LX"
+          ],
+          [
+            "عصا التحكم اليسرى Y",
+            "PSS_LY"
+          ]
+        ]
+      }
+    ]
+  },
+  "ps2x_analog_button": {
+    "message0": "أزرار PS2 %1 قيم الضغط",
+    "args0": [
+      {
+        "options": [
+          [
+            "أعلى",
+            "PSAB_PAD_UP"
+          ],
+          [
+            "أسفل",
+            "PSAB_PAD_DOWN"
+          ],
+          [
+            "يسار",
+            "PSAB_PAD_LEFT"
+          ],
+          [
+            "يمين",
+            "PSAB_PAD_RIGHT"
+          ],
+          [
+            "مثلث",
+            "PSAB_TRIANGLE"
+          ],
+          [
+            "جولة",
+            "PSAB_CIRCLE"
+          ],
+          [
+            "تقاطع",
+            "PSAB_CROSS"
+          ],
+          [
+            "المربع",
+            "PSAB_SQUARE"
+          ],
+          [
+            "L1",
+            "PSAB_L1"
+          ],
+          [
+            "L2",
+            "PSAB_L2"
+          ],
+          [
+            "R1",
+            "PSAB_R1"
+          ],
+          [
+            "R2",
+            "PSAB_R2"
+          ]
+        ]
+      }
+    ]
+  },
+  "ps2x_controller_type": {
+    "message0": "نوع وحدة تحكم PS2"
+  },
+  "ps2x_new_button_state": {
+    "message0": "حالة زر PS2 تغيرت"
+  },
+  "ps2x_new_button_state_specific": {
+    "message0": "تغيرت حالة button%1 PS2",
+    "args0": [
+      {
+        "options": [
+          [
+            "أعلى",
+            "PSB_PAD_UP"
+          ],
+          [
+            "أسفل",
+            "PSB_PAD_DOWN"
+          ],
+          [
+            "يسار",
+            "PSB_PAD_LEFT"
+          ],
+          [
+            "يمين",
+            "PSB_PAD_RIGHT"
+          ],
+          [
+            "مثلث",
+            "PSB_TRIANGLE"
+          ],
+          [
+            "جولة",
+            "PSB_CIRCLE"
+          ],
+          [
+            "تقاطع",
+            "PSB_CROSS"
+          ],
+          [
+            "المربع",
+            "PSB_SQUARE"
+          ],
+          [
+            "L1",
+            "PSB_L1"
+          ],
+          [
+            "L2",
+            "PSB_L2"
+          ],
+          [
+            "L3",
+            "PSB_L3"
+          ],
+          [
+            "R1",
+            "PSB_R1"
+          ],
+          [
+            "R2",
+            "PSB_R2"
+          ],
+          [
+            "R3",
+            "PSB_R3"
+          ],
+          [
+            "SELECT",
+            "PSB_SELECT"
+          ],
+          [
+            "START",
+            "PSB_START"
+          ]
+        ]
+      }
+    ]
+  },
+  "ps2x_is_connected": {
+    "message0": "وحدة تحكم PS2 متصلة"
+  },
+  "ps2x_simple_init": {
+    "message0": "تهيئة بسيطة لوحدة تحكم PS2 CLK%1 CMD%2 ATT%3 DAT%4",
+    "args0": [
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": "${board.digitalPins}"
+      }
+    ]
+  },
+  "ps2x_simple_read": {
+    "message0": "اقرأ جهاز تحكم PS2"
+  },
+  "ps2x_joystick_moved": {
+    "message0": "عصا التحكم %1 تتحرك",
+    "args0": [
+      {
+        "options": [
+          [
+            "يسار",
+            "LEFT"
+          ],
+          [
+            "يمين",
+            "RIGHT"
+          ]
+        ]
+      }
+    ]
+  },
+  "ps2x_joystick_position": {
+    "message0": "موضع %2 محور عصا التحكم %1",
+    "args0": [
+      {
+        "options": [
+          [
+            "يسار",
+            "LEFT"
+          ],
+          [
+            "يمين",
+            "RIGHT"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "X",
+            "X"
+          ],
+          [
+            "Y",
+            "Y"
+          ]
+        ]
+      }
+    ]
+  }
+}

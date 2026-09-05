@@ -1,0 +1,35 @@
+{
+  "toolbox_name": "HCHO-Sensoren",
+  "toolbox_labels": {
+    "初始化": "Initialisierung",
+    "读取数据": "Daten lesen",
+    "校准": "Kalibrierung"
+  },
+  "grove_hcho_init": {
+    "message0": "Initialisieren Sie HCHO-Sensor %1 Pins %2 R0-Kalibrierungswert %3",
+    "tooltip": "Initialisiere den HCHO-Sensor und stelle Pin- und R0-Kalibrierungswerte ein. R0 muss in sauberer Luft vorkalibriert werden.",
+    "args0": [
+      null,
+      {
+        "options": "${board.analogPins}"
+      },
+      null
+    ]
+  },
+  "grove_hcho_read_raw": {
+    "message0": "Lesen Sie den HCHO-%1 Rohsimulationswert",
+    "tooltip": "Lesen Sie den rohen analogen Wert des Sensors ab (0-1023)"
+  },
+  "grove_hcho_read_rs": {
+    "message0": "Lesen Sie den Widerstandswert Rs des HCHO-%1-Sensors ab",
+    "tooltip": "Berechnen Sie den Sensorwiderstandswert Rs"
+  },
+  "grove_hcho_read_ppm": {
+    "message0": "Lies HCHO %1 Schwerpunkt (PPM)",
+    "tooltip": "Berechnen Sie die HCHO-Konzentration (ppm) mit einem Nachweisbereich von 1–50 ppm"
+  },
+  "grove_hcho_calibrate_r0": {
+    "message0": "Kalibrieren Sie die HCHO-%1, um den R0-Wert zu erhalten",
+    "tooltip": "Kalibrieren Sie den Sensor in sauberer Luft und geben Sie den R0-Wert zurück. Füllen Sie diesen Wert in den R0-Parameter des Initialisierungsblocks ein."
+  }
+}

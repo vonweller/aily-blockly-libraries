@@ -1,0 +1,111 @@
+{
+  "toolbox_name": "OneButton",
+  "toolbox_labels": {
+    "初始化": "初期化",
+    "事件处理": "イベント処理",
+    "参数设置": "パラメータ設定",
+    "状态查询": "ステータスクエリ",
+    "控制": "コントロール"
+  },
+  "onebutton_setup": {
+    "message0": "ボタンを作成%1ピン%2モード%3アクティブな低レベル%4",
+    "tooltip": "ボタンオブジェクトを作成して初期化します",
+    "args0": [
+      null,
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": [
+          [
+            "正則入力",
+            "INPUT"
+          ],
+          [
+            "プルアップ入力",
+            "INPUT_PULLUP"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "はい",
+            "TRUE"
+          ],
+          [
+            "いいえ",
+            "FALSE"
+          ]
+        ]
+      }
+    ]
+  },
+  "onebutton_attach_click": {
+    "message0": "ボタン%1クリックすると実行されます",
+    "tooltip": "ボタンをクリックするとコードが実行されます",
+    "message1": "%1"
+  },
+  "onebutton_attach_double_click": {
+    "message0": "ボタン%1をダブルクリックしたら実行します",
+    "tooltip": "ボタンをダブルクリックするとコードが実行されます",
+    "message1": "%1"
+  },
+  "onebutton_attach_multi_click": {
+    "message0": "ボタン%1複数回押すと実行されます",
+    "tooltip": "ボタンを複数回クリックするとコードが実行されます",
+    "message1": "%1"
+  },
+  "onebutton_attach_press": {
+    "message0": "ボタン%1押されると実行されます",
+    "tooltip": "ボタンを押すとコードが実行されます",
+    "message1": "%1"
+  },
+  "onebutton_attach_long_press_start": {
+    "message0": "ボタン%1 開始時に実行",
+    "tooltip": "ボタンが長押しされ始めたら、コードが実行されます",
+    "message1": "%1"
+  },
+  "onebutton_attach_during_long_press": {
+    "message0": "ボタン%1 長押し時に実行",
+    "tooltip": "ボタンを長押ししている間にコードが実行されます",
+    "message1": "%1"
+  },
+  "onebutton_attach_long_press_stop": {
+    "message0": "ボタン%1 押したときに実行し、終了するために押す",
+    "tooltip": "ボタンを長押しするとコードが実行されます",
+    "message1": "%1"
+  },
+  "onebutton_set_debounce_ms": {
+    "message0": "ボタン%1 安定化時間を%2ミリ秒に設定",
+    "tooltip": "ボタンの安定化時間(ミリ秒)を設定してください"
+  },
+  "onebutton_set_click_ms": {
+    "message0": "ボタン%1はクリック時間を%2ミリ秒に設定します",
+    "tooltip": "クリック判断時間(ミリ秒)を設定してください"
+  },
+  "onebutton_set_press_ms": {
+    "message0": "ボタン%1長押し時間を%2ミリ秒に設定します",
+    "tooltip": "ロングプレスで時間(ミリ秒)を決める"
+  },
+  "onebutton_set_long_press_interval_ms": {
+    "message0": "ボタン%1はホールド間隔を%2ミリ秒に設定します",
+    "tooltip": "長押し時のコールバック間隔時間(ミリ秒)を設定する"
+  },
+  "onebutton_is_long_pressed": {
+    "message0": "ボタン%1が長押しされています",
+    "tooltip": "ボタンが長押しされていないか確認してください"
+  },
+  "onebutton_get_pressed_ms": {
+    "message0": "ボタン%1 押す時間を確認する",
+    "tooltip": "取得ボタンを押す時間(ミリ秒)"
+  },
+  "onebutton_get_number_clicks": {
+    "message0": "クリック数を%1で入力します",
+    "tooltip": "ボタンクリック数を把握しましょう"
+  },
+  "onebutton_reset": {
+    "message0": "ボタン%1リセット状態",
+    "tooltip": "ボタンを状態機械にリセットしてください"
+  }
+}

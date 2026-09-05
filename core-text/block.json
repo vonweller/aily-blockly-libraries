@@ -15,7 +15,8 @@
     "output": "String",
     "style": "text_blocks",
     "tooltip": "Concatenates two strings.",
-    "helpUrl": ""
+    "helpUrl": "",
+    "icon": "fa-regular fa-input-text"
   },
   {
     "type": "array_get_dataAt",
@@ -32,189 +33,42 @@
       }
     ],
     "output": "String",
-    "style": "text_blocks"
-  },
-  {
-    "type": "string_charAt",
-    "message0": "%1 的第 %2 个字符",
-    "args0": [
-      {
-        "type": "input_value",
-        "name": "STRING"
-      },
-      {
-        "type": "input_value",
-        "name": "NUM"
-      }
-    ],
-    "output": "String",
     "style": "text_blocks",
-    "helpUrl": ""
-  },
-  {
-    "type": "string_length",
-    "message0": "%1 的字符数",
-    "args0": [
-      {
-        "type": "input_value",
-        "name": "STRING"
-      }
-    ],
-    "output": "Number",
-    "style": "text_blocks",
-    "helpUrl": ""
-  },
-  {
-    "type": "string_indexOf",
-    "message0": "%1 包含 %2 ?",
-    "args0": [
-      {
-        "type": "input_value",
-        "name": "STRING1"
-      },
-      {
-        "type": "input_value",
-        "name": "STRING2"
-      }
-    ],
-    "output": "String",
-    "style": "text_blocks",
-    "helpUrl": ""
-  },
-  {
-    "type": "string_substring",
-    "message0": "%1 获取 %2 %3 个字符到 %4 %5 个字符",
-    "args0": [
-      {
-        "type": "input_value",
-        "name": "STRING"
-      },
-      {
-        "type": "field_dropdown",
-        "name": "START",
-        "options": [
-          [
-            "第",
-            "0"
-          ],
-          [
-            "倒数第",
-            "1"
-          ]
-        ]
-      },
-      {
-        "type": "input_value",
-        "name": "START_INDEX"
-      },
-      {
-        "type": "field_dropdown",
-        "name": "LAST",
-        "options": [
-          [
-            "第",
-            "0"
-          ],
-          [
-            "倒数第",
-            "1"
-          ]
-        ]
-      },
-      {
-        "type": "input_value",
-        "name": "LAST_INDEX"
-      }
-    ],
-    "output": "String",
-    "style": "text_blocks",
-    "helpUrl": ""
-  },
-  {
-    "type": "string_find_str",
-    "message0": "查找 %1 在 %2 中 %3 出现位置",
-    "args0": [
-      {
-        "type": "input_value",
-        "name": "STRING1"
-      },
-      {
-        "type": "input_value",
-        "name": "STRING2"
-      },
-      {
-        "type": "field_dropdown",
-        "name": "FIND",
-        "options": [
-          [
-            "首次",
-            "indexOf"
-          ],
-          [
-            "最后一次",
-            "lastIndexOf"
-          ]
-        ]
-      }
-    ],
-    "output": "String",
-    "style": "text_blocks",
-    "helpUrl": ""
-  },
-  {
-    "type": "string_to",
-    "message0": "将字符串 %1 转换为 %2",
-    "args0": [
-      {
-        "type": "input_value",
-        "name": "STRING"
-      },
-      {
-        "type": "field_dropdown",
-        "name": "TYPE",
-        "options": [
-          [
-            "整数",
-            "toInt"
-          ],
-          [
-            "小数",
-            "toFloat"
-          ]
-        ]
-      }
-    ],
-    "output": "String",
-    "style": "text_blocks",
-    "helpUrl": ""
+    "icon": "fa-regular fa-input-text"
   },
   {
     "type": "number_to",
-    "message0": "将数字 %1 转换为ASCII字符串",
+    "message0": "将数字 %1 转换为ASCII字符",
     "args0": [
       {
-        "type": "field_number",
+        "type": "input_value",
         "name": "NUM",
-        "value": 0
+        "check": "Number"
       }
     ],
-    "output": "String",
+    "output": "Character",
     "style": "text_blocks",
-    "helpUrl": ""
+    "tooltip": "将ASCII码数字转换为对应的字符",
+    "helpUrl": "",
+    "inputsInline": true,
+    "icon": "fa-regular fa-input-text"
   },
   {
     "type": "toascii",
     "message0": "将字符 %1 转换为ASCII数值",
     "args0": [
       {
-        "type": "field_input",
-        "name": "STRING",
-        "text": "world"
+        "type": "input_value",
+        "name": "CHAR",
+        "check": ["Character", "String"]
       }
     ],
     "output": "Number",
     "style": "text_blocks",
-    "helpUrl": ""
+    "tooltip": "获取字符的ASCII码数值",
+    "helpUrl": "",
+    "inputsInline": true,
+    "icon": "fa-regular fa-input-text"
   },
   {
     "type": "number_to_string",
@@ -227,11 +81,12 @@
     ],
     "output": "String",
     "style": "text_blocks",
-    "helpUrl": ""
+    "helpUrl": "",
+    "icon": "fa-regular fa-input-text"
   },
   {
     "type": "char",
-    "message0": "'%1'",
+    "message0": "%1",
     "args0": [
       {
         "type": "field_input",
@@ -240,14 +95,16 @@
         "spellcheck": false
       }
     ],
-    "output": "String",
+    "output": "Character",
     "style": "text_blocks",
     "helpUrl": "",
     "tooltip": "输入单个字符，支持转义字符：\\n(换行), \\t(制表符), \\r(回车), \\\\(反斜杠), \\'(单引号), \\\"(双引号), \\0(空字符)",
     "extensions": [
+      "text_single_quotes",
       "char_field_validator",
       "parent_tooltip_when_inline"
-    ]
+    ],
+    "icon": "fa-regular fa-input-text"
   },
   {
     "type": "text",
@@ -266,7 +123,8 @@
     "extensions": [
       "text_quotes",
       "parent_tooltip_when_inline"
-    ]
+    ],
+    "icon": "fa-regular fa-input-text"
   },
   {
     "type": "text_join",
@@ -275,7 +133,8 @@
     "style": "text_blocks",
     "helpUrl": "%{BKY_TEXT_JOIN_HELPURL}",
     "tooltip": "%{BKY_TEXT_JOIN_TOOLTIP}",
-    "mutator": "text_join_mutator"
+    "mutator": "text_join_mutator",
+    "icon": "fa-regular fa-input-text"
   },
   {
     "type": "text_create_join_container",
@@ -291,7 +150,8 @@
     ],
     "style": "text_blocks",
     "tooltip": "%{BKY_TEXT_CREATE_JOIN_TOOLTIP}",
-    "enableContextMenu": false
+    "enableContextMenu": false,
+    "icon": "fa-regular fa-input-text"
   },
   {
     "type": "text_create_join_item",
@@ -300,28 +160,8 @@
     "nextStatement": null,
     "style": "text_blocks",
     "tooltip": "%{BKY_TEXT_CREATE_JOIN_ITEM_TOOLTIP}",
-    "enableContextMenu": false
-  },
-  {
-    "type": "text_append",
-    "message0": "在 %1 之后加上文本 %2",
-    "args0": [
-      {
-        "type": "field_variable",
-        "name": "VAR",
-        "variable": "i"
-      },
-      {
-        "type": "input_value",
-        "name": "TEXT"
-      }
-    ],
-    "previousStatement": null,
-    "nextStatement": null,
-    "style": "text_blocks",
-    "extensions": [
-      "text_append_tooltip"
-    ]
+    "enableContextMenu": false,
+    "icon": "fa-regular fa-input-text"
   },
   {
     "type": "text_length",
@@ -339,7 +179,8 @@
     "output": "Number",
     "style": "text_blocks",
     "tooltip": "%{BKY_TEXT_LENGTH_TOOLTIP}",
-    "helpUrl": "%{BKY_TEXT_LENGTH_HELPURL}"
+    "helpUrl": "%{BKY_TEXT_LENGTH_HELPURL}",
+    "icon": "fa-regular fa-input-text"
   },
   {
     "type": "text_isEmpty",
@@ -357,11 +198,12 @@
     "output": "Boolean",
     "style": "text_blocks",
     "tooltip": "%{BKY_TEXT_ISEMPTY_TOOLTIP}",
-    "helpUrl": "%{BKY_TEXT_ISEMPTY_HELPURL}"
+    "helpUrl": "%{BKY_TEXT_ISEMPTY_HELPURL}",
+    "icon": "fa-regular fa-input-text"
   },
   {
     "type": "text_indexOf",
-    "message0": "在文本 %1 里 %2 %3",
+    "message0": "在文本 %1 里 %2 出现文本 %3",
     "args0": [
       {
         "type": "input_value",
@@ -373,11 +215,11 @@
         "name": "END",
         "options": [
           [
-            "寻找第一次出现的文本",
+            "寻找第一次",
             "FIRST"
           ],
           [
-            "寻找最后一次出现的文本",
+            "寻找最后一次",
             "LAST"
           ]
         ]
@@ -392,9 +234,7 @@
     "style": "text_blocks",
     "helpUrl": "%{BKY_TEXT_INDEXOF_HELPURL}",
     "inputsInline": true,
-    "extensions": [
-      "text_indexOf_tooltip"
-    ]
+    "icon": "fa-regular fa-input-text"
   },
   {
     "type": "string_endsWith",
@@ -415,7 +255,8 @@
     "style": "text_blocks",
     "helpUrl": "",
     "tooltip": "检查文本是否以指定的后缀结尾",
-    "inputsInline": true
+    "inputsInline": true,
+    "icon": "fa-regular fa-input-text"
   },
   {
     "type": "string_startsWith",
@@ -436,7 +277,8 @@
     "style": "text_blocks",
     "helpUrl": "",
     "tooltip": "检查文本是否以指定的前缀开头",
-    "inputsInline": true
+    "inputsInline": true,
+    "icon": "fa-regular fa-input-text"
   },
   {
     "type": "text_charAt",
@@ -478,7 +320,8 @@
     "style": "text_blocks",
     "helpUrl": "%{BKY_TEXT_CHARAT_HELPURL}",
     "inputsInline": true,
-    "mutator": "text_charAt_mutator"
+    "mutator": "text_charAt_mutator",
+    "icon": "fa-regular fa-input-text"
   },
   {
     "type": "tt_getSubstring",
@@ -544,7 +387,8 @@
     "style": "text_blocks",
     "helpUrl": "",
     "inputsInline": true,
-    "mutator": "text_getSubstring_mutator"
+    "mutator": "text_getSubstring_mutator",
+    "icon": "fa-regular fa-input-text"
   },
   {
     "type": "text_changeCase",
@@ -576,7 +420,8 @@
     ],
     "output": "String",
     "style": "text_blocks",
-    "inputsInline": true
+    "inputsInline": true,
+    "icon": "fa-regular fa-input-text"
   },
   {
     "type": "text_trim",
@@ -608,7 +453,8 @@
     ],
     "output": "String",
     "style": "text_blocks",
-    "inputsInline": true
+    "inputsInline": true,
+    "icon": "fa-regular fa-input-text"
   },
   {
     "type": "text_count",
@@ -627,7 +473,8 @@
     ],
     "output": "Number",
     "style": "text_blocks",
-    "inputsInline": true
+    "inputsInline": true,
+    "icon": "fa-regular fa-input-text"
   },
   {
     "type": "text_replace",
@@ -636,7 +483,8 @@
       {
         "type": "input_value",
         "name": "TEXT"
-      },{
+      },
+      {
         "type": "input_value",
         "name": "FROM"
       },
@@ -647,7 +495,8 @@
     ],
     "output": "String",
     "style": "text_blocks",
-    "inputsInline": true
+    "inputsInline": true,
+    "icon": "fa-regular fa-input-text"
   },
   {
     "type": "text_reverse",
@@ -660,7 +509,8 @@
     ],
     "output": "String",
     "style": "text_blocks",
-    "inputsInline": true
+    "inputsInline": true,
+    "icon": "fa-regular fa-input-text"
   },
   {
     "type": "string_to_something",
@@ -675,14 +525,38 @@
         "type": "field_dropdown",
         "name": "TYPE",
         "options": [
-          ["整数 (int)", "toInt"],
-          ["长整数 (long)", "toLong"],
-          ["浮点数 (float)", "toFloat"],
-          ["双精度 (double)", "toDouble"],
-          ["C字符串 (char*)", "c_str"],
-          ["首字符 (char)", "charAt0"],
-          ["大写字符串", "toUpper"],
-          ["小写字符串", "toLower"]
+          [
+            "整数 (int)",
+            "toInt"
+          ],
+          [
+            "长整数 (long)",
+            "toLong"
+          ],
+          [
+            "浮点数 (float)",
+            "toFloat"
+          ],
+          [
+            "双精度 (double)",
+            "toDouble"
+          ],
+          [
+            "C字符串 (char*)",
+            "c_str"
+          ],
+          [
+            "首字符 (char)",
+            "charAt0"
+          ],
+          [
+            "大写字符串",
+            "toUpper"
+          ],
+          [
+            "小写字符串",
+            "toLower"
+          ]
         ]
       }
     ],
@@ -690,6 +564,7 @@
     "style": "text_blocks",
     "tooltip": "将字符串转换为指定的数据类型。toInt/toLong转为整数，toFloat/toDouble转为浮点数，c_str转为C字符串指针，charAt0获取首字符，toUpper/toLower转换大小写。",
     "helpUrl": "https://www.arduino.cc/reference/en/language/variables/data-types/string/",
-    "inputsInline": true
+    "inputsInline": true,
+    "icon": "fa-regular fa-input-text"
   }
 ]

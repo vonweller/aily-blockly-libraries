@@ -1,0 +1,1454 @@
+{
+  "toolbox_name": "AI-VOX3",
+  "toolbox_labels": {
+    "控制": "control",
+    "初始化": "initialization",
+    "事件": "event",
+    "MCP": "MCP",
+    "自定义": "Customize"
+  },
+  "aivox3_init_wifi": {
+    "message0": "Initialize AI-VOX WIFI mode %1",
+    "args0": [
+      {
+        "options": [
+          [
+            "Manual network configuration",
+            "Manual"
+          ]
+        ]
+      }
+    ]
+  },
+  "aivox3_get_wifi_state": {
+    "message0": "Get AI-VOX device status",
+    "tooltip": "Get AI-VOX3 device status"
+  },
+  "aivox3_wifi_state": {
+    "message0": "AI-VOX Network%1",
+    "tooltip": "AI-VOX3 network connection status",
+    "args0": [
+      {
+        "options": [
+          [
+            "WIFI connecting",
+            "kConnecting"
+          ],
+          [
+            "WIFI connection completed",
+            "kFinished"
+          ]
+        ]
+      }
+    ]
+  },
+  "aivox3_init_es8311": {
+    "tooltip": "Initialize AI-VOX3 engine ES8311 module"
+  },
+  "aivox3_set_es8311_volume": {
+    "message0": "Set AI-VOX volume to %1",
+    "tooltip": "Set the AI-VOX device volume"
+  },
+  "aivox3_set_screen_light": {
+    "message0": "Set AI-VOX screen brightness to %1",
+    "tooltip": "Set AI-VOX screen brightness"
+  },
+  "aivox_init_mic": {
+    "tooltip": "Initialize AI-VOX engine and use standard I2S microphone"
+  },
+  "aivox_init_audio": {
+    "tooltip": "Initialize the AI-VOX engine and use the standard I2S audio decoder"
+  },
+  "aivox_init_lcd": {
+    "message0": "Initialize display (ST7789)\nBackLight backlight pin %1\nMOSI pin %2\n CLK pin %3\n DC pin %4\n RST pin %5\n CS pin %6",
+    "tooltip": "Initialize AI-VOX screen, use ST7789 driver\nAI-VOX3 pins: Backlight: GPIO16, MOSI: GPIO21, CLK: GPIO17, DC: GPIO14, RST: None, CS: GPIO15\nAI-VOX pins: Backlight: GPIO11, MOSI: GPIO17, CLK: GPIO16, DC: GPIO12, RST: GPIO21, CS: GPIO15",
+    "args0": [
+      {
+        "options": [
+          [
+            "GPIO16",
+            "16"
+          ],
+          [
+            "GPIO0",
+            "0"
+          ],
+          [
+            "GPIO1",
+            "1"
+          ],
+          [
+            "GPIO2",
+            "2"
+          ],
+          [
+            "GPIO3",
+            "3"
+          ],
+          [
+            "GPIO4",
+            "4"
+          ],
+          [
+            "GPIO5",
+            "5"
+          ],
+          [
+            "GPIO6",
+            "6"
+          ],
+          [
+            "GPIO7",
+            "7"
+          ],
+          [
+            "GPIO8",
+            "8"
+          ],
+          [
+            "GPIO9",
+            "9"
+          ],
+          [
+            "GPIO10",
+            "10"
+          ],
+          [
+            "GPIO11",
+            "11"
+          ],
+          [
+            "GPIO12",
+            "12"
+          ],
+          [
+            "GPIO13",
+            "13"
+          ],
+          [
+            "GPIO14",
+            "14"
+          ],
+          [
+            "GPIO15",
+            "15"
+          ],
+          [
+            "GPIO16",
+            "16"
+          ],
+          [
+            "GPIO17",
+            "17"
+          ],
+          [
+            "GPIO18",
+            "18"
+          ],
+          [
+            "GPIO19",
+            "19"
+          ],
+          [
+            "GPIO20",
+            "20"
+          ],
+          [
+            "GPIO21",
+            "21"
+          ],
+          [
+            "GPIO35",
+            "35"
+          ],
+          [
+            "GPIO36",
+            "36"
+          ],
+          [
+            "GPIO37",
+            "37"
+          ],
+          [
+            "GPIO38",
+            "38"
+          ],
+          [
+            "GPIO39",
+            "39"
+          ],
+          [
+            "GPIO40",
+            "40"
+          ],
+          [
+            "GPIO41",
+            "41"
+          ],
+          [
+            "GPIO42",
+            "42"
+          ],
+          [
+            "GPIO43",
+            "43"
+          ],
+          [
+            "GPIO44",
+            "44"
+          ],
+          [
+            "GPIO45",
+            "45"
+          ],
+          [
+            "GPIO46",
+            "46"
+          ],
+          [
+            "GPIO47",
+            "47"
+          ],
+          [
+            "GPIO48",
+            "48"
+          ],
+          [
+            "None",
+            "-1"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "GPIO21",
+            "21"
+          ],
+          [
+            "GPIO0",
+            "0"
+          ],
+          [
+            "GPIO1",
+            "1"
+          ],
+          [
+            "GPIO2",
+            "2"
+          ],
+          [
+            "GPIO3",
+            "3"
+          ],
+          [
+            "GPIO4",
+            "4"
+          ],
+          [
+            "GPIO5",
+            "5"
+          ],
+          [
+            "GPIO6",
+            "6"
+          ],
+          [
+            "GPIO7",
+            "7"
+          ],
+          [
+            "GPIO8",
+            "8"
+          ],
+          [
+            "GPIO9",
+            "9"
+          ],
+          [
+            "GPIO10",
+            "10"
+          ],
+          [
+            "GPIO11",
+            "11"
+          ],
+          [
+            "GPIO12",
+            "12"
+          ],
+          [
+            "GPIO13",
+            "13"
+          ],
+          [
+            "GPIO14",
+            "14"
+          ],
+          [
+            "GPIO15",
+            "15"
+          ],
+          [
+            "GPIO16",
+            "16"
+          ],
+          [
+            "GPIO17",
+            "17"
+          ],
+          [
+            "GPIO18",
+            "18"
+          ],
+          [
+            "GPIO19",
+            "19"
+          ],
+          [
+            "GPIO20",
+            "20"
+          ],
+          [
+            "GPIO21",
+            "21"
+          ],
+          [
+            "GPIO35",
+            "35"
+          ],
+          [
+            "GPIO36",
+            "36"
+          ],
+          [
+            "GPIO37",
+            "37"
+          ],
+          [
+            "GPIO38",
+            "38"
+          ],
+          [
+            "GPIO39",
+            "39"
+          ],
+          [
+            "GPIO40",
+            "40"
+          ],
+          [
+            "GPIO41",
+            "41"
+          ],
+          [
+            "GPIO42",
+            "42"
+          ],
+          [
+            "GPIO43",
+            "43"
+          ],
+          [
+            "GPIO44",
+            "44"
+          ],
+          [
+            "GPIO45",
+            "45"
+          ],
+          [
+            "GPIO46",
+            "46"
+          ],
+          [
+            "GPIO47",
+            "47"
+          ],
+          [
+            "GPIO48",
+            "48"
+          ],
+          [
+            "None",
+            "-1"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "GPIO17",
+            "17"
+          ],
+          [
+            "GPIO0",
+            "0"
+          ],
+          [
+            "GPIO1",
+            "1"
+          ],
+          [
+            "GPIO2",
+            "2"
+          ],
+          [
+            "GPIO3",
+            "3"
+          ],
+          [
+            "GPIO4",
+            "4"
+          ],
+          [
+            "GPIO5",
+            "5"
+          ],
+          [
+            "GPIO6",
+            "6"
+          ],
+          [
+            "GPIO7",
+            "7"
+          ],
+          [
+            "GPIO8",
+            "8"
+          ],
+          [
+            "GPIO9",
+            "9"
+          ],
+          [
+            "GPIO10",
+            "10"
+          ],
+          [
+            "GPIO11",
+            "11"
+          ],
+          [
+            "GPIO12",
+            "12"
+          ],
+          [
+            "GPIO13",
+            "13"
+          ],
+          [
+            "GPIO14",
+            "14"
+          ],
+          [
+            "GPIO15",
+            "15"
+          ],
+          [
+            "GPIO16",
+            "16"
+          ],
+          [
+            "GPIO17",
+            "17"
+          ],
+          [
+            "GPIO18",
+            "18"
+          ],
+          [
+            "GPIO19",
+            "19"
+          ],
+          [
+            "GPIO20",
+            "20"
+          ],
+          [
+            "GPIO21",
+            "21"
+          ],
+          [
+            "GPIO35",
+            "35"
+          ],
+          [
+            "GPIO36",
+            "36"
+          ],
+          [
+            "GPIO37",
+            "37"
+          ],
+          [
+            "GPIO38",
+            "38"
+          ],
+          [
+            "GPIO39",
+            "39"
+          ],
+          [
+            "GPIO40",
+            "40"
+          ],
+          [
+            "GPIO41",
+            "41"
+          ],
+          [
+            "GPIO42",
+            "42"
+          ],
+          [
+            "GPIO43",
+            "43"
+          ],
+          [
+            "GPIO44",
+            "44"
+          ],
+          [
+            "GPIO45",
+            "45"
+          ],
+          [
+            "GPIO46",
+            "46"
+          ],
+          [
+            "GPIO47",
+            "47"
+          ],
+          [
+            "GPIO48",
+            "48"
+          ],
+          [
+            "None",
+            "-1"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "GPIO14",
+            "14"
+          ],
+          [
+            "GPIO0",
+            "0"
+          ],
+          [
+            "GPIO1",
+            "1"
+          ],
+          [
+            "GPIO2",
+            "2"
+          ],
+          [
+            "GPIO3",
+            "3"
+          ],
+          [
+            "GPIO4",
+            "4"
+          ],
+          [
+            "GPIO5",
+            "5"
+          ],
+          [
+            "GPIO6",
+            "6"
+          ],
+          [
+            "GPIO7",
+            "7"
+          ],
+          [
+            "GPIO8",
+            "8"
+          ],
+          [
+            "GPIO9",
+            "9"
+          ],
+          [
+            "GPIO10",
+            "10"
+          ],
+          [
+            "GPIO11",
+            "11"
+          ],
+          [
+            "GPIO12",
+            "12"
+          ],
+          [
+            "GPIO13",
+            "13"
+          ],
+          [
+            "GPIO14",
+            "14"
+          ],
+          [
+            "GPIO15",
+            "15"
+          ],
+          [
+            "GPIO16",
+            "16"
+          ],
+          [
+            "GPIO17",
+            "17"
+          ],
+          [
+            "GPIO18",
+            "18"
+          ],
+          [
+            "GPIO19",
+            "19"
+          ],
+          [
+            "GPIO20",
+            "20"
+          ],
+          [
+            "GPIO21",
+            "21"
+          ],
+          [
+            "GPIO35",
+            "35"
+          ],
+          [
+            "GPIO36",
+            "36"
+          ],
+          [
+            "GPIO37",
+            "37"
+          ],
+          [
+            "GPIO38",
+            "38"
+          ],
+          [
+            "GPIO39",
+            "39"
+          ],
+          [
+            "GPIO40",
+            "40"
+          ],
+          [
+            "GPIO41",
+            "41"
+          ],
+          [
+            "GPIO42",
+            "42"
+          ],
+          [
+            "GPIO43",
+            "43"
+          ],
+          [
+            "GPIO44",
+            "44"
+          ],
+          [
+            "GPIO45",
+            "45"
+          ],
+          [
+            "GPIO46",
+            "46"
+          ],
+          [
+            "GPIO47",
+            "47"
+          ],
+          [
+            "GPIO48",
+            "48"
+          ],
+          [
+            "None",
+            "-1"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "None",
+            "-1"
+          ],
+          [
+            "GPIO0",
+            "0"
+          ],
+          [
+            "GPIO1",
+            "1"
+          ],
+          [
+            "GPIO2",
+            "2"
+          ],
+          [
+            "GPIO3",
+            "3"
+          ],
+          [
+            "GPIO4",
+            "4"
+          ],
+          [
+            "GPIO5",
+            "5"
+          ],
+          [
+            "GPIO6",
+            "6"
+          ],
+          [
+            "GPIO7",
+            "7"
+          ],
+          [
+            "GPIO8",
+            "8"
+          ],
+          [
+            "GPIO9",
+            "9"
+          ],
+          [
+            "GPIO10",
+            "10"
+          ],
+          [
+            "GPIO11",
+            "11"
+          ],
+          [
+            "GPIO12",
+            "12"
+          ],
+          [
+            "GPIO13",
+            "13"
+          ],
+          [
+            "GPIO14",
+            "14"
+          ],
+          [
+            "GPIO15",
+            "15"
+          ],
+          [
+            "GPIO16",
+            "16"
+          ],
+          [
+            "GPIO17",
+            "17"
+          ],
+          [
+            "GPIO18",
+            "18"
+          ],
+          [
+            "GPIO19",
+            "19"
+          ],
+          [
+            "GPIO20",
+            "20"
+          ],
+          [
+            "GPIO21",
+            "21"
+          ],
+          [
+            "GPIO35",
+            "35"
+          ],
+          [
+            "GPIO36",
+            "36"
+          ],
+          [
+            "GPIO37",
+            "37"
+          ],
+          [
+            "GPIO38",
+            "38"
+          ],
+          [
+            "GPIO39",
+            "39"
+          ],
+          [
+            "GPIO40",
+            "40"
+          ],
+          [
+            "GPIO41",
+            "41"
+          ],
+          [
+            "GPIO42",
+            "42"
+          ],
+          [
+            "GPIO43",
+            "43"
+          ],
+          [
+            "GPIO44",
+            "44"
+          ],
+          [
+            "GPIO45",
+            "45"
+          ],
+          [
+            "GPIO46",
+            "46"
+          ],
+          [
+            "GPIO47",
+            "47"
+          ],
+          [
+            "GPIO48",
+            "48"
+          ],
+          [
+            "None",
+            "-1"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "GPIO15",
+            "15"
+          ],
+          [
+            "GPIO1",
+            "1"
+          ],
+          [
+            "GPIO2",
+            "2"
+          ],
+          [
+            "GPIO3",
+            "3"
+          ],
+          [
+            "GPIO4",
+            "4"
+          ],
+          [
+            "GPIO5",
+            "5"
+          ],
+          [
+            "GPIO6",
+            "6"
+          ],
+          [
+            "GPIO7",
+            "7"
+          ],
+          [
+            "GPIO8",
+            "8"
+          ],
+          [
+            "GPIO9",
+            "9"
+          ],
+          [
+            "GPIO10",
+            "10"
+          ],
+          [
+            "GPIO11",
+            "11"
+          ],
+          [
+            "GPIO12",
+            "12"
+          ],
+          [
+            "GPIO13",
+            "13"
+          ],
+          [
+            "GPIO14",
+            "14"
+          ],
+          [
+            "GPIO15",
+            "15"
+          ],
+          [
+            "GPIO16",
+            "16"
+          ],
+          [
+            "GPIO17",
+            "17"
+          ],
+          [
+            "GPIO18",
+            "18"
+          ],
+          [
+            "GPIO19",
+            "19"
+          ],
+          [
+            "GPIO20",
+            "20"
+          ],
+          [
+            "GPIO21",
+            "21"
+          ],
+          [
+            "GPIO35",
+            "35"
+          ],
+          [
+            "GPIO36",
+            "36"
+          ],
+          [
+            "GPIO37",
+            "37"
+          ],
+          [
+            "GPIO38",
+            "38"
+          ],
+          [
+            "GPIO39",
+            "39"
+          ],
+          [
+            "GPIO40",
+            "40"
+          ],
+          [
+            "GPIO41",
+            "41"
+          ],
+          [
+            "GPIO42",
+            "42"
+          ],
+          [
+            "GPIO43",
+            "43"
+          ],
+          [
+            "GPIO44",
+            "44"
+          ],
+          [
+            "GPIO45",
+            "45"
+          ],
+          [
+            "GPIO46",
+            "46"
+          ],
+          [
+            "GPIO47",
+            "47"
+          ],
+          [
+            "GPIO48",
+            "48"
+          ],
+          [
+            "None",
+            "-1"
+          ]
+        ]
+      }
+    ]
+  },
+  "aivox_display_mode": {
+    "message0": "The initialization session display style is %1",
+    "args0": [
+      {
+        "options": [
+          [
+            "Ordinary",
+            "normal"
+          ],
+          [
+            "WeChat conversation",
+            "wechat"
+          ]
+        ]
+      }
+    ]
+  },
+  "aivox_lcd_show_status": {
+    "message0": "Display %2 in %1",
+    "args0": [
+      {
+        "options": [
+          [
+            "status box",
+            "ShowStatus"
+          ],
+          [
+            "emoticon box",
+            "SetEmotion"
+          ],
+          [
+            "content box",
+            "SetChatMessage"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "aivox_config_ota_url": {
+    "message0": "Custom OTA link %1",
+    "tooltip": "There is no need to call this block when using the Xiage server. The self-built compatible Xiage server protocol calls this block."
+  },
+  "aivox_config_websocket": {
+    "message0": "Custom websocket link %1 Request header (C language array format) %2",
+    "tooltip": "There is no need to call this block when using the Xiage server. The self-built compatible Xiage server protocol calls this block."
+  },
+  "aivox3_start_engine": {
+    "message0": "Start AI-VOX engine"
+  },
+  "aivox_lcd_show_chat_message": {
+    "message0": "Device dialog %1 Display chat information %2",
+    "args0": [
+      {
+        "options": [
+          [
+            "System",
+            "Display::Role::kSystem"
+          ],
+          [
+            "Assistant",
+            "Display::Role::kAssistant"
+          ],
+          [
+            "User",
+            "Display::Role::kUser"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "aivox_lcd_show_emotion": {
+    "message0": "Display status box displays expression %1"
+  },
+  "aivox_mcp_register_state_control_command": {
+    "message0": "Register MCP state control Name %1 Description %2 Parameters %3"
+  },
+  "aivox_mcp_register_value_control_command": {
+    "message0": "Register MCP numerical control Name %1 Description %2 Parameter %3 Minimum value %4 Maximum value %5"
+  },
+  "aivox_mcp_register_control_command": {
+    "message0": "Register MCP control service%1",
+    "message1": "Parameter%1"
+  },
+  "aivox_mcp_control": {
+    "message0": "MCP Service Name%1 Description%2"
+  },
+  "aivox_mcp_control_param": {
+    "message0": "MCP service parameter%1 Parameter type%2",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Boolean",
+            "Boolean"
+          ],
+          [
+            "Number",
+            "Number"
+          ]
+        ]
+      }
+    ]
+  },
+  "aivox_loop_activation": {
+    "message0": "When AI-VOX receives activation information %1 %2",
+    "tooltip": "The logic of AI-VOX activation event"
+  },
+  "get_aivox_activation_message": {
+    "message0": "Received %1",
+    "tooltip": "Get the activation code for your device",
+    "args0": [
+      {
+        "options": [
+          [
+            "activation code",
+            "code"
+          ],
+          [
+            "Activation URL",
+            "message"
+          ]
+        ]
+      }
+    ]
+  },
+  "aivox_loop_emotion": {
+    "message0": "When AI-VOX receives the expression code %1 %2",
+    "tooltip": "The logic of AI-VOX expression events"
+  },
+  "get_aivox_emotion_result": {
+    "message0": "Received emoticon code",
+    "tooltip": "Get the current emotional expression"
+  },
+  "aivox_emotion": {
+    "message0": "The expression received was %1?",
+    "tooltip": "emotional expression",
+    "args0": [
+      {
+        "options": [
+          [
+            "happy",
+            "happy"
+          ],
+          [
+            "Cool",
+            "cool"
+          ],
+          [
+            "laugh",
+            "laughing"
+          ],
+          [
+            "Funny",
+            "funny"
+          ],
+          [
+            "sad",
+            "sad"
+          ],
+          [
+            "angry",
+            "angry"
+          ],
+          [
+            "cry",
+            "crying"
+          ],
+          [
+            "like",
+            "loving"
+          ],
+          [
+            "Embarrassing",
+            "embarrassed"
+          ],
+          [
+            "surprised",
+            "surprised"
+          ],
+          [
+            "shocked",
+            "shocked"
+          ],
+          [
+            "think",
+            "thinking"
+          ],
+          [
+            "naughty",
+            "winking"
+          ],
+          [
+            "relax",
+            "relaxed"
+          ],
+          [
+            "enjoy",
+            "delicious"
+          ],
+          [
+            "kiss",
+            "kissy"
+          ],
+          [
+            "Confident",
+            "confident"
+          ],
+          [
+            "sleepy",
+            "sleepy"
+          ],
+          [
+            "Funny",
+            "silly"
+          ],
+          [
+            "confused",
+            "confused"
+          ]
+        ]
+      }
+    ]
+  },
+  "aivox_emotion_list": {
+    "message0": "Emoticon package %1",
+    "tooltip": "emotional expression",
+    "args0": [
+      {
+        "options": [
+          [
+            "happy",
+            "happy"
+          ],
+          [
+            "Cool",
+            "cool"
+          ],
+          [
+            "laugh",
+            "laughing"
+          ],
+          [
+            "Funny",
+            "funny"
+          ],
+          [
+            "sad",
+            "sad"
+          ],
+          [
+            "angry",
+            "angry"
+          ],
+          [
+            "cry",
+            "crying"
+          ],
+          [
+            "like",
+            "loving"
+          ],
+          [
+            "Embarrassing",
+            "embarrassed"
+          ],
+          [
+            "surprised",
+            "surprised"
+          ],
+          [
+            "shocked",
+            "shocked"
+          ],
+          [
+            "think",
+            "thinking"
+          ],
+          [
+            "naughty",
+            "winking"
+          ],
+          [
+            "relax",
+            "relaxed"
+          ],
+          [
+            "enjoy",
+            "delicious"
+          ],
+          [
+            "kiss",
+            "kissy"
+          ],
+          [
+            "Confident",
+            "confident"
+          ],
+          [
+            "sleepy",
+            "sleepy"
+          ],
+          [
+            "Funny",
+            "silly"
+          ],
+          [
+            "confused",
+            "confused"
+          ]
+        ]
+      }
+    ]
+  },
+  "aivox_loop_state_change": {
+    "message0": "When the AI-VOX device status is %1 %2 %3",
+    "tooltip": "Handling AI-VOX interactive state change events",
+    "args0": [
+      {
+        "options": [
+          [
+            "idle",
+            "Idle"
+          ],
+          [
+            "Initialization completed",
+            "Initted"
+          ],
+          [
+            "Loading protocol",
+            "Loading"
+          ],
+          [
+            "Failed to load protocol",
+            "LoadingFailed"
+          ],
+          [
+            "Standby",
+            "Standby"
+          ],
+          [
+            "Connecting",
+            "Connecting"
+          ],
+          [
+            "Listening",
+            "Listening"
+          ],
+          [
+            "Talking",
+            "Speaking"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "aivox_state": {
+    "message0": "AI-VOX status %1 is %2?",
+    "tooltip": "Determine current device status",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "idle",
+            "ai_vox::ChatState::kIdle"
+          ],
+          [
+            "Initialization completed",
+            "ai_vox::ChatState::kInitted"
+          ],
+          [
+            "Loading protocol",
+            "ai_vox::ChatState::kLoading"
+          ],
+          [
+            "Failed to load protocol",
+            "ai_vox::ChatState::kLoadingFailed"
+          ],
+          [
+            "Standby",
+            "ai_vox::ChatState::kStandby"
+          ],
+          [
+            "Connecting",
+            "ai_vox::ChatState::kConnecting"
+          ],
+          [
+            "Listening",
+            "ai_vox::ChatState::kListening"
+          ],
+          [
+            "Talking",
+            "ai_vox::ChatState::kSpeaking"
+          ]
+        ]
+      }
+    ]
+  },
+  "aivox_loop_chat_message": {
+    "message0": "When AI-VOX receives the chat message %1 %2",
+    "tooltip": "Handle AI-VOX interactive message events"
+  },
+  "aivox_loop_chat_message_role_var": {
+    "message0": "Received a message from %1?",
+    "tooltip": "The role of the current message of the AI-VOX device",
+    "args0": [
+      {
+        "options": [
+          [
+            "Assistant reply",
+            "assistant"
+          ],
+          [
+            "User inquiry",
+            "user"
+          ]
+        ]
+      }
+    ]
+  },
+  "aivox_loop_chat_message_msg_var": {
+    "message0": "Received message content",
+    "tooltip": "Information content of the current chat on the AI-VOX device"
+  },
+  "aivox_loop_mcp": {
+    "message0": "When AI-VOX receives the MCP message %1 %2",
+    "tooltip": "Processing AI-VOX MCP information"
+  },
+  "aivox_get_iot_message_event_name": {
+    "message0": "The device name is %1"
+  },
+  "aivox_get_iot_message_event_name_new": {
+    "message0": "The MCP service name is %1?"
+  },
+  "aivox_state_control_message_event_fuction": {
+    "message0": "Get the result of device name %1 status parameter %2"
+  },
+  "aivox_control_message_event_fuction": {
+    "message0": "Get the result of MCP service name %1 parameter %2"
+  },
+  "aivox_response_mcp_control_result": {
+    "message0": "Report device %1 control results"
+  },
+  "aivox_response_mcp_control_result_new": {
+    "message0": "Report MCP service name %1 execution completed"
+  },
+  "aivox_update_mcp_control_state_new": {
+    "message0": "Set the MCP service name %1 and the value of parameter %2 is %3"
+  }
+}

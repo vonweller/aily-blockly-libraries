@@ -1,0 +1,205 @@
+{
+  "toolbox_name": "設定保存",
+  "toolbox_labels": {
+    "命名空间": "Namespace",
+    "写入标量": "スカラーを書く",
+    "读取标量": "スカラーを読んでください",
+    "字节与长度": "バイトと長さ",
+    "查询与维护": "クエリとメンテナンス"
+  },
+  "esp32_preferences_begin": {
+    "message0": "設定空間を開いて読み取り専用%1%2",
+    "tooltip": "Preferences.begin(name, readOnly)を呼び出して、デフォルトのNVSパーティションで名前空間を開きます。",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "No",
+            "false"
+          ],
+          [
+            "Yes",
+            "true"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_preferences_begin_partition": {
+    "message0": "設定空間を読み取り専用%1開いてください%2 partition%3",
+    "tooltip": "指定されたNVSパーティション内で名前空間を開くためにPreferences.begin(name, readOnly, partition_label)を呼び出します。",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "No",
+            "false"
+          ],
+          [
+            "Yes",
+            "true"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "esp32_preferences_end": {
+    "message0": "近い選好",
+    "tooltip": "Preferences.end() を呼び出して、現在の名前空間を閉じます。"
+  },
+  "esp32_preferences_clear": {
+    "message0": "現在の名前空間をクリアする",
+    "tooltip": "Preferences.clear()を呼び出して、現在の名前空間内のすべてのキーを削除してください。"
+  },
+  "esp32_preferences_remove": {
+    "message0": "キー%1を削除",
+    "tooltip": "指定されたキーを削除するためにPreferences.remove(key)を呼び出してください。"
+  },
+  "esp32_preferences_put_char": {
+    "message0": "int8キーの%1値を書きます%2",
+    "tooltip": "int8に書き込みたい場合はPreferences.putChar()を呼び出してください。"
+  },
+  "esp32_preferences_put_uchar": {
+    "message0": "uint8キーの値を書き%1 %2",
+    "tooltip": "Preferences.putUChar() に連絡してuint8に書きましょう。"
+  },
+  "esp32_preferences_put_short": {
+    "message0": "int16キーの%1値を書き%2",
+    "tooltip": "int16に書き込みするためにPreferences.putShort()を呼び出してください。"
+  },
+  "esp32_preferences_put_ushort": {
+    "message0": "uint16キーの%1値を書き込む%2",
+    "tooltip": "uint16に書きたい場合はPreferences.putUShort()に電話してください。"
+  },
+  "esp32_preferences_put_int": {
+    "message0": "int32キーの%1値を書き%2",
+    "tooltip": "Preferences.putInt() を呼び出して int32 と書きます。"
+  },
+  "esp32_preferences_put_uint": {
+    "message0": "uint32キーの値を書き込む%1 %2",
+    "tooltip": "Preferences.putUInt()を呼び出してuint32に書きます。"
+  },
+  "esp32_preferences_put_long": {
+    "message0": "ロングキーの%1値を書きます%2",
+    "tooltip": "Preferences.putLong() を呼び出して長文を書きます。"
+  },
+  "esp32_preferences_put_ulong": {
+    "message0": "署名のないロングキーの値を書きます%1 %2",
+    "tooltip": "Preferences.putULong()に連絡して、署名なしのロングを書きましょう。"
+  },
+  "esp32_preferences_put_long64": {
+    "message0": "int64キーの%1値を書き%2",
+    "tooltip": "int64に書き込むにはPreferences.putLong64()を呼び出してください。"
+  },
+  "esp32_preferences_put_ulong64": {
+    "message0": "uint64キーの%1値を書き込む%2",
+    "tooltip": "Preferences.putULong64()に電話してuint64に書きましょう。"
+  },
+  "esp32_preferences_put_float": {
+    "message0": "floatキーを値%1%2",
+    "tooltip": "Preferences.putFloat()を呼び出してfloatを書きます。"
+  },
+  "esp32_preferences_put_double": {
+    "message0": "ダブルキー%1値を%2",
+    "tooltip": "Preferences.putDouble() を呼び出して double を書きます。"
+  },
+  "esp32_preferences_put_bool": {
+    "message0": "ブール値キー%1値を%2",
+    "tooltip": "Preferences.putBool() を呼び出してブール値を書きます。"
+  },
+  "esp32_preferences_put_string": {
+    "message0": "文字列キーを値%1書き%2",
+    "tooltip": "Preferences.putString() を呼び出して文字列を書きます。"
+  },
+  "esp32_preferences_put_bytes": {
+    "message0": "書き込みバイトキー%1バッファ%2長さ%3",
+    "tooltip": "Preferences.putBytes(key, buffer, len)を呼び出してバイトバッファに書き込みます。 バッファはC++の変数名または式で満たされます。"
+  },
+  "esp32_preferences_get_char": {
+    "message0": "INT8キーをデフォルトで読み%1%2",
+    "tooltip": "int8を読みたい場合はPreferences.getChar()を呼び出してください。 キーが欠落するとデフォルト値を返します。"
+  },
+  "esp32_preferences_get_uchar": {
+    "message0": "UINT8キーをデフォルト%1読み%2",
+    "tooltip": "uint8; キーが欠落するとデフォルト値を返します。"
+  },
+  "esp32_preferences_get_short": {
+    "message0": "int16キーを読み取%1デフォルト%2",
+    "tooltip": "int16を読みたい場合はPreferences.getShort()を呼び出してください。 キーが欠落するとデフォルト値を返します。"
+  },
+  "esp32_preferences_get_ushort": {
+    "message0": "UINT16キーをデフォルト%1読み%2",
+    "tooltip": "Preferences.getUShort() を呼び出してuint16を読み取ってください; キーが欠落するとデフォルト値を返します。"
+  },
+  "esp32_preferences_get_int": {
+    "message0": "int32キーをデフォルト%1読み%2",
+    "tooltip": "int32を読むにはPreferences.getInt()を呼び出します。 キーが欠落するとデフォルト値を返します。"
+  },
+  "esp32_preferences_get_uint": {
+    "message0": "uint32キーをデフォルトで読み%1%2",
+    "tooltip": "Preferences.getUInt()を呼び出してuint32を読み取ってください; キーが欠落するとデフォルト値を返します。"
+  },
+  "esp32_preferences_get_long": {
+    "message0": "デフォルトの長いキー%1読み%2",
+    "tooltip": "長文を読むにはPreferences.getLong()を呼び出してください; キーが欠落するとデフォルト値を返します。"
+  },
+  "esp32_preferences_get_ulong": {
+    "message0": "デフォルトの%1、署名のないロングキーを読み%2",
+    "tooltip": "Preferences.getULong()に連絡して符号なしロングを読みます; キーが欠落するとデフォルト値を返します。"
+  },
+  "esp32_preferences_get_long64": {
+    "message0": "デフォルトの%1 int64キーを読め%2",
+    "tooltip": "int64を読むにはPreferences.getLong64()を呼び出してください; キーが欠落するとデフォルト値を返します。"
+  },
+  "esp32_preferences_get_ulong64": {
+    "message0": "UINT64キーをデフォルトで読%1 %2",
+    "tooltip": "Preferences.getULong64()に連絡してuint64と読めます。 キーが欠落するとデフォルト値を返します。"
+  },
+  "esp32_preferences_get_float": {
+    "message0": "デフォルトの%1floatキーを読み%2",
+    "tooltip": "Preferences.getFloat()を呼び出してfloatを読み込みます。 キーが欠落するとデフォルト値を返します。"
+  },
+  "esp32_preferences_get_double": {
+    "message0": "デフォルト%1ダブルキーを読み%2",
+    "tooltip": "Preferences.getDouble()を呼び出してdoubleを読みます。 キーが欠落するとデフォルト値を返します。"
+  },
+  "esp32_preferences_get_bool": {
+    "message0": "デフォルトの%1ブールキーを読み%2",
+    "tooltip": "Preferences.getBool()を呼び出してブール値を読み取ります。 キーが欠落するとデフォルト値を返します。"
+  },
+  "esp32_preferences_get_string": {
+    "message0": "デフォルト%1 文字列キーを読み%2",
+    "tooltip": "Preferences.getString()を呼び出して文字列を読みます。 キーが欠落するとデフォルト値を返します。"
+  },
+  "esp32_preferences_get_bytes": {
+    "message0": "リードバイトキー%1バッファ %2 最大長さ%3",
+    "tooltip": "Preferences.getBytes(key, buffer, maxLen)を呼び出してバイトバッファを読み取り、読み取り長を返します。"
+  },
+  "esp32_preferences_get_string_length": {
+    "message0": "弦のキーの長さ%1",
+    "tooltip": "Preferences.getStringLength(key)を呼び出して文字列長を取得します。"
+  },
+  "esp32_preferences_get_bytes_length": {
+    "message0": "バイトキーの長さ%1",
+    "tooltip": "バイトデータ長を取得するにはPreferences.getBytesLength(key)を呼び出してください。"
+  },
+  "esp32_preferences_is_key": {
+    "message0": "鍵%1が存在するかどうか",
+    "tooltip": "Preferences.isKey(key)に連絡してキーが存在するか確認してください。"
+  },
+  "esp32_preferences_get_type": {
+    "message0": "キー%1の好みタイプ",
+    "tooltip": "Preferences.getType(key)を呼び出してPreferenceType列挙値を取得します。"
+  },
+  "esp32_preferences_type_constant": {
+    "message0": "優先順位Type%1",
+    "tooltip": "Preferences.hで定義されたPreferenceType列挙定数を出力します。"
+  },
+  "esp32_preferences_free_entries": {
+    "message0": "残存するNVSエントリー",
+    "tooltip": "Preferences.freeEntries()を呼び出して、デフォルトのNVSパーティションに残っているエントリを取得してください。"
+  }
+}

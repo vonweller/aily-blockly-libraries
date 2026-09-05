@@ -1,0 +1,509 @@
+{
+  "toolbox_name": "reconnaissance vocale",
+  "openjumper_asr_init": {
+    "message0": "Reconnaissance vocale initialisation des ports série soft : broches RX : %1 broches TX : %2",
+    "tooltip": "Initialiser le module de reconnaissance vocale hors ligne OpenJumper et définir les broches de communication série souple",
+    "args0": [
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": "${board.digitalPins}"
+      }
+    ]
+  },
+  "openjumper_asr_data": {
+    "message0": "Analyse des données de reconnaissance vocale",
+    "tooltip": "Analyse des données retournées par le module de reconnaissance vocale et mise à jour de l’état de reconnaissance"
+  },
+  "openjumper_asr_rincmd": {
+    "message0": "Reconnaissance vocale %1",
+    "tooltip": "Vérifiez si la commande vocale spécifiée est reconnue et renvoyez une valeur booléenne",
+    "args0": [
+      {
+        "options": [
+          [
+            "0. Assistant vocal",
+            "0"
+          ],
+          [
+            "1. Allumez la climatisation",
+            "1"
+          ],
+          [
+            "2. Éteignez la climatisation",
+            "2"
+          ],
+          [
+            "3. Vent vertical oscillant",
+            "3"
+          ],
+          [
+            "4. Balancements de vent gauche et droit",
+            "4"
+          ],
+          [
+            "5. Mode de refroidissement",
+            "5"
+          ],
+          [
+            "6. Mode chauffage",
+            "6"
+          ],
+          [
+            "7. Augmenter la température",
+            "7"
+          ],
+          [
+            "8. Baisser la température",
+            "8"
+          ],
+          [
+            "9. Fermeture après une demi-heure",
+            "9"
+          ],
+          [
+            "10. Fermeture après une heure",
+            "10"
+          ],
+          [
+            "11. Fermeture après deux heures",
+            "11"
+          ],
+          [
+            "12. Fermeture après trois heures",
+            "12"
+          ],
+          [
+            "13. Dix degrés",
+            "13"
+          ],
+          [
+            "14. Onze degrés",
+            "14"
+          ],
+          [
+            "15. Douze degrés",
+            "15"
+          ],
+          [
+            "16. Treize degrés",
+            "16"
+          ],
+          [
+            "17. Quatorze degrés",
+            "17"
+          ],
+          [
+            "18. Quinze degrés",
+            "18"
+          ],
+          [
+            "19. Seize degrés",
+            "19"
+          ],
+          [
+            "20. Dix-sept degrés",
+            "20"
+          ],
+          [
+            "21. Dix-huit degrés",
+            "21"
+          ],
+          [
+            "22. Dix-neuf degrés",
+            "22"
+          ],
+          [
+            "23. Vingt degrés",
+            "23"
+          ],
+          [
+            "24. Vingt et un degrés",
+            "24"
+          ],
+          [
+            "25. Vingt-deux degrés",
+            "25"
+          ],
+          [
+            "26. Vingt-trois degrés",
+            "26"
+          ],
+          [
+            "27. Vingt-quatre degrés",
+            "27"
+          ],
+          [
+            "28. Vingt-cinq degrés",
+            "28"
+          ],
+          [
+            "29. Vingt-six degrés",
+            "29"
+          ],
+          [
+            "30. Vingt-sept degrés",
+            "30"
+          ],
+          [
+            "31. Vingt-huit degrés",
+            "31"
+          ],
+          [
+            "32. Allumez le ventilateur",
+            "32"
+          ],
+          [
+            "33. Éteins le ventilateur",
+            "33"
+          ],
+          [
+            "34. Le fan secoue la tête",
+            "34"
+          ],
+          [
+            "35. Arrête de secouer la tête",
+            "35"
+          ],
+          [
+            "36. Vent naturel",
+            "36"
+          ],
+          [
+            "37. Sommeil du vent",
+            "37"
+          ],
+          [
+            "38. Vent normal",
+            "38"
+          ],
+          [
+            "39. Allumez la lumière du salon",
+            "39"
+          ],
+          [
+            "40. Éteins les lumières du salon",
+            "40"
+          ],
+          [
+            "41. Allumez la lumière de la chambre",
+            "41"
+          ],
+          [
+            "42. Éteins les lumières de la chambre",
+            "42"
+          ],
+          [
+            "43. Allumez la lumière de la cuisine",
+            "43"
+          ],
+          [
+            "44. Éteignez la lumière de la cuisine",
+            "44"
+          ],
+          [
+            "45. Allumez la lampe de bureau",
+            "45"
+          ],
+          [
+            "46. Éteins la lampe de bureau",
+            "46"
+          ],
+          [
+            "47. Activez le tueur de moustiques",
+            "47"
+          ],
+          [
+            "48. Désactivez les anti-moustiques",
+            "48"
+          ],
+          [
+            "49. Allumez l’humidificateur",
+            "49"
+          ],
+          [
+            "50. Éteins l’humidificateur",
+            "50"
+          ],
+          [
+            "51. Allumez le purificateur",
+            "51"
+          ],
+          [
+            "52. Éteignez le purificateur",
+            "52"
+          ],
+          [
+            "53. Allumer l’éclairage ambiant",
+            "53"
+          ],
+          [
+            "54. Éteindre l’éclairage ambiant",
+            "54"
+          ],
+          [
+            "55. Allumez la télé",
+            "55"
+          ],
+          [
+            "56. Éteins la télé",
+            "56"
+          ],
+          [
+            "57. Allumez la prise",
+            "57"
+          ],
+          [
+            "58. Éteindre la prise",
+            "58"
+          ],
+          [
+            "59. Ouvre la porte",
+            "59"
+          ],
+          [
+            "60. Fermeture de la porte",
+            "60"
+          ],
+          [
+            "61. Allumez le chauffe-eau",
+            "61"
+          ],
+          [
+            "62. Éteindre le chauffe-eau",
+            "62"
+          ],
+          [
+            "63. Feu jaune",
+            "63"
+          ],
+          [
+            "64. Feu rouge",
+            "64"
+          ],
+          [
+            "65. Blu-ray",
+            "65"
+          ],
+          [
+            "66. Feu vert",
+            "66"
+          ],
+          [
+            "67. Lumière colorée",
+            "67"
+          ],
+          [
+            "68. Lumière blanche",
+            "68"
+          ],
+          [
+            "69. Lumière chaude",
+            "69"
+          ],
+          [
+            "70. Éclaircis un peu",
+            "70"
+          ],
+          [
+            "71. Assombrissez-la un peu",
+            "71"
+          ],
+          [
+            "72. Démarrez la voiture",
+            "72"
+          ],
+          [
+            "73. Coupez le tramway",
+            "73"
+          ],
+          [
+            "74. Mode visuel",
+            "74"
+          ],
+          [
+            "75. Mode patrouille en ligne",
+            "75"
+          ],
+          [
+            "76. Suivez le schéma",
+            "76"
+          ],
+          [
+            "77. Mode d’évitement des obstacles",
+            "77"
+          ],
+          [
+            "78. Mode réseau",
+            "78"
+          ],
+          [
+            "79. Mode infrarouge",
+            "79"
+          ],
+          [
+            "80. Mode sans fil",
+            "80"
+          ],
+          [
+            "81. Mode Bluetooth",
+            "81"
+          ],
+          [
+            "82. Mode contrôleur",
+            "82"
+          ],
+          [
+            "83. Dépêche-toi",
+            "83"
+          ],
+          [
+            "84. Ralentis",
+            "84"
+          ],
+          [
+            "85. Allumez les phares de la voiture",
+            "85"
+          ],
+          [
+            "86. Éteins les phares de la voiture",
+            "86"
+          ],
+          [
+            "87. Avancez",
+            "87"
+          ],
+          [
+            "88. Reculez",
+            "88"
+          ],
+          [
+            "89. Tourne à gauche",
+            "89"
+          ],
+          [
+            "90. Tourne à droite",
+            "90"
+          ],
+          [
+            "91. Décalez-vous à gauche",
+            "91"
+          ],
+          [
+            "92. Avancez à droite",
+            "92"
+          ],
+          [
+            "93. Retraite à gauche",
+            "93"
+          ],
+          [
+            "94. Retraite vers la droite",
+            "94"
+          ],
+          [
+            "95. Élever le Yuntai (Plateforme Nuageuse).",
+            "95"
+          ],
+          [
+            "96. Abaisser le Yuntai (plateforme de nuages).",
+            "96"
+          ],
+          [
+            "97. Augmentez un peu",
+            "97"
+          ],
+          [
+            "98. Baisse-le un peu",
+            "98"
+          ],
+          [
+            "99. Attrapez des objets",
+            "99"
+          ],
+          [
+            "100. Pose les objets",
+            "100"
+          ],
+          [
+            "101. Serre un peu plus fort",
+            "101"
+          ],
+          [
+            "102. Détends-toi un peu",
+            "102"
+          ],
+          [
+            "103. Ouvrez les rideaux",
+            "103"
+          ],
+          [
+            "104. Fermez les rideaux",
+            "104"
+          ],
+          [
+            "105. Ouvre un peu",
+            "105"
+          ],
+          [
+            "106. Ferme un peu",
+            "106"
+          ],
+          [
+            "107. Mode de visionnement",
+            "107"
+          ],
+          [
+            "108. Mode normal",
+            "108"
+          ],
+          [
+            "109. Mode divertissement",
+            "109"
+          ],
+          [
+            "110. Mode de fonctionnement",
+            "110"
+          ],
+          [
+            "111. Je pars travailler",
+            "111"
+          ],
+          [
+            "112. Je suis de retour",
+            "112"
+          ],
+          [
+            "113. Bonjour",
+            "113"
+          ],
+          [
+            "114. Bonne nuit",
+            "114"
+          ],
+          [
+            "115. Ouvrez le porte-linge",
+            "115"
+          ],
+          [
+            "116. Range le porte-linge",
+            "116"
+          ],
+          [
+            "117. Allumez le projecteur",
+            "117"
+          ],
+          [
+            "118. Éteins le projecteur",
+            "118"
+          ]
+        ]
+      }
+    ]
+  },
+  "openjumper_asr_state": {
+    "message0": "Reconnaissance vocale réveil",
+    "tooltip": "Récupère le statut de réveil du module de reconnaissance vocale et renvoie la valeur booléenne"
+  }
+}

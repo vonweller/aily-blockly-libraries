@@ -1,0 +1,882 @@
+{
+  "toolbox_name": "XiaoZhi AI",
+  "toolbox_labels": {
+    "说明:小智事件中禁用delay阻塞编程，简单定时器不如多线程": "Hinweis: Deaktivieren Sie die Verzögerungsblockierungsprogrammierung in Xiaozhi-Ereignissen. Einfache Timer sind nicht so gut wie Multithreads.",
+    "说明:1. 预内置和自定义不可混用": "Hinweis: 1. Vorgefertigte und angepasste Funktionen können nicht gemischt werden.",
+    "   2. 自定义需要自己画界面,内容可自定，灵活但麻烦": "2. Bei der Anpassung müssen Sie die Benutzeroberfläche selbst zeichnen, und der Inhalt kann angepasst werden, was flexibel, aber mühsam ist.",
+    "   3. 预内置是定死的，但直接可用": "3. Der Voreinbau ist fest, kann aber direkt verwendet werden.",
+    "*特别声明1. 屏显功能需要加载LVGL库": "*Besondere Anweisung 1. Die Bildschirmanzeigefunktion muss die LVGL-Bibliothek laden",
+    "*特别声明2. 在LVGL库初始化中需‘设置图像字体开启’": "*Besondere Anweisung 2. Bei der Initialisierung der LVGL-Bibliothek muss die Bildschrift aktiviert werden",
+    "*特别声明3. 需自绘界面的，一般用TFT_eSPI库，按例程": "*Spezielle Anweisung 3. Wenn Sie Ihre eigene Schnittstelle zeichnen müssen, verwenden Sie im Allgemeinen die TFT_eSPI-Bibliothek und befolgen Sie die Routine",
+    " 就行，这里的自定义一般不需要，单色屏时可考虑使用": "Das ist in Ordnung. Eine Anpassung ist hier im Allgemeinen nicht erforderlich. Sie können die Verwendung in Betracht ziehen, wenn Sie einen monochromen Bildschirm verwenden.",
+    "说明:操作设备代码放设置，服务器读取代码放上报": "Beschreibung: Der Code des Bediengeräts wird festgelegt, der Server liest den Code und meldet ihn."
+  },
+  "toolbox_categories": [
+    "Initialisierung",
+    "Anzeige",
+    "Voreingestellt",
+    "Benutzerdefiniert",
+    "Steuerung",
+    "AI-Taste",
+    "Status & Aktivierung",
+    "Gesichtsausdrücke und Gespräche",
+    "MCP"
+  ],
+  "esp32_task": {
+    "message0": "ESP32 task%1 Core%2 Platzzuweisung %3",
+    "tooltip": "Setze, auf welchem Kernel der Thread läuft",
+    "args0": [
+      {
+        "options": [
+          [
+            "Aufgabe 1",
+            "1"
+          ],
+          [
+            "Aufgabe 2",
+            "2"
+          ],
+          [
+            "Aufgabe 3",
+            "3"
+          ],
+          [
+            "Aufgabe 4",
+            "4"
+          ],
+          [
+            "Aufgabe 5",
+            "5"
+          ],
+          [
+            "Aufgabe 6",
+            "6"
+          ],
+          [
+            "Aufgabe 7",
+            "7"
+          ],
+          [
+            "Aufgabe 8",
+            "8"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "Kern 0",
+            "0"
+          ],
+          [
+            "Kern 1",
+            "1"
+          ]
+        ]
+      },
+      null
+    ],
+    "message1": "Initialisieren %1",
+    "message2": "Kreisförmige %1"
+  },
+  "esp32_serial_init": {
+    "message0": "ESP32-Initialisierung %1 RX-Pin %2 TX-Pin %3 Baud-rate%4",
+    "tooltip": "Initialisieren Sie den ESP32, um die serielle Port- und PIN-Konfiguration anzugeben",
+    "args0": [
+      {
+        "options": [
+          [
+            "Serial",
+            "Serial"
+          ],
+          [
+            "Serial1",
+            "Serial1"
+          ],
+          [
+            "Serial2",
+            "Serial2"
+          ]
+        ]
+      },
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": [
+          [
+            "9600",
+            "9600"
+          ],
+          [
+            "19200",
+            "19200"
+          ],
+          [
+            "38400",
+            "38400"
+          ],
+          [
+            "57600",
+            "57600"
+          ],
+          [
+            "115200",
+            "115200"
+          ],
+          [
+            "256000",
+            "256000"
+          ],
+          [
+            "500000",
+            "500000"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32ai_button_setup": {
+    "message0": "KI-Triggerknopf-Pin %1 Modus %2 niedrigstufigen aktiven %3",
+    "tooltip": "Erstellen und initialisieren Sie ESP32 KI-Sprachinteraktionsbuttons (angepasst an die Espressif-Button-Bibliothek)",
+    "args0": [
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": [
+          [
+            "Reguläre Eingabe",
+            "INPUT"
+          ],
+          [
+            "Pull-up-Eingabe",
+            "INPUT_PULLUP"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "Ja",
+            "TRUE"
+          ],
+          [
+            "Nein",
+            "FALSE"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32ai_init_wifi": {
+    "message0": "Initialisieren ESP32_ Xiaozhi AI WIFI-Modus %1",
+    "args0": [
+      {
+        "options": [
+          [
+            "Manueller Netzwerkaufbau",
+            "Manual"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32ai_button_click": {
+    "message0": "Wenn die KI den Knopf drückt und klickt",
+    "tooltip": "Klicke auf die Taste, um die Aktion auszuführen, wenn das Ereignis ausgelöst wird",
+    "message1": "%1"
+  },
+  "esp32ai_button_double_click": {
+    "message0": "Wenn die KI den Knopf durch Doppelklick auslöst",
+    "tooltip": "Doppelklicke auf den Button, um die Aktion auszuführen, wenn das Ereignis ausgelöst wird",
+    "message1": "%1"
+  },
+  "esp32ai_button_long_pressing": {
+    "message0": "Drücke und halte die KI-Triggertaste gedrückt",
+    "tooltip": "Aktionen, die während des langen Knopfdrucks kontinuierlich ausgelöst werden",
+    "message1": "%1"
+  },
+  "esp32_i2s_mic_setup": {
+    "message0": "KI-Mikrofontyp: %1",
+    "tooltip": "Initialisieren Sie I2S/PDM-Mikrofone (angepasst an ai_vox_engine Audioeingang)",
+    "args0": [
+      {
+        "options": [
+          [
+            "I2S-Standard",
+            "AUDIO_INPUT_DEVICE_TYPE_I2S_STD"
+          ],
+          [
+            "PDM",
+            "AUDIO_INPUT_DEVICE_TYPE_PDM"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32ai_i2s_speaker_setup": {
+    "message0": "AI-Lautsprecher SCK/BCLK %1 WS/LRCLK %2 SD/DIN %3",
+    "tooltip": "Initialisieren Sie den I2S-Lautsprecher (Pin entspricht der kSpeakerPin*-Konstante im main.cpp)",
+    "args0": [
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": "${board.digitalPins}"
+      }
+    ]
+  },
+  "esp32ai_init_display": {
+    "message0": "Original-Interface-Initialisierungsanzeige: %1",
+    "tooltip": "Initialisieren Sie den angegebenen Anzeigetyp",
+    "args0": [
+      {
+        "options": [
+          [
+            "ST7789 (SPI，240x240)",
+            "ST7789"
+          ],
+          [
+            "SSD1306 (I2C, 128x64)",
+            "SSD1306"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32ai_init_nlvgl_display": {
+    "message0": "Anpassbare VGL-Initialisierungsanzeige: %1 Drehwinkel: %2",
+    "tooltip": "Initialisieren Sie den angegebenen Anzeigetyp",
+    "args0": [
+      {
+        "options": [
+          [
+            "ST7789 (SPI)",
+            "nST7789"
+          ],
+          [
+            "SSD1306 (I2C)",
+            "nSSD1306"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "0°",
+            "LV_DISPLAY_ROTATION_0"
+          ],
+          [
+            "90°",
+            "LV_DISPLAY_ROTATION_90"
+          ],
+          [
+            "180°",
+            "LV_DISPLAY_ROTATION_180"
+          ],
+          [
+            "270°",
+            "LV_DISPLAY_ROTATION_270"
+          ]
+        ]
+      }
+    ]
+  },
+  "aivox_config_ota_url": {
+    "message0": "Benutzerdefinierte OTA-Links %1",
+    "tooltip": "Die Verwendung von Shrimp Server erfordert keinen Aufruf dieses Blocks; ein benutzerdefiniertes kompatibles Shrimp Server-Protokoll kann diesen Block aufrufen"
+  },
+  "aivox_config_websocket": {
+    "message0": "Benutzerdefinierte WebSocket-Links %1",
+    "tooltip": "Die Verwendung von Shrimp Server erfordert keinen Aufruf dieses Blocks; ein benutzerdefiniertes kompatibles Shrimp Server-Protokoll kann diesen Block aufrufen",
+    "message1": "Anfrage-Header (C-Sprach-Array-Format) %1"
+  },
+  "esp32ai_start_engine": {
+    "message0": "Start der ESP32-AI-Engine"
+  },
+  "aivox_display_mode": {
+    "message0": "Initialisieren Sie den Sitzungsdarstellungsstil wie %1",
+    "args0": [
+      {
+        "options": [
+          [
+            "Normal",
+            "normal"
+          ],
+          [
+            "WeChat-Gespräche",
+            "wechat"
+          ]
+        ]
+      }
+    ]
+  },
+  "aivox3_set_es8311_volume": {
+    "message0": "Stelle die KI-Lautstärke auf %1",
+    "tooltip": "Stellen Sie die Lautstärke des KI-Geräts ein"
+  },
+  "aivox3_set_screen_light": {
+    "message0": "Stelle die Bildschirmhelligkeit des ST7789 auf %1",
+    "tooltip": "Stelle die Bildschirmhelligkeit ST7789 ein"
+  },
+  "esp32ai_wake_engine": {
+    "message0": "Erwecke die ESP32-KI"
+  },
+  "esp32ai_sendtext": {
+    "message0": "Proaktiv Nachrichten %1",
+    "tooltip": "Er schrieb proaktiv Xiao Zhi, um ihn zur Arbeit zu bringen"
+  },
+  "aivox_lcd_show_status": {
+    "message0": "Zeig %2 in %1",
+    "args0": [
+      {
+        "options": [
+          [
+            "Statusbox",
+            "ShowStatus"
+          ],
+          [
+            "Emoji-Box",
+            "SetEmotion"
+          ],
+          [
+            "Inhaltsbox",
+            "SetChatMessage"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "esp32ai_state_change_root": {
+    "message0": "Wenn sich der Status des KI-Geräts ändert",
+    "tooltip": "Das Hauptgateway zur Behandlung aller Zustandsänderungsereignisse von KI-Geräten",
+    "message1": "%1"
+  },
+  "esp32ai_state_change_case": {
+    "message0": "Wenn der Zustand %1",
+    "tooltip": "Wenn das KI-Gerät in den angegebenen Zustand eintritt, führe den Code hier aus",
+    "args0": [
+      {
+        "options": [
+          [
+            "Leerlauf",
+            "kIdle"
+          ],
+          [
+            "Initiated",
+            "kInitted"
+          ],
+          [
+            "Beladung",
+            "kLoading"
+          ],
+          [
+            "LadenFehlgeschlagen",
+            "kLoadingFailed"
+          ],
+          [
+            "Bereitschaft",
+            "kStandby"
+          ],
+          [
+            "Anschluss",
+            "kConnecting"
+          ],
+          [
+            "Zuhören",
+            "kListening"
+          ],
+          [
+            "Sprechen",
+            "kSpeaking"
+          ]
+        ]
+      }
+    ],
+    "message1": "%1"
+  },
+  "aivox3_ST77789TurnOnBacklight_engine": {
+    "message0": "Die ST77789 Leinwand zum Leuchten bringen"
+  },
+  "aivox3_ST77789TurnOffBacklight_engine": {
+    "message0": "Schalte ST77789 Bildschirm aus."
+  },
+  "esp32ai_loop_activation": {
+    "message0": "Wenn die KI die Aktivierungsmeldung erhält",
+    "tooltip": "KI aktiviert die Logik der Ereignisse",
+    "message1": "%1"
+  },
+  "get_aivox_activation_message": {
+    "message0": "Erhalten %1",
+    "tooltip": "Erhalten Sie den Aktivierungscode des Geräts",
+    "args0": [
+      {
+        "options": [
+          [
+            "Aktivierungscode",
+            "code"
+          ],
+          [
+            "Aktivieren Sie die Website",
+            "message"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32ai_loop_emotion": {
+    "message0": "Wenn KI einen Emoji-Code erhält",
+    "tooltip": "Die Logik hinter dem KI-VOX-Emoji-Vorfall",
+    "message1": "%1"
+  },
+  "get_aivox_emotion_result": {
+    "message0": "Empfangene Emoji-Codes",
+    "tooltip": "Erhalte den aktuellen emotionalen Ausdruck"
+  },
+  "aivox_emotion": {
+    "message0": "Welche Art von Emoji hast du receive%1?",
+    "tooltip": "Emotionale Ausdrucksformen",
+    "args0": [
+      {
+        "options": [
+          [
+            "Glücklich",
+            "happy"
+          ],
+          [
+            "Cool",
+            "cool"
+          ],
+          [
+            "Herzliches Lachen",
+            "laughing"
+          ],
+          [
+            "Lustig,",
+            "funny"
+          ],
+          [
+            "Traurig",
+            "sad"
+          ],
+          [
+            "Wütend",
+            "angry"
+          ],
+          [
+            "Weinen",
+            "crying"
+          ],
+          [
+            "Ich mag es",
+            "loving"
+          ],
+          [
+            "Peinlich",
+            "embarrassed"
+          ],
+          [
+            "Überrascht",
+            "surprised"
+          ],
+          [
+            "Schockiert",
+            "shocked"
+          ],
+          [
+            "Denken",
+            "thinking"
+          ],
+          [
+            "Unartig",
+            "winking"
+          ],
+          [
+            "Entspann dich",
+            "relaxed"
+          ],
+          [
+            "Viel Spaß",
+            "delicious"
+          ],
+          [
+            "Zuneigend",
+            "kissy"
+          ],
+          [
+            "Selbstvertrauen",
+            "confident"
+          ],
+          [
+            "Ermüdung",
+            "sleepy"
+          ],
+          [
+            "Lustig,",
+            "silly"
+          ],
+          [
+            "Verwirrt",
+            "confused"
+          ]
+        ]
+      }
+    ]
+  },
+  "aivox_emotion_list": {
+    "message0": "Meme-%1",
+    "tooltip": "Emotionale Ausdrucksformen",
+    "args0": [
+      {
+        "options": [
+          [
+            "Glücklich",
+            "happy"
+          ],
+          [
+            "Cool",
+            "cool"
+          ],
+          [
+            "Herzliches Lachen",
+            "laughing"
+          ],
+          [
+            "Lustig,",
+            "funny"
+          ],
+          [
+            "Traurig",
+            "sad"
+          ],
+          [
+            "Wütend",
+            "angry"
+          ],
+          [
+            "Weinen",
+            "crying"
+          ],
+          [
+            "Ich mag es",
+            "loving"
+          ],
+          [
+            "Peinlich",
+            "embarrassed"
+          ],
+          [
+            "Überrascht",
+            "surprised"
+          ],
+          [
+            "Schockiert",
+            "shocked"
+          ],
+          [
+            "Denken",
+            "thinking"
+          ],
+          [
+            "Unartig",
+            "winking"
+          ],
+          [
+            "Entspann dich",
+            "relaxed"
+          ],
+          [
+            "Viel Spaß",
+            "delicious"
+          ],
+          [
+            "Zuneigend",
+            "kissy"
+          ],
+          [
+            "Selbstvertrauen",
+            "confident"
+          ],
+          [
+            "Ermüdung",
+            "sleepy"
+          ],
+          [
+            "Lustig,",
+            "silly"
+          ],
+          [
+            "Verwirrt",
+            "confused"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32ai_loop_chat_message": {
+    "message0": "Wenn KI eine Chatnachricht erhält",
+    "tooltip": "Verarbeitet KI-VOX-Interaktionsnachrichten-Ereignisse",
+    "message1": "%1"
+  },
+  "aivox_loop_chat_message_role_var": {
+    "message0": "Neuigkeiten von %1 erhalten?",
+    "tooltip": "Die Rolle des KI-VOX-Geräts in aktuellen Nachrichten",
+    "args0": [
+      {
+        "options": [
+          [
+            "antwortete der Assistent",
+            "Assistant"
+          ],
+          [
+            "Benutzeranfrage",
+            "User"
+          ]
+        ]
+      }
+    ]
+  },
+  "aivox_mcp_register_control_command": {
+    "message0": "%1 Registrieren Sie sich für den MCP Control Service %2",
+    "args0": [
+      {
+        "options": [
+          [
+            "Normal",
+            "regular"
+          ],
+          [
+            "Nur Aufbau",
+            "set_only"
+          ],
+          [
+            "Nur den Behörden gemeldet",
+            "report_only"
+          ]
+        ]
+      },
+      null
+    ],
+    "message1": "Parameters%1"
+  },
+  "aivox_mcp_control_param": {
+    "message0": "MCP-Serviceparameter %1 Parameter Types%2",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Boolesch",
+            "Boolean"
+          ],
+          [
+            "Anzahl",
+            "Number"
+          ],
+          [
+            "Saite",
+            "String"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32ai_mcp_control_param": {
+    "message0": "MCP-Serviceparameter %1 Parameter Types%2",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Boolesch",
+            "Boolean"
+          ],
+          [
+            "Anzahl",
+            "Number"
+          ],
+          [
+            "Saite",
+            "String"
+          ]
+        ]
+      }
+    ]
+  },
+  "aivox_mcp_control": {
+    "message0": "MCP Service Name%1 Description%2"
+  },
+  "aivox_loop_chat_message_msg_var": {
+    "message0": "Der Inhalt der empfangenen Nachricht",
+    "tooltip": "Der aktuelle Chat-Inhalt des AI-VOX-Geräts"
+  },
+  "esp32ai_loop_mcp": {
+    "message0": "Wenn KI eine MCP-Nachricht erhält",
+    "tooltip": "Verarbeitung von AI-VOX-MCP-Informationen",
+    "message1": "%1"
+  },
+  "esp32ai_loop_mcp_new": {
+    "message0": "%1 Registrieren Sie sich für MCP-Steuerdienste",
+    "tooltip": "MCP-Dienstregistrierung und Nachrichtenverarbeitung",
+    "args0": [
+      {
+        "options": [
+          [
+            "Normal",
+            "regular"
+          ],
+          [
+            "Nur Aufbau",
+            "set_only"
+          ],
+          [
+            "Nur den Behörden gemeldet",
+            "report_only"
+          ]
+        ]
+      }
+    ],
+    "message1": "Dienst Name%1 Description%2",
+    "message2": "Parameters%1",
+    "message3": "Nachrichtenverarbeitung"
+  },
+  "aivox_get_iot_message_event_name": {
+    "message0": "Gerätname: %1"
+  },
+  "aivox_get_iot_message_event_name_new": {
+    "message0": "Der Name des MCP-Dienstes ist %1?"
+  },
+  "aivox_state_control_message_event_fuction": {
+    "message0": "Erhalten Sie das Ergebnis des Gerätenamens %1 Statusparameters %2"
+  },
+  "aivox_control_message_event_fuction": {
+    "message0": "Erhalten Sie das Ergebnis des MCP-Servicenamens %1 Parameter %2"
+  },
+  "aivox_response_mcp_control_result": {
+    "message0": "Berichte von Geräte- %1 Steuerungsergebnissen"
+  },
+  "aivox_response_mcp_control_result_new": {
+    "message0": "MCP-Dienstname melden %1 Ausführung abgeschlossen"
+  },
+  "aivox_update_mcp_control_state_new": {
+    "message0": "Geben Sie einfach den MCP-Servicenamen %1 Parameter an%2 Wert %3"
+  },
+  "aivox_calculateupdate_mcp_control_state": {
+    "message0": "Berechnen und melden Sie den MCP-Servicenamen %1 Parameter %2",
+    "message1": "%1"
+  },
+  "esp32ai_selget_mcp_control": {
+    "message0": "MCP-Dienstname: %1"
+  },
+  "lvgl_port_lock": {
+    "message0": "Hol dir die LVGL-Sperre %1ms",
+    "tooltip": "Erhalten Sie den LVGL-Mutex"
+  },
+  "lvgl_port_unlock": {
+    "message0": "LVGL-Sperre lösen",
+    "tooltip": "LVGL-Mutex freigeben"
+  },
+  "esp32ai_lvgl_obj_set_style_text_font": {
+    "message0": "Stelle %1 Xiaozhi-Schrift %2",
+    "tooltip": "Setze die Textschriftart für das Objekt",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Schwarzweißer Bildschirmtext, Schriftgröße 14",
+            "font_puhui_14_1"
+          ],
+          [
+            "Monochromer Bildschirm mit einem großen 30-Zoll-Symbol",
+            "font_awesome_30_1"
+          ],
+          [
+            "Monochromer Bildschirm Nr. 14 kleines Symbol",
+            "font_awesome_14_1"
+          ],
+          [
+            "Farbbildschirmtext, Schriftgröße 16",
+            "font_puhui_16_4"
+          ],
+          [
+            "Farbdisplay schwarzes Funktionssymbol Nr. 30",
+            "font_awesome_30_4"
+          ],
+          [
+            "Farbdisplay schwarzes Funktionssymbol Nr. 16",
+            "font_awesome_16_4"
+          ],
+          [
+            "Farbbild-Stimmung Nr. 32",
+            "font_emoji_32_init()"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32ai_emotion_select": {
+    "message0": "Zurück zur Bildschrift Kategorie: %1",
+    "tooltip": "Wählen Sie Kategorien und Symbole aus, um das entsprechende grafische Schriftart-Makro zurückzugeben",
+    "args0": [
+      {
+        "options": [
+          [
+            "Ausdruckstyp",
+            "EMOJI"
+          ],
+          [
+            "Batterien",
+            "BATTERY"
+          ],
+          [
+            "WLAN-Typ",
+            "WIFI"
+          ],
+          [
+            "Signalklasse",
+            "SIGNAL"
+          ],
+          [
+            "Volumenkategorie",
+            "VOLUME"
+          ],
+          [
+            "Medienkontrollklasse",
+            "MEDIA"
+          ],
+          [
+            "Pfeiltyp",
+            "ARROW"
+          ],
+          [
+            "Funktions-Icon-Klasse",
+            "FUNCTION"
+          ]
+        ]
+      }
+    ]
+  },
+  "lvgl_label_set_text_emotion": {
+    "message0": "Setze den Tab %1 Symboltext auf %2",
+    "tooltip": "Stellen Sie das auf dem Etikett angezeigte Symbol ein"
+  },
+  "lvgl_label_set_text_cpemotion": {
+    "message0": "Setze Tags %1 Xiaozhi-Farbbildschirm-Emojis %2",
+    "tooltip": "Stelle die Anzeige des Xiaozhi-Farbbildschirm-Emojis des Tags ein"
+  },
+  "aivox3_init_es8311": {
+    "tooltip": "Initialisieren Sie das AI-VOX3-Triebwerk-Modul ES8311"
+  },
+  "esp32ai_init_es8388": {
+    "tooltip": "Initialisieren Sie das ES8388-Modul der Xiaozhi-Sprachmaschine"
+  }
+}

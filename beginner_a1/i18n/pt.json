@@ -1,0 +1,148 @@
+{
+  "toolbox_name": "Beginner A1",
+  "toolbox_labels": {
+    "初始化": "inicialização",
+    "遥控输入": "entrada de controle remoto",
+    "行驶控制": "controle de passeio",
+    "舵机": "engrenagem de direção"
+  },
+  "beginner_a1_init": {
+    "message0": "Inicialize o Carro Beginner A1 %1 velocidade máxima %2",
+    "tooltip": "Crie e inicialize os objetos do carro: comunicação, motor, servo, LED e bateria, e atualize automaticamente o status durante o ciclo"
+  },
+  "beginner_a1_button": {
+    "message0": "%1 Botão do controle remoto %2 é pressionado",
+    "tooltip": "Verifique se os botões do controle remoto A/B/C/D foram pressionados",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "A",
+            "0"
+          ],
+          [
+            "B",
+            "1"
+          ],
+          [
+            "C",
+            "2"
+          ],
+          [
+            "D",
+            "3"
+          ]
+        ]
+      }
+    ]
+  },
+  "beginner_a1_joystick": {
+    "message0": "%1 Controle remoto do joystick %2",
+    "tooltip": "Leitura do valor do joystick do controle remoto, alcance -127~127 (0 quando não conectado)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Joystick esquerdo X",
+            "0"
+          ],
+          [
+            "Joystick esquerdo Y",
+            "1"
+          ],
+          [
+            "Analógico direito X",
+            "2"
+          ],
+          [
+            "Joystick direito Y",
+            "3"
+          ]
+        ]
+      }
+    ]
+  },
+  "beginner_a1_drive": {
+    "message0": "%1 Dirigindo o veículo pequeno para frente %2 direção %3",
+    "tooltip": "Curso do diferencial: Frente e faixa de direção -127~127"
+  },
+  "beginner_a1_motor": {
+    "message0": "%1 Ajuste %2 Velocidade do Motor %3",
+    "tooltip": "Ajuste a velocidade do motor esquerda/direita separadamente, alcance -120~120, valor negativo invertido",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Esquerda",
+            "0"
+          ],
+          [
+            "Direita",
+            "1"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "beginner_a1_stop": {
+    "message0": "%1 Para o bonde",
+    "tooltip": "Ambos os motores pararam"
+  },
+  "beginner_a1_servo": {
+    "message0": "%1 %2 Gire o servo para %3 graus",
+    "tooltip": "O servo de posicionamento gira suavemente para o ângulo especificado, com um alcance de 0~360 graus",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "SERVO_20",
+            "0"
+          ],
+          [
+            "SERVO_21",
+            "1"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "beginner_a1_servo_rotate": {
+    "message0": "%1 %2 Servo %3 speed%4 %5 segundos",
+    "tooltip": "Servo rotativo contínuo: Gira por um número especificado de segundos de acordo com direção e velocidade, depois para automaticamente (velocidade 0~100), não bloqueando",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "SERVO_20",
+            "0"
+          ],
+          [
+            "SERVO_21",
+            "1"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "Para frente",
+            "1"
+          ],
+          [
+            "reverse",
+            "-1"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  }
+}

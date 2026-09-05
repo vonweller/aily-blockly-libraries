@@ -1,0 +1,176 @@
+{
+  "toolbox_name": "カメラサーバー",
+  "toolbox_labels": {
+    "基础配置": "基本構成",
+    "高级配置": "高度な構成",
+    "画质调整": "画質調整",
+    "拍摄与数据访问": "写真撮影とデータへのアクセス"
+  },
+  "esp32_camera_webserver_init": {
+    "message0": "解像度%1ピクセルフォーマット%2ESP32カメラサーバー%3カメラモデルを初期化%4",
+    "tooltip": "ESP32カメラを初期化し、カメラパラメータを設定してください",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "AI Thinker",
+            "CAMERA_MODEL_AI_THINKER"
+          ],
+          [
+            "M5Stack PSRAM",
+            "CAMERA_MODEL_M5STACK_PSRAM"
+          ],
+          [
+            "M5Stack Wide",
+            "CAMERA_MODEL_M5STACK_WIDE"
+          ],
+          [
+            "ESP Eye",
+            "CAMERA_MODEL_ESP_EYE"
+          ],
+          [
+            "FireBeetle 2 ESP32S3",
+            "CAMERA_MODEL_DFRobot_FireBeetle2_ESP32S3"
+          ],
+          [
+            "ESP32S3 EYE / NL-ESP32-S3-CAM",
+            "CAMERA_MODEL_ESP32S3_EYE"
+          ],
+          [
+            "XIAO ESP32S3",
+            "CAMERA_MODEL_XIAO_ESP32S3"
+          ],
+          [
+            "ESP32-S3-WROOM-CAM",
+            "CAMERA_MODEL_ESP32S3_WROOM_CAM"
+          ],
+          [
+            "ESP32_AIOT_Kit",
+            "CAMERA_MODEL_ESP32_AIOT_KIT"
+          ],
+          [
+            "ESP32_AIOT_Kit GC2145 DVP",
+            "CAMERA_MODEL_ESP32_AIOT_KIT_GC2145"
+          ],
+          [
+            "カスタムピン",
+            "CUSTOM"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "UXGA (1600x1200)",
+            "FRAMESIZE_UXGA"
+          ],
+          [
+            "SXGA (1280x1024)",
+            "FRAMESIZE_SXGA"
+          ],
+          [
+            "XGA (1024x768)",
+            "FRAMESIZE_XGA"
+          ],
+          [
+            "SVGA (800x600)",
+            "FRAMESIZE_SVGA"
+          ],
+          [
+            "VGA (640x480)",
+            "FRAMESIZE_VGA"
+          ],
+          [
+            "CIF (400x296)",
+            "FRAMESIZE_CIF"
+          ],
+          [
+            "QVGA (320x240)",
+            "FRAMESIZE_QVGA"
+          ],
+          [
+            "HQVGA (240x176)",
+            "FRAMESIZE_HQVGA"
+          ],
+          [
+            "QQVGA (160x120)",
+            "FRAMESIZE_QQVGA"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "JPEG",
+            "PIXFORMAT_JPEG"
+          ],
+          [
+            "RGB565",
+            "PIXFORMAT_RGB565"
+          ],
+          [
+            "YUV422",
+            "PIXFORMAT_YUV422"
+          ],
+          [
+            "GRAYSCALE",
+            "PIXFORMAT_GRAYSCALE"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_camera_custom_pins": {
+    "message0": "カスタムカメラピン構成:%1 データピン D0-D7 %2 XCLKピン %3 PCLK ピン %4 VSYNCピン %5 HREFピン %6 SDAピン%7SCLピン%8PWDNピン%9RESET ピン%10",
+    "tooltip": "「カスタムピン」を選択したら、このブロックを使ってカメラピンの設定を行います。 データピンのフォーマット:『11, 12, 13, 14, 15, 16, 17, 18』"
+  },
+  "esp32_camera_set_quality": {
+    "message0": "カメラのJPEG画質設定%1",
+    "tooltip": "JPEG圧縮品質を設定する(0-63;値が小さいほど画質は向上)"
+  },
+  "esp32_camera_set_flip": {
+    "message0": "カメラのフリップを垂直%1%2水平ミラーリング%3",
+    "tooltip": "カメラのイメージフリップとミラーリングの設定をします"
+  },
+  "esp32_camera_set_brightness": {
+    "message0": "カメラの明るさ%2コントラスト%3彩度%1設定%4",
+    "tooltip": "カメラの明るさ、コントラスト、彩度(-2から2)を調整してください"
+  },
+  "esp32_camera_capture": {
+    "message0": "写真を撮ってください",
+    "tooltip": "カメラ画像データのフレームを取得し、フレームオブジェクトを返します(⚠️「符号なし長整数」変数で使用;使用後はリリースフレームブロックを呼び出します)"
+  },
+  "esp32_camera_frame_buffer": {
+    "message0": "フレーム%1のデータポインタ",
+    "tooltip": "フレームデータを取得するためのメモリポインタ(uint8_t*)。表示や転送に使用できます"
+  },
+  "esp32_camera_frame_len": {
+    "message0": "フレームのデータ長%1",
+    "tooltip": "フレームデータのバイト長を取得する"
+  },
+  "esp32_camera_frame_width": {
+    "message0": "フレーム%1幅",
+    "tooltip": "フレーム画像の幅(ピクセル数)を取得します"
+  },
+  "esp32_camera_frame_height": {
+    "message0": "フレームの高さ%1",
+    "tooltip": "得られるフレーム画像の高さ(ピクセル数)"
+  },
+  "esp32_camera_release": {
+    "message0": "リリースフレーム%1",
+    "tooltip": "フレームバッファメモリの解放(フレーム使用後に呼び出す必要があり、send_serialブロックが自動的に解放されます)"
+  },
+  "esp32_camera_send_serial": {
+    "message0": "シリアルport%1によるフレーム送信",
+    "tooltip": "JPEG画像データをシリアルポート経由で送信(フレーム識別子付き、ホストコンピュータの表示に使用可能)"
+  },
+  "esp32_camera_capture_and_encode_base64": {
+    "message0": "写真を撮ってBase64に変換してください",
+    "tooltip": "写真を撮ってJPEGデータをBase64形式にエンコードします"
+  },
+  "esp32_camera_print_diagnostics": {
+    "message0": "プリントカメラの診断情報",
+    "tooltip": "シリアルポートはカメラの初期化状態、センサーPID、一般的なエラートラブルシューティングのプロンプトを印刷します"
+  }
+}

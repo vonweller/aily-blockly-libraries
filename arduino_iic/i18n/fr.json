@@ -1,0 +1,141 @@
+{
+  "toolbox_name": "I2C",
+  "toolbox_labels": {
+    "I2C扫描模板": "Modèle d'analyse I2C"
+  },
+  "wire_begin": {
+    "message0": "Initialisation de la communication I2C",
+    "tooltip": "Initialisation de la communication I2C"
+  },
+  "wire_begin_address": {
+    "message0": "Initialiser la communication I2C en utilisant l’adresse esclave %1",
+    "tooltip": "Initialiser la communication I2C avec une adresse spécifiée"
+  },
+  "wire_set_clock": {
+    "message0": "Réglez la fréquence d’horloge I2C à %1 kHz",
+    "tooltip": "Régler la fréquence d’horloge de communication I2C"
+  },
+  "wire_end": {
+    "message0": "Fin de la communication I2C",
+    "tooltip": "Fin de la communication I2C"
+  },
+  "wire_begin_transmission": {
+    "message0": "Commencez à transmettre à address%1",
+    "tooltip": "Commencez à transférer avec l’équipement désigné"
+  },
+  "wire_end_transmission": {
+    "message0": "Fin de transmission, arrêt ? %1",
+    "tooltip": "Terminez la transmission et envoyez un signal d’arrêt si nécessaire",
+    "args0": [
+      {
+        "options": [
+          [
+            "true",
+            "TRUE"
+          ],
+          [
+            "false",
+            "FALSE"
+          ]
+        ]
+      }
+    ]
+  },
+  "wire_end_transmission_result": {
+    "message0": "La transmission se termine et renvoie un code d’erreur, arrêt ? %1",
+    "tooltip": "Après avoir complété le transfert I2C et renvoyé le code de statut, 0 signifie réussi, 4 signifie erreur inconnue",
+    "args0": [
+      {
+        "options": [
+          [
+            "true",
+            "TRUE"
+          ],
+          [
+            "false",
+            "FALSE"
+          ]
+        ]
+      }
+    ]
+  },
+  "wire_write": {
+    "message0": "Écrire des données %1",
+    "tooltip": "Envoyer un seul octet de données"
+  },
+  "wire_write_bytes": {
+    "message0": "Écrire plusieurs octets de données %1, longueur %2",
+    "tooltip": "Écrire un ensemble d’octets de données"
+  },
+  "wire_request_from": {
+    "message0": "Demander %2 données à l’adresse %1, arrêter ? %3",
+    "tooltip": "Demander une quantité de données spécifiée",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "true",
+            "TRUE"
+          ],
+          [
+            "false",
+            "FALSE"
+          ]
+        ]
+      }
+    ]
+  },
+  "wire_available": {
+    "message0": "La quantité de données disponibles pour I2C",
+    "tooltip": "Retourne la quantité de données disponibles dans le tampon de réception"
+  },
+  "wire_read": {
+    "message0": "Lire les données I2C",
+    "tooltip": "Lit les données du tampon I2C"
+  },
+  "wire_peek": {
+    "message0": "Aperçu des données I2C",
+    "tooltip": "Prévisualisez les prochaines données I2C sans les supprimer"
+  },
+  "wire_flush": {
+    "message0": "Rafraîchissez le tampon I2C",
+    "tooltip": "Rafraîchir le tampon de données I2C"
+  },
+  "wire_on_receive": {
+    "message0": "Lorsque I2C reçoit des données, il exécute la fonction %1 %2",
+    "tooltip": "Configurez la fonction de rappel de réception I2C"
+  },
+  "wire_on_request": {
+    "message0": "Exécutez la fonction lorsque l’I2C demande des données %1 %2",
+    "tooltip": "Définir la fonction de rappel de requête I2C"
+  },
+  "wire_set_timeout": {
+    "message0": "Réglez le délai d’attente de l’I2C à %1 millisecondes, le drapeau de réinitialisation %2",
+    "tooltip": "Définir le temps d’attente de l’I2C et réinitialiser le comportement",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "true",
+            "TRUE"
+          ],
+          [
+            "false",
+            "FALSE"
+          ]
+        ]
+      }
+    ]
+  },
+  "wire_get_timeout_flag": {
+    "message0": "Affiche le drapeau d’expiration I2C",
+    "tooltip": "Obtenez le statut actuel du délai d’attente de l’I2C"
+  },
+  "wire_clear_timeout_flag": {
+    "message0": "Retirez le panneau d’attente I2C",
+    "tooltip": "Retirez le panneau d’attente I2C"
+  }
+}

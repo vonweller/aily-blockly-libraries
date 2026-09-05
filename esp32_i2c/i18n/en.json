@@ -1,0 +1,156 @@
+{
+  "toolbox_name": "ESP32 I2C",
+  "toolbox_labels": {
+    "I2C主模式": "I2C master mode",
+    "数据传输（基础）": "Data transfer (basic)",
+    "数据接收（基础）": "Data reception (basic)",
+    "简化操作": "Simplify operations",
+    "I2C从模式": "I2C slave mode"
+  },
+  "esp32_i2c_begin": {
+    "message0": "Initialize I2C communication SDA pin%1 SCL pin%2 Frequency%3 kHz",
+    "tooltip": "Initialize ESP32's I2C communication, set SDA and SCL pins and communication frequency",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "100 (standard mode)",
+            "100000"
+          ],
+          [
+            "400 (quick mode)",
+            "400000"
+          ],
+          [
+            "1000 (Quick Mode+)",
+            "1000000"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_i2c_begin_simple": {
+    "message0": "Initialize I2C communication (use default pins)",
+    "tooltip": "Initialize ESP32's I2C communication using default pins"
+  },
+  "esp32_i2c_scan_devices": {
+    "message0": "Scan for I2C devices",
+    "tooltip": "Scan and return the number of discovered I2C devices"
+  },
+  "esp32_i2c_begin_transmission": {
+    "message0": "Start sending data to device%1",
+    "tooltip": "Start sending data to the device with the specified I2C address"
+  },
+  "esp32_i2c_write_byte": {
+    "message0": "Write byte data%1",
+    "tooltip": "Write one byte of data to the I2C device"
+  },
+  "esp32_i2c_write_string": {
+    "message0": "Write string %1",
+    "tooltip": "Write string data to I2C device"
+  },
+  "esp32_i2c_end_transmission": {
+    "message0": "End data sending",
+    "tooltip": "End I2C data sending and return error code (0 indicates success)"
+  },
+  "esp32_i2c_request_from": {
+    "message0": "Requesting %2 byte data from device %1",
+    "tooltip": "Requests a specified number of bytes of data from a specified I2C device"
+  },
+  "esp32_i2c_available": {
+    "message0": "Number of bytes that can be read by I2C",
+    "tooltip": "Returns the number of bytes that can be read in the I2C receive buffer"
+  },
+  "esp32_i2c_read": {
+    "message0": "Read I2C data",
+    "tooltip": "Read one byte of data from the I2C receive buffer"
+  },
+  "esp32_i2c_slave_begin": {
+    "message0": "Initialize I2C slave mode address %1 SDA pin %2 SCL pin %3",
+    "tooltip": "Initialize the I2C slave mode of ESP32 and set the slave device address and pins"
+  },
+  "esp32_i2c_on_receive": {
+    "message0": "When data is received %1 %2",
+    "tooltip": "Set the callback function when the I2C slave device receives data"
+  },
+  "esp32_i2c_on_request": {
+    "message0": "When the master device requests data %1 %2",
+    "tooltip": "Set the callback function when the I2C slave device responds to the master device request"
+  },
+  "esp32_i2c_slave_print": {
+    "message0": "Send string %1 from device",
+    "tooltip": "I2C slave device sends string data to the master device"
+  },
+  "esp32_i2c_write_to_device": {
+    "message0": "Write data to device %1 %2",
+    "tooltip": "A simplified version of writing data to a specified I2C device",
+    "args0": [
+      {
+        "options": [
+          [
+            "0x3C (OLED display)",
+            "0x3C"
+          ],
+          [
+            "0x48 (ADS1115)",
+            "0x48"
+          ],
+          [
+            "0x68 (MPU6050)",
+            "0x68"
+          ],
+          [
+            "0x76 (BMP280)",
+            "0x76"
+          ],
+          [
+            "0x77 (BMP280 backup)",
+            "0x77"
+          ],
+          [
+            "Custom address",
+            "CUSTOM"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "esp32_i2c_read_from_device": {
+    "message0": "Read %2 byte data from device %1",
+    "tooltip": "Read the specified number of bytes of data from the specified I2C device",
+    "args0": [
+      {
+        "options": [
+          [
+            "0x3C (OLED display)",
+            "0x3C"
+          ],
+          [
+            "0x48 (ADS1115)",
+            "0x48"
+          ],
+          [
+            "0x68 (MPU6050)",
+            "0x68"
+          ],
+          [
+            "0x76 (BMP280)",
+            "0x76"
+          ],
+          [
+            "0x77 (BMP280 backup)",
+            "0x77"
+          ],
+          [
+            "Custom address",
+            "CUSTOM"
+          ]
+        ]
+      },
+      null
+    ]
+  }
+}

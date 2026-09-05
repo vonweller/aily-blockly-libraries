@@ -1,0 +1,61 @@
+{
+  "toolbox_name": "BH1750",
+  "bh1750_init_with_wire": {
+    "message0": "빛 센서 초기화 %1\n모드 %2\nAddress%3\n사용 %4",
+    "tooltip": "BH1750 광센서를 초기화하고, I2C 주소와 사용하는 I2C 버스를 지정합니다",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "연속 고해상도 모드 (1럭스, 120ms)",
+            "CONTINUOUS_HIGH_RES_MODE"
+          ],
+          [
+            "연속 고해상도 모드 2 (0.5 럭스, 120ms)",
+            "CONTINUOUS_HIGH_RES_MODE_2"
+          ],
+          [
+            "연속 저해상도 모드 (4lux, 16ms)",
+            "CONTINUOUS_LOW_RES_MODE"
+          ],
+          [
+            "단일 고해상도 모드 (1럭스, 120ms)",
+            "ONE_TIME_HIGH_RES_MODE"
+          ],
+          [
+            "단일 고해상도 모드 2 (0.5 럭스, 120ms)",
+            "ONE_TIME_HIGH_RES_MODE_2"
+          ],
+          [
+            "단일 저해상도 모드 (4 lux, 16ms)",
+            "ONE_TIME_LOW_RES_MODE"
+          ],
+          [
+            "비설정 모드",
+            "UNCONFIGURED"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "0x23 (ADDR 저수준)",
+            "0x23"
+          ],
+          [
+            "0x5C (ADDR 고수준)",
+            "0x5C"
+          ]
+        ]
+      },
+      {
+        "options": "${board.i2c}"
+      }
+    ]
+  },
+  "bh1750_read_light_level": {
+    "message0": "빛 센서의 빛 값을 읽어%1",
+    "tooltip": "BH1750 센서의 빛 세기(lux)를 읽어보세요"
+  }
+}

@@ -1,0 +1,281 @@
+[
+  {
+    "type": "chipintelli_sd_init_pins",
+    "message0": "初始化 CI13XX SD 卡 SCK %1 MISO %2 MOSI %3 CS %4",
+    "args0": [
+      {"type": "input_value", "name": "SCK", "check": "Number"},
+      {"type": "input_value", "name": "MISO", "check": "Number"},
+      {"type": "input_value", "name": "MOSI", "check": "Number"},
+      {"type": "input_value", "name": "CS", "check": "Number"}
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#E65100",
+    "tooltip": "在 setup 中使用自定义 GPIO 软件 SPI 引脚初始化 SD 卡，参数顺序为 SCK、MISO、MOSI、CS。",
+    "icon": "fa-regular fa-microchip"
+  },
+  {
+    "type": "chipintelli_sd_error_info",
+    "message0": "CI13XX SD 最近错误 %1",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "INFO",
+        "options": [
+          ["错误码", "cardErrorCode"],
+          ["错误数据", "cardErrorData"]
+        ]
+      }
+    ],
+    "output": "Number",
+    "colour": "#E65100",
+    "tooltip": "读取最近一次底层 SD 卡操作的错误码或附加错误数据。",
+    "icon": "fa-regular fa-triangle-exclamation"
+  },
+  {
+    "type": "chipintelli_sd_end",
+    "message0": "卸载 CI13XX SD 卡并释放软件 SPI 引脚",
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#E65100",
+    "tooltip": "关闭卷并释放软件 SPI、SCK、MISO、MOSI 和 CS；再次使用前必须重新初始化。",
+    "icon": "fa-regular fa-eject"
+  },
+  {
+    "type": "chipintelli_sd_exists",
+    "message0": "CI13XX SD 路径 %1 存在",
+    "args0": [
+      {"type": "input_value", "name": "PATH", "check": "String"}
+    ],
+    "inputsInline": true,
+    "output": "Boolean",
+    "colour": "#EF6C00",
+    "tooltip": "检查 SD 卡上的文件或目录是否存在。",
+    "icon": "fa-regular fa-file-circle-check"
+  },
+  {
+    "type": "chipintelli_sd_path_operation",
+    "message0": "CI13XX SD %1 路径 %2",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "OP",
+        "options": [
+          ["创建目录", "mkdir"],
+          ["删除文件", "remove"],
+          ["删除空目录", "rmdir"]
+        ]
+      },
+      {"type": "input_value", "name": "PATH", "check": "String"}
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#EF6C00",
+    "tooltip": "创建目录、删除文件或删除空目录；mkdir 会创建缺失的中间目录。",
+    "icon": "fa-regular fa-folder-gear"
+  },
+  {
+    "type": "chipintelli_sd_file_create",
+    "message0": "打开 CI13XX SD 路径 %1 模式 %2 保存为文件 %3",
+    "args0": [
+      {"type": "input_value", "name": "PATH", "check": "String"},
+      {
+        "type": "field_dropdown",
+        "name": "MODE",
+        "options": [
+          ["只读", "FILE_READ"],
+          ["读写并追加", "FILE_WRITE"]
+        ]
+      },
+      {"type": "field_input", "name": "VAR", "text": "sdFile"}
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#F57C00",
+    "tooltip": "创建全局 File 变量并打开文件或目录；FILE_WRITE 从文件末尾追加。",
+    "icon": "fa-regular fa-file-arrow-up"
+  },
+  {
+    "type": "chipintelli_sd_file_create_next",
+    "message0": "CI13XX 目录 %1 打开下一个条目 模式 %2 保存为文件 %3",
+    "args0": [
+      {"type": "field_variable", "name": "DIR", "variable": "root", "variableTypes": ["File"], "defaultType": "File"},
+      {
+        "type": "field_dropdown",
+        "name": "MODE",
+        "options": [
+          ["只读", "FILE_READ"],
+          ["读写并追加", "FILE_WRITE"]
+        ]
+      },
+      {"type": "field_input", "name": "VAR", "text": "entry"}
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#F57C00",
+    "tooltip": "从已打开目录取得下一个文件或子目录，并保存到新的全局 File 变量。",
+    "icon": "fa-regular fa-folder-open"
+  },
+  {
+    "type": "chipintelli_sd_file_is_open",
+    "message0": "CI13XX 文件 %1 已成功打开",
+    "args0": [
+      {"type": "field_variable", "name": "VAR", "variable": "sdFile", "variableTypes": ["File"], "defaultType": "File"}
+    ],
+    "output": "Boolean",
+    "colour": "#F57C00",
+    "tooltip": "检查 File 对象是否有效且已打开。",
+    "icon": "fa-regular fa-file-check"
+  },
+  {
+    "type": "chipintelli_sd_file_is_directory",
+    "message0": "CI13XX 文件 %1 是目录",
+    "args0": [
+      {"type": "field_variable", "name": "VAR", "variable": "sdFile", "variableTypes": ["File"], "defaultType": "File"}
+    ],
+    "output": "Boolean",
+    "colour": "#F57C00",
+    "tooltip": "判断当前 File 对象是否表示目录。",
+    "icon": "fa-regular fa-folder"
+  },
+  {
+    "type": "chipintelli_sd_file_name",
+    "message0": "CI13XX 文件 %1 名称",
+    "args0": [
+      {"type": "field_variable", "name": "VAR", "variable": "sdFile", "variableTypes": ["File"], "defaultType": "File"}
+    ],
+    "output": "String",
+    "colour": "#F57C00",
+    "tooltip": "返回文件或目录的 8.3 短文件名。",
+    "icon": "fa-regular fa-file-signature"
+  },
+  {
+    "type": "chipintelli_sd_file_read",
+    "message0": "从 CI13XX 文件 %1 %2",
+    "args0": [
+      {"type": "field_variable", "name": "VAR", "variable": "sdFile", "variableTypes": ["File"], "defaultType": "File"},
+      {
+        "type": "field_dropdown",
+        "name": "OP",
+        "options": [
+          ["读取一个字节", "read"],
+          ["查看下一个字节", "peek"]
+        ]
+      }
+    ],
+    "output": "Number",
+    "colour": "#F57C00",
+    "tooltip": "读取或查看下一个字节；没有数据时返回 -1，peek 不移动文件位置。",
+    "icon": "fa-regular fa-file-import"
+  },
+  {
+    "type": "chipintelli_sd_file_available",
+    "message0": "CI13XX 文件 %1 %2",
+    "args0": [
+      {"type": "field_variable", "name": "VAR", "variable": "sdFile", "variableTypes": ["File"], "defaultType": "File"},
+      {
+        "type": "field_dropdown",
+        "name": "OP",
+        "options": [
+          ["剩余可读字节数", "available"],
+          ["当前可写字节数", "availableForWrite"]
+        ]
+      }
+    ],
+    "output": "Number",
+    "colour": "#F57C00",
+    "tooltip": "返回当前可读或可写的字节数。",
+    "icon": "fa-regular fa-gauge"
+  },
+  {
+    "type": "chipintelli_sd_file_position",
+    "message0": "CI13XX 文件 %1 %2",
+    "args0": [
+      {"type": "field_variable", "name": "VAR", "variable": "sdFile", "variableTypes": ["File"], "defaultType": "File"},
+      {
+        "type": "field_dropdown",
+        "name": "OP",
+        "options": [
+          ["当前位置", "position"],
+          ["大小（字节）", "size"]
+        ]
+      }
+    ],
+    "output": "Number",
+    "colour": "#F57C00",
+    "tooltip": "返回当前读写位置或文件大小。",
+    "icon": "fa-regular fa-ruler"
+  },
+  {
+    "type": "chipintelli_sd_file_seek",
+    "message0": "设置 CI13XX 文件 %1 位置为 %2 成功",
+    "args0": [
+      {"type": "field_variable", "name": "VAR", "variable": "sdFile", "variableTypes": ["File"], "defaultType": "File"},
+      {"type": "input_value", "name": "POSITION", "check": "Number"}
+    ],
+    "inputsInline": true,
+    "output": "Boolean",
+    "colour": "#F57C00",
+    "tooltip": "把文件位置移动到指定绝对字节偏移并返回是否成功。",
+    "icon": "fa-regular fa-arrows-left-right-to-line"
+  },
+  {
+    "type": "chipintelli_sd_file_write",
+    "message0": "向 CI13XX 文件 %1 %2 数据 %3 进制 %4",
+    "args0": [
+      {"type": "field_variable", "name": "VAR", "variable": "sdFile", "variableTypes": ["File"], "defaultType": "File"},
+      {
+        "type": "field_dropdown",
+        "name": "OP",
+        "options": [
+          ["原始写入", "write"],
+          ["打印", "print"],
+          ["打印并换行", "println"]
+        ]
+      },
+      {"type": "input_value", "name": "DATA"},
+      {
+        "type": "field_dropdown",
+        "name": "BASE",
+        "options": [
+          ["自动", "AUTO"],
+          ["二进制", "BIN"],
+          ["八进制", "OCT"],
+          ["十进制", "DEC"],
+          ["十六进制", "HEX"]
+        ]
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#F57C00",
+    "tooltip": "使用 write、print 或 println 写入；进制仅用于 print/println 的数值。",
+    "icon": "fa-regular fa-pen-to-square"
+  },
+  {
+    "type": "chipintelli_sd_file_control",
+    "message0": "CI13XX 文件 %1 %2",
+    "args0": [
+      {"type": "field_variable", "name": "VAR", "variable": "sdFile", "variableTypes": ["File"], "defaultType": "File"},
+      {
+        "type": "field_dropdown",
+        "name": "OP",
+        "options": [
+          ["刷新写入缓存", "flush"],
+          ["目录回到第一个条目", "rewindDirectory"],
+          ["关闭", "close"]
+        ]
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#F57C00",
+    "tooltip": "刷新文件、重置目录遍历位置或关闭 File 对象。",
+    "icon": "fa-regular fa-file-circle-xmark"
+  }
+]

@@ -1,0 +1,204 @@
+{
+  "toolbox_name": "Horloge temps réel R4",
+  "toolbox_labels": {
+    "基础操作": "Opérations de base",
+    "时间设置": "Réglage de l'heure",
+    "时间获取": "Prise de temps",
+    "回调函数": "fonction de rappel"
+  },
+  "renesas_rtc_begin": {
+    "message0": "Initialisation RTC",
+    "tooltip": "Initialiser le module RTC"
+  },
+  "renesas_rtc_is_running": {
+    "message0": "RTC fonctionne-t-il ?",
+    "tooltip": "Vérifiez si le RTC fonctionne"
+  },
+  "renesas_rtc_set_time": {
+    "message0": "Réglez le RTC %1time : %4 %2 mois %3 jour, heures %5 minutes %6 secondes week%7",
+    "tooltip": "Définir l’heure RTC"
+  },
+  "renesas_rtc_get_time": {
+    "message0": "Faites en sorte que le temps RTC %1",
+    "tooltip": "Faites passer le temps RTC actuel à la variable spécifiée"
+  },
+  "renesas_rtc_time_get_day": {
+    "message0": "Dates pour obtenir %1 (1-31)",
+    "tooltip": "Obtenez l’objet de la date de l’heure"
+  },
+  "renesas_rtc_time_get_month": {
+    "message0": "Mois avant d’obtenir %1 (1-12)",
+    "tooltip": "Obtenez l’objet du mois du temps"
+  },
+  "renesas_rtc_time_get_year": {
+    "message0": "Obtenez la %1 année",
+    "tooltip": "Obtenez l’année de l’objet temporel"
+  },
+  "renesas_rtc_time_get_hour": {
+    "message0": "Nombre d’heures pour obtenir %1 (0-23)",
+    "tooltip": "Nombre d’heures pour récupérer les objets temporels (0-23)"
+  },
+  "renesas_rtc_time_get_minute": {
+    "message0": "Minutes avant d’obtenir %1 (0-59)",
+    "tooltip": "Nombre de minutes pour l’objet temporel (0-59)"
+  },
+  "renesas_rtc_time_get_second": {
+    "message0": "Secondes pour obtenir %1 (0-59)",
+    "tooltip": "Nombre de secondes pour récupérer les objets temporels (0-59)"
+  },
+  "renesas_rtc_time_get_day_of_week": {
+    "message0": "Quels jours de la semaine %1-tu pour obtenir (0-6) ?",
+    "tooltip": "Obtenir l’heure de la semaine (0-6)"
+  },
+  "renesas_rtc_set_periodic_callback": {
+    "message0": "Définir la période de rappel de la période RTC %1",
+    "tooltip": "Définir la fonction de rappel périodique RTC (un seul rappel peut être configuré)",
+    "args0": [
+      {
+        "options": [
+          [
+            "Toutes les 2 secondes",
+            "ONCE_EVERY_2_SEC"
+          ],
+          [
+            "Toutes les 1 secondes",
+            "ONCE_EVERY_1_SEC"
+          ],
+          [
+            "Deux fois par seconde",
+            "N2_TIMES_EVERY_SEC"
+          ],
+          [
+            "Quatre fois par seconde",
+            "N4_TIMES_EVERY_SEC"
+          ],
+          [
+            "8 fois par seconde",
+            "N8_TIMES_EVERY_SEC"
+          ],
+          [
+            "16 fois par seconde",
+            "N16_TIMES_EVERY_SEC"
+          ],
+          [
+            "32 fois par seconde",
+            "N32_TIMES_EVERY_SEC"
+          ],
+          [
+            "64 fois par seconde",
+            "N64_TIMES_EVERY_SEC"
+          ],
+          [
+            "128 fois par seconde",
+            "N128_TIMES_EVERY_SEC"
+          ],
+          [
+            "256 fois par seconde",
+            "N256_TIMES_EVERY_SEC"
+          ]
+        ]
+      }
+    ],
+    "message1": "exécuter %1"
+  },
+  "renesas_rtc_set_alarm_callback": {
+    "message0": "Configurez le rappel du réveil RTC seconds%1",
+    "tooltip": "Configurez la fonction de rappel du réveil RTC, déclenchée lorsque les secondes correspondent (une seule alarme peut être réglée).",
+    "message1": "exécuter %1"
+  },
+  "renesas_rtc_set_time_if_not_running": {
+    "message0": "Si RTC ne fonctionne pas, réglez l’heure sur day%1month%2year%3hour%4minute%5second%6week%7",
+    "tooltip": "Si le RTC ne fonctionne pas, réglez le minuteur",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Janvier",
+            "JANUARY"
+          ],
+          [
+            "Février",
+            "FEBRUARY"
+          ],
+          [
+            "Mars",
+            "MARCH"
+          ],
+          [
+            "Avril",
+            "APRIL"
+          ],
+          [
+            "Mai",
+            "MAY"
+          ],
+          [
+            "Juin",
+            "JUNE"
+          ],
+          [
+            "Juillet",
+            "JULY"
+          ],
+          [
+            "Août",
+            "AUGUST"
+          ],
+          [
+            "Septembre",
+            "SEPTEMBER"
+          ],
+          [
+            "Octobre",
+            "OCTOBER"
+          ],
+          [
+            "Novembre",
+            "NOVEMBER"
+          ],
+          [
+            "Décembre",
+            "DECEMBER"
+          ]
+        ]
+      },
+      null,
+      null,
+      null,
+      null,
+      {
+        "options": [
+          [
+            "Dimanche",
+            "SUNDAY"
+          ],
+          [
+            "Lundi",
+            "MONDAY"
+          ],
+          [
+            "Mardi",
+            "TUESDAY"
+          ],
+          [
+            "Mercredi",
+            "WEDNESDAY"
+          ],
+          [
+            "Jeudi",
+            "THURSDAY"
+          ],
+          [
+            "Vendredi",
+            "FRIDAY"
+          ],
+          [
+            "Samedi",
+            "SATURDAY"
+          ]
+        ]
+      }
+    ]
+  }
+}

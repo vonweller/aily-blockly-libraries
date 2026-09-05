@@ -1,0 +1,321 @@
+{
+  "toolbox_name": "SPA06氣壓溫度感知器",
+  "toolbox_labels": {
+    "初始化": "初始化",
+    "配置": "配置",
+    "数据读取": "資料讀取",
+    "状态检查": "狀態檢查",
+    "中断": "中斷",
+    "校准": "校準"
+  },
+  "spa06_create_i2c": {
+    "message0": "建立SPA06感測器 %1 使用I2C位址 %2",
+    "tooltip": "建立SPA06-003氣壓溫度感測器對象，使用I2C通信",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "0x76 (預設)",
+            "0x76"
+          ],
+          [
+            "0x77",
+            "0x77"
+          ]
+        ]
+      }
+    ]
+  },
+  "spa06_create_spi": {
+    "message0": "建立SPA06感測器 %1 使用SPI接腳 %2",
+    "tooltip": "建立SPA06-003氣壓溫度感測器對象，使用SPI通信"
+  },
+  "spa06_set_pressure_sampling": {
+    "message0": "設定 %1 壓力取樣率 %2 過取樣率 %3",
+    "tooltip": "配置壓力感測器的取樣率和過取樣率",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "1 Hz",
+            "SPL07_1HZ"
+          ],
+          [
+            "2 Hz",
+            "SPL07_2HZ"
+          ],
+          [
+            "4 Hz",
+            "SPL07_4HZ"
+          ],
+          [
+            "8 Hz",
+            "SPL07_8HZ"
+          ],
+          [
+            "16 Hz",
+            "SPL07_16HZ"
+          ],
+          [
+            "32 Hz",
+            "SPL07_32HZ"
+          ],
+          [
+            "64 Hz",
+            "SPL07_64HZ"
+          ],
+          [
+            "128 Hz",
+            "SPL07_128HZ"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "又一次",
+            "SPL07_1SAMPLE"
+          ],
+          [
+            "兩次",
+            "SPL07_2SAMPLES"
+          ],
+          [
+            "4次",
+            "SPL07_4SAMPLES"
+          ],
+          [
+            "8次",
+            "SPL07_8SAMPLES"
+          ],
+          [
+            "16次",
+            "SPL07_16SAMPLES"
+          ],
+          [
+            "32 次",
+            "SPL07_32SAMPLES"
+          ],
+          [
+            "64次",
+            "SPL07_64SAMPLES"
+          ],
+          [
+            "128次",
+            "SPL07_128SAMPLES"
+          ]
+        ]
+      }
+    ]
+  },
+  "spa06_set_temperature_sampling": {
+    "message0": "設定 %1 溫度取樣率 %2 過取樣率 %3",
+    "tooltip": "配置溫度感測器的取樣率和過採樣率",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "1 Hz",
+            "SPL07_1HZ"
+          ],
+          [
+            "2 Hz",
+            "SPL07_2HZ"
+          ],
+          [
+            "4 Hz",
+            "SPL07_4HZ"
+          ],
+          [
+            "8 Hz",
+            "SPL07_8HZ"
+          ],
+          [
+            "16 Hz",
+            "SPL07_16HZ"
+          ],
+          [
+            "32 Hz",
+            "SPL07_32HZ"
+          ],
+          [
+            "64 Hz",
+            "SPL07_64HZ"
+          ],
+          [
+            "128 Hz",
+            "SPL07_128HZ"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "又一次",
+            "SPL07_1SAMPLE"
+          ],
+          [
+            "兩次",
+            "SPL07_2SAMPLES"
+          ],
+          [
+            "4次",
+            "SPL07_4SAMPLES"
+          ],
+          [
+            "8次",
+            "SPL07_8SAMPLES"
+          ],
+          [
+            "16次",
+            "SPL07_16SAMPLES"
+          ],
+          [
+            "32 次",
+            "SPL07_32SAMPLES"
+          ],
+          [
+            "64次",
+            "SPL07_64SAMPLES"
+          ],
+          [
+            "128次",
+            "SPL07_128SAMPLES"
+          ]
+        ]
+      }
+    ]
+  },
+  "spa06_set_mode": {
+    "message0": "設定 %1 工作模式 %2",
+    "tooltip": "設定感測器的工作模式",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "空閒",
+            "SPL07_IDLE"
+          ],
+          [
+            "單次壓力",
+            "SPL07_ONE_PRESSURE"
+          ],
+          [
+            "單次溫度",
+            "SPL07_ONE_TEMPERATURE"
+          ],
+          [
+            "連續壓力",
+            "SPL07_CONT_PRESSURE"
+          ],
+          [
+            "連續溫度",
+            "SPL07_CONT_TEMPERATURE"
+          ],
+          [
+            "連續壓力溫度",
+            "SPL07_CONT_PRES_TEMP"
+          ]
+        ]
+      }
+    ]
+  },
+  "spa06_set_temperature_source": {
+    "message0": "設定 %1 溫度源 %2",
+    "tooltip": "設定溫度感測器源",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "ASIC內部",
+            "SPL07_TSRC_ASIC"
+          ],
+          [
+            "MEMS 外部",
+            "SPL07_TSRC_MEMS"
+          ]
+        ]
+      }
+    ]
+  },
+  "spa06_read_pressure": {
+    "message0": "%1 讀取壓力值",
+    "tooltip": "讀取目前壓力值（帕斯卡）"
+  },
+  "spa06_read_temperature": {
+    "message0": "%1 讀取溫度值",
+    "tooltip": "讀取目前溫度值（攝氏度）"
+  },
+  "spa06_calc_altitude": {
+    "message0": "%1 計算海拔高度",
+    "tooltip": "根據壓力值計算海拔高度（公尺）"
+  },
+  "spa06_pressure_available": {
+    "message0": "%1 壓力資料可用",
+    "tooltip": "檢查是否有新的壓力數據可用"
+  },
+  "spa06_temperature_available": {
+    "message0": "%1 溫度資料可用",
+    "tooltip": "檢查是否有新的溫度資料可用"
+  },
+  "spa06_set_interrupt": {
+    "message0": "設定 %1 中斷模式 %2",
+    "tooltip": "配置中斷模式",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "關閉",
+            "SPL07_INT_OFF"
+          ],
+          [
+            "壓力就緒",
+            "SPL07_INT_PRES"
+          ],
+          [
+            "溫度就緒",
+            "SPL07_INT_TEMP"
+          ],
+          [
+            "壓力或溫度就緒",
+            "SPL07_INT_PRES_TEMP"
+          ],
+          [
+            "FIFO滿",
+            "SPL07_INT_FIFO"
+          ],
+          [
+            "FIFO滿或壓力就緒",
+            "SPL07_INT_FIFO_PRES"
+          ],
+          [
+            "FIFO滿或溫度就緒",
+            "SPL07_INT_FIFO_TEMP"
+          ],
+          [
+            "所有中斷",
+            "SPL07_INT_ALL"
+          ]
+        ]
+      }
+    ]
+  },
+  "spa06_get_interrupt_status": {
+    "message0": "%1 取得中斷狀態",
+    "tooltip": "取得目前中斷狀態暫存器值"
+  },
+  "spa06_set_pressure_offset": {
+    "message0": "設定 %1 壓力偏移 %2 Pa",
+    "tooltip": "設定壓力測量偏移值"
+  },
+  "spa06_set_temperature_offset": {
+    "message0": "設定 %1 溫度偏移 %2 °C",
+    "tooltip": "設定溫度測量偏移值"
+  }
+}

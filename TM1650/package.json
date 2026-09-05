@@ -1,23 +1,41 @@
 {
   "name": "@aily-project/lib-tm1650",
-  "nickname": "TM1650四位数码管驱动库",
-  "author": "K2L",
-  "description": "TM1650四位数码管驱动库，通过I2C接口控制四位七段数码管显示，支持数字和部分字符显示。",
-  "version": "0.0.1",
+  "nickname": "TM1650四位数码管",
+  "description": "TM1650多主控四位数码管显示库，，已通过ArduinoUNO、ESP3233进行测试，确认可以使用。\nESP32、ESP32-S2、ESP32-S3\nESP32-C2、C3、C5、C6、H2、P4\nESP8266\nArduino UNO R3、Nano、Pro Mini\nArduino Mega 2560\nArduino Leonardo、Micro、Pro Micro\nArduino Nano Every、UNO WiFi Rev2\nArduino Zero、MKR 系列\nArduino UNO R4 Minima、UNO R4 WiFi\nRaspberry Pi Pico、Pico W、Nano RP2040 Connect\nNano 33 BLE、Adafruit nRF52840\nSTM32duino Blue Pill、Black Pill、Nucleo\nTeensy 3.x、4.x、LC\nAdafruit Feather M0/M4 等 SAMD 开发板",
+  "version": "1.0.0",
+  "author": "脆脆鲨",
+  "license": "BSD-4-Clause",
   "compatibility": {
     "core": [
+      "esp32:esp32",
       "arduino:avr"
     ],
-    "voltage": [3.3, 5]
+    "voltage": [
+      3.3,
+      5
+    ]
   },
   "keywords": [
     "aily",
     "blockly",
-    "TM1650",
-    "数码管驱动器",
-    "显示"
+    "tm1650",
+    "seven-segment",
+    "display",
+    "i2c"
   ],
-  "scripts": {},
+  "tested": true,
+  "tester": "Codex (Arduino CLI compile)",
+  "url": "https://github.com/arkhipenko/TM1650",
   "dependencies": {},
-  "devDependencies": {}
+  "bundledSources": [
+    {
+      "name": "TM1650",
+      "version": "1.1.0",
+      "author": "Anatoli Arkhipenko",
+      "url": "https://github.com/arkhipenko/TM1650",
+      "license": "BSD-4-Clause",
+      "path": "src/tm1650/TM1650.h",
+      "reason": "Required TM1650 I2C display driver"
+    }
+  ]
 }

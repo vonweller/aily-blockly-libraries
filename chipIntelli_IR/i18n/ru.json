@@ -1,0 +1,578 @@
+{
+  "toolbox_name": "Инфракрасный CI13XX",
+  "toolbox_labels": {
+    "原始波形与 NEC": "Raw waveform and NEC",
+    "空调码库": "Air-conditioner database",
+    "空调码搜索": "Air-code search",
+    "诊断": "Diagnostics"
+  },
+  "chipintelli_ir_init_raw": {
+    "message0": "initialize CI13XX raw infrared TX %1 RX %2 timer %3",
+    "tooltip": "Initialize fixed-38-kHz raw and NEC I/O; TX needs PWM and RX needs an interrupt.",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "0",
+            "0"
+          ],
+          [
+            "1",
+            "1"
+          ],
+          [
+            "2",
+            "2"
+          ]
+        ]
+      }
+    ]
+  },
+  "chipintelli_ir_init_air": {
+    "message0": "initialize CI13XX air-conditioner IR TX %1 RX %2 timer %3 database resource ID %4",
+    "tooltip": "Initialize the official 36-brand air-conditioner database; the default resource ID is 50000.",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "0",
+            "0"
+          ],
+          [
+            "1",
+            "1"
+          ],
+          [
+            "2",
+            "2"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "chipintelli_ir_send_raw": {
+    "message0": "send raw infrared waveform %1",
+    "tooltip": "Send comma-, semicolon- or whitespace-separated microsecond durations, up to 1024 entries."
+  },
+  "chipintelli_ir_send_nec": {
+    "message0": "send NEC address %1 command %2 repeats %3",
+    "tooltip": "Send a standard NEC frame with 8-bit address and command."
+  },
+  "chipintelli_ir_send_extended_nec": {
+    "message0": "send extended NEC address %1 command %2 repeats %3",
+    "tooltip": "Send an extended NEC frame with 16-bit address and 8-bit command."
+  },
+  "chipintelli_ir_start_receive": {
+    "message0": "start raw infrared receive timeout %1 ms",
+    "tooltip": "Start the non-blocking infrared receive state machine."
+  },
+  "chipintelli_ir_stop_receive": {
+    "message0": "stop raw infrared receive",
+    "tooltip": "Stop the current infrared receive operation."
+  },
+  "chipintelli_ir_read_received": {
+    "message0": "when a raw infrared waveform is received",
+    "message1": "run %1",
+    "tooltip": "Read the most recent waveform when ready, then execute child blocks."
+  },
+  "chipintelli_ir_replay_received": {
+    "message0": "replay the most recently received raw waveform",
+    "tooltip": "Replay the most recently read or parsed waveform when data exists."
+  },
+  "chipintelli_ir_received_count": {
+    "message0": "most recent raw waveform entry count",
+    "tooltip": "Return the number of mark and space durations."
+  },
+  "chipintelli_ir_received_text": {
+    "message0": "most recent raw waveform text",
+    "tooltip": "Return comma-separated microsecond durations."
+  },
+  "chipintelli_ir_receive_status": {
+    "message0": "infrared receive status",
+    "tooltip": "Return 0 idle, 1 receiving, 2 ready, 3 timeout, or 4 error."
+  },
+  "chipintelli_ir_receive_status_value": {
+    "message0": "infrared receive status %1",
+    "tooltip": "A constant for comparison with the receive status.",
+    "args0": [
+      {
+        "options": [
+          [
+            "0",
+            "0"
+          ],
+          [
+            "1",
+            "1"
+          ],
+          [
+            "2",
+            "2"
+          ],
+          [
+            "3",
+            "3"
+          ],
+          [
+            "4",
+            "4"
+          ]
+        ]
+      }
+    ]
+  },
+  "chipintelli_ir_is_busy": {
+    "message0": "infrared driver is busy",
+    "tooltip": "Check whether the driver is sending, receiving or searching."
+  },
+  "chipintelli_ir_select_air_brand": {
+    "message0": "select air-conditioner brand %1",
+    "tooltip": "Select the first code for a brand and reset air-conditioner state.",
+    "args0": [
+      {
+        "options": [
+          [
+            "LG",
+            "LG"
+          ],
+          [
+            "Gree",
+            "Gree"
+          ],
+          [
+            "Midea",
+            "Midea"
+          ],
+          [
+            "Aux",
+            "Aux"
+          ],
+          [
+            "Haier",
+            "Haier"
+          ],
+          [
+            "Changhong",
+            "Changhong"
+          ],
+          [
+            "Chigo",
+            "Chigo"
+          ],
+          [
+            "TCL",
+            "TCL"
+          ],
+          [
+            "Hisense",
+            "Hisense"
+          ],
+          [
+            "Panasonic",
+            "Panasonic"
+          ],
+          [
+            "GreeMideaAuxHaierChanghong",
+            "GreeMideaAuxHaierChanghong"
+          ],
+          [
+            "Hitachi",
+            "Hitachi"
+          ],
+          [
+            "Daikin",
+            "Daikin"
+          ],
+          [
+            "Mitsubishi",
+            "Mitsubishi"
+          ],
+          [
+            "Xiaomi",
+            "Xiaomi"
+          ],
+          [
+            "Whirlpool",
+            "Whirlpool"
+          ],
+          [
+            "Galanz",
+            "Galanz"
+          ],
+          [
+            "Fujitsu",
+            "Fujitsu"
+          ],
+          [
+            "Sanshui",
+            "Sanshui"
+          ],
+          [
+            "York",
+            "York"
+          ],
+          [
+            "Skyworth",
+            "Skyworth"
+          ],
+          [
+            "Shinco",
+            "Shinco"
+          ],
+          [
+            "Chunlan",
+            "Chunlan"
+          ],
+          [
+            "Cheblo",
+            "Cheblo"
+          ],
+          [
+            "Samsung",
+            "Samsung"
+          ],
+          [
+            "Aucma",
+            "Aucma"
+          ],
+          [
+            "Xinfei",
+            "Xinfei"
+          ],
+          [
+            "Toshiba",
+            "Toshiba"
+          ],
+          [
+            "Sampo",
+            "Sampo"
+          ],
+          [
+            "Yuetu",
+            "Yuetu"
+          ],
+          [
+            "Yair",
+            "Yair"
+          ],
+          [
+            "Amoi",
+            "Amoi"
+          ],
+          [
+            "Sharp",
+            "Sharp"
+          ],
+          [
+            "Konka",
+            "Konka"
+          ],
+          [
+            "Rongshida",
+            "Rongshida"
+          ],
+          [
+            "Toyo",
+            "Toyo"
+          ]
+        ]
+      }
+    ]
+  },
+  "chipintelli_ir_select_air_code": {
+    "message0": "select air-conditioner code ID %1",
+    "tooltip": "Restore an opaque 32-bit code ID obtained from search."
+  },
+  "chipintelli_ir_air_code": {
+    "message0": "current air-conditioner code ID",
+    "tooltip": "Return the selected 32-bit air-conditioner code ID."
+  },
+  "chipintelli_ir_send_air_command": {
+    "message0": "send air-conditioner command %1",
+    "tooltip": "Asynchronously send a state command with the selected code.",
+    "args0": [
+      {
+        "options": [
+          [
+            "PowerOn",
+            "PowerOn"
+          ],
+          [
+            "PowerOff",
+            "PowerOff"
+          ],
+          [
+            "FanHigh",
+            "FanHigh"
+          ],
+          [
+            "FanMedium",
+            "FanMedium"
+          ],
+          [
+            "FanLow",
+            "FanLow"
+          ],
+          [
+            "FanAuto",
+            "FanAuto"
+          ],
+          [
+            "SwingStart",
+            "SwingStart"
+          ],
+          [
+            "SwingStop",
+            "SwingStop"
+          ],
+          [
+            "SwingVertical",
+            "SwingVertical"
+          ],
+          [
+            "SwingHorizontal",
+            "SwingHorizontal"
+          ],
+          [
+            "SwingVerticalStop",
+            "SwingVerticalStop"
+          ],
+          [
+            "SwingHorizontalStop",
+            "SwingHorizontalStop"
+          ],
+          [
+            "TemperatureUp",
+            "TemperatureUp"
+          ],
+          [
+            "TemperatureDown",
+            "TemperatureDown"
+          ],
+          [
+            "FanUp",
+            "FanUp"
+          ],
+          [
+            "FanDown",
+            "FanDown"
+          ],
+          [
+            "ModeCool",
+            "ModeCool"
+          ],
+          [
+            "ModeHeat",
+            "ModeHeat"
+          ],
+          [
+            "ModeFan",
+            "ModeFan"
+          ],
+          [
+            "ModeDry",
+            "ModeDry"
+          ],
+          [
+            "ModeAuto",
+            "ModeAuto"
+          ],
+          [
+            "ElectricHeatOn",
+            "ElectricHeatOn"
+          ],
+          [
+            "ElectricHeatOff",
+            "ElectricHeatOff"
+          ],
+          [
+            "EnergySavingOn",
+            "EnergySavingOn"
+          ],
+          [
+            "EnergySavingOff",
+            "EnergySavingOff"
+          ],
+          [
+            "SleepOff",
+            "SleepOff"
+          ],
+          [
+            "SleepMode1",
+            "SleepMode1"
+          ],
+          [
+            "SleepMode2",
+            "SleepMode2"
+          ],
+          [
+            "SleepMode3",
+            "SleepMode3"
+          ],
+          [
+            "AirCleanOn",
+            "AirCleanOn"
+          ],
+          [
+            "AirCleanOff",
+            "AirCleanOff"
+          ],
+          [
+            "HealthOn",
+            "HealthOn"
+          ],
+          [
+            "HealthOff",
+            "HealthOff"
+          ],
+          [
+            "DisplayOn",
+            "DisplayOn"
+          ],
+          [
+            "DisplayOff",
+            "DisplayOff"
+          ],
+          [
+            "MuteOn",
+            "MuteOn"
+          ],
+          [
+            "MuteOff",
+            "MuteOff"
+          ],
+          [
+            "PowerfulOn",
+            "PowerfulOn"
+          ],
+          [
+            "PowerfulOff",
+            "PowerfulOff"
+          ],
+          [
+            "FollowMeOn",
+            "FollowMeOn"
+          ],
+          [
+            "FollowMeOff",
+            "FollowMeOff"
+          ],
+          [
+            "FreshAirOn",
+            "FreshAirOn"
+          ],
+          [
+            "FreshAirOff",
+            "FreshAirOff"
+          ],
+          [
+            "WindToPersonOn",
+            "WindToPersonOn"
+          ],
+          [
+            "WindToPersonOff",
+            "WindToPersonOff"
+          ]
+        ]
+      }
+    ]
+  },
+  "chipintelli_ir_set_air_temperature": {
+    "message0": "set air-conditioner temperature to %1 °C",
+    "tooltip": "Set temperature; input is constrained to 16–30 °C."
+  },
+  "chipintelli_ir_air_power": {
+    "message0": "set air-conditioner power %1",
+    "tooltip": "Send an air-conditioner power-on or power-off command.",
+    "args0": [
+      {
+        "options": [
+          [
+            "true",
+            "true"
+          ],
+          [
+            "false",
+            "false"
+          ]
+        ]
+      }
+    ]
+  },
+  "chipintelli_ir_start_air_search": {
+    "message0": "start air-code search scope %1 send each %2 times interval %3 ms",
+    "tooltip": "Asynchronously send candidate codes and forward search events to Arduino loop.",
+    "args0": [
+      {
+        "options": [
+          [
+            "AllBrands",
+            "AllBrands"
+          ],
+          [
+            "CurrentBrandModels",
+            "CurrentBrandModels"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "chipintelli_ir_stop_air_search": {
+    "message0": "stop air-code search",
+    "tooltip": "Request the current air-conditioner code search to stop."
+  },
+  "chipintelli_ir_read_air_search_event": {
+    "message0": "when an air-code search event is pending",
+    "message1": "run %1",
+    "tooltip": "Process the latest code-sent, completed or stopped event in Arduino loop."
+  },
+  "chipintelli_ir_air_search_event": {
+    "message0": "current air-code search event type",
+    "tooltip": "Return 0 code sent, 1 completed, or 2 stopped."
+  },
+  "chipintelli_ir_air_search_code": {
+    "message0": "current air-code search event code ID",
+    "tooltip": "Return the candidate code ID associated with the event."
+  },
+  "chipintelli_ir_air_search_event_value": {
+    "message0": "air-code search event %1",
+    "tooltip": "A constant for comparison with the current search event.",
+    "args0": [
+      {
+        "options": [
+          [
+            "0",
+            "0"
+          ],
+          [
+            "1",
+            "1"
+          ],
+          [
+            "2",
+            "2"
+          ]
+        ]
+      }
+    ]
+  },
+  "chipintelli_ir_mode": {
+    "message0": "current infrared mode",
+    "tooltip": "Return 0 uninitialized, 1 raw, or 2 air-conditioner database mode."
+  },
+  "chipintelli_ir_last_error": {
+    "message0": "last infrared error code",
+    "tooltip": "Return the most recent error enum; zero means no error."
+  },
+  "chipintelli_ir_error_string": {
+    "message0": "last infrared error message",
+    "tooltip": "Return the English description of the most recent error."
+  }
+}

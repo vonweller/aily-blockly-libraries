@@ -1,0 +1,4798 @@
+{
+  "toolbox_name": "HuskyLensV2",
+  "toolbox_labels": {
+    "初始化": "инициализация",
+    "算法设置": "Настройки алгоритма",
+    "数据获取": "сбор данных",
+    "结果获取": "Приобретение результатов",
+    "巡线分支": "Маршрут патрульной ветки",
+    "学习功能": "Функция обучения",
+    "拍照截图": "Скриншот фотографии",
+    "绘图功能": "Функция рисования",
+    "知识库管理": "Управление базой знаний",
+    "音乐与命名": "Музыка и названия",
+    "算法参数": "Параметры алгоритма",
+    "结果属性": "Атрибуты результатов",
+    "人脸关键点": "Ключевые точки лица",
+    "手势/姿态关键点": "Ключевые моменты жестов/позы",
+    "多算法": "Множественные алгоритмы",
+    "媒体录制": "Медиазапись"
+  },
+  "huskylensv2_init_i2c_until": {
+    "message0": "Инициализируйте интерфейс HuskyLensV2 %1 I2C %2 до успешного успеха",
+    "tooltip": "Инициализируйте HuskyLens V2 через I2C и повторяйте цикл до успешного завершения"
+  },
+  "huskylensv2_init_i2c": {
+    "message0": "Инициализация интерфейса HuskyLensV2 %1 I2C %2",
+    "tooltip": "Инициализация HuskyLens V2 через I2C"
+  },
+  "huskylensv2_init_serial": {
+    "message0": "Инициализация HuskyLensV2 %1 последовательного порта %2",
+    "tooltip": "Инициализация HuskyLens V2 через последовательный порт (скорость передачи автоматически выбирается платой)"
+  },
+  "huskylensv2_set_algorithm": {
+    "message0": "Алгоритм переключения %1 HuskyLensV2 %2",
+    "tooltip": "Алгоритмы распознавания коммутаторов",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Произвольный алгоритм",
+            "ALGORITHM_ANY"
+          ],
+          [
+            "Лицо",
+            "ALGORITHM_FACE_RECOGNITION"
+          ],
+          [
+            "Распознавание объектов",
+            "ALGORITHM_OBJECT_RECOGNITION"
+          ],
+          [
+            "Отслеживание объектов",
+            "ALGORITHM_OBJECT_TRACKING"
+          ],
+          [
+            "Цвет",
+            "ALGORITHM_COLOR_RECOGNITION"
+          ],
+          [
+            "Классификация объектов",
+            "ALGORITHM_OBJECT_CLASSIFICATION"
+          ],
+          [
+            "Самообучающаяся классификация",
+            "ALGORITHM_SELF_LEARNING_CLASSIFICATION"
+          ],
+          [
+            "Разделить",
+            "ALGORITHM_SEGMENT"
+          ],
+          [
+            "Распознавание жестов",
+            "ALGORITHM_HAND_RECOGNITION"
+          ],
+          [
+            "Распознавание осанки",
+            "ALGORITHM_POSE_RECOGNITION"
+          ],
+          [
+            "Номер",
+            "ALGORITHM_LICENSE_RECOGNITION"
+          ],
+          [
+            "Распознавание текста OCR",
+            "ALGORITHM_OCR_RECOGNITION"
+          ],
+          [
+            "Трек и дроп",
+            "ALGORITHM_LINE_TRACKING"
+          ],
+          [
+            "Распознавание мимики",
+            "ALGORITHM_EMOTION_RECOGNITION"
+          ],
+          [
+            "Распознавание глаз",
+            "ALGORITHM_GAZE_RECOGNITION"
+          ],
+          [
+            "Лицо обращено вперёд",
+            "ALGORITHM_FACE_ORIENTATION"
+          ],
+          [
+            "Признание лейбла",
+            "ALGORITHM_TAG_RECOGNITION"
+          ],
+          [
+            "Распознавание штрихкодов",
+            "ALGORITHM_BARCODE_RECOGNITION"
+          ],
+          [
+            "Сканирование QR",
+            "ALGORITHM_QRCODE_RECOGNITION"
+          ],
+          [
+            "Обнаружение падения",
+            "ALGORITHM_FALLDOWN_RECOGNITION"
+          ],
+          [
+            "Камера глубины",
+            "ALGORITHM_DEPTH_CAMERA"
+          ],
+          [
+            "DonkeyCar",
+            "ALGORITHM_DONKEYCAR"
+          ],
+          [
+            "камера",
+            "ALGORITHM_CAMERA"
+          ],
+          [
+            "Custom 0",
+            "ALGORITHM_CUSTOM0"
+          ],
+          [
+            "Custom 1",
+            "ALGORITHM_CUSTOM1"
+          ],
+          [
+            "Custom 2",
+            "ALGORITHM_CUSTOM2"
+          ]
+        ]
+      }
+    ]
+  },
+  "huskylensv2_set_algorithm_until": {
+    "message0": "HuskyLensV2 %1 переключался на %2 алгоритм до успешного выполнения",
+    "tooltip": "Переключайте алгоритмы и цикл до успеха",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Произвольный алгоритм",
+            "ALGORITHM_ANY"
+          ],
+          [
+            "Лицо",
+            "ALGORITHM_FACE_RECOGNITION"
+          ],
+          [
+            "Распознавание объектов",
+            "ALGORITHM_OBJECT_RECOGNITION"
+          ],
+          [
+            "Отслеживание объектов",
+            "ALGORITHM_OBJECT_TRACKING"
+          ],
+          [
+            "Цвет",
+            "ALGORITHM_COLOR_RECOGNITION"
+          ],
+          [
+            "Классификация объектов",
+            "ALGORITHM_OBJECT_CLASSIFICATION"
+          ],
+          [
+            "Самообучающаяся классификация",
+            "ALGORITHM_SELF_LEARNING_CLASSIFICATION"
+          ],
+          [
+            "Разделить",
+            "ALGORITHM_SEGMENT"
+          ],
+          [
+            "Распознавание жестов",
+            "ALGORITHM_HAND_RECOGNITION"
+          ],
+          [
+            "Распознавание осанки",
+            "ALGORITHM_POSE_RECOGNITION"
+          ],
+          [
+            "Номер",
+            "ALGORITHM_LICENSE_RECOGNITION"
+          ],
+          [
+            "Распознавание текста OCR",
+            "ALGORITHM_OCR_RECOGNITION"
+          ],
+          [
+            "Трек и дроп",
+            "ALGORITHM_LINE_TRACKING"
+          ],
+          [
+            "Распознавание мимики",
+            "ALGORITHM_EMOTION_RECOGNITION"
+          ],
+          [
+            "Распознавание глаз",
+            "ALGORITHM_GAZE_RECOGNITION"
+          ],
+          [
+            "Лицо обращено вперёд",
+            "ALGORITHM_FACE_ORIENTATION"
+          ],
+          [
+            "Признание лейбла",
+            "ALGORITHM_TAG_RECOGNITION"
+          ],
+          [
+            "Распознавание штрихкодов",
+            "ALGORITHM_BARCODE_RECOGNITION"
+          ],
+          [
+            "Сканирование QR",
+            "ALGORITHM_QRCODE_RECOGNITION"
+          ],
+          [
+            "Обнаружение падения",
+            "ALGORITHM_FALLDOWN_RECOGNITION"
+          ],
+          [
+            "Камера глубины",
+            "ALGORITHM_DEPTH_CAMERA"
+          ],
+          [
+            "DonkeyCar",
+            "ALGORITHM_DONKEYCAR"
+          ],
+          [
+            "камера",
+            "ALGORITHM_CAMERA"
+          ],
+          [
+            "Custom 0",
+            "ALGORITHM_CUSTOM0"
+          ],
+          [
+            "Custom 1",
+            "ALGORITHM_CUSTOM1"
+          ],
+          [
+            "Custom 2",
+            "ALGORITHM_CUSTOM2"
+          ]
+        ]
+      }
+    ]
+  },
+  "huskylensv2_get_result": {
+    "message0": "HuskyLensV2 %1 получить результаты %2 алгоритма",
+    "tooltip": "Запрос на указание результатов распознавания алгоритма и их кэширование",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Произвольный алгоритм",
+            "ALGORITHM_ANY"
+          ],
+          [
+            "Лицо",
+            "ALGORITHM_FACE_RECOGNITION"
+          ],
+          [
+            "Распознавание объектов",
+            "ALGORITHM_OBJECT_RECOGNITION"
+          ],
+          [
+            "Отслеживание объектов",
+            "ALGORITHM_OBJECT_TRACKING"
+          ],
+          [
+            "Цвет",
+            "ALGORITHM_COLOR_RECOGNITION"
+          ],
+          [
+            "Классификация объектов",
+            "ALGORITHM_OBJECT_CLASSIFICATION"
+          ],
+          [
+            "Самообучающаяся классификация",
+            "ALGORITHM_SELF_LEARNING_CLASSIFICATION"
+          ],
+          [
+            "Разделить",
+            "ALGORITHM_SEGMENT"
+          ],
+          [
+            "Распознавание жестов",
+            "ALGORITHM_HAND_RECOGNITION"
+          ],
+          [
+            "Распознавание осанки",
+            "ALGORITHM_POSE_RECOGNITION"
+          ],
+          [
+            "Номер",
+            "ALGORITHM_LICENSE_RECOGNITION"
+          ],
+          [
+            "Распознавание текста OCR",
+            "ALGORITHM_OCR_RECOGNITION"
+          ],
+          [
+            "Трек и дроп",
+            "ALGORITHM_LINE_TRACKING"
+          ],
+          [
+            "Распознавание мимики",
+            "ALGORITHM_EMOTION_RECOGNITION"
+          ],
+          [
+            "Распознавание глаз",
+            "ALGORITHM_GAZE_RECOGNITION"
+          ],
+          [
+            "Лицо обращено вперёд",
+            "ALGORITHM_FACE_ORIENTATION"
+          ],
+          [
+            "Признание лейбла",
+            "ALGORITHM_TAG_RECOGNITION"
+          ],
+          [
+            "Распознавание штрихкодов",
+            "ALGORITHM_BARCODE_RECOGNITION"
+          ],
+          [
+            "Сканирование QR",
+            "ALGORITHM_QRCODE_RECOGNITION"
+          ],
+          [
+            "Обнаружение падения",
+            "ALGORITHM_FALLDOWN_RECOGNITION"
+          ],
+          [
+            "Камера глубины",
+            "ALGORITHM_DEPTH_CAMERA"
+          ],
+          [
+            "DonkeyCar",
+            "ALGORITHM_DONKEYCAR"
+          ],
+          [
+            "камера",
+            "ALGORITHM_CAMERA"
+          ],
+          [
+            "Custom 0",
+            "ALGORITHM_CUSTOM0"
+          ],
+          [
+            "Custom 1",
+            "ALGORITHM_CUSTOM1"
+          ],
+          [
+            "Custom 2",
+            "ALGORITHM_CUSTOM2"
+          ]
+        ]
+      }
+    ]
+  },
+  "huskylensv2_get_result_until": {
+    "message0": "HuskyLensV2 %1 получить результаты %2 алгоритма до успешного успеха",
+    "tooltip": "Зацикливайте запрос, пока не получите результат",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Произвольный алгоритм",
+            "ALGORITHM_ANY"
+          ],
+          [
+            "Лицо",
+            "ALGORITHM_FACE_RECOGNITION"
+          ],
+          [
+            "Распознавание объектов",
+            "ALGORITHM_OBJECT_RECOGNITION"
+          ],
+          [
+            "Отслеживание объектов",
+            "ALGORITHM_OBJECT_TRACKING"
+          ],
+          [
+            "Цвет",
+            "ALGORITHM_COLOR_RECOGNITION"
+          ],
+          [
+            "Классификация объектов",
+            "ALGORITHM_OBJECT_CLASSIFICATION"
+          ],
+          [
+            "Самообучающаяся классификация",
+            "ALGORITHM_SELF_LEARNING_CLASSIFICATION"
+          ],
+          [
+            "Разделить",
+            "ALGORITHM_SEGMENT"
+          ],
+          [
+            "Распознавание жестов",
+            "ALGORITHM_HAND_RECOGNITION"
+          ],
+          [
+            "Распознавание осанки",
+            "ALGORITHM_POSE_RECOGNITION"
+          ],
+          [
+            "Номер",
+            "ALGORITHM_LICENSE_RECOGNITION"
+          ],
+          [
+            "Распознавание текста OCR",
+            "ALGORITHM_OCR_RECOGNITION"
+          ],
+          [
+            "Трек и дроп",
+            "ALGORITHM_LINE_TRACKING"
+          ],
+          [
+            "Распознавание мимики",
+            "ALGORITHM_EMOTION_RECOGNITION"
+          ],
+          [
+            "Распознавание глаз",
+            "ALGORITHM_GAZE_RECOGNITION"
+          ],
+          [
+            "Лицо обращено вперёд",
+            "ALGORITHM_FACE_ORIENTATION"
+          ],
+          [
+            "Признание лейбла",
+            "ALGORITHM_TAG_RECOGNITION"
+          ],
+          [
+            "Распознавание штрихкодов",
+            "ALGORITHM_BARCODE_RECOGNITION"
+          ],
+          [
+            "Сканирование QR",
+            "ALGORITHM_QRCODE_RECOGNITION"
+          ],
+          [
+            "Обнаружение падения",
+            "ALGORITHM_FALLDOWN_RECOGNITION"
+          ],
+          [
+            "Камера глубины",
+            "ALGORITHM_DEPTH_CAMERA"
+          ],
+          [
+            "DonkeyCar",
+            "ALGORITHM_DONKEYCAR"
+          ],
+          [
+            "камера",
+            "ALGORITHM_CAMERA"
+          ],
+          [
+            "Custom 0",
+            "ALGORITHM_CUSTOM0"
+          ],
+          [
+            "Custom 1",
+            "ALGORITHM_CUSTOM1"
+          ],
+          [
+            "Custom 2",
+            "ALGORITHM_CUSTOM2"
+          ]
+        ]
+      }
+    ]
+  },
+  "huskylensv2_available": {
+    "message0": "HuskyLensV2 %1 алгоритм %2 и результаты",
+    "tooltip": "Есть ли ещё результаты кэша (bool)?",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Произвольный алгоритм",
+            "ALGORITHM_ANY"
+          ],
+          [
+            "Лицо",
+            "ALGORITHM_FACE_RECOGNITION"
+          ],
+          [
+            "Распознавание объектов",
+            "ALGORITHM_OBJECT_RECOGNITION"
+          ],
+          [
+            "Отслеживание объектов",
+            "ALGORITHM_OBJECT_TRACKING"
+          ],
+          [
+            "Цвет",
+            "ALGORITHM_COLOR_RECOGNITION"
+          ],
+          [
+            "Классификация объектов",
+            "ALGORITHM_OBJECT_CLASSIFICATION"
+          ],
+          [
+            "Самообучающаяся классификация",
+            "ALGORITHM_SELF_LEARNING_CLASSIFICATION"
+          ],
+          [
+            "Разделить",
+            "ALGORITHM_SEGMENT"
+          ],
+          [
+            "Распознавание жестов",
+            "ALGORITHM_HAND_RECOGNITION"
+          ],
+          [
+            "Распознавание осанки",
+            "ALGORITHM_POSE_RECOGNITION"
+          ],
+          [
+            "Номер",
+            "ALGORITHM_LICENSE_RECOGNITION"
+          ],
+          [
+            "Распознавание текста OCR",
+            "ALGORITHM_OCR_RECOGNITION"
+          ],
+          [
+            "Трек и дроп",
+            "ALGORITHM_LINE_TRACKING"
+          ],
+          [
+            "Распознавание мимики",
+            "ALGORITHM_EMOTION_RECOGNITION"
+          ],
+          [
+            "Распознавание глаз",
+            "ALGORITHM_GAZE_RECOGNITION"
+          ],
+          [
+            "Лицо обращено вперёд",
+            "ALGORITHM_FACE_ORIENTATION"
+          ],
+          [
+            "Признание лейбла",
+            "ALGORITHM_TAG_RECOGNITION"
+          ],
+          [
+            "Распознавание штрихкодов",
+            "ALGORITHM_BARCODE_RECOGNITION"
+          ],
+          [
+            "Сканирование QR",
+            "ALGORITHM_QRCODE_RECOGNITION"
+          ],
+          [
+            "Обнаружение падения",
+            "ALGORITHM_FALLDOWN_RECOGNITION"
+          ],
+          [
+            "Камера глубины",
+            "ALGORITHM_DEPTH_CAMERA"
+          ],
+          [
+            "DonkeyCar",
+            "ALGORITHM_DONKEYCAR"
+          ],
+          [
+            "камера",
+            "ALGORITHM_CAMERA"
+          ],
+          [
+            "Custom 0",
+            "ALGORITHM_CUSTOM0"
+          ],
+          [
+            "Custom 1",
+            "ALGORITHM_CUSTOM1"
+          ],
+          [
+            "Custom 2",
+            "ALGORITHM_CUSTOM2"
+          ]
+        ]
+      }
+    ]
+  },
+  "huskylensv2_result_count": {
+    "message0": "Алгоритм HuskyLensV2 %1 %2 количество результатов",
+    "tooltip": "Cached result count getCachedResultNum",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Произвольный алгоритм",
+            "ALGORITHM_ANY"
+          ],
+          [
+            "Лицо",
+            "ALGORITHM_FACE_RECOGNITION"
+          ],
+          [
+            "Распознавание объектов",
+            "ALGORITHM_OBJECT_RECOGNITION"
+          ],
+          [
+            "Отслеживание объектов",
+            "ALGORITHM_OBJECT_TRACKING"
+          ],
+          [
+            "Цвет",
+            "ALGORITHM_COLOR_RECOGNITION"
+          ],
+          [
+            "Классификация объектов",
+            "ALGORITHM_OBJECT_CLASSIFICATION"
+          ],
+          [
+            "Самообучающаяся классификация",
+            "ALGORITHM_SELF_LEARNING_CLASSIFICATION"
+          ],
+          [
+            "Разделить",
+            "ALGORITHM_SEGMENT"
+          ],
+          [
+            "Распознавание жестов",
+            "ALGORITHM_HAND_RECOGNITION"
+          ],
+          [
+            "Распознавание осанки",
+            "ALGORITHM_POSE_RECOGNITION"
+          ],
+          [
+            "Номер",
+            "ALGORITHM_LICENSE_RECOGNITION"
+          ],
+          [
+            "Распознавание текста OCR",
+            "ALGORITHM_OCR_RECOGNITION"
+          ],
+          [
+            "Трек и дроп",
+            "ALGORITHM_LINE_TRACKING"
+          ],
+          [
+            "Распознавание мимики",
+            "ALGORITHM_EMOTION_RECOGNITION"
+          ],
+          [
+            "Распознавание глаз",
+            "ALGORITHM_GAZE_RECOGNITION"
+          ],
+          [
+            "Лицо обращено вперёд",
+            "ALGORITHM_FACE_ORIENTATION"
+          ],
+          [
+            "Признание лейбла",
+            "ALGORITHM_TAG_RECOGNITION"
+          ],
+          [
+            "Распознавание штрихкодов",
+            "ALGORITHM_BARCODE_RECOGNITION"
+          ],
+          [
+            "Сканирование QR",
+            "ALGORITHM_QRCODE_RECOGNITION"
+          ],
+          [
+            "Обнаружение падения",
+            "ALGORITHM_FALLDOWN_RECOGNITION"
+          ],
+          [
+            "Камера глубины",
+            "ALGORITHM_DEPTH_CAMERA"
+          ],
+          [
+            "DonkeyCar",
+            "ALGORITHM_DONKEYCAR"
+          ],
+          [
+            "камера",
+            "ALGORITHM_CAMERA"
+          ],
+          [
+            "Custom 0",
+            "ALGORITHM_CUSTOM0"
+          ],
+          [
+            "Custom 1",
+            "ALGORITHM_CUSTOM1"
+          ],
+          [
+            "Custom 2",
+            "ALGORITHM_CUSTOM2"
+          ]
+        ]
+      }
+    ]
+  },
+  "huskylensv2_count_learned": {
+    "message0": "Количество %2, изученных алгоритмом HuskyLensV2 %1",
+    "tooltip": "Количество полученных результатов",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Произвольный алгоритм",
+            "ALGORITHM_ANY"
+          ],
+          [
+            "Лицо",
+            "ALGORITHM_FACE_RECOGNITION"
+          ],
+          [
+            "Распознавание объектов",
+            "ALGORITHM_OBJECT_RECOGNITION"
+          ],
+          [
+            "Отслеживание объектов",
+            "ALGORITHM_OBJECT_TRACKING"
+          ],
+          [
+            "Цвет",
+            "ALGORITHM_COLOR_RECOGNITION"
+          ],
+          [
+            "Классификация объектов",
+            "ALGORITHM_OBJECT_CLASSIFICATION"
+          ],
+          [
+            "Самообучающаяся классификация",
+            "ALGORITHM_SELF_LEARNING_CLASSIFICATION"
+          ],
+          [
+            "Разделить",
+            "ALGORITHM_SEGMENT"
+          ],
+          [
+            "Распознавание жестов",
+            "ALGORITHM_HAND_RECOGNITION"
+          ],
+          [
+            "Распознавание осанки",
+            "ALGORITHM_POSE_RECOGNITION"
+          ],
+          [
+            "Номер",
+            "ALGORITHM_LICENSE_RECOGNITION"
+          ],
+          [
+            "Распознавание текста OCR",
+            "ALGORITHM_OCR_RECOGNITION"
+          ],
+          [
+            "Трек и дроп",
+            "ALGORITHM_LINE_TRACKING"
+          ],
+          [
+            "Распознавание мимики",
+            "ALGORITHM_EMOTION_RECOGNITION"
+          ],
+          [
+            "Распознавание глаз",
+            "ALGORITHM_GAZE_RECOGNITION"
+          ],
+          [
+            "Лицо обращено вперёд",
+            "ALGORITHM_FACE_ORIENTATION"
+          ],
+          [
+            "Признание лейбла",
+            "ALGORITHM_TAG_RECOGNITION"
+          ],
+          [
+            "Распознавание штрихкодов",
+            "ALGORITHM_BARCODE_RECOGNITION"
+          ],
+          [
+            "Сканирование QR",
+            "ALGORITHM_QRCODE_RECOGNITION"
+          ],
+          [
+            "Обнаружение падения",
+            "ALGORITHM_FALLDOWN_RECOGNITION"
+          ],
+          [
+            "Камера глубины",
+            "ALGORITHM_DEPTH_CAMERA"
+          ],
+          [
+            "DonkeyCar",
+            "ALGORITHM_DONKEYCAR"
+          ],
+          [
+            "камера",
+            "ALGORITHM_CAMERA"
+          ],
+          [
+            "Custom 0",
+            "ALGORITHM_CUSTOM0"
+          ],
+          [
+            "Custom 1",
+            "ALGORITHM_CUSTOM1"
+          ],
+          [
+            "Custom 2",
+            "ALGORITHM_CUSTOM2"
+          ]
+        ]
+      }
+    ]
+  },
+  "huskylensv2_count_id": {
+    "message0": "Число %2 ID %3 в алгоритме HuskyLensV2 %1",
+    "tooltip": "Укажите количество идентификаторов для обнаружения",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Произвольный алгоритм",
+            "ALGORITHM_ANY"
+          ],
+          [
+            "Лицо",
+            "ALGORITHM_FACE_RECOGNITION"
+          ],
+          [
+            "Распознавание объектов",
+            "ALGORITHM_OBJECT_RECOGNITION"
+          ],
+          [
+            "Отслеживание объектов",
+            "ALGORITHM_OBJECT_TRACKING"
+          ],
+          [
+            "Цвет",
+            "ALGORITHM_COLOR_RECOGNITION"
+          ],
+          [
+            "Классификация объектов",
+            "ALGORITHM_OBJECT_CLASSIFICATION"
+          ],
+          [
+            "Самообучающаяся классификация",
+            "ALGORITHM_SELF_LEARNING_CLASSIFICATION"
+          ],
+          [
+            "Разделить",
+            "ALGORITHM_SEGMENT"
+          ],
+          [
+            "Распознавание жестов",
+            "ALGORITHM_HAND_RECOGNITION"
+          ],
+          [
+            "Распознавание осанки",
+            "ALGORITHM_POSE_RECOGNITION"
+          ],
+          [
+            "Номер",
+            "ALGORITHM_LICENSE_RECOGNITION"
+          ],
+          [
+            "Распознавание текста OCR",
+            "ALGORITHM_OCR_RECOGNITION"
+          ],
+          [
+            "Трек и дроп",
+            "ALGORITHM_LINE_TRACKING"
+          ],
+          [
+            "Распознавание мимики",
+            "ALGORITHM_EMOTION_RECOGNITION"
+          ],
+          [
+            "Распознавание глаз",
+            "ALGORITHM_GAZE_RECOGNITION"
+          ],
+          [
+            "Лицо обращено вперёд",
+            "ALGORITHM_FACE_ORIENTATION"
+          ],
+          [
+            "Признание лейбла",
+            "ALGORITHM_TAG_RECOGNITION"
+          ],
+          [
+            "Распознавание штрихкодов",
+            "ALGORITHM_BARCODE_RECOGNITION"
+          ],
+          [
+            "Сканирование QR",
+            "ALGORITHM_QRCODE_RECOGNITION"
+          ],
+          [
+            "Обнаружение падения",
+            "ALGORITHM_FALLDOWN_RECOGNITION"
+          ],
+          [
+            "Камера глубины",
+            "ALGORITHM_DEPTH_CAMERA"
+          ],
+          [
+            "DonkeyCar",
+            "ALGORITHM_DONKEYCAR"
+          ],
+          [
+            "камера",
+            "ALGORITHM_CAMERA"
+          ],
+          [
+            "Custom 0",
+            "ALGORITHM_CUSTOM0"
+          ],
+          [
+            "Custom 1",
+            "ALGORITHM_CUSTOM1"
+          ],
+          [
+            "Custom 2",
+            "ALGORITHM_CUSTOM2"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "huskylensv2_max_id": {
+    "message0": "Алгоритм %1 HuskyLensV2 %2 максимальный идентификатор",
+    "tooltip": "Максимальное удостоверение",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Произвольный алгоритм",
+            "ALGORITHM_ANY"
+          ],
+          [
+            "Лицо",
+            "ALGORITHM_FACE_RECOGNITION"
+          ],
+          [
+            "Распознавание объектов",
+            "ALGORITHM_OBJECT_RECOGNITION"
+          ],
+          [
+            "Отслеживание объектов",
+            "ALGORITHM_OBJECT_TRACKING"
+          ],
+          [
+            "Цвет",
+            "ALGORITHM_COLOR_RECOGNITION"
+          ],
+          [
+            "Классификация объектов",
+            "ALGORITHM_OBJECT_CLASSIFICATION"
+          ],
+          [
+            "Самообучающаяся классификация",
+            "ALGORITHM_SELF_LEARNING_CLASSIFICATION"
+          ],
+          [
+            "Разделить",
+            "ALGORITHM_SEGMENT"
+          ],
+          [
+            "Распознавание жестов",
+            "ALGORITHM_HAND_RECOGNITION"
+          ],
+          [
+            "Распознавание осанки",
+            "ALGORITHM_POSE_RECOGNITION"
+          ],
+          [
+            "Номер",
+            "ALGORITHM_LICENSE_RECOGNITION"
+          ],
+          [
+            "Распознавание текста OCR",
+            "ALGORITHM_OCR_RECOGNITION"
+          ],
+          [
+            "Трек и дроп",
+            "ALGORITHM_LINE_TRACKING"
+          ],
+          [
+            "Распознавание мимики",
+            "ALGORITHM_EMOTION_RECOGNITION"
+          ],
+          [
+            "Распознавание глаз",
+            "ALGORITHM_GAZE_RECOGNITION"
+          ],
+          [
+            "Лицо обращено вперёд",
+            "ALGORITHM_FACE_ORIENTATION"
+          ],
+          [
+            "Признание лейбла",
+            "ALGORITHM_TAG_RECOGNITION"
+          ],
+          [
+            "Распознавание штрихкодов",
+            "ALGORITHM_BARCODE_RECOGNITION"
+          ],
+          [
+            "Сканирование QR",
+            "ALGORITHM_QRCODE_RECOGNITION"
+          ],
+          [
+            "Обнаружение падения",
+            "ALGORITHM_FALLDOWN_RECOGNITION"
+          ],
+          [
+            "Камера глубины",
+            "ALGORITHM_DEPTH_CAMERA"
+          ],
+          [
+            "DonkeyCar",
+            "ALGORITHM_DONKEYCAR"
+          ],
+          [
+            "камера",
+            "ALGORITHM_CAMERA"
+          ],
+          [
+            "Custom 0",
+            "ALGORITHM_CUSTOM0"
+          ],
+          [
+            "Custom 1",
+            "ALGORITHM_CUSTOM1"
+          ],
+          [
+            "Custom 2",
+            "ALGORITHM_CUSTOM2"
+          ]
+        ]
+      }
+    ]
+  },
+  "huskylensv2_pop_result": {
+    "message0": "HuskyLensV2 %1 появляется %2 результатах алгоритма",
+    "tooltip": "popCachedResult — официально рекомендуемый метод потребления",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Произвольный алгоритм",
+            "ALGORITHM_ANY"
+          ],
+          [
+            "Лицо",
+            "ALGORITHM_FACE_RECOGNITION"
+          ],
+          [
+            "Распознавание объектов",
+            "ALGORITHM_OBJECT_RECOGNITION"
+          ],
+          [
+            "Отслеживание объектов",
+            "ALGORITHM_OBJECT_TRACKING"
+          ],
+          [
+            "Цвет",
+            "ALGORITHM_COLOR_RECOGNITION"
+          ],
+          [
+            "Классификация объектов",
+            "ALGORITHM_OBJECT_CLASSIFICATION"
+          ],
+          [
+            "Самообучающаяся классификация",
+            "ALGORITHM_SELF_LEARNING_CLASSIFICATION"
+          ],
+          [
+            "Разделить",
+            "ALGORITHM_SEGMENT"
+          ],
+          [
+            "Распознавание жестов",
+            "ALGORITHM_HAND_RECOGNITION"
+          ],
+          [
+            "Распознавание осанки",
+            "ALGORITHM_POSE_RECOGNITION"
+          ],
+          [
+            "Номер",
+            "ALGORITHM_LICENSE_RECOGNITION"
+          ],
+          [
+            "Распознавание текста OCR",
+            "ALGORITHM_OCR_RECOGNITION"
+          ],
+          [
+            "Трек и дроп",
+            "ALGORITHM_LINE_TRACKING"
+          ],
+          [
+            "Распознавание мимики",
+            "ALGORITHM_EMOTION_RECOGNITION"
+          ],
+          [
+            "Распознавание глаз",
+            "ALGORITHM_GAZE_RECOGNITION"
+          ],
+          [
+            "Лицо обращено вперёд",
+            "ALGORITHM_FACE_ORIENTATION"
+          ],
+          [
+            "Признание лейбла",
+            "ALGORITHM_TAG_RECOGNITION"
+          ],
+          [
+            "Распознавание штрихкодов",
+            "ALGORITHM_BARCODE_RECOGNITION"
+          ],
+          [
+            "Сканирование QR",
+            "ALGORITHM_QRCODE_RECOGNITION"
+          ],
+          [
+            "Обнаружение падения",
+            "ALGORITHM_FALLDOWN_RECOGNITION"
+          ],
+          [
+            "Камера глубины",
+            "ALGORITHM_DEPTH_CAMERA"
+          ],
+          [
+            "DonkeyCar",
+            "ALGORITHM_DONKEYCAR"
+          ],
+          [
+            "камера",
+            "ALGORITHM_CAMERA"
+          ],
+          [
+            "Custom 0",
+            "ALGORITHM_CUSTOM0"
+          ],
+          [
+            "Custom 1",
+            "ALGORITHM_CUSTOM1"
+          ],
+          [
+            "Custom 2",
+            "ALGORITHM_CUSTOM2"
+          ]
+        ]
+      }
+    ]
+  },
+  "huskylensv2_get_center": {
+    "message0": "HuskyLensV2 %1 получить %2 центровые результаты",
+    "tooltip": "getCachedCenterResult",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Произвольный алгоритм",
+            "ALGORITHM_ANY"
+          ],
+          [
+            "Лицо",
+            "ALGORITHM_FACE_RECOGNITION"
+          ],
+          [
+            "Распознавание объектов",
+            "ALGORITHM_OBJECT_RECOGNITION"
+          ],
+          [
+            "Отслеживание объектов",
+            "ALGORITHM_OBJECT_TRACKING"
+          ],
+          [
+            "Цвет",
+            "ALGORITHM_COLOR_RECOGNITION"
+          ],
+          [
+            "Классификация объектов",
+            "ALGORITHM_OBJECT_CLASSIFICATION"
+          ],
+          [
+            "Самообучающаяся классификация",
+            "ALGORITHM_SELF_LEARNING_CLASSIFICATION"
+          ],
+          [
+            "Разделить",
+            "ALGORITHM_SEGMENT"
+          ],
+          [
+            "Распознавание жестов",
+            "ALGORITHM_HAND_RECOGNITION"
+          ],
+          [
+            "Распознавание осанки",
+            "ALGORITHM_POSE_RECOGNITION"
+          ],
+          [
+            "Номер",
+            "ALGORITHM_LICENSE_RECOGNITION"
+          ],
+          [
+            "Распознавание текста OCR",
+            "ALGORITHM_OCR_RECOGNITION"
+          ],
+          [
+            "Трек и дроп",
+            "ALGORITHM_LINE_TRACKING"
+          ],
+          [
+            "Распознавание мимики",
+            "ALGORITHM_EMOTION_RECOGNITION"
+          ],
+          [
+            "Распознавание глаз",
+            "ALGORITHM_GAZE_RECOGNITION"
+          ],
+          [
+            "Лицо обращено вперёд",
+            "ALGORITHM_FACE_ORIENTATION"
+          ],
+          [
+            "Признание лейбла",
+            "ALGORITHM_TAG_RECOGNITION"
+          ],
+          [
+            "Распознавание штрихкодов",
+            "ALGORITHM_BARCODE_RECOGNITION"
+          ],
+          [
+            "Сканирование QR",
+            "ALGORITHM_QRCODE_RECOGNITION"
+          ],
+          [
+            "Обнаружение падения",
+            "ALGORITHM_FALLDOWN_RECOGNITION"
+          ],
+          [
+            "Камера глубины",
+            "ALGORITHM_DEPTH_CAMERA"
+          ],
+          [
+            "DonkeyCar",
+            "ALGORITHM_DONKEYCAR"
+          ],
+          [
+            "камера",
+            "ALGORITHM_CAMERA"
+          ],
+          [
+            "Custom 0",
+            "ALGORITHM_CUSTOM0"
+          ],
+          [
+            "Custom 1",
+            "ALGORITHM_CUSTOM1"
+          ],
+          [
+            "Custom 2",
+            "ALGORITHM_CUSTOM2"
+          ]
+        ]
+      }
+    ]
+  },
+  "huskylensv2_get_by_index": {
+    "message0": "Алгоритм %1 HuskyLensV2 %2 индекса %3 результатов",
+    "tooltip": "getCachedResultByIndex",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Произвольный алгоритм",
+            "ALGORITHM_ANY"
+          ],
+          [
+            "Лицо",
+            "ALGORITHM_FACE_RECOGNITION"
+          ],
+          [
+            "Распознавание объектов",
+            "ALGORITHM_OBJECT_RECOGNITION"
+          ],
+          [
+            "Отслеживание объектов",
+            "ALGORITHM_OBJECT_TRACKING"
+          ],
+          [
+            "Цвет",
+            "ALGORITHM_COLOR_RECOGNITION"
+          ],
+          [
+            "Классификация объектов",
+            "ALGORITHM_OBJECT_CLASSIFICATION"
+          ],
+          [
+            "Самообучающаяся классификация",
+            "ALGORITHM_SELF_LEARNING_CLASSIFICATION"
+          ],
+          [
+            "Разделить",
+            "ALGORITHM_SEGMENT"
+          ],
+          [
+            "Распознавание жестов",
+            "ALGORITHM_HAND_RECOGNITION"
+          ],
+          [
+            "Распознавание осанки",
+            "ALGORITHM_POSE_RECOGNITION"
+          ],
+          [
+            "Номер",
+            "ALGORITHM_LICENSE_RECOGNITION"
+          ],
+          [
+            "Распознавание текста OCR",
+            "ALGORITHM_OCR_RECOGNITION"
+          ],
+          [
+            "Трек и дроп",
+            "ALGORITHM_LINE_TRACKING"
+          ],
+          [
+            "Распознавание мимики",
+            "ALGORITHM_EMOTION_RECOGNITION"
+          ],
+          [
+            "Распознавание глаз",
+            "ALGORITHM_GAZE_RECOGNITION"
+          ],
+          [
+            "Лицо обращено вперёд",
+            "ALGORITHM_FACE_ORIENTATION"
+          ],
+          [
+            "Признание лейбла",
+            "ALGORITHM_TAG_RECOGNITION"
+          ],
+          [
+            "Распознавание штрихкодов",
+            "ALGORITHM_BARCODE_RECOGNITION"
+          ],
+          [
+            "Сканирование QR",
+            "ALGORITHM_QRCODE_RECOGNITION"
+          ],
+          [
+            "Обнаружение падения",
+            "ALGORITHM_FALLDOWN_RECOGNITION"
+          ],
+          [
+            "Камера глубины",
+            "ALGORITHM_DEPTH_CAMERA"
+          ],
+          [
+            "DonkeyCar",
+            "ALGORITHM_DONKEYCAR"
+          ],
+          [
+            "камера",
+            "ALGORITHM_CAMERA"
+          ],
+          [
+            "Custom 0",
+            "ALGORITHM_CUSTOM0"
+          ],
+          [
+            "Custom 1",
+            "ALGORITHM_CUSTOM1"
+          ],
+          [
+            "Custom 2",
+            "ALGORITHM_CUSTOM2"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "huskylensv2_get_by_id": {
+    "message0": "Результаты алгоритма HuskyLensV2 %1 %2 ID %3",
+    "tooltip": "getCachedResultByID",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Произвольный алгоритм",
+            "ALGORITHM_ANY"
+          ],
+          [
+            "Лицо",
+            "ALGORITHM_FACE_RECOGNITION"
+          ],
+          [
+            "Распознавание объектов",
+            "ALGORITHM_OBJECT_RECOGNITION"
+          ],
+          [
+            "Отслеживание объектов",
+            "ALGORITHM_OBJECT_TRACKING"
+          ],
+          [
+            "Цвет",
+            "ALGORITHM_COLOR_RECOGNITION"
+          ],
+          [
+            "Классификация объектов",
+            "ALGORITHM_OBJECT_CLASSIFICATION"
+          ],
+          [
+            "Самообучающаяся классификация",
+            "ALGORITHM_SELF_LEARNING_CLASSIFICATION"
+          ],
+          [
+            "Разделить",
+            "ALGORITHM_SEGMENT"
+          ],
+          [
+            "Распознавание жестов",
+            "ALGORITHM_HAND_RECOGNITION"
+          ],
+          [
+            "Распознавание осанки",
+            "ALGORITHM_POSE_RECOGNITION"
+          ],
+          [
+            "Номер",
+            "ALGORITHM_LICENSE_RECOGNITION"
+          ],
+          [
+            "Распознавание текста OCR",
+            "ALGORITHM_OCR_RECOGNITION"
+          ],
+          [
+            "Трек и дроп",
+            "ALGORITHM_LINE_TRACKING"
+          ],
+          [
+            "Распознавание мимики",
+            "ALGORITHM_EMOTION_RECOGNITION"
+          ],
+          [
+            "Распознавание глаз",
+            "ALGORITHM_GAZE_RECOGNITION"
+          ],
+          [
+            "Лицо обращено вперёд",
+            "ALGORITHM_FACE_ORIENTATION"
+          ],
+          [
+            "Признание лейбла",
+            "ALGORITHM_TAG_RECOGNITION"
+          ],
+          [
+            "Распознавание штрихкодов",
+            "ALGORITHM_BARCODE_RECOGNITION"
+          ],
+          [
+            "Сканирование QR",
+            "ALGORITHM_QRCODE_RECOGNITION"
+          ],
+          [
+            "Обнаружение падения",
+            "ALGORITHM_FALLDOWN_RECOGNITION"
+          ],
+          [
+            "Камера глубины",
+            "ALGORITHM_DEPTH_CAMERA"
+          ],
+          [
+            "DonkeyCar",
+            "ALGORITHM_DONKEYCAR"
+          ],
+          [
+            "камера",
+            "ALGORITHM_CAMERA"
+          ],
+          [
+            "Custom 0",
+            "ALGORITHM_CUSTOM0"
+          ],
+          [
+            "Custom 1",
+            "ALGORITHM_CUSTOM1"
+          ],
+          [
+            "Custom 2",
+            "ALGORITHM_CUSTOM2"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "huskylensv2_get_by_id_index": {
+    "message0": "Алгоритм HuskyLensV2 %1 %2 ID %3 %4th результат",
+    "tooltip": "getCachedIndexResultByID",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Произвольный алгоритм",
+            "ALGORITHM_ANY"
+          ],
+          [
+            "Лицо",
+            "ALGORITHM_FACE_RECOGNITION"
+          ],
+          [
+            "Распознавание объектов",
+            "ALGORITHM_OBJECT_RECOGNITION"
+          ],
+          [
+            "Отслеживание объектов",
+            "ALGORITHM_OBJECT_TRACKING"
+          ],
+          [
+            "Цвет",
+            "ALGORITHM_COLOR_RECOGNITION"
+          ],
+          [
+            "Классификация объектов",
+            "ALGORITHM_OBJECT_CLASSIFICATION"
+          ],
+          [
+            "Самообучающаяся классификация",
+            "ALGORITHM_SELF_LEARNING_CLASSIFICATION"
+          ],
+          [
+            "Разделить",
+            "ALGORITHM_SEGMENT"
+          ],
+          [
+            "Распознавание жестов",
+            "ALGORITHM_HAND_RECOGNITION"
+          ],
+          [
+            "Распознавание осанки",
+            "ALGORITHM_POSE_RECOGNITION"
+          ],
+          [
+            "Номер",
+            "ALGORITHM_LICENSE_RECOGNITION"
+          ],
+          [
+            "Распознавание текста OCR",
+            "ALGORITHM_OCR_RECOGNITION"
+          ],
+          [
+            "Трек и дроп",
+            "ALGORITHM_LINE_TRACKING"
+          ],
+          [
+            "Распознавание мимики",
+            "ALGORITHM_EMOTION_RECOGNITION"
+          ],
+          [
+            "Распознавание глаз",
+            "ALGORITHM_GAZE_RECOGNITION"
+          ],
+          [
+            "Лицо обращено вперёд",
+            "ALGORITHM_FACE_ORIENTATION"
+          ],
+          [
+            "Признание лейбла",
+            "ALGORITHM_TAG_RECOGNITION"
+          ],
+          [
+            "Распознавание штрихкодов",
+            "ALGORITHM_BARCODE_RECOGNITION"
+          ],
+          [
+            "Сканирование QR",
+            "ALGORITHM_QRCODE_RECOGNITION"
+          ],
+          [
+            "Обнаружение падения",
+            "ALGORITHM_FALLDOWN_RECOGNITION"
+          ],
+          [
+            "Камера глубины",
+            "ALGORITHM_DEPTH_CAMERA"
+          ],
+          [
+            "DonkeyCar",
+            "ALGORITHM_DONKEYCAR"
+          ],
+          [
+            "камера",
+            "ALGORITHM_CAMERA"
+          ],
+          [
+            "Custom 0",
+            "ALGORITHM_CUSTOM0"
+          ],
+          [
+            "Custom 1",
+            "ALGORITHM_CUSTOM1"
+          ],
+          [
+            "Custom 2",
+            "ALGORITHM_CUSTOM2"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "huskylensv2_current_branch": {
+    "message0": "Алгоритм HuskyLensV2 %1 %2 текущий путь",
+    "tooltip": "getCurrentBranch (Патруль маршрутов)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Произвольный алгоритм",
+            "ALGORITHM_ANY"
+          ],
+          [
+            "Лицо",
+            "ALGORITHM_FACE_RECOGNITION"
+          ],
+          [
+            "Распознавание объектов",
+            "ALGORITHM_OBJECT_RECOGNITION"
+          ],
+          [
+            "Отслеживание объектов",
+            "ALGORITHM_OBJECT_TRACKING"
+          ],
+          [
+            "Цвет",
+            "ALGORITHM_COLOR_RECOGNITION"
+          ],
+          [
+            "Классификация объектов",
+            "ALGORITHM_OBJECT_CLASSIFICATION"
+          ],
+          [
+            "Самообучающаяся классификация",
+            "ALGORITHM_SELF_LEARNING_CLASSIFICATION"
+          ],
+          [
+            "Разделить",
+            "ALGORITHM_SEGMENT"
+          ],
+          [
+            "Распознавание жестов",
+            "ALGORITHM_HAND_RECOGNITION"
+          ],
+          [
+            "Распознавание осанки",
+            "ALGORITHM_POSE_RECOGNITION"
+          ],
+          [
+            "Номер",
+            "ALGORITHM_LICENSE_RECOGNITION"
+          ],
+          [
+            "Распознавание текста OCR",
+            "ALGORITHM_OCR_RECOGNITION"
+          ],
+          [
+            "Трек и дроп",
+            "ALGORITHM_LINE_TRACKING"
+          ],
+          [
+            "Распознавание мимики",
+            "ALGORITHM_EMOTION_RECOGNITION"
+          ],
+          [
+            "Распознавание глаз",
+            "ALGORITHM_GAZE_RECOGNITION"
+          ],
+          [
+            "Лицо обращено вперёд",
+            "ALGORITHM_FACE_ORIENTATION"
+          ],
+          [
+            "Признание лейбла",
+            "ALGORITHM_TAG_RECOGNITION"
+          ],
+          [
+            "Распознавание штрихкодов",
+            "ALGORITHM_BARCODE_RECOGNITION"
+          ],
+          [
+            "Сканирование QR",
+            "ALGORITHM_QRCODE_RECOGNITION"
+          ],
+          [
+            "Обнаружение падения",
+            "ALGORITHM_FALLDOWN_RECOGNITION"
+          ],
+          [
+            "Камера глубины",
+            "ALGORITHM_DEPTH_CAMERA"
+          ],
+          [
+            "DonkeyCar",
+            "ALGORITHM_DONKEYCAR"
+          ],
+          [
+            "камера",
+            "ALGORITHM_CAMERA"
+          ],
+          [
+            "Custom 0",
+            "ALGORITHM_CUSTOM0"
+          ],
+          [
+            "Custom 1",
+            "ALGORITHM_CUSTOM1"
+          ],
+          [
+            "Custom 2",
+            "ALGORITHM_CUSTOM2"
+          ]
+        ]
+      }
+    ]
+  },
+  "huskylensv2_upcoming_branch_count": {
+    "message0": "HuskyLensV2 %1 Алгоритм %2 Количество пересечений впереди",
+    "tooltip": "getUpcomingBranchCount",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Произвольный алгоритм",
+            "ALGORITHM_ANY"
+          ],
+          [
+            "Лицо",
+            "ALGORITHM_FACE_RECOGNITION"
+          ],
+          [
+            "Распознавание объектов",
+            "ALGORITHM_OBJECT_RECOGNITION"
+          ],
+          [
+            "Отслеживание объектов",
+            "ALGORITHM_OBJECT_TRACKING"
+          ],
+          [
+            "Цвет",
+            "ALGORITHM_COLOR_RECOGNITION"
+          ],
+          [
+            "Классификация объектов",
+            "ALGORITHM_OBJECT_CLASSIFICATION"
+          ],
+          [
+            "Самообучающаяся классификация",
+            "ALGORITHM_SELF_LEARNING_CLASSIFICATION"
+          ],
+          [
+            "Разделить",
+            "ALGORITHM_SEGMENT"
+          ],
+          [
+            "Распознавание жестов",
+            "ALGORITHM_HAND_RECOGNITION"
+          ],
+          [
+            "Распознавание осанки",
+            "ALGORITHM_POSE_RECOGNITION"
+          ],
+          [
+            "Номер",
+            "ALGORITHM_LICENSE_RECOGNITION"
+          ],
+          [
+            "Распознавание текста OCR",
+            "ALGORITHM_OCR_RECOGNITION"
+          ],
+          [
+            "Трек и дроп",
+            "ALGORITHM_LINE_TRACKING"
+          ],
+          [
+            "Распознавание мимики",
+            "ALGORITHM_EMOTION_RECOGNITION"
+          ],
+          [
+            "Распознавание глаз",
+            "ALGORITHM_GAZE_RECOGNITION"
+          ],
+          [
+            "Лицо обращено вперёд",
+            "ALGORITHM_FACE_ORIENTATION"
+          ],
+          [
+            "Признание лейбла",
+            "ALGORITHM_TAG_RECOGNITION"
+          ],
+          [
+            "Распознавание штрихкодов",
+            "ALGORITHM_BARCODE_RECOGNITION"
+          ],
+          [
+            "Сканирование QR",
+            "ALGORITHM_QRCODE_RECOGNITION"
+          ],
+          [
+            "Обнаружение падения",
+            "ALGORITHM_FALLDOWN_RECOGNITION"
+          ],
+          [
+            "Камера глубины",
+            "ALGORITHM_DEPTH_CAMERA"
+          ],
+          [
+            "DonkeyCar",
+            "ALGORITHM_DONKEYCAR"
+          ],
+          [
+            "камера",
+            "ALGORITHM_CAMERA"
+          ],
+          [
+            "Custom 0",
+            "ALGORITHM_CUSTOM0"
+          ],
+          [
+            "Custom 1",
+            "ALGORITHM_CUSTOM1"
+          ],
+          [
+            "Custom 2",
+            "ALGORITHM_CUSTOM2"
+          ]
+        ]
+      }
+    ]
+  },
+  "huskylensv2_get_branch": {
+    "message0": "Алгоритм %1 HuskyLensV2 %2 ветви %3",
+    "tooltip": "getBranch",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Произвольный алгоритм",
+            "ALGORITHM_ANY"
+          ],
+          [
+            "Лицо",
+            "ALGORITHM_FACE_RECOGNITION"
+          ],
+          [
+            "Распознавание объектов",
+            "ALGORITHM_OBJECT_RECOGNITION"
+          ],
+          [
+            "Отслеживание объектов",
+            "ALGORITHM_OBJECT_TRACKING"
+          ],
+          [
+            "Цвет",
+            "ALGORITHM_COLOR_RECOGNITION"
+          ],
+          [
+            "Классификация объектов",
+            "ALGORITHM_OBJECT_CLASSIFICATION"
+          ],
+          [
+            "Самообучающаяся классификация",
+            "ALGORITHM_SELF_LEARNING_CLASSIFICATION"
+          ],
+          [
+            "Разделить",
+            "ALGORITHM_SEGMENT"
+          ],
+          [
+            "Распознавание жестов",
+            "ALGORITHM_HAND_RECOGNITION"
+          ],
+          [
+            "Распознавание осанки",
+            "ALGORITHM_POSE_RECOGNITION"
+          ],
+          [
+            "Номер",
+            "ALGORITHM_LICENSE_RECOGNITION"
+          ],
+          [
+            "Распознавание текста OCR",
+            "ALGORITHM_OCR_RECOGNITION"
+          ],
+          [
+            "Трек и дроп",
+            "ALGORITHM_LINE_TRACKING"
+          ],
+          [
+            "Распознавание мимики",
+            "ALGORITHM_EMOTION_RECOGNITION"
+          ],
+          [
+            "Распознавание глаз",
+            "ALGORITHM_GAZE_RECOGNITION"
+          ],
+          [
+            "Лицо обращено вперёд",
+            "ALGORITHM_FACE_ORIENTATION"
+          ],
+          [
+            "Признание лейбла",
+            "ALGORITHM_TAG_RECOGNITION"
+          ],
+          [
+            "Распознавание штрихкодов",
+            "ALGORITHM_BARCODE_RECOGNITION"
+          ],
+          [
+            "Сканирование QR",
+            "ALGORITHM_QRCODE_RECOGNITION"
+          ],
+          [
+            "Обнаружение падения",
+            "ALGORITHM_FALLDOWN_RECOGNITION"
+          ],
+          [
+            "Камера глубины",
+            "ALGORITHM_DEPTH_CAMERA"
+          ],
+          [
+            "DonkeyCar",
+            "ALGORITHM_DONKEYCAR"
+          ],
+          [
+            "камера",
+            "ALGORITHM_CAMERA"
+          ],
+          [
+            "Custom 0",
+            "ALGORITHM_CUSTOM0"
+          ],
+          [
+            "Custom 1",
+            "ALGORITHM_CUSTOM1"
+          ],
+          [
+            "Custom 2",
+            "ALGORITHM_CUSTOM2"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "huskylensv2_learn": {
+    "message0": "HuskyLensV2 %1 алгоритм обучения %2",
+    "tooltip": "learn(алгоритм)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Произвольный алгоритм",
+            "ALGORITHM_ANY"
+          ],
+          [
+            "Лицо",
+            "ALGORITHM_FACE_RECOGNITION"
+          ],
+          [
+            "Распознавание объектов",
+            "ALGORITHM_OBJECT_RECOGNITION"
+          ],
+          [
+            "Отслеживание объектов",
+            "ALGORITHM_OBJECT_TRACKING"
+          ],
+          [
+            "Цвет",
+            "ALGORITHM_COLOR_RECOGNITION"
+          ],
+          [
+            "Классификация объектов",
+            "ALGORITHM_OBJECT_CLASSIFICATION"
+          ],
+          [
+            "Самообучающаяся классификация",
+            "ALGORITHM_SELF_LEARNING_CLASSIFICATION"
+          ],
+          [
+            "Разделить",
+            "ALGORITHM_SEGMENT"
+          ],
+          [
+            "Распознавание жестов",
+            "ALGORITHM_HAND_RECOGNITION"
+          ],
+          [
+            "Распознавание осанки",
+            "ALGORITHM_POSE_RECOGNITION"
+          ],
+          [
+            "Номер",
+            "ALGORITHM_LICENSE_RECOGNITION"
+          ],
+          [
+            "Распознавание текста OCR",
+            "ALGORITHM_OCR_RECOGNITION"
+          ],
+          [
+            "Трек и дроп",
+            "ALGORITHM_LINE_TRACKING"
+          ],
+          [
+            "Распознавание мимики",
+            "ALGORITHM_EMOTION_RECOGNITION"
+          ],
+          [
+            "Распознавание глаз",
+            "ALGORITHM_GAZE_RECOGNITION"
+          ],
+          [
+            "Лицо обращено вперёд",
+            "ALGORITHM_FACE_ORIENTATION"
+          ],
+          [
+            "Признание лейбла",
+            "ALGORITHM_TAG_RECOGNITION"
+          ],
+          [
+            "Распознавание штрихкодов",
+            "ALGORITHM_BARCODE_RECOGNITION"
+          ],
+          [
+            "Сканирование QR",
+            "ALGORITHM_QRCODE_RECOGNITION"
+          ],
+          [
+            "Обнаружение падения",
+            "ALGORITHM_FALLDOWN_RECOGNITION"
+          ],
+          [
+            "Камера глубины",
+            "ALGORITHM_DEPTH_CAMERA"
+          ],
+          [
+            "DonkeyCar",
+            "ALGORITHM_DONKEYCAR"
+          ],
+          [
+            "камера",
+            "ALGORITHM_CAMERA"
+          ],
+          [
+            "Custom 0",
+            "ALGORITHM_CUSTOM0"
+          ],
+          [
+            "Custom 1",
+            "ALGORITHM_CUSTOM1"
+          ],
+          [
+            "Custom 2",
+            "ALGORITHM_CUSTOM2"
+          ]
+        ]
+      }
+    ]
+  },
+  "huskylensv2_learn_value": {
+    "message0": "HuskyLensV2 %1 алгоритм обучения %2 возвращает идентификатор",
+    "tooltip": "learn(algo) Возвращает ID изученного элемента",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Произвольный алгоритм",
+            "ALGORITHM_ANY"
+          ],
+          [
+            "Лицо",
+            "ALGORITHM_FACE_RECOGNITION"
+          ],
+          [
+            "Распознавание объектов",
+            "ALGORITHM_OBJECT_RECOGNITION"
+          ],
+          [
+            "Отслеживание объектов",
+            "ALGORITHM_OBJECT_TRACKING"
+          ],
+          [
+            "Цвет",
+            "ALGORITHM_COLOR_RECOGNITION"
+          ],
+          [
+            "Классификация объектов",
+            "ALGORITHM_OBJECT_CLASSIFICATION"
+          ],
+          [
+            "Самообучающаяся классификация",
+            "ALGORITHM_SELF_LEARNING_CLASSIFICATION"
+          ],
+          [
+            "Разделить",
+            "ALGORITHM_SEGMENT"
+          ],
+          [
+            "Распознавание жестов",
+            "ALGORITHM_HAND_RECOGNITION"
+          ],
+          [
+            "Распознавание осанки",
+            "ALGORITHM_POSE_RECOGNITION"
+          ],
+          [
+            "Номер",
+            "ALGORITHM_LICENSE_RECOGNITION"
+          ],
+          [
+            "Распознавание текста OCR",
+            "ALGORITHM_OCR_RECOGNITION"
+          ],
+          [
+            "Трек и дроп",
+            "ALGORITHM_LINE_TRACKING"
+          ],
+          [
+            "Распознавание мимики",
+            "ALGORITHM_EMOTION_RECOGNITION"
+          ],
+          [
+            "Распознавание глаз",
+            "ALGORITHM_GAZE_RECOGNITION"
+          ],
+          [
+            "Лицо обращено вперёд",
+            "ALGORITHM_FACE_ORIENTATION"
+          ],
+          [
+            "Признание лейбла",
+            "ALGORITHM_TAG_RECOGNITION"
+          ],
+          [
+            "Распознавание штрихкодов",
+            "ALGORITHM_BARCODE_RECOGNITION"
+          ],
+          [
+            "Сканирование QR",
+            "ALGORITHM_QRCODE_RECOGNITION"
+          ],
+          [
+            "Обнаружение падения",
+            "ALGORITHM_FALLDOWN_RECOGNITION"
+          ],
+          [
+            "Камера глубины",
+            "ALGORITHM_DEPTH_CAMERA"
+          ],
+          [
+            "DonkeyCar",
+            "ALGORITHM_DONKEYCAR"
+          ],
+          [
+            "камера",
+            "ALGORITHM_CAMERA"
+          ],
+          [
+            "Custom 0",
+            "ALGORITHM_CUSTOM0"
+          ],
+          [
+            "Custom 1",
+            "ALGORITHM_CUSTOM1"
+          ],
+          [
+            "Custom 2",
+            "ALGORITHM_CUSTOM2"
+          ]
+        ]
+      }
+    ]
+  },
+  "huskylensv2_learn_block": {
+    "message0": "HuskyLensV2 %1 алгоритм %2 обучающей области X %3 Y %4 ширина %5 высота %6",
+    "tooltip": "learnBlock(algo,x,y,w,h)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Произвольный алгоритм",
+            "ALGORITHM_ANY"
+          ],
+          [
+            "Лицо",
+            "ALGORITHM_FACE_RECOGNITION"
+          ],
+          [
+            "Распознавание объектов",
+            "ALGORITHM_OBJECT_RECOGNITION"
+          ],
+          [
+            "Отслеживание объектов",
+            "ALGORITHM_OBJECT_TRACKING"
+          ],
+          [
+            "Цвет",
+            "ALGORITHM_COLOR_RECOGNITION"
+          ],
+          [
+            "Классификация объектов",
+            "ALGORITHM_OBJECT_CLASSIFICATION"
+          ],
+          [
+            "Самообучающаяся классификация",
+            "ALGORITHM_SELF_LEARNING_CLASSIFICATION"
+          ],
+          [
+            "Разделить",
+            "ALGORITHM_SEGMENT"
+          ],
+          [
+            "Распознавание жестов",
+            "ALGORITHM_HAND_RECOGNITION"
+          ],
+          [
+            "Распознавание осанки",
+            "ALGORITHM_POSE_RECOGNITION"
+          ],
+          [
+            "Номер",
+            "ALGORITHM_LICENSE_RECOGNITION"
+          ],
+          [
+            "Распознавание текста OCR",
+            "ALGORITHM_OCR_RECOGNITION"
+          ],
+          [
+            "Трек и дроп",
+            "ALGORITHM_LINE_TRACKING"
+          ],
+          [
+            "Распознавание мимики",
+            "ALGORITHM_EMOTION_RECOGNITION"
+          ],
+          [
+            "Распознавание глаз",
+            "ALGORITHM_GAZE_RECOGNITION"
+          ],
+          [
+            "Лицо обращено вперёд",
+            "ALGORITHM_FACE_ORIENTATION"
+          ],
+          [
+            "Признание лейбла",
+            "ALGORITHM_TAG_RECOGNITION"
+          ],
+          [
+            "Распознавание штрихкодов",
+            "ALGORITHM_BARCODE_RECOGNITION"
+          ],
+          [
+            "Сканирование QR",
+            "ALGORITHM_QRCODE_RECOGNITION"
+          ],
+          [
+            "Обнаружение падения",
+            "ALGORITHM_FALLDOWN_RECOGNITION"
+          ],
+          [
+            "Камера глубины",
+            "ALGORITHM_DEPTH_CAMERA"
+          ],
+          [
+            "DonkeyCar",
+            "ALGORITHM_DONKEYCAR"
+          ],
+          [
+            "камера",
+            "ALGORITHM_CAMERA"
+          ],
+          [
+            "Custom 0",
+            "ALGORITHM_CUSTOM0"
+          ],
+          [
+            "Custom 1",
+            "ALGORITHM_CUSTOM1"
+          ],
+          [
+            "Custom 2",
+            "ALGORITHM_CUSTOM2"
+          ]
+        ]
+      },
+      null,
+      null,
+      null,
+      null
+    ]
+  },
+  "huskylensv2_learn_block_value": {
+    "message0": "HuskyLensV2 %1 алгоритм %2 обучающей области X %3 Y %4 ширина %5 высота %6 идентификатор возврата",
+    "tooltip": "learnBlock возвращает ID",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Произвольный алгоритм",
+            "ALGORITHM_ANY"
+          ],
+          [
+            "Лицо",
+            "ALGORITHM_FACE_RECOGNITION"
+          ],
+          [
+            "Распознавание объектов",
+            "ALGORITHM_OBJECT_RECOGNITION"
+          ],
+          [
+            "Отслеживание объектов",
+            "ALGORITHM_OBJECT_TRACKING"
+          ],
+          [
+            "Цвет",
+            "ALGORITHM_COLOR_RECOGNITION"
+          ],
+          [
+            "Классификация объектов",
+            "ALGORITHM_OBJECT_CLASSIFICATION"
+          ],
+          [
+            "Самообучающаяся классификация",
+            "ALGORITHM_SELF_LEARNING_CLASSIFICATION"
+          ],
+          [
+            "Разделить",
+            "ALGORITHM_SEGMENT"
+          ],
+          [
+            "Распознавание жестов",
+            "ALGORITHM_HAND_RECOGNITION"
+          ],
+          [
+            "Распознавание осанки",
+            "ALGORITHM_POSE_RECOGNITION"
+          ],
+          [
+            "Номер",
+            "ALGORITHM_LICENSE_RECOGNITION"
+          ],
+          [
+            "Распознавание текста OCR",
+            "ALGORITHM_OCR_RECOGNITION"
+          ],
+          [
+            "Трек и дроп",
+            "ALGORITHM_LINE_TRACKING"
+          ],
+          [
+            "Распознавание мимики",
+            "ALGORITHM_EMOTION_RECOGNITION"
+          ],
+          [
+            "Распознавание глаз",
+            "ALGORITHM_GAZE_RECOGNITION"
+          ],
+          [
+            "Лицо обращено вперёд",
+            "ALGORITHM_FACE_ORIENTATION"
+          ],
+          [
+            "Признание лейбла",
+            "ALGORITHM_TAG_RECOGNITION"
+          ],
+          [
+            "Распознавание штрихкодов",
+            "ALGORITHM_BARCODE_RECOGNITION"
+          ],
+          [
+            "Сканирование QR",
+            "ALGORITHM_QRCODE_RECOGNITION"
+          ],
+          [
+            "Обнаружение падения",
+            "ALGORITHM_FALLDOWN_RECOGNITION"
+          ],
+          [
+            "Камера глубины",
+            "ALGORITHM_DEPTH_CAMERA"
+          ],
+          [
+            "DonkeyCar",
+            "ALGORITHM_DONKEYCAR"
+          ],
+          [
+            "камера",
+            "ALGORITHM_CAMERA"
+          ],
+          [
+            "Custom 0",
+            "ALGORITHM_CUSTOM0"
+          ],
+          [
+            "Custom 1",
+            "ALGORITHM_CUSTOM1"
+          ],
+          [
+            "Custom 2",
+            "ALGORITHM_CUSTOM2"
+          ]
+        ]
+      },
+      null,
+      null,
+      null,
+      null
+    ]
+  },
+  "huskylensv2_forget": {
+    "message0": "HuskyLensV2 %1 Forget Algorithm %2",
+    "tooltip": "Forget(algo)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Произвольный алгоритм",
+            "ALGORITHM_ANY"
+          ],
+          [
+            "Лицо",
+            "ALGORITHM_FACE_RECOGNITION"
+          ],
+          [
+            "Распознавание объектов",
+            "ALGORITHM_OBJECT_RECOGNITION"
+          ],
+          [
+            "Отслеживание объектов",
+            "ALGORITHM_OBJECT_TRACKING"
+          ],
+          [
+            "Цвет",
+            "ALGORITHM_COLOR_RECOGNITION"
+          ],
+          [
+            "Классификация объектов",
+            "ALGORITHM_OBJECT_CLASSIFICATION"
+          ],
+          [
+            "Самообучающаяся классификация",
+            "ALGORITHM_SELF_LEARNING_CLASSIFICATION"
+          ],
+          [
+            "Разделить",
+            "ALGORITHM_SEGMENT"
+          ],
+          [
+            "Распознавание жестов",
+            "ALGORITHM_HAND_RECOGNITION"
+          ],
+          [
+            "Распознавание осанки",
+            "ALGORITHM_POSE_RECOGNITION"
+          ],
+          [
+            "Номер",
+            "ALGORITHM_LICENSE_RECOGNITION"
+          ],
+          [
+            "Распознавание текста OCR",
+            "ALGORITHM_OCR_RECOGNITION"
+          ],
+          [
+            "Трек и дроп",
+            "ALGORITHM_LINE_TRACKING"
+          ],
+          [
+            "Распознавание мимики",
+            "ALGORITHM_EMOTION_RECOGNITION"
+          ],
+          [
+            "Распознавание глаз",
+            "ALGORITHM_GAZE_RECOGNITION"
+          ],
+          [
+            "Лицо обращено вперёд",
+            "ALGORITHM_FACE_ORIENTATION"
+          ],
+          [
+            "Признание лейбла",
+            "ALGORITHM_TAG_RECOGNITION"
+          ],
+          [
+            "Распознавание штрихкодов",
+            "ALGORITHM_BARCODE_RECOGNITION"
+          ],
+          [
+            "Сканирование QR",
+            "ALGORITHM_QRCODE_RECOGNITION"
+          ],
+          [
+            "Обнаружение падения",
+            "ALGORITHM_FALLDOWN_RECOGNITION"
+          ],
+          [
+            "Камера глубины",
+            "ALGORITHM_DEPTH_CAMERA"
+          ],
+          [
+            "DonkeyCar",
+            "ALGORITHM_DONKEYCAR"
+          ],
+          [
+            "камера",
+            "ALGORITHM_CAMERA"
+          ],
+          [
+            "Custom 0",
+            "ALGORITHM_CUSTOM0"
+          ],
+          [
+            "Custom 1",
+            "ALGORITHM_CUSTOM1"
+          ],
+          [
+            "Custom 2",
+            "ALGORITHM_CUSTOM2"
+          ]
+        ]
+      }
+    ]
+  },
+  "huskylensv2_take_photo": {
+    "message0": "HuskyLens V2 %1 Фотография Resolution%2",
+    "tooltip": "takePhoto возвращает имя файла",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "по умолчанию",
+            "RESOLUTION_DEFAULT"
+          ],
+          [
+            "640x480",
+            "RESOLUTION_640x480"
+          ],
+          [
+            "1280x720",
+            "RESOLUTION_1280x720"
+          ],
+          [
+            "1920x1080",
+            "RESOLUTION_1920x1080"
+          ]
+        ]
+      }
+    ]
+  },
+  "huskylensv2_take_screenshot": {
+    "message0": "Скриншот HuskyLensV2 %1",
+    "tooltip": "takeScreenshot возвращает имя файла"
+  },
+  "huskylensv2_draw_rect": {
+    "message0": "HuskyLensV2 %1 рисовать прямоугольники Цвет %2 ширина линии %3 x %4 Y %5 ширина %6 высота %7",
+    "tooltip": "drawRect",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Белый",
+            "COLOR_WHITE"
+          ],
+          [
+            "Красный",
+            "COLOR_RED"
+          ],
+          [
+            "Оранжевый",
+            "COLOR_ORANGE"
+          ],
+          [
+            "Жёлтый",
+            "COLOR_YELLOW"
+          ],
+          [
+            "Зелёный",
+            "COLOR_GREEN"
+          ],
+          [
+            "cyan",
+            "COLOR_CYAN"
+          ],
+          [
+            "Синий",
+            "COLOR_BLUE"
+          ],
+          [
+            "Фиолетовый",
+            "COLOR_PURPLE"
+          ],
+          [
+            "Розовый",
+            "COLOR_PINK"
+          ],
+          [
+            "Серый",
+            "COLOR_GRAY"
+          ],
+          [
+            "Черный",
+            "COLOR_BLACK"
+          ],
+          [
+            "Коричневый",
+            "COLOR_BROWN"
+          ],
+          [
+            "Оливково-зелёный",
+            "COLOR_OLIVE"
+          ],
+          [
+            "Бирюзовый",
+            "COLOR_TEAL"
+          ],
+          [
+            "Индиго",
+            "COLOR_INDIGO"
+          ],
+          [
+            "Маджента",
+            "COLOR_MAGENTA"
+          ]
+        ]
+      },
+      null,
+      null,
+      null,
+      null,
+      null
+    ]
+  },
+  "huskylensv2_draw_unique_rect": {
+    "message0": "HuskyLensV2 %1 Нарисовать уникальный прямоугольник Цвет %2 ширина линии %3 X %4 Y %5 ширина %6 высота %7",
+    "tooltip": "drawUniqueRect",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Белый",
+            "COLOR_WHITE"
+          ],
+          [
+            "Красный",
+            "COLOR_RED"
+          ],
+          [
+            "Оранжевый",
+            "COLOR_ORANGE"
+          ],
+          [
+            "Жёлтый",
+            "COLOR_YELLOW"
+          ],
+          [
+            "Зелёный",
+            "COLOR_GREEN"
+          ],
+          [
+            "cyan",
+            "COLOR_CYAN"
+          ],
+          [
+            "Синий",
+            "COLOR_BLUE"
+          ],
+          [
+            "Фиолетовый",
+            "COLOR_PURPLE"
+          ],
+          [
+            "Розовый",
+            "COLOR_PINK"
+          ],
+          [
+            "Серый",
+            "COLOR_GRAY"
+          ],
+          [
+            "Черный",
+            "COLOR_BLACK"
+          ],
+          [
+            "Коричневый",
+            "COLOR_BROWN"
+          ],
+          [
+            "Оливково-зелёный",
+            "COLOR_OLIVE"
+          ],
+          [
+            "Бирюзовый",
+            "COLOR_TEAL"
+          ],
+          [
+            "Индиго",
+            "COLOR_INDIGO"
+          ],
+          [
+            "Маджента",
+            "COLOR_MAGENTA"
+          ]
+        ]
+      },
+      null,
+      null,
+      null,
+      null,
+      null
+    ]
+  },
+  "huskylensv2_clear_rect": {
+    "message0": "HuskyLensV2 %1 очищает прямоугольники",
+    "tooltip": "clearRect"
+  },
+  "huskylensv2_draw_text": {
+    "message0": "HuskyLensV2 %1 Рисовать текст Цвет %2 размер шрифта %3 X %4 Y %5 Содержимое %6",
+    "tooltip": "drawText",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Белый",
+            "COLOR_WHITE"
+          ],
+          [
+            "Красный",
+            "COLOR_RED"
+          ],
+          [
+            "Оранжевый",
+            "COLOR_ORANGE"
+          ],
+          [
+            "Жёлтый",
+            "COLOR_YELLOW"
+          ],
+          [
+            "Зелёный",
+            "COLOR_GREEN"
+          ],
+          [
+            "cyan",
+            "COLOR_CYAN"
+          ],
+          [
+            "Синий",
+            "COLOR_BLUE"
+          ],
+          [
+            "Фиолетовый",
+            "COLOR_PURPLE"
+          ],
+          [
+            "Розовый",
+            "COLOR_PINK"
+          ],
+          [
+            "Серый",
+            "COLOR_GRAY"
+          ],
+          [
+            "Черный",
+            "COLOR_BLACK"
+          ],
+          [
+            "Коричневый",
+            "COLOR_BROWN"
+          ],
+          [
+            "Оливково-зелёный",
+            "COLOR_OLIVE"
+          ],
+          [
+            "Бирюзовый",
+            "COLOR_TEAL"
+          ],
+          [
+            "Индиго",
+            "COLOR_INDIGO"
+          ],
+          [
+            "Маджента",
+            "COLOR_MAGENTA"
+          ]
+        ]
+      },
+      null,
+      null,
+      null,
+      null
+    ]
+  },
+  "huskylensv2_clear_text": {
+    "message0": "HuskyLensV2 %1 Чистый текст",
+    "tooltip": "clearText"
+  },
+  "huskylensv2_save_knowledge": {
+    "message0": "HuskyLensV2 %1 алгоритм %2 сохранение базы знаний для идентификации %3",
+    "tooltip": "saveKnowledges",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Произвольный алгоритм",
+            "ALGORITHM_ANY"
+          ],
+          [
+            "Лицо",
+            "ALGORITHM_FACE_RECOGNITION"
+          ],
+          [
+            "Распознавание объектов",
+            "ALGORITHM_OBJECT_RECOGNITION"
+          ],
+          [
+            "Отслеживание объектов",
+            "ALGORITHM_OBJECT_TRACKING"
+          ],
+          [
+            "Цвет",
+            "ALGORITHM_COLOR_RECOGNITION"
+          ],
+          [
+            "Классификация объектов",
+            "ALGORITHM_OBJECT_CLASSIFICATION"
+          ],
+          [
+            "Самообучающаяся классификация",
+            "ALGORITHM_SELF_LEARNING_CLASSIFICATION"
+          ],
+          [
+            "Разделить",
+            "ALGORITHM_SEGMENT"
+          ],
+          [
+            "Распознавание жестов",
+            "ALGORITHM_HAND_RECOGNITION"
+          ],
+          [
+            "Распознавание осанки",
+            "ALGORITHM_POSE_RECOGNITION"
+          ],
+          [
+            "Номер",
+            "ALGORITHM_LICENSE_RECOGNITION"
+          ],
+          [
+            "Распознавание текста OCR",
+            "ALGORITHM_OCR_RECOGNITION"
+          ],
+          [
+            "Трек и дроп",
+            "ALGORITHM_LINE_TRACKING"
+          ],
+          [
+            "Распознавание мимики",
+            "ALGORITHM_EMOTION_RECOGNITION"
+          ],
+          [
+            "Распознавание глаз",
+            "ALGORITHM_GAZE_RECOGNITION"
+          ],
+          [
+            "Лицо обращено вперёд",
+            "ALGORITHM_FACE_ORIENTATION"
+          ],
+          [
+            "Признание лейбла",
+            "ALGORITHM_TAG_RECOGNITION"
+          ],
+          [
+            "Распознавание штрихкодов",
+            "ALGORITHM_BARCODE_RECOGNITION"
+          ],
+          [
+            "Сканирование QR",
+            "ALGORITHM_QRCODE_RECOGNITION"
+          ],
+          [
+            "Обнаружение падения",
+            "ALGORITHM_FALLDOWN_RECOGNITION"
+          ],
+          [
+            "Камера глубины",
+            "ALGORITHM_DEPTH_CAMERA"
+          ],
+          [
+            "DonkeyCar",
+            "ALGORITHM_DONKEYCAR"
+          ],
+          [
+            "камера",
+            "ALGORITHM_CAMERA"
+          ],
+          [
+            "Custom 0",
+            "ALGORITHM_CUSTOM0"
+          ],
+          [
+            "Custom 1",
+            "ALGORITHM_CUSTOM1"
+          ],
+          [
+            "Custom 2",
+            "ALGORITHM_CUSTOM2"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "huskylensv2_load_knowledge": {
+    "message0": "Алгоритм HuskyLensV2 %1 %2 загружает базу знаний из ID %3",
+    "tooltip": "loadKnowledges",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Произвольный алгоритм",
+            "ALGORITHM_ANY"
+          ],
+          [
+            "Лицо",
+            "ALGORITHM_FACE_RECOGNITION"
+          ],
+          [
+            "Распознавание объектов",
+            "ALGORITHM_OBJECT_RECOGNITION"
+          ],
+          [
+            "Отслеживание объектов",
+            "ALGORITHM_OBJECT_TRACKING"
+          ],
+          [
+            "Цвет",
+            "ALGORITHM_COLOR_RECOGNITION"
+          ],
+          [
+            "Классификация объектов",
+            "ALGORITHM_OBJECT_CLASSIFICATION"
+          ],
+          [
+            "Самообучающаяся классификация",
+            "ALGORITHM_SELF_LEARNING_CLASSIFICATION"
+          ],
+          [
+            "Разделить",
+            "ALGORITHM_SEGMENT"
+          ],
+          [
+            "Распознавание жестов",
+            "ALGORITHM_HAND_RECOGNITION"
+          ],
+          [
+            "Распознавание осанки",
+            "ALGORITHM_POSE_RECOGNITION"
+          ],
+          [
+            "Номер",
+            "ALGORITHM_LICENSE_RECOGNITION"
+          ],
+          [
+            "Распознавание текста OCR",
+            "ALGORITHM_OCR_RECOGNITION"
+          ],
+          [
+            "Трек и дроп",
+            "ALGORITHM_LINE_TRACKING"
+          ],
+          [
+            "Распознавание мимики",
+            "ALGORITHM_EMOTION_RECOGNITION"
+          ],
+          [
+            "Распознавание глаз",
+            "ALGORITHM_GAZE_RECOGNITION"
+          ],
+          [
+            "Лицо обращено вперёд",
+            "ALGORITHM_FACE_ORIENTATION"
+          ],
+          [
+            "Признание лейбла",
+            "ALGORITHM_TAG_RECOGNITION"
+          ],
+          [
+            "Распознавание штрихкодов",
+            "ALGORITHM_BARCODE_RECOGNITION"
+          ],
+          [
+            "Сканирование QR",
+            "ALGORITHM_QRCODE_RECOGNITION"
+          ],
+          [
+            "Обнаружение падения",
+            "ALGORITHM_FALLDOWN_RECOGNITION"
+          ],
+          [
+            "Камера глубины",
+            "ALGORITHM_DEPTH_CAMERA"
+          ],
+          [
+            "DonkeyCar",
+            "ALGORITHM_DONKEYCAR"
+          ],
+          [
+            "камера",
+            "ALGORITHM_CAMERA"
+          ],
+          [
+            "Custom 0",
+            "ALGORITHM_CUSTOM0"
+          ],
+          [
+            "Custom 1",
+            "ALGORITHM_CUSTOM1"
+          ],
+          [
+            "Custom 2",
+            "ALGORITHM_CUSTOM2"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "huskylensv2_play_music": {
+    "message0": "HuskyLensV2 %1 воспроизводит музыку %2 volume%3",
+    "tooltip": "playMusic"
+  },
+  "huskylensv2_set_name": {
+    "message0": "Алгоритм HuskyLensV2 %1 %2 задать ID %3 имя в %4",
+    "tooltip": "setNameByID",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Произвольный алгоритм",
+            "ALGORITHM_ANY"
+          ],
+          [
+            "Лицо",
+            "ALGORITHM_FACE_RECOGNITION"
+          ],
+          [
+            "Распознавание объектов",
+            "ALGORITHM_OBJECT_RECOGNITION"
+          ],
+          [
+            "Отслеживание объектов",
+            "ALGORITHM_OBJECT_TRACKING"
+          ],
+          [
+            "Цвет",
+            "ALGORITHM_COLOR_RECOGNITION"
+          ],
+          [
+            "Классификация объектов",
+            "ALGORITHM_OBJECT_CLASSIFICATION"
+          ],
+          [
+            "Самообучающаяся классификация",
+            "ALGORITHM_SELF_LEARNING_CLASSIFICATION"
+          ],
+          [
+            "Разделить",
+            "ALGORITHM_SEGMENT"
+          ],
+          [
+            "Распознавание жестов",
+            "ALGORITHM_HAND_RECOGNITION"
+          ],
+          [
+            "Распознавание осанки",
+            "ALGORITHM_POSE_RECOGNITION"
+          ],
+          [
+            "Номер",
+            "ALGORITHM_LICENSE_RECOGNITION"
+          ],
+          [
+            "Распознавание текста OCR",
+            "ALGORITHM_OCR_RECOGNITION"
+          ],
+          [
+            "Трек и дроп",
+            "ALGORITHM_LINE_TRACKING"
+          ],
+          [
+            "Распознавание мимики",
+            "ALGORITHM_EMOTION_RECOGNITION"
+          ],
+          [
+            "Распознавание глаз",
+            "ALGORITHM_GAZE_RECOGNITION"
+          ],
+          [
+            "Лицо обращено вперёд",
+            "ALGORITHM_FACE_ORIENTATION"
+          ],
+          [
+            "Признание лейбла",
+            "ALGORITHM_TAG_RECOGNITION"
+          ],
+          [
+            "Распознавание штрихкодов",
+            "ALGORITHM_BARCODE_RECOGNITION"
+          ],
+          [
+            "Сканирование QR",
+            "ALGORITHM_QRCODE_RECOGNITION"
+          ],
+          [
+            "Обнаружение падения",
+            "ALGORITHM_FALLDOWN_RECOGNITION"
+          ],
+          [
+            "Камера глубины",
+            "ALGORITHM_DEPTH_CAMERA"
+          ],
+          [
+            "DonkeyCar",
+            "ALGORITHM_DONKEYCAR"
+          ],
+          [
+            "камера",
+            "ALGORITHM_CAMERA"
+          ],
+          [
+            "Custom 0",
+            "ALGORITHM_CUSTOM0"
+          ],
+          [
+            "Custom 1",
+            "ALGORITHM_CUSTOM1"
+          ],
+          [
+            "Custom 2",
+            "ALGORITHM_CUSTOM2"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "huskylensv2_get_algo_param_bool": {
+    "message0": "HuskyLensV2 %1 алгоритм %2 булевого параметра %3",
+    "tooltip": "getAlgoParamBool",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Произвольный алгоритм",
+            "ALGORITHM_ANY"
+          ],
+          [
+            "Лицо",
+            "ALGORITHM_FACE_RECOGNITION"
+          ],
+          [
+            "Распознавание объектов",
+            "ALGORITHM_OBJECT_RECOGNITION"
+          ],
+          [
+            "Отслеживание объектов",
+            "ALGORITHM_OBJECT_TRACKING"
+          ],
+          [
+            "Цвет",
+            "ALGORITHM_COLOR_RECOGNITION"
+          ],
+          [
+            "Классификация объектов",
+            "ALGORITHM_OBJECT_CLASSIFICATION"
+          ],
+          [
+            "Самообучающаяся классификация",
+            "ALGORITHM_SELF_LEARNING_CLASSIFICATION"
+          ],
+          [
+            "Разделить",
+            "ALGORITHM_SEGMENT"
+          ],
+          [
+            "Распознавание жестов",
+            "ALGORITHM_HAND_RECOGNITION"
+          ],
+          [
+            "Распознавание осанки",
+            "ALGORITHM_POSE_RECOGNITION"
+          ],
+          [
+            "Номер",
+            "ALGORITHM_LICENSE_RECOGNITION"
+          ],
+          [
+            "Распознавание текста OCR",
+            "ALGORITHM_OCR_RECOGNITION"
+          ],
+          [
+            "Трек и дроп",
+            "ALGORITHM_LINE_TRACKING"
+          ],
+          [
+            "Распознавание мимики",
+            "ALGORITHM_EMOTION_RECOGNITION"
+          ],
+          [
+            "Распознавание глаз",
+            "ALGORITHM_GAZE_RECOGNITION"
+          ],
+          [
+            "Лицо обращено вперёд",
+            "ALGORITHM_FACE_ORIENTATION"
+          ],
+          [
+            "Признание лейбла",
+            "ALGORITHM_TAG_RECOGNITION"
+          ],
+          [
+            "Распознавание штрихкодов",
+            "ALGORITHM_BARCODE_RECOGNITION"
+          ],
+          [
+            "Сканирование QR",
+            "ALGORITHM_QRCODE_RECOGNITION"
+          ],
+          [
+            "Обнаружение падения",
+            "ALGORITHM_FALLDOWN_RECOGNITION"
+          ],
+          [
+            "Камера глубины",
+            "ALGORITHM_DEPTH_CAMERA"
+          ],
+          [
+            "DonkeyCar",
+            "ALGORITHM_DONKEYCAR"
+          ],
+          [
+            "камера",
+            "ALGORITHM_CAMERA"
+          ],
+          [
+            "Custom 0",
+            "ALGORITHM_CUSTOM0"
+          ],
+          [
+            "Custom 1",
+            "ALGORITHM_CUSTOM1"
+          ],
+          [
+            "Custom 2",
+            "ALGORITHM_CUSTOM2"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "huskylensv2_get_algo_param_float": {
+    "message0": "HuskyLensV2 %1 алгоритм %2 параметров с плавающей запятой %3",
+    "tooltip": "getAlgoParamFloat",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Произвольный алгоритм",
+            "ALGORITHM_ANY"
+          ],
+          [
+            "Лицо",
+            "ALGORITHM_FACE_RECOGNITION"
+          ],
+          [
+            "Распознавание объектов",
+            "ALGORITHM_OBJECT_RECOGNITION"
+          ],
+          [
+            "Отслеживание объектов",
+            "ALGORITHM_OBJECT_TRACKING"
+          ],
+          [
+            "Цвет",
+            "ALGORITHM_COLOR_RECOGNITION"
+          ],
+          [
+            "Классификация объектов",
+            "ALGORITHM_OBJECT_CLASSIFICATION"
+          ],
+          [
+            "Самообучающаяся классификация",
+            "ALGORITHM_SELF_LEARNING_CLASSIFICATION"
+          ],
+          [
+            "Разделить",
+            "ALGORITHM_SEGMENT"
+          ],
+          [
+            "Распознавание жестов",
+            "ALGORITHM_HAND_RECOGNITION"
+          ],
+          [
+            "Распознавание осанки",
+            "ALGORITHM_POSE_RECOGNITION"
+          ],
+          [
+            "Номер",
+            "ALGORITHM_LICENSE_RECOGNITION"
+          ],
+          [
+            "Распознавание текста OCR",
+            "ALGORITHM_OCR_RECOGNITION"
+          ],
+          [
+            "Трек и дроп",
+            "ALGORITHM_LINE_TRACKING"
+          ],
+          [
+            "Распознавание мимики",
+            "ALGORITHM_EMOTION_RECOGNITION"
+          ],
+          [
+            "Распознавание глаз",
+            "ALGORITHM_GAZE_RECOGNITION"
+          ],
+          [
+            "Лицо обращено вперёд",
+            "ALGORITHM_FACE_ORIENTATION"
+          ],
+          [
+            "Признание лейбла",
+            "ALGORITHM_TAG_RECOGNITION"
+          ],
+          [
+            "Распознавание штрихкодов",
+            "ALGORITHM_BARCODE_RECOGNITION"
+          ],
+          [
+            "Сканирование QR",
+            "ALGORITHM_QRCODE_RECOGNITION"
+          ],
+          [
+            "Обнаружение падения",
+            "ALGORITHM_FALLDOWN_RECOGNITION"
+          ],
+          [
+            "Камера глубины",
+            "ALGORITHM_DEPTH_CAMERA"
+          ],
+          [
+            "DonkeyCar",
+            "ALGORITHM_DONKEYCAR"
+          ],
+          [
+            "камера",
+            "ALGORITHM_CAMERA"
+          ],
+          [
+            "Custom 0",
+            "ALGORITHM_CUSTOM0"
+          ],
+          [
+            "Custom 1",
+            "ALGORITHM_CUSTOM1"
+          ],
+          [
+            "Custom 2",
+            "ALGORITHM_CUSTOM2"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "huskylensv2_get_algo_param_string": {
+    "message0": "Алгоритм %1 HuskyLensV2 %2 строки параметров %3",
+    "tooltip": "getAlgoParamString",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Произвольный алгоритм",
+            "ALGORITHM_ANY"
+          ],
+          [
+            "Лицо",
+            "ALGORITHM_FACE_RECOGNITION"
+          ],
+          [
+            "Распознавание объектов",
+            "ALGORITHM_OBJECT_RECOGNITION"
+          ],
+          [
+            "Отслеживание объектов",
+            "ALGORITHM_OBJECT_TRACKING"
+          ],
+          [
+            "Цвет",
+            "ALGORITHM_COLOR_RECOGNITION"
+          ],
+          [
+            "Классификация объектов",
+            "ALGORITHM_OBJECT_CLASSIFICATION"
+          ],
+          [
+            "Самообучающаяся классификация",
+            "ALGORITHM_SELF_LEARNING_CLASSIFICATION"
+          ],
+          [
+            "Разделить",
+            "ALGORITHM_SEGMENT"
+          ],
+          [
+            "Распознавание жестов",
+            "ALGORITHM_HAND_RECOGNITION"
+          ],
+          [
+            "Распознавание осанки",
+            "ALGORITHM_POSE_RECOGNITION"
+          ],
+          [
+            "Номер",
+            "ALGORITHM_LICENSE_RECOGNITION"
+          ],
+          [
+            "Распознавание текста OCR",
+            "ALGORITHM_OCR_RECOGNITION"
+          ],
+          [
+            "Трек и дроп",
+            "ALGORITHM_LINE_TRACKING"
+          ],
+          [
+            "Распознавание мимики",
+            "ALGORITHM_EMOTION_RECOGNITION"
+          ],
+          [
+            "Распознавание глаз",
+            "ALGORITHM_GAZE_RECOGNITION"
+          ],
+          [
+            "Лицо обращено вперёд",
+            "ALGORITHM_FACE_ORIENTATION"
+          ],
+          [
+            "Признание лейбла",
+            "ALGORITHM_TAG_RECOGNITION"
+          ],
+          [
+            "Распознавание штрихкодов",
+            "ALGORITHM_BARCODE_RECOGNITION"
+          ],
+          [
+            "Сканирование QR",
+            "ALGORITHM_QRCODE_RECOGNITION"
+          ],
+          [
+            "Обнаружение падения",
+            "ALGORITHM_FALLDOWN_RECOGNITION"
+          ],
+          [
+            "Камера глубины",
+            "ALGORITHM_DEPTH_CAMERA"
+          ],
+          [
+            "DonkeyCar",
+            "ALGORITHM_DONKEYCAR"
+          ],
+          [
+            "камера",
+            "ALGORITHM_CAMERA"
+          ],
+          [
+            "Custom 0",
+            "ALGORITHM_CUSTOM0"
+          ],
+          [
+            "Custom 1",
+            "ALGORITHM_CUSTOM1"
+          ],
+          [
+            "Custom 2",
+            "ALGORITHM_CUSTOM2"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "huskylensv2_set_algo_param_bool": {
+    "message0": "HuskyLensV2 %1 алгоритм %2 задать булевые параметры %3 в %4",
+    "tooltip": "setAlgoParamBool",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Произвольный алгоритм",
+            "ALGORITHM_ANY"
+          ],
+          [
+            "Лицо",
+            "ALGORITHM_FACE_RECOGNITION"
+          ],
+          [
+            "Распознавание объектов",
+            "ALGORITHM_OBJECT_RECOGNITION"
+          ],
+          [
+            "Отслеживание объектов",
+            "ALGORITHM_OBJECT_TRACKING"
+          ],
+          [
+            "Цвет",
+            "ALGORITHM_COLOR_RECOGNITION"
+          ],
+          [
+            "Классификация объектов",
+            "ALGORITHM_OBJECT_CLASSIFICATION"
+          ],
+          [
+            "Самообучающаяся классификация",
+            "ALGORITHM_SELF_LEARNING_CLASSIFICATION"
+          ],
+          [
+            "Разделить",
+            "ALGORITHM_SEGMENT"
+          ],
+          [
+            "Распознавание жестов",
+            "ALGORITHM_HAND_RECOGNITION"
+          ],
+          [
+            "Распознавание осанки",
+            "ALGORITHM_POSE_RECOGNITION"
+          ],
+          [
+            "Номер",
+            "ALGORITHM_LICENSE_RECOGNITION"
+          ],
+          [
+            "Распознавание текста OCR",
+            "ALGORITHM_OCR_RECOGNITION"
+          ],
+          [
+            "Трек и дроп",
+            "ALGORITHM_LINE_TRACKING"
+          ],
+          [
+            "Распознавание мимики",
+            "ALGORITHM_EMOTION_RECOGNITION"
+          ],
+          [
+            "Распознавание глаз",
+            "ALGORITHM_GAZE_RECOGNITION"
+          ],
+          [
+            "Лицо обращено вперёд",
+            "ALGORITHM_FACE_ORIENTATION"
+          ],
+          [
+            "Признание лейбла",
+            "ALGORITHM_TAG_RECOGNITION"
+          ],
+          [
+            "Распознавание штрихкодов",
+            "ALGORITHM_BARCODE_RECOGNITION"
+          ],
+          [
+            "Сканирование QR",
+            "ALGORITHM_QRCODE_RECOGNITION"
+          ],
+          [
+            "Обнаружение падения",
+            "ALGORITHM_FALLDOWN_RECOGNITION"
+          ],
+          [
+            "Камера глубины",
+            "ALGORITHM_DEPTH_CAMERA"
+          ],
+          [
+            "DonkeyCar",
+            "ALGORITHM_DONKEYCAR"
+          ],
+          [
+            "камера",
+            "ALGORITHM_CAMERA"
+          ],
+          [
+            "Custom 0",
+            "ALGORITHM_CUSTOM0"
+          ],
+          [
+            "Custom 1",
+            "ALGORITHM_CUSTOM1"
+          ],
+          [
+            "Custom 2",
+            "ALGORITHM_CUSTOM2"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "huskylensv2_set_algo_param_float": {
+    "message0": "HuskyLensV2 %1 алгоритм %2 Задать параметры плавающей запятой %3 в %4",
+    "tooltip": "setAlgoParamFloat",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Произвольный алгоритм",
+            "ALGORITHM_ANY"
+          ],
+          [
+            "Лицо",
+            "ALGORITHM_FACE_RECOGNITION"
+          ],
+          [
+            "Распознавание объектов",
+            "ALGORITHM_OBJECT_RECOGNITION"
+          ],
+          [
+            "Отслеживание объектов",
+            "ALGORITHM_OBJECT_TRACKING"
+          ],
+          [
+            "Цвет",
+            "ALGORITHM_COLOR_RECOGNITION"
+          ],
+          [
+            "Классификация объектов",
+            "ALGORITHM_OBJECT_CLASSIFICATION"
+          ],
+          [
+            "Самообучающаяся классификация",
+            "ALGORITHM_SELF_LEARNING_CLASSIFICATION"
+          ],
+          [
+            "Разделить",
+            "ALGORITHM_SEGMENT"
+          ],
+          [
+            "Распознавание жестов",
+            "ALGORITHM_HAND_RECOGNITION"
+          ],
+          [
+            "Распознавание осанки",
+            "ALGORITHM_POSE_RECOGNITION"
+          ],
+          [
+            "Номер",
+            "ALGORITHM_LICENSE_RECOGNITION"
+          ],
+          [
+            "Распознавание текста OCR",
+            "ALGORITHM_OCR_RECOGNITION"
+          ],
+          [
+            "Трек и дроп",
+            "ALGORITHM_LINE_TRACKING"
+          ],
+          [
+            "Распознавание мимики",
+            "ALGORITHM_EMOTION_RECOGNITION"
+          ],
+          [
+            "Распознавание глаз",
+            "ALGORITHM_GAZE_RECOGNITION"
+          ],
+          [
+            "Лицо обращено вперёд",
+            "ALGORITHM_FACE_ORIENTATION"
+          ],
+          [
+            "Признание лейбла",
+            "ALGORITHM_TAG_RECOGNITION"
+          ],
+          [
+            "Распознавание штрихкодов",
+            "ALGORITHM_BARCODE_RECOGNITION"
+          ],
+          [
+            "Сканирование QR",
+            "ALGORITHM_QRCODE_RECOGNITION"
+          ],
+          [
+            "Обнаружение падения",
+            "ALGORITHM_FALLDOWN_RECOGNITION"
+          ],
+          [
+            "Камера глубины",
+            "ALGORITHM_DEPTH_CAMERA"
+          ],
+          [
+            "DonkeyCar",
+            "ALGORITHM_DONKEYCAR"
+          ],
+          [
+            "камера",
+            "ALGORITHM_CAMERA"
+          ],
+          [
+            "Custom 0",
+            "ALGORITHM_CUSTOM0"
+          ],
+          [
+            "Custom 1",
+            "ALGORITHM_CUSTOM1"
+          ],
+          [
+            "Custom 2",
+            "ALGORITHM_CUSTOM2"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "huskylensv2_set_algo_param_string": {
+    "message0": "HuskyLensV2 %1 алгоритм %2 Задать параметры строк %3 в %4",
+    "tooltip": "setAlgoParamString",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Произвольный алгоритм",
+            "ALGORITHM_ANY"
+          ],
+          [
+            "Лицо",
+            "ALGORITHM_FACE_RECOGNITION"
+          ],
+          [
+            "Распознавание объектов",
+            "ALGORITHM_OBJECT_RECOGNITION"
+          ],
+          [
+            "Отслеживание объектов",
+            "ALGORITHM_OBJECT_TRACKING"
+          ],
+          [
+            "Цвет",
+            "ALGORITHM_COLOR_RECOGNITION"
+          ],
+          [
+            "Классификация объектов",
+            "ALGORITHM_OBJECT_CLASSIFICATION"
+          ],
+          [
+            "Самообучающаяся классификация",
+            "ALGORITHM_SELF_LEARNING_CLASSIFICATION"
+          ],
+          [
+            "Разделить",
+            "ALGORITHM_SEGMENT"
+          ],
+          [
+            "Распознавание жестов",
+            "ALGORITHM_HAND_RECOGNITION"
+          ],
+          [
+            "Распознавание осанки",
+            "ALGORITHM_POSE_RECOGNITION"
+          ],
+          [
+            "Номер",
+            "ALGORITHM_LICENSE_RECOGNITION"
+          ],
+          [
+            "Распознавание текста OCR",
+            "ALGORITHM_OCR_RECOGNITION"
+          ],
+          [
+            "Трек и дроп",
+            "ALGORITHM_LINE_TRACKING"
+          ],
+          [
+            "Распознавание мимики",
+            "ALGORITHM_EMOTION_RECOGNITION"
+          ],
+          [
+            "Распознавание глаз",
+            "ALGORITHM_GAZE_RECOGNITION"
+          ],
+          [
+            "Лицо обращено вперёд",
+            "ALGORITHM_FACE_ORIENTATION"
+          ],
+          [
+            "Признание лейбла",
+            "ALGORITHM_TAG_RECOGNITION"
+          ],
+          [
+            "Распознавание штрихкодов",
+            "ALGORITHM_BARCODE_RECOGNITION"
+          ],
+          [
+            "Сканирование QR",
+            "ALGORITHM_QRCODE_RECOGNITION"
+          ],
+          [
+            "Обнаружение падения",
+            "ALGORITHM_FALLDOWN_RECOGNITION"
+          ],
+          [
+            "Камера глубины",
+            "ALGORITHM_DEPTH_CAMERA"
+          ],
+          [
+            "DonkeyCar",
+            "ALGORITHM_DONKEYCAR"
+          ],
+          [
+            "камера",
+            "ALGORITHM_CAMERA"
+          ],
+          [
+            "Custom 0",
+            "ALGORITHM_CUSTOM0"
+          ],
+          [
+            "Custom 1",
+            "ALGORITHM_CUSTOM1"
+          ],
+          [
+            "Custom 2",
+            "ALGORITHM_CUSTOM2"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "huskylensv2_update_algo_params": {
+    "message0": "HuskyLensV2 %1 Прикладной алгоритм %2 параметров",
+    "tooltip": "updateAlgoParams",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Произвольный алгоритм",
+            "ALGORITHM_ANY"
+          ],
+          [
+            "Лицо",
+            "ALGORITHM_FACE_RECOGNITION"
+          ],
+          [
+            "Распознавание объектов",
+            "ALGORITHM_OBJECT_RECOGNITION"
+          ],
+          [
+            "Отслеживание объектов",
+            "ALGORITHM_OBJECT_TRACKING"
+          ],
+          [
+            "Цвет",
+            "ALGORITHM_COLOR_RECOGNITION"
+          ],
+          [
+            "Классификация объектов",
+            "ALGORITHM_OBJECT_CLASSIFICATION"
+          ],
+          [
+            "Самообучающаяся классификация",
+            "ALGORITHM_SELF_LEARNING_CLASSIFICATION"
+          ],
+          [
+            "Разделить",
+            "ALGORITHM_SEGMENT"
+          ],
+          [
+            "Распознавание жестов",
+            "ALGORITHM_HAND_RECOGNITION"
+          ],
+          [
+            "Распознавание осанки",
+            "ALGORITHM_POSE_RECOGNITION"
+          ],
+          [
+            "Номер",
+            "ALGORITHM_LICENSE_RECOGNITION"
+          ],
+          [
+            "Распознавание текста OCR",
+            "ALGORITHM_OCR_RECOGNITION"
+          ],
+          [
+            "Трек и дроп",
+            "ALGORITHM_LINE_TRACKING"
+          ],
+          [
+            "Распознавание мимики",
+            "ALGORITHM_EMOTION_RECOGNITION"
+          ],
+          [
+            "Распознавание глаз",
+            "ALGORITHM_GAZE_RECOGNITION"
+          ],
+          [
+            "Лицо обращено вперёд",
+            "ALGORITHM_FACE_ORIENTATION"
+          ],
+          [
+            "Признание лейбла",
+            "ALGORITHM_TAG_RECOGNITION"
+          ],
+          [
+            "Распознавание штрихкодов",
+            "ALGORITHM_BARCODE_RECOGNITION"
+          ],
+          [
+            "Сканирование QR",
+            "ALGORITHM_QRCODE_RECOGNITION"
+          ],
+          [
+            "Обнаружение падения",
+            "ALGORITHM_FALLDOWN_RECOGNITION"
+          ],
+          [
+            "Камера глубины",
+            "ALGORITHM_DEPTH_CAMERA"
+          ],
+          [
+            "DonkeyCar",
+            "ALGORITHM_DONKEYCAR"
+          ],
+          [
+            "камера",
+            "ALGORITHM_CAMERA"
+          ],
+          [
+            "Custom 0",
+            "ALGORITHM_CUSTOM0"
+          ],
+          [
+            "Custom 1",
+            "ALGORITHM_CUSTOM1"
+          ],
+          [
+            "Custom 2",
+            "ALGORITHM_CUSTOM2"
+          ]
+        ]
+      }
+    ]
+  },
+  "huskylensv2_result_id": {
+    "message0": "Результат: %1 ID",
+    "tooltip": "ID"
+  },
+  "huskylensv2_result_x": {
+    "message0": "Результат: координата %1 X",
+    "tooltip": "xCenter"
+  },
+  "huskylensv2_result_y": {
+    "message0": "Результат %1 координаты Y",
+    "tooltip": "yCenter"
+  },
+  "huskylensv2_result_width": {
+    "message0": "В результате %1 ширину",
+    "tooltip": "width"
+  },
+  "huskylensv2_result_height": {
+    "message0": "Результат %1 высоту",
+    "tooltip": "height"
+  },
+  "huskylensv2_result_name": {
+    "message0": "Результат %1 название",
+    "tooltip": "name"
+  },
+  "huskylensv2_result_content": {
+    "message0": "Результат %1 содержание",
+    "tooltip": "content"
+  },
+  "huskylensv2_result_confidence": {
+    "message0": "Результаты %1 уверенность",
+    "tooltip": "confidence"
+  },
+  "huskylensv2_result_type": {
+    "message0": "В результате получился %1 тип",
+    "tooltip": "Бокс типа 0, стрелка 1"
+  },
+  "huskylensv2_result_pitch": {
+    "message0": "Результат %1 pitch pitch",
+    "tooltip": "pitch"
+  },
+  "huskylensv2_result_yaw": {
+    "message0": "Результат: %1 угол рыскания",
+    "tooltip": "yaw"
+  },
+  "huskylensv2_result_roll": {
+    "message0": "Результат: %1 угол крена",
+    "tooltip": "roll"
+  },
+  "huskylensv2_result_azimuth": {
+    "message0": "Результат %1 азимутальный угол",
+    "tooltip": "azimuth"
+  },
+  "huskylensv2_result_classid": {
+    "message0": "Result%1 Идентификатор категории",
+    "tooltip": "classID"
+  },
+  "huskylensv2_result_xtarget": {
+    "message0": "Result%1 Цель X",
+    "tooltip": "xTarget (Реплика/Стрелка)"
+  },
+  "huskylensv2_result_ytarget": {
+    "message0": "Result%1 Цель Y",
+    "tooltip": "yTarget"
+  },
+  "huskylensv2_result_angle": {
+    "message0": "Результат %1 угла",
+    "tooltip": "angle"
+  },
+  "huskylensv2_result_length": {
+    "message0": "В результате получается %1 длина",
+    "tooltip": "length"
+  },
+  "huskylensv2_result_level": {
+    "message0": "Результаты %1 уровнях",
+    "tooltip": "level"
+  },
+  "huskylensv2_result_steering": {
+    "message0": "Результат %1 изменил ситуацию",
+    "tooltip": "рулевое управление (DonkeyCar)"
+  },
+  "huskylensv2_result_throttle": {
+    "message0": "Результат %1 дроссель",
+    "tooltip": "Дроссель (DonkeyCar)"
+  },
+  "huskylensv2_is_valid": {
+    "message0": "Результат %1 эффективен",
+    "tooltip": "result != NULL"
+  },
+  "huskylensv2_face_leye": {
+    "message0": "Результат лица %1 левый глаз %2",
+    "tooltip": "FaceResult Left Eye (требует большой платы памяти)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "X",
+            "x"
+          ],
+          [
+            "Y",
+            "y"
+          ]
+        ]
+      }
+    ]
+  },
+  "huskylensv2_face_reye": {
+    "message0": "Результаты лица %1 правый глаз %2",
+    "tooltip": "FaceResult Правый глаз (требует большой платы памяти)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "X",
+            "x"
+          ],
+          [
+            "Y",
+            "y"
+          ]
+        ]
+      }
+    ]
+  },
+  "huskylensv2_face_nose": {
+    "message0": "Результаты лица %1 носовой %2",
+    "tooltip": "FaceResult Nose (требует большой платы памяти)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "X",
+            "x"
+          ],
+          [
+            "Y",
+            "y"
+          ]
+        ]
+      }
+    ]
+  },
+  "huskylensv2_face_lmouth": {
+    "message0": "Изображение лица %1 левом уголке рта %2",
+    "tooltip": "FaceResult — левый угол рта (требуется большая плата памяти)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "X",
+            "x"
+          ],
+          [
+            "Y",
+            "y"
+          ]
+        ]
+      }
+    ]
+  },
+  "huskylensv2_face_rmouth": {
+    "message0": "Изображение лица %1 правом уголке рта %2",
+    "tooltip": "FaceResult — правый угол рта (требуется большая плата памяти)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "X",
+            "x"
+          ],
+          [
+            "Y",
+            "y"
+          ]
+        ]
+      }
+    ]
+  },
+  "huskylensv2_hand_point": {
+    "message0": "Результат жеста %1 очков %2 %3",
+    "tooltip": "Ключевые точки HandResult (требуется большая плата памяти)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Запястье",
+            "wrist"
+          ],
+          [
+            "Основание большого пальца",
+            "thumb_cmc"
+          ],
+          [
+            "Между большими пальцами",
+            "thumb_mcp"
+          ],
+          [
+            "Второй сустав большого пальца",
+            "thumb_ip"
+          ],
+          [
+            "Кончик большого пальца",
+            "thumb_tip"
+          ],
+          [
+            "Основание указательного пальца",
+            "index_finger_mcp"
+          ],
+          [
+            "Первый сустав указательного пальца",
+            "index_finger_pip"
+          ],
+          [
+            "Второй сустав указательного пальца",
+            "index_finger_dip"
+          ],
+          [
+            "Кончик указательного пальца",
+            "index_finger_tip"
+          ],
+          [
+            "Основание среднего пальца",
+            "middle_finger_mcp"
+          ],
+          [
+            "Первый сустав среднего пальца",
+            "middle_finger_pip"
+          ],
+          [
+            "Второй сустав среднего пальца",
+            "middle_finger_dip"
+          ],
+          [
+            "Кончик среднего пальца",
+            "middle_finger_tip"
+          ],
+          [
+            "Основание безымянного пальца",
+            "ring_finger_mcp"
+          ],
+          [
+            "Первый сустав безымянного пальца",
+            "ring_finger_pip"
+          ],
+          [
+            "Второй сустав безымянного пальца",
+            "ring_finger_dip"
+          ],
+          [
+            "Безымянные кончики пальцев",
+            "ring_finger_tip"
+          ],
+          [
+            "Основание мизинца",
+            "pinky_finger_mcp"
+          ],
+          [
+            "Первый сустав мизинца",
+            "pinky_finger_pip"
+          ],
+          [
+            "Второй сустав мизинца",
+            "pinky_finger_dip"
+          ],
+          [
+            "Кончик пальца",
+            "pinky_finger_tip"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "X",
+            "x"
+          ],
+          [
+            "Y",
+            "y"
+          ]
+        ]
+      }
+    ]
+  },
+  "huskylensv2_pose_point": {
+    "message0": "Результаты по осанке %1 %2 %3",
+    "tooltip": "PoseResult ключевые моменты (требуется большая плата памяти)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Нос",
+            "nose"
+          ],
+          [
+            "Левый глаз",
+            "leye"
+          ],
+          [
+            "Правый глаз",
+            "reye"
+          ],
+          [
+            "Левое ухо",
+            "lear"
+          ],
+          [
+            "Правое ухо",
+            "rear"
+          ],
+          [
+            "Левое плечо",
+            "lshoulder"
+          ],
+          [
+            "Правое плечо",
+            "rshoulder"
+          ],
+          [
+            "Левый локоть",
+            "lelbow"
+          ],
+          [
+            "Правый локоть",
+            "relbow"
+          ],
+          [
+            "Левая рука",
+            "lwrist"
+          ],
+          [
+            "Правая рука",
+            "rwrist"
+          ],
+          [
+            "Левый бедро",
+            "lhip"
+          ],
+          [
+            "Правое бедро",
+            "rhip"
+          ],
+          [
+            "Левое колено",
+            "lknee"
+          ],
+          [
+            "Правое колено",
+            "rknee"
+          ],
+          [
+            "Левая лодыжка",
+            "lankle"
+          ],
+          [
+            "Правая лодыжка",
+            "rankle"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "X",
+            "x"
+          ],
+          [
+            "Y",
+            "y"
+          ]
+        ]
+      }
+    ]
+  },
+  "huskylensv2_set_multi_algorithm": {
+    "message0": "HuskyLensV2 %1 Набор нескольких алгоритмов Алгоритм 1 %2 Алгоритм 2 %3 Алгоритм 3 %4",
+    "tooltip": "setMultiAlgorithm (большая плата памяти)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Произвольный алгоритм",
+            "ALGORITHM_ANY"
+          ],
+          [
+            "Лицо",
+            "ALGORITHM_FACE_RECOGNITION"
+          ],
+          [
+            "Распознавание объектов",
+            "ALGORITHM_OBJECT_RECOGNITION"
+          ],
+          [
+            "Отслеживание объектов",
+            "ALGORITHM_OBJECT_TRACKING"
+          ],
+          [
+            "Цвет",
+            "ALGORITHM_COLOR_RECOGNITION"
+          ],
+          [
+            "Классификация объектов",
+            "ALGORITHM_OBJECT_CLASSIFICATION"
+          ],
+          [
+            "Самообучающаяся классификация",
+            "ALGORITHM_SELF_LEARNING_CLASSIFICATION"
+          ],
+          [
+            "Разделить",
+            "ALGORITHM_SEGMENT"
+          ],
+          [
+            "Распознавание жестов",
+            "ALGORITHM_HAND_RECOGNITION"
+          ],
+          [
+            "Распознавание осанки",
+            "ALGORITHM_POSE_RECOGNITION"
+          ],
+          [
+            "Номер",
+            "ALGORITHM_LICENSE_RECOGNITION"
+          ],
+          [
+            "Распознавание текста OCR",
+            "ALGORITHM_OCR_RECOGNITION"
+          ],
+          [
+            "Трек и дроп",
+            "ALGORITHM_LINE_TRACKING"
+          ],
+          [
+            "Распознавание мимики",
+            "ALGORITHM_EMOTION_RECOGNITION"
+          ],
+          [
+            "Распознавание глаз",
+            "ALGORITHM_GAZE_RECOGNITION"
+          ],
+          [
+            "Лицо обращено вперёд",
+            "ALGORITHM_FACE_ORIENTATION"
+          ],
+          [
+            "Признание лейбла",
+            "ALGORITHM_TAG_RECOGNITION"
+          ],
+          [
+            "Распознавание штрихкодов",
+            "ALGORITHM_BARCODE_RECOGNITION"
+          ],
+          [
+            "Сканирование QR",
+            "ALGORITHM_QRCODE_RECOGNITION"
+          ],
+          [
+            "Обнаружение падения",
+            "ALGORITHM_FALLDOWN_RECOGNITION"
+          ],
+          [
+            "Камера глубины",
+            "ALGORITHM_DEPTH_CAMERA"
+          ],
+          [
+            "DonkeyCar",
+            "ALGORITHM_DONKEYCAR"
+          ],
+          [
+            "камера",
+            "ALGORITHM_CAMERA"
+          ],
+          [
+            "Custom 0",
+            "ALGORITHM_CUSTOM0"
+          ],
+          [
+            "Custom 1",
+            "ALGORITHM_CUSTOM1"
+          ],
+          [
+            "Custom 2",
+            "ALGORITHM_CUSTOM2"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "Произвольный алгоритм",
+            "ALGORITHM_ANY"
+          ],
+          [
+            "Лицо",
+            "ALGORITHM_FACE_RECOGNITION"
+          ],
+          [
+            "Распознавание объектов",
+            "ALGORITHM_OBJECT_RECOGNITION"
+          ],
+          [
+            "Отслеживание объектов",
+            "ALGORITHM_OBJECT_TRACKING"
+          ],
+          [
+            "Цвет",
+            "ALGORITHM_COLOR_RECOGNITION"
+          ],
+          [
+            "Классификация объектов",
+            "ALGORITHM_OBJECT_CLASSIFICATION"
+          ],
+          [
+            "Самообучающаяся классификация",
+            "ALGORITHM_SELF_LEARNING_CLASSIFICATION"
+          ],
+          [
+            "Разделить",
+            "ALGORITHM_SEGMENT"
+          ],
+          [
+            "Распознавание жестов",
+            "ALGORITHM_HAND_RECOGNITION"
+          ],
+          [
+            "Распознавание осанки",
+            "ALGORITHM_POSE_RECOGNITION"
+          ],
+          [
+            "Номер",
+            "ALGORITHM_LICENSE_RECOGNITION"
+          ],
+          [
+            "Распознавание текста OCR",
+            "ALGORITHM_OCR_RECOGNITION"
+          ],
+          [
+            "Трек и дроп",
+            "ALGORITHM_LINE_TRACKING"
+          ],
+          [
+            "Распознавание мимики",
+            "ALGORITHM_EMOTION_RECOGNITION"
+          ],
+          [
+            "Распознавание глаз",
+            "ALGORITHM_GAZE_RECOGNITION"
+          ],
+          [
+            "Лицо обращено вперёд",
+            "ALGORITHM_FACE_ORIENTATION"
+          ],
+          [
+            "Признание лейбла",
+            "ALGORITHM_TAG_RECOGNITION"
+          ],
+          [
+            "Распознавание штрихкодов",
+            "ALGORITHM_BARCODE_RECOGNITION"
+          ],
+          [
+            "Сканирование QR",
+            "ALGORITHM_QRCODE_RECOGNITION"
+          ],
+          [
+            "Обнаружение падения",
+            "ALGORITHM_FALLDOWN_RECOGNITION"
+          ],
+          [
+            "Камера глубины",
+            "ALGORITHM_DEPTH_CAMERA"
+          ],
+          [
+            "DonkeyCar",
+            "ALGORITHM_DONKEYCAR"
+          ],
+          [
+            "камера",
+            "ALGORITHM_CAMERA"
+          ],
+          [
+            "Custom 0",
+            "ALGORITHM_CUSTOM0"
+          ],
+          [
+            "Custom 1",
+            "ALGORITHM_CUSTOM1"
+          ],
+          [
+            "Custom 2",
+            "ALGORITHM_CUSTOM2"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "Произвольный алгоритм",
+            "ALGORITHM_ANY"
+          ],
+          [
+            "Лицо",
+            "ALGORITHM_FACE_RECOGNITION"
+          ],
+          [
+            "Распознавание объектов",
+            "ALGORITHM_OBJECT_RECOGNITION"
+          ],
+          [
+            "Отслеживание объектов",
+            "ALGORITHM_OBJECT_TRACKING"
+          ],
+          [
+            "Цвет",
+            "ALGORITHM_COLOR_RECOGNITION"
+          ],
+          [
+            "Классификация объектов",
+            "ALGORITHM_OBJECT_CLASSIFICATION"
+          ],
+          [
+            "Самообучающаяся классификация",
+            "ALGORITHM_SELF_LEARNING_CLASSIFICATION"
+          ],
+          [
+            "Разделить",
+            "ALGORITHM_SEGMENT"
+          ],
+          [
+            "Распознавание жестов",
+            "ALGORITHM_HAND_RECOGNITION"
+          ],
+          [
+            "Распознавание осанки",
+            "ALGORITHM_POSE_RECOGNITION"
+          ],
+          [
+            "Номер",
+            "ALGORITHM_LICENSE_RECOGNITION"
+          ],
+          [
+            "Распознавание текста OCR",
+            "ALGORITHM_OCR_RECOGNITION"
+          ],
+          [
+            "Трек и дроп",
+            "ALGORITHM_LINE_TRACKING"
+          ],
+          [
+            "Распознавание мимики",
+            "ALGORITHM_EMOTION_RECOGNITION"
+          ],
+          [
+            "Распознавание глаз",
+            "ALGORITHM_GAZE_RECOGNITION"
+          ],
+          [
+            "Лицо обращено вперёд",
+            "ALGORITHM_FACE_ORIENTATION"
+          ],
+          [
+            "Признание лейбла",
+            "ALGORITHM_TAG_RECOGNITION"
+          ],
+          [
+            "Распознавание штрихкодов",
+            "ALGORITHM_BARCODE_RECOGNITION"
+          ],
+          [
+            "Сканирование QR",
+            "ALGORITHM_QRCODE_RECOGNITION"
+          ],
+          [
+            "Обнаружение падения",
+            "ALGORITHM_FALLDOWN_RECOGNITION"
+          ],
+          [
+            "Камера глубины",
+            "ALGORITHM_DEPTH_CAMERA"
+          ],
+          [
+            "DonkeyCar",
+            "ALGORITHM_DONKEYCAR"
+          ],
+          [
+            "камера",
+            "ALGORITHM_CAMERA"
+          ],
+          [
+            "Custom 0",
+            "ALGORITHM_CUSTOM0"
+          ],
+          [
+            "Custom 1",
+            "ALGORITHM_CUSTOM1"
+          ],
+          [
+            "Custom 2",
+            "ALGORITHM_CUSTOM2"
+          ]
+        ]
+      }
+    ]
+  },
+  "huskylensv2_set_multi_algorithm_ratio": {
+    "message0": "HuskyLensV2 %1 Задать приоритетное отношение алгоритма 1 %2 отношение 2 %3 3 %4",
+    "tooltip": "setMultiAlgorithmRatio"
+  },
+  "huskylensv2_start_recording": {
+    "message0": "HuskyLensV2 %1 Начать запись %2 длительность %3 секунд Имя файла %4 Разрешение %5",
+    "tooltip": "startRecording",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Видео",
+            "MEDIA_TYPE_VIDEO"
+          ],
+          [
+            "Аудио",
+            "MEDIA_TYPE_AUDIO"
+          ]
+        ]
+      },
+      null,
+      null,
+      {
+        "options": [
+          [
+            "по умолчанию",
+            "RESOLUTION_DEFAULT"
+          ],
+          [
+            "640x480",
+            "RESOLUTION_640x480"
+          ],
+          [
+            "1280x720",
+            "RESOLUTION_1280x720"
+          ],
+          [
+            "1920x1080",
+            "RESOLUTION_1920x1080"
+          ]
+        ]
+      }
+    ]
+  },
+  "huskylensv2_stop_recording": {
+    "message0": "HuskyLensV2 %1 остановить запись %2",
+    "tooltip": "stopRecording",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Видео",
+            "MEDIA_TYPE_VIDEO"
+          ],
+          [
+            "Аудио",
+            "MEDIA_TYPE_AUDIO"
+          ]
+        ]
+      }
+    ]
+  }
+}

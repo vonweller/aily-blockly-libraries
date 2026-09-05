@@ -1,0 +1,117 @@
+{
+  "toolbox_name": "AI—Assistant",
+  "ai_assistant_config": {
+    "message0": "Configure o assistente de IA usando porta serial %1 taxa de baud %2",
+    "tooltip": "Configurar comunicação serial com assistente de IA",
+    "args0": [
+      {
+        "options": "${board.serialPort}"
+      },
+      {
+        "options": "${board.serialSpeed}"
+      }
+    ]
+  },
+  "serial_command_handler": {
+    "message0": "Recebeu %1 comando",
+    "tooltip": "Verifique se um comando do tipo especificado foi recebido",
+    "args0": [
+      {
+        "options": [
+          [
+            "O carrinho pequeno avança",
+            "MOVE_FORWARD"
+          ],
+          [
+            "O carro pequeno dá ré",
+            "MOVE_BACKWARD"
+          ],
+          [
+            "A pequena carruagem vira à esquerda",
+            "TURN_LEFT"
+          ],
+          [
+            "A pequena carruagem vira à direita",
+            "TURN_RIGHT"
+          ],
+          [
+            "O carro parou abruptamente",
+            "STOP"
+          ],
+          [
+            "Ligue o LED",
+            "LED_ON"
+          ],
+          [
+            "Desligue o LED",
+            "LED_OFF"
+          ],
+          [
+            "LED piscando",
+            "LED_BLINK"
+          ],
+          [
+            "O servo gira",
+            "SERVO_ROTATE"
+          ],
+          [
+            "Ajuste a velocidade do ventilador",
+            "FAN_SPEED"
+          ],
+          [
+            "Ligue o ventilador",
+            "FAN_ON"
+          ],
+          [
+            "Desligue o ventilador",
+            "FAN_OFF"
+          ],
+          [
+            "Acenda as luzes coloridas",
+            "RGB_ON"
+          ],
+          [
+            "Desligue as luzes coloridas",
+            "RGB_OFF"
+          ],
+          [
+            "Defina o brilho das luzes coloridas",
+            "RGB_BRIGHTNESS"
+          ],
+          [
+            "Configure um gradiente de cores para luzes coloridas",
+            "RGB_GRADIENT"
+          ],
+          [
+            "Braço robótico agarrando",
+            "ARM_GRAB"
+          ],
+          [
+            "O braço robótico afrouxou",
+            "ARM_RELEASE"
+          ],
+          [
+            "O braço robótico retorna à sua posição inicial",
+            "ARM_DOWN"
+          ],
+          [
+            "Abra o relé",
+            "RELAY_ON"
+          ],
+          [
+            "Desligue o relé",
+            "RELAY_OFF"
+          ]
+        ]
+      }
+    ]
+  },
+  "serial_custom_command": {
+    "message0": "A câmera reconhece: %1",
+    "tooltip": "Verifique se você recebeu um comando personalizado (compatível parcial)"
+  },
+  "serial_clear_command": {
+    "message0": "Limpar o comando recebido",
+    "tooltip": "Limpa a variável receivedCommand para lidar com todos os comandos"
+  }
+}

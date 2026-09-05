@@ -1,0 +1,350 @@
+{
+  "toolbox_name": "Placa de transmisión del motor",
+  "toolbox_labels": {
+    "初始化": "inicialización",
+    "直流电机": "motor de corriente continua",
+    "舵机": "mecanismo de dirección",
+    "步进电机": "motor paso a paso"
+  },
+  "emakefun_md_init": {
+    "message0": "Inicializar la placa del controlador del motor %1 dirección I2C %2 frecuencia PWM %3",
+    "tooltip": "Inicializa la placa del controlador de motores Emakefun mediante comunicación I2C. Al usar servos o motores de corriente continua, elige 50Hz; al usar motores paso a paso, elige 1600Hz",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "0x60 (por defecto)",
+            "0x60"
+          ],
+          [
+            "0x61",
+            "0x61"
+          ],
+          [
+            "0x62",
+            "0x62"
+          ],
+          [
+            "0x63",
+            "0x63"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "50Hz (motor servo/DC)",
+            "50"
+          ],
+          [
+            "1600Hz (motor paso a paso)",
+            "1600"
+          ]
+        ]
+      }
+    ]
+  },
+  "emakefun_md_dc_run": {
+    "message0": "Accionamiento del motor %1 motor de corriente continua %2 velocidad %3 Direction%4",
+    "tooltip": "Ajusta la velocidad y dirección del motor de corriente continua (0-255). Adelante: ADELANTE, ATRÁS",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "M1",
+            "1"
+          ],
+          [
+            "M2",
+            "2"
+          ],
+          [
+            "M3",
+            "3"
+          ],
+          [
+            "M4",
+            "4"
+          ]
+        ]
+      },
+      null,
+      {
+        "options": [
+          [
+            "Adelante",
+            "FORWARD"
+          ],
+          [
+            "reverse",
+            "BACKWARD"
+          ]
+        ]
+      }
+    ]
+  },
+  "emakefun_md_dc_stop": {
+    "message0": "Accionamiento de motor %1 motor de corriente continua %2 %3",
+    "tooltip": "Para el motor de corriente continua. Frenos: Para inmediatamente y bloquea el motor; Liberación: Corta la alimentación para permitir que el motor gire libremente",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "M1",
+            "1"
+          ],
+          [
+            "M2",
+            "2"
+          ],
+          [
+            "M3",
+            "3"
+          ],
+          [
+            "M4",
+            "4"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "Frenos",
+            "BRAKE"
+          ],
+          [
+            "Soltar",
+            "RELEASE"
+          ]
+        ]
+      }
+    ]
+  },
+  "emakefun_md_servo_write": {
+    "message0": "El motor acciona %1 servo %2 gira hacia el ángulo %3",
+    "tooltip": "Ajusta el servo a un ángulo especificado (0-180 grados)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "S1",
+            "1"
+          ],
+          [
+            "S2",
+            "2"
+          ],
+          [
+            "S3",
+            "3"
+          ],
+          [
+            "S4",
+            "4"
+          ],
+          [
+            "S5",
+            "5"
+          ],
+          [
+            "S6",
+            "6"
+          ],
+          [
+            "S7",
+            "7"
+          ],
+          [
+            "S8",
+            "8"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "emakefun_md_servo_write_speed": {
+    "message0": "Accionamiento del motor %1 servo %2 ángulo de rotación %3 velocidad %4",
+    "tooltip": "Gira el servo hacia el ángulo objetivo (0-180) a una velocidad especificada (1-10). La velocidad 10 es la más rápida, la 1 es la más lenta",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "S1",
+            "1"
+          ],
+          [
+            "S2",
+            "2"
+          ],
+          [
+            "S3",
+            "3"
+          ],
+          [
+            "S4",
+            "4"
+          ],
+          [
+            "S5",
+            "5"
+          ],
+          [
+            "S6",
+            "6"
+          ],
+          [
+            "S7",
+            "7"
+          ],
+          [
+            "S8",
+            "8"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "emakefun_md_servo_read": {
+    "message0": "El motor acciona %1 servo %2 el ángulo de la corriente",
+    "tooltip": "Lee el valor del ángulo actual del servo",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "S1",
+            "1"
+          ],
+          [
+            "S2",
+            "2"
+          ],
+          [
+            "S3",
+            "3"
+          ],
+          [
+            "S4",
+            "4"
+          ],
+          [
+            "S5",
+            "5"
+          ],
+          [
+            "S6",
+            "6"
+          ],
+          [
+            "S7",
+            "7"
+          ],
+          [
+            "S8",
+            "8"
+          ]
+        ]
+      }
+    ]
+  },
+  "emakefun_md_stepper_speed": {
+    "message0": "Accionamiento del motor %1 motor paso a paso %2 velocidad ajustada %3 RPM",
+    "tooltip": "Ajusta la velocidad del motor paso a paso (RPM), que debe llamarse antes de que el motor paso a paso se mueva",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "1",
+            "1"
+          ],
+          [
+            "2",
+            "2"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "emakefun_md_stepper_step": {
+    "message0": "Motor accionado %1 motor paso a paso %2 movimiento %3 dirección del paso %4 modo %5",
+    "tooltip": "El motor paso a paso se mueve en pasos específicos. Motor paso a paso estándar: 200 pasos = 1 revolución. Paso simple: alta precisión; Doble escalón: par alto; Entrelazamiento: mayor precisión; Microstep: el más suave",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "1",
+            "1"
+          ],
+          [
+            "2",
+            "2"
+          ]
+        ]
+      },
+      null,
+      {
+        "options": [
+          [
+            "Adelante",
+            "FORWARD"
+          ],
+          [
+            "reverse",
+            "BACKWARD"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "Paso único",
+            "SINGLE"
+          ],
+          [
+            "Doble escalón",
+            "DOUBLE"
+          ],
+          [
+            "Entrelazados",
+            "INTERLEAVE"
+          ],
+          [
+            "Weibu",
+            "MICROSTEP"
+          ]
+        ]
+      }
+    ]
+  },
+  "emakefun_md_stepper_release": {
+    "message0": "Accionamiento del motor %1 liberación del motor paso a paso %2",
+    "tooltip": "Suelta el motor paso a paso; el corte de energía permite que el motor gire libremente, reduciendo el consumo y la generación de calor",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "1",
+            "1"
+          ],
+          [
+            "2",
+            "2"
+          ]
+        ]
+      }
+    ]
+  }
+}

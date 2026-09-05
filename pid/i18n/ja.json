@@ -1,0 +1,173 @@
+{
+  "toolbox_name": "PIDコントローラ",
+  "toolbox_labels": {
+    "快速开始": "クイックスタート",
+    "基础控制": "基本制御",
+    "参数设置": "パラメータ設定",
+    "值设置与获取": "値の設定と取得",
+    "高级控制": "高度な制御",
+    "条件判断": "条件付き判決"
+  },
+  "pid_init": {
+    "message0": "PIDコントローラの初期化 %1 入力変数 %2 出力変数 %3 ターゲット値 %4 パラメータプリセット %5P パラメータ %6 I パラメータ %7D パラメータ %8 制御方向 %9",
+    "args0": [
+      null,
+      null,
+      null,
+      null,
+      {
+        "options": [
+          [
+            "カスタマイズ",
+            "custom"
+          ],
+          [
+            "温度制御",
+            "temperature"
+          ],
+          [
+            "モーター回転数",
+            "motor_speed"
+          ],
+          [
+            "位置制御",
+            "position"
+          ],
+          [
+            "液体レベル制御",
+            "level"
+          ]
+        ]
+      },
+      null,
+      null,
+      null,
+      {
+        "options": [
+          [
+            "ポジティブコントロール",
+            "DIRECT"
+          ],
+          [
+            "リバースコントロール",
+            "REVERSE"
+          ]
+        ]
+      }
+    ]
+  },
+  "pid_quick_setup": {
+    "message0": "高速PIDは入力ピン%1%2出力pins%3目標値を制御%4アプリケーションscenarios%5",
+    "args0": [
+      null,
+      {
+        "options": "${board.analogPins}"
+      },
+      {
+        "options": "${board.pwmPins}"
+      },
+      null,
+      {
+        "options": [
+          [
+            "温度制御",
+            "temperature"
+          ],
+          [
+            "モーター回転数",
+            "motor_speed"
+          ],
+          [
+            "位置制御",
+            "position"
+          ],
+          [
+            "液体レベル制御",
+            "level"
+          ],
+          [
+            "カスタマイズ",
+            "custom"
+          ]
+        ]
+      }
+    ]
+  },
+  "pid_compute": {
+    "message0": "PIDコントローラ%1計算"
+  },
+  "pid_control_loop": {
+    "message0": "PID制御loop%1コントローラを実行し%2入力を読み込み%3実行output%4"
+  },
+  "pid_temperature_control": {
+    "message0": "温度PID制御%1温度センサーのピン%2ヒーターピン%3ターゲットtemperature%4",
+    "args0": [
+      null,
+      {
+        "options": "${board.analogPins}"
+      },
+      {
+        "options": "${board.pwmPins}"
+      },
+      null
+    ]
+  },
+  "pid_motor_speed_control": {
+    "message0": "モーター速度PID制御%1エンコーダピン%2モーターPWMピン%3目標速度(RPM)%4",
+    "args0": [
+      null,
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": "${board.pwmPins}"
+      },
+      null
+    ]
+  },
+  "pid_set_mode": {
+    "message0": "PIDコントローラーの%1モードを%2に設定してください",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "自動",
+            "AUTOMATIC"
+          ],
+          [
+            "マニュアル",
+            "MANUAL"
+          ]
+        ]
+      }
+    ]
+  },
+  "pid_set_tunings": {
+    "message0": "PIDコントローラー%1 parameters%2P parameters%3I parameters%4D parameters%5設定"
+  },
+  "pid_set_output_limits": {
+    "message0": "PIDコントローラの出力%1最小limits%2設定%3 maximum%4"
+  },
+  "pid_get_input": {
+    "message0": "PID入力をvalues%1"
+  },
+  "pid_get_output": {
+    "message0": "PID出力をvalue%1"
+  },
+  "pid_set_setpoint": {
+    "message0": "PIDの目標値を%1に設定%2"
+  },
+  "pid_set_input": {
+    "message0": "PID入力値を%1に設定してください%2"
+  },
+  "pid_adaptive_control": {
+    "message0": "適応型PID制御 %1PIDコントローラ %2 入力変数 %3 ターゲット値 %4 閾値 %5 積極パラメータP%6I%7D%8 保守パラメータP%9I%10D%11"
+  },
+  "pid_is_at_setpoint": {
+    "message0": "PIDはターゲット値%1ターゲット%2許容範囲に達しましたvalue%3"
+  },
+  "pid_get_error": {
+    "message0": "ターゲット%1PID誤差値を取得するvalues%2"
+  }
+}

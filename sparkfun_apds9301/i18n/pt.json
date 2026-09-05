@@ -1,0 +1,115 @@
+{
+  "toolbox_name": "APDS9301",
+  "apds9301_init": {
+    "message0": "Inicializar APDS9301 %1 endereço %2",
+    "tooltip": "Inicializar o sensor de luz ambiente SparkFun APDS9301"
+  },
+  "apds9301_is_ready": {
+    "message0": "APDS9301 %1 inicializado",
+    "tooltip": "Retorna o estado de init APDS9301"
+  },
+  "apds9301_read_lux": {
+    "message0": "APDS9301 %1 ler lux",
+    "tooltip": "Lê o valor lux calculado APDS9301"
+  },
+  "apds9301_read_channel": {
+    "message0": "APDS9301 %1 ler canal bruto %2",
+    "tooltip": "Lê o valor ADC bruto do canal APDS9301",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "CH0 Visível + Infravermelho",
+            "readCH0Level"
+          ],
+          [
+            "CH1 Infravermelho",
+            "readCH1Level"
+          ]
+        ]
+      }
+    ]
+  },
+  "apds9301_set_gain": {
+    "message0": "Configurar ganho APDS9301 %1 %2",
+    "tooltip": "Define o ganho APDS9301 (baixo ou alto)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Baixo",
+            "APDS9301::LOW_GAIN"
+          ],
+          [
+            "Alto",
+            "APDS9301::HIGH_GAIN"
+          ]
+        ]
+      }
+    ]
+  },
+  "apds9301_set_integration_time": {
+    "message0": "Tempo integração APDS9301 %1 %2",
+    "tooltip": "Define o tempo de integração APDS9301"
+  },
+  "apds9301_enable_interrupt": {
+    "message0": "APDS9301 %1 interrupção %2",
+    "tooltip": "Ativar/desativar a interrupção de limiar APDS9301",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Habilitar",
+            "APDS9301::INT_ON"
+          ],
+          [
+            "Desabilitar",
+            "APDS9301::INT_OFF"
+          ]
+        ]
+      }
+    ]
+  },
+  "apds9301_set_threshold": {
+    "message0": "Limiar APDS9301 %1 %2 %3",
+    "tooltip": "Define o limiar de interrupção APDS9301",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Inferior",
+            "LOW"
+          ],
+          [
+            "Superior",
+            "HIGH"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "apds9301_power": {
+    "message0": "APDS9301 %1 alimentação %2",
+    "tooltip": "Ligar/desligar APDS9301",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Ligado",
+            "APDS9301::POW_ON"
+          ],
+          [
+            "Desligado",
+            "APDS9301::POW_OFF"
+          ]
+        ]
+      }
+    ]
+  }
+}

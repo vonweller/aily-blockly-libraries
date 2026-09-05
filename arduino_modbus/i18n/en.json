@@ -1,0 +1,177 @@
+{
+  "toolbox_name": "Modbus communication",
+  "toolbox_labels": {
+    "客户端初始化": "Client initialization",
+    "服务器初始化": "Server initialization",
+    "服务器配置": "Server configuration",
+    "客户端读写操作": "Client read and write operations",
+    "服务器读写操作": "Server read and write operations",
+    "错误处理": "Error handling",
+    "快速操作": "Quick operation"
+  },
+  "modbus_rtu_client_begin": {
+    "message0": "Initialize Modbus RTU client baud rate%1",
+    "tooltip": "Initialize Modbus RTU client and set baud rate",
+    "args0": [
+      {
+        "options": [
+          [
+            "9600",
+            "9600"
+          ],
+          [
+            "19200",
+            "19200"
+          ],
+          [
+            "38400",
+            "38400"
+          ],
+          [
+            "57600",
+            "57600"
+          ],
+          [
+            "115200",
+            "115200"
+          ]
+        ]
+      }
+    ]
+  },
+  "modbus_rtu_server_begin": {
+    "message0": "Initialize Modbus RTU server Device ID%1Baud rate%2",
+    "tooltip": "Initialize Modbus RTU server, set device ID and baud rate",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "9600",
+            "9600"
+          ],
+          [
+            "19200",
+            "19200"
+          ],
+          [
+            "38400",
+            "38400"
+          ],
+          [
+            "57600",
+            "57600"
+          ],
+          [
+            "115200",
+            "115200"
+          ]
+        ]
+      }
+    ]
+  },
+  "modbus_tcp_client_begin": {
+    "message0": "Initialize Modbus TCP client IP address %1 port %2",
+    "tooltip": "Initialize the Modbus TCP client and connect to the specified IP and port"
+  },
+  "modbus_tcp_server_begin": {
+    "message0": "Initialize Modbus TCP server device ID%1",
+    "tooltip": "Initialize Modbus TCP server"
+  },
+  "modbus_coil_read": {
+    "message0": "Read coil device ID%1 address%2",
+    "tooltip": "Read the coil status of the specified address and return 0 or 1, or -1 if failed."
+  },
+  "modbus_coil_write": {
+    "message0": "Write Coil Device ID%1Address%2Value%3",
+    "tooltip": "Writes the coil value (0 or 1) to the specified address"
+  },
+  "modbus_discrete_input_read": {
+    "message0": "Read discrete input device ID%1 address%2",
+    "tooltip": "Read the discrete input status of the specified address, returning 0 or 1, or -1 on failure."
+  },
+  "modbus_holding_register_read": {
+    "message0": "Read holding register device ID%1 address%2",
+    "tooltip": "Read the holding register value at the specified address, and return -1 on failure"
+  },
+  "modbus_holding_register_write": {
+    "message0": "Write holding register device ID%1 address%2 value%3",
+    "tooltip": "Write the holding register value (0-65535) to the specified address"
+  },
+  "modbus_input_register_read": {
+    "message0": "Read input register device ID%1 address%2",
+    "tooltip": "Read the input register value at the specified address, and return -1 on failure"
+  },
+  "modbus_server_configure_coils": {
+    "message0": "Configure server coil starting address %1 quantity %2",
+    "tooltip": "Configure the coil address range of the Modbus server"
+  },
+  "modbus_server_configure_discrete_inputs": {
+    "message0": "Configure server discrete input starting address %1 quantity %2",
+    "tooltip": "Configuring the discrete input address range of the Modbus server"
+  },
+  "modbus_server_configure_holding_registers": {
+    "message0": "Configuration server holding register starting address %1 quantity %2",
+    "tooltip": "Configure the holding register address range of the Modbus server"
+  },
+  "modbus_server_configure_input_registers": {
+    "message0": "Configure server input register starting address %1 quantity %2",
+    "tooltip": "Configure the input register address range of the Modbus server"
+  },
+  "modbus_server_poll": {
+    "message0": "Modbus server polling",
+    "tooltip": "Poll the Modbus server to see if there is a request, and return true if there is a request."
+  },
+  "modbus_server_coil_read": {
+    "message0": "The server reads the coil address %1",
+    "tooltip": "Read the current value of the server coil"
+  },
+  "modbus_server_coil_write": {
+    "message0": "The server writes to the coil address %1 value %2",
+    "tooltip": "Set the value of the server coil"
+  },
+  "modbus_server_discrete_input_write": {
+    "message0": "The server writes discrete input address %1 value %2",
+    "tooltip": "Sets the value of a server discrete input"
+  },
+  "modbus_server_holding_register_read": {
+    "message0": "The server reads the holding register address %1",
+    "tooltip": "Read the current value of the server holding register"
+  },
+  "modbus_server_holding_register_write": {
+    "message0": "The server writes to the holding register address %1 value %2",
+    "tooltip": "Set the value of the server holding register"
+  },
+  "modbus_server_input_register_write": {
+    "message0": "The server writes to the input register address %1 value %2",
+    "tooltip": "Set the value of the server input register"
+  },
+  "modbus_last_error": {
+    "message0": "Get the last Modbus error message",
+    "tooltip": "Get the error message of the last Modbus operation"
+  },
+  "modbus_quick_coil_control": {
+    "message0": "Modbus fast control coil device ID%1 address%2 value%3",
+    "tooltip": "Quickly control the coils of Modbus devices and automatically handle initialization",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "turn on",
+            "1"
+          ],
+          [
+            "Close",
+            "0"
+          ]
+        ]
+      }
+    ]
+  },
+  "modbus_quick_register_read": {
+    "message0": "Modbus fast read register device ID%1 address%2",
+    "tooltip": "Quickly read the holding register value of Modbus device"
+  }
+}

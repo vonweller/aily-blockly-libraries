@@ -1,0 +1,169 @@
+{
+  "toolbox_name": "مستشعر BMP280",
+  "bmp280_init": {
+    "message0": "تهيئة عنوان I2C لمستشعر BMP280 %1 استخدام %2",
+    "args0": [
+      {
+        "options": [
+          [
+            "0x76 (افتراضي)",
+            "0x76"
+          ],
+          [
+            "0x77 (بديل)",
+            "0x77"
+          ]
+        ]
+      },
+      {
+        "options": "${board.i2c}"
+      }
+    ]
+  },
+  "bmp280_read_temperature": {
+    "message0": "اقرأ درجة حرارة BMP280 (°C)"
+  },
+  "bmp280_read_pressure": {
+    "message0": "اقرأ ضغط الكتلة البارومتري BMP280 (hPa)"
+  },
+  "bmp280_read_altitude": {
+    "message0": "اقرأ ضغط الهواء المرجعي للارتفاع (متر) في BMP280 %1 هيكتوباسكال"
+  },
+  "bmp280_set_sampling": {
+    "message0": "تعيين وضع أخذ العينات في BMP280 وضع التشغيل %1 أخذ عينات فائضة من درجة الحرارة %2 أخذ عينات ضغط %3 الترشيح %4 وقت النوم %5",
+    "args0": [
+      {
+        "options": [
+          [
+            "عادي",
+            "MODE_NORMAL"
+          ],
+          [
+            "إجباري",
+            "MODE_FORCED"
+          ],
+          [
+            "sleep",
+            "MODE_SLEEP"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "4 مرات",
+            "SAMPLING_X4"
+          ],
+          [
+            "لا أخذ عينات مفرطة",
+            "SAMPLING_NONE"
+          ],
+          [
+            "مرة واحدة",
+            "SAMPLING_X1"
+          ],
+          [
+            "ضعف ذلك",
+            "SAMPLING_X2"
+          ],
+          [
+            "8 مرات",
+            "SAMPLING_X8"
+          ],
+          [
+            "16 مرة",
+            "SAMPLING_X16"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "4 مرات",
+            "SAMPLING_X4"
+          ],
+          [
+            "لا أخذ عينات مفرطة",
+            "SAMPLING_NONE"
+          ],
+          [
+            "مرة واحدة",
+            "SAMPLING_X1"
+          ],
+          [
+            "ضعف ذلك",
+            "SAMPLING_X2"
+          ],
+          [
+            "8 مرات",
+            "SAMPLING_X8"
+          ],
+          [
+            "16 مرة",
+            "SAMPLING_X16"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "4 مرات",
+            "FILTER_X4"
+          ],
+          [
+            "إيقاف",
+            "FILTER_OFF"
+          ],
+          [
+            "ضعف ذلك",
+            "FILTER_X2"
+          ],
+          [
+            "8 مرات",
+            "FILTER_X8"
+          ],
+          [
+            "16 مرة",
+            "FILTER_X16"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "1ms",
+            "STANDBY_MS_1"
+          ],
+          [
+            "63ms",
+            "STANDBY_MS_63"
+          ],
+          [
+            "125ms",
+            "STANDBY_MS_125"
+          ],
+          [
+            "250ms",
+            "STANDBY_MS_250"
+          ],
+          [
+            "500ms",
+            "STANDBY_MS_500"
+          ],
+          [
+            "1000ms",
+            "STANDBY_MS_1000"
+          ],
+          [
+            "2000ms",
+            "STANDBY_MS_2000"
+          ],
+          [
+            "4000ms",
+            "STANDBY_MS_4000"
+          ]
+        ]
+      }
+    ]
+  }
+}

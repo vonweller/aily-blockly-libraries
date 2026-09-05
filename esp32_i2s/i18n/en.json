@@ -1,0 +1,280 @@
+{
+  "toolbox_name": "ESP32 I2S",
+  "toolbox_labels": {
+    "基本操作": "Basic operations",
+    "引脚配置": "Pin configuration",
+    "初始化配置": "Initial configuration",
+    "数据读写": "Data reading and writing",
+    "音调生成": "tone generation",
+    "WAV音频": "WAV audio",
+    "状态查询": "Status query"
+  },
+  "esp32_i2s_create": {
+    "message0": "Create an I2S object named %1",
+    "tooltip": "Create an I2S audio interface object"
+  },
+  "esp32_i2s_set_pins_std": {
+    "message0": "I2S object %1 Set standard mode pin BCLK%2 WS/LRC%3 DOUT%4 DIN%5 MCLK%6",
+    "tooltip": "Set the standard I2S mode pins, DIN and MCLK are optional, set to -1 if not used"
+  },
+  "esp32_i2s_set_pins_pdm_tx": {
+    "message0": "I2S object %1 Set PDM send pin CLK%2 DOUT0%3 DOUT1%4",
+    "tooltip": "Set the pin for PDM transmission mode"
+  },
+  "esp32_i2s_set_pins_pdm_rx": {
+    "message0": "I2S object %1 Set PDM receiving pin CLK%2 DIN0%3 DIN1%4 DIN2%5 DIN3%6",
+    "tooltip": "Set the pin for PDM reception mode"
+  },
+  "esp32_i2s_begin": {
+    "message0": "Initialize I2S object %1 Mode %2 Sampling rate %3 Hz Bit width %4 Channel %5 Slot %6",
+    "tooltip": "To initialize the I2S interface, the pins must be set first. Slot parameters can choose to use left/right/dual channels",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Standard I2S",
+            "I2S_MODE_STD"
+          ],
+          [
+            "TDM mode",
+            "I2S_MODE_TDM"
+          ],
+          [
+            "PDM send",
+            "I2S_MODE_PDM_TX"
+          ],
+          [
+            "PDM reception",
+            "I2S_MODE_PDM_RX"
+          ]
+        ]
+      },
+      null,
+      {
+        "options": [
+          [
+            "16 bit",
+            "I2S_DATA_BIT_WIDTH_16BIT"
+          ],
+          [
+            "32 bit",
+            "I2S_DATA_BIT_WIDTH_32BIT"
+          ],
+          [
+            "24 bit",
+            "I2S_DATA_BIT_WIDTH_24BIT"
+          ],
+          [
+            "8 bits",
+            "I2S_DATA_BIT_WIDTH_8BIT"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "Stereo",
+            "I2S_SLOT_MODE_STEREO"
+          ],
+          [
+            "mono",
+            "I2S_SLOT_MODE_MONO"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "automatic",
+            "-1"
+          ],
+          [
+            "left channel",
+            "I2S_STD_SLOT_LEFT"
+          ],
+          [
+            "right channel",
+            "I2S_STD_SLOT_RIGHT"
+          ],
+          [
+            "Binaural",
+            "I2S_STD_SLOT_BOTH"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_i2s_configure_tx": {
+    "message0": "Configure I2S object %1 TX sampling rate %2 Hz bit width %3 channel %4 slot %5",
+    "tooltip": "Configure I2S sending channel parameters",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "16 bit",
+            "I2S_DATA_BIT_WIDTH_16BIT"
+          ],
+          [
+            "32 bit",
+            "I2S_DATA_BIT_WIDTH_32BIT"
+          ],
+          [
+            "24 bit",
+            "I2S_DATA_BIT_WIDTH_24BIT"
+          ],
+          [
+            "8 bits",
+            "I2S_DATA_BIT_WIDTH_8BIT"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "Stereo",
+            "I2S_SLOT_MODE_STEREO"
+          ],
+          [
+            "mono",
+            "I2S_SLOT_MODE_MONO"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "automatic",
+            "-1"
+          ],
+          [
+            "left channel",
+            "I2S_STD_SLOT_LEFT"
+          ],
+          [
+            "right channel",
+            "I2S_STD_SLOT_RIGHT"
+          ],
+          [
+            "Binaural",
+            "I2S_STD_SLOT_BOTH"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_i2s_configure_rx": {
+    "message0": "Configure I2S object %1 RX Sampling rate %2 Hz Bit width %3 Channel %4 Conversion %5",
+    "tooltip": "Configure I2S receiving channel parameters",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "16 bit",
+            "I2S_DATA_BIT_WIDTH_16BIT"
+          ],
+          [
+            "32 bit",
+            "I2S_DATA_BIT_WIDTH_32BIT"
+          ],
+          [
+            "24 bit",
+            "I2S_DATA_BIT_WIDTH_24BIT"
+          ],
+          [
+            "8 bits",
+            "I2S_DATA_BIT_WIDTH_8BIT"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "Stereo",
+            "I2S_SLOT_MODE_STEREO"
+          ],
+          [
+            "mono",
+            "I2S_SLOT_MODE_MONO"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "No conversion",
+            "I2S_RX_TRANSFORM_NONE"
+          ],
+          [
+            "32 to 16 bit",
+            "I2S_RX_TRANSFORM_32_TO_16"
+          ],
+          [
+            "Stereo to mono",
+            "I2S_RX_TRANSFORM_16_STEREO_TO_MONO"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_i2s_write_byte": {
+    "message0": "I2S object %1 Write bytes %2",
+    "tooltip": "Write a single byte to I2S, usually written continuously in a loop"
+  },
+  "esp32_i2s_read_bytes": {
+    "message0": "I2S object %1 Read bytes into array %2 Read quantity %3",
+    "tooltip": "Read the specified number of bytes from I2S to the array and return the actual number of bytes read"
+  },
+  "esp32_i2s_record_wav": {
+    "message0": "I2S object %1 Record WAV audio Duration %2 seconds Save size to %3",
+    "tooltip": "Record the WAV audio of the specified duration, return the byte array pointer, and save the size to the specified variable. Please use free() to release the memory after use."
+  },
+  "esp32_i2s_play_wav": {
+    "message0": "I2S object %1 Play WAV audio data %2 Length %3",
+    "tooltip": "To play audio data in WAV format, the data length needs to be specified."
+  },
+  "esp32_i2s_end": {
+    "message0": "End I2S object %1",
+    "tooltip": "Stop I2S and release resources"
+  },
+  "esp32_i2s_get_last_error": {
+    "message0": "Get the last error code of I2S object %1",
+    "tooltip": "Get the error code of the last I2S operation, 0 means success"
+  },
+  "esp32_i2s_write_sample": {
+    "message0": "I2S object %1 writes sample value %2 (stereo writes left and right channels)",
+    "tooltip": "Write a 16-bit sample value to I2S and the left and right channels will be automatically written."
+  },
+  "esp32_i2s_write_buffer": {
+    "message0": "I2S object %1 Write buffer %2 Length %3",
+    "tooltip": "Write buffer data to I2S and return the actual number of bytes written"
+  },
+  "esp32_i2s_available": {
+    "message0": "I2S object %1 Number of readable bytes",
+    "tooltip": "Get the number of bytes readable in the I2S receive buffer"
+  },
+  "esp32_i2s_tx_sample_rate": {
+    "message0": "I2S object %1 sends sampling rate",
+    "tooltip": "Get the sampling rate of the I2S sending channel"
+  },
+  "esp32_i2s_rx_sample_rate": {
+    "message0": "I2S object %1 receiving sampling rate",
+    "tooltip": "Get the sampling rate of the I2S receiving channel"
+  },
+  "esp32_i2s_set_inverted": {
+    "message0": "I2S object %1 Set signal inversion BCLK%2 WS%3 MCLK%4",
+    "tooltip": "Set I2S signal inversion options for compatibility with different audio chips"
+  },
+  "esp32_i2s_generate_tone": {
+    "message0": "I2S object %1 Generates square wave tone Frequency %2 Hz Duration %3 ms Amplitude %4",
+    "tooltip": "Generate a square wave tone of specified frequency and play it through I2S"
+  },
+  "esp32_i2s_free_wav_buffer": {
+    "message0": "Release WAV buffer %1",
+    "tooltip": "Release the memory buffer allocated by recordWAV"
+  }
+}

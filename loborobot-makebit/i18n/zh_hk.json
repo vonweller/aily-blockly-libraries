@@ -1,0 +1,283 @@
+{
+  "toolbox_name": "創樂博MakeBit",
+  "toolbox_categories": [
+    "小車",
+    "舵機風扇",
+    "蜂鳴器",
+    "彩燈"
+  ],
+  "makebit_car_init": {
+    "message0": "初始化小車（驅動板I2C地址0x41）",
+    "tooltip": "初始化MakeBit小車PCA9685電機驅動晶片（I2C地址0x41，PWM 50Hz）。使用小車、舵機、車載風扇、LED積木前建議先放置本積木。"
+  },
+  "makebit_car_ctrl": {
+    "message0": "小車 %1",
+    "tooltip": "以預設速度255控制小車：前進、後退、左轉、右轉、停止、原地左旋、原地右旋。",
+    "args0": [
+      {
+        "options": [
+          [
+            "前進",
+            "FORWARD"
+          ],
+          [
+            "後退",
+            "BACKWARD"
+          ],
+          [
+            "左轉",
+            "LEFT"
+          ],
+          [
+            "右轉",
+            "RIGHT"
+          ],
+          [
+            "停止",
+            "STOP"
+          ],
+          [
+            "原地左旋",
+            "SPIN_LEFT"
+          ],
+          [
+            "原地右旋",
+            "SPIN_RIGHT"
+          ]
+        ]
+      }
+    ]
+  },
+  "makebit_car_ctrl_speed": {
+    "message0": "小車 %1 速度 %2",
+    "tooltip": "以指定速度（0-255）控制小車動作：前進、後退、左轉、右轉、停止、原地左旋、原地右旋。",
+    "args0": [
+      {
+        "options": [
+          [
+            "前進",
+            "FORWARD"
+          ],
+          [
+            "後退",
+            "BACKWARD"
+          ],
+          [
+            "左轉",
+            "LEFT"
+          ],
+          [
+            "右轉",
+            "RIGHT"
+          ],
+          [
+            "停止",
+            "STOP"
+          ],
+          [
+            "原地左旋",
+            "SPIN_LEFT"
+          ],
+          [
+            "原地右旋",
+            "SPIN_RIGHT"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "makebit_motor": {
+    "message0": "電機 %1 %2 速度 %3",
+    "tooltip": "單獨控制左電機或右電機正轉、反轉，速度0-255，速度0表示該電機停轉。",
+    "args0": [
+      {
+        "options": [
+          [
+            "左電機",
+            "LEFT"
+          ],
+          [
+            "右電機",
+            "RIGHT"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "正轉",
+            "FWD"
+          ],
+          [
+            "反轉",
+            "REV"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "makebit_car_servo": {
+    "message0": "小車舵機 角度 %1",
+    "tooltip": "設置車載舵機（PCA9685通道3）角度0-180度，對應脈寬600-2400微秒。"
+  },
+  "makebit_car_fan": {
+    "message0": "車載風扇 %1 速度 %2",
+    "tooltip": "控制車載風扇電機（PCA9685通道4/5）正轉、反轉或停止，速度0-255，選擇停止時忽略速度。",
+    "args0": [
+      {
+        "options": [
+          [
+            "正轉",
+            "FWD"
+          ],
+          [
+            "反轉",
+            "REV"
+          ],
+          [
+            "停止",
+            "STOP"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "makebit_buzzer": {
+    "message0": "蜂鳴器 引腳 %1 %2",
+    "tooltip": "控制有源蜂鳴器模組（低電平觸發）：響或不響。",
+    "args0": [
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": [
+          [
+            "響",
+            "ON"
+          ],
+          [
+            "不響",
+            "OFF"
+          ]
+        ]
+      }
+    ]
+  },
+  "makebit_car_led": {
+    "message0": "探照燈 %1",
+    "tooltip": "探照燈開關：亮=按全域亮度（「探照燈 亮度」積木設置）點亮白光，滅=熄滅（兩個探照燈並聯在同一RGB通道，同步動作）。",
+    "args0": [
+      {
+        "options": [
+          [
+            "亮",
+            "ON"
+          ],
+          [
+            "滅",
+            "OFF"
+          ]
+        ]
+      }
+    ]
+  },
+  "makebit_car_rgb": {
+    "message0": "探照燈 顏色 %1",
+    "tooltip": "設置小車RGB探照燈（PCA9685通道0/1/2）的預設顏色。",
+    "args0": [
+      {
+        "options": [
+          [
+            "滅",
+            "OFF"
+          ],
+          [
+            "紅",
+            "RED"
+          ],
+          [
+            "綠",
+            "GREEN"
+          ],
+          [
+            "藍",
+            "BLUE"
+          ],
+          [
+            "白",
+            "WHITE"
+          ],
+          [
+            "青",
+            "CYAN"
+          ],
+          [
+            "品紅",
+            "MAGENTA"
+          ],
+          [
+            "黃",
+            "YELLOW"
+          ]
+        ]
+      }
+    ]
+  },
+  "makebit_car_rgb_val": {
+    "message0": "探照燈 紅 %1 綠 %2 藍 %3",
+    "tooltip": "按RGB分量（0-255）自訂小車探照燈顏色，實際亮度按「探照燈 亮度」全域亮度縮放。"
+  },
+  "makebit_ultrasonic": {
+    "message0": "超音波 發射 %1 接收 %2 距離(cm)",
+    "tooltip": "外接SR04超音波模組測距（發射/接收引腳可選），返回距離厘米；約30ms無回波（約5米內）返回0。不使用pulseIn，不佔用I2C。",
+    "args0": [
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": "${board.digitalPins}"
+      }
+    ]
+  },
+  "makebit_rgb_effect": {
+    "message0": "探照燈特效 %1",
+    "tooltip": "在RGB探照燈上執行一次特效：流水（六色輪換）、彩虹（色相漸變）、呼吸、閃爍或熄滅，阻塞執行完畢後返回。",
+    "args0": [
+      {
+        "options": [
+          [
+            "流水",
+            "FLOW"
+          ],
+          [
+            "彩虹",
+            "RAINBOW"
+          ],
+          [
+            "呼吸",
+            "BREATH"
+          ],
+          [
+            "閃爍",
+            "BLINK"
+          ],
+          [
+            "熄滅",
+            "OFF"
+          ]
+        ]
+      }
+    ]
+  },
+  "makebit_car_trim": {
+    "message0": "小車 前進校正 左 %1 右 %2",
+    "tooltip": "校正前進跑偏：設置左右電機正轉輸出百分比（0-100，默認100不校正）。前進向右偏→減小左值；向左偏→減小右值。影響前進、轉彎與原地旋轉中的正轉輪，後退不變。"
+  },
+  "makebit_rgb_brightness": {
+    "message0": "探照燈 亮度 %1",
+    "tooltip": "設置探照燈的全域亮度（0-255，默認255全亮）：之後「探照燈 顏色」「探照燈特效」「探照燈 亮」「探照燈 紅/綠/藍」都按此亮度顯示。"
+  }
+}

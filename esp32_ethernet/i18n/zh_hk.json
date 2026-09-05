@@ -1,0 +1,91 @@
+{
+  "toolbox_name": "乙太網路(Ethernet)",
+  "toolbox_labels": {
+    "初始化": "初始化",
+    "状态查询": "狀態查詢"
+  },
+  "esp32_eth_begin": {
+    "message0": "初始化乙太網路 PHY類型 %1 PHY位址 %2",
+    "tooltip": "初始化乙太網路介面",
+    "args0": [
+      {
+        "options": [
+          [
+            "LAN8720",
+            "ETH_PHY_LAN8720"
+          ],
+          [
+            "TLK110",
+            "ETH_PHY_TLK110"
+          ],
+          [
+            "RTL8201",
+            "ETH_PHY_RTL8201"
+          ],
+          [
+            "DP83848",
+            "ETH_PHY_DP83848"
+          ],
+          [
+            "KSZ8041",
+            "ETH_PHY_KSZ8041"
+          ],
+          [
+            "KSZ8081",
+            "ETH_PHY_KSZ8081"
+          ],
+          [
+            "W5500",
+            "ETH_PHY_W5500"
+          ],
+          [
+            "DM9051",
+            "ETH_PHY_DM9051"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "esp32_eth_begin_spi": {
+    "message0": "初始化SPI乙太網路 PHY類型 %1 CS %2 IRQ %3 RST %4",
+    "tooltip": "透過SPI初始化乙太網路(適用於W5500等SPI PHY)",
+    "args0": [
+      {
+        "options": [
+          [
+            "W5500",
+            "ETH_PHY_W5500"
+          ],
+          [
+            "DM9051",
+            "ETH_PHY_DM9051"
+          ]
+        ]
+      },
+      null,
+      null,
+      null
+    ]
+  },
+  "esp32_eth_connected": {
+    "message0": "乙太網路已連接",
+    "tooltip": "檢查乙太網路是否已連接"
+  },
+  "esp32_eth_local_ip": {
+    "message0": "乙太網路本地IP位址",
+    "tooltip": "取得乙太網路本地IP位址"
+  },
+  "esp32_eth_mac": {
+    "message0": "乙太網路MAC位址",
+    "tooltip": "取得乙太網路MAC位址"
+  },
+  "esp32_eth_full_duplex": {
+    "message0": "乙太網路全雙工模式",
+    "tooltip": "檢查乙太網路是否工作在全雙工模式"
+  },
+  "esp32_eth_link_speed": {
+    "message0": "乙太網路連結速度",
+    "tooltip": "取得乙太網路連結速度(Mbps)"
+  }
+}

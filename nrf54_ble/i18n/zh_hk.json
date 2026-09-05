@@ -1,0 +1,323 @@
+{
+  "toolbox_name": "藍牙BLE",
+  "toolbox_labels": {
+    "一键BLE外设": "一鍵BLE週邊",
+    "设备初始化": "設備初始化",
+    "广播配置": "廣播配置",
+    "广播发送": "廣播發送",
+    "连接管理": "連線管理",
+    "连接事件": "連線事件",
+    "标准GATT": "標準GATT",
+    "自定义GATT": "自訂GATT",
+    "写入回调": "寫入回調",
+    "Nordic UART服务": "Nordic UART服務",
+    "BLE扫描": "BLE掃描",
+    "扫描结果": "掃描結果"
+  },
+  "toolbox_categories": [
+    "快速模式",
+    "初始化",
+    "Advertising",
+    "Connection",
+    "GATT Service",
+    "NUS Bridge",
+    "Scanning",
+    "Power"
+  ],
+  "nrf54_ble_init": {
+    "message0": "初始化 BLE 發射功率（dBm）%1",
+    "tooltip": "初始化nRF54 BLE無線電並設定傳輸功率",
+    "args0": [
+      {
+        "options": [
+          [
+            "+8",
+            "8"
+          ],
+          [
+            "+4",
+            "4"
+          ],
+          [
+            "0",
+            "0"
+          ],
+          [
+            "-4",
+            "-4"
+          ],
+          [
+            "-8 (default)",
+            "-8"
+          ],
+          [
+            "-12",
+            "-12"
+          ],
+          [
+            "-16",
+            "-16"
+          ],
+          [
+            "-20",
+            "-20"
+          ],
+          [
+            "-40",
+            "-40"
+          ]
+        ]
+      }
+    ]
+  },
+  "nrf54_ble_end": {
+    "message0": "Shutdown BLE",
+    "tooltip": "關閉BLE無線電"
+  },
+  "nrf54_ble_set_name": {
+    "message0": "設定 BLE 廣播名稱%1",
+    "tooltip": "設定 BLE 廣播裝置的名稱"
+  },
+  "nrf54_ble_set_address": {
+    "message0": "將 BLE 位址設為%1類型 %2",
+    "tooltip": "設定 BLE 裝置位址（格式：AA：BB：CC：DD：EE：FF）",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "隨機雜訊",
+            "kRandomStatic"
+          ],
+          [
+            "Public",
+            "kPublic"
+          ]
+        ]
+      }
+    ]
+  },
+  "nrf54_ble_get_address": {
+    "message0": "取得BLE位址",
+    "tooltip": "擷取目前 BLE 裝置位址的字串"
+  },
+  "nrf54_ble_set_tx_power": {
+    "message0": "設定發射功率（dBm）%1",
+    "tooltip": "設定BLE發射功率"
+  },
+  "nrf54_ble_set_adv_type": {
+    "message0": "設定廣播類型%1",
+    "tooltip": "設定 BLE 廣播 PDU 類型",
+    "args0": [
+      {
+        "options": [
+          [
+            "可連接與可掃描（ADV_IND）",
+            "kAdvInd"
+          ],
+          [
+            "無法連線或掃描（ADV_NONCONN_IND）",
+            "kAdvNonConnInd"
+          ],
+          [
+            "無法連線，可以掃描（ADV_SCAN_IND）",
+            "kAdvScanInd"
+          ]
+        ]
+      }
+    ]
+  },
+  "nrf54_ble_set_adv_data_raw": {
+    "message0": "設定廣播原始資料 旗標 %1 包含名稱 %2",
+    "tooltip": "使用 setAdvertisingName 自動建立廣播資料"
+  },
+  "nrf54_ble_set_scan_response_name": {
+    "message0": "將掃描回應名稱設為%1",
+    "tooltip": "在 BLE 掃描回應中設定裝置名稱"
+  },
+  "nrf54_ble_advertise_once": {
+    "message0": "發送廣播事件",
+    "tooltip": "在三個主要廣播頻道發送廣播事件（僅限TX）"
+  },
+  "nrf54_ble_advertise_connectable": {
+    "message0": "傳送可連接的廣播並監聽",
+    "tooltip": "發送可連線的廣播事件並監聽連線請求（ADV_IND）"
+  },
+  "nrf54_ble_is_connected": {
+    "message0": "BLE connected?",
+    "tooltip": "檢查 BLE 是否已建立連線"
+  },
+  "nrf54_ble_disconnect": {
+    "message0": "Disconnect BLE",
+    "tooltip": "主動斷開目前的BLE連線"
+  },
+  "nrf54_ble_poll_event": {
+    "message0": "等待連線事件",
+    "tooltip": "等待並處理 BLE 連線事件"
+  },
+  "nrf54_ble_on_connected": {
+    "message0": "當BLE連接時%1 %2",
+    "tooltip": "當 BLE 裝置成功連接時執行"
+  },
+  "nrf54_ble_on_disconnected": {
+    "message0": "當BLE崩潰%1 %2",
+    "tooltip": "當BLE裝置斷線時執行"
+  },
+  "nrf54_ble_set_gatt_device_name": {
+    "message0": "將 GATT 裝置名稱設為 %1",
+    "tooltip": "設定 GATT 標準裝置名稱的功能值"
+  },
+  "nrf54_ble_set_gatt_battery": {
+    "message0": "設定 GATT 電池充電 %1%",
+    "tooltip": "設定 GATT 標準電池容量（0-100）"
+  },
+  "nrf54_ble_clear_gatt": {
+    "message0": "清除自訂的 GATT 表格",
+    "tooltip": "清除自訂 GATT 服務表;必須在新增服務前呼叫該表"
+  },
+  "nrf54_ble_add_service_16": {
+    "message0": "%1 UUID（16 位元）%2新增 GATT 服務",
+    "tooltip": "新增自訂的 16 位元 UUID GATT 服務"
+  },
+  "nrf54_ble_add_service_128": {
+    "message0": "新增 GATT 服務（128 位元）%1 UUID%2",
+    "tooltip": "新增自訂的 128 位元 UUID GATT 服務"
+  },
+  "nrf54_ble_add_characteristic": {
+    "message0": "在服務%2中新增 UUID（16 位元）%3屬性功能%1%4",
+    "tooltip": "在指定服務下加入特徵值",
+    "args0": [
+      null,
+      null,
+      null,
+      {
+        "options": [
+          [
+            "閱讀",
+            "READ"
+          ],
+          [
+            "寫（回應）",
+            "WRITE"
+          ],
+          [
+            "寫（無回應）",
+            "WRITE_NR"
+          ],
+          [
+            "Notify",
+            "NOTIFY"
+          ],
+          [
+            "Indicate",
+            "INDICATE"
+          ],
+          [
+            "閱讀+通知",
+            "READ_NOTIFY"
+          ],
+          [
+            "讀+寫",
+            "READ_WRITE"
+          ],
+          [
+            "讀+寫+通知",
+            "READ_WRITE_NOTIFY"
+          ]
+        ]
+      }
+    ]
+  },
+  "nrf54_ble_set_char_value": {
+    "message0": "設定特徵值%1資料%2",
+    "tooltip": "設定特徵值的資料內容"
+  },
+  "nrf54_ble_notify_char": {
+    "message0": "通知功能值%1",
+    "tooltip": "將功能值變更通知至連接的中央裝置"
+  },
+  "nrf54_ble_is_cccd_enabled": {
+    "message0": "啟用通知%1功能嗎？",
+    "tooltip": "檢查中心裝置是否啟用了此功能的通知"
+  },
+  "nrf54_ble_on_char_write": {
+    "message0": "當功能%1written%2 %3",
+    "tooltip": "當中央裝置寫入特徵值時執行"
+  },
+  "nrf54_ble_char_write_value": {
+    "message0": "寫入資料（字串）",
+    "tooltip": "從最後一次寫入特徵值取得資料（必須用於寫入回調）"
+  },
+  "nrf54_ble_nus_init": {
+    "message0": "初始化 BLE Nordic UART 服務名稱 %1",
+    "tooltip": "初始化BLE與北歐UART服務（NUS），並設定廣播名稱"
+  },
+  "nrf54_ble_nus_available": {
+    "message0": "NUS 可讀位元組",
+    "tooltip": "回傳 NUS 接收緩衝區中可讀位元組的數量"
+  },
+  "nrf54_ble_nus_read_string": {
+    "message0": "NUS 會讀取字串",
+    "tooltip": "NUS 接收緩衝區會將所有可用資料以字串形式讀取"
+  },
+  "nrf54_ble_nus_write": {
+    "message0": "NUS send %1",
+    "tooltip": "字串資料透過 NUS 傳送至中央裝置"
+  },
+  "nrf54_ble_nus_println": {
+    "message0": "NUS發送線路%1",
+    "tooltip": "透過 NUS 傳送字串資料和換行符"
+  },
+  "nrf54_ble_nus_connected": {
+    "message0": "NUS connected?",
+    "tooltip": "檢查 NUS 藍牙連線是否已建立"
+  },
+  "nrf54_ble_nus_service": {
+    "message0": "NUS 服務迴路處理",
+    "tooltip": "通話以迴圈方式進行，以處理 NUS 的傳送/接收及連線事件"
+  },
+  "nrf54_ble_scan_passive": {
+    "message0": "被動掃描 BLE 裝置（無發射）",
+    "tooltip": "被動掃描附近的 BLE 廣播（未發送SCAN_REQ），並回傳是否已接收該廣播"
+  },
+  "nrf54_ble_scan_active": {
+    "message0": "主動掃描BLE設備",
+    "tooltip": "主動掃描附近的 BLE 裝置（發送SCAN_REQ接收SCAN_RSP），回傳掃描是否到達該裝置"
+  },
+  "nrf54_ble_scan_get_address": {
+    "message0": "掃描結果 裝置位址",
+    "tooltip": "取得最近掃描的裝置位址"
+  },
+  "nrf54_ble_scan_get_rssi": {
+    "message0": "掃描結果 RSSI",
+    "tooltip": "取得最近掃描的裝置訊號強度（dBm）"
+  },
+  "nrf54_ble_scan_get_name": {
+    "message0": "掃描結果 裝置名稱",
+    "tooltip": "從掃描結果的廣播資料中解析裝置名稱"
+  },
+  "nrf54_ble_peripheral_quick": {
+    "message0": "快速BLE周邊Name%1 %2資料received%3",
+    "tooltip": "BLE NUS 周邊設備一鍵初始化。 連線後，當收到資料時，會自動橋接並執行程式碼區塊"
+  },
+  "nrf54_ble_peripheral_received_data": {
+    "message0": "接收的 BLE 資料",
+    "tooltip": "擷取透過 BLE 接收的資料字串（必須用於回調）"
+  },
+  "nrf54_ble_peripheral_send": {
+    "message0": "BLE send %1",
+    "tooltip": "資料透過 BLE 傳送至中央裝置"
+  },
+  "nrf54_ble_peripheral_connected": {
+    "message0": "BLE 周邊設備連接了嗎？",
+    "tooltip": "檢查快速BLE周邊有沒有連接"
+  },
+  "nrf54_ble_power_low_power_mode": {
+    "message0": "設定低功耗模式",
+    "tooltip": "將 CPU 設定為低功耗延遲模式，在閒置時間自動降頻並節省能源"
+  },
+  "nrf54_ble_battery_percent": {
+    "message0": "電池容量（%）",
+    "tooltip": "取樣與回波電池百分比（鋰離子）"
+  }
+}

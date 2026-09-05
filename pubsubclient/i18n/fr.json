@@ -1,0 +1,135 @@
+{
+  "toolbox_name": "MQTT",
+  "toolbox_labels": {
+    "初始化": "initialisation",
+    "连接": "connecter",
+    "通信": "communiquer",
+    "设置": "paramètres"
+  },
+  "pubsub_create": {
+    "message0": "Créer un client MQTT %1 utiliser le client %2 %3 SSL\nServeur %4 port %5",
+    "tooltip": "Créer un objet client MQTT",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "Non",
+            "FALSE"
+          ],
+          [
+            "Oui",
+            "TRUE"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "pubsub_set_callback": {
+    "message0": "Lorsque le client MQTT %1 reçoit un message",
+    "tooltip": "Définir la fonction de rappel de réception de messages MQTT",
+    "message1": "exécuter %1"
+  },
+  "pubsub_set_callback_with_topic": {
+    "message0": "Lorsque vous recevez un message à propos du sujet %1",
+    "tooltip": "Définir la fonction de rappel de réception de messages MQTT pour des sujets spécifiques",
+    "message1": "exécuter %1"
+  },
+  "pubsub_get_topic_callback_payload": {
+    "message0": "Récupère le contenu du message MQTT reçu",
+    "tooltip": "Récupère le contenu du message MQTT reçu dans la fonction de rappel"
+  },
+  "pubsub_connect": {
+    "message0": "Le client MQTT %1 se connecter à l’ID client %2",
+    "tooltip": "Connectez-vous au serveur MQTT"
+  },
+  "pubsub_connect_auth": {
+    "message0": "MQTT Client %1 Connect ID client %2 Nom d’utilisateur %3 mot de passe %4",
+    "tooltip": "Connectez-vous au serveur MQTT en utilisant votre nom d’utilisateur et votre mot de passe"
+  },
+  "pubsub_publish": {
+    "message0": "Client MQTT %1 Publier le sujet %2 le contenu du message %3",
+    "tooltip": "Diffuser les messages MQTT"
+  },
+  "pubsub_subscribe": {
+    "message0": "Client MQTT %1 thème d’abonnement %2",
+    "tooltip": "Abonnez-vous aux sujets MQTT"
+  },
+  "pubsub_unsubscribe": {
+    "message0": "Client MQTT %1 Désabonnement au sujet %2",
+    "tooltip": "Désabonnement des sujets MQTT"
+  },
+  "pubsub_loop": {
+    "message0": "Gestion des communications %1 client MQTT",
+    "tooltip": "La communication MQTT doit être appelée en boucle"
+  },
+  "pubsub_connected": {
+    "message0": "Vérifiez si le %1 client MQTT est connecté",
+    "tooltip": "Vérifiez l’état de la connexion MQTT"
+  },
+  "pubsub_state": {
+    "message0": "Le client MQTT %1 obtient l’état de la connexion",
+    "tooltip": "Obtenir le code d’état de la connexion MQTT"
+  },
+  "pubsub_state_code": {
+    "message0": "Code de statut MQTT %1",
+    "tooltip": "Constante du code d’état MQTT",
+    "args0": [
+      {
+        "options": [
+          [
+            "Connexion réussie",
+            "MQTT_CONNECTED"
+          ],
+          [
+            "Connexion défaillante",
+            "MQTT_CONNECT_FAILED"
+          ],
+          [
+            "Déconnectez la connexion",
+            "MQTT_DISCONNECTED"
+          ],
+          [
+            "Connexion perdue",
+            "MQTT_CONNECTION_LOST"
+          ],
+          [
+            "Délai d’attente de connexion",
+            "MQTT_CONNECTION_TIMEOUT"
+          ],
+          [
+            "Erreur de protocole",
+            "MQTT_CONNECT_BAD_PROTOCOL"
+          ],
+          [
+            "Erreur d’identification client",
+            "MQTT_CONNECT_BAD_CLIENT_ID"
+          ],
+          [
+            "Le service n’est pas disponible",
+            "MQTT_CONNECT_UNAVAILABLE"
+          ],
+          [
+            "Erreur de bon",
+            "MQTT_CONNECT_BAD_CREDENTIALS"
+          ],
+          [
+            "Non autorisé",
+            "MQTT_CONNECT_UNAUTHORIZED"
+          ]
+        ]
+      }
+    ]
+  },
+  "pubsub_disconnect": {
+    "message0": "Déconnecter le client MQTT %1 la connexion",
+    "tooltip": "Déconnectez la connexion MQTT"
+  },
+  "pubsub_setBufferSize": {
+    "message0": "Réglez la taille du tampon %1 client MQTT à %2 octets",
+    "tooltip": "Définir la taille du tampon client MQTT"
+  }
+}

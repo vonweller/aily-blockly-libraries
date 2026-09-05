@@ -1,0 +1,176 @@
+{
+  "toolbox_name": "網路攝影機伺服器",
+  "toolbox_labels": {
+    "基础配置": "基礎配置",
+    "高级配置": "進階配置",
+    "画质调整": "畫質調整",
+    "拍摄与数据访问": "拍攝與數據訪問"
+  },
+  "esp32_camera_webserver_init": {
+    "message0": "初始化ESP32相機伺服器 %1 相機型號 %2 解析度 %3 像素格式 %4",
+    "tooltip": "初始化ESP32相機,配置相機參數",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "AI Thinker",
+            "CAMERA_MODEL_AI_THINKER"
+          ],
+          [
+            "M5Stack PSRAM",
+            "CAMERA_MODEL_M5STACK_PSRAM"
+          ],
+          [
+            "M5Stack 寬版",
+            "CAMERA_MODEL_M5STACK_WIDE"
+          ],
+          [
+            "ESP Eye",
+            "CAMERA_MODEL_ESP_EYE"
+          ],
+          [
+            "FireBeetle 2 ESP32S3",
+            "CAMERA_MODEL_DFRobot_FireBeetle2_ESP32S3"
+          ],
+          [
+            "ESP32S3 EYE / NL-ESP32-S3-CAM",
+            "CAMERA_MODEL_ESP32S3_EYE"
+          ],
+          [
+            "XIAO ESP32S3",
+            "CAMERA_MODEL_XIAO_ESP32S3"
+          ],
+          [
+            "ESP32-S3-WROOM-CAM",
+            "CAMERA_MODEL_ESP32S3_WROOM_CAM"
+          ],
+          [
+            "ESP32_AIOT_Kit",
+            "CAMERA_MODEL_ESP32_AIOT_KIT"
+          ],
+          [
+            "ESP32_AIOT_Kit GC2145 DVP",
+            "CAMERA_MODEL_ESP32_AIOT_KIT_GC2145"
+          ],
+          [
+            "自訂引腳",
+            "CUSTOM"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "UXGA (1600x1200)",
+            "FRAMESIZE_UXGA"
+          ],
+          [
+            "SXGA (1280x1024)",
+            "FRAMESIZE_SXGA"
+          ],
+          [
+            "XGA (1024x768)",
+            "FRAMESIZE_XGA"
+          ],
+          [
+            "SVGA (800x600)",
+            "FRAMESIZE_SVGA"
+          ],
+          [
+            "VGA (640x480)",
+            "FRAMESIZE_VGA"
+          ],
+          [
+            "CIF (400x296)",
+            "FRAMESIZE_CIF"
+          ],
+          [
+            "QVGA (320x240)",
+            "FRAMESIZE_QVGA"
+          ],
+          [
+            "HQVGA (240x176)",
+            "FRAMESIZE_HQVGA"
+          ],
+          [
+            "QQVGA (160x120)",
+            "FRAMESIZE_QQVGA"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "JPEG",
+            "PIXFORMAT_JPEG"
+          ],
+          [
+            "RGB565",
+            "PIXFORMAT_RGB565"
+          ],
+          [
+            "YUV422",
+            "PIXFORMAT_YUV422"
+          ],
+          [
+            "GRAYSCALE",
+            "PIXFORMAT_GRAYSCALE"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_camera_custom_pins": {
+    "message0": "自訂相機腳位配置 %1 資料腳位 D0-D7 %2 XCLK 腳位 %3 PCLK 腳位 %4 VSYNC 腳位 %5 HREF 腳位 %6 SDA 腳位 %7 SCL 腳位 %8 PWDN 腳位 %9 重置腳位 %10",
+    "tooltip": "當選擇'自訂引腳'時,用此塊配置相機引腳。資料引腳格式: '11,12,13,14,15,16,17,18'"
+  },
+  "esp32_camera_set_quality": {
+    "message0": "設定相機JPEG品質 %1",
+    "tooltip": "設定JPEG壓縮質量(0-63,數值越小質量越高)"
+  },
+  "esp32_camera_set_flip": {
+    "message0": "設定相機翻轉 %1 垂直翻轉 %2 水平鏡像 %3",
+    "tooltip": "設定攝影機畫面翻轉和鏡像"
+  },
+  "esp32_camera_set_brightness": {
+    "message0": "設定相機 %1 亮度 %2 對比 %3 飽和度 %4",
+    "tooltip": "調整相機亮度、對比度和飽和度(-2到2)"
+  },
+  "esp32_camera_capture": {
+    "message0": "拍攝一張照片",
+    "tooltip": "取得一幀攝影機畫面資料,返回幀物件(⚠️配合'無符號長整型'變數使用,使用完後必須呼叫釋放幀塊)"
+  },
+  "esp32_camera_frame_buffer": {
+    "message0": "幀 %1 的資料指針",
+    "tooltip": "取得幀資料的記憶體指標(uint8_t*),可用於顯示或傳輸"
+  },
+  "esp32_camera_frame_len": {
+    "message0": "幀 %1 的資料長度",
+    "tooltip": "取得幀資料的位元組長度"
+  },
+  "esp32_camera_frame_width": {
+    "message0": "幀 %1 的寬度",
+    "tooltip": "取得幀影像的寬度(像素)"
+  },
+  "esp32_camera_frame_height": {
+    "message0": "幀 %1 的高度",
+    "tooltip": "取得幀影像的高度(像素)"
+  },
+  "esp32_camera_release": {
+    "message0": "釋放幀 %1",
+    "tooltip": "釋放幀緩衝區記憶體(使用完幀後必須調用，send_serial區塊會自動釋放)"
+  },
+  "esp32_camera_send_serial": {
+    "message0": "透過串列埠發送幀 %1",
+    "tooltip": "透過串列埠發送JPEG影像資料(帶幀標識符，可用於上位機顯示)"
+  },
+  "esp32_camera_capture_and_encode_base64": {
+    "message0": "拍照並轉換為Base64",
+    "tooltip": "拍攝一張照片並將其JPEG資料編碼為Base64格式"
+  },
+  "esp32_camera_print_diagnostics": {
+    "message0": "列印攝影機診斷訊息",
+    "tooltip": "透過串列列印相機初始化狀態、感應器PID和常見錯誤排查提示"
+  }
+}

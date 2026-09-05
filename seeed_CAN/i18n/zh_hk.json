@@ -1,0 +1,274 @@
+{
+  "toolbox_name": "CAN",
+  "toolbox_labels": {
+    "初始化": "初始化",
+    "消息发送": "訊息發送",
+    "消息接收": "訊息接收",
+    "过滤器设置": "過濾器設定",
+    "控制模式": "控制模式",
+    "状态检查": "狀態檢查"
+  },
+  "seeed_can_create": {
+    "message0": "建立CAN物件 %1 CS引腳 %2",
+    "tooltip": "建立CAN總線對象，指定SPI片選引腳"
+  },
+  "seeed_can_begin": {
+    "message0": "初始化CAN %1 速度 %2 時脈 %3",
+    "tooltip": "初始化CAN總線，設定通訊速度與時脈頻率",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "5KBPS",
+            "CAN_5KBPS"
+          ],
+          [
+            "10KBPS",
+            "CAN_10KBPS"
+          ],
+          [
+            "20KBPS",
+            "CAN_20KBPS"
+          ],
+          [
+            "25KBPS",
+            "CAN_25KBPS"
+          ],
+          [
+            "31.25KBPS",
+            "CAN_31K25BPS"
+          ],
+          [
+            "33KBPS",
+            "CAN_33KBPS"
+          ],
+          [
+            "40KBPS",
+            "CAN_40KBPS"
+          ],
+          [
+            "50KBPS",
+            "CAN_50KBPS"
+          ],
+          [
+            "80KBPS",
+            "CAN_80KBPS"
+          ],
+          [
+            "83.3KBPS",
+            "CAN_83K3BPS"
+          ],
+          [
+            "95KBPS",
+            "CAN_95KBPS"
+          ],
+          [
+            "95.2KBPS",
+            "CAN_95K2BPS"
+          ],
+          [
+            "100KBPS",
+            "CAN_100KBPS"
+          ],
+          [
+            "125KBPS",
+            "CAN_125KBPS"
+          ],
+          [
+            "200KBPS",
+            "CAN_200KBPS"
+          ],
+          [
+            "250KBPS",
+            "CAN_250KBPS"
+          ],
+          [
+            "500KBPS",
+            "CAN_500KBPS"
+          ],
+          [
+            "666KBPS",
+            "CAN_666KBPS"
+          ],
+          [
+            "800KBPS",
+            "CAN_800KBPS"
+          ],
+          [
+            "1000KBPS",
+            "CAN_1000KBPS"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "8MHz",
+            "MCP_8MHz"
+          ],
+          [
+            "12MHz",
+            "MCP_12MHz"
+          ],
+          [
+            "16MHz",
+            "MCP_16MHz"
+          ]
+        ]
+      }
+    ]
+  },
+  "seeed_can_send": {
+    "message0": "CAN發送 %1 ID %2 擴充幀 %3 資料 %4",
+    "tooltip": "發送CAN訊息，指定ID、幀類型和數據",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "標準幀",
+            "0"
+          ],
+          [
+            "擴充幀",
+            "1"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "seeed_can_receive_check": {
+    "message0": "CAN %1 有訊息接收",
+    "tooltip": "檢查是否有CAN訊息接收"
+  },
+  "seeed_can_receive": {
+    "message0": "CAN接收 %1 資料長度 %2 訊息ID %3 資料 %4",
+    "tooltip": "讀取接收到的CAN訊息，取得長度、ID和數據"
+  },
+  "seeed_can_get_id": {
+    "message0": "CAN %1 取得訊息ID",
+    "tooltip": "取得最後接收到的CAN訊息ID"
+  },
+  "seeed_can_init_mask": {
+    "message0": "CAN %1 設定遮罩 %2 擴充幀 %3 遮罩值 %4",
+    "tooltip": "設定CAN接收掩碼，用於過濾訊息",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "遮罩0",
+            "0"
+          ],
+          [
+            "遮罩1",
+            "1"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "標準幀",
+            "0"
+          ],
+          [
+            "擴充幀",
+            "1"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "seeed_can_init_filter": {
+    "message0": "CAN %1 設定過濾器 %2 擴充幀 %3 過濾值 %4",
+    "tooltip": "設定CAN接收過濾器，用於過濾特定ID的訊息",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "過濾器0",
+            "0"
+          ],
+          [
+            "過濾器1",
+            "1"
+          ],
+          [
+            "過濾器2",
+            "2"
+          ],
+          [
+            "過濾器3",
+            "3"
+          ],
+          [
+            "過濾器4",
+            "4"
+          ],
+          [
+            "過濾器5",
+            "5"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "標準幀",
+            "0"
+          ],
+          [
+            "擴充幀",
+            "1"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "seeed_can_set_mode": {
+    "message0": "CAN %1 設定模式 %2",
+    "tooltip": "設定CAN控制器工作模式",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "正常模式",
+            "MODE_NORMAL"
+          ],
+          [
+            "睡眠模式",
+            "MODE_SLEEP"
+          ],
+          [
+            "監聽模式",
+            "MODE_LISTEN"
+          ],
+          [
+            "設定模式",
+            "MODE_CONFIG"
+          ]
+        ]
+      }
+    ]
+  },
+  "seeed_can_sleep": {
+    "message0": "CAN %1 進入睡眠模式",
+    "tooltip": "讓CAN控制器進入睡眠模式以節省功耗"
+  },
+  "seeed_can_wake": {
+    "message0": "CAN %1 喚醒",
+    "tooltip": "喚醒CAN控制器"
+  },
+  "seeed_can_check_error": {
+    "message0": "CAN %1 檢查錯誤",
+    "tooltip": "檢查CAN控制器錯誤狀態"
+  }
+}

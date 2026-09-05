@@ -1,0 +1,269 @@
+{
+  "toolbox_name": "GPIO擴充板",
+  "toolbox_labels": {
+    "初始化": "初始化",
+    "GPIO控制": "GPIO 控制",
+    "PWM控制": "PWM 控制",
+    "舵机控制": "舵機控制"
+  },
+  "gpio_expansion_board_init": {
+    "message0": "GPIO擴充板 %1 初始化 I2C位址 %2",
+    "tooltip": "建立GPIO擴充板實例，預設I2C位址0x24(36)"
+  },
+  "gpio_expansion_board_set_mode": {
+    "message0": "GPIO擴充板 %1 腳位 %2 設定為 %3 模式",
+    "tooltip": "設定GPIO引腳的工作模式",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "E0",
+            "0"
+          ],
+          [
+            "E1",
+            "1"
+          ],
+          [
+            "E2",
+            "2"
+          ],
+          [
+            "E3",
+            "3"
+          ],
+          [
+            "E4",
+            "4"
+          ],
+          [
+            "E5",
+            "5"
+          ],
+          [
+            "E6",
+            "6"
+          ],
+          [
+            "E7",
+            "7"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "輸入(上拉)",
+            "1"
+          ],
+          [
+            "輸入(下拉)",
+            "2"
+          ],
+          [
+            "輸入(浮空)",
+            "4"
+          ],
+          [
+            "輸出",
+            "8"
+          ],
+          [
+            "ADC",
+            "16"
+          ],
+          [
+            "PWM",
+            "32"
+          ]
+        ]
+      }
+    ]
+  },
+  "gpio_expansion_board_set_level": {
+    "message0": "GPIO擴充板 %1 腳位 %2 輸出 %3",
+    "tooltip": "設定GPIO引腳的輸出電平",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "E0",
+            "0"
+          ],
+          [
+            "E1",
+            "1"
+          ],
+          [
+            "E2",
+            "2"
+          ],
+          [
+            "E3",
+            "3"
+          ],
+          [
+            "E4",
+            "4"
+          ],
+          [
+            "E5",
+            "5"
+          ],
+          [
+            "E6",
+            "6"
+          ],
+          [
+            "E7",
+            "7"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "低電平",
+            "0"
+          ],
+          [
+            "高電平",
+            "1"
+          ]
+        ]
+      }
+    ]
+  },
+  "gpio_expansion_board_get_level": {
+    "message0": "GPIO擴充板 %1 腳位 %2 電平",
+    "tooltip": "讀取GPIO引腳的數位電平值",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "E0",
+            "0"
+          ],
+          [
+            "E1",
+            "1"
+          ],
+          [
+            "E2",
+            "2"
+          ],
+          [
+            "E3",
+            "3"
+          ],
+          [
+            "E4",
+            "4"
+          ],
+          [
+            "E5",
+            "5"
+          ],
+          [
+            "E6",
+            "6"
+          ],
+          [
+            "E7",
+            "7"
+          ]
+        ]
+      }
+    ]
+  },
+  "gpio_expansion_board_get_adc": {
+    "message0": "GPIO擴充板 %1 腳位 %2 ADC值",
+    "tooltip": "讀取GPIO接腳的ADC值(0-1023)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "E0",
+            "0"
+          ],
+          [
+            "E1",
+            "1"
+          ],
+          [
+            "E2",
+            "2"
+          ],
+          [
+            "E3",
+            "3"
+          ],
+          [
+            "E4",
+            "4"
+          ],
+          [
+            "E5",
+            "5"
+          ],
+          [
+            "E6",
+            "6"
+          ],
+          [
+            "E7",
+            "7"
+          ]
+        ]
+      }
+    ]
+  },
+  "gpio_expansion_board_set_pwm_frequency": {
+    "message0": "GPIO擴充板 %1 設定PWM頻率 %2 Hz",
+    "tooltip": "設定PWM頻率(1-10000Hz)"
+  },
+  "gpio_expansion_board_set_pwm_duty": {
+    "message0": "GPIO擴充板 %1 腳位 %2 PWM佔空比 %3",
+    "tooltip": "設定PWM佔空比(0-4095)，僅支援E1和E2腳",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "E1",
+            "1"
+          ],
+          [
+            "E2",
+            "2"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "gpio_expansion_board_set_servo_angle": {
+    "message0": "GPIO擴充板 %1 腳位 %2 舵機角度 %3 度",
+    "tooltip": "設定舵機角度(0-180度)，僅支援E1和E2腳",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "E1",
+            "1"
+          ],
+          [
+            "E2",
+            "2"
+          ]
+        ]
+      },
+      null
+    ]
+  }
+}

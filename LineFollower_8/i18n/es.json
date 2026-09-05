@@ -1,0 +1,274 @@
+{
+  "toolbox_name": "Seguidor de línea de 8 canales",
+  "line_init": {
+    "message0": "Inicializar el sensor de patrulla de ocho canales con la interfaz I2C %1",
+    "tooltip": "Sensor de patrulla de ocho canales (Dirección I2C 0x27)",
+    "args0": [
+      {
+        "options": "${board.i2c}"
+      }
+    ]
+  },
+  "line_is_state": {
+    "message0": "El estado actual de la línea es igual a %1",
+    "tooltip": "Determinar el estado actual de la patrulla de línea (8 sensores)",
+    "args0": [
+      {
+        "options": [
+          [
+            "(0) 000000000 Todo blanco",
+            "0"
+          ],
+          [
+            "(24) 00011000 Dos rutas intermedias",
+            "24"
+          ],
+          [
+            "(60) 00111100 Las cuatro rutas centrales",
+            "60"
+          ],
+          [
+            "(126) 01111110 Seis rutas intermedias",
+            "126"
+          ],
+          [
+            "(255) 11111111 Todo negro",
+            "255"
+          ],
+          [
+            "(1) 00000001 A0",
+            "1"
+          ],
+          [
+            "(2) 00000010 A1",
+            "2"
+          ],
+          [
+            "(4) 00000100 A2",
+            "4"
+          ],
+          [
+            "(8) 00001000 A3",
+            "8"
+          ],
+          [
+            "(16) 00010000 A4",
+            "16"
+          ],
+          [
+            "(32) 00100000 A5",
+            "32"
+          ],
+          [
+            "(64) 01000000 A6",
+            "64"
+          ],
+          [
+            "(128) 10000000 A7",
+            "128"
+          ],
+          [
+            "(3) 00000011 A0+A1",
+            "3"
+          ],
+          [
+            "(12) 00001100 A2+A3",
+            "12"
+          ],
+          [
+            "(48) 00110000 A4+A5",
+            "48"
+          ],
+          [
+            "(192) 11000000 A6+A7",
+            "192"
+          ]
+        ]
+      }
+    ]
+  },
+  "line_get_state": {
+    "message0": "Recupera el valor actual de estado de la línea",
+    "tooltip": "Obtener los valores de estado digital de 8 sensores (0-255)"
+  },
+  "line_offset": {
+    "message0": "Obtener el desplazamiento de línea",
+    "tooltip": "Obtener el desplazamiento de traza para el control PID (de -7 a +7)"
+  },
+  "line_sensor_value": {
+    "message0": "Obtén el valor actual del sensor de %1",
+    "tooltip": "Obtén el valor actual de un solo sensor (0-4095)",
+    "args0": [
+      {
+        "options": [
+          [
+            "A0",
+            "0"
+          ],
+          [
+            "A1",
+            "1"
+          ],
+          [
+            "A2",
+            "2"
+          ],
+          [
+            "A3",
+            "3"
+          ],
+          [
+            "A4",
+            "4"
+          ],
+          [
+            "A5",
+            "5"
+          ],
+          [
+            "A6",
+            "6"
+          ],
+          [
+            "A7",
+            "7"
+          ]
+        ]
+      }
+    ]
+  },
+  "line_sensor_reference": {
+    "message0": "Obtener %1 valores de referencia del sensor",
+    "tooltip": "Obtener un valor de referencia para un sensor único (umbral, 0-4095)",
+    "args0": [
+      {
+        "options": [
+          [
+            "A0",
+            "0"
+          ],
+          [
+            "A1",
+            "1"
+          ],
+          [
+            "A2",
+            "2"
+          ],
+          [
+            "A3",
+            "3"
+          ],
+          [
+            "A4",
+            "4"
+          ],
+          [
+            "A5",
+            "5"
+          ],
+          [
+            "A6",
+            "6"
+          ],
+          [
+            "A7",
+            "7"
+          ]
+        ]
+      }
+    ]
+  },
+  "line_sensor_digital": {
+    "message0": "Obtener el valor numérico del sensor %1",
+    "tooltip": "Obtener el valor numérico de un sensor individual (0 o 1, 1 indica línea negra detectada)",
+    "args0": [
+      {
+        "options": [
+          [
+            "A0",
+            "0"
+          ],
+          [
+            "A1",
+            "1"
+          ],
+          [
+            "A2",
+            "2"
+          ],
+          [
+            "A3",
+            "3"
+          ],
+          [
+            "A4",
+            "4"
+          ],
+          [
+            "A5",
+            "5"
+          ],
+          [
+            "A6",
+            "6"
+          ],
+          [
+            "A7",
+            "7"
+          ]
+        ]
+      }
+    ]
+  },
+  "line_set_rgb": {
+    "message0": "Configura la luz RGB en el módulo de recorrido a %1",
+    "tooltip": "Establece el color indicador RGB en el módulo de recorrido",
+    "args0": [
+      {
+        "options": [
+          [
+            "Desactivado",
+            "0"
+          ],
+          [
+            "Rojo",
+            "1"
+          ],
+          [
+            "Verde",
+            "2"
+          ],
+          [
+            "Azul",
+            "3"
+          ],
+          [
+            "Blanco",
+            "4"
+          ],
+          [
+            "Amarillo",
+            "5"
+          ],
+          [
+            "cyan",
+            "6"
+          ],
+          [
+            "Morado",
+            "7"
+          ]
+        ]
+      }
+    ]
+  },
+  "line_set_frequency": {
+    "message0": "Configura la frecuencia de subida del módulo de patrulla de línea a %1 milisegundos",
+    "tooltip": "Establecer intervalo de carga de datos del sensor (milisegundos)"
+  },
+  "line_print_data": {
+    "message0": "Datos de sensores de patrulla en línea de impresión",
+    "tooltip": "Todos los datos de los sensores se imprimen a través del puerto serie"
+  }
+}

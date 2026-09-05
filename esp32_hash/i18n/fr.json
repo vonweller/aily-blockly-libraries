@@ -1,0 +1,115 @@
+{
+  "toolbox_name": "Calcul par hachage",
+  "toolbox_labels": {
+    "快速哈希": "hachage rapide",
+    "分步哈希（大数据）": "Hachage par étapes (Big Data)",
+    "密钥派生": "Dérivation clé"
+  },
+  "esp32_hash_compute": {
+    "message0": "Calcul %1 données de valeur de hachage %2",
+    "tooltip": "Calculez la valeur de hachage de la chaîne et retournez la chaîne hexadécimale",
+    "args0": [
+      {
+        "options": [
+          [
+            "SHA1",
+            "SHA1"
+          ],
+          [
+            "SHA224",
+            "SHA224"
+          ],
+          [
+            "SHA256",
+            "SHA256"
+          ],
+          [
+            "SHA384",
+            "SHA384"
+          ],
+          [
+            "SHA512",
+            "SHA512"
+          ],
+          [
+            "SHA3-256",
+            "SHA3_256"
+          ],
+          [
+            "SHA3-512",
+            "SHA3_512"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "esp32_hash_create": {
+    "message0": "Créer un constructeur de hachages %1 %2",
+    "tooltip": "Créer un objet constructeur de hachage (pour le calcul de hachage de big data étape par étape)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "SHA1",
+            "SHA1"
+          ],
+          [
+            "SHA256",
+            "SHA256"
+          ],
+          [
+            "SHA512",
+            "SHA512"
+          ],
+          [
+            "SHA3-256",
+            "SHA3_256"
+          ],
+          [
+            "SHA3-512",
+            "SHA3_512"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_hash_begin": {
+    "message0": "Début %1 Hash Builder",
+    "tooltip": "Réinitialisez le constructeur de hachage et commencez un nouveau calcul"
+  },
+  "esp32_hash_add": {
+    "message0": "Constructeur de hachages %1 Ajouter des données %2",
+    "tooltip": "Ajouter des données au constructeur de hachages"
+  },
+  "esp32_hash_calculate": {
+    "message0": "Le constructeur de hachage %1 complète le calcul",
+    "tooltip": "Compléter le calcul du hachage"
+  },
+  "esp32_hash_result": {
+    "message0": "Constructeur de hachages %1 Obtenir des résultats",
+    "tooltip": "Obtenir le résultat du calcul du hachage (chaîne hexadécimal)"
+  },
+  "esp32_hash_pbkdf2": {
+    "message0": "Algorithme de dérivation de clés PBKDF2 %1 mot de passe %2 valeur de sel %3 nombre d’itérations %4",
+    "tooltip": "PBKDF2-HMAC est utilisé pour la dérivation de clés",
+    "args0": [
+      {
+        "options": [
+          [
+            "SHA256",
+            "SHA256"
+          ],
+          [
+            "SHA512",
+            "SHA512"
+          ]
+        ]
+      },
+      null,
+      null,
+      null
+    ]
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "toolbox_name": "LD3320D 音声認識",
+  "toolbox_labels": {
+    "初始化": "初期化",
+    "配置": "構成",
+    "识别": "特定する",
+    "事件处理": "イベント処理"
+  },
+  "speech_recognizer_setup": {
+    "message0": "音声認識モジュールをI2Cアドレス%1初期化%2",
+    "tooltip": "音声認識モジュールを初期化し、デフォルトのI2Cアドレスを0x30に設定します。"
+  },
+  "speech_recognizer_set_mode": {
+    "message0": "認識モード%1%2に設定してください",
+    "tooltip": "音声認識モードを設定してください",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "自動判定",
+            "kRecognitionAuto"
+          ],
+          [
+            "ボタンでトリガー",
+            "kButtonTrigger"
+          ],
+          [
+            "キーワードトリガー",
+            "kKeywordTrigger"
+          ],
+          [
+            "キーまたはキーワードによってトリガーされます",
+            "kKeywordOrButtonTrigger"
+          ]
+        ]
+      }
+    ]
+  },
+  "speech_recognizer_set_timeout": {
+    "message0": "%1をミリ秒単位でタイムアウトを認識するように設定%2",
+    "tooltip": "認識タイムアウト(ミリ秒)を設定し、これは自動認識モードでは効果的ではありません"
+  },
+  "speech_recognizer_add_keyword": {
+    "message0": "キーワード%1インデックス%2を追加%3",
+    "tooltip": "音声認識キーワードを追加し、最大50語まで、各単語は最大50バイトまでです"
+  },
+  "speech_recognizer_recognize": {
+    "message0": "%1 音声認識の実施",
+    "tooltip": "音声認識が行われ、認識されたキーワードインデックス(>=0)が返されます。返されなければ-1を返します。 これはループ内のループと呼ぶ必要があります"
+  },
+  "speech_recognizer_get_event": {
+    "message0": "%1 最新情報を受け取る",
+    "tooltip": "現在のイベントタイプを入手してください"
+  },
+  "speech_recognizer_event_handler": {
+    "message0": "現在のイベント%1%2",
+    "tooltip": "指定されたイベントが発生したら対応する操作を行います",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "引き金を待つことを始めましょう",
+            "kEventStartWaitingForTrigger"
+          ],
+          [
+            "ボタンでトリガー",
+            "kEventButtonTriggered"
+          ],
+          [
+            "キーワードでトリガーされる",
+            "kEventKeywordTriggered"
+          ],
+          [
+            "開始識別",
+            "kEventStartRecognizing"
+          ],
+          [
+            "認識は成功しています",
+            "kEventSpeechRecognized"
+          ],
+          [
+            "タイムアウトを認識する",
+            "kEventSpeechRecognitionTimedOut"
+          ]
+        ]
+      }
+    ],
+    "message1": "%1 を実行します"
+  },
+  "speech_recognizer_check_result": {
+    "message0": "認識結果%1は%2",
+    "tooltip": "認識結果が指定されたインデックスと一致しているか確認してください"
+  }
+}

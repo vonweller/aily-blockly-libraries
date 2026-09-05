@@ -1,0 +1,173 @@
+{
+  "toolbox_name": "ESP32 Network",
+  "toolbox_labels": {
+    "TCP客户端": "عميل TCP",
+    "TCP安全客户端": "عميل TCP الآمن",
+    "TCP客户端通用功能": "الوظائف المشتركة لعميل TCP",
+    "TCP服务器": "خادم TCP",
+    "UDP通信": "اتصالات UDP"
+  },
+  "esp32_network_client_create": {
+    "message0": "أنشئ عميل شبكة %1",
+    "tooltip": "إنشاء كائن عميل ويب"
+  },
+  "esp32_network_client_connect_ip": {
+    "message0": "%1 العميل يتصل ب IP %2 منفذ %3",
+    "tooltip": "الاتصال بعنوان IP المحدد والمنفذ"
+  },
+  "esp32_network_client_connect_host": {
+    "message0": "يتصل %1 العميل بمنفذ %2 المضيف %3",
+    "tooltip": "الاتصال باسم المضيف والمنفذ المحدد"
+  },
+  "esp32_networkclientsecure_create": {
+    "message0": "أنشئ عميل شبكة آمن %1",
+    "tooltip": "إنشاء كائن عميل شبكة آمن جديد ل NetworkClientSecure"
+  },
+  "esp32_networkclientsecure_set_insecure": {
+    "message0": "اضبط %1 على الوضع غير الآمن",
+    "tooltip": "تم تعيينه على وضع غير آمن، ولا تتحقق من سلسلة الشهادات (للاختبار فقط)"
+  },
+  "esp32_networkclientsecure_set_ca_cert": {
+    "message0": "شهادة CA الخاصة ب Set %1 %2",
+    "tooltip": "قم بتعيين شهادة CA الجذرية للتحقق من الخادم"
+  },
+  "esp32_networkclientsecure_set_certificate": {
+    "message0": "قم بتعيين شهادة العميل %1 %2",
+    "tooltip": "تعيين شهادات العميل للمصادقة ثنائية الاتجاه"
+  },
+  "esp32_networkclientsecure_set_private_key": {
+    "message0": "اضبط المفتاح الخاص %1 %2",
+    "tooltip": "قم بتعيين المفتاح الخاص للعميل للمصادقة ثنائية الاتجاه"
+  },
+  "esp32_networkclientsecure_set_psk": {
+    "message0": "تعيين هوية مصادقة PSK الخاصة ب %1 %2 مفتاح %3",
+    "tooltip": "إعداد مصادقة المفتاح المشترك مسبقا (PSK)"
+  },
+  "esp32_networkclientsecure_set_plain_start": {
+    "message0": "قم بتعيين %1 على وضع بدء التشغيل في النص الأصلي",
+    "tooltip": "تم ضبطه على وضع الإقلاع النصي الأصلي لترقيات البروتوكول (مثل STARTTLS)"
+  },
+  "esp32_networkclientsecure_start_tls": {
+    "message0": "ابدأ الاتصال ب TLS في %1",
+    "tooltip": "ترقية اتصال نصي واضح إلى اتصال TLS؛ إرجاع 0 يعني فشل، وعدم 0 يعني نجاح"
+  },
+  "esp32_networkclientsecure_set_handshake_timeout": {
+    "message0": "اضبط %1 مهلة المصافحة على %2 ثانية",
+    "tooltip": "اضبط مهلة نهاية مهلة SSL Handshake"
+  },
+  "esp32_networkclientsecure_verify_fingerprint": {
+    "message0": "تحقق من %1 بصمة %2 النطاق %3",
+    "tooltip": "تحقق من شهادة الخادم، وبصمة الإصبع، واسم النطاق"
+  },
+  "esp32_networkclientsecure_get_peer_fingerprint": {
+    "message0": "احصل على بصمة شهادة الأقران %1",
+    "tooltip": "احصل على بصمة SHA256 (السلسلة السداسية عشرية) لشهادة النظير."
+  },
+  "esp32_networkclientsecure_last_error": {
+    "message0": "احصل على آخر خطأ في %1",
+    "tooltip": "استرجاع رسائل الخطأ من آخر اتصال أو عملية"
+  },
+  "esp32_network_client_print": {
+    "message0": "%1 إرسال البيانات من العميل %2",
+    "tooltip": "إرسال البيانات إلى الخادم"
+  },
+  "esp32_network_client_println": {
+    "message0": "العميل %1 يرسل البيانات ويقطع lines%2",
+    "tooltip": "أرسل البيانات إلى الخادم وأضف فواصل أسطر"
+  },
+  "esp32_network_client_available": {
+    "message0": "يمكن %1 العميل قراءة بايتات من البيانات",
+    "tooltip": "يسترجع عدد البايتات من البيانات التي يمكن قراءتها"
+  },
+  "esp32_network_client_read": {
+    "message0": "بيانات قراءة %1 العميل %2",
+    "tooltip": "قراءة البيانات من الخادم",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "بايت واحد",
+            "BYTE"
+          ],
+          [
+            "نص",
+            "STRING"
+          ],
+          [
+            "اقرأ فاصل السطر",
+            "LINE"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_network_client_connected": {
+    "message0": "العميل %1 متصل",
+    "tooltip": "تحقق مما إذا كان العميل متصلا"
+  },
+  "esp32_network_client_stop": {
+    "message0": "انقطاع %1 العميل",
+    "tooltip": "فصل الاتصال بالعميل"
+  },
+  "esp32_network_server_create": {
+    "message0": "إنشاء خادم شبكة %1 المنافذ %2 الحد الأقصى لعدد الاتصالات %3",
+    "tooltip": "إنشاء كائن خادم ويب"
+  },
+  "esp32_network_server_begin": {
+    "message0": "يبدأ %1 الخادم بالاستماع",
+    "tooltip": "ابدأ بالاستماع لعلاقات العملاء"
+  },
+  "esp32_network_server_accept": {
+    "message0": "%1 الخادم يستمع لاتصالات %2 العميل",
+    "tooltip": "يقبل اتصالات العميل ويعيد كائنات العميل"
+  },
+  "esp32_network_server_stop": {
+    "message0": "%1 الخادم يتوقف عن الاستماع",
+    "tooltip": "أوقف الاستماع إلى الخادم"
+  },
+  "esp32_network_udp_create": {
+    "message0": "إنشاء كائنات UDP %1",
+    "tooltip": "إنشاء كائن UDP"
+  },
+  "esp32_network_udp_begin": {
+    "message0": "UDP %1 ابدأ بالاستماع إلى %2 المنفذ",
+    "tooltip": "ابدأ الاستماع لحزم UDP على المنفذ المحدد"
+  },
+  "esp32_network_udp_begin_packet": {
+    "message0": "يبدأ %1 UDP بإرسال الحزم إلى المنفذ %2%3",
+    "tooltip": "ابدأ التحضير لإرسال حزم UDP"
+  },
+  "esp32_network_udp_write": {
+    "message0": "UDP %1 كتابة البيانات %2",
+    "tooltip": "كتابة البيانات إلى حزم UDP"
+  },
+  "esp32_network_udp_end_packet": {
+    "message0": "يرسل %1 UDP حزم البيانات",
+    "tooltip": "إرسال حزم UDP"
+  },
+  "esp32_network_udp_parse_packet": {
+    "message0": "يقوم %1 UDP بتحليل حزم البيانات المستلمة",
+    "tooltip": "تحليل حزمة UDP المستلمة وإرجاع حجم الحزمة"
+  },
+  "esp32_network_udp_available": {
+    "message0": "UDP %1 عدد بايتات البيانات المتاحة",
+    "tooltip": "يسترجع عدد البايتات من البيانات التي يمكن قراءتها"
+  },
+  "esp32_network_udp_read": {
+    "message0": "يقرأ %1 UDP البيانات",
+    "tooltip": "قراءة البيانات من مخزن UDP"
+  },
+  "esp32_network_udp_remote_ip": {
+    "message0": "UDP %1 عنوان IP البعيد",
+    "tooltip": "احصل على عنوان IP البعيد لإرسال حزمة البيانات"
+  },
+  "esp32_network_udp_remote_port": {
+    "message0": "منفذ UDP %1 البعيد",
+    "tooltip": "الحصول على المنفذ البعيد لإرسال الحزم"
+  },
+  "esp32_network_udp_stop": {
+    "message0": "توقفت المراقبة %1 UDP",
+    "tooltip": "إيقاف مراقبة UDP"
+  }
+}

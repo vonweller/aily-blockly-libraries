@@ -1,0 +1,111 @@
+{
+  "toolbox_name": "GM60 QR code scanner",
+  "toolbox_labels": {
+    "初始化": "initialization",
+    "配置": "Configuration",
+    "读取": "read"
+  },
+  "gm60_init_i2c": {
+    "message0": "Initialize QR code scanner (I2C) %1\nAddress %2\nUse %3",
+    "tooltip": "Initialize DFRobot GM60 QR code scanner module through I2C",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "0x1A (default)",
+            "0x1A"
+          ]
+        ]
+      },
+      {
+        "options": "${board.i2c}"
+      }
+    ]
+  },
+  "gm60_init_uart": {
+    "message0": "Initialize QR code scanner (serial port) %1 RX pin %2 TX pin %3",
+    "tooltip": "Initialize the DFRobot GM60 QR code scanner module through the UART serial port and specify the RX and TX pins"
+  },
+  "gm60_set_encode": {
+    "message0": "QR code scanner %1 sets the encoding to %2",
+    "tooltip": "Set the encoding format of the QR code scanner output data",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "UTF-8",
+            "eUTF8"
+          ],
+          [
+            "GBK",
+            "eGBK"
+          ]
+        ]
+      }
+    ]
+  },
+  "gm60_setup_code": {
+    "message0": "QR code scanner %1 %2 Setting code %3 Output the setting code content",
+    "tooltip": "Set code configuration, you can change the value of the chip register by scanning the QR code",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "turn on",
+            "true"
+          ],
+          [
+            "Close",
+            "false"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "output",
+            "true"
+          ],
+          [
+            "No output",
+            "false"
+          ]
+        ]
+      }
+    ]
+  },
+  "gm60_set_identify": {
+    "message0": "QR code scanner %1 Recognition mode %2",
+    "tooltip": "Set the recognition type of QR code/barcode, supporting QR Code, EAN13, Code128, etc.",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Enable all barcode recognition",
+            "eEnableAllBarcode"
+          ],
+          [
+            "Enable default barcode recognition",
+            "eEnableDefaultcode"
+          ],
+          [
+            "Disable all barcode recognition",
+            "eForbidAllBarcode"
+          ]
+        ]
+      }
+    ]
+  },
+  "gm60_reset": {
+    "message0": "QR code scanner %1 Restore factory settings",
+    "tooltip": "Restore QR code scanner to factory settings"
+  },
+  "gm60_detection": {
+    "message0": "QR code scanner %1 reads scanned data",
+    "tooltip": "Detect and return the scanned QR code/barcode data as a string"
+  }
+}

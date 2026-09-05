@@ -1,0 +1,35 @@
+{
+  "toolbox_name": "HCHO sensor",
+  "toolbox_labels": {
+    "初始化": "initialization",
+    "读取数据": "Read data",
+    "校准": "Calibration"
+  },
+  "grove_hcho_init": {
+    "message0": "Initialize HCHO sensor %1 pin %2 R0 calibration value %3",
+    "tooltip": "Initialize the HCHO sensor, set pins and R0 calibration values. R0 needs to be pre-calibrated in clean air.",
+    "args0": [
+      null,
+      {
+        "options": "${board.analogPins}"
+      },
+      null
+    ]
+  },
+  "grove_hcho_read_raw": {
+    "message0": "Read HCHO %1 raw analog value",
+    "tooltip": "Read sensor raw analog value (0-1023)"
+  },
+  "grove_hcho_read_rs": {
+    "message0": "Read HCHO %1 sensor resistance value Rs",
+    "tooltip": "Calculate sensor resistance value Rs"
+  },
+  "grove_hcho_read_ppm": {
+    "message0": "Read HCHO %1 concentration (ppm)",
+    "tooltip": "Calculate HCHO concentration (ppm), detection range 1-50ppm"
+  },
+  "grove_hcho_calibrate_r0": {
+    "message0": "Calibrate HCHO %1 Get R0 value",
+    "tooltip": "Calibrate the sensor in clean air and return the R0 value. Fill this value into the R0 parameter of the initialization block."
+  }
+}

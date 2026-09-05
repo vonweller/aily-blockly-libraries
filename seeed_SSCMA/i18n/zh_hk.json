@@ -1,0 +1,299 @@
+{
+  "toolbox_name": "SSCMA AI",
+  "toolbox_labels": {
+    "初始化": "初始化",
+    "AI推理": "人工智慧推理",
+    "检测结果": "檢測結果",
+    "性能信息": "性能資訊",
+    "数据传输": "資料傳輸",
+    "设备信息": "設備資訊",
+    "控制操作": "控制操作"
+  },
+  "sscma_begin_i2c": {
+    "message0": "初始化SSCMA AI模組 %1 I2C介面 %2\n重設引腳 %3 I2C位址 %4",
+    "tooltip": "初始化SSCMA AI模組，使用I2C介面通信",
+    "args0": [
+      null,
+      {
+        "options": "${board.i2c}"
+      },
+      null,
+      null
+    ]
+  },
+  "sscma_begin_serial": {
+    "message0": "初始化SSCMA AI模組 %1 串列埠介面 %2\n重設引腳 %3 波特率 %4",
+    "tooltip": "初始化SSCMA AI模組，使用串口介面通訊",
+    "args0": [
+      null,
+      {
+        "options": "${board.serialPort}"
+      },
+      null,
+      null
+    ]
+  },
+  "sscma_begin_spi": {
+    "message0": "初始化SSCMA AI模組 %1 SPI介面 %2\nCS腳位 %3 SYNC腳位 %4\n重設引腳 %5 時脈頻率 %6 MHz",
+    "tooltip": "初始化SSCMA AI模組，使用SPI介面通訊",
+    "args0": [
+      null,
+      {
+        "options": "${board.spi}"
+      },
+      null,
+      null,
+      null,
+      null
+    ]
+  },
+  "sscma_invoke": {
+    "message0": "%1取得執行AI推理結果 推理次數%2 過濾%3 顯示%4",
+    "tooltip": "執行AI推理，取得檢測結果",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "是的",
+            "true"
+          ],
+          [
+            "不",
+            "false"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "不",
+            "false"
+          ],
+          [
+            "是的",
+            "true"
+          ]
+        ]
+      }
+    ]
+  },
+  "sscma_return_status": {
+    "message0": "AI執行結果狀態常數 %1",
+    "tooltip": "SSCMA指令執行結果狀態常數",
+    "args0": [
+      {
+        "options": [
+          [
+            "成功",
+            "CMD_OK"
+          ],
+          [
+            "重試",
+            "CMD_AGAIN"
+          ],
+          [
+            "日誌錯誤",
+            "CMD_ELOG"
+          ],
+          [
+            "超時",
+            "CMD_ETIMEDOUT"
+          ],
+          [
+            "IO錯誤",
+            "CMD_EIO"
+          ],
+          [
+            "無效參數",
+            "CMD_EINVAL"
+          ],
+          [
+            "記憶體不足",
+            "CMD_ENOMEM"
+          ],
+          [
+            "忙碌",
+            "CMD_EBUSY"
+          ],
+          [
+            "不支援",
+            "CMD_ENOTSUP"
+          ],
+          [
+            "權限錯誤",
+            "CMD_EPERM"
+          ],
+          [
+            "未知錯誤",
+            "CMD_EUNKNOWN"
+          ]
+        ]
+      }
+    ]
+  },
+  "sscma_get_boxes_count": {
+    "message0": "%1取得目標偵測結果數量",
+    "tooltip": "取得偵測到的目標框數量"
+  },
+  "sscma_get_box_info": {
+    "message0": "%1取得目標偵測資訊 索引%2 屬性%3",
+    "tooltip": "取得指定檢測框的屬性信息",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "X座標",
+            "x"
+          ],
+          [
+            "Y座標",
+            "y"
+          ],
+          [
+            "寬度",
+            "w"
+          ],
+          [
+            "高度",
+            "h"
+          ],
+          [
+            "信心水準",
+            "score"
+          ],
+          [
+            "目標類別",
+            "target"
+          ]
+        ]
+      }
+    ]
+  },
+  "sscma_get_classes_count": {
+    "message0": "%1取得分類檢測結果數",
+    "tooltip": "取得分類結果的數量"
+  },
+  "sscma_get_class_info": {
+    "message0": "%1取得分類偵測資訊 索引%2 屬性%3",
+    "tooltip": "取得指定分類結果的屬性資訊",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "信心水準",
+            "score"
+          ],
+          [
+            "目標類別",
+            "target"
+          ]
+        ]
+      }
+    ]
+  },
+  "sscma_get_points_count": {
+    "message0": "%1取得關鍵點數量",
+    "tooltip": "取得關鍵點的數量"
+  },
+  "sscma_get_point_info": {
+    "message0": "%1取得關鍵點資訊 索引%2 屬性%3",
+    "tooltip": "取得指定關鍵點的屬性資訊",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "X座標",
+            "x"
+          ],
+          [
+            "Y座標",
+            "y"
+          ],
+          [
+            "信心水準",
+            "score"
+          ],
+          [
+            "目標類別",
+            "target"
+          ]
+        ]
+      }
+    ]
+  },
+  "sscma_check_last_image": {
+    "message0": "%1是否有最近一幀影像數據",
+    "tooltip": "檢查SSCMA是否有最近一幀影像資料可用"
+  },
+  "sscma_get_last_image": {
+    "message0": "%1取得最近一幀影像數據",
+    "tooltip": "取得SSCMA處理的最近一幀影像數據"
+  },
+  "sscma_get_performance": {
+    "message0": "%1取得效能資訊 階段%2",
+    "tooltip": "取得指定階段的處理時間（毫秒）",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "預處理",
+            "prepocess"
+          ],
+          [
+            "推理",
+            "inference"
+          ],
+          [
+            "後處理",
+            "postprocess"
+          ]
+        ]
+      }
+    ]
+  },
+  "sscma_available": {
+    "message0": "%1是否有可讀數據",
+    "tooltip": "檢查SSCMA是否有可讀數據"
+  },
+  "sscma_read": {
+    "message0": "%1讀取資料 資料%2 長度%3",
+    "tooltip": "從SSCMA讀取數據"
+  },
+  "sscma_write": {
+    "message0": "%1寫入資料 資料%2 長度%3",
+    "tooltip": "向SSCMA寫入數據"
+  },
+  "sscma_get_device_id": {
+    "message0": "%1取得設備ID",
+    "tooltip": "取得SSCMA設備的唯一ID"
+  },
+  "sscma_get_device_name": {
+    "message0": "%1取得設備名稱",
+    "tooltip": "取得SSCMA設備的名稱"
+  },
+  "sscma_get_device_info": {
+    "message0": "%1取得設備資訊",
+    "tooltip": "取得SSCMA設備的詳細信息"
+  },
+  "sscma_reset": {
+    "message0": "%1重置SSCMA設備",
+    "tooltip": "重置SSCMA設備"
+  },
+  "sscma_save_jpeg": {
+    "message0": "%1儲存JPEG影像",
+    "tooltip": "儲存目前影像為JPEG格式"
+  },
+  "sscma_clean_actions": {
+    "message0": "%1清理動作",
+    "tooltip": "清理所有已設定的動作"
+  }
+}

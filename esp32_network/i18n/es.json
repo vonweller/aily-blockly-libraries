@@ -1,0 +1,173 @@
+{
+  "toolbox_name": "ESP32 Network",
+  "toolbox_labels": {
+    "TCP客户端": "Cliente TCP",
+    "TCP安全客户端": "Cliente seguro TCP",
+    "TCP客户端通用功能": "Funciones comunes del cliente TCP",
+    "TCP服务器": "servidor TCP",
+    "UDP通信": "comunicación UDP"
+  },
+  "esp32_network_client_create": {
+    "message0": "Crea un cliente de red %1",
+    "tooltip": "Crear un objeto cliente web"
+  },
+  "esp32_network_client_connect_ip": {
+    "message0": "El %1 cliente se conecta a la IP %2 puerto %3",
+    "tooltip": "Conectarse a la dirección IP y puerto especificados"
+  },
+  "esp32_network_client_connect_host": {
+    "message0": "El %1 cliente se conecta al host %2 puerto %3",
+    "tooltip": "Conectarse al nombre de host y puerto especificados"
+  },
+  "esp32_networkclientsecure_create": {
+    "message0": "Crea un cliente de red seguro %1",
+    "tooltip": "Crear un nuevo objeto cliente de red segura NetworkClientSecure"
+  },
+  "esp32_networkclientsecure_set_insecure": {
+    "message0": "Poner %1 en modo inseguro",
+    "tooltip": "Configurado en modo inseguro, no verifique la cadena de certificados (solo para pruebas)"
+  },
+  "esp32_networkclientsecure_set_ca_cert": {
+    "message0": "Establece el certificado de CA de %1 %2",
+    "tooltip": "Configura el certificado raíz de la CA para verificar el servidor"
+  },
+  "esp32_networkclientsecure_set_certificate": {
+    "message0": "Establecer el %1 certificado del cliente %2",
+    "tooltip": "Establecer certificados de cliente para autenticación bidireccional"
+  },
+  "esp32_networkclientsecure_set_private_key": {
+    "message0": "Establece la clave privada de %1 %2",
+    "tooltip": "Establecer la clave privada del cliente para autenticación bidireccional"
+  },
+  "esp32_networkclientsecure_set_psk": {
+    "message0": "%1Establece la identidad de autenticación PSK %2 clave %3",
+    "tooltip": "Configurar la autenticación con clave pre-compartida (PSK)"
+  },
+  "esp32_networkclientsecure_set_plain_start": {
+    "message0": "Configura %1 en modo de inicio de texto plano",
+    "tooltip": "Configura en modo de arranque en texto plano para actualizaciones de protocolos (por ejemplo, STARTTLS)"
+  },
+  "esp32_networkclientsecure_start_tls": {
+    "message0": "Inicia la conexión TLS de %1",
+    "tooltip": "Actualizar una conexión de texto plano a una conexión TLS; devolver 0 significa fallo, no-0 significa éxito"
+  },
+  "esp32_networkclientsecure_set_handshake_timeout": {
+    "message0": "Pon %1 tiempo de espera del apretón de manos a %2 segundos",
+    "tooltip": "Establece el tiempo de espera del handshake SSL"
+  },
+  "esp32_networkclientsecure_verify_fingerprint": {
+    "message0": "Verifica %1 huella digital %2 dominio %3",
+    "tooltip": "Verifica el certificado del servidor, la huella digital y el nombre de dominio"
+  },
+  "esp32_networkclientsecure_get_peer_fingerprint": {
+    "message0": "Obtener la huella dactilar del certificado de pares del %1",
+    "tooltip": "Obtén la huella SHA256 (cadena hexadecimal) para el certificado de par."
+  },
+  "esp32_networkclientsecure_last_error": {
+    "message0": "Obtienes el último error de %1",
+    "tooltip": "Recuperar mensajes de error de la última conexión u operación"
+  },
+  "esp32_network_client_print": {
+    "message0": "El cliente %1 enviar datos %2",
+    "tooltip": "Enviar datos al servidor"
+  },
+  "esp32_network_client_println": {
+    "message0": "El cliente %1 envía datos y se interrumpe lines%2",
+    "tooltip": "Envía datos al servidor y añade saltos de línea"
+  },
+  "esp32_network_client_available": {
+    "message0": "El %1 cliente puede leer bytes de datos",
+    "tooltip": "Recupera el número de bytes de datos que pueden ser leídos"
+  },
+  "esp32_network_client_read": {
+    "message0": "Cliente %1 Datos de Lectura %2",
+    "tooltip": "Lectura de datos del servidor",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Un solo byte",
+            "BYTE"
+          ],
+          [
+            "cadena",
+            "STRING"
+          ],
+          [
+            "Lee el salto de línea",
+            "LINE"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_network_client_connected": {
+    "message0": "El cliente %1 está conectado",
+    "tooltip": "Comprueba si el cliente está conectado"
+  },
+  "esp32_network_client_stop": {
+    "message0": "Desconexión %1 cliente",
+    "tooltip": "Desconectar la conexión del cliente"
+  },
+  "esp32_network_server_create": {
+    "message0": "Crear un servidor de red %1 puertos %2 número máximo de conexiones %3",
+    "tooltip": "Crear un objeto de servidor web"
+  },
+  "esp32_network_server_begin": {
+    "message0": "Server %1 empieza a escuchar",
+    "tooltip": "Empieza a escuchar las conexiones de clientes"
+  },
+  "esp32_network_server_accept": {
+    "message0": "El %1 del servidor escucha las conexiones %2 del cliente",
+    "tooltip": "Acepta conexiones de cliente y devuelve objetos de cliente"
+  },
+  "esp32_network_server_stop": {
+    "message0": "El %1 del servidor deja de escuchar",
+    "tooltip": "Deja de escuchar el servidor"
+  },
+  "esp32_network_udp_create": {
+    "message0": "Creación de objetos UDP %1",
+    "tooltip": "Crear un objeto UDP"
+  },
+  "esp32_network_udp_begin": {
+    "message0": "UDP %1 Empieza a escuchar para el puerto %2",
+    "tooltip": "Empieza a escuchar paquetes UDP en el puerto especificado"
+  },
+  "esp32_network_udp_begin_packet": {
+    "message0": "UDP %1 comienza a enviar paquetes a los puertos %2%3",
+    "tooltip": "Empieza a prepararte para enviar paquetes UDP"
+  },
+  "esp32_network_udp_write": {
+    "message0": "UDP %1 Escritura de Datos %2",
+    "tooltip": "Escribe datos en paquetes UDP"
+  },
+  "esp32_network_udp_end_packet": {
+    "message0": "UDP %1 envía paquetes de datos",
+    "tooltip": "Enviar paquetes UDP"
+  },
+  "esp32_network_udp_parse_packet": {
+    "message0": "UDP %1 analiza paquetes de datos recibidos",
+    "tooltip": "Analizar el paquete UDP recibido y devolver el tamaño del paquete"
+  },
+  "esp32_network_udp_available": {
+    "message0": "UDP %1 el número de bytes de datos disponibles",
+    "tooltip": "Recupera el número de bytes de datos que pueden ser leídos"
+  },
+  "esp32_network_udp_read": {
+    "message0": "UDP %1 lee datos",
+    "tooltip": "Lectura de datos del búfer UDP"
+  },
+  "esp32_network_udp_remote_ip": {
+    "message0": "UDP %1 dirección IP remota",
+    "tooltip": "Obtener la dirección IP remota para enviar el paquete de datos"
+  },
+  "esp32_network_udp_remote_port": {
+    "message0": "UDP %1 puerto remoto",
+    "tooltip": "Obtener el puerto remoto para enviar el paquete"
+  },
+  "esp32_network_udp_stop": {
+    "message0": "UDP %1 dejó de monitorizar",
+    "tooltip": "Detener la monitorización UDP"
+  }
+}

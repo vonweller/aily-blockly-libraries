@@ -1,0 +1,98 @@
+{
+  "toolbox_name": "ESP32 Encoder",
+  "rotary_encoder_init": {
+    "message0": "Initialize the rotary encoder CLK %1 DT %2 SW %3"
+  },
+  "rotary_encoder_read": {
+    "message0": "Read rotary encoder value"
+  },
+  "rotary_encoder_value_changed": {
+    "message0": "Rotary encoder value changes"
+  },
+  "rotary_encoder_state_change": {
+    "message0": "When the rotary encoder status %1 %2 executes %3",
+    "args0": [
+      {
+        "options": [
+          [
+            "location change",
+            "CHANGED"
+          ],
+          [
+            "Rotate left",
+            "LEFT"
+          ],
+          [
+            "Rotate right",
+            "RIGHT"
+          ],
+          [
+            "higher than upper limit",
+            "ABOVE_LIMIT"
+          ],
+          [
+            "below the lower limit",
+            "BELOW_LIMIT"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "rotary_encoder_get_property": {
+    "message0": "Get rotary encoder %1",
+    "args0": [
+      {
+        "options": [
+          [
+            "location",
+            "POSITION"
+          ],
+          [
+            "direction",
+            "DIRECTION"
+          ],
+          [
+            "Increment",
+            "INCREMENT"
+          ],
+          [
+            "upper limit",
+            "UPPER_LIMIT"
+          ],
+          [
+            "lower limit",
+            "LOWER_LIMIT"
+          ]
+        ]
+      }
+    ]
+  },
+  "rotary_encoder_set_property": {
+    "message0": "Set rotary encoder %1 to %2",
+    "args0": [
+      {
+        "options": [
+          [
+            "location",
+            "POSITION"
+          ],
+          [
+            "Increment",
+            "INCREMENT"
+          ],
+          [
+            "upper limit",
+            "UPPER_LIMIT"
+          ],
+          [
+            "lower limit",
+            "LOWER_LIMIT"
+          ]
+        ]
+      },
+      null
+    ]
+  }
+}

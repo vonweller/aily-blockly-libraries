@@ -1,0 +1,115 @@
+{
+  "toolbox_name": "APDS9301",
+  "apds9301_init": {
+    "message0": "初期化 APDS9301 %1 アドレス %2",
+    "tooltip": "SparkFun APDS9301光センサーを作成・初期化します"
+  },
+  "apds9301_is_ready": {
+    "message0": "APDS9301 %1 初期化済み",
+    "tooltip": "初期化ブロックによって保存されたAPDS9301初期化状態を返します"
+  },
+  "apds9301_read_lux": {
+    "message0": "APDS9301 %1 照度読み取り",
+    "tooltip": "計算されたLUX照明値を確認してください"
+  },
+  "apds9301_read_channel": {
+    "message0": "APDS9301 %1 生チャンネル読み取り %2",
+    "tooltip": "元のチャンネル値をAPDS9301読みます",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "CH0 可視光+赤外線",
+            "readCH0Level"
+          ],
+          [
+            "CH1 赤外線",
+            "readCH1Level"
+          ]
+        ]
+      }
+    ]
+  },
+  "apds9301_set_gain": {
+    "message0": "設定 APDS9301 %1 ゲイン %2",
+    "tooltip": "ゲインAPDS9301設定",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "低い",
+            "APDS9301::LOW_GAIN"
+          ],
+          [
+            "高い",
+            "APDS9301::HIGH_GAIN"
+          ]
+        ]
+      }
+    ]
+  },
+  "apds9301_set_integration_time": {
+    "message0": "設定 APDS9301 %1 変換時間 %2",
+    "tooltip": "APDS9301ポイントタイムを設定"
+  },
+  "apds9301_enable_interrupt": {
+    "message0": "APDS9301 %1 割り込み %2",
+    "tooltip": "割り込み出力の有効化または無効APDS9301",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "有効にする",
+            "APDS9301::INT_ON"
+          ],
+          [
+            "無効にする",
+            "APDS9301::INT_OFF"
+          ]
+        ]
+      }
+    ]
+  },
+  "apds9301_set_threshold": {
+    "message0": "設定 APDS9301 %1 %2 しきい値 %3",
+    "tooltip": "割り込み閾値を設定APDS9301",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "下限値",
+            "LOW"
+          ],
+          [
+            "上限",
+            "HIGH"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "apds9301_power": {
+    "message0": "APDS9301 %1 電源 %2",
+    "tooltip": "電源APDS9301オンまたはオフを切り替えてください",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "オンにする",
+            "APDS9301::POW_ON"
+          ],
+          [
+            "閉じる",
+            "APDS9301::POW_OFF"
+          ]
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,513 @@
+{
+  "toolbox_name": "GFX",
+  "toolbox_labels": {
+    "TFT显示": "Visor TFT",
+    "墨水屏显示": "Tela de tinta",
+    "基本绘图": "desenho básico",
+    "文字显示": "exibição de texto",
+    "数据获取": "aquisição de dados",
+    "图片": "imagem",
+    "动画": "animação"
+  },
+  "seeed_gfx_create_tft": {
+    "message0": "Criar Objetos TFT %1",
+    "tooltip": "Criar objetos de exibição TFT"
+  },
+  "seeed_gfx_init": {
+    "message0": "Inicialize a tela TFT %1 Modelo %2 frequência SPI %3",
+    "tooltip": "Inicialize a tela TFT",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Seeed_Wio_Terminal",
+            "500"
+          ],
+          [
+            "Seeed_XIAO_Round_Display",
+            "501"
+          ],
+          [
+            "Seeed_XIAO_ILI9341",
+            "666"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "10MHz",
+            "10000000"
+          ],
+          [
+            "20MHz",
+            "20000000"
+          ],
+          [
+            "27MHz",
+            "27000000"
+          ],
+          [
+            "40MHz",
+            "40000000"
+          ],
+          [
+            "55MHz",
+            "55000000"
+          ],
+          [
+            "80MHz",
+            "80000000"
+          ]
+        ]
+      }
+    ]
+  },
+  "seeed_gfx_fill_screen": {
+    "message0": "Preencha a tela %1 Cor %2",
+    "tooltip": "Preencha toda a tela com cores especificadas"
+  },
+  "seeed_gfx_set_rotation": {
+    "message0": "Defina a tela %1 ângulo de rotação %2",
+    "tooltip": "Definir o sentido de rotação do ecrã",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "0°",
+            "0"
+          ],
+          [
+            "90°",
+            "1"
+          ],
+          [
+            "180°",
+            "2"
+          ],
+          [
+            "270°",
+            "3"
+          ],
+          [
+            "Nível espelho",
+            "4"
+          ],
+          [
+            "A imagem espelhada é vertical",
+            "5"
+          ],
+          [
+            "Troque os eixos XY",
+            "6"
+          ],
+          [
+            "Troque o eixo XY e espelhe a imagem horizontal",
+            "7"
+          ]
+        ]
+      }
+    ]
+  },
+  "seeed_gfx_draw_pixel": {
+    "message0": "No screen%1 ponto X:%2 Y:%3 Cor:%4",
+    "tooltip": "Desenhar um pixel nas coordenadas especificadas"
+  },
+  "seeed_gfx_draw_line": {
+    "message0": "No screen%1 desenhe linhas de X:%2 Y:%3 até X:%4 Y:%5 Cor: %6",
+    "tooltip": "Desenhe uma linha entre dois pontos"
+  },
+  "seeed_gfx_draw_rect": {
+    "message0": "No screen%1 desenhe um retângulo: X:%2 Y:%3 Largura:%4 Altura:%5 Cor:%6",
+    "tooltip": "Desenhe uma borda retangular"
+  },
+  "seeed_gfx_fill_rect": {
+    "message0": "No screen%1 preencha retângulos X:%2 Y:%3 Largura:%4 Altura:%5 Cor:%6",
+    "tooltip": "Desenhe um retângulo preenchido"
+  },
+  "seeed_gfx_draw_round_rect": {
+    "message0": "No screen%1 desenhe retângulos arredondados X:%2 Y:%3 Largura:%4 Altura:%5 Raio do filete: %6 Cor:%7",
+    "tooltip": "Desenhe uma borda retangular"
+  },
+  "seeed_gfx_fill_round_rect": {
+    "message0": "No screen%1 preencha os retângulos arredondados X:%2 Y:%3 Largura:%4 Altura:%5 Raio do filete:%6 Cor:%7",
+    "tooltip": "Desenhe um retângulo preenchido"
+  },
+  "seeed_gfx_draw_circle": {
+    "message0": "No screen%1 desenhe círculos Centro X:%2 Y:%3 Raio: %4 Cor: %5",
+    "tooltip": "Desenhe um círculo"
+  },
+  "seeed_gfx_fill_circle": {
+    "message0": "No screen%1 Círculo de preenchimento Centro X:%2 Y:%3 Raio: %4 Cor: %5",
+    "tooltip": "Desenhe um círculo preenchido"
+  },
+  "seeed_gfx_draw_triangle": {
+    "message0": "No screen%1 desenhe triângulos com 1X:%2 Y:%3 2X:%4 Y:%5 3X:%6 Y:%7 Cor: %8",
+    "tooltip": "Desenhe uma borda triangular"
+  },
+  "seeed_gfx_set_text_color": {
+    "message0": "Defina a cor %1 texto %2 a cor de fundo %3",
+    "tooltip": "Definir a cor do texto e a cor de fundo"
+  },
+  "seeed_gfx_set_text_size": {
+    "message0": "Defina o tamanho da tela %1 texto %2",
+    "tooltip": "Defina o tamanho do texto",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "1",
+            "1"
+          ],
+          [
+            "2",
+            "2"
+          ],
+          [
+            "3",
+            "3"
+          ],
+          [
+            "4",
+            "4"
+          ],
+          [
+            "5",
+            "5"
+          ],
+          [
+            "6",
+            "6"
+          ],
+          [
+            "7",
+            "7"
+          ]
+        ]
+      }
+    ]
+  },
+  "seeed_gfx_set_cursor": {
+    "message0": "Definir a Tela %1 Posição do Cursor X:%2 Y:%3",
+    "tooltip": "Defina a posição do cursor para o texto"
+  },
+  "seeed_gfx_print": {
+    "message0": "Exiba texto na tela %1 %2",
+    "tooltip": "Imprimir texto na localização atual"
+  },
+  "seeed_gfx_draw_string": {
+    "message0": "No screen%1 Exibir texto %2 X:%3 Y:%4 Fonte:%5",
+    "tooltip": "Exibir texto em locais designados",
+    "args0": [
+      null,
+      null,
+      null,
+      null,
+      {
+        "options": [
+          [
+            "Fonte 1",
+            "1"
+          ],
+          [
+            "Fonte 2",
+            "2"
+          ],
+          [
+            "Fonte 4",
+            "4"
+          ],
+          [
+            "Fonte 6",
+            "6"
+          ],
+          [
+            "Fonte 7",
+            "7"
+          ]
+        ]
+      }
+    ]
+  },
+  "seeed_gfx_create_sprite": {
+    "message0": "Criar Assistente Largura: %1 Altura: %2 Variável%3",
+    "tooltip": "Crie um objeto gênio"
+  },
+  "seeed_gfx_epaper_begin": {
+    "message0": "Inicialize a tela e-ink %1 Modelo %2",
+    "tooltip": "Inicializar a tela e-ink",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Seeed_XIAO_EPaper_7inch5",
+            "502"
+          ],
+          [
+            "Seeed_reTerminal_E1001",
+            "520"
+          ],
+          [
+            "Seeed_reTerminal_E1002",
+            "521"
+          ],
+          [
+            "Seeed_reTerminal_E1003",
+            "522"
+          ],
+          [
+            "Seeed_reTerminal_E1004",
+            "523"
+          ]
+        ]
+      }
+    ]
+  },
+  "seeed_gfx_epaper_update": {
+    "message0": "Atualize o conteúdo do E-Ink %1 exiba",
+    "tooltip": "Atualize a tela e-ink para exibir conteúdo"
+  },
+  "seeed_gfx_epaper_sleep": {
+    "message0": "A tela e-ink %1 entra no modo de suspensão",
+    "tooltip": "Coloque a tela do e-ink no modo de suspensão para economizar energia"
+  },
+  "seeed_gfx_animation": {
+    "message0": "Animação Seeed GFX %1",
+    "tooltip": "Envie um GIF ou MP4 e converta em quadros RGB565/RGB332 para Seeed GFX"
+  },
+  "seeed_gfx_play_animation": {
+    "message0": "Tela %1 reproduzir animação x%2 y%3 animação %4 modo %5",
+    "message1": "Reprodução em loop %1",
+    "tooltip": "Reproduz uma animação Seeed GFX; no modo sem bloqueio, o próximo quadro é renderizado no intervalo",
+    "args0": [
+      null,
+      null,
+      null,
+      null,
+      {
+        "options": [
+          [
+            "Reprodução bloqueante",
+            "BLOCKING"
+          ],
+          [
+            "Reprodução sem bloqueio",
+            "NON_BLOCKING"
+          ]
+        ]
+      }
+    ]
+  },
+  "seeed_gfx_play_sd_video": {
+    "message0": "Tela %1 reproduzir vídeo AILY do arquivo SD %2 com buffer %3 KB",
+    "tooltip": "Reproduz um vídeo AILY do SD com o limite de buffer indicado; o Wio Terminal pode inicializar automaticamente o cartão SD integrado"
+  },
+  "seeed_gfx_draw_animation_frame": {
+    "message0": "Tela %1 desenhar quadro x%2 y%3 animação %4 quadro %5",
+    "tooltip": "Desenha o quadro indicado de uma animação Seeed GFX; o número é limitado ao intervalo válido"
+  },
+  "seeed_gfx_animation_frame_count": {
+    "message0": "Obter o número total de quadros da animação Seeed GFX %1",
+    "tooltip": "Obter o número total de quadros de uma animação Seeed GFX"
+  },
+  "seeed_gfx_color": {
+    "message0": "Cor %1",
+    "tooltip": "Telas TFT e e-ink comumente usam definições macro de cor",
+    "args0": [
+      {
+        "options": [
+          [
+            "Branco",
+            "TFT_WHITE"
+          ],
+          [
+            "Preto",
+            "TFT_BLACK"
+          ],
+          [
+            "Vermelho",
+            "TFT_RED"
+          ],
+          [
+            "Verde",
+            "TFT_GREEN"
+          ],
+          [
+            "Azul",
+            "TFT_BLUE"
+          ],
+          [
+            "Amarelo",
+            "TFT_YELLOW"
+          ],
+          [
+            "Magenta",
+            "TFT_MAGENTA"
+          ],
+          [
+            "cyan",
+            "TFT_CYAN"
+          ],
+          [
+            "Laranja",
+            "TFT_ORANGE"
+          ],
+          [
+            "Rosa",
+            "TFT_PINK"
+          ],
+          [
+            "Roxo",
+            "TFT_PURPLE"
+          ],
+          [
+            "Brown",
+            "TFT_BROWN"
+          ],
+          [
+            "Cinza",
+            "TFT_DARKGREY"
+          ],
+          [
+            "Cinza claro",
+            "TFT_LIGHTGREY"
+          ],
+          [
+            "Golden",
+            "TFT_GOLD"
+          ],
+          [
+            "Prata",
+            "TFT_SILVER"
+          ],
+          [
+            "Azul celeste",
+            "TFT_SKYBLUE"
+          ],
+          [
+            "violeta",
+            "TFT_VIOLET"
+          ],
+          [
+            "Verde-oliva",
+            "TFT_OLIVE"
+          ],
+          [
+            "Azul escuro",
+            "TFT_NAVY"
+          ],
+          [
+            "Verde escuro",
+            "TFT_DARKGREEN"
+          ],
+          [
+            "Azul profundo",
+            "TFT_DARKCYAN"
+          ],
+          [
+            "Marrom-avermelhado",
+            "TFT_MAROON"
+          ],
+          [
+            "Amarelo-esverdeado",
+            "TFT_GREENYELLOW"
+          ]
+        ]
+      }
+    ]
+  },
+  "seeed_gfx_epaper_wake": {
+    "message0": "Tela de tinta %1 despertar",
+    "tooltip": "Despertando a tela de tinta"
+  },
+  "seeed_gfx_rgb565": {
+    "message0": "Conversão de Cor %1 de Tela %2",
+    "tooltip": "Converter cores RGB para o formato RGB565"
+  },
+  "seeed_gfx_get_width": {
+    "message0": "Largura %1 da tela",
+    "tooltip": "Obtenha a largura da tela"
+  },
+  "seeed_gfx_get_height": {
+    "message0": "Altura %1 da tela",
+    "tooltip": "Ajuste a altura da tela"
+  },
+  "seeed_gfx_fill_rect_v_gradient": {
+    "args0": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "message0": "Na tela %1, gradiente vertical preenche retângulos X:%2 Y:%3 Largura:%4 Altura:%5 Cor inicial: %6 Cor final: %7",
+    "tooltip": "Preencha a área retangular com gradientes verticais"
+  },
+  "seeed_gfx_fill_rect_h_gradient": {
+    "args0": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "message0": "No screen %1 Gradiente horizontal preenche retângulos X:%2 Y:%3 Largura:%4 Altura:%5 Cor inicial:%6 Cor final:%7",
+    "tooltip": "Preencha a área retangular com um gradiente horizontal"
+  },
+  "seeed_gfx_fill_triangle": {
+    "args0": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "message0": "No screen%1 preencha triângulos Dot1X:%2 Y:%3 Dot2X:%4 Y:%5 Dot3X:%6 Y:%7 Cor: %8",
+    "tooltip": "Preencha uma área triangular"
+  },
+  "seeed_gfx_draw_ellipse": {
+    "args0": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "message0": "No screen%1 Desenhe uma elipse, centro X:%2 Y:%3 Raio X:%4 Raio Y:%5 Cor:%6",
+    "tooltip": "Desenhe uma borda oval"
+  },
+  "seeed_gfx_image": {
+    "message0": "Imagem %1",
+    "tooltip": "Converter uma imagem PNG, JPEG, WebP ou BMP em dados de pixels RGB565/RGB332",
+    "args0": [null]
+  },
+  "seeed_gfx_draw_image": {
+    "message0": "Na tela %1 em X:%2 Y:%3 mostrar imagem %4",
+    "tooltip": "Mostrar os dados de imagem RGB565/RGB332 convertidos nas coordenadas indicadas",
+    "args0": [null, null, null, null]
+  },
+  "seeed_gfx_fill_ellipse": {
+    "args0": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "message0": "No screen%1 Preencha o centro da elipse X:%2 Y:%3 Raio X:%4 Raio Y:%5 Cor:%6",
+    "tooltip": "Preencha uma área elíptica"
+  }
+}

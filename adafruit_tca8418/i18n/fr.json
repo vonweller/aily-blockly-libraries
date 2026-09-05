@@ -1,0 +1,118 @@
+{
+  "toolbox_name": "TCA8418 matrice clavier",
+  "toolbox_labels": {
+    "初始化": "initialisation",
+    "键盘矩阵": "matrice de clavier",
+    "GPIO控制": "Contrôle GPIO",
+    "配置选项": "Options de configuration"
+  },
+  "tca8418_create": {
+    "message0": "Créer TCA8418 matrice de clavier/extension GPIO variable %1",
+    "tooltip": "Créer TCA8418 matrice clavier/objet extenseur GPIO"
+  },
+  "tca8418_begin": {
+    "message0": "Initialiser %1 adresse I2C %2",
+    "tooltip": "Initialiser TCA8418 équipement"
+  },
+  "tca8418_matrix": {
+    "message0": "Définir %1 matrice clavier, nombre de lignes %2 nombre de colonnes %3",
+    "tooltip": "Configurez le nombre de lignes et de colonnes dans la matrice clavier"
+  },
+  "tca8418_available": {
+    "message0": "%1 Nombre d’événements clés disponibles",
+    "tooltip": "Obtenez le nombre d’événements disponibles dans le tampon FIFO"
+  },
+  "tca8418_get_event": {
+    "message0": "%1 Récupérer les événements clés",
+    "tooltip": "Récupérer un événement clé depuis le tampon FIFO"
+  },
+  "tca8418_flush": {
+    "message0": "Videz le tampon d’événements %1",
+    "tooltip": "Effacer tous les événements dans le tampon FIFO"
+  },
+  "tca8418_pin_mode": {
+    "message0": "Réglez %1 mode %2 broche %3",
+    "tooltip": "Régler le mode broche GPIO",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "Entrée",
+            "INPUT"
+          ],
+          [
+            "Production",
+            "OUTPUT"
+          ],
+          [
+            "Entrée et traction vers le haut",
+            "INPUT_PULLUP"
+          ]
+        ]
+      }
+    ]
+  },
+  "tca8418_digital_read": {
+    "message0": "Lire %1 niveau %2",
+    "tooltip": "Lisez le statut du niveau des broches GPIO"
+  },
+  "tca8418_digital_write": {
+    "message0": "Réglez %1 broche %2 level%3",
+    "tooltip": "Régler le niveau de sortie de la broche GPIO",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "niveau haut",
+            "HIGH"
+          ],
+          [
+            "niveau bas",
+            "LOW"
+          ]
+        ]
+      }
+    ]
+  },
+  "tca8418_enable_interrupts": {
+    "message0": "Activez les interruptions %1",
+    "tooltip": "Activez les interruptions pour les broches matricielles et GPIO"
+  },
+  "tca8418_disable_interrupts": {
+    "message0": "Désactivez les interruptions %1",
+    "tooltip": "Désactivez les interruptions pour les broches matrix et GPIO"
+  },
+  "tca8418_enable_debounce": {
+    "message0": "Activez %1 la stabilisation des clés",
+    "tooltip": "Activer la stabilisation des clés"
+  },
+  "tca8418_disable_debounce": {
+    "message0": "Désactiver %1 bouton de rebond",
+    "tooltip": "Désactiver la stabilisation des clés"
+  },
+  "tca8418_when_key_event": {
+    "message0": "Quand %1 a un événement clé",
+    "tooltip": "Exécutez du code lorsqu’un événement clé survient",
+    "message1": "exécuter %1"
+  },
+  "tca8418_current_event": {
+    "message0": "%1 Événement clé actuel",
+    "tooltip": "Obtenez l’événement clé actuel enregistré automatiquement (utilisé uniquement dans les blocs de traitement des événements)"
+  },
+  "tca8418_get_event_row": {
+    "message0": "Le numéro de ligne de l’événement clé %1",
+    "tooltip": "Extraction des numéros de ligne des événements clés (0-7)"
+  },
+  "tca8418_get_event_col": {
+    "message0": "Numéro de colonne de l’événement clé %1",
+    "tooltip": "Extraction des numéros de colonnes à partir d’événements clés (0-9)"
+  },
+  "tca8418_get_event_pressed": {
+    "message0": "L’événement clé %1 est d’appuyer vers le bas",
+    "tooltip": "Déterminez s’il faut appuyer sur (vrai) ou relâcher (faux) des événements clés"
+  }
+}

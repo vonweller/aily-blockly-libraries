@@ -1,0 +1,135 @@
+{
+  "toolbox_name": "MQTT",
+  "toolbox_labels": {
+    "初始化": "инициализация",
+    "连接": "подключить",
+    "通信": "общение",
+    "设置": "настройки"
+  },
+  "pubsub_create": {
+    "message0": "Создайте клиент MQTT %1 используйте клиент %2 SSL %3\nServer %4 Port %5",
+    "tooltip": "Создать клиентский объект MQTT",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "Нет",
+            "FALSE"
+          ],
+          [
+            "Да",
+            "TRUE"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "pubsub_set_callback": {
+    "message0": "Когда клиент MQTT %1 получает сообщение",
+    "tooltip": "Установите функцию обратного вызова MQTT для приема сообщений",
+    "message1": "выполнить %1"
+  },
+  "pubsub_set_callback_with_topic": {
+    "message0": "Когда вы получаете сообщение по этой теме%1",
+    "tooltip": "Настройте функцию обратного вызова MQTT для приёма сообщений для определённых тем",
+    "message1": "выполнить %1"
+  },
+  "pubsub_get_topic_callback_payload": {
+    "message0": "Получает содержимое полученного MQTT-сообщения",
+    "tooltip": "Получает содержимое MQTT-сообщения, полученное в функции обратного вызова"
+  },
+  "pubsub_connect": {
+    "message0": "Клиент MQTT %1 подключиться к идентификатору клиента %2",
+    "tooltip": "Подключитесь к серверу MQTT"
+  },
+  "pubsub_connect_auth": {
+    "message0": "MQTT Client %1 Connect Client ID %2 имя пользователя %3 пароль %4",
+    "tooltip": "Подключитесь к серверу MQTT, используя своё имя пользователя и пароль"
+  },
+  "pubsub_publish": {
+    "message0": "Клиент MQTT %1 публикации Тема сообщения %2 содержание %3",
+    "tooltip": "Выпуск сообщений MQTT"
+  },
+  "pubsub_subscribe": {
+    "message0": "Клиент MQTT %1 тема подписки %2",
+    "tooltip": "Подписывайтесь на темы MQTT"
+  },
+  "pubsub_unsubscribe": {
+    "message0": "Клиент MQTT %1 Отписаться от темы %2",
+    "tooltip": "Отписаться от MQTT topics"
+  },
+  "pubsub_loop": {
+    "message0": "Отвечает за MQTT-клиент %1 коммуникации",
+    "tooltip": "MQTT должна вызываться по циклу"
+  },
+  "pubsub_connected": {
+    "message0": "Проверьте, подключён ли клиент MQTT %1",
+    "tooltip": "Проверьте статус соединения MQTT"
+  },
+  "pubsub_state": {
+    "message0": "MQTT client %1 получает статус соединения",
+    "tooltip": "Получите статус MQTT-соединения"
+  },
+  "pubsub_state_code": {
+    "message0": "Статус MQTT %1",
+    "tooltip": "Константа статус-кода MQTT",
+    "args0": [
+      {
+        "options": [
+          [
+            "Успешное соединение",
+            "MQTT_CONNECTED"
+          ],
+          [
+            "Соединение не получилось",
+            "MQTT_CONNECT_FAILED"
+          ],
+          [
+            "Отключите соединение",
+            "MQTT_DISCONNECTED"
+          ],
+          [
+            "Потеря связи",
+            "MQTT_CONNECTION_LOST"
+          ],
+          [
+            "Тайм-аут на связь",
+            "MQTT_CONNECTION_TIMEOUT"
+          ],
+          [
+            "Ошибка протокола",
+            "MQTT_CONNECT_BAD_PROTOCOL"
+          ],
+          [
+            "Ошибка идентификатора клиента",
+            "MQTT_CONNECT_BAD_CLIENT_ID"
+          ],
+          [
+            "Услуга недоступна",
+            "MQTT_CONNECT_UNAVAILABLE"
+          ],
+          [
+            "Ошибка ваучера",
+            "MQTT_CONNECT_BAD_CREDENTIALS"
+          ],
+          [
+            "Несанкционированный",
+            "MQTT_CONNECT_UNAUTHORIZED"
+          ]
+        ]
+      }
+    ]
+  },
+  "pubsub_disconnect": {
+    "message0": "Отключите клиент MQTT %1 соединение",
+    "tooltip": "Отключите соединение MQTT"
+  },
+  "pubsub_setBufferSize": {
+    "message0": "Установите размер буфера %1 клиента MQTT на %2 байт",
+    "tooltip": "Задайте размер буфера клиента MQTT"
+  }
+}

@@ -1,0 +1,220 @@
+{
+  "toolbox_name": "Pico HTTPClient",
+  "toolbox_labels": {
+    "初始化": "inicialización",
+    "连接": "conectar",
+    "配置": "Configuración",
+    "请求": "Solicitar",
+    "响应": "respuesta",
+    "状态": "Estado",
+    "快速操作": "Operación rápida"
+  },
+  "rp_httpclient_create": {
+    "message0": "Crea un cliente HTTP %1",
+    "tooltip": "Crear un nuevo objeto HTTPClient"
+  },
+  "rp_httpclient_begin_url": {
+    "message0": "Conecta %1 a la %2 URL",
+    "tooltip": "Conectarse a la URL especificada"
+  },
+  "rp_httpclient_begin_host": {
+    "message0": "Conecta %1 al puerto %2 %3 al anfitrión %4",
+    "tooltip": "Conéctate al host, puerto y ruta especificados"
+  },
+  "rp_httpclient_begin_https": {
+    "message0": "Conexión segura %1 a %2 URL (saltar la verificación del certificado)",
+    "tooltip": "Conexión segura a la URL HTTPS (evitando la verificación de certificados)"
+  },
+  "rp_httpclient_end": {
+    "message0": "Desconectar %1",
+    "tooltip": "Desconecta la conexión HTTP"
+  },
+  "rp_httpclient_set_timeout": {
+    "message0": "Establece %1 tiempo de espera a %2 milisegundos",
+    "tooltip": "Establecer el tiempo de espera de conexión (milisegundos)"
+  },
+  "rp_httpclient_set_reuse": {
+    "message0": "Configurar %1 conexión multiplex %2",
+    "tooltip": "Establece si reutilizar conexiones TCP (keep-alive)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Habilitar",
+            "true"
+          ],
+          [
+            "Deshabilitar",
+            "false"
+          ]
+        ]
+      }
+    ]
+  },
+  "rp_httpclient_set_user_agent": {
+    "message0": "Establecer %1 Agente de Usuario %2",
+    "tooltip": "Establecer la cadena proxy HTTP de usuario"
+  },
+  "rp_httpclient_set_authorization": {
+    "message0": "Establecer %1 nombre de usuario %2 contraseña de autenticación %3",
+    "tooltip": "Configurar autenticación HTTP básica"
+  },
+  "rp_httpclient_set_authorization_token": {
+    "message0": "Establecer %1 token de autenticación %2",
+    "tooltip": "Configurar la autenticación de token portador HTTP"
+  },
+  "rp_httpclient_set_follow_redirects": {
+    "message0": "Configurar %1 Redirección Seguir %2",
+    "tooltip": "Configura el modo HTTP de seguimiento de redirección",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Deshabilitar",
+            "HTTPC_DISABLE_FOLLOW_REDIRECTS"
+          ],
+          [
+            "Modo estricto (solo GET/HEAD)",
+            "HTTPC_STRICT_FOLLOW_REDIRECTS"
+          ],
+          [
+            "Modo forzado (todos los métodos)",
+            "HTTPC_FORCE_FOLLOW_REDIRECTS"
+          ]
+        ]
+      }
+    ]
+  },
+  "rp_httpclient_set_redirect_limit": {
+    "message0": "Establecer %1 Número máximo de redirecciones %2",
+    "tooltip": "Establezca el número máximo de redirecciones"
+  },
+  "rp_httpclient_add_header": {
+    "message0": "Añade %1 encabezado de solicitud %2 valor %3",
+    "tooltip": "Añadir cabeceras de solicitud HTTP"
+  },
+  "rp_httpclient_get": {
+    "message0": "Enviar la solicitud GET %1",
+    "tooltip": "Enviar solicitudes HTTP GET"
+  },
+  "rp_httpclient_post": {
+    "message0": "Enviar solicitud POST %1 Datos %2",
+    "tooltip": "Enviar solicitudes HTTP POST"
+  },
+  "rp_httpclient_put": {
+    "message0": "Enviar solicitud PUT %1 datos %2",
+    "tooltip": "Enviar solicitudes HTTP PUT"
+  },
+  "rp_httpclient_patch": {
+    "message0": "Enviar solicitud PATCH %1 datos %2",
+    "tooltip": "Enviar una solicitud HTTP PATCH"
+  },
+  "rp_httpclient_delete": {
+    "message0": "Envía una solicitud de ELIMINACIÓN %1",
+    "tooltip": "Enviar una solicitud HTTP DELETE"
+  },
+  "rp_httpclient_get_response_code": {
+    "message0": "Obtener el código de estado de respuesta",
+    "tooltip": "Obtener el código de estado de la respuesta HTTP para la última petición"
+  },
+  "rp_httpclient_code_list": {
+    "message0": "Código de estado HTTP %1",
+    "tooltip": "Constante del código de estado HTTP",
+    "args0": [
+      {
+        "options": [
+          [
+            "200 OK",
+            "HTTP_CODE_OK"
+          ],
+          [
+            "201 Created",
+            "HTTP_CODE_CREATED"
+          ],
+          [
+            "204 Sin contenido",
+            "HTTP_CODE_NO_CONTENT"
+          ],
+          [
+            "Movimiento Permanente 301",
+            "HTTP_CODE_MOVED_PERMANENTLY"
+          ],
+          [
+            "302 Found",
+            "HTTP_CODE_FOUND"
+          ],
+          [
+            "304 No modificado",
+            "HTTP_CODE_NOT_MODIFIED"
+          ],
+          [
+            "400 mala petición",
+            "HTTP_CODE_BAD_REQUEST"
+          ],
+          [
+            "401 Unauthorized",
+            "HTTP_CODE_UNAUTHORIZED"
+          ],
+          [
+            "403 Forbidden",
+            "HTTP_CODE_FORBIDDEN"
+          ],
+          [
+            "404 No encontrado",
+            "HTTP_CODE_NOT_FOUND"
+          ],
+          [
+            "Error de servidor 500",
+            "HTTP_CODE_INTERNAL_SERVER_ERROR"
+          ],
+          [
+            "502 Puerta de Entrada Mala",
+            "HTTP_CODE_BAD_GATEWAY"
+          ],
+          [
+            "Servicio 503 No disponible",
+            "HTTP_CODE_SERVICE_UNAVAILABLE"
+          ]
+        ]
+      }
+    ]
+  },
+  "rp_httpclient_get_size": {
+    "message0": "Obtén el tamaño de respuesta %1",
+    "tooltip": "Obtén el tamaño del contenido de la respuesta (bytes)"
+  },
+  "rp_httpclient_get_string": {
+    "message0": "Obtén %1 contenido de respuesta",
+    "tooltip": "Recuperar la cadena de respuesta"
+  },
+  "rp_httpclient_get_header": {
+    "message0": "Recibe %1 respuesta head%2",
+    "tooltip": "Recupera el valor del encabezado de respuesta especificado"
+  },
+  "rp_httpclient_get_location": {
+    "message0": "Consigue %1 ubicación de redirección",
+    "tooltip": "Recuperar el valor de cabecera de la Ubicación redirigida"
+  },
+  "rp_httpclient_connected": {
+    "message0": "%1 conectado",
+    "tooltip": "Comprueba si la conexión HTTP está establecida"
+  },
+  "rp_httpclient_error_to_string": {
+    "message0": "%1 Código de error %2 Convertir a texto",
+    "tooltip": "Convertir códigos de error en mensajes de error legibles"
+  },
+  "rp_httpclient_quick_get": {
+    "message0": "URL de solicitud rápida GET %1",
+    "tooltip": "Envía rápidamente solicitudes GET y responde"
+  },
+  "rp_httpclient_quick_post": {
+    "message0": "URL de solicitud rápida de POST %1 datos %2",
+    "tooltip": "Envía rápidamente solicitudes POST y responde"
+  },
+  "rp_httpclient_quick_post_json": {
+    "message0": "URL JSON %1 JSON de publicación rápida %2",
+    "tooltip": "Envía rápidamente solicitudes JSON POST y devuelve el contenido de respuesta"
+  }
+}

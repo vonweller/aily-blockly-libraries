@@ -1,0 +1,148 @@
+{
+  "toolbox_name": "Beginner A1",
+  "toolbox_labels": {
+    "初始化": "Initialisierung",
+    "遥控输入": "Fernbedienungseingang",
+    "行驶控制": "Fahrkontrolle",
+    "舵机": "Lenkgetriebe"
+  },
+  "beginner_a1_init": {
+    "message0": "Initialisieren Sie das Anfängerauto A1 %1 Höchstgeschwindigkeit %2",
+    "tooltip": "Erstellen und initialisieren Sie die Fahrzeugobjekte: Kommunikation, Motor, Servo, LED und Batterie, und aktualisieren Sie den Status während des Zyklus automatisch"
+  },
+  "beginner_a1_button": {
+    "message0": "%1 Fernbedienungsknopf %2 gedrückt wird",
+    "tooltip": "Überprüfe, ob die Fernbedientasten A/B/C/D gedrückt wurden",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "A",
+            "0"
+          ],
+          [
+            "B",
+            "1"
+          ],
+          [
+            "C",
+            "2"
+          ],
+          [
+            "D",
+            "3"
+          ]
+        ]
+      }
+    ]
+  },
+  "beginner_a1_joystick": {
+    "message0": "%1 Fernbedienungs-Joystick %2",
+    "tooltip": "Lese den Wert des Fernbedienungs-Joysticks, Reichweite -127~127 (0, wenn nicht angeschlossen)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Linker Joystick X",
+            "0"
+          ],
+          [
+            "Linker Joystick Y",
+            "1"
+          ],
+          [
+            "Rechter Stick X",
+            "2"
+          ],
+          [
+            "Rechter Joystick Y",
+            "3"
+          ]
+        ]
+      }
+    ]
+  },
+  "beginner_a1_drive": {
+    "message0": "%1 Das kleine Fahrzeug vorwärts fahren %2 lenken %3",
+    "tooltip": "Differentialweg: Vorwärts und Lenkbereich -127~127"
+  },
+  "beginner_a1_motor": {
+    "message0": "%1 %2 Motordrehzahl %3",
+    "tooltip": "Stellen Sie die Motordrehzahl links und rechts getrennt ein, Bereich -120~120, negativer Wert umgekehrt",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Links",
+            "0"
+          ],
+          [
+            "Rechts",
+            "1"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "beginner_a1_stop": {
+    "message0": "%1 Halt die Straßenbahn an",
+    "tooltip": "Beide Motoren gingen stehen"
+  },
+  "beginner_a1_servo": {
+    "message0": "%1 %2 Dreh den Servo auf %3 Grad",
+    "tooltip": "Der Positionierungs-Servo dreht sich gleichmäßig auf den angegebenen Winkel mit einem Bereich von 0~360 Grad",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "SERVO_20",
+            "0"
+          ],
+          [
+            "SERVO_21",
+            "1"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "beginner_a1_servo_rotate": {
+    "message0": "%1 %2 Servo %3 speed%4 %5 Sekunden",
+    "tooltip": "Kontinuierlicher Drehservo: Dreht sich für eine festgelegte Sekundenanzahl je nach Richtung und Geschwindigkeit, stoppt dann automatisch (Geschwindigkeit 0~100), blockiert nicht",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "SERVO_20",
+            "0"
+          ],
+          [
+            "SERVO_21",
+            "1"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "Vorwärts",
+            "1"
+          ],
+          [
+            "reverse",
+            "-1"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  }
+}

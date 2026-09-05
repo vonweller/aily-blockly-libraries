@@ -1,0 +1,73 @@
+{
+  "toolbox_name": "NeoPixel",
+  "neopixel_init": {
+    "message0": "Initialisieren Sie die NeoPixel-Lichtstreifen-Pins %1 Anzahl der LEDs %2 LED-Typ %3",
+    "tooltip": "Initialisieren Sie den NeoPixel LED-Lichtstreifen",
+    "args0": [
+      {
+        "options": "${board.digitalPins}"
+      },
+      null,
+      {
+        "options": [
+          [
+            "RGB (GRB)",
+            "NEO_GRB + NEO_KHZ800"
+          ],
+          [
+            "RGB (RGB)",
+            "NEO_RGB + NEO_KHZ800"
+          ],
+          [
+            "RGBW",
+            "NEO_RGBW + NEO_KHZ800"
+          ],
+          [
+            "RGB (400 KHz)",
+            "NEO_GRB + NEO_KHZ400"
+          ]
+        ]
+      }
+    ]
+  },
+  "neopixel_begin": {
+    "message0": "NeoPixel ist der Anfang",
+    "tooltip": "NeoPixel-Kommunikation beginnt"
+  },
+  "neopixel_show": {
+    "message0": "NeoPixel-Display",
+    "tooltip": "Aktualisiertes NeoPixel-Display"
+  },
+  "neopixel_set_brightness": {
+    "message0": "NeoPixel-Helligkeit %1",
+    "tooltip": "Die Helligkeit des NeoPixel-Streifens einstellen (0-255)"
+  },
+  "neopixel_set_pixel_color": {
+    "message0": "LED %1 Farben einstellen: Rot %2 Grün %3 Blau, %4",
+    "tooltip": "Stellen Sie die Farbe einer einzelnen LED ein"
+  },
+  "neopixel_fill": {
+    "message0": "Füllen Sie alle LED-Farben aus: Rot, %1, Grün, %2, Blau, %3",
+    "tooltip": "Fülle alle LEDs mit derselben Farbe"
+  },
+  "neopixel_clear": {
+    "message0": "Alle NeoPixel löschen",
+    "tooltip": "Schalten Sie alle LEDs aus."
+  },
+  "neopixel_rainbow": {
+    "message0": "Regenbogeneffekt-Latenz (ms) %1",
+    "tooltip": "Regenbogeneffekte auf LED-Lichtstreifen anzeigen"
+  },
+  "neopixel_color_wipe": {
+    "message0": "Füllen Sie jede LED einzeln: Farbe: Rot, %1, Grün, %2, Blau, %3, Latenz (ms), %4",
+    "tooltip": "Jede LED füllt sich mit Farbe"
+  },
+  "neopixel_theater_chase": {
+    "message0": "Chase-Lichteffektfarbe Rot %1 Grün %2 Blau %3 Latenz (MS) %4",
+    "tooltip": "Zeigt den Verfolgungslicht-Effekt"
+  },
+  "neopixel_theater_chase_rainbow": {
+    "message0": "Regenbogen-Verfolgungs-Lichteffekt-Latenz (ms) %1",
+    "tooltip": "Zeigt Lichteffekte mit Regenbogenjagd"
+  }
+}

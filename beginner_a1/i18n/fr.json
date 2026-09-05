@@ -1,0 +1,148 @@
+{
+  "toolbox_name": "Beginner A1",
+  "toolbox_labels": {
+    "初始化": "initialisation",
+    "遥控输入": "entrée de la télécommande",
+    "行驶控制": "contrôle de conduite",
+    "舵机": "appareil à gouverner"
+  },
+  "beginner_a1_init": {
+    "message0": "Initialiser la voiture A1 débutante %1 vitesse maximale %2",
+    "tooltip": "Créer et initialiser les objets de la voiture : communication, moteur, servo, LED et batterie, et rafraîchir automatiquement le statut pendant le cycle"
+  },
+  "beginner_a1_button": {
+    "message0": "%1 Bouton de télécommande %2 est pressé",
+    "tooltip": "Vérifiez si les boutons de télécommande A/B/C/D ont été pressés",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "A",
+            "0"
+          ],
+          [
+            "B",
+            "1"
+          ],
+          [
+            "C",
+            "2"
+          ],
+          [
+            "D",
+            "3"
+          ]
+        ]
+      }
+    ]
+  },
+  "beginner_a1_joystick": {
+    "message0": "%1 Joystick télécommandé %2",
+    "tooltip": "Lecture de la valeur du joystick télécommandé, portée -127~127 (0 lorsqu’il n’est pas connecté)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Manette gauche X",
+            "0"
+          ],
+          [
+            "Manette gauche Y",
+            "1"
+          ],
+          [
+            "Stick droit X",
+            "2"
+          ],
+          [
+            "Joystick droit Y",
+            "3"
+          ]
+        ]
+      }
+    ]
+  },
+  "beginner_a1_drive": {
+    "message0": "%1 Conduite du petit véhicule Avant %2 Direction %3",
+    "tooltip": "Déplacement du différentiel : Portée avant et de direction -127~127"
+  },
+  "beginner_a1_motor": {
+    "message0": "%1 réglez %2 vitesse du moteur %3",
+    "tooltip": "Réglez séparément la vitesse du moteur gauche/droite, plage -120~120, valeur négative inversée",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Gauche",
+            "0"
+          ],
+          [
+            "Droite",
+            "1"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "beginner_a1_stop": {
+    "message0": "%1 Arrête le tramway",
+    "tooltip": "Les deux moteurs se sont arrêtés"
+  },
+  "beginner_a1_servo": {
+    "message0": "%1 %2 Tournez le servo à %3 degrés",
+    "tooltip": "Le servo de positionnement tourne en douceur à l’angle spécifié, avec une plage de 0~360 degrés",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "SERVO_20",
+            "0"
+          ],
+          [
+            "SERVO_21",
+            "1"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "beginner_a1_servo_rotate": {
+    "message0": "%1 %2 Servo %3 speed%4 %5 secondes",
+    "tooltip": "Servo rotatif continu : Tourne pendant un nombre de secondes spécifié selon la direction et la vitesse, puis s’arrête automatiquement (vitesse 0~100), sans blocage",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "SERVO_20",
+            "0"
+          ],
+          [
+            "SERVO_21",
+            "1"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "Avant",
+            "1"
+          ],
+          [
+            "reverse",
+            "-1"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  }
+}

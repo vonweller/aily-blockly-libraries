@@ -1,0 +1,91 @@
+{
+  "toolbox_name": "이더넷",
+  "toolbox_labels": {
+    "初始化": "초기화",
+    "状态查询": "상태 쿼리"
+  },
+  "esp32_eth_begin": {
+    "message0": "이더넷 PHY 유형 %1 PHY 주소를 초기화하세요 %2",
+    "tooltip": "이더넷 인터페이스 초기화",
+    "args0": [
+      {
+        "options": [
+          [
+            "LAN8720",
+            "ETH_PHY_LAN8720"
+          ],
+          [
+            "TLK110",
+            "ETH_PHY_TLK110"
+          ],
+          [
+            "RTL8201",
+            "ETH_PHY_RTL8201"
+          ],
+          [
+            "DP83848",
+            "ETH_PHY_DP83848"
+          ],
+          [
+            "KSZ8041",
+            "ETH_PHY_KSZ8041"
+          ],
+          [
+            "KSZ8081",
+            "ETH_PHY_KSZ8081"
+          ],
+          [
+            "W5500",
+            "ETH_PHY_W5500"
+          ],
+          [
+            "DM9051",
+            "ETH_PHY_DM9051"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "esp32_eth_begin_spi": {
+    "message0": "RST %4 IRQ%2 SPI 이더넷 PHY 타입 %1 CS%3 초기화합니다",
+    "tooltip": "SPI를 통한 이더넷 초기화 (W5500과 같은 SPI PHY에 적합)",
+    "args0": [
+      {
+        "options": [
+          [
+            "W5500",
+            "ETH_PHY_W5500"
+          ],
+          [
+            "DM9051",
+            "ETH_PHY_DM9051"
+          ]
+        ]
+      },
+      null,
+      null,
+      null
+    ]
+  },
+  "esp32_eth_connected": {
+    "message0": "이더넷이 연결되어 있습니다",
+    "tooltip": "이더넷이 연결되어 있는지 확인해 보세요"
+  },
+  "esp32_eth_local_ip": {
+    "message0": "이더넷 로컬 IP 주소",
+    "tooltip": "이더넷 로컬 IP 주소를 얻으세요"
+  },
+  "esp32_eth_mac": {
+    "message0": "이더넷 MAC 주소",
+    "tooltip": "이더넷 MAC 주소를 얻으세요"
+  },
+  "esp32_eth_full_duplex": {
+    "message0": "이더넷 전이중 모드",
+    "tooltip": "이더넷이 전이중 모드로 작동하는지 확인하세요"
+  },
+  "esp32_eth_link_speed": {
+    "message0": "이더넷 연결 속도",
+    "tooltip": "이더넷 링크 속도 (Mbps) 받기"
+  }
+}

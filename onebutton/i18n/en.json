@@ -1,0 +1,111 @@
+{
+  "toolbox_name": "OneButton",
+  "toolbox_labels": {
+    "初始化": "initialization",
+    "事件处理": "event handling",
+    "参数设置": "Parameter settings",
+    "状态查询": "Status query",
+    "控制": "control"
+  },
+  "onebutton_setup": {
+    "message0": "Create button %1 Pin %2 Mode %3 Active low %4",
+    "tooltip": "Create and initialize a button object",
+    "args0": [
+      null,
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": [
+          [
+            "Normal input",
+            "INPUT"
+          ],
+          [
+            "pull-up input",
+            "INPUT_PULLUP"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "Yes",
+            "TRUE"
+          ],
+          [
+            "No",
+            "FALSE"
+          ]
+        ]
+      }
+    ]
+  },
+  "onebutton_attach_click": {
+    "message0": "Button %1 executes when clicked",
+    "tooltip": "Execute code when button is clicked",
+    "message1": "%1"
+  },
+  "onebutton_attach_double_click": {
+    "message0": "Button %1 executes when double-clicked",
+    "tooltip": "Execute code when button is double clicked",
+    "message1": "%1"
+  },
+  "onebutton_attach_multi_click": {
+    "message0": "Button %1 is executed when clicked multiple times",
+    "tooltip": "Execute code when button is clicked multiple times",
+    "message1": "%1"
+  },
+  "onebutton_attach_press": {
+    "message0": "Button %1 executes when pressed",
+    "tooltip": "Execute code when button is pressed",
+    "message1": "%1"
+  },
+  "onebutton_attach_long_press_start": {
+    "message0": "Button %1 is executed when a long press starts",
+    "tooltip": "Execute code when button starts long pressing",
+    "message1": "%1"
+  },
+  "onebutton_attach_during_long_press": {
+    "message0": "Button %1 is executed during long press",
+    "tooltip": "Execute code when button is long pressed",
+    "message1": "%1"
+  },
+  "onebutton_attach_long_press_stop": {
+    "message0": "Button %1 is executed when the long press ends",
+    "tooltip": "Execute code when button long press ends",
+    "message1": "%1"
+  },
+  "onebutton_set_debounce_ms": {
+    "message0": "Button %1 Set anti-shake time %2 milliseconds",
+    "tooltip": "Set button anti-shake time (milliseconds)"
+  },
+  "onebutton_set_click_ms": {
+    "message0": "Button %1 Set click time %2 milliseconds",
+    "tooltip": "Set click determination time (milliseconds)"
+  },
+  "onebutton_set_press_ms": {
+    "message0": "Button %1 Set long press time %2 milliseconds",
+    "tooltip": "Set long press judgment time (milliseconds)"
+  },
+  "onebutton_set_long_press_interval_ms": {
+    "message0": "Button %1 Set long press interval %2 milliseconds",
+    "tooltip": "Set the callback interval during long press (milliseconds)"
+  },
+  "onebutton_is_long_pressed": {
+    "message0": "Is button %1 being long pressed?",
+    "tooltip": "Check if the button is being long pressed"
+  },
+  "onebutton_get_pressed_ms": {
+    "message0": "Button %1 gets the pressing time",
+    "tooltip": "Get button press duration (milliseconds)"
+  },
+  "onebutton_get_number_clicks": {
+    "message0": "Button %1 gets the number of clicks",
+    "tooltip": "Get the number of clicks on a button"
+  },
+  "onebutton_reset": {
+    "message0": "Button %1 reset state",
+    "tooltip": "Reset button state machine"
+  }
+}

@@ -1,0 +1,117 @@
+{
+  "toolbox_name": "AI—Assistant",
+  "ai_assistant_config": {
+    "message0": "シリアルポート%1ボーレート%2を使ってAIアシスタントを設定",
+    "tooltip": "AIアシスタントのシリアル通信の設定",
+    "args0": [
+      {
+        "options": "${board.serialPort}"
+      },
+      {
+        "options": "${board.serialSpeed}"
+      }
+    ]
+  },
+  "serial_command_handler": {
+    "message0": "指揮%1受領",
+    "tooltip": "指定されたタイプのコマンドが受信されているか確認してください",
+    "args0": [
+      {
+        "options": [
+          [
+            "小さな荷車が前に進む",
+            "MOVE_FORWARD"
+          ],
+          [
+            "小さな車がバックする",
+            "MOVE_BACKWARD"
+          ],
+          [
+            "小さな馬車が左に曲がる",
+            "TURN_LEFT"
+          ],
+          [
+            "小さな馬車が右に曲がる",
+            "TURN_RIGHT"
+          ],
+          [
+            "車は突然止まった",
+            "STOP"
+          ],
+          [
+            "LEDを点けて",
+            "LED_ON"
+          ],
+          [
+            "LEDを消せ",
+            "LED_OFF"
+          ],
+          [
+            "LED点滅",
+            "LED_BLINK"
+          ],
+          [
+            "サーボが回転します",
+            "SERVO_ROTATE"
+          ],
+          [
+            "ファンの回転数を調整してください",
+            "FAN_SPEED"
+          ],
+          [
+            "扇風機をつけろ",
+            "FAN_ON"
+          ],
+          [
+            "扇風機を止めて",
+            "FAN_OFF"
+          ],
+          [
+            "カラフルライトをつけて",
+            "RGB_ON"
+          ],
+          [
+            "カラフルライトを消して",
+            "RGB_OFF"
+          ],
+          [
+            "色付きのライトの明るさを設定してください",
+            "RGB_BRIGHTNESS"
+          ],
+          [
+            "カラーライト用のカラーグラデーションを設定しましょう",
+            "RGB_GRADIENT"
+          ],
+          [
+            "ロボットアームグリップ",
+            "ARM_GRAB"
+          ],
+          [
+            "ロボットアームが緩んだ",
+            "ARM_RELEASE"
+          ],
+          [
+            "ロボットアームは元の位置に戻ります",
+            "ARM_DOWN"
+          ],
+          [
+            "リレーを開けろ",
+            "RELAY_ON"
+          ],
+          [
+            "リレーを切って",
+            "RELAY_OFF"
+          ]
+        ]
+      }
+    ]
+  },
+  "serial_custom_command": {
+    "message0": "カメラが認識:%1",
+    "tooltip": "カスタムコマンドを受け取ったかどうか(部分的なマッチング対応)"
+  },
+  "serial_clear_command": {
+    "message0": "受信コマンドをクリア",
+    "tooltip": "すべてのコマンドを処理するためにreceivedCommand変数をクリアします"
+  }
+}

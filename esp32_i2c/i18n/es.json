@@ -1,0 +1,156 @@
+{
+  "toolbox_name": "ESP32 I2C",
+  "toolbox_labels": {
+    "I2C主模式": "modo maestro I2C",
+    "数据传输（基础）": "Transferencia de datos (básico)",
+    "数据接收（基础）": "Recepción de datos (básica)",
+    "简化操作": "Simplifique las operaciones",
+    "I2C从模式": "Modo esclavo I2C"
+  },
+  "esp32_i2c_begin": {
+    "message0": "Inicializar el pin SDA de comunicación I2C %1 el pin SCL %2 frecuencia %3 kHz",
+    "tooltip": "Inicializar la comunicación I2C del ESP32, establecer los pines SDA y SCL, y la frecuencia de comunicación",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "100 (Modo Estándar)",
+            "100000"
+          ],
+          [
+            "400 (Modo Rápido)",
+            "400000"
+          ],
+          [
+            "1000 (Modo Rápido+)",
+            "1000000"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_i2c_begin_simple": {
+    "message0": "Inicializar la comunicación I2C (usando pines por defecto)",
+    "tooltip": "Inicializar la comunicación I2C de ESP32 usando los pines predeterminados"
+  },
+  "esp32_i2c_scan_devices": {
+    "message0": "Escaneo de dispositivos I2C",
+    "tooltip": "Escanea y devuelve el número de dispositivos I2C encontrados"
+  },
+  "esp32_i2c_begin_transmission": {
+    "message0": "Empieza a enviar datos al dispositivo %1",
+    "tooltip": "Empieza a enviar datos a dispositivos con direcciones I2C especificadas"
+  },
+  "esp32_i2c_write_byte": {
+    "message0": "Byte de escritura data%1",
+    "tooltip": "Escribe un byte de datos en el dispositivo I2C"
+  },
+  "esp32_i2c_write_string": {
+    "message0": "Escribe un string%1",
+    "tooltip": "Escribir datos de cadenas en dispositivos I2C"
+  },
+  "esp32_i2c_end_transmission": {
+    "message0": "Transmisión de datos al final",
+    "tooltip": "Finalizar la transmisión de datos I2C, devolver un código de error (0 significa exitoso)"
+  },
+  "esp32_i2c_request_from": {
+    "message0": "Solicita %2byte datos del dispositivo %1",
+    "tooltip": "Solicitar datos con un número especificado de bytes a un dispositivo I2C especificado"
+  },
+  "esp32_i2c_available": {
+    "message0": "I2C puede leer bytes",
+    "tooltip": "Devuelve el número de bytes legibles en el búfer de recepción I2C"
+  },
+  "esp32_i2c_read": {
+    "message0": "Leer datos de I2C",
+    "tooltip": "Lee un byte de datos del búfer de recepción I2C"
+  },
+  "esp32_i2c_slave_begin": {
+    "message0": "Inicializar el modo esclavo I2C Dirección %1 pin SDA %2 pin SCL %3",
+    "tooltip": "Inicializar el modo esclavo I2C del ESP32, establecer las direcciones y pines del dispositivo esclavo"
+  },
+  "esp32_i2c_on_receive": {
+    "message0": "Cuando los datos están received%1 %2",
+    "tooltip": "Establece la función de callback cuando I2C recibe datos del dispositivo"
+  },
+  "esp32_i2c_on_request": {
+    "message0": "Cuando el dispositivo maestro solicita datos %1 %2",
+    "tooltip": "Establece la función de callback cuando los dispositivos esclavos I2C responden a las solicitudes del dispositivo maestro"
+  },
+  "esp32_i2c_slave_print": {
+    "message0": "Enviar cadenas desde el device%1",
+    "tooltip": "I2C envía datos de cadena desde el dispositivo esclavo al dispositivo maestro"
+  },
+  "esp32_i2c_write_to_device": {
+    "message0": "Escribe datos %1 en el device%2",
+    "tooltip": "Una versión simplificada de la escritura de datos en dispositivos I2C específicos",
+    "args0": [
+      {
+        "options": [
+          [
+            "0x3C (Pantalla OLED)",
+            "0x3C"
+          ],
+          [
+            "0x48 (ADS1115)",
+            "0x48"
+          ],
+          [
+            "0x68 (MPU6050)",
+            "0x68"
+          ],
+          [
+            "0x76 (BMP280)",
+            "0x76"
+          ],
+          [
+            "0x77 (respaldo BMP280)",
+            "0x77"
+          ],
+          [
+            "Dirección personalizada",
+            "CUSTOM"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "esp32_i2c_read_from_device": {
+    "message0": "Lee %2 bytes de datos del dispositivo %1",
+    "tooltip": "Lee un número especificado de bytes de datos de un dispositivo I2C especificado",
+    "args0": [
+      {
+        "options": [
+          [
+            "0x3C (Pantalla OLED)",
+            "0x3C"
+          ],
+          [
+            "0x48 (ADS1115)",
+            "0x48"
+          ],
+          [
+            "0x68 (MPU6050)",
+            "0x68"
+          ],
+          [
+            "0x76 (BMP280)",
+            "0x76"
+          ],
+          [
+            "0x77 (respaldo BMP280)",
+            "0x77"
+          ],
+          [
+            "Dirección personalizada",
+            "CUSTOM"
+          ]
+        ]
+      },
+      null
+    ]
+  }
+}

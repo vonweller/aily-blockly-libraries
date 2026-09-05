@@ -1,0 +1,248 @@
+{
+  "toolbox_name": "AS5600 Magnetic Angle Sensor",
+  "as5600_init": {
+    "message0": "Initialize AS5600 sensor %1 address %2 direction pin %3",
+    "tooltip": "Initializing the AS5600 Magnetic Angle Sensor",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "AS5600 (0x36)",
+            "0x36"
+          ],
+          [
+            "AS5600L (0x40)",
+            "0x40"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "Software control",
+            "255"
+          ],
+          [
+            "2",
+            "2"
+          ],
+          [
+            "3",
+            "3"
+          ],
+          [
+            "4",
+            "4"
+          ],
+          [
+            "5",
+            "5"
+          ],
+          [
+            "6",
+            "6"
+          ],
+          [
+            "7",
+            "7"
+          ],
+          [
+            "8",
+            "8"
+          ],
+          [
+            "9",
+            "9"
+          ],
+          [
+            "10",
+            "10"
+          ],
+          [
+            "11",
+            "11"
+          ],
+          [
+            "12",
+            "12"
+          ],
+          [
+            "13",
+            "13"
+          ]
+        ]
+      }
+    ]
+  },
+  "as5600_read_angle": {
+    "message0": "Read AS5600 angle %1 unit %2",
+    "tooltip": "Read the angle value of the AS5600 sensor",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Degree",
+            "degrees"
+          ],
+          [
+            "radians",
+            "radians"
+          ],
+          [
+            "original value",
+            "raw"
+          ]
+        ]
+      }
+    ]
+  },
+  "as5600_read_raw_angle": {
+    "message0": "Read AS5600 original angle",
+    "tooltip": "Read the original angle value of the AS5600 sensor (0-4095)"
+  },
+  "as5600_set_direction": {
+    "message0": "Set AS5600 rotation direction%1",
+    "tooltip": "Set the rotation direction of the AS5600 sensor",
+    "args0": [
+      {
+        "options": [
+          [
+            "clockwise",
+            "0"
+          ],
+          [
+            "Counterclockwise",
+            "1"
+          ]
+        ]
+      }
+    ]
+  },
+  "as5600_set_offset": {
+    "message0": "Set AS5600 angle offset %1 degrees",
+    "tooltip": "Set the angle offset value of the AS5600 sensor"
+  },
+  "as5600_get_offset": {
+    "message0": "Get AS5600 angle offset",
+    "tooltip": "Get the current angle offset value of the AS5600 sensor"
+  },
+  "as5600_detect_magnet": {
+    "message0": "AS5600 detects magnet",
+    "tooltip": "Detect whether the AS5600 sensor detects a magnet"
+  },
+  "as5600_magnet_status": {
+    "message0": "AS5600 magnet%1",
+    "tooltip": "Detect the magnet strength status of AS5600 sensor",
+    "args0": [
+      {
+        "options": [
+          [
+            "Too strong",
+            "strong"
+          ],
+          [
+            "too weak",
+            "weak"
+          ]
+        ]
+      }
+    ]
+  },
+  "as5600_read_magnitude": {
+    "message0": "Read AS5600 magnetic field strength",
+    "tooltip": "Read the magnetic field strength value of the AS5600 sensor"
+  },
+  "as5600_read_agc": {
+    "message0": "Read AS5600 automatic gain",
+    "tooltip": "Read the automatic gain control value of the AS5600 sensor"
+  },
+  "as5600_angular_speed": {
+    "message0": "Read AS5600 angular velocity %1 unit %2",
+    "tooltip": "Reading the angular velocity of the AS5600 sensor",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "degrees/second",
+            "degrees"
+          ],
+          [
+            "rad/second",
+            "radians"
+          ],
+          [
+            "RPM",
+            "rpm"
+          ]
+        ]
+      }
+    ]
+  },
+  "as5600_cumulative_position": {
+    "message0": "Read AS5600 cumulative position",
+    "tooltip": "Read the accumulated position of the AS5600 sensor (supports multi-turn counting)"
+  },
+  "as5600_revolutions": {
+    "message0": "Read AS5600 rpm",
+    "tooltip": "Reading the complete number of revolutions of the AS5600 sensor"
+  },
+  "as5600_reset_position": {
+    "message0": "Reset the AS5600 cumulative position to %1",
+    "tooltip": "Reset the accumulated position of the AS5600 sensor"
+  },
+  "as5600_set_power_mode": {
+    "message0": "Set AS5600 power consumption mode%1",
+    "tooltip": "Set the power consumption mode of the AS5600 sensor",
+    "args0": [
+      {
+        "options": [
+          [
+            "normal",
+            "0"
+          ],
+          [
+            "Low power consumption1",
+            "1"
+          ],
+          [
+            "Low power consumption 2",
+            "2"
+          ],
+          [
+            "Low power consumption 3",
+            "3"
+          ]
+        ]
+      }
+    ]
+  },
+  "as5600_set_output_mode": {
+    "message0": "Set AS5600 output mode%1",
+    "tooltip": "Set the output mode of the AS5600 sensor",
+    "args0": [
+      {
+        "options": [
+          [
+            "Simulate 0-100%",
+            "0"
+          ],
+          [
+            "Simulation 10-90%",
+            "1"
+          ],
+          [
+            "PWM",
+            "2"
+          ]
+        ]
+      }
+    ]
+  },
+  "as5600_is_connected": {
+    "message0": "AS5600 is connected",
+    "tooltip": "Detect whether the AS5600 sensor is connected"
+  }
+}

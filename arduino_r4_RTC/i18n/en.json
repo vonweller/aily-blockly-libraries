@@ -1,0 +1,204 @@
+{
+  "toolbox_name": "R4 real time clock",
+  "toolbox_labels": {
+    "基础操作": "Basic operations",
+    "时间设置": "Time setting",
+    "时间获取": "Time acquisition",
+    "回调函数": "callback function"
+  },
+  "renesas_rtc_begin": {
+    "message0": "Initialize RTC",
+    "tooltip": "Initialize RTC module"
+  },
+  "renesas_rtc_is_running": {
+    "message0": "Is the RTC running?",
+    "tooltip": "Check if RTC is running"
+  },
+  "renesas_rtc_set_time": {
+    "message0": "Set RTC time %1 year %2 month %3 day %4 hour %5 minutes %6 seconds day of the week %7",
+    "tooltip": "Set RTC time"
+  },
+  "renesas_rtc_get_time": {
+    "message0": "Get RTC time to %1",
+    "tooltip": "Get the current RTC time to the specified variable"
+  },
+  "renesas_rtc_time_get_day": {
+    "message0": "Get the date of %1 (1-31)",
+    "tooltip": "Get the day of the time object"
+  },
+  "renesas_rtc_time_get_month": {
+    "message0": "Get the month (1-12) of %1",
+    "tooltip": "Get the month of the time object"
+  },
+  "renesas_rtc_time_get_year": {
+    "message0": "Get the year of %1",
+    "tooltip": "Get the year of a time object"
+  },
+  "renesas_rtc_time_get_hour": {
+    "message0": "Get the hour of %1 (0-23)",
+    "tooltip": "Get the hour of the time object (0-23)"
+  },
+  "renesas_rtc_time_get_minute": {
+    "message0": "Get the minutes of %1 (0-59)",
+    "tooltip": "Get the minutes of the time object (0-59)"
+  },
+  "renesas_rtc_time_get_second": {
+    "message0": "Get the seconds of %1 (0-59)",
+    "tooltip": "Get the seconds of the time object (0-59)"
+  },
+  "renesas_rtc_time_get_day_of_week": {
+    "message0": "Get the day of the week (0-6) of %1",
+    "tooltip": "Get the day of the week (0-6) of the time object"
+  },
+  "renesas_rtc_set_periodic_callback": {
+    "message0": "Set RTC cycle callback cycle%1",
+    "tooltip": "Set the RTC periodic callback function (only one callback can be set)",
+    "args0": [
+      {
+        "options": [
+          [
+            "every 2 seconds",
+            "ONCE_EVERY_2_SEC"
+          ],
+          [
+            "every 1 second",
+            "ONCE_EVERY_1_SEC"
+          ],
+          [
+            "2 times per second",
+            "N2_TIMES_EVERY_SEC"
+          ],
+          [
+            "4 times per second",
+            "N4_TIMES_EVERY_SEC"
+          ],
+          [
+            "8 times per second",
+            "N8_TIMES_EVERY_SEC"
+          ],
+          [
+            "16 times per second",
+            "N16_TIMES_EVERY_SEC"
+          ],
+          [
+            "32 times per second",
+            "N32_TIMES_EVERY_SEC"
+          ],
+          [
+            "64 times per second",
+            "N64_TIMES_EVERY_SEC"
+          ],
+          [
+            "128 times per second",
+            "N128_TIMES_EVERY_SEC"
+          ],
+          [
+            "256 times per second",
+            "N256_TIMES_EVERY_SEC"
+          ]
+        ]
+      }
+    ],
+    "message1": "Execute %1"
+  },
+  "renesas_rtc_set_alarm_callback": {
+    "message0": "Set RTC alarm callback seconds%1",
+    "tooltip": "Set the RTC alarm callback function to be triggered when the seconds match (the alarm can only be set once)",
+    "message1": "Execute %1"
+  },
+  "renesas_rtc_set_time_if_not_running": {
+    "message0": "Set the time if RTC is not running Day%1 Month%2 Year%3 Hours%4 Minutes%5 Seconds%6 Weekday%7",
+    "tooltip": "Set time if RTC is not running",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "January",
+            "JANUARY"
+          ],
+          [
+            "February",
+            "FEBRUARY"
+          ],
+          [
+            "March",
+            "MARCH"
+          ],
+          [
+            "April",
+            "APRIL"
+          ],
+          [
+            "May",
+            "MAY"
+          ],
+          [
+            "June",
+            "JUNE"
+          ],
+          [
+            "July",
+            "JULY"
+          ],
+          [
+            "August",
+            "AUGUST"
+          ],
+          [
+            "September",
+            "SEPTEMBER"
+          ],
+          [
+            "October",
+            "OCTOBER"
+          ],
+          [
+            "November",
+            "NOVEMBER"
+          ],
+          [
+            "December",
+            "DECEMBER"
+          ]
+        ]
+      },
+      null,
+      null,
+      null,
+      null,
+      {
+        "options": [
+          [
+            "Sunday",
+            "SUNDAY"
+          ],
+          [
+            "Monday",
+            "MONDAY"
+          ],
+          [
+            "tuesday",
+            "TUESDAY"
+          ],
+          [
+            "wednesday",
+            "WEDNESDAY"
+          ],
+          [
+            "Thursday",
+            "THURSDAY"
+          ],
+          [
+            "Friday",
+            "FRIDAY"
+          ],
+          [
+            "Saturday",
+            "SATURDAY"
+          ]
+        ]
+      }
+    ]
+  }
+}

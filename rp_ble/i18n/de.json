@@ -1,0 +1,173 @@
+{
+  "toolbox_name": "Pico BLE",
+  "toolbox_labels": {
+    "初始化": "Initialisierung",
+    "广播管理": "Broadcast-Management",
+    "扫描设备": "Scangerät",
+    "GATT服务": "GATT-Dienste",
+    "事件回调": "Ereignisrückruf",
+    "连接管理": "Verbindungsmanagement"
+  },
+  "rp_ble_setup": {
+    "message0": "BLE-Gerätename initialisieren: %1",
+    "tooltip": "Initialisiere BLE Bluetooth und setze den Gerätenamen"
+  },
+  "rp_ble_setup_simple": {
+    "message0": "BLE initialisieren (mit Standardname)",
+    "tooltip": "Initialisieren Sie BLE Bluetooth mit dem Standardnamen"
+  },
+  "rp_ble_start_advertising": {
+    "message0": "Start BLE Radio",
+    "tooltip": "Starten Sie BLE-Broadcasts, damit andere Geräte sie erkennen können"
+  },
+  "rp_ble_stop_advertising": {
+    "message0": "BLE-Sendungen stoppen",
+    "tooltip": "BLE-Sendungen stoppen"
+  },
+  "rp_ble_ibeacon_configure": {
+    "message0": "Konfigurieren Sie iBeacon UUID %1 primäre ID %2 sekundäre ID %3",
+    "tooltip": "iBeacon-Parameter konfigurieren"
+  },
+  "rp_ble_start_scanning": {
+    "message0": "Starte den BLE-Scan",
+    "tooltip": "Beginnen Sie mit dem Scannen der umliegenden BLE-Geräte"
+  },
+  "rp_ble_stop_scanning": {
+    "message0": "BLE-Scannen stoppen",
+    "tooltip": "Stoppen Sie das Scannen von BLE-Geräten"
+  },
+  "rp_ble_on_advertisement": {
+    "message0": "Beim Scannen zum BLE-Broadcast werden Geräteinformationen gespeichert %1",
+    "tooltip": "Code beim Scannen an BLE-Geräte-Broadcasts ausführen",
+    "message1": "ausführen %1"
+  },
+  "rp_ble_adv_get_address": {
+    "message0": "Erhalten Sie die Geräteadresse des Broadcast-%1",
+    "tooltip": "Erhalten Sie die MAC-Adresse des Broadcast-Geräts"
+  },
+  "rp_ble_adv_get_rssi": {
+    "message0": "Erfassen Sie die Signalstärke (RSSI) des Broadcast-%1",
+    "tooltip": "Ermitteln Sie die Signalstärke-RSSI der Rundfunkausrüstung"
+  },
+  "rp_ble_adv_is_ibeacon": {
+    "message0": "Der Broadcast-%1 ist iBeacon",
+    "tooltip": "Überprüfe, ob die Übertragung iBeacon verwendet"
+  },
+  "rp_ble_adv_name_has_prefix": {
+    "message0": "Broadcast %1 Gerätenamen beginnen mit %2",
+    "tooltip": "Überprüfen Sie, ob der Name des Broadcast-Geräts mit dem angegebenen Präfix beginnt"
+  },
+  "rp_ble_add_service": {
+    "message0": "Fügen Sie GATT-Service-UUIDs hinzu%1",
+    "tooltip": "Fügen Sie einen GATT-Dienst hinzu"
+  },
+  "rp_ble_add_characteristic": {
+    "message0": "Funktionen UUID %1 Attribute %2 Anfangswerte hinzufügen %3",
+    "tooltip": "Fügen Sie einen statischen Eigenwert hinzu",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Nur für Lesen",
+            "ATT_PROPERTY_READ"
+          ],
+          [
+            "Schreib einfach",
+            "ATT_PROPERTY_WRITE"
+          ],
+          [
+            "Lesen/Schreiben",
+            "ATT_PROPERTY_READ | ATT_PROPERTY_WRITE"
+          ],
+          [
+            "Benachrichtigen",
+            "ATT_PROPERTY_NOTIFY"
+          ],
+          [
+            "Lesen + benachrichtigen",
+            "ATT_PROPERTY_READ | ATT_PROPERTY_NOTIFY"
+          ],
+          [
+            "Lesen/Schreiben+Notify",
+            "ATT_PROPERTY_READ | ATT_PROPERTY_WRITE | ATT_PROPERTY_NOTIFY"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "rp_ble_add_characteristic_dynamic": {
+    "message0": "Dynamische Funktionen UUID %1 Attribute %2 ID hinzufügen %3",
+    "tooltip": "Fügen Sie eine dynamische Funktion hinzu, und Lesen und Schreiben werden über Rückrufe verarbeitet",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Nur für Lesen",
+            "ATT_PROPERTY_READ"
+          ],
+          [
+            "Schreib einfach",
+            "ATT_PROPERTY_WRITE"
+          ],
+          [
+            "Lesen/Schreiben",
+            "ATT_PROPERTY_READ | ATT_PROPERTY_WRITE"
+          ],
+          [
+            "Benachrichtigen",
+            "ATT_PROPERTY_NOTIFY"
+          ],
+          [
+            "Lesen + benachrichtigen",
+            "ATT_PROPERTY_READ | ATT_PROPERTY_NOTIFY"
+          ],
+          [
+            "Lesen/Schreiben+Notify",
+            "ATT_PROPERTY_READ | ATT_PROPERTY_WRITE | ATT_PROPERTY_NOTIFY"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "rp_ble_on_device_connected": {
+    "message0": "Wenn BLE-Geräte verbunden sind, wird das Gerät in %1",
+    "tooltip": "Code ausführen, wenn das BLE-Gerät erfolgreich verbunden ist",
+    "message1": "ausführen %1"
+  },
+  "rp_ble_on_device_disconnected": {
+    "message0": "Wenn das BLE-Gerät getrennt wird",
+    "tooltip": "Führt Code aus, wenn das BLE-Gerät getrennt wird",
+    "message1": "ausführen %1"
+  },
+  "rp_ble_on_characteristic_read": {
+    "message0": "Wenn ein Feature gelesen wird, %1 Feature-ID Puffer %2 Puffergröße %3",
+    "tooltip": "Wenn dynamische Features gelesen werden, wird Code ausgeführt und die Datenlänge muss zurückgegeben werden",
+    "message1": "ausführen %1",
+    "message2": "Rückgabe der Datenlänge %1"
+  },
+  "rp_ble_on_characteristic_write": {
+    "message0": "Wenn ein Merkmal geschrieben wird: Merkmals-ID %1 Daten %2 Datenlänge %3",
+    "tooltip": "Code wird ausgeführt, wenn dynamische Features geschrieben werden",
+    "message1": "ausführen %1"
+  },
+  "rp_ble_write_buffer": {
+    "message0": "Schreibpuffer %1 Daten %2",
+    "tooltip": "Schreibe Daten in den Puffer (für Feature Read Callback)"
+  },
+  "rp_ble_connect": {
+    "message0": "BLE-Geräte verbinden, um %1 Timeout %2 Millisekunden zu adressieren",
+    "tooltip": "Verbinden Sie BLE-Geräte mit angegebenen Adressen"
+  },
+  "rp_ble_connect_adv": {
+    "message0": "Das Verbinden von BLE-Broadcast-Geräten %1 Timeout %2 Millisekunden",
+    "tooltip": "Verbinden Sie das gescannte BLE-Broadcast-Gerät"
+  },
+  "rp_ble_disconnect": {
+    "message0": "Trennen Sie die BLE-Ausrüstung %1",
+    "tooltip": "Trennen Sie sich vom BLE-Gerät"
+  }
+}

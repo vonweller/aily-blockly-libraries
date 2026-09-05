@@ -1,0 +1,817 @@
+{
+  "toolbox_name": "Xiaomi MiMo IA",
+  "toolbox_labels": {
+    "配置": "Configuración",
+    "音频硬件": "hardware de audio",
+    "语音录入": "Grabación de voz",
+    "文本对话": "conversación de texto",
+    "图片理解": "Comprensión de imágenes",
+    "音频理解": "comprensión de audio",
+    "视频理解": "comprensión del vídeo",
+    "语音合成": "síntesis de voz",
+    "I2S播放": "juego I2S",
+    "流式回调": "Devolución de llamada en streaming",
+    "状态管理": "Gestión de estado",
+    "语音识别": "Reconocimiento de voz"
+  },
+  "mimo_config": {
+    "message0": "Configurar Xiaomi MiMo Clave API %1 URL base %2",
+    "tooltip": "Configurar la clave API y URL base de Xiaomi MiMo AI"
+  },
+  "mimo_k10_audio_init": {
+    "message0": "Inicializar micrófono+altavoz K10 objeto %1 %2 frecuencia %3",
+    "tooltip": "Inicializa el micrófono y el altavoz del UNIHIKER K10; usa el mismo objeto para grabar y reproducir."
+  },
+  "mimo_i2s_speaker_init": {
+    "message0": "Objeto de inicialización de altavoces I2S %1 %2 BCLK %3 LRCLK %4 %5 frecuencia de muestreo DIN %6",
+    "tooltip": "Inicializar MAX98357A y otros objetos de salida de altavoces I2S, y declarar automáticamente los objetos I2SClass"
+  },
+  "mimo_i2s_mic_init": {
+    "message0": "Objeto de inicialización de micrófono I2S %1 %2 BCLK %3 LRCLK/WS %4 SD/DOUT %5 Tasa de muestreo %6",
+    "tooltip": "Inicializar objetos de entrada estándar de micrófono I2S como INMP441 y declarar automáticamente los objetos I2SClass"
+  },
+  "mimo_pdm_mic_init": {
+    "message0": "Objeto de inicialización de micrófono PDM %1 %2 CLK %3 datos %4 tasa de muestreo %5",
+    "tooltip": "Inicializa objetos de entrada de micrófono PDM, adecuados para micrófonos internos XIAO ESP32S3 Sense y otros. XIAO ESP32S3 Sense por defecto es 42 CLK y 41 DATA"
+  },
+  "mimo_es8311_mic_init": {
+    "message0": "ES8311 Objeto de inicialización de micrófono %1 %2 SDA %3 SCL %4 Dirección %5 BCLK %6 LRCLK %7 SDOUT %8 MCLK %9 Frecuencia de muestreo %10 Registro de ganancia %11",
+    "tooltip": "Inicializa la entrada del micrófono del códec de audio ES8311, primero configura la ruta ADC/micrófono vía I2C y luego inicializa el objeto de grabación I2S. Dirección por defecto 0x18 (decimal 24), registro de ganancia por defecto 0x24 (decimal 36)"
+  },
+  "mimo_es8311_audio_init": {
+    "message0": "ES8311 Micrófono + Objeto de inicialización de altavoz %1 %2 SDA %3 SCL %4 Dirección %5 BCLK/SCLK %6 LR %7 Entrada DI/DAC %8 Salida DO/ADC %9 MCK %10 Frecuencia de muestreo %11 Registro de ganancia %12 PA_EN %13",
+    "tooltip": "Inicializa los canales de micrófono y altavoz del códec de audio ES8311, adecuado para placas de micrófono + amplificador de audio. Valores predeterminados en la figura: SCLK39, LR2, DI38, DO40, MCK46, SDA41, SCL42. El ES8311 suministra alimentación de 3V y amplificador de NS4150B de 5V. PA_EN por defecto -1 significa sin control; Si la placa tiene un pin de activación del amplificador, insertar GPIO aumentará la puntuación"
+  },
+  "mimo_i2s_prompt_tone": {
+    "message0": "Reproduce Indicación Sonido Objeto %1 %2 Frecuencia Hz %3 Duración ms %4",
+    "tooltip": "Reproduce un breve sonido de aviso a través del objeto actual del altavoz I2S/ES8311, usado para iniciar, terminar o comprobar la salida del altavoz"
+  },
+  "mimo_i2s_record_text": {
+    "message0": "Objeto de micrófono de grabación a texto Xiaomi MiMo %1 %2 Grabación %3 segundos %4 Modelo %5 %6 Prompt de transcripción (opcional) %7",
+    "tooltip": "Usar el micrófono I2S para grabar y llamar al audio del Xiaomi MiMo, la interpretación solo devuelve el texto reconocido/entendido. El formato de grabación es mono de 16kHz",
+    "args0": [
+      null,
+      null,
+      null,
+      null,
+      {
+        "options": [
+          [
+            "mimo-v2.5",
+            "mimo-v2.5"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "mimo_i2s_asr": {
+    "message0": "Reconocimiento de voz Xiaomi MiMo micrófono %1 %2 grabar %3 segundos %4 idioma %5",
+    "tooltip": "Graba con un micrófono I2S y transcribe mediante mimo-v2.5-asr.",
+    "args0": [
+      null,
+      null,
+      null,
+      null,
+      {
+        "options": [
+          [
+            "Automático",
+            "auto"
+          ],
+          [
+            "Chino",
+            "zh"
+          ],
+          [
+            "Inglés",
+            "en"
+          ]
+        ]
+      }
+    ]
+  },
+  "mimo_voice_chat": {
+    "message0": "Micrófono de conversación de voz Xiaomi MiMo, objeto %1 objeto altavoz %2 %3 grabación %4 segundos %5 comprensión del modelo %6 tono %7  Modelo TTS %8 Tono de Prompt %9 %10 Pregunta (opcional) %11",
+    "tooltip": "Primero, graba con un micrófono I2S y deja que Xiaomi MiMo lo entienda, luego sintetiza la respuesta mediante TTS y reproducela en el altavoz I2S. Se escuchará un pitido de aviso al principio y al final de la grabación",
+    "args0": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      {
+        "options": [
+          [
+            "mimo-v2.5",
+            "mimo-v2.5"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "MiMo predeterminada",
+            "mimo_default"
+          ],
+          [
+            "Rock Sugar (V2.5 Voz femenina china)",
+            "冰糖"
+          ],
+          [
+            "Jasmine (V2.5 Voz femenina china)",
+            "茉莉"
+          ],
+          [
+            "Soda (V2.5 Voz masculina china)",
+            "苏打"
+          ],
+          [
+            "Bai Hua (V2.5 Voz masculina china)",
+            "白桦"
+          ],
+          [
+            "Mia (V2.5)",
+            "Mia"
+          ],
+          [
+            "Chloe (V2.5)",
+            "Chloe"
+          ],
+          [
+            "Milo (V2.5)",
+            "Milo"
+          ],
+          [
+            "Dean (V2.5)",
+            "Dean"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "MiMo-V2.5-TTS",
+            "mimo-v2.5-tts"
+          ]
+        ]
+      },
+      null,
+      null,
+      null
+    ]
+  },
+  "mimo_chat": {
+    "message0": "Chat Xiaomi IA mensaje de usuario %1 modelo %2 pensamiento profundo %3",
+    "tooltip": "Enviar mensaje a Xiaomi MiMo AI y obtener respuesta",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "mimo-v2.5",
+            "mimo-v2.5"
+          ],
+          [
+            "Mimo-v2.5-Pro",
+            "mimo-v2.5-pro"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "Desactivado",
+            "disabled"
+          ],
+          [
+            "Activado",
+            "enabled"
+          ]
+        ]
+      }
+    ]
+  },
+  "mimo_chat_with_history": {
+    "message0": "Chat Xiaomi IA multironda mensaje de usuario %1 modelo %2 pensamiento profundo %3",
+    "tooltip": "Xiaomi MiMo IA con soporte de conversación multironda",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "mimo-v2.5",
+            "mimo-v2.5"
+          ],
+          [
+            "Mimo-v2.5-Pro",
+            "mimo-v2.5-pro"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "Desactivado",
+            "disabled"
+          ],
+          [
+            "Activado",
+            "enabled"
+          ]
+        ]
+      }
+    ]
+  },
+  "mimo_clear_history": {
+    "message0": "Borrar historial de chat Xiaomi IA",
+    "tooltip": "Borrar el historial de conversación guardado"
+  },
+  "mimo_set_system_prompt": {
+    "message0": "Establecer prompt del sistema Xiaomi IA %1",
+    "tooltip": "Establecer el rol y reglas del asistente IA"
+  },
+  "mimo_image_understand_url": {
+    "message0": "Xiaomi IA Comprensión de imagen (URL) URL imagen %1 prompt %2 modelo %3",
+    "tooltip": "Analizar imágenes mediante URL",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "mimo-v2.5",
+            "mimo-v2.5"
+          ]
+        ]
+      }
+    ]
+  },
+  "mimo_image_understand_base64": {
+    "message0": "Xiaomi IA Comprensión de imagen (Base64) imagen Base64 %1 prompt %2 modelo %3",
+    "tooltip": "Analizar imágenes mediante Base64",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "mimo-v2.5",
+            "mimo-v2.5"
+          ]
+        ]
+      }
+    ]
+  },
+  "mimo_image_understand_capture": {
+    "message0": "Xiaomi IA Comprensión de imagen (Captura) prompt %1 modelo %2",
+    "tooltip": "Capturar desde cámara y enviar a Xiaomi IA",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "mimo-v2.5",
+            "mimo-v2.5"
+          ]
+        ]
+      }
+    ]
+  },
+  "mimo_audio_understand": {
+    "message0": "Xiaomi IA Comprensión de audio URL audio %1 prompt %2 modelo %3",
+    "tooltip": "Analizar audio mediante URL",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "mimo-v2.5",
+            "mimo-v2.5"
+          ]
+        ]
+      }
+    ]
+  },
+  "mimo_audio_understand_base64": {
+    "message0": "Xiaomi IA Comprensión de audio (Base64) audio Base64 %1 prompt %2 modelo %3",
+    "tooltip": "Analizar audio mediante Base64",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "mimo-v2.5",
+            "mimo-v2.5"
+          ]
+        ]
+      }
+    ]
+  },
+  "mimo_asr_base64": {
+    "message0": "Reconocimiento de voz Xiaomi MiMo audio Base64 %1 formato %2 idioma %3",
+    "tooltip": "Transcribe audio WAV o MP3 codificado en Base64.",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "WAV",
+            "wav"
+          ],
+          [
+            "MP3",
+            "mp3"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "Automático",
+            "auto"
+          ],
+          [
+            "Chino",
+            "zh"
+          ],
+          [
+            "Inglés",
+            "en"
+          ]
+        ]
+      }
+    ]
+  },
+  "mimo_video_understand": {
+    "message0": "Xiaomi IA Comprensión de video URL video %1 prompt %2 fps %3 modelo %4",
+    "tooltip": "Analizar video mediante URL, con fps configurable",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "2 (predeterminado)",
+            "2"
+          ],
+          [
+            "1 (bajo)",
+            "1"
+          ],
+          [
+            "5 (alto)",
+            "5"
+          ],
+          [
+            "10 (muy alto)",
+            "10"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "mimo-v2.5",
+            "mimo-v2.5"
+          ]
+        ]
+      }
+    ]
+  },
+  "mimo_video_understand_base64": {
+    "message0": "Xiaomi IA Comprensión de video (Base64) video Base64 %1 prompt %2 fps %3 modelo %4",
+    "tooltip": "Analizar video mediante Base64, con fps configurable",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "2 (predeterminado)",
+            "2"
+          ],
+          [
+            "1 (bajo)",
+            "1"
+          ],
+          [
+            "5 (alto)",
+            "5"
+          ],
+          [
+            "10 (muy alto)",
+            "10"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "mimo-v2.5",
+            "mimo-v2.5"
+          ]
+        ]
+      }
+    ]
+  },
+  "mimo_tts": {
+    "message0": "Xiaomi IA Síntesis de voz texto %1 voz %2 modelo %3",
+    "tooltip": "Síntesis de voz con voz predefinida, retorna audio WAV Base64",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "MiMo predeterminada",
+            "mimo_default"
+          ],
+          [
+            "Rock Sugar (V2.5 Voz femenina china)",
+            "冰糖"
+          ],
+          [
+            "Jasmine (V2.5 Voz femenina china)",
+            "茉莉"
+          ],
+          [
+            "Soda (V2.5 Voz masculina china)",
+            "苏打"
+          ],
+          [
+            "Bai Hua (V2.5 Voz masculina china)",
+            "白桦"
+          ],
+          [
+            "Mia (V2.5)",
+            "Mia"
+          ],
+          [
+            "Chloe (V2.5)",
+            "Chloe"
+          ],
+          [
+            "Milo (V2.5)",
+            "Milo"
+          ],
+          [
+            "Dean (V2.5)",
+            "Dean"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "MiMo-V2.5-TTS",
+            "mimo-v2.5-tts"
+          ]
+        ]
+      }
+    ]
+  },
+  "mimo_tts_with_style": {
+    "message0": "Síntesis de voz Xiaomi IA (con estilo) texto %1 voz %2 estilo %3 modelo %4",
+    "tooltip": "Síntesis de voz con voz e instrucciones de estilo, retorna WAV Base64",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "MiMo predeterminada",
+            "mimo_default"
+          ],
+          [
+            "Rock Sugar (V2.5 Voz femenina china)",
+            "冰糖"
+          ],
+          [
+            "Jasmine (V2.5 Voz femenina china)",
+            "茉莉"
+          ],
+          [
+            "Soda (V2.5 Voz masculina china)",
+            "苏打"
+          ],
+          [
+            "Bai Hua (V2.5 Voz masculina china)",
+            "白桦"
+          ],
+          [
+            "Mia (V2.5)",
+            "Mia"
+          ],
+          [
+            "Chloe (V2.5)",
+            "Chloe"
+          ],
+          [
+            "Milo (V2.5)",
+            "Milo"
+          ],
+          [
+            "Dean (V2.5)",
+            "Dean"
+          ]
+        ]
+      },
+      null,
+      {
+        "options": [
+          [
+            "MiMo-V2.5-TTS",
+            "mimo-v2.5-tts"
+          ]
+        ]
+      }
+    ]
+  },
+  "mimo_tts_voice_design": {
+    "message0": "Xiaomi IA Diseño de voz descripción de voz %1 texto %2",
+    "tooltip": "Diseñar voz personalizada mediante descripción y sintetizar"
+  },
+  "mimo_tts_voice_clone": {
+    "message0": "Clonación de voz Xiaomi IA muestra Base64 %1 formato %2 estilo (opcional) %3 texto %4",
+    "tooltip": "Clona una voz desde una muestra de audio y devuelve WAV Base64.",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "WAV",
+            "wav"
+          ],
+          [
+            "MP3",
+            "mp3"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "mimo_play_tts": {
+    "message0": "Reproducir audio TTS objeto I2S %1 audio Base64 %2",
+    "tooltip": "Decodificar audio TTS Base64 y reproducir vía I2S (WAV 24kHz 16bit mono)"
+  },
+  "mimo_tts_and_play": {
+    "message0": "Xiaomi IA Síntesis y reproducción I2S %1 texto %2 voz %3 modelo %4",
+    "tooltip": "Síntesis de voz con voz predefinida y reproducción directa vía I2S",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "MiMo predeterminada",
+            "mimo_default"
+          ],
+          [
+            "Rock Sugar (V2.5 Voz femenina china)",
+            "冰糖"
+          ],
+          [
+            "Jasmine (V2.5 Voz femenina china)",
+            "茉莉"
+          ],
+          [
+            "Soda (V2.5 Voz masculina china)",
+            "苏打"
+          ],
+          [
+            "Bai Hua (V2.5 Voz masculina china)",
+            "白桦"
+          ],
+          [
+            "Mia (V2.5)",
+            "Mia"
+          ],
+          [
+            "Chloe (V2.5)",
+            "Chloe"
+          ],
+          [
+            "Milo (V2.5)",
+            "Milo"
+          ],
+          [
+            "Dean (V2.5)",
+            "Dean"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "MiMo-V2.5-TTS",
+            "mimo-v2.5-tts"
+          ]
+        ]
+      }
+    ]
+  },
+  "mimo_tts_and_play_with_style": {
+    "message0": "Síntesis y reproducción Xiaomi IA (con estilo) objeto I2S %1 texto %2 voz %3 estilo %4 modelo %5",
+    "tooltip": "Síntesis de voz con voz y estilo, reproducción directa vía I2S",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "MiMo predeterminada",
+            "mimo_default"
+          ],
+          [
+            "Rock Sugar (V2.5 Voz femenina china)",
+            "冰糖"
+          ],
+          [
+            "Jasmine (V2.5 Voz femenina china)",
+            "茉莉"
+          ],
+          [
+            "Soda (V2.5 Voz masculina china)",
+            "苏打"
+          ],
+          [
+            "Bai Hua (V2.5 Voz masculina china)",
+            "白桦"
+          ],
+          [
+            "Mia (V2.5)",
+            "Mia"
+          ],
+          [
+            "Chloe (V2.5)",
+            "Chloe"
+          ],
+          [
+            "Milo (V2.5)",
+            "Milo"
+          ],
+          [
+            "Dean (V2.5)",
+            "Dean"
+          ]
+        ]
+      },
+      null,
+      {
+        "options": [
+          [
+            "MiMo-V2.5-TTS",
+            "mimo-v2.5-tts"
+          ]
+        ]
+      }
+    ]
+  },
+  "mimo_tts_and_play_voice_design": {
+    "message0": "Xiaomi IA Diseño de voz y reproducción I2S %1 descripción %2 texto %3",
+    "tooltip": "Diseñar voz por descripción y reproducir vía I2S"
+  },
+  "mimo_tts_and_play_voice_clone": {
+    "message0": "Clonación de voz y reproducción Xiaomi IA objeto I2S %1 muestra Base64 %2 formato %3 estilo (opcional) %4 texto %5",
+    "tooltip": "Clona una voz, sintetiza el habla y la reproduce mediante I2S.",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "WAV",
+            "wav"
+          ],
+          [
+            "MP3",
+            "mp3"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "mimo_tts_stream_play": {
+    "message0": "Xiaomi IA Síntesis en flujo y reproducción I2S %1 texto %2 voz %3",
+    "tooltip": "Síntesis de voz en flujo y reproducción en tiempo real, formato PCM16, menor latencia",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "MiMo predeterminada",
+            "mimo_default"
+          ],
+          [
+            "Azúcar de roca (V2.5)",
+            "冰糖"
+          ],
+          [
+            "Jazmín (V2.5)",
+            "茉莉"
+          ],
+          [
+            "Refresco (V2.5)",
+            "苏打"
+          ],
+          [
+            "Birch (V2.5)",
+            "白桦"
+          ],
+          [
+            "Mia (V2.5)",
+            "Mia"
+          ],
+          [
+            "Chloe (V2.5)",
+            "Chloe"
+          ],
+          [
+            "Milo (V2.5)",
+            "Milo"
+          ],
+          [
+            "Dean (V2.5)",
+            "Dean"
+          ]
+        ]
+      }
+    ]
+  },
+  "mimo_tts_stream_play_with_style": {
+    "message0": "Xiaomi IA Síntesis en flujo y reproducción (con estilo) I2S %1 texto %2 voz %3 estilo %4",
+    "tooltip": "Síntesis de voz en flujo con control de estilo, reproducción en tiempo real, formato PCM16",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "MiMo predeterminada",
+            "mimo_default"
+          ],
+          [
+            "Azúcar de roca (V2.5)",
+            "冰糖"
+          ],
+          [
+            "Jazmín (V2.5)",
+            "茉莉"
+          ],
+          [
+            "Refresco (V2.5)",
+            "苏打"
+          ],
+          [
+            "Birch (V2.5)",
+            "白桦"
+          ],
+          [
+            "Mia (V2.5)",
+            "Mia"
+          ],
+          [
+            "Chloe (V2.5)",
+            "Chloe"
+          ],
+          [
+            "Milo (V2.5)",
+            "Milo"
+          ],
+          [
+            "Dean (V2.5)",
+            "Dean"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "mimo_get_response_status": {
+    "message0": "Obtener estado de respuesta Xiaomi IA",
+    "tooltip": "Verificar si la última llamada API fue exitosa"
+  },
+  "mimo_get_error_message": {
+    "message0": "Obtener mensaje de error Xiaomi IA",
+    "tooltip": "Obtener el mensaje de error de la última llamada API"
+  },
+  "mimo_set_stream_callback": {
+    "message0": "Establecer callback de flujo Xiaomi IA %1 %2",
+    "tooltip": "Establecer función de callback, ejecutada en cada fragmento de texto"
+  },
+  "mimo_get_stream_chunk": {
+    "message0": "Obtener fragmento de flujo Xiaomi IA",
+    "tooltip": "Obtener fragmento de texto actual en el callback de flujo"
+  },
+  "mimo_clear_stream_callback": {
+    "message0": "Limpiar callback de flujo Xiaomi IA",
+    "tooltip": "Limpiar la función de callback de flujo establecida"
+  }
+}

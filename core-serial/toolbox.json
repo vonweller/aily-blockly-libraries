@@ -9,11 +9,33 @@
     },
     {
       "kind": "block",
+      "type": "serial_wait_for_connection"
+    },
+    {
+      "kind": "block",
       "type": "serial_available"
     },
     {
       "kind": "block",
       "type": "serial_read"
+    },
+    {
+      "kind": "block",
+      "type": "serial_read_string"
+    },
+    {
+      "kind": "block",
+      "type": "serial_read_until",
+      "inputs": {
+        "TERMINATOR": {
+          "shadow": {
+            "type": "char",
+            "fields": {
+              "CHAR": "\\n"
+            }
+          }
+        }
+      }
     },
     {
       "kind": "block",
@@ -46,10 +68,6 @@
     {
       "kind": "block",
       "type": "serial_write"
-    },
-    {
-      "kind": "block",
-      "type": "serial_read_string"
     },
     {
       "kind": "block",

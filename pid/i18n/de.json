@@ -1,0 +1,173 @@
+{
+  "toolbox_name": "PID-Regler",
+  "toolbox_labels": {
+    "快速开始": "Schnellstart",
+    "基础控制": "grundlegende Kontrolle",
+    "参数设置": "Parametereinstellungen",
+    "值设置与获取": "Werte setzen und erhalten",
+    "高级控制": "Erweiterte Kontrolle",
+    "条件判断": "Bedingtes Urteil"
+  },
+  "pid_init": {
+    "message0": "PID-Regler initialisieren %1 Eingangsvariable %2 Ausgabevariable %3 Zielwert %4 Parametervoreinstellung %5P-Parameter %6 I-Parameter %7D-Parameter %8 Steuerrichtung %9",
+    "args0": [
+      null,
+      null,
+      null,
+      null,
+      {
+        "options": [
+          [
+            "Anpassen",
+            "custom"
+          ],
+          [
+            "Temperaturregelung",
+            "temperature"
+          ],
+          [
+            "Motordrehzahl",
+            "motor_speed"
+          ],
+          [
+            "Positionskontrolle",
+            "position"
+          ],
+          [
+            "Flüssigkeitspegelregelung",
+            "level"
+          ]
+        ]
+      },
+      null,
+      null,
+      null,
+      {
+        "options": [
+          [
+            "Positive Kontrolle",
+            "DIRECT"
+          ],
+          [
+            "Rückwärtssteuerung",
+            "REVERSE"
+          ]
+        ]
+      }
+    ]
+  },
+  "pid_quick_setup": {
+    "message0": "Schnelle PID steuert %1 Eingangspins %2 pins%3 Zielwerte %4 Anwendung scenarios%5",
+    "args0": [
+      null,
+      {
+        "options": "${board.analogPins}"
+      },
+      {
+        "options": "${board.pwmPins}"
+      },
+      null,
+      {
+        "options": [
+          [
+            "Temperaturregelung",
+            "temperature"
+          ],
+          [
+            "Motordrehzahl",
+            "motor_speed"
+          ],
+          [
+            "Positionskontrolle",
+            "position"
+          ],
+          [
+            "Flüssigkeitspegelregelung",
+            "level"
+          ],
+          [
+            "Anpassen",
+            "custom"
+          ]
+        ]
+      }
+    ]
+  },
+  "pid_compute": {
+    "message0": "PID-Regler %1 Berechnung"
+  },
+  "pid_control_loop": {
+    "message0": "Führe die PID-Steuerung loop%1 Controller aus %2 lese Eingaben %3 führe output%4"
+  },
+  "pid_temperature_control": {
+    "message0": "Temperatur-PID steuert %1 Temperatursensorpins %2 Heizpins %3 Ziel temperature%4",
+    "args0": [
+      null,
+      {
+        "options": "${board.analogPins}"
+      },
+      {
+        "options": "${board.pwmPins}"
+      },
+      null
+    ]
+  },
+  "pid_motor_speed_control": {
+    "message0": "Die PID-Steuerung der Motordrehzahl %1 Encoder-Pins %2 Motor-PWM-Pins %3 Zielgeschwindigkeit (RPM) %4",
+    "args0": [
+      null,
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": "${board.pwmPins}"
+      },
+      null
+    ]
+  },
+  "pid_set_mode": {
+    "message0": "Stelle den PID-Regler %1 Modus auf %2",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Automatisch",
+            "AUTOMATIC"
+          ],
+          [
+            "Manuell",
+            "MANUAL"
+          ]
+        ]
+      }
+    ]
+  },
+  "pid_set_tunings": {
+    "message0": "PID-Regler %1 parameters%2P parameters%3I parameters%4D parameters%5"
+  },
+  "pid_set_output_limits": {
+    "message0": "Stellen Sie den PID-Regler %1 Ausgabe limits%2 Minimum %3 maximum%4"
+  },
+  "pid_get_input": {
+    "message0": "Hol dir PID-Input values%1"
+  },
+  "pid_get_output": {
+    "message0": "Hol dir die PID-Ausgabe value%1"
+  },
+  "pid_set_setpoint": {
+    "message0": "Stellen Sie den PID-Zielwert %1 auf %2"
+  },
+  "pid_set_input": {
+    "message0": "Setze den PID-Eingabewert %1 auf %2"
+  },
+  "pid_adaptive_control": {
+    "message0": "Adaptive PID-Steuerung %1PID-Regler %2 Eingangsvariable %3 Zielwert %4 Schwelle %5 aggressiver Parameter P%6I%7D%8 konservativer Parameter P%9I%10D%11"
+  },
+  "pid_is_at_setpoint": {
+    "message0": "Hat der PID den Zielwert %1 der Toleranz %2 Zielwert erreicht value%3"
+  },
+  "pid_get_error": {
+    "message0": "Erhalten Sie PID-Fehlerwerte %1 Ziel-values%2"
+  }
+}

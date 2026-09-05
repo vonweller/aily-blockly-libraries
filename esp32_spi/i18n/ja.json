@@ -1,0 +1,274 @@
+{
+  "toolbox_name": "ESP32 SPI",
+  "toolbox_labels": {
+    "初始化": "初期化",
+    "事务控制": "トランザクション制御",
+    "数据传输": "データ転送",
+    "参数设置": "パラメータ設定",
+    "参数获取": "パラメータ取得"
+  },
+  "esp32_spi_create": {
+    "message0": "バス%1SPIオブジェクトを作成する%2",
+    "tooltip": "SPI通信オブジェクトの作成",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "VSPI",
+            "VSPI"
+          ],
+          [
+            "HSPI",
+            "HSPI"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_spi_begin": {
+    "message0": "SPIを初期化%1%2デフォルトのピンを使います",
+    "tooltip": "SPIバスをデフォルトのピンで初期化します",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "ハードウェアSPI",
+            "HSPI"
+          ],
+          [
+            "バーチャルSPI",
+            "VSPI"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_spi_begin_custom": {
+    "message0": "SPIを初期化%1カスタムピン%2 SCK:%3 MISO:%4 MOSI:%5 SS:%6",
+    "tooltip": "SPIバスを初期化し、ピンをセットします",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "ハードウェアSPI",
+            "HSPI"
+          ],
+          [
+            "バーチャルSPI",
+            "VSPI"
+          ]
+        ]
+      },
+      null,
+      null,
+      null,
+      null
+    ]
+  },
+  "esp32_spi_settings": {
+    "message0": "SPI %1 周波数設定:%2 MHz 位置:%3 モード:%4",
+    "tooltip": "SPI通信パラメータを設定しましょう",
+    "args0": [
+      {
+        "options": "${board.spi}"
+      },
+      null,
+      {
+        "options": [
+          [
+            "MSB推奨",
+            "MSBFIRST"
+          ],
+          [
+            "LSBが推奨されます",
+            "LSBFIRST"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "MODE0",
+            "0"
+          ],
+          [
+            "MODE1",
+            "1"
+          ],
+          [
+            "MODE2",
+            "2"
+          ],
+          [
+            "MODE3",
+            "3"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_spi_begin_transaction": {
+    "message0": "開始SPI%1トランザクション周波数:%2MHz 順序:%3モード:%4",
+    "tooltip": "SPI取引開始",
+    "args0": [
+      {
+        "options": "${board.spi}"
+      },
+      null,
+      {
+        "options": [
+          [
+            "MSB推奨",
+            "MSBFIRST"
+          ],
+          [
+            "LSBが推奨されます",
+            "LSBFIRST"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "MODE0",
+            "0"
+          ],
+          [
+            "MODE1",
+            "1"
+          ],
+          [
+            "MODE2",
+            "2"
+          ],
+          [
+            "MODE3",
+            "3"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_spi_end_transaction": {
+    "message0": "SPI%1取引を終了する",
+    "tooltip": "SPIトランザクション終了",
+    "args0": [
+      {
+        "options": "${board.spi}"
+      }
+    ]
+  },
+  "esp32_spi_transfer": {
+    "message0": "SPI%1データ転送:%2",
+    "tooltip": "1バイトのデータを送信し、受信したデータを返す",
+    "args0": [
+      {
+        "options": "${board.spi}"
+      },
+      null
+    ]
+  },
+  "esp32_spi_transfer16": {
+    "message0": "SPI %1は16ビットデータを送信します:%2",
+    "tooltip": "16ビットデータを送信し、受信したデータを返します",
+    "args0": [
+      {
+        "options": "${board.spi}"
+      },
+      null
+    ]
+  },
+  "esp32_spi_write": {
+    "message0": "SPI %1 データを書き込む:%2",
+    "tooltip": "データを1バイト書き込む",
+    "args0": [
+      {
+        "options": "${board.spi}"
+      },
+      null
+    ]
+  },
+  "esp32_spi_write_bytes": {
+    "message0": "SPI %1 バイト配列への書き込み データ: %2 長さ: %3",
+    "tooltip": "バイト配列データを書き込む",
+    "args0": [
+      {
+        "options": "${board.spi}"
+      },
+      null,
+      null
+    ]
+  },
+  "esp32_spi_set_frequency": {
+    "message0": "SPIを周波数%1設定:%2 MHz",
+    "tooltip": "SPI通信周波数を設定します",
+    "args0": [
+      {
+        "options": "${board.spi}"
+      },
+      null
+    ]
+  },
+  "esp32_spi_set_bit_order": {
+    "message0": "SPIを%1位置:%2",
+    "tooltip": "SPIのデータシーケンスを設定する",
+    "args0": [
+      {
+        "options": "${board.spi}"
+      },
+      {
+        "options": [
+          [
+            "MSB推奨",
+            "MSBFIRST"
+          ],
+          [
+            "LSBが推奨されます",
+            "LSBFIRST"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_spi_set_data_mode": {
+    "message0": "SPI%1モードを設定:%2",
+    "tooltip": "SPIクロックの極性と位相モードを設定します",
+    "args0": [
+      {
+        "options": "${board.spi}"
+      },
+      {
+        "options": [
+          [
+            "MODE0",
+            "0"
+          ],
+          [
+            "MODE1",
+            "1"
+          ],
+          [
+            "MODE2",
+            "2"
+          ],
+          [
+            "MODE3",
+            "3"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_spi_get_ss_pin": {
+    "message0": "チップピン選択%1SPIを取得する",
+    "tooltip": "SPIチップ選択ピン番号を取得する",
+    "args0": [
+      {
+        "options": "${board.spi}"
+      }
+    ]
+  }
+}

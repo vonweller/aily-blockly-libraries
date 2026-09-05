@@ -1,0 +1,316 @@
+{
+  "toolbox_name": "Pico WiFi",
+  "toolbox_labels": {
+    "WiFi连接": "WiFi-Verbindung",
+    "状态查询": "Statusabfrage",
+    "网络信息": "Netzwerkinformationen",
+    "网络配置": "Netzwerkkonfiguration",
+    "网络扫描": "Netzwerkscan",
+    "热点模式(AP)": "Hotspot-Modus (AP)",
+    "网络工具": "Netzwerk-Tools"
+  },
+  "rp_wifi_begin": {
+    "message0": "Verbinden Sie sich mit WiFi%1 Password%2",
+    "tooltip": "Verbinden Sie sich mit dem WLAN-Netzwerk (Blockmodus)"
+  },
+  "rp_wifi_begin_open": {
+    "message0": "Verbinden Sie sich mit offener WiFi%1",
+    "tooltip": "Mit offenem WiFi-Netzwerk ohne Passwort verbinden"
+  },
+  "rp_wifi_begin_noblock": {
+    "message0": "Verbinden Sie sich mit WLAN (nicht blockierend) %1 Passwort %2",
+    "tooltip": "Verbinden Sie sich mit einem WLAN-Netzwerk (nicht blockierender Modus, prüfen Sie den Status verbunden()"
+  },
+  "rp_wifi_disconnect": {
+    "message0": "Trennen Sie sich vom WLAN %1",
+    "tooltip": "WiFi trennen",
+    "args0": [
+      {
+        "options": [
+          [
+            "WLAN eingeschaltet lassen",
+            "FALSE"
+          ],
+          [
+            "WLAN ausschalten",
+            "TRUE"
+          ]
+        ]
+      }
+    ]
+  },
+  "rp_wifi_end": {
+    "message0": "WLAN ausschalten",
+    "tooltip": "WLAN komplett deaktivieren"
+  },
+  "rp_wifi_connected": {
+    "message0": "WLAN ist verbunden",
+    "tooltip": "Überprüfe, ob WLAN verbunden ist"
+  },
+  "rp_wifi_status": {
+    "message0": "WiFi-Verbindungsstatus",
+    "tooltip": "Erhalten Sie den WLAN-Verbindungsstatuscode"
+  },
+  "rp_wifi_status_type": {
+    "message0": "WLAN-Status: %1",
+    "tooltip": "Erhalten Sie WLAN-Statuskonstanten",
+    "args0": [
+      {
+        "options": [
+          [
+            "Leerlauf",
+            "WL_IDLE_STATUS"
+          ],
+          [
+            "Keine SSID verfügbar",
+            "WL_NO_SSID_AVAIL"
+          ],
+          [
+            "Scan abgeschlossen",
+            "WL_SCAN_COMPLETED"
+          ],
+          [
+            "Verbunden",
+            "WL_CONNECTED"
+          ],
+          [
+            "Verbindung fehlgeschlagen",
+            "WL_CONNECT_FAILED"
+          ],
+          [
+            "Verbindung verloren",
+            "WL_CONNECTION_LOST"
+          ],
+          [
+            "Trenne die Verbindung",
+            "WL_DISCONNECTED"
+          ]
+        ]
+      }
+    ]
+  },
+  "rp_wifi_wait_for_connect": {
+    "message0": "Warte darauf, dass das Verbindungsergebnis %1 Millisekunden abläuft",
+    "tooltip": "Warte, bis das WLAN-Verbindungsergebnis den Verbindungsstatus zurückgibt"
+  },
+  "rp_wifi_local_ip": {
+    "message0": "Lokale IP-Adresse",
+    "tooltip": "Erhalte die lokale IP-Adresse"
+  },
+  "rp_wifi_subnet_mask": {
+    "message0": "Subnetzmaske",
+    "tooltip": "Subnetzmaske abrufen"
+  },
+  "rp_wifi_gateway_ip": {
+    "message0": "Gateway-IP-Adresse",
+    "tooltip": "Gateway-IP-Adresse abrufen"
+  },
+  "rp_wifi_dns_ip": {
+    "message0": "DNS-Server-IP",
+    "tooltip": "Holen Sie sich die IP-Adresse des DNS-Servers"
+  },
+  "rp_wifi_mac_address": {
+    "message0": "MAC-Adresse",
+    "tooltip": "MAC-Adresse abrufen"
+  },
+  "rp_wifi_ssid": {
+    "message0": "Aktueller WLAN-Name (SSID)",
+    "tooltip": "Hol dir den Namen des gerade verbundenen WLANs"
+  },
+  "rp_wifi_rssi": {
+    "message0": "Signalstärke (RSSI)",
+    "tooltip": "Erhalten Sie die WLAN-Signalstärke (dBm)"
+  },
+  "rp_wifi_channel": {
+    "message0": "Aktueller WLAN-Kanal",
+    "tooltip": "Hol dir den aktuellen WLAN-Kanal"
+  },
+  "rp_wifi_encryption_type": {
+    "message0": "Aktuelle Verschlüsselungsart",
+    "tooltip": "Hol dir die aktuelle WLAN-Verschlüsselungsart"
+  },
+  "rp_wifi_set_hostname": {
+    "message0": "Hostname setzen %1",
+    "tooltip": "Setze den Hostnamen, der in der DHCP-Anfrage verwendet wird"
+  },
+  "rp_wifi_get_hostname": {
+    "message0": "Hol dir den Hostname",
+    "tooltip": "Erhalten Sie den aktuell gesetzten Hostnamen"
+  },
+  "rp_wifi_config_static": {
+    "message0": "Statische IPs konfigurieren\nIP-Adresse %1\nDNS-Server %2\nGateway %3\nSubnetzmaske %4",
+    "tooltip": "Statische IP-Adressen konfigurieren (DHCP deaktivieren)"
+  },
+  "rp_wifi_set_dns": {
+    "message0": "DNS-Server einrichten %1",
+    "tooltip": "Richte den DNS-Server ein"
+  },
+  "rp_wifi_set_mode": {
+    "message0": "Setze den WLAN-Modus %1",
+    "tooltip": "Stellen Sie den WLAN-Betriebsmodus ein",
+    "args0": [
+      {
+        "options": [
+          [
+            "Standortmodus (STA)",
+            "WIFI_STA"
+          ],
+          [
+            "Hotspot-Modus (AP)",
+            "WIFI_AP"
+          ],
+          [
+            "Hybridmodus (AP+STA)",
+            "WIFI_AP_STA"
+          ],
+          [
+            "Aus",
+            "WIFI_OFF"
+          ]
+        ]
+      }
+    ]
+  },
+  "rp_wifi_get_mode": {
+    "message0": "Erreichen Sie den WLAN-Modus",
+    "tooltip": "Hol dir den aktuellen WLAN-Betriebsmodus"
+  },
+  "rp_wifi_scan_networks": {
+    "message0": "WLAN-Netzwerk scannen %1",
+    "tooltip": "Scannen Sie verfügbare WLAN-Netzwerke und geben Sie die Anzahl der gefundenen Netzwerke zurück",
+    "args0": [
+      {
+        "options": [
+          [
+            "Synchrones Scannen",
+            "FALSE"
+          ],
+          [
+            "Asynchrones Scannen",
+            "TRUE"
+          ]
+        ]
+      }
+    ]
+  },
+  "rp_wifi_scan_complete": {
+    "message0": "Status der Scan-Komplettierung",
+    "tooltip": "Ruft den Status der asynchronen Scan-Fertigstellung ab und gibt die Anzahl der gefundenen Netzwerke zurück"
+  },
+  "rp_wifi_scan_delete": {
+    "message0": "Löschen Sie die Scan-Ergebnisse",
+    "tooltip": "Lösche die WLAN-Scan-Ergebnisse und friere Speicher"
+  },
+  "rp_wifi_get_ssid": {
+    "message0": "Erhalten Sie die SSID des Netzwerks %1",
+    "tooltip": "Erhalten Sie die SSID des angegebenen Netzwerks"
+  },
+  "rp_wifi_get_rssi": {
+    "message0": "Die Signalstärke des Netzwerks %1",
+    "tooltip": "Erziele die Signalstärke (dBm) des spezifizierten Netzes"
+  },
+  "rp_wifi_get_encryption": {
+    "message0": "Erhalten Sie den Verschlüsselungstyp des Netzwerks %1",
+    "tooltip": "Erhalten Sie den Verschlüsselungstyp des angegebenen Netzwerks"
+  },
+  "rp_wifi_get_channel": {
+    "message0": "Zugang zum Netzwerk %1",
+    "tooltip": "Erhalten Sie den Kanal für das angegebene Netzwerk"
+  },
+  "rp_wifi_encryption_constant": {
+    "message0": "Verschlüsselungstyp: %1",
+    "tooltip": "Erhalten Sie die kryptographische Typkonstante",
+    "args0": [
+      {
+        "options": [
+          [
+            "Keine Verschlüsselung",
+            "ENC_TYPE_NONE"
+          ],
+          [
+            "WPA",
+            "ENC_TYPE_TKIP"
+          ],
+          [
+            "WPA2",
+            "ENC_TYPE_CCMP"
+          ],
+          [
+            "Automatisch",
+            "ENC_TYPE_AUTO"
+          ]
+        ]
+      }
+    ]
+  },
+  "rp_wifi_begin_ap": {
+    "message0": "Erstelle WLAN-Hotspot %1 Passwort %2 Kanal %3",
+    "tooltip": "WLAN-Hotspots erstellen (AP-Modus)"
+  },
+  "rp_wifi_begin_ap_open": {
+    "message0": "Erstelle einen offenen WLAN-Hotspot %1 Kanal %2",
+    "tooltip": "Erstelle passwortlose, offene WLAN-Hotspots"
+  },
+  "rp_wifi_softap_config": {
+    "message0": "Hotspot-IPs konfigurieren\nIP-Adresse %1\nGateway %2\nSubnetzmaske %3",
+    "tooltip": "Konfiguration der Hotspot-IP-Einstellungen"
+  },
+  "rp_wifi_softap_disconnect": {
+    "message0": "WLAN-Hotspots ausschalten %1",
+    "tooltip": "Schalte den WLAN-Hotspot aus",
+    "args0": [
+      {
+        "options": [
+          [
+            "WLAN eingeschaltet lassen",
+            "FALSE"
+          ],
+          [
+            "WLAN ausschalten",
+            "TRUE"
+          ]
+        ]
+      }
+    ]
+  },
+  "rp_wifi_softap_ip": {
+    "message0": "Hotspot-IP-Adresse",
+    "tooltip": "Erhalten Sie die IP-Adresse des Hotspots"
+  },
+  "rp_wifi_softap_mac": {
+    "message0": "Hotspot-MAC-Adresse",
+    "tooltip": "Erhalte die MAC-Adresse des Hotspots"
+  },
+  "rp_wifi_softap_ssid": {
+    "message0": "Hotspot-SSID",
+    "tooltip": "Erhalten Sie die SSID des Hotspots"
+  },
+  "rp_wifi_softap_station_count": {
+    "message0": "Anzahl der Hotspot-Verbindungsgeräte",
+    "tooltip": "Ermitteln Sie, wie viele Geräte mit dem Hotspot verbunden sind"
+  },
+  "rp_wifi_host_by_name": {
+    "message0": "Domainname Resolve%1",
+    "tooltip": "Auflösung von Domainnamen als IP-Adressen"
+  },
+  "rp_wifi_ping": {
+    "message0": "Ping %1 TTL %2",
+    "tooltip": "Das Ping des angegebenen Hosts gibt die Antwortzeit (ms) zurück"
+  },
+  "rp_wifi_get_time": {
+    "message0": "Nutze Netzwerkzeit",
+    "tooltip": "Netzwerkzeit abrufen (Unix-Zeitstempel)"
+  },
+  "rp_wifi_set_timeout": {
+    "message0": "Stell die Auszeit auf %1 Millisekunden ein",
+    "tooltip": "Setze eine WLAN-Betriebs-Timeout"
+  },
+  "rp_wifi_no_low_power": {
+    "message0": "Niedrig-Energie-Modus deaktivieren",
+    "tooltip": "Deaktivieren Sie den WLAN-Sparmodus zur Leistungsverbesserung"
+  },
+  "rp_wifi_firmware_version": {
+    "message0": "Firmwareversion",
+    "tooltip": "WiFi-Firmwareversion abrufen"
+  }
+}

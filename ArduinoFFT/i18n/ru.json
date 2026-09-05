@@ -1,0 +1,82 @@
+{
+  "toolbox_name": "ArduinoFFT",
+  "toolbox_labels": {
+    "Setup": "Настройка",
+    "Sampling": "Выборка",
+    "Processing": "Обработка",
+    "Results": "Результаты",
+    "Debug": "Отладка"
+  },
+  "arduino_fft_init": {
+    "message0": "создавать FFT %1 тип %2 сэмплы %3 частоте дискретизации %4 Гц",
+    "tooltip": "Создайте объект arduinoFFT и его реальные/воображаемые буферы сэмплов."
+  },
+  "arduino_fft_set_sample": {
+    "message0": "FFT %1 задавать выборочный индекс %2 реальные %3 мнимые %4",
+    "tooltip": "Запишите один реальный/воображаемый сэмпл в буферы FFT."
+  },
+  "arduino_fft_clear_samples": {
+    "message0": "FFT %1 очистить все образцы",
+    "tooltip": "Установить все реальные и воображаемые образцы равным нулю."
+  },
+  "arduino_fft_sample_analog": {
+    "message0": "FFT %1 сэмпл аналогового вывода %2 смещение %3 масштабе %4",
+    "tooltip": "Заполните буферы FFT из analogRead на заданной частоте дискретизации."
+  },
+  "arduino_fft_generate_tone": {
+    "message0": "FFT %1 генерировать частоту тонов %2 амплитуду Гц %3 смещение %4",
+    "tooltip": "Сгенерируйте тестовый сигнал синусоиды в буферы FFT."
+  },
+  "arduino_fft_dc_removal": {
+    "message0": "FFT %1 убрать смещение постоянного тока",
+    "tooltip": "Вычтите среднее значение из вещественного буфера выборки."
+  },
+  "arduino_fft_windowing": {
+    "message0": "FFT %1 применять окно %2 направлении %3 компенсировать %4",
+    "tooltip": "Примените одну из оконных функций arduinoFFT к реальному буферу."
+  },
+  "arduino_fft_compute": {
+    "message0": "FFT %1 вычислительное направление %2",
+    "tooltip": "Запустите расчёт FFT на настроенных буферах."
+  },
+  "arduino_fft_complex_to_magnitude": {
+    "message0": "FFT %1 сложнее до величины",
+    "tooltip": "Преобразуйте сложный результат FFT в величины, хранящиеся в реальном буфере."
+  },
+  "arduino_fft_process": {
+    "message0": "FFT %1 запускать прямое окно конвейера %2 удалить DC %3 компенсировать %4",
+    "tooltip": "Запустите обычную последовательность dcRemoval, windowing, compute и complexToMagnitude."
+  },
+  "arduino_fft_major_peak": {
+    "message0": "FFT %1 основной пиковой частоте",
+    "tooltip": "Возвращайте доминирующую частоту после преобразования на величину."
+  },
+  "arduino_fft_major_peak_parabola": {
+    "message0": "FFT %1 параболической пиковой частоте",
+    "tooltip": "Верните доминирующую частоту с помощью параболической интерполяции."
+  },
+  "arduino_fft_peak_magnitude": {
+    "message0": "FFT %1 основной пиковой величине",
+    "tooltip": "Верните оценку величины для доминирующего пика."
+  },
+  "arduino_fft_bin_frequency": {
+    "message0": "FFT %1 частоте бин %2",
+    "tooltip": "Преобразуйте индекс BFT в его частоту в Гц."
+  },
+  "arduino_fft_bin_magnitude": {
+    "message0": "FFT %1 величину контейнера %2",
+    "tooltip": "Считывайте значение величины из реального буфера по индексу BIN FFT."
+  },
+  "arduino_fft_band_magnitude": {
+    "message0": "FFT %1 величину диапазона %2 в %3 диапазонах",
+    "tooltip": "Верните максимальную величину внутри грубого частотного диапазона."
+  },
+  "arduino_fft_print_bins": {
+    "message0": "FFT %1 печатные контейнеры для %2 с %3 по %4",
+    "tooltip": "Пары частоты и величины печати для различных контейнеров FFT."
+  },
+  "arduino_fft_revision": {
+    "message0": "Ревизия библиотеки arduinoFFT",
+    "tooltip": "Вернуть значение макро ревизии arduinoFFT."
+  }
+}

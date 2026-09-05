@@ -1,0 +1,111 @@
+{
+  "toolbox_name": "GM60二維碼掃描器",
+  "toolbox_labels": {
+    "初始化": "初始化",
+    "配置": "配置",
+    "读取": "讀取"
+  },
+  "gm60_init_i2c": {
+    "message0": "初始化二維碼掃描器(I2C) %1\n地址 %2\n使用 %3",
+    "tooltip": "透過I2C初始化DFRobot GM60二維碼掃描器模組",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "0x1A (預設)",
+            "0x1A"
+          ]
+        ]
+      },
+      {
+        "options": "${board.i2c}"
+      }
+    ]
+  },
+  "gm60_init_uart": {
+    "message0": "初始化二維碼掃描器(串列埠) %1 RX接腳 %2 TX接腳 %3",
+    "tooltip": "透過UART串口初始化DFRobot GM60二維碼掃描器模組，指定RX和TX引腳"
+  },
+  "gm60_set_encode": {
+    "message0": "二維碼掃描器 %1 設定編碼為 %2",
+    "tooltip": "設定二維碼掃描器輸出資料的編碼格式",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "UTF-8",
+            "eUTF8"
+          ],
+          [
+            "GBK",
+            "eGBK"
+          ]
+        ]
+      }
+    ]
+  },
+  "gm60_setup_code": {
+    "message0": "二維碼掃描器 %1 %2 設定碼 %3 輸出設定碼內容",
+    "tooltip": "設定碼配置，可透過掃描二維碼更改晶片暫存器的值",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "開啟",
+            "true"
+          ],
+          [
+            "關閉",
+            "false"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "輸出",
+            "true"
+          ],
+          [
+            "不輸出",
+            "false"
+          ]
+        ]
+      }
+    ]
+  },
+  "gm60_set_identify": {
+    "message0": "二維碼掃描器 %1 辨識模式 %2",
+    "tooltip": "設定二維碼/條碼的識別類型，支援QR Code、EAN13、Code128等",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "啟用所有條碼識別",
+            "eEnableAllBarcode"
+          ],
+          [
+            "啟用預設條碼識別",
+            "eEnableDefaultcode"
+          ],
+          [
+            "禁止所有條碼識別",
+            "eForbidAllBarcode"
+          ]
+        ]
+      }
+    ]
+  },
+  "gm60_reset": {
+    "message0": "二維碼掃描器 %1 恢復原廠設定",
+    "tooltip": "將二維碼掃描器恢復為原廠設置"
+  },
+  "gm60_detection": {
+    "message0": "二維碼掃描器 %1 讀取掃描數據",
+    "tooltip": "偵測並傳回掃描到的二維碼/條碼數據，以字串形式傳回"
+  }
+}

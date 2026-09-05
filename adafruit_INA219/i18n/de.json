@@ -1,0 +1,41 @@
+{
+  "toolbox_name": "Stromdetektion INA219",
+  "ina219_init_with_wire": {
+    "message0": "Initialisieren Sie das IN219-Modul %1 Adresse %2 verwenden %3",
+    "tooltip": "Initialisiere den INA219-Sensor, gib die I2C-Adresse und den verwendeten I2C-Bus an",
+    "args0": [
+      null,
+      null,
+      {
+        "options": "${board.i2c}"
+      }
+    ]
+  },
+  "ina219_read_value": {
+    "message0": "Lesen des IN219-Moduls %1 %2",
+    "tooltip": "Lesen Sie Spannungs-, Strom- oder Leistungswerte vom INA219-Sensor ab",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Busspannung (V)",
+            "BUS_VOLTAGE"
+          ],
+          [
+            "Shunt-Spannung (mV)",
+            "SHUNT_VOLTAGE"
+          ],
+          [
+            "Aktuell (mA)",
+            "CURRENT"
+          ],
+          [
+            "Strom (MW)",
+            "POWER"
+          ]
+        ]
+      }
+    ]
+  }
+}

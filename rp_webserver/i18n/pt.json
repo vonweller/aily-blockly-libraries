@@ -1,0 +1,194 @@
+{
+  "toolbox_name": "Servidor Web Pico",
+  "toolbox_labels": {
+    "初始化": "inicialização",
+    "路由处理": "processamento de roteamento",
+    "发送响应": "Enviar resposta",
+    "请求信息": "solicitar informações",
+    "请求参数": "Parâmetros de solicitação",
+    "请求头": "Cabeçalho da solicitação",
+    "高级功能": "Recursos avançados"
+  },
+  "rp_webserver_create": {
+    "message0": "Criar servidor Web %1 porta %2",
+    "tooltip": "Crie um objeto servidor web"
+  },
+  "rp_webserver_begin": {
+    "message0": "Inicie o servidor %1",
+    "tooltip": "Inicie o servidor web e comece a ouvir"
+  },
+  "rp_webserver_handle_client": {
+    "message0": "Lidar com %1 solicitações de clientes",
+    "tooltip": "Lidar com solicitações de clientes (devem ser colocadas em um ciclo)"
+  },
+  "rp_webserver_on": {
+    "message0": "Quando %1 receber %2 caminho %3",
+    "tooltip": "Registrar uma função de gerenciador de requisição para o caminho especificado",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Qualquer",
+            "HTTP_ANY"
+          ],
+          [
+            "GET",
+            "HTTP_GET"
+          ],
+          [
+            "POST",
+            "HTTP_POST"
+          ],
+          [
+            "PUT",
+            "HTTP_PUT"
+          ],
+          [
+            "DELETE",
+            "HTTP_DELETE"
+          ],
+          [
+            "PATCH",
+            "HTTP_PATCH"
+          ]
+        ]
+      },
+      null
+    ],
+    "message1": "executar %1"
+  },
+  "rp_webserver_on_not_found": {
+    "message0": "Quando %1 recebe uma solicitação de caminho desconhecida",
+    "tooltip": "Lidar com Solicitações que Não Correspondem a Nenhuma Rota (404)",
+    "message1": "executar %1"
+  },
+  "rp_webserver_send": {
+    "message0": "%1 Código de Status da Resposta %2 Tipo %3 Conteúdo %4",
+    "tooltip": "Enviar uma resposta HTTP ao cliente",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "Texto simples/simples",
+            "text/plain"
+          ],
+          [
+            "Texto/html HTML",
+            "text/html"
+          ],
+          [
+            "Aplicação JSON/json",
+            "application/json"
+          ],
+          [
+            "Aplicação XML/XML",
+            "application/xml"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "rp_webserver_send_custom_type": {
+    "message0": "%1 Código de status da resposta %2 Tipo personalizado %3 Conteúdo %4",
+    "tooltip": "Enviar respostas HTTP com Type-Conteúdo personalizado"
+  },
+  "rp_webserver_send_header": {
+    "message0": "%1 Enviar Resposta Cabeça %2 Valor %3",
+    "tooltip": "Enviar cabeçalhos personalizados de resposta"
+  },
+  "rp_webserver_uri": {
+    "message0": "%1 O URI solicitado",
+    "tooltip": "Obter o caminho URI da solicitação atual"
+  },
+  "rp_webserver_method": {
+    "message0": "%1 Métodos de solicitação",
+    "tooltip": "Obtenha o método HTTP para a requisição atual (GET/POST, etc.)"
+  },
+  "rp_webserver_method_is": {
+    "message0": "%1 O método para solicitar é %2",
+    "tooltip": "Verifique se a solicitação atual é um método HTTP especificado",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "GET",
+            "HTTP_GET"
+          ],
+          [
+            "POST",
+            "HTTP_POST"
+          ],
+          [
+            "PUT",
+            "HTTP_PUT"
+          ],
+          [
+            "DELETE",
+            "HTTP_DELETE"
+          ],
+          [
+            "PATCH",
+            "HTTP_PATCH"
+          ]
+        ]
+      }
+    ]
+  },
+  "rp_webserver_arg_by_name": {
+    "message0": "%1 Obter valor parâmetro %2",
+    "tooltip": "Obtenha o valor do parâmetro de solicitação com base no nome do parâmetro"
+  },
+  "rp_webserver_arg_by_index": {
+    "message0": "%1 Obter valor do parâmetro %2 por índice",
+    "tooltip": "Recuperar valores de parâmetros de solicitação baseados no índice (começando de 0)"
+  },
+  "rp_webserver_arg_name": {
+    "message0": "%1 Obter nome do parâmetro %2 por índice",
+    "tooltip": "Recuperar nomes de parâmetros de requisição com base no índice (começando a partir de 0)"
+  },
+  "rp_webserver_args_count": {
+    "message0": "%1 Número de parâmetros",
+    "tooltip": "Recupera o número de parâmetros de requisição"
+  },
+  "rp_webserver_has_arg": {
+    "message0": "%1 Existe parâmetro %2",
+    "tooltip": "Verifique se existem parâmetros com nomes especificados"
+  },
+  "rp_webserver_header": {
+    "message0": "%1 Obter valor cabeçalho %2",
+    "tooltip": "Recupera o valor do cabeçalho da solicitação para o nome especificado"
+  },
+  "rp_webserver_has_header": {
+    "message0": "%1 Existe cabeçalho %2",
+    "tooltip": "Verifique a presença de um cabeçalho de solicitação com o nome especificado"
+  },
+  "rp_webserver_host_header": {
+    "message0": "%1 Cabeçalho de pedido de host",
+    "tooltip": "Recupera o cabeçalho Host da solicitação"
+  },
+  "rp_webserver_collect_headers": {
+    "message0": "%1 Coletar o cabeçalho de solicitação %2",
+    "tooltip": "Defina os cabeçalhos de solicitação para coletar (múltiplos separados por vírgulas)"
+  },
+  "rp_webserver_enable_cors": {
+    "message0": "%1 Ativar a origem cruzada do CORS",
+    "tooltip": "Habilitar o Compartilhamento de Recursos entre Domínios (CORS)"
+  },
+  "rp_webserver_stop": {
+    "message0": "Pare o servidor %1",
+    "tooltip": "Parar o servidor Web"
+  },
+  "rp_webserver_authenticate": {
+    "message0": "%1 Verifique nome de usuário %2 senha %3",
+    "tooltip": "Verifique o nome de usuário e a senha para autenticação HTTP básica"
+  },
+  "rp_webserver_request_authentication": {
+    "message0": "%1 Prompt de Autenticação %2",
+    "tooltip": "Solicite ao cliente que realize a autenticação HTTP"
+  }
+}

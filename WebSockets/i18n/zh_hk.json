@@ -1,0 +1,162 @@
+{
+  "toolbox_name": "WebSockets",
+  "toolbox_labels": {
+    "WebSocket客户端": "WebSocket客戶端",
+    "WebSocket服务器": "WebSocket伺服器",
+    "事件处理": "事件處理"
+  },
+  "websocket_client_create": {
+    "message0": "建立WebSocket客戶端 %1",
+    "tooltip": "建立WebSocket客戶端對象"
+  },
+  "websocket_client_begin": {
+    "message0": "WebSocket客戶端 %1 連接到 %2 連接埠 %3 路徑 %4",
+    "tooltip": "連接到WebSocket伺服器"
+  },
+  "websocket_client_begin_ssl": {
+    "message0": "WebSocket客戶端 %1 SSL連接到 %2 連接埠 %3 路徑 %4",
+    "tooltip": "SSL安全連線到WebSocket伺服器"
+  },
+  "websocket_client_on_event": {
+    "message0": "當WebSocket客戶端 %1 收到事件時",
+    "tooltip": "設定WebSocket客戶端事件處理",
+    "message1": "執行 %1"
+  },
+  "websocket_client_send_text": {
+    "message0": "WebSocket客戶端 %1 發送文字 %2",
+    "tooltip": "發送文字訊息到WebSocket伺服器"
+  },
+  "websocket_client_send_binary": {
+    "message0": "WebSocket客戶端 %1 發送二進位資料 %2",
+    "tooltip": "發送二進位資料到WebSocket伺服器"
+  },
+  "websocket_client_disconnect": {
+    "message0": "WebSocket客戶端 %1 斷開連接",
+    "tooltip": "中斷WebSocket客戶端連接"
+  },
+  "websocket_client_is_connected": {
+    "message0": "WebSocket客戶端 %1 是否已連接",
+    "tooltip": "檢查WebSocket客戶端是否已連接"
+  },
+  "websocket_client_set_reconnect": {
+    "message0": "WebSocket客戶端 %1 設定重連間隔 %2 毫秒",
+    "tooltip": "設定WebSocket客戶端重連間隔"
+  },
+  "websocket_client_enable_heartbeat": {
+    "message0": "WebSocket客戶端 %1 啟用心跳 間隔%2毫秒 超時%3毫秒 斷開次數%4",
+    "tooltip": "啟用WebSocket客戶端心跳偵測"
+  },
+  "websocket_server_create": {
+    "message0": "建立WebSocket伺服器 %1 連接埠 %2",
+    "tooltip": "建立WebSocket伺服器對象"
+  },
+  "websocket_server_begin": {
+    "message0": "WebSocket伺服器 %1 啟動",
+    "tooltip": "啟動WebSocket伺服器"
+  },
+  "websocket_server_on_event": {
+    "message0": "當WebSocket伺服器 %1 收到事件時",
+    "tooltip": "設定WebSocket伺服器事件處理",
+    "message1": "執行 %1"
+  },
+  "websocket_server_send_text": {
+    "message0": "WebSocket伺服器 %1 傳送文字至客戶端 %2 傳送文字 %3",
+    "tooltip": "向指定客戶端發送文字訊息"
+  },
+  "websocket_server_broadcast_text": {
+    "message0": "WebSocket伺服器 %1 廣播文字 %2",
+    "tooltip": "向所有連接的用戶端廣播文字訊息"
+  },
+  "websocket_server_send_binary": {
+    "message0": "WebSocket伺服器 %1 向客戶端 %2 發送二進位資料 %3",
+    "tooltip": "向指定客戶端發送二進位數據"
+  },
+  "websocket_server_broadcast_binary": {
+    "message0": "WebSocket伺服器 %1 廣播二進位資料 %2",
+    "tooltip": "向所有連接的客戶端廣播二進位數據"
+  },
+  "websocket_server_disconnect": {
+    "message0": "WebSocket伺服器 %1 中斷客戶端 %2",
+    "tooltip": "中斷指定客戶端連線"
+  },
+  "websocket_server_disconnect_all": {
+    "message0": "WebSocket伺服器 %1 中斷所有客戶端",
+    "tooltip": "斷開所有客戶端連接"
+  },
+  "websocket_server_connected_clients": {
+    "message0": "WebSocket伺服器 %1 連線的客戶端數量",
+    "tooltip": "獲取連線的客戶端數量"
+  },
+  "websocket_server_client_connected": {
+    "message0": "WebSocket伺服器 %1 用戶端 %2 是否已連接",
+    "tooltip": "檢查指定客戶端是否已連接"
+  },
+  "websocket_event_type": {
+    "message0": "事件類型 %1",
+    "tooltip": "WebSocket事件類型",
+    "args0": [
+      {
+        "options": [
+          [
+            "斷開連接",
+            "WStype_DISCONNECTED"
+          ],
+          [
+            "已連接",
+            "WStype_CONNECTED"
+          ],
+          [
+            "文字訊息",
+            "WStype_TEXT"
+          ],
+          [
+            "二進位訊息",
+            "WStype_BIN"
+          ],
+          [
+            "Ping",
+            "WStype_PING"
+          ],
+          [
+            "Pong",
+            "WStype_PONG"
+          ],
+          [
+            "錯誤",
+            "WStype_ERROR"
+          ]
+        ]
+      }
+    ]
+  },
+  "websocket_event_payload": {
+    "message0": "事件資料 %1",
+    "tooltip": "WebSocket事件數據",
+    "args0": [
+      {
+        "options": [
+          [
+            "事件類型",
+            "TYPE"
+          ],
+          [
+            "事件資料(uint8_t*)",
+            "PAYLOAD"
+          ],
+          [
+            "事件資料(char*)",
+            "PAYLOAD_CHAR"
+          ]
+        ]
+      }
+    ]
+  },
+  "websocket_event_payload_length": {
+    "message0": "事件資料長度",
+    "tooltip": "取得事件資料的長度"
+  },
+  "websocket_event_client_num": {
+    "message0": "事件客戶端編號",
+    "tooltip": "取得事件的客戶端編號"
+  }
+}

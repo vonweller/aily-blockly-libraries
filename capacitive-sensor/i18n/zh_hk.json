@@ -1,0 +1,46 @@
+{
+  "toolbox_name": "電容感測器",
+  "toolbox_labels": {
+    "初始化": "初始化",
+    "读数": "讀數",
+    "校准配置": "校準配置",
+    "接线参考": "接線參考"
+  },
+  "capacitivesensor_create": {
+    "message0": "建立電容感測器 %1 發送引腳 %2 接收引腳 %3",
+    "tooltip": "建立電容式觸控感測器對象，指定發送和接收引腳",
+    "args0": [
+      null,
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": "${board.digitalPins}"
+      }
+    ]
+  },
+  "capacitivesensor_read": {
+    "message0": "電容感測器 %1 讀取濾波值 樣本數 %2",
+    "tooltip": "讀取去除基線後的觸控值，樣本數越大越穩定"
+  },
+  "capacitivesensor_read_raw": {
+    "message0": "電容感測器 %1 讀取原始值 樣本數 %2",
+    "tooltip": "讀取未經基線校正的原始電容值"
+  },
+  "capacitivesensor_set_timeout": {
+    "message0": "電容感測器 %1 設定逾時時間 %2 毫秒",
+    "tooltip": "配置充放電循環的超時時間，防止在強烈幹擾下無限等待"
+  },
+  "capacitivesensor_set_autocal": {
+    "message0": "電容感測器 %1 設定自動校準間隔 %2 毫秒",
+    "tooltip": "設定自動基準校準間隔，0表示關閉自動校準"
+  },
+  "capacitivesensor_reset_autocal": {
+    "message0": "電容感測器 %1 重設自動校準",
+    "tooltip": "立即重置基線，常用於啟動時或感測器狀態變化後"
+  },
+  "capacitivesensor_wiring_hint": {
+    "message0": "接線參考 %1",
+    "tooltip": "參考電容觸摸感應器的發送/接收接腳與電阻連接方式，不產生代碼"
+  }
+}

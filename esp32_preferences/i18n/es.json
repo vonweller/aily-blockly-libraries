@@ -1,0 +1,205 @@
+{
+  "toolbox_name": "Almacenamiento por preferencias",
+  "toolbox_labels": {
+    "命名空间": "Namespace",
+    "写入标量": "Escribe escalares",
+    "读取标量": "Lee el escalar",
+    "字节与长度": "Bytes y longitud",
+    "查询与维护": "Consulta y mantenimiento"
+  },
+  "esp32_preferences_begin": {
+    "message0": "Abre el espacio de nombres Preferencias %1 solo lectura %2",
+    "tooltip": "Llama a Preferences.begin(name, readOnly) para abrir el espacio de nombres en la partición predeterminada de NVS.",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "No",
+            "false"
+          ],
+          [
+            "Yes",
+            "true"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_preferences_begin_partition": {
+    "message0": "Abre el espacio de nombres Preferencias %1 solo lectura %2 partition%3",
+    "tooltip": "Llama a Preferences.begin(name, readOnly, partition_label) para abrir el espacio de nombres en la partición NVS especificada.",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "No",
+            "false"
+          ],
+          [
+            "Yes",
+            "true"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "esp32_preferences_end": {
+    "message0": "Preferencias cercanas",
+    "tooltip": "Llama a Preferences.end() para cerrar el espacio de nombres actual."
+  },
+  "esp32_preferences_clear": {
+    "message0": "Borrar el espacio de nombres actual",
+    "tooltip": "Llama a Preferences.clear() para eliminar todas las claves del espacio de nombres actual."
+  },
+  "esp32_preferences_remove": {
+    "message0": "Borrar %1",
+    "tooltip": "Llama a Preferences.remove(key) para eliminar la clave especificada."
+  },
+  "esp32_preferences_put_char": {
+    "message0": "Escribe el valor %1 de la clave int8 %2",
+    "tooltip": "Llama a Preferences.putChar() para escribir en int8."
+  },
+  "esp32_preferences_put_uchar": {
+    "message0": "Escribe el valor de la clave uint8 %1 %2",
+    "tooltip": "Llama a Preferences.putUChar() para escribir a uint8."
+  },
+  "esp32_preferences_put_short": {
+    "message0": "Escribe el valor %1 de la clave int16 %2",
+    "tooltip": "Llama a Preferences.putShort() para escribir en int16."
+  },
+  "esp32_preferences_put_ushort": {
+    "message0": "Escribe el valor %1 de la clave uint16 %2",
+    "tooltip": "Llama a Preferences.putUShort() para escribir a uint16."
+  },
+  "esp32_preferences_put_int": {
+    "message0": "Escribe el valor %1 de la clave int32 %2",
+    "tooltip": "Llama a Preferences.putInt() para escribir int32."
+  },
+  "esp32_preferences_put_uint": {
+    "message0": "Escribe el valor de la clave uint32 %1 %2",
+    "tooltip": "Llama a Preferences.putUInt() para escribir en uint32."
+  },
+  "esp32_preferences_put_long": {
+    "message0": "Escribe el valor %1 de la clave larga %2",
+    "tooltip": "Llama a Preferences.putLong() para escribir en largo."
+  },
+  "esp32_preferences_put_ulong": {
+    "message0": "Escribe el valor de la clave larga sin signo %1 %2",
+    "tooltip": "Llama a Preferences.putULong() para escribir un largo sin signo."
+  },
+  "esp32_preferences_put_long64": {
+    "message0": "Escribe el valor %1 de la clave int64 %2",
+    "tooltip": "Llama a Preferences.putLong64() para escribir en int64."
+  },
+  "esp32_preferences_put_ulong64": {
+    "message0": "Escribe el valor %1 de la clave uint64 %2",
+    "tooltip": "Llama a Preferences.putULong64() para escribir en uint64."
+  },
+  "esp32_preferences_put_float": {
+    "message0": "Escribe la clave flotante %1 valor %2",
+    "tooltip": "Llama a Preferences.putFloat() para escribir un float."
+  },
+  "esp32_preferences_put_double": {
+    "message0": "Escribe doble clave %1 valor %2",
+    "tooltip": "Llama a Preferences.putDouble() para escribir double."
+  },
+  "esp32_preferences_put_bool": {
+    "message0": "Escritura de la clave de valor booleana %1 de %2",
+    "tooltip": "Llama a Preferences.putBool() para escribir el valor booleano."
+  },
+  "esp32_preferences_put_string": {
+    "message0": "Escribe la clave %1 valor de la cadena %2",
+    "tooltip": "Llama a Preferences.putString() para escribir la cadena."
+  },
+  "esp32_preferences_put_bytes": {
+    "message0": "Byte Byte Key %1 Buffer %2 Longitud %3",
+    "tooltip": "Llama a Preferences.putBytes(key, buffer, len) para escribir en el buffer de bytes; El búfer se llena con el nombre o expresión de la variable C++."
+  },
+  "esp32_preferences_get_char": {
+    "message0": "Lee la tecla INT8 %1 %2 predeterminada",
+    "tooltip": "Llama a Preferences.getChar() para leer int8; Devuelve el valor por defecto cuando la clave está ausente."
+  },
+  "esp32_preferences_get_uchar": {
+    "message0": "Lee la tecla UINT8 %1 %2",
+    "tooltip": "Llama a Preferences.getUChar() para leer uint8; Devuelve el valor por defecto cuando la clave está ausente."
+  },
+  "esp32_preferences_get_short": {
+    "message0": "Lee la clave int16 %1 %2",
+    "tooltip": "Llama a Preferences.getShort() para leer int16; Devuelve el valor por defecto cuando la clave está ausente."
+  },
+  "esp32_preferences_get_ushort": {
+    "message0": "Lee la tecla UINT16 %1 %2",
+    "tooltip": "Llama a Preferences.getUShort() para leer uint16; Devuelve el valor por defecto cuando la clave está ausente."
+  },
+  "esp32_preferences_get_int": {
+    "message0": "Lee la clave int32 %1 %2 predeterminada",
+    "tooltip": "Llama a Preferences.getInt() para leer int32; Devuelve el valor por defecto cuando la clave está ausente."
+  },
+  "esp32_preferences_get_uint": {
+    "message0": "Lee la clave uint32 %1 %2 predeterminada",
+    "tooltip": "Llama a Preferences.getUInt() para leer uint32; Devuelve el valor por defecto cuando la clave está ausente."
+  },
+  "esp32_preferences_get_long": {
+    "message0": "Lee la tecla larga %1 %2 predeterminada",
+    "tooltip": "Llama a Preferences.getLong() para leer largo; Devuelve el valor por defecto cuando la clave está ausente."
+  },
+  "esp32_preferences_get_ulong": {
+    "message0": "Lee la clave larga sin firmar %1 %2 predeterminado",
+    "tooltip": "Llama a Preferences.getULong() para leer el largo sin signo; Devuelve el valor por defecto cuando la clave está ausente."
+  },
+  "esp32_preferences_get_long64": {
+    "message0": "Leer la tecla int64 %1 %2 por defecto",
+    "tooltip": "Llama a Preferences.getLong64() para leer int64; Devuelve el valor por defecto cuando la clave está ausente."
+  },
+  "esp32_preferences_get_ulong64": {
+    "message0": "Lee la clave UINT64 %1 %2",
+    "tooltip": "Llama a Preferences.getULong64() para leer uint64; Devuelve el valor por defecto cuando la clave está ausente."
+  },
+  "esp32_preferences_get_float": {
+    "message0": "Lectura de la clave flotante %1 %2 predeterminada",
+    "tooltip": "Llama a Preferences.getFloat() para leer el float; Devuelve el valor por defecto cuando la clave está ausente."
+  },
+  "esp32_preferences_get_double": {
+    "message0": "Lectura de doble tecla %1 %2 por defecto",
+    "tooltip": "Llama a Preferences.getDouble() para leer double; Devuelve el valor por defecto cuando la clave está ausente."
+  },
+  "esp32_preferences_get_bool": {
+    "message0": "Leer la clave booleana %1 %2 predeterminada",
+    "tooltip": "Llama a Preferences.getBool() para leer el valor booleano; Devuelve el valor por defecto cuando la clave está ausente."
+  },
+  "esp32_preferences_get_string": {
+    "message0": "Clave de lectura %1 %2 por defecto",
+    "tooltip": "Llama a Preferences.getString() para leer la cadena; Devuelve el valor por defecto cuando la clave está ausente."
+  },
+  "esp32_preferences_get_bytes": {
+    "message0": "Byte de lectura %1 clave para buffer %2 longitud máxima %3",
+    "tooltip": "Llama a Preferences.getBytes(key, buffer, maxLen) para leer el buffer de bytes y devolver la longitud de lectura."
+  },
+  "esp32_preferences_get_string_length": {
+    "message0": "Longitud %1 llave de cuerda",
+    "tooltip": "Llama a Preferences.getStringLength(key) para obtener la longitud de la cadena."
+  },
+  "esp32_preferences_get_bytes_length": {
+    "message0": "Longitud %1 clave de bytes",
+    "tooltip": "Llama a Preferences.getBytesLength(key) para obtener la longitud de datos del byte."
+  },
+  "esp32_preferences_is_key": {
+    "message0": "Si la clave %1 existe",
+    "tooltip": "Llama a Preferences.isKey(key) para comprobar si la clave existe."
+  },
+  "esp32_preferences_get_type": {
+    "message0": "Preferencias, tipo de %1",
+    "tooltip": "Llama a Preferences.getType(key) para obtener el valor de enumeración PreferenceType."
+  },
+  "esp32_preferences_type_constant": {
+    "message0": "Preferencias Type%1",
+    "tooltip": "Genera la constante de enumeración PreferenceType definida en Preferences.h."
+  },
+  "esp32_preferences_free_entries": {
+    "message0": "Entradas restantes disponibles en NVS",
+    "tooltip": "Llama a Preferences.freeEntrries() para obtener las entradas restantes disponibles en la partición predeterminada de NVS."
+  }
+}

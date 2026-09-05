@@ -1,0 +1,47 @@
+{
+  "toolbox_name": "VL53L0X レーザー距離測定",
+  "vl53l0x_config_i2c": {
+    "message0": "I2CピンVL53L0X%1の設定",
+    "tooltip": "VL53L0Xセンサーで使用されるI2Cピンを装備",
+    "args0": [
+      {
+        "options": [
+          [
+            "Wire1 (SDA:8, SCL:9)",
+            "WIRE1"
+          ],
+          [
+            "Wire2 (SDA:4, SCL:5)",
+            "WIRE2"
+          ]
+        ]
+      }
+    ]
+  },
+  "vl53l0x_init_with_wire": {
+    "message0": "センサー VL53L0X初期化%1%2",
+    "tooltip": "レーザー距離センサー VL53L0X初期化し、使用するI2Cバスを指定します",
+    "args0": [
+      null,
+      {
+        "options": "${board.i2c}"
+      }
+    ]
+  },
+  "vl53l0x_begin": {
+    "message0": "センサー VL53L0X初期化%1 %2",
+    "tooltip": "レーザー距離センサー VL53L0X初期化し、I2Cピンを設定し、接続を確認します"
+  },
+  "vl53l0x_ranging_test": {
+    "message0": "センサー%1測定を行い、そのresults%2を保存します",
+    "tooltip": "詳細な測定が行われ、その結果は指定された変数に保存されます"
+  },
+  "vl53l0x_check_range_valid": {
+    "message0": "測定結果%1有効です",
+    "tooltip": "測定結果が有効かどうかを確認し、状態値が4でなければ有効です"
+  },
+  "vl53l0x_get_range_mm": {
+    "message0": "測定結果からの距離(mm)を得る%1",
+    "tooltip": "距離データは測定結果から得られ、ミリメートル単位で測定されます"
+  }
+}

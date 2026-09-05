@@ -1,0 +1,124 @@
+{
+  "toolbox_name": "VEML6040",
+  "veml6040_init": {
+    "message0": "I2C%1カラーセンサーの初期化%2統合time%3",
+    "tooltip": "RGBWカラーセンサー VEML6040初期化(I2Cアドレス0x10); オプションのI2Cバス; 得点時間が長いほど感度は高くなりますが、遅くなります",
+    "args0": [
+      null,
+      {
+        "options": "${board.i2c}"
+      },
+      {
+        "options": [
+          [
+            "40ms",
+            "VEML6040_IT_40MS"
+          ],
+          [
+            "80ms",
+            "VEML6040_IT_80MS"
+          ],
+          [
+            "160ms",
+            "VEML6040_IT_160MS"
+          ],
+          [
+            "320ms",
+            "VEML6040_IT_320MS"
+          ],
+          [
+            "640ms",
+            "VEML6040_IT_640MS"
+          ],
+          [
+            "1280ms",
+            "VEML6040_IT_1280MS"
+          ]
+        ]
+      }
+    ]
+  },
+  "veml6040_read": {
+    "message0": "%1 %2 を読み取る",
+    "tooltip": "カラーセンサーのチャンネル値を読み取ると、赤/緑/青/白が元の値、色温度単位K、環境光単位のルクス",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Red (R)",
+            "getRed"
+          ],
+          [
+            "Green (G)",
+            "getGreen"
+          ],
+          [
+            "Blue (B)",
+            "getBlue"
+          ],
+          [
+            "White (W)",
+            "getWhite"
+          ],
+          [
+            "CCT",
+            "getCCT"
+          ],
+          [
+            "アンビエントライト(ルクス)",
+            "getAmbientLight"
+          ]
+        ]
+      }
+    ]
+  },
+  "veml6040_get_color": {
+    "message0": "%1 色の名前を識別する",
+    "tooltip": "RGBWに基づいて、現在の色を自動的に認識し、赤/緑/青/黄/シアン/白/暗いテキストを返します"
+  },
+  "veml6040_is_color": {
+    "message0": "%1 detects %2",
+    "tooltip": "現在認識されている色が指定された色かどうか確認してください",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "red",
+            "red"
+          ],
+          [
+            "green",
+            "green"
+          ],
+          [
+            "blue",
+            "blue"
+          ],
+          [
+            "yellow",
+            "yellow"
+          ],
+          [
+            "cyan",
+            "cyan"
+          ],
+          [
+            "white",
+            "white"
+          ],
+          [
+            "dark",
+            "dark"
+          ]
+        ]
+      }
+    ]
+  },
+  "toolbox_labels": {
+    "初始化": "初期化",
+    "读取数值": "値を読みましょう",
+    "颜色识别": "色の認識"
+  }
+}

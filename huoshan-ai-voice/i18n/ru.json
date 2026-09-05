@@ -1,0 +1,110 @@
+{
+  "toolbox_name": "Голос ИИ Вулкана",
+  "toolbox_labels": {
+    "配置": "Конфигурация",
+    "屏幕": "экран",
+    "语音对话": "Голосовой разговор",
+    "参数": "параметры",
+    "状态": "Статус"
+  },
+  "huoshan_ai_config": {
+    "message0": "Настройте Volcano AI Voice App ID Doubao %1 Doubao Token %2 Coze Token %3 Coze Bot ID %4 User ID %5",
+    "tooltip": "Настройте параметры, необходимые для многоходового диалога Doubao ASR/TTS и Coze; используйте идентификатор чипа при нулевой идентификации пользователя"
+  },
+  "huoshan_ai_wifi_connect": {
+    "message0": "Volcano AI Connection WiFi SSID %1 пароль %2 тайм-аут (ms) %3",
+    "tooltip": "Подключение к WiFi, последующее ASR, Cozy и TTS зависят от сети"
+  },
+  "huoshan_ai_mic_config": {
+    "message0": "Оснащён микрофоном Volcano AI I2S ports%1 BCLK %2 WS/LRCLK %3 DIN %4 gain%5 максимальной seconds%6",
+    "tooltip": "Оснащён контактами микрофона I2S и параметрами записи, с фиксированной 16-битной частотой монодискретизации 16 кГц; Рекомендуемый гейн 4. Если лог подсказывает клиппинг, уменьшите усиление"
+  },
+  "huoshan_ai_speaker_config": {
+    "message0": "Настройте порты динамиков Volcano AI I2S %1 BCLK %2 WS/LRCLK %3 DOUT %4 громкости %5",
+    "tooltip": "Оснащён MAX98357 динамиками I2S, воспроизведение TTS PCM на частоте 16 кГц"
+  },
+  "huoshan_ai_begin": {
+    "message0": "Активировать голос ИИ Вулкана",
+    "tooltip": "Инициализируйте микрофон и динамики I2S, чтобы подготовиться к голосовым разговорам"
+  },
+  "huoshan_ai_start_listening": {
+    "message0": "Вулканический ИИ начинает слушать",
+    "tooltip": "Начинайте запись с микрофона I2S, обычно размещаемого при нажатии кнопки"
+  },
+  "huoshan_ai_stop_listening_and_chat": {
+    "message0": "Вулканический ИИ прекращает слушать и говорить",
+    "tooltip": "Остановите запись, позвоните в распознавание ASR в Doubao, затем отправьте его в Coze и воспроизведите ответ с помощью Doubao TTS"
+  },
+  "huoshan_ai_send_text": {
+    "message0": "Volcano AI отправляет текст Козу %1 воспроизводит и replies%2",
+    "tooltip": "Отправляйте текст напрямую в Coze для многоходовых переписок, с опцией воспроизведения ответов в TTS."
+  },
+  "huoshan_ai_tts_speak": {
+    "message0": "Воспроизведение текста Volcano AI TTS %1",
+    "tooltip": "Текст синтезируется с помощью Doubao TTS и воспроизводится через динамики I2S"
+  },
+  "huoshan_ai_stop_audio": {
+    "message0": "Volcano AI перестал воспроизводить звук",
+    "tooltip": "Очистите DMA буфера I2S и остановите текущее воспроизведение"
+  },
+  "huoshan_ai_clear_conversation": {
+    "message0": "Volcano AI очищает сессии Coze",
+    "tooltip": "Очистите conversation_id и начните следующий запрос с новой сессии"
+  },
+  "huoshan_ai_set_voice": {
+    "message0": "Volcano AI задаёт тон Doubao %1",
+    "tooltip": "Поставьте Doubao TTS voice_type, например, zh_female_wanwanxiaohe_moon_bigtts"
+  },
+  "huoshan_ai_set_volume": {
+    "message0": "Настройка Volbow AI Громкость воспроизведения %1",
+    "tooltip": "Установите локальную громкость воспроизведения I2S, рекомендованную между 0.0 и 1.0"
+  },
+  "huoshan_ai_set_speed": {
+    "message0": "Вулканический ИИ устанавливает речь TTS rate%1",
+    "tooltip": "Устанавливайте speed_ratio Doubao TTS, обычно между 0,8 и 1,2"
+  },
+  "huoshan_ai_get_state": {
+    "message0": "Получите текущее состояние Volcano AI",
+    "tooltip": "Возвращает состояния в состоянии бездействия, слушания, распознавания, мышления, говорения, ошибки и других состояний"
+  },
+  "huoshan_ai_is_wifi_connected": {
+    "message0": "WiFi Volcano AI подключен",
+    "tooltip": "Проверьте, подключён ли WiFi"
+  },
+  "huoshan_ai_get_last_asr_text": {
+    "message0": "Получите финальное распознавание текста от Volcano AI",
+    "tooltip": "Вернуть окончательный текст признания для последнего ASR Doubao"
+  },
+  "huoshan_ai_get_last_reply_text": {
+    "message0": "Получите финальный ответ от Volcano AI",
+    "tooltip": "Вернуть самый последний ответный текст Coze"
+  },
+  "huoshan_ai_get_last_error": {
+    "message0": "Последняя ошибка Volcano AI",
+    "tooltip": "Вернуть последнее сообщение об ошибке"
+  },
+  "huoshan_ai_screen_config": {
+    "message0": "Конфигурация: Volcano AI Screen: Ширина %1 Высота %2 Вращение %3 Яркость: %4 Backlight%5 MISO %6 MOSI %7 SCLK %8 CS %9 DC %10 RST %11 Touch SDA %12 SCL %13 RST %14 ИНТЕЛЛЕКТ %15",
+    "tooltip": "Настройте инженерные макросы ST7789, TFT_eSPI, LVGL и FT6336U сенсорного экрана, при условии соответствия оригинальному аппаратному обеспечению проекта PIO"
+  },
+  "huoshan_ai_screen_begin": {
+    "message0": "Активируйте экран Volcano AI, нажмите и удерживайте, чтобы говорить касанием, %1 автоматически отобразите conversations%2",
+    "tooltip": "Инициализируйте голосовую панель LVGL, создайте строку статуса, список сообщений и кнопку нажатия"
+  },
+  "huoshan_ai_screen_set_brightness": {
+    "message0": "Настройки яркости экрана Volcano AI %1",
+    "tooltip": "Установить яркость подсветки экрана от 0 до 100"
+  },
+  "huoshan_ai_screen_set_status": {
+    "message0": "Настройки экрана Volcano AI Status%1",
+    "tooltip": "Вручную установите статусный текст в верхней части экрана"
+  },
+  "huoshan_ai_screen_add_message": {
+    "message0": "Экран Volcano AI добавляет сообщения, персонажей %1 Text%2",
+    "tooltip": "Добавьте пользовательское, ИИ или системное сообщение в список сообщений на экране"
+  },
+  "huoshan_ai_screen_clear_messages": {
+    "message0": "Экран ИИ Вулкана очистил сообщение",
+    "tooltip": "Очистите список сообщений на экране"
+  }
+}

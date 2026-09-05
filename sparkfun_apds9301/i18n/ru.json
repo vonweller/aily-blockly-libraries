@@ -1,0 +1,115 @@
+{
+  "toolbox_name": "APDS9301",
+  "apds9301_init": {
+    "message0": "Инициализировать APDS9301 %1 адрес %2",
+    "tooltip": "Создайте и инициализируйте световой датчик SparkFun APDS9301"
+  },
+  "apds9301_is_ready": {
+    "message0": "APDS9301 %1 инициализирован",
+    "tooltip": "Возвращает APDS9301 состояние инициализации, сохранённое блоком инициализации"
+  },
+  "apds9301_read_lux": {
+    "message0": "APDS9301 %1 читать люксы",
+    "tooltip": "Прочитайте рассчитанное значение освещения LUX"
+  },
+  "apds9301_read_channel": {
+    "message0": "APDS9301 %1 читать сырой канал %2",
+    "tooltip": "Читайте APDS9301 исходные значения канала",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "CH0 Видимый + инфракрасный",
+            "readCH0Level"
+          ],
+          [
+            "CH1 Инфракрасный",
+            "readCH1Level"
+          ]
+        ]
+      }
+    ]
+  },
+  "apds9301_set_gain": {
+    "message0": "Установить APDS9301 %1 усиление %2",
+    "tooltip": "Задайте APDS9301 усиление",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Низкая",
+            "APDS9301::LOW_GAIN"
+          ],
+          [
+            "Высокая",
+            "APDS9301::HIGH_GAIN"
+          ]
+        ]
+      }
+    ]
+  },
+  "apds9301_set_integration_time": {
+    "message0": "Установить APDS9301 %1 время преобразования %2",
+    "tooltip": "Установите время APDS9301 очков"
+  },
+  "apds9301_enable_interrupt": {
+    "message0": "APDS9301 %1 прерывание %2",
+    "tooltip": "Включить или отключить вывод APDS9301 прерывания",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Включить",
+            "APDS9301::INT_ON"
+          ],
+          [
+            "Отключить",
+            "APDS9301::INT_OFF"
+          ]
+        ]
+      }
+    ]
+  },
+  "apds9301_set_threshold": {
+    "message0": "Установить APDS9301 %1 %2 порог %3",
+    "tooltip": "Установите порог APDS9301 прерывания",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Нижний",
+            "LOW"
+          ],
+          [
+            "Верхний",
+            "HIGH"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "apds9301_power": {
+    "message0": "APDS9301 %1 питание %2",
+    "tooltip": "Включите или выключите APDS9301 питание",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Вкл",
+            "APDS9301::POW_ON"
+          ],
+          [
+            "Выкл",
+            "APDS9301::POW_OFF"
+          ]
+        ]
+      }
+    ]
+  }
+}

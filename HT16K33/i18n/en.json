@@ -1,0 +1,279 @@
+{
+  "toolbox_name": "HT16K33 digital tube",
+  "toolbox_labels": {
+    "快速开始": "quick start",
+    "常用场景": "Common scenarios",
+    "常用组合": "Common combinations",
+    "数据类型显示": "Data type display",
+    "时间日期": "time date",
+    "显示控制": "display control",
+    "外观设置": "Appearance settings",
+    "高级功能": "Advanced features"
+  },
+  "ht16k33_init": {
+    "message0": "Initialize HT16K33 digital tube %1 address %2",
+    "tooltip": "Initialize the HT16K33 four-digit seven-segment digital tube, the default address is 0x70",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "0x70 (default)",
+            "0x70"
+          ],
+          [
+            "0x71",
+            "0x71"
+          ],
+          [
+            "0x72",
+            "0x72"
+          ],
+          [
+            "0x73",
+            "0x73"
+          ],
+          [
+            "0x74",
+            "0x74"
+          ],
+          [
+            "0x75",
+            "0x75"
+          ],
+          [
+            "0x76",
+            "0x76"
+          ],
+          [
+            "0x77",
+            "0x77"
+          ]
+        ]
+      }
+    ]
+  },
+  "ht16k33_simple_display": {
+    "message0": "Digital tube display%1",
+    "tooltip": "Display numbers on the digital tube, automatically initialize and select display format"
+  },
+  "ht16k33_display_temperature": {
+    "message0": "Digital tube displays temperature%1°C",
+    "tooltip": "Display temperature value, automatically add degree symbol"
+  },
+  "ht16k33_display_voltage": {
+    "message0": "Digital tube display voltage %1V",
+    "tooltip": "Display voltage value, automatically format decimal places"
+  },
+  "ht16k33_clock_display": {
+    "message0": "The digital tube clock displays %1 hours %2 minutes %3 flashing colon",
+    "tooltip": "Display clock with flashing colon effect"
+  },
+  "ht16k33_countdown": {
+    "message0": "The digital tube countdown displays %1 seconds",
+    "tooltip": "Display countdown seconds in the format MM:SS"
+  },
+  "ht16k33_display_int": {
+    "message0": "The digital tube displays an integer%1",
+    "tooltip": "Display integer, range -999 to 9999"
+  },
+  "ht16k33_display_float": {
+    "message0": "The digital tube displays decimal %1 and the number of decimal places %2",
+    "tooltip": "Display floating point number",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "1 person",
+            "1"
+          ],
+          [
+            "2 people",
+            "2"
+          ],
+          [
+            "3 people",
+            "3"
+          ]
+        ]
+      }
+    ]
+  },
+  "ht16k33_display_hex": {
+    "message0": "The digital tube displays hexadecimal %1",
+    "tooltip": "Displays hexadecimal numbers in the range 0000 to FFFF"
+  },
+  "ht16k33_display_time": {
+    "message0": "The digital tube displays the time%1:%2 and displays the colon%3",
+    "tooltip": "Display time format, such as 12:30"
+  },
+  "ht16k33_display_date": {
+    "message0": "The digital tube displays the date%1.%2",
+    "tooltip": "Display date format, such as 12.25"
+  },
+  "ht16k33_display_clear": {
+    "message0": "Clear digital tube screen",
+    "tooltip": "Clear the display content of the digital tube"
+  },
+  "ht16k33_set_brightness": {
+    "message0": "Digital tube setting brightness%1",
+    "tooltip": "Set the brightness of the digital tube, the range is 0-15, 8 is medium brightness"
+  },
+  "ht16k33_set_blink": {
+    "message0": "The digital tube setting flashes%1",
+    "tooltip": "Set the digital tube flashing mode",
+    "args0": [
+      {
+        "options": [
+          [
+            "Close",
+            "0"
+          ],
+          [
+            "flash quickly",
+            "1"
+          ],
+          [
+            "Flashing at medium speed",
+            "2"
+          ],
+          [
+            "flash slowly",
+            "3"
+          ]
+        ]
+      }
+    ]
+  },
+  "ht16k33_display_on_off": {
+    "message0": "Digital tube%1display",
+    "tooltip": "Turn on or off the digital tube display",
+    "args0": [
+      {
+        "options": [
+          [
+            "turn on",
+            "ON"
+          ],
+          [
+            "Close",
+            "OFF"
+          ]
+        ]
+      }
+    ]
+  },
+  "ht16k33_display_colon": {
+    "message0": "Digital tube%1 colon",
+    "tooltip": "Control the display of the colon in the middle of the digital tube",
+    "args0": [
+      {
+        "options": [
+          [
+            "show",
+            "true"
+          ],
+          [
+            "hide",
+            "false"
+          ]
+        ]
+      }
+    ]
+  },
+  "ht16k33_display_test": {
+    "message0": "Digital tube display test%1 milliseconds",
+    "tooltip": "Execute the digital tube display test and light up all segments"
+  },
+  "ht16k33_sensor_display": {
+    "message0": "The digital tube displays the sensor value%1 label%2",
+    "tooltip": "Display the sensor value and automatically add the corresponding label. After the display is completed, it will be paused for observation.",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Temperature °C",
+            "temp"
+          ],
+          [
+            "Humidity %",
+            "humi"
+          ],
+          [
+            "Voltage V",
+            "volt"
+          ],
+          [
+            "Current A",
+            "curr"
+          ],
+          [
+            "Distance cm",
+            "dist"
+          ],
+          [
+            "brightness",
+            "light"
+          ],
+          [
+            "no label",
+            "none"
+          ]
+        ]
+      }
+    ]
+  },
+  "ht16k33_digital_clock": {
+    "message0": "Nixie tube digital clock display %1 Time acquisition method %2",
+    "tooltip": "Displays digital clock, automatically calculating hours, minutes and seconds with flashing colon",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "System milliseconds",
+            "millis"
+          ],
+          [
+            "Manual setting",
+            "manual"
+          ],
+          [
+            "RTC module",
+            "rtc"
+          ]
+        ]
+      }
+    ]
+  },
+  "ht16k33_score_display": {
+    "message0": "The digital tube displays the score%1",
+    "tooltip": "Display game score, support 0-9999 points"
+  },
+  "ht16k33_counter_display": {
+    "message0": "Digital tube counter %1 operation %2 step size %3",
+    "tooltip": "Simple counter function that can increment, decrement or reset",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Increment",
+            "inc"
+          ],
+          [
+            "Decreasing",
+            "dec"
+          ],
+          [
+            "reset",
+            "reset"
+          ]
+        ]
+      },
+      null
+    ]
+  }
+}

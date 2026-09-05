@@ -1,0 +1,199 @@
+{
+  "toolbox_name": "BMV080 懸浮粒子感測器",
+  "bmv080_init_i2c": {
+    "message0": "初始化 BMV080 I2C %1匯流排%2位址%3",
+    "tooltip": "透過 I2C 初始化並啟用 BMV080 顆粒物感測器。",
+    "args0": [
+      null,
+      {
+        "options": "${board.i2c}"
+      },
+      {
+        "options": [
+          [
+            "0x57",
+            "0x57"
+          ],
+          [
+            "0x56",
+            "0x56"
+          ],
+          [
+            "0x55",
+            "0x55"
+          ],
+          [
+            "0x54",
+            "0x54"
+          ]
+        ]
+      }
+    ]
+  },
+  "bmv080_init_spi": {
+    "message0": "初始化 BMV080 SPI %1 匯流排%2 CS %3",
+    "tooltip": "透過 SPI 初始化並啟動 BMV080 顆粒物感測器。"
+  },
+  "bmv080_set_mode": {
+    "message0": "BMV080 %1 設定測量模式%2",
+    "tooltip": "開始連續測量或工作週期測量。",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "continuous",
+            "CONTINUOUS_MODE"
+          ],
+          [
+            "工作比測量",
+            "DUTY_CYCLE_MODE"
+          ]
+        ]
+      }
+    ]
+  },
+  "bmv080_set_duty_cycle": {
+    "message0": "BMV080 %1 將工作週期設為%2秒，積分時間設為%3秒",
+    "tooltip": "設定占空比模式參數。 循環時間應至少為12秒，積分時間至少1秒，週期必須比積分時間長至少2秒。"
+  },
+  "bmv080_set_algorithm": {
+    "message0": "BMV080 %1設定測量演算法%2",
+    "tooltip": "設定PM測量演算法。",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "快速回應",
+            "FAST_RESPONSE"
+          ],
+          [
+            "balanced",
+            "BALANCED"
+          ],
+          [
+            "高精度",
+            "HIGH_PRECISION"
+          ]
+        ]
+      }
+    ]
+  },
+  "bmv080_set_feature": {
+    "message0": "BMV080 %1 Settings%2 %3",
+    "tooltip": "開啟或關閉遮蔽偵測與震動過濾功能。",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "障礙物偵測",
+            "OBSTRUCTION"
+          ],
+          [
+            "振動過濾",
+            "VIBRATION"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "開啟",
+            "true"
+          ],
+          [
+            "關閉",
+            "false"
+          ]
+        ]
+      }
+    ]
+  },
+  "bmv080_read_data": {
+    "message0": "BMV080 %1刷新PM資料",
+    "tooltip": "讀取並快取 PM1、PM2.5、PM10。 資料就緒回傳真，未準備回傳假。"
+  },
+  "bmv080_pm_value": {
+    "message0": "BMV080 %1快取value%2",
+    "tooltip": "在最後一次刷新後讀取 PM 快取值。",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "PM1 ug/m3",
+            "PM1"
+          ],
+          [
+            "PM2.5 微克/m3",
+            "PM25"
+          ],
+          [
+            "PM10 微克/公尺",
+            "PM10"
+          ]
+        ]
+      }
+    ]
+  },
+  "bmv080_get_status": {
+    "message0": "BMV080 %1狀態/配置%2",
+    "tooltip": "請檢查 BMV080 的配置或阻塞狀態。",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "algorithm",
+            "ALGORITHM"
+          ],
+          [
+            "計分時間",
+            "INTEGRATION"
+          ],
+          [
+            "虛空循環",
+            "PERIOD"
+          ],
+          [
+            "區塊偵測開關",
+            "OBSTRUCTION_FEATURE"
+          ],
+          [
+            "振動過濾開關",
+            "VIBRATION_FEATURE"
+          ],
+          [
+            "是否被阻擋",
+            "OBSTRUCTED"
+          ]
+        ]
+      }
+    ]
+  },
+  "bmv080_command": {
+    "message0": "BMV080 %1 run %2",
+    "tooltip": "停止測量、重置或關閉 BMV080。",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "停止測量",
+            "STOP"
+          ],
+          [
+            "回到你的位置",
+            "RESET"
+          ],
+          [
+            "關閉感應器",
+            "CLOSE"
+          ]
+        ]
+      }
+    ]
+  }
+}

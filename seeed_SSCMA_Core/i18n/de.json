@@ -1,0 +1,252 @@
+{
+  "toolbox_name": "SSCMA Core",
+  "toolbox_labels": {
+    "初始化": "Initialisierung",
+    "推理处理": "Inferenzverarbeitung",
+    "回调注册": "Rückrufregistrierung",
+    "检测结果": "Testergebnisse",
+    "分类结果": "Klassifizierungsergebnisse",
+    "关键点结果": "Kernpunktergebnisse",
+    "关键点组结果": "Ergebnisse der Schlüsselpunktgruppe",
+    "性能指标": "Leistungsindikatoren"
+  },
+  "sscma_core_begin": {
+    "message0": "SSCMA initialisieren mit der Standardkonfiguration ESP32S3 XIAO",
+    "tooltip": "Initialisieren Sie die SSCMA-Instanz"
+  },
+  "sscma_core_set_loop_task_stack_size": {
+    "message0": "Setze die Größe des SSCMA-Schleifen-Taskstacks auf %1 Bytes",
+    "tooltip": "Stellen Sie die Größe des SSCMA-Schleifen-Taskstacks fest"
+  },
+  "sscma_core_invoke": {
+    "message0": "SSCMA-Inferenzverarbeitungsrahmen %1",
+    "tooltip": "Führen Sie KI-Schlussfolgerung aus"
+  },
+  "sscma_core_get_managed_frame": {
+    "message0": "Abrufen des Managementrahmens",
+    "tooltip": "Abrufe von Managementframes aus der Videoaufnahme"
+  },
+  "sscma_core_register_boxes_callback": {
+    "message0": "SSCMA-Objekterkennungs-Callback",
+    "tooltip": "Registerobjekterkennungs-Callbacks",
+    "message1": "ausführen %1"
+  },
+  "sscma_core_register_classes_callback": {
+    "message0": "Callback zur SSCMA-Klassifikationserkennung",
+    "tooltip": "Registrierungsklassifikationserkennung Callback",
+    "message1": "ausführen %1"
+  },
+  "sscma_core_register_points_callback": {
+    "message0": "SSCMA-Schlüsselpunkterkennungs-Pullback",
+    "tooltip": "Callback zur Erkennung von Registrierungsschlüsselpunkten",
+    "message1": "ausführen %1"
+  },
+  "sscma_core_register_keypoints_callback": {
+    "message0": "SSCMA-Aufruf zur Erkennung von Schlüsselpunktgruppen",
+    "tooltip": "Registrieren Sie Rückrufe zur Erkennung von Schlüsselpunktgruppen",
+    "message1": "ausführen %1"
+  },
+  "sscma_core_register_perf_callback": {
+    "message0": "SSCMA-Performance-Rückruf",
+    "tooltip": "Leistungsindikatoren für die Registrierung wurden zurückgezogen",
+    "message1": "ausführen %1"
+  },
+  "sscma_core_get_boxes": {
+    "message0": "SSCMA durchquert sie, um Objekterkennungsergebnisse zu erhalten.",
+    "tooltip": "Traversieren, um die Ergebnisse der erkannten Objektbox abzurufen",
+    "message1": "%1"
+  },
+  "sscma_core_get_boxes_info": {
+    "message0": "Objekterkennungsinformationen erhalten Eigenschaften %1",
+    "tooltip": "Traverse zur Gewinnung von Objekterkennungsinformationen",
+    "args0": [
+      {
+        "options": [
+          [
+            "X-Koordinate",
+            "x"
+          ],
+          [
+            "Y-Koordinate",
+            "y"
+          ],
+          [
+            "width",
+            "w"
+          ],
+          [
+            "Höhe",
+            "h"
+          ],
+          [
+            "Vertrauensniveau",
+            "score"
+          ],
+          [
+            "Zielkategorien",
+            "target"
+          ]
+        ]
+      }
+    ]
+  },
+  "sscma_core_get_classes": {
+    "message0": "SSCMA durchquert, um die Ergebnisse des Klassifikationstests zu erhalten",
+    "tooltip": "Erhalten Sie klassifizierte Testergebnisse",
+    "message1": "%1"
+  },
+  "sscma_core_get_classes_info": {
+    "message0": "Informationen zur Klassifikationserkennung erhalten Attribute %1",
+    "tooltip": "Geheime Detektionsinformationen erhalten",
+    "args0": [
+      {
+        "options": [
+          [
+            "Vertrauensniveau",
+            "score"
+          ],
+          [
+            "Zielkategorien",
+            "target"
+          ]
+        ]
+      }
+    ]
+  },
+  "sscma_core_get_points": {
+    "message0": "SSCMA durchläuft die Kontrolle, um kritische Punkterkennungsergebnisse zu erhalten",
+    "tooltip": "Traverse zur Erlangung von Schlüsselpunkterkennungsergebnissen",
+    "message1": "%1"
+  },
+  "sscma_core_get_points_info": {
+    "message0": "Wichtige Punktinformationen erhalten Attribute %1",
+    "tooltip": "Wichtige Informationen erhalten",
+    "args0": [
+      {
+        "options": [
+          [
+            "X-Koordinate",
+            "x"
+          ],
+          [
+            "Y-Koordinate",
+            "y"
+          ],
+          [
+            "Z-Koordinate",
+            "z"
+          ],
+          [
+            "Vertrauensniveau",
+            "score"
+          ],
+          [
+            "Zielkategorien",
+            "target"
+          ]
+        ]
+      }
+    ]
+  },
+  "sscma_core_get_keypoints": {
+    "message0": "SSCMA durchläuft, um die Detektionsergebnisse der wichtigsten Punktgruppen zu erhalten",
+    "tooltip": "Um die Detektionsergebnisse der Schlüsselpunktgruppen zu erhalten, durchlaufen",
+    "message1": "%1"
+  },
+  "sscma_core_get_keypoints_info": {
+    "message0": "Wichtige Punktgruppeninformationen erhalten Attribute %1",
+    "tooltip": "Erhalten Sie Informationen zur Schlüsselpunktgruppengruppe",
+    "args0": [
+      {
+        "options": [
+          [
+            "X-Koordinate",
+            "x"
+          ],
+          [
+            "Y-Koordinate",
+            "y"
+          ],
+          [
+            "Höhe",
+            "h"
+          ],
+          [
+            "width",
+            "w"
+          ],
+          [
+            "Vertrauensniveau",
+            "score"
+          ],
+          [
+            "Zielkategorien",
+            "target"
+          ]
+        ]
+      }
+    ]
+  },
+  "sscma_core_get_keypoints_points": {
+    "message0": "Traverse zur Abruf von Punktinformationen in der Schlüsselpunktgruppe",
+    "tooltip": "Traverse zur Abruf von Punktinformationen in der Schlüsselpunktgruppe",
+    "message1": "%1"
+  },
+  "sscma_core_get_keypoints_points_info": {
+    "message0": "Punktinformationen in Schlüsselpunktgruppen abrufen Eigenschaften %1",
+    "tooltip": "Punktinformationen aus Schlüsselpunktgruppen abrufen",
+    "args0": [
+      {
+        "options": [
+          [
+            "X-Koordinate",
+            "x"
+          ],
+          [
+            "Y-Koordinate",
+            "y"
+          ],
+          [
+            "Z-Koordinate",
+            "z"
+          ],
+          [
+            "Vertrauensniveau",
+            "score"
+          ],
+          [
+            "Zielkategorien",
+            "target"
+          ]
+        ]
+      }
+    ]
+  },
+  "sscma_core_get_perf": {
+    "message0": "SSCMA erhält Leistungskennzahlen zum %1",
+    "tooltip": "Erhalten Sie Leistungskennzahlen als Variablen"
+  },
+  "sscma_core_get_perf_info": {
+    "message0": "Erhalten Sie %1 Leistungsdaten %2",
+    "tooltip": "Leistungsinformationen erhalten",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Vorbearbeitungszeit",
+            "preprocess"
+          ],
+          [
+            "Schlussfolgerzeit",
+            "inference"
+          ],
+          [
+            "Nachbearbeitungszeit",
+            "postprocess"
+          ]
+        ]
+      }
+    ]
+  }
+}

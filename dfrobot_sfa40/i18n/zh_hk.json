@@ -1,0 +1,65 @@
+{
+  "toolbox_name": "SFA40 甲醛溫度與濕度感測器",
+  "sfa40_init_i2c": {
+    "message0": "初始化 SFA40 I2C %1匯流排%2",
+    "tooltip": "SFA40 透過 I2C 初始化，位址固定為 0x5D。"
+  },
+  "sfa40_measurement": {
+    "message0": "SFA40 %1 %2 measurement",
+    "tooltip": "開始或停止SFA40測量。",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "開始",
+            "START"
+          ],
+          [
+            "停下",
+            "STOP"
+          ]
+        ]
+      }
+    ]
+  },
+  "sfa40_read_data": {
+    "message0": "SFA40 %1刷新量度資料",
+    "tooltip": "讀取並快取HCHO、濕度和溫度。 回傳 0 表示可靠，1 表示未熱機，2 表示不符合規格，3 表示通訊或 CRC 失敗。"
+  },
+  "sfa40_value": {
+    "message0": "SFA40 %1快取value%2",
+    "tooltip": "在最後一次刷新後讀取快取值。",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "HCHO ppb",
+            "HCHO"
+          ],
+          [
+            "濕度 %RH",
+            "HUMIDITY"
+          ],
+          [
+            "溫度 C",
+            "TEMP_C"
+          ],
+          [
+            "溫度 F",
+            "TEMP_F"
+          ]
+        ]
+      }
+    ]
+  },
+  "sfa40_read_serial": {
+    "message0": "SFA40 %1讀取序號",
+    "tooltip": "讀取SFA40序號並更新序號長度。 建議先停止測量。"
+  },
+  "sfa40_serial_length": {
+    "message0": "SFA40 %1序號長度",
+    "tooltip": "讀取有效位元組長度的序號。 必須在停止測量後呼叫序號。"
+  }
+}

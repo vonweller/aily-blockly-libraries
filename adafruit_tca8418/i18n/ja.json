@@ -1,0 +1,118 @@
+{
+  "toolbox_name": "TCA8418キーボードマトリックス",
+  "toolbox_labels": {
+    "初始化": "初期化",
+    "键盘矩阵": "キーボードマトリックス",
+    "GPIO控制": "GPIO制御",
+    "配置选项": "構成オプション"
+  },
+  "tca8418_create": {
+    "message0": "キーボードマトリックス/GPIOエクステンダー変数TCA8418作成%1",
+    "tooltip": "キーボードマトリックス/GPIOエクステンダーオブジェクトTCA8418作成"
+  },
+  "tca8418_begin": {
+    "message0": "I2Cアドレス%1初期化%2",
+    "tooltip": "機器TCA8418初期化してください"
+  },
+  "tca8418_matrix": {
+    "message0": "セット %1 キーボード行列数 %2 列数 %3",
+    "tooltip": "キーボードマトリックスの行数と列数を設定します"
+  },
+  "tca8418_available": {
+    "message0": "%1 利用可能な主要イベントの数",
+    "tooltip": "FIFOバッファ内の利用可能なイベント数を把握してください"
+  },
+  "tca8418_get_event": {
+    "message0": "%1 キーイベントの取得",
+    "tooltip": "FIFOバッファからキーイベントを取得する"
+  },
+  "tca8418_flush": {
+    "message0": "%1イベントバッファを空にします",
+    "tooltip": "FIFOバッファ内のすべてのイベントをクリアしてください"
+  },
+  "tca8418_pin_mode": {
+    "message0": "ピン%1モード%2設定%3",
+    "tooltip": "GPIOピンモードを設定してください",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "入力",
+            "INPUT"
+          ],
+          [
+            "出力",
+            "OUTPUT"
+          ],
+          [
+            "入力とプルアップ",
+            "INPUT_PULLUP"
+          ]
+        ]
+      }
+    ]
+  },
+  "tca8418_digital_read": {
+    "message0": "%1ピンのレベル%2読みます",
+    "tooltip": "GPIOのピンレベル状態を確認してください"
+  },
+  "tca8418_digital_write": {
+    "message0": "ピン%1セット%2 level%3",
+    "tooltip": "GPIOピンの出力レベルを設定します",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "High",
+            "HIGH"
+          ],
+          [
+            "Low",
+            "LOW"
+          ]
+        ]
+      }
+    ]
+  },
+  "tca8418_enable_interrupts": {
+    "message0": "%1割り込みを有効にする",
+    "tooltip": "マトリックスピンおよびGPIOピンの割り込みを有効にする"
+  },
+  "tca8418_disable_interrupts": {
+    "message0": "%1割り込みを無効にしてください",
+    "tooltip": "マトリックスピンおよびGPIOピンの中断を無効にする"
+  },
+  "tca8418_enable_debounce": {
+    "message0": "キー%1安定化を有効にする",
+    "tooltip": "鍵の安定化を有効にする"
+  },
+  "tca8418_disable_debounce": {
+    "message0": "%1ボタンの跳ね返りを無効にしてください",
+    "tooltip": "キーの安定化を無効にしてください"
+  },
+  "tca8418_when_key_event": {
+    "message0": "重要なイベントがある%1",
+    "tooltip": "キーイベントが発生したときにコードを実行",
+    "message1": "%1 を実行します"
+  },
+  "tca8418_current_event": {
+    "message0": "%1 現在の主要イベント",
+    "tooltip": "自動保存された現在の鍵イベント(イベント処理ブロック内のみ使用)を取得します。"
+  },
+  "tca8418_get_event_row": {
+    "message0": "キーイベントの行番号%1",
+    "tooltip": "キーイベント(0-7)からの行番号の抽出"
+  },
+  "tca8418_get_event_col": {
+    "message0": "キーイベントの列番号%1",
+    "tooltip": "キーイベントから列番号を抽出する(0-9)"
+  },
+  "tca8418_get_event_pressed": {
+    "message0": "%1の重要な出来事は、押し下げることです",
+    "tooltip": "キーイベントから押す(真)か離す(偽)かを決める"
+  }
+}

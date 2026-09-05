@@ -1,0 +1,205 @@
+{
+  "toolbox_name": "PN532 NFC",
+  "toolbox_labels": {
+    "模块初始化": "تهيئة الوحدة النمطية",
+    "基本配置": "التكوين الأساسي",
+    "读取卡片信息": "قراءة معلومات البطاقة",
+    "Mifare Classic操作": "عملية ميفار كلاسيك",
+    "Mifare Ultralight操作": "عملية Mifare خفيفة",
+    "NTAG2xx操作": "عملية NTAG2xx"
+  },
+  "pn532_create_spi": {
+    "message0": "أنشئ وحدة NFC من PN532 %1 استخدام واجهة SPI مثل SCK:%2 MISO:%3 MOSI:%4 SS:%5",
+    "tooltip": "إنشاء كائن وحدة NFC في PN532 باستخدام واجهة SPI البرمجية"
+  },
+  "pn532_create_spi_hw": {
+    "message0": "إنشاء وحدة NFC ل PN532 %1 استخدام واجهة SPI العتادية SS:%2",
+    "tooltip": "إنشاء كائن وحدة NFC لجهاز PN532 باستخدام واجهة SPI عتادية"
+  },
+  "pn532_create_i2c": {
+    "message0": "إنشاء وحدة NFC ل PN532 %1 استخدام واجهة I2C (النسخة المبسطة)",
+    "tooltip": "إنشاء كائن وحدة NFC في PN532 باستخدام واجهة I2C (بدون دبابيس IRQ أو RESET)"
+  },
+  "pn532_create_i2c_pins": {
+    "message0": "أنشئ وحدة NFC ل PN532 %1 استخدام واجهة I2C IRQ:%2 RESET:%3",
+    "tooltip": "إنشاء كائن وحدة NFC في PN532 باستخدام واجهة I2C (مع دبابيس IRQ وRESET)"
+  },
+  "pn532_begin": {
+    "message0": "تهيئة وحدة PN532 %1",
+    "tooltip": "لتهيئة وحدة PN532، يجب استدعاؤها في الإعدادات"
+  },
+  "pn532_get_firmware_version": {
+    "message0": "احصل على نسخة البرنامج الثابت من وحدة PN532 %1",
+    "tooltip": "احصل على رقم إصدار البرنامج الثابت لوحدة PN532"
+  },
+  "pn532_sam_config": {
+    "message0": "مجهزة بوحدات PN532 %1 صواريخ SAM",
+    "tooltip": "تكوين وحدة PN532 باستخدام وحدة الوصول الآمن (SAM)"
+  },
+  "pn532_set_passive_retries": {
+    "message0": "اضبط وحدة PN532 %1 عد التفعيل السلبي لإعادة المحاولة %2",
+    "tooltip": "حدد الحد الأقصى لعدد المحاولات عند قراءة بطاقة"
+  },
+  "pn532_read_passive_target": {
+    "message0": "اقرأ وحدة PN532 %1 نوع بطاقة التعريف السلبية للهدف %2 مهلة %3 مللي ثانية",
+    "tooltip": "اقرأ معرف الهدف السلبي وأعد ما إذا كانت القراءة ناجحة",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "MIFARE ISO14443A",
+            "PN532_MIFARE_ISO14443A"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "pn532_get_uid_length": {
+    "message0": "احصل على أحدث طول UID قرأ",
+    "tooltip": "احصل على أحدث طول UID ناجح للقراءة (بالبايتات)"
+  },
+  "pn532_get_uid_byte": {
+    "message0": "احصل على معرف المستخدم المستخدم في %1 بايت",
+    "tooltip": "يحصل على قيمة البايت في الموضع المحدد في UID"
+  },
+  "pn532_mifare_classic_authenticate": {
+    "message0": "مصادقة MIFARE الكلاسيكية %1 قطاع %2 نوع المفتاح %3 مفتاح %4",
+    "tooltip": "قطاعات مخصصة لمصادقة بطاقات Mifare Classic",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "مفتاح",
+            "MIFARE_CMD_AUTH_A"
+          ],
+          [
+            "مفتاح B",
+            "MIFARE_CMD_AUTH_B"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "pn532_mifare_classic_read_block": {
+    "message0": "اقرأ Mifare Classic %1 كتل البيانات %2",
+    "tooltip": "اقرأ محتويات كتلة البيانات المحددة على بطاقة Mifare Classic"
+  },
+  "pn532_mifare_classic_write_block": {
+    "message0": "كتابة كتل البيانات %2 البيانات %3 Mifare Classic %1",
+    "tooltip": "اكتب البيانات إلى كتلة البيانات المحددة على بطاقة Mifare Classic"
+  },
+  "pn532_mifare_ultralight_read_page": {
+    "message0": "اقرأ صفحة ميفار ألترا لايت %1 %2",
+    "tooltip": "اقرأ محتوى الصفحة المحددة على بطاقة Mifare Ultralight"
+  },
+  "pn532_mifare_ultralight_write_page": {
+    "message0": "اكتب صفحة %1 Mifare Ultralight %2 بيانات %3",
+    "tooltip": "اكتب البيانات إلى الصفحة المحددة من بطاقة Mifare Ultralight"
+  },
+  "pn532_ntag2xx_read_page": {
+    "message0": "اقرأ صفحة NTAG2xx %1 %2",
+    "tooltip": "اقرأ محتوى صفحة وسم NTAG2xx المحددة"
+  },
+  "pn532_ntag2xx_write_page": {
+    "message0": "اكتب NTAG2xx صفحة %1 %2 البيانات %3",
+    "tooltip": "حدد الصفحة التي تكتب البيانات على وسم NTAG2xx"
+  },
+  "pn532_mifare_classic_write_ndef_uri": {
+    "message0": "اكتب MIFARE Classic %1 قطاع NDEF URI %2 بادئة URI %3 %4",
+    "tooltip": "كتابة سجلات URI بصيغة NDEF إلى بطاقات Mifare Classic",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "بدون",
+            "NDEF_URIPREFIX_NONE"
+          ],
+          [
+            "http://www.",
+            "NDEF_URIPREFIX_HTTP_WWWDOT"
+          ],
+          [
+            "https://www.",
+            "NDEF_URIPREFIX_HTTPS_WWWDOT"
+          ],
+          [
+            "http://",
+            "NDEF_URIPREFIX_HTTP"
+          ],
+          [
+            "https://",
+            "NDEF_URIPREFIX_HTTPS"
+          ],
+          [
+            "tel:",
+            "NDEF_URIPREFIX_TEL"
+          ],
+          [
+            "mailto:",
+            "NDEF_URIPREFIX_MAILTO"
+          ],
+          [
+            "ftp://anonymous@",
+            "NDEF_URIPREFIX_FTP_ANONAT"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "pn532_ntag2xx_write_ndef_uri": {
+    "message0": "اكتب NTAG2xx %1 بادئة NDEF URI %2 عنوان %3",
+    "tooltip": "كتابة سجلات URI بصيغة NDEF إلى علامات NTAG2xx",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "بدون",
+            "NDEF_URIPREFIX_NONE"
+          ],
+          [
+            "http://www.",
+            "NDEF_URIPREFIX_HTTP_WWWDOT"
+          ],
+          [
+            "https://www.",
+            "NDEF_URIPREFIX_HTTPS_WWWDOT"
+          ],
+          [
+            "http://",
+            "NDEF_URIPREFIX_HTTP"
+          ],
+          [
+            "https://",
+            "NDEF_URIPREFIX_HTTPS"
+          ],
+          [
+            "tel:",
+            "NDEF_URIPREFIX_TEL"
+          ],
+          [
+            "mailto:",
+            "NDEF_URIPREFIX_MAILTO"
+          ],
+          [
+            "ftp://anonymous@",
+            "NDEF_URIPREFIX_FTP_ANONAT"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "pn532_mifare_classic_format_ndef": {
+    "message0": "تنسيق ميفار كلاسيك %1 إلى صيغة NDEF",
+    "tooltip": "تنسيق بطاقة Mifare Classic إلى صيغة NDEF"
+  }
+}

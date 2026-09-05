@@ -1,0 +1,177 @@
+{
+  "toolbox_name": "Adafruit GFX",
+  "tft_init": {
+    "message0": "TFT-Bildschirmmodell initialisieren %1",
+    "tooltip": "Initialisieren Sie den TFT-Bildschirm mit anpassbaren Pin-Konfigurationen: CS (Chipauswahl), DC (Daten/Befehl), MOSI (Daten), SCLK (Uhr), RST (Reset, -1 bedeutet nicht verwendet), BLK (Backlight-Steuerung, -1 bedeutet nicht verwendet) sowie Bildschirmgröße",
+    "args0": [
+      {
+        "options": [
+          [
+            "ST7735",
+            "ST7735"
+          ],
+          [
+            "ST7789",
+            "ST7789"
+          ],
+          [
+            "ST7796S",
+            "ST7796S"
+          ]
+        ]
+      }
+    ],
+    "message1": "Pin-Konfiguration: CS %1 DC %2 MOSI %3 SCLK %4 RST %5 BLK %6",
+    "message2": "Bildschirmgröße, Breite %1 Höhe %2"
+  },
+  "tft_set_rotation": {
+    "message0": "Setze TFT-Rotation %1",
+    "tooltip": "Stellen Sie den TFT-Bildschirmdrehwinkel ein, der vier Richtungen unterstützt: 0°, 90°, 180° und 270°",
+    "args0": [
+      {
+        "options": [
+          [
+            "0°",
+            "0"
+          ],
+          [
+            "90°",
+            "1"
+          ],
+          [
+            "180°",
+            "2"
+          ],
+          [
+            "270°",
+            "3"
+          ]
+        ]
+      }
+    ]
+  },
+  "tft_invert_display": {
+    "message0": "Einstellung der TFT-Umkehrfarbanzeige %1",
+    "tooltip": "Schalten Sie den Anti-Color-Display-Modus des TFT-Bildschirms ein oder aus",
+    "args0": [
+      {
+        "options": [
+          [
+            "Ein",
+            "true"
+          ],
+          [
+            "Aus",
+            "false"
+          ]
+        ]
+      }
+    ]
+  },
+  "tft_fill_screen": {
+    "message0": "Bildschirm mit Farbe füllen %1",
+    "tooltip": "Fülle den gesamten TFT-Bildschirm mit festgelegten Farben"
+  },
+  "tft_clear_screen": {
+    "message0": "Bildschirm löschen",
+    "tooltip": "Den Bildschirm zu löschen, um Inhalte anzuzeigen, ist wie das vollständige Schwarz füllen"
+  },
+  "tft_preset_color": {
+    "message0": "Farbe %1",
+    "tooltip": "Preset-Farbwähler mit häufig verwendeten Farboptionen"
+  },
+  "tft_set_text_color": {
+    "message0": "Textfarbe %1 Hintergrundfarbe %2 einstellen",
+    "tooltip": "Text- und Hintergrundfarbe festlegen; Hintergrundfarbe ist optional"
+  },
+  "tft_set_text_size": {
+    "message0": "Textgröße %1 einstellen",
+    "tooltip": "Stellen Sie die auf dem TFT-Bildschirm angezeigte Textgröße ein; je höher der Wert, desto größer der Text"
+  },
+  "tft_print": {
+    "message0": "An Spalte %1 Zeile %2 Text %3 ausgeben",
+    "tooltip": "Drucken Sie den Text an festgelegten Spalten- und Zeilenpositionen auf dem TFT-Bildschirm"
+  },
+  "tft_draw_pixel": {
+    "message0": "Pixel zeichnen X: %1 Y: %2 Farbe %3",
+    "tooltip": "Zeichne einen Punkt an den angegebenen Koordinaten (X, Y) auf dem TFT-Bildschirm"
+  },
+  "tft_draw_line": {
+    "message0": "Linie zeichnen von X: %1 Y: %2 bis X: %3 Y: %4 Farbe %5",
+    "tooltip": "Auf dem TFT-Bildschirm zeichnen Sie eine gerade Linie vom Anfang (X0, Y0) zum Endpunkt (X1, Y1)."
+  },
+  "tft_draw_fast_h_line": {
+    "message0": "Zeichne horizontale Linien Startpunkt X: %1 Y: %2 Länge: %3 Farbe %4",
+    "tooltip": "Auf dem TFT-Bildschirm zeichnen Sie eine horizontale Linie der Länge W, beginnend mit (X, Y)."
+  },
+  "tft_draw_fast_v_line": {
+    "message0": "Zeichne vertikale Linien Anfang X: %1 Y: %2 Länge: %3 Farbe %4",
+    "tooltip": "Schnell eine vertikale Linie zeichnen"
+  },
+  "tft_draw_rect": {
+    "message0": "Rechteck zeichnen bei X: %1 Y: %2 B: %3 H: %4 Farbe %5",
+    "tooltip": "Zeichnen Sie ein umrandetes Rechteck"
+  },
+  "tft_fill_rect": {
+    "message0": "Rechteck füllen bei X: %1 Y: %2 B: %3 H: %4 Farbe %5",
+    "tooltip": "Zeichnen Sie ein gefülltes Rechteck"
+  },
+  "tft_draw_round_rect": {
+    "message0": "Zeichne ein abgerundetes Rechteck X: %1 Y: %2 Breite: %3 Höhe: %4 Abgerundete Ecke: %5 Farbe: %6",
+    "tooltip": "Auf dem TFT-Bildschirm zeichnen Sie ein hohles abgerundetes Rechteck mit den Koordinaten oben links (X, Y), Breite W, Höhe H und Füllradius R"
+  },
+  "tft_fill_round_rect": {
+    "message0": "Füllen Sie das abgerundete Rechteck aus X: %1 Y: %2 Breite: %3 Höhe: %4 Rund: %5 Farbe: %6",
+    "tooltip": "Zeichnen Sie ein massives, abgerundetes Rechteck auf dem TFT-Bildschirm, mit den Koordinaten oben links (X, Y), Breite W, Höhe H und Abfilzradius R"
+  },
+  "tft_draw_circle": {
+    "message0": "Kreis zeichnen Mitte X: %1 Y: %2 Radius: %3 Farbe %4",
+    "tooltip": "Zeichne einen hohlen Kreis auf dem TFT-Bildschirm mit den Mittelkoordinaten (X, Y) und Radius R"
+  },
+  "tft_fill_circle": {
+    "message0": "Kreis füllen Mitte X: %1 Y: %2 Radius: %3 Farbe %4",
+    "tooltip": "Zeichne einen durchgezogenen Kreis auf dem TFT-Bildschirm, mit den Mittelkoordinaten (X, Y) und Radius R"
+  },
+  "tft_draw_triangle": {
+    "message0": "Dreieck zeichnen P1 X: %1 Y: %2 P2 X: %3 Y: %4 P3 X: %5 Y: %6 Farbe %7",
+    "tooltip": "Ein umrandetes Dreieck zeichnen"
+  },
+  "tft_fill_triangle": {
+    "message0": "Dreieck füllen P1 X: %1 Y: %2 P2 X: %3 Y: %4 P3 X: %5 Y: %6 Farbe %7",
+    "tooltip": "Ein gefülltes Dreieck zeichnen"
+  },
+  "tft_color565": {
+    "message0": "Farbtransformation R: %1 G: %2 B: %3",
+    "tooltip": "Konvertiert RGB-Farben in 16-Bit-Farbwerte"
+  },
+  "tft_create_canvas16": {
+    "message0": "Erstellen Sie 16-Bit-Leinwand Name%1 Breite: %2 Höhe: %3",
+    "tooltip": "Erstellen Sie ein 16-Bit-Farbleinwandobjekt für das Zeichnen und die Bildverarbeitung außerhalb des Bildes"
+  },
+  "tft_create_canvas1": {
+    "message0": "Erstellen Sie eine 1-Bit-Leinwand Name%1 Breite: %2 Höhe: %3",
+    "tooltip": "Erstellen Sie eine 1-Bit-monochrome Leinwand"
+  },
+  "tft_get_buffer": {
+    "message0": "Hol dir Canvas Cache Canvas %1",
+    "tooltip": "Ruft den Pufferzeiger für die Leinwand ab, der verwendet wird, um direkt auf die Leinwanddaten zuzugreifen"
+  },
+  "tft_bitmap_image": {
+    "message0": "Bilddaten %1",
+    "tooltip": "Erstellen Sie Bilddaten, die auf dem TFT-Bildschirm angezeigt werden können (wenn ein Leerlauf bleibt, wird das Standardbild verwendet)."
+  },
+  "tft_image_file": {
+    "message0": "Klicken Sie hier, um die Bilddatei %1 auswählen",
+    "tooltip": "Klicken Sie hier, um Bilddateien auszuwählen, unterstützen Sie Vorschau und Größenanpassung und zeigen Sie sie an bestimmten Stellen auf dem TFT-Bildschirm an",
+    "message1": "An den Koordinaten X %1 Y %2",
+    "message2": "Größenbreite anpassen: %1 Höhe: %2"
+  },
+  "tft_draw_image": {
+    "message0": "Bilder angezeigt bei X:%1 Y:%2 locations%3",
+    "tooltip": "Bilder werden auf dem TFT-Bildschirm angezeigt"
+  },
+  "tft_draw_url_image": {
+    "message0": "Laden Sie das URL-Bild herunter und zeigen Sie %1 Bild-URLs %2 %3 X-Koordinaten %4 Y-Koordinaten %5 %6 maximale Breite %7 Maximale Höhe %8",
+    "tooltip": "Laden Sie JPEG-Bilder von URLs herunter und zeigen Sie sie auf einem TFT-Bildschirm an, wobei Sie automatisch skalieren, um die angegebene Größe anzupassen. WLAN-Verbindung und TJpg_Decoder Bibliothek sind erforderlich"
+  }
+}

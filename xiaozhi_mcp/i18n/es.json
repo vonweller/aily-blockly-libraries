@@ -1,0 +1,70 @@
+{
+  "toolbox_name": "Xiao Zhi MCP",
+  "toolbox_labels": {
+    "连接": "conectar",
+    "工具注册": "Registro de herramientas",
+    "工具调用": "llamada de herramienta"
+  },
+  "xiaozhi_mcp_wifi_init": {
+    "message0": "Inicializar el nombre %1 la contraseña del WiFi %2",
+    "tooltip": "Conéctate a WiFi y genera una función auxiliar de reconexión automática"
+  },
+  "xiaozhi_mcp_init": {
+    "message0": "Inicializar el punto final de Xiaozhi MCP %1",
+    "tooltip": "Inicializar el cliente WebSocket MCP, por ejemplo wss://api.xiaozhi.me/mcp/?token=your_token"
+  },
+  "xiaozhi_mcp_loop": {
+    "message0": "Mantener la conexión con el MCP de Xiaozhi",
+    "tooltip": "Llamadas en bucles para gestionar mensajes MCP y comprobar periódicamente las conexiones WiFi"
+  },
+  "xiaozhi_mcp_register_tool": {
+    "message0": "Nombre %1 descripción de la herramienta MCP del registro %2",
+    "tooltip": "Regístrate con una herramienta MCP. Los bloques de parámetros deben colocarse antes del bloque de registro, y los bloques de eventos usan el mismo nombre de herramienta."
+  },
+  "xiaozhi_mcp_add_tool_param": {
+    "message0": "Añadir parámetros a la herramienta %1 Nombre %2 Descripción de Parámetro %3 Tipo %4 Descripción Específica %5",
+    "tooltip": "Añadir un parámetro de entrada para especificar la herramienta MCP; al registrar la herramienta, el inputSchema se generará automáticamente",
+    "args0": [
+      null,
+      null,
+      null,
+      {
+        "options": [
+          [
+            "cadena",
+            "string"
+          ],
+          [
+            "Numero",
+            "number"
+          ],
+          [
+            "Bóer",
+            "boolean"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "xiaozhi_mcp_on_tool": {
+    "message0": "Cuando MCP recibe la llamada tool%1 %2 ejecutar %3",
+    "tooltip": "Define el código que se ejecutará cuando se llame a la herramienta MCP especificada. El nombre de la herramienta debe coincidir con el bloque de herramienta de registro."
+  },
+  "xiaozhi_mcp_get_string": {
+    "message0": "Obtener parámetros de cadena MCP %1",
+    "tooltip": "Lee cadenas de cadenas desde los parámetros actuales de llamada a la herramienta"
+  },
+  "xiaozhi_mcp_get_number": {
+    "message0": "Obtener parámetros digitales MCP %1",
+    "tooltip": "Números de lectura de los parámetros actuales de llamada a la herramienta"
+  },
+  "xiaozhi_mcp_get_bool": {
+    "message0": "Obtener parámetros booleanos MCP %1",
+    "tooltip": "Lee valores booleanos de los parámetros actuales de la llamada a la herramienta"
+  },
+  "xiaozhi_mcp_return_result": {
+    "message0": "Retorna los resultados del MCP Clave %1 Valor %2",
+    "tooltip": "Establece el resultado de retorno JSON para la llamada a la herramienta actual"
+  }
+}

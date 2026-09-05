@@ -1,0 +1,4798 @@
+{
+  "toolbox_name": "HuskyLensV2",
+  "toolbox_labels": {
+    "初始化": "inicialización",
+    "算法设置": "Configuración del algoritmo",
+    "数据获取": "adquisición de datos",
+    "结果获取": "Adquisición resultante",
+    "巡线分支": "Ruta de patrulla de rama",
+    "学习功能": "Función de aprendizaje",
+    "拍照截图": "Captura de pantalla de la foto",
+    "绘图功能": "Función de dibujo",
+    "知识库管理": "Gestión de bases de conocimiento",
+    "音乐与命名": "Música y nombres",
+    "算法参数": "Parámetros del algoritmo",
+    "结果属性": "Atributos de resultado",
+    "人脸关键点": "Los puntos clave de la cara",
+    "手势/姿态关键点": "Puntos clave de gestos/postura",
+    "多算法": "Algoritmos múltiples",
+    "媒体录制": "Grabación en medios"
+  },
+  "huskylensv2_init_i2c_until": {
+    "message0": "Inicializar la interfaz HuskyLensV2 %1 %2 I2C hasta que tenga éxito",
+    "tooltip": "Inicializa HuskyLens V2 mediante I2C y haz un bucle hasta que funcione"
+  },
+  "huskylensv2_init_i2c": {
+    "message0": "Inicializar HuskyLensV2 %1 interfaz I2C %2",
+    "tooltip": "Inicializar HuskyLens V2 mediante I2C"
+  },
+  "huskylensv2_init_serial": {
+    "message0": "Inicializar HuskyLensV2 %1 puerto serie %2",
+    "tooltip": "Inicializar HuskyLens V2 vía puerto serie (la tasa de baudios se selecciona automáticamente por la placa)"
+  },
+  "huskylensv2_set_algorithm": {
+    "message0": "El algoritmo de conmutación de %1 HuskyLensV2 es %2",
+    "tooltip": "Algoritmos de reconocimiento de interruptores",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Algoritmo arbitrario",
+            "ALGORITHM_ANY"
+          ],
+          [
+            "Cara",
+            "ALGORITHM_FACE_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de objetos",
+            "ALGORITHM_OBJECT_RECOGNITION"
+          ],
+          [
+            "Seguimiento de objetos",
+            "ALGORITHM_OBJECT_TRACKING"
+          ],
+          [
+            "Color",
+            "ALGORITHM_COLOR_RECOGNITION"
+          ],
+          [
+            "Clasificación de objetos",
+            "ALGORITHM_OBJECT_CLASSIFICATION"
+          ],
+          [
+            "Clasificación autodidacta",
+            "ALGORITHM_SELF_LEARNING_CLASSIFICATION"
+          ],
+          [
+            "División",
+            "ALGORITHM_SEGMENT"
+          ],
+          [
+            "Reconocimiento de gestos",
+            "ALGORITHM_HAND_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de postura",
+            "ALGORITHM_POSE_RECOGNITION"
+          ],
+          [
+            "Matrícula",
+            "ALGORITHM_LICENSE_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de texto OCR",
+            "ALGORITHM_OCR_RECOGNITION"
+          ],
+          [
+            "Pista y caída",
+            "ALGORITHM_LINE_TRACKING"
+          ],
+          [
+            "Reconocimiento de expresiones faciales",
+            "ALGORITHM_EMOTION_RECOGNITION"
+          ],
+          [
+            "Reconocimiento ocular",
+            "ALGORITHM_GAZE_RECOGNITION"
+          ],
+          [
+            "La cara mira hacia adelante",
+            "ALGORITHM_FACE_ORIENTATION"
+          ],
+          [
+            "Reconocimiento del sello",
+            "ALGORITHM_TAG_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de códigos de barras",
+            "ALGORITHM_BARCODE_RECOGNITION"
+          ],
+          [
+            "Escaneo QR",
+            "ALGORITHM_QRCODE_RECOGNITION"
+          ],
+          [
+            "Detección de caídas",
+            "ALGORITHM_FALLDOWN_RECOGNITION"
+          ],
+          [
+            "Cámara de profundidad",
+            "ALGORITHM_DEPTH_CAMERA"
+          ],
+          [
+            "DonkeyCar",
+            "ALGORITHM_DONKEYCAR"
+          ],
+          [
+            "cámara",
+            "ALGORITHM_CAMERA"
+          ],
+          [
+            "Custom 0",
+            "ALGORITHM_CUSTOM0"
+          ],
+          [
+            "Custom 1",
+            "ALGORITHM_CUSTOM1"
+          ],
+          [
+            "Custom 2",
+            "ALGORITHM_CUSTOM2"
+          ]
+        ]
+      }
+    ]
+  },
+  "huskylensv2_set_algorithm_until": {
+    "message0": "HuskyLensV2 %1 cambiaba a %2 algoritmo hasta que tenía éxito",
+    "tooltip": "Cambiar de algoritmos y bucles hasta que tenga éxito",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Algoritmo arbitrario",
+            "ALGORITHM_ANY"
+          ],
+          [
+            "Cara",
+            "ALGORITHM_FACE_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de objetos",
+            "ALGORITHM_OBJECT_RECOGNITION"
+          ],
+          [
+            "Seguimiento de objetos",
+            "ALGORITHM_OBJECT_TRACKING"
+          ],
+          [
+            "Color",
+            "ALGORITHM_COLOR_RECOGNITION"
+          ],
+          [
+            "Clasificación de objetos",
+            "ALGORITHM_OBJECT_CLASSIFICATION"
+          ],
+          [
+            "Clasificación autodidacta",
+            "ALGORITHM_SELF_LEARNING_CLASSIFICATION"
+          ],
+          [
+            "División",
+            "ALGORITHM_SEGMENT"
+          ],
+          [
+            "Reconocimiento de gestos",
+            "ALGORITHM_HAND_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de postura",
+            "ALGORITHM_POSE_RECOGNITION"
+          ],
+          [
+            "Matrícula",
+            "ALGORITHM_LICENSE_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de texto OCR",
+            "ALGORITHM_OCR_RECOGNITION"
+          ],
+          [
+            "Pista y caída",
+            "ALGORITHM_LINE_TRACKING"
+          ],
+          [
+            "Reconocimiento de expresiones faciales",
+            "ALGORITHM_EMOTION_RECOGNITION"
+          ],
+          [
+            "Reconocimiento ocular",
+            "ALGORITHM_GAZE_RECOGNITION"
+          ],
+          [
+            "La cara mira hacia adelante",
+            "ALGORITHM_FACE_ORIENTATION"
+          ],
+          [
+            "Reconocimiento del sello",
+            "ALGORITHM_TAG_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de códigos de barras",
+            "ALGORITHM_BARCODE_RECOGNITION"
+          ],
+          [
+            "Escaneo QR",
+            "ALGORITHM_QRCODE_RECOGNITION"
+          ],
+          [
+            "Detección de caídas",
+            "ALGORITHM_FALLDOWN_RECOGNITION"
+          ],
+          [
+            "Cámara de profundidad",
+            "ALGORITHM_DEPTH_CAMERA"
+          ],
+          [
+            "DonkeyCar",
+            "ALGORITHM_DONKEYCAR"
+          ],
+          [
+            "cámara",
+            "ALGORITHM_CAMERA"
+          ],
+          [
+            "Custom 0",
+            "ALGORITHM_CUSTOM0"
+          ],
+          [
+            "Custom 1",
+            "ALGORITHM_CUSTOM1"
+          ],
+          [
+            "Custom 2",
+            "ALGORITHM_CUSTOM2"
+          ]
+        ]
+      }
+    ]
+  },
+  "huskylensv2_get_result": {
+    "message0": "HuskyLensV2 %1 obtener resultados de %2 algoritmo",
+    "tooltip": "Solicita especificar los resultados de reconocimiento del algoritmo y cachearlos en caché",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Algoritmo arbitrario",
+            "ALGORITHM_ANY"
+          ],
+          [
+            "Cara",
+            "ALGORITHM_FACE_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de objetos",
+            "ALGORITHM_OBJECT_RECOGNITION"
+          ],
+          [
+            "Seguimiento de objetos",
+            "ALGORITHM_OBJECT_TRACKING"
+          ],
+          [
+            "Color",
+            "ALGORITHM_COLOR_RECOGNITION"
+          ],
+          [
+            "Clasificación de objetos",
+            "ALGORITHM_OBJECT_CLASSIFICATION"
+          ],
+          [
+            "Clasificación autodidacta",
+            "ALGORITHM_SELF_LEARNING_CLASSIFICATION"
+          ],
+          [
+            "División",
+            "ALGORITHM_SEGMENT"
+          ],
+          [
+            "Reconocimiento de gestos",
+            "ALGORITHM_HAND_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de postura",
+            "ALGORITHM_POSE_RECOGNITION"
+          ],
+          [
+            "Matrícula",
+            "ALGORITHM_LICENSE_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de texto OCR",
+            "ALGORITHM_OCR_RECOGNITION"
+          ],
+          [
+            "Pista y caída",
+            "ALGORITHM_LINE_TRACKING"
+          ],
+          [
+            "Reconocimiento de expresiones faciales",
+            "ALGORITHM_EMOTION_RECOGNITION"
+          ],
+          [
+            "Reconocimiento ocular",
+            "ALGORITHM_GAZE_RECOGNITION"
+          ],
+          [
+            "La cara mira hacia adelante",
+            "ALGORITHM_FACE_ORIENTATION"
+          ],
+          [
+            "Reconocimiento del sello",
+            "ALGORITHM_TAG_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de códigos de barras",
+            "ALGORITHM_BARCODE_RECOGNITION"
+          ],
+          [
+            "Escaneo QR",
+            "ALGORITHM_QRCODE_RECOGNITION"
+          ],
+          [
+            "Detección de caídas",
+            "ALGORITHM_FALLDOWN_RECOGNITION"
+          ],
+          [
+            "Cámara de profundidad",
+            "ALGORITHM_DEPTH_CAMERA"
+          ],
+          [
+            "DonkeyCar",
+            "ALGORITHM_DONKEYCAR"
+          ],
+          [
+            "cámara",
+            "ALGORITHM_CAMERA"
+          ],
+          [
+            "Custom 0",
+            "ALGORITHM_CUSTOM0"
+          ],
+          [
+            "Custom 1",
+            "ALGORITHM_CUSTOM1"
+          ],
+          [
+            "Custom 2",
+            "ALGORITHM_CUSTOM2"
+          ]
+        ]
+      }
+    ]
+  },
+  "huskylensv2_get_result_until": {
+    "message0": "HuskyLensV2 %1 obtener resultados de %2 algoritmo hasta que tenga éxito",
+    "tooltip": "Repite la solicitud en bucle hasta que obtengas el resultado",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Algoritmo arbitrario",
+            "ALGORITHM_ANY"
+          ],
+          [
+            "Cara",
+            "ALGORITHM_FACE_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de objetos",
+            "ALGORITHM_OBJECT_RECOGNITION"
+          ],
+          [
+            "Seguimiento de objetos",
+            "ALGORITHM_OBJECT_TRACKING"
+          ],
+          [
+            "Color",
+            "ALGORITHM_COLOR_RECOGNITION"
+          ],
+          [
+            "Clasificación de objetos",
+            "ALGORITHM_OBJECT_CLASSIFICATION"
+          ],
+          [
+            "Clasificación autodidacta",
+            "ALGORITHM_SELF_LEARNING_CLASSIFICATION"
+          ],
+          [
+            "División",
+            "ALGORITHM_SEGMENT"
+          ],
+          [
+            "Reconocimiento de gestos",
+            "ALGORITHM_HAND_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de postura",
+            "ALGORITHM_POSE_RECOGNITION"
+          ],
+          [
+            "Matrícula",
+            "ALGORITHM_LICENSE_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de texto OCR",
+            "ALGORITHM_OCR_RECOGNITION"
+          ],
+          [
+            "Pista y caída",
+            "ALGORITHM_LINE_TRACKING"
+          ],
+          [
+            "Reconocimiento de expresiones faciales",
+            "ALGORITHM_EMOTION_RECOGNITION"
+          ],
+          [
+            "Reconocimiento ocular",
+            "ALGORITHM_GAZE_RECOGNITION"
+          ],
+          [
+            "La cara mira hacia adelante",
+            "ALGORITHM_FACE_ORIENTATION"
+          ],
+          [
+            "Reconocimiento del sello",
+            "ALGORITHM_TAG_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de códigos de barras",
+            "ALGORITHM_BARCODE_RECOGNITION"
+          ],
+          [
+            "Escaneo QR",
+            "ALGORITHM_QRCODE_RECOGNITION"
+          ],
+          [
+            "Detección de caídas",
+            "ALGORITHM_FALLDOWN_RECOGNITION"
+          ],
+          [
+            "Cámara de profundidad",
+            "ALGORITHM_DEPTH_CAMERA"
+          ],
+          [
+            "DonkeyCar",
+            "ALGORITHM_DONKEYCAR"
+          ],
+          [
+            "cámara",
+            "ALGORITHM_CAMERA"
+          ],
+          [
+            "Custom 0",
+            "ALGORITHM_CUSTOM0"
+          ],
+          [
+            "Custom 1",
+            "ALGORITHM_CUSTOM1"
+          ],
+          [
+            "Custom 2",
+            "ALGORITHM_CUSTOM2"
+          ]
+        ]
+      }
+    ]
+  },
+  "huskylensv2_available": {
+    "message0": "%2 y resultados del algoritmo HuskyLensV2 %1",
+    "tooltip": "¿Sigue habiendo resultados de caché (bool)?",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Algoritmo arbitrario",
+            "ALGORITHM_ANY"
+          ],
+          [
+            "Cara",
+            "ALGORITHM_FACE_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de objetos",
+            "ALGORITHM_OBJECT_RECOGNITION"
+          ],
+          [
+            "Seguimiento de objetos",
+            "ALGORITHM_OBJECT_TRACKING"
+          ],
+          [
+            "Color",
+            "ALGORITHM_COLOR_RECOGNITION"
+          ],
+          [
+            "Clasificación de objetos",
+            "ALGORITHM_OBJECT_CLASSIFICATION"
+          ],
+          [
+            "Clasificación autodidacta",
+            "ALGORITHM_SELF_LEARNING_CLASSIFICATION"
+          ],
+          [
+            "División",
+            "ALGORITHM_SEGMENT"
+          ],
+          [
+            "Reconocimiento de gestos",
+            "ALGORITHM_HAND_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de postura",
+            "ALGORITHM_POSE_RECOGNITION"
+          ],
+          [
+            "Matrícula",
+            "ALGORITHM_LICENSE_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de texto OCR",
+            "ALGORITHM_OCR_RECOGNITION"
+          ],
+          [
+            "Pista y caída",
+            "ALGORITHM_LINE_TRACKING"
+          ],
+          [
+            "Reconocimiento de expresiones faciales",
+            "ALGORITHM_EMOTION_RECOGNITION"
+          ],
+          [
+            "Reconocimiento ocular",
+            "ALGORITHM_GAZE_RECOGNITION"
+          ],
+          [
+            "La cara mira hacia adelante",
+            "ALGORITHM_FACE_ORIENTATION"
+          ],
+          [
+            "Reconocimiento del sello",
+            "ALGORITHM_TAG_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de códigos de barras",
+            "ALGORITHM_BARCODE_RECOGNITION"
+          ],
+          [
+            "Escaneo QR",
+            "ALGORITHM_QRCODE_RECOGNITION"
+          ],
+          [
+            "Detección de caídas",
+            "ALGORITHM_FALLDOWN_RECOGNITION"
+          ],
+          [
+            "Cámara de profundidad",
+            "ALGORITHM_DEPTH_CAMERA"
+          ],
+          [
+            "DonkeyCar",
+            "ALGORITHM_DONKEYCAR"
+          ],
+          [
+            "cámara",
+            "ALGORITHM_CAMERA"
+          ],
+          [
+            "Custom 0",
+            "ALGORITHM_CUSTOM0"
+          ],
+          [
+            "Custom 1",
+            "ALGORITHM_CUSTOM1"
+          ],
+          [
+            "Custom 2",
+            "ALGORITHM_CUSTOM2"
+          ]
+        ]
+      }
+    ]
+  },
+  "huskylensv2_result_count": {
+    "message0": "Algoritmo de %1 HuskyLensV2 %2 número de resultados",
+    "tooltip": "Conteo de resultados en caché getCachedResultNum",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Algoritmo arbitrario",
+            "ALGORITHM_ANY"
+          ],
+          [
+            "Cara",
+            "ALGORITHM_FACE_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de objetos",
+            "ALGORITHM_OBJECT_RECOGNITION"
+          ],
+          [
+            "Seguimiento de objetos",
+            "ALGORITHM_OBJECT_TRACKING"
+          ],
+          [
+            "Color",
+            "ALGORITHM_COLOR_RECOGNITION"
+          ],
+          [
+            "Clasificación de objetos",
+            "ALGORITHM_OBJECT_CLASSIFICATION"
+          ],
+          [
+            "Clasificación autodidacta",
+            "ALGORITHM_SELF_LEARNING_CLASSIFICATION"
+          ],
+          [
+            "División",
+            "ALGORITHM_SEGMENT"
+          ],
+          [
+            "Reconocimiento de gestos",
+            "ALGORITHM_HAND_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de postura",
+            "ALGORITHM_POSE_RECOGNITION"
+          ],
+          [
+            "Matrícula",
+            "ALGORITHM_LICENSE_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de texto OCR",
+            "ALGORITHM_OCR_RECOGNITION"
+          ],
+          [
+            "Pista y caída",
+            "ALGORITHM_LINE_TRACKING"
+          ],
+          [
+            "Reconocimiento de expresiones faciales",
+            "ALGORITHM_EMOTION_RECOGNITION"
+          ],
+          [
+            "Reconocimiento ocular",
+            "ALGORITHM_GAZE_RECOGNITION"
+          ],
+          [
+            "La cara mira hacia adelante",
+            "ALGORITHM_FACE_ORIENTATION"
+          ],
+          [
+            "Reconocimiento del sello",
+            "ALGORITHM_TAG_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de códigos de barras",
+            "ALGORITHM_BARCODE_RECOGNITION"
+          ],
+          [
+            "Escaneo QR",
+            "ALGORITHM_QRCODE_RECOGNITION"
+          ],
+          [
+            "Detección de caídas",
+            "ALGORITHM_FALLDOWN_RECOGNITION"
+          ],
+          [
+            "Cámara de profundidad",
+            "ALGORITHM_DEPTH_CAMERA"
+          ],
+          [
+            "DonkeyCar",
+            "ALGORITHM_DONKEYCAR"
+          ],
+          [
+            "cámara",
+            "ALGORITHM_CAMERA"
+          ],
+          [
+            "Custom 0",
+            "ALGORITHM_CUSTOM0"
+          ],
+          [
+            "Custom 1",
+            "ALGORITHM_CUSTOM1"
+          ],
+          [
+            "Custom 2",
+            "ALGORITHM_CUSTOM2"
+          ]
+        ]
+      }
+    ]
+  },
+  "huskylensv2_count_learned": {
+    "message0": "El número de %2 aprendidos por el algoritmo de %1 HuskyLensV2",
+    "tooltip": "Número de resultados aprendidos",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Algoritmo arbitrario",
+            "ALGORITHM_ANY"
+          ],
+          [
+            "Cara",
+            "ALGORITHM_FACE_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de objetos",
+            "ALGORITHM_OBJECT_RECOGNITION"
+          ],
+          [
+            "Seguimiento de objetos",
+            "ALGORITHM_OBJECT_TRACKING"
+          ],
+          [
+            "Color",
+            "ALGORITHM_COLOR_RECOGNITION"
+          ],
+          [
+            "Clasificación de objetos",
+            "ALGORITHM_OBJECT_CLASSIFICATION"
+          ],
+          [
+            "Clasificación autodidacta",
+            "ALGORITHM_SELF_LEARNING_CLASSIFICATION"
+          ],
+          [
+            "División",
+            "ALGORITHM_SEGMENT"
+          ],
+          [
+            "Reconocimiento de gestos",
+            "ALGORITHM_HAND_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de postura",
+            "ALGORITHM_POSE_RECOGNITION"
+          ],
+          [
+            "Matrícula",
+            "ALGORITHM_LICENSE_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de texto OCR",
+            "ALGORITHM_OCR_RECOGNITION"
+          ],
+          [
+            "Pista y caída",
+            "ALGORITHM_LINE_TRACKING"
+          ],
+          [
+            "Reconocimiento de expresiones faciales",
+            "ALGORITHM_EMOTION_RECOGNITION"
+          ],
+          [
+            "Reconocimiento ocular",
+            "ALGORITHM_GAZE_RECOGNITION"
+          ],
+          [
+            "La cara mira hacia adelante",
+            "ALGORITHM_FACE_ORIENTATION"
+          ],
+          [
+            "Reconocimiento del sello",
+            "ALGORITHM_TAG_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de códigos de barras",
+            "ALGORITHM_BARCODE_RECOGNITION"
+          ],
+          [
+            "Escaneo QR",
+            "ALGORITHM_QRCODE_RECOGNITION"
+          ],
+          [
+            "Detección de caídas",
+            "ALGORITHM_FALLDOWN_RECOGNITION"
+          ],
+          [
+            "Cámara de profundidad",
+            "ALGORITHM_DEPTH_CAMERA"
+          ],
+          [
+            "DonkeyCar",
+            "ALGORITHM_DONKEYCAR"
+          ],
+          [
+            "cámara",
+            "ALGORITHM_CAMERA"
+          ],
+          [
+            "Custom 0",
+            "ALGORITHM_CUSTOM0"
+          ],
+          [
+            "Custom 1",
+            "ALGORITHM_CUSTOM1"
+          ],
+          [
+            "Custom 2",
+            "ALGORITHM_CUSTOM2"
+          ]
+        ]
+      }
+    ]
+  },
+  "huskylensv2_count_id": {
+    "message0": "El número de %2 ID %3 en el algoritmo de %1 HuskyLensV2",
+    "tooltip": "Especifica el número de IDs a detectar",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Algoritmo arbitrario",
+            "ALGORITHM_ANY"
+          ],
+          [
+            "Cara",
+            "ALGORITHM_FACE_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de objetos",
+            "ALGORITHM_OBJECT_RECOGNITION"
+          ],
+          [
+            "Seguimiento de objetos",
+            "ALGORITHM_OBJECT_TRACKING"
+          ],
+          [
+            "Color",
+            "ALGORITHM_COLOR_RECOGNITION"
+          ],
+          [
+            "Clasificación de objetos",
+            "ALGORITHM_OBJECT_CLASSIFICATION"
+          ],
+          [
+            "Clasificación autodidacta",
+            "ALGORITHM_SELF_LEARNING_CLASSIFICATION"
+          ],
+          [
+            "División",
+            "ALGORITHM_SEGMENT"
+          ],
+          [
+            "Reconocimiento de gestos",
+            "ALGORITHM_HAND_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de postura",
+            "ALGORITHM_POSE_RECOGNITION"
+          ],
+          [
+            "Matrícula",
+            "ALGORITHM_LICENSE_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de texto OCR",
+            "ALGORITHM_OCR_RECOGNITION"
+          ],
+          [
+            "Pista y caída",
+            "ALGORITHM_LINE_TRACKING"
+          ],
+          [
+            "Reconocimiento de expresiones faciales",
+            "ALGORITHM_EMOTION_RECOGNITION"
+          ],
+          [
+            "Reconocimiento ocular",
+            "ALGORITHM_GAZE_RECOGNITION"
+          ],
+          [
+            "La cara mira hacia adelante",
+            "ALGORITHM_FACE_ORIENTATION"
+          ],
+          [
+            "Reconocimiento del sello",
+            "ALGORITHM_TAG_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de códigos de barras",
+            "ALGORITHM_BARCODE_RECOGNITION"
+          ],
+          [
+            "Escaneo QR",
+            "ALGORITHM_QRCODE_RECOGNITION"
+          ],
+          [
+            "Detección de caídas",
+            "ALGORITHM_FALLDOWN_RECOGNITION"
+          ],
+          [
+            "Cámara de profundidad",
+            "ALGORITHM_DEPTH_CAMERA"
+          ],
+          [
+            "DonkeyCar",
+            "ALGORITHM_DONKEYCAR"
+          ],
+          [
+            "cámara",
+            "ALGORITHM_CAMERA"
+          ],
+          [
+            "Custom 0",
+            "ALGORITHM_CUSTOM0"
+          ],
+          [
+            "Custom 1",
+            "ALGORITHM_CUSTOM1"
+          ],
+          [
+            "Custom 2",
+            "ALGORITHM_CUSTOM2"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "huskylensv2_max_id": {
+    "message0": "Algoritmo %1 HuskyLensV2 %2 ID máximo",
+    "tooltip": "Identificación máxima",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Algoritmo arbitrario",
+            "ALGORITHM_ANY"
+          ],
+          [
+            "Cara",
+            "ALGORITHM_FACE_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de objetos",
+            "ALGORITHM_OBJECT_RECOGNITION"
+          ],
+          [
+            "Seguimiento de objetos",
+            "ALGORITHM_OBJECT_TRACKING"
+          ],
+          [
+            "Color",
+            "ALGORITHM_COLOR_RECOGNITION"
+          ],
+          [
+            "Clasificación de objetos",
+            "ALGORITHM_OBJECT_CLASSIFICATION"
+          ],
+          [
+            "Clasificación autodidacta",
+            "ALGORITHM_SELF_LEARNING_CLASSIFICATION"
+          ],
+          [
+            "División",
+            "ALGORITHM_SEGMENT"
+          ],
+          [
+            "Reconocimiento de gestos",
+            "ALGORITHM_HAND_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de postura",
+            "ALGORITHM_POSE_RECOGNITION"
+          ],
+          [
+            "Matrícula",
+            "ALGORITHM_LICENSE_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de texto OCR",
+            "ALGORITHM_OCR_RECOGNITION"
+          ],
+          [
+            "Pista y caída",
+            "ALGORITHM_LINE_TRACKING"
+          ],
+          [
+            "Reconocimiento de expresiones faciales",
+            "ALGORITHM_EMOTION_RECOGNITION"
+          ],
+          [
+            "Reconocimiento ocular",
+            "ALGORITHM_GAZE_RECOGNITION"
+          ],
+          [
+            "La cara mira hacia adelante",
+            "ALGORITHM_FACE_ORIENTATION"
+          ],
+          [
+            "Reconocimiento del sello",
+            "ALGORITHM_TAG_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de códigos de barras",
+            "ALGORITHM_BARCODE_RECOGNITION"
+          ],
+          [
+            "Escaneo QR",
+            "ALGORITHM_QRCODE_RECOGNITION"
+          ],
+          [
+            "Detección de caídas",
+            "ALGORITHM_FALLDOWN_RECOGNITION"
+          ],
+          [
+            "Cámara de profundidad",
+            "ALGORITHM_DEPTH_CAMERA"
+          ],
+          [
+            "DonkeyCar",
+            "ALGORITHM_DONKEYCAR"
+          ],
+          [
+            "cámara",
+            "ALGORITHM_CAMERA"
+          ],
+          [
+            "Custom 0",
+            "ALGORITHM_CUSTOM0"
+          ],
+          [
+            "Custom 1",
+            "ALGORITHM_CUSTOM1"
+          ],
+          [
+            "Custom 2",
+            "ALGORITHM_CUSTOM2"
+          ]
+        ]
+      }
+    ]
+  },
+  "huskylensv2_pop_result": {
+    "message0": "HuskyLensV2 %1 aparece %2 resultados del algoritmo",
+    "tooltip": "popCachedResult, el método oficial recomendado de consumo",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Algoritmo arbitrario",
+            "ALGORITHM_ANY"
+          ],
+          [
+            "Cara",
+            "ALGORITHM_FACE_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de objetos",
+            "ALGORITHM_OBJECT_RECOGNITION"
+          ],
+          [
+            "Seguimiento de objetos",
+            "ALGORITHM_OBJECT_TRACKING"
+          ],
+          [
+            "Color",
+            "ALGORITHM_COLOR_RECOGNITION"
+          ],
+          [
+            "Clasificación de objetos",
+            "ALGORITHM_OBJECT_CLASSIFICATION"
+          ],
+          [
+            "Clasificación autodidacta",
+            "ALGORITHM_SELF_LEARNING_CLASSIFICATION"
+          ],
+          [
+            "División",
+            "ALGORITHM_SEGMENT"
+          ],
+          [
+            "Reconocimiento de gestos",
+            "ALGORITHM_HAND_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de postura",
+            "ALGORITHM_POSE_RECOGNITION"
+          ],
+          [
+            "Matrícula",
+            "ALGORITHM_LICENSE_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de texto OCR",
+            "ALGORITHM_OCR_RECOGNITION"
+          ],
+          [
+            "Pista y caída",
+            "ALGORITHM_LINE_TRACKING"
+          ],
+          [
+            "Reconocimiento de expresiones faciales",
+            "ALGORITHM_EMOTION_RECOGNITION"
+          ],
+          [
+            "Reconocimiento ocular",
+            "ALGORITHM_GAZE_RECOGNITION"
+          ],
+          [
+            "La cara mira hacia adelante",
+            "ALGORITHM_FACE_ORIENTATION"
+          ],
+          [
+            "Reconocimiento del sello",
+            "ALGORITHM_TAG_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de códigos de barras",
+            "ALGORITHM_BARCODE_RECOGNITION"
+          ],
+          [
+            "Escaneo QR",
+            "ALGORITHM_QRCODE_RECOGNITION"
+          ],
+          [
+            "Detección de caídas",
+            "ALGORITHM_FALLDOWN_RECOGNITION"
+          ],
+          [
+            "Cámara de profundidad",
+            "ALGORITHM_DEPTH_CAMERA"
+          ],
+          [
+            "DonkeyCar",
+            "ALGORITHM_DONKEYCAR"
+          ],
+          [
+            "cámara",
+            "ALGORITHM_CAMERA"
+          ],
+          [
+            "Custom 0",
+            "ALGORITHM_CUSTOM0"
+          ],
+          [
+            "Custom 1",
+            "ALGORITHM_CUSTOM1"
+          ],
+          [
+            "Custom 2",
+            "ALGORITHM_CUSTOM2"
+          ]
+        ]
+      }
+    ]
+  },
+  "huskylensv2_get_center": {
+    "message0": "HuskyLensV2 %1 obtener resultados %2 centro",
+    "tooltip": "getCachedCenterResult",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Algoritmo arbitrario",
+            "ALGORITHM_ANY"
+          ],
+          [
+            "Cara",
+            "ALGORITHM_FACE_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de objetos",
+            "ALGORITHM_OBJECT_RECOGNITION"
+          ],
+          [
+            "Seguimiento de objetos",
+            "ALGORITHM_OBJECT_TRACKING"
+          ],
+          [
+            "Color",
+            "ALGORITHM_COLOR_RECOGNITION"
+          ],
+          [
+            "Clasificación de objetos",
+            "ALGORITHM_OBJECT_CLASSIFICATION"
+          ],
+          [
+            "Clasificación autodidacta",
+            "ALGORITHM_SELF_LEARNING_CLASSIFICATION"
+          ],
+          [
+            "División",
+            "ALGORITHM_SEGMENT"
+          ],
+          [
+            "Reconocimiento de gestos",
+            "ALGORITHM_HAND_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de postura",
+            "ALGORITHM_POSE_RECOGNITION"
+          ],
+          [
+            "Matrícula",
+            "ALGORITHM_LICENSE_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de texto OCR",
+            "ALGORITHM_OCR_RECOGNITION"
+          ],
+          [
+            "Pista y caída",
+            "ALGORITHM_LINE_TRACKING"
+          ],
+          [
+            "Reconocimiento de expresiones faciales",
+            "ALGORITHM_EMOTION_RECOGNITION"
+          ],
+          [
+            "Reconocimiento ocular",
+            "ALGORITHM_GAZE_RECOGNITION"
+          ],
+          [
+            "La cara mira hacia adelante",
+            "ALGORITHM_FACE_ORIENTATION"
+          ],
+          [
+            "Reconocimiento del sello",
+            "ALGORITHM_TAG_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de códigos de barras",
+            "ALGORITHM_BARCODE_RECOGNITION"
+          ],
+          [
+            "Escaneo QR",
+            "ALGORITHM_QRCODE_RECOGNITION"
+          ],
+          [
+            "Detección de caídas",
+            "ALGORITHM_FALLDOWN_RECOGNITION"
+          ],
+          [
+            "Cámara de profundidad",
+            "ALGORITHM_DEPTH_CAMERA"
+          ],
+          [
+            "DonkeyCar",
+            "ALGORITHM_DONKEYCAR"
+          ],
+          [
+            "cámara",
+            "ALGORITHM_CAMERA"
+          ],
+          [
+            "Custom 0",
+            "ALGORITHM_CUSTOM0"
+          ],
+          [
+            "Custom 1",
+            "ALGORITHM_CUSTOM1"
+          ],
+          [
+            "Custom 2",
+            "ALGORITHM_CUSTOM2"
+          ]
+        ]
+      }
+    ]
+  },
+  "huskylensv2_get_by_index": {
+    "message0": "Algoritmo %1 HuskyLensV2 %2 resultados de índice %3",
+    "tooltip": "getCachedResultByIndex",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Algoritmo arbitrario",
+            "ALGORITHM_ANY"
+          ],
+          [
+            "Cara",
+            "ALGORITHM_FACE_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de objetos",
+            "ALGORITHM_OBJECT_RECOGNITION"
+          ],
+          [
+            "Seguimiento de objetos",
+            "ALGORITHM_OBJECT_TRACKING"
+          ],
+          [
+            "Color",
+            "ALGORITHM_COLOR_RECOGNITION"
+          ],
+          [
+            "Clasificación de objetos",
+            "ALGORITHM_OBJECT_CLASSIFICATION"
+          ],
+          [
+            "Clasificación autodidacta",
+            "ALGORITHM_SELF_LEARNING_CLASSIFICATION"
+          ],
+          [
+            "División",
+            "ALGORITHM_SEGMENT"
+          ],
+          [
+            "Reconocimiento de gestos",
+            "ALGORITHM_HAND_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de postura",
+            "ALGORITHM_POSE_RECOGNITION"
+          ],
+          [
+            "Matrícula",
+            "ALGORITHM_LICENSE_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de texto OCR",
+            "ALGORITHM_OCR_RECOGNITION"
+          ],
+          [
+            "Pista y caída",
+            "ALGORITHM_LINE_TRACKING"
+          ],
+          [
+            "Reconocimiento de expresiones faciales",
+            "ALGORITHM_EMOTION_RECOGNITION"
+          ],
+          [
+            "Reconocimiento ocular",
+            "ALGORITHM_GAZE_RECOGNITION"
+          ],
+          [
+            "La cara mira hacia adelante",
+            "ALGORITHM_FACE_ORIENTATION"
+          ],
+          [
+            "Reconocimiento del sello",
+            "ALGORITHM_TAG_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de códigos de barras",
+            "ALGORITHM_BARCODE_RECOGNITION"
+          ],
+          [
+            "Escaneo QR",
+            "ALGORITHM_QRCODE_RECOGNITION"
+          ],
+          [
+            "Detección de caídas",
+            "ALGORITHM_FALLDOWN_RECOGNITION"
+          ],
+          [
+            "Cámara de profundidad",
+            "ALGORITHM_DEPTH_CAMERA"
+          ],
+          [
+            "DonkeyCar",
+            "ALGORITHM_DONKEYCAR"
+          ],
+          [
+            "cámara",
+            "ALGORITHM_CAMERA"
+          ],
+          [
+            "Custom 0",
+            "ALGORITHM_CUSTOM0"
+          ],
+          [
+            "Custom 1",
+            "ALGORITHM_CUSTOM1"
+          ],
+          [
+            "Custom 2",
+            "ALGORITHM_CUSTOM2"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "huskylensv2_get_by_id": {
+    "message0": "Resultados del algoritmo HuskyLensV2 %1 %2 ID %3",
+    "tooltip": "getCachedResultByID",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Algoritmo arbitrario",
+            "ALGORITHM_ANY"
+          ],
+          [
+            "Cara",
+            "ALGORITHM_FACE_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de objetos",
+            "ALGORITHM_OBJECT_RECOGNITION"
+          ],
+          [
+            "Seguimiento de objetos",
+            "ALGORITHM_OBJECT_TRACKING"
+          ],
+          [
+            "Color",
+            "ALGORITHM_COLOR_RECOGNITION"
+          ],
+          [
+            "Clasificación de objetos",
+            "ALGORITHM_OBJECT_CLASSIFICATION"
+          ],
+          [
+            "Clasificación autodidacta",
+            "ALGORITHM_SELF_LEARNING_CLASSIFICATION"
+          ],
+          [
+            "División",
+            "ALGORITHM_SEGMENT"
+          ],
+          [
+            "Reconocimiento de gestos",
+            "ALGORITHM_HAND_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de postura",
+            "ALGORITHM_POSE_RECOGNITION"
+          ],
+          [
+            "Matrícula",
+            "ALGORITHM_LICENSE_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de texto OCR",
+            "ALGORITHM_OCR_RECOGNITION"
+          ],
+          [
+            "Pista y caída",
+            "ALGORITHM_LINE_TRACKING"
+          ],
+          [
+            "Reconocimiento de expresiones faciales",
+            "ALGORITHM_EMOTION_RECOGNITION"
+          ],
+          [
+            "Reconocimiento ocular",
+            "ALGORITHM_GAZE_RECOGNITION"
+          ],
+          [
+            "La cara mira hacia adelante",
+            "ALGORITHM_FACE_ORIENTATION"
+          ],
+          [
+            "Reconocimiento del sello",
+            "ALGORITHM_TAG_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de códigos de barras",
+            "ALGORITHM_BARCODE_RECOGNITION"
+          ],
+          [
+            "Escaneo QR",
+            "ALGORITHM_QRCODE_RECOGNITION"
+          ],
+          [
+            "Detección de caídas",
+            "ALGORITHM_FALLDOWN_RECOGNITION"
+          ],
+          [
+            "Cámara de profundidad",
+            "ALGORITHM_DEPTH_CAMERA"
+          ],
+          [
+            "DonkeyCar",
+            "ALGORITHM_DONKEYCAR"
+          ],
+          [
+            "cámara",
+            "ALGORITHM_CAMERA"
+          ],
+          [
+            "Custom 0",
+            "ALGORITHM_CUSTOM0"
+          ],
+          [
+            "Custom 1",
+            "ALGORITHM_CUSTOM1"
+          ],
+          [
+            "Custom 2",
+            "ALGORITHM_CUSTOM2"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "huskylensv2_get_by_id_index": {
+    "message0": "HuskyLensV2 %1 algoritmo %2 ID %3 %4th resultado",
+    "tooltip": "getCachedIndexResultByID",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Algoritmo arbitrario",
+            "ALGORITHM_ANY"
+          ],
+          [
+            "Cara",
+            "ALGORITHM_FACE_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de objetos",
+            "ALGORITHM_OBJECT_RECOGNITION"
+          ],
+          [
+            "Seguimiento de objetos",
+            "ALGORITHM_OBJECT_TRACKING"
+          ],
+          [
+            "Color",
+            "ALGORITHM_COLOR_RECOGNITION"
+          ],
+          [
+            "Clasificación de objetos",
+            "ALGORITHM_OBJECT_CLASSIFICATION"
+          ],
+          [
+            "Clasificación autodidacta",
+            "ALGORITHM_SELF_LEARNING_CLASSIFICATION"
+          ],
+          [
+            "División",
+            "ALGORITHM_SEGMENT"
+          ],
+          [
+            "Reconocimiento de gestos",
+            "ALGORITHM_HAND_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de postura",
+            "ALGORITHM_POSE_RECOGNITION"
+          ],
+          [
+            "Matrícula",
+            "ALGORITHM_LICENSE_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de texto OCR",
+            "ALGORITHM_OCR_RECOGNITION"
+          ],
+          [
+            "Pista y caída",
+            "ALGORITHM_LINE_TRACKING"
+          ],
+          [
+            "Reconocimiento de expresiones faciales",
+            "ALGORITHM_EMOTION_RECOGNITION"
+          ],
+          [
+            "Reconocimiento ocular",
+            "ALGORITHM_GAZE_RECOGNITION"
+          ],
+          [
+            "La cara mira hacia adelante",
+            "ALGORITHM_FACE_ORIENTATION"
+          ],
+          [
+            "Reconocimiento del sello",
+            "ALGORITHM_TAG_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de códigos de barras",
+            "ALGORITHM_BARCODE_RECOGNITION"
+          ],
+          [
+            "Escaneo QR",
+            "ALGORITHM_QRCODE_RECOGNITION"
+          ],
+          [
+            "Detección de caídas",
+            "ALGORITHM_FALLDOWN_RECOGNITION"
+          ],
+          [
+            "Cámara de profundidad",
+            "ALGORITHM_DEPTH_CAMERA"
+          ],
+          [
+            "DonkeyCar",
+            "ALGORITHM_DONKEYCAR"
+          ],
+          [
+            "cámara",
+            "ALGORITHM_CAMERA"
+          ],
+          [
+            "Custom 0",
+            "ALGORITHM_CUSTOM0"
+          ],
+          [
+            "Custom 1",
+            "ALGORITHM_CUSTOM1"
+          ],
+          [
+            "Custom 2",
+            "ALGORITHM_CUSTOM2"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "huskylensv2_current_branch": {
+    "message0": "Algoritmo de %1 HuskyLensV2 %2 camino actual",
+    "tooltip": "getCurrentBranch (Patrulla de Rutas)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Algoritmo arbitrario",
+            "ALGORITHM_ANY"
+          ],
+          [
+            "Cara",
+            "ALGORITHM_FACE_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de objetos",
+            "ALGORITHM_OBJECT_RECOGNITION"
+          ],
+          [
+            "Seguimiento de objetos",
+            "ALGORITHM_OBJECT_TRACKING"
+          ],
+          [
+            "Color",
+            "ALGORITHM_COLOR_RECOGNITION"
+          ],
+          [
+            "Clasificación de objetos",
+            "ALGORITHM_OBJECT_CLASSIFICATION"
+          ],
+          [
+            "Clasificación autodidacta",
+            "ALGORITHM_SELF_LEARNING_CLASSIFICATION"
+          ],
+          [
+            "División",
+            "ALGORITHM_SEGMENT"
+          ],
+          [
+            "Reconocimiento de gestos",
+            "ALGORITHM_HAND_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de postura",
+            "ALGORITHM_POSE_RECOGNITION"
+          ],
+          [
+            "Matrícula",
+            "ALGORITHM_LICENSE_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de texto OCR",
+            "ALGORITHM_OCR_RECOGNITION"
+          ],
+          [
+            "Pista y caída",
+            "ALGORITHM_LINE_TRACKING"
+          ],
+          [
+            "Reconocimiento de expresiones faciales",
+            "ALGORITHM_EMOTION_RECOGNITION"
+          ],
+          [
+            "Reconocimiento ocular",
+            "ALGORITHM_GAZE_RECOGNITION"
+          ],
+          [
+            "La cara mira hacia adelante",
+            "ALGORITHM_FACE_ORIENTATION"
+          ],
+          [
+            "Reconocimiento del sello",
+            "ALGORITHM_TAG_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de códigos de barras",
+            "ALGORITHM_BARCODE_RECOGNITION"
+          ],
+          [
+            "Escaneo QR",
+            "ALGORITHM_QRCODE_RECOGNITION"
+          ],
+          [
+            "Detección de caídas",
+            "ALGORITHM_FALLDOWN_RECOGNITION"
+          ],
+          [
+            "Cámara de profundidad",
+            "ALGORITHM_DEPTH_CAMERA"
+          ],
+          [
+            "DonkeyCar",
+            "ALGORITHM_DONKEYCAR"
+          ],
+          [
+            "cámara",
+            "ALGORITHM_CAMERA"
+          ],
+          [
+            "Custom 0",
+            "ALGORITHM_CUSTOM0"
+          ],
+          [
+            "Custom 1",
+            "ALGORITHM_CUSTOM1"
+          ],
+          [
+            "Custom 2",
+            "ALGORITHM_CUSTOM2"
+          ]
+        ]
+      }
+    ]
+  },
+  "huskylensv2_upcoming_branch_count": {
+    "message0": "Algoritmo %1 HuskyLensV2 %2 Número de intersecciones adelante",
+    "tooltip": "getUpcomingBranchCount",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Algoritmo arbitrario",
+            "ALGORITHM_ANY"
+          ],
+          [
+            "Cara",
+            "ALGORITHM_FACE_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de objetos",
+            "ALGORITHM_OBJECT_RECOGNITION"
+          ],
+          [
+            "Seguimiento de objetos",
+            "ALGORITHM_OBJECT_TRACKING"
+          ],
+          [
+            "Color",
+            "ALGORITHM_COLOR_RECOGNITION"
+          ],
+          [
+            "Clasificación de objetos",
+            "ALGORITHM_OBJECT_CLASSIFICATION"
+          ],
+          [
+            "Clasificación autodidacta",
+            "ALGORITHM_SELF_LEARNING_CLASSIFICATION"
+          ],
+          [
+            "División",
+            "ALGORITHM_SEGMENT"
+          ],
+          [
+            "Reconocimiento de gestos",
+            "ALGORITHM_HAND_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de postura",
+            "ALGORITHM_POSE_RECOGNITION"
+          ],
+          [
+            "Matrícula",
+            "ALGORITHM_LICENSE_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de texto OCR",
+            "ALGORITHM_OCR_RECOGNITION"
+          ],
+          [
+            "Pista y caída",
+            "ALGORITHM_LINE_TRACKING"
+          ],
+          [
+            "Reconocimiento de expresiones faciales",
+            "ALGORITHM_EMOTION_RECOGNITION"
+          ],
+          [
+            "Reconocimiento ocular",
+            "ALGORITHM_GAZE_RECOGNITION"
+          ],
+          [
+            "La cara mira hacia adelante",
+            "ALGORITHM_FACE_ORIENTATION"
+          ],
+          [
+            "Reconocimiento del sello",
+            "ALGORITHM_TAG_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de códigos de barras",
+            "ALGORITHM_BARCODE_RECOGNITION"
+          ],
+          [
+            "Escaneo QR",
+            "ALGORITHM_QRCODE_RECOGNITION"
+          ],
+          [
+            "Detección de caídas",
+            "ALGORITHM_FALLDOWN_RECOGNITION"
+          ],
+          [
+            "Cámara de profundidad",
+            "ALGORITHM_DEPTH_CAMERA"
+          ],
+          [
+            "DonkeyCar",
+            "ALGORITHM_DONKEYCAR"
+          ],
+          [
+            "cámara",
+            "ALGORITHM_CAMERA"
+          ],
+          [
+            "Custom 0",
+            "ALGORITHM_CUSTOM0"
+          ],
+          [
+            "Custom 1",
+            "ALGORITHM_CUSTOM1"
+          ],
+          [
+            "Custom 2",
+            "ALGORITHM_CUSTOM2"
+          ]
+        ]
+      }
+    ]
+  },
+  "huskylensv2_get_branch": {
+    "message0": "HuskyLensV2 %1 algoritmo %2 rama %3",
+    "tooltip": "getBranch",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Algoritmo arbitrario",
+            "ALGORITHM_ANY"
+          ],
+          [
+            "Cara",
+            "ALGORITHM_FACE_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de objetos",
+            "ALGORITHM_OBJECT_RECOGNITION"
+          ],
+          [
+            "Seguimiento de objetos",
+            "ALGORITHM_OBJECT_TRACKING"
+          ],
+          [
+            "Color",
+            "ALGORITHM_COLOR_RECOGNITION"
+          ],
+          [
+            "Clasificación de objetos",
+            "ALGORITHM_OBJECT_CLASSIFICATION"
+          ],
+          [
+            "Clasificación autodidacta",
+            "ALGORITHM_SELF_LEARNING_CLASSIFICATION"
+          ],
+          [
+            "División",
+            "ALGORITHM_SEGMENT"
+          ],
+          [
+            "Reconocimiento de gestos",
+            "ALGORITHM_HAND_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de postura",
+            "ALGORITHM_POSE_RECOGNITION"
+          ],
+          [
+            "Matrícula",
+            "ALGORITHM_LICENSE_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de texto OCR",
+            "ALGORITHM_OCR_RECOGNITION"
+          ],
+          [
+            "Pista y caída",
+            "ALGORITHM_LINE_TRACKING"
+          ],
+          [
+            "Reconocimiento de expresiones faciales",
+            "ALGORITHM_EMOTION_RECOGNITION"
+          ],
+          [
+            "Reconocimiento ocular",
+            "ALGORITHM_GAZE_RECOGNITION"
+          ],
+          [
+            "La cara mira hacia adelante",
+            "ALGORITHM_FACE_ORIENTATION"
+          ],
+          [
+            "Reconocimiento del sello",
+            "ALGORITHM_TAG_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de códigos de barras",
+            "ALGORITHM_BARCODE_RECOGNITION"
+          ],
+          [
+            "Escaneo QR",
+            "ALGORITHM_QRCODE_RECOGNITION"
+          ],
+          [
+            "Detección de caídas",
+            "ALGORITHM_FALLDOWN_RECOGNITION"
+          ],
+          [
+            "Cámara de profundidad",
+            "ALGORITHM_DEPTH_CAMERA"
+          ],
+          [
+            "DonkeyCar",
+            "ALGORITHM_DONKEYCAR"
+          ],
+          [
+            "cámara",
+            "ALGORITHM_CAMERA"
+          ],
+          [
+            "Custom 0",
+            "ALGORITHM_CUSTOM0"
+          ],
+          [
+            "Custom 1",
+            "ALGORITHM_CUSTOM1"
+          ],
+          [
+            "Custom 2",
+            "ALGORITHM_CUSTOM2"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "huskylensv2_learn": {
+    "message0": "Algoritmo de aprendizaje HuskyLensV2 %1 %2",
+    "tooltip": "aprender (algo)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Algoritmo arbitrario",
+            "ALGORITHM_ANY"
+          ],
+          [
+            "Cara",
+            "ALGORITHM_FACE_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de objetos",
+            "ALGORITHM_OBJECT_RECOGNITION"
+          ],
+          [
+            "Seguimiento de objetos",
+            "ALGORITHM_OBJECT_TRACKING"
+          ],
+          [
+            "Color",
+            "ALGORITHM_COLOR_RECOGNITION"
+          ],
+          [
+            "Clasificación de objetos",
+            "ALGORITHM_OBJECT_CLASSIFICATION"
+          ],
+          [
+            "Clasificación autodidacta",
+            "ALGORITHM_SELF_LEARNING_CLASSIFICATION"
+          ],
+          [
+            "División",
+            "ALGORITHM_SEGMENT"
+          ],
+          [
+            "Reconocimiento de gestos",
+            "ALGORITHM_HAND_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de postura",
+            "ALGORITHM_POSE_RECOGNITION"
+          ],
+          [
+            "Matrícula",
+            "ALGORITHM_LICENSE_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de texto OCR",
+            "ALGORITHM_OCR_RECOGNITION"
+          ],
+          [
+            "Pista y caída",
+            "ALGORITHM_LINE_TRACKING"
+          ],
+          [
+            "Reconocimiento de expresiones faciales",
+            "ALGORITHM_EMOTION_RECOGNITION"
+          ],
+          [
+            "Reconocimiento ocular",
+            "ALGORITHM_GAZE_RECOGNITION"
+          ],
+          [
+            "La cara mira hacia adelante",
+            "ALGORITHM_FACE_ORIENTATION"
+          ],
+          [
+            "Reconocimiento del sello",
+            "ALGORITHM_TAG_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de códigos de barras",
+            "ALGORITHM_BARCODE_RECOGNITION"
+          ],
+          [
+            "Escaneo QR",
+            "ALGORITHM_QRCODE_RECOGNITION"
+          ],
+          [
+            "Detección de caídas",
+            "ALGORITHM_FALLDOWN_RECOGNITION"
+          ],
+          [
+            "Cámara de profundidad",
+            "ALGORITHM_DEPTH_CAMERA"
+          ],
+          [
+            "DonkeyCar",
+            "ALGORITHM_DONKEYCAR"
+          ],
+          [
+            "cámara",
+            "ALGORITHM_CAMERA"
+          ],
+          [
+            "Custom 0",
+            "ALGORITHM_CUSTOM0"
+          ],
+          [
+            "Custom 1",
+            "ALGORITHM_CUSTOM1"
+          ],
+          [
+            "Custom 2",
+            "ALGORITHM_CUSTOM2"
+          ]
+        ]
+      }
+    ]
+  },
+  "huskylensv2_learn_value": {
+    "message0": "HuskyLensV2 %1 Algoritmo de Aprendizaje %2 devuelve ID",
+    "tooltip": "learn(algo) Devuelve el ID del elemento aprendido",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Algoritmo arbitrario",
+            "ALGORITHM_ANY"
+          ],
+          [
+            "Cara",
+            "ALGORITHM_FACE_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de objetos",
+            "ALGORITHM_OBJECT_RECOGNITION"
+          ],
+          [
+            "Seguimiento de objetos",
+            "ALGORITHM_OBJECT_TRACKING"
+          ],
+          [
+            "Color",
+            "ALGORITHM_COLOR_RECOGNITION"
+          ],
+          [
+            "Clasificación de objetos",
+            "ALGORITHM_OBJECT_CLASSIFICATION"
+          ],
+          [
+            "Clasificación autodidacta",
+            "ALGORITHM_SELF_LEARNING_CLASSIFICATION"
+          ],
+          [
+            "División",
+            "ALGORITHM_SEGMENT"
+          ],
+          [
+            "Reconocimiento de gestos",
+            "ALGORITHM_HAND_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de postura",
+            "ALGORITHM_POSE_RECOGNITION"
+          ],
+          [
+            "Matrícula",
+            "ALGORITHM_LICENSE_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de texto OCR",
+            "ALGORITHM_OCR_RECOGNITION"
+          ],
+          [
+            "Pista y caída",
+            "ALGORITHM_LINE_TRACKING"
+          ],
+          [
+            "Reconocimiento de expresiones faciales",
+            "ALGORITHM_EMOTION_RECOGNITION"
+          ],
+          [
+            "Reconocimiento ocular",
+            "ALGORITHM_GAZE_RECOGNITION"
+          ],
+          [
+            "La cara mira hacia adelante",
+            "ALGORITHM_FACE_ORIENTATION"
+          ],
+          [
+            "Reconocimiento del sello",
+            "ALGORITHM_TAG_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de códigos de barras",
+            "ALGORITHM_BARCODE_RECOGNITION"
+          ],
+          [
+            "Escaneo QR",
+            "ALGORITHM_QRCODE_RECOGNITION"
+          ],
+          [
+            "Detección de caídas",
+            "ALGORITHM_FALLDOWN_RECOGNITION"
+          ],
+          [
+            "Cámara de profundidad",
+            "ALGORITHM_DEPTH_CAMERA"
+          ],
+          [
+            "DonkeyCar",
+            "ALGORITHM_DONKEYCAR"
+          ],
+          [
+            "cámara",
+            "ALGORITHM_CAMERA"
+          ],
+          [
+            "Custom 0",
+            "ALGORITHM_CUSTOM0"
+          ],
+          [
+            "Custom 1",
+            "ALGORITHM_CUSTOM1"
+          ],
+          [
+            "Custom 2",
+            "ALGORITHM_CUSTOM2"
+          ]
+        ]
+      }
+    ]
+  },
+  "huskylensv2_learn_block": {
+    "message0": "HuskyLensV2 %1 Algoritmo %2 Área de Aprendizaje X %3 Y %4 Anchura %5 Altura %6",
+    "tooltip": "learnBlock(algo,x,y,w,h)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Algoritmo arbitrario",
+            "ALGORITHM_ANY"
+          ],
+          [
+            "Cara",
+            "ALGORITHM_FACE_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de objetos",
+            "ALGORITHM_OBJECT_RECOGNITION"
+          ],
+          [
+            "Seguimiento de objetos",
+            "ALGORITHM_OBJECT_TRACKING"
+          ],
+          [
+            "Color",
+            "ALGORITHM_COLOR_RECOGNITION"
+          ],
+          [
+            "Clasificación de objetos",
+            "ALGORITHM_OBJECT_CLASSIFICATION"
+          ],
+          [
+            "Clasificación autodidacta",
+            "ALGORITHM_SELF_LEARNING_CLASSIFICATION"
+          ],
+          [
+            "División",
+            "ALGORITHM_SEGMENT"
+          ],
+          [
+            "Reconocimiento de gestos",
+            "ALGORITHM_HAND_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de postura",
+            "ALGORITHM_POSE_RECOGNITION"
+          ],
+          [
+            "Matrícula",
+            "ALGORITHM_LICENSE_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de texto OCR",
+            "ALGORITHM_OCR_RECOGNITION"
+          ],
+          [
+            "Pista y caída",
+            "ALGORITHM_LINE_TRACKING"
+          ],
+          [
+            "Reconocimiento de expresiones faciales",
+            "ALGORITHM_EMOTION_RECOGNITION"
+          ],
+          [
+            "Reconocimiento ocular",
+            "ALGORITHM_GAZE_RECOGNITION"
+          ],
+          [
+            "La cara mira hacia adelante",
+            "ALGORITHM_FACE_ORIENTATION"
+          ],
+          [
+            "Reconocimiento del sello",
+            "ALGORITHM_TAG_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de códigos de barras",
+            "ALGORITHM_BARCODE_RECOGNITION"
+          ],
+          [
+            "Escaneo QR",
+            "ALGORITHM_QRCODE_RECOGNITION"
+          ],
+          [
+            "Detección de caídas",
+            "ALGORITHM_FALLDOWN_RECOGNITION"
+          ],
+          [
+            "Cámara de profundidad",
+            "ALGORITHM_DEPTH_CAMERA"
+          ],
+          [
+            "DonkeyCar",
+            "ALGORITHM_DONKEYCAR"
+          ],
+          [
+            "cámara",
+            "ALGORITHM_CAMERA"
+          ],
+          [
+            "Custom 0",
+            "ALGORITHM_CUSTOM0"
+          ],
+          [
+            "Custom 1",
+            "ALGORITHM_CUSTOM1"
+          ],
+          [
+            "Custom 2",
+            "ALGORITHM_CUSTOM2"
+          ]
+        ]
+      },
+      null,
+      null,
+      null,
+      null
+    ]
+  },
+  "huskylensv2_learn_block_value": {
+    "message0": "Algoritmo de %1 HuskyLensV2 %2 área de aprendizaje X %3 Y %4 ancho %5 altura %6 Retorno ID",
+    "tooltip": "learnBlock devuelve el ID",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Algoritmo arbitrario",
+            "ALGORITHM_ANY"
+          ],
+          [
+            "Cara",
+            "ALGORITHM_FACE_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de objetos",
+            "ALGORITHM_OBJECT_RECOGNITION"
+          ],
+          [
+            "Seguimiento de objetos",
+            "ALGORITHM_OBJECT_TRACKING"
+          ],
+          [
+            "Color",
+            "ALGORITHM_COLOR_RECOGNITION"
+          ],
+          [
+            "Clasificación de objetos",
+            "ALGORITHM_OBJECT_CLASSIFICATION"
+          ],
+          [
+            "Clasificación autodidacta",
+            "ALGORITHM_SELF_LEARNING_CLASSIFICATION"
+          ],
+          [
+            "División",
+            "ALGORITHM_SEGMENT"
+          ],
+          [
+            "Reconocimiento de gestos",
+            "ALGORITHM_HAND_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de postura",
+            "ALGORITHM_POSE_RECOGNITION"
+          ],
+          [
+            "Matrícula",
+            "ALGORITHM_LICENSE_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de texto OCR",
+            "ALGORITHM_OCR_RECOGNITION"
+          ],
+          [
+            "Pista y caída",
+            "ALGORITHM_LINE_TRACKING"
+          ],
+          [
+            "Reconocimiento de expresiones faciales",
+            "ALGORITHM_EMOTION_RECOGNITION"
+          ],
+          [
+            "Reconocimiento ocular",
+            "ALGORITHM_GAZE_RECOGNITION"
+          ],
+          [
+            "La cara mira hacia adelante",
+            "ALGORITHM_FACE_ORIENTATION"
+          ],
+          [
+            "Reconocimiento del sello",
+            "ALGORITHM_TAG_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de códigos de barras",
+            "ALGORITHM_BARCODE_RECOGNITION"
+          ],
+          [
+            "Escaneo QR",
+            "ALGORITHM_QRCODE_RECOGNITION"
+          ],
+          [
+            "Detección de caídas",
+            "ALGORITHM_FALLDOWN_RECOGNITION"
+          ],
+          [
+            "Cámara de profundidad",
+            "ALGORITHM_DEPTH_CAMERA"
+          ],
+          [
+            "DonkeyCar",
+            "ALGORITHM_DONKEYCAR"
+          ],
+          [
+            "cámara",
+            "ALGORITHM_CAMERA"
+          ],
+          [
+            "Custom 0",
+            "ALGORITHM_CUSTOM0"
+          ],
+          [
+            "Custom 1",
+            "ALGORITHM_CUSTOM1"
+          ],
+          [
+            "Custom 2",
+            "ALGORITHM_CUSTOM2"
+          ]
+        ]
+      },
+      null,
+      null,
+      null,
+      null
+    ]
+  },
+  "huskylensv2_forget": {
+    "message0": "HuskyLensV2 %1 Algoritmo de Olvido %2",
+    "tooltip": "olvidar (algo)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Algoritmo arbitrario",
+            "ALGORITHM_ANY"
+          ],
+          [
+            "Cara",
+            "ALGORITHM_FACE_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de objetos",
+            "ALGORITHM_OBJECT_RECOGNITION"
+          ],
+          [
+            "Seguimiento de objetos",
+            "ALGORITHM_OBJECT_TRACKING"
+          ],
+          [
+            "Color",
+            "ALGORITHM_COLOR_RECOGNITION"
+          ],
+          [
+            "Clasificación de objetos",
+            "ALGORITHM_OBJECT_CLASSIFICATION"
+          ],
+          [
+            "Clasificación autodidacta",
+            "ALGORITHM_SELF_LEARNING_CLASSIFICATION"
+          ],
+          [
+            "División",
+            "ALGORITHM_SEGMENT"
+          ],
+          [
+            "Reconocimiento de gestos",
+            "ALGORITHM_HAND_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de postura",
+            "ALGORITHM_POSE_RECOGNITION"
+          ],
+          [
+            "Matrícula",
+            "ALGORITHM_LICENSE_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de texto OCR",
+            "ALGORITHM_OCR_RECOGNITION"
+          ],
+          [
+            "Pista y caída",
+            "ALGORITHM_LINE_TRACKING"
+          ],
+          [
+            "Reconocimiento de expresiones faciales",
+            "ALGORITHM_EMOTION_RECOGNITION"
+          ],
+          [
+            "Reconocimiento ocular",
+            "ALGORITHM_GAZE_RECOGNITION"
+          ],
+          [
+            "La cara mira hacia adelante",
+            "ALGORITHM_FACE_ORIENTATION"
+          ],
+          [
+            "Reconocimiento del sello",
+            "ALGORITHM_TAG_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de códigos de barras",
+            "ALGORITHM_BARCODE_RECOGNITION"
+          ],
+          [
+            "Escaneo QR",
+            "ALGORITHM_QRCODE_RECOGNITION"
+          ],
+          [
+            "Detección de caídas",
+            "ALGORITHM_FALLDOWN_RECOGNITION"
+          ],
+          [
+            "Cámara de profundidad",
+            "ALGORITHM_DEPTH_CAMERA"
+          ],
+          [
+            "DonkeyCar",
+            "ALGORITHM_DONKEYCAR"
+          ],
+          [
+            "cámara",
+            "ALGORITHM_CAMERA"
+          ],
+          [
+            "Custom 0",
+            "ALGORITHM_CUSTOM0"
+          ],
+          [
+            "Custom 1",
+            "ALGORITHM_CUSTOM1"
+          ],
+          [
+            "Custom 2",
+            "ALGORITHM_CUSTOM2"
+          ]
+        ]
+      }
+    ]
+  },
+  "huskylensv2_take_photo": {
+    "message0": "HuskyLens V2 %1 Fotografía Resolution%2",
+    "tooltip": "takePhoto devuelve el nombre del archivo",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "por defecto",
+            "RESOLUTION_DEFAULT"
+          ],
+          [
+            "640x480",
+            "RESOLUTION_640x480"
+          ],
+          [
+            "1280x720",
+            "RESOLUTION_1280x720"
+          ],
+          [
+            "1920x1080",
+            "RESOLUTION_1920x1080"
+          ]
+        ]
+      }
+    ]
+  },
+  "huskylensv2_take_screenshot": {
+    "message0": "Captura de pantalla de HuskyLensV2 %1",
+    "tooltip": "takeScreenshot devuelve el nombre del archivo"
+  },
+  "huskylensv2_draw_rect": {
+    "message0": "HuskyLensV2 %1 Rectángulos de dibujar Color %2 Ancho de línea %3 X %4 Y %5 Ancho %6 Altura %7",
+    "tooltip": "drawRect",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Blanco",
+            "COLOR_WHITE"
+          ],
+          [
+            "Rojo",
+            "COLOR_RED"
+          ],
+          [
+            "Naranja",
+            "COLOR_ORANGE"
+          ],
+          [
+            "Amarillo",
+            "COLOR_YELLOW"
+          ],
+          [
+            "Verde",
+            "COLOR_GREEN"
+          ],
+          [
+            "cyan",
+            "COLOR_CYAN"
+          ],
+          [
+            "Azul",
+            "COLOR_BLUE"
+          ],
+          [
+            "Morado",
+            "COLOR_PURPLE"
+          ],
+          [
+            "Rosa",
+            "COLOR_PINK"
+          ],
+          [
+            "Gray",
+            "COLOR_GRAY"
+          ],
+          [
+            "Negro",
+            "COLOR_BLACK"
+          ],
+          [
+            "Brown",
+            "COLOR_BROWN"
+          ],
+          [
+            "Verde oliva",
+            "COLOR_OLIVE"
+          ],
+          [
+            "Turquesa",
+            "COLOR_TEAL"
+          ],
+          [
+            "Índigo",
+            "COLOR_INDIGO"
+          ],
+          [
+            "Magenta",
+            "COLOR_MAGENTA"
+          ]
+        ]
+      },
+      null,
+      null,
+      null,
+      null,
+      null
+    ]
+  },
+  "huskylensv2_draw_unique_rect": {
+    "message0": "HuskyLensV2 %1 Dibujar un rectángulo único Color %2 Ancho de línea %3 X %4 Y %5 Ancho %6 Altura %7",
+    "tooltip": "drawUniqueRect",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Blanco",
+            "COLOR_WHITE"
+          ],
+          [
+            "Rojo",
+            "COLOR_RED"
+          ],
+          [
+            "Naranja",
+            "COLOR_ORANGE"
+          ],
+          [
+            "Amarillo",
+            "COLOR_YELLOW"
+          ],
+          [
+            "Verde",
+            "COLOR_GREEN"
+          ],
+          [
+            "cyan",
+            "COLOR_CYAN"
+          ],
+          [
+            "Azul",
+            "COLOR_BLUE"
+          ],
+          [
+            "Morado",
+            "COLOR_PURPLE"
+          ],
+          [
+            "Rosa",
+            "COLOR_PINK"
+          ],
+          [
+            "Gray",
+            "COLOR_GRAY"
+          ],
+          [
+            "Negro",
+            "COLOR_BLACK"
+          ],
+          [
+            "Brown",
+            "COLOR_BROWN"
+          ],
+          [
+            "Verde oliva",
+            "COLOR_OLIVE"
+          ],
+          [
+            "Turquesa",
+            "COLOR_TEAL"
+          ],
+          [
+            "Índigo",
+            "COLOR_INDIGO"
+          ],
+          [
+            "Magenta",
+            "COLOR_MAGENTA"
+          ]
+        ]
+      },
+      null,
+      null,
+      null,
+      null,
+      null
+    ]
+  },
+  "huskylensv2_clear_rect": {
+    "message0": "HuskyLensV2 %1 Limpia rectángulos",
+    "tooltip": "clearRect"
+  },
+  "huskylensv2_draw_text": {
+    "message0": "HuskyLensV2 %1 Dibujar texto Color %2 Tamaño de fuente %3 X %4 Y %5 Contenido %6",
+    "tooltip": "drawText",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Blanco",
+            "COLOR_WHITE"
+          ],
+          [
+            "Rojo",
+            "COLOR_RED"
+          ],
+          [
+            "Naranja",
+            "COLOR_ORANGE"
+          ],
+          [
+            "Amarillo",
+            "COLOR_YELLOW"
+          ],
+          [
+            "Verde",
+            "COLOR_GREEN"
+          ],
+          [
+            "cyan",
+            "COLOR_CYAN"
+          ],
+          [
+            "Azul",
+            "COLOR_BLUE"
+          ],
+          [
+            "Morado",
+            "COLOR_PURPLE"
+          ],
+          [
+            "Rosa",
+            "COLOR_PINK"
+          ],
+          [
+            "Gray",
+            "COLOR_GRAY"
+          ],
+          [
+            "Negro",
+            "COLOR_BLACK"
+          ],
+          [
+            "Brown",
+            "COLOR_BROWN"
+          ],
+          [
+            "Verde oliva",
+            "COLOR_OLIVE"
+          ],
+          [
+            "Turquesa",
+            "COLOR_TEAL"
+          ],
+          [
+            "Índigo",
+            "COLOR_INDIGO"
+          ],
+          [
+            "Magenta",
+            "COLOR_MAGENTA"
+          ]
+        ]
+      },
+      null,
+      null,
+      null,
+      null
+    ]
+  },
+  "huskylensv2_clear_text": {
+    "message0": "HuskyLensV2 %1 Texto claro",
+    "tooltip": "clearText"
+  },
+  "huskylensv2_save_knowledge": {
+    "message0": "HuskyLensV2 %1 algoritmo %2 guardar la base de conocimientos en ID %3",
+    "tooltip": "saveKnowledges",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Algoritmo arbitrario",
+            "ALGORITHM_ANY"
+          ],
+          [
+            "Cara",
+            "ALGORITHM_FACE_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de objetos",
+            "ALGORITHM_OBJECT_RECOGNITION"
+          ],
+          [
+            "Seguimiento de objetos",
+            "ALGORITHM_OBJECT_TRACKING"
+          ],
+          [
+            "Color",
+            "ALGORITHM_COLOR_RECOGNITION"
+          ],
+          [
+            "Clasificación de objetos",
+            "ALGORITHM_OBJECT_CLASSIFICATION"
+          ],
+          [
+            "Clasificación autodidacta",
+            "ALGORITHM_SELF_LEARNING_CLASSIFICATION"
+          ],
+          [
+            "División",
+            "ALGORITHM_SEGMENT"
+          ],
+          [
+            "Reconocimiento de gestos",
+            "ALGORITHM_HAND_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de postura",
+            "ALGORITHM_POSE_RECOGNITION"
+          ],
+          [
+            "Matrícula",
+            "ALGORITHM_LICENSE_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de texto OCR",
+            "ALGORITHM_OCR_RECOGNITION"
+          ],
+          [
+            "Pista y caída",
+            "ALGORITHM_LINE_TRACKING"
+          ],
+          [
+            "Reconocimiento de expresiones faciales",
+            "ALGORITHM_EMOTION_RECOGNITION"
+          ],
+          [
+            "Reconocimiento ocular",
+            "ALGORITHM_GAZE_RECOGNITION"
+          ],
+          [
+            "La cara mira hacia adelante",
+            "ALGORITHM_FACE_ORIENTATION"
+          ],
+          [
+            "Reconocimiento del sello",
+            "ALGORITHM_TAG_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de códigos de barras",
+            "ALGORITHM_BARCODE_RECOGNITION"
+          ],
+          [
+            "Escaneo QR",
+            "ALGORITHM_QRCODE_RECOGNITION"
+          ],
+          [
+            "Detección de caídas",
+            "ALGORITHM_FALLDOWN_RECOGNITION"
+          ],
+          [
+            "Cámara de profundidad",
+            "ALGORITHM_DEPTH_CAMERA"
+          ],
+          [
+            "DonkeyCar",
+            "ALGORITHM_DONKEYCAR"
+          ],
+          [
+            "cámara",
+            "ALGORITHM_CAMERA"
+          ],
+          [
+            "Custom 0",
+            "ALGORITHM_CUSTOM0"
+          ],
+          [
+            "Custom 1",
+            "ALGORITHM_CUSTOM1"
+          ],
+          [
+            "Custom 2",
+            "ALGORITHM_CUSTOM2"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "huskylensv2_load_knowledge": {
+    "message0": "El algoritmo de %1 HuskyLensV2 %2 carga la base de conocimientos desde ID %3",
+    "tooltip": "loadKnowledges",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Algoritmo arbitrario",
+            "ALGORITHM_ANY"
+          ],
+          [
+            "Cara",
+            "ALGORITHM_FACE_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de objetos",
+            "ALGORITHM_OBJECT_RECOGNITION"
+          ],
+          [
+            "Seguimiento de objetos",
+            "ALGORITHM_OBJECT_TRACKING"
+          ],
+          [
+            "Color",
+            "ALGORITHM_COLOR_RECOGNITION"
+          ],
+          [
+            "Clasificación de objetos",
+            "ALGORITHM_OBJECT_CLASSIFICATION"
+          ],
+          [
+            "Clasificación autodidacta",
+            "ALGORITHM_SELF_LEARNING_CLASSIFICATION"
+          ],
+          [
+            "División",
+            "ALGORITHM_SEGMENT"
+          ],
+          [
+            "Reconocimiento de gestos",
+            "ALGORITHM_HAND_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de postura",
+            "ALGORITHM_POSE_RECOGNITION"
+          ],
+          [
+            "Matrícula",
+            "ALGORITHM_LICENSE_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de texto OCR",
+            "ALGORITHM_OCR_RECOGNITION"
+          ],
+          [
+            "Pista y caída",
+            "ALGORITHM_LINE_TRACKING"
+          ],
+          [
+            "Reconocimiento de expresiones faciales",
+            "ALGORITHM_EMOTION_RECOGNITION"
+          ],
+          [
+            "Reconocimiento ocular",
+            "ALGORITHM_GAZE_RECOGNITION"
+          ],
+          [
+            "La cara mira hacia adelante",
+            "ALGORITHM_FACE_ORIENTATION"
+          ],
+          [
+            "Reconocimiento del sello",
+            "ALGORITHM_TAG_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de códigos de barras",
+            "ALGORITHM_BARCODE_RECOGNITION"
+          ],
+          [
+            "Escaneo QR",
+            "ALGORITHM_QRCODE_RECOGNITION"
+          ],
+          [
+            "Detección de caídas",
+            "ALGORITHM_FALLDOWN_RECOGNITION"
+          ],
+          [
+            "Cámara de profundidad",
+            "ALGORITHM_DEPTH_CAMERA"
+          ],
+          [
+            "DonkeyCar",
+            "ALGORITHM_DONKEYCAR"
+          ],
+          [
+            "cámara",
+            "ALGORITHM_CAMERA"
+          ],
+          [
+            "Custom 0",
+            "ALGORITHM_CUSTOM0"
+          ],
+          [
+            "Custom 1",
+            "ALGORITHM_CUSTOM1"
+          ],
+          [
+            "Custom 2",
+            "ALGORITHM_CUSTOM2"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "huskylensv2_play_music": {
+    "message0": "HuskyLensV2 %1 reproduce música %2 volume%3",
+    "tooltip": "playMusic"
+  },
+  "huskylensv2_set_name": {
+    "message0": "HuskyLensV2 %1 Algoritmo %2 Establecer ID %3 Nombre a %4",
+    "tooltip": "setNameByID",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Algoritmo arbitrario",
+            "ALGORITHM_ANY"
+          ],
+          [
+            "Cara",
+            "ALGORITHM_FACE_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de objetos",
+            "ALGORITHM_OBJECT_RECOGNITION"
+          ],
+          [
+            "Seguimiento de objetos",
+            "ALGORITHM_OBJECT_TRACKING"
+          ],
+          [
+            "Color",
+            "ALGORITHM_COLOR_RECOGNITION"
+          ],
+          [
+            "Clasificación de objetos",
+            "ALGORITHM_OBJECT_CLASSIFICATION"
+          ],
+          [
+            "Clasificación autodidacta",
+            "ALGORITHM_SELF_LEARNING_CLASSIFICATION"
+          ],
+          [
+            "División",
+            "ALGORITHM_SEGMENT"
+          ],
+          [
+            "Reconocimiento de gestos",
+            "ALGORITHM_HAND_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de postura",
+            "ALGORITHM_POSE_RECOGNITION"
+          ],
+          [
+            "Matrícula",
+            "ALGORITHM_LICENSE_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de texto OCR",
+            "ALGORITHM_OCR_RECOGNITION"
+          ],
+          [
+            "Pista y caída",
+            "ALGORITHM_LINE_TRACKING"
+          ],
+          [
+            "Reconocimiento de expresiones faciales",
+            "ALGORITHM_EMOTION_RECOGNITION"
+          ],
+          [
+            "Reconocimiento ocular",
+            "ALGORITHM_GAZE_RECOGNITION"
+          ],
+          [
+            "La cara mira hacia adelante",
+            "ALGORITHM_FACE_ORIENTATION"
+          ],
+          [
+            "Reconocimiento del sello",
+            "ALGORITHM_TAG_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de códigos de barras",
+            "ALGORITHM_BARCODE_RECOGNITION"
+          ],
+          [
+            "Escaneo QR",
+            "ALGORITHM_QRCODE_RECOGNITION"
+          ],
+          [
+            "Detección de caídas",
+            "ALGORITHM_FALLDOWN_RECOGNITION"
+          ],
+          [
+            "Cámara de profundidad",
+            "ALGORITHM_DEPTH_CAMERA"
+          ],
+          [
+            "DonkeyCar",
+            "ALGORITHM_DONKEYCAR"
+          ],
+          [
+            "cámara",
+            "ALGORITHM_CAMERA"
+          ],
+          [
+            "Custom 0",
+            "ALGORITHM_CUSTOM0"
+          ],
+          [
+            "Custom 1",
+            "ALGORITHM_CUSTOM1"
+          ],
+          [
+            "Custom 2",
+            "ALGORITHM_CUSTOM2"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "huskylensv2_get_algo_param_bool": {
+    "message0": "HuskyLensV2 %1 algoritmo %2 parámetro booleano %3",
+    "tooltip": "getAlgoParamBool",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Algoritmo arbitrario",
+            "ALGORITHM_ANY"
+          ],
+          [
+            "Cara",
+            "ALGORITHM_FACE_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de objetos",
+            "ALGORITHM_OBJECT_RECOGNITION"
+          ],
+          [
+            "Seguimiento de objetos",
+            "ALGORITHM_OBJECT_TRACKING"
+          ],
+          [
+            "Color",
+            "ALGORITHM_COLOR_RECOGNITION"
+          ],
+          [
+            "Clasificación de objetos",
+            "ALGORITHM_OBJECT_CLASSIFICATION"
+          ],
+          [
+            "Clasificación autodidacta",
+            "ALGORITHM_SELF_LEARNING_CLASSIFICATION"
+          ],
+          [
+            "División",
+            "ALGORITHM_SEGMENT"
+          ],
+          [
+            "Reconocimiento de gestos",
+            "ALGORITHM_HAND_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de postura",
+            "ALGORITHM_POSE_RECOGNITION"
+          ],
+          [
+            "Matrícula",
+            "ALGORITHM_LICENSE_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de texto OCR",
+            "ALGORITHM_OCR_RECOGNITION"
+          ],
+          [
+            "Pista y caída",
+            "ALGORITHM_LINE_TRACKING"
+          ],
+          [
+            "Reconocimiento de expresiones faciales",
+            "ALGORITHM_EMOTION_RECOGNITION"
+          ],
+          [
+            "Reconocimiento ocular",
+            "ALGORITHM_GAZE_RECOGNITION"
+          ],
+          [
+            "La cara mira hacia adelante",
+            "ALGORITHM_FACE_ORIENTATION"
+          ],
+          [
+            "Reconocimiento del sello",
+            "ALGORITHM_TAG_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de códigos de barras",
+            "ALGORITHM_BARCODE_RECOGNITION"
+          ],
+          [
+            "Escaneo QR",
+            "ALGORITHM_QRCODE_RECOGNITION"
+          ],
+          [
+            "Detección de caídas",
+            "ALGORITHM_FALLDOWN_RECOGNITION"
+          ],
+          [
+            "Cámara de profundidad",
+            "ALGORITHM_DEPTH_CAMERA"
+          ],
+          [
+            "DonkeyCar",
+            "ALGORITHM_DONKEYCAR"
+          ],
+          [
+            "cámara",
+            "ALGORITHM_CAMERA"
+          ],
+          [
+            "Custom 0",
+            "ALGORITHM_CUSTOM0"
+          ],
+          [
+            "Custom 1",
+            "ALGORITHM_CUSTOM1"
+          ],
+          [
+            "Custom 2",
+            "ALGORITHM_CUSTOM2"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "huskylensv2_get_algo_param_float": {
+    "message0": "HuskyLensV2 %1 Algoritmo %2 parámetros de punto flotante %3",
+    "tooltip": "getAlgoParamFloat",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Algoritmo arbitrario",
+            "ALGORITHM_ANY"
+          ],
+          [
+            "Cara",
+            "ALGORITHM_FACE_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de objetos",
+            "ALGORITHM_OBJECT_RECOGNITION"
+          ],
+          [
+            "Seguimiento de objetos",
+            "ALGORITHM_OBJECT_TRACKING"
+          ],
+          [
+            "Color",
+            "ALGORITHM_COLOR_RECOGNITION"
+          ],
+          [
+            "Clasificación de objetos",
+            "ALGORITHM_OBJECT_CLASSIFICATION"
+          ],
+          [
+            "Clasificación autodidacta",
+            "ALGORITHM_SELF_LEARNING_CLASSIFICATION"
+          ],
+          [
+            "División",
+            "ALGORITHM_SEGMENT"
+          ],
+          [
+            "Reconocimiento de gestos",
+            "ALGORITHM_HAND_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de postura",
+            "ALGORITHM_POSE_RECOGNITION"
+          ],
+          [
+            "Matrícula",
+            "ALGORITHM_LICENSE_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de texto OCR",
+            "ALGORITHM_OCR_RECOGNITION"
+          ],
+          [
+            "Pista y caída",
+            "ALGORITHM_LINE_TRACKING"
+          ],
+          [
+            "Reconocimiento de expresiones faciales",
+            "ALGORITHM_EMOTION_RECOGNITION"
+          ],
+          [
+            "Reconocimiento ocular",
+            "ALGORITHM_GAZE_RECOGNITION"
+          ],
+          [
+            "La cara mira hacia adelante",
+            "ALGORITHM_FACE_ORIENTATION"
+          ],
+          [
+            "Reconocimiento del sello",
+            "ALGORITHM_TAG_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de códigos de barras",
+            "ALGORITHM_BARCODE_RECOGNITION"
+          ],
+          [
+            "Escaneo QR",
+            "ALGORITHM_QRCODE_RECOGNITION"
+          ],
+          [
+            "Detección de caídas",
+            "ALGORITHM_FALLDOWN_RECOGNITION"
+          ],
+          [
+            "Cámara de profundidad",
+            "ALGORITHM_DEPTH_CAMERA"
+          ],
+          [
+            "DonkeyCar",
+            "ALGORITHM_DONKEYCAR"
+          ],
+          [
+            "cámara",
+            "ALGORITHM_CAMERA"
+          ],
+          [
+            "Custom 0",
+            "ALGORITHM_CUSTOM0"
+          ],
+          [
+            "Custom 1",
+            "ALGORITHM_CUSTOM1"
+          ],
+          [
+            "Custom 2",
+            "ALGORITHM_CUSTOM2"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "huskylensv2_get_algo_param_string": {
+    "message0": "HuskyLensV2 %1 algoritmo %2 cadena de parámetros %3",
+    "tooltip": "getAlgoParamString",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Algoritmo arbitrario",
+            "ALGORITHM_ANY"
+          ],
+          [
+            "Cara",
+            "ALGORITHM_FACE_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de objetos",
+            "ALGORITHM_OBJECT_RECOGNITION"
+          ],
+          [
+            "Seguimiento de objetos",
+            "ALGORITHM_OBJECT_TRACKING"
+          ],
+          [
+            "Color",
+            "ALGORITHM_COLOR_RECOGNITION"
+          ],
+          [
+            "Clasificación de objetos",
+            "ALGORITHM_OBJECT_CLASSIFICATION"
+          ],
+          [
+            "Clasificación autodidacta",
+            "ALGORITHM_SELF_LEARNING_CLASSIFICATION"
+          ],
+          [
+            "División",
+            "ALGORITHM_SEGMENT"
+          ],
+          [
+            "Reconocimiento de gestos",
+            "ALGORITHM_HAND_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de postura",
+            "ALGORITHM_POSE_RECOGNITION"
+          ],
+          [
+            "Matrícula",
+            "ALGORITHM_LICENSE_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de texto OCR",
+            "ALGORITHM_OCR_RECOGNITION"
+          ],
+          [
+            "Pista y caída",
+            "ALGORITHM_LINE_TRACKING"
+          ],
+          [
+            "Reconocimiento de expresiones faciales",
+            "ALGORITHM_EMOTION_RECOGNITION"
+          ],
+          [
+            "Reconocimiento ocular",
+            "ALGORITHM_GAZE_RECOGNITION"
+          ],
+          [
+            "La cara mira hacia adelante",
+            "ALGORITHM_FACE_ORIENTATION"
+          ],
+          [
+            "Reconocimiento del sello",
+            "ALGORITHM_TAG_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de códigos de barras",
+            "ALGORITHM_BARCODE_RECOGNITION"
+          ],
+          [
+            "Escaneo QR",
+            "ALGORITHM_QRCODE_RECOGNITION"
+          ],
+          [
+            "Detección de caídas",
+            "ALGORITHM_FALLDOWN_RECOGNITION"
+          ],
+          [
+            "Cámara de profundidad",
+            "ALGORITHM_DEPTH_CAMERA"
+          ],
+          [
+            "DonkeyCar",
+            "ALGORITHM_DONKEYCAR"
+          ],
+          [
+            "cámara",
+            "ALGORITHM_CAMERA"
+          ],
+          [
+            "Custom 0",
+            "ALGORITHM_CUSTOM0"
+          ],
+          [
+            "Custom 1",
+            "ALGORITHM_CUSTOM1"
+          ],
+          [
+            "Custom 2",
+            "ALGORITHM_CUSTOM2"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "huskylensv2_set_algo_param_bool": {
+    "message0": "HuskyLensV2 %1 algoritmo %2 establecer parámetros booleanos %3 a %4",
+    "tooltip": "setAlgoParamBool",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Algoritmo arbitrario",
+            "ALGORITHM_ANY"
+          ],
+          [
+            "Cara",
+            "ALGORITHM_FACE_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de objetos",
+            "ALGORITHM_OBJECT_RECOGNITION"
+          ],
+          [
+            "Seguimiento de objetos",
+            "ALGORITHM_OBJECT_TRACKING"
+          ],
+          [
+            "Color",
+            "ALGORITHM_COLOR_RECOGNITION"
+          ],
+          [
+            "Clasificación de objetos",
+            "ALGORITHM_OBJECT_CLASSIFICATION"
+          ],
+          [
+            "Clasificación autodidacta",
+            "ALGORITHM_SELF_LEARNING_CLASSIFICATION"
+          ],
+          [
+            "División",
+            "ALGORITHM_SEGMENT"
+          ],
+          [
+            "Reconocimiento de gestos",
+            "ALGORITHM_HAND_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de postura",
+            "ALGORITHM_POSE_RECOGNITION"
+          ],
+          [
+            "Matrícula",
+            "ALGORITHM_LICENSE_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de texto OCR",
+            "ALGORITHM_OCR_RECOGNITION"
+          ],
+          [
+            "Pista y caída",
+            "ALGORITHM_LINE_TRACKING"
+          ],
+          [
+            "Reconocimiento de expresiones faciales",
+            "ALGORITHM_EMOTION_RECOGNITION"
+          ],
+          [
+            "Reconocimiento ocular",
+            "ALGORITHM_GAZE_RECOGNITION"
+          ],
+          [
+            "La cara mira hacia adelante",
+            "ALGORITHM_FACE_ORIENTATION"
+          ],
+          [
+            "Reconocimiento del sello",
+            "ALGORITHM_TAG_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de códigos de barras",
+            "ALGORITHM_BARCODE_RECOGNITION"
+          ],
+          [
+            "Escaneo QR",
+            "ALGORITHM_QRCODE_RECOGNITION"
+          ],
+          [
+            "Detección de caídas",
+            "ALGORITHM_FALLDOWN_RECOGNITION"
+          ],
+          [
+            "Cámara de profundidad",
+            "ALGORITHM_DEPTH_CAMERA"
+          ],
+          [
+            "DonkeyCar",
+            "ALGORITHM_DONKEYCAR"
+          ],
+          [
+            "cámara",
+            "ALGORITHM_CAMERA"
+          ],
+          [
+            "Custom 0",
+            "ALGORITHM_CUSTOM0"
+          ],
+          [
+            "Custom 1",
+            "ALGORITHM_CUSTOM1"
+          ],
+          [
+            "Custom 2",
+            "ALGORITHM_CUSTOM2"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "huskylensv2_set_algo_param_float": {
+    "message0": "HuskyLensV2 %1 Algoritmo %2 Establecer parámetros de coma flotante %3 a %4",
+    "tooltip": "setAlgoParamFloat",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Algoritmo arbitrario",
+            "ALGORITHM_ANY"
+          ],
+          [
+            "Cara",
+            "ALGORITHM_FACE_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de objetos",
+            "ALGORITHM_OBJECT_RECOGNITION"
+          ],
+          [
+            "Seguimiento de objetos",
+            "ALGORITHM_OBJECT_TRACKING"
+          ],
+          [
+            "Color",
+            "ALGORITHM_COLOR_RECOGNITION"
+          ],
+          [
+            "Clasificación de objetos",
+            "ALGORITHM_OBJECT_CLASSIFICATION"
+          ],
+          [
+            "Clasificación autodidacta",
+            "ALGORITHM_SELF_LEARNING_CLASSIFICATION"
+          ],
+          [
+            "División",
+            "ALGORITHM_SEGMENT"
+          ],
+          [
+            "Reconocimiento de gestos",
+            "ALGORITHM_HAND_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de postura",
+            "ALGORITHM_POSE_RECOGNITION"
+          ],
+          [
+            "Matrícula",
+            "ALGORITHM_LICENSE_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de texto OCR",
+            "ALGORITHM_OCR_RECOGNITION"
+          ],
+          [
+            "Pista y caída",
+            "ALGORITHM_LINE_TRACKING"
+          ],
+          [
+            "Reconocimiento de expresiones faciales",
+            "ALGORITHM_EMOTION_RECOGNITION"
+          ],
+          [
+            "Reconocimiento ocular",
+            "ALGORITHM_GAZE_RECOGNITION"
+          ],
+          [
+            "La cara mira hacia adelante",
+            "ALGORITHM_FACE_ORIENTATION"
+          ],
+          [
+            "Reconocimiento del sello",
+            "ALGORITHM_TAG_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de códigos de barras",
+            "ALGORITHM_BARCODE_RECOGNITION"
+          ],
+          [
+            "Escaneo QR",
+            "ALGORITHM_QRCODE_RECOGNITION"
+          ],
+          [
+            "Detección de caídas",
+            "ALGORITHM_FALLDOWN_RECOGNITION"
+          ],
+          [
+            "Cámara de profundidad",
+            "ALGORITHM_DEPTH_CAMERA"
+          ],
+          [
+            "DonkeyCar",
+            "ALGORITHM_DONKEYCAR"
+          ],
+          [
+            "cámara",
+            "ALGORITHM_CAMERA"
+          ],
+          [
+            "Custom 0",
+            "ALGORITHM_CUSTOM0"
+          ],
+          [
+            "Custom 1",
+            "ALGORITHM_CUSTOM1"
+          ],
+          [
+            "Custom 2",
+            "ALGORITHM_CUSTOM2"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "huskylensv2_set_algo_param_string": {
+    "message0": "Algoritmo de %1 HuskyLensV2 %2 Establecer parámetros de cadena %3 a %4",
+    "tooltip": "setAlgoParamString",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Algoritmo arbitrario",
+            "ALGORITHM_ANY"
+          ],
+          [
+            "Cara",
+            "ALGORITHM_FACE_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de objetos",
+            "ALGORITHM_OBJECT_RECOGNITION"
+          ],
+          [
+            "Seguimiento de objetos",
+            "ALGORITHM_OBJECT_TRACKING"
+          ],
+          [
+            "Color",
+            "ALGORITHM_COLOR_RECOGNITION"
+          ],
+          [
+            "Clasificación de objetos",
+            "ALGORITHM_OBJECT_CLASSIFICATION"
+          ],
+          [
+            "Clasificación autodidacta",
+            "ALGORITHM_SELF_LEARNING_CLASSIFICATION"
+          ],
+          [
+            "División",
+            "ALGORITHM_SEGMENT"
+          ],
+          [
+            "Reconocimiento de gestos",
+            "ALGORITHM_HAND_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de postura",
+            "ALGORITHM_POSE_RECOGNITION"
+          ],
+          [
+            "Matrícula",
+            "ALGORITHM_LICENSE_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de texto OCR",
+            "ALGORITHM_OCR_RECOGNITION"
+          ],
+          [
+            "Pista y caída",
+            "ALGORITHM_LINE_TRACKING"
+          ],
+          [
+            "Reconocimiento de expresiones faciales",
+            "ALGORITHM_EMOTION_RECOGNITION"
+          ],
+          [
+            "Reconocimiento ocular",
+            "ALGORITHM_GAZE_RECOGNITION"
+          ],
+          [
+            "La cara mira hacia adelante",
+            "ALGORITHM_FACE_ORIENTATION"
+          ],
+          [
+            "Reconocimiento del sello",
+            "ALGORITHM_TAG_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de códigos de barras",
+            "ALGORITHM_BARCODE_RECOGNITION"
+          ],
+          [
+            "Escaneo QR",
+            "ALGORITHM_QRCODE_RECOGNITION"
+          ],
+          [
+            "Detección de caídas",
+            "ALGORITHM_FALLDOWN_RECOGNITION"
+          ],
+          [
+            "Cámara de profundidad",
+            "ALGORITHM_DEPTH_CAMERA"
+          ],
+          [
+            "DonkeyCar",
+            "ALGORITHM_DONKEYCAR"
+          ],
+          [
+            "cámara",
+            "ALGORITHM_CAMERA"
+          ],
+          [
+            "Custom 0",
+            "ALGORITHM_CUSTOM0"
+          ],
+          [
+            "Custom 1",
+            "ALGORITHM_CUSTOM1"
+          ],
+          [
+            "Custom 2",
+            "ALGORITHM_CUSTOM2"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "huskylensv2_update_algo_params": {
+    "message0": "HuskyLensV2 %1 Algoritmo de aplicación %2 parámetros",
+    "tooltip": "updateAlgoParams",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Algoritmo arbitrario",
+            "ALGORITHM_ANY"
+          ],
+          [
+            "Cara",
+            "ALGORITHM_FACE_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de objetos",
+            "ALGORITHM_OBJECT_RECOGNITION"
+          ],
+          [
+            "Seguimiento de objetos",
+            "ALGORITHM_OBJECT_TRACKING"
+          ],
+          [
+            "Color",
+            "ALGORITHM_COLOR_RECOGNITION"
+          ],
+          [
+            "Clasificación de objetos",
+            "ALGORITHM_OBJECT_CLASSIFICATION"
+          ],
+          [
+            "Clasificación autodidacta",
+            "ALGORITHM_SELF_LEARNING_CLASSIFICATION"
+          ],
+          [
+            "División",
+            "ALGORITHM_SEGMENT"
+          ],
+          [
+            "Reconocimiento de gestos",
+            "ALGORITHM_HAND_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de postura",
+            "ALGORITHM_POSE_RECOGNITION"
+          ],
+          [
+            "Matrícula",
+            "ALGORITHM_LICENSE_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de texto OCR",
+            "ALGORITHM_OCR_RECOGNITION"
+          ],
+          [
+            "Pista y caída",
+            "ALGORITHM_LINE_TRACKING"
+          ],
+          [
+            "Reconocimiento de expresiones faciales",
+            "ALGORITHM_EMOTION_RECOGNITION"
+          ],
+          [
+            "Reconocimiento ocular",
+            "ALGORITHM_GAZE_RECOGNITION"
+          ],
+          [
+            "La cara mira hacia adelante",
+            "ALGORITHM_FACE_ORIENTATION"
+          ],
+          [
+            "Reconocimiento del sello",
+            "ALGORITHM_TAG_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de códigos de barras",
+            "ALGORITHM_BARCODE_RECOGNITION"
+          ],
+          [
+            "Escaneo QR",
+            "ALGORITHM_QRCODE_RECOGNITION"
+          ],
+          [
+            "Detección de caídas",
+            "ALGORITHM_FALLDOWN_RECOGNITION"
+          ],
+          [
+            "Cámara de profundidad",
+            "ALGORITHM_DEPTH_CAMERA"
+          ],
+          [
+            "DonkeyCar",
+            "ALGORITHM_DONKEYCAR"
+          ],
+          [
+            "cámara",
+            "ALGORITHM_CAMERA"
+          ],
+          [
+            "Custom 0",
+            "ALGORITHM_CUSTOM0"
+          ],
+          [
+            "Custom 1",
+            "ALGORITHM_CUSTOM1"
+          ],
+          [
+            "Custom 2",
+            "ALGORITHM_CUSTOM2"
+          ]
+        ]
+      }
+    ]
+  },
+  "huskylensv2_result_id": {
+    "message0": "Resultado: %1 ID",
+    "tooltip": "ID"
+  },
+  "huskylensv2_result_x": {
+    "message0": "Resultado: coordenada %1 X",
+    "tooltip": "xCenter"
+  },
+  "huskylensv2_result_y": {
+    "message0": "El resultado %1 coordenadas Y",
+    "tooltip": "yCenter"
+  },
+  "huskylensv2_result_width": {
+    "message0": "El resultado %1 anchura",
+    "tooltip": "width"
+  },
+  "huskylensv2_result_height": {
+    "message0": "El resultado %1 altura",
+    "tooltip": "height"
+  },
+  "huskylensv2_result_name": {
+    "message0": "El resultado %1 nombre",
+    "tooltip": "name"
+  },
+  "huskylensv2_result_content": {
+    "message0": "El resultado %1 contenido",
+    "tooltip": "content"
+  },
+  "huskylensv2_result_confidence": {
+    "message0": "Resultados %1 confianza",
+    "tooltip": "confidence"
+  },
+  "huskylensv2_result_type": {
+    "message0": "El resultado es %1 tipo",
+    "tooltip": "Caja tipo 0, 1 flecha"
+  },
+  "huskylensv2_result_pitch": {
+    "message0": "El resultado %1 pitch pitch",
+    "tooltip": "pitch"
+  },
+  "huskylensv2_result_yaw": {
+    "message0": "Resultado: %1 ángulo de guiñada",
+    "tooltip": "yaw"
+  },
+  "huskylensv2_result_roll": {
+    "message0": "Resultado: %1 ángulo de alabeo",
+    "tooltip": "roll"
+  },
+  "huskylensv2_result_azimuth": {
+    "message0": "El resultado %1 ángulo de azimut",
+    "tooltip": "azimuth"
+  },
+  "huskylensv2_result_classid": {
+    "message0": "Result%1 ID de categoría",
+    "tooltip": "classID"
+  },
+  "huskylensv2_result_xtarget": {
+    "message0": "Result%1 Objetivo X",
+    "tooltip": "xTarget (Línea/Flecha)"
+  },
+  "huskylensv2_result_ytarget": {
+    "message0": "Result%1 Objetivo Y",
+    "tooltip": "yTarget"
+  },
+  "huskylensv2_result_angle": {
+    "message0": "El resultado %1 ángulo",
+    "tooltip": "angle"
+  },
+  "huskylensv2_result_length": {
+    "message0": "El resultado es %1 longitud",
+    "tooltip": "length"
+  },
+  "huskylensv2_result_level": {
+    "message0": "Los resultados %1 niveles",
+    "tooltip": "level"
+  },
+  "huskylensv2_result_steering": {
+    "message0": "El resultado %1 cambió la tornada",
+    "tooltip": "Dirección (DonkeyCar)"
+  },
+  "huskylensv2_result_throttle": {
+    "message0": "El resultado %1 acelerador",
+    "tooltip": "Acelerador (DonkeyCar)"
+  },
+  "huskylensv2_is_valid": {
+    "message0": "El resultado %1 efectivo",
+    "tooltip": "result != NULL"
+  },
+  "huskylensv2_face_leye": {
+    "message0": "Resultado facial %1 ojo izquierdo %2",
+    "tooltip": "FaceResult Left Eye (requiere una placa de memoria grande)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "X",
+            "x"
+          ],
+          [
+            "Y",
+            "y"
+          ]
+        ]
+      }
+    ]
+  },
+  "huskylensv2_face_reye": {
+    "message0": "Resultados faciales %1 %2 del ojo derecho",
+    "tooltip": "FaceResult Right Eye (requiere una placa de memoria grande)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "X",
+            "x"
+          ],
+          [
+            "Y",
+            "y"
+          ]
+        ]
+      }
+    ]
+  },
+  "huskylensv2_face_nose": {
+    "message0": "Resultados faciales %1 nariz %2",
+    "tooltip": "Nariz FaceResult (requiere una placa de memoria grande)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "X",
+            "x"
+          ],
+          [
+            "Y",
+            "y"
+          ]
+        ]
+      }
+    ]
+  },
+  "huskylensv2_face_lmouth": {
+    "message0": "Resultado facial %1 esquina izquierda de la boca %2",
+    "tooltip": "FaceResult en la esquina izquierda de la boca (requiere una placa de memoria grande)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "X",
+            "x"
+          ],
+          [
+            "Y",
+            "y"
+          ]
+        ]
+      }
+    ]
+  },
+  "huskylensv2_face_rmouth": {
+    "message0": "Resultado facial %1 esquina derecha de la boca %2",
+    "tooltip": "FaceResult en la esquina derecha de la boca (requiere una tarjeta de memoria grande)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "X",
+            "x"
+          ],
+          [
+            "Y",
+            "y"
+          ]
+        ]
+      }
+    ]
+  },
+  "huskylensv2_hand_point": {
+    "message0": "Resultado del gesto %1 puntos %2 %3",
+    "tooltip": "Puntos clave de HandResult (requiere una tarjeta de memoria grande)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Muñeca",
+            "wrist"
+          ],
+          [
+            "Base del pulgar",
+            "thumb_cmc"
+          ],
+          [
+            "Entre los pulgares",
+            "thumb_mcp"
+          ],
+          [
+            "Segunda articulación del pulgar",
+            "thumb_ip"
+          ],
+          [
+            "Punta del pulgar",
+            "thumb_tip"
+          ],
+          [
+            "Base del dedo índice",
+            "index_finger_mcp"
+          ],
+          [
+            "La primera articulación del dedo índice",
+            "index_finger_pip"
+          ],
+          [
+            "Segunda articulación del dedo índice",
+            "index_finger_dip"
+          ],
+          [
+            "Punta del dedo índice",
+            "index_finger_tip"
+          ],
+          [
+            "Base del dedo corazón",
+            "middle_finger_mcp"
+          ],
+          [
+            "La primera articulación del dedo corazón",
+            "middle_finger_pip"
+          ],
+          [
+            "Segunda articulación del dedo corazón",
+            "middle_finger_dip"
+          ],
+          [
+            "Punta del dedo corazón",
+            "middle_finger_tip"
+          ],
+          [
+            "Base del dedo anular",
+            "ring_finger_mcp"
+          ],
+          [
+            "La primera articulación del dedo anular",
+            "ring_finger_pip"
+          ],
+          [
+            "Segunda articulación del dedo anular",
+            "ring_finger_dip"
+          ],
+          [
+            "Yemas anulares",
+            "ring_finger_tip"
+          ],
+          [
+            "Base del dedo meñique",
+            "pinky_finger_mcp"
+          ],
+          [
+            "La primera articulación del dedo meñique",
+            "pinky_finger_pip"
+          ],
+          [
+            "Segunda articulación del dedo meñique",
+            "pinky_finger_dip"
+          ],
+          [
+            "Meñique",
+            "pinky_finger_tip"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "X",
+            "x"
+          ],
+          [
+            "Y",
+            "y"
+          ]
+        ]
+      }
+    ]
+  },
+  "huskylensv2_pose_point": {
+    "message0": "Resultados de postura %1 puntos %2 %3",
+    "tooltip": "Puntos clave de PoseResult (Requiere una tarjeta de memoria grande)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Nariz",
+            "nose"
+          ],
+          [
+            "Ojo izquierdo",
+            "leye"
+          ],
+          [
+            "Ojo derecho",
+            "reye"
+          ],
+          [
+            "Oreja izquierda",
+            "lear"
+          ],
+          [
+            "Oreja derecha",
+            "rear"
+          ],
+          [
+            "Hombro izquierdo",
+            "lshoulder"
+          ],
+          [
+            "Hombro derecho",
+            "rshoulder"
+          ],
+          [
+            "Codo izquierdo",
+            "lelbow"
+          ],
+          [
+            "Codo derecho",
+            "relbow"
+          ],
+          [
+            "Brazo izquierdo",
+            "lwrist"
+          ],
+          [
+            "Brazo derecho",
+            "rwrist"
+          ],
+          [
+            "Cadera izquierda",
+            "lhip"
+          ],
+          [
+            "Cadera derecha",
+            "rhip"
+          ],
+          [
+            "Rodilla izquierda",
+            "lknee"
+          ],
+          [
+            "Rodilla derecha",
+            "rknee"
+          ],
+          [
+            "Tobillo izquierdo",
+            "lankle"
+          ],
+          [
+            "Tobillo derecho",
+            "rankle"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "X",
+            "x"
+          ],
+          [
+            "Y",
+            "y"
+          ]
+        ]
+      }
+    ]
+  },
+  "huskylensv2_set_multi_algorithm": {
+    "message0": "HuskyLensV2 %1 Conjunto de múltiples algoritmos Algoritmo 1 %2 Algoritmo 2 %3 Algoritmo 3 %4",
+    "tooltip": "setMultiAlgorithm (placa de memoria grande)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Algoritmo arbitrario",
+            "ALGORITHM_ANY"
+          ],
+          [
+            "Cara",
+            "ALGORITHM_FACE_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de objetos",
+            "ALGORITHM_OBJECT_RECOGNITION"
+          ],
+          [
+            "Seguimiento de objetos",
+            "ALGORITHM_OBJECT_TRACKING"
+          ],
+          [
+            "Color",
+            "ALGORITHM_COLOR_RECOGNITION"
+          ],
+          [
+            "Clasificación de objetos",
+            "ALGORITHM_OBJECT_CLASSIFICATION"
+          ],
+          [
+            "Clasificación autodidacta",
+            "ALGORITHM_SELF_LEARNING_CLASSIFICATION"
+          ],
+          [
+            "División",
+            "ALGORITHM_SEGMENT"
+          ],
+          [
+            "Reconocimiento de gestos",
+            "ALGORITHM_HAND_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de postura",
+            "ALGORITHM_POSE_RECOGNITION"
+          ],
+          [
+            "Matrícula",
+            "ALGORITHM_LICENSE_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de texto OCR",
+            "ALGORITHM_OCR_RECOGNITION"
+          ],
+          [
+            "Pista y caída",
+            "ALGORITHM_LINE_TRACKING"
+          ],
+          [
+            "Reconocimiento de expresiones faciales",
+            "ALGORITHM_EMOTION_RECOGNITION"
+          ],
+          [
+            "Reconocimiento ocular",
+            "ALGORITHM_GAZE_RECOGNITION"
+          ],
+          [
+            "La cara mira hacia adelante",
+            "ALGORITHM_FACE_ORIENTATION"
+          ],
+          [
+            "Reconocimiento del sello",
+            "ALGORITHM_TAG_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de códigos de barras",
+            "ALGORITHM_BARCODE_RECOGNITION"
+          ],
+          [
+            "Escaneo QR",
+            "ALGORITHM_QRCODE_RECOGNITION"
+          ],
+          [
+            "Detección de caídas",
+            "ALGORITHM_FALLDOWN_RECOGNITION"
+          ],
+          [
+            "Cámara de profundidad",
+            "ALGORITHM_DEPTH_CAMERA"
+          ],
+          [
+            "DonkeyCar",
+            "ALGORITHM_DONKEYCAR"
+          ],
+          [
+            "cámara",
+            "ALGORITHM_CAMERA"
+          ],
+          [
+            "Custom 0",
+            "ALGORITHM_CUSTOM0"
+          ],
+          [
+            "Custom 1",
+            "ALGORITHM_CUSTOM1"
+          ],
+          [
+            "Custom 2",
+            "ALGORITHM_CUSTOM2"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "Algoritmo arbitrario",
+            "ALGORITHM_ANY"
+          ],
+          [
+            "Cara",
+            "ALGORITHM_FACE_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de objetos",
+            "ALGORITHM_OBJECT_RECOGNITION"
+          ],
+          [
+            "Seguimiento de objetos",
+            "ALGORITHM_OBJECT_TRACKING"
+          ],
+          [
+            "Color",
+            "ALGORITHM_COLOR_RECOGNITION"
+          ],
+          [
+            "Clasificación de objetos",
+            "ALGORITHM_OBJECT_CLASSIFICATION"
+          ],
+          [
+            "Clasificación autodidacta",
+            "ALGORITHM_SELF_LEARNING_CLASSIFICATION"
+          ],
+          [
+            "División",
+            "ALGORITHM_SEGMENT"
+          ],
+          [
+            "Reconocimiento de gestos",
+            "ALGORITHM_HAND_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de postura",
+            "ALGORITHM_POSE_RECOGNITION"
+          ],
+          [
+            "Matrícula",
+            "ALGORITHM_LICENSE_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de texto OCR",
+            "ALGORITHM_OCR_RECOGNITION"
+          ],
+          [
+            "Pista y caída",
+            "ALGORITHM_LINE_TRACKING"
+          ],
+          [
+            "Reconocimiento de expresiones faciales",
+            "ALGORITHM_EMOTION_RECOGNITION"
+          ],
+          [
+            "Reconocimiento ocular",
+            "ALGORITHM_GAZE_RECOGNITION"
+          ],
+          [
+            "La cara mira hacia adelante",
+            "ALGORITHM_FACE_ORIENTATION"
+          ],
+          [
+            "Reconocimiento del sello",
+            "ALGORITHM_TAG_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de códigos de barras",
+            "ALGORITHM_BARCODE_RECOGNITION"
+          ],
+          [
+            "Escaneo QR",
+            "ALGORITHM_QRCODE_RECOGNITION"
+          ],
+          [
+            "Detección de caídas",
+            "ALGORITHM_FALLDOWN_RECOGNITION"
+          ],
+          [
+            "Cámara de profundidad",
+            "ALGORITHM_DEPTH_CAMERA"
+          ],
+          [
+            "DonkeyCar",
+            "ALGORITHM_DONKEYCAR"
+          ],
+          [
+            "cámara",
+            "ALGORITHM_CAMERA"
+          ],
+          [
+            "Custom 0",
+            "ALGORITHM_CUSTOM0"
+          ],
+          [
+            "Custom 1",
+            "ALGORITHM_CUSTOM1"
+          ],
+          [
+            "Custom 2",
+            "ALGORITHM_CUSTOM2"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "Algoritmo arbitrario",
+            "ALGORITHM_ANY"
+          ],
+          [
+            "Cara",
+            "ALGORITHM_FACE_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de objetos",
+            "ALGORITHM_OBJECT_RECOGNITION"
+          ],
+          [
+            "Seguimiento de objetos",
+            "ALGORITHM_OBJECT_TRACKING"
+          ],
+          [
+            "Color",
+            "ALGORITHM_COLOR_RECOGNITION"
+          ],
+          [
+            "Clasificación de objetos",
+            "ALGORITHM_OBJECT_CLASSIFICATION"
+          ],
+          [
+            "Clasificación autodidacta",
+            "ALGORITHM_SELF_LEARNING_CLASSIFICATION"
+          ],
+          [
+            "División",
+            "ALGORITHM_SEGMENT"
+          ],
+          [
+            "Reconocimiento de gestos",
+            "ALGORITHM_HAND_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de postura",
+            "ALGORITHM_POSE_RECOGNITION"
+          ],
+          [
+            "Matrícula",
+            "ALGORITHM_LICENSE_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de texto OCR",
+            "ALGORITHM_OCR_RECOGNITION"
+          ],
+          [
+            "Pista y caída",
+            "ALGORITHM_LINE_TRACKING"
+          ],
+          [
+            "Reconocimiento de expresiones faciales",
+            "ALGORITHM_EMOTION_RECOGNITION"
+          ],
+          [
+            "Reconocimiento ocular",
+            "ALGORITHM_GAZE_RECOGNITION"
+          ],
+          [
+            "La cara mira hacia adelante",
+            "ALGORITHM_FACE_ORIENTATION"
+          ],
+          [
+            "Reconocimiento del sello",
+            "ALGORITHM_TAG_RECOGNITION"
+          ],
+          [
+            "Reconocimiento de códigos de barras",
+            "ALGORITHM_BARCODE_RECOGNITION"
+          ],
+          [
+            "Escaneo QR",
+            "ALGORITHM_QRCODE_RECOGNITION"
+          ],
+          [
+            "Detección de caídas",
+            "ALGORITHM_FALLDOWN_RECOGNITION"
+          ],
+          [
+            "Cámara de profundidad",
+            "ALGORITHM_DEPTH_CAMERA"
+          ],
+          [
+            "DonkeyCar",
+            "ALGORITHM_DONKEYCAR"
+          ],
+          [
+            "cámara",
+            "ALGORITHM_CAMERA"
+          ],
+          [
+            "Custom 0",
+            "ALGORITHM_CUSTOM0"
+          ],
+          [
+            "Custom 1",
+            "ALGORITHM_CUSTOM1"
+          ],
+          [
+            "Custom 2",
+            "ALGORITHM_CUSTOM2"
+          ]
+        ]
+      }
+    ]
+  },
+  "huskylensv2_set_multi_algorithm_ratio": {
+    "message0": "HuskyLensV2 %1 Establecer la razón de prioridad del algoritmo 1 %2 la razón 2 %3 la razón 3 %4",
+    "tooltip": "setMultiAlgorithmRatio"
+  },
+  "huskylensv2_start_recording": {
+    "message0": "HuskyLensV2 %1 Empezar a grabar %2 duración %3 segundos Nombre del archivo %4 Resolución %5",
+    "tooltip": "startRecording",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Vídeo",
+            "MEDIA_TYPE_VIDEO"
+          ],
+          [
+            "Audio",
+            "MEDIA_TYPE_AUDIO"
+          ]
+        ]
+      },
+      null,
+      null,
+      {
+        "options": [
+          [
+            "por defecto",
+            "RESOLUTION_DEFAULT"
+          ],
+          [
+            "640x480",
+            "RESOLUTION_640x480"
+          ],
+          [
+            "1280x720",
+            "RESOLUTION_1280x720"
+          ],
+          [
+            "1920x1080",
+            "RESOLUTION_1920x1080"
+          ]
+        ]
+      }
+    ]
+  },
+  "huskylensv2_stop_recording": {
+    "message0": "HuskyLensV2 %1 Dejar de grabar %2",
+    "tooltip": "stopRecording",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Vídeo",
+            "MEDIA_TYPE_VIDEO"
+          ],
+          [
+            "Audio",
+            "MEDIA_TYPE_AUDIO"
+          ]
+        ]
+      }
+    ]
+  }
+}

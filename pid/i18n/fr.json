@@ -1,0 +1,173 @@
+{
+  "toolbox_name": "Contrôleur PID",
+  "toolbox_labels": {
+    "快速开始": "démarrage rapide",
+    "基础控制": "contrôle de base",
+    "参数设置": "Paramètres des paramètres",
+    "值设置与获取": "Définition de la valeur et obtention",
+    "高级控制": "Contrôle avancé",
+    "条件判断": "Jugement conditionnel"
+  },
+  "pid_init": {
+    "message0": "Initialisation du contrôleur PID %1 Variable d’entrée %2 Variable de sortie %3 Valeur cible %4 Paramètre préréglé %5P paramètre %6 I Paramètre %7D Paramètre %8 Direction de contrôle %9",
+    "args0": [
+      null,
+      null,
+      null,
+      null,
+      {
+        "options": [
+          [
+            "Personnaliser",
+            "custom"
+          ],
+          [
+            "Contrôle de la température",
+            "temperature"
+          ],
+          [
+            "Vitesse du moteur",
+            "motor_speed"
+          ],
+          [
+            "contrôle de position",
+            "position"
+          ],
+          [
+            "Contrôle du niveau liquide",
+            "level"
+          ]
+        ]
+      },
+      null,
+      null,
+      null,
+      {
+        "options": [
+          [
+            "Contrôle positif",
+            "DIRECT"
+          ],
+          [
+            "Commande inversée",
+            "REVERSE"
+          ]
+        ]
+      }
+    ]
+  },
+  "pid_quick_setup": {
+    "message0": "Fast PID contrôle %1 broches d’entrée %2 sortie pins%3 valeurs cibles %4 scenarios%5 application",
+    "args0": [
+      null,
+      {
+        "options": "${board.analogPins}"
+      },
+      {
+        "options": "${board.pwmPins}"
+      },
+      null,
+      {
+        "options": [
+          [
+            "Contrôle de la température",
+            "temperature"
+          ],
+          [
+            "Vitesse du moteur",
+            "motor_speed"
+          ],
+          [
+            "contrôle de position",
+            "position"
+          ],
+          [
+            "Contrôle du niveau liquide",
+            "level"
+          ],
+          [
+            "Personnaliser",
+            "custom"
+          ]
+        ]
+      }
+    ]
+  },
+  "pid_compute": {
+    "message0": "Contrôleur PID %1 calcul"
+  },
+  "pid_control_loop": {
+    "message0": "Exécutez le contrôleur de contrôle loop%1 PID %2 lisez les entrées %3 exécutez output%4"
+  },
+  "pid_temperature_control": {
+    "message0": "Le PID de température contrôle %1 broches capteurs de température %2 broches de chauffage %3 cible temperature%4",
+    "args0": [
+      null,
+      {
+        "options": "${board.analogPins}"
+      },
+      {
+        "options": "${board.pwmPins}"
+      },
+      null
+    ]
+  },
+  "pid_motor_speed_control": {
+    "message0": "Contrôle PID de la vitesse du moteur %1 broches d’encodeur %2 broches PWM du moteur %3 vitesse cible (RPM) %4",
+    "args0": [
+      null,
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": "${board.pwmPins}"
+      },
+      null
+    ]
+  },
+  "pid_set_mode": {
+    "message0": "Réglez le contrôleur PID %1 mode %2",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Automatique",
+            "AUTOMATIC"
+          ],
+          [
+            "Manuel",
+            "MANUAL"
+          ]
+        ]
+      }
+    ]
+  },
+  "pid_set_tunings": {
+    "message0": "Définir le contrôleur PID %1 parameters%2P parameters%3I parameters%4D parameters%5"
+  },
+  "pid_set_output_limits": {
+    "message0": "Réglez le contrôleur PID %1 sortie limits%2 minimum %3 maximum%4"
+  },
+  "pid_get_input": {
+    "message0": "Obtenez une entrée PID values%1"
+  },
+  "pid_get_output": {
+    "message0": "Obtenez la sortie PID value%1"
+  },
+  "pid_set_setpoint": {
+    "message0": "Réglez la valeur de la cible du PID %1 à %2"
+  },
+  "pid_set_input": {
+    "message0": "Réglez la valeur d’entrée du PID %1 à %2"
+  },
+  "pid_adaptive_control": {
+    "message0": "Contrôle PID adaptatif %1contrôleur PID %2 variable d’entrée %3 valeur cible %4 seuil %5 paramètre agressif P %6I %7D %8 paramètre conservateur P %9I %10D %11"
+  },
+  "pid_is_at_setpoint": {
+    "message0": "Le PID a-t-il atteint la valeur cible %1 la tolérance %2 la cible value%3"
+  },
+  "pid_get_error": {
+    "message0": "Obtenir les valeurs d’erreur PID %1 cible values%2"
+  }
+}

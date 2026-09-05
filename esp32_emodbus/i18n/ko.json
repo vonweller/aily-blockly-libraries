@@ -1,0 +1,288 @@
+{
+  "toolbox_name": "eModbus 통신",
+  "toolbox_labels": {
+    "RTU客户端": "RTU 클라이언트",
+    "TCP客户端": "TCP 클라이언트",
+    "客户端设置": "클라이언트 설정",
+    "异步读取": "비동기식 읽기",
+    "同步读取": "동기식 읽기",
+    "写入操作": "쓰기 작업",
+    "响应数据处理": "응답 데이터 처리",
+    "错误处理": "오류 처리",
+    "客户端状态": "클라이언트 상태",
+    "RTU服务器": "RTU 서버",
+    "TCP服务器": "TCP 서버",
+    "服务器功能": "서버 기능"
+  },
+  "emodbus_rtu_client_create": {
+    "message0": "RS485 제어 핀 %1 Modbus RTU 클라이언트 %2 생성하세요",
+    "tooltip": "Modbus RTU 클라이언트 인스턴스를 생성하려면 RS485 모듈의 DE/RE 제어 핀을 지정해야 합니다",
+    "args0": [
+      null,
+      {
+        "options": "${board.digitalPins}"
+      }
+    ]
+  },
+  "emodbus_rtu_client_begin": {
+    "message0": "RTU 클라이언트 부팅 %1 시리얼 포트 %2 보 속도%3 RX 핀 %4 TX 핀 %5",
+    "tooltip": "Modbus RTU 클라이언트를 실행하고, 시리얼 포트와 핀을 설정하세요",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Serial1",
+            "Serial1"
+          ],
+          [
+            "Serial2",
+            "Serial2"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "9600",
+            "9600"
+          ],
+          [
+            "19200",
+            "19200"
+          ],
+          [
+            "38400",
+            "38400"
+          ],
+          [
+            "57600",
+            "57600"
+          ],
+          [
+            "115200",
+            "115200"
+          ]
+        ]
+      },
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": "${board.digitalPins}"
+      }
+    ]
+  },
+  "emodbus_tcp_client_create": {
+    "message0": "Modbus TCP 클라이언트 생성 %1",
+    "tooltip": "Modbus TCP 클라이언트 인스턴스를 생성하세요"
+  },
+  "emodbus_tcp_client_begin": {
+    "message0": "TCP 클라이언트 %1 시작",
+    "tooltip": "Modbus TCP 클라이언트 백엔드 작업 시작"
+  },
+  "emodbus_tcp_client_set_target": {
+    "message0": "TCP 클라이언트를 대상 서버 IP%1 포트 %2 설정%3",
+    "tooltip": "Modbus TCP 서버의 IP 주소와 포트를 설정하세요"
+  },
+  "emodbus_client_set_timeout": {
+    "message0": "클라이언트 %1 타임아웃 시간을 %2밀리초로 설정하세요",
+    "tooltip": "모드버스 통신 타임아웃을 설정하세요"
+  },
+  "emodbus_client_on_data": {
+    "message0": "클라이언트가 데이터를 %1 받을 때",
+    "tooltip": "응답을 받으면 실행되도록 데이터 수신 콜백 함수를 설정하세요",
+    "message1": "실행 %1"
+  },
+  "emodbus_client_on_error": {
+    "message0": "클라이언트가 오류를 %1 때",
+    "tooltip": "오류 처리 콜백 함수를 통신 오류가 발생했을 때 실행되도록 설정하세요",
+    "message1": "실행 %1"
+  },
+  "emodbus_read_holding_registers": {
+    "message0": "클라이언트는 읽%1 대기 등록부 슬레이브 ID %2 시작 주소 %3 수량 %4",
+    "tooltip": "비동기적으로 홀드 레지스터(함수 코드 0x03)를 읽고 콜백을 통해 결과를 반환합니다"
+  },
+  "emodbus_read_input_registers": {
+    "message0": "클라이언트 %1 입력 레지스터 읽기 슬레이브 ID %2 시작 주소 %3 수량 %4",
+    "tooltip": "비동기적으로 입력 레지스터(함수 코드 0x04)를 읽고 콜백을 통해 결과를 반환합니다"
+  },
+  "emodbus_read_coils": {
+    "message0": "클라이언트는 코일 슬레이브 ID %2 시작 주소 %3 수량 %4 읽을 %1",
+    "tooltip": "비동기적으로 코일 상태(기능 코드 0x01)를 읽고 콜백을 통해 결과를 반환합니다"
+  },
+  "emodbus_read_discrete_inputs": {
+    "message0": "클라이언트 %1 이산 입력 읽기 슬레이브 ID %2 시작 주소 %3 수량 %4",
+    "tooltip": "비동기적으로 이산 입력(함수 코드 0x02)을 읽고, 콜백을 통해 결과를 반환합니다"
+  },
+  "emodbus_write_single_register": {
+    "message0": "클라이언트 %1 단일 레지스터에 쓰기, 슬레이브 ID %2 주소 %3 값 %4",
+    "tooltip": "단일 홀드 레지스터(함수 코드 0x06)를 작성합니다."
+  },
+  "emodbus_write_single_coil": {
+    "message0": "클라이언트 %1는 단일 코일 슬레이브 ID에 주소 %3 값 %2 기록%4",
+    "tooltip": "0(OFF) 또는 1(ON) 값으로 값이 있는 단일 코일(함수 코드 0x05)을 작성합니다"
+  },
+  "emodbus_write_multiple_registers": {
+    "message0": "클라이언트 %1 여러 레지스터 쓰기 슬레이브 ID %2 시작 주소 %3 배열 값 %4",
+    "tooltip": "여러 보존 레지스터(함수 코드 0x10) 작성"
+  },
+  "emodbus_sync_read_holding_registers": {
+    "message0": "클라이언트 %1 동기화 읽고 레지스터를 유지하며 슬레이브 ID %2 주소 %3",
+    "tooltip": "동기화적으로 단일 홀딩 레지스터를 읽고 값을 반환합니다(유틸리티 코드 0x03)"
+  },
+  "emodbus_sync_read_input_register": {
+    "message0": "클라이언트 %1 동기식 읽기 입력 레지스터 슬레이브 ID %2 주소 %3",
+    "tooltip": "단일 입력 레지스터와 반환 값(함수 코드 0x04)을 동기적으로 읽습니다"
+  },
+  "emodbus_sync_read_coil": {
+    "message0": "클라이언트 %1 동시적으로 코일 슬레이브 ID %2 주소 %3",
+    "tooltip": "단일 코일의 상태를 동기화하여 값을 반환합니다(함수 코드 0x01)"
+  },
+  "emodbus_response_get_uint16": {
+    "message0": "응답에서 %1th 레지스터 값(16비트)을 가져옵시다",
+    "tooltip": "콜백 응답(0부터 시작)에서 지정된 위치의 16비트 레지스터 값을 읽습니다"
+  },
+  "emodbus_response_get_float": {
+    "message0": "응답에서 %1th 부동소수점 값(32비트)을 가져옵세요",
+    "tooltip": "콜백 응답에서 지정된 위치(2개의 레지스터를 차지함)에서 32비트 부동소수점 값을 읽습니다"
+  },
+  "emodbus_response_server_id": {
+    "message0": "응답 종속 ID",
+    "tooltip": "현재 응답의 슬레이브 ID를 얻으세요"
+  },
+  "emodbus_response_function_code": {
+    "message0": "응답 기능 코드",
+    "tooltip": "현재 응답의 함수 코드를 가져옵"
+  },
+  "emodbus_response_length": {
+    "message0": "응답 데이터 길이",
+    "tooltip": "현재 응답의 데이터 바이트 수를 가져옵니다"
+  },
+  "emodbus_error_code": {
+    "message0": "오류 코드",
+    "tooltip": "현재 오류에 대한 오류 코드를 가져옵"
+  },
+  "emodbus_error_message": {
+    "message0": "잘못된 정보",
+    "tooltip": "현재 오류에 대해 읽을 수 있는 오류 메시지를 검색합니다."
+  },
+  "emodbus_rtu_server_create": {
+    "message0": "Modbus RTU 서버 생성 %1 타임아웃 %2 ms RS485 제어 핀 %3",
+    "tooltip": "Modbus RTU 서버 인스턴스를 생성하세요",
+    "args0": [
+      null,
+      null,
+      {
+        "options": "${board.digitalPins}"
+      }
+    ]
+  },
+  "emodbus_rtu_server_begin": {
+    "message0": "RTU 서버를 시리얼 포트%1 시작하세요 %2 보우 속도%3 RX 핀 %4 TX 핀 %5",
+    "tooltip": "Modbus RTU 서버 시작",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Serial1",
+            "Serial1"
+          ],
+          [
+            "Serial2",
+            "Serial2"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "9600",
+            "9600"
+          ],
+          [
+            "19200",
+            "19200"
+          ],
+          [
+            "38400",
+            "38400"
+          ],
+          [
+            "57600",
+            "57600"
+          ],
+          [
+            "115200",
+            "115200"
+          ]
+        ]
+      },
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": "${board.digitalPins}"
+      }
+    ]
+  },
+  "emodbus_tcp_server_create": {
+    "message0": "Modbus TCP 서버를 생성하세요 포트 %1 최대 클라이언트 수 %2 %3",
+    "tooltip": "Modbus TCP 서버 인스턴스를 생성하세요"
+  },
+  "emodbus_tcp_server_begin": {
+    "message0": "TCP 서버 %1 시작하세요",
+    "tooltip": "Modbus TCP 서버 시작"
+  },
+  "emodbus_server_register_fc03": {
+    "message0": "서버 %1 레지스터 읽기, 유지, 레지스터 처리 슬레이브 ID %2",
+    "tooltip": "홀드 레지스터(FC03)의 핸들 기능을 읽기 위해 레지스터를 사용했습니다.",
+    "message1": "처리 요청 시작 주소: %1 수량: %2",
+    "message2": "데이터 반환 %1"
+  },
+  "emodbus_server_register_fc06": {
+    "message0": "서버 %1 단일 레지스터에 쓰기 슬레이브 ID %2",
+    "tooltip": "핸들러를 레지스터하여 단일 홀드 레지스터(FC06)를 작성합니다.",
+    "message1": "요청 처리 주소: %1 값: %2",
+    "message2": "연산을 수행하세요%1"
+  },
+  "emodbus_server_add_response_data": {
+    "message0": "응답 데이터(16비트)를 추가%1",
+    "tooltip": "서버 응답에 16비트 데이터를 추가합니다"
+  },
+  "emodbus_server_set_error": {
+    "message0": "응답 오류 코드 설정 %1",
+    "tooltip": "서버 응답을 오류 응답으로 설정하세요",
+    "args0": [
+      {
+        "options": [
+          [
+            "불법 기능 코드",
+            "ILLEGAL_FUNCTION"
+          ],
+          [
+            "불법 데이터 주소",
+            "ILLEGAL_DATA_ADDRESS"
+          ],
+          [
+            "불법 데이터 값",
+            "ILLEGAL_DATA_VALUE"
+          ],
+          [
+            "장비 고장",
+            "SERVER_DEVICE_FAILURE"
+          ]
+        ]
+      }
+    ]
+  },
+  "emodbus_client_pending_requests": {
+    "message0": "클라이언트 %1 보류 요청 수",
+    "tooltip": "대기열에 대기 중인 요청 수를 확인하세요"
+  },
+  "emodbus_client_clear_queue": {
+    "message0": "클라이언트 %1가 요청 큐를 지웁니다",
+    "tooltip": "모든 대기 중인 요청을 삭제하세요"
+  }
+}

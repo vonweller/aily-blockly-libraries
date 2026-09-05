@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 1,
+  "allow": [
+    {
+      "library": "TaskScheduler",
+      "classification": "conditional-generator-state",
+      "types": ["status_request_create"],
+      "preview": "No direct code emitted unless STATUS_REQUEST is enabled by taskscheduler_config.",
+      "reason": "The object declaration is conditional on the TaskScheduler configuration block enabling status requests."
+    },
+    {
+      "library": "ai-vox",
+      "classification": "generator-state-only",
+      "types": ["aivox_display_mode"],
+      "preview": "No direct code emitted; updates display-mode generator state used by later blocks.",
+      "reason": "The handler records the selected display mode in generator-side state and intentionally returns an empty string."
+    },
+    {
+      "library": "ai-vox-xzai",
+      "classification": "generator-state-only",
+      "types": ["aivox_display_mode"],
+      "preview": "No direct code emitted; updates display-mode generator state used by later blocks.",
+      "reason": "The handler records the selected display mode in generator-side state and intentionally returns an empty string."
+    },
+    {
+      "library": "ai-vox-xzai",
+      "classification": "empty-statement-inputs",
+      "types": ["esp32ai_selget_mcp_control"],
+      "preview": "No direct code emitted when both dynamic statement inputs are empty.",
+      "reason": "The handler emits MCP set/report code only for populated dynamic statement inputs."
+    },
+    {
+      "library": "capacitive-sensor",
+      "classification": "ui-only",
+      "types": ["capacitivesensor_wiring_hint"],
+      "preview": "No direct code emitted; this block is a visual wiring hint.",
+      "reason": "The public block intentionally communicates wiring guidance without contributing generated code."
+    },
+    {
+      "library": "core-loop",
+      "classification": "empty-statement-inputs",
+      "types": ["arduino_global"],
+      "preview": "No direct code emitted when the GLOBAL statement input is empty.",
+      "reason": "The block forwards its statement children into global scope and therefore emits nothing for an empty input."
+    },
+    {
+      "library": "u8g2",
+      "classification": "empty-custom-field",
+      "types": [
+        "u8g2_bitmap",
+        "u8g2_animation",
+        "u8g2_icon_16x16",
+        "u8g2_icon_32x32",
+        "u8g2_icon_64x64"
+      ],
+      "preview": "No direct code emitted while the custom bitmap/animation field has no frame data.",
+      "reason": "The serialized field's safe default contains no image frames; uploaded data produces declarations and a value expression."
+    },
+    {
+      "library": "unihiker_k10_display",
+      "classification": "empty-custom-field",
+      "types": ["k10_animation"],
+      "preview": "No direct code emitted while the custom animation field has no frame data.",
+      "reason": "The serialized field's safe default contains no frames; uploaded data produces declarations and a value expression."
+    },
+    {
+      "library": "xiaozhi_mcp",
+      "classification": "generator-state-only",
+      "types": ["xiaozhi_mcp_add_tool_param"],
+      "preview": "No direct code emitted; stores parameter metadata for xiaozhi_mcp_register_tool.",
+      "reason": "The handler updates per-generation schema state that is consumed when the matching tool is registered."
+    }
+  ]
+}

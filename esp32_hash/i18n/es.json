@@ -1,0 +1,115 @@
+{
+  "toolbox_name": "Computación hash",
+  "toolbox_labels": {
+    "快速哈希": "hash rápido",
+    "分步哈希（大数据）": "Hash paso a paso (Big Data)",
+    "密钥派生": "derivación de claves"
+  },
+  "esp32_hash_compute": {
+    "message0": "Cálculo %1 datos de valor hash %2",
+    "tooltip": "Calcula el valor hash de la cadena y devuelve la cadena hexadecimal",
+    "args0": [
+      {
+        "options": [
+          [
+            "SHA1",
+            "SHA1"
+          ],
+          [
+            "SHA224",
+            "SHA224"
+          ],
+          [
+            "SHA256",
+            "SHA256"
+          ],
+          [
+            "SHA384",
+            "SHA384"
+          ],
+          [
+            "SHA512",
+            "SHA512"
+          ],
+          [
+            "SHA3-256",
+            "SHA3_256"
+          ],
+          [
+            "SHA3-512",
+            "SHA3_512"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "esp32_hash_create": {
+    "message0": "Creando un constructor de hashes %1 %2",
+    "tooltip": "Crea un objeto constructor de hashes (para cálculo de hash de big data paso a paso)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "SHA1",
+            "SHA1"
+          ],
+          [
+            "SHA256",
+            "SHA256"
+          ],
+          [
+            "SHA512",
+            "SHA512"
+          ],
+          [
+            "SHA3-256",
+            "SHA3_256"
+          ],
+          [
+            "SHA3-512",
+            "SHA3_512"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_hash_begin": {
+    "message0": "Comienza el %1 Hash Builder",
+    "tooltip": "Reinicia el generador de hashes y comienza un nuevo cálculo"
+  },
+  "esp32_hash_add": {
+    "message0": "Constructor de hashes %1 Añadir datos %2",
+    "tooltip": "Añadir datos al generador de hashes"
+  },
+  "esp32_hash_calculate": {
+    "message0": "El constructor de hashes %1 completa el cálculo",
+    "tooltip": "Completar el cálculo del hash"
+  },
+  "esp32_hash_result": {
+    "message0": "Constructor de hashes %1 Obtener resultados",
+    "tooltip": "Obtener el resultado del cálculo del hash (cadena hexadecimal)"
+  },
+  "esp32_hash_pbkdf2": {
+    "message0": "Algoritmo de derivación de claves PBKDF2 %1 contraseña %2 valor de sal %3 número de iteraciones %4",
+    "tooltip": "Se utiliza PBKDF2-HMAC para la derivación de claves",
+    "args0": [
+      {
+        "options": [
+          [
+            "SHA256",
+            "SHA256"
+          ],
+          [
+            "SHA512",
+            "SHA512"
+          ]
+        ]
+      },
+      null,
+      null,
+      null
+    ]
+  }
+}

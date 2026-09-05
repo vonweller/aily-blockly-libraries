@@ -1,0 +1,57 @@
+{
+  "toolbox_name": "DFRobot-Spracherkennung",
+  "dfrobot_asr_init": {
+    "message0": "Initialisieren Sie das Spracherkennungsmodul\nErkennungsmodus %1\nMikrofonmodi %2\nI2C Address%3\nVerwendung %4",
+    "tooltip": "Initialisieren Sie das DFRobot-Spracherkennungsmodul, das drei Erkennungsmodi unterstützt",
+    "args0": [
+      {
+        "options": [
+          [
+            "Loop-Modus (LOOP)",
+            "LOOP"
+          ],
+          [
+            "Befehlsmodus (PASSWORT)",
+            "PASSWORD"
+          ],
+          [
+            "Knopfmodus (BUTTON)",
+            "BUTTON"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "Mikrofon (MIC)",
+            "MIC"
+          ],
+          [
+            "Mono (MONO)",
+            "MONO"
+          ]
+        ]
+      },
+      null,
+      {
+        "options": "${board.i2c}"
+      }
+    ]
+  },
+  "dfrobot_asr_add_command": {
+    "message0": "Fügen Sie Sprach-Schlüsselwörter %1 nummerierten %2 hinzu",
+    "tooltip": "Fügen Sie Spracheinträge mit Pinyin hinzu (z. B. kai deng), mit Identifikationsnummern von 1 bis 255"
+  },
+  "dfrobot_asr_start": {
+    "message0": "Spracherkennung beginnt",
+    "tooltip": "Spracherkennung aktivieren"
+  },
+  "dfrobot_asr_read": {
+    "message0": "Liest die Ergebnisnummer der Spracherkennung vor",
+    "tooltip": "Lesen Sie die anerkannte Eingabenummer; das Zurückgeben von -1 bedeutet, dass sie nicht erkannt wurde"
+  },
+  "dfrobot_asr_set_i2c_addr": {
+    "message0": "Stellen Sie die I2C-Adresse für das Sprachmodul %1",
+    "tooltip": "Stellen Sie die I2C-Adresse für das Sprachmodul ein (0-127), das nach dem Wiedereinschalten in Kraft tritt"
+  }
+}

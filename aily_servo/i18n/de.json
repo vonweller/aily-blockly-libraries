@@ -1,0 +1,138 @@
+{
+  "toolbox_name": "Servo",
+  "toolbox_labels": {
+    "基础控制": "grundlegende Kontrolle",
+    "读取状态": "Lesestatus",
+    "高级控制": "Erweiterte Kontrolle",
+    "实用功能": "Praktische Funktionen",
+    "角度值": "Winkelwert"
+  },
+  "servo_attach": {
+    "message0": "Initialisieren Sie den Pin %1 Servo",
+    "tooltip": "Initialisiere das Servo mit dem angegebenen Pin. ESP32 empfiehlt GPIO 4, 5, 12-19, 21-23, 25-27, 32 und 33. Vermeiden Sie die Verwendung von GPIO 6-11 (Flash) und 34-39 (nur Eingang)",
+    "args0": [
+      {
+        "options": "${board.servoPins}"
+      }
+    ]
+  },
+  "servo_attach_advanced": {
+    "message0": "Initialisieren Sie den Pin %1 Servo\nMinimale Pulsbreite %2 maximale Pulsbreite %3",
+    "tooltip": "Initialisieren Sie den Servo mit den angegebenen Pins und stellen Sie den Pulsbreitenbereich ein. ESP32 weist PWM-Kanäle automatisch ohne manuelle Spezifikation zu.",
+    "args0": [
+      {
+        "options": "${board.servoPins}"
+      },
+      null,
+      null
+    ]
+  },
+  "servo_attach_full": {
+    "message0": "Initialisieren Sie den Pin %1 Servo\nMinimaler Winkel %2 Maximalwinkel %3\nMinimale Pulsbreite %4 Maximale Pulsbreite %5",
+    "tooltip": "Initialisiere den Servo mit den angegebenen Pins und setze alle Parameter (Winkelbereich, Pulsbreitenbereich). ESP32 weist automatisch PWM-Kanäle zu.",
+    "args0": [
+      {
+        "options": "${board.servoPins}"
+      },
+      null,
+      null,
+      null,
+      null
+    ]
+  },
+  "servo_write": {
+    "message0": "Steuerstift %1 den Servo auf einen Winkel von %2 Grad drehen",
+    "tooltip": "Stellen Sie den Zielwinkel für den angegebenen Pin-Servo ein (0-180 Grad)",
+    "args0": [
+      {
+        "options": "${board.servoPins}"
+      },
+      null
+    ]
+  },
+  "servo_write_float": {
+    "message0": "Steuerstift %1 den Servo auf einen Winkel von %2 Grad drehen",
+    "tooltip": "Stellen Sie den genauen Winkel des angegebenen Pin-Servos ein (unterstützt Gleitkommazählung)",
+    "args0": [
+      {
+        "options": "${board.servoPins}"
+      },
+      null
+    ]
+  },
+  "servo_write_microseconds": {
+    "message0": "Steuerpin %1 Servo stellt die Pulsbreite auf %2 Mikrosekunden ein",
+    "tooltip": "Stellen Sie direkt den Pulsbreitenwert des angegebenen Pin-Servos ein (üblicherweise 544–2400 Mikrosekunden)",
+    "args0": [
+      {
+        "options": "${board.servoPins}"
+      },
+      null
+    ]
+  },
+  "servo_read": {
+    "message0": "Lies den Stromwinkel des Servos %1 dem Handelsfuß ab",
+    "tooltip": "Lesen Sie den Stromwinkel des angegebenen Pin-Servos ab",
+    "args0": [
+      {
+        "options": "${board.servoPins}"
+      }
+    ]
+  },
+  "servo_read_microseconds": {
+    "message0": "Lesen Sie die Pulsbreite der Leitung %1 Stromimpuls des Servos ab",
+    "tooltip": "Lesen Sie den Wert der Strompulsbreite (Mikrosekunden) des angegebenen Pin-Servos ab",
+    "args0": [
+      {
+        "options": "${board.servoPins}"
+      }
+    ]
+  },
+  "servo_attached": {
+    "message0": "Pin %1 Servo ist angeschlossen",
+    "tooltip": "Überprüfe, ob der Servo mit den angegebenen Pins angeschlossen ist",
+    "args0": [
+      {
+        "options": "${board.servoPins}"
+      }
+    ]
+  },
+  "servo_detach": {
+    "message0": "Pin-Trennung %1 Servo",
+    "tooltip": "Trennen Sie die Verbindung zwischen dem angegebenen Pin-Servo und dem Pin",
+    "args0": [
+      {
+        "options": "${board.servoPins}"
+      }
+    ]
+  },
+  "servo_get_pin": {
+    "message0": "Pin %1 Pin-Nummer für Servoverbindung",
+    "tooltip": "Holen Sie die PIN-Nummer für die angegebene Servoverbindung ab (geben Sie die eingegebene Pin-Nummer zurück)",
+    "args0": [
+      {
+        "options": "${board.servoPins}"
+      }
+    ]
+  },
+  "servo_map_angle": {
+    "message0": "Abbildungswerte %1 von Bereich %2 bis %3\nDie Winkel reichen von %4 bis %5",
+    "tooltip": "Den Wert eines Bereichs auf den Servowinkelbereich abzubilden"
+  },
+  "servo_sweep": {
+    "message0": "Pin-%1-Servo-Scan\nVon %2 bis %3 Grad, mit einer Verzögerung von %4 Millisekunden",
+    "tooltip": "Ermöglicht es dem Servo mit dem angegebenen Pin, innerhalb eines festgelegten Winkelbereichs zu scannen",
+    "args0": [
+      {
+        "options": "${board.servoPins}"
+      },
+      null,
+      null,
+      null
+    ]
+  },
+  "servo_angle": {
+    "message0": "Winkel %1 Grad",
+    "tooltip": "Servowinkelwert (0-180 Grad)"
+  }
+}

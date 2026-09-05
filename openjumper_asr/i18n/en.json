@@ -1,0 +1,509 @@
+{
+  "toolbox_name": "speech recognition",
+  "openjumper_asr_init": {
+    "message0": "Speech recognition soft serial port initialization RX pin: %1 TX pin: %2",
+    "tooltip": "Initialize the OpenJumper offline speech recognition module and set the soft serial communication pins",
+    "args0": [
+      {
+        "options": "${board.digitalPins}"
+      },
+      {
+        "options": "${board.digitalPins}"
+      }
+    ]
+  },
+  "openjumper_asr_data": {
+    "message0": "Speech recognition data analysis",
+    "tooltip": "Parse the data returned by the speech recognition module and update the recognition status"
+  },
+  "openjumper_asr_rincmd": {
+    "message0": "Voice recognized %1",
+    "tooltip": "Determine whether the specified voice command is recognized and return a Boolean value",
+    "args0": [
+      {
+        "options": [
+          [
+            "0.Voice Butler",
+            "0"
+          ],
+          [
+            "1. Turn on the air conditioner",
+            "1"
+          ],
+          [
+            "2. Turn off the air conditioner",
+            "2"
+          ],
+          [
+            "3. Swing up and down",
+            "3"
+          ],
+          [
+            "4. Swing the wind left and right",
+            "4"
+          ],
+          [
+            "5. Cooling mode",
+            "5"
+          ],
+          [
+            "6.Heating mode",
+            "6"
+          ],
+          [
+            "7. Turn up the temperature",
+            "7"
+          ],
+          [
+            "8. Turn down the temperature",
+            "8"
+          ],
+          [
+            "9. Close after half an hour",
+            "9"
+          ],
+          [
+            "10. Close after one hour",
+            "10"
+          ],
+          [
+            "11. Close after two hours",
+            "11"
+          ],
+          [
+            "12. Close after three hours",
+            "12"
+          ],
+          [
+            "13. Ten degrees",
+            "13"
+          ],
+          [
+            "14.Eleven degrees",
+            "14"
+          ],
+          [
+            "15. Twelve degrees",
+            "15"
+          ],
+          [
+            "16.Thirteen degrees",
+            "16"
+          ],
+          [
+            "17. Fourteen degrees",
+            "17"
+          ],
+          [
+            "18.Fifteen degrees",
+            "18"
+          ],
+          [
+            "19. Sixteen degrees",
+            "19"
+          ],
+          [
+            "20.Seventeen degrees",
+            "20"
+          ],
+          [
+            "21.Eighteen degrees",
+            "21"
+          ],
+          [
+            "22.Nineteen degrees",
+            "22"
+          ],
+          [
+            "23.Twenty degrees",
+            "23"
+          ],
+          [
+            "24. Twenty-one",
+            "24"
+          ],
+          [
+            "25.Twenty-two degrees",
+            "25"
+          ],
+          [
+            "26.Twenty-three degrees",
+            "26"
+          ],
+          [
+            "27.Twenty-four degrees",
+            "27"
+          ],
+          [
+            "28.Twenty-five degrees",
+            "28"
+          ],
+          [
+            "29.Twenty-six degrees",
+            "29"
+          ],
+          [
+            "30.Twenty-seven degrees",
+            "30"
+          ],
+          [
+            "31.Twenty-eight degrees",
+            "31"
+          ],
+          [
+            "32. Turn on the fan",
+            "32"
+          ],
+          [
+            "33. Turn off the fan",
+            "33"
+          ],
+          [
+            "34. The fan shakes its head",
+            "34"
+          ],
+          [
+            "35. Stop shaking your head",
+            "35"
+          ],
+          [
+            "36.Natural wind",
+            "36"
+          ],
+          [
+            "37. Sleep wind",
+            "37"
+          ],
+          [
+            "38.Normal wind",
+            "38"
+          ],
+          [
+            "39. Turn on the living room lights",
+            "39"
+          ],
+          [
+            "40. Turn off the living room lights",
+            "40"
+          ],
+          [
+            "41. Turn on the bedroom light",
+            "41"
+          ],
+          [
+            "42. Turn off bedroom lights",
+            "42"
+          ],
+          [
+            "43. Turn on the kitchen lights",
+            "43"
+          ],
+          [
+            "44. Turn off the kitchen lights",
+            "44"
+          ],
+          [
+            "45. Turn on the desk lamp",
+            "45"
+          ],
+          [
+            "46. Turn off the desk lamp",
+            "46"
+          ],
+          [
+            "47. Turn on the mosquito zapper",
+            "47"
+          ],
+          [
+            "48. Turn off the mosquito zapper",
+            "48"
+          ],
+          [
+            "49. Turn on the humidifier",
+            "49"
+          ],
+          [
+            "50. Turn off the humidifier",
+            "50"
+          ],
+          [
+            "51. Turn on the purifier",
+            "51"
+          ],
+          [
+            "52. Turn off the purifier",
+            "52"
+          ],
+          [
+            "53. Turn on the ambient light",
+            "53"
+          ],
+          [
+            "54. Turn off the ambient light",
+            "54"
+          ],
+          [
+            "55. Turn on the TV",
+            "55"
+          ],
+          [
+            "56. Turn off the TV",
+            "56"
+          ],
+          [
+            "57.Open the outlet",
+            "57"
+          ],
+          [
+            "58. Turn off the outlet",
+            "58"
+          ],
+          [
+            "59.Open the door",
+            "59"
+          ],
+          [
+            "60.Close the door",
+            "60"
+          ],
+          [
+            "61. Turn on the water heater",
+            "61"
+          ],
+          [
+            "62. Turn off the water heater",
+            "62"
+          ],
+          [
+            "63.Yellow light",
+            "63"
+          ],
+          [
+            "64.Red light",
+            "64"
+          ],
+          [
+            "65. Blu-ray",
+            "65"
+          ],
+          [
+            "66.Green light",
+            "66"
+          ],
+          [
+            "67. Colorful light",
+            "67"
+          ],
+          [
+            "68.White light",
+            "68"
+          ],
+          [
+            "69. Warm light",
+            "69"
+          ],
+          [
+            "70. Brighter",
+            "70"
+          ],
+          [
+            "71. Darker",
+            "71"
+          ],
+          [
+            "72. Start the car",
+            "72"
+          ],
+          [
+            "73. Close the car",
+            "73"
+          ],
+          [
+            "74.Visual mode",
+            "74"
+          ],
+          [
+            "75. Line following mode",
+            "75"
+          ],
+          [
+            "76.Follow mode",
+            "76"
+          ],
+          [
+            "77. Obstacle avoidance mode",
+            "77"
+          ],
+          [
+            "78.Network mode",
+            "78"
+          ],
+          [
+            "79.Infrared mode",
+            "79"
+          ],
+          [
+            "80. Wireless mode",
+            "80"
+          ],
+          [
+            "81.Bluetooth mode",
+            "81"
+          ],
+          [
+            "82. Controller mode",
+            "82"
+          ],
+          [
+            "83.Hurry up",
+            "83"
+          ],
+          [
+            "84. Slow down",
+            "84"
+          ],
+          [
+            "85. Turn on the car lights",
+            "85"
+          ],
+          [
+            "86. Turn off the car lights",
+            "86"
+          ],
+          [
+            "87. Forward",
+            "87"
+          ],
+          [
+            "88.Back",
+            "88"
+          ],
+          [
+            "89.Turn left",
+            "89"
+          ],
+          [
+            "90.Turn right",
+            "90"
+          ],
+          [
+            "91.Left forward",
+            "91"
+          ],
+          [
+            "92.Go right",
+            "92"
+          ],
+          [
+            "93.Back left",
+            "93"
+          ],
+          [
+            "94.Back right",
+            "94"
+          ],
+          [
+            "95.Raise the gimbal",
+            "95"
+          ],
+          [
+            "96. Put down the gimbal",
+            "96"
+          ],
+          [
+            "97. Lift it up a little",
+            "97"
+          ],
+          [
+            "98.Lower it a little",
+            "98"
+          ],
+          [
+            "99. Gripping objects",
+            "99"
+          ],
+          [
+            "100. Put down the object",
+            "100"
+          ],
+          [
+            "101. Clamp a little tighter",
+            "101"
+          ],
+          [
+            "102.Relax a little",
+            "102"
+          ],
+          [
+            "103.Open the curtains",
+            "103"
+          ],
+          [
+            "104. Close the curtains",
+            "104"
+          ],
+          [
+            "105.Open up a little",
+            "105"
+          ],
+          [
+            "106. Close a little",
+            "106"
+          ],
+          [
+            "107. Movie viewing mode",
+            "107"
+          ],
+          [
+            "108.Normal mode",
+            "108"
+          ],
+          [
+            "109. Entertainment mode",
+            "109"
+          ],
+          [
+            "110.Working mode",
+            "110"
+          ],
+          [
+            "111.I’m at work",
+            "111"
+          ],
+          [
+            "112.I’m back",
+            "112"
+          ],
+          [
+            "113.Good morning",
+            "113"
+          ],
+          [
+            "114.Good night",
+            "114"
+          ],
+          [
+            "115.Open the clothes drying rack",
+            "115"
+          ],
+          [
+            "116. Put away the clothes drying rack",
+            "116"
+          ],
+          [
+            "117. Turn on the projector",
+            "117"
+          ],
+          [
+            "118. Turn off the projector",
+            "118"
+          ]
+        ]
+      }
+    ]
+  },
+  "openjumper_asr_state": {
+    "message0": "Voice recognition wake-up state",
+    "tooltip": "Get the wake-up status of the speech recognition module and return a Boolean value"
+  }
+}

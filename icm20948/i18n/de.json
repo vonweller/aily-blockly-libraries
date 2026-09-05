@@ -1,0 +1,181 @@
+{
+  "toolbox_name": "ICM20948",
+  "toolbox_labels": {
+    "初始化": "Initialisierung",
+    "基础读取": "Grundlegende Lektüre",
+    "AHRS姿态解算": "AHRS-Einstellungslösung",
+    "校准和配置": "Kalibrierung und Konfiguration"
+  },
+  "icm20948_init": {
+    "message0": "Initialisieren Sie ICM20948 Sensor I2C address%1",
+    "tooltip": "Initialisieren ICM20948 Neunachsensensor",
+    "args0": [
+      {
+        "options": [
+          [
+            "0x69 (Standard)",
+            "1"
+          ],
+          [
+            "0x68 (ADR-Erdung)",
+            "0"
+          ]
+        ]
+      }
+    ]
+  },
+  "icm20948_read_accel": {
+    "message0": "Lesen Sie den Wert der %1 Achse des Beschleunigungsmessers ab",
+    "tooltip": "Lesen Sie den Wert der angegebenen Achse auf dem Beschleunigungsmesser (mg) ab",
+    "args0": [
+      {
+        "options": [
+          [
+            "X",
+            "X"
+          ],
+          [
+            "Y",
+            "Y"
+          ],
+          [
+            "Z",
+            "Z"
+          ]
+        ]
+      }
+    ]
+  },
+  "icm20948_read_gyro": {
+    "message0": "Lesen Sie die Werte des Gyroskops %1 Achsen ab",
+    "tooltip": "Lesen Sie den Wert der vom Gyroskop angegebenen Achse (Grad/Sekunde) ab",
+    "args0": [
+      {
+        "options": [
+          [
+            "X",
+            "X"
+          ],
+          [
+            "Y",
+            "Y"
+          ],
+          [
+            "Z",
+            "Z"
+          ]
+        ]
+      }
+    ]
+  },
+  "icm20948_read_mag": {
+    "message0": "Lesen Sie das Magnetometer %1 Achsenanzeige ab",
+    "tooltip": "Lesen Sie den Wert der angegebenen Achse auf dem Magnetometer (μT) ab",
+    "args0": [
+      {
+        "options": [
+          [
+            "X",
+            "X"
+          ],
+          [
+            "Y",
+            "Y"
+          ],
+          [
+            "Z",
+            "Z"
+          ]
+        ]
+      }
+    ]
+  },
+  "icm20948_read_temp": {
+    "message0": "Die Temperatur messen",
+    "tooltip": "Sensortemperatur (°C)"
+  },
+  "icm20948_data_ready": {
+    "message0": "ICM20948 Daten bereit",
+    "tooltip": "Überprüfe, ob der Sensor neue Daten zum Auslesen hat"
+  },
+  "icm20948_ahrs_init": {
+    "message0": "Initialisieren Sie die AHRS-Lageberechnung Abtastfrequenz %1Hz",
+    "tooltip": "Initialisieren Sie den AHRS-Lage-Lösungsalgorithmus"
+  },
+  "icm20948_ahrs_update": {
+    "message0": "Aktualisierte AHRS-Haltungsberechnungen",
+    "tooltip": "Aktualisieren Sie die AHRS-Lösungen mit den neuesten Sensordaten"
+  },
+  "icm20948_get_roll": {
+    "message0": "Drehwinkel",
+    "tooltip": "Erhalten Sie den Rollwinkel (Grad) der AHRS-Lösung"
+  },
+  "icm20948_get_pitch": {
+    "message0": "Erfassen Sie den Tonwinkel",
+    "tooltip": "Ermitteln Sie den Nickwinkel (Grad) für die AHRS-Lösung"
+  },
+  "icm20948_get_yaw": {
+    "message0": "Hol dir den Gierwinkel",
+    "tooltip": "Erhalten Sie den Gierwinkel (Grad) für die AHRS-Lösung"
+  },
+  "icm20948_calibrate_gyro": {
+    "message0": "Gyroskop-Kalibrierung Probenahme count%1",
+    "tooltip": "Um den Nullversatz des Gyroskops zu kalibrieren, muss der Sensor stationär bleiben"
+  },
+  "icm20948_set_gyro_offset": {
+    "message0": "Stellen Sie den Gyroskop-Offset X%1 Y%2 Z%3",
+    "tooltip": "Manuell den dreiachsigen Versatzwert des Gyroskops einstellen"
+  },
+  "icm20948_set_accel_range": {
+    "message0": "Stell den Beschleunigungsmesser range%1",
+    "tooltip": "Richte den Beschleunigungsmesser ein, um die Reichweite zu messen",
+    "args0": [
+      {
+        "options": [
+          [
+            "±2g",
+            "gpm2"
+          ],
+          [
+            "±4g",
+            "gpm4"
+          ],
+          [
+            "±8g",
+            "gpm8"
+          ],
+          [
+            "±16g",
+            "gpm16"
+          ]
+        ]
+      }
+    ]
+  },
+  "icm20948_set_gyro_range": {
+    "message0": "Stell das Gyroskop range%1",
+    "tooltip": "Richte ein Gyroskop auf, um die Reichweite zu messen",
+    "args0": [
+      {
+        "options": [
+          [
+            "±250°/s",
+            "dps250"
+          ],
+          [
+            "±500°/s",
+            "dps500"
+          ],
+          [
+            "±1000°/s",
+            "dps1000"
+          ],
+          [
+            "±2000°/s",
+            "dps2000"
+          ]
+        ]
+      }
+    ]
+  }
+}

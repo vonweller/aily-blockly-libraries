@@ -1,0 +1,47 @@
+{
+  "toolbox_name": "VL53L0X laser ranging",
+  "vl53l0x_config_i2c": {
+    "message0": "Configure VL53L0X I2C pin %1",
+    "tooltip": "Configure the I2C pins used by the VL53L0X sensor",
+    "args0": [
+      {
+        "options": [
+          [
+            "Wire1 (SDA:8, SCL:9)",
+            "WIRE1"
+          ],
+          [
+            "Wire2 (SDA:4, SCL:5)",
+            "WIRE2"
+          ]
+        ]
+      }
+    ]
+  },
+  "vl53l0x_init_with_wire": {
+    "message0": "Initialize VL53L0X sensor %1 using %2",
+    "tooltip": "Initialize the VL53L0X laser ranging sensor and specify the I2C bus used",
+    "args0": [
+      null,
+      {
+        "options": "${board.i2c}"
+      }
+    ]
+  },
+  "vl53l0x_begin": {
+    "message0": "Initialize VL53L0X sensor %1 %2",
+    "tooltip": "Initialize VL53L0X laser ranging sensor, configure I2C pins and check connections"
+  },
+  "vl53l0x_ranging_test": {
+    "message0": "Sensor %1 takes measurements and stores the results %2",
+    "tooltip": "Make a detailed measurement and store the results in a specified variable"
+  },
+  "vl53l0x_check_range_valid": {
+    "message0": "Measurement result %1 is valid",
+    "tooltip": "Check whether the measurement result is valid. If the status value is not 4, it means it is valid."
+  },
+  "vl53l0x_get_range_mm": {
+    "message0": "Get the distance (mm) from the measurement result %1",
+    "tooltip": "Get distance data from measurement results in millimeters"
+  }
+}

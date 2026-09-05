@@ -1,0 +1,52 @@
+name: Library Full Audit
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Weekly repository-wide debt audit. This workflow is intentionally
+    # independent from the pull-request merge gate.
+    - cron: '17 18 * * 0'
+
+permissions:
+  contents: read
+
+jobs:
+  audit-all-libraries:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+
+    - name: Install dependencies
+      run: npm install js-yaml
+
+    - name: Test README governance unit tests
+      run: npm run readme:test
+
+    - name: Audit all README ABS contracts
+      if: always()
+      run: npm run readme:contract
+
+    - name: Audit all dynamic block shapes
+      if: always()
+      run: npm run readme:dynamic-shapes
+
+    - name: Audit all generator coverage and generated code
+      if: always()
+      run: npm run readme:generator-coverage
+
+    - name: Audit all generated README candidates
+      if: always()
+      run: npm run readme:candidate-check
+
+    - name: Audit all repository cross-library examples
+      if: always()
+      run: npm run readme:cross-check

@@ -1,0 +1,398 @@
+{
+  "toolbox_name": "語音合成",
+  "toolbox_labels": {
+    "初始化": "初始化",
+    "语音播报": "語音播報",
+    "音量/语速/语调": "音量/語速/語調",
+    "发音设置": "發音設定",
+    "高级设置": "進階設定",
+    "播放控制": "播放控制",
+    "其他": "其他"
+  },
+  "speech_init_i2c": {
+    "message0": "初始化語音合成模組 %1 I2C介面 %2 版本 %3",
+    "tooltip": "透過I2C介面初始化語音合成模組，需要先使用I2C初始化區塊設定腳",
+    "args0": [
+      null,
+      {
+        "options": "${board.i2c}"
+      },
+      {
+        "options": [
+          [
+            "V1",
+            "eV1"
+          ],
+          [
+            "V2",
+            "eV2"
+          ]
+        ]
+      }
+    ]
+  },
+  "speech_init_uart": {
+    "message0": "初始化語音合成模組 %1 串列埠 %2 版本 %3",
+    "tooltip": "透過串口初始化語音合成模組",
+    "args0": [
+      null,
+      {
+        "options": "${board.serialPort}"
+      },
+      {
+        "options": [
+          [
+            "V1",
+            "eV1"
+          ],
+          [
+            "V2",
+            "eV2"
+          ]
+        ]
+      }
+    ]
+  },
+  "speech_speak": {
+    "message0": "語音合成 %1 播報 %2",
+    "tooltip": "播報指定文字內容，支援中英文混合"
+  },
+  "speech_set_volume": {
+    "message0": "語音合成 %1 設定音量 %2",
+    "tooltip": "設定語音播報音量(0-9)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "0 (靜音)",
+            "0"
+          ],
+          [
+            "1",
+            "1"
+          ],
+          [
+            "2",
+            "2"
+          ],
+          [
+            "3",
+            "3"
+          ],
+          [
+            "4",
+            "4"
+          ],
+          [
+            "5 (預設)",
+            "5"
+          ],
+          [
+            "6",
+            "6"
+          ],
+          [
+            "7",
+            "7"
+          ],
+          [
+            "8",
+            "8"
+          ],
+          [
+            "9（最高）",
+            "9"
+          ]
+        ]
+      }
+    ]
+  },
+  "speech_set_speed": {
+    "message0": "語音合成 %1 設定語速 %2",
+    "tooltip": "設定語音播報速度(0-9)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "0（最慢）",
+            "0"
+          ],
+          [
+            "1",
+            "1"
+          ],
+          [
+            "2",
+            "2"
+          ],
+          [
+            "3",
+            "3"
+          ],
+          [
+            "4",
+            "4"
+          ],
+          [
+            "5 (預設)",
+            "5"
+          ],
+          [
+            "6",
+            "6"
+          ],
+          [
+            "7",
+            "7"
+          ],
+          [
+            "8",
+            "8"
+          ],
+          [
+            "9（最快）",
+            "9"
+          ]
+        ]
+      }
+    ]
+  },
+  "speech_set_tone": {
+    "message0": "語音合成 %1 設定語調 %2",
+    "tooltip": "設定語音播報語調(0-9)",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "0（最低）",
+            "0"
+          ],
+          [
+            "1",
+            "1"
+          ],
+          [
+            "2",
+            "2"
+          ],
+          [
+            "3",
+            "3"
+          ],
+          [
+            "4",
+            "4"
+          ],
+          [
+            "5 (預設)",
+            "5"
+          ],
+          [
+            "6",
+            "6"
+          ],
+          [
+            "7",
+            "7"
+          ],
+          [
+            "8",
+            "8"
+          ],
+          [
+            "9（最佳）",
+            "9"
+          ]
+        ]
+      }
+    ]
+  },
+  "speech_set_sound_type": {
+    "message0": "語音合成 %1 設定發音者 %2",
+    "tooltip": "設定語音發音人類型",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "女聲1 (推薦)",
+            "eFemale1"
+          ],
+          [
+            "男聲1 (推薦)",
+            "eMale1"
+          ],
+          [
+            "男聲2",
+            "eMale2"
+          ],
+          [
+            "女聲2",
+            "eFemale2"
+          ],
+          [
+            "唐老鴨",
+            "eDonaldDuck"
+          ],
+          [
+            "女聲3",
+            "eFemale3"
+          ]
+        ]
+      }
+    ]
+  },
+  "speech_set_english_pron": {
+    "message0": "語音合成 %1 英文發音方式 %2",
+    "tooltip": "設定英文發音方式：按單字或按字母",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "單字",
+            "eWord"
+          ],
+          [
+            "書信",
+            "eAlphabet"
+          ]
+        ]
+      }
+    ]
+  },
+  "speech_set_language": {
+    "message0": "語音合成 %1 數位語言 %2",
+    "tooltip": "設定數字、單位、特殊字元的發音語言",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "自動判斷",
+            "eAutoJudgel"
+          ],
+          [
+            "中文",
+            "eChinesel"
+          ],
+          [
+            "英文",
+            "eEnglishl"
+          ]
+        ]
+      }
+    ]
+  },
+  "speech_set_digital_pron": {
+    "message0": "語音合成 %1 數位讀法 %2",
+    "tooltip": "設定長數字的讀法方式",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "自動判斷",
+            "eAutoJudged"
+          ],
+          [
+            "電話號碼",
+            "eNumber"
+          ],
+          [
+            "數值",
+            "eNumeric"
+          ]
+        ]
+      }
+    ]
+  },
+  "speech_set_style": {
+    "message0": "語音合成 %1 合成風格 %2",
+    "tooltip": "設定語音合成風格",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "流暢",
+            "eSmooth"
+          ],
+          [
+            "逐字一字",
+            "eCaton"
+          ]
+        ]
+      }
+    ]
+  },
+  "speech_enable_rhythm": {
+    "message0": "語音合成 %1 %2 韻律",
+    "tooltip": "啟用或停用中文韻律功能",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "啟用",
+            "true"
+          ],
+          [
+            "停用",
+            "false"
+          ]
+        ]
+      }
+    ]
+  },
+  "speech_enable_pinyin": {
+    "message0": "語音合成 %1 %2 拼音合成",
+    "tooltip": "啟用或停用拼音合成功能",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "啟用",
+            "true"
+          ],
+          [
+            "停用",
+            "false"
+          ]
+        ]
+      }
+    ]
+  },
+  "speech_stop": {
+    "message0": "語音合成 %1 停止播報",
+    "tooltip": "停止當前語音播報"
+  },
+  "speech_pause": {
+    "message0": "語音合成 %1 暫停播報",
+    "tooltip": "暫停當前語音播報"
+  },
+  "speech_resume": {
+    "message0": "語音合成 %1 恢復播報",
+    "tooltip": "恢復暫停的語音播報"
+  },
+  "speech_wait": {
+    "message0": "語音合成 %1 等待播報完成",
+    "tooltip": "等待當前語音播報完成"
+  },
+  "speech_reset": {
+    "message0": "語音合成 %1 恢復預設設定",
+    "tooltip": "將所有設定恢復為預設值"
+  },
+  "speech_sleep": {
+    "message0": "語音合成 %1 進入休眠",
+    "tooltip": "讓語音合成模組進入休眠模式"
+  },
+  "speech_wakeup": {
+    "message0": "語音合成 %1 喚醒",
+    "tooltip": "從休眠模式喚醒語音合成模組"
+  }
+}

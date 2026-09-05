@@ -1,0 +1,68 @@
+{
+  "kind": "category",
+  "name": "SD卡",
+  "colour": "#F57C00",
+  "icon": "fa-regular fa-sd-card",
+  "contents": [
+    {"kind": "label", "text": "初始化"},
+    {"kind": "block", "type": "arduino_sd_init"},
+    {
+      "kind": "block",
+      "type": "arduino_sd_init_cs",
+      "inputs": {"CS": {"shadow": {"type": "math_number", "fields": {"NUM": 10}}}}
+    },
+    {
+      "kind": "block",
+      "type": "arduino_sd_init_clock",
+      "inputs": {
+        "CS": {"shadow": {"type": "math_number", "fields": {"NUM": 10}}},
+        "CLOCK": {"shadow": {"type": "math_number", "fields": {"NUM": 4000000}}}
+      }
+    },
+    {
+      "kind": "block",
+      "type": "arduino_sd_begin_result",
+      "inputs": {"CS": {"shadow": {"type": "math_number", "fields": {"NUM": 10}}}}
+    },
+    {"kind": "block", "type": "arduino_sd_end"},
+    {"kind": "sep"},
+    {"kind": "label", "text": "文件与目录"},
+    {
+      "kind": "block",
+      "type": "arduino_sd_exists",
+      "inputs": {"PATH": {"shadow": {"type": "text", "fields": {"TEXT": "/data.txt"}}}}
+    },
+    {
+      "kind": "block",
+      "type": "arduino_sd_path_operation",
+      "inputs": {"PATH": {"shadow": {"type": "text", "fields": {"TEXT": "/data"}}}}
+    },
+    {
+      "kind": "block",
+      "type": "arduino_sd_file_create",
+      "inputs": {"PATH": {"shadow": {"type": "text", "fields": {"TEXT": "/data.txt"}}}}
+    },
+    {"kind": "block", "type": "arduino_sd_file_create_next"},
+    {"kind": "sep"},
+    {"kind": "label", "text": "文件状态与读取"},
+    {"kind": "block", "type": "arduino_sd_file_is_open"},
+    {"kind": "block", "type": "arduino_sd_file_is_directory"},
+    {"kind": "block", "type": "arduino_sd_file_name"},
+    {"kind": "block", "type": "arduino_sd_file_read"},
+    {"kind": "block", "type": "arduino_sd_file_available"},
+    {"kind": "block", "type": "arduino_sd_file_position"},
+    {
+      "kind": "block",
+      "type": "arduino_sd_file_seek",
+      "inputs": {"POSITION": {"shadow": {"type": "math_number", "fields": {"NUM": 0}}}}
+    },
+    {"kind": "sep"},
+    {"kind": "label", "text": "写入与控制"},
+    {
+      "kind": "block",
+      "type": "arduino_sd_file_write",
+      "inputs": {"DATA": {"shadow": {"type": "text", "fields": {"TEXT": "Hello SD"}}}}
+    },
+    {"kind": "block", "type": "arduino_sd_file_control"}
+  ]
+}

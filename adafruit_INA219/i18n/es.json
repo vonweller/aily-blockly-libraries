@@ -1,0 +1,41 @@
+{
+  "toolbox_name": "Detección de corriente INA219",
+  "ina219_init_with_wire": {
+    "message0": "Inicializar la dirección %1 el módulo IN219 %2 usar %3",
+    "tooltip": "Inicializa el sensor INA219, especificando la dirección I2C y el bus I2C utilizado",
+    "args0": [
+      null,
+      null,
+      {
+        "options": "${board.i2c}"
+      }
+    ]
+  },
+  "ina219_read_value": {
+    "message0": "Lectura del módulo IN219 %1 %2",
+    "tooltip": "Lee valores de voltaje, corriente o potencia del sensor INA219",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Voltaje del bus (V)",
+            "BUS_VOLTAGE"
+          ],
+          [
+            "Tensión de derivación (mV)",
+            "SHUNT_VOLTAGE"
+          ],
+          [
+            "Actualidad (mA)",
+            "CURRENT"
+          ],
+          [
+            "Potencia (mW)",
+            "POWER"
+          ]
+        ]
+      }
+    ]
+  }
+}

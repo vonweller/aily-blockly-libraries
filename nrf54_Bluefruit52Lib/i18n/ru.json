@@ -1,0 +1,712 @@
+{
+  "toolbox_name": "Bluefruit52 BLE",
+  "toolbox_categories": [
+    "Быстрый режим",
+    "Инициализация и состояние",
+    "Обратные вызовы",
+    "Реклама",
+    "Периферия BLE UART",
+    "Сервисы GATT",
+    "Стандартные сервисы",
+    "Сканер и центральный",
+    "HID",
+    "Маяк"
+  ],
+  "bluefruit52_init": {
+    "message0": "Инициализировать периферийные соединения Bluefruit %1 центральные соединения %2",
+    "tooltip": "Инициализируйте стек протоколов Bluefruit BLE и установите количество периферийных/центральных соединений"
+  },
+  "bluefruit52_set_name": {
+    "message0": "Установить имя устройства BLE %1",
+    "tooltip": "Определите названия устройств BLE, используемых в вещании и GATT"
+  },
+  "bluefruit52_set_tx_power": {
+    "message0": "Установите мощность передачи BLE (дБм) %1",
+    "tooltip": "Установка мощности радиопередачи BLE",
+    "args0": [
+      {
+        "options": [
+          [
+            "+8",
+            "8"
+          ],
+          [
+            "+4",
+            "4"
+          ],
+          [
+            "0",
+            "0"
+          ],
+          [
+            "-4",
+            "-4"
+          ],
+          [
+            "-8",
+            "-8"
+          ],
+          [
+            "-12",
+            "-12"
+          ],
+          [
+            "-16",
+            "-16"
+          ],
+          [
+            "-20",
+            "-20"
+          ],
+          [
+            "-40",
+            "-40"
+          ]
+        ]
+      }
+    ]
+  },
+  "bluefruit52_auto_conn_led": {
+    "message0": "Индикатор соединения light%1",
+    "tooltip": "Включите или отключите индикатор статуса соединения Bluefruit",
+    "args0": [
+      {
+        "options": [
+          [
+            "Включить",
+            "true"
+          ],
+          [
+            "Отключить",
+            "false"
+          ]
+        ]
+      }
+    ]
+  },
+  "bluefruit52_config_bandwidth": {
+    "message0": "Настройте %1 пропускную способность %2",
+    "tooltip": "Настройте уровень пропускной способности для периферийных или центральных соединений",
+    "args0": [
+      {
+        "options": [
+          [
+            "Периферия",
+            "Prph"
+          ],
+          [
+            "Центральный",
+            "Central"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "Авто",
+            "BANDWIDTH_AUTO"
+          ],
+          [
+            "Низкая",
+            "BANDWIDTH_LOW"
+          ],
+          [
+            "Обычная",
+            "BANDWIDTH_NORMAL"
+          ],
+          [
+            "Высокая",
+            "BANDWIDTH_HIGH"
+          ],
+          [
+            "Максимум",
+            "BANDWIDTH_MAX"
+          ]
+        ]
+      }
+    ]
+  },
+  "bluefruit52_connected": {
+    "message0": "Связан ли Bluefruit?",
+    "tooltip": "Возвращает данные, существует ли в настоящее время соединение BLE"
+  },
+  "bluefruit52_disconnect": {
+    "message0": "Отключение Handle %1",
+    "tooltip": "Отключите соединение BLE, нажав на ручку соединения"
+  },
+  "bluefruit52_callback_conn_handle": {
+    "message0": "Текущий обратный вызов BLE соединяет дескрипторы",
+    "tooltip": "Читайте текущий дескриптор join в join, disconnect, UART или writeback callback"
+  },
+  "bluefruit52_callback_disconnect_reason": {
+    "message0": "Текущие причины отключения BLE",
+    "tooltip": "Прочитайте код причины отключения в обратном вызове отключения"
+  },
+  "bluefruit52_callback_data": {
+    "message0": "Текущие данные отбора BLE",
+    "tooltip": "Читайте BLE UART или записывают текстовые данные из кэша обратного вызова"
+  },
+  "bluefruit52_on_periph_connect": {
+    "message0": "Когда периферия Bluefruit соединена",
+    "message1": "выполнить %1",
+    "tooltip": "Зарегистрируйте обратный вызов соединения для периферийного символа"
+  },
+  "bluefruit52_on_periph_disconnect": {
+    "message0": "Когда периферийные устройства Bluefruit отключены",
+    "message1": "выполнить %1",
+    "tooltip": "Отключить обратный вызов для зарегистрированных ролей периферии"
+  },
+  "bluefruit52_on_central_connect": {
+    "message0": "Когда центральный конец Bluefruit соединен",
+    "message1": "выполнить %1",
+    "tooltip": "Обратные вызовы соединений для ролей в центрах регистрации"
+  },
+  "bluefruit52_on_central_disconnect": {
+    "message0": "Когда центральный конец Bluefruit отключён",
+    "message1": "выполнить %1",
+    "tooltip": "Отключите обратный вызов для роли в центре регистрации"
+  },
+  "bluefruit52_adv_clear": {
+    "message0": "Clear BLE вещание данных %1",
+    "tooltip": "Очищайте широковещательные пакеты или сканируйте данные отклика",
+    "args0": [
+      {
+        "options": [
+          [
+            "Рекламный пакет",
+            "Advertising"
+          ],
+          [
+            "Ответ сканирования",
+            "ScanResponse"
+          ],
+          [
+            "Оба",
+            "Both"
+          ]
+        ]
+      }
+    ]
+  },
+  "bluefruit52_adv_add_flags": {
+    "message0": "Трансляции добавляют универсальные флаги открытия",
+    "tooltip": "Добавьте логотип LE Only General Discoverable к вещательным пакетам"
+  },
+  "bluefruit52_adv_add_tx_power": {
+    "message0": "Вещание увеличивает мощность передачи",
+    "tooltip": "Добавьте поле TX Power в пакет вещания"
+  },
+  "bluefruit52_adv_add_name": {
+    "message0": "%1 Добавить имя устройства",
+    "tooltip": "Добавляйте имена устройств в вещательные пакеты или сканируйте ответы",
+    "args0": [
+      {
+        "options": [
+          [
+            "Рекламный пакет",
+            "Advertising"
+          ],
+          [
+            "Ответ сканирования",
+            "ScanResponse"
+          ],
+          [
+            "Оба",
+            "Both"
+          ]
+        ]
+      }
+    ]
+  },
+  "bluefruit52_adv_add_service": {
+    "message0": "Сервис добавления трансляции %1",
+    "tooltip": "Добавьте созданный вами UUID сервиса BLE в широковещательный пакет"
+  },
+  "bluefruit52_adv_add_uuid": {
+    "message0": "Трансляция добавляет UUID%1",
+    "tooltip": "Добавляйте сервисные UUID в широковещательные пакеты по строкам UUID"
+  },
+  "bluefruit52_adv_add_appearance": {
+    "message0": "Трансляция добавляет внешний вид %1",
+    "tooltip": "Добавить значения внешнего вида BLE в вещательные пакеты",
+    "args0": [
+      {
+        "options": [
+          [
+            "Обычные часы",
+            "BLE_APPEARANCE_GENERIC_CLOCK"
+          ],
+          [
+            "Клавиатура",
+            "BLE_APPEARANCE_HID_KEYBOARD"
+          ],
+          [
+            "Мышь",
+            "BLE_APPEARANCE_HID_MOUSE"
+          ],
+          [
+            "Геймпад",
+            "BLE_APPEARANCE_HID_GAMEPAD"
+          ]
+        ]
+      }
+    ]
+  },
+  "bluefruit52_adv_restart_on_disconnect": {
+    "message0": "Автоматическая ретрансляция после disconnection%1",
+    "tooltip": "Установите, будет ли трансляция автоматически возобновляться после отключения",
+    "args0": [
+      {
+        "options": [
+          [
+            "Включить",
+            "true"
+          ],
+          [
+            "Отключить",
+            "false"
+          ]
+        ]
+      }
+    ]
+  },
+  "bluefruit52_adv_set_interval": {
+    "message0": "Установите интервал трансляции Быстрый %1 Медленный %2",
+    "tooltip": "Установите интервал передачи на быстрый/медленный диапазон с единицами 0,625 мс"
+  },
+  "bluefruit52_adv_set_initial_timeout": {
+    "message0": "Установите начальный тайм-аут трансляции (секунды) %1",
+    "tooltip": "Установите продолжительность быстрого вещания"
+  },
+  "bluefruit52_adv_start": {
+    "message0": "Начать трансляцию BLE. Тайм-аут (секунды) %1",
+    "tooltip": "Начинайте вещание BLE, 0 означает непрерывное вещание"
+  },
+  "bluefruit52_adv_stop": {
+    "message0": "Прекратите вещание BLE",
+    "tooltip": "Остановите текущее вещание BLE"
+  },
+  "bluefruit52_adv_is_running": {
+    "message0": "BLE вещает?",
+    "tooltip": "Вернуть, работает ли трансляция"
+  },
+  "bluefruit52_bleuart_create": {
+    "message0": "Создание BLE UART %1 приёмного буфера %2",
+    "tooltip": "Создание периферийных объектов Nordic UART Service"
+  },
+  "bluefruit52_bleuart_begin": {
+    "message0": "Запуск BLE UART %1",
+    "tooltip": "Запуск сервисов BLE UART"
+  },
+  "bluefruit52_bleuart_write": {
+    "message0": "BLE UART %1 send %2",
+    "tooltip": "Отправляйте текст или данные через BLE UART"
+  },
+  "bluefruit52_bleuart_available": {
+    "message0": "BLE UART %1 Количество читаемых байт",
+    "tooltip": "Возвращает количество байт в буфере приёма BLE UART"
+  },
+  "bluefruit52_bleuart_read": {
+    "message0": "BLE UART %1 считывает 1 байт",
+    "tooltip": "При чтении одного байта из BLE UART сбой возвращает -1"
+  },
+  "bluefruit52_bleuart_read_string": {
+    "message0": "BLE UART %1 Прочитайте полный текст",
+    "tooltip": "Прочитайте весь текст в буфере BLE UART"
+  },
+  "bluefruit52_bleuart_notify_enabled": {
+    "message0": "BLE UART %1 уведомления включены?",
+    "tooltip": "Проверьте, включены ли уведомления BLE UART на центральной стороне"
+  },
+  "bluefruit52_bleuart_on_receive": {
+    "message0": "Установите BLE UART %1 при получении данных",
+    "message1": "выполнить %1",
+    "tooltip": "Регистрируется и принимает обратные вызовы для BLE UART, и данные обратного вызова можно считывать с использованием текущих данных обратного вызова BLE"
+  },
+  "bluefruit52_bleuart_peripheral_quick": {
+    "message0": "Название периферийного устройства для быстрого запуска BLE UART: %1",
+    "tooltip": "Инициализация в один клик Bluefruit, информации о устройстве, BLE UART и стандартных трансляциях"
+  },
+  "bluefruit52_bleuart_quick_send": {
+    "message0": "Быстрая отправка BLE UART %1",
+    "tooltip": "Данные передаются с помощью BLE UART, созданного в быстром режиме"
+  },
+  "bluefruit52_bleuart_quick_received_data": {
+    "message0": "Данные, полученные BLE UART быстро",
+    "tooltip": "Читать весь текст в быстром режиме BLE UART, полученный в буфере"
+  },
+  "bluefruit52_bleuart_quick_connected": {
+    "message0": "Подключён быстрый BLE UART?",
+    "tooltip": "Проверьте, подключён ли быстрый режим BLE UART"
+  },
+  "bluefruit52_service_create": {
+    "message0": "Создать сервис BLE %1 UUID%2",
+    "tooltip": "Создание пользовательских сервисных объектов GATT"
+  },
+  "bluefruit52_service_begin": {
+    "message0": "Запуск BLE Service %1",
+    "tooltip": "Регистрация и запуск сервисов GATT"
+  },
+  "bluefruit52_characteristic_create": {
+    "message0": "Создание функций BLE %1 UUID %2 атрибутов %3 максимальной длины %4",
+    "tooltip": "Создавайте пользовательские объекты GATT и настраивайте их свойства и максимальную длину",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "Чтение",
+            "CHR_PROPS_READ"
+          ],
+          [
+            "Запись",
+            "CHR_PROPS_WRITE"
+          ],
+          [
+            "Запись без ответа",
+            "CHR_PROPS_WRITE_WO_RESP"
+          ],
+          [
+            "Уведомление",
+            "CHR_PROPS_NOTIFY"
+          ],
+          [
+            "Индикация",
+            "CHR_PROPS_INDICATE"
+          ],
+          [
+            "Чтение/запись",
+            "CHR_PROPS_READ | CHR_PROPS_WRITE"
+          ],
+          [
+            "Чтение/запись+уведомление",
+            "CHR_PROPS_READ | CHR_PROPS_WRITE | CHR_PROPS_NOTIFY"
+          ],
+          [
+            "Чтение+индикация",
+            "CHR_PROPS_READ | CHR_PROPS_INDICATE"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "bluefruit52_characteristic_set_permission": {
+    "message0": "Задайте признаки %1 права на чтение %2 запись %3",
+    "tooltip": "Задайте разрешения на безопасность для чтения/записи функций",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Открыто",
+            "SECMODE_OPEN"
+          ],
+          [
+            "Нет доступа",
+            "SECMODE_NO_ACCESS"
+          ],
+          [
+            "Шифрование",
+            "SECMODE_ENC_NO_MITM"
+          ],
+          [
+            "Шифрование+MITM",
+            "SECMODE_ENC_WITH_MITM"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "Открыто",
+            "SECMODE_OPEN"
+          ],
+          [
+            "Нет доступа",
+            "SECMODE_NO_ACCESS"
+          ],
+          [
+            "Шифрование",
+            "SECMODE_ENC_NO_MITM"
+          ],
+          [
+            "Шифрование+MITM",
+            "SECMODE_ENC_WITH_MITM"
+          ]
+        ]
+      }
+    ]
+  },
+  "bluefruit52_characteristic_begin": {
+    "message0": "Активировать функции BLE %1",
+    "tooltip": "Добавьте функции в недавно запущенный сервис GATT"
+  },
+  "bluefruit52_characteristic_write_text": {
+    "message0": "Особенности %1 Написать текст %2",
+    "tooltip": "Запишите локальное значение признака"
+  },
+  "bluefruit52_characteristic_notify_text": {
+    "message0": "Функции %1 Текст уведомлений %2",
+    "tooltip": "Текстовые уведомления отправляются на центральный конец подписанного уведомления"
+  },
+  "bluefruit52_characteristic_indicate_text": {
+    "message0": "Функции %1 Индикатор текста %2",
+    "tooltip": "Текстовые инструкции для подтверждения отправляются в центральный конец подписанной инструкции"
+  },
+  "bluefruit52_characteristic_read_string": {
+    "message0": "Чтение функций %1 текста",
+    "tooltip": "Читайте текущее значение признаков и конвертируйте их в текст"
+  },
+  "bluefruit52_characteristic_notify_enabled": {
+    "message0": "Функция %1 уведомления включена?",
+    "tooltip": "Проверьте, включено ли это уведомление о функции центральным концом"
+  },
+  "bluefruit52_characteristic_on_write": {
+    "message0": "Особенности множества %1 когда они написаны",
+    "message1": "выполнить %1",
+    "tooltip": "Зарегистрировать обратные отзывы по функциям перед запуском функций"
+  },
+  "bluefruit52_dis_create": {
+    "message0": "Создание сервисов информации о устройствах %1",
+    "tooltip": "Создание информационных сервисных объектов BLE для устройств"
+  },
+  "bluefruit52_dis_set": {
+    "message0": "Служба информации о устройстве %1 Установить %2 на %3",
+    "tooltip": "Установите поле сервиса информации о устройстве",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Производитель",
+            "setManufacturer"
+          ],
+          [
+            "Модель",
+            "setModel"
+          ],
+          [
+            "Серийный номер",
+            "setSerialNum"
+          ],
+          [
+            "Версия прошивки",
+            "setFirmwareRev"
+          ],
+          [
+            "Версия аппаратуры",
+            "setHardwareRev"
+          ],
+          [
+            "Версия ПО",
+            "setSoftwareRev"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "bluefruit52_dis_begin": {
+    "message0": "Служба информации о стартовом оборудовании %1",
+    "tooltip": "Запуск информационных сервисов оборудования BLE"
+  },
+  "bluefruit52_bas_create": {
+    "message0": "Создание аккумуляторных сервисов %1",
+    "tooltip": "Создание целей для обслуживания батарей BLE"
+  },
+  "bluefruit52_bas_begin": {
+    "message0": "Запуск обслуживания аккумулятора %1",
+    "tooltip": "Запуск BLE Battery Service"
+  },
+  "bluefruit52_bas_write": {
+    "message0": "Обслуживание батареи %1 Записанная мощность %2 %",
+    "tooltip": "Обновлённая сервисная стоимость батареи"
+  },
+  "bluefruit52_bas_notify": {
+    "message0": "Обслуживание батареи %1 уведомленное %2%",
+    "tooltip": "Уведомляет об изменениях уровня батареи"
+  },
+  "bluefruit52_scanner_config": {
+    "message0": "Настройте интервал сканирования %1 окне %2 активное сканирование %3 отключение и повторное сканирование %4",
+    "tooltip": "Настройка параметров сканирования на центральном конце — единица 0,625 мс",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "Включить",
+            "true"
+          ],
+          [
+            "Отключить",
+            "false"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "Включить",
+            "true"
+          ],
+          [
+            "Отключить",
+            "false"
+          ]
+        ]
+      }
+    ]
+  },
+  "bluefruit52_scanner_start": {
+    "message0": "Начать сканирование тайм-аут (секунды) %1",
+    "tooltip": "Начинайте сканирование BLE; 0 означает непрерывное сканирование"
+  },
+  "bluefruit52_scanner_stop": {
+    "message0": "Остановите сканирование",
+    "tooltip": "Остановите сканирование BLE"
+  },
+  "bluefruit52_scanner_resume": {
+    "message0": "Продолжайте сканирование",
+    "tooltip": "Восстановить скан в повторном вызове"
+  },
+  "bluefruit52_scanner_filter_uuid": {
+    "message0": "Сканирование и фильтрация UUID %1",
+    "tooltip": "Только сканирующие устройства с определёнными UUID"
+  },
+  "bluefruit52_on_scan_report": {
+    "message0": "При сканировании в BLE трансляции",
+    "message1": "выполнить %1",
+    "tooltip": "Регистрируйте обратные вызовы, которые могут считывать результаты сопоставления RSSI, адреса и UUID"
+  },
+  "bluefruit52_scan_report_rssi": {
+    "message0": "Отчёт о сканировании RSSI",
+    "tooltip": "Прочитайте RSSI текущего отчёта по сканированию"
+  },
+  "bluefruit52_scan_report_address": {
+    "message0": "Отсканируйте адрес отчета",
+    "tooltip": "Прочитайте MAC-адрес текущего отчёта о сканировании"
+  },
+  "bluefruit52_scan_report_has_uuid": {
+    "message0": "Отчёты о сканировании, содержащие UUID %1?",
+    "tooltip": "Проверьте, содержит ли текущий отчёт о сканировании указанный сервисный UUID"
+  },
+  "bluefruit52_central_connect_report": {
+    "message0": "Подключите устройство текущего отчёта сканирования",
+    "tooltip": "Центральный терминал подключается к устройству, которое сейчас находится в обратном вызове сканирования"
+  },
+  "bluefruit52_central_connected": {
+    "message0": "Центральный терминал подключён?",
+    "tooltip": "Проверьте, связана ли центральная роль"
+  },
+  "bluefruit52_client_uart_create": {
+    "message0": "Создайте централизованный BLE UART %1",
+    "tooltip": "Создать центральный клиентский объект BLE UART"
+  },
+  "bluefruit52_client_uart_begin": {
+    "message0": "Стартап-центр BLE UART %1",
+    "tooltip": "Инициализация клиента BLE UART"
+  },
+  "bluefruit52_client_uart_discover": {
+    "message0": "Центральный интерфейс BLE UART %1 Discovery Service Connection Handle %2",
+    "tooltip": "После подключения я нашёл удалённый сервис Nordic UART"
+  },
+  "bluefruit52_client_uart_enable_txd": {
+    "message0": "Центральный BLE UART %1 позволяет получать уведомления",
+    "tooltip": "Включите удалённые уведомления TXD для получения данных"
+  },
+  "bluefruit52_client_uart_write": {
+    "message0": "Central BLE UART %1 Отправить %2",
+    "tooltip": "Отправьте данные на подключённый периферий BLE UART"
+  },
+  "bluefruit52_client_uart_read_string": {
+    "message0": "Центральный BLE UART %1 читает весь текст",
+    "tooltip": "Прочитайте весь текст, полученный клиентом BLE UART"
+  },
+  "bluefruit52_client_uart_on_receive": {
+    "message0": "Установите центральный %1 BLE UART при получении данных",
+    "message1": "выполнить %1",
+    "tooltip": "Настройте клиент BLE UART на получение обратных звонков"
+  },
+  "bluefruit52_hid_create": {
+    "message0": "Создание BLE HID %1",
+    "tooltip": "Создайте BLE HID объект сервиса клавиатуры/мыши"
+  },
+  "bluefruit52_hid_begin": {
+    "message0": "Активация BLE HID %1",
+    "tooltip": "Запуск сервиса BLE HID"
+  },
+  "bluefruit52_hid_key_press": {
+    "message0": "BLE HID %1 Press Character %2",
+    "tooltip": "Отправьте клавиатуру для отчёта"
+  },
+  "bluefruit52_hid_key_release": {
+    "message0": "BLE HID %1 освобождает клавиши клавиатуры",
+    "tooltip": "Отпустите текущую клавишу клавиатуры"
+  },
+  "bluefruit52_hid_key_sequence": {
+    "message0": "BLE HID %1 Ввод текста %2 Интервалы (ms) %3",
+    "tooltip": "Ввод с клавиатуры осуществляется в последовательности символов"
+  },
+  "bluefruit52_hid_mouse_move": {
+    "message0": "BLE HID %1 движение мыши X %2 Y %3",
+    "tooltip": "Отправьте отчёт о относительном движении мыши"
+  },
+  "bluefruit52_hid_mouse_press": {
+    "message0": "BLE HID %1 Mouse Press %2",
+    "tooltip": "Нажмите кнопку мыши",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Левая кнопка",
+            "MOUSE_BUTTON_LEFT"
+          ],
+          [
+            "Правая кнопка",
+            "MOUSE_BUTTON_RIGHT"
+          ],
+          [
+            "Средняя кнопка",
+            "MOUSE_BUTTON_MIDDLE"
+          ],
+          [
+            "Назад",
+            "MOUSE_BUTTON_BACKWARD"
+          ],
+          [
+            "Вперёд",
+            "MOUSE_BUTTON_FORWARD"
+          ]
+        ]
+      }
+    ]
+  },
+  "bluefruit52_hid_mouse_release": {
+    "message0": "BLE HID %1 отпускает кнопки мыши",
+    "tooltip": "Отпустите все кнопки мыши"
+  },
+  "bluefruit52_hid_mouse_scroll": {
+    "message0": "BLE HID %1 колесо мыши %2",
+    "tooltip": "Отправляйте отчёты о колесе мыши"
+  },
+  "bluefruit52_beacon_create": {
+    "message0": "Создайте iBeacon %1 UUID%2 основной %3 второстепенной %4 RSSI %5",
+    "tooltip": "Создание и настройка объектов iBeacon"
+  },
+  "bluefruit52_beacon_set_manufacturer": {
+    "message0": "iBeacon %1 установке идентификатора поставщика %2",
+    "tooltip": "Установите идентификатор поставщика iBeacon"
+  },
+  "bluefruit52_eddystone_create": {
+    "message0": "Создать URL Eddystone %1 URL %2 RSSI %3",
+    "tooltip": "Создайте и настройте объект маяка URL Eddystone"
+  },
+  "bluefruit52_adv_set_beacon": {
+    "message0": "Маяк для вещания %1",
+    "tooltip": "Запишите объекты iBeacon или Eddystone в распределённые пакеты"
+  }
+}

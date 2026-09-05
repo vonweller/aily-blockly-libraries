@@ -1,0 +1,248 @@
+{
+  "toolbox_name": "AS5600 Magnetwinkelsensor",
+  "as5600_init": {
+    "message0": "Initialisieren Sie den AS5600 sensor%1 Adresse %2 Richtung pin%3",
+    "tooltip": "Initialisieren Sie den AS5600-Magnetwinkelsensor",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "AS5600 (0x36)",
+            "0x36"
+          ],
+          [
+            "AS5600L (0x40)",
+            "0x40"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "Softwaresteuerung",
+            "255"
+          ],
+          [
+            "2",
+            "2"
+          ],
+          [
+            "3",
+            "3"
+          ],
+          [
+            "4",
+            "4"
+          ],
+          [
+            "5",
+            "5"
+          ],
+          [
+            "6",
+            "6"
+          ],
+          [
+            "7",
+            "7"
+          ],
+          [
+            "8",
+            "8"
+          ],
+          [
+            "9",
+            "9"
+          ],
+          [
+            "10",
+            "10"
+          ],
+          [
+            "11",
+            "11"
+          ],
+          [
+            "12",
+            "12"
+          ],
+          [
+            "13",
+            "13"
+          ]
+        ]
+      }
+    ]
+  },
+  "as5600_read_angle": {
+    "message0": "Lies den AS5600-Winkel %1 units%2",
+    "tooltip": "Lesen Sie den Winkelwert des AS5600-Sensors ab",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Grad",
+            "degrees"
+          ],
+          [
+            "Radians",
+            "radians"
+          ],
+          [
+            "Rohwerte",
+            "raw"
+          ]
+        ]
+      }
+    ]
+  },
+  "as5600_read_raw_angle": {
+    "message0": "Lesen Sie den Rohwinkel des AS5600 ab",
+    "tooltip": "Lesen Sie den rohen Winkelwert des AS5600-Sensors ab (0-4095)"
+  },
+  "as5600_set_direction": {
+    "message0": "Stellen Sie die Drehrichtung der AS5600%1",
+    "tooltip": "Stellen Sie die Drehrichtung des AS5600-Sensors ein",
+    "args0": [
+      {
+        "options": [
+          [
+            "Uhrzeigersinn",
+            "0"
+          ],
+          [
+            "Gegen Uhrzeigersinn",
+            "1"
+          ]
+        ]
+      }
+    ]
+  },
+  "as5600_set_offset": {
+    "message0": "Stellen Sie den AS5600-Winkel um %1 Grad versetzt",
+    "tooltip": "Stellen Sie den Winkelversatz des AS5600-Sensors ein"
+  },
+  "as5600_get_offset": {
+    "message0": "Erhalten Sie den AS5600-Winkelversatz",
+    "tooltip": "Erhalten Sie den aktuellen Winkelversatz des AS5600-Sensors"
+  },
+  "as5600_detect_magnet": {
+    "message0": "Der AS5600 erkannte den Magneten",
+    "tooltip": "Erkennen Sie, ob der AS5600-Sensor den Magneten erkannt hat"
+  },
+  "as5600_magnet_status": {
+    "message0": "AS5600 Magnet %1",
+    "tooltip": "Erkennt den Stärkestatus des AS5600-Sensormagneten",
+    "args0": [
+      {
+        "options": [
+          [
+            "Zu stark",
+            "strong"
+          ],
+          [
+            "Zu schwach",
+            "weak"
+          ]
+        ]
+      }
+    ]
+  },
+  "as5600_read_magnitude": {
+    "message0": "Lesen Sie die Magnetfeldstärke des AS5600",
+    "tooltip": "Lesen Sie den Wert der Magnetfeldstärke des AS5600-Sensors ab"
+  },
+  "as5600_read_agc": {
+    "message0": "Lesen Sie die automatische Verstärkung der AS5600",
+    "tooltip": "Lesen Sie den automatischen Verstärkungsregler des AS5600-Sensors ab"
+  },
+  "as5600_angular_speed": {
+    "message0": "Lesen Sie die AS5600-Winkelgeschwindigkeit %1 units%2",
+    "tooltip": "Lesen Sie die Winkelgeschwindigkeit des AS5600-Sensors ab",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Abschlüsse/Sekundarstufe",
+            "degrees"
+          ],
+          [
+            "Radianer pro Sekunde",
+            "radians"
+          ],
+          [
+            "Transfer/Punkt",
+            "rpm"
+          ]
+        ]
+      }
+    ]
+  },
+  "as5600_cumulative_position": {
+    "message0": "Lesen Sie die kumulative Position des AS5600",
+    "tooltip": "Lesen Sie die akkumulierte Position des AS5600-Sensors ab (unterstützt Mehrfach-Umdrehungszählen)"
+  },
+  "as5600_revolutions": {
+    "message0": "Lesen Sie die AS5600 RPM",
+    "tooltip": "Lesen Sie die vollständige Rotationszählung des AS5600-Sensors"
+  },
+  "as5600_reset_position": {
+    "message0": "Setzen Sie den AS5600 auf die akkumulierte Position bei %1",
+    "tooltip": "Setzen Sie die angesammelte Position des AS5600-Sensors zurück"
+  },
+  "as5600_set_power_mode": {
+    "message0": "Setze den AS5600-Stromverbrauch mode%1",
+    "tooltip": "Stellen Sie den Energieverbrauchsmodus des AS5600-Sensors ein",
+    "args0": [
+      {
+        "options": [
+          [
+            "Normal",
+            "0"
+          ],
+          [
+            "Niedriger Stromverbrauch 1",
+            "1"
+          ],
+          [
+            "Niedriger Stromverbrauch 2",
+            "2"
+          ],
+          [
+            "Niedriger Stromverbrauch 3",
+            "3"
+          ]
+        ]
+      }
+    ]
+  },
+  "as5600_set_output_mode": {
+    "message0": "Setze AS5600-Ausgang mode%1",
+    "tooltip": "Stellen Sie den Ausgangsmodus des AS5600-Sensors ein",
+    "args0": [
+      {
+        "options": [
+          [
+            "Simuliert 0-100 %",
+            "0"
+          ],
+          [
+            "Simulation: 10-90 %",
+            "1"
+          ],
+          [
+            "PWM",
+            "2"
+          ]
+        ]
+      }
+    ]
+  },
+  "as5600_is_connected": {
+    "message0": "AS5600 ist angeschlossen",
+    "tooltip": "Überprüfe, ob der AS5600-Sensor angeschlossen ist"
+  }
+}

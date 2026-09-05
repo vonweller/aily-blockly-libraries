@@ -1,0 +1,91 @@
+{
+  "toolbox_name": "Si7021 sensor",
+  "toolbox_labels": {
+    "基础操作": "Basic operations",
+    "数据读取": "Data reading",
+    "加热器控制": "heater control",
+    "设备信息": "Device information"
+  },
+  "si7021_begin": {
+    "message0": "Initialize Si7021 sensor %1 using %2",
+    "args0": [
+      null,
+      {
+        "options": "${board.i2c}"
+      }
+    ]
+  },
+  "si7021_read_temperature": {
+    "message0": "Read Si7021 sensor%1 temperature"
+  },
+  "si7021_read_humidity": {
+    "message0": "Reading Si7021 sensor%1humidity"
+  },
+  "si7021_heater_control": {
+    "message0": "Si7021 sensor%1 heater%2",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "enable",
+            "true"
+          ],
+          [
+            "Disable",
+            "false"
+          ]
+        ]
+      }
+    ]
+  },
+  "si7021_is_heater_enabled": {
+    "message0": "Si7021 sensor%1 Is the heater enabled?"
+  },
+  "si7021_set_heat_level": {
+    "message0": "Set Si7021 sensor %1 heater level %2",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "lowest",
+            "SI_HEATLEVEL_LOWEST"
+          ],
+          [
+            "low",
+            "SI_HEATLEVEL_LOW"
+          ],
+          [
+            "in",
+            "SI_HEATLEVEL_MEDIUM"
+          ],
+          [
+            "high",
+            "SI_HEATLEVEL_HIGH"
+          ],
+          [
+            "higher",
+            "SI_HEATLEVEL_HIGHER"
+          ],
+          [
+            "highest",
+            "SI_HEATLEVEL_HIGHEST"
+          ]
+        ]
+      }
+    ]
+  },
+  "si7021_get_model": {
+    "message0": "Get Si7021 sensor %1 model number"
+  },
+  "si7021_get_revision": {
+    "message0": "Get Si7021 sensor %1 version"
+  },
+  "si7021_reset": {
+    "message0": "Reset Si7021 sensor%1"
+  },
+  "si7021_read_serial_number": {
+    "message0": "Read Si7021 sensor%1 serial number"
+  }
+}

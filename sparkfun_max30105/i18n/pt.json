@@ -1,0 +1,154 @@
+{
+  "toolbox_name": "SparkFun MAX30105 Oxímetro e Sensor de Frequência Cardíaca",
+  "toolbox_labels": {
+    "读取数据": "Ler dados",
+    "电源管理": "Gerenciamento de energia"
+  },
+  "max30105_init": {
+    "message0": "Inicializar sensor MAX30105 %1",
+    "tooltip": "Inicializar sensor de frequência cardíaca/SpO2 MAX30105 (endereço I2C 0x57)"
+  },
+  "max30105_setup": {
+    "message0": "MAX30105 %1 Config potência LED %2 méd. amostras %3 modo LED %4 taxa amostragem %5 largura pulso %6 faixa ADC %7",
+    "tooltip": "Configurar parâmetros do sensor MAX30105",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "60mA",
+            "60"
+          ],
+          [
+            "20mA",
+            "20"
+          ],
+          [
+            "6mA",
+            "6"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "4",
+            "4"
+          ],
+          [
+            "8",
+            "8"
+          ],
+          [
+            "1",
+            "1"
+          ],
+          [
+            "16",
+            "16"
+          ],
+          [
+            "32",
+            "32"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "Vermelho + IR",
+            "2"
+          ],
+          [
+            "Vermelho",
+            "1"
+          ],
+          [
+            "Vermelho + IR + Verde",
+            "3"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "100 Hz",
+            "100"
+          ],
+          [
+            "400 Hz",
+            "400"
+          ],
+          [
+            "800 Hz",
+            "800"
+          ],
+          [
+            "1000 Hz",
+            "1000"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "411 μs",
+            "411"
+          ],
+          [
+            "118 μs",
+            "118"
+          ],
+          [
+            "215 μs",
+            "215"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "16384",
+            "16384"
+          ],
+          [
+            "4096",
+            "4096"
+          ],
+          [
+            "8192",
+            "8192"
+          ],
+          [
+            "32768",
+            "32768"
+          ]
+        ]
+      }
+    ]
+  },
+  "max30105_safe_check": {
+    "message0": "MAX30105 %1 Aguardar dados timeout %2 ms",
+    "tooltip": "Aguardar novos dados no tempo especificado, retorna true se disponível"
+  },
+  "max30105_get_red": {
+    "message0": "MAX30105 %1 Valor vermelho",
+    "tooltip": "Ler valor bruto do canal LED vermelho"
+  },
+  "max30105_get_ir": {
+    "message0": "MAX30105 %1 Valor IR",
+    "tooltip": "Ler valor bruto do canal LED infravermelho"
+  },
+  "max30105_get_green": {
+    "message0": "MAX30105 %1 Valor verde",
+    "tooltip": "Ler valor bruto do canal LED verde (somente MAX30105)"
+  },
+  "max30105_shutdown": {
+    "message0": "MAX30105 %1 Modo baixo consumo",
+    "tooltip": "Colocar MAX30105 em modo de desligamento de baixo consumo"
+  },
+  "max30105_wakeup": {
+    "message0": "MAX30105 %1 Despertar",
+    "tooltip": "Despertar MAX30105 do modo de baixo consumo"
+  }
+}
