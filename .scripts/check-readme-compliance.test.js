@@ -27,7 +27,9 @@ const { callWithNamedValueInputs } = require('./check-readme-cross-library-examp
 const {
   buildGeneratedCodePreviews,
   loadGenerator,
+  parseCliArgs: parseGeneratorCoverageArgs,
   probeGeneratorHandler,
+  strictFailureCount,
 } = require('./check-library-generator-coverage');
 const { loadLibraryContract } = require('./readme-library-contracts');
 const {
@@ -678,6 +680,32 @@ test('no-direct generated code requires a versioned classification with an expli
   );
   assert.ok(unclassified.errors.some(entry => entry.error.includes('without a classified reason')));
   assert.equal(unclassified.previews.has('silent_block'), false);
+});
+
+test('incremental generator coverage can report generated-code drift without blocking', () => {
+  const report = {
+    generatorLoadErrors: 0,
+    missingPublicGenerators: 0,
+    unclassifiedMissingGenerators: 0,
+    unresolvedVisibleToolboxTypes: 0,
+    duplicateAssignments: 0,
+    unclassifiedOrphanGenerators: 0,
+    registrationContractErrors: [],
+    generatedCodeContractErrors: [],
+    slotMismatches: 0,
+    unknownSlotReads: 0,
+    handlerProbeErrors: 0,
+    generatedCodeMismatches: 3,
+  };
+
+  assert.equal(strictFailureCount(report), 3);
+  assert.equal(strictFailureCount(report, { allowGeneratedCodeMismatches: true }), 0);
+  assert.deepEqual(parseGeneratorCoverageArgs(['--strict', '--allow-generated-code-mismatches', '--library', 'esplink_ble']), {
+    json: false,
+    strict: true,
+    allowGeneratedCodeMismatches: true,
+    libraries: ['esplink_ble'],
+  });
 });
 
 test('Block Definitions rejects unknown pseudo-blocks and duplicate rows', () => {

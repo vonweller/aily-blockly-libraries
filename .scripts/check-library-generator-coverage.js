@@ -991,17 +991,33 @@ function audit(targetLibraries = null) {
 }
 
 function parseCliArgs(argv) {
-  const options = { json: false, strict: false, libraries: [] };
+  const options = { json: false, strict: false, allowGeneratedCodeMismatches: false, libraries: [] };
   for (let index = 0; index < argv.length; index++) {
     const arg = argv[index];
     if (arg === '--json') options.json = true;
     else if (arg === '--strict') options.strict = true;
+    else if (arg === '--allow-generated-code-mismatches') options.allowGeneratedCodeMismatches = true;
     else if (arg === '--library') {
       if (!argv[index + 1]) throw new Error('--library requires a library name');
       options.libraries.push(argv[++index]);
     } else throw new Error(`Unknown option: ${arg}`);
   }
   return options;
+}
+
+function strictFailureCount(report, options = {}) {
+  return report.generatorLoadErrors
+    + report.missingPublicGenerators
+    + report.unclassifiedMissingGenerators
+    + report.unresolvedVisibleToolboxTypes
+    + report.duplicateAssignments
+    + report.unclassifiedOrphanGenerators
+    + report.registrationContractErrors.length
+    + report.generatedCodeContractErrors.length
+    + report.slotMismatches
+    + report.unknownSlotReads
+    + report.handlerProbeErrors
+    + (options.allowGeneratedCodeMismatches ? 0 : report.generatedCodeMismatches);
 }
 
 function main() {
@@ -1053,18 +1069,10 @@ function main() {
       if (findings.length) console.log(`- ${item.library}${item.hiddenPackage ? ' [hidden]' : ''}: ${findings.join('; ')}`);
     }
   }
-  const strictFailures = report.generatorLoadErrors
-    + report.missingPublicGenerators
-    + report.unclassifiedMissingGenerators
-    + report.unresolvedVisibleToolboxTypes
-    + report.duplicateAssignments
-    + report.unclassifiedOrphanGenerators
-    + report.registrationContractErrors.length
-    + report.generatedCodeContractErrors.length
-    + report.slotMismatches
-    + report.unknownSlotReads
-    + report.handlerProbeErrors
-    + report.generatedCodeMismatches;
+  if (options.allowGeneratedCodeMismatches && report.generatedCodeMismatches > 0) {
+    console.log(`Generated-code documentation mismatches ignored by this run: ${report.generatedCodeMismatches}`);
+  }
+  const strictFailures = strictFailureCount(report, options);
   if (options.strict && strictFailures > 0) process.exitCode = 1;
 }
 
@@ -1080,4 +1088,5 @@ module.exports = {
   generatedCodePreviewArtifact,
   probeGeneratorHandler,
   parseCliArgs,
+  strictFailureCount,
 };
