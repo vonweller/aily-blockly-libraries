@@ -1,0 +1,178 @@
+{
+  "kind": "category",
+  "name": "ESPLink BLE",
+  "icon": "fa-light fa-bluetooth",
+  "colour": "#2196F3",
+  "contents": [
+    {
+      "kind": "category",
+      "name": "C3链路",
+      "icon": "fa-light fa-link",
+      "colour": "#607D8B",
+      "contents": [
+        { "kind": "block", "type": "esplink_begin" },
+        { "kind": "block", "type": "esplink_begin_serial" },
+        { "kind": "block", "type": "esplink_bind_stream" },
+        { "kind": "block", "type": "esplink_end" },
+        { "kind": "block", "type": "esplink_poll" },
+        { "kind": "block", "type": "esplink_ready" },
+        { "kind": "block", "type": "esplink_ping" },
+        { "kind": "block", "type": "esplink_session" },
+        { "kind": "block", "type": "esplink_last_error" },
+        { "kind": "block", "type": "esplink_error_code" },
+        { "kind": "block", "type": "esplink_firmware_version" },
+        { "kind": "block", "type": "esplink_capability" },
+        { "kind": "block", "type": "esplink_has_feature" },
+        { "kind": "block", "type": "esplink_stat" }
+      ]
+    },
+    {
+      "kind": "category",
+      "name": "初始化与链路",
+      "icon": "fa-light fa-bluetooth",
+      "colour": "#2196F3",
+      "contents": [
+        { "kind": "block", "type": "esplink_ble_begin" },
+        { "kind": "block", "type": "esplink_ble_end" },
+        { "kind": "block", "type": "esplink_ble_poll" },
+        { "kind": "block", "type": "esplink_ble_connected" },
+        { "kind": "block", "type": "esplink_ble_disconnect" },
+        { "kind": "block", "type": "esplink_ble_address" },
+        { "kind": "block", "type": "esplink_ble_set_timeout" },
+        { "kind": "block", "type": "esplink_ble_healthy" },
+        { "kind": "block", "type": "esplink_ble_last_error" }
+      ]
+    },
+    {
+      "kind": "category",
+      "name": "服务与特征",
+      "icon": "fa-light fa-layer-group",
+      "colour": "#4CAF50",
+      "contents": [
+        { "kind": "block", "type": "esplink_ble_create_service" },
+        { "kind": "block", "type": "esplink_ble_create_characteristic" },
+        { "kind": "block", "type": "esplink_ble_create_string_characteristic" },
+        { "kind": "block", "type": "esplink_ble_service_add_characteristic" },
+        { "kind": "block", "type": "esplink_ble_add_service" }
+      ]
+    },
+    {
+      "kind": "category",
+      "name": "广播设置",
+      "icon": "fa-light fa-tower-broadcast",
+      "colour": "#4CAF50",
+      "contents": [
+        {
+          "kind": "block",
+          "type": "esplink_ble_set_local_name",
+          "inputs": {
+            "NAME": { "shadow": { "type": "text", "fields": { "TEXT": "ESPLink-Device" } } }
+          }
+        },
+        {
+          "kind": "block",
+          "type": "esplink_ble_set_device_name",
+          "inputs": {
+            "NAME": { "shadow": { "type": "text", "fields": { "TEXT": "ESPLink-Device" } } }
+          }
+        },
+        { "kind": "block", "type": "esplink_ble_set_advertised_service" },
+        { "kind": "block", "type": "esplink_ble_advertise" },
+        { "kind": "block", "type": "esplink_ble_stop_advertise" },
+        { "kind": "block", "type": "esplink_ble_set_advertising_interval" },
+        { "kind": "block", "type": "esplink_ble_set_connectable" }
+      ]
+    },
+    {
+      "kind": "category",
+      "name": "特征读写",
+      "icon": "fa-light fa-pen",
+      "colour": "#FF9800",
+      "contents": [
+        {
+          "kind": "block",
+          "type": "esplink_ble_char_write_number",
+          "inputs": {
+            "VALUE": { "shadow": { "type": "math_number", "fields": { "NUM": 0 } } }
+          }
+        },
+        {
+          "kind": "block",
+          "type": "esplink_ble_char_write_string",
+          "inputs": {
+            "VALUE": { "shadow": { "type": "text", "fields": { "TEXT": "hello" } } }
+          }
+        },
+        { "kind": "block", "type": "esplink_ble_char_value_number" },
+        { "kind": "block", "type": "esplink_ble_char_value_string" },
+        { "kind": "block", "type": "esplink_ble_char_written" },
+        { "kind": "block", "type": "esplink_ble_char_subscribed" }
+      ]
+    },
+    {
+      "kind": "category",
+      "name": "BLE事件",
+      "icon": "fa-light fa-bell",
+      "colour": "#FF9800",
+      "contents": [
+        { "kind": "block", "type": "esplink_ble_on_char_written" },
+        { "kind": "block", "type": "esplink_ble_on_device_event" }
+      ]
+    },
+    {
+      "kind": "category",
+      "name": "扫描与连接",
+      "icon": "fa-light fa-radar",
+      "colour": "#9C27B0",
+      "contents": [
+        { "kind": "block", "type": "esplink_ble_scan" },
+        {
+          "kind": "block",
+          "type": "esplink_ble_scan_for",
+          "inputs": {
+            "FILTER": { "shadow": { "type": "text", "fields": { "TEXT": "19B10000-E8F2-537E-4F6C-D104768A1214" } } }
+          }
+        },
+        { "kind": "block", "type": "esplink_ble_stop_scan" },
+        { "kind": "block", "type": "esplink_ble_device_create" },
+        { "kind": "block", "type": "esplink_ble_device_found" },
+        { "kind": "block", "type": "esplink_ble_device_connect" },
+        { "kind": "block", "type": "esplink_ble_device_discover" },
+        { "kind": "block", "type": "esplink_ble_device_connected" },
+        { "kind": "block", "type": "esplink_ble_device_disconnect" },
+        { "kind": "block", "type": "esplink_ble_device_address" },
+        { "kind": "block", "type": "esplink_ble_device_local_name" },
+        { "kind": "block", "type": "esplink_ble_device_rssi" }
+      ]
+    },
+    {
+      "kind": "category",
+      "name": "对端特征",
+      "icon": "fa-light fa-hashtag",
+      "colour": "#9C27B0",
+      "contents": [
+        { "kind": "block", "type": "esplink_ble_remote_char_create" },
+        { "kind": "block", "type": "esplink_ble_remote_can" },
+        { "kind": "block", "type": "esplink_ble_remote_read" },
+        { "kind": "block", "type": "esplink_ble_remote_value_number" },
+        { "kind": "block", "type": "esplink_ble_remote_value_string" },
+        {
+          "kind": "block",
+          "type": "esplink_ble_remote_write_number",
+          "inputs": {
+            "VALUE": { "shadow": { "type": "math_number", "fields": { "NUM": 0 } } }
+          }
+        },
+        {
+          "kind": "block",
+          "type": "esplink_ble_remote_write_string",
+          "inputs": {
+            "VALUE": { "shadow": { "type": "text", "fields": { "TEXT": "hello" } } }
+          }
+        },
+        { "kind": "block", "type": "esplink_ble_remote_subscribe" },
+        { "kind": "block", "type": "esplink_ble_remote_value_updated" }
+      ]
+    }
+  ]
+}

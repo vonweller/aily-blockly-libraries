@@ -1,0 +1,600 @@
+{
+  "toolbox_name": "ESPLink BLE",
+  "toolbox_categories": [
+    "C3鏈路",
+    "初始化與鏈路",
+    "服務與特徵",
+    "廣播設定",
+    "特徵讀寫",
+    "BLE事件",
+    "掃描與連接",
+    "對端特徵"
+  ],
+  "esplink_ble_begin": {
+    "message0": "啟動BLE",
+    "tooltip": "透過ESP32-C3啟動BLE主機協定堆疊，會自動建立ESPLink鏈路"
+  },
+  "esplink_ble_end": {
+    "message0": "關閉BLE",
+    "tooltip": "關閉BLE，不影響同一鏈路上的WiFi"
+  },
+  "esplink_ble_poll": {
+    "message0": "處理BLE事務",
+    "tooltip": "推進BLE主機並執行回呼。使用BLE積木時會自動加入主程式"
+  },
+  "esplink_ble_connected": {
+    "message0": "BLE已連接",
+    "tooltip": "目前是否有BLE連接。本移植一次只支援一個連接"
+  },
+  "esplink_ble_address": {
+    "message0": "BLE本機位址",
+    "tooltip": "本機藍牙位址"
+  },
+  "esplink_ble_disconnect": {
+    "message0": "斷開BLE連接",
+    "tooltip": "斷開目前連接的對端裝置"
+  },
+  "esplink_ble_set_timeout": {
+    "message0": "設定BLE操作逾時 %1 毫秒",
+    "tooltip": "設定掃描、連接等操作的等待時間"
+  },
+  "esplink_ble_healthy": {
+    "message0": "BLE鏈路正常",
+    "tooltip": "C3控制器鏈路是否健康。工作階段變更或佇列溢位後需要重啟BLE"
+  },
+  "esplink_ble_last_error": {
+    "message0": "BLE最後錯誤碼",
+    "tooltip": "BLE傳輸層最後一次錯誤碼，0表示成功"
+  },
+  "esplink_ble_create_service": {
+    "message0": "建立BLE服務 %1 UUID %2",
+    "tooltip": "建立一個本機GATT服務物件"
+  },
+  "esplink_ble_create_characteristic": {
+    "message0": "建立BLE數值特徵 %1 UUID %2 類型 %3",
+    "message1": "可讀 %1 可寫 %2 通知 %3 指示 %4",
+    "tooltip": "建立一個固定長度的數值特徵物件",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "整數",
+            "BLEIntCharacteristic"
+          ],
+          [
+            "無號整數",
+            "BLEUnsignedIntCharacteristic"
+          ],
+          [
+            "位元組",
+            "BLEByteCharacteristic"
+          ],
+          [
+            "短整數",
+            "BLEShortCharacteristic"
+          ],
+          [
+            "長整數",
+            "BLELongCharacteristic"
+          ],
+          [
+            "無號長整數",
+            "BLEUnsignedLongCharacteristic"
+          ],
+          [
+            "浮點數",
+            "BLEFloatCharacteristic"
+          ],
+          [
+            "雙精度浮點數",
+            "BLEDoubleCharacteristic"
+          ],
+          [
+            "布林值",
+            "BLEBoolCharacteristic"
+          ]
+        ]
+      }
+    ]
+  },
+  "esplink_ble_create_string_characteristic": {
+    "message0": "建立BLE字串特徵 %1 UUID %2 最大長度 %3",
+    "message1": "可讀 %1 可寫 %2 通知 %3 指示 %4",
+    "tooltip": "建立一個字串特徵物件，長度上限受ATT MTU(242)限制"
+  },
+  "esplink_ble_service_add_characteristic": {
+    "message0": "服務 %1 加入特徵 %2",
+    "tooltip": "把特徵加入服務，必須在註冊服務之前完成"
+  },
+  "esplink_ble_add_service": {
+    "message0": "註冊BLE服務 %1",
+    "tooltip": "把服務加入本機GATT資料庫"
+  },
+  "esplink_ble_set_local_name": {
+    "message0": "設定BLE廣播名稱 %1",
+    "tooltip": "設定掃描回應中顯示的名稱"
+  },
+  "esplink_ble_set_device_name": {
+    "message0": "設定BLE裝置名稱 %1",
+    "tooltip": "設定GAP裝置名稱特徵的值"
+  },
+  "esplink_ble_set_advertised_service": {
+    "message0": "廣播服務 %1",
+    "tooltip": "在廣播封包中公開該服務的UUID，方便中心裝置篩選"
+  },
+  "esplink_ble_advertise": {
+    "message0": "開始BLE廣播",
+    "tooltip": "開始廣播，需要在註冊完服務之後呼叫"
+  },
+  "esplink_ble_stop_advertise": {
+    "message0": "停止BLE廣播",
+    "tooltip": "停止廣播"
+  },
+  "esplink_ble_set_advertising_interval": {
+    "message0": "設定廣播間隔 %1 毫秒",
+    "tooltip": "間隔越大越省電但被發現越慢"
+  },
+  "esplink_ble_set_connectable": {
+    "message0": "設定BLE可被連接 %1",
+    "tooltip": "關閉後只廣播不接受連接"
+  },
+  "esplink_ble_char_write_number": {
+    "message0": "特徵 %1 寫入數值 %2",
+    "tooltip": "更新本機特徵的數值，已訂閱的對端會收到通知"
+  },
+  "esplink_ble_char_write_string": {
+    "message0": "特徵 %1 寫入字串 %2",
+    "tooltip": "更新本機字串特徵的內容"
+  },
+  "esplink_ble_char_value_number": {
+    "message0": "特徵 %1 的數值",
+    "tooltip": "讀取本機數值特徵目前的值"
+  },
+  "esplink_ble_char_value_string": {
+    "message0": "特徵 %1 的字串",
+    "tooltip": "讀取本機字串特徵目前的內容"
+  },
+  "esplink_ble_char_written": {
+    "message0": "特徵 %1 被寫入過",
+    "tooltip": "對端是否寫入過該特徵，讀取後旗標會清除"
+  },
+  "esplink_ble_char_subscribed": {
+    "message0": "特徵 %1 已被訂閱",
+    "tooltip": "對端是否訂閱了該特徵的通知"
+  },
+  "esplink_ble_on_char_written": {
+    "message0": "當特徵 %1 被寫入時",
+    "message1": "執行 %1",
+    "tooltip": "對端寫入該特徵時執行，回呼在呼叫BLE處理積木的工作中執行，內容要短"
+  },
+  "esplink_ble_on_device_event": {
+    "message0": "當BLE %1 時",
+    "message1": "執行 %1",
+    "tooltip": "連接或斷開時執行的回呼",
+    "args0": [
+      {
+        "options": [
+          [
+            "有裝置連接",
+            "BLEConnected"
+          ],
+          [
+            "裝置斷開",
+            "BLEDisconnected"
+          ]
+        ]
+      }
+    ]
+  },
+  "esplink_ble_scan": {
+    "message0": "開始掃描BLE裝置",
+    "tooltip": "掃描周圍所有可被發現的BLE裝置"
+  },
+  "esplink_ble_scan_for": {
+    "message0": "開始掃描BLE裝置 按 %1 比對 %2",
+    "tooltip": "只回報符合條件的裝置",
+    "args0": [
+      {
+        "options": [
+          [
+            "服務UUID",
+            "scanForUuid"
+          ],
+          [
+            "裝置名稱",
+            "scanForName"
+          ],
+          [
+            "裝置位址",
+            "scanForAddress"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "esplink_ble_stop_scan": {
+    "message0": "停止掃描BLE裝置",
+    "tooltip": "停止掃描。連接之前必須先停止掃描"
+  },
+  "esplink_ble_device_create": {
+    "message0": "取出掃描到的裝置到 %1",
+    "tooltip": "取出一個掃描到的裝置，沒有新裝置時該變數無效"
+  },
+  "esplink_ble_device_found": {
+    "message0": "裝置 %1 有效",
+    "tooltip": "該裝置變數是否指向一個真實裝置"
+  },
+  "esplink_ble_device_connect": {
+    "message0": "連接裝置 %1",
+    "tooltip": "連接該裝置，成功傳回真。連接前要先停止掃描"
+  },
+  "esplink_ble_device_discover": {
+    "message0": "發現裝置 %1 的全部服務",
+    "tooltip": "讀取對端的服務和特徵清單，連接後必須先呼叫"
+  },
+  "esplink_ble_device_connected": {
+    "message0": "裝置 %1 保持連接",
+    "tooltip": "該裝置目前是否仍然連接"
+  },
+  "esplink_ble_device_disconnect": {
+    "message0": "斷開裝置 %1",
+    "tooltip": "斷開與該裝置的連接"
+  },
+  "esplink_ble_device_address": {
+    "message0": "裝置 %1 的位址",
+    "tooltip": "對端裝置的藍牙位址"
+  },
+  "esplink_ble_device_local_name": {
+    "message0": "裝置 %1 的名稱",
+    "tooltip": "廣播封包中的裝置名稱，未廣播名稱時為空"
+  },
+  "esplink_ble_device_rssi": {
+    "message0": "裝置 %1 的訊號強度",
+    "tooltip": "對端裝置的訊號強度(dBm)"
+  },
+  "esplink_ble_remote_char_create": {
+    "message0": "從裝置 %1 取出特徵 %2 UUID %3",
+    "tooltip": "按UUID取出對端特徵，需要先發現服務"
+  },
+  "esplink_ble_remote_can": {
+    "message0": "對端特徵 %1 %2",
+    "tooltip": "查詢對端特徵的能力",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "有效",
+            "valid"
+          ],
+          [
+            "可讀",
+            "canRead"
+          ],
+          [
+            "可寫",
+            "canWrite"
+          ],
+          [
+            "可訂閱",
+            "canSubscribe"
+          ]
+        ]
+      }
+    ]
+  },
+  "esplink_ble_remote_read": {
+    "message0": "讀取對端特徵 %1",
+    "tooltip": "向對端發起一次讀取，結果保存在本機快取中"
+  },
+  "esplink_ble_remote_value_number": {
+    "message0": "對端特徵 %1 的數值",
+    "tooltip": "按特徵長度把快取內容解釋為整數"
+  },
+  "esplink_ble_remote_value_string": {
+    "message0": "對端特徵 %1 的字串",
+    "tooltip": "把快取內容按文字讀取"
+  },
+  "esplink_ble_remote_write_number": {
+    "message0": "對端特徵 %1 寫入數值 %2",
+    "tooltip": "向對端特徵寫入一個4位元組整數"
+  },
+  "esplink_ble_remote_write_string": {
+    "message0": "對端特徵 %1 寫入字串 %2",
+    "tooltip": "向對端特徵寫入文字"
+  },
+  "esplink_ble_remote_subscribe": {
+    "message0": "訂閱對端特徵 %1",
+    "tooltip": "訂閱通知，成功傳回真"
+  },
+  "esplink_ble_remote_value_updated": {
+    "message0": "對端特徵 %1 有新資料",
+    "tooltip": "訂閱後是否收到了新的通知資料"
+  },
+  "esplink_begin": {
+    "message0": "啟動ESPLink連接ESP32-C3",
+    "tooltip": "使用開發板預設的硬件串口(921600波特率)啟動與ESP32-C3的連接。WiFi和BLE庫會自動啟動ESPLink，此積木僅在需要單獨診斷時使用"
+  },
+  "esplink_begin_serial": {
+    "message0": "啟動ESPLink 串口 %1 波特率 %2",
+    "tooltip": "指定串口和波特率啟動ESPLink。必須與C3韌體的波特率一致，且要在WiFi/BLE初始化之前呼叫",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "921600",
+            "921600"
+          ],
+          [
+            "115200",
+            "115200"
+          ],
+          [
+            "460800",
+            "460800"
+          ],
+          [
+            "230400",
+            "230400"
+          ],
+          [
+            "1000000",
+            "1000000"
+          ]
+        ]
+      }
+    ]
+  },
+  "esplink_bind_stream": {
+    "message0": "綁定已設定的串口 %1 到ESPLink",
+    "tooltip": "借用一個已經自行初始化(含自訂腳位)的串口，ESPLink不會呼叫它的begin()和end()"
+  },
+  "esplink_end": {
+    "message0": "斷開ESPLink連接",
+    "tooltip": "釋放ESPLink綁定。借用模式下不會關閉串口驅動"
+  },
+  "esplink_poll": {
+    "message0": "處理ESPLink事務",
+    "tooltip": "推進ESPLink傳輸。使用初始化積木時會自動加入主程式，一般無需手動加入"
+  },
+  "esplink_ready": {
+    "message0": "ESPLink已就緒",
+    "tooltip": "C3鏈路是否處於可用工作階段中"
+  },
+  "esplink_ping": {
+    "message0": "ESPLink通訊測試 逾時 %1 毫秒",
+    "tooltip": "向C3發送一次Ping並等待回應"
+  },
+  "esplink_session": {
+    "message0": "ESPLink工作階段號",
+    "tooltip": "目前鏈路工作階段號。號碼改變表示C3重啟或鏈路重建，之前的socket和BLE控制代碼全部失效"
+  },
+  "esplink_last_error": {
+    "message0": "ESPLink最後錯誤碼",
+    "tooltip": "最後一次ESPLink操作的錯誤碼，0表示成功"
+  },
+  "esplink_error_code": {
+    "message0": "錯誤碼 %1",
+    "tooltip": "ESPLink錯誤碼常數，用於和最後錯誤碼比較",
+    "args0": [
+      {
+        "options": [
+          [
+            "成功",
+            "c3::Ok"
+          ],
+          [
+            "參數無效",
+            "c3::InvalidArgument"
+          ],
+          [
+            "不支援",
+            "c3::Unsupported"
+          ],
+          [
+            "記憶體不足",
+            "c3::NoMemory"
+          ],
+          [
+            "忙碌",
+            "c3::Busy"
+          ],
+          [
+            "逾時",
+            "c3::Timeout"
+          ],
+          [
+            "未連接",
+            "c3::NotConnected"
+          ],
+          [
+            "IO錯誤",
+            "c3::IoError"
+          ],
+          [
+            "協定錯誤",
+            "c3::ProtocolError"
+          ],
+          [
+            "結果未知",
+            "c3::OutcomeUnknown"
+          ],
+          [
+            "控制代碼失效",
+            "c3::StaleHandle"
+          ],
+          [
+            "緩衝區太小",
+            "c3::BufferTooSmall"
+          ],
+          [
+            "結果已過期",
+            "c3::ResultExpired"
+          ],
+          [
+            "安全性錯誤",
+            "c3::SecurityError"
+          ],
+          [
+            "需要重試",
+            "c3::WouldBlock"
+          ],
+          [
+            "鏈路遺失",
+            "c3::LinkLost"
+          ],
+          [
+            "找不到",
+            "c3::NotFound"
+          ]
+        ]
+      }
+    ]
+  },
+  "esplink_firmware_version": {
+    "message0": "C3韌體版本",
+    "tooltip": "ESP32-C3上運行的橋接韌體版本字串"
+  },
+  "esplink_capability": {
+    "message0": "C3能力 %1",
+    "tooltip": "讀取C3握手時回報的能力參數",
+    "args0": [
+      {
+        "options": [
+          [
+            "最大負載位元組",
+            "maxPayload"
+          ],
+          [
+            "最大HCI封包位元組",
+            "maxHciPacket"
+          ],
+          [
+            "最大socket數",
+            "maxSockets"
+          ],
+          [
+            "最大BLE連接數",
+            "maxBLEConnections"
+          ],
+          [
+            "功能位元",
+            "features"
+          ],
+          [
+            "啟動ID",
+            "bootID"
+          ]
+        ]
+      }
+    ]
+  },
+  "esplink_has_feature": {
+    "message0": "C3支援 %1 功能",
+    "tooltip": "判斷C3韌體是否支援指定功能",
+    "args0": [
+      {
+        "options": [
+          [
+            "WiFi",
+            "c3::WiFi"
+          ],
+          [
+            "TCP",
+            "c3::TCP"
+          ],
+          [
+            "UDP",
+            "c3::UDP"
+          ],
+          [
+            "TLS",
+            "c3::TLS"
+          ],
+          [
+            "BLE(HCI)",
+            "c3::HCI"
+          ],
+          [
+            "IPv6",
+            "c3::IPv6"
+          ],
+          [
+            "AP+STA共存",
+            "c3::StationAP"
+          ],
+          [
+            "OTA",
+            "c3::OTA"
+          ],
+          [
+            "mDNS",
+            "c3::MDNS"
+          ]
+        ]
+      }
+    ]
+  },
+  "esplink_stat": {
+    "message0": "ESPLink統計 %1",
+    "tooltip": "讀取鏈路品質統計，用於排查接線和波特率問題",
+    "args0": [
+      {
+        "options": [
+          [
+            "已發送封包數",
+            "transmitted"
+          ],
+          [
+            "已接收封包數",
+            "received"
+          ],
+          [
+            "重傳次數",
+            "retries"
+          ],
+          [
+            "逾時次數",
+            "timeouts"
+          ],
+          [
+            "CRC錯誤數",
+            "crcErrors"
+          ],
+          [
+            "格式錯誤數",
+            "malformed"
+          ],
+          [
+            "超長封包數",
+            "oversized"
+          ],
+          [
+            "忽略封包數",
+            "ignored"
+          ],
+          [
+            "工作階段變更次數",
+            "sessionChanges"
+          ],
+          [
+            "接收位元組數",
+            "rxBytes"
+          ],
+          [
+            "接收批次數",
+            "rxBatches"
+          ],
+          [
+            "工作執行緒喚醒數",
+            "workerWakeups"
+          ]
+        ]
+      }
+    ]
+  }
+}
