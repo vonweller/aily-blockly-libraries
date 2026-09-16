@@ -1,4 +1,4 @@
-// grokEyes 2.2.0. Display configuration is supplied by lib-tft-espi.
+// grokEyes Blockly wrapper 2.2.1. Display configuration is supplied by lib-tft-espi.
 Arduino.grokEyesIdentifier = function(value) {
   let name = String(value || 'eyes').replace(/[^A-Za-z0-9_]/gu,
     ch => '_u' + ch.codePointAt(0).toString(16) + '_');
@@ -65,9 +65,61 @@ Arduino.forBlock['grok_eyes_init'] = function(block, generator) {
   return 'grok_eyes_ready_' + name + ' = ' + name + '.begin(' + fps + ', ' + width + ', ' + height + ');\n';
 };
 
+// Migrate serialized dropdown values before Blockly validates the new options.
+Arduino.grokEyesExpressionEnums = [
+  "GROK_EXPRESSION_NEUTRAL",
+  "GROK_EXPRESSION_SUSPICIOUS",
+  "GROK_EXPRESSION_HAPPY",
+  "GROK_EXPRESSION_SURPRISED",
+  "GROK_EXPRESSION_SAD",
+  "GROK_EXPRESSION_WINKING",
+  "GROK_EXPRESSION_THINKING",
+  "GROK_EXPRESSION_ANGRY",
+  "GROK_EXPRESSION_CONFIDENT",
+  "GROK_EXPRESSION_SILLY",
+  "GROK_EXPRESSION_SLEEPY",
+  "GROK_EXPRESSION_LAUGHING",
+  "GROK_EXPRESSION_CURIOUS",
+  "GROK_EXPRESSION_CRYING",
+  "GROK_EXPRESSION_CONFUSED",
+  "GROK_EXPRESSION_COOL",
+  "GROK_EXPRESSION_FUNNY",
+  "GROK_EXPRESSION_EXCITED",
+  "GROK_EXPRESSION_EVIL",
+  "GROK_EXPRESSION_DELICIOUS",
+  "GROK_EXPRESSION_LOVING",
+  "GROK_EXPRESSION_SHOCKED",
+  "GROK_EXPRESSION_RELAXED",
+  "GROK_EXPRESSION_KISSY",
+  "GROK_EXPRESSION_EMBARRASSED"
+];
+Arduino.grokEyesExpressionEnum = function(value) {
+  const match = typeof value === "string" && /^GROK_EXPRESSION_([0-9]{2})$/.exec(value);
+  return match && Arduino.grokEyesExpressionEnums[Number(match[1])] || value;
+};
+
+if (typeof Blockly !== "undefined" && Blockly.Extensions) {
+  if (Blockly.Extensions.isRegistered("grok_eyes_expression_migration")) {
+    Blockly.Extensions.unregister("grok_eyes_expression_migration");
+  }
+  Blockly.Extensions.register("grok_eyes_expression_migration", function() {
+    const field = this.getField("EXPRESSION");
+    const loadState = field.loadState;
+    const fromXml = field.fromXml;
+    field.loadState = function(state) {
+      return loadState.call(this, Arduino.grokEyesExpressionEnum(state));
+    };
+    field.fromXml = function(element) {
+      const migrated = element.cloneNode(true);
+      migrated.textContent = Arduino.grokEyesExpressionEnum(element.textContent);
+      return fromXml.call(this, migrated);
+    };
+  });
+}
+
 Arduino.forBlock['grok_eyes_set_expression'] = function(block, generator) {
   return Arduino.grokEyesCall(block, generator, 'setGrokExpression', [
-    'grokEyes::' + block.getFieldValue('EXPRESSION'),
+    'grokEyes::' + Arduino.grokEyesExpressionEnum(block.getFieldValue('EXPRESSION')),
     Arduino.grokEyesValue(block, generator, 'DURATION', 65535)]);
 };
 

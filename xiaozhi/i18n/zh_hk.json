@@ -1,0 +1,258 @@
+{
+  "toolbox_name": "小智 AI",
+  "toolbox_labels": {
+    "连接与配置": "連接與配置",
+    "音频硬件": "音頻硬件",
+    "对话控制": "對話控制",
+    "状态与数据": "狀態與數據",
+    "事件": "事件",
+    "MCP 工具": "MCP 工具"
+  },
+  "xiaozhi_create": {
+    "message0": "初始化小智",
+    "tooltip": "使用預設客戶端，自動在主循環處理事件和啟動重試，無需設定物件名稱。"
+  },
+  "xiaozhi_wifi_begin": {
+    "message0": "小智連接 WiFi 名稱 %1 密碼 %2",
+    "tooltip": "小智連接 WiFi 名稱  密碼"
+  },
+  "xiaozhi_begin_official": {
+    "message0": "小智 啟動官方服務",
+    "tooltip": "等待 WiFi，获取激活碼或啟動；未激活或啟動失败時每 30 秒重試。"
+  },
+  "xiaozhi_begin_websocket": {
+    "message0": "小智 連接 WebSocket %1 令牌 %2 根證书 PEM %3 协議 %4",
+    "tooltip": "wss:// 必須填寫根證书；自動同步時鐘。使用自定義服務時替代官方啟動积木。"
+  },
+  "xiaozhi_features": {
+    "message0": "小智 服務器回聲消除 %1 語音打斷 %2 保留原始 JSON %3",
+    "tooltip": "啟動前配置；保留原始 JSON 会增加內存使用。"
+  },
+  "xiaozhi_timeouts": {
+    "message0": "小智 握手超時毫秒 %1 会話超時毫秒 %2",
+    "tooltip": "小智  握手超時毫秒  会話超時毫秒"
+  },
+  "xiaozhi_identity": {
+    "message0": "小智 自定義設备 ID %1 客戶端 ID %2",
+    "tooltip": "僅自定義 WebSocket 服務使用；留空自動使用 MAC 和持久 UUID。官方服務使用庫管理的身份。"
+  },
+  "xiaozhi_stop": {
+    "message0": "小智 停止客戶端",
+    "tooltip": "取消啟動重試，在后续主循环完成停止。等待 running 為假后再配置。"
+  },
+  "xiaozhi_audio_preset": {
+    "message0": "小智 音頻开發板 %1 啟用本地語音唤醒 %2",
+    "tooltip": "每個程序僅一個音頻配置，啟動前使用。啟用唤醒需要 ESP-SR 模型分區；预設只配置音頻。"
+  },
+  "xiaozhi_audio_es8311": {
+    "message0": "小智 ES8311 音頻 MCLK %1 BCLK %2 WS %3 扬聲器數據 %4 麦克風數據 %5 SDA %6 SCL %7 PA %8 麦克風增益 dB %9 輸出音量 dB %10",
+    "tooltip": "小智  ES8311 音頻 MCLK  BCLK  WS  扬聲器數據  麦克風數據  SDA  SCL  PA  麦克風增益 dB  輸出音量 dB"
+  },
+  "xiaozhi_audio_i2s": {
+    "message0": "小智 I2S %1 扬聲器 BCLK %2 WS %3 數據 %4 麦克風 BCLK %5 WS %6 數據 %7 麦克風聲道 %8 右移位數 %9 放大器使能脚 %10 音量百分比 %11",
+    "tooltip": "共享時鐘時只使用扬聲器 BCLK/WS，麦克風連接同一時鐘；32 位槽，24 位麦克風數據。",
+    "args0": [
+      {
+        "options": [
+          [
+            "獨立總線",
+            "SIMPLEX"
+          ],
+          [
+            "共享時鐘",
+            "DUPLEX"
+          ]
+        ]
+      },
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      {
+        "options": [
+          [
+            "左",
+            "Left"
+          ],
+          [
+            "右",
+            "Right"
+          ]
+        ]
+      },
+      null,
+      null,
+      null
+    ]
+  },
+  "xiaozhi_audio_pdm": {
+    "message0": "小智 PDM 麦克風時鐘 %1 數據 %2 I2S 扬聲器 BCLK %3 WS %4 數據 %5 放大器使能脚 %6 音量百分比 %7",
+    "tooltip": "小智  PDM 麦克風時鐘  數據  I2S 扬聲器 BCLK  WS  數據  放大器使能脚  音量百分比"
+  },
+  "xiaozhi_start_listening": {
+    "message0": "小智 开始聆聽 模式 %1",
+    "tooltip": "小智  开始聆聽 模式"
+  },
+  "xiaozhi_stop_listening": {
+    "message0": "小智 停止聆聽",
+    "tooltip": "小智  停止聆聽"
+  },
+  "xiaozhi_toggle_chat": {
+    "message0": "小智 切換對話",
+    "tooltip": "小智  切換對話"
+  },
+  "xiaozhi_abort_speaking": {
+    "message0": "小智 打斷讲話 原因 %1",
+    "tooltip": "小智  打斷讲話 原因"
+  },
+  "xiaozhi_wake_word": {
+    "message0": "小智 通知检測到唤醒詞 %1",
+    "tooltip": "提交外部唤醒事件，不会自動运行語音识別。"
+  },
+  "xiaozhi_mute": {
+    "message0": "小智 播放静音 %1",
+    "tooltip": "小智  播放静音"
+  },
+  "xiaozhi_close_session": {
+    "message0": "小智 關閉當前会話",
+    "tooltip": "小智  關閉當前会話"
+  },
+  "xiaozhi_send_mcp": {
+    "message0": "小智 發送 MCP JSON %1",
+    "tooltip": "小智  發送 MCP JSON"
+  },
+  "xiaozhi_last_operation": {
+    "message0": "小智 上次操作已接受",
+    "tooltip": "请求已入隊不代表服務器已完成操作。"
+  },
+  "xiaozhi_ready": {
+    "message0": "小智 狀態 %1",
+    "tooltip": "小智  狀態"
+  },
+  "xiaozhi_state": {
+    "message0": "小智 當前狀態名稱",
+    "tooltip": "小智  當前狀態名稱"
+  },
+  "xiaozhi_is_state": {
+    "message0": "小智 當前狀態是 %1",
+    "tooltip": "小智  當前狀態是"
+  },
+  "xiaozhi_event_is": {
+    "message0": "小智 最近事件是 %1",
+    "tooltip": "小智  最近事件是"
+  },
+  "xiaozhi_event_text": {
+    "message0": "小智 最近事件 %1",
+    "tooltip": "小智  最近事件"
+  },
+  "xiaozhi_emotion_id": {
+    "message0": "小智 最近表情编号",
+    "tooltip": "小智  最近表情编号"
+  },
+  "xiaozhi_activation": {
+    "message0": "小智 激活信息 %1",
+    "tooltip": "小智  激活信息"
+  },
+  "xiaozhi_error": {
+    "message0": "小智 錯誤 %1",
+    "tooltip": "小智  錯誤"
+  },
+  "xiaozhi_state_event": {
+    "message0": "小智 狀態變化事件 %1",
+    "tooltip": "小智  狀態變化事件"
+  },
+  "xiaozhi_capture_enabled": {
+    "message0": "小智 正在采集音頻",
+    "tooltip": "小智  正在采集音頻"
+  },
+  "xiaozhi_detected_wake_word": {
+    "message0": "小智 最近唤醒詞",
+    "tooltip": "小智  最近唤醒詞"
+  },
+  "xiaozhi_audio_meta": {
+    "message0": "小智 最近音頻 %1",
+    "tooltip": "小智  最近音頻"
+  },
+  "xiaozhi_stats": {
+    "message0": "小智 运行統計 %1",
+    "tooltip": "小智  运行統計"
+  },
+  "xiaozhi_on_event": {
+    "message0": "當小智 收到事件 %1 執行 %2",
+    "tooltip": "同一客戶端可添加多個事件积木；在 Arduino 主循环回調中執行。"
+  },
+  "xiaozhi_on_state": {
+    "message0": "當小智 狀態變化 執行 %1",
+    "tooltip": "當小智  狀態變化 執行"
+  },
+  "xiaozhi_on_error": {
+    "message0": "當小智 發生錯誤 執行 %1",
+    "tooltip": "當小智  發生錯誤 執行"
+  },
+  "xiaozhi_on_activation": {
+    "message0": "當小智 需要激活 執行 %1",
+    "tooltip": "當小智  需要激活 執行"
+  },
+  "xiaozhi_on_capture": {
+    "message0": "當小智 音頻采集變化 執行 %1",
+    "tooltip": "當小智  音頻采集變化 執行"
+  },
+  "xiaozhi_on_wake": {
+    "message0": "當小智 检測到唤醒詞 執行 %1",
+    "tooltip": "當小智  检測到唤醒詞 執行"
+  },
+  "xiaozhi_on_audio": {
+    "message0": "當小智 收到下行音頻信息 執行 %1",
+    "tooltip": "當小智  收到下行音頻信息 執行"
+  },
+  "xiaozhi_tool": {
+    "message0": "小智 註冊 MCP 工具 名稱 %1 描述 %2 參數 %3 被調用時 %4",
+    "tooltip": "參數區放參數定義，調用區讀取參數並返回结果。處理函數运行在服務任務，禁止延時、HTTP、顯示刷新或調用小智客戶端积木。"
+  },
+  "xiaozhi_property_string": {
+    "message0": "MCP 文本參數 %1 必填 %2 默認值 %3",
+    "tooltip": "MCP 文本參數  必填  默認值"
+  },
+  "xiaozhi_property_number": {
+    "message0": "MCP 整數參數 %1 必填 %2 默認值 %3 最小值 %4 最大值 %5",
+    "tooltip": "MCP 整數參數  必填  默認值  最小值  最大值"
+  },
+  "xiaozhi_property_boolean": {
+    "message0": "MCP 布尔參數 %1 必填 %2 默認值 %3",
+    "tooltip": "MCP 布尔參數  必填  默認值"
+  },
+  "xiaozhi_argument_string": {
+    "message0": "MCP 當前工具文本參數 %1",
+    "tooltip": "MCP 當前工具文本參數"
+  },
+  "xiaozhi_return_string": {
+    "message0": "MCP 返回文本 %1",
+    "tooltip": "MCP 返回文本"
+  },
+  "xiaozhi_argument_number": {
+    "message0": "MCP 當前工具整數參數 %1",
+    "tooltip": "MCP 當前工具整數參數"
+  },
+  "xiaozhi_return_number": {
+    "message0": "MCP 返回整數 %1",
+    "tooltip": "MCP 返回整數"
+  },
+  "xiaozhi_argument_boolean": {
+    "message0": "MCP 當前工具布尔參數 %1",
+    "tooltip": "MCP 當前工具布尔參數"
+  },
+  "xiaozhi_return_boolean": {
+    "message0": "MCP 返回布尔 %1",
+    "tooltip": "MCP 返回布尔"
+  },
+  "xiaozhi_return_json": {
+    "message0": "MCP 返回 JSON %1",
+    "tooltip": "MCP 返回 JSON"
+  },
+  "xiaozhi_return_error": {
+    "message0": "MCP 返回錯誤 %1",
+    "tooltip": "MCP 返回錯誤"
+  }
+}

@@ -1,0 +1,555 @@
+{
+  "toolbox_name": "Расширенные GPIO",
+  "toolbox_labels": {
+    "触摸": "Сенсор",
+    "ADC": "ADC",
+    "DAC": "DAC",
+    "PWM": "PWM",
+    "GPIO": "GPIO"
+  },
+  "esp32_gpio_touch_read": {
+    "message0": "Читать исходное значение касания · вывод %1",
+    "tooltip": "Читать исходное значение касания. Поддержка зависит от чипа и вывода. Технические подробности (английский): Touch pins only; no pinMode needed. Values fall on ESP32 and rise on S2/S3/P4."
+  },
+  "esp32_gpio_touch_threshold": {
+    "message0": "Проверить порог касания · вывод %1 · порог %2",
+    "tooltip": "Проверить порог касания. Поддержка зависит от чипа и вывода. Технические подробности (английский): Absolute raw threshold; comparison direction follows the chip. Measure idle and touched values first."
+  },
+  "esp32_gpio_touch_calibrate": {
+    "message0": "Калибровать базу без касания · вывод %1 · измерения %2",
+    "tooltip": "Калибровать базу без касания. Поддержка зависит от чипа и вывода. Технические подробности (английский): Run in setup with the electrode untouched. Samples are clamped to 1–64."
+  },
+  "esp32_gpio_touch_pressed": {
+    "message0": "Проверить относительное изменение касания · вывод %1 · процент %2",
+    "tooltip": "Проверить относительное изменение касания. Поддержка зависит от чипа и вывода. Технические подробности (английский): Calibrate first. Change is clamped to 1–90%; smaller is more sensitive. Release uses half the activation change for hysteresis."
+  },
+  "esp32_gpio_touch_baseline": {
+    "message0": "Читать базовое значение касания · вывод %1",
+    "tooltip": "Читать базовое значение касания. Поддержка зависит от чипа и вывода. Технические подробности (английский): Returns 0 before calibration or after failure. Recalibrate after electrode or timing changes."
+  },
+  "esp32_gpio_touch_cycles": {
+    "message0": "Настроить старые циклы сенсора · время измерения %1 · интервал %2",
+    "tooltip": "Настроить старые циклы сенсора. Поддержка зависит от чипа и вывода. Технические подробности (английский): Legacy driver only: ESP-IDF below 5.5 and touch version up to 2. Use timing in microseconds on the new driver."
+  },
+  "esp32_gpio_touch_timing": {
+    "message0": "Настроить новое время сенсора (мкс) · время измерения %1 · интервал %2",
+    "tooltip": "Настроить новое время сенсора (мкс). Поддержка зависит от чипа и вывода. Технические подробности (английский): New driver only: ESP-IDF 5.5+ or touch version 3. Set before the first touch read or interrupt registration."
+  },
+  "esp32_gpio_touch_interrupt": {
+    "message0": "Слушать события касания · вывод %1 · порог %2 · действие %3",
+    "tooltip": "Слушать события касания. Поддержка зависит от чипа и вывода. Технические подробности (английский): Actions run in loop; events may coalesce and include release. ESP32 uses an absolute threshold; S2/S3/P4 use an increment above the hardware benchmark."
+  },
+  "esp32_gpio_touch_detach": {
+    "message0": "Отключить события касания · вывод %1",
+    "tooltip": "Отключить события касания. Поддержка зависит от чипа и вывода. Технические подробности (английский): Detach the callback and clear pending events; touch reads remain available."
+  },
+  "esp32_gpio_touch_wakeup": {
+    "message0": "Пробуждение касанием из глубокого сна · вывод %1 · порог %2",
+    "tooltip": "Пробуждение касанием из глубокого сна. Поддержка зависит от чипа и вывода. Технические подробности (английский): Configure wakeup without entering sleep. S2/S3 generally allow one touch wake channel. Combine with esp32_sleep."
+  },
+  "esp32_gpio_adc_mv": {
+    "message0": "Читать напряжение АЦП (мВ) · вывод %1",
+    "tooltip": "Читать напряжение АЦП (мВ). Поддержка зависит от чипа и вывода. Технические подробности (английский): Returns core-calibrated millivolts. Prefer ADC1 when using Wi-Fi on ESP32."
+  },
+  "esp32_gpio_adc_average": {
+    "message0": "Читать среднее АЦП · вывод %1 · измерения %2 · единица %3",
+    "tooltip": "Читать среднее АЦП. Поддержка зависит от чипа и вывода. Технические подробности (английский): Samples are clamped to 1–64. Raw range follows the ADC read resolution.",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "PIN",
+        "check": [
+          "Number",
+          "Any"
+        ]
+      },
+      {
+        "type": "input_value",
+        "name": "SAMPLES",
+        "check": "Number"
+      },
+      {
+        "type": "field_dropdown",
+        "name": "UNIT",
+        "options": [
+          [
+            "Millivolts",
+            "MV"
+          ],
+          [
+            "Raw value",
+            "RAW"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_gpio_adc_resolution": {
+    "message0": "Настроить разрядность АЦП · биты %1",
+    "tooltip": "Настроить разрядность АЦП. Поддержка зависит от чипа и вывода. Технические подробности (английский): Globally affects analogRead. Extra bits may be software scaling, not increased hardware precision.",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "BITS",
+        "options": [
+          [
+            "12",
+            "12"
+          ],
+          [
+            "9",
+            "9"
+          ],
+          [
+            "10",
+            "10"
+          ],
+          [
+            "11",
+            "11"
+          ],
+          [
+            "13",
+            "13"
+          ],
+          [
+            "14",
+            "14"
+          ],
+          [
+            "15",
+            "15"
+          ],
+          [
+            "16",
+            "16"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_gpio_adc_attenuation": {
+    "message0": "Настроить общее ослабление АЦП · ослабление %1",
+    "tooltip": "Настроить общее ослабление АЦП. Поддержка зависит от чипа и вывода. Технические подробности (английский): Changes measurement range, not input voltage tolerance. Ranges vary by chip; never apply 5 V.",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "ATTENUATION",
+        "options": [
+          [
+            "11 dB (widest range)",
+            "ADC_11db"
+          ],
+          [
+            "0 dB",
+            "ADC_0db"
+          ],
+          [
+            "2.5 dB",
+            "ADC_2_5db"
+          ],
+          [
+            "6 dB",
+            "ADC_6db"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_gpio_adc_pin_attenuation": {
+    "message0": "Настроить ослабление АЦП вывода · вывод %1 · ослабление %2",
+    "tooltip": "Настроить ослабление АЦП вывода. Поддержка зависит от чипа и вывода. Технические подробности (английский): Changes only this ADC pin. Apply global attenuation before per-pin overrides.",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "PIN",
+        "check": [
+          "Number",
+          "Any"
+        ]
+      },
+      {
+        "type": "field_dropdown",
+        "name": "ATTENUATION",
+        "options": [
+          [
+            "11 dB (widest range)",
+            "ADC_11db"
+          ],
+          [
+            "0 dB",
+            "ADC_0db"
+          ],
+          [
+            "2.5 dB",
+            "ADC_2_5db"
+          ],
+          [
+            "6 dB",
+            "ADC_6db"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_gpio_dac_pin": {
+    "message0": "Вывод канала ЦАП · канал %1",
+    "tooltip": "Вывод канала ЦАП. Поддержка зависит от чипа и вывода. Технические подробности (английский): Maps to ESP32 GPIO25/26 or S2 GPIO17/18. S3/C3/C6 have no DAC.",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "CHANNEL",
+        "options": [
+          [
+            "1",
+            "1"
+          ],
+          [
+            "2",
+            "2"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_gpio_dac_write": {
+    "message0": "Выдать значение ЦАП (0–255) · вывод %1 · значение %2",
+    "tooltip": "Выдать значение ЦАП (0–255). Поддержка зависит от чипа и вывода. Технические подробности (английский): Automatically enables true analog output; value is clamped to 0–255. No pinMode needed."
+  },
+  "esp32_gpio_dac_voltage": {
+    "message0": "Выдать напряжение ЦАП (В) · вывод %1 · вольты %2",
+    "tooltip": "Выдать напряжение ЦАП (В). Поддержка зависит от чипа и вывода. Технические подробности (английский): Converts 0–3.3 V using a nominal 3.3 V reference and 8-bit DAC. Supply and load affect actual voltage."
+  },
+  "esp32_gpio_dac_disable": {
+    "message0": "Отключить ЦАП · вывод %1",
+    "tooltip": "Отключить ЦАП. Поддержка зависит от чипа и вывода. Технические подробности (английский): Stop DAC output and release the pin."
+  },
+  "esp32_gpio_pwm_quick": {
+    "message0": "Быстрый ШИМ (%) · вывод %1 · процент %2",
+    "tooltip": "Быстрый ШИМ (%). Поддержка зависит от чипа и вывода. Технические подробности (английский): Auto-attach at 1000 Hz / 8 bits on first use, then retain this library configuration. Duty is clamped to 0–100%."
+  },
+  "esp32_gpio_pwm_attach": {
+    "message0": "Настроить ШИМ · вывод %1 · частота %2 · биты %3",
+    "tooltip": "Настроить ШИМ. Поддержка зависит от чипа и вывода. Технические подробности (английский): Automatically allocates an LEDC channel. ESP32 supports 1–20 bits, others usually 1–14. Reconfiguration stops previous output."
+  },
+  "esp32_gpio_pwm_write": {
+    "message0": "Задать исходное заполнение ШИМ · вывод %1 · заполнение %2",
+    "tooltip": "Задать исходное заполнение ШИМ. Поддержка зависит от чипа и вывода. Технические подробности (английский): Configure PWM first. Duty is clamped to 0 through 2^resolution−1."
+  },
+  "esp32_gpio_pwm_percent": {
+    "message0": "Задать заполнение ШИМ (%) · вывод %1 · процент %2",
+    "tooltip": "Задать заполнение ШИМ (%). Поддержка зависит от чипа и вывода. Технические подробности (английский): Configure PWM first. Converts using the current resolution and clamps to 0–100%."
+  },
+  "esp32_gpio_pwm_read": {
+    "message0": "Читать настройки ШИМ · вывод %1 · параметр %2",
+    "tooltip": "Читать настройки ШИМ. Поддержка зависит от чипа и вывода. Технические подробности (английский): Reads configured hardware parameters, not an external waveform.",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "PIN",
+        "check": [
+          "Number",
+          "Any"
+        ]
+      },
+      {
+        "type": "field_dropdown",
+        "name": "WHAT",
+        "options": [
+          [
+            "Raw duty",
+            "DUTY"
+          ],
+          [
+            "Frequency (Hz)",
+            "FREQUENCY"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_gpio_pwm_frequency": {
+    "message0": "Изменить частоту ШИМ · вывод %1 · частота %2 · биты %3",
+    "tooltip": "Изменить частоту ШИМ. Поддержка зависит от чипа и вывода. Технические подробности (английский): Reattach this pin to avoid changing a timer shared by other pins; duty resets to 0."
+  },
+  "esp32_gpio_pwm_tone": {
+    "message0": "Выдать меандр (0 останавливает) · вывод %1 · частота %2",
+    "tooltip": "Выдать меандр (0 останавливает). Поддержка зависит от чипа и вывода. Технические подробности (английский): 50% duty; auto-configures 10 bits. Frequency 0 stops the waveform. Low frequencies may exceed LEDC clock limits."
+  },
+  "esp32_gpio_pwm_fade": {
+    "message0": "Плавное изменение ШИМ (%) · вывод %1 · начало %2 · конец %3 · миллисекунды %4",
+    "tooltip": "Плавное изменение ШИМ (%). Поддержка зависит от чипа и вывода. Технические подробности (английский): Configure PWM first. Hardware fade is nonblocking; do not change this pin PWM until it finishes."
+  },
+  "esp32_gpio_pwm_invert": {
+    "message0": "Инвертировать ШИМ · вывод %1 · инверсия %2",
+    "tooltip": "Инвертировать ШИМ. Поддержка зависит от чипа и вывода. Технические подробности (английский): Configure PWM first; useful for active-low LEDs.",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "PIN",
+        "check": [
+          "Number",
+          "Any"
+        ]
+      },
+      {
+        "type": "field_dropdown",
+        "name": "INVERT",
+        "options": [
+          [
+            "Yes",
+            "true"
+          ],
+          [
+            "No",
+            "false"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_gpio_pwm_detach": {
+    "message0": "Освободить ШИМ · вывод %1",
+    "tooltip": "Освободить ШИМ. Поддержка зависит от чипа и вывода. Технические подробности (английский): Stops and releases the LEDC channel; the pin can be reconfigured or used for digital output."
+  },
+  "esp32_gpio_pwm_ok": {
+    "message0": "Последняя операция ШИМ успешна",
+    "tooltip": "Последняя операция ШИМ успешна. Поддержка зависит от чипа и вывода. Технические подробности (английский): Reports this library last PWM setting operation; false on invalid settings or exhausted hardware resources."
+  },
+  "esp32_gpio_pin_mode": {
+    "message0": "Настроить режим вывода · вывод %1 · режим %2",
+    "tooltip": "Настроить режим вывода. Поддержка зависит от чипа и вывода. Технические подробности (английский): Supports pulldown input and open-drain output. Open-drain HIGH releases the line and normally needs an external pull-up.",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "PIN",
+        "check": [
+          "Number",
+          "Any"
+        ]
+      },
+      {
+        "type": "field_dropdown",
+        "name": "MODE",
+        "options": [
+          [
+            "INPUT_PULLDOWN",
+            "INPUT_PULLDOWN"
+          ],
+          [
+            "INPUT_PULLUP",
+            "INPUT_PULLUP"
+          ],
+          [
+            "INPUT",
+            "INPUT"
+          ],
+          [
+            "OUTPUT",
+            "OUTPUT"
+          ],
+          [
+            "OUTPUT_OPEN_DRAIN",
+            "OUTPUT_OPEN_DRAIN"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_gpio_pull": {
+    "message0": "Настроить подтяжку · вывод %1 · подтяжка %2",
+    "tooltip": "Настроить подтяжку. Поддержка зависит от чипа и вывода. Технические подробности (английский): Changes pulls without changing direction. Classic ESP32 GPIO34–39 have no internal pull resistors.",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "PIN",
+        "check": [
+          "Number",
+          "Any"
+        ]
+      },
+      {
+        "type": "field_dropdown",
+        "name": "PULL",
+        "options": [
+          [
+            "GPIO_PULLUP_ONLY",
+            "GPIO_PULLUP_ONLY"
+          ],
+          [
+            "GPIO_PULLDOWN_ONLY",
+            "GPIO_PULLDOWN_ONLY"
+          ],
+          [
+            "GPIO_PULLUP_PULLDOWN",
+            "GPIO_PULLUP_PULLDOWN"
+          ],
+          [
+            "GPIO_FLOATING",
+            "GPIO_FLOATING"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_gpio_drive": {
+    "message0": "Настроить силу выхода · вывод %1 · сила выхода %2",
+    "tooltip": "Настроить силу выхода. Поддержка зависит от чипа и вывода. Технические подробности (английский): Sets drive capability, not regulated current; do not directly drive motors or other heavy loads.",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "PIN",
+        "check": [
+          "Number",
+          "Any"
+        ]
+      },
+      {
+        "type": "field_dropdown",
+        "name": "STRENGTH",
+        "options": [
+          [
+            "Default (level 2)",
+            "GPIO_DRIVE_CAP_2"
+          ],
+          [
+            "Weakest (level 0)",
+            "GPIO_DRIVE_CAP_0"
+          ],
+          [
+            "Level 1",
+            "GPIO_DRIVE_CAP_1"
+          ],
+          [
+            "Strongest (level 3)",
+            "GPIO_DRIVE_CAP_3"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_gpio_hold": {
+    "message0": "Удерживать состояние вывода · вывод %1 · действие %2",
+    "tooltip": "Удерживать состояние вывода. Поддержка зависит от чипа и вывода. Технические подробности (английский): Latches pin configuration and level. Restore the desired mode and level before releasing to avoid glitches.",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "PIN",
+        "check": [
+          "Number",
+          "Any"
+        ]
+      },
+      {
+        "type": "field_dropdown",
+        "name": "ACTION",
+        "options": [
+          [
+            "Enable",
+            "ENABLE"
+          ],
+          [
+            "Disable",
+            "DISABLE"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_gpio_deep_hold": {
+    "message0": "Удерживать выводы в глубоком сне · действие %1",
+    "tooltip": "ESP32/S2/S3/C3 also need per-pin hold. C6/P4 use per-pin hold alone; this global block makes no change. Release each pin individually.",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "ACTION",
+        "options": [
+          [
+            "Enable",
+            "ENABLE"
+          ],
+          [
+            "Disable",
+            "DISABLE"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_gpio_wakeup": {
+    "message0": "Пробуждение из лёгкого сна · вывод %1 · уровень %2",
+    "tooltip": "Пробуждение из лёгкого сна. Поддержка зависит от чипа и вывода. Технические подробности (английский): Configures level wakeup only. Set input mode and pulls first, then enter light sleep with esp32_sleep.",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "PIN",
+        "check": [
+          "Number",
+          "Any"
+        ]
+      },
+      {
+        "type": "field_dropdown",
+        "name": "LEVEL",
+        "options": [
+          [
+            "Low level",
+            "GPIO_INTR_LOW_LEVEL"
+          ],
+          [
+            "High level",
+            "GPIO_INTR_HIGH_LEVEL"
+          ],
+          [
+            "Disable this pin",
+            "DISABLE"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_gpio_reset": {
+    "message0": "Сбросить вывод · вывод %1",
+    "tooltip": "Сбросить вывод. Поддержка зависит от чипа и вывода. Технические подробности (английский): Release PWM, DAC, interrupts and hold first; restore the GPIO default configuration."
+  },
+  "esp32_gpio_interrupt": {
+    "message0": "Слушать прерывание GPIO · вывод %1 · режим %2 · действие %3",
+    "tooltip": "Слушать прерывание GPIO. Поддержка зависит от чипа и вывода. Технические подробности (английский): Set input mode first. Actions run in loop; edges may coalesce, so this is not a pulse counter. Mechanical buttons still need debouncing.",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "PIN",
+        "check": [
+          "Number",
+          "Any"
+        ]
+      },
+      {
+        "type": "field_dropdown",
+        "name": "MODE",
+        "options": [
+          [
+            "FALLING",
+            "FALLING"
+          ],
+          [
+            "RISING",
+            "RISING"
+          ],
+          [
+            "CHANGE",
+            "CHANGE"
+          ]
+        ]
+      },
+      {
+        "type": "input_statement",
+        "name": "DO"
+      }
+    ]
+  },
+  "esp32_gpio_interrupt_detach": {
+    "message0": "Отключить прерывание GPIO · вывод %1",
+    "tooltip": "Отключить прерывание GPIO. Поддержка зависит от чипа и вывода. Технические подробности (английский): Detach this pin interrupt and discard pending events."
+  }
+}

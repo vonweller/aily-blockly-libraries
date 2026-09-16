@@ -1,0 +1,729 @@
+{
+  "toolbox_name": "ESPLink WiFi",
+  "toolbox_categories": [
+    "Liaison C3",
+    "Connexion",
+    "Informations réseau",
+    "Heure réseau",
+    "Recherche de réseaux",
+    "Point d'accès",
+    "Événements WiFi",
+    "Client TCP",
+    "TLS",
+    "Requête HTTP",
+    "Serveur TCP",
+    "UDP"
+  ],
+  "esplink_wifi_begin": {
+    "message0": "connecter le WiFi nom %1 mot de passe %2",
+    "tooltip": "Se connecte à un réseau WiFi via l'ESP32-C3 sans attendre le résultat"
+  },
+  "esplink_wifi_begin_advanced": {
+    "message0": "connecter le WiFi nom %1 mot de passe %2 canal %3",
+    "tooltip": "Se connecte sur un canal précis ; 0 signifie automatique"
+  },
+  "esplink_wifi_connect_quick": {
+    "message0": "connexion WiFi rapide nom %1 mot de passe %2 délai %3 ms",
+    "tooltip": "Se connecte et attend le résultat ; vrai en cas de succès"
+  },
+  "esplink_wifi_wait_connected": {
+    "message0": "attendre le résultat WiFi délai %1 ms",
+    "tooltip": "Attend le résultat de la connexion et renvoie l'état WiFi"
+  },
+  "esplink_wifi_is_connected": {
+    "message0": "WiFi connecté",
+    "tooltip": "Indique si le WiFi est connecté"
+  },
+  "esplink_wifi_status": {
+    "message0": "état de connexion WiFi",
+    "tooltip": "Valeur de l'état WiFi actuel"
+  },
+  "esplink_wifi_status_type": {
+    "message0": "état WiFi %1",
+    "tooltip": "Constante d'état à comparer avec l'état courant",
+    "args0": [
+      {
+        "options": [
+          [
+            "connecté",
+            "WL_CONNECTED"
+          ],
+          [
+            "au repos",
+            "WL_IDLE_STATUS"
+          ],
+          [
+            "réseau introuvable",
+            "WL_NO_SSID_AVAIL"
+          ],
+          [
+            "recherche terminée",
+            "WL_SCAN_COMPLETED"
+          ],
+          [
+            "échec de connexion",
+            "WL_CONNECT_FAILED"
+          ],
+          [
+            "connexion perdue",
+            "WL_CONNECTION_LOST"
+          ],
+          [
+            "déconnecté",
+            "WL_DISCONNECTED"
+          ],
+          [
+            "aucun module",
+            "WL_NO_SHIELD"
+          ]
+        ]
+      }
+    ]
+  },
+  "esplink_wifi_disconnect": {
+    "message0": "déconnecter le WiFi couper la radio %1 effacer le mot de passe %2",
+    "tooltip": "Coupe la connexion WiFi actuelle"
+  },
+  "esplink_wifi_reconnect": {
+    "message0": "reconnecter le WiFi",
+    "tooltip": "Se reconnecte avec les identifiants précédents"
+  },
+  "esplink_wifi_set_auto_reconnect": {
+    "message0": "reconnexion automatique WiFi %1",
+    "tooltip": "Le C3 se reconnecte tout seul après une coupure"
+  },
+  "esplink_wifi_set_mode": {
+    "message0": "mode WiFi %1",
+    "tooltip": "Définit le mode radio du C3",
+    "args0": [
+      {
+        "options": [
+          [
+            "station (rejoindre un point d'accès)",
+            "WIFI_STA"
+          ],
+          [
+            "AP (créer un point d'accès)",
+            "WIFI_AP"
+          ],
+          [
+            "AP + station",
+            "WIFI_AP_STA"
+          ],
+          [
+            "arrêt",
+            "WIFI_OFF"
+          ]
+        ]
+      }
+    ]
+  },
+  "esplink_wifi_get_mode": {
+    "message0": "mode WiFi actuel",
+    "tooltip": "Valeur du mode radio courant"
+  },
+  "esplink_wifi_poll": {
+    "message0": "traiter le WiFi",
+    "tooltip": "Fait avancer la liaison et distribue les événements WiFi ; les blocs WiFi l'ajoutent automatiquement"
+  },
+  "esplink_wifi_end": {
+    "message0": "arrêter le WiFi",
+    "tooltip": "Libère les ressources WiFi sans toucher au BLE"
+  },
+  "esplink_wifi_ip_info": {
+    "message0": "WiFi %1",
+    "tooltip": "Renvoie une adresse réseau sous forme de texte",
+    "args0": [
+      {
+        "options": [
+          [
+            "adresse IP locale",
+            "localIP"
+          ],
+          [
+            "adresse de passerelle",
+            "gatewayIP"
+          ],
+          [
+            "masque de sous-réseau",
+            "subnetMask"
+          ],
+          [
+            "DNS principal",
+            "dns0"
+          ],
+          [
+            "DNS secondaire",
+            "dns1"
+          ]
+        ]
+      }
+    ]
+  },
+  "esplink_wifi_ssid": {
+    "message0": "nom du WiFi actuel",
+    "tooltip": "SSID du réseau connecté"
+  },
+  "esplink_wifi_rssi": {
+    "message0": "force du signal WiFi",
+    "tooltip": "Force du signal en dBm ; plus proche de 0 est meilleur"
+  },
+  "esplink_wifi_channel": {
+    "message0": "canal WiFi",
+    "tooltip": "Canal de la connexion en cours"
+  },
+  "esplink_wifi_mac": {
+    "message0": "adresse MAC WiFi",
+    "tooltip": "Adresse MAC de l'interface station"
+  },
+  "esplink_wifi_set_hostname": {
+    "message0": "définir le nom d'hôte %1",
+    "tooltip": "Nom affiché sur le routeur ; à définir avant la connexion"
+  },
+  "esplink_wifi_get_hostname": {
+    "message0": "nom d'hôte",
+    "tooltip": "Nom d'hôte configuré"
+  },
+  "esplink_wifi_config_static": {
+    "message0": "IP fixe %1 passerelle %2 masque %3 DNS %4",
+    "tooltip": "Utilise une configuration IPv4 fixe ; à appeler avant la connexion"
+  },
+  "esplink_wifi_set_dns": {
+    "message0": "serveurs DNS principal %1 secondaire %2",
+    "tooltip": "Définit les serveurs de résolution de noms"
+  },
+  "esplink_wifi_host_by_name": {
+    "message0": "résoudre l'adresse IP de %1",
+    "tooltip": "Résout un nom via le C3 ; chaîne vide en cas d'échec"
+  },
+  "esplink_wifi_firmware_version": {
+    "message0": "version du micrologiciel WiFi du C3",
+    "tooltip": "Version du micrologiciel exécuté sur le C3"
+  },
+  "esplink_wifi_last_error": {
+    "message0": "dernier code d'erreur WiFi",
+    "tooltip": "Code d'erreur de la dernière opération WiFi ; 0 signifie succès"
+  },
+  "esplink_wifi_config_time": {
+    "message0": "configurer l'heure réseau fuseau %1 heures été %2 heures serveur %3",
+    "tooltip": "Configure SNTP sur le C3 ; la validation TLS exige une horloge correcte"
+  },
+  "esplink_wifi_get_time": {
+    "message0": "horodatage réseau (secondes)",
+    "tooltip": "Heure Unix du C3 ; une petite valeur signifie pas encore synchronisé"
+  },
+  "esplink_wifi_scan_networks": {
+    "message0": "rechercher les réseaux WiFi inclure les masqués %1",
+    "tooltip": "Recherche en mode bloquant et renvoie le nombre de réseaux ; 32 au maximum sont conservés"
+  },
+  "esplink_wifi_scan_start_async": {
+    "message0": "démarrer une recherche WiFi asynchrone inclure les masqués %1",
+    "tooltip": "Recherche en arrière-plan ; l'avancement se lit dans le nombre de résultats"
+  },
+  "esplink_wifi_scan_complete": {
+    "message0": "nombre de résultats",
+    "tooltip": "Nombre de réseaux trouvés ; -1 en cours, -2 échec"
+  },
+  "esplink_wifi_scan_ssid": {
+    "message0": "nom du réseau %1",
+    "tooltip": "SSID du résultat ; la numérotation commence à 0"
+  },
+  "esplink_wifi_scan_rssi": {
+    "message0": "force du signal du réseau %1",
+    "tooltip": "Force du signal du résultat en dBm"
+  },
+  "esplink_wifi_scan_channel": {
+    "message0": "canal du réseau %1",
+    "tooltip": "Canal du résultat"
+  },
+  "esplink_wifi_scan_encryption": {
+    "message0": "chiffrement du réseau %1",
+    "tooltip": "Type de chiffrement du résultat ; 0 correspond à un réseau ouvert"
+  },
+  "esplink_wifi_scan_delete": {
+    "message0": "effacer les résultats",
+    "tooltip": "Libère la mémoire des résultats de recherche"
+  },
+  "esplink_wifi_softap": {
+    "message0": "créer un point d'accès WiFi nom %1 mot de passe %2 canal %3",
+    "tooltip": "Crée un point d'accès sur le C3 ; un mot de passe vide donne un réseau ouvert"
+  },
+  "esplink_wifi_softap_config": {
+    "message0": "réseau du point d'accès IP %1 passerelle %2 masque %3",
+    "tooltip": "Définit la plage IPv4 du point d'accès ; à appeler avant sa création"
+  },
+  "esplink_wifi_softap_disconnect": {
+    "message0": "arrêter le point d'accès WiFi couper aussi la radio %1",
+    "tooltip": "Arrête le point d'accès"
+  },
+  "esplink_wifi_softap_ip": {
+    "message0": "adresse IP du point d'accès",
+    "tooltip": "Adresse IP du point d'accès lui-même"
+  },
+  "esplink_wifi_softap_station_num": {
+    "message0": "appareils connectés au point d'accès",
+    "tooltip": "Nombre d'appareils connectés au point d'accès"
+  },
+  "esplink_wifi_softap_mac": {
+    "message0": "adresse MAC du point d'accès",
+    "tooltip": "Adresse MAC de l'interface du point d'accès"
+  },
+  "esplink_wifi_on_event": {
+    "message0": "quand l'événement WiFi %1 survient",
+    "message1": "faire %1",
+    "tooltip": "Enregistre un rappel d'événement WiFi. Les événements proviennent de l'observation périodique de l'état et s'exécutent dans la tâche qui traite le WiFi",
+    "args0": [
+      {
+        "options": [
+          [
+            "connecté au point d'accès",
+            "ARDUINO_EVENT_WIFI_STA_CONNECTED"
+          ],
+          [
+            "déconnecté du point d'accès",
+            "ARDUINO_EVENT_WIFI_STA_DISCONNECTED"
+          ],
+          [
+            "adresse IP obtenue",
+            "ARDUINO_EVENT_WIFI_STA_GOT_IP"
+          ],
+          [
+            "adresse IP perdue",
+            "ARDUINO_EVENT_WIFI_STA_LOST_IP"
+          ],
+          [
+            "recherche terminée",
+            "ARDUINO_EVENT_WIFI_SCAN_DONE"
+          ],
+          [
+            "un appareil rejoint le point d'accès",
+            "ARDUINO_EVENT_WIFI_AP_STACONNECTED"
+          ],
+          [
+            "un appareil quitte le point d'accès",
+            "ARDUINO_EVENT_WIFI_AP_STADISCONNECTED"
+          ],
+          [
+            "tout événement",
+            "ARDUINO_EVENT_MAX"
+          ]
+        ]
+      }
+    ]
+  },
+  "esplink_tcp_client_create": {
+    "message0": "créer le client TCP %1",
+    "tooltip": "Crée un objet client TCP"
+  },
+  "esplink_tcp_client_connect": {
+    "message0": "client %1 se connecte à %2 port %3",
+    "tooltip": "Se connecte à un serveur ; vrai en cas de succès. Délai par défaut 10 s (TLS 15 s)"
+  },
+  "esplink_tcp_client_connected": {
+    "message0": "client %1 connecté",
+    "tooltip": "Indique si la connexion est utilisable ; reste vrai tant que des données restent en mémoire"
+  },
+  "esplink_tcp_client_print": {
+    "message0": "client %1 envoie %2 retour à la ligne %3",
+    "tooltip": "Envoie des données au serveur"
+  },
+  "esplink_tcp_client_available": {
+    "message0": "client %1 octets disponibles",
+    "tooltip": "Nombre d'octets lisibles immédiatement"
+  },
+  "esplink_tcp_client_read_string": {
+    "message0": "client %1 lire les données reçues",
+    "tooltip": "Récupère ce qui est déjà en mémoire, sans attendre"
+  },
+  "esplink_tcp_client_remote_ip": {
+    "message0": "client %1 adresse IP distante",
+    "tooltip": "Adresse IP du correspondant"
+  },
+  "esplink_tcp_client_stop": {
+    "message0": "fermer le client %1",
+    "tooltip": "Ferme la connexion et libère la socket sur le C3"
+  },
+  "esplink_tls_client_create": {
+    "message0": "créer le client TLS %1",
+    "tooltip": "Crée un client HTTPS/TLS ; utilise par défaut les certificats racine intégrés au C3"
+  },
+  "esplink_tls_set_pem": {
+    "message0": "client TLS %1 définir %2 contenu %3",
+    "tooltip": "Définit un certificat ou une clé au format PEM ; 8192 octets maximum par élément",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "certificat racine CA",
+            "CA"
+          ],
+          [
+            "certificat client",
+            "CERT"
+          ],
+          [
+            "clé privée client",
+            "KEY"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "esplink_tls_use_builtin_ca": {
+    "message0": "client TLS %1 utilise les certificats racine intégrés",
+    "tooltip": "Valide le serveur avec le magasin de certificats du micrologiciel du C3"
+  },
+  "esplink_tls_set_insecure": {
+    "message0": "client TLS %1 ignore la vérification du certificat",
+    "tooltip": "Ne vérifie pas le certificat du serveur ; à n'utiliser qu'en connaissance de cause"
+  },
+  "esplink_http_get": {
+    "message0": "requête HTTP GET %1",
+    "tooltip": "Interroge une adresse http:// ou https:// et renvoie le corps ; vide en cas d'échec, 4096 octets au plus"
+  },
+  "esplink_http_post": {
+    "message0": "requête HTTP POST %1 contenu %2 type %3",
+    "tooltip": "Envoie un contenu à une adresse http:// ou https:// et renvoie la réponse ; vide en cas d'échec"
+  },
+  "esplink_tcp_server_create": {
+    "message0": "créer le serveur TCP %1 port d'écoute %2",
+    "tooltip": "Crée un serveur TCP et commence l'écoute ; uniquement sur toutes les adresses locales"
+  },
+  "esplink_tcp_server_accept": {
+    "message0": "serveur %1 place le nouveau client dans %2",
+    "tooltip": "Donne la connexion suivante à la variable choisie ; sans nouvelle connexion elle reste invalide"
+  },
+  "esplink_tcp_server_write": {
+    "message0": "serveur %1 diffuse %2",
+    "tooltip": "Diffuse aux clients conservés par le serveur"
+  },
+  "esplink_tcp_server_end": {
+    "message0": "fermer le serveur %1",
+    "tooltip": "Arrête l'écoute et libère le port"
+  },
+  "esplink_udp_create": {
+    "message0": "créer UDP %1 port d'écoute %2",
+    "tooltip": "Crée un objet UDP lié à un port local ; 0 choisit un port libre"
+  },
+  "esplink_udp_create_multicast": {
+    "message0": "créer UDP %1 rejoindre le multicast %2 port %3",
+    "tooltip": "Crée un objet UDP lié à une adresse multicast"
+  },
+  "esplink_udp_send_to": {
+    "message0": "UDP %1 envoie %2 à %3 port %4",
+    "tooltip": "Compose et envoie un datagramme en une étape ; vrai en cas de succès. 1472 octets au plus"
+  },
+  "esplink_udp_begin_packet": {
+    "message0": "UDP %1 commence un datagramme vers %2 port %3",
+    "tooltip": "Démarre un datagramme à envoyer"
+  },
+  "esplink_udp_write": {
+    "message0": "UDP %1 écrit %2",
+    "tooltip": "Ajoute du contenu au datagramme en cours"
+  },
+  "esplink_udp_end_packet": {
+    "message0": "UDP %1 envoie le datagramme",
+    "tooltip": "Envoie le datagramme ; au-delà de 1472 octets l'envoi échoue entièrement"
+  },
+  "esplink_udp_parse_packet": {
+    "message0": "UDP %1 taille du datagramme reçu",
+    "tooltip": "Récupère le datagramme suivant et renvoie sa taille ; 0 s'il n'y en a pas"
+  },
+  "esplink_udp_read_string": {
+    "message0": "UDP %1 lire le contenu du datagramme",
+    "tooltip": "Lit tout ce qui reste dans le datagramme courant"
+  },
+  "esplink_udp_remote_ip": {
+    "message0": "UDP %1 adresse IP de l'expéditeur",
+    "tooltip": "Adresse IP de l'expéditeur du datagramme courant"
+  },
+  "esplink_udp_stop": {
+    "message0": "fermer UDP %1",
+    "tooltip": "Ferme l'UDP et libère la socket sur le C3"
+  },
+  "esplink_begin": {
+    "message0": "démarrer ESPLink vers l'ESP32-C3",
+    "tooltip": "Démarre la liaison sur l'UART matérielle par défaut de la carte à 921600 bauds. Les bibliothèques WiFi et BLE démarrent ESPLink automatiquement ; ce bloc sert au diagnostic autonome"
+  },
+  "esplink_begin_serial": {
+    "message0": "démarrer ESPLink port série %1 débit %2",
+    "tooltip": "Démarre ESPLink sur un port et un débit précis. Le débit doit correspondre au micrologiciel du C3 et être défini avant l'initialisation WiFi/BLE",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "921600",
+            "921600"
+          ],
+          [
+            "115200",
+            "115200"
+          ],
+          [
+            "460800",
+            "460800"
+          ],
+          [
+            "230400",
+            "230400"
+          ],
+          [
+            "1000000",
+            "1000000"
+          ]
+        ]
+      }
+    ]
+  },
+  "esplink_bind_stream": {
+    "message0": "associer le port série configuré %1 à ESPLink",
+    "tooltip": "Emprunte un port série déjà initialisé par le programme (broches personnalisées incluses). ESPLink n'appelle ni begin() ni end()"
+  },
+  "esplink_end": {
+    "message0": "arrêter ESPLink",
+    "tooltip": "Libère la liaison ESPLink. En mode emprunté, le pilote série reste ouvert"
+  },
+  "esplink_poll": {
+    "message0": "traiter ESPLink",
+    "tooltip": "Fait avancer le transport ESPLink. Les blocs de démarrage l'ajoutent automatiquement à la boucle principale"
+  },
+  "esplink_ready": {
+    "message0": "ESPLink est prêt",
+    "tooltip": "Indique si la liaison C3 dispose d'une session utilisable"
+  },
+  "esplink_ping": {
+    "message0": "test ESPLink délai %1 ms",
+    "tooltip": "Envoie un ping au C3 et attend la réponse"
+  },
+  "esplink_session": {
+    "message0": "numéro de session ESPLink",
+    "tooltip": "Numéro de session courant. Un changement signifie un redémarrage du C3 ou une reconstruction de la liaison : tous les sockets et handles BLE précédents deviennent invalides"
+  },
+  "esplink_last_error": {
+    "message0": "dernier code d'erreur ESPLink",
+    "tooltip": "Code d'erreur de la dernière opération ESPLink ; 0 signifie succès"
+  },
+  "esplink_error_code": {
+    "message0": "code d'erreur %1",
+    "tooltip": "Constante d'erreur ESPLink, à comparer avec le dernier code d'erreur",
+    "args0": [
+      {
+        "options": [
+          [
+            "Succès",
+            "c3::Ok"
+          ],
+          [
+            "Argument invalide",
+            "c3::InvalidArgument"
+          ],
+          [
+            "Non pris en charge",
+            "c3::Unsupported"
+          ],
+          [
+            "Mémoire insuffisante",
+            "c3::NoMemory"
+          ],
+          [
+            "Occupé",
+            "c3::Busy"
+          ],
+          [
+            "Délai dépassé",
+            "c3::Timeout"
+          ],
+          [
+            "Non connecté",
+            "c3::NotConnected"
+          ],
+          [
+            "Erreur d'E/S",
+            "c3::IoError"
+          ],
+          [
+            "Erreur de protocole",
+            "c3::ProtocolError"
+          ],
+          [
+            "Résultat inconnu",
+            "c3::OutcomeUnknown"
+          ],
+          [
+            "Handle invalide",
+            "c3::StaleHandle"
+          ],
+          [
+            "Tampon trop petit",
+            "c3::BufferTooSmall"
+          ],
+          [
+            "Résultat expiré",
+            "c3::ResultExpired"
+          ],
+          [
+            "Erreur de sécurité",
+            "c3::SecurityError"
+          ],
+          [
+            "Réessayer",
+            "c3::WouldBlock"
+          ],
+          [
+            "Liaison perdue",
+            "c3::LinkLost"
+          ],
+          [
+            "Introuvable",
+            "c3::NotFound"
+          ]
+        ]
+      }
+    ]
+  },
+  "esplink_firmware_version": {
+    "message0": "version du micrologiciel C3",
+    "tooltip": "Chaîne de version du micrologiciel pont exécuté sur l'ESP32-C3"
+  },
+  "esplink_capability": {
+    "message0": "capacité C3 %1",
+    "tooltip": "Lit une valeur de capacité annoncée par le C3 lors de la négociation",
+    "args0": [
+      {
+        "options": [
+          [
+            "Charge utile maximale (octets)",
+            "maxPayload"
+          ],
+          [
+            "Taille maximale de paquet HCI",
+            "maxHciPacket"
+          ],
+          [
+            "Nombre maximal de sockets",
+            "maxSockets"
+          ],
+          [
+            "Connexions BLE maximales",
+            "maxBLEConnections"
+          ],
+          [
+            "Bits de fonctions",
+            "features"
+          ],
+          [
+            "Identifiant de démarrage",
+            "bootID"
+          ]
+        ]
+      }
+    ]
+  },
+  "esplink_has_feature": {
+    "message0": "le C3 prend en charge %1",
+    "tooltip": "Indique si le micrologiciel du C3 prend en charge la fonction choisie",
+    "args0": [
+      {
+        "options": [
+          [
+            "WiFi",
+            "c3::WiFi"
+          ],
+          [
+            "TCP",
+            "c3::TCP"
+          ],
+          [
+            "UDP",
+            "c3::UDP"
+          ],
+          [
+            "TLS",
+            "c3::TLS"
+          ],
+          [
+            "BLE (HCI)",
+            "c3::HCI"
+          ],
+          [
+            "IPv6",
+            "c3::IPv6"
+          ],
+          [
+            "AP+STA simultané",
+            "c3::StationAP"
+          ],
+          [
+            "OTA",
+            "c3::OTA"
+          ],
+          [
+            "mDNS",
+            "c3::MDNS"
+          ]
+        ]
+      }
+    ]
+  },
+  "esplink_stat": {
+    "message0": "statistique ESPLink %1",
+    "tooltip": "Lit les compteurs de qualité de liaison pour diagnostiquer le câblage et le débit",
+    "args0": [
+      {
+        "options": [
+          [
+            "Trames envoyées",
+            "transmitted"
+          ],
+          [
+            "Trames reçues",
+            "received"
+          ],
+          [
+            "Retransmissions",
+            "retries"
+          ],
+          [
+            "Délais dépassés",
+            "timeouts"
+          ],
+          [
+            "Erreurs CRC",
+            "crcErrors"
+          ],
+          [
+            "Trames mal formées",
+            "malformed"
+          ],
+          [
+            "Trames trop longues",
+            "oversized"
+          ],
+          [
+            "Trames ignorées",
+            "ignored"
+          ],
+          [
+            "Changements de session",
+            "sessionChanges"
+          ],
+          [
+            "Octets reçus",
+            "rxBytes"
+          ],
+          [
+            "Lots de réception",
+            "rxBatches"
+          ],
+          [
+            "Réveils du worker",
+            "workerWakeups"
+          ]
+        ]
+      }
+    ]
+  }
+}

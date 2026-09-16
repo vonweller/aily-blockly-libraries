@@ -1,0 +1,729 @@
+{
+  "toolbox_name": "ESPLink WiFi",
+  "toolbox_categories": [
+    "C3リンク",
+    "接続管理",
+    "ネットワーク情報",
+    "ネットワーク時刻",
+    "ネットワークスキャン",
+    "アクセスポイント",
+    "WiFiイベント",
+    "TCPクライアント",
+    "TLS接続",
+    "HTTPリクエスト",
+    "TCPサーバー",
+    "UDP通信"
+  ],
+  "esplink_wifi_begin": {
+    "message0": "WiFiに接続 名前 %1 パスワード %2",
+    "tooltip": "ESP32-C3経由でWiFiに接続します。完了は待ちません"
+  },
+  "esplink_wifi_begin_advanced": {
+    "message0": "WiFiに接続 名前 %1 パスワード %2 チャンネル %3",
+    "tooltip": "チャンネルを指定して接続します。0は自動です"
+  },
+  "esplink_wifi_connect_quick": {
+    "message0": "WiFiに一括接続 名前 %1 パスワード %2 タイムアウト %3 ミリ秒",
+    "tooltip": "接続して結果を待ち、成功すると真を返します"
+  },
+  "esplink_wifi_wait_connected": {
+    "message0": "WiFi接続結果を待つ タイムアウト %1 ミリ秒",
+    "tooltip": "接続結果を待ってWiFi状態値を返します"
+  },
+  "esplink_wifi_is_connected": {
+    "message0": "WiFi接続中",
+    "tooltip": "WiFiが接続状態かどうか"
+  },
+  "esplink_wifi_status": {
+    "message0": "WiFi接続状態",
+    "tooltip": "現在のWiFi状態値を返します"
+  },
+  "esplink_wifi_status_type": {
+    "message0": "WiFi状態 %1",
+    "tooltip": "WiFi状態の定数。現在の状態との比較に使います",
+    "args0": [
+      {
+        "options": [
+          [
+            "接続済み",
+            "WL_CONNECTED"
+          ],
+          [
+            "待機中",
+            "WL_IDLE_STATUS"
+          ],
+          [
+            "ネットワークが見つからない",
+            "WL_NO_SSID_AVAIL"
+          ],
+          [
+            "スキャン完了",
+            "WL_SCAN_COMPLETED"
+          ],
+          [
+            "接続失敗",
+            "WL_CONNECT_FAILED"
+          ],
+          [
+            "接続が切れた",
+            "WL_CONNECTION_LOST"
+          ],
+          [
+            "切断済み",
+            "WL_DISCONNECTED"
+          ],
+          [
+            "モジュールなし",
+            "WL_NO_SHIELD"
+          ]
+        ]
+      }
+    ]
+  },
+  "esplink_wifi_disconnect": {
+    "message0": "WiFi切断 無線をオフ %1 保存済みパスワードを消去 %2",
+    "tooltip": "現在のWiFi接続を切断します"
+  },
+  "esplink_wifi_reconnect": {
+    "message0": "WiFiに再接続",
+    "tooltip": "前回の資格情報で再接続します"
+  },
+  "esplink_wifi_set_auto_reconnect": {
+    "message0": "WiFi自動再接続を %1 に設定",
+    "tooltip": "切断後にC3が自動で再接続します"
+  },
+  "esplink_wifi_set_mode": {
+    "message0": "WiFiモードを %1 に設定",
+    "tooltip": "C3のWiFi動作モードを設定します",
+    "args0": [
+      {
+        "options": [
+          [
+            "ステーション(APに接続)",
+            "WIFI_STA"
+          ],
+          [
+            "AP(APを作成)",
+            "WIFI_AP"
+          ],
+          [
+            "AP+ステーション",
+            "WIFI_AP_STA"
+          ],
+          [
+            "オフ",
+            "WIFI_OFF"
+          ]
+        ]
+      }
+    ]
+  },
+  "esplink_wifi_get_mode": {
+    "message0": "WiFi現在のモード",
+    "tooltip": "現在の動作モード値"
+  },
+  "esplink_wifi_poll": {
+    "message0": "WiFiを処理",
+    "tooltip": "リンクを進めWiFiイベントを配信します。WiFiブロックが自動で追加します"
+  },
+  "esplink_wifi_end": {
+    "message0": "WiFiを停止",
+    "tooltip": "WiFi資源を解放します。BLEには影響しません"
+  },
+  "esplink_wifi_ip_info": {
+    "message0": "WiFi %1",
+    "tooltip": "ネットワークアドレスを文字列で返します",
+    "args0": [
+      {
+        "options": [
+          [
+            "自機IPアドレス",
+            "localIP"
+          ],
+          [
+            "ゲートウェイアドレス",
+            "gatewayIP"
+          ],
+          [
+            "サブネットマスク",
+            "subnetMask"
+          ],
+          [
+            "プライマリDNS",
+            "dns0"
+          ],
+          [
+            "セカンダリDNS",
+            "dns1"
+          ]
+        ]
+      }
+    ]
+  },
+  "esplink_wifi_ssid": {
+    "message0": "現在のWiFi名",
+    "tooltip": "接続中ネットワークのSSID"
+  },
+  "esplink_wifi_rssi": {
+    "message0": "WiFi信号強度",
+    "tooltip": "現在の接続の信号強度(dBm)。0に近いほど良好です"
+  },
+  "esplink_wifi_channel": {
+    "message0": "WiFiチャンネル",
+    "tooltip": "現在の接続が使うチャンネル"
+  },
+  "esplink_wifi_mac": {
+    "message0": "WiFi MACアドレス",
+    "tooltip": "ステーション側のMACアドレス"
+  },
+  "esplink_wifi_set_hostname": {
+    "message0": "ホスト名を %1 に設定",
+    "tooltip": "ルーターに表示される名前。接続前に設定します"
+  },
+  "esplink_wifi_get_hostname": {
+    "message0": "ホスト名",
+    "tooltip": "現在設定されているホスト名"
+  },
+  "esplink_wifi_config_static": {
+    "message0": "固定IP %1 ゲートウェイ %2 サブネットマスク %3 DNS %4 を設定",
+    "tooltip": "固定IPv4設定を使います。WiFi接続の前に呼び出してください"
+  },
+  "esplink_wifi_set_dns": {
+    "message0": "DNSサーバーを設定 優先 %1 代替 %2",
+    "tooltip": "名前解決サーバーを設定します"
+  },
+  "esplink_wifi_host_by_name": {
+    "message0": "ホスト名 %1 のIPアドレスを解決",
+    "tooltip": "C3で名前解決します。失敗時は空文字列"
+  },
+  "esplink_wifi_firmware_version": {
+    "message0": "C3 WiFiファームウェアバージョン",
+    "tooltip": "C3で動作するファームウェアのバージョン"
+  },
+  "esplink_wifi_last_error": {
+    "message0": "WiFi最終エラーコード",
+    "tooltip": "直前のWiFi操作のエラーコード。0は成功"
+  },
+  "esplink_wifi_config_time": {
+    "message0": "ネットワーク時刻を設定 時差 %1 時間 夏時間 %2 時間 サーバー %3",
+    "tooltip": "C3のSNTP同期を設定します。TLS証明書の検証には正しい時刻が必要です"
+  },
+  "esplink_wifi_get_time": {
+    "message0": "ネットワーク時刻(秒)",
+    "tooltip": "C3のUnix時刻。未同期のときは小さな値になります"
+  },
+  "esplink_wifi_scan_networks": {
+    "message0": "WiFiネットワークをスキャン 非公開も含める %1",
+    "tooltip": "同期スキャンして見つかった数を返します。最大32件まで保持します"
+  },
+  "esplink_wifi_scan_start_async": {
+    "message0": "WiFiの非同期スキャンを開始 非公開も含める %1",
+    "tooltip": "バックグラウンドでスキャンします。結果件数で進捗を確認します"
+  },
+  "esplink_wifi_scan_complete": {
+    "message0": "スキャン結果件数",
+    "tooltip": "見つかった件数。-1は実行中、-2は失敗"
+  },
+  "esplink_wifi_scan_ssid": {
+    "message0": "%1 番目のネットワーク名",
+    "tooltip": "スキャン結果のSSID。番号は0から始まります"
+  },
+  "esplink_wifi_scan_rssi": {
+    "message0": "%1 番目のネットワークの信号強度",
+    "tooltip": "スキャン結果の信号強度(dBm)"
+  },
+  "esplink_wifi_scan_channel": {
+    "message0": "%1 番目のネットワークのチャンネル",
+    "tooltip": "スキャン結果のチャンネル"
+  },
+  "esplink_wifi_scan_encryption": {
+    "message0": "%1 番目のネットワークの暗号化方式",
+    "tooltip": "スキャン結果の暗号化種別値。0はオープンネットワーク"
+  },
+  "esplink_wifi_scan_delete": {
+    "message0": "スキャン結果を消去",
+    "tooltip": "スキャン結果が使うメモリを解放します"
+  },
+  "esplink_wifi_softap": {
+    "message0": "WiFiアクセスポイントを作成 名前 %1 パスワード %2 チャンネル %3",
+    "tooltip": "C3上にAPを作成します。パスワードが空ならオープンになります"
+  },
+  "esplink_wifi_softap_config": {
+    "message0": "APネットワークを設定 IP %1 ゲートウェイ %2 サブネットマスク %3",
+    "tooltip": "APのIPv4範囲を設定します。AP作成の前に呼び出してください"
+  },
+  "esplink_wifi_softap_disconnect": {
+    "message0": "WiFiアクセスポイントを停止 無線もオフ %1",
+    "tooltip": "APを停止します"
+  },
+  "esplink_wifi_softap_ip": {
+    "message0": "APのIPアドレス",
+    "tooltip": "アクセスポイント自身のIPアドレス"
+  },
+  "esplink_wifi_softap_station_num": {
+    "message0": "APに接続中の端末数",
+    "tooltip": "アクセスポイントに接続している端末の数"
+  },
+  "esplink_wifi_softap_mac": {
+    "message0": "APのMACアドレス",
+    "tooltip": "アクセスポイント側のMACアドレス"
+  },
+  "esplink_wifi_on_event": {
+    "message0": "WiFiイベント %1 が起きたとき",
+    "message1": "実行 %1",
+    "tooltip": "WiFiイベントのコールバックを登録します。イベントは状態のポーリング差分から生成され、WiFiを処理するタスクで実行されます",
+    "args0": [
+      {
+        "options": [
+          [
+            "APに接続した",
+            "ARDUINO_EVENT_WIFI_STA_CONNECTED"
+          ],
+          [
+            "APから切断した",
+            "ARDUINO_EVENT_WIFI_STA_DISCONNECTED"
+          ],
+          [
+            "IPアドレスを取得した",
+            "ARDUINO_EVENT_WIFI_STA_GOT_IP"
+          ],
+          [
+            "IPアドレスを失った",
+            "ARDUINO_EVENT_WIFI_STA_LOST_IP"
+          ],
+          [
+            "スキャンが完了した",
+            "ARDUINO_EVENT_WIFI_SCAN_DONE"
+          ],
+          [
+            "端末がAPに接続した",
+            "ARDUINO_EVENT_WIFI_AP_STACONNECTED"
+          ],
+          [
+            "端末がAPから離れた",
+            "ARDUINO_EVENT_WIFI_AP_STADISCONNECTED"
+          ],
+          [
+            "すべてのイベント",
+            "ARDUINO_EVENT_MAX"
+          ]
+        ]
+      }
+    ]
+  },
+  "esplink_tcp_client_create": {
+    "message0": "TCPクライアント %1 を作成",
+    "tooltip": "TCPクライアントオブジェクトを作成します"
+  },
+  "esplink_tcp_client_connect": {
+    "message0": "クライアント %1 を %2 ポート %3 に接続",
+    "tooltip": "サーバーに接続します。成功で真。既定のタイムアウトは10秒(TLSは15秒)"
+  },
+  "esplink_tcp_client_connected": {
+    "message0": "クライアント %1 は接続中",
+    "tooltip": "接続が有効かどうか。未読データが残っている間も真になります"
+  },
+  "esplink_tcp_client_print": {
+    "message0": "クライアント %1 で %2 を送信 改行 %3",
+    "tooltip": "サーバーへデータを送ります"
+  },
+  "esplink_tcp_client_available": {
+    "message0": "クライアント %1 の受信バイト数",
+    "tooltip": "今読み取れるバイト数"
+  },
+  "esplink_tcp_client_read_string": {
+    "message0": "クライアント %1 の受信データを読む",
+    "tooltip": "バッファにある分だけ取り出します。待機はしません"
+  },
+  "esplink_tcp_client_remote_ip": {
+    "message0": "クライアント %1 の相手IPアドレス",
+    "tooltip": "接続相手のIPアドレス"
+  },
+  "esplink_tcp_client_stop": {
+    "message0": "クライアント %1 を閉じる",
+    "tooltip": "接続を閉じ、C3側のソケットを解放します"
+  },
+  "esplink_tls_client_create": {
+    "message0": "TLSクライアント %1 を作成",
+    "tooltip": "HTTPS/TLS対応のクライアントを作成します。既定でC3内蔵のルート証明書を使います"
+  },
+  "esplink_tls_set_pem": {
+    "message0": "TLSクライアント %1 に %2 を設定 内容 %3",
+    "tooltip": "PEM形式の証明書または鍵を設定します。1件あたり8192バイトまで",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "CAルート証明書",
+            "CA"
+          ],
+          [
+            "クライアント証明書",
+            "CERT"
+          ],
+          [
+            "クライアント秘密鍵",
+            "KEY"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "esplink_tls_use_builtin_ca": {
+    "message0": "TLSクライアント %1 で内蔵ルート証明書を使用",
+    "tooltip": "C3ファームウェア内蔵の証明書ストアでサーバーを検証します"
+  },
+  "esplink_tls_set_insecure": {
+    "message0": "TLSクライアント %1 で証明書検証を省略",
+    "tooltip": "サーバー証明書を検証しません。危険を理解した場合のみ使ってください"
+  },
+  "esplink_http_get": {
+    "message0": "HTTP GET リクエスト %1",
+    "tooltip": "http://またはhttps://のURLを取得し本文を返します。失敗時は空文字列、最大4096バイト"
+  },
+  "esplink_http_post": {
+    "message0": "HTTP POST リクエスト %1 本文 %2 種類 %3",
+    "tooltip": "http://またはhttps://のURLへ本文を送信し応答本文を返します。失敗時は空文字列"
+  },
+  "esplink_tcp_server_create": {
+    "message0": "TCPサーバー %1 を作成 待ち受けポート %2",
+    "tooltip": "TCPサーバーを作成して待ち受けを開始します。全ローカルアドレスのみ対応です"
+  },
+  "esplink_tcp_server_accept": {
+    "message0": "サーバー %1 の新しいクライアントを %2 に取り出す",
+    "tooltip": "新規接続を指定変数に渡します。無い場合その変数は無効です"
+  },
+  "esplink_tcp_server_write": {
+    "message0": "サーバー %1 から %2 を一斉送信",
+    "tooltip": "サーバーが保持する接続済みクライアントへ一斉送信します"
+  },
+  "esplink_tcp_server_end": {
+    "message0": "サーバー %1 を閉じる",
+    "tooltip": "待ち受けを止めポートを解放します"
+  },
+  "esplink_udp_create": {
+    "message0": "UDP %1 を作成 待ち受けポート %2",
+    "tooltip": "UDPオブジェクトを作りローカルポートに割り当てます。0は自動割り当て"
+  },
+  "esplink_udp_create_multicast": {
+    "message0": "UDP %1 を作成 マルチキャスト %2 ポート %3 に参加",
+    "tooltip": "マルチキャストアドレスに割り当てたUDPオブジェクトを作ります"
+  },
+  "esplink_udp_send_to": {
+    "message0": "UDP %1 で %2 を %3 ポート %4 に送信",
+    "tooltip": "組み立てと送信を一度に行います。成功で真。1データグラムは1472バイトまで"
+  },
+  "esplink_udp_begin_packet": {
+    "message0": "UDP %1 で組み立て開始 宛先 %2 ポート %3",
+    "tooltip": "送信するデータグラムを開始します"
+  },
+  "esplink_udp_write": {
+    "message0": "UDP %1 に %2 を書き込む",
+    "tooltip": "組み立て中のデータグラムに追記します"
+  },
+  "esplink_udp_end_packet": {
+    "message0": "UDP %1 のデータグラムを送信",
+    "tooltip": "データグラムを送信します。1472バイトを超えると全体が失敗します"
+  },
+  "esplink_udp_parse_packet": {
+    "message0": "UDP %1 の受信データグラム長",
+    "tooltip": "次のデータグラムを取り出して長さを返します。無い場合は0"
+  },
+  "esplink_udp_read_string": {
+    "message0": "UDP %1 のデータグラム内容を読む",
+    "tooltip": "現在のデータグラムの残り全部を読みます"
+  },
+  "esplink_udp_remote_ip": {
+    "message0": "UDP %1 の送信元IPアドレス",
+    "tooltip": "現在のデータグラムを送ってきた相手のIPアドレス"
+  },
+  "esplink_udp_stop": {
+    "message0": "UDP %1 を閉じる",
+    "tooltip": "UDPを閉じC3側のソケットを解放します"
+  },
+  "esplink_begin": {
+    "message0": "ESPLinkでESP32-C3に接続",
+    "tooltip": "ボード既定のハードウェアシリアル(921600bps)でESP32-C3との接続を開始します。WiFiとBLEライブラリは自動的にESPLinkを起動するため、このブロックは単体診断用です"
+  },
+  "esplink_begin_serial": {
+    "message0": "ESPLink起動 シリアル %1 ボーレート %2",
+    "tooltip": "シリアルポートとボーレートを指定してESPLinkを起動します。C3ファームウェアと同じボーレートで、WiFi/BLEの初期化より前に実行してください",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "921600",
+            "921600"
+          ],
+          [
+            "115200",
+            "115200"
+          ],
+          [
+            "460800",
+            "460800"
+          ],
+          [
+            "230400",
+            "230400"
+          ],
+          [
+            "1000000",
+            "1000000"
+          ]
+        ]
+      }
+    ]
+  },
+  "esplink_bind_stream": {
+    "message0": "設定済みシリアル %1 をESPLinkに割り当て",
+    "tooltip": "スケッチ側で初期化済み(独自ピン設定を含む)のシリアルを借用します。ESPLinkはbegin()とend()を呼びません"
+  },
+  "esplink_end": {
+    "message0": "ESPLinkを停止",
+    "tooltip": "ESPLinkの割り当てを解放します。借用モードではシリアルドライバは閉じません"
+  },
+  "esplink_poll": {
+    "message0": "ESPLinkを処理",
+    "tooltip": "ESPLink転送を進めます。初期化ブロックが自動でメインループに追加するため通常は不要です"
+  },
+  "esplink_ready": {
+    "message0": "ESPLink準備完了",
+    "tooltip": "C3リンクが利用可能なセッションにあるかどうか"
+  },
+  "esplink_ping": {
+    "message0": "ESPLink通信テスト タイムアウト %1 ミリ秒",
+    "tooltip": "C3にPingを1回送信して応答を待ちます"
+  },
+  "esplink_session": {
+    "message0": "ESPLinkセッション番号",
+    "tooltip": "現在のリンクセッション番号。変化はC3の再起動またはリンク再構築を意味し、以前のソケットとBLEハンドルはすべて無効になります"
+  },
+  "esplink_last_error": {
+    "message0": "ESPLink最終エラーコード",
+    "tooltip": "直前のESPLink操作のエラーコード。0は成功"
+  },
+  "esplink_error_code": {
+    "message0": "エラーコード %1",
+    "tooltip": "ESPLinkのエラーコード定数。最終エラーコードとの比較に使います",
+    "args0": [
+      {
+        "options": [
+          [
+            "成功",
+            "c3::Ok"
+          ],
+          [
+            "引数が不正",
+            "c3::InvalidArgument"
+          ],
+          [
+            "非対応",
+            "c3::Unsupported"
+          ],
+          [
+            "メモリ不足",
+            "c3::NoMemory"
+          ],
+          [
+            "ビジー",
+            "c3::Busy"
+          ],
+          [
+            "タイムアウト",
+            "c3::Timeout"
+          ],
+          [
+            "未接続",
+            "c3::NotConnected"
+          ],
+          [
+            "IOエラー",
+            "c3::IoError"
+          ],
+          [
+            "プロトコルエラー",
+            "c3::ProtocolError"
+          ],
+          [
+            "結果不明",
+            "c3::OutcomeUnknown"
+          ],
+          [
+            "ハンドル無効",
+            "c3::StaleHandle"
+          ],
+          [
+            "バッファ不足",
+            "c3::BufferTooSmall"
+          ],
+          [
+            "結果期限切れ",
+            "c3::ResultExpired"
+          ],
+          [
+            "セキュリティエラー",
+            "c3::SecurityError"
+          ],
+          [
+            "再試行が必要",
+            "c3::WouldBlock"
+          ],
+          [
+            "リンク喪失",
+            "c3::LinkLost"
+          ],
+          [
+            "見つかりません",
+            "c3::NotFound"
+          ]
+        ]
+      }
+    ]
+  },
+  "esplink_firmware_version": {
+    "message0": "C3ファームウェアバージョン",
+    "tooltip": "ESP32-C3で動作するブリッジファームウェアのバージョン文字列"
+  },
+  "esplink_capability": {
+    "message0": "C3の能力 %1",
+    "tooltip": "ハンドシェイク時にC3が報告した能力値を読みます",
+    "args0": [
+      {
+        "options": [
+          [
+            "最大ペイロードバイト数",
+            "maxPayload"
+          ],
+          [
+            "最大HCIパケットバイト数",
+            "maxHciPacket"
+          ],
+          [
+            "最大ソケット数",
+            "maxSockets"
+          ],
+          [
+            "最大BLE接続数",
+            "maxBLEConnections"
+          ],
+          [
+            "機能ビット",
+            "features"
+          ],
+          [
+            "起動ID",
+            "bootID"
+          ]
+        ]
+      }
+    ]
+  },
+  "esplink_has_feature": {
+    "message0": "C3が %1 に対応",
+    "tooltip": "C3ファームウェアが指定機能に対応しているかどうか",
+    "args0": [
+      {
+        "options": [
+          [
+            "WiFi",
+            "c3::WiFi"
+          ],
+          [
+            "TCP",
+            "c3::TCP"
+          ],
+          [
+            "UDP",
+            "c3::UDP"
+          ],
+          [
+            "TLS",
+            "c3::TLS"
+          ],
+          [
+            "BLE(HCI)",
+            "c3::HCI"
+          ],
+          [
+            "IPv6",
+            "c3::IPv6"
+          ],
+          [
+            "AP+STA同時",
+            "c3::StationAP"
+          ],
+          [
+            "OTA",
+            "c3::OTA"
+          ],
+          [
+            "mDNS",
+            "c3::MDNS"
+          ]
+        ]
+      }
+    ]
+  },
+  "esplink_stat": {
+    "message0": "ESPLink統計 %1",
+    "tooltip": "リンク品質のカウンタを読み、配線やボーレートの問題を調べます",
+    "args0": [
+      {
+        "options": [
+          [
+            "送信フレーム数",
+            "transmitted"
+          ],
+          [
+            "受信フレーム数",
+            "received"
+          ],
+          [
+            "再送回数",
+            "retries"
+          ],
+          [
+            "タイムアウト回数",
+            "timeouts"
+          ],
+          [
+            "CRCエラー数",
+            "crcErrors"
+          ],
+          [
+            "不正フレーム数",
+            "malformed"
+          ],
+          [
+            "サイズ超過フレーム数",
+            "oversized"
+          ],
+          [
+            "無視フレーム数",
+            "ignored"
+          ],
+          [
+            "セッション変更回数",
+            "sessionChanges"
+          ],
+          [
+            "受信バイト数",
+            "rxBytes"
+          ],
+          [
+            "受信バッチ数",
+            "rxBatches"
+          ],
+          [
+            "ワーカー起床回数",
+            "workerWakeups"
+          ]
+        ]
+      }
+    ]
+  }
+}

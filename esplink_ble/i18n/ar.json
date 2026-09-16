@@ -1,0 +1,600 @@
+{
+  "toolbox_name": "ESPLink BLE",
+  "toolbox_categories": [
+    "وصلة C3",
+    "البدء والوصلة",
+    "الخدمات والخصائص",
+    "الإعلان",
+    "قيم الخصائص",
+    "أحداث BLE",
+    "المسح والاتصال",
+    "الخصائص البعيدة"
+  ],
+  "esplink_ble_begin": {
+    "message0": "بدء BLE",
+    "tooltip": "يبدأ مضيف BLE عبر ESP32-C3، وتُنشأ وصلة ESPLink تلقائيًا"
+  },
+  "esplink_ble_end": {
+    "message0": "إيقاف BLE",
+    "tooltip": "يوقف BLE دون التأثير على WiFi على الوصلة نفسها"
+  },
+  "esplink_ble_poll": {
+    "message0": "خدمة BLE",
+    "tooltip": "يدفع مضيف BLE وينفذ دوال الاستدعاء؛ لبنات BLE تضيف ذلك تلقائيًا"
+  },
+  "esplink_ble_connected": {
+    "message0": "BLE متصل",
+    "tooltip": "ما إذا كان هناك اتصال BLE. هذه النسخة تدعم اتصالًا واحدًا في كل مرة"
+  },
+  "esplink_ble_address": {
+    "message0": "عنوان BLE المحلي",
+    "tooltip": "عنوان البلوتوث لهذا الجهاز"
+  },
+  "esplink_ble_disconnect": {
+    "message0": "قطع اتصال BLE",
+    "tooltip": "يقطع الاتصال بالجهاز المتصل"
+  },
+  "esplink_ble_set_timeout": {
+    "message0": "مهلة عمليات BLE %1 مللي ثانية",
+    "tooltip": "زمن الانتظار للمسح والاتصال والعمليات المشابهة"
+  },
+  "esplink_ble_healthy": {
+    "message0": "وصلة BLE سليمة",
+    "tooltip": "ما إذا كانت وصلة المتحكم صالحة؛ بعد تغيّر الجلسة أو امتلاء الطابور يجب إعادة تشغيل BLE"
+  },
+  "esplink_ble_last_error": {
+    "message0": "آخر رمز خطأ في BLE",
+    "tooltip": "آخر رمز خطأ في طبقة نقل BLE؛ القيمة 0 تعني النجاح"
+  },
+  "esplink_ble_create_service": {
+    "message0": "إنشاء خدمة BLE %1 بالمعرف %2",
+    "tooltip": "ينشئ كائن خدمة GATT محلية"
+  },
+  "esplink_ble_create_characteristic": {
+    "message0": "إنشاء خاصية رقمية %1 بالمعرف %2 النوع %3",
+    "message1": "قراءة %1 كتابة %2 إشعار %3 إشارة %4",
+    "tooltip": "ينشئ خاصية رقمية بطول ثابت",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "عدد صحيح",
+            "BLEIntCharacteristic"
+          ],
+          [
+            "عدد صحيح بدون إشارة",
+            "BLEUnsignedIntCharacteristic"
+          ],
+          [
+            "بايت",
+            "BLEByteCharacteristic"
+          ],
+          [
+            "عدد صحيح قصير",
+            "BLEShortCharacteristic"
+          ],
+          [
+            "عدد صحيح طويل",
+            "BLELongCharacteristic"
+          ],
+          [
+            "عدد صحيح طويل بدون إشارة",
+            "BLEUnsignedLongCharacteristic"
+          ],
+          [
+            "عدد عشري",
+            "BLEFloatCharacteristic"
+          ],
+          [
+            "عدد عشري مزدوج الدقة",
+            "BLEDoubleCharacteristic"
+          ],
+          [
+            "قيمة منطقية",
+            "BLEBoolCharacteristic"
+          ]
+        ]
+      }
+    ]
+  },
+  "esplink_ble_create_string_characteristic": {
+    "message0": "إنشاء خاصية نصية %1 بالمعرف %2 أقصى طول %3",
+    "message1": "قراءة %1 كتابة %2 إشعار %3 إشارة %4",
+    "tooltip": "ينشئ خاصية نصية؛ الطول محدود بحجم ATT MTU وهو 242"
+  },
+  "esplink_ble_service_add_characteristic": {
+    "message0": "الخدمة %1 إضافة الخاصية %2",
+    "tooltip": "أضف الخصائص قبل تسجيل الخدمة"
+  },
+  "esplink_ble_add_service": {
+    "message0": "تسجيل خدمة BLE %1",
+    "tooltip": "يضيف الخدمة إلى قاعدة بيانات GATT المحلية"
+  },
+  "esplink_ble_set_local_name": {
+    "message0": "اسم إعلان BLE %1",
+    "tooltip": "الاسم الظاهر في رد المسح"
+  },
+  "esplink_ble_set_device_name": {
+    "message0": "اسم جهاز BLE %1",
+    "tooltip": "قيمة خاصية اسم الجهاز في GAP"
+  },
+  "esplink_ble_set_advertised_service": {
+    "message0": "إعلان الخدمة %1",
+    "tooltip": "ينشر معرف الخدمة في حزمة الإعلان ليتمكن الجهاز المركزي من التصفية"
+  },
+  "esplink_ble_advertise": {
+    "message0": "بدء إعلان BLE",
+    "tooltip": "يبدأ الإعلان؛ استدعِه بعد تسجيل الخدمات"
+  },
+  "esplink_ble_stop_advertise": {
+    "message0": "إيقاف إعلان BLE",
+    "tooltip": "يوقف الإعلان"
+  },
+  "esplink_ble_set_advertising_interval": {
+    "message0": "فترة الإعلان %1 مللي ثانية",
+    "tooltip": "الفترة الأطول توفر الطاقة لكنها تبطئ الاكتشاف"
+  },
+  "esplink_ble_set_connectable": {
+    "message0": "السماح باتصال BLE %1",
+    "tooltip": "عند الإيقاف يعلن الجهاز فقط ولا يقبل الاتصالات"
+  },
+  "esplink_ble_char_write_number": {
+    "message0": "الخاصية %1 كتابة الرقم %2",
+    "tooltip": "يحدّث خاصية محلية، ويصل الإشعار إلى المشتركين"
+  },
+  "esplink_ble_char_write_string": {
+    "message0": "الخاصية %1 كتابة النص %2",
+    "tooltip": "يحدّث محتوى خاصية نصية محلية"
+  },
+  "esplink_ble_char_value_number": {
+    "message0": "رقم الخاصية %1",
+    "tooltip": "القيمة الحالية لخاصية رقمية محلية"
+  },
+  "esplink_ble_char_value_string": {
+    "message0": "نص الخاصية %1",
+    "tooltip": "المحتوى الحالي لخاصية نصية محلية"
+  },
+  "esplink_ble_char_written": {
+    "message0": "تمت الكتابة في الخاصية %1",
+    "tooltip": "ما إذا كان الطرف البعيد قد كتب؛ تُمسح العلامة عند القراءة"
+  },
+  "esplink_ble_char_subscribed": {
+    "message0": "الخاصية %1 مشترك بها",
+    "tooltip": "ما إذا كان الطرف البعيد قد اشترك في إشعارات هذه الخاصية"
+  },
+  "esplink_ble_on_char_written": {
+    "message0": "عند الكتابة في الخاصية %1",
+    "message1": "نفّذ %1",
+    "tooltip": "يُنفَّذ عند كتابة الطرف البعيد ضمن المهمة التي تخدم BLE، فاجعله قصيرًا"
+  },
+  "esplink_ble_on_device_event": {
+    "message0": "عند %1 في BLE",
+    "message1": "نفّذ %1",
+    "tooltip": "دالة استدعاء عند الاتصال وقطع الاتصال",
+    "args0": [
+      {
+        "options": [
+          [
+            "اتصال جهاز",
+            "BLEConnected"
+          ],
+          [
+            "انقطاع جهاز",
+            "BLEDisconnected"
+          ]
+        ]
+      }
+    ]
+  },
+  "esplink_ble_scan": {
+    "message0": "بدء مسح أجهزة BLE",
+    "tooltip": "يمسح كل أجهزة BLE القابلة للاكتشاف في المحيط"
+  },
+  "esplink_ble_scan_for": {
+    "message0": "مسح أجهزة BLE حسب %1 مطابقة %2",
+    "tooltip": "يبلّغ فقط عن الأجهزة المطابقة للمرشح",
+    "args0": [
+      {
+        "options": [
+          [
+            "معرف الخدمة",
+            "scanForUuid"
+          ],
+          [
+            "اسم الجهاز",
+            "scanForName"
+          ],
+          [
+            "عنوان الجهاز",
+            "scanForAddress"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "esplink_ble_stop_scan": {
+    "message0": "إيقاف مسح BLE",
+    "tooltip": "يوقف المسح؛ وهو ضروري قبل الاتصال"
+  },
+  "esplink_ble_device_create": {
+    "message0": "أخذ الجهاز المكتشف إلى %1",
+    "tooltip": "يأخذ جهازًا مكتشفًا؛ وإن لم يوجد يبقى المتغير غير صالح"
+  },
+  "esplink_ble_device_found": {
+    "message0": "الجهاز %1 صالح",
+    "tooltip": "ما إذا كان هذا المتغير يشير إلى جهاز حقيقي"
+  },
+  "esplink_ble_device_connect": {
+    "message0": "الاتصال بالجهاز %1",
+    "tooltip": "يتصل بالجهاز ويعيد صحيحًا عند النجاح. أوقف المسح أولًا"
+  },
+  "esplink_ble_device_discover": {
+    "message0": "اكتشاف كل خدمات الجهاز %1",
+    "tooltip": "يقرأ خدمات الطرف البعيد وخصائصه؛ مطلوب بعد الاتصال"
+  },
+  "esplink_ble_device_connected": {
+    "message0": "الجهاز %1 ما زال متصلًا",
+    "tooltip": "ما إذا كان الجهاز لا يزال متصلًا"
+  },
+  "esplink_ble_device_disconnect": {
+    "message0": "قطع الاتصال بالجهاز %1",
+    "tooltip": "ينهي الاتصال بهذا الجهاز"
+  },
+  "esplink_ble_device_address": {
+    "message0": "عنوان الجهاز %1",
+    "tooltip": "عنوان البلوتوث للطرف البعيد"
+  },
+  "esplink_ble_device_local_name": {
+    "message0": "اسم الجهاز %1",
+    "tooltip": "الاسم الوارد في حزمة الإعلان، ويكون فارغًا إن لم يُعلن"
+  },
+  "esplink_ble_device_rssi": {
+    "message0": "قوة إشارة الجهاز %1",
+    "tooltip": "قوة إشارة الطرف البعيد بوحدة dBm"
+  },
+  "esplink_ble_remote_char_create": {
+    "message0": "من الجهاز %1 أخذ الخاصية %2 بالمعرف %3",
+    "tooltip": "يأخذ خاصية بعيدة حسب المعرف؛ اكتشف الخدمات أولًا"
+  },
+  "esplink_ble_remote_can": {
+    "message0": "الخاصية البعيدة %1 %2",
+    "tooltip": "يستعلم عما تدعمه الخاصية البعيدة",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "صالحة",
+            "valid"
+          ],
+          [
+            "قابلة للقراءة",
+            "canRead"
+          ],
+          [
+            "قابلة للكتابة",
+            "canWrite"
+          ],
+          [
+            "قابلة للاشتراك",
+            "canSubscribe"
+          ]
+        ]
+      }
+    ]
+  },
+  "esplink_ble_remote_read": {
+    "message0": "قراءة الخاصية البعيدة %1",
+    "tooltip": "يطلب قراءة من الطرف البعيد وتُحفظ النتيجة في الذاكرة المحلية"
+  },
+  "esplink_ble_remote_value_number": {
+    "message0": "رقم الخاصية البعيدة %1",
+    "tooltip": "يفسّر البايتات المخزنة كعدد صحيح حسب طولها"
+  },
+  "esplink_ble_remote_value_string": {
+    "message0": "نص الخاصية البعيدة %1",
+    "tooltip": "يقرأ البايتات المخزنة كنص"
+  },
+  "esplink_ble_remote_write_number": {
+    "message0": "الخاصية البعيدة %1 كتابة الرقم %2",
+    "tooltip": "يكتب عددًا صحيحًا من 4 بايت في الخاصية البعيدة"
+  },
+  "esplink_ble_remote_write_string": {
+    "message0": "الخاصية البعيدة %1 كتابة النص %2",
+    "tooltip": "يكتب نصًا في الخاصية البعيدة"
+  },
+  "esplink_ble_remote_subscribe": {
+    "message0": "الاشتراك في الخاصية البعيدة %1",
+    "tooltip": "يشترك في الإشعارات ويعيد صحيحًا عند النجاح"
+  },
+  "esplink_ble_remote_value_updated": {
+    "message0": "الخاصية البعيدة %1 لديها بيانات جديدة",
+    "tooltip": "ما إذا وصل إشعار جديد بعد الاشتراك"
+  },
+  "esplink_begin": {
+    "message0": "بدء ESPLink مع ESP32-C3",
+    "tooltip": "يبدأ الوصلة على منفذ UART الافتراضي للوحة بسرعة 921600 بود. مكتبتا WiFi وBLE تبدآن ESPLink تلقائيًا، وهذه اللبنة للتشخيص المستقل"
+  },
+  "esplink_begin_serial": {
+    "message0": "بدء ESPLink المنفذ %1 سرعة %2",
+    "tooltip": "يبدأ ESPLink على منفذ وسرعة محددين. يجب أن تطابق السرعة برنامج C3 وأن تُستدعى قبل تهيئة WiFi أو BLE",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "921600",
+            "921600"
+          ],
+          [
+            "115200",
+            "115200"
+          ],
+          [
+            "460800",
+            "460800"
+          ],
+          [
+            "230400",
+            "230400"
+          ],
+          [
+            "1000000",
+            "1000000"
+          ]
+        ]
+      }
+    ]
+  },
+  "esplink_bind_stream": {
+    "message0": "ربط المنفذ المهيأ %1 بـ ESPLink",
+    "tooltip": "يستعير منفذًا هيأه البرنامج مسبقًا (بما في ذلك أطراف مخصصة). لا يستدعي ESPLink الدالتين begin() وend()"
+  },
+  "esplink_end": {
+    "message0": "إيقاف ESPLink",
+    "tooltip": "يحرر ارتباط ESPLink. في وضع الاستعارة يبقى مشغل المنفذ مفتوحًا"
+  },
+  "esplink_poll": {
+    "message0": "خدمة ESPLink",
+    "tooltip": "يدفع نقل ESPLink للأمام. لبنات البدء تضيف ذلك تلقائيًا إلى الحلقة الرئيسية"
+  },
+  "esplink_ready": {
+    "message0": "ESPLink جاهز",
+    "tooltip": "ما إذا كانت وصلة C3 في جلسة صالحة للاستخدام"
+  },
+  "esplink_ping": {
+    "message0": "اختبار ESPLink مهلة %1 مللي ثانية",
+    "tooltip": "يرسل نبضة واحدة إلى C3 وينتظر الرد"
+  },
+  "esplink_session": {
+    "message0": "رقم جلسة ESPLink",
+    "tooltip": "رقم الجلسة الحالي. تغيّره يعني إعادة تشغيل C3 أو إعادة بناء الوصلة، وتصبح كل المقابس ومقابض BLE السابقة غير صالحة"
+  },
+  "esplink_last_error": {
+    "message0": "آخر رمز خطأ في ESPLink",
+    "tooltip": "رمز خطأ آخر عملية ESPLink؛ القيمة 0 تعني النجاح"
+  },
+  "esplink_error_code": {
+    "message0": "رمز الخطأ %1",
+    "tooltip": "ثابت خطأ ESPLink يُقارن مع آخر رمز خطأ",
+    "args0": [
+      {
+        "options": [
+          [
+            "نجاح",
+            "c3::Ok"
+          ],
+          [
+            "وسيط غير صالح",
+            "c3::InvalidArgument"
+          ],
+          [
+            "غير مدعوم",
+            "c3::Unsupported"
+          ],
+          [
+            "لا توجد ذاكرة كافية",
+            "c3::NoMemory"
+          ],
+          [
+            "مشغول",
+            "c3::Busy"
+          ],
+          [
+            "انتهت المهلة",
+            "c3::Timeout"
+          ],
+          [
+            "غير متصل",
+            "c3::NotConnected"
+          ],
+          [
+            "خطأ إدخال/إخراج",
+            "c3::IoError"
+          ],
+          [
+            "خطأ في البروتوكول",
+            "c3::ProtocolError"
+          ],
+          [
+            "نتيجة غير معروفة",
+            "c3::OutcomeUnknown"
+          ],
+          [
+            "مقبض غير صالح",
+            "c3::StaleHandle"
+          ],
+          [
+            "المخزن المؤقت صغير",
+            "c3::BufferTooSmall"
+          ],
+          [
+            "انتهت صلاحية النتيجة",
+            "c3::ResultExpired"
+          ],
+          [
+            "خطأ أمني",
+            "c3::SecurityError"
+          ],
+          [
+            "يلزم إعادة المحاولة",
+            "c3::WouldBlock"
+          ],
+          [
+            "فقدت الوصلة",
+            "c3::LinkLost"
+          ],
+          [
+            "غير موجود",
+            "c3::NotFound"
+          ]
+        ]
+      }
+    ]
+  },
+  "esplink_firmware_version": {
+    "message0": "إصدار برنامج C3",
+    "tooltip": "نص إصدار برنامج الجسر العامل على ESP32-C3"
+  },
+  "esplink_capability": {
+    "message0": "إمكانية C3 %1",
+    "tooltip": "يقرأ قيمة إمكانية أبلغ عنها C3 أثناء المصافحة",
+    "args0": [
+      {
+        "options": [
+          [
+            "أقصى حمولة بالبايت",
+            "maxPayload"
+          ],
+          [
+            "أقصى حجم حزمة HCI",
+            "maxHciPacket"
+          ],
+          [
+            "أقصى عدد مقابس",
+            "maxSockets"
+          ],
+          [
+            "أقصى اتصالات BLE",
+            "maxBLEConnections"
+          ],
+          [
+            "بتات الميزات",
+            "features"
+          ],
+          [
+            "معرف الإقلاع",
+            "bootID"
+          ]
+        ]
+      }
+    ]
+  },
+  "esplink_has_feature": {
+    "message0": "C3 يدعم %1",
+    "tooltip": "ما إذا كان برنامج C3 يدعم الميزة المختارة",
+    "args0": [
+      {
+        "options": [
+          [
+            "WiFi",
+            "c3::WiFi"
+          ],
+          [
+            "TCP",
+            "c3::TCP"
+          ],
+          [
+            "UDP",
+            "c3::UDP"
+          ],
+          [
+            "TLS",
+            "c3::TLS"
+          ],
+          [
+            "BLE (HCI)",
+            "c3::HCI"
+          ],
+          [
+            "IPv6",
+            "c3::IPv6"
+          ],
+          [
+            "AP+STA معًا",
+            "c3::StationAP"
+          ],
+          [
+            "OTA",
+            "c3::OTA"
+          ],
+          [
+            "mDNS",
+            "c3::MDNS"
+          ]
+        ]
+      }
+    ]
+  },
+  "esplink_stat": {
+    "message0": "إحصاء ESPLink %1",
+    "tooltip": "يقرأ عدادات جودة الوصلة لفحص التوصيلات وسرعة النقل",
+    "args0": [
+      {
+        "options": [
+          [
+            "الإطارات المرسلة",
+            "transmitted"
+          ],
+          [
+            "الإطارات المستقبلة",
+            "received"
+          ],
+          [
+            "مرات إعادة الإرسال",
+            "retries"
+          ],
+          [
+            "مرات انتهاء المهلة",
+            "timeouts"
+          ],
+          [
+            "أخطاء CRC",
+            "crcErrors"
+          ],
+          [
+            "إطارات تالفة",
+            "malformed"
+          ],
+          [
+            "إطارات كبيرة جدًا",
+            "oversized"
+          ],
+          [
+            "إطارات متجاهلة",
+            "ignored"
+          ],
+          [
+            "تغيّرات الجلسة",
+            "sessionChanges"
+          ],
+          [
+            "البايتات المستقبلة",
+            "rxBytes"
+          ],
+          [
+            "دفعات الاستقبال",
+            "rxBatches"
+          ],
+          [
+            "مرات إيقاظ المعالج",
+            "workerWakeups"
+          ]
+        ]
+      }
+    ]
+  }
+}

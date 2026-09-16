@@ -1,0 +1,555 @@
+{
+  "toolbox_name": "고급 GPIO",
+  "toolbox_labels": {
+    "触摸": "터치",
+    "ADC": "ADC",
+    "DAC": "DAC",
+    "PWM": "PWM",
+    "GPIO": "GPIO"
+  },
+  "esp32_gpio_touch_read": {
+    "message0": "터치 원시값 읽기 · 핀 %1",
+    "tooltip": "터치 원시값 읽기. 기능은 칩과 핀에 따라 다릅니다. 자세한 제한 사항（영어）: Touch pins only; no pinMode needed. Values fall on ESP32 and rise on S2/S3/P4."
+  },
+  "esp32_gpio_touch_threshold": {
+    "message0": "터치 임계값 판단 · 핀 %1 · 임계값 %2",
+    "tooltip": "터치 임계값 판단. 기능은 칩과 핀에 따라 다릅니다. 자세한 제한 사항（영어）: Absolute raw threshold; comparison direction follows the chip. Measure idle and touched values first."
+  },
+  "esp32_gpio_touch_calibrate": {
+    "message0": "비접촉 기준값 보정 · 핀 %1 · 샘플 수 %2",
+    "tooltip": "비접촉 기준값 보정. 기능은 칩과 핀에 따라 다릅니다. 자세한 제한 사항（영어）: Run in setup with the electrode untouched. Samples are clamped to 1–64."
+  },
+  "esp32_gpio_touch_pressed": {
+    "message0": "터치 상대 변화 판단 · 핀 %1 · 비율 %2",
+    "tooltip": "터치 상대 변화 판단. 기능은 칩과 핀에 따라 다릅니다. 자세한 제한 사항（영어）: Calibrate first. Change is clamped to 1–90%; smaller is more sensitive. Release uses half the activation change for hysteresis."
+  },
+  "esp32_gpio_touch_baseline": {
+    "message0": "터치 기준값 읽기 · 핀 %1",
+    "tooltip": "터치 기준값 읽기. 기능은 칩과 핀에 따라 다릅니다. 자세한 제한 사항（영어）: Returns 0 before calibration or after failure. Recalibrate after electrode or timing changes."
+  },
+  "esp32_gpio_touch_cycles": {
+    "message0": "구형 터치 주기 설정 · 측정 시간 %1 · 간격 %2",
+    "tooltip": "구형 터치 주기 설정. 기능은 칩과 핀에 따라 다릅니다. 자세한 제한 사항（영어）: Legacy driver only: ESP-IDF below 5.5 and touch version up to 2. Use timing in microseconds on the new driver."
+  },
+  "esp32_gpio_touch_timing": {
+    "message0": "신형 터치 시간 설정（µs） · 측정 시간 %1 · 간격 %2",
+    "tooltip": "신형 터치 시간 설정（µs）. 기능은 칩과 핀에 따라 다릅니다. 자세한 제한 사항（영어）: New driver only: ESP-IDF 5.5+ or touch version 3. Set before the first touch read or interrupt registration."
+  },
+  "esp32_gpio_touch_interrupt": {
+    "message0": "터치 이벤트 감시 · 핀 %1 · 임계값 %2 · 실행 %3",
+    "tooltip": "터치 이벤트 감시. 기능은 칩과 핀에 따라 다릅니다. 자세한 제한 사항（영어）: Actions run in loop; events may coalesce and include release. ESP32 uses an absolute threshold; S2/S3/P4 use an increment above the hardware benchmark."
+  },
+  "esp32_gpio_touch_detach": {
+    "message0": "터치 감시 해제 · 핀 %1",
+    "tooltip": "터치 감시 해제. 기능은 칩과 핀에 따라 다릅니다. 자세한 제한 사항（영어）: Detach the callback and clear pending events; touch reads remain available."
+  },
+  "esp32_gpio_touch_wakeup": {
+    "message0": "터치로 깊은 절전 해제 · 핀 %1 · 임계값 %2",
+    "tooltip": "터치로 깊은 절전 해제. 기능은 칩과 핀에 따라 다릅니다. 자세한 제한 사항（영어）: Configure wakeup without entering sleep. S2/S3 generally allow one touch wake channel. Combine with esp32_sleep."
+  },
+  "esp32_gpio_adc_mv": {
+    "message0": "ADC 전압 읽기（mV） · 핀 %1",
+    "tooltip": "ADC 전압 읽기（mV）. 기능은 칩과 핀에 따라 다릅니다. 자세한 제한 사항（영어）: Returns core-calibrated millivolts. Prefer ADC1 when using Wi-Fi on ESP32."
+  },
+  "esp32_gpio_adc_average": {
+    "message0": "ADC 평균값 읽기 · 핀 %1 · 샘플 수 %2 · 단위 %3",
+    "tooltip": "ADC 평균값 읽기. 기능은 칩과 핀에 따라 다릅니다. 자세한 제한 사항（영어）: Samples are clamped to 1–64. Raw range follows the ADC read resolution.",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "PIN",
+        "check": [
+          "Number",
+          "Any"
+        ]
+      },
+      {
+        "type": "input_value",
+        "name": "SAMPLES",
+        "check": "Number"
+      },
+      {
+        "type": "field_dropdown",
+        "name": "UNIT",
+        "options": [
+          [
+            "Millivolts",
+            "MV"
+          ],
+          [
+            "Raw value",
+            "RAW"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_gpio_adc_resolution": {
+    "message0": "ADC 읽기 해상도 설정 · 비트 수 %1",
+    "tooltip": "ADC 읽기 해상도 설정. 기능은 칩과 핀에 따라 다릅니다. 자세한 제한 사항（영어）: Globally affects analogRead. Extra bits may be software scaling, not increased hardware precision.",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "BITS",
+        "options": [
+          [
+            "12",
+            "12"
+          ],
+          [
+            "9",
+            "9"
+          ],
+          [
+            "10",
+            "10"
+          ],
+          [
+            "11",
+            "11"
+          ],
+          [
+            "13",
+            "13"
+          ],
+          [
+            "14",
+            "14"
+          ],
+          [
+            "15",
+            "15"
+          ],
+          [
+            "16",
+            "16"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_gpio_adc_attenuation": {
+    "message0": "전체 ADC 감쇠 설정 · 감쇠 %1",
+    "tooltip": "전체 ADC 감쇠 설정. 기능은 칩과 핀에 따라 다릅니다. 자세한 제한 사항（영어）: Changes measurement range, not input voltage tolerance. Ranges vary by chip; never apply 5 V.",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "ATTENUATION",
+        "options": [
+          [
+            "11 dB (widest range)",
+            "ADC_11db"
+          ],
+          [
+            "0 dB",
+            "ADC_0db"
+          ],
+          [
+            "2.5 dB",
+            "ADC_2_5db"
+          ],
+          [
+            "6 dB",
+            "ADC_6db"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_gpio_adc_pin_attenuation": {
+    "message0": "핀 ADC 감쇠 설정 · 핀 %1 · 감쇠 %2",
+    "tooltip": "핀 ADC 감쇠 설정. 기능은 칩과 핀에 따라 다릅니다. 자세한 제한 사항（영어）: Changes only this ADC pin. Apply global attenuation before per-pin overrides.",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "PIN",
+        "check": [
+          "Number",
+          "Any"
+        ]
+      },
+      {
+        "type": "field_dropdown",
+        "name": "ATTENUATION",
+        "options": [
+          [
+            "11 dB (widest range)",
+            "ADC_11db"
+          ],
+          [
+            "0 dB",
+            "ADC_0db"
+          ],
+          [
+            "2.5 dB",
+            "ADC_2_5db"
+          ],
+          [
+            "6 dB",
+            "ADC_6db"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_gpio_dac_pin": {
+    "message0": "DAC 채널 핀 · 채널 %1",
+    "tooltip": "DAC 채널 핀. 기능은 칩과 핀에 따라 다릅니다. 자세한 제한 사항（영어）: Maps to ESP32 GPIO25/26 or S2 GPIO17/18. S3/C3/C6 have no DAC.",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "CHANNEL",
+        "options": [
+          [
+            "1",
+            "1"
+          ],
+          [
+            "2",
+            "2"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_gpio_dac_write": {
+    "message0": "DAC 값 출력（0–255） · 핀 %1 · 값 %2",
+    "tooltip": "DAC 값 출력（0–255）. 기능은 칩과 핀에 따라 다릅니다. 자세한 제한 사항（영어）: Automatically enables true analog output; value is clamped to 0–255. No pinMode needed."
+  },
+  "esp32_gpio_dac_voltage": {
+    "message0": "DAC 전압 출력（V） · 핀 %1 · 전압 %2",
+    "tooltip": "DAC 전압 출력（V）. 기능은 칩과 핀에 따라 다릅니다. 자세한 제한 사항（영어）: Converts 0–3.3 V using a nominal 3.3 V reference and 8-bit DAC. Supply and load affect actual voltage."
+  },
+  "esp32_gpio_dac_disable": {
+    "message0": "DAC 중지 · 핀 %1",
+    "tooltip": "DAC 중지. 기능은 칩과 핀에 따라 다릅니다. 자세한 제한 사항（영어）: Stop DAC output and release the pin."
+  },
+  "esp32_gpio_pwm_quick": {
+    "message0": "간편 PWM（%） · 핀 %1 · 비율 %2",
+    "tooltip": "간편 PWM（%）. 기능은 칩과 핀에 따라 다릅니다. 자세한 제한 사항（영어）: Auto-attach at 1000 Hz / 8 bits on first use, then retain this library configuration. Duty is clamped to 0–100%."
+  },
+  "esp32_gpio_pwm_attach": {
+    "message0": "PWM 설정 · 핀 %1 · 주파수 %2 · 비트 수 %3",
+    "tooltip": "PWM 설정. 기능은 칩과 핀에 따라 다릅니다. 자세한 제한 사항（영어）: Automatically allocates an LEDC channel. ESP32 supports 1–20 bits, others usually 1–14. Reconfiguration stops previous output."
+  },
+  "esp32_gpio_pwm_write": {
+    "message0": "PWM 원시 듀티 설정 · 핀 %1 · 듀티 %2",
+    "tooltip": "PWM 원시 듀티 설정. 기능은 칩과 핀에 따라 다릅니다. 자세한 제한 사항（영어）: Configure PWM first. Duty is clamped to 0 through 2^resolution−1."
+  },
+  "esp32_gpio_pwm_percent": {
+    "message0": "PWM 듀티 설정（%） · 핀 %1 · 비율 %2",
+    "tooltip": "PWM 듀티 설정（%）. 기능은 칩과 핀에 따라 다릅니다. 자세한 제한 사항（영어）: Configure PWM first. Converts using the current resolution and clamps to 0–100%."
+  },
+  "esp32_gpio_pwm_read": {
+    "message0": "PWM 설정값 읽기 · 핀 %1 · 항목 %2",
+    "tooltip": "PWM 설정값 읽기. 기능은 칩과 핀에 따라 다릅니다. 자세한 제한 사항（영어）: Reads configured hardware parameters, not an external waveform.",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "PIN",
+        "check": [
+          "Number",
+          "Any"
+        ]
+      },
+      {
+        "type": "field_dropdown",
+        "name": "WHAT",
+        "options": [
+          [
+            "Raw duty",
+            "DUTY"
+          ],
+          [
+            "Frequency (Hz)",
+            "FREQUENCY"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_gpio_pwm_frequency": {
+    "message0": "PWM 주파수 변경 · 핀 %1 · 주파수 %2 · 비트 수 %3",
+    "tooltip": "PWM 주파수 변경. 기능은 칩과 핀에 따라 다릅니다. 자세한 제한 사항（영어）: Reattach this pin to avoid changing a timer shared by other pins; duty resets to 0."
+  },
+  "esp32_gpio_pwm_tone": {
+    "message0": "사각파 출력（0은 중지） · 핀 %1 · 주파수 %2",
+    "tooltip": "사각파 출력（0은 중지）. 기능은 칩과 핀에 따라 다릅니다. 자세한 제한 사항（영어）: 50% duty; auto-configures 10 bits. Frequency 0 stops the waveform. Low frequencies may exceed LEDC clock limits."
+  },
+  "esp32_gpio_pwm_fade": {
+    "message0": "PWM 페이드（%） · 핀 %1 · 시작 %2 · 끝 %3 · 밀리초 %4",
+    "tooltip": "PWM 페이드（%）. 기능은 칩과 핀에 따라 다릅니다. 자세한 제한 사항（영어）: Configure PWM first. Hardware fade is nonblocking; do not change this pin PWM until it finishes."
+  },
+  "esp32_gpio_pwm_invert": {
+    "message0": "PWM 출력 반전 · 핀 %1 · 반전 %2",
+    "tooltip": "PWM 출력 반전. 기능은 칩과 핀에 따라 다릅니다. 자세한 제한 사항（영어）: Configure PWM first; useful for active-low LEDs.",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "PIN",
+        "check": [
+          "Number",
+          "Any"
+        ]
+      },
+      {
+        "type": "field_dropdown",
+        "name": "INVERT",
+        "options": [
+          [
+            "Yes",
+            "true"
+          ],
+          [
+            "No",
+            "false"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_gpio_pwm_detach": {
+    "message0": "PWM 해제 · 핀 %1",
+    "tooltip": "PWM 해제. 기능은 칩과 핀에 따라 다릅니다. 자세한 제한 사항（영어）: Stops and releases the LEDC channel; the pin can be reconfigured or used for digital output."
+  },
+  "esp32_gpio_pwm_ok": {
+    "message0": "마지막 PWM 동작 성공",
+    "tooltip": "마지막 PWM 동작 성공. 기능은 칩과 핀에 따라 다릅니다. 자세한 제한 사항（영어）: Reports this library last PWM setting operation; false on invalid settings or exhausted hardware resources."
+  },
+  "esp32_gpio_pin_mode": {
+    "message0": "핀 모드 설정 · 핀 %1 · 모드 %2",
+    "tooltip": "핀 모드 설정. 기능은 칩과 핀에 따라 다릅니다. 자세한 제한 사항（영어）: Supports pulldown input and open-drain output. Open-drain HIGH releases the line and normally needs an external pull-up.",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "PIN",
+        "check": [
+          "Number",
+          "Any"
+        ]
+      },
+      {
+        "type": "field_dropdown",
+        "name": "MODE",
+        "options": [
+          [
+            "INPUT_PULLDOWN",
+            "INPUT_PULLDOWN"
+          ],
+          [
+            "INPUT_PULLUP",
+            "INPUT_PULLUP"
+          ],
+          [
+            "INPUT",
+            "INPUT"
+          ],
+          [
+            "OUTPUT",
+            "OUTPUT"
+          ],
+          [
+            "OUTPUT_OPEN_DRAIN",
+            "OUTPUT_OPEN_DRAIN"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_gpio_pull": {
+    "message0": "풀 저항 설정 · 핀 %1 · 풀 저항 %2",
+    "tooltip": "풀 저항 설정. 기능은 칩과 핀에 따라 다릅니다. 자세한 제한 사항（영어）: Changes pulls without changing direction. Classic ESP32 GPIO34–39 have no internal pull resistors.",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "PIN",
+        "check": [
+          "Number",
+          "Any"
+        ]
+      },
+      {
+        "type": "field_dropdown",
+        "name": "PULL",
+        "options": [
+          [
+            "GPIO_PULLUP_ONLY",
+            "GPIO_PULLUP_ONLY"
+          ],
+          [
+            "GPIO_PULLDOWN_ONLY",
+            "GPIO_PULLDOWN_ONLY"
+          ],
+          [
+            "GPIO_PULLUP_PULLDOWN",
+            "GPIO_PULLUP_PULLDOWN"
+          ],
+          [
+            "GPIO_FLOATING",
+            "GPIO_FLOATING"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_gpio_drive": {
+    "message0": "구동 강도 설정 · 핀 %1 · 구동 강도 %2",
+    "tooltip": "구동 강도 설정. 기능은 칩과 핀에 따라 다릅니다. 자세한 제한 사항（영어）: Sets drive capability, not regulated current; do not directly drive motors or other heavy loads.",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "PIN",
+        "check": [
+          "Number",
+          "Any"
+        ]
+      },
+      {
+        "type": "field_dropdown",
+        "name": "STRENGTH",
+        "options": [
+          [
+            "Default (level 2)",
+            "GPIO_DRIVE_CAP_2"
+          ],
+          [
+            "Weakest (level 0)",
+            "GPIO_DRIVE_CAP_0"
+          ],
+          [
+            "Level 1",
+            "GPIO_DRIVE_CAP_1"
+          ],
+          [
+            "Strongest (level 3)",
+            "GPIO_DRIVE_CAP_3"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_gpio_hold": {
+    "message0": "핀 상태 유지 설정 · 핀 %1 · 동작 %2",
+    "tooltip": "핀 상태 유지 설정. 기능은 칩과 핀에 따라 다릅니다. 자세한 제한 사항（영어）: Latches pin configuration and level. Restore the desired mode and level before releasing to avoid glitches.",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "PIN",
+        "check": [
+          "Number",
+          "Any"
+        ]
+      },
+      {
+        "type": "field_dropdown",
+        "name": "ACTION",
+        "options": [
+          [
+            "Enable",
+            "ENABLE"
+          ],
+          [
+            "Disable",
+            "DISABLE"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_gpio_deep_hold": {
+    "message0": "깊은 절전 상태 유지 설정 · 동작 %1",
+    "tooltip": "ESP32/S2/S3/C3 also need per-pin hold. C6/P4 use per-pin hold alone; this global block makes no change. Release each pin individually.",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "ACTION",
+        "options": [
+          [
+            "Enable",
+            "ENABLE"
+          ],
+          [
+            "Disable",
+            "DISABLE"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_gpio_wakeup": {
+    "message0": "얕은 절전 해제 설정 · 핀 %1 · 레벨 %2",
+    "tooltip": "얕은 절전 해제 설정. 기능은 칩과 핀에 따라 다릅니다. 자세한 제한 사항（영어）: Configures level wakeup only. Set input mode and pulls first, then enter light sleep with esp32_sleep.",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "PIN",
+        "check": [
+          "Number",
+          "Any"
+        ]
+      },
+      {
+        "type": "field_dropdown",
+        "name": "LEVEL",
+        "options": [
+          [
+            "Low level",
+            "GPIO_INTR_LOW_LEVEL"
+          ],
+          [
+            "High level",
+            "GPIO_INTR_HIGH_LEVEL"
+          ],
+          [
+            "Disable this pin",
+            "DISABLE"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_gpio_reset": {
+    "message0": "핀 초기화 · 핀 %1",
+    "tooltip": "핀 초기화. 기능은 칩과 핀에 따라 다릅니다. 자세한 제한 사항（영어）: Release PWM, DAC, interrupts and hold first; restore the GPIO default configuration."
+  },
+  "esp32_gpio_interrupt": {
+    "message0": "GPIO 인터럽트 감시 · 핀 %1 · 모드 %2 · 실행 %3",
+    "tooltip": "GPIO 인터럽트 감시. 기능은 칩과 핀에 따라 다릅니다. 자세한 제한 사항（영어）: Set input mode first. Actions run in loop; edges may coalesce, so this is not a pulse counter. Mechanical buttons still need debouncing.",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "PIN",
+        "check": [
+          "Number",
+          "Any"
+        ]
+      },
+      {
+        "type": "field_dropdown",
+        "name": "MODE",
+        "options": [
+          [
+            "FALLING",
+            "FALLING"
+          ],
+          [
+            "RISING",
+            "RISING"
+          ],
+          [
+            "CHANGE",
+            "CHANGE"
+          ]
+        ]
+      },
+      {
+        "type": "input_statement",
+        "name": "DO"
+      }
+    ]
+  },
+  "esp32_gpio_interrupt_detach": {
+    "message0": "GPIO 인터럽트 해제 · 핀 %1",
+    "tooltip": "GPIO 인터럽트 해제. 기능은 칩과 핀에 따라 다릅니다. 자세한 제한 사항（영어）: Detach this pin interrupt and discard pending events."
+  }
+}

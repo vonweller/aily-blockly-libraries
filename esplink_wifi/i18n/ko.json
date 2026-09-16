@@ -1,0 +1,729 @@
+{
+  "toolbox_name": "ESPLink WiFi",
+  "toolbox_categories": [
+    "C3 링크",
+    "연결 관리",
+    "네트워크 정보",
+    "네트워크 시간",
+    "네트워크 검색",
+    "핫스팟 모드",
+    "WiFi 이벤트",
+    "TCP 클라이언트",
+    "TLS 연결",
+    "HTTP 요청",
+    "TCP 서버",
+    "UDP 통신"
+  ],
+  "esplink_wifi_begin": {
+    "message0": "WiFi 연결 이름 %1 비밀번호 %2",
+    "tooltip": "ESP32-C3를 통해 WiFi에 연결합니다. 완료를 기다리지 않습니다"
+  },
+  "esplink_wifi_begin_advanced": {
+    "message0": "WiFi 연결 이름 %1 비밀번호 %2 채널 %3",
+    "tooltip": "채널을 지정해 연결합니다. 0은 자동입니다"
+  },
+  "esplink_wifi_connect_quick": {
+    "message0": "WiFi 빠른 연결 이름 %1 비밀번호 %2 제한시간 %3 밀리초",
+    "tooltip": "연결하고 결과를 기다리며 성공하면 참을 반환합니다"
+  },
+  "esplink_wifi_wait_connected": {
+    "message0": "WiFi 연결 결과 대기 제한시간 %1 밀리초",
+    "tooltip": "연결 결과를 기다려 WiFi 상태 값을 반환합니다"
+  },
+  "esplink_wifi_is_connected": {
+    "message0": "WiFi 연결됨",
+    "tooltip": "WiFi가 연결 상태인지 여부"
+  },
+  "esplink_wifi_status": {
+    "message0": "WiFi 연결 상태",
+    "tooltip": "현재 WiFi 상태 값을 반환합니다"
+  },
+  "esplink_wifi_status_type": {
+    "message0": "WiFi 상태 %1",
+    "tooltip": "WiFi 상태 상수. 현재 상태와 비교할 때 사용합니다",
+    "args0": [
+      {
+        "options": [
+          [
+            "연결됨",
+            "WL_CONNECTED"
+          ],
+          [
+            "대기",
+            "WL_IDLE_STATUS"
+          ],
+          [
+            "네트워크 없음",
+            "WL_NO_SSID_AVAIL"
+          ],
+          [
+            "검색 완료",
+            "WL_SCAN_COMPLETED"
+          ],
+          [
+            "연결 실패",
+            "WL_CONNECT_FAILED"
+          ],
+          [
+            "연결 끊김",
+            "WL_CONNECTION_LOST"
+          ],
+          [
+            "연결 해제됨",
+            "WL_DISCONNECTED"
+          ],
+          [
+            "모듈 없음",
+            "WL_NO_SHIELD"
+          ]
+        ]
+      }
+    ]
+  },
+  "esplink_wifi_disconnect": {
+    "message0": "WiFi 연결 끊기 무선 끄기 %1 저장된 비밀번호 삭제 %2",
+    "tooltip": "현재 WiFi 연결을 끊습니다"
+  },
+  "esplink_wifi_reconnect": {
+    "message0": "WiFi 다시 연결",
+    "tooltip": "이전 자격 증명으로 다시 연결합니다"
+  },
+  "esplink_wifi_set_auto_reconnect": {
+    "message0": "WiFi 자동 재연결 %1",
+    "tooltip": "연결이 끊기면 C3가 자동으로 다시 연결합니다"
+  },
+  "esplink_wifi_set_mode": {
+    "message0": "WiFi 모드 %1 설정",
+    "tooltip": "C3의 WiFi 동작 모드를 설정합니다",
+    "args0": [
+      {
+        "options": [
+          [
+            "스테이션(핫스팟 접속)",
+            "WIFI_STA"
+          ],
+          [
+            "AP(핫스팟 생성)",
+            "WIFI_AP"
+          ],
+          [
+            "AP+스테이션",
+            "WIFI_AP_STA"
+          ],
+          [
+            "끄기",
+            "WIFI_OFF"
+          ]
+        ]
+      }
+    ]
+  },
+  "esplink_wifi_get_mode": {
+    "message0": "WiFi 현재 모드",
+    "tooltip": "현재 동작 모드 값"
+  },
+  "esplink_wifi_poll": {
+    "message0": "WiFi 처리",
+    "tooltip": "링크를 진행하고 WiFi 이벤트를 전달합니다. WiFi 블록이 자동으로 추가합니다"
+  },
+  "esplink_wifi_end": {
+    "message0": "WiFi 끄기",
+    "tooltip": "WiFi 자원을 해제하며 BLE에는 영향이 없습니다"
+  },
+  "esplink_wifi_ip_info": {
+    "message0": "WiFi %1",
+    "tooltip": "네트워크 주소를 문자열로 반환합니다",
+    "args0": [
+      {
+        "options": [
+          [
+            "로컬 IP 주소",
+            "localIP"
+          ],
+          [
+            "게이트웨이 주소",
+            "gatewayIP"
+          ],
+          [
+            "서브넷 마스크",
+            "subnetMask"
+          ],
+          [
+            "기본 DNS",
+            "dns0"
+          ],
+          [
+            "보조 DNS",
+            "dns1"
+          ]
+        ]
+      }
+    ]
+  },
+  "esplink_wifi_ssid": {
+    "message0": "현재 WiFi 이름",
+    "tooltip": "연결된 네트워크의 SSID"
+  },
+  "esplink_wifi_rssi": {
+    "message0": "WiFi 신호 세기",
+    "tooltip": "현재 연결의 신호 세기(dBm). 0에 가까울수록 좋습니다"
+  },
+  "esplink_wifi_channel": {
+    "message0": "WiFi 채널",
+    "tooltip": "현재 연결이 사용하는 채널"
+  },
+  "esplink_wifi_mac": {
+    "message0": "WiFi MAC 주소",
+    "tooltip": "스테이션 인터페이스의 MAC 주소"
+  },
+  "esplink_wifi_set_hostname": {
+    "message0": "호스트 이름 %1 설정",
+    "tooltip": "공유기에 표시되는 이름. 연결 전에 설정하세요"
+  },
+  "esplink_wifi_get_hostname": {
+    "message0": "호스트 이름",
+    "tooltip": "현재 설정된 호스트 이름"
+  },
+  "esplink_wifi_config_static": {
+    "message0": "고정 IP %1 게이트웨이 %2 서브넷 마스크 %3 DNS %4 설정",
+    "tooltip": "고정 IPv4 설정을 사용합니다. WiFi 연결 전에 호출하세요"
+  },
+  "esplink_wifi_set_dns": {
+    "message0": "DNS 서버 설정 기본 %1 보조 %2",
+    "tooltip": "이름 확인 서버를 설정합니다"
+  },
+  "esplink_wifi_host_by_name": {
+    "message0": "도메인 %1 의 IP 주소 확인",
+    "tooltip": "C3로 도메인을 확인하며 실패하면 빈 문자열을 반환합니다"
+  },
+  "esplink_wifi_firmware_version": {
+    "message0": "C3 WiFi 펌웨어 버전",
+    "tooltip": "C3에서 실행 중인 펌웨어 버전"
+  },
+  "esplink_wifi_last_error": {
+    "message0": "WiFi 마지막 오류 코드",
+    "tooltip": "마지막 WiFi 작업의 오류 코드. 0은 성공"
+  },
+  "esplink_wifi_config_time": {
+    "message0": "네트워크 시간 설정 표준시 %1 시간 서머타임 %2 시간 서버 %3",
+    "tooltip": "C3의 SNTP 동기화를 설정합니다. TLS 인증서 검증에는 정확한 시간이 필요합니다"
+  },
+  "esplink_wifi_get_time": {
+    "message0": "네트워크 타임스탬프(초)",
+    "tooltip": "C3의 유닉스 시간. 동기화 전에는 작은 값입니다"
+  },
+  "esplink_wifi_scan_networks": {
+    "message0": "WiFi 네트워크 검색 숨김 포함 %1",
+    "tooltip": "동기 검색 후 찾은 개수를 반환합니다. 최대 32개까지 저장합니다"
+  },
+  "esplink_wifi_scan_start_async": {
+    "message0": "WiFi 비동기 검색 시작 숨김 포함 %1",
+    "tooltip": "백그라운드로 검색합니다. 결과 개수로 진행 상황을 확인하세요"
+  },
+  "esplink_wifi_scan_complete": {
+    "message0": "검색 결과 개수",
+    "tooltip": "찾은 네트워크 수. -1은 진행 중, -2는 실패"
+  },
+  "esplink_wifi_scan_ssid": {
+    "message0": "%1 번째 네트워크 이름",
+    "tooltip": "검색 결과의 SSID. 번호는 0부터 시작합니다"
+  },
+  "esplink_wifi_scan_rssi": {
+    "message0": "%1 번째 네트워크 신호 세기",
+    "tooltip": "검색 결과의 신호 세기(dBm)"
+  },
+  "esplink_wifi_scan_channel": {
+    "message0": "%1 번째 네트워크 채널",
+    "tooltip": "검색 결과의 채널"
+  },
+  "esplink_wifi_scan_encryption": {
+    "message0": "%1 번째 네트워크 암호화 방식",
+    "tooltip": "검색 결과의 암호화 유형 값. 0은 개방형 네트워크"
+  },
+  "esplink_wifi_scan_delete": {
+    "message0": "검색 결과 지우기",
+    "tooltip": "검색 결과가 쓰는 메모리를 해제합니다"
+  },
+  "esplink_wifi_softap": {
+    "message0": "WiFi 핫스팟 생성 이름 %1 비밀번호 %2 채널 %3",
+    "tooltip": "C3에 핫스팟을 만듭니다. 비밀번호가 비어 있으면 개방형입니다"
+  },
+  "esplink_wifi_softap_config": {
+    "message0": "핫스팟 네트워크 설정 IP %1 게이트웨이 %2 서브넷 마스크 %3",
+    "tooltip": "핫스팟의 IPv4 대역을 설정합니다. 핫스팟 생성 전에 호출하세요"
+  },
+  "esplink_wifi_softap_disconnect": {
+    "message0": "WiFi 핫스팟 끄기 무선도 끄기 %1",
+    "tooltip": "핫스팟을 중지합니다"
+  },
+  "esplink_wifi_softap_ip": {
+    "message0": "핫스팟 IP 주소",
+    "tooltip": "핫스팟 자신의 IP 주소"
+  },
+  "esplink_wifi_softap_station_num": {
+    "message0": "핫스팟 접속 기기 수",
+    "tooltip": "핫스팟에 연결된 기기 수"
+  },
+  "esplink_wifi_softap_mac": {
+    "message0": "핫스팟 MAC 주소",
+    "tooltip": "핫스팟 인터페이스의 MAC 주소"
+  },
+  "esplink_wifi_on_event": {
+    "message0": "WiFi 이벤트 %1 이(가) 발생하면",
+    "message1": "실행 %1",
+    "tooltip": "WiFi 이벤트 콜백을 등록합니다. 이벤트는 폴링 상태 차이로 만들어지며 WiFi를 처리하는 작업에서 실행됩니다",
+    "args0": [
+      {
+        "options": [
+          [
+            "핫스팟에 연결됨",
+            "ARDUINO_EVENT_WIFI_STA_CONNECTED"
+          ],
+          [
+            "핫스팟 연결 끊김",
+            "ARDUINO_EVENT_WIFI_STA_DISCONNECTED"
+          ],
+          [
+            "IP 주소 획득",
+            "ARDUINO_EVENT_WIFI_STA_GOT_IP"
+          ],
+          [
+            "IP 주소 잃음",
+            "ARDUINO_EVENT_WIFI_STA_LOST_IP"
+          ],
+          [
+            "검색 완료",
+            "ARDUINO_EVENT_WIFI_SCAN_DONE"
+          ],
+          [
+            "기기가 핫스팟에 접속",
+            "ARDUINO_EVENT_WIFI_AP_STACONNECTED"
+          ],
+          [
+            "기기가 핫스팟에서 이탈",
+            "ARDUINO_EVENT_WIFI_AP_STADISCONNECTED"
+          ],
+          [
+            "모든 이벤트",
+            "ARDUINO_EVENT_MAX"
+          ]
+        ]
+      }
+    ]
+  },
+  "esplink_tcp_client_create": {
+    "message0": "TCP 클라이언트 %1 생성",
+    "tooltip": "TCP 클라이언트 객체를 만듭니다"
+  },
+  "esplink_tcp_client_connect": {
+    "message0": "클라이언트 %1 을(를) %2 포트 %3 에 연결",
+    "tooltip": "서버에 연결하며 성공하면 참. 기본 제한시간 10초(TLS 15초)"
+  },
+  "esplink_tcp_client_connected": {
+    "message0": "클라이언트 %1 연결됨",
+    "tooltip": "연결이 유효한지 여부. 읽지 않은 데이터가 남아 있어도 참입니다"
+  },
+  "esplink_tcp_client_print": {
+    "message0": "클라이언트 %1 로 %2 전송 줄바꿈 %3",
+    "tooltip": "서버로 데이터를 보냅니다"
+  },
+  "esplink_tcp_client_available": {
+    "message0": "클라이언트 %1 읽을 수 있는 바이트 수",
+    "tooltip": "지금 읽을 수 있는 바이트 수"
+  },
+  "esplink_tcp_client_read_string": {
+    "message0": "클라이언트 %1 수신 데이터 읽기",
+    "tooltip": "버퍼에 있는 내용만 가져오며 기다리지 않습니다"
+  },
+  "esplink_tcp_client_remote_ip": {
+    "message0": "클라이언트 %1 상대 IP 주소",
+    "tooltip": "연결 상대의 IP 주소"
+  },
+  "esplink_tcp_client_stop": {
+    "message0": "클라이언트 %1 닫기",
+    "tooltip": "연결을 닫고 C3의 소켓을 해제합니다"
+  },
+  "esplink_tls_client_create": {
+    "message0": "TLS 클라이언트 %1 생성",
+    "tooltip": "HTTPS/TLS 클라이언트를 만듭니다. 기본으로 C3 내장 루트 인증서를 사용합니다"
+  },
+  "esplink_tls_set_pem": {
+    "message0": "TLS 클라이언트 %1 에 %2 설정 내용 %3",
+    "tooltip": "PEM 형식 인증서나 키를 설정합니다. 하나당 8192바이트까지",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "CA 루트 인증서",
+            "CA"
+          ],
+          [
+            "클라이언트 인증서",
+            "CERT"
+          ],
+          [
+            "클라이언트 개인 키",
+            "KEY"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "esplink_tls_use_builtin_ca": {
+    "message0": "TLS 클라이언트 %1 내장 루트 인증서 사용",
+    "tooltip": "C3 펌웨어에 내장된 인증서 저장소로 서버를 검증합니다"
+  },
+  "esplink_tls_set_insecure": {
+    "message0": "TLS 클라이언트 %1 인증서 검증 생략",
+    "tooltip": "서버 인증서를 검증하지 않습니다. 위험을 아는 경우에만 사용하세요"
+  },
+  "esplink_http_get": {
+    "message0": "HTTP GET 요청 %1",
+    "tooltip": "http:// 또는 https:// 주소를 요청하고 본문을 반환합니다. 실패 시 빈 문자열, 최대 4096바이트"
+  },
+  "esplink_http_post": {
+    "message0": "HTTP POST 요청 %1 내용 %2 형식 %3",
+    "tooltip": "http:// 또는 https:// 주소로 내용을 보내고 응답 본문을 반환합니다. 실패 시 빈 문자열"
+  },
+  "esplink_tcp_server_create": {
+    "message0": "TCP 서버 %1 생성 포트 %2 수신",
+    "tooltip": "TCP 서버를 만들고 수신을 시작합니다. 모든 로컬 주소에서만 수신합니다"
+  },
+  "esplink_tcp_server_accept": {
+    "message0": "서버 %1 의 새 클라이언트를 %2 에 가져오기",
+    "tooltip": "새 연결을 지정한 변수에 넘깁니다. 없으면 변수는 무효입니다"
+  },
+  "esplink_tcp_server_write": {
+    "message0": "서버 %1 에서 %2 브로드캐스트",
+    "tooltip": "서버가 보관 중인 접속 클라이언트에게 일괄 전송합니다"
+  },
+  "esplink_tcp_server_end": {
+    "message0": "서버 %1 닫기",
+    "tooltip": "수신을 멈추고 포트를 해제합니다"
+  },
+  "esplink_udp_create": {
+    "message0": "UDP %1 생성 포트 %2 수신",
+    "tooltip": "UDP 객체를 만들고 로컬 포트에 바인딩합니다. 0은 자동 할당"
+  },
+  "esplink_udp_create_multicast": {
+    "message0": "UDP %1 생성 멀티캐스트 %2 포트 %3 참여",
+    "tooltip": "멀티캐스트 주소에 바인딩한 UDP 객체를 만듭니다"
+  },
+  "esplink_udp_send_to": {
+    "message0": "UDP %1 로 %2 을(를) %3 포트 %4 에 전송",
+    "tooltip": "구성과 전송을 한 번에 처리하며 성공하면 참. 데이터그램은 1472바이트까지"
+  },
+  "esplink_udp_begin_packet": {
+    "message0": "UDP %1 패킷 시작 대상 %2 포트 %3",
+    "tooltip": "보낼 데이터그램을 시작합니다"
+  },
+  "esplink_udp_write": {
+    "message0": "UDP %1 에 %2 쓰기",
+    "tooltip": "구성 중인 데이터그램에 내용을 덧붙입니다"
+  },
+  "esplink_udp_end_packet": {
+    "message0": "UDP %1 데이터그램 전송",
+    "tooltip": "데이터그램을 보냅니다. 1472바이트를 넘으면 전체가 실패합니다"
+  },
+  "esplink_udp_parse_packet": {
+    "message0": "UDP %1 수신 데이터그램 길이",
+    "tooltip": "다음 데이터그램을 가져와 길이를 반환합니다. 없으면 0"
+  },
+  "esplink_udp_read_string": {
+    "message0": "UDP %1 데이터그램 내용 읽기",
+    "tooltip": "현재 데이터그램에 남은 내용을 모두 읽습니다"
+  },
+  "esplink_udp_remote_ip": {
+    "message0": "UDP %1 보낸 쪽 IP 주소",
+    "tooltip": "현재 데이터그램을 보낸 쪽의 IP 주소"
+  },
+  "esplink_udp_stop": {
+    "message0": "UDP %1 닫기",
+    "tooltip": "UDP를 닫고 C3의 소켓을 해제합니다"
+  },
+  "esplink_begin": {
+    "message0": "ESPLink로 ESP32-C3 연결",
+    "tooltip": "보드 기본 하드웨어 시리얼(921600보드레이트)로 ESP32-C3 연결을 시작합니다. WiFi와 BLE 라이브러리가 ESPLink를 자동으로 시작하므로 이 블록은 단독 진단용입니다"
+  },
+  "esplink_begin_serial": {
+    "message0": "ESPLink 시작 시리얼 %1 보드레이트 %2",
+    "tooltip": "시리얼 포트와 보드레이트를 지정해 ESPLink를 시작합니다. C3 펌웨어와 같은 보드레이트여야 하며 WiFi/BLE 초기화보다 먼저 실행해야 합니다",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "921600",
+            "921600"
+          ],
+          [
+            "115200",
+            "115200"
+          ],
+          [
+            "460800",
+            "460800"
+          ],
+          [
+            "230400",
+            "230400"
+          ],
+          [
+            "1000000",
+            "1000000"
+          ]
+        ]
+      }
+    ]
+  },
+  "esplink_bind_stream": {
+    "message0": "설정된 시리얼 %1 을 ESPLink에 연결",
+    "tooltip": "스케치에서 이미 초기화한(사용자 핀 포함) 시리얼을 빌려 씁니다. ESPLink는 begin()과 end()를 호출하지 않습니다"
+  },
+  "esplink_end": {
+    "message0": "ESPLink 중지",
+    "tooltip": "ESPLink 바인딩을 해제합니다. 빌림 모드에서는 시리얼 드라이버를 닫지 않습니다"
+  },
+  "esplink_poll": {
+    "message0": "ESPLink 처리",
+    "tooltip": "ESPLink 전송을 진행합니다. 초기화 블록이 메인 루프에 자동으로 추가하므로 보통 필요 없습니다"
+  },
+  "esplink_ready": {
+    "message0": "ESPLink 준비됨",
+    "tooltip": "C3 링크가 사용 가능한 세션 상태인지 여부"
+  },
+  "esplink_ping": {
+    "message0": "ESPLink 통신 테스트 제한시간 %1 밀리초",
+    "tooltip": "C3에 Ping을 한 번 보내고 응답을 기다립니다"
+  },
+  "esplink_session": {
+    "message0": "ESPLink 세션 번호",
+    "tooltip": "현재 링크 세션 번호. 값이 바뀌면 C3 재시작 또는 링크 재구성을 뜻하며 이전 소켓과 BLE 핸들은 모두 무효가 됩니다"
+  },
+  "esplink_last_error": {
+    "message0": "ESPLink 마지막 오류 코드",
+    "tooltip": "마지막 ESPLink 작업의 오류 코드. 0은 성공"
+  },
+  "esplink_error_code": {
+    "message0": "오류 코드 %1",
+    "tooltip": "ESPLink 오류 코드 상수. 마지막 오류 코드와 비교할 때 사용합니다",
+    "args0": [
+      {
+        "options": [
+          [
+            "성공",
+            "c3::Ok"
+          ],
+          [
+            "잘못된 인자",
+            "c3::InvalidArgument"
+          ],
+          [
+            "지원되지 않음",
+            "c3::Unsupported"
+          ],
+          [
+            "메모리 부족",
+            "c3::NoMemory"
+          ],
+          [
+            "사용 중",
+            "c3::Busy"
+          ],
+          [
+            "시간 초과",
+            "c3::Timeout"
+          ],
+          [
+            "연결되지 않음",
+            "c3::NotConnected"
+          ],
+          [
+            "IO 오류",
+            "c3::IoError"
+          ],
+          [
+            "프로토콜 오류",
+            "c3::ProtocolError"
+          ],
+          [
+            "결과 알 수 없음",
+            "c3::OutcomeUnknown"
+          ],
+          [
+            "핸들 무효",
+            "c3::StaleHandle"
+          ],
+          [
+            "버퍼 부족",
+            "c3::BufferTooSmall"
+          ],
+          [
+            "결과 만료",
+            "c3::ResultExpired"
+          ],
+          [
+            "보안 오류",
+            "c3::SecurityError"
+          ],
+          [
+            "재시도 필요",
+            "c3::WouldBlock"
+          ],
+          [
+            "링크 끊김",
+            "c3::LinkLost"
+          ],
+          [
+            "찾을 수 없음",
+            "c3::NotFound"
+          ]
+        ]
+      }
+    ]
+  },
+  "esplink_firmware_version": {
+    "message0": "C3 펌웨어 버전",
+    "tooltip": "ESP32-C3에서 실행 중인 브리지 펌웨어 버전 문자열"
+  },
+  "esplink_capability": {
+    "message0": "C3 성능 %1",
+    "tooltip": "핸드셰이크에서 C3가 보고한 성능 값을 읽습니다",
+    "args0": [
+      {
+        "options": [
+          [
+            "최대 페이로드 바이트",
+            "maxPayload"
+          ],
+          [
+            "최대 HCI 패킷 바이트",
+            "maxHciPacket"
+          ],
+          [
+            "최대 소켓 수",
+            "maxSockets"
+          ],
+          [
+            "최대 BLE 연결 수",
+            "maxBLEConnections"
+          ],
+          [
+            "기능 비트",
+            "features"
+          ],
+          [
+            "부팅 ID",
+            "bootID"
+          ]
+        ]
+      }
+    ]
+  },
+  "esplink_has_feature": {
+    "message0": "C3가 %1 지원",
+    "tooltip": "C3 펌웨어가 선택한 기능을 지원하는지 여부",
+    "args0": [
+      {
+        "options": [
+          [
+            "WiFi",
+            "c3::WiFi"
+          ],
+          [
+            "TCP",
+            "c3::TCP"
+          ],
+          [
+            "UDP",
+            "c3::UDP"
+          ],
+          [
+            "TLS",
+            "c3::TLS"
+          ],
+          [
+            "BLE(HCI)",
+            "c3::HCI"
+          ],
+          [
+            "IPv6",
+            "c3::IPv6"
+          ],
+          [
+            "AP+STA 동시",
+            "c3::StationAP"
+          ],
+          [
+            "OTA",
+            "c3::OTA"
+          ],
+          [
+            "mDNS",
+            "c3::MDNS"
+          ]
+        ]
+      }
+    ]
+  },
+  "esplink_stat": {
+    "message0": "ESPLink 통계 %1",
+    "tooltip": "링크 품질 카운터를 읽어 배선과 보드레이트 문제를 확인합니다",
+    "args0": [
+      {
+        "options": [
+          [
+            "송신 프레임 수",
+            "transmitted"
+          ],
+          [
+            "수신 프레임 수",
+            "received"
+          ],
+          [
+            "재전송 횟수",
+            "retries"
+          ],
+          [
+            "시간 초과 횟수",
+            "timeouts"
+          ],
+          [
+            "CRC 오류 수",
+            "crcErrors"
+          ],
+          [
+            "형식 오류 수",
+            "malformed"
+          ],
+          [
+            "크기 초과 프레임 수",
+            "oversized"
+          ],
+          [
+            "무시된 프레임 수",
+            "ignored"
+          ],
+          [
+            "세션 변경 횟수",
+            "sessionChanges"
+          ],
+          [
+            "수신 바이트 수",
+            "rxBytes"
+          ],
+          [
+            "수신 배치 수",
+            "rxBatches"
+          ],
+          [
+            "작업 스레드 깨어난 횟수",
+            "workerWakeups"
+          ]
+        ]
+      }
+    ]
+  }
+}
