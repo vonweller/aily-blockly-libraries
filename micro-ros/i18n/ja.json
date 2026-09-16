@@ -1,0 +1,116 @@
+{
+  "toolbox_name": "micro-ROS",
+  "microros_wifi_connect": {
+    "message0": "micro-ROS を WiFi で接続 SSID %1 パスワード %2 Agent IP %3 Agent ポート %4",
+    "tooltip": "WiFi に接続し micro-ROS Agent のアドレスを設定します（WiFi 接続完了までブロックします。初期化でのみ使用）",
+    "args0": [
+      null,
+      null,
+      null,
+      null
+    ]
+  },
+  "microros_node_init": {
+    "message0": "micro-ROS ノード初期化 名前 %1",
+    "tooltip": "アロケータ、rclc サポート、デフォルトノードを作成します（失敗時は停止）。パブリッシャー/サブスクライバー作成より前に実行してください",
+    "args0": [
+      null
+    ]
+  },
+  "microros_publisher_create": {
+    "message0": "micro-ROS パブリッシャー作成 %1 メッセージ型 %2 トピック %3",
+    "tooltip": "ノード上に best-effort パブリッシャーを作成します（失敗時は停止）。ノード初期化の後に使用します",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "整数 Int32",
+            "Int32"
+          ],
+          [
+            "単精度浮動小数点 Float32",
+            "Float32"
+          ],
+          [
+            "倍精度浮動小数点 Float64",
+            "Float64"
+          ],
+          [
+            "真偽値 Bool",
+            "Bool"
+          ],
+          [
+            "文字列 String",
+            "String"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "microros_publish": {
+    "message0": "micro-ROS パブリッシュ %1 メッセージ %2",
+    "tooltip": "作成済みパブリッシャーで 1 件パブリッシュします。値の型はパブリッシャーのメッセージ型と一致させてください",
+    "args0": [
+      null,
+      null
+    ]
+  },
+  "microros_subscriber_create": {
+    "message0": "micro-ROS サブスクライバー作成 %1 メッセージ型 %2 トピック %3 受信時に %4",
+    "tooltip": "サブスクライバー、専用エグゼキューター、コールバックを作成します（新着時に内部ブロックを実行）。ノード初期化の後に使用します",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "整数 Int32",
+            "Int32"
+          ],
+          [
+            "単精度浮動小数点 Float32",
+            "Float32"
+          ],
+          [
+            "倍精度浮動小数点 Float64",
+            "Float64"
+          ],
+          [
+            "真偽値 Bool",
+            "Bool"
+          ],
+          [
+            "文字列 String",
+            "String"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "microros_subscriber_data": {
+    "message0": "micro-ROS %1 が受信したデータ",
+    "tooltip": "サブスクライバーが最後に受信したメッセージデータを読み取ります（数値型は数値、String は文字列）。通常はコールバック内で使用します",
+    "args0": [
+      null
+    ]
+  },
+  "microros_spin_some": {
+    "message0": "micro-ROS %1 の新着メッセージを処理 待機時間(ミリ秒) %2",
+    "tooltip": "サブスクライバーの新着を確認してコールバックを実行します（ループ内で繰り返し配置）",
+    "args0": [
+      null,
+      null
+    ]
+  },
+  "microros_udp_test": {
+    "message0": "micro-ROS UDP 接続テスト 送信先 IP %1 ポート %2",
+    "tooltip": "送信先に 5 個の UDP テストパケットを送信し、毎回の結果を出力します（ネットワーク/ファイアウォールの切り分け用。初期化内で使用）",
+    "args0": [
+      null,
+      null
+    ]
+  }
+}

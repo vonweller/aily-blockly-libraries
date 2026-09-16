@@ -1,0 +1,235 @@
+[
+  {
+    "type": "microros_wifi_connect",
+    "message0": "micro-ROS 通过 WiFi 连接 SSID %1 密码 %2 Agent IP %3 Agent 端口 %4",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "SSID",
+        "text": "my_wifi"
+      },
+      {
+        "type": "field_input",
+        "name": "PASS",
+        "text": "my_pass"
+      },
+      {
+        "type": "field_input",
+        "name": "AGENT_IP",
+        "text": "192.168.1.57"
+      },
+      {
+        "type": "field_number",
+        "name": "PORT",
+        "value": 8888
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#6A1B9A",
+    "tooltip": "连接 WiFi 并设置 micro-ROS Agent 地址（会阻塞直到 WiFi 连接成功，仅在初始化中使用）"
+  },
+  {
+    "type": "microros_udp_test",
+    "message0": "micro-ROS UDP 连通性测试 目标 IP %1 目标端口 %2",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "AGENT_IP",
+        "text": "192.168.1.57"
+      },
+      {
+        "type": "field_number",
+        "name": "PORT",
+        "value": 8888
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#6A1B9A",
+    "tooltip": "向目标地址连发 5 个 UDP 测试包并打印每次结果（用于排查网络连通性/防火墙，放在初始化中使用）"
+  },
+  {
+    "type": "microros_node_init",
+    "message0": "micro-ROS 初始化节点 名称 %1",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "NODE_NAME",
+        "text": "micro_ros_arduino_node"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#6A1B9A",
+    "tooltip": "创建分配器、rclc 支持和默认节点（失败时停机），必须在使用发布器/订阅器之前执行"
+  },
+  {
+    "type": "microros_publisher_create",
+    "message0": "micro-ROS 创建发布器 %1 消息类型 %2 话题 %3",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "VAR",
+        "variable": "publisher",
+        "variableTypes": [
+          "Publisher"
+        ],
+        "defaultType": "Publisher"
+      },
+      {
+        "type": "field_dropdown",
+        "name": "TYPE",
+        "options": [
+          [
+            "整数 Int32",
+            "Int32"
+          ],
+          [
+            "单精度浮点 Float32",
+            "Float32"
+          ],
+          [
+            "双精度浮点 Float64",
+            "Float64"
+          ],
+          [
+            "布尔 Bool",
+            "Bool"
+          ],
+          [
+            "字符串 String",
+            "String"
+          ]
+        ]
+      },
+      {
+        "type": "field_input",
+        "name": "TOPIC",
+        "text": "topic_name"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#6A1B9A",
+    "tooltip": "在节点上创建 best-effort 发布器对象（失败时停机），需要在初始化节点之后"
+  },
+  {
+    "type": "microros_publish",
+    "message0": "micro-ROS 发布 %1 消息 %2",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "VAR",
+        "variable": "publisher",
+        "variableTypes": [
+          "Publisher"
+        ],
+        "defaultType": "Publisher"
+      },
+      {
+        "type": "input_value",
+        "name": "VALUE"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#6A1B9A",
+    "tooltip": "向已创建的发布器发布一条消息，消息值类型需要与发布器的消息类型一致"
+  },
+  {
+    "type": "microros_subscriber_create",
+    "message0": "micro-ROS 创建订阅器 %1 消息类型 %2 话题 %3 收到消息时 %4",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "VAR",
+        "variable": "subscriber",
+        "variableTypes": [
+          "Subscriber"
+        ],
+        "defaultType": "Subscriber"
+      },
+      {
+        "type": "field_dropdown",
+        "name": "TYPE",
+        "options": [
+          [
+            "整数 Int32",
+            "Int32"
+          ],
+          [
+            "单精度浮点 Float32",
+            "Float32"
+          ],
+          [
+            "双精度浮点 Float64",
+            "Float64"
+          ],
+          [
+            "布尔 Bool",
+            "Bool"
+          ],
+          [
+            "字符串 String",
+            "String"
+          ]
+        ]
+      },
+      {
+        "type": "field_input",
+        "name": "TOPIC",
+        "text": "topic_name"
+      },
+      {
+        "type": "input_statement",
+        "name": "DO"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#6A1B9A",
+    "tooltip": "创建订阅器、专属执行器和回调（收到新消息时执行内部积木），需要在初始化节点之后"
+  },
+  {
+    "type": "microros_subscriber_data",
+    "message0": "micro-ROS 订阅器 %1 收到的数据",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "VAR",
+        "variable": "subscriber",
+        "variableTypes": [
+          "Subscriber"
+        ],
+        "defaultType": "Subscriber"
+      }
+    ],
+    "output": null,
+    "colour": "#6A1B9A",
+    "tooltip": "读取订阅器最近收到的消息数据（数值类型返回数字，String 返回字符串），通常在订阅回调中使用"
+  },
+  {
+    "type": "microros_spin_some",
+    "message0": "micro-ROS 处理订阅器 %1 的新消息 等待时长(毫秒) %2",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "VAR",
+        "variable": "subscriber",
+        "variableTypes": [
+          "Subscriber"
+        ],
+        "defaultType": "Subscriber"
+      },
+      {
+        "type": "input_value",
+        "name": "TIMEOUT_MS"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#6A1B9A",
+    "tooltip": "检查该订阅器是否有新消息并触发回调（放在循环中反复执行）"
+  }
+]

@@ -1,0 +1,116 @@
+{
+  "toolbox_name": "micro-ROS",
+  "microros_wifi_connect": {
+    "message0": "micro-ROS 透過 WiFi 連線 SSID %1 密碼 %2 Agent IP %3 Agent 連接埠 %4",
+    "tooltip": "連接 WiFi 並設定 micro-ROS Agent 位址（會阻塞直到 WiFi 連線成功，僅在初始化中使用）",
+    "args0": [
+      null,
+      null,
+      null,
+      null
+    ]
+  },
+  "microros_node_init": {
+    "message0": "micro-ROS 初始化節點 名稱 %1",
+    "tooltip": "建立配置器、rclc 支援和預設節點（失敗時停機），必須在建立發布器/訂閱器之前執行",
+    "args0": [
+      null
+    ]
+  },
+  "microros_publisher_create": {
+    "message0": "micro-ROS 建立發布器 %1 訊息類型 %2 話題 %3",
+    "tooltip": "在節點上建立 best-effort 發布器物件（失敗時停機），需要在初始化節點之後",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "整數 Int32",
+            "Int32"
+          ],
+          [
+            "單精度浮點 Float32",
+            "Float32"
+          ],
+          [
+            "雙精度浮點 Float64",
+            "Float64"
+          ],
+          [
+            "布林 Bool",
+            "Bool"
+          ],
+          [
+            "字串 String",
+            "String"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "microros_publish": {
+    "message0": "micro-ROS 發布 %1 訊息 %2",
+    "tooltip": "向已建立的發布器發布一條訊息，訊息值類型需要與發布器的訊息類型一致",
+    "args0": [
+      null,
+      null
+    ]
+  },
+  "microros_subscriber_create": {
+    "message0": "micro-ROS 建立訂閱器 %1 訊息類型 %2 話題 %3 收到訊息時 %4",
+    "tooltip": "建立訂閱器、專屬執行器和回呼（收到新訊息時執行內部積木），需要在初始化節點之後",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "整數 Int32",
+            "Int32"
+          ],
+          [
+            "單精度浮點 Float32",
+            "Float32"
+          ],
+          [
+            "雙精度浮點 Float64",
+            "Float64"
+          ],
+          [
+            "布林 Bool",
+            "Bool"
+          ],
+          [
+            "字串 String",
+            "String"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "microros_subscriber_data": {
+    "message0": "micro-ROS 訂閱器 %1 收到的資料",
+    "tooltip": "讀取訂閱器最近收到的訊息資料（數值類型回傳數字，String 回傳字串），通常在訂閱回呼中使用",
+    "args0": [
+      null
+    ]
+  },
+  "microros_spin_some": {
+    "message0": "micro-ROS 處理訂閱器 %1 的新訊息 等待時長(毫秒) %2",
+    "tooltip": "檢查該訂閱器是否有新訊息並觸發回呼（放在循環中反覆執行）",
+    "args0": [
+      null,
+      null
+    ]
+  },
+  "microros_udp_test": {
+    "message0": "micro-ROS UDP 連通性測試 目標 IP %1 目標端口 %2",
+    "tooltip": "向目標位址連續傳送 5 個 UDP 測試封包並列印每次結果（用於排查網路連通性/防火牆，放在初始化中使用）",
+    "args0": [
+      null,
+      null
+    ]
+  }
+}
