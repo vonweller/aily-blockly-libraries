@@ -1,0 +1,729 @@
+{
+  "toolbox_name": "ESPLink WiFi",
+  "toolbox_categories": [
+    "وصلة C3",
+    "الاتصال",
+    "معلومات الشبكة",
+    "وقت الشبكة",
+    "مسح الشبكات",
+    "نقطة الوصول",
+    "أحداث WiFi",
+    "عميل TCP",
+    "TLS",
+    "طلب HTTP",
+    "خادم TCP",
+    "UDP"
+  ],
+  "esplink_wifi_begin": {
+    "message0": "الاتصال بشبكة WiFi الاسم %1 كلمة المرور %2",
+    "tooltip": "يتصل بشبكة WiFi عبر ESP32-C3 دون انتظار النتيجة"
+  },
+  "esplink_wifi_begin_advanced": {
+    "message0": "الاتصال بشبكة WiFi الاسم %1 كلمة المرور %2 القناة %3",
+    "tooltip": "يتصل على قناة محددة، والقيمة 0 تعني تلقائي"
+  },
+  "esplink_wifi_connect_quick": {
+    "message0": "اتصال WiFi سريع الاسم %1 كلمة المرور %2 مهلة %3 مللي ثانية",
+    "tooltip": "يتصل وينتظر النتيجة، ويعيد صحيحًا عند النجاح"
+  },
+  "esplink_wifi_wait_connected": {
+    "message0": "انتظار نتيجة اتصال WiFi مهلة %1 مللي ثانية",
+    "tooltip": "ينتظر نتيجة الاتصال ويعيد قيمة حالة WiFi"
+  },
+  "esplink_wifi_is_connected": {
+    "message0": "WiFi متصل",
+    "tooltip": "ما إذا كان WiFi متصلًا الآن"
+  },
+  "esplink_wifi_status": {
+    "message0": "حالة اتصال WiFi",
+    "tooltip": "قيمة حالة WiFi الحالية"
+  },
+  "esplink_wifi_status_type": {
+    "message0": "حالة WiFi %1",
+    "tooltip": "ثابت حالة يُقارن بالحالة الحالية",
+    "args0": [
+      {
+        "options": [
+          [
+            "متصل",
+            "WL_CONNECTED"
+          ],
+          [
+            "خامل",
+            "WL_IDLE_STATUS"
+          ],
+          [
+            "الشبكة غير موجودة",
+            "WL_NO_SSID_AVAIL"
+          ],
+          [
+            "اكتمل المسح",
+            "WL_SCAN_COMPLETED"
+          ],
+          [
+            "فشل الاتصال",
+            "WL_CONNECT_FAILED"
+          ],
+          [
+            "فُقد الاتصال",
+            "WL_CONNECTION_LOST"
+          ],
+          [
+            "غير متصل",
+            "WL_DISCONNECTED"
+          ],
+          [
+            "لا توجد وحدة",
+            "WL_NO_SHIELD"
+          ]
+        ]
+      }
+    ]
+  },
+  "esplink_wifi_disconnect": {
+    "message0": "قطع WiFi إيقاف الراديو %1 مسح كلمة المرور المحفوظة %2",
+    "tooltip": "يقطع اتصال WiFi الحالي"
+  },
+  "esplink_wifi_reconnect": {
+    "message0": "إعادة الاتصال بـ WiFi",
+    "tooltip": "يتصل مجددًا ببيانات الاعتماد السابقة"
+  },
+  "esplink_wifi_set_auto_reconnect": {
+    "message0": "إعادة الاتصال التلقائي بـ WiFi %1",
+    "tooltip": "يعيد C3 الاتصال تلقائيًا بعد الانقطاع"
+  },
+  "esplink_wifi_set_mode": {
+    "message0": "ضبط وضع WiFi %1",
+    "tooltip": "يضبط وضع الراديو في C3",
+    "args0": [
+      {
+        "options": [
+          [
+            "محطة (الاتصال بنقطة وصول)",
+            "WIFI_STA"
+          ],
+          [
+            "نقطة وصول (إنشاء شبكة)",
+            "WIFI_AP"
+          ],
+          [
+            "نقطة وصول + محطة",
+            "WIFI_AP_STA"
+          ],
+          [
+            "إيقاف",
+            "WIFI_OFF"
+          ]
+        ]
+      }
+    ]
+  },
+  "esplink_wifi_get_mode": {
+    "message0": "وضع WiFi الحالي",
+    "tooltip": "قيمة وضع الراديو الحالي"
+  },
+  "esplink_wifi_poll": {
+    "message0": "خدمة WiFi",
+    "tooltip": "يدفع الوصلة ويوزع أحداث WiFi؛ لبنات WiFi تضيف ذلك تلقائيًا"
+  },
+  "esplink_wifi_end": {
+    "message0": "إيقاف WiFi",
+    "tooltip": "يحرر موارد WiFi دون التأثير على BLE"
+  },
+  "esplink_wifi_ip_info": {
+    "message0": "WiFi %1",
+    "tooltip": "يعيد عنوان شبكة كنص",
+    "args0": [
+      {
+        "options": [
+          [
+            "عنوان IP المحلي",
+            "localIP"
+          ],
+          [
+            "عنوان البوابة",
+            "gatewayIP"
+          ],
+          [
+            "قناع الشبكة الفرعية",
+            "subnetMask"
+          ],
+          [
+            "DNS الأساسي",
+            "dns0"
+          ],
+          [
+            "DNS الاحتياطي",
+            "dns1"
+          ]
+        ]
+      }
+    ]
+  },
+  "esplink_wifi_ssid": {
+    "message0": "اسم شبكة WiFi الحالية",
+    "tooltip": "معرف SSID للشبكة المتصلة"
+  },
+  "esplink_wifi_rssi": {
+    "message0": "قوة إشارة WiFi",
+    "tooltip": "قوة الإشارة بوحدة dBm؛ كلما اقتربت من 0 كانت أفضل"
+  },
+  "esplink_wifi_channel": {
+    "message0": "قناة WiFi",
+    "tooltip": "القناة المستخدمة في الاتصال الحالي"
+  },
+  "esplink_wifi_mac": {
+    "message0": "عنوان MAC لـ WiFi",
+    "tooltip": "عنوان MAC لواجهة المحطة"
+  },
+  "esplink_wifi_set_hostname": {
+    "message0": "ضبط اسم المضيف %1",
+    "tooltip": "الاسم الظاهر في الموجّه؛ اضبطه قبل الاتصال"
+  },
+  "esplink_wifi_get_hostname": {
+    "message0": "اسم المضيف",
+    "tooltip": "اسم المضيف المضبوط حاليًا"
+  },
+  "esplink_wifi_config_static": {
+    "message0": "ضبط IP ثابت %1 البوابة %2 قناع الشبكة %3 DNS %4",
+    "tooltip": "يستخدم إعداد IPv4 ثابتًا؛ استدعِه قبل الاتصال بالشبكة"
+  },
+  "esplink_wifi_set_dns": {
+    "message0": "ضبط خوادم DNS الأساسي %1 الاحتياطي %2",
+    "tooltip": "يضبط خوادم تحليل الأسماء"
+  },
+  "esplink_wifi_host_by_name": {
+    "message0": "تحليل عنوان IP للنطاق %1",
+    "tooltip": "يحلل النطاق عبر C3، ويعيد نصًا فارغًا عند الفشل"
+  },
+  "esplink_wifi_firmware_version": {
+    "message0": "إصدار برنامج WiFi في C3",
+    "tooltip": "إصدار البرنامج العامل على C3"
+  },
+  "esplink_wifi_last_error": {
+    "message0": "آخر رمز خطأ في WiFi",
+    "tooltip": "رمز خطأ آخر عملية WiFi؛ القيمة 0 تعني النجاح"
+  },
+  "esplink_wifi_config_time": {
+    "message0": "ضبط وقت الشبكة المنطقة %1 ساعة التوقيت الصيفي %2 ساعة الخادم %3",
+    "tooltip": "يضبط مزامنة SNTP في C3؛ التحقق من شهادات TLS يحتاج وقتًا صحيحًا"
+  },
+  "esplink_wifi_get_time": {
+    "message0": "طابع وقت الشبكة (ثوانٍ)",
+    "tooltip": "وقت يونكس من C3؛ القيم الصغيرة تعني عدم المزامنة بعد"
+  },
+  "esplink_wifi_scan_networks": {
+    "message0": "مسح شبكات WiFi تضمين المخفية %1",
+    "tooltip": "مسح متزامن يعيد عدد الشبكات المكتشفة، ويحتفظ بـ 32 على الأكثر"
+  },
+  "esplink_wifi_scan_start_async": {
+    "message0": "بدء مسح WiFi غير متزامن تضمين المخفية %1",
+    "tooltip": "يمسح في الخلفية؛ تابع التقدم من عدد النتائج"
+  },
+  "esplink_wifi_scan_complete": {
+    "message0": "عدد نتائج المسح",
+    "tooltip": "عدد الشبكات المكتشفة؛ ‎-1 قيد التنفيذ و‎-2 فشل"
+  },
+  "esplink_wifi_scan_ssid": {
+    "message0": "اسم الشبكة رقم %1",
+    "tooltip": "معرف SSID لنتيجة المسح؛ الترقيم يبدأ من 0"
+  },
+  "esplink_wifi_scan_rssi": {
+    "message0": "قوة إشارة الشبكة رقم %1",
+    "tooltip": "قوة إشارة نتيجة المسح بوحدة dBm"
+  },
+  "esplink_wifi_scan_channel": {
+    "message0": "قناة الشبكة رقم %1",
+    "tooltip": "قناة نتيجة المسح"
+  },
+  "esplink_wifi_scan_encryption": {
+    "message0": "تشفير الشبكة رقم %1",
+    "tooltip": "نوع التشفير لنتيجة المسح؛ القيمة 0 تعني شبكة مفتوحة"
+  },
+  "esplink_wifi_scan_delete": {
+    "message0": "مسح نتائج البحث",
+    "tooltip": "يحرر الذاكرة التي تشغلها نتائج المسح"
+  },
+  "esplink_wifi_softap": {
+    "message0": "إنشاء نقطة وصول WiFi الاسم %1 كلمة المرور %2 القناة %3",
+    "tooltip": "ينشئ نقطة وصول على C3؛ ترك كلمة المرور فارغة يعني شبكة مفتوحة"
+  },
+  "esplink_wifi_softap_config": {
+    "message0": "ضبط شبكة نقطة الوصول IP %1 البوابة %2 قناع الشبكة %3",
+    "tooltip": "يضبط نطاق IPv4 لنقطة الوصول؛ استدعِه قبل إنشائها"
+  },
+  "esplink_wifi_softap_disconnect": {
+    "message0": "إيقاف نقطة وصول WiFi وإيقاف الراديو %1",
+    "tooltip": "يوقف نقطة الوصول"
+  },
+  "esplink_wifi_softap_ip": {
+    "message0": "عنوان IP لنقطة الوصول",
+    "tooltip": "عنوان IP الخاص بنقطة الوصول نفسها"
+  },
+  "esplink_wifi_softap_station_num": {
+    "message0": "عدد الأجهزة المتصلة بنقطة الوصول",
+    "tooltip": "عدد الأجهزة المتصلة بنقطة الوصول"
+  },
+  "esplink_wifi_softap_mac": {
+    "message0": "عنوان MAC لنقطة الوصول",
+    "tooltip": "عنوان MAC لواجهة نقطة الوصول"
+  },
+  "esplink_wifi_on_event": {
+    "message0": "عند وقوع حدث WiFi %1",
+    "message1": "نفّذ %1",
+    "tooltip": "يسجل دالة استدعاء لأحداث WiFi. تُشتق الأحداث من فروق الحالة عند الاستطلاع وتُنفَّذ في المهمة التي تخدم WiFi",
+    "args0": [
+      {
+        "options": [
+          [
+            "تم الاتصال بنقطة الوصول",
+            "ARDUINO_EVENT_WIFI_STA_CONNECTED"
+          ],
+          [
+            "انقطع الاتصال بنقطة الوصول",
+            "ARDUINO_EVENT_WIFI_STA_DISCONNECTED"
+          ],
+          [
+            "تم الحصول على عنوان IP",
+            "ARDUINO_EVENT_WIFI_STA_GOT_IP"
+          ],
+          [
+            "فُقد عنوان IP",
+            "ARDUINO_EVENT_WIFI_STA_LOST_IP"
+          ],
+          [
+            "اكتمل المسح",
+            "ARDUINO_EVENT_WIFI_SCAN_DONE"
+          ],
+          [
+            "انضم جهاز إلى نقطة الوصول",
+            "ARDUINO_EVENT_WIFI_AP_STACONNECTED"
+          ],
+          [
+            "غادر جهاز نقطة الوصول",
+            "ARDUINO_EVENT_WIFI_AP_STADISCONNECTED"
+          ],
+          [
+            "أي حدث",
+            "ARDUINO_EVENT_MAX"
+          ]
+        ]
+      }
+    ]
+  },
+  "esplink_tcp_client_create": {
+    "message0": "إنشاء عميل TCP %1",
+    "tooltip": "ينشئ كائن عميل TCP"
+  },
+  "esplink_tcp_client_connect": {
+    "message0": "العميل %1 يتصل بـ %2 المنفذ %3",
+    "tooltip": "يتصل بخادم ويعيد صحيحًا عند النجاح. المهلة الافتراضية 10 ثوانٍ (و15 لـ TLS)"
+  },
+  "esplink_tcp_client_connected": {
+    "message0": "العميل %1 متصل",
+    "tooltip": "ما إذا كان الاتصال صالحًا؛ ويبقى صحيحًا ما دامت هناك بيانات غير مقروءة"
+  },
+  "esplink_tcp_client_print": {
+    "message0": "العميل %1 يرسل %2 سطر جديد %3",
+    "tooltip": "يرسل بيانات إلى الخادم"
+  },
+  "esplink_tcp_client_available": {
+    "message0": "عدد البايتات المتاحة للعميل %1",
+    "tooltip": "عدد البايتات التي يمكن قراءتها الآن"
+  },
+  "esplink_tcp_client_read_string": {
+    "message0": "العميل %1 يقرأ البيانات المستلمة",
+    "tooltip": "يأخذ ما هو موجود في المخزن المؤقت دون انتظار"
+  },
+  "esplink_tcp_client_remote_ip": {
+    "message0": "عنوان IP البعيد للعميل %1",
+    "tooltip": "عنوان IP للطرف الآخر"
+  },
+  "esplink_tcp_client_stop": {
+    "message0": "إغلاق العميل %1",
+    "tooltip": "يغلق الاتصال ويحرر المقبس على C3"
+  },
+  "esplink_tls_client_create": {
+    "message0": "إنشاء عميل TLS %1",
+    "tooltip": "ينشئ عميل HTTPS/TLS ويستخدم افتراضيًا الشهادات الجذرية المدمجة في C3"
+  },
+  "esplink_tls_set_pem": {
+    "message0": "عميل TLS %1 ضبط %2 المحتوى %3",
+    "tooltip": "يضبط شهادة أو مفتاحًا بصيغة PEM؛ بحد أقصى 8192 بايت لكل عنصر",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "شهادة جذرية CA",
+            "CA"
+          ],
+          [
+            "شهادة العميل",
+            "CERT"
+          ],
+          [
+            "المفتاح الخاص للعميل",
+            "KEY"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "esplink_tls_use_builtin_ca": {
+    "message0": "عميل TLS %1 يستخدم الشهادات الجذرية المدمجة",
+    "tooltip": "يتحقق من الخادم باستخدام مخزن الشهادات في برنامج C3"
+  },
+  "esplink_tls_set_insecure": {
+    "message0": "عميل TLS %1 يتخطى التحقق من الشهادة",
+    "tooltip": "لا يتحقق من شهادة الخادم؛ استخدمه عن دراية فقط"
+  },
+  "esplink_http_get": {
+    "message0": "طلب HTTP GET %1",
+    "tooltip": "يطلب عنوان http:// أو https:// ويعيد المحتوى؛ فارغ عند الفشل وبحد أقصى 4096 بايت"
+  },
+  "esplink_http_post": {
+    "message0": "طلب HTTP POST %1 المحتوى %2 النوع %3",
+    "tooltip": "يرسل محتوى إلى عنوان http:// أو https:// ويعيد الرد؛ فارغ عند الفشل"
+  },
+  "esplink_tcp_server_create": {
+    "message0": "إنشاء خادم TCP %1 منفذ الاستماع %2",
+    "tooltip": "ينشئ خادم TCP ويبدأ الاستماع على كل العناوين المحلية فقط"
+  },
+  "esplink_tcp_server_accept": {
+    "message0": "الخادم %1 ينقل العميل الجديد إلى %2",
+    "tooltip": "يسلّم الاتصال التالي للمتغير المحدد، ويبقى غير صالح إن لم يوجد اتصال"
+  },
+  "esplink_tcp_server_write": {
+    "message0": "الخادم %1 يبث %2",
+    "tooltip": "يبث إلى العملاء الذين يحتفظ بهم الخادم"
+  },
+  "esplink_tcp_server_end": {
+    "message0": "إغلاق الخادم %1",
+    "tooltip": "يوقف الاستماع ويحرر المنفذ"
+  },
+  "esplink_udp_create": {
+    "message0": "إنشاء UDP %1 منفذ الاستماع %2",
+    "tooltip": "ينشئ كائن UDP ويربطه بمنفذ محلي؛ القيمة 0 تختار منفذًا متاحًا"
+  },
+  "esplink_udp_create_multicast": {
+    "message0": "إنشاء UDP %1 الانضمام للبث المتعدد %2 المنفذ %3",
+    "tooltip": "ينشئ كائن UDP مرتبطًا بعنوان بث متعدد"
+  },
+  "esplink_udp_send_to": {
+    "message0": "UDP %1 يرسل %2 إلى %3 المنفذ %4",
+    "tooltip": "يجهّز الرسالة ويرسلها في خطوة واحدة ويعيد صحيحًا عند النجاح. الحد 1472 بايت"
+  },
+  "esplink_udp_begin_packet": {
+    "message0": "UDP %1 بدء رسالة إلى %2 المنفذ %3",
+    "tooltip": "يبدأ رسالة بيانات للإرسال"
+  },
+  "esplink_udp_write": {
+    "message0": "UDP %1 يكتب %2",
+    "tooltip": "يضيف محتوى إلى الرسالة الجاري تجهيزها"
+  },
+  "esplink_udp_end_packet": {
+    "message0": "UDP %1 إرسال الرسالة",
+    "tooltip": "يرسل الرسالة؛ وتجاوز 1472 بايت يُفشل الرسالة كاملة"
+  },
+  "esplink_udp_parse_packet": {
+    "message0": "UDP %1 طول الرسالة المستلمة",
+    "tooltip": "يأخذ الرسالة التالية ويعيد طولها، ويعيد 0 عند عدم وجود بيانات"
+  },
+  "esplink_udp_read_string": {
+    "message0": "UDP %1 قراءة محتوى الرسالة",
+    "tooltip": "يقرأ كل ما تبقى في الرسالة الحالية"
+  },
+  "esplink_udp_remote_ip": {
+    "message0": "UDP %1 عنوان IP للمرسل",
+    "tooltip": "عنوان IP لمرسل الرسالة الحالية"
+  },
+  "esplink_udp_stop": {
+    "message0": "إغلاق UDP %1",
+    "tooltip": "يغلق UDP ويحرر المقبس على C3"
+  },
+  "esplink_begin": {
+    "message0": "بدء ESPLink مع ESP32-C3",
+    "tooltip": "يبدأ الوصلة على منفذ UART الافتراضي للوحة بسرعة 921600 بود. مكتبتا WiFi وBLE تبدآن ESPLink تلقائيًا، وهذه اللبنة للتشخيص المستقل"
+  },
+  "esplink_begin_serial": {
+    "message0": "بدء ESPLink المنفذ %1 سرعة %2",
+    "tooltip": "يبدأ ESPLink على منفذ وسرعة محددين. يجب أن تطابق السرعة برنامج C3 وأن تُستدعى قبل تهيئة WiFi أو BLE",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "921600",
+            "921600"
+          ],
+          [
+            "115200",
+            "115200"
+          ],
+          [
+            "460800",
+            "460800"
+          ],
+          [
+            "230400",
+            "230400"
+          ],
+          [
+            "1000000",
+            "1000000"
+          ]
+        ]
+      }
+    ]
+  },
+  "esplink_bind_stream": {
+    "message0": "ربط المنفذ المهيأ %1 بـ ESPLink",
+    "tooltip": "يستعير منفذًا هيأه البرنامج مسبقًا (بما في ذلك أطراف مخصصة). لا يستدعي ESPLink الدالتين begin() وend()"
+  },
+  "esplink_end": {
+    "message0": "إيقاف ESPLink",
+    "tooltip": "يحرر ارتباط ESPLink. في وضع الاستعارة يبقى مشغل المنفذ مفتوحًا"
+  },
+  "esplink_poll": {
+    "message0": "خدمة ESPLink",
+    "tooltip": "يدفع نقل ESPLink للأمام. لبنات البدء تضيف ذلك تلقائيًا إلى الحلقة الرئيسية"
+  },
+  "esplink_ready": {
+    "message0": "ESPLink جاهز",
+    "tooltip": "ما إذا كانت وصلة C3 في جلسة صالحة للاستخدام"
+  },
+  "esplink_ping": {
+    "message0": "اختبار ESPLink مهلة %1 مللي ثانية",
+    "tooltip": "يرسل نبضة واحدة إلى C3 وينتظر الرد"
+  },
+  "esplink_session": {
+    "message0": "رقم جلسة ESPLink",
+    "tooltip": "رقم الجلسة الحالي. تغيّره يعني إعادة تشغيل C3 أو إعادة بناء الوصلة، وتصبح كل المقابس ومقابض BLE السابقة غير صالحة"
+  },
+  "esplink_last_error": {
+    "message0": "آخر رمز خطأ في ESPLink",
+    "tooltip": "رمز خطأ آخر عملية ESPLink؛ القيمة 0 تعني النجاح"
+  },
+  "esplink_error_code": {
+    "message0": "رمز الخطأ %1",
+    "tooltip": "ثابت خطأ ESPLink يُقارن مع آخر رمز خطأ",
+    "args0": [
+      {
+        "options": [
+          [
+            "نجاح",
+            "c3::Ok"
+          ],
+          [
+            "وسيط غير صالح",
+            "c3::InvalidArgument"
+          ],
+          [
+            "غير مدعوم",
+            "c3::Unsupported"
+          ],
+          [
+            "لا توجد ذاكرة كافية",
+            "c3::NoMemory"
+          ],
+          [
+            "مشغول",
+            "c3::Busy"
+          ],
+          [
+            "انتهت المهلة",
+            "c3::Timeout"
+          ],
+          [
+            "غير متصل",
+            "c3::NotConnected"
+          ],
+          [
+            "خطأ إدخال/إخراج",
+            "c3::IoError"
+          ],
+          [
+            "خطأ في البروتوكول",
+            "c3::ProtocolError"
+          ],
+          [
+            "نتيجة غير معروفة",
+            "c3::OutcomeUnknown"
+          ],
+          [
+            "مقبض غير صالح",
+            "c3::StaleHandle"
+          ],
+          [
+            "المخزن المؤقت صغير",
+            "c3::BufferTooSmall"
+          ],
+          [
+            "انتهت صلاحية النتيجة",
+            "c3::ResultExpired"
+          ],
+          [
+            "خطأ أمني",
+            "c3::SecurityError"
+          ],
+          [
+            "يلزم إعادة المحاولة",
+            "c3::WouldBlock"
+          ],
+          [
+            "فقدت الوصلة",
+            "c3::LinkLost"
+          ],
+          [
+            "غير موجود",
+            "c3::NotFound"
+          ]
+        ]
+      }
+    ]
+  },
+  "esplink_firmware_version": {
+    "message0": "إصدار برنامج C3",
+    "tooltip": "نص إصدار برنامج الجسر العامل على ESP32-C3"
+  },
+  "esplink_capability": {
+    "message0": "إمكانية C3 %1",
+    "tooltip": "يقرأ قيمة إمكانية أبلغ عنها C3 أثناء المصافحة",
+    "args0": [
+      {
+        "options": [
+          [
+            "أقصى حمولة بالبايت",
+            "maxPayload"
+          ],
+          [
+            "أقصى حجم حزمة HCI",
+            "maxHciPacket"
+          ],
+          [
+            "أقصى عدد مقابس",
+            "maxSockets"
+          ],
+          [
+            "أقصى اتصالات BLE",
+            "maxBLEConnections"
+          ],
+          [
+            "بتات الميزات",
+            "features"
+          ],
+          [
+            "معرف الإقلاع",
+            "bootID"
+          ]
+        ]
+      }
+    ]
+  },
+  "esplink_has_feature": {
+    "message0": "C3 يدعم %1",
+    "tooltip": "ما إذا كان برنامج C3 يدعم الميزة المختارة",
+    "args0": [
+      {
+        "options": [
+          [
+            "WiFi",
+            "c3::WiFi"
+          ],
+          [
+            "TCP",
+            "c3::TCP"
+          ],
+          [
+            "UDP",
+            "c3::UDP"
+          ],
+          [
+            "TLS",
+            "c3::TLS"
+          ],
+          [
+            "BLE (HCI)",
+            "c3::HCI"
+          ],
+          [
+            "IPv6",
+            "c3::IPv6"
+          ],
+          [
+            "AP+STA معًا",
+            "c3::StationAP"
+          ],
+          [
+            "OTA",
+            "c3::OTA"
+          ],
+          [
+            "mDNS",
+            "c3::MDNS"
+          ]
+        ]
+      }
+    ]
+  },
+  "esplink_stat": {
+    "message0": "إحصاء ESPLink %1",
+    "tooltip": "يقرأ عدادات جودة الوصلة لفحص التوصيلات وسرعة النقل",
+    "args0": [
+      {
+        "options": [
+          [
+            "الإطارات المرسلة",
+            "transmitted"
+          ],
+          [
+            "الإطارات المستقبلة",
+            "received"
+          ],
+          [
+            "مرات إعادة الإرسال",
+            "retries"
+          ],
+          [
+            "مرات انتهاء المهلة",
+            "timeouts"
+          ],
+          [
+            "أخطاء CRC",
+            "crcErrors"
+          ],
+          [
+            "إطارات تالفة",
+            "malformed"
+          ],
+          [
+            "إطارات كبيرة جدًا",
+            "oversized"
+          ],
+          [
+            "إطارات متجاهلة",
+            "ignored"
+          ],
+          [
+            "تغيّرات الجلسة",
+            "sessionChanges"
+          ],
+          [
+            "البايتات المستقبلة",
+            "rxBytes"
+          ],
+          [
+            "دفعات الاستقبال",
+            "rxBatches"
+          ],
+          [
+            "مرات إيقاظ المعالج",
+            "workerWakeups"
+          ]
+        ]
+      }
+    ]
+  }
+}

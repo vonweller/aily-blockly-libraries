@@ -1,0 +1,1270 @@
+[
+  {
+    "type": "esplink_wifi_begin",
+    "message0": "连接WiFi 名称 %1 密码 %2",
+    "args0": [
+      { "type": "input_value", "name": "SSID" },
+      { "type": "input_value", "name": "PASSWORD" }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#0277BD",
+    "tooltip": "通过ESP32-C3连接到WiFi网络，不会等待连接完成",
+    "icon": "fa-regular fa-wifi",
+    "inputsInline": true
+  },
+  {
+    "type": "esplink_wifi_begin_advanced",
+    "message0": "连接WiFi 名称 %1 密码 %2 信道 %3",
+    "args0": [
+      { "type": "input_value", "name": "SSID" },
+      { "type": "input_value", "name": "PASSWORD" },
+      { "type": "input_value", "name": "CHANNEL" }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#0277BD",
+    "tooltip": "指定信道连接WiFi网络，信道为0表示自动",
+    "icon": "fa-regular fa-wifi",
+    "inputsInline": true
+  },
+  {
+    "type": "esplink_wifi_connect_quick",
+    "message0": "快速连接WiFi 名称 %1 密码 %2 超时 %3 毫秒",
+    "args0": [
+      { "type": "input_value", "name": "SSID" },
+      { "type": "input_value", "name": "PASSWORD" },
+      { "type": "field_number", "name": "TIMEOUT", "value": 20000, "min": 1000, "max": 120000 }
+    ],
+    "output": "Boolean",
+    "colour": "#0277BD",
+    "tooltip": "连接WiFi并等待结果，连接成功返回真",
+    "icon": "fa-regular fa-wifi",
+    "inputsInline": true
+  },
+  {
+    "type": "esplink_wifi_wait_connected",
+    "message0": "等待WiFi连接结果 超时 %1 毫秒",
+    "args0": [
+      { "type": "field_number", "name": "TIMEOUT", "value": 20000, "min": 1000, "max": 120000 }
+    ],
+    "output": "Number",
+    "colour": "#0277BD",
+    "tooltip": "阻塞等待连接结果并返回WiFi状态值，可与WiFi状态常量比较",
+    "icon": "fa-regular fa-hourglass",
+    "inputsInline": true
+  },
+  {
+    "type": "esplink_wifi_is_connected",
+    "message0": "WiFi已连接",
+    "output": "Boolean",
+    "colour": "#0277BD",
+    "tooltip": "WiFi是否处于已连接状态",
+    "icon": "fa-regular fa-wifi"
+  },
+  {
+    "type": "esplink_wifi_status",
+    "message0": "WiFi连接状态",
+    "output": "Number",
+    "colour": "#0277BD",
+    "tooltip": "返回当前WiFi状态值",
+    "icon": "fa-regular fa-circle-info"
+  },
+  {
+    "type": "esplink_wifi_status_type",
+    "message0": "WiFi状态 %1",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "STATUS",
+        "options": [
+          ["已连接", "WL_CONNECTED"],
+          ["空闲", "WL_IDLE_STATUS"],
+          ["未找到网络", "WL_NO_SSID_AVAIL"],
+          ["扫描完成", "WL_SCAN_COMPLETED"],
+          ["连接失败", "WL_CONNECT_FAILED"],
+          ["连接丢失", "WL_CONNECTION_LOST"],
+          ["已断开", "WL_DISCONNECTED"],
+          ["无模块", "WL_NO_SHIELD"]
+        ]
+      }
+    ],
+    "output": "Number",
+    "colour": "#0277BD",
+    "tooltip": "WiFi状态常量，用于和连接状态比较",
+    "icon": "fa-regular fa-circle-info",
+    "inputsInline": true
+  },
+  {
+    "type": "esplink_wifi_disconnect",
+    "message0": "断开WiFi 关闭射频 %1 清除已保存密码 %2",
+    "args0": [
+      { "type": "field_checkbox", "name": "RADIO_OFF", "checked": false },
+      { "type": "field_checkbox", "name": "ERASE", "checked": false }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#0277BD",
+    "tooltip": "断开当前WiFi连接",
+    "icon": "fa-regular fa-link-slash",
+    "inputsInline": true
+  },
+  {
+    "type": "esplink_wifi_reconnect",
+    "message0": "重新连接WiFi",
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#0277BD",
+    "tooltip": "使用上次的凭据重新连接",
+    "icon": "fa-regular fa-rotate"
+  },
+  {
+    "type": "esplink_wifi_set_auto_reconnect",
+    "message0": "设置WiFi自动重连 %1",
+    "args0": [
+      { "type": "field_checkbox", "name": "ENABLED", "checked": true }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#0277BD",
+    "tooltip": "断线后由C3自动重连",
+    "icon": "fa-regular fa-rotate",
+    "inputsInline": true
+  },
+  {
+    "type": "esplink_wifi_set_mode",
+    "message0": "设置WiFi模式 %1",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "MODE",
+        "options": [
+          ["station(连接热点)", "WIFI_STA"],
+          ["AP(创建热点)", "WIFI_AP"],
+          ["AP+station", "WIFI_AP_STA"],
+          ["关闭", "WIFI_OFF"]
+        ]
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#0277BD",
+    "tooltip": "设置C3的WiFi工作模式",
+    "icon": "fa-regular fa-tower-broadcast",
+    "inputsInline": true
+  },
+  {
+    "type": "esplink_wifi_get_mode",
+    "message0": "WiFi当前模式",
+    "output": "Number",
+    "colour": "#0277BD",
+    "tooltip": "返回当前WiFi工作模式值",
+    "icon": "fa-regular fa-tower-broadcast"
+  },
+  {
+    "type": "esplink_wifi_poll",
+    "message0": "处理WiFi事务",
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#0277BD",
+    "tooltip": "推进链路并派发WiFi事件。使用WiFi块时会自动加入主程序",
+    "icon": "fa-regular fa-rotate"
+  },
+  {
+    "type": "esplink_wifi_end",
+    "message0": "关闭WiFi",
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#0277BD",
+    "tooltip": "释放WiFi资源，不影响BLE",
+    "icon": "fa-regular fa-power-off"
+  },
+  {
+    "type": "esplink_wifi_ip_info",
+    "message0": "WiFi %1",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "WHICH",
+        "options": [
+          ["本机IP地址", "localIP"],
+          ["网关地址", "gatewayIP"],
+          ["子网掩码", "subnetMask"],
+          ["主DNS", "dns0"],
+          ["备用DNS", "dns1"]
+        ]
+      }
+    ],
+    "output": "String",
+    "colour": "#0277BD",
+    "tooltip": "以字符串形式返回网络地址信息",
+    "icon": "fa-regular fa-network-wired",
+    "inputsInline": true
+  },
+  {
+    "type": "esplink_wifi_ssid",
+    "message0": "当前WiFi名称",
+    "output": "String",
+    "colour": "#0277BD",
+    "tooltip": "已连接网络的SSID",
+    "icon": "fa-regular fa-wifi"
+  },
+  {
+    "type": "esplink_wifi_rssi",
+    "message0": "WiFi信号强度",
+    "output": "Number",
+    "colour": "#0277BD",
+    "tooltip": "当前连接的信号强度(dBm)，数值越接近0越好",
+    "icon": "fa-regular fa-signal-bars"
+  },
+  {
+    "type": "esplink_wifi_channel",
+    "message0": "WiFi信道",
+    "output": "Number",
+    "colour": "#0277BD",
+    "tooltip": "当前连接使用的信道",
+    "icon": "fa-regular fa-signal-bars"
+  },
+  {
+    "type": "esplink_wifi_mac",
+    "message0": "WiFi MAC地址",
+    "output": "String",
+    "colour": "#0277BD",
+    "tooltip": "station模式的MAC地址",
+    "icon": "fa-regular fa-fingerprint"
+  },
+  {
+    "type": "esplink_wifi_set_hostname",
+    "message0": "设置主机名 %1",
+    "args0": [
+      { "type": "input_value", "name": "NAME" }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#0277BD",
+    "tooltip": "设置在路由器中显示的主机名，需在连接前设置",
+    "icon": "fa-regular fa-tag",
+    "inputsInline": true
+  },
+  {
+    "type": "esplink_wifi_get_hostname",
+    "message0": "主机名",
+    "output": "String",
+    "colour": "#0277BD",
+    "tooltip": "当前设置的主机名",
+    "icon": "fa-regular fa-tag"
+  },
+  {
+    "type": "esplink_wifi_config_static",
+    "message0": "设置静态IP %1 网关 %2 子网掩码 %3 DNS %4",
+    "args0": [
+      { "type": "input_value", "name": "IP" },
+      { "type": "input_value", "name": "GATEWAY" },
+      { "type": "input_value", "name": "SUBNET" },
+      { "type": "input_value", "name": "DNS" }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#0277BD",
+    "tooltip": "使用静态IPv4配置，需在连接WiFi之前调用",
+    "icon": "fa-regular fa-network-wired",
+    "inputsInline": false
+  },
+  {
+    "type": "esplink_wifi_set_dns",
+    "message0": "设置DNS服务器 主 %1 备 %2",
+    "args0": [
+      { "type": "input_value", "name": "DNS1" },
+      { "type": "input_value", "name": "DNS2" }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#0277BD",
+    "tooltip": "设置域名解析服务器",
+    "icon": "fa-regular fa-network-wired",
+    "inputsInline": true
+  },
+  {
+    "type": "esplink_wifi_host_by_name",
+    "message0": "解析域名 %1 的IP地址",
+    "args0": [
+      { "type": "input_value", "name": "HOST" }
+    ],
+    "output": "String",
+    "colour": "#0277BD",
+    "tooltip": "通过C3解析域名，失败返回空字符串。解析最长占用13秒链路时间",
+    "icon": "fa-regular fa-magnifying-glass",
+    "inputsInline": true
+  },
+  {
+    "type": "esplink_wifi_firmware_version",
+    "message0": "C3 WiFi固件版本",
+    "output": "String",
+    "colour": "#0277BD",
+    "tooltip": "C3上运行的固件版本",
+    "icon": "fa-regular fa-microchip"
+  },
+  {
+    "type": "esplink_wifi_last_error",
+    "message0": "WiFi最后错误码",
+    "output": "Number",
+    "colour": "#0277BD",
+    "tooltip": "最后一次WiFi操作的错误码，0表示成功",
+    "icon": "fa-regular fa-triangle-exclamation"
+  },
+  {
+    "type": "esplink_wifi_config_time",
+    "message0": "配置网络时间 时区 %1 小时 夏令时 %2 小时 服务器 %3",
+    "args0": [
+      { "type": "field_number", "name": "GMT_HOURS", "value": 8, "min": -12, "max": 14 },
+      { "type": "field_number", "name": "DST_HOURS", "value": 0, "min": 0, "max": 2 },
+      { "type": "input_value", "name": "SERVER" }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#0277BD",
+    "tooltip": "配置C3的SNTP时间同步，TLS证书校验需要正确的时间",
+    "icon": "fa-regular fa-clock",
+    "inputsInline": true
+  },
+  {
+    "type": "esplink_wifi_get_time",
+    "message0": "网络时间戳(秒)",
+    "output": "Number",
+    "colour": "#0277BD",
+    "tooltip": "C3的Unix时间戳，未同步时为较小的值",
+    "icon": "fa-regular fa-clock"
+  },
+  {
+    "type": "esplink_wifi_scan_networks",
+    "message0": "扫描WiFi网络 包含隐藏网络 %1",
+    "args0": [
+      { "type": "field_checkbox", "name": "SHOW_HIDDEN", "checked": false }
+    ],
+    "output": "Number",
+    "colour": "#0277BD",
+    "tooltip": "同步扫描并返回找到的网络数量，最多缓存32个",
+    "icon": "fa-regular fa-radar",
+    "inputsInline": true
+  },
+  {
+    "type": "esplink_wifi_scan_start_async",
+    "message0": "开始异步扫描WiFi 包含隐藏网络 %1",
+    "args0": [
+      { "type": "field_checkbox", "name": "SHOW_HIDDEN", "checked": false }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#0277BD",
+    "tooltip": "后台扫描，通过扫描结果数量块查询进度",
+    "icon": "fa-regular fa-radar",
+    "inputsInline": true
+  },
+  {
+    "type": "esplink_wifi_scan_complete",
+    "message0": "扫描结果数量",
+    "output": "Number",
+    "colour": "#0277BD",
+    "tooltip": "返回扫描到的网络数量，-1表示扫描中，-2表示失败",
+    "icon": "fa-regular fa-radar"
+  },
+  {
+    "type": "esplink_wifi_scan_ssid",
+    "message0": "第 %1 个网络的名称",
+    "args0": [
+      { "type": "input_value", "name": "INDEX" }
+    ],
+    "output": "String",
+    "colour": "#0277BD",
+    "tooltip": "扫描结果中指定序号网络的SSID，序号从0开始",
+    "icon": "fa-regular fa-radar",
+    "inputsInline": true
+  },
+  {
+    "type": "esplink_wifi_scan_rssi",
+    "message0": "第 %1 个网络的信号强度",
+    "args0": [
+      { "type": "input_value", "name": "INDEX" }
+    ],
+    "output": "Number",
+    "colour": "#0277BD",
+    "tooltip": "扫描结果中指定序号网络的信号强度(dBm)",
+    "icon": "fa-regular fa-radar",
+    "inputsInline": true
+  },
+  {
+    "type": "esplink_wifi_scan_channel",
+    "message0": "第 %1 个网络的信道",
+    "args0": [
+      { "type": "input_value", "name": "INDEX" }
+    ],
+    "output": "Number",
+    "colour": "#0277BD",
+    "tooltip": "扫描结果中指定序号网络的信道",
+    "icon": "fa-regular fa-radar",
+    "inputsInline": true
+  },
+  {
+    "type": "esplink_wifi_scan_encryption",
+    "message0": "第 %1 个网络的加密方式",
+    "args0": [
+      { "type": "input_value", "name": "INDEX" }
+    ],
+    "output": "Number",
+    "colour": "#0277BD",
+    "tooltip": "扫描结果中指定序号网络的加密类型值，0为开放网络",
+    "icon": "fa-regular fa-lock",
+    "inputsInline": true
+  },
+  {
+    "type": "esplink_wifi_scan_delete",
+    "message0": "清除扫描结果",
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#0277BD",
+    "tooltip": "释放扫描结果占用的内存",
+    "icon": "fa-regular fa-trash"
+  },
+  {
+    "type": "esplink_wifi_softap",
+    "message0": "创建WiFi热点 名称 %1 密码 %2 信道 %3",
+    "args0": [
+      { "type": "input_value", "name": "SSID" },
+      { "type": "input_value", "name": "PASSWORD" },
+      { "type": "field_number", "name": "CHANNEL", "value": 1, "min": 1, "max": 13 }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#0277BD",
+    "tooltip": "在C3上创建热点，密码留空则为开放网络",
+    "icon": "fa-regular fa-tower-broadcast",
+    "inputsInline": true
+  },
+  {
+    "type": "esplink_wifi_softap_config",
+    "message0": "设置热点网络 IP %1 网关 %2 子网掩码 %3",
+    "args0": [
+      { "type": "input_value", "name": "IP" },
+      { "type": "input_value", "name": "GATEWAY" },
+      { "type": "input_value", "name": "SUBNET" }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#0277BD",
+    "tooltip": "设置热点的IPv4网段，需在创建热点之前调用",
+    "icon": "fa-regular fa-network-wired",
+    "inputsInline": false
+  },
+  {
+    "type": "esplink_wifi_softap_disconnect",
+    "message0": "关闭WiFi热点 同时关闭射频 %1",
+    "args0": [
+      { "type": "field_checkbox", "name": "RADIO_OFF", "checked": false }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#0277BD",
+    "tooltip": "停止热点",
+    "icon": "fa-regular fa-power-off",
+    "inputsInline": true
+  },
+  {
+    "type": "esplink_wifi_softap_ip",
+    "message0": "热点IP地址",
+    "output": "String",
+    "colour": "#0277BD",
+    "tooltip": "热点自身的IP地址",
+    "icon": "fa-regular fa-network-wired"
+  },
+  {
+    "type": "esplink_wifi_softap_station_num",
+    "message0": "热点已连接设备数",
+    "output": "Number",
+    "colour": "#0277BD",
+    "tooltip": "连接到热点的设备数量",
+    "icon": "fa-regular fa-users"
+  },
+  {
+    "type": "esplink_wifi_softap_mac",
+    "message0": "热点MAC地址",
+    "output": "String",
+    "colour": "#0277BD",
+    "tooltip": "热点接口的MAC地址",
+    "icon": "fa-regular fa-fingerprint"
+  },
+  {
+    "type": "esplink_wifi_on_event",
+    "message0": "当WiFi事件 %1 发生时",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "EVENT",
+        "options": [
+          ["已连接到热点", "ARDUINO_EVENT_WIFI_STA_CONNECTED"],
+          ["已断开热点", "ARDUINO_EVENT_WIFI_STA_DISCONNECTED"],
+          ["获取到IP地址", "ARDUINO_EVENT_WIFI_STA_GOT_IP"],
+          ["IP地址丢失", "ARDUINO_EVENT_WIFI_STA_LOST_IP"],
+          ["扫描完成", "ARDUINO_EVENT_WIFI_SCAN_DONE"],
+          ["有设备接入热点", "ARDUINO_EVENT_WIFI_AP_STACONNECTED"],
+          ["有设备离开热点", "ARDUINO_EVENT_WIFI_AP_STADISCONNECTED"],
+          ["任意事件", "ARDUINO_EVENT_MAX"]
+        ]
+      }
+    ],
+    "message1": "执行 %1",
+    "args1": [
+      { "type": "input_statement", "name": "HANDLER" }
+    ],
+    "colour": "#0277BD",
+    "tooltip": "注册WiFi事件回调。事件由轮询状态差分产生，回调在调用WiFi处理块的任务中执行",
+    "icon": "fa-regular fa-bell"
+  },
+  {
+    "type": "esplink_tcp_client_create",
+    "message0": "创建TCP客户端 %1",
+    "args0": [
+      { "type": "field_input", "name": "VAR", "text": "client" }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#00838F",
+    "tooltip": "创建一个TCP客户端对象",
+    "icon": "fa-regular fa-plug",
+    "inputsInline": true
+  },
+  {
+    "type": "esplink_tcp_client_connect",
+    "message0": "客户端 %1 连接到 %2 端口 %3",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "VAR",
+        "variable": "client",
+        "variableTypes": ["WiFiClient", "WiFiClientSecure"],
+        "defaultType": "WiFiClient"
+      },
+      { "type": "input_value", "name": "HOST" },
+      { "type": "input_value", "name": "PORT" }
+    ],
+    "output": "Boolean",
+    "colour": "#00838F",
+    "tooltip": "连接到服务器，成功返回真。默认超时10秒(TLS为15秒)",
+    "icon": "fa-regular fa-plug",
+    "inputsInline": true
+  },
+  {
+    "type": "esplink_tcp_client_connected",
+    "message0": "客户端 %1 已连接",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "VAR",
+        "variable": "client",
+        "variableTypes": ["WiFiClient", "WiFiClientSecure"],
+        "defaultType": "WiFiClient"
+      }
+    ],
+    "output": "Boolean",
+    "colour": "#00838F",
+    "tooltip": "连接是否有效。缓冲区中仍有未读数据时也返回真",
+    "icon": "fa-regular fa-plug",
+    "inputsInline": true
+  },
+  {
+    "type": "esplink_tcp_client_print",
+    "message0": "客户端 %1 发送 %2 换行 %3",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "VAR",
+        "variable": "client",
+        "variableTypes": ["WiFiClient", "WiFiClientSecure"],
+        "defaultType": "WiFiClient"
+      },
+      { "type": "input_value", "name": "DATA" },
+      { "type": "field_checkbox", "name": "NEWLINE", "checked": false }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#00838F",
+    "tooltip": "向服务器发送数据",
+    "icon": "fa-regular fa-paper-plane",
+    "inputsInline": true
+  },
+  {
+    "type": "esplink_tcp_client_available",
+    "message0": "客户端 %1 可读字节数",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "VAR",
+        "variable": "client",
+        "variableTypes": ["WiFiClient", "WiFiClientSecure"],
+        "defaultType": "WiFiClient"
+      }
+    ],
+    "output": "Number",
+    "colour": "#00838F",
+    "tooltip": "当前可读取的字节数",
+    "icon": "fa-regular fa-inbox",
+    "inputsInline": true
+  },
+  {
+    "type": "esplink_tcp_client_read_string",
+    "message0": "客户端 %1 读取已接收数据",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "VAR",
+        "variable": "client",
+        "variableTypes": ["WiFiClient", "WiFiClientSecure"],
+        "defaultType": "WiFiClient"
+      }
+    ],
+    "output": "String",
+    "colour": "#00838F",
+    "tooltip": "取出当前缓冲区中的全部数据，不会阻塞等待",
+    "icon": "fa-regular fa-inbox",
+    "inputsInline": true
+  },
+  {
+    "type": "esplink_tcp_client_remote_ip",
+    "message0": "客户端 %1 对端IP地址",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "VAR",
+        "variable": "client",
+        "variableTypes": ["WiFiClient", "WiFiClientSecure"],
+        "defaultType": "WiFiClient"
+      }
+    ],
+    "output": "String",
+    "colour": "#00838F",
+    "tooltip": "连接对端的IP地址",
+    "icon": "fa-regular fa-network-wired",
+    "inputsInline": true
+  },
+  {
+    "type": "esplink_tcp_client_stop",
+    "message0": "关闭客户端 %1",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "VAR",
+        "variable": "client",
+        "variableTypes": ["WiFiClient", "WiFiClientSecure"],
+        "defaultType": "WiFiClient"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#00838F",
+    "tooltip": "关闭连接并释放C3上的socket",
+    "icon": "fa-regular fa-plug-circle-xmark",
+    "inputsInline": true
+  },
+  {
+    "type": "esplink_tls_client_create",
+    "message0": "创建TLS客户端 %1",
+    "args0": [
+      { "type": "field_input", "name": "VAR", "text": "secureClient" }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#00838F",
+    "tooltip": "创建一个支持HTTPS/TLS的客户端对象，默认使用C3内置根证书",
+    "icon": "fa-regular fa-lock",
+    "inputsInline": true
+  },
+  {
+    "type": "esplink_tls_set_pem",
+    "message0": "TLS客户端 %1 设置 %2 内容 %3",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "VAR",
+        "variable": "secureClient",
+        "variableTypes": ["WiFiClientSecure"],
+        "defaultType": "WiFiClientSecure"
+      },
+      {
+        "type": "field_dropdown",
+        "name": "KIND",
+        "options": [
+          ["CA根证书", "CA"],
+          ["客户端证书", "CERT"],
+          ["客户端私钥", "KEY"]
+        ]
+      },
+      { "type": "input_value", "name": "PEM" }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#00838F",
+    "tooltip": "设置PEM格式的证书或私钥，单个凭据不超过8192字节",
+    "icon": "fa-regular fa-certificate",
+    "inputsInline": true
+  },
+  {
+    "type": "esplink_tls_use_builtin_ca",
+    "message0": "TLS客户端 %1 使用内置根证书",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "VAR",
+        "variable": "secureClient",
+        "variableTypes": ["WiFiClientSecure"],
+        "defaultType": "WiFiClientSecure"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#00838F",
+    "tooltip": "使用C3固件内置的根证书库校验服务器",
+    "icon": "fa-regular fa-certificate",
+    "inputsInline": true
+  },
+  {
+    "type": "esplink_tls_set_insecure",
+    "message0": "TLS客户端 %1 跳过证书校验",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "VAR",
+        "variable": "secureClient",
+        "variableTypes": ["WiFiClientSecure"],
+        "defaultType": "WiFiClientSecure"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#00838F",
+    "tooltip": "不校验服务器证书，仅在明确知道风险时使用",
+    "icon": "fa-regular fa-shield-halved",
+    "inputsInline": true
+  },
+  {
+    "type": "esplink_http_get",
+    "message0": "HTTP GET 请求 %1",
+    "args0": [
+      { "type": "input_value", "name": "URL" }
+    ],
+    "output": "String",
+    "colour": "#00838F",
+    "tooltip": "请求一个http://或https://地址并返回响应正文，失败返回空字符串。正文最多保留4096字节",
+    "icon": "fa-regular fa-globe",
+    "inputsInline": true
+  },
+  {
+    "type": "esplink_http_post",
+    "message0": "HTTP POST 请求 %1 内容 %2 类型 %3",
+    "args0": [
+      { "type": "input_value", "name": "URL" },
+      { "type": "input_value", "name": "BODY" },
+      { "type": "field_input", "name": "CONTENT_TYPE", "text": "application/json" }
+    ],
+    "output": "String",
+    "colour": "#00838F",
+    "tooltip": "向一个http://或https://地址提交内容并返回响应正文，失败返回空字符串",
+    "icon": "fa-regular fa-globe",
+    "inputsInline": true
+  },
+  {
+    "type": "esplink_tcp_server_create",
+    "message0": "创建TCP服务器 %1 监听端口 %2",
+    "args0": [
+      { "type": "field_input", "name": "VAR", "text": "server" },
+      { "type": "field_number", "name": "PORT", "value": 80, "min": 1, "max": 65535 }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#00838F",
+    "tooltip": "创建TCP服务器并开始监听。只支持监听本机所有地址",
+    "icon": "fa-regular fa-server",
+    "inputsInline": true
+  },
+  {
+    "type": "esplink_tcp_server_accept",
+    "message0": "服务器 %1 取出新客户端到 %2",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "SERVER",
+        "variable": "server",
+        "variableTypes": ["WiFiServer"],
+        "defaultType": "WiFiServer"
+      },
+      {
+        "type": "field_variable",
+        "name": "CLIENT",
+        "variable": "client",
+        "variableTypes": ["WiFiClient"],
+        "defaultType": "WiFiClient"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#00838F",
+    "tooltip": "把新接入的客户端交给指定变量，没有新连接时该变量无效",
+    "icon": "fa-regular fa-server",
+    "inputsInline": true
+  },
+  {
+    "type": "esplink_tcp_server_write",
+    "message0": "服务器 %1 广播发送 %2",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "VAR",
+        "variable": "server",
+        "variableTypes": ["WiFiServer"],
+        "defaultType": "WiFiServer"
+      },
+      { "type": "input_value", "name": "DATA" }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#00838F",
+    "tooltip": "向服务器保留的已接入客户端广播数据",
+    "icon": "fa-regular fa-paper-plane",
+    "inputsInline": true
+  },
+  {
+    "type": "esplink_tcp_server_end",
+    "message0": "关闭服务器 %1",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "VAR",
+        "variable": "server",
+        "variableTypes": ["WiFiServer"],
+        "defaultType": "WiFiServer"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#00838F",
+    "tooltip": "停止监听并释放端口",
+    "icon": "fa-regular fa-power-off",
+    "inputsInline": true
+  },
+  {
+    "type": "esplink_udp_create",
+    "message0": "创建UDP %1 监听端口 %2",
+    "args0": [
+      { "type": "field_input", "name": "VAR", "text": "udp" },
+      { "type": "input_value", "name": "PORT" }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#5E35B1",
+    "tooltip": "创建UDP对象并绑定本地端口，端口为0表示由系统分配",
+    "icon": "fa-regular fa-envelope",
+    "inputsInline": true
+  },
+  {
+    "type": "esplink_udp_create_multicast",
+    "message0": "创建UDP %1 加入组播 %2 端口 %3",
+    "args0": [
+      { "type": "field_input", "name": "VAR", "text": "udp" },
+      { "type": "input_value", "name": "IP" },
+      { "type": "input_value", "name": "PORT" }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#5E35B1",
+    "tooltip": "创建UDP对象并绑定到组播地址",
+    "icon": "fa-regular fa-envelopes",
+    "inputsInline": true
+  },
+  {
+    "type": "esplink_udp_send_to",
+    "message0": "UDP %1 发送 %2 到 %3 端口 %4",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "VAR",
+        "variable": "udp",
+        "variableTypes": ["WiFiUDP"],
+        "defaultType": "WiFiUDP"
+      },
+      { "type": "input_value", "name": "DATA" },
+      { "type": "input_value", "name": "HOST" },
+      { "type": "input_value", "name": "PORT" }
+    ],
+    "output": "Boolean",
+    "colour": "#5E35B1",
+    "tooltip": "一步完成组包、写入和发送，成功返回真。单个数据报不超过1472字节",
+    "icon": "fa-regular fa-paper-plane",
+    "inputsInline": true
+  },
+  {
+    "type": "esplink_udp_begin_packet",
+    "message0": "UDP %1 开始组包 目标 %2 端口 %3",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "VAR",
+        "variable": "udp",
+        "variableTypes": ["WiFiUDP"],
+        "defaultType": "WiFiUDP"
+      },
+      { "type": "input_value", "name": "HOST" },
+      { "type": "input_value", "name": "PORT" }
+    ],
+    "output": "Boolean",
+    "colour": "#5E35B1",
+    "tooltip": "开始一个待发送的数据报",
+    "icon": "fa-regular fa-envelope",
+    "inputsInline": true
+  },
+  {
+    "type": "esplink_udp_write",
+    "message0": "UDP %1 写入 %2",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "VAR",
+        "variable": "udp",
+        "variableTypes": ["WiFiUDP"],
+        "defaultType": "WiFiUDP"
+      },
+      { "type": "input_value", "name": "DATA" }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#5E35B1",
+    "tooltip": "向当前数据报追加内容",
+    "icon": "fa-regular fa-pen",
+    "inputsInline": true
+  },
+  {
+    "type": "esplink_udp_end_packet",
+    "message0": "UDP %1 发送数据报",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "VAR",
+        "variable": "udp",
+        "variableTypes": ["WiFiUDP"],
+        "defaultType": "WiFiUDP"
+      }
+    ],
+    "output": "Boolean",
+    "colour": "#5E35B1",
+    "tooltip": "发送当前数据报。超过1472字节会整包失败",
+    "icon": "fa-regular fa-paper-plane",
+    "inputsInline": true
+  },
+  {
+    "type": "esplink_udp_parse_packet",
+    "message0": "UDP %1 接收数据报长度",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "VAR",
+        "variable": "udp",
+        "variableTypes": ["WiFiUDP"],
+        "defaultType": "WiFiUDP"
+      }
+    ],
+    "output": "Number",
+    "colour": "#5E35B1",
+    "tooltip": "取出下一个数据报并返回其长度，没有数据时返回0。会丢弃上一个数据报未读完的部分",
+    "icon": "fa-regular fa-inbox",
+    "inputsInline": true
+  },
+  {
+    "type": "esplink_udp_read_string",
+    "message0": "UDP %1 读取数据报内容",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "VAR",
+        "variable": "udp",
+        "variableTypes": ["WiFiUDP"],
+        "defaultType": "WiFiUDP"
+      }
+    ],
+    "output": "String",
+    "colour": "#5E35B1",
+    "tooltip": "读取当前数据报中剩余的全部内容",
+    "icon": "fa-regular fa-inbox",
+    "inputsInline": true
+  },
+  {
+    "type": "esplink_udp_remote_ip",
+    "message0": "UDP %1 发送方IP地址",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "VAR",
+        "variable": "udp",
+        "variableTypes": ["WiFiUDP"],
+        "defaultType": "WiFiUDP"
+      }
+    ],
+    "output": "String",
+    "colour": "#5E35B1",
+    "tooltip": "当前数据报发送方的IP地址",
+    "icon": "fa-regular fa-network-wired",
+    "inputsInline": true
+  },
+  {
+    "type": "esplink_udp_stop",
+    "message0": "关闭UDP %1",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "VAR",
+        "variable": "udp",
+        "variableTypes": ["WiFiUDP"],
+        "defaultType": "WiFiUDP"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#5E35B1",
+    "tooltip": "关闭UDP并释放C3上的socket",
+    "icon": "fa-regular fa-power-off",
+    "inputsInline": true
+  },
+{
+    "type": "esplink_begin",
+    "message0": "启动ESPLink连接ESP32-C3",
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#607D8B",
+    "tooltip": "使用开发板默认的硬件串口(921600波特率)启动与ESP32-C3的连接。WiFi和BLE库会自动启动ESPLink，此块仅在需要单独诊断时使用",
+    "icon": "fa-light fa-link",
+    "inputsInline": true
+  },
+  {
+    "type": "esplink_begin_serial",
+    "message0": "启动ESPLink 串口 %1 波特率 %2",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "SERIAL",
+        "options": "${board.serialPort}"
+      },
+      {
+        "type": "field_dropdown",
+        "name": "BAUD",
+        "options": [
+          ["921600", "921600"],
+          ["115200", "115200"],
+          ["460800", "460800"],
+          ["230400", "230400"],
+          ["1000000", "1000000"]
+        ]
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#607D8B",
+    "tooltip": "指定串口和波特率启动ESPLink。必须与C3固件的波特率一致，且要在WiFi/BLE初始化之前调用",
+    "icon": "fa-light fa-link",
+    "inputsInline": true
+  },
+  {
+    "type": "esplink_bind_stream",
+    "message0": "绑定已配置的串口 %1 到ESPLink",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "SERIAL",
+        "options": "${board.serialPort}"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#607D8B",
+    "tooltip": "借用一个已经自行初始化(含自定义引脚)的串口，ESPLink不会调用它的begin()和end()",
+    "icon": "fa-light fa-link",
+    "inputsInline": true
+  },
+  {
+    "type": "esplink_end",
+    "message0": "断开ESPLink连接",
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#607D8B",
+    "tooltip": "释放ESPLink绑定。借用模式下不会关闭串口驱动",
+    "icon": "fa-light fa-link-slash",
+    "inputsInline": true
+  },
+  {
+    "type": "esplink_poll",
+    "message0": "处理ESPLink事务",
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#607D8B",
+    "tooltip": "推进ESPLink传输。使用初始化块时会自动加入主程序，一般无需手动添加",
+    "icon": "fa-light fa-rotate",
+    "inputsInline": true
+  },
+  {
+    "type": "esplink_ready",
+    "message0": "ESPLink已就绪",
+    "output": "Boolean",
+    "colour": "#607D8B",
+    "tooltip": "C3链路是否处于可用会话中",
+    "icon": "fa-light fa-link"
+  },
+  {
+    "type": "esplink_ping",
+    "message0": "ESPLink通信测试 超时 %1 毫秒",
+    "args0": [
+      {
+        "type": "field_number",
+        "name": "TIMEOUT",
+        "value": 1000,
+        "min": 1,
+        "max": 60000
+      }
+    ],
+    "output": "Boolean",
+    "colour": "#607D8B",
+    "tooltip": "向C3发送一次Ping并等待回应",
+    "icon": "fa-light fa-satellite-dish",
+    "inputsInline": true
+  },
+  {
+    "type": "esplink_session",
+    "message0": "ESPLink会话号",
+    "output": "Number",
+    "colour": "#607D8B",
+    "tooltip": "当前链路会话号。会话号改变表示C3重启或链路重建，之前的socket和BLE句柄全部失效",
+    "icon": "fa-light fa-hashtag"
+  },
+  {
+    "type": "esplink_last_error",
+    "message0": "ESPLink最后错误码",
+    "output": "Number",
+    "colour": "#607D8B",
+    "tooltip": "最后一次ESPLink操作的错误码，0表示成功",
+    "icon": "fa-light fa-triangle-exclamation"
+  },
+  {
+    "type": "esplink_error_code",
+    "message0": "错误码 %1",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "CODE",
+        "options": [
+          ["成功", "c3::Ok"],
+          ["参数无效", "c3::InvalidArgument"],
+          ["不支持", "c3::Unsupported"],
+          ["内存不足", "c3::NoMemory"],
+          ["忙", "c3::Busy"],
+          ["超时", "c3::Timeout"],
+          ["未连接", "c3::NotConnected"],
+          ["IO错误", "c3::IoError"],
+          ["协议错误", "c3::ProtocolError"],
+          ["结果未知", "c3::OutcomeUnknown"],
+          ["句柄失效", "c3::StaleHandle"],
+          ["缓冲区太小", "c3::BufferTooSmall"],
+          ["结果已过期", "c3::ResultExpired"],
+          ["安全错误", "c3::SecurityError"],
+          ["需要重试", "c3::WouldBlock"],
+          ["链路丢失", "c3::LinkLost"],
+          ["未找到", "c3::NotFound"]
+        ]
+      }
+    ],
+    "output": "Number",
+    "colour": "#607D8B",
+    "tooltip": "ESPLink错误码常量，用于和最后错误码比较",
+    "icon": "fa-light fa-triangle-exclamation",
+    "inputsInline": true
+  },
+  {
+    "type": "esplink_firmware_version",
+    "message0": "C3固件版本",
+    "output": "String",
+    "colour": "#607D8B",
+    "tooltip": "ESP32-C3上运行的桥接固件版本字符串",
+    "icon": "fa-light fa-microchip"
+  },
+  {
+    "type": "esplink_capability",
+    "message0": "C3能力 %1",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "ITEM",
+        "options": [
+          ["最大负载字节", "maxPayload"],
+          ["最大HCI包字节", "maxHciPacket"],
+          ["最大socket数", "maxSockets"],
+          ["最大BLE连接数", "maxBLEConnections"],
+          ["功能位", "features"],
+          ["启动ID", "bootID"]
+        ]
+      }
+    ],
+    "output": "Number",
+    "colour": "#607D8B",
+    "tooltip": "读取C3握手时上报的能力参数",
+    "icon": "fa-light fa-microchip",
+    "inputsInline": true
+  },
+  {
+    "type": "esplink_has_feature",
+    "message0": "C3支持 %1 功能",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "FEATURE",
+        "options": [
+          ["WiFi", "c3::WiFi"],
+          ["TCP", "c3::TCP"],
+          ["UDP", "c3::UDP"],
+          ["TLS", "c3::TLS"],
+          ["BLE(HCI)", "c3::HCI"],
+          ["IPv6", "c3::IPv6"],
+          ["AP+STA共存", "c3::StationAP"],
+          ["OTA", "c3::OTA"],
+          ["mDNS", "c3::MDNS"]
+        ]
+      }
+    ],
+    "output": "Boolean",
+    "colour": "#607D8B",
+    "tooltip": "判断C3固件是否支持指定功能",
+    "icon": "fa-light fa-circle-check",
+    "inputsInline": true
+  },
+  {
+    "type": "esplink_stat",
+    "message0": "ESPLink统计 %1",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "ITEM",
+        "options": [
+          ["已发送帧数", "transmitted"],
+          ["已接收帧数", "received"],
+          ["重传次数", "retries"],
+          ["超时次数", "timeouts"],
+          ["CRC错误数", "crcErrors"],
+          ["格式错误数", "malformed"],
+          ["超长帧数", "oversized"],
+          ["忽略帧数", "ignored"],
+          ["会话变更次数", "sessionChanges"],
+          ["接收字节数", "rxBytes"],
+          ["接收批次数", "rxBatches"],
+          ["工作线程唤醒数", "workerWakeups"]
+        ]
+      }
+    ],
+    "output": "Number",
+    "colour": "#607D8B",
+    "tooltip": "读取链路质量统计，用于排查接线和波特率问题",
+    "icon": "fa-light fa-chart-simple",
+    "inputsInline": true
+  }
+]

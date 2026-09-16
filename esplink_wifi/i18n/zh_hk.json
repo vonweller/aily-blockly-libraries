@@ -1,0 +1,729 @@
+{
+  "toolbox_name": "ESPLink WiFi",
+  "toolbox_categories": [
+    "C3鏈路",
+    "連接管理",
+    "網絡資訊",
+    "網絡時間",
+    "網絡掃描",
+    "熱點模式",
+    "WiFi事件",
+    "TCP用戶端",
+    "TLS安全連接",
+    "HTTP請求",
+    "TCP伺服器",
+    "UDP通訊"
+  ],
+  "esplink_wifi_begin": {
+    "message0": "連接WiFi 名稱 %1 密碼 %2",
+    "tooltip": "透過ESP32-C3連接到WiFi網絡，不會等待連接完成"
+  },
+  "esplink_wifi_begin_advanced": {
+    "message0": "連接WiFi 名稱 %1 密碼 %2 頻道 %3",
+    "tooltip": "指定頻道連接WiFi網絡，0表示自動"
+  },
+  "esplink_wifi_connect_quick": {
+    "message0": "快速連接WiFi 名稱 %1 密碼 %2 逾時 %3 毫秒",
+    "tooltip": "連接WiFi並等待結果，成功傳回真"
+  },
+  "esplink_wifi_wait_connected": {
+    "message0": "等待WiFi連接結果 逾時 %1 毫秒",
+    "tooltip": "等待連接結果並傳回WiFi狀態值"
+  },
+  "esplink_wifi_is_connected": {
+    "message0": "WiFi已連接",
+    "tooltip": "WiFi是否處於已連接狀態"
+  },
+  "esplink_wifi_status": {
+    "message0": "WiFi連接狀態",
+    "tooltip": "傳回目前WiFi狀態值"
+  },
+  "esplink_wifi_status_type": {
+    "message0": "WiFi狀態 %1",
+    "tooltip": "WiFi狀態常數，用於和連接狀態比較",
+    "args0": [
+      {
+        "options": [
+          [
+            "已連接",
+            "WL_CONNECTED"
+          ],
+          [
+            "閒置",
+            "WL_IDLE_STATUS"
+          ],
+          [
+            "找不到網絡",
+            "WL_NO_SSID_AVAIL"
+          ],
+          [
+            "掃描完成",
+            "WL_SCAN_COMPLETED"
+          ],
+          [
+            "連接失敗",
+            "WL_CONNECT_FAILED"
+          ],
+          [
+            "連接中斷",
+            "WL_CONNECTION_LOST"
+          ],
+          [
+            "已斷開",
+            "WL_DISCONNECTED"
+          ],
+          [
+            "無模組",
+            "WL_NO_SHIELD"
+          ]
+        ]
+      }
+    ]
+  },
+  "esplink_wifi_disconnect": {
+    "message0": "斷開WiFi 關閉射頻 %1 清除已儲存密碼 %2",
+    "tooltip": "斷開目前的WiFi連接"
+  },
+  "esplink_wifi_reconnect": {
+    "message0": "重新連接WiFi",
+    "tooltip": "使用上次的憑證重新連接"
+  },
+  "esplink_wifi_set_auto_reconnect": {
+    "message0": "設定WiFi自動重連 %1",
+    "tooltip": "斷線後由C3自動重連"
+  },
+  "esplink_wifi_set_mode": {
+    "message0": "設定WiFi模式 %1",
+    "tooltip": "設定C3的WiFi運作模式",
+    "args0": [
+      {
+        "options": [
+          [
+            "station(連接熱點)",
+            "WIFI_STA"
+          ],
+          [
+            "AP(建立熱點)",
+            "WIFI_AP"
+          ],
+          [
+            "AP+station",
+            "WIFI_AP_STA"
+          ],
+          [
+            "關閉",
+            "WIFI_OFF"
+          ]
+        ]
+      }
+    ]
+  },
+  "esplink_wifi_get_mode": {
+    "message0": "WiFi目前模式",
+    "tooltip": "傳回目前WiFi運作模式值"
+  },
+  "esplink_wifi_poll": {
+    "message0": "處理WiFi事務",
+    "tooltip": "推進鏈路並派發WiFi事件。使用WiFi積木時會自動加入主程式"
+  },
+  "esplink_wifi_end": {
+    "message0": "關閉WiFi",
+    "tooltip": "釋放WiFi資源，不影響BLE"
+  },
+  "esplink_wifi_ip_info": {
+    "message0": "WiFi %1",
+    "tooltip": "以字串形式傳回網絡位址資訊",
+    "args0": [
+      {
+        "options": [
+          [
+            "本機IP位址",
+            "localIP"
+          ],
+          [
+            "閘道位址",
+            "gatewayIP"
+          ],
+          [
+            "子網路遮罩",
+            "subnetMask"
+          ],
+          [
+            "主DNS",
+            "dns0"
+          ],
+          [
+            "備用DNS",
+            "dns1"
+          ]
+        ]
+      }
+    ]
+  },
+  "esplink_wifi_ssid": {
+    "message0": "目前WiFi名稱",
+    "tooltip": "已連接網絡的SSID"
+  },
+  "esplink_wifi_rssi": {
+    "message0": "WiFi訊號強度",
+    "tooltip": "目前連接的訊號強度(dBm)，越接近0越好"
+  },
+  "esplink_wifi_channel": {
+    "message0": "WiFi頻道",
+    "tooltip": "目前連接使用的頻道"
+  },
+  "esplink_wifi_mac": {
+    "message0": "WiFi MAC位址",
+    "tooltip": "station模式的MAC位址"
+  },
+  "esplink_wifi_set_hostname": {
+    "message0": "設定主機名稱 %1",
+    "tooltip": "在路由器中顯示的名稱，需在連接前設定"
+  },
+  "esplink_wifi_get_hostname": {
+    "message0": "主機名稱",
+    "tooltip": "目前設定的主機名稱"
+  },
+  "esplink_wifi_config_static": {
+    "message0": "設定靜態IP %1 閘道 %2 子網路遮罩 %3 DNS %4",
+    "tooltip": "使用靜態IPv4設定，需在連接WiFi之前呼叫"
+  },
+  "esplink_wifi_set_dns": {
+    "message0": "設定DNS伺服器 主 %1 備 %2",
+    "tooltip": "設定網域名稱解析伺服器"
+  },
+  "esplink_wifi_host_by_name": {
+    "message0": "解析網域 %1 的IP位址",
+    "tooltip": "透過C3解析網域，失敗傳回空字串"
+  },
+  "esplink_wifi_firmware_version": {
+    "message0": "C3 WiFi韌體版本",
+    "tooltip": "C3上運行的韌體版本"
+  },
+  "esplink_wifi_last_error": {
+    "message0": "WiFi最後錯誤碼",
+    "tooltip": "最後一次WiFi操作的錯誤碼，0表示成功"
+  },
+  "esplink_wifi_config_time": {
+    "message0": "設定網絡時間 時區 %1 小時 夏令時間 %2 小時 伺服器 %3",
+    "tooltip": "設定C3的SNTP時間同步，TLS憑證驗證需要正確時間"
+  },
+  "esplink_wifi_get_time": {
+    "message0": "網絡時間戳記(秒)",
+    "tooltip": "C3的Unix時間戳記，未同步時為較小的值"
+  },
+  "esplink_wifi_scan_networks": {
+    "message0": "掃描WiFi網絡 包含隱藏網絡 %1",
+    "tooltip": "同步掃描並傳回找到的網絡數量，最多快取32個"
+  },
+  "esplink_wifi_scan_start_async": {
+    "message0": "開始非同步掃描WiFi 包含隱藏網絡 %1",
+    "tooltip": "背景掃描，透過掃描結果數量查詢進度"
+  },
+  "esplink_wifi_scan_complete": {
+    "message0": "掃描結果數量",
+    "tooltip": "掃描到的網絡數量，-1表示掃描中，-2表示失敗"
+  },
+  "esplink_wifi_scan_ssid": {
+    "message0": "第 %1 個網絡的名稱",
+    "tooltip": "掃描結果中指定序號網絡的SSID，序號從0開始"
+  },
+  "esplink_wifi_scan_rssi": {
+    "message0": "第 %1 個網絡的訊號強度",
+    "tooltip": "掃描結果中指定序號網絡的訊號強度(dBm)"
+  },
+  "esplink_wifi_scan_channel": {
+    "message0": "第 %1 個網絡的頻道",
+    "tooltip": "掃描結果中指定序號網絡的頻道"
+  },
+  "esplink_wifi_scan_encryption": {
+    "message0": "第 %1 個網絡的加密方式",
+    "tooltip": "掃描結果的加密類型值，0為開放網絡"
+  },
+  "esplink_wifi_scan_delete": {
+    "message0": "清除掃描結果",
+    "tooltip": "釋放掃描結果佔用的記憶體"
+  },
+  "esplink_wifi_softap": {
+    "message0": "建立WiFi熱點 名稱 %1 密碼 %2 頻道 %3",
+    "tooltip": "在C3上建立熱點，密碼留空則為開放網絡"
+  },
+  "esplink_wifi_softap_config": {
+    "message0": "設定熱點網絡 IP %1 閘道 %2 子網路遮罩 %3",
+    "tooltip": "設定熱點的IPv4網段，需在建立熱點之前呼叫"
+  },
+  "esplink_wifi_softap_disconnect": {
+    "message0": "關閉WiFi熱點 同時關閉射頻 %1",
+    "tooltip": "停止熱點"
+  },
+  "esplink_wifi_softap_ip": {
+    "message0": "熱點IP位址",
+    "tooltip": "熱點本身的IP位址"
+  },
+  "esplink_wifi_softap_station_num": {
+    "message0": "熱點已連接裝置數",
+    "tooltip": "連接到熱點的裝置數量"
+  },
+  "esplink_wifi_softap_mac": {
+    "message0": "熱點MAC位址",
+    "tooltip": "熱點介面的MAC位址"
+  },
+  "esplink_wifi_on_event": {
+    "message0": "當WiFi事件 %1 發生時",
+    "message1": "執行 %1",
+    "tooltip": "註冊WiFi事件回呼。事件由輪詢狀態差分產生，回呼在呼叫WiFi處理積木的工作中執行",
+    "args0": [
+      {
+        "options": [
+          [
+            "已連接到熱點",
+            "ARDUINO_EVENT_WIFI_STA_CONNECTED"
+          ],
+          [
+            "已斷開熱點",
+            "ARDUINO_EVENT_WIFI_STA_DISCONNECTED"
+          ],
+          [
+            "取得IP位址",
+            "ARDUINO_EVENT_WIFI_STA_GOT_IP"
+          ],
+          [
+            "IP位址遺失",
+            "ARDUINO_EVENT_WIFI_STA_LOST_IP"
+          ],
+          [
+            "掃描完成",
+            "ARDUINO_EVENT_WIFI_SCAN_DONE"
+          ],
+          [
+            "有裝置接入熱點",
+            "ARDUINO_EVENT_WIFI_AP_STACONNECTED"
+          ],
+          [
+            "有裝置離開熱點",
+            "ARDUINO_EVENT_WIFI_AP_STADISCONNECTED"
+          ],
+          [
+            "任意事件",
+            "ARDUINO_EVENT_MAX"
+          ]
+        ]
+      }
+    ]
+  },
+  "esplink_tcp_client_create": {
+    "message0": "建立TCP用戶端 %1",
+    "tooltip": "建立一個TCP用戶端物件"
+  },
+  "esplink_tcp_client_connect": {
+    "message0": "用戶端 %1 連接到 %2 連接埠 %3",
+    "tooltip": "連接到伺服器，成功傳回真。預設逾時10秒(TLS為15秒)"
+  },
+  "esplink_tcp_client_connected": {
+    "message0": "用戶端 %1 已連接",
+    "tooltip": "連接是否有效。緩衝區仍有未讀資料時也傳回真"
+  },
+  "esplink_tcp_client_print": {
+    "message0": "用戶端 %1 發送 %2 換行 %3",
+    "tooltip": "向伺服器發送資料"
+  },
+  "esplink_tcp_client_available": {
+    "message0": "用戶端 %1 可讀位元組數",
+    "tooltip": "目前可讀取的位元組數"
+  },
+  "esplink_tcp_client_read_string": {
+    "message0": "用戶端 %1 讀取已接收資料",
+    "tooltip": "取出目前緩衝區中的全部資料，不會阻塞等待"
+  },
+  "esplink_tcp_client_remote_ip": {
+    "message0": "用戶端 %1 對端IP位址",
+    "tooltip": "連接對端的IP位址"
+  },
+  "esplink_tcp_client_stop": {
+    "message0": "關閉用戶端 %1",
+    "tooltip": "關閉連接並釋放C3上的socket"
+  },
+  "esplink_tls_client_create": {
+    "message0": "建立TLS用戶端 %1",
+    "tooltip": "建立支援HTTPS/TLS的用戶端，預設使用C3內建根憑證"
+  },
+  "esplink_tls_set_pem": {
+    "message0": "TLS用戶端 %1 設定 %2 內容 %3",
+    "tooltip": "設定PEM格式的憑證或私密金鑰，單個不超過8192位元組",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "CA根憑證",
+            "CA"
+          ],
+          [
+            "用戶端憑證",
+            "CERT"
+          ],
+          [
+            "用戶端私密金鑰",
+            "KEY"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "esplink_tls_use_builtin_ca": {
+    "message0": "TLS用戶端 %1 使用內建根憑證",
+    "tooltip": "使用C3韌體內建的根憑證庫驗證伺服器"
+  },
+  "esplink_tls_set_insecure": {
+    "message0": "TLS用戶端 %1 略過憑證驗證",
+    "tooltip": "不驗證伺服器憑證，僅在明確知道風險時使用"
+  },
+  "esplink_http_get": {
+    "message0": "HTTP GET 請求 %1",
+    "tooltip": "請求http://或https://位址並傳回回應內容，失敗傳回空字串，最多保留4096位元組"
+  },
+  "esplink_http_post": {
+    "message0": "HTTP POST 請求 %1 內容 %2 類型 %3",
+    "tooltip": "向http://或https://位址提交內容並傳回回應，失敗傳回空字串"
+  },
+  "esplink_tcp_server_create": {
+    "message0": "建立TCP伺服器 %1 監聽連接埠 %2",
+    "tooltip": "建立TCP伺服器並開始監聽，只支援監聽本機所有位址"
+  },
+  "esplink_tcp_server_accept": {
+    "message0": "伺服器 %1 取出新用戶端到 %2",
+    "tooltip": "把新接入的用戶端交給指定變數，沒有新連接時該變數無效"
+  },
+  "esplink_tcp_server_write": {
+    "message0": "伺服器 %1 廣播發送 %2",
+    "tooltip": "向伺服器保留的已接入用戶端廣播資料"
+  },
+  "esplink_tcp_server_end": {
+    "message0": "關閉伺服器 %1",
+    "tooltip": "停止監聽並釋放連接埠"
+  },
+  "esplink_udp_create": {
+    "message0": "建立UDP %1 監聽連接埠 %2",
+    "tooltip": "建立UDP物件並繫結本機連接埠，0表示由系統分配"
+  },
+  "esplink_udp_create_multicast": {
+    "message0": "建立UDP %1 加入群播 %2 連接埠 %3",
+    "tooltip": "建立UDP物件並繫結到群播位址"
+  },
+  "esplink_udp_send_to": {
+    "message0": "UDP %1 發送 %2 到 %3 連接埠 %4",
+    "tooltip": "一步完成組包與發送，成功傳回真。單個資料報不超過1472位元組"
+  },
+  "esplink_udp_begin_packet": {
+    "message0": "UDP %1 開始組包 目標 %2 連接埠 %3",
+    "tooltip": "開始一個待發送的資料報"
+  },
+  "esplink_udp_write": {
+    "message0": "UDP %1 寫入 %2",
+    "tooltip": "向目前資料報追加內容"
+  },
+  "esplink_udp_end_packet": {
+    "message0": "UDP %1 發送資料報",
+    "tooltip": "發送目前資料報，超過1472位元組會整包失敗"
+  },
+  "esplink_udp_parse_packet": {
+    "message0": "UDP %1 接收資料報長度",
+    "tooltip": "取出下一個資料報並傳回長度，沒有資料時傳回0"
+  },
+  "esplink_udp_read_string": {
+    "message0": "UDP %1 讀取資料報內容",
+    "tooltip": "讀取目前資料報中剩餘的全部內容"
+  },
+  "esplink_udp_remote_ip": {
+    "message0": "UDP %1 發送方IP位址",
+    "tooltip": "目前資料報發送方的IP位址"
+  },
+  "esplink_udp_stop": {
+    "message0": "關閉UDP %1",
+    "tooltip": "關閉UDP並釋放C3上的socket"
+  },
+  "esplink_begin": {
+    "message0": "啟動ESPLink連接ESP32-C3",
+    "tooltip": "使用開發板預設的硬件串口(921600波特率)啟動與ESP32-C3的連接。WiFi和BLE庫會自動啟動ESPLink，此積木僅在需要單獨診斷時使用"
+  },
+  "esplink_begin_serial": {
+    "message0": "啟動ESPLink 串口 %1 波特率 %2",
+    "tooltip": "指定串口和波特率啟動ESPLink。必須與C3韌體的波特率一致，且要在WiFi/BLE初始化之前呼叫",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "921600",
+            "921600"
+          ],
+          [
+            "115200",
+            "115200"
+          ],
+          [
+            "460800",
+            "460800"
+          ],
+          [
+            "230400",
+            "230400"
+          ],
+          [
+            "1000000",
+            "1000000"
+          ]
+        ]
+      }
+    ]
+  },
+  "esplink_bind_stream": {
+    "message0": "綁定已設定的串口 %1 到ESPLink",
+    "tooltip": "借用一個已經自行初始化(含自訂腳位)的串口，ESPLink不會呼叫它的begin()和end()"
+  },
+  "esplink_end": {
+    "message0": "斷開ESPLink連接",
+    "tooltip": "釋放ESPLink綁定。借用模式下不會關閉串口驅動"
+  },
+  "esplink_poll": {
+    "message0": "處理ESPLink事務",
+    "tooltip": "推進ESPLink傳輸。使用初始化積木時會自動加入主程式，一般無需手動加入"
+  },
+  "esplink_ready": {
+    "message0": "ESPLink已就緒",
+    "tooltip": "C3鏈路是否處於可用工作階段中"
+  },
+  "esplink_ping": {
+    "message0": "ESPLink通訊測試 逾時 %1 毫秒",
+    "tooltip": "向C3發送一次Ping並等待回應"
+  },
+  "esplink_session": {
+    "message0": "ESPLink工作階段號",
+    "tooltip": "目前鏈路工作階段號。號碼改變表示C3重啟或鏈路重建，之前的socket和BLE控制代碼全部失效"
+  },
+  "esplink_last_error": {
+    "message0": "ESPLink最後錯誤碼",
+    "tooltip": "最後一次ESPLink操作的錯誤碼，0表示成功"
+  },
+  "esplink_error_code": {
+    "message0": "錯誤碼 %1",
+    "tooltip": "ESPLink錯誤碼常數，用於和最後錯誤碼比較",
+    "args0": [
+      {
+        "options": [
+          [
+            "成功",
+            "c3::Ok"
+          ],
+          [
+            "參數無效",
+            "c3::InvalidArgument"
+          ],
+          [
+            "不支援",
+            "c3::Unsupported"
+          ],
+          [
+            "記憶體不足",
+            "c3::NoMemory"
+          ],
+          [
+            "忙碌",
+            "c3::Busy"
+          ],
+          [
+            "逾時",
+            "c3::Timeout"
+          ],
+          [
+            "未連接",
+            "c3::NotConnected"
+          ],
+          [
+            "IO錯誤",
+            "c3::IoError"
+          ],
+          [
+            "協定錯誤",
+            "c3::ProtocolError"
+          ],
+          [
+            "結果未知",
+            "c3::OutcomeUnknown"
+          ],
+          [
+            "控制代碼失效",
+            "c3::StaleHandle"
+          ],
+          [
+            "緩衝區太小",
+            "c3::BufferTooSmall"
+          ],
+          [
+            "結果已過期",
+            "c3::ResultExpired"
+          ],
+          [
+            "安全性錯誤",
+            "c3::SecurityError"
+          ],
+          [
+            "需要重試",
+            "c3::WouldBlock"
+          ],
+          [
+            "鏈路遺失",
+            "c3::LinkLost"
+          ],
+          [
+            "找不到",
+            "c3::NotFound"
+          ]
+        ]
+      }
+    ]
+  },
+  "esplink_firmware_version": {
+    "message0": "C3韌體版本",
+    "tooltip": "ESP32-C3上運行的橋接韌體版本字串"
+  },
+  "esplink_capability": {
+    "message0": "C3能力 %1",
+    "tooltip": "讀取C3握手時回報的能力參數",
+    "args0": [
+      {
+        "options": [
+          [
+            "最大負載位元組",
+            "maxPayload"
+          ],
+          [
+            "最大HCI封包位元組",
+            "maxHciPacket"
+          ],
+          [
+            "最大socket數",
+            "maxSockets"
+          ],
+          [
+            "最大BLE連接數",
+            "maxBLEConnections"
+          ],
+          [
+            "功能位元",
+            "features"
+          ],
+          [
+            "啟動ID",
+            "bootID"
+          ]
+        ]
+      }
+    ]
+  },
+  "esplink_has_feature": {
+    "message0": "C3支援 %1 功能",
+    "tooltip": "判斷C3韌體是否支援指定功能",
+    "args0": [
+      {
+        "options": [
+          [
+            "WiFi",
+            "c3::WiFi"
+          ],
+          [
+            "TCP",
+            "c3::TCP"
+          ],
+          [
+            "UDP",
+            "c3::UDP"
+          ],
+          [
+            "TLS",
+            "c3::TLS"
+          ],
+          [
+            "BLE(HCI)",
+            "c3::HCI"
+          ],
+          [
+            "IPv6",
+            "c3::IPv6"
+          ],
+          [
+            "AP+STA共存",
+            "c3::StationAP"
+          ],
+          [
+            "OTA",
+            "c3::OTA"
+          ],
+          [
+            "mDNS",
+            "c3::MDNS"
+          ]
+        ]
+      }
+    ]
+  },
+  "esplink_stat": {
+    "message0": "ESPLink統計 %1",
+    "tooltip": "讀取鏈路品質統計，用於排查接線和波特率問題",
+    "args0": [
+      {
+        "options": [
+          [
+            "已發送封包數",
+            "transmitted"
+          ],
+          [
+            "已接收封包數",
+            "received"
+          ],
+          [
+            "重傳次數",
+            "retries"
+          ],
+          [
+            "逾時次數",
+            "timeouts"
+          ],
+          [
+            "CRC錯誤數",
+            "crcErrors"
+          ],
+          [
+            "格式錯誤數",
+            "malformed"
+          ],
+          [
+            "超長封包數",
+            "oversized"
+          ],
+          [
+            "忽略封包數",
+            "ignored"
+          ],
+          [
+            "工作階段變更次數",
+            "sessionChanges"
+          ],
+          [
+            "接收位元組數",
+            "rxBytes"
+          ],
+          [
+            "接收批次數",
+            "rxBatches"
+          ],
+          [
+            "工作執行緒喚醒數",
+            "workerWakeups"
+          ]
+        ]
+      }
+    ]
+  }
+}
