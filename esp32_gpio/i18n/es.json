@@ -1,0 +1,555 @@
+{
+  "toolbox_name": "GPIO avanzado",
+  "toolbox_labels": {
+    "触摸": "Táctil",
+    "ADC": "ADC",
+    "DAC": "DAC",
+    "PWM": "PWM",
+    "GPIO": "GPIO"
+  },
+  "esp32_gpio_touch_read": {
+    "message0": "Leer valor táctil bruto · pin %1",
+    "tooltip": "Leer valor táctil bruto. La función depende del chip y del pin. Detalles técnicos (inglés): Touch pins only; no pinMode needed. Values fall on ESP32 and rise on S2/S3/P4."
+  },
+  "esp32_gpio_touch_threshold": {
+    "message0": "Comprobar umbral táctil · pin %1 · umbral %2",
+    "tooltip": "Comprobar umbral táctil. La función depende del chip y del pin. Detalles técnicos (inglés): Absolute raw threshold; comparison direction follows the chip. Measure idle and touched values first."
+  },
+  "esp32_gpio_touch_calibrate": {
+    "message0": "Calibrar referencia sin contacto · pin %1 · muestras %2",
+    "tooltip": "Calibrar referencia sin contacto. La función depende del chip y del pin. Detalles técnicos (inglés): Run in setup with the electrode untouched. Samples are clamped to 1–64."
+  },
+  "esp32_gpio_touch_pressed": {
+    "message0": "Comprobar cambio táctil relativo · pin %1 · porcentaje %2",
+    "tooltip": "Comprobar cambio táctil relativo. La función depende del chip y del pin. Detalles técnicos (inglés): Calibrate first. Change is clamped to 1–90%; smaller is more sensitive. Release uses half the activation change for hysteresis."
+  },
+  "esp32_gpio_touch_baseline": {
+    "message0": "Leer referencia táctil · pin %1",
+    "tooltip": "Leer referencia táctil. La función depende del chip y del pin. Detalles técnicos (inglés): Returns 0 before calibration or after failure. Recalibrate after electrode or timing changes."
+  },
+  "esp32_gpio_touch_cycles": {
+    "message0": "Configurar ciclos táctiles antiguos · medición %1 · intervalo %2",
+    "tooltip": "Configurar ciclos táctiles antiguos. La función depende del chip y del pin. Detalles técnicos (inglés): Legacy driver only: ESP-IDF below 5.5 and touch version up to 2. Use timing in microseconds on the new driver."
+  },
+  "esp32_gpio_touch_timing": {
+    "message0": "Configurar tiempos táctiles nuevos (µs) · medición %1 · intervalo %2",
+    "tooltip": "Configurar tiempos táctiles nuevos (µs). La función depende del chip y del pin. Detalles técnicos (inglés): New driver only: ESP-IDF 5.5+ or touch version 3. Set before the first touch read or interrupt registration."
+  },
+  "esp32_gpio_touch_interrupt": {
+    "message0": "Escuchar eventos táctiles · pin %1 · umbral %2 · acción %3",
+    "tooltip": "Escuchar eventos táctiles. La función depende del chip y del pin. Detalles técnicos (inglés): Actions run in loop; events may coalesce and include release. ESP32 uses an absolute threshold; S2/S3/P4 use an increment above the hardware benchmark."
+  },
+  "esp32_gpio_touch_detach": {
+    "message0": "Detener eventos táctiles · pin %1",
+    "tooltip": "Detener eventos táctiles. La función depende del chip y del pin. Detalles técnicos (inglés): Detach the callback and clear pending events; touch reads remain available."
+  },
+  "esp32_gpio_touch_wakeup": {
+    "message0": "Activación táctil desde sueño profundo · pin %1 · umbral %2",
+    "tooltip": "Activación táctil desde sueño profundo. La función depende del chip y del pin. Detalles técnicos (inglés): Configure wakeup without entering sleep. S2/S3 generally allow one touch wake channel. Combine with esp32_sleep."
+  },
+  "esp32_gpio_adc_mv": {
+    "message0": "Leer tensión ADC (mV) · pin %1",
+    "tooltip": "Leer tensión ADC (mV). La función depende del chip y del pin. Detalles técnicos (inglés): Returns core-calibrated millivolts. Prefer ADC1 when using Wi-Fi on ESP32."
+  },
+  "esp32_gpio_adc_average": {
+    "message0": "Leer promedio ADC · pin %1 · muestras %2 · unidad %3",
+    "tooltip": "Leer promedio ADC. La función depende del chip y del pin. Detalles técnicos (inglés): Samples are clamped to 1–64. Raw range follows the ADC read resolution.",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "PIN",
+        "check": [
+          "Number",
+          "Any"
+        ]
+      },
+      {
+        "type": "input_value",
+        "name": "SAMPLES",
+        "check": "Number"
+      },
+      {
+        "type": "field_dropdown",
+        "name": "UNIT",
+        "options": [
+          [
+            "Millivolts",
+            "MV"
+          ],
+          [
+            "Raw value",
+            "RAW"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_gpio_adc_resolution": {
+    "message0": "Configurar resolución ADC · bits %1",
+    "tooltip": "Configurar resolución ADC. La función depende del chip y del pin. Detalles técnicos (inglés): Globally affects analogRead. Extra bits may be software scaling, not increased hardware precision.",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "BITS",
+        "options": [
+          [
+            "12",
+            "12"
+          ],
+          [
+            "9",
+            "9"
+          ],
+          [
+            "10",
+            "10"
+          ],
+          [
+            "11",
+            "11"
+          ],
+          [
+            "13",
+            "13"
+          ],
+          [
+            "14",
+            "14"
+          ],
+          [
+            "15",
+            "15"
+          ],
+          [
+            "16",
+            "16"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_gpio_adc_attenuation": {
+    "message0": "Configurar atenuación ADC global · atenuación %1",
+    "tooltip": "Configurar atenuación ADC global. La función depende del chip y del pin. Detalles técnicos (inglés): Changes measurement range, not input voltage tolerance. Ranges vary by chip; never apply 5 V.",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "ATTENUATION",
+        "options": [
+          [
+            "11 dB (widest range)",
+            "ADC_11db"
+          ],
+          [
+            "0 dB",
+            "ADC_0db"
+          ],
+          [
+            "2.5 dB",
+            "ADC_2_5db"
+          ],
+          [
+            "6 dB",
+            "ADC_6db"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_gpio_adc_pin_attenuation": {
+    "message0": "Configurar atenuación ADC del pin · pin %1 · atenuación %2",
+    "tooltip": "Configurar atenuación ADC del pin. La función depende del chip y del pin. Detalles técnicos (inglés): Changes only this ADC pin. Apply global attenuation before per-pin overrides.",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "PIN",
+        "check": [
+          "Number",
+          "Any"
+        ]
+      },
+      {
+        "type": "field_dropdown",
+        "name": "ATTENUATION",
+        "options": [
+          [
+            "11 dB (widest range)",
+            "ADC_11db"
+          ],
+          [
+            "0 dB",
+            "ADC_0db"
+          ],
+          [
+            "2.5 dB",
+            "ADC_2_5db"
+          ],
+          [
+            "6 dB",
+            "ADC_6db"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_gpio_dac_pin": {
+    "message0": "Pin del canal DAC · canal %1",
+    "tooltip": "Pin del canal DAC. La función depende del chip y del pin. Detalles técnicos (inglés): Maps to ESP32 GPIO25/26 or S2 GPIO17/18. S3/C3/C6 have no DAC.",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "CHANNEL",
+        "options": [
+          [
+            "1",
+            "1"
+          ],
+          [
+            "2",
+            "2"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_gpio_dac_write": {
+    "message0": "Escribir valor DAC (0–255) · pin %1 · valor %2",
+    "tooltip": "Escribir valor DAC (0–255). La función depende del chip y del pin. Detalles técnicos (inglés): Automatically enables true analog output; value is clamped to 0–255. No pinMode needed."
+  },
+  "esp32_gpio_dac_voltage": {
+    "message0": "Escribir tensión DAC (V) · pin %1 · voltios %2",
+    "tooltip": "Escribir tensión DAC (V). La función depende del chip y del pin. Detalles técnicos (inglés): Converts 0–3.3 V using a nominal 3.3 V reference and 8-bit DAC. Supply and load affect actual voltage."
+  },
+  "esp32_gpio_dac_disable": {
+    "message0": "Desactivar DAC · pin %1",
+    "tooltip": "Desactivar DAC. La función depende del chip y del pin. Detalles técnicos (inglés): Stop DAC output and release the pin."
+  },
+  "esp32_gpio_pwm_quick": {
+    "message0": "PWM rápido (%) · pin %1 · porcentaje %2",
+    "tooltip": "PWM rápido (%). La función depende del chip y del pin. Detalles técnicos (inglés): Auto-attach at 1000 Hz / 8 bits on first use, then retain this library configuration. Duty is clamped to 0–100%."
+  },
+  "esp32_gpio_pwm_attach": {
+    "message0": "Configurar PWM · pin %1 · frecuencia %2 · bits %3",
+    "tooltip": "Configurar PWM. La función depende del chip y del pin. Detalles técnicos (inglés): Automatically allocates an LEDC channel. ESP32 supports 1–20 bits, others usually 1–14. Reconfiguration stops previous output."
+  },
+  "esp32_gpio_pwm_write": {
+    "message0": "Escribir ciclo PWM bruto · pin %1 · ciclo de trabajo %2",
+    "tooltip": "Escribir ciclo PWM bruto. La función depende del chip y del pin. Detalles técnicos (inglés): Configure PWM first. Duty is clamped to 0 through 2^resolution−1."
+  },
+  "esp32_gpio_pwm_percent": {
+    "message0": "Configurar ciclo PWM (%) · pin %1 · porcentaje %2",
+    "tooltip": "Configurar ciclo PWM (%). La función depende del chip y del pin. Detalles técnicos (inglés): Configure PWM first. Converts using the current resolution and clamps to 0–100%."
+  },
+  "esp32_gpio_pwm_read": {
+    "message0": "Leer configuración PWM · pin %1 · parámetro %2",
+    "tooltip": "Leer configuración PWM. La función depende del chip y del pin. Detalles técnicos (inglés): Reads configured hardware parameters, not an external waveform.",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "PIN",
+        "check": [
+          "Number",
+          "Any"
+        ]
+      },
+      {
+        "type": "field_dropdown",
+        "name": "WHAT",
+        "options": [
+          [
+            "Raw duty",
+            "DUTY"
+          ],
+          [
+            "Frequency (Hz)",
+            "FREQUENCY"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_gpio_pwm_frequency": {
+    "message0": "Cambiar frecuencia PWM · pin %1 · frecuencia %2 · bits %3",
+    "tooltip": "Cambiar frecuencia PWM. La función depende del chip y del pin. Detalles técnicos (inglés): Reattach this pin to avoid changing a timer shared by other pins; duty resets to 0."
+  },
+  "esp32_gpio_pwm_tone": {
+    "message0": "Generar onda cuadrada (0 detiene) · pin %1 · frecuencia %2",
+    "tooltip": "Generar onda cuadrada (0 detiene). La función depende del chip y del pin. Detalles técnicos (inglés): 50% duty; auto-configures 10 bits. Frequency 0 stops the waveform. Low frequencies may exceed LEDC clock limits."
+  },
+  "esp32_gpio_pwm_fade": {
+    "message0": "Transición PWM (%) · pin %1 · inicio %2 · final %3 · milisegundos %4",
+    "tooltip": "Transición PWM (%). La función depende del chip y del pin. Detalles técnicos (inglés): Configure PWM first. Hardware fade is nonblocking; do not change this pin PWM until it finishes."
+  },
+  "esp32_gpio_pwm_invert": {
+    "message0": "Invertir salida PWM · pin %1 · inversión %2",
+    "tooltip": "Invertir salida PWM. La función depende del chip y del pin. Detalles técnicos (inglés): Configure PWM first; useful for active-low LEDs.",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "PIN",
+        "check": [
+          "Number",
+          "Any"
+        ]
+      },
+      {
+        "type": "field_dropdown",
+        "name": "INVERT",
+        "options": [
+          [
+            "Yes",
+            "true"
+          ],
+          [
+            "No",
+            "false"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_gpio_pwm_detach": {
+    "message0": "Liberar PWM · pin %1",
+    "tooltip": "Liberar PWM. La función depende del chip y del pin. Detalles técnicos (inglés): Stops and releases the LEDC channel; the pin can be reconfigured or used for digital output."
+  },
+  "esp32_gpio_pwm_ok": {
+    "message0": "Última operación PWM correcta",
+    "tooltip": "Última operación PWM correcta. La función depende del chip y del pin. Detalles técnicos (inglés): Reports this library last PWM setting operation; false on invalid settings or exhausted hardware resources."
+  },
+  "esp32_gpio_pin_mode": {
+    "message0": "Configurar modo del pin · pin %1 · modo %2",
+    "tooltip": "Configurar modo del pin. La función depende del chip y del pin. Detalles técnicos (inglés): Supports pulldown input and open-drain output. Open-drain HIGH releases the line and normally needs an external pull-up.",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "PIN",
+        "check": [
+          "Number",
+          "Any"
+        ]
+      },
+      {
+        "type": "field_dropdown",
+        "name": "MODE",
+        "options": [
+          [
+            "INPUT_PULLDOWN",
+            "INPUT_PULLDOWN"
+          ],
+          [
+            "INPUT_PULLUP",
+            "INPUT_PULLUP"
+          ],
+          [
+            "INPUT",
+            "INPUT"
+          ],
+          [
+            "OUTPUT",
+            "OUTPUT"
+          ],
+          [
+            "OUTPUT_OPEN_DRAIN",
+            "OUTPUT_OPEN_DRAIN"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_gpio_pull": {
+    "message0": "Configurar resistencias de polarización · pin %1 · resistencia %2",
+    "tooltip": "Configurar resistencias de polarización. La función depende del chip y del pin. Detalles técnicos (inglés): Changes pulls without changing direction. Classic ESP32 GPIO34–39 have no internal pull resistors.",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "PIN",
+        "check": [
+          "Number",
+          "Any"
+        ]
+      },
+      {
+        "type": "field_dropdown",
+        "name": "PULL",
+        "options": [
+          [
+            "GPIO_PULLUP_ONLY",
+            "GPIO_PULLUP_ONLY"
+          ],
+          [
+            "GPIO_PULLDOWN_ONLY",
+            "GPIO_PULLDOWN_ONLY"
+          ],
+          [
+            "GPIO_PULLUP_PULLDOWN",
+            "GPIO_PULLUP_PULLDOWN"
+          ],
+          [
+            "GPIO_FLOATING",
+            "GPIO_FLOATING"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_gpio_drive": {
+    "message0": "Configurar intensidad de salida · pin %1 · intensidad de salida %2",
+    "tooltip": "Configurar intensidad de salida. La función depende del chip y del pin. Detalles técnicos (inglés): Sets drive capability, not regulated current; do not directly drive motors or other heavy loads.",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "PIN",
+        "check": [
+          "Number",
+          "Any"
+        ]
+      },
+      {
+        "type": "field_dropdown",
+        "name": "STRENGTH",
+        "options": [
+          [
+            "Default (level 2)",
+            "GPIO_DRIVE_CAP_2"
+          ],
+          [
+            "Weakest (level 0)",
+            "GPIO_DRIVE_CAP_0"
+          ],
+          [
+            "Level 1",
+            "GPIO_DRIVE_CAP_1"
+          ],
+          [
+            "Strongest (level 3)",
+            "GPIO_DRIVE_CAP_3"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_gpio_hold": {
+    "message0": "Mantener estado del pin · pin %1 · acción %2",
+    "tooltip": "Mantener estado del pin. La función depende del chip y del pin. Detalles técnicos (inglés): Latches pin configuration and level. Restore the desired mode and level before releasing to avoid glitches.",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "PIN",
+        "check": [
+          "Number",
+          "Any"
+        ]
+      },
+      {
+        "type": "field_dropdown",
+        "name": "ACTION",
+        "options": [
+          [
+            "Enable",
+            "ENABLE"
+          ],
+          [
+            "Disable",
+            "DISABLE"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_gpio_deep_hold": {
+    "message0": "Mantener estado en sueño profundo · acción %1",
+    "tooltip": "ESP32/S2/S3/C3 also need per-pin hold. C6/P4 use per-pin hold alone; this global block makes no change. Release each pin individually.",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "ACTION",
+        "options": [
+          [
+            "Enable",
+            "ENABLE"
+          ],
+          [
+            "Disable",
+            "DISABLE"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_gpio_wakeup": {
+    "message0": "Activación desde sueño ligero · pin %1 · nivel %2",
+    "tooltip": "Activación desde sueño ligero. La función depende del chip y del pin. Detalles técnicos (inglés): Configures level wakeup only. Set input mode and pulls first, then enter light sleep with esp32_sleep.",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "PIN",
+        "check": [
+          "Number",
+          "Any"
+        ]
+      },
+      {
+        "type": "field_dropdown",
+        "name": "LEVEL",
+        "options": [
+          [
+            "Low level",
+            "GPIO_INTR_LOW_LEVEL"
+          ],
+          [
+            "High level",
+            "GPIO_INTR_HIGH_LEVEL"
+          ],
+          [
+            "Disable this pin",
+            "DISABLE"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_gpio_reset": {
+    "message0": "Restablecer pin · pin %1",
+    "tooltip": "Restablecer pin. La función depende del chip y del pin. Detalles técnicos (inglés): Release PWM, DAC, interrupts and hold first; restore the GPIO default configuration."
+  },
+  "esp32_gpio_interrupt": {
+    "message0": "Escuchar interrupción GPIO · pin %1 · modo %2 · acción %3",
+    "tooltip": "Escuchar interrupción GPIO. La función depende del chip y del pin. Detalles técnicos (inglés): Set input mode first. Actions run in loop; edges may coalesce, so this is not a pulse counter. Mechanical buttons still need debouncing.",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "PIN",
+        "check": [
+          "Number",
+          "Any"
+        ]
+      },
+      {
+        "type": "field_dropdown",
+        "name": "MODE",
+        "options": [
+          [
+            "FALLING",
+            "FALLING"
+          ],
+          [
+            "RISING",
+            "RISING"
+          ],
+          [
+            "CHANGE",
+            "CHANGE"
+          ]
+        ]
+      },
+      {
+        "type": "input_statement",
+        "name": "DO"
+      }
+    ]
+  },
+  "esp32_gpio_interrupt_detach": {
+    "message0": "Detener interrupción GPIO · pin %1",
+    "tooltip": "Detener interrupción GPIO. La función depende del chip y del pin. Detalles técnicos (inglés): Detach this pin interrupt and discard pending events."
+  }
+}

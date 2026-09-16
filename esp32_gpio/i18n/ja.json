@@ -1,0 +1,555 @@
+{
+  "toolbox_name": "高度なGPIO",
+  "toolbox_labels": {
+    "触摸": "タッチ",
+    "ADC": "ADC",
+    "DAC": "DAC",
+    "PWM": "PWM",
+    "GPIO": "GPIO"
+  },
+  "esp32_gpio_touch_read": {
+    "message0": "タッチ生値を読む · ピン %1",
+    "tooltip": "タッチ生値を読む. 機能はチップとピンに依存します。詳細な制限（英語）： Touch pins only; no pinMode needed. Values fall on ESP32 and rise on S2/S3/P4."
+  },
+  "esp32_gpio_touch_threshold": {
+    "message0": "タッチしきい値を判定 · ピン %1 · しきい値 %2",
+    "tooltip": "タッチしきい値を判定. 機能はチップとピンに依存します。詳細な制限（英語）： Absolute raw threshold; comparison direction follows the chip. Measure idle and touched values first."
+  },
+  "esp32_gpio_touch_calibrate": {
+    "message0": "非接触時の基準値を校正 · ピン %1 · サンプル数 %2",
+    "tooltip": "非接触時の基準値を校正. 機能はチップとピンに依存します。詳細な制限（英語）： Run in setup with the electrode untouched. Samples are clamped to 1–64."
+  },
+  "esp32_gpio_touch_pressed": {
+    "message0": "タッチの相対変化を判定 · ピン %1 · 割合 %2",
+    "tooltip": "タッチの相対変化を判定. 機能はチップとピンに依存します。詳細な制限（英語）： Calibrate first. Change is clamped to 1–90%; smaller is more sensitive. Release uses half the activation change for hysteresis."
+  },
+  "esp32_gpio_touch_baseline": {
+    "message0": "タッチ基準値を読む · ピン %1",
+    "tooltip": "タッチ基準値を読む. 機能はチップとピンに依存します。詳細な制限（英語）： Returns 0 before calibration or after failure. Recalibrate after electrode or timing changes."
+  },
+  "esp32_gpio_touch_cycles": {
+    "message0": "旧タッチ周期を設定 · 測定時間 %1 · 間隔 %2",
+    "tooltip": "旧タッチ周期を設定. 機能はチップとピンに依存します。詳細な制限（英語）： Legacy driver only: ESP-IDF below 5.5 and touch version up to 2. Use timing in microseconds on the new driver."
+  },
+  "esp32_gpio_touch_timing": {
+    "message0": "新タッチ時間を設定（µs） · 測定時間 %1 · 間隔 %2",
+    "tooltip": "新タッチ時間を設定（µs）. 機能はチップとピンに依存します。詳細な制限（英語）： New driver only: ESP-IDF 5.5+ or touch version 3. Set before the first touch read or interrupt registration."
+  },
+  "esp32_gpio_touch_interrupt": {
+    "message0": "タッチイベントを監視 · ピン %1 · しきい値 %2 · 実行 %3",
+    "tooltip": "タッチイベントを監視. 機能はチップとピンに依存します。詳細な制限（英語）： Actions run in loop; events may coalesce and include release. ESP32 uses an absolute threshold; S2/S3/P4 use an increment above the hardware benchmark."
+  },
+  "esp32_gpio_touch_detach": {
+    "message0": "タッチ監視を解除 · ピン %1",
+    "tooltip": "タッチ監視を解除. 機能はチップとピンに依存します。詳細な制限（英語）： Detach the callback and clear pending events; touch reads remain available."
+  },
+  "esp32_gpio_touch_wakeup": {
+    "message0": "タッチでディープスリープ解除 · ピン %1 · しきい値 %2",
+    "tooltip": "タッチでディープスリープ解除. 機能はチップとピンに依存します。詳細な制限（英語）： Configure wakeup without entering sleep. S2/S3 generally allow one touch wake channel. Combine with esp32_sleep."
+  },
+  "esp32_gpio_adc_mv": {
+    "message0": "ADC 電圧を読む（mV） · ピン %1",
+    "tooltip": "ADC 電圧を読む（mV）. 機能はチップとピンに依存します。詳細な制限（英語）： Returns core-calibrated millivolts. Prefer ADC1 when using Wi-Fi on ESP32."
+  },
+  "esp32_gpio_adc_average": {
+    "message0": "ADC 平均値を読む · ピン %1 · サンプル数 %2 · 単位 %3",
+    "tooltip": "ADC 平均値を読む. 機能はチップとピンに依存します。詳細な制限（英語）： Samples are clamped to 1–64. Raw range follows the ADC read resolution.",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "PIN",
+        "check": [
+          "Number",
+          "Any"
+        ]
+      },
+      {
+        "type": "input_value",
+        "name": "SAMPLES",
+        "check": "Number"
+      },
+      {
+        "type": "field_dropdown",
+        "name": "UNIT",
+        "options": [
+          [
+            "Millivolts",
+            "MV"
+          ],
+          [
+            "Raw value",
+            "RAW"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_gpio_adc_resolution": {
+    "message0": "ADC 読み取り分解能を設定 · ビット数 %1",
+    "tooltip": "ADC 読み取り分解能を設定. 機能はチップとピンに依存します。詳細な制限（英語）： Globally affects analogRead. Extra bits may be software scaling, not increased hardware precision.",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "BITS",
+        "options": [
+          [
+            "12",
+            "12"
+          ],
+          [
+            "9",
+            "9"
+          ],
+          [
+            "10",
+            "10"
+          ],
+          [
+            "11",
+            "11"
+          ],
+          [
+            "13",
+            "13"
+          ],
+          [
+            "14",
+            "14"
+          ],
+          [
+            "15",
+            "15"
+          ],
+          [
+            "16",
+            "16"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_gpio_adc_attenuation": {
+    "message0": "全 ADC の減衰を設定 · 減衰 %1",
+    "tooltip": "全 ADC の減衰を設定. 機能はチップとピンに依存します。詳細な制限（英語）： Changes measurement range, not input voltage tolerance. Ranges vary by chip; never apply 5 V.",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "ATTENUATION",
+        "options": [
+          [
+            "11 dB (widest range)",
+            "ADC_11db"
+          ],
+          [
+            "0 dB",
+            "ADC_0db"
+          ],
+          [
+            "2.5 dB",
+            "ADC_2_5db"
+          ],
+          [
+            "6 dB",
+            "ADC_6db"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_gpio_adc_pin_attenuation": {
+    "message0": "ピンの ADC 減衰を設定 · ピン %1 · 減衰 %2",
+    "tooltip": "ピンの ADC 減衰を設定. 機能はチップとピンに依存します。詳細な制限（英語）： Changes only this ADC pin. Apply global attenuation before per-pin overrides.",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "PIN",
+        "check": [
+          "Number",
+          "Any"
+        ]
+      },
+      {
+        "type": "field_dropdown",
+        "name": "ATTENUATION",
+        "options": [
+          [
+            "11 dB (widest range)",
+            "ADC_11db"
+          ],
+          [
+            "0 dB",
+            "ADC_0db"
+          ],
+          [
+            "2.5 dB",
+            "ADC_2_5db"
+          ],
+          [
+            "6 dB",
+            "ADC_6db"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_gpio_dac_pin": {
+    "message0": "DAC チャンネルのピン · チャンネル %1",
+    "tooltip": "DAC チャンネルのピン. 機能はチップとピンに依存します。詳細な制限（英語）： Maps to ESP32 GPIO25/26 or S2 GPIO17/18. S3/C3/C6 have no DAC.",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "CHANNEL",
+        "options": [
+          [
+            "1",
+            "1"
+          ],
+          [
+            "2",
+            "2"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_gpio_dac_write": {
+    "message0": "DAC 値を出力（0–255） · ピン %1 · 値 %2",
+    "tooltip": "DAC 値を出力（0–255）. 機能はチップとピンに依存します。詳細な制限（英語）： Automatically enables true analog output; value is clamped to 0–255. No pinMode needed."
+  },
+  "esp32_gpio_dac_voltage": {
+    "message0": "DAC 電圧を出力（V） · ピン %1 · 電圧 %2",
+    "tooltip": "DAC 電圧を出力（V）. 機能はチップとピンに依存します。詳細な制限（英語）： Converts 0–3.3 V using a nominal 3.3 V reference and 8-bit DAC. Supply and load affect actual voltage."
+  },
+  "esp32_gpio_dac_disable": {
+    "message0": "DAC を停止 · ピン %1",
+    "tooltip": "DAC を停止. 機能はチップとピンに依存します。詳細な制限（英語）： Stop DAC output and release the pin."
+  },
+  "esp32_gpio_pwm_quick": {
+    "message0": "簡単 PWM（%） · ピン %1 · 割合 %2",
+    "tooltip": "簡単 PWM（%）. 機能はチップとピンに依存します。詳細な制限（英語）： Auto-attach at 1000 Hz / 8 bits on first use, then retain this library configuration. Duty is clamped to 0–100%."
+  },
+  "esp32_gpio_pwm_attach": {
+    "message0": "PWM を設定 · ピン %1 · 周波数 %2 · ビット数 %3",
+    "tooltip": "PWM を設定. 機能はチップとピンに依存します。詳細な制限（英語）： Automatically allocates an LEDC channel. ESP32 supports 1–20 bits, others usually 1–14. Reconfiguration stops previous output."
+  },
+  "esp32_gpio_pwm_write": {
+    "message0": "PWM 生デューティを設定 · ピン %1 · デューティ %2",
+    "tooltip": "PWM 生デューティを設定. 機能はチップとピンに依存します。詳細な制限（英語）： Configure PWM first. Duty is clamped to 0 through 2^resolution−1."
+  },
+  "esp32_gpio_pwm_percent": {
+    "message0": "PWM デューティを設定（%） · ピン %1 · 割合 %2",
+    "tooltip": "PWM デューティを設定（%）. 機能はチップとピンに依存します。詳細な制限（英語）： Configure PWM first. Converts using the current resolution and clamps to 0–100%."
+  },
+  "esp32_gpio_pwm_read": {
+    "message0": "PWM 設定値を読む · ピン %1 · 項目 %2",
+    "tooltip": "PWM 設定値を読む. 機能はチップとピンに依存します。詳細な制限（英語）： Reads configured hardware parameters, not an external waveform.",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "PIN",
+        "check": [
+          "Number",
+          "Any"
+        ]
+      },
+      {
+        "type": "field_dropdown",
+        "name": "WHAT",
+        "options": [
+          [
+            "Raw duty",
+            "DUTY"
+          ],
+          [
+            "Frequency (Hz)",
+            "FREQUENCY"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_gpio_pwm_frequency": {
+    "message0": "PWM 周波数を変更 · ピン %1 · 周波数 %2 · ビット数 %3",
+    "tooltip": "PWM 周波数を変更. 機能はチップとピンに依存します。詳細な制限（英語）： Reattach this pin to avoid changing a timer shared by other pins; duty resets to 0."
+  },
+  "esp32_gpio_pwm_tone": {
+    "message0": "矩形波を出力（0 で停止） · ピン %1 · 周波数 %2",
+    "tooltip": "矩形波を出力（0 で停止）. 機能はチップとピンに依存します。詳細な制限（英語）： 50% duty; auto-configures 10 bits. Frequency 0 stops the waveform. Low frequencies may exceed LEDC clock limits."
+  },
+  "esp32_gpio_pwm_fade": {
+    "message0": "PWM フェード（%） · ピン %1 · 開始 %2 · 終了 %3 · ミリ秒 %4",
+    "tooltip": "PWM フェード（%）. 機能はチップとピンに依存します。詳細な制限（英語）： Configure PWM first. Hardware fade is nonblocking; do not change this pin PWM until it finishes."
+  },
+  "esp32_gpio_pwm_invert": {
+    "message0": "PWM 出力を反転 · ピン %1 · 反転 %2",
+    "tooltip": "PWM 出力を反転. 機能はチップとピンに依存します。詳細な制限（英語）： Configure PWM first; useful for active-low LEDs.",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "PIN",
+        "check": [
+          "Number",
+          "Any"
+        ]
+      },
+      {
+        "type": "field_dropdown",
+        "name": "INVERT",
+        "options": [
+          [
+            "Yes",
+            "true"
+          ],
+          [
+            "No",
+            "false"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_gpio_pwm_detach": {
+    "message0": "PWM を解除 · ピン %1",
+    "tooltip": "PWM を解除. 機能はチップとピンに依存します。詳細な制限（英語）： Stops and releases the LEDC channel; the pin can be reconfigured or used for digital output."
+  },
+  "esp32_gpio_pwm_ok": {
+    "message0": "直前の PWM 操作が成功",
+    "tooltip": "直前の PWM 操作が成功. 機能はチップとピンに依存します。詳細な制限（英語）： Reports this library last PWM setting operation; false on invalid settings or exhausted hardware resources."
+  },
+  "esp32_gpio_pin_mode": {
+    "message0": "ピンモードを設定 · ピン %1 · モード %2",
+    "tooltip": "ピンモードを設定. 機能はチップとピンに依存します。詳細な制限（英語）： Supports pulldown input and open-drain output. Open-drain HIGH releases the line and normally needs an external pull-up.",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "PIN",
+        "check": [
+          "Number",
+          "Any"
+        ]
+      },
+      {
+        "type": "field_dropdown",
+        "name": "MODE",
+        "options": [
+          [
+            "INPUT_PULLDOWN",
+            "INPUT_PULLDOWN"
+          ],
+          [
+            "INPUT_PULLUP",
+            "INPUT_PULLUP"
+          ],
+          [
+            "INPUT",
+            "INPUT"
+          ],
+          [
+            "OUTPUT",
+            "OUTPUT"
+          ],
+          [
+            "OUTPUT_OPEN_DRAIN",
+            "OUTPUT_OPEN_DRAIN"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_gpio_pull": {
+    "message0": "プル抵抗を設定 · ピン %1 · プル抵抗 %2",
+    "tooltip": "プル抵抗を設定. 機能はチップとピンに依存します。詳細な制限（英語）： Changes pulls without changing direction. Classic ESP32 GPIO34–39 have no internal pull resistors.",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "PIN",
+        "check": [
+          "Number",
+          "Any"
+        ]
+      },
+      {
+        "type": "field_dropdown",
+        "name": "PULL",
+        "options": [
+          [
+            "GPIO_PULLUP_ONLY",
+            "GPIO_PULLUP_ONLY"
+          ],
+          [
+            "GPIO_PULLDOWN_ONLY",
+            "GPIO_PULLDOWN_ONLY"
+          ],
+          [
+            "GPIO_PULLUP_PULLDOWN",
+            "GPIO_PULLUP_PULLDOWN"
+          ],
+          [
+            "GPIO_FLOATING",
+            "GPIO_FLOATING"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_gpio_drive": {
+    "message0": "駆動強度を設定 · ピン %1 · 駆動強度 %2",
+    "tooltip": "駆動強度を設定. 機能はチップとピンに依存します。詳細な制限（英語）： Sets drive capability, not regulated current; do not directly drive motors or other heavy loads.",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "PIN",
+        "check": [
+          "Number",
+          "Any"
+        ]
+      },
+      {
+        "type": "field_dropdown",
+        "name": "STRENGTH",
+        "options": [
+          [
+            "Default (level 2)",
+            "GPIO_DRIVE_CAP_2"
+          ],
+          [
+            "Weakest (level 0)",
+            "GPIO_DRIVE_CAP_0"
+          ],
+          [
+            "Level 1",
+            "GPIO_DRIVE_CAP_1"
+          ],
+          [
+            "Strongest (level 3)",
+            "GPIO_DRIVE_CAP_3"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_gpio_hold": {
+    "message0": "ピン状態保持を設定 · ピン %1 · 操作 %2",
+    "tooltip": "ピン状態保持を設定. 機能はチップとピンに依存します。詳細な制限（英語）： Latches pin configuration and level. Restore the desired mode and level before releasing to avoid glitches.",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "PIN",
+        "check": [
+          "Number",
+          "Any"
+        ]
+      },
+      {
+        "type": "field_dropdown",
+        "name": "ACTION",
+        "options": [
+          [
+            "Enable",
+            "ENABLE"
+          ],
+          [
+            "Disable",
+            "DISABLE"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_gpio_deep_hold": {
+    "message0": "ディープスリープ保持を設定 · 操作 %1",
+    "tooltip": "ESP32/S2/S3/C3 also need per-pin hold. C6/P4 use per-pin hold alone; this global block makes no change. Release each pin individually.",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "ACTION",
+        "options": [
+          [
+            "Enable",
+            "ENABLE"
+          ],
+          [
+            "Disable",
+            "DISABLE"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_gpio_wakeup": {
+    "message0": "ライトスリープ解除を設定 · ピン %1 · レベル %2",
+    "tooltip": "ライトスリープ解除を設定. 機能はチップとピンに依存します。詳細な制限（英語）： Configures level wakeup only. Set input mode and pulls first, then enter light sleep with esp32_sleep.",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "PIN",
+        "check": [
+          "Number",
+          "Any"
+        ]
+      },
+      {
+        "type": "field_dropdown",
+        "name": "LEVEL",
+        "options": [
+          [
+            "Low level",
+            "GPIO_INTR_LOW_LEVEL"
+          ],
+          [
+            "High level",
+            "GPIO_INTR_HIGH_LEVEL"
+          ],
+          [
+            "Disable this pin",
+            "DISABLE"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_gpio_reset": {
+    "message0": "ピンをリセット · ピン %1",
+    "tooltip": "ピンをリセット. 機能はチップとピンに依存します。詳細な制限（英語）： Release PWM, DAC, interrupts and hold first; restore the GPIO default configuration."
+  },
+  "esp32_gpio_interrupt": {
+    "message0": "GPIO 割り込みを監視 · ピン %1 · モード %2 · 実行 %3",
+    "tooltip": "GPIO 割り込みを監視. 機能はチップとピンに依存します。詳細な制限（英語）： Set input mode first. Actions run in loop; edges may coalesce, so this is not a pulse counter. Mechanical buttons still need debouncing.",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "PIN",
+        "check": [
+          "Number",
+          "Any"
+        ]
+      },
+      {
+        "type": "field_dropdown",
+        "name": "MODE",
+        "options": [
+          [
+            "FALLING",
+            "FALLING"
+          ],
+          [
+            "RISING",
+            "RISING"
+          ],
+          [
+            "CHANGE",
+            "CHANGE"
+          ]
+        ]
+      },
+      {
+        "type": "input_statement",
+        "name": "DO"
+      }
+    ]
+  },
+  "esp32_gpio_interrupt_detach": {
+    "message0": "GPIO 割り込みを解除 · ピン %1",
+    "tooltip": "GPIO 割り込みを解除. 機能はチップとピンに依存します。詳細な制限（英語）： Detach this pin interrupt and discard pending events."
+  }
+}
