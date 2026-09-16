@@ -1,0 +1,258 @@
+{
+  "toolbox_name": "小智 AI",
+  "toolbox_labels": {
+    "连接与配置": "接続と設定",
+    "音频硬件": "音声ハードウェア",
+    "对话控制": "会話制御",
+    "状态与数据": "状態とデータ",
+    "事件": "イベント",
+    "MCP 工具": "MCP ツール"
+  },
+  "xiaozhi_create": {
+    "message0": "小智を初期化",
+    "tooltip": "既定のクライアントを使い、メインループでイベント処理と起動の再試行を自動実行します。オブジェクト名の設定は不要です。"
+  },
+  "xiaozhi_wifi_begin": {
+    "message0": "小智 WiFi 接続 SSID %1 パスワード %2",
+    "tooltip": "小智 WiFi 接続 SSID  パスワード\nXiaozhi connect WiFi SSID  password"
+  },
+  "xiaozhi_begin_official": {
+    "message0": "小智 公式サービスを開始",
+    "tooltip": "小智  公式サービスを開始\nWait for WiFi, obtain activation or start; retry activation/startup failures every 30 seconds."
+  },
+  "xiaozhi_begin_websocket": {
+    "message0": "小智 WebSocket %1 トークン %2 ルート CA PEM %3 プロトコル %4",
+    "tooltip": "小智  WebSocket  トークン  ルート CA PEM  プロトコル\nwss:// requires a root CA; synchronizes time automatically. Replaces official startup for custom services."
+  },
+  "xiaozhi_features": {
+    "message0": "小智 サーバー AEC %1 音声割り込み %2 生 JSON を保持 %3",
+    "tooltip": "小智  サーバー AEC  音声割り込み  生 JSON を保持\nConfigure before startup; raw JSON retention uses additional memory."
+  },
+  "xiaozhi_timeouts": {
+    "message0": "小智 ハンドシェイク制限 ms %1 セッション制限 ms %2",
+    "tooltip": "小智  ハンドシェイク制限 ms  セッション制限 ms\nXiaozhi  handshake timeout ms  channel timeout ms"
+  },
+  "xiaozhi_identity": {
+    "message0": "小智 デバイス ID %1 クライアント ID %2",
+    "tooltip": "小智  デバイス ID  クライアント ID\nCustom WebSocket only; blank values use MAC and persistent UUID. Official provisioning manages its own identity."
+  },
+  "xiaozhi_stop": {
+    "message0": "小智 クライアントを停止",
+    "tooltip": "小智  クライアントを停止\nCancel startup retries and finish shutdown in a subsequent loop. Wait until running is false before reconfiguration."
+  },
+  "xiaozhi_audio_preset": {
+    "message0": "小智 音声ボード %1 ローカルウェイクワード %2",
+    "tooltip": "小智  音声ボード  ローカルウェイクワード\nUse one audio configuration per sketch before startup. Wake detection needs an ESP-SR model partition; presets configure audio only."
+  },
+  "xiaozhi_audio_es8311": {
+    "message0": "小智 ES8311 MCLK %1 BCLK %2 WS %3 スピーカーデータ %4 マイクデータ %5 SDA %6 SCL %7 PA %8 マイクゲイン dB %9 出力音量 dB %10",
+    "tooltip": "小智  ES8311 MCLK  BCLK  WS  スピーカーデータ  マイクデータ  SDA  SCL  PA  マイクゲイン dB  出力音量 dB\nXiaozhi  ES8311 MCLK  BCLK  WS  speaker data  microphone data  SDA  SCL  PA  mic gain dB  output volume dB"
+  },
+  "xiaozhi_audio_i2s": {
+    "message0": "小智 I2S %1 スピーカー BCLK %2 WS %3 データ %4 マイク BCLK %5 WS %6 データ %7 マイクチャンネル %8 右シフト %9 アンプ有効ピン %10 音量百分率 %11",
+    "tooltip": "小智  I2S  スピーカー BCLK  WS  データ  マイク BCLK  WS  データ  マイクチャンネル  右シフト  アンプ有効ピン  音量百分率\nShared mode uses speaker BCLK/WS for both directions; 32-bit slots and 24-bit microphone samples.",
+    "args0": [
+      {
+        "options": [
+          [
+            "独立",
+            "SIMPLEX"
+          ],
+          [
+            "共有クロック",
+            "DUPLEX"
+          ]
+        ]
+      },
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      {
+        "options": [
+          [
+            "左",
+            "Left"
+          ],
+          [
+            "右",
+            "Right"
+          ]
+        ]
+      },
+      null,
+      null,
+      null
+    ]
+  },
+  "xiaozhi_audio_pdm": {
+    "message0": "小智 PDM マイククロック %1 データ %2 I2S スピーカー BCLK %3 WS %4 データ %5 アンプ有効ピン %6 音量百分率 %7",
+    "tooltip": "小智  PDM マイククロック  データ  I2S スピーカー BCLK  WS  データ  アンプ有効ピン  音量百分率\nXiaozhi  PDM mic clock  data  I2S speaker BCLK  WS  data  amplifier enable pin  volume percent"
+  },
+  "xiaozhi_start_listening": {
+    "message0": "小智 聴取開始 モード %1",
+    "tooltip": "小智  聴取開始 モード\nXiaozhi  start listening mode"
+  },
+  "xiaozhi_stop_listening": {
+    "message0": "小智 聴取停止",
+    "tooltip": "小智  聴取停止\nXiaozhi  stop listening"
+  },
+  "xiaozhi_toggle_chat": {
+    "message0": "小智 会話を切り替え",
+    "tooltip": "小智  会話を切り替え\nXiaozhi  toggle chat"
+  },
+  "xiaozhi_abort_speaking": {
+    "message0": "小智 発話を中断 理由 %1",
+    "tooltip": "小智  発話を中断 理由\nXiaozhi  abort speaking reason"
+  },
+  "xiaozhi_wake_word": {
+    "message0": "小智 ウェイクワードを通知 %1",
+    "tooltip": "小智  ウェイクワードを通知\nSubmit an external wake event; this does not run speech recognition."
+  },
+  "xiaozhi_mute": {
+    "message0": "小智 再生をミュート %1",
+    "tooltip": "小智  再生をミュート\nXiaozhi  mute playback"
+  },
+  "xiaozhi_close_session": {
+    "message0": "小智 セッションを閉じる",
+    "tooltip": "小智  セッションを閉じる\nXiaozhi  close session"
+  },
+  "xiaozhi_send_mcp": {
+    "message0": "小智 MCP JSON を送信 %1",
+    "tooltip": "小智  MCP JSON を送信\nXiaozhi  send MCP JSON"
+  },
+  "xiaozhi_last_operation": {
+    "message0": "小智 前回の操作を受理",
+    "tooltip": "小智  前回の操作を受理\nAn accepted request is queued; it does not mean the server completed it."
+  },
+  "xiaozhi_ready": {
+    "message0": "小智 状態 %1",
+    "tooltip": "小智  状態\nXiaozhi  status"
+  },
+  "xiaozhi_state": {
+    "message0": "小智 現在の状態名",
+    "tooltip": "小智  現在の状態名\nXiaozhi  current state name"
+  },
+  "xiaozhi_is_state": {
+    "message0": "小智 現在の状態が %1",
+    "tooltip": "小智  現在の状態が\nXiaozhi  current state is"
+  },
+  "xiaozhi_event_is": {
+    "message0": "小智 最新イベントが %1",
+    "tooltip": "小智  最新イベントが\nXiaozhi  last event is"
+  },
+  "xiaozhi_event_text": {
+    "message0": "小智 最新イベント %1",
+    "tooltip": "小智  最新イベント\nXiaozhi  last event"
+  },
+  "xiaozhi_emotion_id": {
+    "message0": "小智 最新の感情 ID",
+    "tooltip": "小智  最新の感情 ID\nXiaozhi  last emotion ID"
+  },
+  "xiaozhi_activation": {
+    "message0": "小智 アクティベーション %1",
+    "tooltip": "小智  アクティベーション\nXiaozhi  activation"
+  },
+  "xiaozhi_error": {
+    "message0": "小智 エラー %1",
+    "tooltip": "小智  エラー\nXiaozhi  error"
+  },
+  "xiaozhi_state_event": {
+    "message0": "小智 状態変更イベント %1",
+    "tooltip": "小智  状態変更イベント\nXiaozhi  state-change event"
+  },
+  "xiaozhi_capture_enabled": {
+    "message0": "小智 音声を収集中",
+    "tooltip": "小智  音声を収集中\nXiaozhi  capturing audio"
+  },
+  "xiaozhi_detected_wake_word": {
+    "message0": "小智 最新ウェイクワード",
+    "tooltip": "小智  最新ウェイクワード\nXiaozhi  last wake word"
+  },
+  "xiaozhi_audio_meta": {
+    "message0": "小智 最新音声 %1",
+    "tooltip": "小智  最新音声\nXiaozhi  last audio"
+  },
+  "xiaozhi_stats": {
+    "message0": "小智 実行統計 %1",
+    "tooltip": "小智  実行統計\nXiaozhi  runtime statistic"
+  },
+  "xiaozhi_on_event": {
+    "message0": "小智 がイベント %1 を受信したとき %2",
+    "tooltip": "小智  がイベント  を受信したとき\nMultiple event blocks per client are supported; callbacks run on the Arduino loop task."
+  },
+  "xiaozhi_on_state": {
+    "message0": "小智 の状態が変化したとき %1",
+    "tooltip": "小智  の状態が変化したとき\nWhen Xiaozhi  state changes do"
+  },
+  "xiaozhi_on_error": {
+    "message0": "小智 でエラーが発生したとき %1",
+    "tooltip": "小智  でエラーが発生したとき\nWhen Xiaozhi  reports an error do"
+  },
+  "xiaozhi_on_activation": {
+    "message0": "小智 にアクティベーションが必要なとき %1",
+    "tooltip": "小智  にアクティベーションが必要なとき\nWhen Xiaozhi  needs activation do"
+  },
+  "xiaozhi_on_capture": {
+    "message0": "小智 の音声収集が変化したとき %1",
+    "tooltip": "小智  の音声収集が変化したとき\nWhen Xiaozhi  capture changes do"
+  },
+  "xiaozhi_on_wake": {
+    "message0": "小智 がウェイクワードを検出したとき %1",
+    "tooltip": "小智  がウェイクワードを検出したとき\nWhen Xiaozhi  detects a wake word do"
+  },
+  "xiaozhi_on_audio": {
+    "message0": "小智 が音声メタデータを受信したとき %1",
+    "tooltip": "小智  が音声メタデータを受信したとき\nWhen Xiaozhi  receives audio metadata do"
+  },
+  "xiaozhi_tool": {
+    "message0": "小智 MCP ツール登録 名前 %1 説明 %2 引数定義 %3 呼び出し時 %4",
+    "tooltip": "小智  MCP ツール登録 名前  説明  引数定義  呼び出し時\nPut property definitions in PROPERTIES, read arguments and return in HANDLER. Runs on the service task: no delays, HTTP, display updates or Xiaozhi client blocks."
+  },
+  "xiaozhi_property_string": {
+    "message0": "MCP 文字列引数 %1 必須 %2 初期値 %3",
+    "tooltip": "MCP 文字列引数  必須  初期値\nMCP text property  required  default"
+  },
+  "xiaozhi_property_number": {
+    "message0": "MCP 整数引数 %1 必須 %2 初期値 %3 最小 %4 最大 %5",
+    "tooltip": "MCP 整数引数  必須  初期値  最小  最大\nMCP integer property  required  default  minimum  maximum"
+  },
+  "xiaozhi_property_boolean": {
+    "message0": "MCP 真偽値引数 %1 必須 %2 初期値 %3",
+    "tooltip": "MCP 真偽値引数  必須  初期値\nMCP Boolean property  required  default"
+  },
+  "xiaozhi_argument_string": {
+    "message0": "MCP 現在の文字列引数 %1",
+    "tooltip": "MCP 現在の文字列引数\nMCP current tool text argument"
+  },
+  "xiaozhi_return_string": {
+    "message0": "MCP 文字列を返す %1",
+    "tooltip": "MCP 文字列を返す\nMCP return text"
+  },
+  "xiaozhi_argument_number": {
+    "message0": "MCP 現在の整数引数 %1",
+    "tooltip": "MCP 現在の整数引数\nMCP current tool integer argument"
+  },
+  "xiaozhi_return_number": {
+    "message0": "MCP 整数を返す %1",
+    "tooltip": "MCP 整数を返す\nMCP return integer"
+  },
+  "xiaozhi_argument_boolean": {
+    "message0": "MCP 現在の真偽値引数 %1",
+    "tooltip": "MCP 現在の真偽値引数\nMCP current tool Boolean argument"
+  },
+  "xiaozhi_return_boolean": {
+    "message0": "MCP 真偽値を返す %1",
+    "tooltip": "MCP 真偽値を返す\nMCP return Boolean"
+  },
+  "xiaozhi_return_json": {
+    "message0": "MCP JSON を返す %1",
+    "tooltip": "MCP JSON を返す\nMCP return JSON"
+  },
+  "xiaozhi_return_error": {
+    "message0": "MCP エラーを返す %1",
+    "tooltip": "MCP エラーを返す\nMCP return error"
+  }
+}
