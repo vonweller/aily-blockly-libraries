@@ -1,0 +1,258 @@
+{
+  "toolbox_name": "샤오즈 AI",
+  "toolbox_labels": {
+    "连接与配置": "연결 및 설정",
+    "音频硬件": "오디오 하드웨어",
+    "对话控制": "대화 제어",
+    "状态与数据": "상태 및 데이터",
+    "事件": "이벤트",
+    "MCP 工具": "MCP 도구"
+  },
+  "xiaozhi_create": {
+    "message0": "샤오즈 초기화",
+    "tooltip": "기본 클라이언트를 사용하며 메인 루프에서 이벤트 처리와 시작 재시도를 자동으로 수행합니다. 객체 이름은 필요하지 않습니다."
+  },
+  "xiaozhi_wifi_begin": {
+    "message0": "샤오즈 WiFi 연결 SSID %1 비밀번호 %2",
+    "tooltip": "샤오즈 WiFi 연결 SSID  비밀번호\nXiaozhi connect WiFi SSID  password"
+  },
+  "xiaozhi_begin_official": {
+    "message0": "샤오즈 공식 서비스 시작",
+    "tooltip": "샤오즈  공식 서비스 시작\nWait for WiFi, obtain activation or start; retry activation/startup failures every 30 seconds."
+  },
+  "xiaozhi_begin_websocket": {
+    "message0": "샤오즈 WebSocket %1 토큰 %2 루트 CA PEM %3 프로토콜 %4",
+    "tooltip": "샤오즈  WebSocket  토큰  루트 CA PEM  프로토콜\nwss:// requires a root CA; synchronizes time automatically. Replaces official startup for custom services."
+  },
+  "xiaozhi_features": {
+    "message0": "샤오즈 서버 AEC %1 음성 끼어들기 %2 원본 JSON 유지 %3",
+    "tooltip": "샤오즈  서버 AEC  음성 끼어들기  원본 JSON 유지\nConfigure before startup; raw JSON retention uses additional memory."
+  },
+  "xiaozhi_timeouts": {
+    "message0": "샤오즈 핸드셰이크 제한 ms %1 세션 제한 ms %2",
+    "tooltip": "샤오즈  핸드셰이크 제한 ms  세션 제한 ms\nXiaozhi  handshake timeout ms  channel timeout ms"
+  },
+  "xiaozhi_identity": {
+    "message0": "샤오즈 장치 ID %1 클라이언트 ID %2",
+    "tooltip": "샤오즈  장치 ID  클라이언트 ID\nCustom WebSocket only; blank values use MAC and persistent UUID. Official provisioning manages its own identity."
+  },
+  "xiaozhi_stop": {
+    "message0": "샤오즈 클라이언트 중지",
+    "tooltip": "샤오즈  클라이언트 중지\nCancel startup retries and finish shutdown in a subsequent loop. Wait until running is false before reconfiguration."
+  },
+  "xiaozhi_audio_preset": {
+    "message0": "샤오즈 오디오 보드 %1 로컬 호출어 사용 %2",
+    "tooltip": "샤오즈  오디오 보드  로컬 호출어 사용\nUse one audio configuration per sketch before startup. Wake detection needs an ESP-SR model partition; presets configure audio only."
+  },
+  "xiaozhi_audio_es8311": {
+    "message0": "샤오즈 ES8311 MCLK %1 BCLK %2 WS %3 스피커 데이터 %4 마이크 데이터 %5 SDA %6 SCL %7 PA %8 마이크 이득 dB %9 출력 음량 dB %10",
+    "tooltip": "샤오즈  ES8311 MCLK  BCLK  WS  스피커 데이터  마이크 데이터  SDA  SCL  PA  마이크 이득 dB  출력 음량 dB\nXiaozhi  ES8311 MCLK  BCLK  WS  speaker data  microphone data  SDA  SCL  PA  mic gain dB  output volume dB"
+  },
+  "xiaozhi_audio_i2s": {
+    "message0": "샤오즈 I2S %1 스피커 BCLK %2 WS %3 데이터 %4 마이크 BCLK %5 WS %6 데이터 %7 마이크 채널 %8 오른쪽 시프트 %9 앰프 활성 핀 %10 음량 백분율 %11",
+    "tooltip": "샤오즈  I2S  스피커 BCLK  WS  데이터  마이크 BCLK  WS  데이터  마이크 채널  오른쪽 시프트  앰프 활성 핀  음량 백분율\nShared mode uses speaker BCLK/WS for both directions; 32-bit slots and 24-bit microphone samples.",
+    "args0": [
+      {
+        "options": [
+          [
+            "독립",
+            "SIMPLEX"
+          ],
+          [
+            "공유 클록",
+            "DUPLEX"
+          ]
+        ]
+      },
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      {
+        "options": [
+          [
+            "왼쪽",
+            "Left"
+          ],
+          [
+            "오른쪽",
+            "Right"
+          ]
+        ]
+      },
+      null,
+      null,
+      null
+    ]
+  },
+  "xiaozhi_audio_pdm": {
+    "message0": "샤오즈 PDM 마이크 클록 %1 데이터 %2 I2S 스피커 BCLK %3 WS %4 데이터 %5 앰프 활성 핀 %6 음량 백분율 %7",
+    "tooltip": "샤오즈  PDM 마이크 클록  데이터  I2S 스피커 BCLK  WS  데이터  앰프 활성 핀  음량 백분율\nXiaozhi  PDM mic clock  data  I2S speaker BCLK  WS  data  amplifier enable pin  volume percent"
+  },
+  "xiaozhi_start_listening": {
+    "message0": "샤오즈 듣기 시작 모드 %1",
+    "tooltip": "샤오즈  듣기 시작 모드\nXiaozhi  start listening mode"
+  },
+  "xiaozhi_stop_listening": {
+    "message0": "샤오즈 듣기 중지",
+    "tooltip": "샤오즈  듣기 중지\nXiaozhi  stop listening"
+  },
+  "xiaozhi_toggle_chat": {
+    "message0": "샤오즈 대화 전환",
+    "tooltip": "샤오즈  대화 전환\nXiaozhi  toggle chat"
+  },
+  "xiaozhi_abort_speaking": {
+    "message0": "샤오즈 말하기 중단 사유 %1",
+    "tooltip": "샤오즈  말하기 중단 사유\nXiaozhi  abort speaking reason"
+  },
+  "xiaozhi_wake_word": {
+    "message0": "샤오즈 호출어 알림 %1",
+    "tooltip": "샤오즈  호출어 알림\nSubmit an external wake event; this does not run speech recognition."
+  },
+  "xiaozhi_mute": {
+    "message0": "샤오즈 재생 음소거 %1",
+    "tooltip": "샤오즈  재생 음소거\nXiaozhi  mute playback"
+  },
+  "xiaozhi_close_session": {
+    "message0": "샤오즈 세션 닫기",
+    "tooltip": "샤오즈  세션 닫기\nXiaozhi  close session"
+  },
+  "xiaozhi_send_mcp": {
+    "message0": "샤오즈 MCP JSON 전송 %1",
+    "tooltip": "샤오즈  MCP JSON 전송\nXiaozhi  send MCP JSON"
+  },
+  "xiaozhi_last_operation": {
+    "message0": "샤오즈 마지막 작업 수락됨",
+    "tooltip": "샤오즈  마지막 작업 수락됨\nAn accepted request is queued; it does not mean the server completed it."
+  },
+  "xiaozhi_ready": {
+    "message0": "샤오즈 상태 %1",
+    "tooltip": "샤오즈  상태\nXiaozhi  status"
+  },
+  "xiaozhi_state": {
+    "message0": "샤오즈 현재 상태 이름",
+    "tooltip": "샤오즈  현재 상태 이름\nXiaozhi  current state name"
+  },
+  "xiaozhi_is_state": {
+    "message0": "샤오즈 현재 상태가 %1",
+    "tooltip": "샤오즈  현재 상태가\nXiaozhi  current state is"
+  },
+  "xiaozhi_event_is": {
+    "message0": "샤오즈 최근 이벤트가 %1",
+    "tooltip": "샤오즈  최근 이벤트가\nXiaozhi  last event is"
+  },
+  "xiaozhi_event_text": {
+    "message0": "샤오즈 최근 이벤트 %1",
+    "tooltip": "샤오즈  최근 이벤트\nXiaozhi  last event"
+  },
+  "xiaozhi_emotion_id": {
+    "message0": "샤오즈 최근 감정 ID",
+    "tooltip": "샤오즈  최근 감정 ID\nXiaozhi  last emotion ID"
+  },
+  "xiaozhi_activation": {
+    "message0": "샤오즈 활성화 %1",
+    "tooltip": "샤오즈  활성화\nXiaozhi  activation"
+  },
+  "xiaozhi_error": {
+    "message0": "샤오즈 오류 %1",
+    "tooltip": "샤오즈  오류\nXiaozhi  error"
+  },
+  "xiaozhi_state_event": {
+    "message0": "샤오즈 상태 변경 이벤트 %1",
+    "tooltip": "샤오즈  상태 변경 이벤트\nXiaozhi  state-change event"
+  },
+  "xiaozhi_capture_enabled": {
+    "message0": "샤오즈 오디오 수집 중",
+    "tooltip": "샤오즈  오디오 수집 중\nXiaozhi  capturing audio"
+  },
+  "xiaozhi_detected_wake_word": {
+    "message0": "샤오즈 최근 호출어",
+    "tooltip": "샤오즈  최근 호출어\nXiaozhi  last wake word"
+  },
+  "xiaozhi_audio_meta": {
+    "message0": "샤오즈 최근 오디오 %1",
+    "tooltip": "샤오즈  최근 오디오\nXiaozhi  last audio"
+  },
+  "xiaozhi_stats": {
+    "message0": "샤오즈 실행 통계 %1",
+    "tooltip": "샤오즈  실행 통계\nXiaozhi  runtime statistic"
+  },
+  "xiaozhi_on_event": {
+    "message0": "샤오즈 이벤트 %1 수신 시 %2",
+    "tooltip": "샤오즈  이벤트  수신 시\nMultiple event blocks per client are supported; callbacks run on the Arduino loop task."
+  },
+  "xiaozhi_on_state": {
+    "message0": "샤오즈 상태 변경 시 %1",
+    "tooltip": "샤오즈  상태 변경 시\nWhen Xiaozhi  state changes do"
+  },
+  "xiaozhi_on_error": {
+    "message0": "샤오즈 오류 발생 시 %1",
+    "tooltip": "샤오즈  오류 발생 시\nWhen Xiaozhi  reports an error do"
+  },
+  "xiaozhi_on_activation": {
+    "message0": "샤오즈 활성화 필요 시 %1",
+    "tooltip": "샤오즈  활성화 필요 시\nWhen Xiaozhi  needs activation do"
+  },
+  "xiaozhi_on_capture": {
+    "message0": "샤오즈 오디오 수집 변경 시 %1",
+    "tooltip": "샤오즈  오디오 수집 변경 시\nWhen Xiaozhi  capture changes do"
+  },
+  "xiaozhi_on_wake": {
+    "message0": "샤오즈 호출어 감지 시 %1",
+    "tooltip": "샤오즈  호출어 감지 시\nWhen Xiaozhi  detects a wake word do"
+  },
+  "xiaozhi_on_audio": {
+    "message0": "샤오즈 오디오 메타데이터 수신 시 %1",
+    "tooltip": "샤오즈  오디오 메타데이터 수신 시\nWhen Xiaozhi  receives audio metadata do"
+  },
+  "xiaozhi_tool": {
+    "message0": "샤오즈 MCP 도구 등록 이름 %1 설명 %2 매개변수 %3 호출 시 %4",
+    "tooltip": "샤오즈  MCP 도구 등록 이름  설명  매개변수  호출 시\nPut property definitions in PROPERTIES, read arguments and return in HANDLER. Runs on the service task: no delays, HTTP, display updates or Xiaozhi client blocks."
+  },
+  "xiaozhi_property_string": {
+    "message0": "MCP 문자열 매개변수 %1 필수 %2 기본값 %3",
+    "tooltip": "MCP 문자열 매개변수  필수  기본값\nMCP text property  required  default"
+  },
+  "xiaozhi_property_number": {
+    "message0": "MCP 정수 매개변수 %1 필수 %2 기본값 %3 최솟값 %4 최댓값 %5",
+    "tooltip": "MCP 정수 매개변수  필수  기본값  최솟값  최댓값\nMCP integer property  required  default  minimum  maximum"
+  },
+  "xiaozhi_property_boolean": {
+    "message0": "MCP 불리언 매개변수 %1 필수 %2 기본값 %3",
+    "tooltip": "MCP 불리언 매개변수  필수  기본값\nMCP Boolean property  required  default"
+  },
+  "xiaozhi_argument_string": {
+    "message0": "MCP 현재 문자열 인수 %1",
+    "tooltip": "MCP 현재 문자열 인수\nMCP current tool text argument"
+  },
+  "xiaozhi_return_string": {
+    "message0": "MCP 문자열 반환 %1",
+    "tooltip": "MCP 문자열 반환\nMCP return text"
+  },
+  "xiaozhi_argument_number": {
+    "message0": "MCP 현재 정수 인수 %1",
+    "tooltip": "MCP 현재 정수 인수\nMCP current tool integer argument"
+  },
+  "xiaozhi_return_number": {
+    "message0": "MCP 정수 반환 %1",
+    "tooltip": "MCP 정수 반환\nMCP return integer"
+  },
+  "xiaozhi_argument_boolean": {
+    "message0": "MCP 현재 불리언 인수 %1",
+    "tooltip": "MCP 현재 불리언 인수\nMCP current tool Boolean argument"
+  },
+  "xiaozhi_return_boolean": {
+    "message0": "MCP 불리언 반환 %1",
+    "tooltip": "MCP 불리언 반환\nMCP return Boolean"
+  },
+  "xiaozhi_return_json": {
+    "message0": "MCP JSON 반환 %1",
+    "tooltip": "MCP JSON 반환\nMCP return JSON"
+  },
+  "xiaozhi_return_error": {
+    "message0": "MCP 오류 반환 %1",
+    "tooltip": "MCP 오류 반환\nMCP return error"
+  }
+}

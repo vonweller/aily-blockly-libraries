@@ -1,0 +1,258 @@
+{
+  "toolbox_name": "Xiaozhi IA",
+  "toolbox_labels": {
+    "连接与配置": "Conexão e configuração",
+    "音频硬件": "Hardware de áudio",
+    "对话控制": "Controle de conversa",
+    "状态与数据": "Estado e dados",
+    "事件": "Eventos",
+    "MCP 工具": "Ferramentas MCP"
+  },
+  "xiaozhi_create": {
+    "message0": "Inicializar Xiaozhi",
+    "tooltip": "Usar o cliente padrão e processar automaticamente os eventos e as novas tentativas de início no ciclo principal. Não é necessário um nome de objeto."
+  },
+  "xiaozhi_wifi_begin": {
+    "message0": "Xiaozhi conectar WiFi SSID %1 senha %2",
+    "tooltip": "Xiaozhi conectar WiFi SSID  senha\nXiaozhi connect WiFi SSID  password"
+  },
+  "xiaozhi_begin_official": {
+    "message0": "Xiaozhi iniciar serviço oficial",
+    "tooltip": "Xiaozhi  iniciar serviço oficial\nWait for WiFi, obtain activation or start; retry activation/startup failures every 30 seconds."
+  },
+  "xiaozhi_begin_websocket": {
+    "message0": "Xiaozhi WebSocket %1 token %2 CA raiz PEM %3 protocolo %4",
+    "tooltip": "Xiaozhi  WebSocket  token  CA raiz PEM  protocolo\nwss:// requires a root CA; synchronizes time automatically. Replaces official startup for custom services."
+  },
+  "xiaozhi_features": {
+    "message0": "Xiaozhi AEC do servidor %1 interrupção por voz %2 manter JSON original %3",
+    "tooltip": "Xiaozhi  AEC do servidor  interrupção por voz  manter JSON original\nConfigure before startup; raw JSON retention uses additional memory."
+  },
+  "xiaozhi_timeouts": {
+    "message0": "Xiaozhi limite de negociação ms %1 limite de sessão ms %2",
+    "tooltip": "Xiaozhi  limite de negociação ms  limite de sessão ms\nXiaozhi  handshake timeout ms  channel timeout ms"
+  },
+  "xiaozhi_identity": {
+    "message0": "Xiaozhi ID do dispositivo %1 ID do cliente %2",
+    "tooltip": "Xiaozhi  ID do dispositivo  ID do cliente\nCustom WebSocket only; blank values use MAC and persistent UUID. Official provisioning manages its own identity."
+  },
+  "xiaozhi_stop": {
+    "message0": "Xiaozhi parar cliente",
+    "tooltip": "Xiaozhi  parar cliente\nCancel startup retries and finish shutdown in a subsequent loop. Wait until running is false before reconfiguration."
+  },
+  "xiaozhi_audio_preset": {
+    "message0": "Xiaozhi placa de áudio %1 palavra de ativação local %2",
+    "tooltip": "Xiaozhi  placa de áudio  palavra de ativação local\nUse one audio configuration per sketch before startup. Wake detection needs an ESP-SR model partition; presets configure audio only."
+  },
+  "xiaozhi_audio_es8311": {
+    "message0": "Xiaozhi ES8311 MCLK %1 BCLK %2 WS %3 dados do alto-falante %4 dados do microfone %5 SDA %6 SCL %7 PA %8 ganho do microfone dB %9 volume de saída dB %10",
+    "tooltip": "Xiaozhi  ES8311 MCLK  BCLK  WS  dados do alto-falante  dados do microfone  SDA  SCL  PA  ganho do microfone dB  volume de saída dB\nXiaozhi  ES8311 MCLK  BCLK  WS  speaker data  microphone data  SDA  SCL  PA  mic gain dB  output volume dB"
+  },
+  "xiaozhi_audio_i2s": {
+    "message0": "Xiaozhi I2S %1 alto-falante BCLK %2 WS %3 dados %4 microfone BCLK %5 WS %6 dados %7 canal do microfone %8 deslocamento à direita %9 pino de ativação do amplificador %10 volume percentual %11",
+    "tooltip": "Xiaozhi  I2S  alto-falante BCLK  WS  dados  microfone BCLK  WS  dados  canal do microfone  deslocamento à direita  pino de ativação do amplificador  volume percentual\nShared mode uses speaker BCLK/WS for both directions; 32-bit slots and 24-bit microphone samples.",
+    "args0": [
+      {
+        "options": [
+          [
+            "Separados",
+            "SIMPLEX"
+          ],
+          [
+            "Clocks compartilhados",
+            "DUPLEX"
+          ]
+        ]
+      },
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      {
+        "options": [
+          [
+            "Esquerdo",
+            "Left"
+          ],
+          [
+            "Direito",
+            "Right"
+          ]
+        ]
+      },
+      null,
+      null,
+      null
+    ]
+  },
+  "xiaozhi_audio_pdm": {
+    "message0": "Xiaozhi clock do microfone PDM %1 dados %2 alto-falante I2S BCLK %3 WS %4 dados %5 pino de ativação do amplificador %6 volume percentual %7",
+    "tooltip": "Xiaozhi  clock do microfone PDM  dados  alto-falante I2S BCLK  WS  dados  pino de ativação do amplificador  volume percentual\nXiaozhi  PDM mic clock  data  I2S speaker BCLK  WS  data  amplifier enable pin  volume percent"
+  },
+  "xiaozhi_start_listening": {
+    "message0": "Xiaozhi iniciar escuta modo %1",
+    "tooltip": "Xiaozhi  iniciar escuta modo\nXiaozhi  start listening mode"
+  },
+  "xiaozhi_stop_listening": {
+    "message0": "Xiaozhi parar escuta",
+    "tooltip": "Xiaozhi  parar escuta\nXiaozhi  stop listening"
+  },
+  "xiaozhi_toggle_chat": {
+    "message0": "Xiaozhi alternar conversa",
+    "tooltip": "Xiaozhi  alternar conversa\nXiaozhi  toggle chat"
+  },
+  "xiaozhi_abort_speaking": {
+    "message0": "Xiaozhi interromper fala motivo %1",
+    "tooltip": "Xiaozhi  interromper fala motivo\nXiaozhi  abort speaking reason"
+  },
+  "xiaozhi_wake_word": {
+    "message0": "Xiaozhi notificar palavra de ativação %1",
+    "tooltip": "Xiaozhi  notificar palavra de ativação\nSubmit an external wake event; this does not run speech recognition."
+  },
+  "xiaozhi_mute": {
+    "message0": "Xiaozhi silenciar reprodução %1",
+    "tooltip": "Xiaozhi  silenciar reprodução\nXiaozhi  mute playback"
+  },
+  "xiaozhi_close_session": {
+    "message0": "Xiaozhi fechar sessão",
+    "tooltip": "Xiaozhi  fechar sessão\nXiaozhi  close session"
+  },
+  "xiaozhi_send_mcp": {
+    "message0": "Xiaozhi enviar JSON MCP %1",
+    "tooltip": "Xiaozhi  enviar JSON MCP\nXiaozhi  send MCP JSON"
+  },
+  "xiaozhi_last_operation": {
+    "message0": "Xiaozhi última operação aceita",
+    "tooltip": "Xiaozhi  última operação aceita\nAn accepted request is queued; it does not mean the server completed it."
+  },
+  "xiaozhi_ready": {
+    "message0": "Xiaozhi estado %1",
+    "tooltip": "Xiaozhi  estado\nXiaozhi  status"
+  },
+  "xiaozhi_state": {
+    "message0": "Xiaozhi nome do estado atual",
+    "tooltip": "Xiaozhi  nome do estado atual\nXiaozhi  current state name"
+  },
+  "xiaozhi_is_state": {
+    "message0": "Xiaozhi estado atual é %1",
+    "tooltip": "Xiaozhi  estado atual é\nXiaozhi  current state is"
+  },
+  "xiaozhi_event_is": {
+    "message0": "Xiaozhi último evento é %1",
+    "tooltip": "Xiaozhi  último evento é\nXiaozhi  last event is"
+  },
+  "xiaozhi_event_text": {
+    "message0": "Xiaozhi último evento %1",
+    "tooltip": "Xiaozhi  último evento\nXiaozhi  last event"
+  },
+  "xiaozhi_emotion_id": {
+    "message0": "Xiaozhi último ID de emoção",
+    "tooltip": "Xiaozhi  último ID de emoção\nXiaozhi  last emotion ID"
+  },
+  "xiaozhi_activation": {
+    "message0": "Xiaozhi ativação %1",
+    "tooltip": "Xiaozhi  ativação\nXiaozhi  activation"
+  },
+  "xiaozhi_error": {
+    "message0": "Xiaozhi erro %1",
+    "tooltip": "Xiaozhi  erro\nXiaozhi  error"
+  },
+  "xiaozhi_state_event": {
+    "message0": "Xiaozhi evento de mudança de estado %1",
+    "tooltip": "Xiaozhi  evento de mudança de estado\nXiaozhi  state-change event"
+  },
+  "xiaozhi_capture_enabled": {
+    "message0": "Xiaozhi capturando áudio",
+    "tooltip": "Xiaozhi  capturando áudio\nXiaozhi  capturing audio"
+  },
+  "xiaozhi_detected_wake_word": {
+    "message0": "Xiaozhi última palavra de ativação",
+    "tooltip": "Xiaozhi  última palavra de ativação\nXiaozhi  last wake word"
+  },
+  "xiaozhi_audio_meta": {
+    "message0": "Xiaozhi último áudio %1",
+    "tooltip": "Xiaozhi  último áudio\nXiaozhi  last audio"
+  },
+  "xiaozhi_stats": {
+    "message0": "Xiaozhi estatística de execução %1",
+    "tooltip": "Xiaozhi  estatística de execução\nXiaozhi  runtime statistic"
+  },
+  "xiaozhi_on_event": {
+    "message0": "Quando Xiaozhi receber evento %1 executar %2",
+    "tooltip": "Quando Xiaozhi  receber evento  executar\nMultiple event blocks per client are supported; callbacks run on the Arduino loop task."
+  },
+  "xiaozhi_on_state": {
+    "message0": "Quando o estado de Xiaozhi mudar executar %1",
+    "tooltip": "Quando o estado de Xiaozhi  mudar executar\nWhen Xiaozhi  state changes do"
+  },
+  "xiaozhi_on_error": {
+    "message0": "Quando Xiaozhi informar um erro executar %1",
+    "tooltip": "Quando Xiaozhi  informar um erro executar\nWhen Xiaozhi  reports an error do"
+  },
+  "xiaozhi_on_activation": {
+    "message0": "Quando Xiaozhi precisar de ativação executar %1",
+    "tooltip": "Quando Xiaozhi  precisar de ativação executar\nWhen Xiaozhi  needs activation do"
+  },
+  "xiaozhi_on_capture": {
+    "message0": "Quando a captura de Xiaozhi mudar executar %1",
+    "tooltip": "Quando a captura de Xiaozhi  mudar executar\nWhen Xiaozhi  capture changes do"
+  },
+  "xiaozhi_on_wake": {
+    "message0": "Quando Xiaozhi detectar palavra de ativação executar %1",
+    "tooltip": "Quando Xiaozhi  detectar palavra de ativação executar\nWhen Xiaozhi  detects a wake word do"
+  },
+  "xiaozhi_on_audio": {
+    "message0": "Quando Xiaozhi receber metadados de áudio executar %1",
+    "tooltip": "Quando Xiaozhi  receber metadados de áudio executar\nWhen Xiaozhi  receives audio metadata do"
+  },
+  "xiaozhi_tool": {
+    "message0": "Xiaozhi registrar ferramenta MCP nome %1 descrição %2 parâmetros %3 ao chamar %4",
+    "tooltip": "Xiaozhi  registrar ferramenta MCP nome  descrição  parâmetros  ao chamar\nPut property definitions in PROPERTIES, read arguments and return in HANDLER. Runs on the service task: no delays, HTTP, display updates or Xiaozhi client blocks."
+  },
+  "xiaozhi_property_string": {
+    "message0": "MCP parâmetro de texto %1 obrigatório %2 padrão %3",
+    "tooltip": "MCP parâmetro de texto  obrigatório  padrão\nMCP text property  required  default"
+  },
+  "xiaozhi_property_number": {
+    "message0": "MCP parâmetro inteiro %1 obrigatório %2 padrão %3 mínimo %4 máximo %5",
+    "tooltip": "MCP parâmetro inteiro  obrigatório  padrão  mínimo  máximo\nMCP integer property  required  default  minimum  maximum"
+  },
+  "xiaozhi_property_boolean": {
+    "message0": "MCP parâmetro booleano %1 obrigatório %2 padrão %3",
+    "tooltip": "MCP parâmetro booleano  obrigatório  padrão\nMCP Boolean property  required  default"
+  },
+  "xiaozhi_argument_string": {
+    "message0": "MCP argumento de texto atual %1",
+    "tooltip": "MCP argumento de texto atual\nMCP current tool text argument"
+  },
+  "xiaozhi_return_string": {
+    "message0": "MCP retornar texto %1",
+    "tooltip": "MCP retornar texto\nMCP return text"
+  },
+  "xiaozhi_argument_number": {
+    "message0": "MCP argumento inteiro atual %1",
+    "tooltip": "MCP argumento inteiro atual\nMCP current tool integer argument"
+  },
+  "xiaozhi_return_number": {
+    "message0": "MCP retornar inteiro %1",
+    "tooltip": "MCP retornar inteiro\nMCP return integer"
+  },
+  "xiaozhi_argument_boolean": {
+    "message0": "MCP argumento booleano atual %1",
+    "tooltip": "MCP argumento booleano atual\nMCP current tool Boolean argument"
+  },
+  "xiaozhi_return_boolean": {
+    "message0": "MCP retornar booleano %1",
+    "tooltip": "MCP retornar booleano\nMCP return Boolean"
+  },
+  "xiaozhi_return_json": {
+    "message0": "MCP retornar JSON %1",
+    "tooltip": "MCP retornar JSON\nMCP return JSON"
+  },
+  "xiaozhi_return_error": {
+    "message0": "MCP retornar erro %1",
+    "tooltip": "MCP retornar erro\nMCP return error"
+  }
+}

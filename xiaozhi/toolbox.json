@@ -1,0 +1,482 @@
+{
+  "kind": "category",
+  "name": "小智 AI",
+  "colour": "#7C4DFF",
+  "icon": "fa-regular fa-comment",
+  "contents": [
+    {
+      "kind": "label",
+      "text": "连接与配置"
+    },
+    {
+      "kind": "block",
+      "type": "xiaozhi_create"
+    },
+    {
+      "kind": "block",
+      "type": "xiaozhi_wifi_begin",
+      "inputs": {
+        "SSID": {
+          "shadow": {
+            "type": "text",
+            "fields": {
+              "TEXT": "YOUR_WIFI_SSID"
+            }
+          }
+        },
+        "PASSWORD": {
+          "shadow": {
+            "type": "text",
+            "fields": {
+              "TEXT": "YOUR_WIFI_PASSWORD"
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "xiaozhi_begin_official"
+    },
+    {
+      "kind": "block",
+      "type": "xiaozhi_begin_websocket",
+      "inputs": {
+        "URL": {
+          "shadow": {
+            "type": "text",
+            "fields": {
+              "TEXT": "wss://your-server.example/xiaozhi/v1/"
+            }
+          }
+        },
+        "TOKEN": {
+          "shadow": {
+            "type": "text",
+            "fields": {
+              "TEXT": "YOUR_TOKEN"
+            }
+          }
+        },
+        "CA": {
+          "shadow": {
+            "type": "text",
+            "fields": {
+              "TEXT": ""
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "xiaozhi_features"
+    },
+    {
+      "kind": "block",
+      "type": "xiaozhi_timeouts",
+      "inputs": {
+        "HANDSHAKE": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 10000
+            }
+          }
+        },
+        "CHANNEL": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 120000
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "xiaozhi_identity",
+      "inputs": {
+        "DEVICE": {
+          "shadow": {
+            "type": "text",
+            "fields": {
+              "TEXT": ""
+            }
+          }
+        },
+        "CLIENT": {
+          "shadow": {
+            "type": "text",
+            "fields": {
+              "TEXT": ""
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "xiaozhi_stop"
+    },
+    {
+      "kind": "label",
+      "text": "音频硬件"
+    },
+    {
+      "kind": "block",
+      "type": "xiaozhi_audio_preset"
+    },
+    {
+      "kind": "block",
+      "type": "xiaozhi_audio_es8311"
+    },
+    {
+      "kind": "block",
+      "type": "xiaozhi_audio_i2s"
+    },
+    {
+      "kind": "block",
+      "type": "xiaozhi_audio_pdm"
+    },
+    {
+      "kind": "label",
+      "text": "对话控制"
+    },
+    {
+      "kind": "block",
+      "type": "xiaozhi_start_listening"
+    },
+    {
+      "kind": "block",
+      "type": "xiaozhi_stop_listening"
+    },
+    {
+      "kind": "block",
+      "type": "xiaozhi_toggle_chat"
+    },
+    {
+      "kind": "block",
+      "type": "xiaozhi_abort_speaking"
+    },
+    {
+      "kind": "block",
+      "type": "xiaozhi_wake_word",
+      "inputs": {
+        "WORD": {
+          "shadow": {
+            "type": "text",
+            "fields": {
+              "TEXT": "你好小智"
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "xiaozhi_mute",
+      "inputs": {
+        "MUTED": {
+          "shadow": {
+            "type": "logic_boolean",
+            "fields": {
+              "BOOL": "TRUE"
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "xiaozhi_close_session"
+    },
+    {
+      "kind": "block",
+      "type": "xiaozhi_send_mcp",
+      "inputs": {
+        "JSON": {
+          "shadow": {
+            "type": "text",
+            "fields": {
+              "TEXT": "{\"jsonrpc\":\"2.0\",\"method\":\"notifications/initialized\"}"
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "label",
+      "text": "状态与数据"
+    },
+    {
+      "kind": "block",
+      "type": "xiaozhi_last_operation"
+    },
+    {
+      "kind": "block",
+      "type": "xiaozhi_ready"
+    },
+    {
+      "kind": "block",
+      "type": "xiaozhi_state"
+    },
+    {
+      "kind": "block",
+      "type": "xiaozhi_is_state"
+    },
+    {
+      "kind": "block",
+      "type": "xiaozhi_event_is"
+    },
+    {
+      "kind": "block",
+      "type": "xiaozhi_event_text"
+    },
+    {
+      "kind": "block",
+      "type": "xiaozhi_emotion_id"
+    },
+    {
+      "kind": "block",
+      "type": "xiaozhi_activation"
+    },
+    {
+      "kind": "block",
+      "type": "xiaozhi_error"
+    },
+    {
+      "kind": "block",
+      "type": "xiaozhi_state_event"
+    },
+    {
+      "kind": "block",
+      "type": "xiaozhi_capture_enabled"
+    },
+    {
+      "kind": "block",
+      "type": "xiaozhi_detected_wake_word"
+    },
+    {
+      "kind": "block",
+      "type": "xiaozhi_audio_meta"
+    },
+    {
+      "kind": "block",
+      "type": "xiaozhi_stats"
+    },
+    {
+      "kind": "label",
+      "text": "事件"
+    },
+    {
+      "kind": "block",
+      "type": "xiaozhi_on_event"
+    },
+    {
+      "kind": "block",
+      "type": "xiaozhi_on_state"
+    },
+    {
+      "kind": "block",
+      "type": "xiaozhi_on_error"
+    },
+    {
+      "kind": "block",
+      "type": "xiaozhi_on_activation"
+    },
+    {
+      "kind": "block",
+      "type": "xiaozhi_on_capture"
+    },
+    {
+      "kind": "block",
+      "type": "xiaozhi_on_wake"
+    },
+    {
+      "kind": "block",
+      "type": "xiaozhi_on_audio"
+    },
+    {
+      "kind": "label",
+      "text": "MCP 工具"
+    },
+    {
+      "kind": "block",
+      "type": "xiaozhi_tool",
+      "inputs": {
+        "NAME": {
+          "shadow": {
+            "type": "text",
+            "fields": {
+              "TEXT": "device.set_volume"
+            }
+          }
+        },
+        "DESCRIPTION": {
+          "shadow": {
+            "type": "text",
+            "fields": {
+              "TEXT": "Set speaker volume"
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "xiaozhi_property_string",
+      "inputs": {
+        "DEFAULT": {
+          "shadow": {
+            "type": "text",
+            "fields": {
+              "TEXT": ""
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "xiaozhi_property_number",
+      "inputs": {
+        "DEFAULT": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 50
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "xiaozhi_property_boolean",
+      "inputs": {
+        "DEFAULT": {
+          "shadow": {
+            "type": "logic_boolean",
+            "fields": {
+              "BOOL": "TRUE"
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "xiaozhi_argument_string",
+      "inputs": {
+        "NAME": {
+          "shadow": {
+            "type": "text",
+            "fields": {
+              "TEXT": "text"
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "xiaozhi_return_string",
+      "inputs": {
+        "VALUE": {
+          "shadow": {
+            "type": "text",
+            "fields": {
+              "TEXT": "OK"
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "xiaozhi_argument_number",
+      "inputs": {
+        "NAME": {
+          "shadow": {
+            "type": "text",
+            "fields": {
+              "TEXT": "volume"
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "xiaozhi_return_number",
+      "inputs": {
+        "VALUE": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 0
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "xiaozhi_argument_boolean",
+      "inputs": {
+        "NAME": {
+          "shadow": {
+            "type": "text",
+            "fields": {
+              "TEXT": "enabled"
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "xiaozhi_return_boolean",
+      "inputs": {
+        "VALUE": {
+          "shadow": {
+            "type": "logic_boolean",
+            "fields": {
+              "BOOL": "TRUE"
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "xiaozhi_return_json",
+      "inputs": {
+        "VALUE": {
+          "shadow": {
+            "type": "text",
+            "fields": {
+              "TEXT": "{\"ok\":true}"
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "xiaozhi_return_error",
+      "inputs": {
+        "VALUE": {
+          "shadow": {
+            "type": "text",
+            "fields": {
+              "TEXT": "Operation failed"
+            }
+          }
+        }
+      }
+    }
+  ]
+}

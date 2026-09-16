@@ -1,0 +1,1435 @@
+[
+  {
+    "type": "xiaozhi_create",
+    "message0": "初始化小智",
+    "args0": [],
+    "colour": "#7C4DFF",
+    "tooltip": "使用默认客户端，自动在主循环处理事件和启动重试，无需设置对象名。",
+    "helpUrl": "",
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null
+  },
+  {
+    "type": "xiaozhi_wifi_begin",
+    "message0": "小智连接 WiFi 名称 %1 密码 %2",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "SSID",
+        "check": [
+          "String"
+        ]
+      },
+      {
+        "type": "input_value",
+        "name": "PASSWORD",
+        "check": [
+          "String"
+        ]
+      }
+    ],
+    "colour": "#7C4DFF",
+    "tooltip": "小智连接 WiFi 名称  密码",
+    "helpUrl": "",
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null
+  },
+  {
+    "type": "xiaozhi_begin_official",
+    "message0": "小智 启动官方服务",
+    "args0": [],
+    "colour": "#7C4DFF",
+    "tooltip": "等待 WiFi，获取激活码或启动；未激活或启动失败时每 30 秒重试。",
+    "helpUrl": "",
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null
+  },
+  {
+    "type": "xiaozhi_begin_websocket",
+    "message0": "小智 连接 WebSocket %1 令牌 %2 根证书 PEM %3 协议 %4",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "URL",
+        "check": [
+          "String"
+        ]
+      },
+      {
+        "type": "input_value",
+        "name": "TOKEN",
+        "check": [
+          "String"
+        ]
+      },
+      {
+        "type": "input_value",
+        "name": "CA",
+        "check": [
+          "String"
+        ]
+      },
+      {
+        "type": "field_dropdown",
+        "name": "PROTOCOL",
+        "options": [
+          [
+            "1",
+            "1"
+          ],
+          [
+            "2",
+            "2"
+          ],
+          [
+            "3",
+            "3"
+          ]
+        ]
+      }
+    ],
+    "colour": "#7C4DFF",
+    "tooltip": "wss:// 必须填写根证书；自动同步时钟。使用自定义服务时替代官方启动积木。",
+    "helpUrl": "",
+    "inputsInline": false,
+    "previousStatement": null,
+    "nextStatement": null
+  },
+  {
+    "type": "xiaozhi_features",
+    "message0": "小智 服务器回声消除 %1 语音打断 %2 保留原始 JSON %3",
+    "args0": [
+      {
+        "type": "field_checkbox",
+        "name": "AEC",
+        "checked": true
+      },
+      {
+        "type": "field_checkbox",
+        "name": "BARGE_IN",
+        "checked": true
+      },
+      {
+        "type": "field_checkbox",
+        "name": "RAW_JSON",
+        "checked": false
+      }
+    ],
+    "colour": "#7C4DFF",
+    "tooltip": "启动前配置；保留原始 JSON 会增加内存使用。",
+    "helpUrl": "",
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null
+  },
+  {
+    "type": "xiaozhi_timeouts",
+    "message0": "小智 握手超时毫秒 %1 会话超时毫秒 %2",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "HANDSHAKE",
+        "check": [
+          "Number"
+        ]
+      },
+      {
+        "type": "input_value",
+        "name": "CHANNEL",
+        "check": [
+          "Number"
+        ]
+      }
+    ],
+    "colour": "#7C4DFF",
+    "tooltip": "小智  握手超时毫秒  会话超时毫秒",
+    "helpUrl": "",
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null
+  },
+  {
+    "type": "xiaozhi_identity",
+    "message0": "小智 自定义设备 ID %1 客户端 ID %2",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "DEVICE",
+        "check": [
+          "String"
+        ]
+      },
+      {
+        "type": "input_value",
+        "name": "CLIENT",
+        "check": [
+          "String"
+        ]
+      }
+    ],
+    "colour": "#7C4DFF",
+    "tooltip": "仅自定义 WebSocket 服务使用；留空自动使用 MAC 和持久 UUID。官方服务使用库管理的身份。",
+    "helpUrl": "",
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null
+  },
+  {
+    "type": "xiaozhi_stop",
+    "message0": "小智 停止客户端",
+    "args0": [],
+    "colour": "#7C4DFF",
+    "tooltip": "取消启动重试，在后续主循环完成停止。等待 running 为假后再配置。",
+    "helpUrl": "",
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null
+  },
+  {
+    "type": "xiaozhi_audio_preset",
+    "message0": "小智 音频开发板 %1 启用本地语音唤醒 %2",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "BOARD",
+        "options": [
+          [
+            "NULLLAB AI-VOX3",
+            "NULLLAB_AI_VOX3"
+          ],
+          [
+            "NULLLAB AI VOX",
+            "NULLLAB_AI_VOX"
+          ],
+          [
+            "OpenJumper AIOT Basic",
+            "OJ_ESP32S3_BASIC"
+          ],
+          [
+            "OpenJumper OJoy",
+            "OJ_ESP32S3_OJOY"
+          ]
+        ]
+      },
+      {
+        "type": "field_checkbox",
+        "name": "WAKE",
+        "checked": false
+      }
+    ],
+    "colour": "#7C4DFF",
+    "tooltip": "每个程序仅一个音频配置，启动前使用。启用唤醒需要 ESP-SR 模型分区；预设只配置音频。",
+    "helpUrl": "",
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null
+  },
+  {
+    "type": "xiaozhi_audio_es8311",
+    "message0": "小智 ES8311 音频 MCLK %1 BCLK %2 WS %3 扬声器数据 %4 麦克风数据 %5 SDA %6 SCL %7 PA %8 麦克风增益 dB %9 输出音量 dB %10",
+    "args0": [
+      {
+        "type": "field_number",
+        "name": "MCLK",
+        "value": 11,
+        "min": -1,
+        "max": 48,
+        "precision": 1
+      },
+      {
+        "type": "field_number",
+        "name": "BCLK",
+        "value": 10,
+        "min": -1,
+        "max": 48,
+        "precision": 1
+      },
+      {
+        "type": "field_number",
+        "name": "WS",
+        "value": 8,
+        "min": -1,
+        "max": 48,
+        "precision": 1
+      },
+      {
+        "type": "field_number",
+        "name": "DOUT",
+        "value": 7,
+        "min": -1,
+        "max": 48,
+        "precision": 1
+      },
+      {
+        "type": "field_number",
+        "name": "DIN",
+        "value": 9,
+        "min": -1,
+        "max": 48,
+        "precision": 1
+      },
+      {
+        "type": "field_number",
+        "name": "SDA",
+        "value": 13,
+        "min": -1,
+        "max": 48,
+        "precision": 1
+      },
+      {
+        "type": "field_number",
+        "name": "SCL",
+        "value": 12,
+        "min": -1,
+        "max": 48,
+        "precision": 1
+      },
+      {
+        "type": "field_number",
+        "name": "PA",
+        "value": -1,
+        "min": -1,
+        "max": 48,
+        "precision": 1
+      },
+      {
+        "type": "field_number",
+        "name": "GAIN",
+        "value": 30,
+        "min": 0,
+        "max": 42,
+        "precision": 1
+      },
+      {
+        "type": "field_number",
+        "name": "VOLUME",
+        "value": -12,
+        "min": -96,
+        "max": 0,
+        "precision": 1
+      }
+    ],
+    "colour": "#7C4DFF",
+    "tooltip": "小智  ES8311 音频 MCLK  BCLK  WS  扬声器数据  麦克风数据  SDA  SCL  PA  麦克风增益 dB  输出音量 dB",
+    "helpUrl": "",
+    "inputsInline": false,
+    "previousStatement": null,
+    "nextStatement": null
+  },
+  {
+    "type": "xiaozhi_audio_i2s",
+    "message0": "小智 I2S %1 扬声器 BCLK %2 WS %3 数据 %4 麦克风 BCLK %5 WS %6 数据 %7 麦克风声道 %8 右移位数 %9 放大器使能脚 %10 音量百分比 %11",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "BUS",
+        "options": [
+          [
+            "独立总线 / Separate",
+            "SIMPLEX"
+          ],
+          [
+            "共享时钟 / Shared clocks",
+            "DUPLEX"
+          ]
+        ]
+      },
+      {
+        "type": "field_number",
+        "name": "OUT_BCLK",
+        "value": 13,
+        "min": -1,
+        "max": 48,
+        "precision": 1
+      },
+      {
+        "type": "field_number",
+        "name": "OUT_WS",
+        "value": 14,
+        "min": -1,
+        "max": 48,
+        "precision": 1
+      },
+      {
+        "type": "field_number",
+        "name": "DOUT",
+        "value": 1,
+        "min": -1,
+        "max": 48,
+        "precision": 1
+      },
+      {
+        "type": "field_number",
+        "name": "IN_BCLK",
+        "value": 5,
+        "min": -1,
+        "max": 48,
+        "precision": 1
+      },
+      {
+        "type": "field_number",
+        "name": "IN_WS",
+        "value": 2,
+        "min": -1,
+        "max": 48,
+        "precision": 1
+      },
+      {
+        "type": "field_number",
+        "name": "DIN",
+        "value": 4,
+        "min": -1,
+        "max": 48,
+        "precision": 1
+      },
+      {
+        "type": "field_dropdown",
+        "name": "CHANNEL",
+        "options": [
+          [
+            "Left",
+            "Left"
+          ],
+          [
+            "Right",
+            "Right"
+          ]
+        ]
+      },
+      {
+        "type": "field_number",
+        "name": "SHIFT",
+        "value": 12,
+        "min": 0,
+        "max": 31,
+        "precision": 1
+      },
+      {
+        "type": "field_number",
+        "name": "AMP",
+        "value": -1,
+        "min": -1,
+        "max": 48,
+        "precision": 1
+      },
+      {
+        "type": "field_number",
+        "name": "VOLUME",
+        "value": 70,
+        "min": 0,
+        "max": 100,
+        "precision": 1
+      }
+    ],
+    "colour": "#7C4DFF",
+    "tooltip": "共享时钟时只使用扬声器 BCLK/WS，麦克风连接同一时钟；32 位槽，24 位麦克风数据。",
+    "helpUrl": "",
+    "inputsInline": false,
+    "previousStatement": null,
+    "nextStatement": null
+  },
+  {
+    "type": "xiaozhi_audio_pdm",
+    "message0": "小智 PDM 麦克风时钟 %1 数据 %2 I2S 扬声器 BCLK %3 WS %4 数据 %5 放大器使能脚 %6 音量百分比 %7",
+    "args0": [
+      {
+        "type": "field_number",
+        "name": "CLK",
+        "value": 5,
+        "min": -1,
+        "max": 48,
+        "precision": 1
+      },
+      {
+        "type": "field_number",
+        "name": "DIN",
+        "value": 4,
+        "min": -1,
+        "max": 48,
+        "precision": 1
+      },
+      {
+        "type": "field_number",
+        "name": "BCLK",
+        "value": 13,
+        "min": -1,
+        "max": 48,
+        "precision": 1
+      },
+      {
+        "type": "field_number",
+        "name": "WS",
+        "value": 14,
+        "min": -1,
+        "max": 48,
+        "precision": 1
+      },
+      {
+        "type": "field_number",
+        "name": "DOUT",
+        "value": 1,
+        "min": -1,
+        "max": 48,
+        "precision": 1
+      },
+      {
+        "type": "field_number",
+        "name": "AMP",
+        "value": -1,
+        "min": -1,
+        "max": 48,
+        "precision": 1
+      },
+      {
+        "type": "field_number",
+        "name": "VOLUME",
+        "value": 70,
+        "min": 0,
+        "max": 100,
+        "precision": 1
+      }
+    ],
+    "colour": "#7C4DFF",
+    "tooltip": "小智  PDM 麦克风时钟  数据  I2S 扬声器 BCLK  WS  数据  放大器使能脚  音量百分比",
+    "helpUrl": "",
+    "inputsInline": false,
+    "previousStatement": null,
+    "nextStatement": null
+  },
+  {
+    "type": "xiaozhi_start_listening",
+    "message0": "小智 开始聆听 模式 %1",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "MODE",
+        "options": [
+          [
+            "AutoStop",
+            "AutoStop"
+          ],
+          [
+            "ManualStop",
+            "ManualStop"
+          ],
+          [
+            "Realtime",
+            "Realtime"
+          ]
+        ]
+      }
+    ],
+    "colour": "#7C4DFF",
+    "tooltip": "小智  开始聆听 模式",
+    "helpUrl": "",
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null
+  },
+  {
+    "type": "xiaozhi_stop_listening",
+    "message0": "小智 停止聆听",
+    "args0": [],
+    "colour": "#7C4DFF",
+    "tooltip": "小智  停止聆听",
+    "helpUrl": "",
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null
+  },
+  {
+    "type": "xiaozhi_toggle_chat",
+    "message0": "小智 切换对话",
+    "args0": [],
+    "colour": "#7C4DFF",
+    "tooltip": "小智  切换对话",
+    "helpUrl": "",
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null
+  },
+  {
+    "type": "xiaozhi_abort_speaking",
+    "message0": "小智 打断讲话 原因 %1",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "REASON",
+        "options": [
+          [
+            "None",
+            "None"
+          ],
+          [
+            "WakeWordDetected",
+            "WakeWordDetected"
+          ]
+        ]
+      }
+    ],
+    "colour": "#7C4DFF",
+    "tooltip": "小智  打断讲话 原因",
+    "helpUrl": "",
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null
+  },
+  {
+    "type": "xiaozhi_wake_word",
+    "message0": "小智 通知检测到唤醒词 %1",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "WORD",
+        "check": [
+          "String"
+        ]
+      }
+    ],
+    "colour": "#7C4DFF",
+    "tooltip": "提交外部唤醒事件，不会自动运行语音识别。",
+    "helpUrl": "",
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null
+  },
+  {
+    "type": "xiaozhi_mute",
+    "message0": "小智 播放静音 %1",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "MUTED",
+        "check": [
+          "Boolean"
+        ]
+      }
+    ],
+    "colour": "#7C4DFF",
+    "tooltip": "小智  播放静音",
+    "helpUrl": "",
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null
+  },
+  {
+    "type": "xiaozhi_close_session",
+    "message0": "小智 关闭当前会话",
+    "args0": [],
+    "colour": "#7C4DFF",
+    "tooltip": "小智  关闭当前会话",
+    "helpUrl": "",
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null
+  },
+  {
+    "type": "xiaozhi_send_mcp",
+    "message0": "小智 发送 MCP JSON %1",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "JSON",
+        "check": [
+          "String"
+        ]
+      }
+    ],
+    "colour": "#7C4DFF",
+    "tooltip": "小智  发送 MCP JSON",
+    "helpUrl": "",
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null
+  },
+  {
+    "type": "xiaozhi_last_operation",
+    "message0": "小智 上次操作已接受",
+    "args0": [],
+    "colour": "#7C4DFF",
+    "tooltip": "请求已入队不代表服务器已完成操作。",
+    "helpUrl": "",
+    "inputsInline": true,
+    "output": "Boolean"
+  },
+  {
+    "type": "xiaozhi_ready",
+    "message0": "小智 状态 %1",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "STATUS",
+        "options": [
+          [
+            "ready",
+            "ready"
+          ],
+          [
+            "running",
+            "running"
+          ],
+          [
+            "sessionReady",
+            "sessionReady"
+          ]
+        ]
+      }
+    ],
+    "colour": "#7C4DFF",
+    "tooltip": "小智  状态",
+    "helpUrl": "",
+    "inputsInline": true,
+    "output": "Boolean"
+  },
+  {
+    "type": "xiaozhi_state",
+    "message0": "小智 当前状态名称",
+    "args0": [],
+    "colour": "#7C4DFF",
+    "tooltip": "小智  当前状态名称",
+    "helpUrl": "",
+    "inputsInline": true,
+    "output": "String"
+  },
+  {
+    "type": "xiaozhi_is_state",
+    "message0": "小智 当前状态是 %1",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "STATE",
+        "options": [
+          [
+            "Unknown",
+            "Unknown"
+          ],
+          [
+            "Starting",
+            "Starting"
+          ],
+          [
+            "WifiConfiguring",
+            "WifiConfiguring"
+          ],
+          [
+            "Idle",
+            "Idle"
+          ],
+          [
+            "Connecting",
+            "Connecting"
+          ],
+          [
+            "Listening",
+            "Listening"
+          ],
+          [
+            "Speaking",
+            "Speaking"
+          ],
+          [
+            "Upgrading",
+            "Upgrading"
+          ],
+          [
+            "Activating",
+            "Activating"
+          ],
+          [
+            "AudioTesting",
+            "AudioTesting"
+          ],
+          [
+            "FatalError",
+            "FatalError"
+          ]
+        ]
+      }
+    ],
+    "colour": "#7C4DFF",
+    "tooltip": "小智  当前状态是",
+    "helpUrl": "",
+    "inputsInline": true,
+    "output": "Boolean"
+  },
+  {
+    "type": "xiaozhi_event_is",
+    "message0": "小智 最近事件是 %1",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "EVENT",
+        "options": [
+          [
+            "Stt",
+            "Stt"
+          ],
+          [
+            "TtsSentence",
+            "TtsSentence"
+          ],
+          [
+            "Emotion",
+            "Emotion"
+          ],
+          [
+            "Alert",
+            "Alert"
+          ],
+          [
+            "Custom",
+            "Custom"
+          ],
+          [
+            "RebootRequested",
+            "RebootRequested"
+          ],
+          [
+            "UnknownMessage",
+            "UnknownMessage"
+          ]
+        ]
+      }
+    ],
+    "colour": "#7C4DFF",
+    "tooltip": "小智  最近事件是",
+    "helpUrl": "",
+    "inputsInline": true,
+    "output": "Boolean"
+  },
+  {
+    "type": "xiaozhi_event_text",
+    "message0": "小智 最近事件 %1",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "FIELD",
+        "options": [
+          [
+            "text",
+            "text"
+          ],
+          [
+            "emotion",
+            "emotion"
+          ],
+          [
+            "status",
+            "status"
+          ],
+          [
+            "json",
+            "json"
+          ]
+        ]
+      }
+    ],
+    "colour": "#7C4DFF",
+    "tooltip": "小智  最近事件",
+    "helpUrl": "",
+    "inputsInline": true,
+    "output": "String"
+  },
+  {
+    "type": "xiaozhi_emotion_id",
+    "message0": "小智 最近表情编号",
+    "args0": [],
+    "colour": "#7C4DFF",
+    "tooltip": "小智  最近表情编号",
+    "helpUrl": "",
+    "inputsInline": true,
+    "output": "Number"
+  },
+  {
+    "type": "xiaozhi_activation",
+    "message0": "小智 激活信息 %1",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "FIELD",
+        "options": [
+          [
+            "activationCode",
+            "activationCode"
+          ],
+          [
+            "activationMessage",
+            "activationMessage"
+          ]
+        ]
+      }
+    ],
+    "colour": "#7C4DFF",
+    "tooltip": "小智  激活信息",
+    "helpUrl": "",
+    "inputsInline": true,
+    "output": "String"
+  },
+  {
+    "type": "xiaozhi_error",
+    "message0": "小智 错误 %1",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "FIELD",
+        "options": [
+          [
+            "lastError",
+            "lastError"
+          ],
+          [
+            "errorName",
+            "errorName"
+          ]
+        ]
+      }
+    ],
+    "colour": "#7C4DFF",
+    "tooltip": "小智  错误",
+    "helpUrl": "",
+    "inputsInline": true,
+    "output": "String"
+  },
+  {
+    "type": "xiaozhi_state_event",
+    "message0": "小智 状态变化事件 %1",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "FIELD",
+        "options": [
+          [
+            "eventState",
+            "eventState"
+          ],
+          [
+            "previousState",
+            "previousState"
+          ]
+        ]
+      }
+    ],
+    "colour": "#7C4DFF",
+    "tooltip": "小智  状态变化事件",
+    "helpUrl": "",
+    "inputsInline": true,
+    "output": "String"
+  },
+  {
+    "type": "xiaozhi_capture_enabled",
+    "message0": "小智 正在采集音频",
+    "args0": [],
+    "colour": "#7C4DFF",
+    "tooltip": "小智  正在采集音频",
+    "helpUrl": "",
+    "inputsInline": true,
+    "output": "Boolean"
+  },
+  {
+    "type": "xiaozhi_detected_wake_word",
+    "message0": "小智 最近唤醒词",
+    "args0": [],
+    "colour": "#7C4DFF",
+    "tooltip": "小智  最近唤醒词",
+    "helpUrl": "",
+    "inputsInline": true,
+    "output": "String"
+  },
+  {
+    "type": "xiaozhi_audio_meta",
+    "message0": "小智 最近音频 %1",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "FIELD",
+        "options": [
+          [
+            "opus_bytes",
+            "opus_bytes"
+          ],
+          [
+            "timestamp",
+            "timestamp"
+          ],
+          [
+            "sample_rate",
+            "sample_rate"
+          ],
+          [
+            "frame_duration_ms",
+            "frame_duration_ms"
+          ],
+          [
+            "channels",
+            "channels"
+          ]
+        ]
+      }
+    ],
+    "colour": "#7C4DFF",
+    "tooltip": "小智  最近音频",
+    "helpUrl": "",
+    "inputsInline": true,
+    "output": "Number"
+  },
+  {
+    "type": "xiaozhi_stats",
+    "message0": "小智 运行统计 %1",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "FIELD",
+        "options": [
+          [
+            "commands_rejected",
+            "commands_rejected"
+          ],
+          [
+            "callbacks_dropped",
+            "callbacks_dropped"
+          ],
+          [
+            "playback_first_audio_timeouts",
+            "playback_first_audio_timeouts"
+          ],
+          [
+            "playback_inter_packet_timeouts",
+            "playback_inter_packet_timeouts"
+          ],
+          [
+            "service_cycle_overruns",
+            "service_cycle_overruns"
+          ]
+        ]
+      }
+    ],
+    "colour": "#7C4DFF",
+    "tooltip": "小智  运行统计",
+    "helpUrl": "",
+    "inputsInline": true,
+    "output": "Number"
+  },
+  {
+    "type": "xiaozhi_on_event",
+    "message0": "当小智 收到事件 %1 执行 %2",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "EVENT",
+        "options": [
+          [
+            "ALL",
+            "ALL"
+          ],
+          [
+            "Stt",
+            "Stt"
+          ],
+          [
+            "TtsSentence",
+            "TtsSentence"
+          ],
+          [
+            "Emotion",
+            "Emotion"
+          ],
+          [
+            "Alert",
+            "Alert"
+          ],
+          [
+            "Custom",
+            "Custom"
+          ],
+          [
+            "RebootRequested",
+            "RebootRequested"
+          ],
+          [
+            "UnknownMessage",
+            "UnknownMessage"
+          ]
+        ]
+      },
+      {
+        "type": "input_statement",
+        "name": "HANDLER"
+      }
+    ],
+    "colour": "#7C4DFF",
+    "tooltip": "同一客户端可添加多个事件积木；在 Arduino 主循环回调中执行。",
+    "helpUrl": "",
+    "inputsInline": true
+  },
+  {
+    "type": "xiaozhi_on_state",
+    "message0": "当小智 状态变化 执行 %1",
+    "args0": [
+      {
+        "type": "input_statement",
+        "name": "HANDLER"
+      }
+    ],
+    "colour": "#7C4DFF",
+    "tooltip": "当小智  状态变化 执行",
+    "helpUrl": "",
+    "inputsInline": true
+  },
+  {
+    "type": "xiaozhi_on_error",
+    "message0": "当小智 发生错误 执行 %1",
+    "args0": [
+      {
+        "type": "input_statement",
+        "name": "HANDLER"
+      }
+    ],
+    "colour": "#7C4DFF",
+    "tooltip": "当小智  发生错误 执行",
+    "helpUrl": "",
+    "inputsInline": true
+  },
+  {
+    "type": "xiaozhi_on_activation",
+    "message0": "当小智 需要激活 执行 %1",
+    "args0": [
+      {
+        "type": "input_statement",
+        "name": "HANDLER"
+      }
+    ],
+    "colour": "#7C4DFF",
+    "tooltip": "当小智  需要激活 执行",
+    "helpUrl": "",
+    "inputsInline": true
+  },
+  {
+    "type": "xiaozhi_on_capture",
+    "message0": "当小智 音频采集变化 执行 %1",
+    "args0": [
+      {
+        "type": "input_statement",
+        "name": "HANDLER"
+      }
+    ],
+    "colour": "#7C4DFF",
+    "tooltip": "当小智  音频采集变化 执行",
+    "helpUrl": "",
+    "inputsInline": true
+  },
+  {
+    "type": "xiaozhi_on_wake",
+    "message0": "当小智 检测到唤醒词 执行 %1",
+    "args0": [
+      {
+        "type": "input_statement",
+        "name": "HANDLER"
+      }
+    ],
+    "colour": "#7C4DFF",
+    "tooltip": "当小智  检测到唤醒词 执行",
+    "helpUrl": "",
+    "inputsInline": true
+  },
+  {
+    "type": "xiaozhi_on_audio",
+    "message0": "当小智 收到下行音频信息 执行 %1",
+    "args0": [
+      {
+        "type": "input_statement",
+        "name": "HANDLER"
+      }
+    ],
+    "colour": "#7C4DFF",
+    "tooltip": "当小智  收到下行音频信息 执行",
+    "helpUrl": "",
+    "inputsInline": true
+  },
+  {
+    "type": "xiaozhi_tool",
+    "message0": "小智 注册 MCP 工具 名称 %1 描述 %2 参数 %3 被调用时 %4",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "NAME",
+        "check": [
+          "String"
+        ]
+      },
+      {
+        "type": "input_value",
+        "name": "DESCRIPTION",
+        "check": [
+          "String"
+        ]
+      },
+      {
+        "type": "input_statement",
+        "name": "PROPERTIES"
+      },
+      {
+        "type": "input_statement",
+        "name": "HANDLER"
+      }
+    ],
+    "colour": "#7C4DFF",
+    "tooltip": "参数区放参数定义，调用区读取参数并返回结果。处理函数运行在服务任务，禁止延时、HTTP、显示刷新或调用小智客户端积木。",
+    "helpUrl": "",
+    "inputsInline": false
+  },
+  {
+    "type": "xiaozhi_property_string",
+    "message0": "MCP 文本参数 %1 必填 %2 默认值 %3",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "NAME",
+        "text": "text"
+      },
+      {
+        "type": "field_checkbox",
+        "name": "REQUIRED",
+        "checked": true
+      },
+      {
+        "type": "input_value",
+        "name": "DEFAULT",
+        "check": [
+          "String"
+        ]
+      }
+    ],
+    "colour": "#7C4DFF",
+    "tooltip": "MCP 文本参数  必填  默认值",
+    "helpUrl": "",
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null
+  },
+  {
+    "type": "xiaozhi_property_number",
+    "message0": "MCP 整数参数 %1 必填 %2 默认值 %3 最小值 %4 最大值 %5",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "NAME",
+        "text": "volume"
+      },
+      {
+        "type": "field_checkbox",
+        "name": "REQUIRED",
+        "checked": false
+      },
+      {
+        "type": "input_value",
+        "name": "DEFAULT",
+        "check": [
+          "Number"
+        ]
+      },
+      {
+        "type": "field_number",
+        "name": "MIN",
+        "value": 0,
+        "min": -2147483648,
+        "max": 2147483647,
+        "precision": 1
+      },
+      {
+        "type": "field_number",
+        "name": "MAX",
+        "value": 100,
+        "min": -2147483648,
+        "max": 2147483647,
+        "precision": 1
+      }
+    ],
+    "colour": "#7C4DFF",
+    "tooltip": "MCP 整数参数  必填  默认值  最小值  最大值",
+    "helpUrl": "",
+    "inputsInline": false,
+    "previousStatement": null,
+    "nextStatement": null
+  },
+  {
+    "type": "xiaozhi_property_boolean",
+    "message0": "MCP 布尔参数 %1 必填 %2 默认值 %3",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "NAME",
+        "text": "enabled"
+      },
+      {
+        "type": "field_checkbox",
+        "name": "REQUIRED",
+        "checked": true
+      },
+      {
+        "type": "input_value",
+        "name": "DEFAULT",
+        "check": [
+          "Boolean"
+        ]
+      }
+    ],
+    "colour": "#7C4DFF",
+    "tooltip": "MCP 布尔参数  必填  默认值",
+    "helpUrl": "",
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null
+  },
+  {
+    "type": "xiaozhi_argument_string",
+    "message0": "MCP 当前工具文本参数 %1",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "NAME",
+        "check": [
+          "String"
+        ]
+      }
+    ],
+    "colour": "#7C4DFF",
+    "tooltip": "MCP 当前工具文本参数",
+    "helpUrl": "",
+    "inputsInline": true,
+    "output": "String"
+  },
+  {
+    "type": "xiaozhi_return_string",
+    "message0": "MCP 返回文本 %1",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "VALUE",
+        "check": [
+          "String"
+        ]
+      }
+    ],
+    "colour": "#7C4DFF",
+    "tooltip": "MCP 返回文本",
+    "helpUrl": "",
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null
+  },
+  {
+    "type": "xiaozhi_argument_number",
+    "message0": "MCP 当前工具整数参数 %1",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "NAME",
+        "check": [
+          "String"
+        ]
+      }
+    ],
+    "colour": "#7C4DFF",
+    "tooltip": "MCP 当前工具整数参数",
+    "helpUrl": "",
+    "inputsInline": true,
+    "output": "Number"
+  },
+  {
+    "type": "xiaozhi_return_number",
+    "message0": "MCP 返回整数 %1",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "VALUE",
+        "check": [
+          "Number"
+        ]
+      }
+    ],
+    "colour": "#7C4DFF",
+    "tooltip": "MCP 返回整数",
+    "helpUrl": "",
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null
+  },
+  {
+    "type": "xiaozhi_argument_boolean",
+    "message0": "MCP 当前工具布尔参数 %1",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "NAME",
+        "check": [
+          "String"
+        ]
+      }
+    ],
+    "colour": "#7C4DFF",
+    "tooltip": "MCP 当前工具布尔参数",
+    "helpUrl": "",
+    "inputsInline": true,
+    "output": "Boolean"
+  },
+  {
+    "type": "xiaozhi_return_boolean",
+    "message0": "MCP 返回布尔 %1",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "VALUE",
+        "check": [
+          "Boolean"
+        ]
+      }
+    ],
+    "colour": "#7C4DFF",
+    "tooltip": "MCP 返回布尔",
+    "helpUrl": "",
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null
+  },
+  {
+    "type": "xiaozhi_return_json",
+    "message0": "MCP 返回 JSON %1",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "VALUE",
+        "check": [
+          "String"
+        ]
+      }
+    ],
+    "colour": "#7C4DFF",
+    "tooltip": "MCP 返回 JSON",
+    "helpUrl": "",
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null
+  },
+  {
+    "type": "xiaozhi_return_error",
+    "message0": "MCP 返回错误 %1",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "VALUE",
+        "check": [
+          "String"
+        ]
+      }
+    ],
+    "colour": "#7C4DFF",
+    "tooltip": "MCP 返回错误",
+    "helpUrl": "",
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null
+  }
+]
