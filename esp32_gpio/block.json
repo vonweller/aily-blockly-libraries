@@ -1,0 +1,1150 @@
+[
+  {
+    "type": "esp32_gpio_touch_read",
+    "message0": "读取触摸引脚 %1 原始值",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "PIN",
+        "check": [
+          "Number",
+          "Any"
+        ]
+      }
+    ],
+    "output": "Number",
+    "colour": "#ffad38",
+    "inputsInline": true,
+    "tooltip": "仅触摸引脚可用，无需 pinMode。ESP32 触摸时数值减小，S2/S3/P4 增大。",
+    "helpUrl": "https://docs.espressif.com/projects/arduino-esp32/en/latest/api/",
+    "icon": "fa-light fa-microchip"
+  },
+  {
+    "type": "esp32_gpio_touch_threshold",
+    "message0": "触摸引脚 %1 超过触摸阈值 %2",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "PIN",
+        "check": [
+          "Number",
+          "Any"
+        ]
+      },
+      {
+        "type": "input_value",
+        "name": "THRESHOLD",
+        "check": "Number"
+      }
+    ],
+    "output": "Boolean",
+    "colour": "#ffad38",
+    "inputsInline": true,
+    "tooltip": "原始值的绝对阈值，自动选择比较方向。先观察未触摸和触摸读数。",
+    "helpUrl": "https://docs.espressif.com/projects/arduino-esp32/en/latest/api/",
+    "icon": "fa-light fa-microchip"
+  },
+  {
+    "type": "esp32_gpio_touch_calibrate",
+    "message0": "校准触摸引脚 %1 采样 %2 次",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "PIN",
+        "check": [
+          "Number",
+          "Any"
+        ]
+      },
+      {
+        "type": "input_value",
+        "name": "SAMPLES",
+        "check": "Number"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#ffad38",
+    "inputsInline": true,
+    "tooltip": "放在初始化中，保持电极未触摸。采样次数限制为 1–64，之后可直接判断触摸。",
+    "helpUrl": "https://docs.espressif.com/projects/arduino-esp32/en/latest/api/",
+    "icon": "fa-light fa-microchip"
+  },
+  {
+    "type": "esp32_gpio_touch_pressed",
+    "message0": "触摸引脚 %1 相对变化达到 %2 %%",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "PIN",
+        "check": [
+          "Number",
+          "Any"
+        ]
+      },
+      {
+        "type": "input_value",
+        "name": "PERCENT",
+        "check": "Number"
+      }
+    ],
+    "output": "Boolean",
+    "colour": "#ffad38",
+    "inputsInline": true,
+    "tooltip": "需先校准。变化比例 1–90%，越小越灵敏；释放阈值为触发比例的一半，减少抖动。",
+    "helpUrl": "https://docs.espressif.com/projects/arduino-esp32/en/latest/api/",
+    "icon": "fa-light fa-microchip"
+  },
+  {
+    "type": "esp32_gpio_touch_baseline",
+    "message0": "触摸引脚 %1 的校准基线",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "PIN",
+        "check": [
+          "Number",
+          "Any"
+        ]
+      }
+    ],
+    "output": "Number",
+    "colour": "#ffad38",
+    "inputsInline": true,
+    "tooltip": "未校准或校准失败返回 0；更改电极或时序后重新校准。",
+    "helpUrl": "https://docs.espressif.com/projects/arduino-esp32/en/latest/api/",
+    "icon": "fa-light fa-microchip"
+  },
+  {
+    "type": "esp32_gpio_touch_cycles",
+    "message0": "触摸旧版采样周期 %1 休眠周期 %2",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "MEASURE",
+        "check": "Number"
+      },
+      {
+        "type": "input_value",
+        "name": "SLEEP",
+        "check": "Number"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#ffad38",
+    "inputsInline": true,
+    "tooltip": "仅旧触摸驱动（ESP-IDF < 5.5 且触摸版本 ≤2）。新驱动请选择微秒时序积木。",
+    "helpUrl": "https://docs.espressif.com/projects/arduino-esp32/en/latest/api/",
+    "icon": "fa-light fa-microchip"
+  },
+  {
+    "type": "esp32_gpio_touch_timing",
+    "message0": "触摸新版测量时间 %1 微秒 间隔 %2 微秒",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "MEASURE",
+        "check": "Number"
+      },
+      {
+        "type": "input_value",
+        "name": "SLEEP",
+        "check": "Number"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#ffad38",
+    "inputsInline": true,
+    "tooltip": "仅新触摸驱动（ESP-IDF ≥5.5 或触摸版本 3）。必须在第一次触摸读取或中断注册之前设置。",
+    "helpUrl": "https://docs.espressif.com/projects/arduino-esp32/en/latest/api/",
+    "icon": "fa-light fa-microchip"
+  },
+  {
+    "type": "esp32_gpio_touch_interrupt",
+    "message0": "监听触摸引脚 %1 硬件阈值 %2 发生事件 %3",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "PIN",
+        "check": [
+          "Number",
+          "Any"
+        ]
+      },
+      {
+        "type": "input_value",
+        "name": "THRESHOLD",
+        "check": "Number"
+      },
+      {
+        "type": "input_statement",
+        "name": "DO"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#ffad38",
+    "inputsInline": false,
+    "tooltip": "用户动作在主循环执行，事件可能合并且可能包含释放。ESP32 阈值为绝对值，S2/S3/P4 为相对基准增量。",
+    "helpUrl": "https://docs.espressif.com/projects/arduino-esp32/en/latest/api/",
+    "icon": "fa-light fa-microchip"
+  },
+  {
+    "type": "esp32_gpio_touch_detach",
+    "message0": "停止监听触摸引脚 %1",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "PIN",
+        "check": [
+          "Number",
+          "Any"
+        ]
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#ffad38",
+    "inputsInline": true,
+    "tooltip": "注销触摸回调并清除尚未处理的事件；不会禁用触摸读取。",
+    "helpUrl": "https://docs.espressif.com/projects/arduino-esp32/en/latest/api/",
+    "icon": "fa-light fa-microchip"
+  },
+  {
+    "type": "esp32_gpio_touch_wakeup",
+    "message0": "触摸引脚 %1 深睡唤醒 硬件阈值 %2",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "PIN",
+        "check": [
+          "Number",
+          "Any"
+        ]
+      },
+      {
+        "type": "input_value",
+        "name": "THRESHOLD",
+        "check": "Number"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#ffad38",
+    "inputsInline": true,
+    "tooltip": "设置唤醒源，不会自动睡眠。S2/S3 通常只能选择一个触摸唤醒通道；与 esp32_sleep 配合。",
+    "helpUrl": "https://docs.espressif.com/projects/arduino-esp32/en/latest/api/",
+    "icon": "fa-light fa-microchip"
+  },
+  {
+    "type": "esp32_gpio_adc_mv",
+    "message0": "读取 ADC 引脚 %1 电压（毫伏）",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "PIN",
+        "check": [
+          "Number",
+          "Any"
+        ]
+      }
+    ],
+    "output": "Number",
+    "colour": "#ffad38",
+    "inputsInline": true,
+    "tooltip": "返回经过核心校准的毫伏值。ESP32 使用 Wi-Fi 时优先选择 ADC1。",
+    "helpUrl": "https://docs.espressif.com/projects/arduino-esp32/en/latest/api/",
+    "icon": "fa-light fa-microchip"
+  },
+  {
+    "type": "esp32_gpio_adc_average",
+    "message0": "ADC 引脚 %1 平均采样 %2 次 返回 %3",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "PIN",
+        "check": [
+          "Number",
+          "Any"
+        ]
+      },
+      {
+        "type": "input_value",
+        "name": "SAMPLES",
+        "check": "Number"
+      },
+      {
+        "type": "field_dropdown",
+        "name": "UNIT",
+        "options": [
+          [
+            "毫伏",
+            "MV"
+          ],
+          [
+            "原始值",
+            "RAW"
+          ]
+        ]
+      }
+    ],
+    "output": "Number",
+    "colour": "#ffad38",
+    "inputsInline": true,
+    "tooltip": "采样次数限制为 1–64。原始值范围由 ADC 读取分辨率决定。",
+    "helpUrl": "https://docs.espressif.com/projects/arduino-esp32/en/latest/api/",
+    "icon": "fa-light fa-microchip"
+  },
+  {
+    "type": "esp32_gpio_adc_resolution",
+    "message0": "设置 ADC 读取分辨率 %1 位",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "BITS",
+        "options": [
+          [
+            "12",
+            "12"
+          ],
+          [
+            "9",
+            "9"
+          ],
+          [
+            "10",
+            "10"
+          ],
+          [
+            "11",
+            "11"
+          ],
+          [
+            "13",
+            "13"
+          ],
+          [
+            "14",
+            "14"
+          ],
+          [
+            "15",
+            "15"
+          ],
+          [
+            "16",
+            "16"
+          ]
+        ]
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#ffad38",
+    "inputsInline": true,
+    "tooltip": "全局影响 analogRead，额外位数可能是软件移位，不等于更高硬件精度。",
+    "helpUrl": "https://docs.espressif.com/projects/arduino-esp32/en/latest/api/",
+    "icon": "fa-light fa-microchip"
+  },
+  {
+    "type": "esp32_gpio_adc_attenuation",
+    "message0": "设置全部 ADC 衰减 %1",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "ATTENUATION",
+        "options": [
+          [
+            "11 dB（最大量程）",
+            "ADC_11db"
+          ],
+          [
+            "0 dB",
+            "ADC_0db"
+          ],
+          [
+            "2.5 dB",
+            "ADC_2_5db"
+          ],
+          [
+            "6 dB",
+            "ADC_6db"
+          ]
+        ]
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#ffad38",
+    "inputsInline": true,
+    "tooltip": "影响量程而非供电耐压；各芯片量程不同，ESP32 引脚不能接 5V。",
+    "helpUrl": "https://docs.espressif.com/projects/arduino-esp32/en/latest/api/",
+    "icon": "fa-light fa-microchip"
+  },
+  {
+    "type": "esp32_gpio_adc_pin_attenuation",
+    "message0": "设置 ADC 引脚 %1 衰减 %2",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "PIN",
+        "check": [
+          "Number",
+          "Any"
+        ]
+      },
+      {
+        "type": "field_dropdown",
+        "name": "ATTENUATION",
+        "options": [
+          [
+            "11 dB（最大量程）",
+            "ADC_11db"
+          ],
+          [
+            "0 dB",
+            "ADC_0db"
+          ],
+          [
+            "2.5 dB",
+            "ADC_2_5db"
+          ],
+          [
+            "6 dB",
+            "ADC_6db"
+          ]
+        ]
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#ffad38",
+    "inputsInline": true,
+    "tooltip": "仅改变指定 ADC 引脚量程。先设置全局衰减，再设置单独引脚。",
+    "helpUrl": "https://docs.espressif.com/projects/arduino-esp32/en/latest/api/",
+    "icon": "fa-light fa-microchip"
+  },
+  {
+    "type": "esp32_gpio_dac_pin",
+    "message0": "DAC 通道 %1 的引脚",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "CHANNEL",
+        "options": [
+          [
+            "1",
+            "1"
+          ],
+          [
+            "2",
+            "2"
+          ]
+        ]
+      }
+    ],
+    "output": "Number",
+    "colour": "#ffad38",
+    "inputsInline": true,
+    "tooltip": "自动映射 ESP32 的 GPIO25/26 或 S2 的 GPIO17/18；S3/C3/C6 无 DAC。",
+    "helpUrl": "https://docs.espressif.com/projects/arduino-esp32/en/latest/api/",
+    "icon": "fa-light fa-microchip"
+  },
+  {
+    "type": "esp32_gpio_dac_write",
+    "message0": "DAC 引脚 %1 输出数值 %2（0–255）",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "PIN",
+        "check": [
+          "Number",
+          "Any"
+        ]
+      },
+      {
+        "type": "input_value",
+        "name": "VALUE",
+        "check": "Number"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#ffad38",
+    "inputsInline": true,
+    "tooltip": "自动启用真正的模拟输出；数值限制为 0–255。无需 pinMode。",
+    "helpUrl": "https://docs.espressif.com/projects/arduino-esp32/en/latest/api/",
+    "icon": "fa-light fa-microchip"
+  },
+  {
+    "type": "esp32_gpio_dac_voltage",
+    "message0": "DAC 引脚 %1 输出约 %2 伏",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "PIN",
+        "check": [
+          "Number",
+          "Any"
+        ]
+      },
+      {
+        "type": "input_value",
+        "name": "VOLTS",
+        "check": "Number"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#ffad38",
+    "inputsInline": true,
+    "tooltip": "按 3.3V 参考电压换算为 8 位 DAC，限制为 0–3.3V；实际电压受电源和负载影响。",
+    "helpUrl": "https://docs.espressif.com/projects/arduino-esp32/en/latest/api/",
+    "icon": "fa-light fa-microchip"
+  },
+  {
+    "type": "esp32_gpio_dac_disable",
+    "message0": "关闭 DAC 引脚 %1",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "PIN",
+        "check": [
+          "Number",
+          "Any"
+        ]
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#ffad38",
+    "inputsInline": true,
+    "tooltip": "停止 DAC 输出并释放引脚。",
+    "helpUrl": "https://docs.espressif.com/projects/arduino-esp32/en/latest/api/",
+    "icon": "fa-light fa-microchip"
+  },
+  {
+    "type": "esp32_gpio_pwm_quick",
+    "message0": "PWM 引脚 %1 输出 %2 %%",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "PIN",
+        "check": [
+          "Number",
+          "Any"
+        ]
+      },
+      {
+        "type": "input_value",
+        "name": "PERCENT",
+        "check": "Number"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#ffad38",
+    "inputsInline": true,
+    "tooltip": "首次使用自动配置 1000Hz、8 位，之后保留本库配置。占空比限制为 0–100%。",
+    "helpUrl": "https://docs.espressif.com/projects/arduino-esp32/en/latest/api/",
+    "icon": "fa-light fa-microchip"
+  },
+  {
+    "type": "esp32_gpio_pwm_attach",
+    "message0": "配置 PWM 引脚 %1 频率 %2 Hz 分辨率 %3 位",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "PIN",
+        "check": [
+          "Number",
+          "Any"
+        ]
+      },
+      {
+        "type": "input_value",
+        "name": "FREQUENCY",
+        "check": "Number"
+      },
+      {
+        "type": "input_value",
+        "name": "BITS",
+        "check": "Number"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#ffad38",
+    "inputsInline": true,
+    "tooltip": "自动分配 LEDC 通道。ESP32 支持 1–20 位，其他芯片通常 1–14 位。重新配置会停止旧输出。",
+    "helpUrl": "https://docs.espressif.com/projects/arduino-esp32/en/latest/api/",
+    "icon": "fa-light fa-microchip"
+  },
+  {
+    "type": "esp32_gpio_pwm_write",
+    "message0": "PWM 引脚 %1 写入原始占空比 %2",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "PIN",
+        "check": [
+          "Number",
+          "Any"
+        ]
+      },
+      {
+        "type": "input_value",
+        "name": "DUTY",
+        "check": "Number"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#ffad38",
+    "inputsInline": true,
+    "tooltip": "先配置 PWM；有效范围为 0 到 2^分辨率−1，自动限幅。",
+    "helpUrl": "https://docs.espressif.com/projects/arduino-esp32/en/latest/api/",
+    "icon": "fa-light fa-microchip"
+  },
+  {
+    "type": "esp32_gpio_pwm_percent",
+    "message0": "PWM 引脚 %1 设置占空比 %2 %%",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "PIN",
+        "check": [
+          "Number",
+          "Any"
+        ]
+      },
+      {
+        "type": "input_value",
+        "name": "PERCENT",
+        "check": "Number"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#ffad38",
+    "inputsInline": true,
+    "tooltip": "先配置 PWM。自动按当前分辨率换算并限制在 0–100%。",
+    "helpUrl": "https://docs.espressif.com/projects/arduino-esp32/en/latest/api/",
+    "icon": "fa-light fa-microchip"
+  },
+  {
+    "type": "esp32_gpio_pwm_read",
+    "message0": "读取 PWM 引脚 %1 的 %2",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "PIN",
+        "check": [
+          "Number",
+          "Any"
+        ]
+      },
+      {
+        "type": "field_dropdown",
+        "name": "WHAT",
+        "options": [
+          [
+            "原始占空比",
+            "DUTY"
+          ],
+          [
+            "实际频率 Hz",
+            "FREQUENCY"
+          ]
+        ]
+      }
+    ],
+    "output": "Number",
+    "colour": "#ffad38",
+    "inputsInline": true,
+    "tooltip": "读取硬件已配置参数，不是测量外部信号。",
+    "helpUrl": "https://docs.espressif.com/projects/arduino-esp32/en/latest/api/",
+    "icon": "fa-light fa-microchip"
+  },
+  {
+    "type": "esp32_gpio_pwm_frequency",
+    "message0": "PWM 引脚 %1 改为 %2 Hz 分辨率 %3 位",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "PIN",
+        "check": [
+          "Number",
+          "Any"
+        ]
+      },
+      {
+        "type": "input_value",
+        "name": "FREQUENCY",
+        "check": "Number"
+      },
+      {
+        "type": "input_value",
+        "name": "BITS",
+        "check": "Number"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#ffad38",
+    "inputsInline": true,
+    "tooltip": "重新分配此引脚通道以避免修改其他引脚共享的定时器，并将占空比重置为 0。",
+    "helpUrl": "https://docs.espressif.com/projects/arduino-esp32/en/latest/api/",
+    "icon": "fa-light fa-microchip"
+  },
+  {
+    "type": "esp32_gpio_pwm_tone",
+    "message0": "PWM 引脚 %1 输出方波 %2 Hz（0 停止）",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "PIN",
+        "check": [
+          "Number",
+          "Any"
+        ]
+      },
+      {
+        "type": "input_value",
+        "name": "FREQUENCY",
+        "check": "Number"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#ffad38",
+    "inputsInline": true,
+    "tooltip": "50% 占空比，自动配置 10 位，频率 0 时关闭波形。低频可能受 LEDC 时钟范围限制。",
+    "helpUrl": "https://docs.espressif.com/projects/arduino-esp32/en/latest/api/",
+    "icon": "fa-light fa-microchip"
+  },
+  {
+    "type": "esp32_gpio_pwm_fade",
+    "message0": "PWM 引脚 %1 从 %2 %% 渐变到 %3 %% 用时 %4 毫秒",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "PIN",
+        "check": [
+          "Number",
+          "Any"
+        ]
+      },
+      {
+        "type": "input_value",
+        "name": "FROM",
+        "check": "Number"
+      },
+      {
+        "type": "input_value",
+        "name": "TO",
+        "check": "Number"
+      },
+      {
+        "type": "input_value",
+        "name": "MS",
+        "check": "Number"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#ffad38",
+    "inputsInline": true,
+    "tooltip": "先配置 PWM。硬件非阻塞渐变；完成前不要再次改变同一引脚 PWM。",
+    "helpUrl": "https://docs.espressif.com/projects/arduino-esp32/en/latest/api/",
+    "icon": "fa-light fa-microchip"
+  },
+  {
+    "type": "esp32_gpio_pwm_invert",
+    "message0": "PWM 引脚 %1 反相输出 %2",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "PIN",
+        "check": [
+          "Number",
+          "Any"
+        ]
+      },
+      {
+        "type": "field_dropdown",
+        "name": "INVERT",
+        "options": [
+          [
+            "是",
+            "true"
+          ],
+          [
+            "否",
+            "false"
+          ]
+        ]
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#ffad38",
+    "inputsInline": true,
+    "tooltip": "先配置 PWM；可用于低电平有效的 LED。",
+    "helpUrl": "https://docs.espressif.com/projects/arduino-esp32/en/latest/api/",
+    "icon": "fa-light fa-microchip"
+  },
+  {
+    "type": "esp32_gpio_pwm_detach",
+    "message0": "释放 PWM 引脚 %1",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "PIN",
+        "check": [
+          "Number",
+          "Any"
+        ]
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#ffad38",
+    "inputsInline": true,
+    "tooltip": "停止并释放 LEDC 通道。之后可以重新配置或使用数字输出。",
+    "helpUrl": "https://docs.espressif.com/projects/arduino-esp32/en/latest/api/",
+    "icon": "fa-light fa-microchip"
+  },
+  {
+    "type": "esp32_gpio_pwm_ok",
+    "message0": "上次 PWM 操作成功",
+    "args0": [],
+    "output": "Boolean",
+    "colour": "#ffad38",
+    "inputsInline": true,
+    "tooltip": "只反映本库最近一次 PWM 设置操作；硬件资源耗尽或参数不可实现时为假。",
+    "helpUrl": "https://docs.espressif.com/projects/arduino-esp32/en/latest/api/",
+    "icon": "fa-light fa-microchip"
+  },
+  {
+    "type": "esp32_gpio_pin_mode",
+    "message0": "ESP32 引脚 %1 模式 %2",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "PIN",
+        "check": [
+          "Number",
+          "Any"
+        ]
+      },
+      {
+        "type": "field_dropdown",
+        "name": "MODE",
+        "options": [
+          [
+            "INPUT_PULLDOWN",
+            "INPUT_PULLDOWN"
+          ],
+          [
+            "INPUT_PULLUP",
+            "INPUT_PULLUP"
+          ],
+          [
+            "INPUT",
+            "INPUT"
+          ],
+          [
+            "OUTPUT",
+            "OUTPUT"
+          ],
+          [
+            "OUTPUT_OPEN_DRAIN",
+            "OUTPUT_OPEN_DRAIN"
+          ]
+        ]
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#ffad38",
+    "inputsInline": true,
+    "tooltip": "支持下拉输入和开漏输出。开漏输出高电平表示释放，通常需要外部上拉。",
+    "helpUrl": "https://docs.espressif.com/projects/arduino-esp32/en/latest/api/",
+    "icon": "fa-light fa-microchip"
+  },
+  {
+    "type": "esp32_gpio_pull",
+    "message0": "ESP32 引脚 %1 上下拉 %2",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "PIN",
+        "check": [
+          "Number",
+          "Any"
+        ]
+      },
+      {
+        "type": "field_dropdown",
+        "name": "PULL",
+        "options": [
+          [
+            "GPIO_PULLUP_ONLY",
+            "GPIO_PULLUP_ONLY"
+          ],
+          [
+            "GPIO_PULLDOWN_ONLY",
+            "GPIO_PULLDOWN_ONLY"
+          ],
+          [
+            "GPIO_PULLUP_PULLDOWN",
+            "GPIO_PULLUP_PULLDOWN"
+          ],
+          [
+            "GPIO_FLOATING",
+            "GPIO_FLOATING"
+          ]
+        ]
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#ffad38",
+    "inputsInline": true,
+    "tooltip": "单独修改上下拉，不改变方向。经典 ESP32 GPIO34–39 没有内部上下拉。",
+    "helpUrl": "https://docs.espressif.com/projects/arduino-esp32/en/latest/api/",
+    "icon": "fa-light fa-microchip"
+  },
+  {
+    "type": "esp32_gpio_drive",
+    "message0": "ESP32 引脚 %1 驱动强度 %2",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "PIN",
+        "check": [
+          "Number",
+          "Any"
+        ]
+      },
+      {
+        "type": "field_dropdown",
+        "name": "STRENGTH",
+        "options": [
+          [
+            "默认（等级 2）",
+            "GPIO_DRIVE_CAP_2"
+          ],
+          [
+            "最弱（等级 0）",
+            "GPIO_DRIVE_CAP_0"
+          ],
+          [
+            "等级 1",
+            "GPIO_DRIVE_CAP_1"
+          ],
+          [
+            "最强（等级 3）",
+            "GPIO_DRIVE_CAP_3"
+          ]
+        ]
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#ffad38",
+    "inputsInline": true,
+    "tooltip": "设置输出驱动等级，不是恒流输出；不能直接驱动电机等大负载。",
+    "helpUrl": "https://docs.espressif.com/projects/arduino-esp32/en/latest/api/",
+    "icon": "fa-light fa-microchip"
+  },
+  {
+    "type": "esp32_gpio_hold",
+    "message0": "ESP32 引脚 %1 状态保持 %2",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "PIN",
+        "check": [
+          "Number",
+          "Any"
+        ]
+      },
+      {
+        "type": "field_dropdown",
+        "name": "ACTION",
+        "options": [
+          [
+            "启用",
+            "ENABLE"
+          ],
+          [
+            "禁用",
+            "DISABLE"
+          ]
+        ]
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#ffad38",
+    "inputsInline": true,
+    "tooltip": "冻结引脚配置与电平。释放前先恢复所需模式和电平，防止输出跳变。",
+    "helpUrl": "https://docs.espressif.com/projects/arduino-esp32/en/latest/api/",
+    "icon": "fa-light fa-microchip"
+  },
+  {
+    "type": "esp32_gpio_deep_hold",
+    "message0": "深睡期间保持数字引脚 %1",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "ACTION",
+        "options": [
+          [
+            "启用",
+            "ENABLE"
+          ],
+          [
+            "禁用",
+            "DISABLE"
+          ]
+        ]
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#ffad38",
+    "inputsInline": true,
+    "tooltip": "经典 ESP32/S2/S3/C3 还需启用各引脚保持。C6/P4 仅使用单引脚保持，本积木不改变状态；禁用时请逐个释放引脚。",
+    "helpUrl": "https://docs.espressif.com/projects/arduino-esp32/en/latest/api/",
+    "icon": "fa-light fa-microchip"
+  },
+  {
+    "type": "esp32_gpio_wakeup",
+    "message0": "引脚 %1 浅睡唤醒 %2",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "PIN",
+        "check": [
+          "Number",
+          "Any"
+        ]
+      },
+      {
+        "type": "field_dropdown",
+        "name": "LEVEL",
+        "options": [
+          [
+            "低电平",
+            "GPIO_INTR_LOW_LEVEL"
+          ],
+          [
+            "高电平",
+            "GPIO_INTR_HIGH_LEVEL"
+          ],
+          [
+            "禁用该引脚",
+            "DISABLE"
+          ]
+        ]
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#ffad38",
+    "inputsInline": true,
+    "tooltip": "仅配置电平唤醒，先设置输入及上拉/下拉，再用 esp32_sleep 进入浅睡。",
+    "helpUrl": "https://docs.espressif.com/projects/arduino-esp32/en/latest/api/",
+    "icon": "fa-light fa-microchip"
+  },
+  {
+    "type": "esp32_gpio_reset",
+    "message0": "重置 ESP32 引脚 %1",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "PIN",
+        "check": [
+          "Number",
+          "Any"
+        ]
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#ffad38",
+    "inputsInline": true,
+    "tooltip": "先释放 PWM/DAC/中断和保持状态；重置为 GPIO 默认配置。",
+    "helpUrl": "https://docs.espressif.com/projects/arduino-esp32/en/latest/api/",
+    "icon": "fa-light fa-microchip"
+  },
+  {
+    "type": "esp32_gpio_interrupt",
+    "message0": "监听引脚 %1 中断 %2 执行 %3",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "PIN",
+        "check": [
+          "Number",
+          "Any"
+        ]
+      },
+      {
+        "type": "field_dropdown",
+        "name": "MODE",
+        "options": [
+          [
+            "FALLING",
+            "FALLING"
+          ],
+          [
+            "RISING",
+            "RISING"
+          ],
+          [
+            "CHANGE",
+            "CHANGE"
+          ]
+        ]
+      },
+      {
+        "type": "input_statement",
+        "name": "DO"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#ffad38",
+    "inputsInline": false,
+    "tooltip": "先设输入模式。动作延后到主循环；多个边沿可能合并，不适合精确计数；机械按键仍需消抖。",
+    "helpUrl": "https://docs.espressif.com/projects/arduino-esp32/en/latest/api/",
+    "icon": "fa-light fa-microchip"
+  },
+  {
+    "type": "esp32_gpio_interrupt_detach",
+    "message0": "停止监听引脚 %1 中断",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "PIN",
+        "check": [
+          "Number",
+          "Any"
+        ]
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#ffad38",
+    "inputsInline": true,
+    "tooltip": "注销本库该引脚中断并清除待处理事件。",
+    "helpUrl": "https://docs.espressif.com/projects/arduino-esp32/en/latest/api/",
+    "icon": "fa-light fa-microchip"
+  }
+]
