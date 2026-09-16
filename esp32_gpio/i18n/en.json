@@ -1,0 +1,555 @@
+{
+  "toolbox_name": "Advanced GPIO",
+  "toolbox_labels": {
+    "触摸": "Touch",
+    "ADC": "ADC",
+    "DAC": "DAC",
+    "PWM": "PWM",
+    "GPIO": "GPIO"
+  },
+  "esp32_gpio_touch_read": {
+    "message0": "Read touch pin %1 raw value",
+    "tooltip": "Touch pins only; no pinMode needed. Values fall on ESP32 and rise on S2/S3/P4."
+  },
+  "esp32_gpio_touch_threshold": {
+    "message0": "Touch pin %1 passes touch threshold %2",
+    "tooltip": "Absolute raw threshold; comparison direction follows the chip. Measure idle and touched values first."
+  },
+  "esp32_gpio_touch_calibrate": {
+    "message0": "Calibrate touch pin %1 with %2 samples",
+    "tooltip": "Run in setup with the electrode untouched. Samples are clamped to 1–64."
+  },
+  "esp32_gpio_touch_pressed": {
+    "message0": "Touch pin %1 relative change reaches %2 %%",
+    "tooltip": "Calibrate first. Change is clamped to 1–90%; smaller is more sensitive. Release uses half the activation change for hysteresis."
+  },
+  "esp32_gpio_touch_baseline": {
+    "message0": "Touch pin %1 calibration baseline",
+    "tooltip": "Returns 0 before calibration or after failure. Recalibrate after electrode or timing changes."
+  },
+  "esp32_gpio_touch_cycles": {
+    "message0": "Touch legacy measurement cycles %1 sleep cycles %2",
+    "tooltip": "Legacy driver only: ESP-IDF below 5.5 and touch version up to 2. Use timing in microseconds on the new driver."
+  },
+  "esp32_gpio_touch_timing": {
+    "message0": "Touch new measurement time %1 us interval %2 us",
+    "tooltip": "New driver only: ESP-IDF 5.5+ or touch version 3. Set before the first touch read or interrupt registration."
+  },
+  "esp32_gpio_touch_interrupt": {
+    "message0": "Listen to touch pin %1 hardware threshold %2 on event %3",
+    "tooltip": "Actions run in loop; events may coalesce and include release. ESP32 uses an absolute threshold; S2/S3/P4 use an increment above the hardware benchmark."
+  },
+  "esp32_gpio_touch_detach": {
+    "message0": "Stop listening to touch pin %1",
+    "tooltip": "Detach the callback and clear pending events; touch reads remain available."
+  },
+  "esp32_gpio_touch_wakeup": {
+    "message0": "Touch pin %1 deep sleep wakeup hardware threshold %2",
+    "tooltip": "Configure wakeup without entering sleep. S2/S3 generally allow one touch wake channel. Combine with esp32_sleep."
+  },
+  "esp32_gpio_adc_mv": {
+    "message0": "Read ADC pin %1 voltage (mV)",
+    "tooltip": "Returns core-calibrated millivolts. Prefer ADC1 when using Wi-Fi on ESP32."
+  },
+  "esp32_gpio_adc_average": {
+    "message0": "ADC pin %1 average %2 samples return %3",
+    "tooltip": "Samples are clamped to 1–64. Raw range follows the ADC read resolution.",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "PIN",
+        "check": [
+          "Number",
+          "Any"
+        ]
+      },
+      {
+        "type": "input_value",
+        "name": "SAMPLES",
+        "check": "Number"
+      },
+      {
+        "type": "field_dropdown",
+        "name": "UNIT",
+        "options": [
+          [
+            "Millivolts",
+            "MV"
+          ],
+          [
+            "Raw value",
+            "RAW"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_gpio_adc_resolution": {
+    "message0": "Set ADC read resolution %1 bits",
+    "tooltip": "Globally affects analogRead. Extra bits may be software scaling, not increased hardware precision.",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "BITS",
+        "options": [
+          [
+            "12",
+            "12"
+          ],
+          [
+            "9",
+            "9"
+          ],
+          [
+            "10",
+            "10"
+          ],
+          [
+            "11",
+            "11"
+          ],
+          [
+            "13",
+            "13"
+          ],
+          [
+            "14",
+            "14"
+          ],
+          [
+            "15",
+            "15"
+          ],
+          [
+            "16",
+            "16"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_gpio_adc_attenuation": {
+    "message0": "Set global ADC attenuation %1",
+    "tooltip": "Changes measurement range, not input voltage tolerance. Ranges vary by chip; never apply 5 V.",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "ATTENUATION",
+        "options": [
+          [
+            "11 dB (widest range)",
+            "ADC_11db"
+          ],
+          [
+            "0 dB",
+            "ADC_0db"
+          ],
+          [
+            "2.5 dB",
+            "ADC_2_5db"
+          ],
+          [
+            "6 dB",
+            "ADC_6db"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_gpio_adc_pin_attenuation": {
+    "message0": "Set ADC pin %1 attenuation %2",
+    "tooltip": "Changes only this ADC pin. Apply global attenuation before per-pin overrides.",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "PIN",
+        "check": [
+          "Number",
+          "Any"
+        ]
+      },
+      {
+        "type": "field_dropdown",
+        "name": "ATTENUATION",
+        "options": [
+          [
+            "11 dB (widest range)",
+            "ADC_11db"
+          ],
+          [
+            "0 dB",
+            "ADC_0db"
+          ],
+          [
+            "2.5 dB",
+            "ADC_2_5db"
+          ],
+          [
+            "6 dB",
+            "ADC_6db"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_gpio_dac_pin": {
+    "message0": "DAC channel %1 pin",
+    "tooltip": "Maps to ESP32 GPIO25/26 or S2 GPIO17/18. S3/C3/C6 have no DAC.",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "CHANNEL",
+        "options": [
+          [
+            "1",
+            "1"
+          ],
+          [
+            "2",
+            "2"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_gpio_dac_write": {
+    "message0": "DAC pin %1 write value %2 (0–255)",
+    "tooltip": "Automatically enables true analog output; value is clamped to 0–255. No pinMode needed."
+  },
+  "esp32_gpio_dac_voltage": {
+    "message0": "DAC pin %1 output approximately %2 V",
+    "tooltip": "Converts 0–3.3 V using a nominal 3.3 V reference and 8-bit DAC. Supply and load affect actual voltage."
+  },
+  "esp32_gpio_dac_disable": {
+    "message0": "Disable DAC pin %1",
+    "tooltip": "Stop DAC output and release the pin."
+  },
+  "esp32_gpio_pwm_quick": {
+    "message0": "PWM pin %1 output %2 %%",
+    "tooltip": "Auto-attach at 1000 Hz / 8 bits on first use, then retain this library configuration. Duty is clamped to 0–100%."
+  },
+  "esp32_gpio_pwm_attach": {
+    "message0": "Configure PWM pin %1 frequency %2 Hz resolution %3 bits",
+    "tooltip": "Automatically allocates an LEDC channel. ESP32 supports 1–20 bits, others usually 1–14. Reconfiguration stops previous output."
+  },
+  "esp32_gpio_pwm_write": {
+    "message0": "PWM pin %1 write raw duty %2",
+    "tooltip": "Configure PWM first. Duty is clamped to 0 through 2^resolution−1."
+  },
+  "esp32_gpio_pwm_percent": {
+    "message0": "PWM pin %1 set duty %2 %%",
+    "tooltip": "Configure PWM first. Converts using the current resolution and clamps to 0–100%."
+  },
+  "esp32_gpio_pwm_read": {
+    "message0": "Read PWM pin %1 %2",
+    "tooltip": "Reads configured hardware parameters, not an external waveform.",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "PIN",
+        "check": [
+          "Number",
+          "Any"
+        ]
+      },
+      {
+        "type": "field_dropdown",
+        "name": "WHAT",
+        "options": [
+          [
+            "Raw duty",
+            "DUTY"
+          ],
+          [
+            "Frequency (Hz)",
+            "FREQUENCY"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_gpio_pwm_frequency": {
+    "message0": "PWM pin %1 change to %2 Hz resolution %3 bits",
+    "tooltip": "Reattach this pin to avoid changing a timer shared by other pins; duty resets to 0."
+  },
+  "esp32_gpio_pwm_tone": {
+    "message0": "PWM pin %1 square wave %2 Hz (0 stops)",
+    "tooltip": "50% duty; auto-configures 10 bits. Frequency 0 stops the waveform. Low frequencies may exceed LEDC clock limits."
+  },
+  "esp32_gpio_pwm_fade": {
+    "message0": "PWM pin %1 fade from %2 %% to %3 %% over %4 ms",
+    "tooltip": "Configure PWM first. Hardware fade is nonblocking; do not change this pin PWM until it finishes."
+  },
+  "esp32_gpio_pwm_invert": {
+    "message0": "PWM pin %1 invert output %2",
+    "tooltip": "Configure PWM first; useful for active-low LEDs.",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "PIN",
+        "check": [
+          "Number",
+          "Any"
+        ]
+      },
+      {
+        "type": "field_dropdown",
+        "name": "INVERT",
+        "options": [
+          [
+            "Yes",
+            "true"
+          ],
+          [
+            "No",
+            "false"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_gpio_pwm_detach": {
+    "message0": "Detach PWM pin %1",
+    "tooltip": "Stops and releases the LEDC channel; the pin can be reconfigured or used for digital output."
+  },
+  "esp32_gpio_pwm_ok": {
+    "message0": "Last PWM operation succeeded",
+    "tooltip": "Reports this library last PWM setting operation; false on invalid settings or exhausted hardware resources."
+  },
+  "esp32_gpio_pin_mode": {
+    "message0": "ESP32 pin %1 mode %2",
+    "tooltip": "Supports pulldown input and open-drain output. Open-drain HIGH releases the line and normally needs an external pull-up.",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "PIN",
+        "check": [
+          "Number",
+          "Any"
+        ]
+      },
+      {
+        "type": "field_dropdown",
+        "name": "MODE",
+        "options": [
+          [
+            "INPUT_PULLDOWN",
+            "INPUT_PULLDOWN"
+          ],
+          [
+            "INPUT_PULLUP",
+            "INPUT_PULLUP"
+          ],
+          [
+            "INPUT",
+            "INPUT"
+          ],
+          [
+            "OUTPUT",
+            "OUTPUT"
+          ],
+          [
+            "OUTPUT_OPEN_DRAIN",
+            "OUTPUT_OPEN_DRAIN"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_gpio_pull": {
+    "message0": "ESP32 pin %1 pull resistors %2",
+    "tooltip": "Changes pulls without changing direction. Classic ESP32 GPIO34–39 have no internal pull resistors.",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "PIN",
+        "check": [
+          "Number",
+          "Any"
+        ]
+      },
+      {
+        "type": "field_dropdown",
+        "name": "PULL",
+        "options": [
+          [
+            "GPIO_PULLUP_ONLY",
+            "GPIO_PULLUP_ONLY"
+          ],
+          [
+            "GPIO_PULLDOWN_ONLY",
+            "GPIO_PULLDOWN_ONLY"
+          ],
+          [
+            "GPIO_PULLUP_PULLDOWN",
+            "GPIO_PULLUP_PULLDOWN"
+          ],
+          [
+            "GPIO_FLOATING",
+            "GPIO_FLOATING"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_gpio_drive": {
+    "message0": "ESP32 pin %1 drive strength %2",
+    "tooltip": "Sets drive capability, not regulated current; do not directly drive motors or other heavy loads.",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "PIN",
+        "check": [
+          "Number",
+          "Any"
+        ]
+      },
+      {
+        "type": "field_dropdown",
+        "name": "STRENGTH",
+        "options": [
+          [
+            "Default (level 2)",
+            "GPIO_DRIVE_CAP_2"
+          ],
+          [
+            "Weakest (level 0)",
+            "GPIO_DRIVE_CAP_0"
+          ],
+          [
+            "Level 1",
+            "GPIO_DRIVE_CAP_1"
+          ],
+          [
+            "Strongest (level 3)",
+            "GPIO_DRIVE_CAP_3"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_gpio_hold": {
+    "message0": "ESP32 pin %1 pad hold %2",
+    "tooltip": "Latches pin configuration and level. Restore the desired mode and level before releasing to avoid glitches.",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "PIN",
+        "check": [
+          "Number",
+          "Any"
+        ]
+      },
+      {
+        "type": "field_dropdown",
+        "name": "ACTION",
+        "options": [
+          [
+            "Enable",
+            "ENABLE"
+          ],
+          [
+            "Disable",
+            "DISABLE"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_gpio_deep_hold": {
+    "message0": "Digital pin hold during deep sleep %1",
+    "tooltip": "ESP32/S2/S3/C3 also need per-pin hold. C6/P4 use per-pin hold alone; this global block makes no change. Release each pin individually.",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "ACTION",
+        "options": [
+          [
+            "Enable",
+            "ENABLE"
+          ],
+          [
+            "Disable",
+            "DISABLE"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_gpio_wakeup": {
+    "message0": "Pin %1 light sleep wakeup %2",
+    "tooltip": "Configures level wakeup only. Set input mode and pulls first, then enter light sleep with esp32_sleep.",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "PIN",
+        "check": [
+          "Number",
+          "Any"
+        ]
+      },
+      {
+        "type": "field_dropdown",
+        "name": "LEVEL",
+        "options": [
+          [
+            "Low level",
+            "GPIO_INTR_LOW_LEVEL"
+          ],
+          [
+            "High level",
+            "GPIO_INTR_HIGH_LEVEL"
+          ],
+          [
+            "Disable this pin",
+            "DISABLE"
+          ]
+        ]
+      }
+    ]
+  },
+  "esp32_gpio_reset": {
+    "message0": "Reset ESP32 pin %1",
+    "tooltip": "Release PWM, DAC, interrupts and hold first; restore the GPIO default configuration."
+  },
+  "esp32_gpio_interrupt": {
+    "message0": "Listen to pin %1 interrupt %2 do %3",
+    "tooltip": "Set input mode first. Actions run in loop; edges may coalesce, so this is not a pulse counter. Mechanical buttons still need debouncing.",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "PIN",
+        "check": [
+          "Number",
+          "Any"
+        ]
+      },
+      {
+        "type": "field_dropdown",
+        "name": "MODE",
+        "options": [
+          [
+            "FALLING",
+            "FALLING"
+          ],
+          [
+            "RISING",
+            "RISING"
+          ],
+          [
+            "CHANGE",
+            "CHANGE"
+          ]
+        ]
+      },
+      {
+        "type": "input_statement",
+        "name": "DO"
+      }
+    ]
+  },
+  "esp32_gpio_interrupt_detach": {
+    "message0": "Stop listening to pin %1 interrupts",
+    "tooltip": "Detach this pin interrupt and discard pending events."
+  }
+}

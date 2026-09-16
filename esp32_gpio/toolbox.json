@@ -1,0 +1,673 @@
+{
+  "kind": "category",
+  "name": "高级GPIO",
+  "icon": "fa-light fa-microchip",
+  "contents": [
+    {
+      "kind": "label",
+      "text": "触摸"
+    },
+    {
+      "kind": "block",
+      "type": "esp32_gpio_touch_read",
+      "inputs": {
+        "PIN": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 4
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "esp32_gpio_touch_threshold",
+      "inputs": {
+        "PIN": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 4
+            }
+          }
+        },
+        "THRESHOLD": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 40
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "esp32_gpio_touch_calibrate",
+      "inputs": {
+        "PIN": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 4
+            }
+          }
+        },
+        "SAMPLES": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 16
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "esp32_gpio_touch_pressed",
+      "inputs": {
+        "PIN": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 4
+            }
+          }
+        },
+        "PERCENT": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 20
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "esp32_gpio_touch_baseline",
+      "inputs": {
+        "PIN": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 4
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "esp32_gpio_touch_cycles",
+      "inputs": {
+        "MEASURE": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 4096
+            }
+          }
+        },
+        "SLEEP": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 4096
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "esp32_gpio_touch_timing",
+      "inputs": {
+        "MEASURE": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 500
+            }
+          }
+        },
+        "SLEEP": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 1000
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "esp32_gpio_touch_interrupt",
+      "inputs": {
+        "PIN": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 4
+            }
+          }
+        },
+        "THRESHOLD": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 40
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "esp32_gpio_touch_detach",
+      "inputs": {
+        "PIN": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 4
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "esp32_gpio_touch_wakeup",
+      "inputs": {
+        "PIN": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 4
+            }
+          }
+        },
+        "THRESHOLD": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 40
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "label",
+      "text": "ADC"
+    },
+    {
+      "kind": "block",
+      "type": "esp32_gpio_adc_mv",
+      "inputs": {
+        "PIN": {
+          "shadow": {
+            "type": "io_pin_adc"
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "esp32_gpio_adc_average",
+      "inputs": {
+        "PIN": {
+          "shadow": {
+            "type": "io_pin_adc"
+          }
+        },
+        "SAMPLES": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 16
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "esp32_gpio_adc_resolution"
+    },
+    {
+      "kind": "block",
+      "type": "esp32_gpio_adc_attenuation"
+    },
+    {
+      "kind": "block",
+      "type": "esp32_gpio_adc_pin_attenuation",
+      "inputs": {
+        "PIN": {
+          "shadow": {
+            "type": "io_pin_adc"
+          }
+        }
+      }
+    },
+    {
+      "kind": "label",
+      "text": "DAC"
+    },
+    {
+      "kind": "block",
+      "type": "esp32_gpio_dac_pin"
+    },
+    {
+      "kind": "block",
+      "type": "esp32_gpio_dac_write",
+      "inputs": {
+        "PIN": {
+          "shadow": {
+            "type": "esp32_gpio_dac_pin"
+          }
+        },
+        "VALUE": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 128
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "esp32_gpio_dac_voltage",
+      "inputs": {
+        "PIN": {
+          "shadow": {
+            "type": "esp32_gpio_dac_pin"
+          }
+        },
+        "VOLTS": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 1.65
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "esp32_gpio_dac_disable",
+      "inputs": {
+        "PIN": {
+          "shadow": {
+            "type": "esp32_gpio_dac_pin"
+          }
+        }
+      }
+    },
+    {
+      "kind": "label",
+      "text": "PWM"
+    },
+    {
+      "kind": "block",
+      "type": "esp32_gpio_pwm_quick",
+      "inputs": {
+        "PIN": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 4
+            }
+          }
+        },
+        "PERCENT": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 50
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "esp32_gpio_pwm_attach",
+      "inputs": {
+        "PIN": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 4
+            }
+          }
+        },
+        "FREQUENCY": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 1000
+            }
+          }
+        },
+        "BITS": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 8
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "esp32_gpio_pwm_write",
+      "inputs": {
+        "PIN": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 4
+            }
+          }
+        },
+        "DUTY": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 128
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "esp32_gpio_pwm_percent",
+      "inputs": {
+        "PIN": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 4
+            }
+          }
+        },
+        "PERCENT": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 50
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "esp32_gpio_pwm_read",
+      "inputs": {
+        "PIN": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 4
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "esp32_gpio_pwm_frequency",
+      "inputs": {
+        "PIN": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 4
+            }
+          }
+        },
+        "FREQUENCY": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 2000
+            }
+          }
+        },
+        "BITS": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 8
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "esp32_gpio_pwm_tone",
+      "inputs": {
+        "PIN": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 4
+            }
+          }
+        },
+        "FREQUENCY": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 1000
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "esp32_gpio_pwm_fade",
+      "inputs": {
+        "PIN": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 4
+            }
+          }
+        },
+        "FROM": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 0
+            }
+          }
+        },
+        "TO": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 100
+            }
+          }
+        },
+        "MS": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 1000
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "esp32_gpio_pwm_invert",
+      "inputs": {
+        "PIN": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 4
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "esp32_gpio_pwm_detach",
+      "inputs": {
+        "PIN": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 4
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "esp32_gpio_pwm_ok"
+    },
+    {
+      "kind": "label",
+      "text": "GPIO"
+    },
+    {
+      "kind": "block",
+      "type": "esp32_gpio_pin_mode",
+      "inputs": {
+        "PIN": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 4
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "esp32_gpio_pull",
+      "inputs": {
+        "PIN": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 4
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "esp32_gpio_drive",
+      "inputs": {
+        "PIN": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 4
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "esp32_gpio_hold",
+      "inputs": {
+        "PIN": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 4
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "esp32_gpio_deep_hold"
+    },
+    {
+      "kind": "block",
+      "type": "esp32_gpio_wakeup",
+      "inputs": {
+        "PIN": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 4
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "esp32_gpio_reset",
+      "inputs": {
+        "PIN": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 4
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "esp32_gpio_interrupt",
+      "inputs": {
+        "PIN": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 4
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "block",
+      "type": "esp32_gpio_interrupt_detach",
+      "inputs": {
+        "PIN": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 4
+            }
+          }
+        }
+      }
+    }
+  ]
+}
