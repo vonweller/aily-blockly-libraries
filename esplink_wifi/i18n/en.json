@@ -1,0 +1,702 @@
+{
+  "toolbox_name": "ESPLink WiFi",
+  "toolbox_categories": [
+    "C3 link",
+    "Connection",
+    "Network info",
+    "Network time",
+    "Network scan",
+    "Hotspot (AP)",
+    "WiFi events",
+    "TCP client",
+    "TLS",
+    "HTTP request",
+    "TCP server",
+    "UDP"
+  ],
+  "esplink_wifi_begin": {
+    "message0": "connect WiFi name %1 password %2",
+    "tooltip": "Connect to a WiFi network through the ESP32-C3; does not wait for the result"
+  },
+  "esplink_wifi_begin_advanced": {
+    "message0": "connect WiFi name %1 password %2 channel %3",
+    "tooltip": "Connect on a fixed channel; 0 means automatic"
+  },
+  "esplink_wifi_connect_quick": {
+    "message0": "quick connect WiFi name %1 password %2 timeout %3 ms",
+    "tooltip": "Connect and wait for the result; returns true when connected"
+  },
+  "esplink_wifi_wait_connected": {
+    "message0": "wait for WiFi result timeout %1 ms",
+    "tooltip": "Block until the connection result is known and return the WiFi status value"
+  },
+  "esplink_wifi_is_connected": {
+    "message0": "WiFi is connected",
+    "tooltip": "Whether WiFi is currently connected"
+  },
+  "esplink_wifi_status": {
+    "message0": "WiFi status",
+    "tooltip": "Current WiFi status value"
+  },
+  "esplink_wifi_status_type": {
+    "message0": "WiFi status %1",
+    "tooltip": "WiFi status constant, for comparison with the current status",
+    "args0": [
+      {
+        "options": [
+          [
+            "connected",
+            "WL_CONNECTED"
+          ],
+          [
+            "idle",
+            "WL_IDLE_STATUS"
+          ],
+          [
+            "network not found",
+            "WL_NO_SSID_AVAIL"
+          ],
+          [
+            "scan completed",
+            "WL_SCAN_COMPLETED"
+          ],
+          [
+            "connect failed",
+            "WL_CONNECT_FAILED"
+          ],
+          [
+            "connection lost",
+            "WL_CONNECTION_LOST"
+          ],
+          [
+            "disconnected",
+            "WL_DISCONNECTED"
+          ],
+          [
+            "no module",
+            "WL_NO_SHIELD"
+          ]
+        ]
+      }
+    ]
+  },
+  "esplink_wifi_disconnect": {
+    "message0": "disconnect WiFi radio off %1 erase saved password %2",
+    "tooltip": "Disconnect from the current WiFi network"
+  },
+  "esplink_wifi_reconnect": {
+    "message0": "reconnect WiFi",
+    "tooltip": "Reconnect with the previous credentials"
+  },
+  "esplink_wifi_set_auto_reconnect": {
+    "message0": "set WiFi auto reconnect %1",
+    "tooltip": "Let the C3 reconnect automatically after a disconnect"
+  },
+  "esplink_wifi_set_mode": {
+    "message0": "set WiFi mode %1",
+    "tooltip": "Set the radio mode of the C3",
+    "args0": [
+      {
+        "options": [
+          [
+            "station (join a hotspot)",
+            "WIFI_STA"
+          ],
+          [
+            "AP (create a hotspot)",
+            "WIFI_AP"
+          ],
+          [
+            "AP + station",
+            "WIFI_AP_STA"
+          ],
+          [
+            "off",
+            "WIFI_OFF"
+          ]
+        ]
+      }
+    ]
+  },
+  "esplink_wifi_get_mode": {
+    "message0": "WiFi current mode",
+    "tooltip": "Current radio mode value"
+  },
+  "esplink_wifi_poll": {
+    "message0": "service WiFi",
+    "tooltip": "Advance the link and dispatch WiFi events; WiFi blocks add this automatically"
+  },
+  "esplink_wifi_end": {
+    "message0": "stop WiFi",
+    "tooltip": "Release WiFi resources without affecting BLE"
+  },
+  "esplink_wifi_ip_info": {
+    "message0": "WiFi %1",
+    "tooltip": "Return a network address as text",
+    "args0": [
+      {
+        "options": [
+          [
+            "local IP address",
+            "localIP"
+          ],
+          [
+            "gateway address",
+            "gatewayIP"
+          ],
+          [
+            "subnet mask",
+            "subnetMask"
+          ],
+          [
+            "primary DNS",
+            "dns0"
+          ],
+          [
+            "secondary DNS",
+            "dns1"
+          ]
+        ]
+      }
+    ]
+  },
+  "esplink_wifi_ssid": {
+    "message0": "current WiFi name",
+    "tooltip": "SSID of the connected network"
+  },
+  "esplink_wifi_rssi": {
+    "message0": "WiFi signal strength",
+    "tooltip": "Signal strength in dBm; closer to 0 is better"
+  },
+  "esplink_wifi_channel": {
+    "message0": "WiFi channel",
+    "tooltip": "Channel of the current connection"
+  },
+  "esplink_wifi_mac": {
+    "message0": "WiFi MAC address",
+    "tooltip": "MAC address of the station interface"
+  },
+  "esplink_wifi_set_hostname": {
+    "message0": "set hostname %1",
+    "tooltip": "Name shown on the router; set it before connecting"
+  },
+  "esplink_wifi_get_hostname": {
+    "message0": "hostname",
+    "tooltip": "Currently configured hostname"
+  },
+  "esplink_wifi_config_static": {
+    "message0": "set static IP %1 gateway %2 subnet mask %3 DNS %4",
+    "tooltip": "Use a static IPv4 configuration; call it before connecting"
+  },
+  "esplink_wifi_set_dns": {
+    "message0": "set DNS servers primary %1 secondary %2",
+    "tooltip": "Set the name resolution servers"
+  },
+  "esplink_wifi_host_by_name": {
+    "message0": "resolve IP address of %1",
+    "tooltip": "Resolve a host name on the C3; empty string on failure"
+  },
+  "esplink_wifi_firmware_version": {
+    "message0": "C3 WiFi firmware version",
+    "tooltip": "Firmware version running on the C3"
+  },
+  "esplink_wifi_last_error": {
+    "message0": "WiFi last error code",
+    "tooltip": "Error code of the last WiFi operation; 0 means success"
+  },
+  "esplink_wifi_config_time": {
+    "message0": "configure network time zone %1 hours DST %2 hours server %3",
+    "tooltip": "Configure SNTP on the C3; TLS certificate checks need a valid clock"
+  },
+  "esplink_wifi_get_time": {
+    "message0": "network timestamp (seconds)",
+    "tooltip": "Unix timestamp from the C3; small values mean it is not synchronised yet"
+  },
+  "esplink_wifi_scan_networks": {
+    "message0": "scan WiFi networks include hidden %1",
+    "tooltip": "Scan synchronously and return the number of networks found; up to 32 are cached"
+  },
+  "esplink_wifi_scan_start_async": {
+    "message0": "start async WiFi scan include hidden %1",
+    "tooltip": "Scan in the background; poll the result count for progress"
+  },
+  "esplink_wifi_scan_complete": {
+    "message0": "scan result count",
+    "tooltip": "Number of networks found; -1 means running, -2 means failed"
+  },
+  "esplink_wifi_scan_ssid": {
+    "message0": "name of network %1",
+    "tooltip": "SSID of the scan result at this index; indexes start at 0"
+  },
+  "esplink_wifi_scan_rssi": {
+    "message0": "signal strength of network %1",
+    "tooltip": "Signal strength of the scan result at this index, in dBm"
+  },
+  "esplink_wifi_scan_channel": {
+    "message0": "channel of network %1",
+    "tooltip": "Channel of the scan result at this index"
+  },
+  "esplink_wifi_scan_encryption": {
+    "message0": "encryption of network %1",
+    "tooltip": "Encryption type value of the scan result; 0 is an open network"
+  },
+  "esplink_wifi_scan_delete": {
+    "message0": "clear scan results",
+    "tooltip": "Free the memory used by scan results"
+  },
+  "esplink_wifi_softap": {
+    "message0": "create WiFi hotspot name %1 password %2 channel %3",
+    "tooltip": "Create a hotspot on the C3; an empty password means an open network"
+  },
+  "esplink_wifi_softap_config": {
+    "message0": "set hotspot network IP %1 gateway %2 subnet mask %3",
+    "tooltip": "Set the hotspot IPv4 range; call it before creating the hotspot"
+  },
+  "esplink_wifi_softap_disconnect": {
+    "message0": "stop WiFi hotspot radio off %1",
+    "tooltip": "Stop the hotspot"
+  },
+  "esplink_wifi_softap_ip": {
+    "message0": "hotspot IP address",
+    "tooltip": "IP address of the hotspot itself"
+  },
+  "esplink_wifi_softap_station_num": {
+    "message0": "devices connected to hotspot",
+    "tooltip": "Number of devices connected to the hotspot"
+  },
+  "esplink_wifi_softap_mac": {
+    "message0": "hotspot MAC address",
+    "tooltip": "MAC address of the hotspot interface"
+  },
+  "esplink_wifi_on_event": {
+    "message0": "when WiFi event %1 happens",
+    "message1": "do %1",
+    "tooltip": "Register a WiFi event handler; events come from polled state differences and run in the task that services WiFi",
+    "args0": [
+      {
+        "options": [
+          [
+            "connected to hotspot",
+            "ARDUINO_EVENT_WIFI_STA_CONNECTED"
+          ],
+          [
+            "disconnected from hotspot",
+            "ARDUINO_EVENT_WIFI_STA_DISCONNECTED"
+          ],
+          [
+            "got IP address",
+            "ARDUINO_EVENT_WIFI_STA_GOT_IP"
+          ],
+          [
+            "lost IP address",
+            "ARDUINO_EVENT_WIFI_STA_LOST_IP"
+          ],
+          [
+            "scan finished",
+            "ARDUINO_EVENT_WIFI_SCAN_DONE"
+          ],
+          [
+            "device joined hotspot",
+            "ARDUINO_EVENT_WIFI_AP_STACONNECTED"
+          ],
+          [
+            "device left hotspot",
+            "ARDUINO_EVENT_WIFI_AP_STADISCONNECTED"
+          ],
+          [
+            "any event",
+            "ARDUINO_EVENT_MAX"
+          ]
+        ]
+      }
+    ]
+  },
+  "esplink_tcp_client_create": {
+    "message0": "create TCP client %1",
+    "tooltip": "Create a TCP client object"
+  },
+  "esplink_tcp_client_connect": {
+    "message0": "client %1 connect to %2 port %3",
+    "tooltip": "Connect to a server; true on success. Default timeout is 10s (15s for TLS)"
+  },
+  "esplink_tcp_client_connected": {
+    "message0": "client %1 is connected",
+    "tooltip": "Whether the connection is usable; also true while buffered data remains"
+  },
+  "esplink_tcp_client_print": {
+    "message0": "client %1 send %2 newline %3",
+    "tooltip": "Send data to the server"
+  },
+  "esplink_tcp_client_available": {
+    "message0": "client %1 bytes available",
+    "tooltip": "Number of bytes ready to read"
+  },
+  "esplink_tcp_client_read_string": {
+    "message0": "client %1 read received data",
+    "tooltip": "Take everything currently buffered without waiting"
+  },
+  "esplink_tcp_client_remote_ip": {
+    "message0": "client %1 remote IP address",
+    "tooltip": "IP address of the connection peer"
+  },
+  "esplink_tcp_client_stop": {
+    "message0": "close client %1",
+    "tooltip": "Close the connection and release the socket on the C3"
+  },
+  "esplink_tls_client_create": {
+    "message0": "create TLS client %1",
+    "tooltip": "Create an HTTPS/TLS capable client; uses the C3 built-in root certificates by default"
+  },
+  "esplink_tls_set_pem": {
+    "message0": "TLS client %1 set %2 content %3",
+    "tooltip": "Set a PEM certificate or key; each credential is limited to 8192 bytes",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "CA root certificate",
+            "CA"
+          ],
+          [
+            "client certificate",
+            "CERT"
+          ],
+          [
+            "client private key",
+            "KEY"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "esplink_tls_use_builtin_ca": {
+    "message0": "TLS client %1 use built-in root certificates",
+    "tooltip": "Validate the server with the certificate store built into the C3 firmware"
+  },
+  "esplink_tls_set_insecure": {
+    "message0": "TLS client %1 skip certificate check",
+    "tooltip": "Do not validate the server certificate; use only when that is intended"
+  },
+  "esplink_http_get": {
+    "message0": "HTTP GET request %1",
+    "tooltip": "Request an http:// or https:// URL and return the body; empty on failure, at most 4096 bytes"
+  },
+  "esplink_http_post": {
+    "message0": "HTTP POST request %1 body %2 type %3",
+    "tooltip": "Post a body to an http:// or https:// URL and return the response body; empty on failure"
+  },
+  "esplink_tcp_server_create": {
+    "message0": "create TCP server %1 listening on port %2",
+    "tooltip": "Create a TCP server and start listening on every local address"
+  },
+  "esplink_tcp_server_accept": {
+    "message0": "server %1 take new client into %2",
+    "tooltip": "Hand the next incoming connection to the chosen variable; it stays invalid when there is none"
+  },
+  "esplink_tcp_server_write": {
+    "message0": "server %1 broadcast %2",
+    "tooltip": "Broadcast to the clients the server retained"
+  },
+  "esplink_tcp_server_end": {
+    "message0": "close server %1",
+    "tooltip": "Stop listening and release the port"
+  },
+  "esplink_udp_create": {
+    "message0": "create UDP %1 listening on port %2",
+    "tooltip": "Create a UDP object and bind a local port; 0 picks an ephemeral port"
+  },
+  "esplink_udp_create_multicast": {
+    "message0": "create UDP %1 join multicast %2 port %3",
+    "tooltip": "Create a UDP object bound to a multicast address"
+  },
+  "esplink_udp_send_to": {
+    "message0": "UDP %1 send %2 to %3 port %4",
+    "tooltip": "Build and send one datagram in a single step; true on success. Limit is 1472 bytes"
+  },
+  "esplink_udp_begin_packet": {
+    "message0": "UDP %1 begin packet to %2 port %3",
+    "tooltip": "Start a datagram to be sent"
+  },
+  "esplink_udp_write": {
+    "message0": "UDP %1 write %2",
+    "tooltip": "Append content to the pending datagram"
+  },
+  "esplink_udp_end_packet": {
+    "message0": "UDP %1 send packet",
+    "tooltip": "Send the pending datagram; more than 1472 bytes fails as a whole"
+  },
+  "esplink_udp_parse_packet": {
+    "message0": "UDP %1 received packet size",
+    "tooltip": "Take the next datagram and return its size; 0 when none. Discards the unread remainder of the previous one"
+  },
+  "esplink_udp_read_string": {
+    "message0": "UDP %1 read packet content",
+    "tooltip": "Read everything left in the current datagram"
+  },
+  "esplink_udp_remote_ip": {
+    "message0": "UDP %1 sender IP address",
+    "tooltip": "IP address of the sender of the current datagram"
+  },
+  "esplink_udp_stop": {
+    "message0": "close UDP %1",
+    "tooltip": "Close UDP and release the socket on the C3"
+  },
+  "esplink_begin": {
+    "message0": "start ESPLink to ESP32-C3",
+    "tooltip": "Start the link on the board's default hardware UART at 921600 baud. The WiFi and BLE libraries start ESPLink automatically; use this block for standalone diagnostics"
+  },
+  "esplink_begin_serial": {
+    "message0": "start ESPLink on serial %1 baud %2",
+    "tooltip": "Start ESPLink on an explicit UART and baud. It must match the C3 firmware baud and run before WiFi/BLE setup"
+  },
+  "esplink_bind_stream": {
+    "message0": "bind configured serial %1 to ESPLink",
+    "tooltip": "Borrow a serial port the sketch already configured (custom pins). ESPLink never calls its begin() or end()"
+  },
+  "esplink_end": {
+    "message0": "stop ESPLink",
+    "tooltip": "Release the ESPLink binding. In borrowed mode the serial driver stays open"
+  },
+  "esplink_poll": {
+    "message0": "service ESPLink",
+    "tooltip": "Advance the ESPLink transport. Startup blocks add this to the main loop automatically"
+  },
+  "esplink_ready": {
+    "message0": "ESPLink is ready",
+    "tooltip": "Whether the C3 link holds a usable session"
+  },
+  "esplink_ping": {
+    "message0": "ESPLink ping timeout %1 ms",
+    "tooltip": "Send one ping to the C3 and wait for the reply"
+  },
+  "esplink_session": {
+    "message0": "ESPLink session id",
+    "tooltip": "Current link session id. A change means the C3 restarted or the link was rebuilt, and all earlier sockets and BLE handles are invalid"
+  },
+  "esplink_last_error": {
+    "message0": "ESPLink last error code",
+    "tooltip": "Error code of the last ESPLink operation; 0 means success"
+  },
+  "esplink_error_code": {
+    "message0": "error code %1",
+    "tooltip": "ESPLink error constant, for comparison with the last error code",
+    "args0": [
+      {
+        "options": [
+          [
+            "Ok",
+            "c3::Ok"
+          ],
+          [
+            "InvalidArgument",
+            "c3::InvalidArgument"
+          ],
+          [
+            "Unsupported",
+            "c3::Unsupported"
+          ],
+          [
+            "NoMemory",
+            "c3::NoMemory"
+          ],
+          [
+            "Busy",
+            "c3::Busy"
+          ],
+          [
+            "Timeout",
+            "c3::Timeout"
+          ],
+          [
+            "NotConnected",
+            "c3::NotConnected"
+          ],
+          [
+            "IoError",
+            "c3::IoError"
+          ],
+          [
+            "ProtocolError",
+            "c3::ProtocolError"
+          ],
+          [
+            "OutcomeUnknown",
+            "c3::OutcomeUnknown"
+          ],
+          [
+            "StaleHandle",
+            "c3::StaleHandle"
+          ],
+          [
+            "BufferTooSmall",
+            "c3::BufferTooSmall"
+          ],
+          [
+            "ResultExpired",
+            "c3::ResultExpired"
+          ],
+          [
+            "SecurityError",
+            "c3::SecurityError"
+          ],
+          [
+            "WouldBlock",
+            "c3::WouldBlock"
+          ],
+          [
+            "LinkLost",
+            "c3::LinkLost"
+          ],
+          [
+            "NotFound",
+            "c3::NotFound"
+          ]
+        ]
+      }
+    ]
+  },
+  "esplink_firmware_version": {
+    "message0": "C3 firmware version",
+    "tooltip": "Version string of the bridge firmware running on the ESP32-C3"
+  },
+  "esplink_capability": {
+    "message0": "C3 capability %1",
+    "tooltip": "Read a capability value reported during the C3 handshake",
+    "args0": [
+      {
+        "options": [
+          [
+            "max payload bytes",
+            "maxPayload"
+          ],
+          [
+            "max HCI packet bytes",
+            "maxHciPacket"
+          ],
+          [
+            "max sockets",
+            "maxSockets"
+          ],
+          [
+            "max BLE connections",
+            "maxBLEConnections"
+          ],
+          [
+            "feature bits",
+            "features"
+          ],
+          [
+            "boot id",
+            "bootID"
+          ]
+        ]
+      }
+    ]
+  },
+  "esplink_has_feature": {
+    "message0": "C3 supports %1",
+    "tooltip": "Whether the C3 firmware supports the selected feature",
+    "args0": [
+      {
+        "options": [
+          [
+            "WiFi",
+            "c3::WiFi"
+          ],
+          [
+            "TCP",
+            "c3::TCP"
+          ],
+          [
+            "UDP",
+            "c3::UDP"
+          ],
+          [
+            "TLS",
+            "c3::TLS"
+          ],
+          [
+            "BLE (HCI)",
+            "c3::HCI"
+          ],
+          [
+            "IPv6",
+            "c3::IPv6"
+          ],
+          [
+            "AP+STA",
+            "c3::StationAP"
+          ],
+          [
+            "OTA",
+            "c3::OTA"
+          ],
+          [
+            "mDNS",
+            "c3::MDNS"
+          ]
+        ]
+      }
+    ]
+  },
+  "esplink_stat": {
+    "message0": "ESPLink statistic %1",
+    "tooltip": "Read link quality counters to troubleshoot wiring and baud problems",
+    "args0": [
+      {
+        "options": [
+          [
+            "frames sent",
+            "transmitted"
+          ],
+          [
+            "frames received",
+            "received"
+          ],
+          [
+            "retries",
+            "retries"
+          ],
+          [
+            "timeouts",
+            "timeouts"
+          ],
+          [
+            "CRC errors",
+            "crcErrors"
+          ],
+          [
+            "malformed frames",
+            "malformed"
+          ],
+          [
+            "oversized frames",
+            "oversized"
+          ],
+          [
+            "ignored frames",
+            "ignored"
+          ],
+          [
+            "session changes",
+            "sessionChanges"
+          ],
+          [
+            "bytes received",
+            "rxBytes"
+          ],
+          [
+            "receive batches",
+            "rxBatches"
+          ],
+          [
+            "worker wakeups",
+            "workerWakeups"
+          ]
+        ]
+      }
+    ]
+  }
+}

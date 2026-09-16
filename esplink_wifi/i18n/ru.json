@@ -1,0 +1,729 @@
+{
+  "toolbox_name": "ESPLink WiFi",
+  "toolbox_categories": [
+    "Канал C3",
+    "Подключение",
+    "Сведения о сети",
+    "Сетевое время",
+    "Поиск сетей",
+    "Точка доступа",
+    "События WiFi",
+    "TCP-клиент",
+    "TLS",
+    "HTTP-запрос",
+    "TCP-сервер",
+    "UDP"
+  ],
+  "esplink_wifi_begin": {
+    "message0": "подключить WiFi имя %1 пароль %2",
+    "tooltip": "Подключается к сети WiFi через ESP32-C3 и не ждёт результата"
+  },
+  "esplink_wifi_begin_advanced": {
+    "message0": "подключить WiFi имя %1 пароль %2 канал %3",
+    "tooltip": "Подключается на заданном канале; 0 означает автоматический выбор"
+  },
+  "esplink_wifi_connect_quick": {
+    "message0": "быстрое подключение WiFi имя %1 пароль %2 таймаут %3 мс",
+    "tooltip": "Подключается и ждёт результат; истина при успехе"
+  },
+  "esplink_wifi_wait_connected": {
+    "message0": "ждать результат подключения WiFi таймаут %1 мс",
+    "tooltip": "Ждёт результат подключения и возвращает код состояния WiFi"
+  },
+  "esplink_wifi_is_connected": {
+    "message0": "WiFi подключён",
+    "tooltip": "Подключён ли WiFi сейчас"
+  },
+  "esplink_wifi_status": {
+    "message0": "состояние подключения WiFi",
+    "tooltip": "Текущее значение состояния WiFi"
+  },
+  "esplink_wifi_status_type": {
+    "message0": "состояние WiFi %1",
+    "tooltip": "Константа состояния для сравнения с текущим состоянием",
+    "args0": [
+      {
+        "options": [
+          [
+            "подключено",
+            "WL_CONNECTED"
+          ],
+          [
+            "ожидание",
+            "WL_IDLE_STATUS"
+          ],
+          [
+            "сеть не найдена",
+            "WL_NO_SSID_AVAIL"
+          ],
+          [
+            "поиск завершён",
+            "WL_SCAN_COMPLETED"
+          ],
+          [
+            "ошибка подключения",
+            "WL_CONNECT_FAILED"
+          ],
+          [
+            "связь потеряна",
+            "WL_CONNECTION_LOST"
+          ],
+          [
+            "отключено",
+            "WL_DISCONNECTED"
+          ],
+          [
+            "нет модуля",
+            "WL_NO_SHIELD"
+          ]
+        ]
+      }
+    ]
+  },
+  "esplink_wifi_disconnect": {
+    "message0": "отключить WiFi выключить радио %1 стереть сохранённый пароль %2",
+    "tooltip": "Разрывает текущее подключение WiFi"
+  },
+  "esplink_wifi_reconnect": {
+    "message0": "переподключить WiFi",
+    "tooltip": "Подключается снова с прежними учётными данными"
+  },
+  "esplink_wifi_set_auto_reconnect": {
+    "message0": "автоподключение WiFi %1",
+    "tooltip": "После обрыва C3 переподключается сам"
+  },
+  "esplink_wifi_set_mode": {
+    "message0": "режим WiFi %1",
+    "tooltip": "Задаёт режим радио на C3",
+    "args0": [
+      {
+        "options": [
+          [
+            "станция (подключение к точке)",
+            "WIFI_STA"
+          ],
+          [
+            "точка доступа",
+            "WIFI_AP"
+          ],
+          [
+            "точка + станция",
+            "WIFI_AP_STA"
+          ],
+          [
+            "выключено",
+            "WIFI_OFF"
+          ]
+        ]
+      }
+    ]
+  },
+  "esplink_wifi_get_mode": {
+    "message0": "текущий режим WiFi",
+    "tooltip": "Текущее значение режима радио"
+  },
+  "esplink_wifi_poll": {
+    "message0": "обслужить WiFi",
+    "tooltip": "Продвигает канал и раздаёт события WiFi; блоки WiFi добавляют это сами"
+  },
+  "esplink_wifi_end": {
+    "message0": "выключить WiFi",
+    "tooltip": "Освобождает ресурсы WiFi, не затрагивая BLE"
+  },
+  "esplink_wifi_ip_info": {
+    "message0": "WiFi %1",
+    "tooltip": "Возвращает сетевой адрес в виде текста",
+    "args0": [
+      {
+        "options": [
+          [
+            "локальный IP-адрес",
+            "localIP"
+          ],
+          [
+            "адрес шлюза",
+            "gatewayIP"
+          ],
+          [
+            "маска подсети",
+            "subnetMask"
+          ],
+          [
+            "основной DNS",
+            "dns0"
+          ],
+          [
+            "запасной DNS",
+            "dns1"
+          ]
+        ]
+      }
+    ]
+  },
+  "esplink_wifi_ssid": {
+    "message0": "имя текущей сети WiFi",
+    "tooltip": "SSID подключённой сети"
+  },
+  "esplink_wifi_rssi": {
+    "message0": "уровень сигнала WiFi",
+    "tooltip": "Уровень сигнала в дБм; чем ближе к 0, тем лучше"
+  },
+  "esplink_wifi_channel": {
+    "message0": "канал WiFi",
+    "tooltip": "Канал текущего подключения"
+  },
+  "esplink_wifi_mac": {
+    "message0": "MAC-адрес WiFi",
+    "tooltip": "MAC-адрес интерфейса станции"
+  },
+  "esplink_wifi_set_hostname": {
+    "message0": "задать имя узла %1",
+    "tooltip": "Имя, видимое на роутере; задайте до подключения"
+  },
+  "esplink_wifi_get_hostname": {
+    "message0": "имя узла",
+    "tooltip": "Текущее имя узла"
+  },
+  "esplink_wifi_config_static": {
+    "message0": "статический IP %1 шлюз %2 маска %3 DNS %4",
+    "tooltip": "Использует статическую настройку IPv4; вызывайте до подключения"
+  },
+  "esplink_wifi_set_dns": {
+    "message0": "серверы DNS основной %1 запасной %2",
+    "tooltip": "Задаёт серверы разрешения имён"
+  },
+  "esplink_wifi_host_by_name": {
+    "message0": "определить IP-адрес для %1",
+    "tooltip": "Разрешает имя через C3; при ошибке возвращает пустую строку"
+  },
+  "esplink_wifi_firmware_version": {
+    "message0": "версия WiFi-прошивки C3",
+    "tooltip": "Версия прошивки, работающей на C3"
+  },
+  "esplink_wifi_last_error": {
+    "message0": "последний код ошибки WiFi",
+    "tooltip": "Код ошибки последней операции WiFi; 0 означает успех"
+  },
+  "esplink_wifi_config_time": {
+    "message0": "настроить сетевое время пояс %1 ч летнее %2 ч сервер %3",
+    "tooltip": "Настраивает SNTP на C3; для проверки сертификатов TLS нужны верные часы"
+  },
+  "esplink_wifi_get_time": {
+    "message0": "сетевое время (секунды)",
+    "tooltip": "Время Unix на C3; малые значения означают отсутствие синхронизации"
+  },
+  "esplink_wifi_scan_networks": {
+    "message0": "искать сети WiFi включая скрытые %1",
+    "tooltip": "Синхронный поиск, возвращает число найденных сетей; хранится до 32"
+  },
+  "esplink_wifi_scan_start_async": {
+    "message0": "запустить асинхронный поиск WiFi включая скрытые %1",
+    "tooltip": "Ищет в фоне; ход выполнения читается по числу результатов"
+  },
+  "esplink_wifi_scan_complete": {
+    "message0": "число результатов поиска",
+    "tooltip": "Число найденных сетей; -1 идёт поиск, -2 ошибка"
+  },
+  "esplink_wifi_scan_ssid": {
+    "message0": "имя сети %1",
+    "tooltip": "SSID результата поиска; нумерация с 0"
+  },
+  "esplink_wifi_scan_rssi": {
+    "message0": "уровень сигнала сети %1",
+    "tooltip": "Уровень сигнала результата в дБм"
+  },
+  "esplink_wifi_scan_channel": {
+    "message0": "канал сети %1",
+    "tooltip": "Канал результата поиска"
+  },
+  "esplink_wifi_scan_encryption": {
+    "message0": "шифрование сети %1",
+    "tooltip": "Тип шифрования результата; 0 — открытая сеть"
+  },
+  "esplink_wifi_scan_delete": {
+    "message0": "очистить результаты поиска",
+    "tooltip": "Освобождает память результатов поиска"
+  },
+  "esplink_wifi_softap": {
+    "message0": "создать точку доступа WiFi имя %1 пароль %2 канал %3",
+    "tooltip": "Создаёт точку доступа на C3; пустой пароль означает открытую сеть"
+  },
+  "esplink_wifi_softap_config": {
+    "message0": "сеть точки доступа IP %1 шлюз %2 маска %3",
+    "tooltip": "Задаёт диапазон IPv4 точки доступа; вызывайте до её создания"
+  },
+  "esplink_wifi_softap_disconnect": {
+    "message0": "выключить точку доступа WiFi выключить и радио %1",
+    "tooltip": "Останавливает точку доступа"
+  },
+  "esplink_wifi_softap_ip": {
+    "message0": "IP-адрес точки доступа",
+    "tooltip": "IP-адрес самой точки доступа"
+  },
+  "esplink_wifi_softap_station_num": {
+    "message0": "число устройств на точке доступа",
+    "tooltip": "Сколько устройств подключено к точке доступа"
+  },
+  "esplink_wifi_softap_mac": {
+    "message0": "MAC-адрес точки доступа",
+    "tooltip": "MAC-адрес интерфейса точки доступа"
+  },
+  "esplink_wifi_on_event": {
+    "message0": "когда происходит событие WiFi %1",
+    "message1": "выполнить %1",
+    "tooltip": "Регистрирует обработчик события WiFi. События получаются из разницы опрошенных состояний и выполняются в задаче, обслуживающей WiFi",
+    "args0": [
+      {
+        "options": [
+          [
+            "подключено к точке доступа",
+            "ARDUINO_EVENT_WIFI_STA_CONNECTED"
+          ],
+          [
+            "отключено от точки доступа",
+            "ARDUINO_EVENT_WIFI_STA_DISCONNECTED"
+          ],
+          [
+            "получен IP-адрес",
+            "ARDUINO_EVENT_WIFI_STA_GOT_IP"
+          ],
+          [
+            "IP-адрес потерян",
+            "ARDUINO_EVENT_WIFI_STA_LOST_IP"
+          ],
+          [
+            "поиск завершён",
+            "ARDUINO_EVENT_WIFI_SCAN_DONE"
+          ],
+          [
+            "устройство подключилось к точке",
+            "ARDUINO_EVENT_WIFI_AP_STACONNECTED"
+          ],
+          [
+            "устройство покинуло точку",
+            "ARDUINO_EVENT_WIFI_AP_STADISCONNECTED"
+          ],
+          [
+            "любое событие",
+            "ARDUINO_EVENT_MAX"
+          ]
+        ]
+      }
+    ]
+  },
+  "esplink_tcp_client_create": {
+    "message0": "создать TCP-клиент %1",
+    "tooltip": "Создаёт объект TCP-клиента"
+  },
+  "esplink_tcp_client_connect": {
+    "message0": "клиент %1 подключить к %2 порт %3",
+    "tooltip": "Подключается к серверу; истина при успехе. Таймаут по умолчанию 10 с (TLS 15 с)"
+  },
+  "esplink_tcp_client_connected": {
+    "message0": "клиент %1 подключён",
+    "tooltip": "Пригодно ли соединение; остаётся истиной, пока есть непрочитанные данные"
+  },
+  "esplink_tcp_client_print": {
+    "message0": "клиент %1 отправить %2 перевод строки %3",
+    "tooltip": "Отправляет данные серверу"
+  },
+  "esplink_tcp_client_available": {
+    "message0": "клиент %1 доступно байт",
+    "tooltip": "Сколько байт можно прочитать сейчас"
+  },
+  "esplink_tcp_client_read_string": {
+    "message0": "клиент %1 прочитать принятые данные",
+    "tooltip": "Забирает то, что уже в буфере, без ожидания"
+  },
+  "esplink_tcp_client_remote_ip": {
+    "message0": "клиент %1 IP-адрес удалённой стороны",
+    "tooltip": "IP-адрес другой стороны соединения"
+  },
+  "esplink_tcp_client_stop": {
+    "message0": "закрыть клиент %1",
+    "tooltip": "Закрывает соединение и освобождает сокет на C3"
+  },
+  "esplink_tls_client_create": {
+    "message0": "создать TLS-клиент %1",
+    "tooltip": "Создаёт клиент HTTPS/TLS; по умолчанию использует встроенные корневые сертификаты C3"
+  },
+  "esplink_tls_set_pem": {
+    "message0": "TLS-клиент %1 установить %2 содержимое %3",
+    "tooltip": "Задаёт сертификат или ключ в формате PEM; не более 8192 байт каждый",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "корневой сертификат CA",
+            "CA"
+          ],
+          [
+            "сертификат клиента",
+            "CERT"
+          ],
+          [
+            "закрытый ключ клиента",
+            "KEY"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "esplink_tls_use_builtin_ca": {
+    "message0": "TLS-клиент %1 использует встроенные корневые сертификаты",
+    "tooltip": "Проверяет сервер хранилищем сертификатов прошивки C3"
+  },
+  "esplink_tls_set_insecure": {
+    "message0": "TLS-клиент %1 пропускает проверку сертификата",
+    "tooltip": "Не проверяет сертификат сервера; применяйте осознанно"
+  },
+  "esplink_http_get": {
+    "message0": "HTTP-запрос GET %1",
+    "tooltip": "Запрашивает адрес http:// или https:// и возвращает тело; пусто при ошибке, не более 4096 байт"
+  },
+  "esplink_http_post": {
+    "message0": "HTTP-запрос POST %1 тело %2 тип %3",
+    "tooltip": "Отправляет тело на адрес http:// или https:// и возвращает ответ; пусто при ошибке"
+  },
+  "esplink_tcp_server_create": {
+    "message0": "создать TCP-сервер %1 порт %2",
+    "tooltip": "Создаёт TCP-сервер и начинает приём; только на всех локальных адресах"
+  },
+  "esplink_tcp_server_accept": {
+    "message0": "сервер %1 передать нового клиента в %2",
+    "tooltip": "Отдаёт следующее соединение выбранной переменной; без новых соединений она остаётся недействительной"
+  },
+  "esplink_tcp_server_write": {
+    "message0": "сервер %1 разослать %2",
+    "tooltip": "Рассылает подключённым клиентам, которых удерживает сервер"
+  },
+  "esplink_tcp_server_end": {
+    "message0": "закрыть сервер %1",
+    "tooltip": "Прекращает приём и освобождает порт"
+  },
+  "esplink_udp_create": {
+    "message0": "создать UDP %1 порт %2",
+    "tooltip": "Создаёт объект UDP и привязывает локальный порт; 0 выбирает свободный"
+  },
+  "esplink_udp_create_multicast": {
+    "message0": "создать UDP %1 присоединиться к группе %2 порт %3",
+    "tooltip": "Создаёт объект UDP, привязанный к групповому адресу"
+  },
+  "esplink_udp_send_to": {
+    "message0": "UDP %1 отправить %2 на %3 порт %4",
+    "tooltip": "Собирает и отправляет дейтаграмму за один шаг; истина при успехе. Не более 1472 байт"
+  },
+  "esplink_udp_begin_packet": {
+    "message0": "UDP %1 начать дейтаграмму на %2 порт %3",
+    "tooltip": "Начинает дейтаграмму для отправки"
+  },
+  "esplink_udp_write": {
+    "message0": "UDP %1 записать %2",
+    "tooltip": "Добавляет содержимое в текущую дейтаграмму"
+  },
+  "esplink_udp_end_packet": {
+    "message0": "UDP %1 отправить дейтаграмму",
+    "tooltip": "Отправляет дейтаграмму; свыше 1472 байт она не отправляется целиком"
+  },
+  "esplink_udp_parse_packet": {
+    "message0": "UDP %1 длина принятой дейтаграммы",
+    "tooltip": "Берёт следующую дейтаграмму и возвращает её длину; 0 если нет данных"
+  },
+  "esplink_udp_read_string": {
+    "message0": "UDP %1 прочитать содержимое дейтаграммы",
+    "tooltip": "Читает всё оставшееся в текущей дейтаграмме"
+  },
+  "esplink_udp_remote_ip": {
+    "message0": "UDP %1 IP-адрес отправителя",
+    "tooltip": "IP-адрес отправителя текущей дейтаграммы"
+  },
+  "esplink_udp_stop": {
+    "message0": "закрыть UDP %1",
+    "tooltip": "Закрывает UDP и освобождает сокет на C3"
+  },
+  "esplink_begin": {
+    "message0": "запустить ESPLink к ESP32-C3",
+    "tooltip": "Запускает канал на аппаратном UART платы по умолчанию со скоростью 921600 бод. Библиотеки WiFi и BLE запускают ESPLink сами, этот блок нужен для отдельной диагностики"
+  },
+  "esplink_begin_serial": {
+    "message0": "запустить ESPLink порт %1 скорость %2",
+    "tooltip": "Запускает ESPLink на выбранном порту и скорости. Скорость должна совпадать с прошивкой C3, а блок вызываться до инициализации WiFi/BLE",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "921600",
+            "921600"
+          ],
+          [
+            "115200",
+            "115200"
+          ],
+          [
+            "460800",
+            "460800"
+          ],
+          [
+            "230400",
+            "230400"
+          ],
+          [
+            "1000000",
+            "1000000"
+          ]
+        ]
+      }
+    ]
+  },
+  "esplink_bind_stream": {
+    "message0": "привязать настроенный порт %1 к ESPLink",
+    "tooltip": "Использует порт, уже настроенный программой (в том числе с собственными выводами). ESPLink не вызывает его begin() и end()"
+  },
+  "esplink_end": {
+    "message0": "остановить ESPLink",
+    "tooltip": "Освобождает привязку ESPLink. В режиме заимствования драйвер порта остаётся открытым"
+  },
+  "esplink_poll": {
+    "message0": "обслужить ESPLink",
+    "tooltip": "Продвигает передачу ESPLink. Блоки запуска добавляют это в основной цикл автоматически"
+  },
+  "esplink_ready": {
+    "message0": "ESPLink готов",
+    "tooltip": "Есть ли у канала с C3 рабочая сессия"
+  },
+  "esplink_ping": {
+    "message0": "проверка ESPLink таймаут %1 мс",
+    "tooltip": "Отправляет один ping на C3 и ждёт ответа"
+  },
+  "esplink_session": {
+    "message0": "номер сессии ESPLink",
+    "tooltip": "Текущий номер сессии. Его изменение означает перезапуск C3 или пересоздание канала: все прежние сокеты и дескрипторы BLE становятся недействительными"
+  },
+  "esplink_last_error": {
+    "message0": "последний код ошибки ESPLink",
+    "tooltip": "Код ошибки последней операции ESPLink; 0 означает успех"
+  },
+  "esplink_error_code": {
+    "message0": "код ошибки %1",
+    "tooltip": "Константа ошибки ESPLink для сравнения с последним кодом ошибки",
+    "args0": [
+      {
+        "options": [
+          [
+            "Успех",
+            "c3::Ok"
+          ],
+          [
+            "Неверный аргумент",
+            "c3::InvalidArgument"
+          ],
+          [
+            "Не поддерживается",
+            "c3::Unsupported"
+          ],
+          [
+            "Не хватает памяти",
+            "c3::NoMemory"
+          ],
+          [
+            "Занято",
+            "c3::Busy"
+          ],
+          [
+            "Таймаут",
+            "c3::Timeout"
+          ],
+          [
+            "Нет соединения",
+            "c3::NotConnected"
+          ],
+          [
+            "Ошибка ввода-вывода",
+            "c3::IoError"
+          ],
+          [
+            "Ошибка протокола",
+            "c3::ProtocolError"
+          ],
+          [
+            "Результат неизвестен",
+            "c3::OutcomeUnknown"
+          ],
+          [
+            "Дескриптор недействителен",
+            "c3::StaleHandle"
+          ],
+          [
+            "Буфер слишком мал",
+            "c3::BufferTooSmall"
+          ],
+          [
+            "Результат устарел",
+            "c3::ResultExpired"
+          ],
+          [
+            "Ошибка безопасности",
+            "c3::SecurityError"
+          ],
+          [
+            "Нужен повтор",
+            "c3::WouldBlock"
+          ],
+          [
+            "Канал потерян",
+            "c3::LinkLost"
+          ],
+          [
+            "Не найдено",
+            "c3::NotFound"
+          ]
+        ]
+      }
+    ]
+  },
+  "esplink_firmware_version": {
+    "message0": "версия прошивки C3",
+    "tooltip": "Строка версии мостовой прошивки, работающей на ESP32-C3"
+  },
+  "esplink_capability": {
+    "message0": "возможность C3 %1",
+    "tooltip": "Читает значение возможностей, сообщённое C3 при рукопожатии",
+    "args0": [
+      {
+        "options": [
+          [
+            "Максимальная полезная нагрузка (байты)",
+            "maxPayload"
+          ],
+          [
+            "Максимальный размер пакета HCI",
+            "maxHciPacket"
+          ],
+          [
+            "Максимум сокетов",
+            "maxSockets"
+          ],
+          [
+            "Максимум соединений BLE",
+            "maxBLEConnections"
+          ],
+          [
+            "Биты возможностей",
+            "features"
+          ],
+          [
+            "Идентификатор загрузки",
+            "bootID"
+          ]
+        ]
+      }
+    ]
+  },
+  "esplink_has_feature": {
+    "message0": "C3 поддерживает %1",
+    "tooltip": "Поддерживает ли прошивка C3 выбранную возможность",
+    "args0": [
+      {
+        "options": [
+          [
+            "WiFi",
+            "c3::WiFi"
+          ],
+          [
+            "TCP",
+            "c3::TCP"
+          ],
+          [
+            "UDP",
+            "c3::UDP"
+          ],
+          [
+            "TLS",
+            "c3::TLS"
+          ],
+          [
+            "BLE (HCI)",
+            "c3::HCI"
+          ],
+          [
+            "IPv6",
+            "c3::IPv6"
+          ],
+          [
+            "AP+STA одновременно",
+            "c3::StationAP"
+          ],
+          [
+            "OTA",
+            "c3::OTA"
+          ],
+          [
+            "mDNS",
+            "c3::MDNS"
+          ]
+        ]
+      }
+    ]
+  },
+  "esplink_stat": {
+    "message0": "статистика ESPLink %1",
+    "tooltip": "Читает счётчики качества канала для проверки проводки и скорости",
+    "args0": [
+      {
+        "options": [
+          [
+            "Отправлено кадров",
+            "transmitted"
+          ],
+          [
+            "Принято кадров",
+            "received"
+          ],
+          [
+            "Повторов",
+            "retries"
+          ],
+          [
+            "Таймаутов",
+            "timeouts"
+          ],
+          [
+            "Ошибок CRC",
+            "crcErrors"
+          ],
+          [
+            "Некорректных кадров",
+            "malformed"
+          ],
+          [
+            "Слишком длинных кадров",
+            "oversized"
+          ],
+          [
+            "Пропущенных кадров",
+            "ignored"
+          ],
+          [
+            "Смен сессии",
+            "sessionChanges"
+          ],
+          [
+            "Принято байт",
+            "rxBytes"
+          ],
+          [
+            "Пакетов приёма",
+            "rxBatches"
+          ],
+          [
+            "Пробуждений обработчика",
+            "workerWakeups"
+          ]
+        ]
+      }
+    ]
+  }
+}
