@@ -1,0 +1,226 @@
+{
+  "toolbox_name": "运动模块",
+  "toolbox_categories": [
+    "初始化",
+    "舵机",
+    "电机",
+    "原始帧与校验",
+    "状态"
+  ],
+  "evlabmotion_init": {
+    "message0": "初始化运动模块 %1 I2C总线 %2",
+    "tooltip": "初始化 EasyVoiceLab 1306 舵机/电机协处理器（I2C 固定地址 0x10），并检测其是否在线"
+  },
+  "evlabmotion_is_connected": {
+    "message0": "运动模块 %1 已连接",
+    "tooltip": "向协处理器发起一次空写事务，确认 I2C 链路是否通畅"
+  },
+  "evlabmotion_get_address": {
+    "message0": "运动模块 %1 的I2C地址",
+    "tooltip": "返回协处理器的 I2C 地址，固定为 0x10（十进制 16）"
+  },
+  "evlabmotion_set_servo": {
+    "message0": "运动模块 %1 设置舵机 %2 角度 %3 度",
+    "tooltip": "设置单个舵机通道的角度，通道 1~4，角度 0~180 度",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "1",
+            "1"
+          ],
+          [
+            "2",
+            "2"
+          ],
+          [
+            "3",
+            "3"
+          ],
+          [
+            "4",
+            "4"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "evlabmotion_set_all_servos": {
+    "message0": "运动模块 %1 全部舵机转到 %2 度",
+    "tooltip": "把 4 个舵机通道全部转到同一角度，内部依次发送 4 帧"
+  },
+  "evlabmotion_motor_run": {
+    "message0": "运动模块 %1 电机 %2 %3 速度 %4",
+    "tooltip": "驱动直流电机通道 1~2 正转或反转，速度 0~255",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "1",
+            "1"
+          ],
+          [
+            "2",
+            "2"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "正转",
+            "FORWARD"
+          ],
+          [
+            "反转",
+            "BACKWARD"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "evlabmotion_set_motor": {
+    "message0": "运动模块 %1 电机 %2 方向 %3 速度 %4",
+    "tooltip": "用数值指定方向驱动电机，方向非 0 为正转、0 为反转，便于由变量计算得出",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "1",
+            "1"
+          ],
+          [
+            "2",
+            "2"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "evlabmotion_stop_motor": {
+    "message0": "运动模块 %1 停止电机 %2",
+    "tooltip": "把指定电机速度设为 0，半桥两端同时拉低，电机滑行停止而非刹车",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "1",
+            "1"
+          ],
+          [
+            "2",
+            "2"
+          ]
+        ]
+      }
+    ]
+  },
+  "evlabmotion_stop_motors": {
+    "message0": "运动模块 %1 停止全部电机",
+    "tooltip": "停止两个电机通道，舵机保持当前角度不受影响"
+  },
+  "evlabmotion_send_frame": {
+    "message0": "运动模块 %1 发送原始帧 ID %2 参数1 %3 参数2 %4",
+    "tooltip": "直接发送 3 字节协议帧，不做任何范围检查。ID 0~1 为电机、2~5 为舵机"
+  },
+  "evlabmotion_verify": {
+    "message0": "运动模块 %1 回读校验通过",
+    "tooltip": "读回协处理器收到的最后一帧，与本地记录比对，可作为端到端链路自检"
+  },
+  "evlabmotion_read_frame_byte": {
+    "message0": "运动模块 %1 回读帧的 %2",
+    "tooltip": "从协处理器读回最后收到的一帧并取出其中一个字节，读取失败返回 -1",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "帧ID",
+            "0"
+          ],
+          [
+            "参数1",
+            "1"
+          ],
+          [
+            "参数2",
+            "2"
+          ]
+        ]
+      }
+    ]
+  },
+  "evlabmotion_last_frame_byte": {
+    "message0": "运动模块 %1 最后发送帧的 %2",
+    "tooltip": "取出本地记录的最后一次发送帧的某个字节，不产生 I2C 通信",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "帧ID",
+            "0"
+          ],
+          [
+            "参数1",
+            "1"
+          ],
+          [
+            "参数2",
+            "2"
+          ]
+        ]
+      }
+    ]
+  },
+  "evlabmotion_last_error": {
+    "message0": "运动模块 %1 最近错误码",
+    "tooltip": "读取最近一次错误码，读取后错误状态会被清零，所以只能读一次"
+  },
+  "evlabmotion_last_write": {
+    "message0": "运动模块 %1 最后发送时刻",
+    "tooltip": "返回最后一次成功发送帧时的 millis() 毫秒时间戳"
+  },
+  "evlabmotion_error_const": {
+    "message0": "错误码 %1",
+    "tooltip": "错误码常量，用来和「最近错误码」比较判断故障类型",
+    "args0": [
+      {
+        "options": [
+          [
+            "正常",
+            "EVLABMOTION_OK"
+          ],
+          [
+            "连接失败",
+            "EVLABMOTION_ERROR_CONNECT"
+          ],
+          [
+            "索引越界",
+            "EVLABMOTION_ERROR_INDEX"
+          ],
+          [
+            "角度越界",
+            "EVLABMOTION_ERROR_ANGLE"
+          ],
+          [
+            "字节缺失",
+            "EVLABMOTION_ERROR_MISSING_BYTES"
+          ],
+          [
+            "回读不符",
+            "EVLABMOTION_ERROR_VERIFY"
+          ]
+        ]
+      }
+    ]
+  }
+}

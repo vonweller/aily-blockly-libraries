@@ -1,0 +1,226 @@
+{
+  "toolbox_name": "Motion-Modul",
+  "toolbox_categories": [
+    "Initialisierung",
+    "Servo",
+    "Motor",
+    "Rohframe und Prüfung",
+    "Status"
+  ],
+  "evlabmotion_init": {
+    "message0": "Motion-Modul %1 initialisieren I2C-Bus %2",
+    "tooltip": "Den Servo- und Motor-Koprozessor des EasyVoiceLab 1306 (feste I2C-Adresse 0x10) initialisieren und prüfen, ob er antwortet"
+  },
+  "evlabmotion_is_connected": {
+    "message0": "Motion-Modul %1 ist verbunden",
+    "tooltip": "Eine leere Schreibtransaktion senden, um zu prüfen, ob die I2C-Verbindung funktioniert"
+  },
+  "evlabmotion_get_address": {
+    "message0": "I2C-Adresse von Motion-Modul %1",
+    "tooltip": "Gibt die I2C-Adresse des Koprozessors zurück, fest auf 0x10 (dezimal 16)"
+  },
+  "evlabmotion_set_servo": {
+    "message0": "Motion-Modul %1 Servo %2 auf %3 Grad setzen",
+    "tooltip": "Den Winkel eines Servokanals setzen, Kanal 1-4, Winkel 0-180 Grad",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "1",
+            "1"
+          ],
+          [
+            "2",
+            "2"
+          ],
+          [
+            "3",
+            "3"
+          ],
+          [
+            "4",
+            "4"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "evlabmotion_set_all_servos": {
+    "message0": "Motion-Modul %1 alle Servos auf %2 Grad",
+    "tooltip": "Alle vier Servokanäle auf denselben Winkel stellen, als vier Frames gesendet"
+  },
+  "evlabmotion_motor_run": {
+    "message0": "Motion-Modul %1 Motor %2 %3 Geschwindigkeit %4",
+    "tooltip": "DC-Motorkanal 1-2 vorwärts oder rückwärts antreiben, Geschwindigkeit 0-255",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "1",
+            "1"
+          ],
+          [
+            "2",
+            "2"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "vorwärts",
+            "FORWARD"
+          ],
+          [
+            "rückwärts",
+            "BACKWARD"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "evlabmotion_set_motor": {
+    "message0": "Motion-Modul %1 Motor %2 Richtung %3 Geschwindigkeit %4",
+    "tooltip": "Motor mit numerischer Richtung antreiben, ungleich 0 ist vorwärts und 0 ist rückwärts, praktisch wenn der Wert aus einer Variablen kommt",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "1",
+            "1"
+          ],
+          [
+            "2",
+            "2"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "evlabmotion_stop_motor": {
+    "message0": "Motion-Modul %1 Motor %2 stoppen",
+    "tooltip": "Die Motorgeschwindigkeit auf 0 setzen; beide Halbbrückeneingänge gehen auf Low, der Motor rollt aus statt zu bremsen",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "1",
+            "1"
+          ],
+          [
+            "2",
+            "2"
+          ]
+        ]
+      }
+    ]
+  },
+  "evlabmotion_stop_motors": {
+    "message0": "Motion-Modul %1 alle Motoren stoppen",
+    "tooltip": "Beide Motorkanäle stoppen; die Servos behalten ihren aktuellen Winkel"
+  },
+  "evlabmotion_send_frame": {
+    "message0": "Motion-Modul %1 Rohframe senden ID %2 Arg1 %3 Arg2 %4",
+    "tooltip": "Ein rohes 3-Byte-Protokollframe ohne Bereichsprüfung senden. ID 0-1 sind Motoren, 2-5 sind Servos"
+  },
+  "evlabmotion_verify": {
+    "message0": "Motion-Modul %1 Rücklesen stimmt überein",
+    "tooltip": "Das zuletzt vom Koprozessor empfangene Frame zurücklesen und mit der lokalen Kopie vergleichen, eine einfache Ende-zu-Ende-Prüfung"
+  },
+  "evlabmotion_read_frame_byte": {
+    "message0": "Motion-Modul %1 zurückgelesenes Frame %2",
+    "tooltip": "Das zuletzt vom Koprozessor empfangene Frame zurücklesen und ein Byte daraus entnehmen, bei Fehlschlag wird -1 zurückgegeben",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Frame-ID",
+            "0"
+          ],
+          [
+            "Arg1",
+            "1"
+          ],
+          [
+            "Arg2",
+            "2"
+          ]
+        ]
+      }
+    ]
+  },
+  "evlabmotion_last_frame_byte": {
+    "message0": "Motion-Modul %1 zuletzt gesendetes Frame %2",
+    "tooltip": "Ein Byte aus dem lokal gespeicherten zuletzt gesendeten Frame entnehmen, ohne I2C-Verkehr",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "Frame-ID",
+            "0"
+          ],
+          [
+            "Arg1",
+            "1"
+          ],
+          [
+            "Arg2",
+            "2"
+          ]
+        ]
+      }
+    ]
+  },
+  "evlabmotion_last_error": {
+    "message0": "Motion-Modul %1 letzter Fehlercode",
+    "tooltip": "Den jüngsten Fehlercode lesen; das Lesen löscht den Zustand, er kann also nur einmal gelesen werden"
+  },
+  "evlabmotion_last_write": {
+    "message0": "Motion-Modul %1 letzter Sendezeitpunkt",
+    "tooltip": "Gibt den millis()-Zeitstempel des zuletzt erfolgreich gesendeten Frames zurück"
+  },
+  "evlabmotion_error_const": {
+    "message0": "Fehlercode %1",
+    "tooltip": "Fehlercode-Konstante, zum Vergleich mit dem letzten Fehlercode, um den Fehler zu unterscheiden",
+    "args0": [
+      {
+        "options": [
+          [
+            "OK",
+            "EVLABMOTION_OK"
+          ],
+          [
+            "Verbindung fehlgeschlagen",
+            "EVLABMOTION_ERROR_CONNECT"
+          ],
+          [
+            "Index außerhalb des Bereichs",
+            "EVLABMOTION_ERROR_INDEX"
+          ],
+          [
+            "Winkel außerhalb des Bereichs",
+            "EVLABMOTION_ERROR_ANGLE"
+          ],
+          [
+            "fehlende Bytes",
+            "EVLABMOTION_ERROR_MISSING_BYTES"
+          ],
+          [
+            "Rücklesen stimmt nicht",
+            "EVLABMOTION_ERROR_VERIFY"
+          ]
+        ]
+      }
+    ]
+  }
+}

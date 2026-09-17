@@ -1,0 +1,226 @@
+{
+  "toolbox_name": "Módulo de movimento",
+  "toolbox_categories": [
+    "Inicialização",
+    "Servo",
+    "Motor",
+    "Quadro bruto e verificação",
+    "Estado"
+  ],
+  "evlabmotion_init": {
+    "message0": "inicializar módulo de movimento %1 barramento I2C %2",
+    "tooltip": "Inicializar o coprocessador de servos e motores do EasyVoiceLab 1306 (endereço I2C fixo 0x10) e verificar se ele responde"
+  },
+  "evlabmotion_is_connected": {
+    "message0": "módulo de movimento %1 está conectado",
+    "tooltip": "Enviar uma transação de escrita vazia para confirmar que o enlace I2C está funcionando"
+  },
+  "evlabmotion_get_address": {
+    "message0": "endereço I2C do módulo de movimento %1",
+    "tooltip": "Retorna o endereço I2C do coprocessador, fixo em 0x10 (16 em decimal)"
+  },
+  "evlabmotion_set_servo": {
+    "message0": "módulo de movimento %1 colocar o servo %2 em %3 graus",
+    "tooltip": "Ajustar o ângulo de um canal de servo, canal 1-4, ângulo 0-180 graus",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "1",
+            "1"
+          ],
+          [
+            "2",
+            "2"
+          ],
+          [
+            "3",
+            "3"
+          ],
+          [
+            "4",
+            "4"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "evlabmotion_set_all_servos": {
+    "message0": "módulo de movimento %1 todos os servos em %2 graus",
+    "tooltip": "Levar os quatro canais de servo ao mesmo ângulo, enviado como quatro quadros"
+  },
+  "evlabmotion_motor_run": {
+    "message0": "módulo de movimento %1 motor %2 %3 velocidade %4",
+    "tooltip": "Acionar o canal de motor CC 1-2 para frente ou para trás, velocidade 0-255",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "1",
+            "1"
+          ],
+          [
+            "2",
+            "2"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "para frente",
+            "FORWARD"
+          ],
+          [
+            "para trás",
+            "BACKWARD"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "evlabmotion_set_motor": {
+    "message0": "módulo de movimento %1 motor %2 direção %3 velocidade %4",
+    "tooltip": "Acionar um motor com direção numérica, diferente de 0 é para frente e 0 é para trás, útil quando o valor vem de uma variável",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "1",
+            "1"
+          ],
+          [
+            "2",
+            "2"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "evlabmotion_stop_motor": {
+    "message0": "módulo de movimento %1 parar o motor %2",
+    "tooltip": "Colocar a velocidade do motor em 0; ambas as entradas da meia ponte vão a nível baixo, o motor para por inércia em vez de frear",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "1",
+            "1"
+          ],
+          [
+            "2",
+            "2"
+          ]
+        ]
+      }
+    ]
+  },
+  "evlabmotion_stop_motors": {
+    "message0": "módulo de movimento %1 parar todos os motores",
+    "tooltip": "Parar os dois canais de motor; os servos mantêm o ângulo atual"
+  },
+  "evlabmotion_send_frame": {
+    "message0": "módulo de movimento %1 enviar quadro bruto ID %2 arg1 %3 arg2 %4",
+    "tooltip": "Enviar um quadro de protocolo bruto de 3 bytes sem verificação de faixa. Os ID 0-1 são motores e 2-5 são servos"
+  },
+  "evlabmotion_verify": {
+    "message0": "módulo de movimento %1 releitura confere",
+    "tooltip": "Reler o último quadro recebido pelo coprocessador e compará-lo com a cópia local, uma verificação de enlace de ponta a ponta"
+  },
+  "evlabmotion_read_frame_byte": {
+    "message0": "módulo de movimento %1 quadro relido %2",
+    "tooltip": "Reler o último quadro recebido pelo coprocessador e extrair um byte, retorna -1 quando a leitura falha",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "ID do quadro",
+            "0"
+          ],
+          [
+            "arg1",
+            "1"
+          ],
+          [
+            "arg2",
+            "2"
+          ]
+        ]
+      }
+    ]
+  },
+  "evlabmotion_last_frame_byte": {
+    "message0": "módulo de movimento %1 último quadro enviado %2",
+    "tooltip": "Extrair um byte do último quadro enviado guardado localmente, sem tráfego I2C",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "ID do quadro",
+            "0"
+          ],
+          [
+            "arg1",
+            "1"
+          ],
+          [
+            "arg2",
+            "2"
+          ]
+        ]
+      }
+    ]
+  },
+  "evlabmotion_last_error": {
+    "message0": "módulo de movimento %1 último código de erro",
+    "tooltip": "Ler o código de erro mais recente; a leitura limpa o estado, por isso só pode ser lido uma vez"
+  },
+  "evlabmotion_last_write": {
+    "message0": "módulo de movimento %1 hora do último envio",
+    "tooltip": "Retorna a marca de tempo millis() do último quadro enviado com sucesso"
+  },
+  "evlabmotion_error_const": {
+    "message0": "código de erro %1",
+    "tooltip": "Constante de código de erro, compare com o último código de erro para distinguir a falha",
+    "args0": [
+      {
+        "options": [
+          [
+            "OK",
+            "EVLABMOTION_OK"
+          ],
+          [
+            "falha de conexão",
+            "EVLABMOTION_ERROR_CONNECT"
+          ],
+          [
+            "índice fora da faixa",
+            "EVLABMOTION_ERROR_INDEX"
+          ],
+          [
+            "ângulo fora da faixa",
+            "EVLABMOTION_ERROR_ANGLE"
+          ],
+          [
+            "bytes faltando",
+            "EVLABMOTION_ERROR_MISSING_BYTES"
+          ],
+          [
+            "releitura não confere",
+            "EVLABMOTION_ERROR_VERIFY"
+          ]
+        ]
+      }
+    ]
+  }
+}

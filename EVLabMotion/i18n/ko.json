@@ -1,0 +1,226 @@
+{
+  "toolbox_name": "모션 모듈",
+  "toolbox_categories": [
+    "초기화",
+    "서보",
+    "모터",
+    "원시 프레임과 검증",
+    "상태"
+  ],
+  "evlabmotion_init": {
+    "message0": "모션 모듈 %1 초기화 I2C 버스 %2",
+    "tooltip": "EasyVoiceLab 1306 서보/모터 보조 프로세서(I2C 주소 고정 0x10)를 초기화하고 응답하는지 확인합니다"
+  },
+  "evlabmotion_is_connected": {
+    "message0": "모션 모듈 %1 연결됨",
+    "tooltip": "빈 쓰기 트랜잭션을 보내 I2C 링크가 정상인지 확인합니다"
+  },
+  "evlabmotion_get_address": {
+    "message0": "모션 모듈 %1 의 I2C 주소",
+    "tooltip": "보조 프로세서의 I2C 주소를 반환합니다. 0x10(10진수 16)으로 고정입니다"
+  },
+  "evlabmotion_set_servo": {
+    "message0": "모션 모듈 %1 서보 %2 를 %3 도로 설정",
+    "tooltip": "서보 채널 하나의 각도를 설정합니다. 채널 1~4, 각도 0~180도",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "1",
+            "1"
+          ],
+          [
+            "2",
+            "2"
+          ],
+          [
+            "3",
+            "3"
+          ],
+          [
+            "4",
+            "4"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "evlabmotion_set_all_servos": {
+    "message0": "모션 모듈 %1 모든 서보를 %2 도로",
+    "tooltip": "서보 4채널을 같은 각도로 맞춥니다. 내부에서 4개 프레임을 순서대로 보냅니다"
+  },
+  "evlabmotion_motor_run": {
+    "message0": "모션 모듈 %1 모터 %2 %3 속도 %4",
+    "tooltip": "DC 모터 채널 1~2를 정회전 또는 역회전시킵니다. 속도 0~255",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "1",
+            "1"
+          ],
+          [
+            "2",
+            "2"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "정회전",
+            "FORWARD"
+          ],
+          [
+            "역회전",
+            "BACKWARD"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "evlabmotion_set_motor": {
+    "message0": "모션 모듈 %1 모터 %2 방향 %3 속도 %4",
+    "tooltip": "방향을 숫자로 지정해 모터를 구동합니다. 0이 아니면 정회전, 0이면 역회전이라 변수로 계산할 때 편리합니다",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "1",
+            "1"
+          ],
+          [
+            "2",
+            "2"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "evlabmotion_stop_motor": {
+    "message0": "모션 모듈 %1 모터 %2 정지",
+    "tooltip": "지정한 모터 속도를 0으로 만듭니다. 하프 브리지 양단이 모두 Low가 되어 제동이 아니라 관성으로 멈춥니다",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "1",
+            "1"
+          ],
+          [
+            "2",
+            "2"
+          ]
+        ]
+      }
+    ]
+  },
+  "evlabmotion_stop_motors": {
+    "message0": "모션 모듈 %1 모든 모터 정지",
+    "tooltip": "모터 2채널을 정지합니다. 서보는 현재 각도를 유지합니다"
+  },
+  "evlabmotion_send_frame": {
+    "message0": "모션 모듈 %1 원시 프레임 전송 ID %2 인자1 %3 인자2 %4",
+    "tooltip": "범위 검사 없이 3바이트 프로토콜 프레임을 보냅니다. ID 0~1은 모터, 2~5는 서보입니다"
+  },
+  "evlabmotion_verify": {
+    "message0": "모션 모듈 %1 되읽기 검증 성공",
+    "tooltip": "보조 프로세서가 마지막으로 받은 프레임을 되읽어 로컬 기록과 비교합니다. 종단 간 링크 점검에 쓸 수 있습니다"
+  },
+  "evlabmotion_read_frame_byte": {
+    "message0": "모션 모듈 %1 되읽은 프레임의 %2",
+    "tooltip": "보조 프로세서에서 마지막으로 받은 프레임을 되읽어 한 바이트를 꺼냅니다. 실패하면 -1을 반환합니다",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "프레임 ID",
+            "0"
+          ],
+          [
+            "인자1",
+            "1"
+          ],
+          [
+            "인자2",
+            "2"
+          ]
+        ]
+      }
+    ]
+  },
+  "evlabmotion_last_frame_byte": {
+    "message0": "모션 모듈 %1 마지막 전송 프레임의 %2",
+    "tooltip": "로컬에 기록된 마지막 전송 프레임에서 한 바이트를 꺼냅니다. I2C 통신은 발생하지 않습니다",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "프레임 ID",
+            "0"
+          ],
+          [
+            "인자1",
+            "1"
+          ],
+          [
+            "인자2",
+            "2"
+          ]
+        ]
+      }
+    ]
+  },
+  "evlabmotion_last_error": {
+    "message0": "모션 모듈 %1 최근 오류 코드",
+    "tooltip": "가장 최근 오류 코드를 읽습니다. 읽으면 상태가 지워지므로 한 번만 읽을 수 있습니다"
+  },
+  "evlabmotion_last_write": {
+    "message0": "모션 모듈 %1 마지막 전송 시각",
+    "tooltip": "프레임 전송이 마지막으로 성공한 시점의 millis() 밀리초 값을 반환합니다"
+  },
+  "evlabmotion_error_const": {
+    "message0": "오류 코드 %1",
+    "tooltip": "오류 코드 상수입니다. 최근 오류 코드와 비교해 고장 종류를 구분합니다",
+    "args0": [
+      {
+        "options": [
+          [
+            "정상",
+            "EVLABMOTION_OK"
+          ],
+          [
+            "연결 실패",
+            "EVLABMOTION_ERROR_CONNECT"
+          ],
+          [
+            "인덱스 범위 초과",
+            "EVLABMOTION_ERROR_INDEX"
+          ],
+          [
+            "각도 범위 초과",
+            "EVLABMOTION_ERROR_ANGLE"
+          ],
+          [
+            "바이트 누락",
+            "EVLABMOTION_ERROR_MISSING_BYTES"
+          ],
+          [
+            "되읽기 불일치",
+            "EVLABMOTION_ERROR_VERIFY"
+          ]
+        ]
+      }
+    ]
+  }
+}
