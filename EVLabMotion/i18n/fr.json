@@ -1,0 +1,226 @@
+{
+  "toolbox_name": "Module de mouvement",
+  "toolbox_categories": [
+    "Initialisation",
+    "Servo",
+    "Moteur",
+    "Trame brute et vérification",
+    "État"
+  ],
+  "evlabmotion_init": {
+    "message0": "initialiser le module de mouvement %1 bus I2C %2",
+    "tooltip": "Initialiser le coprocesseur servo et moteur de l'EasyVoiceLab 1306 (adresse I2C fixe 0x10) et vérifier qu'il répond"
+  },
+  "evlabmotion_is_connected": {
+    "message0": "module de mouvement %1 est connecté",
+    "tooltip": "Envoyer une transaction d'écriture vide pour confirmer que la liaison I2C fonctionne"
+  },
+  "evlabmotion_get_address": {
+    "message0": "adresse I2C du module de mouvement %1",
+    "tooltip": "Renvoie l'adresse I2C du coprocesseur, fixée à 0x10 (16 en décimal)"
+  },
+  "evlabmotion_set_servo": {
+    "message0": "module de mouvement %1 régler le servo %2 à %3 degrés",
+    "tooltip": "Régler l'angle d'un canal servo, canal 1-4, angle 0-180 degrés",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "1",
+            "1"
+          ],
+          [
+            "2",
+            "2"
+          ],
+          [
+            "3",
+            "3"
+          ],
+          [
+            "4",
+            "4"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "evlabmotion_set_all_servos": {
+    "message0": "module de mouvement %1 tous les servos à %2 degrés",
+    "tooltip": "Placer les quatre canaux servo au même angle, envoyé sous forme de quatre trames"
+  },
+  "evlabmotion_motor_run": {
+    "message0": "module de mouvement %1 moteur %2 %3 vitesse %4",
+    "tooltip": "Faire tourner le canal moteur CC 1-2 en avant ou en arrière, vitesse 0-255",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "1",
+            "1"
+          ],
+          [
+            "2",
+            "2"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "avant",
+            "FORWARD"
+          ],
+          [
+            "arrière",
+            "BACKWARD"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "evlabmotion_set_motor": {
+    "message0": "module de mouvement %1 moteur %2 direction %3 vitesse %4",
+    "tooltip": "Piloter un moteur avec une direction numérique, différent de 0 pour l'avant et 0 pour l'arrière, pratique quand la valeur vient d'une variable",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "1",
+            "1"
+          ],
+          [
+            "2",
+            "2"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "evlabmotion_stop_motor": {
+    "message0": "module de mouvement %1 arrêter le moteur %2",
+    "tooltip": "Mettre la vitesse du moteur à 0 ; les deux entrées du demi-pont passent à l'état bas, le moteur roule en roue libre au lieu de freiner",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "1",
+            "1"
+          ],
+          [
+            "2",
+            "2"
+          ]
+        ]
+      }
+    ]
+  },
+  "evlabmotion_stop_motors": {
+    "message0": "module de mouvement %1 arrêter tous les moteurs",
+    "tooltip": "Arrêter les deux canaux moteur ; les servos conservent leur angle actuel"
+  },
+  "evlabmotion_send_frame": {
+    "message0": "module de mouvement %1 envoyer la trame brute ID %2 arg1 %3 arg2 %4",
+    "tooltip": "Envoyer une trame de protocole brute de 3 octets sans contrôle de plage. Les ID 0-1 sont les moteurs, 2-5 les servos"
+  },
+  "evlabmotion_verify": {
+    "message0": "module de mouvement %1 relecture conforme",
+    "tooltip": "Relire la dernière trame reçue par le coprocesseur et la comparer à la copie locale, un contrôle de liaison de bout en bout"
+  },
+  "evlabmotion_read_frame_byte": {
+    "message0": "module de mouvement %1 trame relue %2",
+    "tooltip": "Relire la dernière trame reçue par le coprocesseur et en extraire un octet, renvoie -1 en cas d'échec",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "ID de trame",
+            "0"
+          ],
+          [
+            "arg1",
+            "1"
+          ],
+          [
+            "arg2",
+            "2"
+          ]
+        ]
+      }
+    ]
+  },
+  "evlabmotion_last_frame_byte": {
+    "message0": "module de mouvement %1 dernière trame envoyée %2",
+    "tooltip": "Extraire un octet de la dernière trame envoyée mémorisée localement, sans trafic I2C",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "ID de trame",
+            "0"
+          ],
+          [
+            "arg1",
+            "1"
+          ],
+          [
+            "arg2",
+            "2"
+          ]
+        ]
+      }
+    ]
+  },
+  "evlabmotion_last_error": {
+    "message0": "module de mouvement %1 dernier code d'erreur",
+    "tooltip": "Lire le code d'erreur le plus récent ; la lecture efface l'état, il ne peut donc être lu qu'une fois"
+  },
+  "evlabmotion_last_write": {
+    "message0": "module de mouvement %1 heure du dernier envoi",
+    "tooltip": "Renvoie l'horodatage millis() de la dernière trame envoyée avec succès"
+  },
+  "evlabmotion_error_const": {
+    "message0": "code d'erreur %1",
+    "tooltip": "Constante de code d'erreur, à comparer au dernier code d'erreur pour identifier la panne",
+    "args0": [
+      {
+        "options": [
+          [
+            "OK",
+            "EVLABMOTION_OK"
+          ],
+          [
+            "échec de connexion",
+            "EVLABMOTION_ERROR_CONNECT"
+          ],
+          [
+            "index hors plage",
+            "EVLABMOTION_ERROR_INDEX"
+          ],
+          [
+            "angle hors plage",
+            "EVLABMOTION_ERROR_ANGLE"
+          ],
+          [
+            "octets manquants",
+            "EVLABMOTION_ERROR_MISSING_BYTES"
+          ],
+          [
+            "relecture non conforme",
+            "EVLABMOTION_ERROR_VERIFY"
+          ]
+        ]
+      }
+    ]
+  }
+}
