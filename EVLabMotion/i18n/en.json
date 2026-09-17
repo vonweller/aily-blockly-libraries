@@ -1,0 +1,226 @@
+{
+  "toolbox_name": "Motion module",
+  "toolbox_categories": [
+    "Setup",
+    "Servo",
+    "Motor",
+    "Raw frame",
+    "Status"
+  ],
+  "evlabmotion_init": {
+    "message0": "initialize motion module %1 I2C bus %2",
+    "tooltip": "Initialize the EasyVoiceLab 1306 servo and motor coprocessor (fixed I2C address 0x10) and check that it answers"
+  },
+  "evlabmotion_is_connected": {
+    "message0": "motion module %1 is connected",
+    "tooltip": "Send an empty write transaction to confirm the I2C link is working"
+  },
+  "evlabmotion_get_address": {
+    "message0": "I2C address of motion module %1",
+    "tooltip": "Return the coprocessor I2C address, fixed at 0x10 (16 decimal)"
+  },
+  "evlabmotion_set_servo": {
+    "message0": "motion module %1 set servo %2 to %3 degrees",
+    "tooltip": "Set the angle of one servo channel, channel 1-4, angle 0-180 degrees",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "1",
+            "1"
+          ],
+          [
+            "2",
+            "2"
+          ],
+          [
+            "3",
+            "3"
+          ],
+          [
+            "4",
+            "4"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "evlabmotion_set_all_servos": {
+    "message0": "motion module %1 move all servos to %2 degrees",
+    "tooltip": "Move all four servo channels to the same angle, sent as four frames"
+  },
+  "evlabmotion_motor_run": {
+    "message0": "motion module %1 motor %2 %3 speed %4",
+    "tooltip": "Drive DC motor channel 1-2 forward or backward, speed 0-255",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "1",
+            "1"
+          ],
+          [
+            "2",
+            "2"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "forward",
+            "FORWARD"
+          ],
+          [
+            "backward",
+            "BACKWARD"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "evlabmotion_set_motor": {
+    "message0": "motion module %1 motor %2 direction %3 speed %4",
+    "tooltip": "Drive a motor with a numeric direction, non-zero is forward and 0 is backward, handy when the value comes from a variable",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "1",
+            "1"
+          ],
+          [
+            "2",
+            "2"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "evlabmotion_stop_motor": {
+    "message0": "motion module %1 stop motor %2",
+    "tooltip": "Set the motor speed to 0; both half bridge inputs go low so the motor coasts instead of braking",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "1",
+            "1"
+          ],
+          [
+            "2",
+            "2"
+          ]
+        ]
+      }
+    ]
+  },
+  "evlabmotion_stop_motors": {
+    "message0": "motion module %1 stop all motors",
+    "tooltip": "Stop both motor channels; the servos keep their current angle"
+  },
+  "evlabmotion_send_frame": {
+    "message0": "motion module %1 send raw frame ID %2 arg1 %3 arg2 %4",
+    "tooltip": "Send a raw 3 byte protocol frame with no range checking. ID 0-1 are motors, 2-5 are servos"
+  },
+  "evlabmotion_verify": {
+    "message0": "motion module %1 read back matches",
+    "tooltip": "Read back the last frame the coprocessor received and compare it with the local copy, a cheap end to end link check"
+  },
+  "evlabmotion_read_frame_byte": {
+    "message0": "motion module %1 read back frame %2",
+    "tooltip": "Read back the last frame received by the coprocessor and take one byte from it, returns -1 when the read fails",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "frame ID",
+            "0"
+          ],
+          [
+            "arg1",
+            "1"
+          ],
+          [
+            "arg2",
+            "2"
+          ]
+        ]
+      }
+    ]
+  },
+  "evlabmotion_last_frame_byte": {
+    "message0": "motion module %1 last sent frame %2",
+    "tooltip": "Take one byte from the locally stored last sent frame, no I2C traffic",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "frame ID",
+            "0"
+          ],
+          [
+            "arg1",
+            "1"
+          ],
+          [
+            "arg2",
+            "2"
+          ]
+        ]
+      }
+    ]
+  },
+  "evlabmotion_last_error": {
+    "message0": "motion module %1 last error code",
+    "tooltip": "Read the most recent error code; reading it clears the state, so it can only be read once"
+  },
+  "evlabmotion_last_write": {
+    "message0": "motion module %1 last write time",
+    "tooltip": "Return the millis() timestamp of the last frame that was sent successfully"
+  },
+  "evlabmotion_error_const": {
+    "message0": "error code %1",
+    "tooltip": "Error code constant, compare it with the last error code to tell the fault apart",
+    "args0": [
+      {
+        "options": [
+          [
+            "OK",
+            "EVLABMOTION_OK"
+          ],
+          [
+            "connect failed",
+            "EVLABMOTION_ERROR_CONNECT"
+          ],
+          [
+            "index out of range",
+            "EVLABMOTION_ERROR_INDEX"
+          ],
+          [
+            "angle out of range",
+            "EVLABMOTION_ERROR_ANGLE"
+          ],
+          [
+            "missing bytes",
+            "EVLABMOTION_ERROR_MISSING_BYTES"
+          ],
+          [
+            "read back mismatch",
+            "EVLABMOTION_ERROR_VERIFY"
+          ]
+        ]
+      }
+    ]
+  }
+}

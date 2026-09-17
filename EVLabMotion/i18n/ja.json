@@ -1,0 +1,226 @@
+{
+  "toolbox_name": "モーションモジュール",
+  "toolbox_categories": [
+    "初期化",
+    "サーボ",
+    "モーター",
+    "生フレームと検証",
+    "ステータス"
+  ],
+  "evlabmotion_init": {
+    "message0": "モーションモジュール %1 を初期化 I2Cバス %2",
+    "tooltip": "EasyVoiceLab 1306 のサーボ／モーター用コプロセッサ（I2Cアドレス固定 0x10）を初期化し、応答するか確認します"
+  },
+  "evlabmotion_is_connected": {
+    "message0": "モーションモジュール %1 が接続済み",
+    "tooltip": "空の書き込みを送り、I2Cリンクが正常かどうか確認します"
+  },
+  "evlabmotion_get_address": {
+    "message0": "モーションモジュール %1 のI2Cアドレス",
+    "tooltip": "コプロセッサのI2Cアドレスを返します。固定値 0x10（10進数で16）です"
+  },
+  "evlabmotion_set_servo": {
+    "message0": "モーションモジュール %1 のサーボ %2 を %3 度に設定",
+    "tooltip": "サーボ1チャンネルの角度を設定します。チャンネル1~4、角度0~180度",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "1",
+            "1"
+          ],
+          [
+            "2",
+            "2"
+          ],
+          [
+            "3",
+            "3"
+          ],
+          [
+            "4",
+            "4"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "evlabmotion_set_all_servos": {
+    "message0": "モーションモジュール %1 の全サーボを %2 度へ",
+    "tooltip": "4つのサーボチャンネルを同じ角度にします。内部で4フレームを順に送信します"
+  },
+  "evlabmotion_motor_run": {
+    "message0": "モーションモジュール %1 モーター %2 %3 速度 %4",
+    "tooltip": "DCモーターチャンネル1~2を正転または逆転させます。速度0~255",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "1",
+            "1"
+          ],
+          [
+            "2",
+            "2"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "正転",
+            "FORWARD"
+          ],
+          [
+            "逆転",
+            "BACKWARD"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "evlabmotion_set_motor": {
+    "message0": "モーションモジュール %1 モーター %2 方向 %3 速度 %4",
+    "tooltip": "方向を数値で指定してモーターを駆動します。0以外が正転、0が逆転で、変数から計算する場合に便利です",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "1",
+            "1"
+          ],
+          [
+            "2",
+            "2"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "evlabmotion_stop_motor": {
+    "message0": "モーションモジュール %1 モーター %2 を停止",
+    "tooltip": "指定モーターの速度を0にします。ハーフブリッジ両端がLowになり、ブレーキではなく惰性で停止します",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "1",
+            "1"
+          ],
+          [
+            "2",
+            "2"
+          ]
+        ]
+      }
+    ]
+  },
+  "evlabmotion_stop_motors": {
+    "message0": "モーションモジュール %1 全モーターを停止",
+    "tooltip": "2つのモーターチャンネルを停止します。サーボは現在の角度を保持します"
+  },
+  "evlabmotion_send_frame": {
+    "message0": "モーションモジュール %1 生フレーム送信 ID %2 引数1 %3 引数2 %4",
+    "tooltip": "範囲チェックなしで3バイトのプロトコルフレームを送信します。ID 0~1がモーター、2~5がサーボです"
+  },
+  "evlabmotion_verify": {
+    "message0": "モーションモジュール %1 の読み戻し検証に成功",
+    "tooltip": "コプロセッサが受信した最後のフレームを読み戻し、ローカルの記録と比較します。エンドツーエンドの確認に使えます"
+  },
+  "evlabmotion_read_frame_byte": {
+    "message0": "モーションモジュール %1 読み戻しフレームの %2",
+    "tooltip": "コプロセッサから最後に受信したフレームを読み戻して1バイト取り出します。失敗時は -1 を返します",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "フレームID",
+            "0"
+          ],
+          [
+            "引数1",
+            "1"
+          ],
+          [
+            "引数2",
+            "2"
+          ]
+        ]
+      }
+    ]
+  },
+  "evlabmotion_last_frame_byte": {
+    "message0": "モーションモジュール %1 最後に送信したフレームの %2",
+    "tooltip": "ローカルに記録された最後の送信フレームから1バイト取り出します。I2C通信は発生しません",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "フレームID",
+            "0"
+          ],
+          [
+            "引数1",
+            "1"
+          ],
+          [
+            "引数2",
+            "2"
+          ]
+        ]
+      }
+    ]
+  },
+  "evlabmotion_last_error": {
+    "message0": "モーションモジュール %1 の最新エラーコード",
+    "tooltip": "直近のエラーコードを読み取ります。読み取ると状態がクリアされるため、一度しか読めません"
+  },
+  "evlabmotion_last_write": {
+    "message0": "モーションモジュール %1 の最終送信時刻",
+    "tooltip": "最後にフレーム送信が成功した時点の millis() ミリ秒値を返します"
+  },
+  "evlabmotion_error_const": {
+    "message0": "エラーコード %1",
+    "tooltip": "エラーコード定数です。最新エラーコードと比較して障害の種類を判定します",
+    "args0": [
+      {
+        "options": [
+          [
+            "正常",
+            "EVLABMOTION_OK"
+          ],
+          [
+            "接続失敗",
+            "EVLABMOTION_ERROR_CONNECT"
+          ],
+          [
+            "インデックス範囲外",
+            "EVLABMOTION_ERROR_INDEX"
+          ],
+          [
+            "角度範囲外",
+            "EVLABMOTION_ERROR_ANGLE"
+          ],
+          [
+            "バイト欠落",
+            "EVLABMOTION_ERROR_MISSING_BYTES"
+          ],
+          [
+            "読み戻し不一致",
+            "EVLABMOTION_ERROR_VERIFY"
+          ]
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,226 @@
+{
+  "toolbox_name": "Módulo de movimiento",
+  "toolbox_categories": [
+    "Inicialización",
+    "Servo",
+    "Motor",
+    "Trama cruda y verificación",
+    "Estado"
+  ],
+  "evlabmotion_init": {
+    "message0": "inicializar módulo de movimiento %1 bus I2C %2",
+    "tooltip": "Inicializar el coprocesador de servos y motores del EasyVoiceLab 1306 (dirección I2C fija 0x10) y comprobar que responde"
+  },
+  "evlabmotion_is_connected": {
+    "message0": "módulo de movimiento %1 está conectado",
+    "tooltip": "Enviar una transacción de escritura vacía para confirmar que el enlace I2C funciona"
+  },
+  "evlabmotion_get_address": {
+    "message0": "dirección I2C del módulo de movimiento %1",
+    "tooltip": "Devuelve la dirección I2C del coprocesador, fijada en 0x10 (16 en decimal)"
+  },
+  "evlabmotion_set_servo": {
+    "message0": "módulo de movimiento %1 poner el servo %2 a %3 grados",
+    "tooltip": "Ajustar el ángulo de un canal de servo, canal 1-4, ángulo 0-180 grados",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "1",
+            "1"
+          ],
+          [
+            "2",
+            "2"
+          ],
+          [
+            "3",
+            "3"
+          ],
+          [
+            "4",
+            "4"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "evlabmotion_set_all_servos": {
+    "message0": "módulo de movimiento %1 todos los servos a %2 grados",
+    "tooltip": "Llevar los cuatro canales de servo al mismo ángulo, enviado como cuatro tramas"
+  },
+  "evlabmotion_motor_run": {
+    "message0": "módulo de movimiento %1 motor %2 %3 velocidad %4",
+    "tooltip": "Accionar el canal de motor CC 1-2 hacia adelante o hacia atrás, velocidad 0-255",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "1",
+            "1"
+          ],
+          [
+            "2",
+            "2"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "adelante",
+            "FORWARD"
+          ],
+          [
+            "atrás",
+            "BACKWARD"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "evlabmotion_set_motor": {
+    "message0": "módulo de movimiento %1 motor %2 dirección %3 velocidad %4",
+    "tooltip": "Accionar un motor con una dirección numérica, distinto de 0 es adelante y 0 es atrás, útil cuando el valor procede de una variable",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "1",
+            "1"
+          ],
+          [
+            "2",
+            "2"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "evlabmotion_stop_motor": {
+    "message0": "módulo de movimiento %1 detener el motor %2",
+    "tooltip": "Poner la velocidad del motor a 0; ambas entradas del medio puente pasan a nivel bajo, el motor se detiene por inercia en lugar de frenar",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "1",
+            "1"
+          ],
+          [
+            "2",
+            "2"
+          ]
+        ]
+      }
+    ]
+  },
+  "evlabmotion_stop_motors": {
+    "message0": "módulo de movimiento %1 detener todos los motores",
+    "tooltip": "Detener los dos canales de motor; los servos mantienen su ángulo actual"
+  },
+  "evlabmotion_send_frame": {
+    "message0": "módulo de movimiento %1 enviar trama cruda ID %2 arg1 %3 arg2 %4",
+    "tooltip": "Enviar una trama de protocolo cruda de 3 bytes sin comprobación de rango. Los ID 0-1 son motores y 2-5 son servos"
+  },
+  "evlabmotion_verify": {
+    "message0": "módulo de movimiento %1 relectura coincide",
+    "tooltip": "Releer la última trama recibida por el coprocesador y compararla con la copia local, una comprobación de enlace de extremo a extremo"
+  },
+  "evlabmotion_read_frame_byte": {
+    "message0": "módulo de movimiento %1 trama releída %2",
+    "tooltip": "Releer la última trama recibida por el coprocesador y extraer un byte, devuelve -1 si la lectura falla",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "ID de trama",
+            "0"
+          ],
+          [
+            "arg1",
+            "1"
+          ],
+          [
+            "arg2",
+            "2"
+          ]
+        ]
+      }
+    ]
+  },
+  "evlabmotion_last_frame_byte": {
+    "message0": "módulo de movimiento %1 última trama enviada %2",
+    "tooltip": "Extraer un byte de la última trama enviada guardada localmente, sin tráfico I2C",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "ID de trama",
+            "0"
+          ],
+          [
+            "arg1",
+            "1"
+          ],
+          [
+            "arg2",
+            "2"
+          ]
+        ]
+      }
+    ]
+  },
+  "evlabmotion_last_error": {
+    "message0": "módulo de movimiento %1 último código de error",
+    "tooltip": "Leer el código de error más reciente; la lectura borra el estado, así que solo puede leerse una vez"
+  },
+  "evlabmotion_last_write": {
+    "message0": "módulo de movimiento %1 hora del último envío",
+    "tooltip": "Devuelve la marca de tiempo millis() de la última trama enviada correctamente"
+  },
+  "evlabmotion_error_const": {
+    "message0": "código de error %1",
+    "tooltip": "Constante de código de error, compárala con el último código de error para distinguir el fallo",
+    "args0": [
+      {
+        "options": [
+          [
+            "OK",
+            "EVLABMOTION_OK"
+          ],
+          [
+            "fallo de conexión",
+            "EVLABMOTION_ERROR_CONNECT"
+          ],
+          [
+            "índice fuera de rango",
+            "EVLABMOTION_ERROR_INDEX"
+          ],
+          [
+            "ángulo fuera de rango",
+            "EVLABMOTION_ERROR_ANGLE"
+          ],
+          [
+            "faltan bytes",
+            "EVLABMOTION_ERROR_MISSING_BYTES"
+          ],
+          [
+            "la relectura no coincide",
+            "EVLABMOTION_ERROR_VERIFY"
+          ]
+        ]
+      }
+    ]
+  }
+}
