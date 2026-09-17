@@ -1,0 +1,116 @@
+{
+  "toolbox_name": "micro-ROS",
+  "microros_wifi_connect": {
+    "message0": "micro-ROS WiFi 연결 SSID %1 비밀번호 %2 Agent IP %3 Agent 포트 %4",
+    "tooltip": "WiFi에 연결하고 micro-ROS Agent 주소를 설정합니다(WiFi 연결 성공까지 차단되며 초기화에서만 사용)",
+    "args0": [
+      null,
+      null,
+      null,
+      null
+    ]
+  },
+  "microros_node_init": {
+    "message0": "micro-ROS 노드 초기화 이름 %1",
+    "tooltip": "할당자, rclc 지원 및 기본 노드를 생성합니다(실패 시 정지). 퍼블리셔/서브스크라이버 생성 전에 실행해야 합니다",
+    "args0": [
+      null
+    ]
+  },
+  "microros_publisher_create": {
+    "message0": "micro-ROS 퍼블리셔 생성 %1 메시지 타입 %2 토픽 %3",
+    "tooltip": "노드에 best-effort 퍼블리셔를 생성합니다(실패 시 정지). 노드 초기화 후에 사용합니다",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "정수 Int32",
+            "Int32"
+          ],
+          [
+            "단정도 부동소수점 Float32",
+            "Float32"
+          ],
+          [
+            "배정도 부동소수점 Float64",
+            "Float64"
+          ],
+          [
+            "불리언 Bool",
+            "Bool"
+          ],
+          [
+            "문자열 String",
+            "String"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "microros_publish": {
+    "message0": "micro-ROS 발행 %1 메시지 %2",
+    "tooltip": "생성된 퍼블리셔로 메시지를 하나 발행합니다. 값 타입은 퍼블리셔 메시지 타입과 일치해야 합니다",
+    "args0": [
+      null,
+      null
+    ]
+  },
+  "microros_subscriber_create": {
+    "message0": "micro-ROS 서브스크라이버 생성 %1 메시지 타입 %2 토픽 %3 수신 시 %4",
+    "tooltip": "서브스크라이버, 전용 실행기, 콜백을 생성합니다(새 메시지 수신 시 내부 블록 실행). 노드 초기화 후에 사용합니다",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "정수 Int32",
+            "Int32"
+          ],
+          [
+            "단정도 부동소수점 Float32",
+            "Float32"
+          ],
+          [
+            "배정도 부동소수점 Float64",
+            "Float64"
+          ],
+          [
+            "불리언 Bool",
+            "Bool"
+          ],
+          [
+            "문자열 String",
+            "String"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "microros_subscriber_data": {
+    "message0": "micro-ROS %1 이(가) 수신한 데이터",
+    "tooltip": "서브스크라이버가 가장 최근에 수신한 메시지 데이터를 읽습니다(숫자 타입은 숫자, String은 문자열). 보통 콜백 안에서 사용합니다",
+    "args0": [
+      null
+    ]
+  },
+  "microros_spin_some": {
+    "message0": "micro-ROS %1 의 새 메시지 처리 대기 시간(밀리초) %2",
+    "tooltip": "서브스크라이버에 새 메시지가 있는지 확인하고 콜백을 실행합니다(루프 안에 배치)",
+    "args0": [
+      null,
+      null
+    ]
+  },
+  "microros_udp_test": {
+    "message0": "micro-ROS UDP 연결 테스트 대상 IP %1 대상 포트 %2",
+    "tooltip": "대상 주소로 UDP 테스트 패킷 5개를 연속 전송하고 매번 결과를 출력합니다(네트워크 연결/방화벽 문제 진단용, 초기화에서 사용)",
+    "args0": [
+      null,
+      null
+    ]
+  }
+}

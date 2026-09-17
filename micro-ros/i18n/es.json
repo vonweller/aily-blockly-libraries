@@ -1,0 +1,116 @@
+{
+  "toolbox_name": "micro-ROS",
+  "microros_wifi_connect": {
+    "message0": "conectar micro-ROS por WiFi SSID %1 contraseña %2 IP del Agent %3 puerto del Agent %4",
+    "tooltip": "Conecta el WiFi y configura la dirección del Agent micro-ROS (bloquea hasta conectar el WiFi; usar solo en la inicialización)",
+    "args0": [
+      null,
+      null,
+      null,
+      null
+    ]
+  },
+  "microros_node_init": {
+    "message0": "micro-ROS inicializar nodo nombre %1",
+    "tooltip": "Crea el asignador, el soporte rclc y el nodo por defecto (se detiene si falla); debe ejecutarse antes de crear publicadores/suscriptores",
+    "args0": [
+      null
+    ]
+  },
+  "microros_publisher_create": {
+    "message0": "micro-ROS crear publicador %1 tipo de mensaje %2 tema %3",
+    "tooltip": "Crea un publicador best-effort en el nodo (se detiene si falla); usar después de inicializar el nodo",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "entero Int32",
+            "Int32"
+          ],
+          [
+            "flotante simple Float32",
+            "Float32"
+          ],
+          [
+            "flotante doble Float64",
+            "Float64"
+          ],
+          [
+            "booleano Bool",
+            "Bool"
+          ],
+          [
+            "cadena String",
+            "String"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "microros_publish": {
+    "message0": "micro-ROS publicar %1 mensaje %2",
+    "tooltip": "Publica un mensaje con un publicador existente; el tipo del valor debe coincidir con el tipo de mensaje del publicador",
+    "args0": [
+      null,
+      null
+    ]
+  },
+  "microros_subscriber_create": {
+    "message0": "micro-ROS crear suscriptor %1 tipo de mensaje %2 tema %3 al recibir %4",
+    "tooltip": "Crea el suscriptor, su ejecutor y callback (los bloques internos se ejecutan con mensajes nuevos); usar después de inicializar el nodo",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "entero Int32",
+            "Int32"
+          ],
+          [
+            "flotante simple Float32",
+            "Float32"
+          ],
+          [
+            "flotante doble Float64",
+            "Float64"
+          ],
+          [
+            "booleano Bool",
+            "Bool"
+          ],
+          [
+            "cadena String",
+            "String"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "microros_subscriber_data": {
+    "message0": "micro-ROS datos recibidos por %1",
+    "tooltip": "Lee los últimos datos de mensaje recibidos (los tipos numéricos devuelven un número, String devuelve texto); úsalo dentro del callback",
+    "args0": [
+      null
+    ]
+  },
+  "microros_spin_some": {
+    "message0": "micro-ROS procesar mensajes nuevos de %1 espera ms %2",
+    "tooltip": "Comprueba si el suscriptor tiene mensajes nuevos y dispara el callback (colócalo en el bucle)",
+    "args0": [
+      null,
+      null
+    ]
+  },
+  "microros_udp_test": {
+    "message0": "micro-ROS prueba de conectividad UDP IP destino %1 puerto destino %2",
+    "tooltip": "Envía 5 paquetes UDP de prueba a la dirección destino e imprime cada resultado (para diagnosticar red/cortafuegos; usar en la inicialización)",
+    "args0": [
+      null,
+      null
+    ]
+  }
+}

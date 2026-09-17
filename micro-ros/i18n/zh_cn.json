@@ -1,0 +1,116 @@
+{
+  "toolbox_name": "micro-ROS",
+  "microros_wifi_connect": {
+    "message0": "micro-ROS 通过 WiFi 连接 SSID %1 密码 %2 Agent IP %3 Agent 端口 %4",
+    "tooltip": "连接 WiFi 并设置 micro-ROS Agent 地址（会阻塞直到 WiFi 连接成功，仅在初始化中使用）",
+    "args0": [
+      null,
+      null,
+      null,
+      null
+    ]
+  },
+  "microros_node_init": {
+    "message0": "micro-ROS 初始化节点 名称 %1",
+    "tooltip": "创建分配器、rclc 支持和默认节点（失败时停机），必须在使用发布器/订阅器之前执行",
+    "args0": [
+      null
+    ]
+  },
+  "microros_publisher_create": {
+    "message0": "micro-ROS 创建发布器 %1 消息类型 %2 话题 %3",
+    "tooltip": "在节点上创建 best-effort 发布器对象（失败时停机），需要在初始化节点之后",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "整数 Int32",
+            "Int32"
+          ],
+          [
+            "单精度浮点 Float32",
+            "Float32"
+          ],
+          [
+            "双精度浮点 Float64",
+            "Float64"
+          ],
+          [
+            "布尔 Bool",
+            "Bool"
+          ],
+          [
+            "字符串 String",
+            "String"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "microros_publish": {
+    "message0": "micro-ROS 发布 %1 消息 %2",
+    "tooltip": "向已创建的发布器发布一条消息，消息值类型需要与发布器的消息类型一致",
+    "args0": [
+      null,
+      null
+    ]
+  },
+  "microros_subscriber_create": {
+    "message0": "micro-ROS 创建订阅器 %1 消息类型 %2 话题 %3 收到消息时 %4",
+    "tooltip": "创建订阅器、专属执行器和回调（收到新消息时执行内部积木），需要在初始化节点之后",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "整数 Int32",
+            "Int32"
+          ],
+          [
+            "单精度浮点 Float32",
+            "Float32"
+          ],
+          [
+            "双精度浮点 Float64",
+            "Float64"
+          ],
+          [
+            "布尔 Bool",
+            "Bool"
+          ],
+          [
+            "字符串 String",
+            "String"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "microros_subscriber_data": {
+    "message0": "micro-ROS 订阅器 %1 收到的数据",
+    "tooltip": "读取订阅器最近收到的消息数据（数值类型返回数字，String 返回字符串），通常在订阅回调中使用",
+    "args0": [
+      null
+    ]
+  },
+  "microros_spin_some": {
+    "message0": "micro-ROS 处理订阅器 %1 的新消息 等待时长(毫秒) %2",
+    "tooltip": "检查该订阅器是否有新消息并触发回调（放在循环中反复执行）",
+    "args0": [
+      null,
+      null
+    ]
+  },
+  "microros_udp_test": {
+    "message0": "micro-ROS UDP 连通性测试 目标 IP %1 目标端口 %2",
+    "tooltip": "向目标地址连发 5 个 UDP 测试包并打印每次结果（用于排查网络连通性/防火墙，放在初始化中使用）",
+    "args0": [
+      null,
+      null
+    ]
+  }
+}

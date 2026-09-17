@@ -1,0 +1,116 @@
+{
+  "toolbox_name": "micro-ROS",
+  "microros_wifi_connect": {
+    "message0": "اتصال micro-ROS عبر WiFi SSID %1 كلمة المرور %2 عنوان الوكيل %3 منفذ الوكيل %4",
+    "tooltip": "يتصل بشبكة WiFi ويضبط عنوان وكيل micro-ROS (يحجب حتى نجاح اتصال WiFi؛ يُستخدم في التهيئة فقط)",
+    "args0": [
+      null,
+      null,
+      null,
+      null
+    ]
+  },
+  "microros_node_init": {
+    "message0": "micro-ROS تهيئة العقدة الاسم %1",
+    "tooltip": "ينشئ المخصص ودعم rclc والعقدة الافتراضية (يتوقف عند الفشل)؛ يجب تنفيذه قبل إنشاء الناشرين/المشتركين",
+    "args0": [
+      null
+    ]
+  },
+  "microros_publisher_create": {
+    "message0": "micro-ROS إنشاء ناشر %1 نوع الرسالة %2 الموضوع %3",
+    "tooltip": "ينشئ ناشر best-effort على العقدة (يتوقف عند الفشل)؛ يُستخدم بعد تهيئة العقدة",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "عدد صحيح Int32",
+            "Int32"
+          ],
+          [
+            "عشري مفرد Float32",
+            "Float32"
+          ],
+          [
+            "عشري مزدوج Float64",
+            "Float64"
+          ],
+          [
+            "منطقي Bool",
+            "Bool"
+          ],
+          [
+            "نص String",
+            "String"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "microros_publish": {
+    "message0": "micro-ROS نشر %1 رسالة %2",
+    "tooltip": "ينشر رسالة واحدة عبر ناشر موجود؛ يجب أن يطابق نوع القيمة نوع رسالة الناشر",
+    "args0": [
+      null,
+      null
+    ]
+  },
+  "microros_subscriber_create": {
+    "message0": "micro-ROS إنشاء مشترك %1 نوع الرسالة %2 الموضوع %3 عند الاستلام %4",
+    "tooltip": "ينشئ المشترك ومنفّذه ودالة الاستدعاء (تُنفَّذ الكتل الداخلية عند وصول رسالة جديدة)؛ يُستخدم بعد تهيئة العقدة",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "عدد صحيح Int32",
+            "Int32"
+          ],
+          [
+            "عشري مفرد Float32",
+            "Float32"
+          ],
+          [
+            "عشري مزدوج Float64",
+            "Float64"
+          ],
+          [
+            "منطقي Bool",
+            "Bool"
+          ],
+          [
+            "نص String",
+            "String"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "microros_subscriber_data": {
+    "message0": "micro-ROS البيانات المستلمة بواسطة %1",
+    "tooltip": "يقرأ أحدث بيانات الرسالة المستلمة (الأنواع الرقمية تُرجع رقمًا، وString تُرجع نصًا)؛ يُستخدم عادة داخل الاستدعاء",
+    "args0": [
+      null
+    ]
+  },
+  "microros_spin_some": {
+    "message0": "micro-ROS معالجة الرسائل الجديدة لـ %1 مدة الانتظار بالمللي ثانية %2",
+    "tooltip": "يتحقق من الرسائل الجديدة للمشترك ويشغّل الاستدعاء (ضعه في الحلقة)",
+    "args0": [
+      null,
+      null
+    ]
+  },
+  "microros_udp_test": {
+    "message0": "micro-ROS اختبار اتصال UDP عنوان IP الهدف %1 منفذ الهدف %2",
+    "tooltip": "يرسل 5 حزم UDP اختبارية إلى العنوان الهدف ويطبع كل نتيجة (لتشخيص الشبكة/الجدار الناري؛ يُستخدم في التهيئة)",
+    "args0": [
+      null,
+      null
+    ]
+  }
+}

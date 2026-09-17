@@ -514,6 +514,8 @@ function probeGeneratorHandler(loaded, handler, block, blockContract) {
     id: `generator-coverage-${block.type}`,
     type: block.type,
     isInFlyout: false,
+    isEnabled: () => true,
+    isInsertionMarker: () => false,
     inputList: args.filter(arg => arg?.name).map(arg => ({ name: arg.name })),
     workspace: createNoopProxy({
       isFlyout: false,
