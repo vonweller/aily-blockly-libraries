@@ -1,0 +1,89 @@
+{
+  "toolbox_name": "EVLab 实时时钟",
+  "evlabrtc_init": {
+    "message0": "【① 初始化时钟】 时钟 %1",
+    "tooltip": "初始化 PCF85063 实时时钟（I2C 地址 0x51，走板载默认 I2C 总线，无需选引脚，带纽扣电池备份）"
+  },
+  "evlabrtc_set_time": {
+    "message0": "【设置时间】 时钟 %1 年 %2 月 %3 日 %4 时 %5 分 %6 秒 %7",
+    "tooltip": "手动设置日期时间(年/月/日/时/分/秒)"
+  },
+  "evlabrtc_set_compile_time": {
+    "message0": "【设为编译时间】 时钟 %1",
+    "tooltip": "一键把时钟设成固件编译时刻(烧一次校准, 之后靠电池走时)"
+  },
+  "evlabrtc_read": {
+    "message0": "【读取一次】 时钟 %1",
+    "tooltip": "读一次当前时间, 之后用取值/格式化块获取"
+  },
+  "evlabrtc_get": {
+    "message0": "【时间字段】 时钟 %1 取 %2",
+    "tooltip": "取年/月/日/时/分/秒/星期(需先\"读取一次\")",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "年",
+            "year"
+          ],
+          [
+            "月",
+            "month"
+          ],
+          [
+            "日",
+            "day"
+          ],
+          [
+            "时",
+            "hour"
+          ],
+          [
+            "分",
+            "minute"
+          ],
+          [
+            "秒",
+            "second"
+          ],
+          [
+            "星期(0=日)",
+            "weekday"
+          ]
+        ]
+      }
+    ]
+  },
+  "evlabrtc_format": {
+    "message0": "【格式化时间】 时钟 %1 格式 %2",
+    "tooltip": "返回字符串: 日期时间/日期/时间(需先\"读取一次\")",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "日期时间",
+            "datetime"
+          ],
+          [
+            "日期",
+            "dateText"
+          ],
+          [
+            "时间",
+            "timeText"
+          ]
+        ]
+      }
+    ]
+  },
+  "evlabrtc_lost_power": {
+    "message0": "【时间失效?】 时钟 %1",
+    "tooltip": "振荡器停过(掉电无备份)=>时间不可信, 需重设"
+  },
+  "evlabrtc_present": {
+    "message0": "【时钟在?】 时钟 %1",
+    "tooltip": "I2C 探测 RTC 是否应答(0x51)"
+  }
+}
