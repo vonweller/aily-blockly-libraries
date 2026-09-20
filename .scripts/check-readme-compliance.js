@@ -309,7 +309,7 @@ function valueInputExample(arg) {
   const check = checkValues.join(' ').toLowerCase();
   const name = String(arg.name || '').toLowerCase();
   if (check.includes('boolean') || name.includes('bool') || name.includes('condition') || name === 'if') {
-    return 'logic_boolean(TRUE)';
+    return 'logic_boolean(true)';
   }
   if (check.includes('string') || check.includes('text') || /text|str|msg|message|ssid|password|topic|url|host/.test(name)) {
     return 'text("value")';
@@ -318,6 +318,8 @@ function valueInputExample(arg) {
   if (/baud|speed/.test(name)) return 'math_number(9600)';
   if (/time|delay|interval|duration|ms/.test(name)) return 'math_number(1000)';
   if (/angle|degree/.test(name)) return 'math_number(90)';
+  if (/^(by|step)$/.test(name)) return 'math_number(1)';
+  if (name === 'to') return 'math_number(10)';
   return 'math_number(0)';
 }
 
@@ -752,7 +754,7 @@ function generateAiReadme(
     md += `${note++}. **Variable**: \`${creator.type}\` creates a Blockly variable. Use \`$varName\` only for field_variable slots; input_value slots must use the explicit \`variables_get($varName)\` block.\n`;
   }
   md += `${note++}. **Parameter order**: ABS parameters follow \`block.json\` args order.\n`;
-  md += `${note++}. **Input values**: use \`math_number(n)\`, \`text("s")\`, \`logic_boolean(TRUE/FALSE)\`, variables, or nested value blocks.\n`;
+  md += `${note++}. **Input values**: use \`math_number(n)\`, \`text("s")\`, \`logic_boolean(true/false)\`, variables, or nested value blocks.\n`;
   const runtimeShapeBlocks = allBlockContractEntries(contract)
     .filter(([, blockContract]) => (
       (Array.isArray(blockContract?.variants) && blockContract.variants.length > 0)
@@ -1022,6 +1024,7 @@ function absSlotCandidates(block, blockContract) {
 }
 
 function validateAbsCallAgainstSlots(parsed, slots, when, location, requireComplete, variadics = []) {
+  slots = [...slots]; // Dynamic arguments belong to this occurrence, not later examples.
   const messages = [];
   const slotByName = new Map(slots.map((arg) => [arg.name, arg]));
   const assigned = new Map();
@@ -1087,18 +1090,13 @@ function validateAbsCallAgainstSlots(parsed, slots, when, location, requireCompl
         .map(normalizeAbsScalar)
       : [];
     const normalizedValue = normalizeAbsScalar(value);
-    const booleanDropdown = dropdownAllowed.length > 0
-      && dropdownAllowed.every(option => option === 'true' || option === 'false');
-    const matchesDropdown = dropdownAllowed.includes(normalizedValue)
-      || (booleanDropdown && dropdownAllowed.includes(normalizedValue.toLowerCase()));
+    const matchesDropdown = dropdownAllowed.includes(normalizedValue);
     if (slot.type === 'field_variable') {
       if (/^variables_get\s*\(/.test(value)) {
         messages.push(`${location}: ${slot.name} is field_variable and must use $name, not variables_get($name)`);
       } else if (!isFieldVariableReference(value)) {
         messages.push(`${location}: ${slot.name} is field_variable and must be a $name reference`);
       }
-    } else if (slot.type === 'input_value' && isFieldVariableReference(value)) {
-      messages.push(`${location}: ${slot.name} is input_value and must use variables_get($name), not bare $name`);
     } else if (slot.type !== 'input_value'
       && !matchesDropdown
       && /^[A-Za-z_][A-Za-z0-9_]*\s*\(/.test(value)) {
@@ -1299,26 +1297,73 @@ function unfencedAbsExampleBlocks(content) {
 }
 
 function callsOfType(text, type) {
+  return absCallsOfType(text, type).map(item => item.call);
+}
+
+/** Source identity matters: two identical calls can have different bodies. */
+function absCallsOfType(text, type) {
   const calls = [];
+  // Keep source offsets while excluding strings/comments from call discovery.
+  const syntax = text.split('\n').map(stripAbsStringsAndComments).join('\n');
+  const escapedType = type.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const pattern = new RegExp(`\\b${escapedType}\\s*\\(`, 'g');
   let from = 0;
   while (from < text.length) {
-    const index = text.indexOf(`${type}(`, from);
-    if (index < 0) break;
-    const before = index > 0 ? text[index - 1] : '';
-    if (before && /[A-Za-z0-9_]/.test(before)) {
-      from = index + type.length;
-      continue;
-    }
-    const openIndex = index + type.length;
+    pattern.lastIndex = from;
+    const match = pattern.exec(syntax);
+    if (!match) break;
+    const index = match.index;
+    const openIndex = index + match[0].length - 1;
     const closeIndex = findMatchingParen(text, openIndex);
     if (closeIndex < 0) {
-      calls.push(text.slice(index));
+      calls.push({ call: text.slice(index), start: index });
       break;
     }
-    calls.push(text.slice(index, closeIndex + 1));
-    from = closeIndex + 1;
+    calls.push({ call: text.slice(index, closeIndex + 1), start: index });
+    // Nested calls of the same block type also need their own slot checks.
+    from = openIndex + 1;
   }
   return calls;
+}
+
+/** Shared by own-library and cross-library checks. Read only this occurrence's
+ * direct sections; nested/sibling blocks cannot satisfy the parent's slots. */
+function callWithNamedValueInputs(region, call, candidate, start = region.indexOf(call)) {
+  if (start < 0) return call;
+  const lineStart = region.lastIndexOf('\n', start - 1) + 1;
+  const prefix = region.slice(lineStart, start);
+  if (prefix.trim()) return call; // An inline nested expression has no statement body.
+  const parentIndent = prefix.length;
+  const after = region.indexOf('\n', start + call.length);
+  if (after < 0) return call;
+  const candidates = absSlotCandidates(candidate.block, candidate.contract);
+  const slots = candidates.flatMap(item => item.slots);
+  const names = new Set(slots.filter(slot => slot.type === 'input_value').map(slot => slot.name));
+  const accepted = name => names.has(name) || candidates.some(item => item.variadics.some(variadic => {
+    const suffix = name.startsWith(variadic.prefix) ? name.slice(variadic.prefix.length) : '';
+    return variadic.type === 'input_value' && /^\d+$/.test(suffix) && Number(suffix) >= variadic.startIndex;
+  }));
+  const named = [];
+  const lines = region.slice(after + 1).split(/\r?\n/);
+  let markerIndent;
+  for (let index = 0; index < lines.length; index++) {
+    const line = lines[index];
+    if (!line.trim() || line.trim().startsWith('#')) continue;
+    const indent = line.match(/^\s*/)[0].length;
+    if (indent <= parentIndent) break;
+    markerIndent ??= indent;
+    if (indent !== markerIndent) continue;
+    const marker = line.trim().match(/^@(\w+):\s*(.*)$/);
+    if (!marker || !accepted(marker[1]) && !marker[2]) continue;
+    let value = marker[2];
+    if (!value && index + 1 < lines.length && lines[index + 1].match(/^\s*/)[0].length > indent) value = lines[++index].trim();
+    const open = value.indexOf('(');
+    while (open >= 0 && findMatchingParen(value, open) < 0 && index + 1 < lines.length) value += '\n' + lines[++index];
+    if (value) named.push(`${marker[1]}=${value}`);
+  }
+  if (!named.length) return call;
+  const existing = call.slice(call.indexOf('(') + 1, -1).trim();
+  return `${call.slice(0, -1)}${existing ? ', ' : ''}${named.join(', ')})`;
 }
 
 function validateAbsExampleShape(example, exampleIndex) {
@@ -1494,8 +1539,8 @@ function validateAiContract(contract, blocks) {
       if (variadic.type !== 'input_value') {
         messages.push(`${label} type must be input_value`);
       }
-      if (!Number.isInteger(variadic.sampleCount) || variadic.sampleCount < 1) {
-        messages.push(`${label} sampleCount must be a positive integer`);
+      if (!Number.isInteger(variadic.sampleCount) || variadic.sampleCount < 0) {
+        messages.push(`${label} sampleCount must be a non-negative integer (zero for optional repetitions)`);
       }
       if (variadic.example == null || String(variadic.example).trim() === '') {
         messages.push(`${label} requires an executable example`);
@@ -1586,6 +1631,17 @@ function validateAiAbsContracts(content, blocks, contract = null) {
         true,
         blockContractFor(contract, block.type),
       ));
+      // Table cells are executable examples too. Check nested calls using
+      // their own definitions rather than just accepting any input_value.
+      for (const nested of blocks) {
+        if (!nested?.type) continue;
+        for (const call of callsOfType(tableAbs, nested.type)) {
+          if (call === tableAbs) continue;
+          messages.push(...validateAbsCall(nested, call,
+            `Block Definitions ${block.type} nested ${nested.type}`, true,
+            blockContractFor(contract, nested.type)));
+        }
+      }
     }
   }
 
@@ -1599,12 +1655,12 @@ function validateAiAbsContracts(content, blocks, contract = null) {
   documentedExamples.forEach((example, exampleIndex) => {
     for (const block of blocks) {
       if (!block || !block.type) continue;
-      const calls = callsOfType(example, block.type);
+      const calls = absCallsOfType(example, block.type);
       libraryCallCount += calls.length;
-      for (const call of calls) {
+      for (const { call, start } of calls) {
         messages.push(...validateAbsCall(
           block,
-          call,
+          callWithNamedValueInputs(example, call, { block, contract: blockContractFor(contract, block.type) }, start),
           `ABS example ${exampleIndex + 1} ${block.type}`,
           true,
           blockContractFor(contract, block.type),
@@ -1629,7 +1685,8 @@ function validateAiAbsContracts(content, blocks, contract = null) {
     const tableAbs = tableAbsForBlock(content, block.type);
     if (typeof tableAbs === 'string') documentedCalls.push({ call: tableAbs, example: null });
     for (const example of documentedExamples) {
-      for (const call of callsOfType(example, block.type)) documentedCalls.push({ call, example });
+      for (const { call, start } of absCallsOfType(example, block.type)) documentedCalls.push({
+        call: callWithNamedValueInputs(example, call, { block, contract: blockContract }, start), example });
     }
     for (const candidate of candidates) {
       if (candidate.document === false) continue;
@@ -1947,6 +2004,7 @@ module.exports = {
   validateAiContract,
   validateAbsCall,
   absFormat,
+  absArgExample,
   generateBlockTableRow,
   paramsDescriptionForBlock,
   runtimeBlockDefinitions,
@@ -1959,5 +2017,7 @@ module.exports = {
   blockDefinitionRows,
   unfencedAbsExampleBlocks,
   callsOfType,
+  absCallsOfType,
+  callWithNamedValueInputs,
   AI_HARD_MAX_BYTES,
 };

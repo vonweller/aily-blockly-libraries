@@ -8,6 +8,7 @@ const {
   allDocumentedBlocks,
   blockContractFor,
   runtimeBlockDefinitions,
+  absArgExample,
 } = require('./check-readme-compliance');
 const { loadLibraryContract } = require('./readme-library-contracts');
 
@@ -444,7 +445,7 @@ function defaultFieldValue(arg) {
   }
   if (arg.type === 'field_checkbox') return arg.checked === false ? 'FALSE' : 'TRUE';
   if (arg.type === 'field_number') return String(arg.value ?? 0);
-  if (arg.type === 'field_variable') return arg.variable || 'item';
+  if (arg.type === 'field_variable') return arg.variable || String(arg.name || 'var').toLowerCase();
   if (arg.type === 'field_input') return arg.text || 'value';
   if (String(arg.type).startsWith('field_colour')) return arg.colour || '#000000';
   if (String(arg.type).startsWith('field_')) {
@@ -553,11 +554,12 @@ function probeGeneratorHandler(loaded, handler, block, blockContract) {
     reads.push({ kind: 'value', name });
     const arg = argsByName.get(name);
     if (!arg || arg.type !== 'input_value') return '';
-    const checks = Array.isArray(arg.check) ? arg.check : [arg.check];
-    if (checks.includes('String')) return '"value"';
-    if (checks.includes('Boolean')) return 'true';
-    if (checks.includes('Character')) return "'\\n'";
-    return '1';
+    // Use the same example as the ABS column. These are representative probes,
+    // not a compiler: fail explicitly when a nested expression needs runtime.
+    const example = absArgExample(arg);
+    const literal = /^(?:math_number|logic_boolean|text)\((.*)\)$/.exec(example);
+    if (literal) return literal[1];
+    throw new Error(`Generated-code preview requires runtime evaluation: ${example}`);
   };
   const statementToCode = (_sourceBlock, name) => {
     reads.push({ kind: 'statement', name });

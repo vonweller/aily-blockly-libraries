@@ -7,9 +7,11 @@ const {
   validateAbsCall,
   fencedCodeBlocks,
   unfencedAbsExampleBlocks,
-  callsOfType,
+  absCallsOfType,
+  callWithNamedValueInputs,
   allDocumentedBlocks,
   blockContractFor,
+  blockDefinitionRows,
 } = require('./check-readme-compliance');
 const { loadLibraryContract } = require('./readme-library-contracts');
 
@@ -62,7 +64,9 @@ function runtimeShapeIsDocumentable(block, contractForBlock) {
 function exampleRegions(content) {
   const fenced = fencedCodeBlocks(content);
   const unfenced = unfencedAbsExampleBlocks(content);
-  return [...fenced, ...unfenced];
+  // Include ABS table cells (never the generated C++ column).
+  const tableCalls = blockDefinitionRows(content).map(row => row.abs.replace(/^`|`$/g, ''));
+  return [...fenced, ...unfenced, ...tableCalls];
 }
 
 function calledTypes(text, knownTypes) {
@@ -73,31 +77,6 @@ function calledTypes(text, knownTypes) {
     if (knownTypes.has(match[1])) found.add(match[1]);
   }
   return found;
-}
-
-function acceptedValueNames(candidate) {
-  const names = new Set(visibleArgs(candidate.block)
-    .filter(arg => arg.type === 'input_value')
-    .map(arg => arg.name));
-  const variants = Array.isArray(candidate.contract?.variants) ? candidate.contract.variants : [];
-  for (const variant of variants) {
-    for (const arg of Array.isArray(variant?.appendArgs) ? variant.appendArgs : []) {
-      if (arg?.type === 'input_value' && arg.name) names.add(arg.name);
-    }
-  }
-  return names;
-}
-
-function acceptsValueName(candidate, name, accepted = acceptedValueNames(candidate)) {
-  if (accepted.has(name)) return true;
-  const variadics = Array.isArray(candidate.contract?.variadic)
-    ? candidate.contract.variadic
-    : (candidate.contract?.variadic ? [candidate.contract.variadic] : []);
-  return variadics.some(item => {
-    const escaped = String(item?.prefix || '').replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-    const match = name.match(new RegExp(`^${escaped}(\\d+)$`));
-    return match && Number(match[1]) >= Number(item.startIndex || 0) && item.type === 'input_value';
-  });
 }
 
 function candidateAbiSignature(candidate) {
@@ -131,36 +110,6 @@ function candidateAbiSignature(candidate) {
     : (candidate.contract?.variadic ? [candidate.contract.variadic] : []))
     .map(item => ({ prefix: item?.prefix, startIndex: item?.startIndex, type: item?.type }));
   return JSON.stringify({ args, connection, variants, variadics });
-}
-
-function callWithNamedValueInputs(region, call, candidate) {
-  const lines = String(region || '').split(/\r?\n/);
-  for (let index = 0; index < lines.length; index++) {
-    const line = lines[index];
-    if (!line.trim().startsWith(call)) continue;
-    const parentIndent = line.match(/^\s*/)[0].length;
-    let markerIndent = null;
-    const named = [];
-    const accepted = acceptedValueNames(candidate);
-    for (let childIndex = index + 1; childIndex < lines.length; childIndex++) {
-      const childLine = lines[childIndex];
-      if (!childLine.trim() || childLine.trim().startsWith('#')) continue;
-      const childIndent = childLine.match(/^\s*/)[0].length;
-      if (childIndent <= parentIndent) break;
-      if (markerIndent == null) {
-        if (!childLine.trim().startsWith('@')) return call;
-        markerIndent = childIndent;
-      }
-      if (childIndent !== markerIndent) continue;
-      const marker = childLine.trim().match(/^@(\w+):\s*(.+)$/);
-      if (marker && acceptsValueName(candidate, marker[1], accepted)) named.push(`${marker[1]}=${marker[2]}`);
-    }
-    if (named.length === 0) return call;
-    const open = call.indexOf('(');
-    const existing = call.slice(open + 1, -1).trim();
-    return `${call.slice(0, -1)}${existing ? ', ' : ''}${named.join(', ')})`;
-  }
-  return call;
 }
 
 function parseCliArgs(argv) {
@@ -240,7 +189,7 @@ function main(argv = process.argv.slice(2)) {
     regions.forEach((region, regionIndex) => {
       for (const type of calledTypes(region, knownTypes)) {
         if (ownTypes.has(type)) continue;
-        for (const call of callsOfType(region, type)) {
+        for (const { call, start } of absCallsOfType(region, type)) {
           const candidates = (catalog.get(type) || []).filter(candidate =>
             runtimeShapeIsDocumentable(candidate.block, candidate.contract));
           if (candidates.length === 0) continue;
@@ -250,7 +199,7 @@ function main(argv = process.argv.slice(2)) {
             candidate,
             messages: validateAbsCall(
               candidate.block,
-              callWithNamedValueInputs(region, call, candidate),
+              callWithNamedValueInputs(region, call, candidate, start),
               location,
               true,
               candidate.contract,

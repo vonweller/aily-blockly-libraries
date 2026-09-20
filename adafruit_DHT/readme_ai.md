@@ -52,6 +52,6 @@ arduino_loop()
 
 1. **Variable**: `dht_init("dht", DHT11, 2)` creates `$dht`; pass `$dht` directly to DHT field_variable slots. Use `variables_get($dht)` only when a different block expects an input_value.
 2. **Parameter order**: ABS parameters follow `block.json` args order.
-3. **Input values**: use `math_number(n)`, `text("s")`, `logic_boolean(TRUE/FALSE)`, variables, or nested value blocks.
+3. **Input values**: use `math_number(n)`, `text("s")`, `logic_boolean(true/false)`, variables, or nested value blocks.
 4. **Dynamic fields**: the third positional argument is `PIN` for DHT11/DHT21/DHT22 and `WIRE` for DHT20; it is required even though it is injected by a Blockly extension rather than listed in static `args0`.
 5. **Custom names**: custom sensor names are supported, but the initializer and every later field-variable reference must match exactly, for example `dht_init("roomSensor", DHT20, Wire)` with `$roomSensor`.
