@@ -67,7 +67,26 @@ jobs:
     - name: Install dependencies
       run: npm install js-yaml
 
+    - name: Detect README governance tooling changes
+      id: readme-governance-tooling
+      run: |
+        if [ "${{ github.event_name }}" = "pull_request" ]; then
+          changed_files=$(git diff --name-only --no-renames "${{ github.event.pull_request.base.sha }}...${{ github.event.pull_request.head.sha }}")
+        elif [ "${{ github.event.before }}" != "0000000000000000000000000000000000000000" ]; then
+          changed_files=$(git diff --name-only --no-renames "${{ github.event.before }}" "${{ github.sha }}")
+        else
+          changed_files=$(git diff-tree --root --no-commit-id --name-only --no-renames -r "${{ github.sha }}")
+        fi
+
+        if printf '%s\n' "$changed_files" | grep -Eq '^(\.scripts/|\.github/workflows/library-compliance-check\.yml$|\.github/workflows/library-full-audit\.yml$|package\.json$)'; then
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+        else
+          echo "changed=false" >> "$GITHUB_OUTPUT"
+          echo "README governance unit tests skipped for library-only changes."
+        fi
+
     - name: Test README governance unit tests
+      if: steps.readme-governance-tooling.outputs.changed == 'true'
       run: npm run readme:test
 
     - name: Validate changed README and ABS contracts
