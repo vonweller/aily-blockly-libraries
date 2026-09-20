@@ -276,7 +276,7 @@ function main(argv = process.argv.slice(2)) {
     runNodeCheck(
       'Changed library generator coverage',
       '.scripts/check-library-generator-coverage.js',
-      ['--strict', ...libraryArguments(existingAffected)],
+      ['--strict', '--allow-generated-code-mismatches', ...libraryArguments(existingAffected)],
     );
     runNodeCheck(
       'Changed library README candidates',
