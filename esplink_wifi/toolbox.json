@@ -1,0 +1,346 @@
+{
+  "kind": "category",
+  "name": "ESPLink WiFi",
+  "icon": "fa-light fa-wifi",
+  "colour": "#0277BD",
+  "contents": [
+    {
+      "kind": "category",
+      "name": "C3链路",
+      "icon": "fa-light fa-link",
+      "colour": "#607D8B",
+      "contents": [
+        { "kind": "block", "type": "esplink_begin" },
+        { "kind": "block", "type": "esplink_begin_serial" },
+        { "kind": "block", "type": "esplink_bind_stream" },
+        { "kind": "block", "type": "esplink_end" },
+        { "kind": "block", "type": "esplink_poll" },
+        { "kind": "block", "type": "esplink_ready" },
+        { "kind": "block", "type": "esplink_ping" },
+        { "kind": "block", "type": "esplink_session" },
+        { "kind": "block", "type": "esplink_last_error" },
+        { "kind": "block", "type": "esplink_error_code" },
+        { "kind": "block", "type": "esplink_firmware_version" },
+        { "kind": "block", "type": "esplink_capability" },
+        { "kind": "block", "type": "esplink_has_feature" },
+        { "kind": "block", "type": "esplink_stat" }
+      ]
+    },
+    {
+      "kind": "category",
+      "name": "连接管理",
+      "icon": "fa-light fa-wifi",
+      "colour": "#0277BD",
+      "contents": [
+        {
+          "kind": "block",
+          "type": "esplink_wifi_connect_quick",
+          "inputs": {
+            "SSID": { "shadow": { "type": "text", "fields": { "TEXT": "yourNetwork" } } },
+            "PASSWORD": { "shadow": { "type": "text", "fields": { "TEXT": "yourPassword" } } }
+          }
+        },
+        {
+          "kind": "block",
+          "type": "esplink_wifi_begin",
+          "inputs": {
+            "SSID": { "shadow": { "type": "text", "fields": { "TEXT": "yourNetwork" } } },
+            "PASSWORD": { "shadow": { "type": "text", "fields": { "TEXT": "yourPassword" } } }
+          }
+        },
+        {
+          "kind": "block",
+          "type": "esplink_wifi_begin_advanced",
+          "inputs": {
+            "SSID": { "shadow": { "type": "text", "fields": { "TEXT": "yourNetwork" } } },
+            "PASSWORD": { "shadow": { "type": "text", "fields": { "TEXT": "yourPassword" } } },
+            "CHANNEL": { "shadow": { "type": "math_number", "fields": { "NUM": 0 } } }
+          }
+        },
+        { "kind": "block", "type": "esplink_wifi_wait_connected" },
+        { "kind": "block", "type": "esplink_wifi_is_connected" },
+        { "kind": "block", "type": "esplink_wifi_status" },
+        { "kind": "block", "type": "esplink_wifi_status_type" },
+        { "kind": "block", "type": "esplink_wifi_disconnect" },
+        { "kind": "block", "type": "esplink_wifi_reconnect" },
+        { "kind": "block", "type": "esplink_wifi_set_auto_reconnect" },
+        { "kind": "block", "type": "esplink_wifi_set_mode" },
+        { "kind": "block", "type": "esplink_wifi_get_mode" },
+        { "kind": "block", "type": "esplink_wifi_poll" },
+        { "kind": "block", "type": "esplink_wifi_end" }
+      ]
+    },
+    {
+      "kind": "category",
+      "name": "网络信息",
+      "icon": "fa-light fa-network-wired",
+      "colour": "#0277BD",
+      "contents": [
+        { "kind": "block", "type": "esplink_wifi_ip_info" },
+        { "kind": "block", "type": "esplink_wifi_ssid" },
+        { "kind": "block", "type": "esplink_wifi_rssi" },
+        { "kind": "block", "type": "esplink_wifi_channel" },
+        { "kind": "block", "type": "esplink_wifi_mac" },
+        {
+          "kind": "block",
+          "type": "esplink_wifi_set_hostname",
+          "inputs": {
+            "NAME": { "shadow": { "type": "text", "fields": { "TEXT": "esplink-device" } } }
+          }
+        },
+        { "kind": "block", "type": "esplink_wifi_get_hostname" },
+        {
+          "kind": "block",
+          "type": "esplink_wifi_config_static",
+          "inputs": {
+            "IP": { "shadow": { "type": "text", "fields": { "TEXT": "192.168.1.50" } } },
+            "GATEWAY": { "shadow": { "type": "text", "fields": { "TEXT": "192.168.1.1" } } },
+            "SUBNET": { "shadow": { "type": "text", "fields": { "TEXT": "255.255.255.0" } } },
+            "DNS": { "shadow": { "type": "text", "fields": { "TEXT": "192.168.1.1" } } }
+          }
+        },
+        {
+          "kind": "block",
+          "type": "esplink_wifi_set_dns",
+          "inputs": {
+            "DNS1": { "shadow": { "type": "text", "fields": { "TEXT": "223.5.5.5" } } },
+            "DNS2": { "shadow": { "type": "text", "fields": { "TEXT": "8.8.8.8" } } }
+          }
+        },
+        {
+          "kind": "block",
+          "type": "esplink_wifi_host_by_name",
+          "inputs": {
+            "HOST": { "shadow": { "type": "text", "fields": { "TEXT": "example.com" } } }
+          }
+        },
+        { "kind": "block", "type": "esplink_wifi_firmware_version" },
+        { "kind": "block", "type": "esplink_wifi_last_error" }
+      ]
+    },
+    {
+      "kind": "category",
+      "name": "网络时间",
+      "icon": "fa-light fa-clock",
+      "colour": "#0277BD",
+      "contents": [
+        {
+          "kind": "block",
+          "type": "esplink_wifi_config_time",
+          "inputs": {
+            "SERVER": { "shadow": { "type": "text", "fields": { "TEXT": "pool.ntp.org" } } }
+          }
+        },
+        { "kind": "block", "type": "esplink_wifi_get_time" }
+      ]
+    },
+    {
+      "kind": "category",
+      "name": "网络扫描",
+      "icon": "fa-light fa-radar",
+      "colour": "#0277BD",
+      "contents": [
+        { "kind": "block", "type": "esplink_wifi_scan_networks" },
+        { "kind": "block", "type": "esplink_wifi_scan_start_async" },
+        { "kind": "block", "type": "esplink_wifi_scan_complete" },
+        {
+          "kind": "block",
+          "type": "esplink_wifi_scan_ssid",
+          "inputs": { "INDEX": { "shadow": { "type": "math_number", "fields": { "NUM": 0 } } } }
+        },
+        {
+          "kind": "block",
+          "type": "esplink_wifi_scan_rssi",
+          "inputs": { "INDEX": { "shadow": { "type": "math_number", "fields": { "NUM": 0 } } } }
+        },
+        {
+          "kind": "block",
+          "type": "esplink_wifi_scan_channel",
+          "inputs": { "INDEX": { "shadow": { "type": "math_number", "fields": { "NUM": 0 } } } }
+        },
+        {
+          "kind": "block",
+          "type": "esplink_wifi_scan_encryption",
+          "inputs": { "INDEX": { "shadow": { "type": "math_number", "fields": { "NUM": 0 } } } }
+        },
+        { "kind": "block", "type": "esplink_wifi_scan_delete" }
+      ]
+    },
+    {
+      "kind": "category",
+      "name": "热点模式",
+      "icon": "fa-light fa-tower-broadcast",
+      "colour": "#0277BD",
+      "contents": [
+        {
+          "kind": "block",
+          "type": "esplink_wifi_softap",
+          "inputs": {
+            "SSID": { "shadow": { "type": "text", "fields": { "TEXT": "esplink-ap" } } },
+            "PASSWORD": { "shadow": { "type": "text", "fields": { "TEXT": "12345678" } } }
+          }
+        },
+        {
+          "kind": "block",
+          "type": "esplink_wifi_softap_config",
+          "inputs": {
+            "IP": { "shadow": { "type": "text", "fields": { "TEXT": "192.168.4.1" } } },
+            "GATEWAY": { "shadow": { "type": "text", "fields": { "TEXT": "192.168.4.1" } } },
+            "SUBNET": { "shadow": { "type": "text", "fields": { "TEXT": "255.255.255.0" } } }
+          }
+        },
+        { "kind": "block", "type": "esplink_wifi_softap_disconnect" },
+        { "kind": "block", "type": "esplink_wifi_softap_ip" },
+        { "kind": "block", "type": "esplink_wifi_softap_station_num" },
+        { "kind": "block", "type": "esplink_wifi_softap_mac" }
+      ]
+    },
+    {
+      "kind": "category",
+      "name": "WiFi事件",
+      "icon": "fa-light fa-bell",
+      "colour": "#0277BD",
+      "contents": [
+        { "kind": "block", "type": "esplink_wifi_on_event" }
+      ]
+    },
+    {
+      "kind": "category",
+      "name": "TCP客户端",
+      "icon": "fa-light fa-plug",
+      "colour": "#00838F",
+      "contents": [
+        { "kind": "block", "type": "esplink_tcp_client_create" },
+        {
+          "kind": "block",
+          "type": "esplink_tcp_client_connect",
+          "inputs": {
+            "HOST": { "shadow": { "type": "text", "fields": { "TEXT": "example.com" } } },
+            "PORT": { "shadow": { "type": "math_number", "fields": { "NUM": 80 } } }
+          }
+        },
+        { "kind": "block", "type": "esplink_tcp_client_connected" },
+        {
+          "kind": "block",
+          "type": "esplink_tcp_client_print",
+          "inputs": {
+            "DATA": { "shadow": { "type": "text", "fields": { "TEXT": "hello" } } }
+          }
+        },
+        { "kind": "block", "type": "esplink_tcp_client_available" },
+        { "kind": "block", "type": "esplink_tcp_client_read_string" },
+        { "kind": "block", "type": "esplink_tcp_client_remote_ip" },
+        { "kind": "block", "type": "esplink_tcp_client_stop" }
+      ]
+    },
+    {
+      "kind": "category",
+      "name": "TLS安全连接",
+      "icon": "fa-light fa-lock",
+      "colour": "#00838F",
+      "contents": [
+        { "kind": "block", "type": "esplink_tls_client_create" },
+        {
+          "kind": "block",
+          "type": "esplink_tls_set_pem",
+          "inputs": {
+            "PEM": { "shadow": { "type": "text", "fields": { "TEXT": "-----BEGIN CERTIFICATE-----" } } }
+          }
+        },
+        { "kind": "block", "type": "esplink_tls_use_builtin_ca" },
+        { "kind": "block", "type": "esplink_tls_set_insecure" }
+      ]
+    },
+    {
+      "kind": "category",
+      "name": "HTTP请求",
+      "icon": "fa-light fa-globe",
+      "colour": "#00838F",
+      "contents": [
+        {
+          "kind": "block",
+          "type": "esplink_http_get",
+          "inputs": {
+            "URL": { "shadow": { "type": "text", "fields": { "TEXT": "http://example.com/" } } }
+          }
+        },
+        {
+          "kind": "block",
+          "type": "esplink_http_post",
+          "inputs": {
+            "URL": { "shadow": { "type": "text", "fields": { "TEXT": "http://example.com/api" } } },
+            "BODY": { "shadow": { "type": "text", "fields": { "TEXT": "{}" } } }
+          }
+        }
+      ]
+    },
+    {
+      "kind": "category",
+      "name": "TCP服务器",
+      "icon": "fa-light fa-server",
+      "colour": "#00838F",
+      "contents": [
+        { "kind": "block", "type": "esplink_tcp_server_create" },
+        { "kind": "block", "type": "esplink_tcp_server_accept" },
+        {
+          "kind": "block",
+          "type": "esplink_tcp_server_write",
+          "inputs": {
+            "DATA": { "shadow": { "type": "text", "fields": { "TEXT": "hello" } } }
+          }
+        },
+        { "kind": "block", "type": "esplink_tcp_server_end" }
+      ]
+    },
+    {
+      "kind": "category",
+      "name": "UDP通信",
+      "icon": "fa-light fa-envelope",
+      "colour": "#5E35B1",
+      "contents": [
+        {
+          "kind": "block",
+          "type": "esplink_udp_create",
+          "inputs": { "PORT": { "shadow": { "type": "math_number", "fields": { "NUM": 8888 } } } }
+        },
+        {
+          "kind": "block",
+          "type": "esplink_udp_create_multicast",
+          "inputs": {
+            "IP": { "shadow": { "type": "text", "fields": { "TEXT": "239.255.0.1" } } },
+            "PORT": { "shadow": { "type": "math_number", "fields": { "NUM": 8888 } } }
+          }
+        },
+        {
+          "kind": "block",
+          "type": "esplink_udp_send_to",
+          "inputs": {
+            "DATA": { "shadow": { "type": "text", "fields": { "TEXT": "hello" } } },
+            "HOST": { "shadow": { "type": "text", "fields": { "TEXT": "192.168.1.255" } } },
+            "PORT": { "shadow": { "type": "math_number", "fields": { "NUM": 8888 } } }
+          }
+        },
+        {
+          "kind": "block",
+          "type": "esplink_udp_begin_packet",
+          "inputs": {
+            "HOST": { "shadow": { "type": "text", "fields": { "TEXT": "192.168.1.255" } } },
+            "PORT": { "shadow": { "type": "math_number", "fields": { "NUM": 8888 } } }
+          }
+        },
+        {
+          "kind": "block",
+          "type": "esplink_udp_write",
+          "inputs": {
+            "DATA": { "shadow": { "type": "text", "fields": { "TEXT": "hello" } } }
+          }
+        },
+        { "kind": "block", "type": "esplink_udp_end_packet" },
+        { "kind": "block", "type": "esplink_udp_parse_packet" },
+        { "kind": "block", "type": "esplink_udp_read_string" },
+        { "kind": "block", "type": "esplink_udp_remote_ip" },
+        { "kind": "block", "type": "esplink_udp_stop" }
+      ]
+    }
+  ]
+}

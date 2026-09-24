@@ -1,0 +1,600 @@
+{
+  "toolbox_name": "ESPLink BLE",
+  "toolbox_categories": [
+    "C3リンク",
+    "初期化とリンク",
+    "サービスと特性",
+    "アドバタイズ設定",
+    "特性の読み書き",
+    "BLEイベント",
+    "スキャンと接続",
+    "相手側の特性"
+  ],
+  "esplink_ble_begin": {
+    "message0": "BLEを開始",
+    "tooltip": "ESP32-C3を使ってBLEホストを開始します。ESPLinkリンクも自動的に確立されます"
+  },
+  "esplink_ble_end": {
+    "message0": "BLEを停止",
+    "tooltip": "BLEを停止します。同じリンク上のWiFiには影響しません"
+  },
+  "esplink_ble_poll": {
+    "message0": "BLEを処理",
+    "tooltip": "BLEホストを進めてコールバックを実行します。BLEブロックが自動でメインループに追加します"
+  },
+  "esplink_ble_connected": {
+    "message0": "BLE接続中",
+    "tooltip": "BLE接続があるかどうか。この移植版は同時に1接続のみ対応します"
+  },
+  "esplink_ble_address": {
+    "message0": "BLE自機アドレス",
+    "tooltip": "このデバイスのBluetoothアドレス"
+  },
+  "esplink_ble_disconnect": {
+    "message0": "BLEを切断",
+    "tooltip": "接続中の相手を切断します"
+  },
+  "esplink_ble_set_timeout": {
+    "message0": "BLE操作のタイムアウトを %1 ミリ秒に設定",
+    "tooltip": "スキャンや接続などの待ち時間"
+  },
+  "esplink_ble_healthy": {
+    "message0": "BLEリンク正常",
+    "tooltip": "コントローラリンクが正常かどうか。セッション変更やキュー溢れの後はBLEの再起動が必要です"
+  },
+  "esplink_ble_last_error": {
+    "message0": "BLE最終エラーコード",
+    "tooltip": "BLE転送層の最後のエラーコード。0は成功"
+  },
+  "esplink_ble_create_service": {
+    "message0": "BLEサービス %1 を作成 UUID %2",
+    "tooltip": "ローカルGATTサービスオブジェクトを作成します"
+  },
+  "esplink_ble_create_characteristic": {
+    "message0": "BLE数値特性 %1 を作成 UUID %2 型 %3",
+    "message1": "読み取り %1 書き込み %2 通知 %3 指示 %4",
+    "tooltip": "固定長の数値特性オブジェクトを作成します",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "整数",
+            "BLEIntCharacteristic"
+          ],
+          [
+            "符号なし整数",
+            "BLEUnsignedIntCharacteristic"
+          ],
+          [
+            "バイト",
+            "BLEByteCharacteristic"
+          ],
+          [
+            "短整数",
+            "BLEShortCharacteristic"
+          ],
+          [
+            "長整数",
+            "BLELongCharacteristic"
+          ],
+          [
+            "符号なし長整数",
+            "BLEUnsignedLongCharacteristic"
+          ],
+          [
+            "浮動小数点数",
+            "BLEFloatCharacteristic"
+          ],
+          [
+            "倍精度浮動小数点数",
+            "BLEDoubleCharacteristic"
+          ],
+          [
+            "真偽値",
+            "BLEBoolCharacteristic"
+          ]
+        ]
+      }
+    ]
+  },
+  "esplink_ble_create_string_characteristic": {
+    "message0": "BLE文字列特性 %1 を作成 UUID %2 最大長 %3",
+    "message1": "読み取り %1 書き込み %2 通知 %3 指示 %4",
+    "tooltip": "文字列特性オブジェクトを作成します。長さはATT MTU(242)が上限です"
+  },
+  "esplink_ble_service_add_characteristic": {
+    "message0": "サービス %1 に特性 %2 を追加",
+    "tooltip": "サービス登録の前に特性を追加します"
+  },
+  "esplink_ble_add_service": {
+    "message0": "BLEサービス %1 を登録",
+    "tooltip": "サービスをローカルGATTデータベースに追加します"
+  },
+  "esplink_ble_set_local_name": {
+    "message0": "BLEアドバタイズ名を %1 に設定",
+    "tooltip": "スキャン応答に表示される名前"
+  },
+  "esplink_ble_set_device_name": {
+    "message0": "BLEデバイス名を %1 に設定",
+    "tooltip": "GAPデバイス名特性の値"
+  },
+  "esplink_ble_set_advertised_service": {
+    "message0": "サービス %1 をアドバタイズ",
+    "tooltip": "アドバタイズパケットにサービスUUIDを載せ、セントラル側で絞り込めるようにします"
+  },
+  "esplink_ble_advertise": {
+    "message0": "BLEアドバタイズを開始",
+    "tooltip": "サービス登録後に呼び出してアドバタイズを開始します"
+  },
+  "esplink_ble_stop_advertise": {
+    "message0": "BLEアドバタイズを停止",
+    "tooltip": "アドバタイズを停止します"
+  },
+  "esplink_ble_set_advertising_interval": {
+    "message0": "アドバタイズ間隔を %1 ミリ秒に設定",
+    "tooltip": "間隔が長いほど省電力ですが発見は遅くなります"
+  },
+  "esplink_ble_set_connectable": {
+    "message0": "BLE接続許可を %1 に設定",
+    "tooltip": "オフにするとアドバタイズのみ行い接続を受け付けません"
+  },
+  "esplink_ble_char_write_number": {
+    "message0": "特性 %1 に数値 %2 を書き込む",
+    "tooltip": "ローカル特性の値を更新します。購読中の相手には通知されます"
+  },
+  "esplink_ble_char_write_string": {
+    "message0": "特性 %1 に文字列 %2 を書き込む",
+    "tooltip": "ローカル文字列特性の内容を更新します"
+  },
+  "esplink_ble_char_value_number": {
+    "message0": "特性 %1 の数値",
+    "tooltip": "ローカル数値特性の現在値"
+  },
+  "esplink_ble_char_value_string": {
+    "message0": "特性 %1 の文字列",
+    "tooltip": "ローカル文字列特性の現在の内容"
+  },
+  "esplink_ble_char_written": {
+    "message0": "特性 %1 が書き込まれた",
+    "tooltip": "相手が書き込んだかどうか。読み取るとフラグは消えます"
+  },
+  "esplink_ble_char_subscribed": {
+    "message0": "特性 %1 が購読されている",
+    "tooltip": "相手がこの特性の通知を購読しているかどうか"
+  },
+  "esplink_ble_on_char_written": {
+    "message0": "特性 %1 が書き込まれたとき",
+    "message1": "実行 %1",
+    "tooltip": "相手の書き込み時に実行されます。BLEを処理するタスク上で動くため短く保ってください"
+  },
+  "esplink_ble_on_device_event": {
+    "message0": "BLEで %1 とき",
+    "message1": "実行 %1",
+    "tooltip": "接続・切断時のコールバック",
+    "args0": [
+      {
+        "options": [
+          [
+            "デバイスが接続した",
+            "BLEConnected"
+          ],
+          [
+            "デバイスが切断した",
+            "BLEDisconnected"
+          ]
+        ]
+      }
+    ]
+  },
+  "esplink_ble_scan": {
+    "message0": "BLEデバイスのスキャンを開始",
+    "tooltip": "周囲の発見可能なBLEデバイスをすべてスキャンします"
+  },
+  "esplink_ble_scan_for": {
+    "message0": "BLEデバイスをスキャン %1 が %2 に一致",
+    "tooltip": "条件に一致するデバイスだけを報告します",
+    "args0": [
+      {
+        "options": [
+          [
+            "サービスUUID",
+            "scanForUuid"
+          ],
+          [
+            "デバイス名",
+            "scanForName"
+          ],
+          [
+            "デバイスアドレス",
+            "scanForAddress"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "esplink_ble_stop_scan": {
+    "message0": "BLEデバイスのスキャンを停止",
+    "tooltip": "スキャンを停止します。接続前に必ず停止してください"
+  },
+  "esplink_ble_device_create": {
+    "message0": "見つかったデバイスを %1 に取り出す",
+    "tooltip": "発見済みデバイスを1つ取り出します。無い場合その変数は無効のままです"
+  },
+  "esplink_ble_device_found": {
+    "message0": "デバイス %1 は有効",
+    "tooltip": "その変数が実在のデバイスを指しているかどうか"
+  },
+  "esplink_ble_device_connect": {
+    "message0": "デバイス %1 に接続",
+    "tooltip": "接続に成功すると真を返します。先にスキャンを停止してください"
+  },
+  "esplink_ble_device_discover": {
+    "message0": "デバイス %1 の全サービスを探索",
+    "tooltip": "相手のサービスと特性一覧を読み取ります。接続後に必要です"
+  },
+  "esplink_ble_device_connected": {
+    "message0": "デバイス %1 は接続継続中",
+    "tooltip": "そのデバイスが今も接続されているかどうか"
+  },
+  "esplink_ble_device_disconnect": {
+    "message0": "デバイス %1 を切断",
+    "tooltip": "そのデバイスとの接続を切ります"
+  },
+  "esplink_ble_device_address": {
+    "message0": "デバイス %1 のアドレス",
+    "tooltip": "相手デバイスのBluetoothアドレス"
+  },
+  "esplink_ble_device_local_name": {
+    "message0": "デバイス %1 の名前",
+    "tooltip": "アドバタイズパケット内の名前。無い場合は空"
+  },
+  "esplink_ble_device_rssi": {
+    "message0": "デバイス %1 の信号強度",
+    "tooltip": "相手デバイスの信号強度(dBm)"
+  },
+  "esplink_ble_remote_char_create": {
+    "message0": "デバイス %1 から特性 %2 を取得 UUID %3",
+    "tooltip": "UUIDで相手の特性を取得します。先にサービス探索が必要です"
+  },
+  "esplink_ble_remote_can": {
+    "message0": "相手の特性 %1 が %2",
+    "tooltip": "相手側特性の能力を調べます",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "有効",
+            "valid"
+          ],
+          [
+            "読み取り可",
+            "canRead"
+          ],
+          [
+            "書き込み可",
+            "canWrite"
+          ],
+          [
+            "購読可",
+            "canSubscribe"
+          ]
+        ]
+      }
+    ]
+  },
+  "esplink_ble_remote_read": {
+    "message0": "相手の特性 %1 を読み取る",
+    "tooltip": "相手に読み取りを要求し、結果はローカルキャッシュに入ります"
+  },
+  "esplink_ble_remote_value_number": {
+    "message0": "相手の特性 %1 の数値",
+    "tooltip": "キャッシュのバイト列を長さに応じて整数として解釈します"
+  },
+  "esplink_ble_remote_value_string": {
+    "message0": "相手の特性 %1 の文字列",
+    "tooltip": "キャッシュのバイト列を文字列として読み取ります"
+  },
+  "esplink_ble_remote_write_number": {
+    "message0": "相手の特性 %1 に数値 %2 を書き込む",
+    "tooltip": "相手の特性に4バイト整数を書き込みます"
+  },
+  "esplink_ble_remote_write_string": {
+    "message0": "相手の特性 %1 に文字列 %2 を書き込む",
+    "tooltip": "相手の特性に文字列を書き込みます"
+  },
+  "esplink_ble_remote_subscribe": {
+    "message0": "相手の特性 %1 を購読",
+    "tooltip": "通知を購読します。成功すると真を返します"
+  },
+  "esplink_ble_remote_value_updated": {
+    "message0": "相手の特性 %1 に新データあり",
+    "tooltip": "購読後に新しい通知が届いたかどうか"
+  },
+  "esplink_begin": {
+    "message0": "ESPLinkでESP32-C3に接続",
+    "tooltip": "ボード既定のハードウェアシリアル(921600bps)でESP32-C3との接続を開始します。WiFiとBLEライブラリは自動的にESPLinkを起動するため、このブロックは単体診断用です"
+  },
+  "esplink_begin_serial": {
+    "message0": "ESPLink起動 シリアル %1 ボーレート %2",
+    "tooltip": "シリアルポートとボーレートを指定してESPLinkを起動します。C3ファームウェアと同じボーレートで、WiFi/BLEの初期化より前に実行してください",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "921600",
+            "921600"
+          ],
+          [
+            "115200",
+            "115200"
+          ],
+          [
+            "460800",
+            "460800"
+          ],
+          [
+            "230400",
+            "230400"
+          ],
+          [
+            "1000000",
+            "1000000"
+          ]
+        ]
+      }
+    ]
+  },
+  "esplink_bind_stream": {
+    "message0": "設定済みシリアル %1 をESPLinkに割り当て",
+    "tooltip": "スケッチ側で初期化済み(独自ピン設定を含む)のシリアルを借用します。ESPLinkはbegin()とend()を呼びません"
+  },
+  "esplink_end": {
+    "message0": "ESPLinkを停止",
+    "tooltip": "ESPLinkの割り当てを解放します。借用モードではシリアルドライバは閉じません"
+  },
+  "esplink_poll": {
+    "message0": "ESPLinkを処理",
+    "tooltip": "ESPLink転送を進めます。初期化ブロックが自動でメインループに追加するため通常は不要です"
+  },
+  "esplink_ready": {
+    "message0": "ESPLink準備完了",
+    "tooltip": "C3リンクが利用可能なセッションにあるかどうか"
+  },
+  "esplink_ping": {
+    "message0": "ESPLink通信テスト タイムアウト %1 ミリ秒",
+    "tooltip": "C3にPingを1回送信して応答を待ちます"
+  },
+  "esplink_session": {
+    "message0": "ESPLinkセッション番号",
+    "tooltip": "現在のリンクセッション番号。変化はC3の再起動またはリンク再構築を意味し、以前のソケットとBLEハンドルはすべて無効になります"
+  },
+  "esplink_last_error": {
+    "message0": "ESPLink最終エラーコード",
+    "tooltip": "直前のESPLink操作のエラーコード。0は成功"
+  },
+  "esplink_error_code": {
+    "message0": "エラーコード %1",
+    "tooltip": "ESPLinkのエラーコード定数。最終エラーコードとの比較に使います",
+    "args0": [
+      {
+        "options": [
+          [
+            "成功",
+            "c3::Ok"
+          ],
+          [
+            "引数が不正",
+            "c3::InvalidArgument"
+          ],
+          [
+            "非対応",
+            "c3::Unsupported"
+          ],
+          [
+            "メモリ不足",
+            "c3::NoMemory"
+          ],
+          [
+            "ビジー",
+            "c3::Busy"
+          ],
+          [
+            "タイムアウト",
+            "c3::Timeout"
+          ],
+          [
+            "未接続",
+            "c3::NotConnected"
+          ],
+          [
+            "IOエラー",
+            "c3::IoError"
+          ],
+          [
+            "プロトコルエラー",
+            "c3::ProtocolError"
+          ],
+          [
+            "結果不明",
+            "c3::OutcomeUnknown"
+          ],
+          [
+            "ハンドル無効",
+            "c3::StaleHandle"
+          ],
+          [
+            "バッファ不足",
+            "c3::BufferTooSmall"
+          ],
+          [
+            "結果期限切れ",
+            "c3::ResultExpired"
+          ],
+          [
+            "セキュリティエラー",
+            "c3::SecurityError"
+          ],
+          [
+            "再試行が必要",
+            "c3::WouldBlock"
+          ],
+          [
+            "リンク喪失",
+            "c3::LinkLost"
+          ],
+          [
+            "見つかりません",
+            "c3::NotFound"
+          ]
+        ]
+      }
+    ]
+  },
+  "esplink_firmware_version": {
+    "message0": "C3ファームウェアバージョン",
+    "tooltip": "ESP32-C3で動作するブリッジファームウェアのバージョン文字列"
+  },
+  "esplink_capability": {
+    "message0": "C3の能力 %1",
+    "tooltip": "ハンドシェイク時にC3が報告した能力値を読みます",
+    "args0": [
+      {
+        "options": [
+          [
+            "最大ペイロードバイト数",
+            "maxPayload"
+          ],
+          [
+            "最大HCIパケットバイト数",
+            "maxHciPacket"
+          ],
+          [
+            "最大ソケット数",
+            "maxSockets"
+          ],
+          [
+            "最大BLE接続数",
+            "maxBLEConnections"
+          ],
+          [
+            "機能ビット",
+            "features"
+          ],
+          [
+            "起動ID",
+            "bootID"
+          ]
+        ]
+      }
+    ]
+  },
+  "esplink_has_feature": {
+    "message0": "C3が %1 に対応",
+    "tooltip": "C3ファームウェアが指定機能に対応しているかどうか",
+    "args0": [
+      {
+        "options": [
+          [
+            "WiFi",
+            "c3::WiFi"
+          ],
+          [
+            "TCP",
+            "c3::TCP"
+          ],
+          [
+            "UDP",
+            "c3::UDP"
+          ],
+          [
+            "TLS",
+            "c3::TLS"
+          ],
+          [
+            "BLE(HCI)",
+            "c3::HCI"
+          ],
+          [
+            "IPv6",
+            "c3::IPv6"
+          ],
+          [
+            "AP+STA同時",
+            "c3::StationAP"
+          ],
+          [
+            "OTA",
+            "c3::OTA"
+          ],
+          [
+            "mDNS",
+            "c3::MDNS"
+          ]
+        ]
+      }
+    ]
+  },
+  "esplink_stat": {
+    "message0": "ESPLink統計 %1",
+    "tooltip": "リンク品質のカウンタを読み、配線やボーレートの問題を調べます",
+    "args0": [
+      {
+        "options": [
+          [
+            "送信フレーム数",
+            "transmitted"
+          ],
+          [
+            "受信フレーム数",
+            "received"
+          ],
+          [
+            "再送回数",
+            "retries"
+          ],
+          [
+            "タイムアウト回数",
+            "timeouts"
+          ],
+          [
+            "CRCエラー数",
+            "crcErrors"
+          ],
+          [
+            "不正フレーム数",
+            "malformed"
+          ],
+          [
+            "サイズ超過フレーム数",
+            "oversized"
+          ],
+          [
+            "無視フレーム数",
+            "ignored"
+          ],
+          [
+            "セッション変更回数",
+            "sessionChanges"
+          ],
+          [
+            "受信バイト数",
+            "rxBytes"
+          ],
+          [
+            "受信バッチ数",
+            "rxBatches"
+          ],
+          [
+            "ワーカー起床回数",
+            "workerWakeups"
+          ]
+        ]
+      }
+    ]
+  }
+}

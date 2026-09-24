@@ -1,0 +1,702 @@
+{
+  "toolbox_name": "ESPLink WiFi",
+  "toolbox_categories": [
+    "C3链路",
+    "连接管理",
+    "网络信息",
+    "网络时间",
+    "网络扫描",
+    "热点模式",
+    "WiFi事件",
+    "TCP客户端",
+    "TLS安全连接",
+    "HTTP请求",
+    "TCP服务器",
+    "UDP通信"
+  ],
+  "esplink_wifi_begin": {
+    "message0": "连接WiFi 名称 %1 密码 %2",
+    "tooltip": "通过ESP32-C3连接到WiFi网络，不会等待连接完成"
+  },
+  "esplink_wifi_begin_advanced": {
+    "message0": "连接WiFi 名称 %1 密码 %2 信道 %3",
+    "tooltip": "指定信道连接WiFi网络，信道为0表示自动"
+  },
+  "esplink_wifi_connect_quick": {
+    "message0": "快速连接WiFi 名称 %1 密码 %2 超时 %3 毫秒",
+    "tooltip": "连接WiFi并等待结果，连接成功返回真"
+  },
+  "esplink_wifi_wait_connected": {
+    "message0": "等待WiFi连接结果 超时 %1 毫秒",
+    "tooltip": "阻塞等待连接结果并返回WiFi状态值，可与WiFi状态常量比较"
+  },
+  "esplink_wifi_is_connected": {
+    "message0": "WiFi已连接",
+    "tooltip": "WiFi是否处于已连接状态"
+  },
+  "esplink_wifi_status": {
+    "message0": "WiFi连接状态",
+    "tooltip": "返回当前WiFi状态值"
+  },
+  "esplink_wifi_status_type": {
+    "message0": "WiFi状态 %1",
+    "tooltip": "WiFi状态常量，用于和连接状态比较",
+    "args0": [
+      {
+        "options": [
+          [
+            "已连接",
+            "WL_CONNECTED"
+          ],
+          [
+            "空闲",
+            "WL_IDLE_STATUS"
+          ],
+          [
+            "未找到网络",
+            "WL_NO_SSID_AVAIL"
+          ],
+          [
+            "扫描完成",
+            "WL_SCAN_COMPLETED"
+          ],
+          [
+            "连接失败",
+            "WL_CONNECT_FAILED"
+          ],
+          [
+            "连接丢失",
+            "WL_CONNECTION_LOST"
+          ],
+          [
+            "已断开",
+            "WL_DISCONNECTED"
+          ],
+          [
+            "无模块",
+            "WL_NO_SHIELD"
+          ]
+        ]
+      }
+    ]
+  },
+  "esplink_wifi_disconnect": {
+    "message0": "断开WiFi 关闭射频 %1 清除已保存密码 %2",
+    "tooltip": "断开当前WiFi连接"
+  },
+  "esplink_wifi_reconnect": {
+    "message0": "重新连接WiFi",
+    "tooltip": "使用上次的凭据重新连接"
+  },
+  "esplink_wifi_set_auto_reconnect": {
+    "message0": "设置WiFi自动重连 %1",
+    "tooltip": "断线后由C3自动重连"
+  },
+  "esplink_wifi_set_mode": {
+    "message0": "设置WiFi模式 %1",
+    "tooltip": "设置C3的WiFi工作模式",
+    "args0": [
+      {
+        "options": [
+          [
+            "station(连接热点)",
+            "WIFI_STA"
+          ],
+          [
+            "AP(创建热点)",
+            "WIFI_AP"
+          ],
+          [
+            "AP+station",
+            "WIFI_AP_STA"
+          ],
+          [
+            "关闭",
+            "WIFI_OFF"
+          ]
+        ]
+      }
+    ]
+  },
+  "esplink_wifi_get_mode": {
+    "message0": "WiFi当前模式",
+    "tooltip": "返回当前WiFi工作模式值"
+  },
+  "esplink_wifi_poll": {
+    "message0": "处理WiFi事务",
+    "tooltip": "推进链路并派发WiFi事件。使用WiFi块时会自动加入主程序"
+  },
+  "esplink_wifi_end": {
+    "message0": "关闭WiFi",
+    "tooltip": "释放WiFi资源，不影响BLE"
+  },
+  "esplink_wifi_ip_info": {
+    "message0": "WiFi %1",
+    "tooltip": "以字符串形式返回网络地址信息",
+    "args0": [
+      {
+        "options": [
+          [
+            "本机IP地址",
+            "localIP"
+          ],
+          [
+            "网关地址",
+            "gatewayIP"
+          ],
+          [
+            "子网掩码",
+            "subnetMask"
+          ],
+          [
+            "主DNS",
+            "dns0"
+          ],
+          [
+            "备用DNS",
+            "dns1"
+          ]
+        ]
+      }
+    ]
+  },
+  "esplink_wifi_ssid": {
+    "message0": "当前WiFi名称",
+    "tooltip": "已连接网络的SSID"
+  },
+  "esplink_wifi_rssi": {
+    "message0": "WiFi信号强度",
+    "tooltip": "当前连接的信号强度(dBm)，数值越接近0越好"
+  },
+  "esplink_wifi_channel": {
+    "message0": "WiFi信道",
+    "tooltip": "当前连接使用的信道"
+  },
+  "esplink_wifi_mac": {
+    "message0": "WiFi MAC地址",
+    "tooltip": "station模式的MAC地址"
+  },
+  "esplink_wifi_set_hostname": {
+    "message0": "设置主机名 %1",
+    "tooltip": "设置在路由器中显示的主机名，需在连接前设置"
+  },
+  "esplink_wifi_get_hostname": {
+    "message0": "主机名",
+    "tooltip": "当前设置的主机名"
+  },
+  "esplink_wifi_config_static": {
+    "message0": "设置静态IP %1 网关 %2 子网掩码 %3 DNS %4",
+    "tooltip": "使用静态IPv4配置，需在连接WiFi之前调用"
+  },
+  "esplink_wifi_set_dns": {
+    "message0": "设置DNS服务器 主 %1 备 %2",
+    "tooltip": "设置域名解析服务器"
+  },
+  "esplink_wifi_host_by_name": {
+    "message0": "解析域名 %1 的IP地址",
+    "tooltip": "通过C3解析域名，失败返回空字符串。解析最长占用13秒链路时间"
+  },
+  "esplink_wifi_firmware_version": {
+    "message0": "C3 WiFi固件版本",
+    "tooltip": "C3上运行的固件版本"
+  },
+  "esplink_wifi_last_error": {
+    "message0": "WiFi最后错误码",
+    "tooltip": "最后一次WiFi操作的错误码，0表示成功"
+  },
+  "esplink_wifi_config_time": {
+    "message0": "配置网络时间 时区 %1 小时 夏令时 %2 小时 服务器 %3",
+    "tooltip": "配置C3的SNTP时间同步，TLS证书校验需要正确的时间"
+  },
+  "esplink_wifi_get_time": {
+    "message0": "网络时间戳(秒)",
+    "tooltip": "C3的Unix时间戳，未同步时为较小的值"
+  },
+  "esplink_wifi_scan_networks": {
+    "message0": "扫描WiFi网络 包含隐藏网络 %1",
+    "tooltip": "同步扫描并返回找到的网络数量，最多缓存32个"
+  },
+  "esplink_wifi_scan_start_async": {
+    "message0": "开始异步扫描WiFi 包含隐藏网络 %1",
+    "tooltip": "后台扫描，通过扫描结果数量块查询进度"
+  },
+  "esplink_wifi_scan_complete": {
+    "message0": "扫描结果数量",
+    "tooltip": "返回扫描到的网络数量，-1表示扫描中，-2表示失败"
+  },
+  "esplink_wifi_scan_ssid": {
+    "message0": "第 %1 个网络的名称",
+    "tooltip": "扫描结果中指定序号网络的SSID，序号从0开始"
+  },
+  "esplink_wifi_scan_rssi": {
+    "message0": "第 %1 个网络的信号强度",
+    "tooltip": "扫描结果中指定序号网络的信号强度(dBm)"
+  },
+  "esplink_wifi_scan_channel": {
+    "message0": "第 %1 个网络的信道",
+    "tooltip": "扫描结果中指定序号网络的信道"
+  },
+  "esplink_wifi_scan_encryption": {
+    "message0": "第 %1 个网络的加密方式",
+    "tooltip": "扫描结果中指定序号网络的加密类型值，0为开放网络"
+  },
+  "esplink_wifi_scan_delete": {
+    "message0": "清除扫描结果",
+    "tooltip": "释放扫描结果占用的内存"
+  },
+  "esplink_wifi_softap": {
+    "message0": "创建WiFi热点 名称 %1 密码 %2 信道 %3",
+    "tooltip": "在C3上创建热点，密码留空则为开放网络"
+  },
+  "esplink_wifi_softap_config": {
+    "message0": "设置热点网络 IP %1 网关 %2 子网掩码 %3",
+    "tooltip": "设置热点的IPv4网段，需在创建热点之前调用"
+  },
+  "esplink_wifi_softap_disconnect": {
+    "message0": "关闭WiFi热点 同时关闭射频 %1",
+    "tooltip": "停止热点"
+  },
+  "esplink_wifi_softap_ip": {
+    "message0": "热点IP地址",
+    "tooltip": "热点自身的IP地址"
+  },
+  "esplink_wifi_softap_station_num": {
+    "message0": "热点已连接设备数",
+    "tooltip": "连接到热点的设备数量"
+  },
+  "esplink_wifi_softap_mac": {
+    "message0": "热点MAC地址",
+    "tooltip": "热点接口的MAC地址"
+  },
+  "esplink_wifi_on_event": {
+    "message0": "当WiFi事件 %1 发生时",
+    "message1": "执行 %1",
+    "tooltip": "注册WiFi事件回调。事件由轮询状态差分产生，回调在调用WiFi处理块的任务中执行",
+    "args0": [
+      {
+        "options": [
+          [
+            "已连接到热点",
+            "ARDUINO_EVENT_WIFI_STA_CONNECTED"
+          ],
+          [
+            "已断开热点",
+            "ARDUINO_EVENT_WIFI_STA_DISCONNECTED"
+          ],
+          [
+            "获取到IP地址",
+            "ARDUINO_EVENT_WIFI_STA_GOT_IP"
+          ],
+          [
+            "IP地址丢失",
+            "ARDUINO_EVENT_WIFI_STA_LOST_IP"
+          ],
+          [
+            "扫描完成",
+            "ARDUINO_EVENT_WIFI_SCAN_DONE"
+          ],
+          [
+            "有设备接入热点",
+            "ARDUINO_EVENT_WIFI_AP_STACONNECTED"
+          ],
+          [
+            "有设备离开热点",
+            "ARDUINO_EVENT_WIFI_AP_STADISCONNECTED"
+          ],
+          [
+            "任意事件",
+            "ARDUINO_EVENT_MAX"
+          ]
+        ]
+      }
+    ]
+  },
+  "esplink_tcp_client_create": {
+    "message0": "创建TCP客户端 %1",
+    "tooltip": "创建一个TCP客户端对象"
+  },
+  "esplink_tcp_client_connect": {
+    "message0": "客户端 %1 连接到 %2 端口 %3",
+    "tooltip": "连接到服务器，成功返回真。默认超时10秒(TLS为15秒)"
+  },
+  "esplink_tcp_client_connected": {
+    "message0": "客户端 %1 已连接",
+    "tooltip": "连接是否有效。缓冲区中仍有未读数据时也返回真"
+  },
+  "esplink_tcp_client_print": {
+    "message0": "客户端 %1 发送 %2 换行 %3",
+    "tooltip": "向服务器发送数据"
+  },
+  "esplink_tcp_client_available": {
+    "message0": "客户端 %1 可读字节数",
+    "tooltip": "当前可读取的字节数"
+  },
+  "esplink_tcp_client_read_string": {
+    "message0": "客户端 %1 读取已接收数据",
+    "tooltip": "取出当前缓冲区中的全部数据，不会阻塞等待"
+  },
+  "esplink_tcp_client_remote_ip": {
+    "message0": "客户端 %1 对端IP地址",
+    "tooltip": "连接对端的IP地址"
+  },
+  "esplink_tcp_client_stop": {
+    "message0": "关闭客户端 %1",
+    "tooltip": "关闭连接并释放C3上的socket"
+  },
+  "esplink_tls_client_create": {
+    "message0": "创建TLS客户端 %1",
+    "tooltip": "创建一个支持HTTPS/TLS的客户端对象，默认使用C3内置根证书"
+  },
+  "esplink_tls_set_pem": {
+    "message0": "TLS客户端 %1 设置 %2 内容 %3",
+    "tooltip": "设置PEM格式的证书或私钥，单个凭据不超过8192字节",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "CA根证书",
+            "CA"
+          ],
+          [
+            "客户端证书",
+            "CERT"
+          ],
+          [
+            "客户端私钥",
+            "KEY"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "esplink_tls_use_builtin_ca": {
+    "message0": "TLS客户端 %1 使用内置根证书",
+    "tooltip": "使用C3固件内置的根证书库校验服务器"
+  },
+  "esplink_tls_set_insecure": {
+    "message0": "TLS客户端 %1 跳过证书校验",
+    "tooltip": "不校验服务器证书，仅在明确知道风险时使用"
+  },
+  "esplink_http_get": {
+    "message0": "HTTP GET 请求 %1",
+    "tooltip": "请求一个http://或https://地址并返回响应正文，失败返回空字符串。正文最多保留4096字节"
+  },
+  "esplink_http_post": {
+    "message0": "HTTP POST 请求 %1 内容 %2 类型 %3",
+    "tooltip": "向一个http://或https://地址提交内容并返回响应正文，失败返回空字符串"
+  },
+  "esplink_tcp_server_create": {
+    "message0": "创建TCP服务器 %1 监听端口 %2",
+    "tooltip": "创建TCP服务器并开始监听。只支持监听本机所有地址"
+  },
+  "esplink_tcp_server_accept": {
+    "message0": "服务器 %1 取出新客户端到 %2",
+    "tooltip": "把新接入的客户端交给指定变量，没有新连接时该变量无效"
+  },
+  "esplink_tcp_server_write": {
+    "message0": "服务器 %1 广播发送 %2",
+    "tooltip": "向服务器保留的已接入客户端广播数据"
+  },
+  "esplink_tcp_server_end": {
+    "message0": "关闭服务器 %1",
+    "tooltip": "停止监听并释放端口"
+  },
+  "esplink_udp_create": {
+    "message0": "创建UDP %1 监听端口 %2",
+    "tooltip": "创建UDP对象并绑定本地端口，端口为0表示由系统分配"
+  },
+  "esplink_udp_create_multicast": {
+    "message0": "创建UDP %1 加入组播 %2 端口 %3",
+    "tooltip": "创建UDP对象并绑定到组播地址"
+  },
+  "esplink_udp_send_to": {
+    "message0": "UDP %1 发送 %2 到 %3 端口 %4",
+    "tooltip": "一步完成组包、写入和发送，成功返回真。单个数据报不超过1472字节"
+  },
+  "esplink_udp_begin_packet": {
+    "message0": "UDP %1 开始组包 目标 %2 端口 %3",
+    "tooltip": "开始一个待发送的数据报"
+  },
+  "esplink_udp_write": {
+    "message0": "UDP %1 写入 %2",
+    "tooltip": "向当前数据报追加内容"
+  },
+  "esplink_udp_end_packet": {
+    "message0": "UDP %1 发送数据报",
+    "tooltip": "发送当前数据报。超过1472字节会整包失败"
+  },
+  "esplink_udp_parse_packet": {
+    "message0": "UDP %1 接收数据报长度",
+    "tooltip": "取出下一个数据报并返回其长度，没有数据时返回0。会丢弃上一个数据报未读完的部分"
+  },
+  "esplink_udp_read_string": {
+    "message0": "UDP %1 读取数据报内容",
+    "tooltip": "读取当前数据报中剩余的全部内容"
+  },
+  "esplink_udp_remote_ip": {
+    "message0": "UDP %1 发送方IP地址",
+    "tooltip": "当前数据报发送方的IP地址"
+  },
+  "esplink_udp_stop": {
+    "message0": "关闭UDP %1",
+    "tooltip": "关闭UDP并释放C3上的socket"
+  },
+  "esplink_begin": {
+    "message0": "启动ESPLink连接ESP32-C3",
+    "tooltip": "使用开发板默认的硬件串口(921600波特率)启动与ESP32-C3的连接。WiFi和BLE库会自动启动ESPLink，此块仅在需要单独诊断时使用"
+  },
+  "esplink_begin_serial": {
+    "message0": "启动ESPLink 串口 %1 波特率 %2",
+    "tooltip": "指定串口和波特率启动ESPLink。必须与C3固件的波特率一致，且要在WiFi/BLE初始化之前调用"
+  },
+  "esplink_bind_stream": {
+    "message0": "绑定已配置的串口 %1 到ESPLink",
+    "tooltip": "借用一个已经自行初始化(含自定义引脚)的串口，ESPLink不会调用它的begin()和end()"
+  },
+  "esplink_end": {
+    "message0": "断开ESPLink连接",
+    "tooltip": "释放ESPLink绑定。借用模式下不会关闭串口驱动"
+  },
+  "esplink_poll": {
+    "message0": "处理ESPLink事务",
+    "tooltip": "推进ESPLink传输。使用初始化块时会自动加入主程序，一般无需手动添加"
+  },
+  "esplink_ready": {
+    "message0": "ESPLink已就绪",
+    "tooltip": "C3链路是否处于可用会话中"
+  },
+  "esplink_ping": {
+    "message0": "ESPLink通信测试 超时 %1 毫秒",
+    "tooltip": "向C3发送一次Ping并等待回应"
+  },
+  "esplink_session": {
+    "message0": "ESPLink会话号",
+    "tooltip": "当前链路会话号。会话号改变表示C3重启或链路重建，之前的socket和BLE句柄全部失效"
+  },
+  "esplink_last_error": {
+    "message0": "ESPLink最后错误码",
+    "tooltip": "最后一次ESPLink操作的错误码，0表示成功"
+  },
+  "esplink_error_code": {
+    "message0": "错误码 %1",
+    "tooltip": "ESPLink错误码常量，用于和最后错误码比较",
+    "args0": [
+      {
+        "options": [
+          [
+            "成功",
+            "c3::Ok"
+          ],
+          [
+            "参数无效",
+            "c3::InvalidArgument"
+          ],
+          [
+            "不支持",
+            "c3::Unsupported"
+          ],
+          [
+            "内存不足",
+            "c3::NoMemory"
+          ],
+          [
+            "忙",
+            "c3::Busy"
+          ],
+          [
+            "超时",
+            "c3::Timeout"
+          ],
+          [
+            "未连接",
+            "c3::NotConnected"
+          ],
+          [
+            "IO错误",
+            "c3::IoError"
+          ],
+          [
+            "协议错误",
+            "c3::ProtocolError"
+          ],
+          [
+            "结果未知",
+            "c3::OutcomeUnknown"
+          ],
+          [
+            "句柄失效",
+            "c3::StaleHandle"
+          ],
+          [
+            "缓冲区太小",
+            "c3::BufferTooSmall"
+          ],
+          [
+            "结果已过期",
+            "c3::ResultExpired"
+          ],
+          [
+            "安全错误",
+            "c3::SecurityError"
+          ],
+          [
+            "需要重试",
+            "c3::WouldBlock"
+          ],
+          [
+            "链路丢失",
+            "c3::LinkLost"
+          ],
+          [
+            "未找到",
+            "c3::NotFound"
+          ]
+        ]
+      }
+    ]
+  },
+  "esplink_firmware_version": {
+    "message0": "C3固件版本",
+    "tooltip": "ESP32-C3上运行的桥接固件版本字符串"
+  },
+  "esplink_capability": {
+    "message0": "C3能力 %1",
+    "tooltip": "读取C3握手时上报的能力参数",
+    "args0": [
+      {
+        "options": [
+          [
+            "最大负载字节",
+            "maxPayload"
+          ],
+          [
+            "最大HCI包字节",
+            "maxHciPacket"
+          ],
+          [
+            "最大socket数",
+            "maxSockets"
+          ],
+          [
+            "最大BLE连接数",
+            "maxBLEConnections"
+          ],
+          [
+            "功能位",
+            "features"
+          ],
+          [
+            "启动ID",
+            "bootID"
+          ]
+        ]
+      }
+    ]
+  },
+  "esplink_has_feature": {
+    "message0": "C3支持 %1 功能",
+    "tooltip": "判断C3固件是否支持指定功能",
+    "args0": [
+      {
+        "options": [
+          [
+            "WiFi",
+            "c3::WiFi"
+          ],
+          [
+            "TCP",
+            "c3::TCP"
+          ],
+          [
+            "UDP",
+            "c3::UDP"
+          ],
+          [
+            "TLS",
+            "c3::TLS"
+          ],
+          [
+            "BLE(HCI)",
+            "c3::HCI"
+          ],
+          [
+            "IPv6",
+            "c3::IPv6"
+          ],
+          [
+            "AP+STA共存",
+            "c3::StationAP"
+          ],
+          [
+            "OTA",
+            "c3::OTA"
+          ],
+          [
+            "mDNS",
+            "c3::MDNS"
+          ]
+        ]
+      }
+    ]
+  },
+  "esplink_stat": {
+    "message0": "ESPLink统计 %1",
+    "tooltip": "读取链路质量统计，用于排查接线和波特率问题",
+    "args0": [
+      {
+        "options": [
+          [
+            "已发送帧数",
+            "transmitted"
+          ],
+          [
+            "已接收帧数",
+            "received"
+          ],
+          [
+            "重传次数",
+            "retries"
+          ],
+          [
+            "超时次数",
+            "timeouts"
+          ],
+          [
+            "CRC错误数",
+            "crcErrors"
+          ],
+          [
+            "格式错误数",
+            "malformed"
+          ],
+          [
+            "超长帧数",
+            "oversized"
+          ],
+          [
+            "忽略帧数",
+            "ignored"
+          ],
+          [
+            "会话变更次数",
+            "sessionChanges"
+          ],
+          [
+            "接收字节数",
+            "rxBytes"
+          ],
+          [
+            "接收批次数",
+            "rxBatches"
+          ],
+          [
+            "工作线程唤醒数",
+            "workerWakeups"
+          ]
+        ]
+      }
+    ]
+  }
+}

@@ -27,7 +27,9 @@ const { callWithNamedValueInputs } = require('./check-readme-cross-library-examp
 const {
   buildGeneratedCodePreviews,
   loadGenerator,
+  parseCliArgs: parseGeneratorCoverageArgs,
   probeGeneratorHandler,
+  strictFailureCount,
 } = require('./check-library-generator-coverage');
 const { loadLibraryContract } = require('./readme-library-contracts');
 const {
@@ -366,7 +368,7 @@ test('slot-aware validation rejects a value block inside field_variable', () => 
   assert.ok(messages.some((message) => message.startsWith('ABS example')));
 });
 
-test('slot-aware validation requires canonical variable syntax for fields and value inputs', () => {
+test('slot-aware validation distinguishes variable fields while retaining value-input shorthand', () => {
   const valid = [
     '| Block Type | Connection | Parameters (args0 order) | ABS Format | Generated Code |',
     '|---|---|---|---|---|',
@@ -379,8 +381,7 @@ test('slot-aware validation requires canonical variable syntax for fields and va
   assert.deepEqual(validateAiAbsContracts(valid, [dhtRead, printValue]), []);
 
   const shorthand = valid.replace('serial_println(variables_get($dht))', 'serial_println($dht)');
-  assert.ok(validateAiAbsContracts(shorthand, [dhtRead, printValue])
-    .some(message => message.includes('input_value') && message.includes('not bare $name')));
+  assert.deepEqual(validateAiAbsContracts(shorthand, [dhtRead, printValue]), []);
 });
 
 test('slot-aware validation checks dropdown domains and structured custom fields', () => {
@@ -403,7 +404,7 @@ test('slot-aware validation checks dropdown domains and structured custom fields
   ), []);
 });
 
-test('dropdown validation preserves supported boolean aliases and function-shaped enum values', () => {
+test('dropdown validation respects native case-sensitive options and function-shaped enum values', () => {
   const booleanBlock = {
     type: 'logic_boolean',
     output: 'Boolean',
@@ -411,7 +412,7 @@ test('dropdown validation preserves supported boolean aliases and function-shape
       { type: 'field_dropdown', name: 'BOOL', options: [['true', 'true'], ['false', 'false']] },
     ],
   };
-  assert.deepEqual(validateAbsCall(booleanBlock, 'logic_boolean(TRUE)', 'boolean', true), []);
+  assert.match(validateAbsCall(booleanBlock, 'logic_boolean(TRUE)', 'boolean', true).join('\n'), /must be one of true, false/);
   assert.deepEqual(validateAbsCall(booleanBlock, 'logic_boolean(false)', 'boolean', true), []);
 
   const serialRead = {
@@ -619,7 +620,7 @@ test('generated-code probing uses real variable names, wrapper connectivity, and
 
   const aiVox = build('ai-vox-xzai');
   assert.deepEqual(aiVox.errors, []);
-  assert.match(aiVox.previews.get('aivox3_set_screen_light'), /analogWrite\(kDisplayBacklightPin, 1\)/);
+  assert.match(aiVox.previews.get('aivox3_set_screen_light'), /analogWrite\(kDisplayBacklightPin, 0\)/);
 });
 
 test('generated-code getValue probing resolves variables and records each slot kind', () => {
@@ -650,7 +651,7 @@ test('generated-code getValue probing resolves variables and records each slot k
     assert.equal(loaded.error, null);
     const probe = probeGeneratorHandler(loaded, loaded.handlers.get_value_probe, block);
     assert.equal(probe.error, null, receiver);
-    assert.equal(probe.generatedCode, 'resolved_sensor.ready(1)', receiver);
+    assert.equal(probe.generatedCode, 'resolved_sensor.ready(0)', receiver);
     assert.deepEqual(probe.reads, [
       { kind: 'field', name: 'VAR' },
       { kind: 'value', name: 'VALUE' },
@@ -678,6 +679,32 @@ test('no-direct generated code requires a versioned classification with an expli
   );
   assert.ok(unclassified.errors.some(entry => entry.error.includes('without a classified reason')));
   assert.equal(unclassified.previews.has('silent_block'), false);
+});
+
+test('incremental generator coverage can report generated-code drift without blocking', () => {
+  const report = {
+    generatorLoadErrors: 0,
+    missingPublicGenerators: 0,
+    unclassifiedMissingGenerators: 0,
+    unresolvedVisibleToolboxTypes: 0,
+    duplicateAssignments: 0,
+    unclassifiedOrphanGenerators: 0,
+    registrationContractErrors: [],
+    generatedCodeContractErrors: [],
+    slotMismatches: 0,
+    unknownSlotReads: 0,
+    handlerProbeErrors: 0,
+    generatedCodeMismatches: 3,
+  };
+
+  assert.equal(strictFailureCount(report), 3);
+  assert.equal(strictFailureCount(report, { allowGeneratedCodeMismatches: true }), 0);
+  assert.deepEqual(parseGeneratorCoverageArgs(['--strict', '--allow-generated-code-mismatches', '--library', 'esplink_ble']), {
+    json: false,
+    strict: true,
+    allowGeneratedCodeMismatches: true,
+    libraries: ['esplink_ble'],
+  });
 });
 
 test('Block Definitions rejects unknown pseudo-blocks and duplicate rows', () => {

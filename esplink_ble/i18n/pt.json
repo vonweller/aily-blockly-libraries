@@ -1,0 +1,600 @@
+{
+  "toolbox_name": "ESPLink BLE",
+  "toolbox_categories": [
+    "Ligação C3",
+    "Arranque e ligação",
+    "Serviços e características",
+    "Difusão",
+    "Valores das características",
+    "Eventos BLE",
+    "Procurar e ligar",
+    "Características remotas"
+  ],
+  "esplink_ble_begin": {
+    "message0": "iniciar BLE",
+    "tooltip": "Inicia o anfitrião BLE através do ESP32-C3; a ligação ESPLink é estabelecida automaticamente"
+  },
+  "esplink_ble_end": {
+    "message0": "parar BLE",
+    "tooltip": "Para o BLE sem afetar o WiFi da mesma ligação"
+  },
+  "esplink_ble_poll": {
+    "message0": "processar BLE",
+    "tooltip": "Faz avançar o anfitrião BLE e executa as funções de retorno; os blocos BLE adicionam isto sozinhos"
+  },
+  "esplink_ble_connected": {
+    "message0": "BLE ligado",
+    "tooltip": "Indica se existe uma ligação BLE. Esta adaptação suporta uma ligação de cada vez"
+  },
+  "esplink_ble_address": {
+    "message0": "endereço BLE local",
+    "tooltip": "Endereço Bluetooth deste dispositivo"
+  },
+  "esplink_ble_disconnect": {
+    "message0": "desligar BLE",
+    "tooltip": "Desliga o dispositivo remoto ligado"
+  },
+  "esplink_ble_set_timeout": {
+    "message0": "tempo limite das operações BLE %1 ms",
+    "tooltip": "Tempo de espera para procurar, ligar e operações semelhantes"
+  },
+  "esplink_ble_healthy": {
+    "message0": "ligação BLE saudável",
+    "tooltip": "Indica se a ligação ao controlador está utilizável; após mudança de sessão ou fila cheia é preciso reiniciar o BLE"
+  },
+  "esplink_ble_last_error": {
+    "message0": "último código de erro BLE",
+    "tooltip": "Último código de erro do transporte BLE; 0 significa sucesso"
+  },
+  "esplink_ble_create_service": {
+    "message0": "criar serviço BLE %1 UUID %2",
+    "tooltip": "Cria um objeto de serviço GATT local"
+  },
+  "esplink_ble_create_characteristic": {
+    "message0": "criar característica numérica BLE %1 UUID %2 tipo %3",
+    "message1": "leitura %1 escrita %2 notificação %3 indicação %4",
+    "tooltip": "Cria uma característica numérica de tamanho fixo",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "inteiro",
+            "BLEIntCharacteristic"
+          ],
+          [
+            "inteiro sem sinal",
+            "BLEUnsignedIntCharacteristic"
+          ],
+          [
+            "byte",
+            "BLEByteCharacteristic"
+          ],
+          [
+            "inteiro curto",
+            "BLEShortCharacteristic"
+          ],
+          [
+            "inteiro longo",
+            "BLELongCharacteristic"
+          ],
+          [
+            "inteiro longo sem sinal",
+            "BLEUnsignedLongCharacteristic"
+          ],
+          [
+            "número decimal",
+            "BLEFloatCharacteristic"
+          ],
+          [
+            "decimal de dupla precisão",
+            "BLEDoubleCharacteristic"
+          ],
+          [
+            "booleano",
+            "BLEBoolCharacteristic"
+          ]
+        ]
+      }
+    ]
+  },
+  "esplink_ble_create_string_characteristic": {
+    "message0": "criar característica de texto BLE %1 UUID %2 comprimento máximo %3",
+    "message1": "leitura %1 escrita %2 notificação %3 indicação %4",
+    "tooltip": "Cria uma característica de texto; o comprimento é limitado pelo MTU ATT (242)"
+  },
+  "esplink_ble_service_add_characteristic": {
+    "message0": "serviço %1 adicionar característica %2",
+    "tooltip": "Adicione as características antes de registar o serviço"
+  },
+  "esplink_ble_add_service": {
+    "message0": "registar serviço BLE %1",
+    "tooltip": "Adiciona o serviço à base de dados GATT local"
+  },
+  "esplink_ble_set_local_name": {
+    "message0": "nome difundido BLE %1",
+    "tooltip": "Nome apresentado na resposta de pesquisa"
+  },
+  "esplink_ble_set_device_name": {
+    "message0": "nome do dispositivo BLE %1",
+    "tooltip": "Valor da característica de nome de dispositivo GAP"
+  },
+  "esplink_ble_set_advertised_service": {
+    "message0": "difundir serviço %1",
+    "tooltip": "Publica o UUID do serviço no pacote de difusão para as centrais poderem filtrar"
+  },
+  "esplink_ble_advertise": {
+    "message0": "iniciar difusão BLE",
+    "tooltip": "Inicia a difusão; chame depois de registar os serviços"
+  },
+  "esplink_ble_stop_advertise": {
+    "message0": "parar difusão BLE",
+    "tooltip": "Para a difusão"
+  },
+  "esplink_ble_set_advertising_interval": {
+    "message0": "intervalo de difusão %1 ms",
+    "tooltip": "Um intervalo maior poupa energia mas atrasa a deteção"
+  },
+  "esplink_ble_set_connectable": {
+    "message0": "BLE aceitar ligações %1",
+    "tooltip": "Desativado, o dispositivo apenas difunde e recusa ligações"
+  },
+  "esplink_ble_char_write_number": {
+    "message0": "característica %1 escrever número %2",
+    "tooltip": "Atualiza uma característica local; os subscritores são notificados"
+  },
+  "esplink_ble_char_write_string": {
+    "message0": "característica %1 escrever texto %2",
+    "tooltip": "Atualiza o conteúdo de uma característica de texto local"
+  },
+  "esplink_ble_char_value_number": {
+    "message0": "número da característica %1",
+    "tooltip": "Valor atual de uma característica numérica local"
+  },
+  "esplink_ble_char_value_string": {
+    "message0": "texto da característica %1",
+    "tooltip": "Conteúdo atual de uma característica de texto local"
+  },
+  "esplink_ble_char_written": {
+    "message0": "característica %1 foi escrita",
+    "tooltip": "Indica se um remoto escreveu; o indicador é limpo ao ser lido"
+  },
+  "esplink_ble_char_subscribed": {
+    "message0": "característica %1 está subscrita",
+    "tooltip": "Indica se um remoto subscreveu as notificações"
+  },
+  "esplink_ble_on_char_written": {
+    "message0": "quando a característica %1 for escrita",
+    "message1": "fazer %1",
+    "tooltip": "Executa quando o remoto escreve, na tarefa que processa BLE; mantenha curto"
+  },
+  "esplink_ble_on_device_event": {
+    "message0": "quando o BLE %1",
+    "message1": "fazer %1",
+    "tooltip": "Retorno de chamada de ligação e desligamento",
+    "args0": [
+      {
+        "options": [
+          [
+            "um dispositivo liga-se",
+            "BLEConnected"
+          ],
+          [
+            "um dispositivo desliga-se",
+            "BLEDisconnected"
+          ]
+        ]
+      }
+    ]
+  },
+  "esplink_ble_scan": {
+    "message0": "procurar dispositivos BLE",
+    "tooltip": "Procura todos os dispositivos BLE detetáveis nas proximidades"
+  },
+  "esplink_ble_scan_for": {
+    "message0": "procurar dispositivos BLE por %1 que correspondam a %2",
+    "tooltip": "Reporta apenas os dispositivos que correspondem ao filtro",
+    "args0": [
+      {
+        "options": [
+          [
+            "UUID do serviço",
+            "scanForUuid"
+          ],
+          [
+            "nome do dispositivo",
+            "scanForName"
+          ],
+          [
+            "endereço do dispositivo",
+            "scanForAddress"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "esplink_ble_stop_scan": {
+    "message0": "parar a procura BLE",
+    "tooltip": "Para a procura; obrigatório antes de ligar"
+  },
+  "esplink_ble_device_create": {
+    "message0": "obter o dispositivo encontrado em %1",
+    "tooltip": "Obtém um dispositivo detetado; sem dispositivos novos a variável fica inválida"
+  },
+  "esplink_ble_device_found": {
+    "message0": "dispositivo %1 válido",
+    "tooltip": "Indica se esta variável aponta para um dispositivo real"
+  },
+  "esplink_ble_device_connect": {
+    "message0": "ligar ao dispositivo %1",
+    "tooltip": "Liga ao dispositivo; verdadeiro em caso de sucesso. Pare primeiro a procura"
+  },
+  "esplink_ble_device_discover": {
+    "message0": "descobrir todos os serviços do dispositivo %1",
+    "tooltip": "Lê os serviços e características do remoto; necessário após ligar"
+  },
+  "esplink_ble_device_connected": {
+    "message0": "dispositivo %1 continua ligado",
+    "tooltip": "Indica se o dispositivo ainda está ligado"
+  },
+  "esplink_ble_device_disconnect": {
+    "message0": "desligar o dispositivo %1",
+    "tooltip": "Termina a ligação a esse dispositivo"
+  },
+  "esplink_ble_device_address": {
+    "message0": "endereço do dispositivo %1",
+    "tooltip": "Endereço Bluetooth do remoto"
+  },
+  "esplink_ble_device_local_name": {
+    "message0": "nome do dispositivo %1",
+    "tooltip": "Nome presente no pacote de difusão; vazio se não for difundido"
+  },
+  "esplink_ble_device_rssi": {
+    "message0": "intensidade do sinal do dispositivo %1",
+    "tooltip": "Intensidade do sinal do remoto em dBm"
+  },
+  "esplink_ble_remote_char_create": {
+    "message0": "do dispositivo %1 obter a característica %2 UUID %3",
+    "tooltip": "Obtém uma característica remota por UUID; descubra primeiro os serviços"
+  },
+  "esplink_ble_remote_can": {
+    "message0": "característica remota %1 %2",
+    "tooltip": "Consulta o que a característica remota suporta",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "é válida",
+            "valid"
+          ],
+          [
+            "pode ler",
+            "canRead"
+          ],
+          [
+            "pode escrever",
+            "canWrite"
+          ],
+          [
+            "pode subscrever",
+            "canSubscribe"
+          ]
+        ]
+      }
+    ]
+  },
+  "esplink_ble_remote_read": {
+    "message0": "ler a característica remota %1",
+    "tooltip": "Pede uma leitura ao remoto; o resultado fica na cache local"
+  },
+  "esplink_ble_remote_value_number": {
+    "message0": "número da característica remota %1",
+    "tooltip": "Interpreta os bytes em cache como inteiro conforme o comprimento"
+  },
+  "esplink_ble_remote_value_string": {
+    "message0": "texto da característica remota %1",
+    "tooltip": "Lê os bytes em cache como texto"
+  },
+  "esplink_ble_remote_write_number": {
+    "message0": "característica remota %1 escrever número %2",
+    "tooltip": "Escreve um inteiro de 4 bytes na característica remota"
+  },
+  "esplink_ble_remote_write_string": {
+    "message0": "característica remota %1 escrever texto %2",
+    "tooltip": "Escreve texto na característica remota"
+  },
+  "esplink_ble_remote_subscribe": {
+    "message0": "subscrever a característica remota %1",
+    "tooltip": "Subscreve as notificações; verdadeiro em caso de sucesso"
+  },
+  "esplink_ble_remote_value_updated": {
+    "message0": "característica remota %1 tem dados novos",
+    "tooltip": "Indica se chegou uma notificação nova após a subscrição"
+  },
+  "esplink_begin": {
+    "message0": "iniciar ESPLink para o ESP32-C3",
+    "tooltip": "Inicia a ligação na UART de hardware padrão da placa a 921600 bauds. As bibliotecas WiFi e BLE iniciam o ESPLink sozinhas; este bloco serve para diagnóstico isolado"
+  },
+  "esplink_begin_serial": {
+    "message0": "iniciar ESPLink porta série %1 baud %2",
+    "tooltip": "Inicia o ESPLink numa porta e velocidade específicas. Tem de coincidir com o firmware do C3 e ser chamado antes de inicializar WiFi/BLE",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "921600",
+            "921600"
+          ],
+          [
+            "115200",
+            "115200"
+          ],
+          [
+            "460800",
+            "460800"
+          ],
+          [
+            "230400",
+            "230400"
+          ],
+          [
+            "1000000",
+            "1000000"
+          ]
+        ]
+      }
+    ]
+  },
+  "esplink_bind_stream": {
+    "message0": "ligar a porta série configurada %1 ao ESPLink",
+    "tooltip": "Reutiliza uma porta série já inicializada pelo programa (incluindo pinos próprios). O ESPLink não chama begin() nem end()"
+  },
+  "esplink_end": {
+    "message0": "parar ESPLink",
+    "tooltip": "Liberta a ligação ESPLink. No modo emprestado o controlador da porta série continua aberto"
+  },
+  "esplink_poll": {
+    "message0": "processar ESPLink",
+    "tooltip": "Faz avançar o transporte ESPLink. Os blocos de arranque adicionam isto automaticamente ao ciclo principal"
+  },
+  "esplink_ready": {
+    "message0": "ESPLink está pronto",
+    "tooltip": "Indica se a ligação ao C3 tem uma sessão utilizável"
+  },
+  "esplink_ping": {
+    "message0": "teste ESPLink tempo limite %1 ms",
+    "tooltip": "Envia um ping ao C3 e espera pela resposta"
+  },
+  "esplink_session": {
+    "message0": "número de sessão do ESPLink",
+    "tooltip": "Número da sessão atual. Uma alteração significa reinício do C3 ou reconstrução da ligação: todos os sockets e identificadores BLE anteriores ficam inválidos"
+  },
+  "esplink_last_error": {
+    "message0": "último código de erro do ESPLink",
+    "tooltip": "Código de erro da última operação ESPLink; 0 significa sucesso"
+  },
+  "esplink_error_code": {
+    "message0": "código de erro %1",
+    "tooltip": "Constante de erro do ESPLink para comparar com o último código de erro",
+    "args0": [
+      {
+        "options": [
+          [
+            "Sucesso",
+            "c3::Ok"
+          ],
+          [
+            "Argumento inválido",
+            "c3::InvalidArgument"
+          ],
+          [
+            "Não suportado",
+            "c3::Unsupported"
+          ],
+          [
+            "Sem memória",
+            "c3::NoMemory"
+          ],
+          [
+            "Ocupado",
+            "c3::Busy"
+          ],
+          [
+            "Tempo esgotado",
+            "c3::Timeout"
+          ],
+          [
+            "Não ligado",
+            "c3::NotConnected"
+          ],
+          [
+            "Erro de E/S",
+            "c3::IoError"
+          ],
+          [
+            "Erro de protocolo",
+            "c3::ProtocolError"
+          ],
+          [
+            "Resultado desconhecido",
+            "c3::OutcomeUnknown"
+          ],
+          [
+            "Identificador inválido",
+            "c3::StaleHandle"
+          ],
+          [
+            "Memória intermédia pequena",
+            "c3::BufferTooSmall"
+          ],
+          [
+            "Resultado expirado",
+            "c3::ResultExpired"
+          ],
+          [
+            "Erro de segurança",
+            "c3::SecurityError"
+          ],
+          [
+            "Tentar novamente",
+            "c3::WouldBlock"
+          ],
+          [
+            "Ligação perdida",
+            "c3::LinkLost"
+          ],
+          [
+            "Não encontrado",
+            "c3::NotFound"
+          ]
+        ]
+      }
+    ]
+  },
+  "esplink_firmware_version": {
+    "message0": "versão do firmware do C3",
+    "tooltip": "Cadeia de versão do firmware de ponte em execução no ESP32-C3"
+  },
+  "esplink_capability": {
+    "message0": "capacidade do C3 %1",
+    "tooltip": "Lê um valor de capacidade comunicado pelo C3 durante a negociação inicial",
+    "args0": [
+      {
+        "options": [
+          [
+            "Carga útil máxima (bytes)",
+            "maxPayload"
+          ],
+          [
+            "Tamanho máximo do pacote HCI",
+            "maxHciPacket"
+          ],
+          [
+            "Número máximo de sockets",
+            "maxSockets"
+          ],
+          [
+            "Ligações BLE máximas",
+            "maxBLEConnections"
+          ],
+          [
+            "Bits de funcionalidades",
+            "features"
+          ],
+          [
+            "Identificador de arranque",
+            "bootID"
+          ]
+        ]
+      }
+    ]
+  },
+  "esplink_has_feature": {
+    "message0": "o C3 suporta %1",
+    "tooltip": "Indica se o firmware do C3 suporta a funcionalidade escolhida",
+    "args0": [
+      {
+        "options": [
+          [
+            "WiFi",
+            "c3::WiFi"
+          ],
+          [
+            "TCP",
+            "c3::TCP"
+          ],
+          [
+            "UDP",
+            "c3::UDP"
+          ],
+          [
+            "TLS",
+            "c3::TLS"
+          ],
+          [
+            "BLE (HCI)",
+            "c3::HCI"
+          ],
+          [
+            "IPv6",
+            "c3::IPv6"
+          ],
+          [
+            "AP+STA em simultâneo",
+            "c3::StationAP"
+          ],
+          [
+            "OTA",
+            "c3::OTA"
+          ],
+          [
+            "mDNS",
+            "c3::MDNS"
+          ]
+        ]
+      }
+    ]
+  },
+  "esplink_stat": {
+    "message0": "estatística do ESPLink %1",
+    "tooltip": "Lê os contadores de qualidade da ligação para diagnosticar cablagem e velocidade",
+    "args0": [
+      {
+        "options": [
+          [
+            "Tramas enviadas",
+            "transmitted"
+          ],
+          [
+            "Tramas recebidas",
+            "received"
+          ],
+          [
+            "Retransmissões",
+            "retries"
+          ],
+          [
+            "Tempos esgotados",
+            "timeouts"
+          ],
+          [
+            "Erros de CRC",
+            "crcErrors"
+          ],
+          [
+            "Tramas malformadas",
+            "malformed"
+          ],
+          [
+            "Tramas demasiado grandes",
+            "oversized"
+          ],
+          [
+            "Tramas ignoradas",
+            "ignored"
+          ],
+          [
+            "Mudanças de sessão",
+            "sessionChanges"
+          ],
+          [
+            "Bytes recebidos",
+            "rxBytes"
+          ],
+          [
+            "Lotes de receção",
+            "rxBatches"
+          ],
+          [
+            "Ativações do processo",
+            "workerWakeups"
+          ]
+        ]
+      }
+    ]
+  }
+}

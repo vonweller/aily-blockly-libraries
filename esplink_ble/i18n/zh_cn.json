@@ -1,0 +1,573 @@
+{
+  "toolbox_name": "ESPLink BLE",
+  "toolbox_categories": [
+    "C3链路",
+    "初始化与链路",
+    "服务与特征",
+    "广播设置",
+    "特征读写",
+    "BLE事件",
+    "扫描与连接",
+    "对端特征"
+  ],
+  "esplink_ble_begin": {
+    "message0": "启动BLE",
+    "tooltip": "通过ESP32-C3启动BLE主机协议栈，会自动建立ESPLink链路"
+  },
+  "esplink_ble_end": {
+    "message0": "关闭BLE",
+    "tooltip": "关闭BLE，不影响同一链路上的WiFi"
+  },
+  "esplink_ble_poll": {
+    "message0": "处理BLE事务",
+    "tooltip": "推进BLE主机并执行回调。使用BLE块时会自动加入主程序"
+  },
+  "esplink_ble_connected": {
+    "message0": "BLE已连接",
+    "tooltip": "当前是否有BLE连接。本移植一次只支持一个连接"
+  },
+  "esplink_ble_address": {
+    "message0": "BLE本机地址",
+    "tooltip": "本机蓝牙地址"
+  },
+  "esplink_ble_disconnect": {
+    "message0": "断开BLE连接",
+    "tooltip": "断开当前连接的对端设备"
+  },
+  "esplink_ble_set_timeout": {
+    "message0": "设置BLE操作超时 %1 毫秒",
+    "tooltip": "设置扫描、连接等操作的等待时间"
+  },
+  "esplink_ble_healthy": {
+    "message0": "BLE链路正常",
+    "tooltip": "C3控制器链路是否健康。会话变更或队列溢出后需要重启BLE"
+  },
+  "esplink_ble_last_error": {
+    "message0": "BLE最后错误码",
+    "tooltip": "BLE传输层最后一次错误码，0表示成功"
+  },
+  "esplink_ble_create_service": {
+    "message0": "创建BLE服务 %1 UUID %2",
+    "tooltip": "创建一个本机GATT服务对象"
+  },
+  "esplink_ble_create_characteristic": {
+    "message0": "创建BLE数值特征 %1 UUID %2 类型 %3",
+    "message1": "可读 %1 可写 %2 通知 %3 指示 %4",
+    "tooltip": "创建一个固定长度的数值特征对象",
+    "args0": [
+      null,
+      null,
+      {
+        "options": [
+          [
+            "整数",
+            "BLEIntCharacteristic"
+          ],
+          [
+            "无符号整数",
+            "BLEUnsignedIntCharacteristic"
+          ],
+          [
+            "字节",
+            "BLEByteCharacteristic"
+          ],
+          [
+            "短整数",
+            "BLEShortCharacteristic"
+          ],
+          [
+            "长整数",
+            "BLELongCharacteristic"
+          ],
+          [
+            "无符号长整数",
+            "BLEUnsignedLongCharacteristic"
+          ],
+          [
+            "浮点数",
+            "BLEFloatCharacteristic"
+          ],
+          [
+            "双精度浮点数",
+            "BLEDoubleCharacteristic"
+          ],
+          [
+            "布尔值",
+            "BLEBoolCharacteristic"
+          ]
+        ]
+      }
+    ]
+  },
+  "esplink_ble_create_string_characteristic": {
+    "message0": "创建BLE字符串特征 %1 UUID %2 最大长度 %3",
+    "message1": "可读 %1 可写 %2 通知 %3 指示 %4",
+    "tooltip": "创建一个字符串特征对象，长度上限受ATT MTU(242)限制"
+  },
+  "esplink_ble_service_add_characteristic": {
+    "message0": "服务 %1 添加特征 %2",
+    "tooltip": "把特征加入服务，必须在加入服务到协议栈之前完成"
+  },
+  "esplink_ble_add_service": {
+    "message0": "注册BLE服务 %1",
+    "tooltip": "把服务加入本机GATT数据库"
+  },
+  "esplink_ble_set_local_name": {
+    "message0": "设置BLE广播名称 %1",
+    "tooltip": "设置扫描响应中显示的名称"
+  },
+  "esplink_ble_set_device_name": {
+    "message0": "设置BLE设备名称 %1",
+    "tooltip": "设置GAP设备名称特征的值"
+  },
+  "esplink_ble_set_advertised_service": {
+    "message0": "广播服务 %1",
+    "tooltip": "在广播包中公开该服务的UUID，便于中心设备按UUID筛选"
+  },
+  "esplink_ble_advertise": {
+    "message0": "开始BLE广播",
+    "tooltip": "开始广播，需要在注册完服务之后调用"
+  },
+  "esplink_ble_stop_advertise": {
+    "message0": "停止BLE广播",
+    "tooltip": "停止广播"
+  },
+  "esplink_ble_set_advertising_interval": {
+    "message0": "设置广播间隔 %1 毫秒",
+    "tooltip": "设置广播间隔，间隔越大越省电但被发现越慢"
+  },
+  "esplink_ble_set_connectable": {
+    "message0": "设置BLE可被连接 %1",
+    "tooltip": "关闭后只广播不接受连接"
+  },
+  "esplink_ble_char_write_number": {
+    "message0": "特征 %1 写入数值 %2",
+    "tooltip": "更新本机特征的数值，已订阅的对端会收到通知"
+  },
+  "esplink_ble_char_write_string": {
+    "message0": "特征 %1 写入字符串 %2",
+    "tooltip": "更新本机字符串特征的内容"
+  },
+  "esplink_ble_char_value_number": {
+    "message0": "特征 %1 的数值",
+    "tooltip": "读取本机数值特征当前的值"
+  },
+  "esplink_ble_char_value_string": {
+    "message0": "特征 %1 的字符串",
+    "tooltip": "读取本机字符串特征当前的内容"
+  },
+  "esplink_ble_char_written": {
+    "message0": "特征 %1 被写入过",
+    "tooltip": "对端是否写入过该特征，读取后标志会清除"
+  },
+  "esplink_ble_char_subscribed": {
+    "message0": "特征 %1 已被订阅",
+    "tooltip": "对端是否订阅了该特征的通知"
+  },
+  "esplink_ble_on_char_written": {
+    "message0": "当特征 %1 被写入时",
+    "message1": "执行 %1",
+    "tooltip": "对端写入该特征时执行，回调在调用BLE处理块的任务中运行，内容要短"
+  },
+  "esplink_ble_on_device_event": {
+    "message0": "当BLE %1 时",
+    "message1": "执行 %1",
+    "tooltip": "连接或断开时执行的回调",
+    "args0": [
+      {
+        "options": [
+          [
+            "有设备连接",
+            "BLEConnected"
+          ],
+          [
+            "设备断开",
+            "BLEDisconnected"
+          ]
+        ]
+      }
+    ]
+  },
+  "esplink_ble_scan": {
+    "message0": "开始扫描BLE设备",
+    "tooltip": "扫描周围所有可发现的BLE设备"
+  },
+  "esplink_ble_scan_for": {
+    "message0": "开始扫描BLE设备 按 %1 匹配 %2",
+    "tooltip": "只上报匹配条件的设备",
+    "args0": [
+      {
+        "options": [
+          [
+            "服务UUID",
+            "scanForUuid"
+          ],
+          [
+            "设备名称",
+            "scanForName"
+          ],
+          [
+            "设备地址",
+            "scanForAddress"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "esplink_ble_stop_scan": {
+    "message0": "停止扫描BLE设备",
+    "tooltip": "停止扫描。连接之前必须先停止扫描"
+  },
+  "esplink_ble_device_create": {
+    "message0": "取出扫描到的设备到 %1",
+    "tooltip": "取出一个扫描到的设备，没有新设备时该变量无效"
+  },
+  "esplink_ble_device_found": {
+    "message0": "设备 %1 有效",
+    "tooltip": "该设备变量是否指向一个真实设备"
+  },
+  "esplink_ble_device_connect": {
+    "message0": "连接设备 %1",
+    "tooltip": "连接该设备，成功返回真。连接前要先停止扫描"
+  },
+  "esplink_ble_device_discover": {
+    "message0": "发现设备 %1 的全部服务",
+    "tooltip": "读取对端的服务和特征列表，连接后必须先调用"
+  },
+  "esplink_ble_device_connected": {
+    "message0": "设备 %1 保持连接",
+    "tooltip": "该设备当前是否仍然连接"
+  },
+  "esplink_ble_device_disconnect": {
+    "message0": "断开设备 %1",
+    "tooltip": "断开与该设备的连接"
+  },
+  "esplink_ble_device_address": {
+    "message0": "设备 %1 的地址",
+    "tooltip": "对端设备的蓝牙地址"
+  },
+  "esplink_ble_device_local_name": {
+    "message0": "设备 %1 的名称",
+    "tooltip": "广播包中的设备名称，未广播名称时为空"
+  },
+  "esplink_ble_device_rssi": {
+    "message0": "设备 %1 的信号强度",
+    "tooltip": "对端设备的信号强度(dBm)"
+  },
+  "esplink_ble_remote_char_create": {
+    "message0": "从设备 %1 取出特征 %2 UUID %3",
+    "tooltip": "按UUID取出对端特征，需要先发现服务"
+  },
+  "esplink_ble_remote_can": {
+    "message0": "对端特征 %1 %2",
+    "tooltip": "查询对端特征的能力",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "有效",
+            "valid"
+          ],
+          [
+            "可读",
+            "canRead"
+          ],
+          [
+            "可写",
+            "canWrite"
+          ],
+          [
+            "可订阅",
+            "canSubscribe"
+          ]
+        ]
+      }
+    ]
+  },
+  "esplink_ble_remote_read": {
+    "message0": "读取对端特征 %1",
+    "tooltip": "向对端发起一次读取，结果保存在本地缓存中"
+  },
+  "esplink_ble_remote_value_number": {
+    "message0": "对端特征 %1 的数值",
+    "tooltip": "按特征长度把缓存内容解释为整数"
+  },
+  "esplink_ble_remote_value_string": {
+    "message0": "对端特征 %1 的字符串",
+    "tooltip": "把缓存内容按文本读取"
+  },
+  "esplink_ble_remote_write_number": {
+    "message0": "对端特征 %1 写入数值 %2",
+    "tooltip": "向对端特征写入一个4字节整数"
+  },
+  "esplink_ble_remote_write_string": {
+    "message0": "对端特征 %1 写入字符串 %2",
+    "tooltip": "向对端特征写入文本"
+  },
+  "esplink_ble_remote_subscribe": {
+    "message0": "订阅对端特征 %1",
+    "tooltip": "订阅通知，成功返回真"
+  },
+  "esplink_ble_remote_value_updated": {
+    "message0": "对端特征 %1 有新数据",
+    "tooltip": "订阅后是否收到了新的通知数据"
+  },
+  "esplink_begin": {
+    "message0": "启动ESPLink连接ESP32-C3",
+    "tooltip": "使用开发板默认的硬件串口(921600波特率)启动与ESP32-C3的连接。WiFi和BLE库会自动启动ESPLink，此块仅在需要单独诊断时使用"
+  },
+  "esplink_begin_serial": {
+    "message0": "启动ESPLink 串口 %1 波特率 %2",
+    "tooltip": "指定串口和波特率启动ESPLink。必须与C3固件的波特率一致，且要在WiFi/BLE初始化之前调用"
+  },
+  "esplink_bind_stream": {
+    "message0": "绑定已配置的串口 %1 到ESPLink",
+    "tooltip": "借用一个已经自行初始化(含自定义引脚)的串口，ESPLink不会调用它的begin()和end()"
+  },
+  "esplink_end": {
+    "message0": "断开ESPLink连接",
+    "tooltip": "释放ESPLink绑定。借用模式下不会关闭串口驱动"
+  },
+  "esplink_poll": {
+    "message0": "处理ESPLink事务",
+    "tooltip": "推进ESPLink传输。使用初始化块时会自动加入主程序，一般无需手动添加"
+  },
+  "esplink_ready": {
+    "message0": "ESPLink已就绪",
+    "tooltip": "C3链路是否处于可用会话中"
+  },
+  "esplink_ping": {
+    "message0": "ESPLink通信测试 超时 %1 毫秒",
+    "tooltip": "向C3发送一次Ping并等待回应"
+  },
+  "esplink_session": {
+    "message0": "ESPLink会话号",
+    "tooltip": "当前链路会话号。会话号改变表示C3重启或链路重建，之前的socket和BLE句柄全部失效"
+  },
+  "esplink_last_error": {
+    "message0": "ESPLink最后错误码",
+    "tooltip": "最后一次ESPLink操作的错误码，0表示成功"
+  },
+  "esplink_error_code": {
+    "message0": "错误码 %1",
+    "tooltip": "ESPLink错误码常量，用于和最后错误码比较",
+    "args0": [
+      {
+        "options": [
+          [
+            "成功",
+            "c3::Ok"
+          ],
+          [
+            "参数无效",
+            "c3::InvalidArgument"
+          ],
+          [
+            "不支持",
+            "c3::Unsupported"
+          ],
+          [
+            "内存不足",
+            "c3::NoMemory"
+          ],
+          [
+            "忙",
+            "c3::Busy"
+          ],
+          [
+            "超时",
+            "c3::Timeout"
+          ],
+          [
+            "未连接",
+            "c3::NotConnected"
+          ],
+          [
+            "IO错误",
+            "c3::IoError"
+          ],
+          [
+            "协议错误",
+            "c3::ProtocolError"
+          ],
+          [
+            "结果未知",
+            "c3::OutcomeUnknown"
+          ],
+          [
+            "句柄失效",
+            "c3::StaleHandle"
+          ],
+          [
+            "缓冲区太小",
+            "c3::BufferTooSmall"
+          ],
+          [
+            "结果已过期",
+            "c3::ResultExpired"
+          ],
+          [
+            "安全错误",
+            "c3::SecurityError"
+          ],
+          [
+            "需要重试",
+            "c3::WouldBlock"
+          ],
+          [
+            "链路丢失",
+            "c3::LinkLost"
+          ],
+          [
+            "未找到",
+            "c3::NotFound"
+          ]
+        ]
+      }
+    ]
+  },
+  "esplink_firmware_version": {
+    "message0": "C3固件版本",
+    "tooltip": "ESP32-C3上运行的桥接固件版本字符串"
+  },
+  "esplink_capability": {
+    "message0": "C3能力 %1",
+    "tooltip": "读取C3握手时上报的能力参数",
+    "args0": [
+      {
+        "options": [
+          [
+            "最大负载字节",
+            "maxPayload"
+          ],
+          [
+            "最大HCI包字节",
+            "maxHciPacket"
+          ],
+          [
+            "最大socket数",
+            "maxSockets"
+          ],
+          [
+            "最大BLE连接数",
+            "maxBLEConnections"
+          ],
+          [
+            "功能位",
+            "features"
+          ],
+          [
+            "启动ID",
+            "bootID"
+          ]
+        ]
+      }
+    ]
+  },
+  "esplink_has_feature": {
+    "message0": "C3支持 %1 功能",
+    "tooltip": "判断C3固件是否支持指定功能",
+    "args0": [
+      {
+        "options": [
+          [
+            "WiFi",
+            "c3::WiFi"
+          ],
+          [
+            "TCP",
+            "c3::TCP"
+          ],
+          [
+            "UDP",
+            "c3::UDP"
+          ],
+          [
+            "TLS",
+            "c3::TLS"
+          ],
+          [
+            "BLE(HCI)",
+            "c3::HCI"
+          ],
+          [
+            "IPv6",
+            "c3::IPv6"
+          ],
+          [
+            "AP+STA共存",
+            "c3::StationAP"
+          ],
+          [
+            "OTA",
+            "c3::OTA"
+          ],
+          [
+            "mDNS",
+            "c3::MDNS"
+          ]
+        ]
+      }
+    ]
+  },
+  "esplink_stat": {
+    "message0": "ESPLink统计 %1",
+    "tooltip": "读取链路质量统计，用于排查接线和波特率问题",
+    "args0": [
+      {
+        "options": [
+          [
+            "已发送帧数",
+            "transmitted"
+          ],
+          [
+            "已接收帧数",
+            "received"
+          ],
+          [
+            "重传次数",
+            "retries"
+          ],
+          [
+            "超时次数",
+            "timeouts"
+          ],
+          [
+            "CRC错误数",
+            "crcErrors"
+          ],
+          [
+            "格式错误数",
+            "malformed"
+          ],
+          [
+            "超长帧数",
+            "oversized"
+          ],
+          [
+            "忽略帧数",
+            "ignored"
+          ],
+          [
+            "会话变更次数",
+            "sessionChanges"
+          ],
+          [
+            "接收字节数",
+            "rxBytes"
+          ],
+          [
+            "接收批次数",
+            "rxBatches"
+          ],
+          [
+            "工作线程唤醒数",
+            "workerWakeups"
+          ]
+        ]
+      }
+    ]
+  }
+}

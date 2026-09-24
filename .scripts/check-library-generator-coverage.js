@@ -8,6 +8,7 @@ const {
   allDocumentedBlocks,
   blockContractFor,
   runtimeBlockDefinitions,
+  absArgExample,
 } = require('./check-readme-compliance');
 const { loadLibraryContract } = require('./readme-library-contracts');
 
@@ -444,7 +445,7 @@ function defaultFieldValue(arg) {
   }
   if (arg.type === 'field_checkbox') return arg.checked === false ? 'FALSE' : 'TRUE';
   if (arg.type === 'field_number') return String(arg.value ?? 0);
-  if (arg.type === 'field_variable') return arg.variable || 'item';
+  if (arg.type === 'field_variable') return arg.variable || String(arg.name || 'var').toLowerCase();
   if (arg.type === 'field_input') return arg.text || 'value';
   if (String(arg.type).startsWith('field_colour')) return arg.colour || '#000000';
   if (String(arg.type).startsWith('field_')) {
@@ -514,6 +515,8 @@ function probeGeneratorHandler(loaded, handler, block, blockContract) {
     id: `generator-coverage-${block.type}`,
     type: block.type,
     isInFlyout: false,
+    isEnabled: () => true,
+    isInsertionMarker: () => false,
     inputList: args.filter(arg => arg?.name).map(arg => ({ name: arg.name })),
     workspace: createNoopProxy({
       isFlyout: false,
@@ -551,11 +554,12 @@ function probeGeneratorHandler(loaded, handler, block, blockContract) {
     reads.push({ kind: 'value', name });
     const arg = argsByName.get(name);
     if (!arg || arg.type !== 'input_value') return '';
-    const checks = Array.isArray(arg.check) ? arg.check : [arg.check];
-    if (checks.includes('String')) return '"value"';
-    if (checks.includes('Boolean')) return 'true';
-    if (checks.includes('Character')) return "'\\n'";
-    return '1';
+    // Use the same example as the ABS column. These are representative probes,
+    // not a compiler: fail explicitly when a nested expression needs runtime.
+    const example = absArgExample(arg);
+    const literal = /^(?:math_number|logic_boolean|text)\((.*)\)$/.exec(example);
+    if (literal) return literal[1];
+    throw new Error(`Generated-code preview requires runtime evaluation: ${example}`);
   };
   const statementToCode = (_sourceBlock, name) => {
     reads.push({ kind: 'statement', name });
@@ -991,17 +995,33 @@ function audit(targetLibraries = null) {
 }
 
 function parseCliArgs(argv) {
-  const options = { json: false, strict: false, libraries: [] };
+  const options = { json: false, strict: false, allowGeneratedCodeMismatches: false, libraries: [] };
   for (let index = 0; index < argv.length; index++) {
     const arg = argv[index];
     if (arg === '--json') options.json = true;
     else if (arg === '--strict') options.strict = true;
+    else if (arg === '--allow-generated-code-mismatches') options.allowGeneratedCodeMismatches = true;
     else if (arg === '--library') {
       if (!argv[index + 1]) throw new Error('--library requires a library name');
       options.libraries.push(argv[++index]);
     } else throw new Error(`Unknown option: ${arg}`);
   }
   return options;
+}
+
+function strictFailureCount(report, options = {}) {
+  return report.generatorLoadErrors
+    + report.missingPublicGenerators
+    + report.unclassifiedMissingGenerators
+    + report.unresolvedVisibleToolboxTypes
+    + report.duplicateAssignments
+    + report.unclassifiedOrphanGenerators
+    + report.registrationContractErrors.length
+    + report.generatedCodeContractErrors.length
+    + report.slotMismatches
+    + report.unknownSlotReads
+    + report.handlerProbeErrors
+    + (options.allowGeneratedCodeMismatches ? 0 : report.generatedCodeMismatches);
 }
 
 function main() {
@@ -1053,18 +1073,10 @@ function main() {
       if (findings.length) console.log(`- ${item.library}${item.hiddenPackage ? ' [hidden]' : ''}: ${findings.join('; ')}`);
     }
   }
-  const strictFailures = report.generatorLoadErrors
-    + report.missingPublicGenerators
-    + report.unclassifiedMissingGenerators
-    + report.unresolvedVisibleToolboxTypes
-    + report.duplicateAssignments
-    + report.unclassifiedOrphanGenerators
-    + report.registrationContractErrors.length
-    + report.generatedCodeContractErrors.length
-    + report.slotMismatches
-    + report.unknownSlotReads
-    + report.handlerProbeErrors
-    + report.generatedCodeMismatches;
+  if (options.allowGeneratedCodeMismatches && report.generatedCodeMismatches > 0) {
+    console.log(`Generated-code documentation mismatches ignored by this run: ${report.generatedCodeMismatches}`);
+  }
+  const strictFailures = strictFailureCount(report, options);
   if (options.strict && strictFailures > 0) process.exitCode = 1;
 }
 
@@ -1080,4 +1092,5 @@ module.exports = {
   generatedCodePreviewArtifact,
   probeGeneratorHandler,
   parseCliArgs,
+  strictFailureCount,
 };

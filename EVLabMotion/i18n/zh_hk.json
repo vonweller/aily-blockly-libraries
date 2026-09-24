@@ -1,0 +1,242 @@
+{
+  "toolbox_name": "運動模塊",
+  "toolbox_categories": [
+    "初始化",
+    "舵機",
+    "馬達",
+    "原始幀與校驗",
+    "狀態"
+  ],
+  "evlabmotion_init": {
+    "message0": "初始化運動模塊 %1 I2C匯流排 %2",
+    "tooltip": "初始化 EasyVoiceLab 1306 舵機/馬達協處理器（I2C 固定地址 0x10），並檢測其是否在線"
+  },
+  "evlabmotion_is_connected": {
+    "message0": "運動模塊 %1 已連接",
+    "tooltip": "向協處理器發起一次空寫事務，確認 I2C 鏈路是否通暢"
+  },
+  "evlabmotion_get_address": {
+    "message0": "運動模塊 %1 的I2C地址",
+    "tooltip": "返回協處理器的 I2C 地址，固定為 0x10（十進制 16）"
+  },
+  "evlabmotion_set_servo": {
+    "message0": "運動模塊 %1 設置舵機 %2 角度 %3 度",
+    "tooltip": "設置單個舵機通道的角度，通道 1~4，角度 0~180 度",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "1",
+            "1"
+          ],
+          [
+            "2",
+            "2"
+          ],
+          [
+            "3",
+            "3"
+          ],
+          [
+            "4",
+            "4"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "evlabmotion_set_all_servos": {
+    "message0": "運動模塊 %1 全部舵機轉到 %2 度",
+    "tooltip": "把 4 個舵機通道全部轉到同一角度，內部依次發送 4 幀"
+  },
+  "evlabmotion_motor_run": {
+    "message0": "運動模塊 %1 馬達 %2 %3 速度 %4",
+    "tooltip": "驅動直流馬達通道 1~2 正轉或反轉，速度 0~255",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "1",
+            "1"
+          ],
+          [
+            "2",
+            "2"
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            "正轉",
+            "FORWARD"
+          ],
+          [
+            "反轉",
+            "BACKWARD"
+          ]
+        ]
+      },
+      null
+    ]
+  },
+  "evlabmotion_set_motor": {
+    "message0": "運動模塊 %1 馬達 %2 方向 %3 速度 %4",
+    "tooltip": "用數值指定方向驅動馬達，方向非 0 為正轉、0 為反轉，便於由變量計算得出",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "1",
+            "1"
+          ],
+          [
+            "2",
+            "2"
+          ]
+        ]
+      },
+      null,
+      null
+    ]
+  },
+  "evlabmotion_stop_motor": {
+    "message0": "運動模塊 %1 停止馬達 %2",
+    "tooltip": "把指定馬達速度設為 0，半橋兩端同時拉低，馬達滑行停止而非剎車",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "1",
+            "1"
+          ],
+          [
+            "2",
+            "2"
+          ]
+        ]
+      }
+    ]
+  },
+  "evlabmotion_stop_motors": {
+    "message0": "運動模塊 %1 停止全部馬達",
+    "tooltip": "停止兩個馬達通道，舵機保持當前角度不受影響"
+  },
+  "evlabmotion_send_frame": {
+    "message0": "運動模塊 %1 發送原始幀 ID %2 參數1 %3 參數2 %4",
+    "tooltip": "直接發送 3 位元組協議幀，不做任何範圍檢查。ID 0~1 為馬達、2~5 為舵機"
+  },
+  "evlabmotion_verify": {
+    "message0": "運動模塊 %1 回讀校驗通過",
+    "tooltip": "讀回協處理器收到的最後一幀，與本地記錄比對，可作為端到端鏈路自檢"
+  },
+  "evlabmotion_read_frame_byte": {
+    "message0": "運動模塊 %1 回讀幀的 %2",
+    "tooltip": "從協處理器讀回最後收到的一幀並取出其中一個位元組，讀取失敗返回 -1",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "幀ID",
+            "0"
+          ],
+          [
+            "參數1",
+            "1"
+          ],
+          [
+            "參數2",
+            "2"
+          ]
+        ]
+      }
+    ]
+  },
+  "evlabmotion_last_frame_byte": {
+    "message0": "運動模塊 %1 最後發送幀的 %2",
+    "tooltip": "取出本地記錄的最後一次發送幀的某個位元組，不產生 I2C 通信",
+    "args0": [
+      null,
+      {
+        "options": [
+          [
+            "幀ID",
+            "0"
+          ],
+          [
+            "參數1",
+            "1"
+          ],
+          [
+            "參數2",
+            "2"
+          ]
+        ]
+      }
+    ]
+  },
+  "evlabmotion_last_error": {
+    "message0": "運動模塊 %1 最近錯誤碼",
+    "tooltip": "讀取最近一次錯誤碼，讀取後錯誤狀態會被清零，所以只能讀一次"
+  },
+  "evlabmotion_last_write": {
+    "message0": "運動模塊 %1 最後發送時刻",
+    "tooltip": "返回最後一次成功發送幀時的 millis() 毫秒時間戳"
+  },
+  "evlabmotion_calibrate_zero": {
+    "message0": "運動模塊 %1 標定電流零點",
+    "tooltip": "在馬達停止時採一次電流基線存為零點。初始化已自動執行一次，馬達空閒時可隨時重新標定"
+  },
+  "evlabmotion_current_amps": {
+    "message0": "運動模塊 %1 母線電流",
+    "tooltip": "讀取馬達母線電流，單位安培。需要協處理器固件支援電流採集，失敗時返回 0 並置錯誤碼"
+  },
+  "evlabmotion_current_raw": {
+    "message0": "運動模塊 %1 電流ADC原始值",
+    "tooltip": "讀取電流檢測的12位ADC原始值（0~4095），讀取失敗或固件不支援電流採集時返回 -1"
+  },
+  "evlabmotion_error_const": {
+    "message0": "錯誤碼 %1",
+    "tooltip": "錯誤碼常量，用來和「最近錯誤碼」比較判斷故障類型",
+    "args0": [
+      {
+        "options": [
+          [
+            "正常",
+            "EVLABMOTION_OK"
+          ],
+          [
+            "連接失敗",
+            "EVLABMOTION_ERROR_CONNECT"
+          ],
+          [
+            "索引越界",
+            "EVLABMOTION_ERROR_INDEX"
+          ],
+          [
+            "角度越界",
+            "EVLABMOTION_ERROR_ANGLE"
+          ],
+          [
+            "位元組缺失",
+            "EVLABMOTION_ERROR_MISSING_BYTES"
+          ],
+          [
+            "回讀不符",
+            "EVLABMOTION_ERROR_VERIFY"
+          ],
+          [
+            "無電流數據",
+            "EVLABMOTION_ERROR_NO_CURRENT"
+          ]
+        ]
+      }
+    ]
+  }
+}
