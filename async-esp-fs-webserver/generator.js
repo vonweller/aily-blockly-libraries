@@ -19,12 +19,7 @@ function asyncFsEnsureFilesystemLibrary(generator, fsName) {
 }
 
 function asyncFsEnsureLibraries(generator, fsName) {
-  const boardConfig = (typeof window !== 'undefined' && window['boardConfig']) ? window['boardConfig'] : null;
-  if (boardConfig && boardConfig.core && boardConfig.core.indexOf('esp32') === -1) {
-    asyncFsAddMacro(generator, 'asyncfs_esp32_only', '#if !defined(ESP32)\n#error "AsyncFsWebServer Blockly blocks require ESP32."\n#endif');
-  } else {
-    asyncFsAddMacro(generator, 'asyncfs_esp32_only', '#if !defined(ESP32)\n#error "AsyncFsWebServer Blockly blocks require ESP32."\n#endif');
-  }
+  asyncFsAddMacro(generator, 'asyncfs_esp32_only', '#if !defined(ESP32)\n#error "AsyncFsWebServer Blockly blocks require ESP32."\n#endif');
 
   generator.addLibrary('FS', '#include <FS.h>');
   generator.addLibrary('WiFi', '#include <WiFi.h>');
@@ -40,23 +35,18 @@ function asyncFsGetVarName(block, fieldName, defaultName) {
   return varField ? varField.getText() : defaultName;
 }
 
-function asyncFsEnsureServerObject(generator, varName, fsName, port, host) {
+function asyncFsEnsureServerObject(generator, varName, fsName, port, host, explicit = false) {
   const serverName = varName || 'server';
   const filesystem = fsName || 'LittleFS';
   const serverPort = port || '80';
   const serverHost = host || '"esphost"';
 
-  if (!generator._asyncFsWebServerDeclaredObjects) {
-    generator._asyncFsWebServerDeclaredObjects = {};
-  }
-  if (generator._asyncFsWebServerDeclaredObjects[serverName]) {
-    return;
-  }
-
-  generator._asyncFsWebServerDeclaredObjects[serverName] = true;
   asyncFsEnsureLibraries(generator, filesystem);
-  registerVariableToBlockly(serverName, 'AsyncFsWebServer');
-  generator.addVariable(serverName, 'AsyncFsWebServer ' + serverName + '(' + filesystem + ', ' + serverPort + ', ' + serverHost + ');');
+  // Only the initializer owns the model; a reference must not redeclare it.
+  if (explicit) registerVariableToBlockly(serverName, 'AsyncFsWebServer');
+  // The host's declaration table is reset each generation. References supply
+  // a default only when absent; a create block wins regardless of visit order.
+  generator.addVariable(serverName, 'AsyncFsWebServer ' + serverName + '(' + filesystem + ', ' + serverPort + ', ' + serverHost + ');', explicit);
 }
 
 function asyncFsAttachVarMonitor(block) {
@@ -83,11 +73,7 @@ function asyncFsAttachVarMonitor(block) {
 }
 
 function asyncFsNextCallbackName(generator, prefix) {
-  if (!generator._asyncFsWebServerCallbackCounter) {
-    generator._asyncFsWebServerCallbackCounter = 0;
-  }
-  generator._asyncFsWebServerCallbackCounter++;
-  return '_asyncfs_' + prefix + '_' + generator._asyncFsWebServerCallbackCounter;
+  return generator.nameDB_.getDistinctName('asyncfs_' + prefix, 'PROCEDURE');
 }
 
 function asyncFsAddRequestHelpers(generator) {
@@ -141,7 +127,7 @@ Arduino.forBlock['async_fs_webserver_create'] = function(block, generator) {
   const port = block.getFieldValue('PORT') || '80';
   const host = generator.valueToCode(block, 'HOST', generator.ORDER_ATOMIC) || '"esphost"';
 
-  asyncFsEnsureServerObject(generator, varName, fsName, port, host);
+  asyncFsEnsureServerObject(generator, varName, fsName, port, host, true);
 
   return '';
 };

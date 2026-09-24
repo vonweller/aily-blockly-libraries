@@ -1,79 +1,3 @@
-// // 添加新函数，用于将循环变量添加到工具箱
-// function addLoopEndVariableToToolbox(block, varName) {
-//   try {
-//     const workspace = block.workspace;
-//     if (!workspace || !varName) return;
-
-//     // 获取工具箱
-//     const toolbox = workspace.getToolbox();
-//     if (!toolbox) return;
-
-//     const allCategories = toolbox.getToolboxItems();
-//     const variableCategory = allCategories.find(item =>
-//       item.name_ === "Variables" || (item.getContents && item.getContents()[0]?.callbackKey === "CREATE_VARIABLE")
-//     );
-
-//     // 获取原始工具箱定义
-//     const originalToolboxDef = workspace.options.languageTree;
-//     if (!originalToolboxDef) return;
-
-//     // 找到变量类别并更新其内容
-//     for (let category of originalToolboxDef.contents) {
-//       if ((category.name === "Variables" ||
-//         (category.contents && category.contents[0]?.callbackKey === "CREATE_VARIABLE"))) {
-
-//         // 检查变量是否已存在
-//         const varExists = category.contents.some(item =>
-//           item.fields && item.fields.VAR && item.fields.VAR.name === varName
-//         );
-
-//         if (!varExists) {
-//           // 获取当前时间戳作为ID
-//           const timestamp = new Date().getTime();
-//           category.contents.push({
-//             "kind": "block",
-//             "type": "variables_get",
-//             "fields": {
-//               "VAR": {
-//                 "id": "loopVar" + timestamp,
-//                 "name": varName,
-//                 "type": "int"
-//               }
-//             }
-//           });
-
-//           // 更新工具箱
-//           if (toolbox && variableCategory) {
-//             toolbox.refreshSelection();
-//             workspace.updateToolbox(originalToolboxDef);
-
-//             // 强制刷新工具箱显示
-//             variableCategory.refreshTheme();
-
-//             // 如果工具箱处于打开状态，使用更可靠的方式重新打开类别
-//             if (toolbox.isOpen_) {
-//               // 保存当前打开的类别ID
-//               toolbox.setSelectedItem(null);
-
-//               // 延迟更新确保DOM有足够时间更新
-//               setTimeout(() => {
-//                 variableCategory.updateFlyoutContents(originalToolboxDef);
-//                 toolbox.setSelectedItem(variableCategory);
-//                 workspace.refreshToolboxSelection();
-//               }, 50);
-//             } else {
-//               variableCategory.updateFlyoutContents(originalToolboxDef);
-//             }
-//           }
-//         }
-//         break;
-//       }
-//     }
-//   } catch (e) {
-//     console.log("添加循环变量到工具箱时出错:", e);
-//   }
-// }
-
 Arduino.forBlock["arduino_setup"] = function (block, generator) {
   const code = Arduino.statementToCode(block, "ARDUINO_SETUP");
   generator.addSetup("setup", code);
@@ -152,8 +76,6 @@ Arduino.forBlock["controls_for"] = function (block, generator) {
     "VARIABLE",
   );
 
-  // 添加循环变量到工具箱
-  // addLoopEndVariableToToolbox(block, variable0);
   addVariableToToolbox(block, variable0);
 
   const argument0 =
@@ -164,33 +86,34 @@ Arduino.forBlock["controls_for"] = function (block, generator) {
     Arduino.valueToCode(block, "BY", Arduino.ORDER_ASSIGNMENT) || "1";
   let branch = Arduino.statementToCode(block, "DO");
 
-  let code;
-  let up = true;
+  // This block uses an integer counter. Never evaluate C++ expressions in JS.
+  const values = [argument0, argument1, increment].map(value => Number(value));
+  for (let index = 0; index < values.length; index++) {
+    if (!Number.isNaN(values[index]) && !Number.isSafeInteger(values[index])) {
+      throw new Error(`controls_for: ${['FROM', 'TO', 'BY'][index]} must be an integer.`);
+    }
+  }
+  if (values[2] === 0) throw new Error('controls_for: BY must be non-zero (for example math_number(1)).');
 
-  if (
-    !isNaN(parseFloat(argument0)) && isFinite(argument0) &&
-    !isNaN(parseFloat(argument1)) && isFinite(argument1) &&
-    !isNaN(parseFloat(increment)) && isFinite(increment)
-  ) {
-    up = Number(argument0) <= Number(argument1);
-  } else if (Number(increment) < 0) {
-    up = false;
+  if (values.every(Number.isSafeInteger)) {
+    const up = values[0] <= values[1];
+    const step = Math.abs(values[2]);
+    const update = step === 1 ? (up ? '++' : '--') : `${up ? ' += ' : ' -= '}${step}`;
+    return `for (int ${variable0} = ${argument0}; ${variable0} ${up ? '<' : '>'} ${argument1}; ${variable0}${update}) {\n${branch}}\n`;
   }
 
-  // 使用模板字符串改善代码可读性
-  code = `for (int ${variable0} = ${argument0}; ${variable0}${up ? " < " : " > "}${argument1}; ${variable0}`;
-
-  console.log("code: ", code);
-  const step = Math.abs(Number(increment));
-  if (step === 1) {
-    code += up ? "++" : "--";
-  } else {
-    code += (up ? " += " : " -= ") + step;
-  }
-
-  code += `) {\n${branch}}\n`;
-  // generator.addVariable(variable0, `int ${variable0};`);
-  return code;
+  // Evaluate inputs once, in ABS/block order. Names belong to this generation,
+  // so nested loops cannot collide. Runtime zero steps execute no iterations.
+  const start = generator.nameDB_.getDistinctName(variable0 + '_start', 'VARIABLE');
+  const end = generator.nameDB_.getDistinctName(variable0 + '_end', 'VARIABLE');
+  const step = generator.nameDB_.getDistinctName(variable0 + '_step', 'VARIABLE');
+  const up = generator.nameDB_.getDistinctName(variable0 + '_up', 'VARIABLE');
+  return `const int ${start} = ${argument0};\n` +
+    `const int ${end} = ${argument1};\n` +
+    `const int ${step} = ${increment};\n` +
+    `const bool ${up} = ${start} <= ${end};\n` +
+    `for (int ${variable0} = ${start}; ${step} != 0 && (${up} ? ${variable0} < ${end} : ${variable0} > ${end}); ` +
+    `${variable0} += (${up} == (${step} > 0) ? ${step} : -${step})) {\n${branch}}\n`;
 };
 
 Arduino.forBlock["controls_flow_statements"] = function (block, generator) {

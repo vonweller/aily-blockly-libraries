@@ -9,8 +9,12 @@ Blockly.Extensions.register('dht_init_dynamic', function () {
   const pinLabel = i18n.pin || '引脚';
 
   this.updateShape_ = function (dhtType) {
-    if (this.getInput('PIN_SET')) this.removeInput('PIN_SET');
-    if (this.getInput('WIRE_SET')) this.removeInput('WIRE_SET');
+    // DHT11/21/22 share the same field. Recreating it discards the selected
+    // pin during both UI edits and native field restoration (including GPIO0).
+    const inputName = dhtType === 'DHT20' ? 'WIRE_SET' : 'PIN_SET';
+    const obsoleteInput = dhtType === 'DHT20' ? 'PIN_SET' : 'WIRE_SET';
+    if (this.getInput(obsoleteInput)) this.removeInput(obsoleteInput);
+    if (this.getInput(inputName)) return;
     switch (dhtType) {
       case 'DHT20':
         const i2cOptions = (window.boardConfig && window.boardConfig.i2c) ? window.boardConfig.i2c : [['I2C0','I2C0']];
@@ -62,30 +66,6 @@ Arduino.forBlock['dht_init'] = function (block, generator) {
   // 检查块是否连接到代码流程中，如果是独立块则不生成代码
   // 使用全局函数，支持指定目标块类型
   const isConnected = isBlockConnected(block);
-  
-  // 添加引脚动态显示逻辑
-  // if (!block._pinVisibilityAttached) {
-  //   block._pinVisibilityAttached = true;
-    
-  //   const typeField = block.getField('TYPE');
-  //   if (typeField && typeof typeField.setValidator === 'function') {
-  //     typeField.setValidator(function(newValue) {
-  //       const pinField = block.getField('PIN');
-  //       if (pinField && typeof pinField.setVisible === 'function') {
-  //         // DHT20 使用I2C，隐藏引脚；其他显示引脚
-  //         pinField.setVisible(newValue !== 'DHT20');
-  //       }
-  //       return newValue;
-  //     });
-  //   }
-    
-  //   // 初始化时检查当前值
-  //   const currentType = block.getFieldValue('TYPE');
-  //   const pinField = block.getField('PIN');
-  //   if (pinField && typeof pinField.setVisible === 'function' && currentType === 'DHT20') {
-  //     pinField.setVisible(false);
-  //   }
-  // }
   
   // 监听VAR输入值的变化，自动重命名Blockly变量
   if (!block._dhtVarMonitorAttached) {
