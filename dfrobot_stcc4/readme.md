@@ -8,7 +8,7 @@ Gravity STCC4 CO2 sensor library for Aily Blockly.
 |-------|-------|
 | Package | @aily-project/lib-dfrobot-stcc4 |
 | Version | 0.1.0 |
-| Author | YeezB |
+| Author | vonweller |
 | Source | https://gitee.com/yeezb/ext-stcc4-co2-sensor |
 | License | MIT |
 
