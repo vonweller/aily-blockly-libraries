@@ -14,7 +14,7 @@ SEN0755 TF-UW500 underwater single-point LiDAR over UART/I2C, distance in mm, pe
 
 ## Supported Boards
 
-Arduino-compatible boards with UART or I2C. Sensor supply is 5V. UART 3.3V TTL.
+Arduino UNO (`arduino:avr:uno`) and standard ESP32 (`esp32:esp32:esp32`). Arduino Nano, Mega, ESP8266, and other board types are not declared compatible with this version. UNO UART uses SoftwareSerial on the selected RX/TX pins; ESP32 uses the selected hardware serial port. Sensor supply is 5V. UART 3.3V TTL.
 
 ## Description
 
@@ -22,4 +22,4 @@ SEN0755 TF-UW500 underwater single-point LiDAR over UART/I2C, distance in mm, pe
 
 ## Quick Start
 
-Factory default communication may be I2C 0x10. UART default 115200 8N1. Call sen0755_read before sen0755_get_data.
+UART uses 115200 8N1. For I2C, first configure the sensor for I2C communication; its default I2C address is 0x10. Call sen0755_read before sen0755_get_data. Confidence is available in UART frames; I2C mode returns 0 for the confidence getter.
