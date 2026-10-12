@@ -4,13 +4,13 @@ Gravity STCC4 CO2 sensor library for reading CO2 concentration over I2C, with te
 
 ## Library Info
 - **Name**: @aily-project/lib-dfrobot-stcc4
-- **Version**: 0.1.0
+- **Version**: 0.1.1
 
 ## Block Definitions
 
 | Block Type | Connection | Parameters (block.json order) | ABS Format | Generated Code |
 |------------|------------|--------------------------|------------|----------------|
-| `stcc4_init` | Statement | VAR(field_input), WIRE(dropdown), ADDRESS(dropdown) | `stcc4_init("stcc4", WIRE, "0x64")` | `while (!stcc4.begin()) { ↵ delay(500); ↵ } ↵ stcc4.wakeup(); ↵ delay(10); ↵ stcc4.startMeasurement();` |
+| `stcc4_init` | Statement | VAR(field_input), WIRE(dropdown), ADDRESS(dropdown) | `stcc4_init("stcc4", Wire, "0x64")` | `while (!stcc4.begin()) { ↵ delay(500); ↵ } ↵ stcc4.wakeup(); ↵ delay(10); ↵ stcc4.startMeasurement();` |
 | `stcc4_read` | Value | VAR(field_variable) | `stcc4_read($stcc4)` | `stcc4.measurement(&stcc4CO2, &stcc4Temperature, &stcc4Humidity, &stcc4Status)` |
 | `stcc4_get_data` | Value | VAR(field_variable), DATA(dropdown) | `stcc4_get_data($stcc4, CO2)` | `stcc4CO2` |
 | `stcc4_get_id` | Value | VAR(field_variable) | `stcc4_get_id($stcc4)` | `stcc4.getID()` |
@@ -36,7 +36,7 @@ Gravity STCC4 CO2 sensor library for reading CO2 concentration over I2C, with te
 ### Basic Usage
 ```
 arduino_setup()
-    stcc4_init("stcc4", WIRE, "0x64")
+    stcc4_init("stcc4", Wire, "0x64")
     serial_begin(Serial, 9600)
 
 arduino_loop()
