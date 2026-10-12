@@ -14,7 +14,7 @@ SEN0670 Gravity AI vision gesture and pose sensor with learned hand/pose classes
 
 ## Supported Boards
 
-Arduino-compatible boards with I2C or UART. I2C address is 0x3A. Custom gestures/poses must be trained with the PC tool.
+Arduino UNO, ESP32, ESP32-C3 and ESP32-S3 only. Nano/Mega and other types are excluded. UNO UART uses SoftwareSerial; ESP32 uses a board hardware port (prefer Serial1; no Serial2 on ESP32-C3). I2C address: 0x3A. Train custom classes with the PC tool.
 
 ## Description
 

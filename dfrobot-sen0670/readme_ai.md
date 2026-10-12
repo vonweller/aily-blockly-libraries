@@ -8,9 +8,11 @@ SEN0670 Gravity AI vision gesture and pose sensor with learned hand/pose classes
 
 ## Block Definitions
 
+Compatibility types: `arduino:avr:uno`, `esp32:esp32:esp32`, `esp32:esp32:esp32c3`, `esp32:esp32:esp32s3`. Nano/Mega and other types are excluded. UNO UART uses SoftwareSerial; ESP32 uses a board hardware port (prefer Serial1; no Serial2 on ESP32-C3).
+
 | Block Type | Connection | Parameters (block.json order) | ABS Format | Generated Code |
 |------------|------------|--------------------------|------------|----------------|
-| `sen0670_init_i2c` | Statement | VAR(field_input), WIRE(dropdown) | `sen0670_init_i2c("humanPose", WIRE)` | `while (!humanPose.begin()) { ↵ delay(1000); ↵ }` |
+| `sen0670_init_i2c` | Statement | VAR(field_input), WIRE(dropdown) | `sen0670_init_i2c("humanPose", Wire)` | `while (!humanPose.begin()) { ↵ delay(1000); ↵ }` |
 | `sen0670_init_uart` | Statement | VAR(field_input), SERIAL(dropdown), RX(dropdown), TX(dropdown) | `sen0670_init_uart("humanPose", Serial1, RX, TX)` | `while (!humanPose.begin()) { ↵ delay(1000); ↵ }` |
 | `sen0670_set_model` | Statement | VAR(field_variable), MODEL(dropdown) | `sen0670_set_model($humanPose, eHand)` | `humanPose.setModelType(DFRobot_HumanPose::eHand);` |
 | `sen0670_get_result` | Value | VAR(field_variable) | `sen0670_get_result($humanPose)` | `humanPose.getResult() == DFRobot_HumanPose::eOK` |
@@ -45,7 +47,7 @@ SEN0670 Gravity AI vision gesture and pose sensor with learned hand/pose classes
 ### Basic Usage
 ```
 arduino_setup()
-    sen0670_init_i2c("humanPose", WIRE)
+    sen0670_init_i2c("humanPose", Wire)
     serial_begin(Serial, 9600)
 
 arduino_loop()
