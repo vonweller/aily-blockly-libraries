@@ -8,9 +8,11 @@ Gravity SEN0692 6-DOF IMU with I2C/UART, accel, gyro.
 
 ## Block Definitions
 
+Compatibility types: `arduino:avr:uno`, `esp32:esp32:esp32`, `esp32:esp32:esp32c3`, `esp32:esp32:esp32s3`. Nano/Mega and other types are excluded. UNO UART uses SoftwareSerial; ESP32 uses a board hardware port (prefer Serial1; no Serial2 on ESP32-C3).
+
 | Block Type | Connection | Parameters (block.json order) | ABS Format | Generated Code |
 |------------|------------|--------------------------|------------|----------------|
-| `sen0692_init_i2c` | Statement | VAR(field_input), WIRE(dropdown), ADDRESS(dropdown) | `sen0692_init_i2c("imu", WIRE, "0x4A")` | `while (!imu.begin()) { ↵ delay(1000); ↵ } ↵ imu.setSensorMode(DFRobot_Multi_DOF_IMU::eNormalMode); ↵ imu.setAccelRange(DFRobot_Multi_DOF_IMU::eAccelRange2G); ↵ imu.setGyroRange(DFRobot_Multi_DOF_IMU::eGyroRange250DPS);` |
+| `sen0692_init_i2c` | Statement | VAR(field_input), WIRE(dropdown), ADDRESS(dropdown) | `sen0692_init_i2c("imu", Wire, "0x4A")` | `while (!imu.begin()) { ↵ delay(1000); ↵ } ↵ imu.setSensorMode(DFRobot_Multi_DOF_IMU::eNormalMode); ↵ imu.setAccelRange(DFRobot_Multi_DOF_IMU::eAccelRange2G); ↵ imu.setGyroRange(DFRobot_Multi_DOF_IMU::eGyroRange250DPS);` |
 | `sen0692_init_uart` | Statement | VAR(field_input), SERIAL(dropdown), RX(dropdown), TX(dropdown), ADDRESS(dropdown) | `sen0692_init_uart("imu", Serial1, RX, TX, "0x4A")` | `while (!imu.begin()) { ↵ delay(1000); ↵ } ↵ imu.setSensorMode(DFRobot_Multi_DOF_IMU::eNormalMode); ↵ imu.setAccelRange(DFRobot_Multi_DOF_IMU::eAccelRange2G); ↵ imu.setGyroRange(DFRobot_Multi_DOF_IMU::eGyroRange250DPS);` |
 | `sen0692_set_mode` | Statement | VAR(field_variable), MODE(dropdown) | `sen0692_set_mode($imu, eNormalMode)` | `imu.setSensorMode(DFRobot_Multi_DOF_IMU::eNormalMode);` |
 | `sen0692_set_accel` | Statement | VAR(field_variable), RANGE(dropdown) | `sen0692_set_accel($imu, eAccelRange2G)` | `imu.setAccelRange(DFRobot_Multi_DOF_IMU::eAccelRange2G);` |
@@ -43,7 +45,7 @@ Gravity SEN0692 6-DOF IMU with I2C/UART, accel, gyro.
 ### Basic Usage
 ```
 arduino_setup()
-    sen0692_init_i2c("imu", WIRE, "0x4A")
+    sen0692_init_i2c("imu", Wire, "0x4A")
     serial_begin(Serial, 9600)
 
 arduino_loop()
