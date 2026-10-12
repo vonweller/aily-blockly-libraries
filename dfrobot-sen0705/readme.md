@@ -14,7 +14,9 @@ DFRobot SEN0705 4x8 flexible tactile pressure array over UART.
 
 ## Supported Boards
 
-Arduino-compatible boards with UART. 5V supply. Default baud 115200. Bundles DFRobot_TactileSensor and DFRobot_RTU.
+Arduino Mega 2560 (`arduino:avr:mega`) and standard ESP32 (`esp32:esp32:esp32`). UNO, Nano, and other board types are not declared compatible with the default configuration. Mega uses the selected hardware UART's fixed pins; its RX/TX dropdowns do not remap that UART. ESP32 uses the selected RX/TX pins. 5V sensor supply. Default baud 115200. Bundles DFRobot_TactileSensor and DFRobot_RTU.
+
+Advanced manual use on UNO/Nano requires selecting `Serial` and wiring to hardware UART pins D0/D1. The default `Serial1` is unavailable on these boards, so they are excluded from the compatibility list. Their RX/TX dropdowns do not remap the UART. Use that port exclusively for the sensor, without USB serial logging.
 
 ## Description
 
