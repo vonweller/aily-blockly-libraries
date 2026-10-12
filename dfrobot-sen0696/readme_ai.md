@@ -8,9 +8,11 @@ Gravity SEN0696 10-DOF IMU with I2C/UART, accel, gyro, mag and barometer.
 
 ## Block Definitions
 
+Compatibility types: `arduino:avr:uno`, `esp32:esp32:esp32`, `esp32:esp32:esp32c3`, `esp32:esp32:esp32s3`. Nano/Mega and other types are excluded. UNO UART uses SoftwareSerial; ESP32 uses a board hardware port (prefer Serial1; no Serial2 on ESP32-C3).
+
 | Block Type | Connection | Parameters (block.json order) | ABS Format | Generated Code |
 |------------|------------|--------------------------|------------|----------------|
-| `sen0696_init_i2c` | Statement | VAR(field_input), WIRE(dropdown), ADDRESS(dropdown) | `sen0696_init_i2c("imu", WIRE, "0x4A")` | `while (!imu.begin()) { ↵ delay(1000); ↵ } ↵ imu.setSensorMode(DFRobot_Multi_DOF_IMU::eNormalMode); ↵ imu.setAccelRange(DFRobot_Multi_DOF_IMU::eAccelRange2G); ↵ imu.setGyroRange(DFRobot_Multi_DOF_IMU::eGyroRange250DPS);` |
+| `sen0696_init_i2c` | Statement | VAR(field_input), WIRE(dropdown), ADDRESS(dropdown) | `sen0696_init_i2c("imu", Wire, "0x4A")` | `while (!imu.begin()) { ↵ delay(1000); ↵ } ↵ imu.setSensorMode(DFRobot_Multi_DOF_IMU::eNormalMode); ↵ imu.setAccelRange(DFRobot_Multi_DOF_IMU::eAccelRange2G); ↵ imu.setGyroRange(DFRobot_Multi_DOF_IMU::eGyroRange250DPS);` |
 | `sen0696_init_uart` | Statement | VAR(field_input), SERIAL(dropdown), RX(dropdown), TX(dropdown), ADDRESS(dropdown) | `sen0696_init_uart("imu", Serial1, RX, TX, "0x4A")` | `while (!imu.begin()) { ↵ delay(1000); ↵ } ↵ imu.setSensorMode(DFRobot_Multi_DOF_IMU::eNormalMode); ↵ imu.setAccelRange(DFRobot_Multi_DOF_IMU::eAccelRange2G); ↵ imu.setGyroRange(DFRobot_Multi_DOF_IMU::eGyroRange250DPS);` |
 | `sen0696_set_mode` | Statement | VAR(field_variable), MODE(dropdown) | `sen0696_set_mode($imu, eNormalMode)` | `imu.setSensorMode(DFRobot_Multi_DOF_IMU::eNormalMode);` |
 | `sen0696_set_accel` | Statement | VAR(field_variable), RANGE(dropdown) | `sen0696_set_accel($imu, eAccelRange2G)` | `imu.setAccelRange(DFRobot_Multi_DOF_IMU::eAccelRange2G);` |
@@ -46,7 +48,7 @@ Gravity SEN0696 10-DOF IMU with I2C/UART, accel, gyro, mag and barometer.
 ### Basic Usage
 ```
 arduino_setup()
-    sen0696_init_i2c("imu", WIRE, "0x4A")
+    sen0696_init_i2c("imu", Wire, "0x4A")
     serial_begin(Serial, 9600)
 
 arduino_loop()
@@ -59,3 +61,4 @@ arduino_loop()
 1. **Variable**: `sen0696_init_i2c` creates a Blockly variable. Use `$varName` only for field_variable slots; input_value slots must use the explicit `variables_get($varName)` block.
 2. **Parameter order**: ABS parameters follow `block.json` args order.
 3. **Input values**: use `math_number(n)`, `text("s")`, `logic_boolean(true/false)`, variables, or nested value blocks.
+4. **Interrupts**: INT1/2 use `eInt1_2*`; INT3 uses `eInt3DataReady`/`eInt3Disable`; INT4 uses `eInt4DataReady`/`eInt4PressureOOR`/`eInt4Disable`. Match pin and type; other combinations return false.
